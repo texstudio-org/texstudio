@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -620,7 +618,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1017"/>
@@ -911,7 +909,7 @@ Please change your configuration and define command lists only at Options -&gt; 
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>受け取るアップデート通知の種類を定義：
 - 安定版リリース：安定性が最も重要な場合これを選択する。
@@ -1131,7 +1129,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1162,10 +1160,6 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="configdialog.ui" line="1119"/>
         <source>4</source>
         <translation>4</translation>
-    </message>
-    <message>
-        <source>Close Log-View with Esc-Key</source>
-        <translation type="vanished">Escキーでログビューワーを閉じる</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1160"/>
@@ -1612,10 +1606,6 @@ Then you can select a new shortcut by one of the following ways:
         <translation>コンテキストメニューからのスペルチェック:</translation>
     </message>
     <message>
-        <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
-        <translation type="vanished">「Esc」キーを押したときに全画面表示モードを閉じない</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="2266"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>組み込みpdfビューワーでコマンドのヘルプを表示(texdoc)</translation>
@@ -1790,42 +1780,42 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2336"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2419"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2456"/>
@@ -2158,12 +2148,12 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="configdialog.ui" line="3158"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3161"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3171"/>
@@ -2556,7 +2546,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4181"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4160"/>
@@ -2632,8 +2622,8 @@ them here.</source>
         <location filename="configdialog.ui" line="4298"/>
         <location filename="configdialog.ui" line="4353"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>PDFライブラリのpopplerで使用される描画バックエンド。
 &apos;Splash&apos;が既定で、大抵の状況に適している。
@@ -2678,12 +2668,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4408"/>
         <source>Paper Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4418"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4470"/>
@@ -3931,12 +3921,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="406"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="editors.cpp" line="408"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="editors.cpp" line="413"/>
@@ -3946,7 +3936,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="416"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4308,7 +4298,7 @@ Are you sure you want to undo all changes?</source>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>図の配置位置
@@ -4419,7 +4409,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1692"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ファイル名: %1&lt;/b&gt;
 </translation>
@@ -4605,16 +4595,14 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2376"/>
         <location filename="latexeditorview.cpp" line="2448"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ファイル名: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2389"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>このラベルに対する%n回の参照</numerusform>
-        </translation>
+        <translation><numerusform>このラベルに対する%n回の参照</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2394"/>
@@ -4700,10 +4688,6 @@ The wizard does not support command </source>
         <location filename="latexeditorview.cpp" line="2979"/>
         <source>Expand Level %1</source>
         <translation>レベル %1を展開</translation>
-    </message>
-    <message>
-        <source>Open Document</source>
-        <translation type="vanished">文書を開く</translation>
     </message>
 </context>
 <context>
@@ -5406,7 +5390,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -5711,7 +5695,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5810,7 +5794,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -6246,7 +6230,7 @@ failed.</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>保存操作中にディスク上の元のファイルは破壊されました。
 ファイルのコピーは次の場所にあります
@@ -8107,142 +8091,142 @@ Do you trust this script?</source>
     <message>
         <location filename="structuretreeview.cpp" line="37"/>
         <source>Close document</source>
-        <translation type="unfinished">文章を閉じる</translation>
+        <translation>文章を閉じる</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="38"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished">明示的にルートドキュメントとして設定</translation>
+        <translation>明示的にルートドキュメントとして設定</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="39"/>
         <source>Open all related documents</source>
-        <translation type="unfinished">全ての関連する文書を開く</translation>
+        <translation>全ての関連する文書を開く</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="40"/>
         <source>Close all related documents</source>
-        <translation type="unfinished">全ての関連する文書を閉じる</translation>
+        <translation>全ての関連する文書を閉じる</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="42"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished">明示的なルートドキュメントの役割を解除</translation>
+        <translation>明示的なルートドキュメントの役割を解除</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="44"/>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished">このツリーの開いている文章すべてを表示</translation>
+        <translation>このツリーの開いている文章すべてを表示</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="46"/>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished">このツリーの現在の文章のみを表示</translation>
+        <translation>このツリーの現在の文章のみを表示</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="49"/>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished">文章を一番前へ移動(&amp;f)</translation>
+        <translation>文章を一番前へ移動(&amp;f)</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="50"/>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished">文章を一番後ろへ移動(&amp;e)</translation>
+        <translation>文章を一番後ろへ移動(&amp;e)</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="52"/>
         <location filename="structuretreeview.cpp" line="100"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished">サブ項目を展開</translation>
+        <translation>サブ項目を展開</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="53"/>
         <location filename="structuretreeview.cpp" line="101"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished">サブ項目を非表示</translation>
+        <translation>サブ項目を非表示</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="54"/>
         <source>Expand all documents</source>
-        <translation type="unfinished">全ての文書を表示</translation>
+        <translation>全ての文書を表示</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="55"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished">全ての文書を非表示</translation>
+        <translation>全ての文書を非表示</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="64"/>
         <source>Insert</source>
-        <translation type="unfinished">挿入</translation>
+        <translation>挿入</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="65"/>
         <location filename="structuretreeview.cpp" line="66"/>
         <source>Insert as %1</source>
-        <translation type="unfinished">%1として挿入</translation>
+        <translation>%1として挿入</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="68"/>
         <source>Find Usages</source>
-        <translation type="unfinished">使用法検索</translation>
+        <translation>使用法検索</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="79"/>
         <source>Insert Label</source>
-        <translation type="unfinished">ラベルを挿入</translation>
+        <translation>ラベルを挿入</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="83"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="unfinished">ラベルに%1を挿入</translation>
+        <translation>ラベルに%1を挿入</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="87"/>
         <source>Create Label</source>
-        <translation type="unfinished">ラベルを作成</translation>
+        <translation>ラベルを作成</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="91"/>
         <source>Copy</source>
-        <translation type="unfinished">コピー</translation>
+        <translation>コピー</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="92"/>
         <source>Cut</source>
-        <translation type="unfinished">切り取り</translation>
+        <translation>切り取り</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="93"/>
         <source>Paste Before</source>
-        <translation type="unfinished">前に貼り付け</translation>
+        <translation>前に貼り付け</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="94"/>
         <source>Paste After</source>
-        <translation type="unfinished">後に貼り付け</translation>
+        <translation>後に貼り付け</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="96"/>
         <source>Indent Section</source>
-        <translation type="unfinished">節のインデント</translation>
+        <translation>節のインデント</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="97"/>
         <source>Unindent Section</source>
-        <translation type="unfinished">節のインデントの解除</translation>
+        <translation>節のインデントの解除</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="108"/>
         <location filename="structuretreeview.cpp" line="115"/>
         <source>Go to Definition</source>
-        <translation type="unfinished">定義へ移動</translation>
+        <translation>定義へ移動</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="114"/>
         <source>Open Document</source>
-        <translation type="unfinished">文書を開く</translation>
+        <translation>文書を開く</translation>
     </message>
 </context>
 <context>
@@ -8273,12 +8257,12 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8287,19 +8271,19 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
@@ -8311,37 +8295,37 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="39"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="75"/>
@@ -8361,7 +8345,7 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
@@ -8379,7 +8363,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="499"/>
@@ -9054,7 +9038,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="603"/>
         <location filename="texstudio.cpp" line="604"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="606"/>
@@ -9084,7 +9068,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="611"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="736"/>
@@ -10071,12 +10055,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1044"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1045"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1047"/>
@@ -10218,11 +10202,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1141"/>
         <source>Close Element</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close Something</source>
-        <translation type="vanished">閉じる</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1144"/>
@@ -10393,7 +10373,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1243"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1244"/>
@@ -10404,26 +10384,6 @@ failed.</source>
         <location filename="texstudio.cpp" line="2708"/>
         <source>Copy</source>
         <translation>コピー</translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="vanished">切り取り</translation>
-    </message>
-    <message>
-        <source>Paste Before</source>
-        <translation type="vanished">前に貼り付け</translation>
-    </message>
-    <message>
-        <source>Paste After</source>
-        <translation type="vanished">後に貼り付け</translation>
-    </message>
-    <message>
-        <source>Indent Section</source>
-        <translation type="vanished">節のインデント</translation>
-    </message>
-    <message>
-        <source>Unindent Section</source>
-        <translation type="vanished">節のインデントの解除</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1362"/>
@@ -10448,7 +10408,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1403"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1458"/>
@@ -10782,7 +10742,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5597"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>ファイルが見つかりません。
 コンパイル前にドキュメントを保存してください。</translation>
@@ -10839,12 +10799,12 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5858"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5861"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5922"/>
@@ -10860,18 +10820,6 @@ Do you want to allow and run the new, overriding command?
         <location filename="texstudio.cpp" line="5952"/>
         <source>Error:</source>
         <translation>エラー: </translation>
-    </message>
-    <message>
-        <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;h4&gt;既定のショートカットの変更&lt;/h4&gt;&lt;p&gt;これまで、主なツールのショートカットはややバラバラだった。さらに、部分的に標準キーと重なっていた。特にF1, F3, F10, F11, F12はいくつかのシステムで既に意味を持っていた。&lt;/p&gt;&lt;p&gt;そこで、より矛盾しないレイアウトのため次のようにショートカットを設定することに決めた：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;code&gt;ビルド &amp; 表示&lt;/code&gt;に対するショートカットはF1からF5に変更となる。&lt;/li&gt;&lt;li&gt;&lt;code&gt;文献&lt;/code&gt;に対するショートカットはF11からF8へ変更となる。&lt;/li&gt;&lt;li&gt;&lt;code&gt;用語集&lt;/code&gt;に対するショートカットはF10からF9に変更となる。&lt;li&gt;ツール&lt;code&gt;索引&lt;/code&gt;はもはや既定のショートカットを持たない（以前はF12）。何故ならそれほど頻繁に利用されないからだ。&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;最もよく使われる&lt;code&gt;ビルド &amp; 表示&lt;/code&gt;に対するショートカットを覚えなおす必要があることは申し訳ない。切換期間の間は、F1とF5の両方が機能する。最終的には、最も重要なツールを中心のブロックF5-F8に集めることで利便性が向上するだろう。これまでと変わらず通常どおり、オプションでショートカットを完全にカスタマイズすることができる。&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Do not show this message again.</source>
-        <translation type="vanished">二度とこのメッセージを表示しない</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="vanished">OK</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5986"/>
@@ -10909,83 +10857,6 @@ Do you want to allow and run the new, overriding command?
         <location filename="texstudio.cpp" line="6728"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>ルートドキュメントとして指定する前にファイルを保存する必要があります。</translation>
-    </message>
-    <message>
-        <source>Close document</source>
-        <translation type="vanished">文章を閉じる</translation>
-    </message>
-    <message>
-        <source>Set as explicit root document</source>
-        <translation type="vanished">明示的にルートドキュメントとして設定</translation>
-    </message>
-    <message>
-        <source>Open all related documents</source>
-        <translation type="vanished">全ての関連する文書を開く</translation>
-    </message>
-    <message>
-        <source>Close all related documents</source>
-        <translation type="vanished">全ての関連する文書を閉じる</translation>
-    </message>
-    <message>
-        <source>Remove explicit root document role</source>
-        <translation type="vanished">明示的なルートドキュメントの役割を解除</translation>
-    </message>
-    <message>
-        <source>Show all open documents in this tree</source>
-        <translation type="vanished">このツリーの開いている文章すべてを表示</translation>
-    </message>
-    <message>
-        <source>Show only current document in this tree</source>
-        <translation type="vanished">このツリーの現在の文章のみを表示</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;front</source>
-        <translation type="vanished">文章を一番前へ移動(&amp;f)</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;end</source>
-        <translation type="vanished">文章を一番後ろへ移動(&amp;e)</translation>
-    </message>
-    <message>
-        <source>Expand Subitems</source>
-        <translation type="vanished">サブ項目を展開</translation>
-    </message>
-    <message>
-        <source>Collapse Subitems</source>
-        <translation type="vanished">サブ項目を非表示</translation>
-    </message>
-    <message>
-        <source>Expand all documents</source>
-        <translation type="vanished">全ての文書を表示</translation>
-    </message>
-    <message>
-        <source>Collapse all documents</source>
-        <translation type="vanished">全ての文書を非表示</translation>
-    </message>
-    <message>
-        <source>Insert</source>
-        <translation type="vanished">挿入</translation>
-    </message>
-    <message>
-        <source>Insert as %1</source>
-        <translation type="vanished">%1として挿入</translation>
-    </message>
-    <message>
-        <source>Find Usages</source>
-        <translation type="vanished">使用法検索</translation>
-    </message>
-    <message>
-        <source>Insert Label</source>
-        <translation type="vanished">ラベルを挿入</translation>
-    </message>
-    <message>
-        <source>Insert %1 to Label</source>
-        <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="vanished">ラベルに%1を挿入</translation>
-    </message>
-    <message>
-        <source>Create Label</source>
-        <translation type="vanished">ラベルを作成</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8352"/>
@@ -11212,69 +11083,69 @@ TeXstudioを実行し続けますか? これはデータの破壊につながる
     <message>
         <location filename="texstudio.cpp" line="10127"/>
         <source>LT Report</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10154"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10157"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10167"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10169"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10172"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10174"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10177"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10179"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10184"/>
         <source>LT current status: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10187"/>
         <source>working</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10190"/>
@@ -11290,12 +11161,12 @@ TeXstudioを実行し続けますか? これはデータの破壊につながる
         <location filename="texstudio.cpp" line="10199"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10453"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -71,7 +69,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="36"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -616,7 +614,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1017"/>
@@ -677,7 +675,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="buildmanager.cpp" line="1505"/>
         <source>Parent Command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1506"/>
@@ -907,7 +905,7 @@ Please change your configuration and define command lists only at Options -&gt; 
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define los tipos de notificaciones de actualización que recibirá:
 - Versiones estables: Escoge esto si la estabilidad es lo más importante para ti.
@@ -1106,17 +1104,17 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     <message>
         <location filename="configdialog.ui" line="1040"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1047"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1050"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1080"/>
@@ -1126,7 +1124,7 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1159,13 +1157,9 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>4</translation>
     </message>
     <message>
-        <source>Close Log-View with Esc-Key</source>
-        <translation type="vanished">Cerrar el visor del registro con la tecla Esc</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="1160"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1183"/>
@@ -1607,10 +1601,6 @@ Esto cambia la escala de las barras de herramientas verticales (para pantallas d
         <translation>Revisión ortográfica a través del menú contextual:</translation>
     </message>
     <message>
-        <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
-        <translation type="vanished">No abandonar el modo de pantalla completa al pulsar la tecla &lt;Esc&gt;</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="2266"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Mostrar ayuda sobre las órdenes en el visor de pdf interno (texdoc)</translation>
@@ -1659,7 +1649,7 @@ Esto cambia la escala de las barras de herramientas verticales (para pantallas d
         <location filename="configdialog.ui" line="2360"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2364"/>
@@ -1699,7 +1689,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2151"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2164"/>
@@ -1714,22 +1704,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2273"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2316"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2319"/>
         <source>Safe writing of files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2280"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2288"/>
@@ -1784,32 +1774,32 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2336"/>
@@ -1819,7 +1809,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2419"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2456"/>
@@ -1830,7 +1820,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2463"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2494"/>
@@ -2153,12 +2143,12 @@ Aquí puede añadir otro entorno de resaltado personalizado.</translation>
     <message>
         <location filename="configdialog.ui" line="3158"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3161"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3171"/>
@@ -2179,7 +2169,7 @@ aquí.</translation>
     <message>
         <location filename="configdialog.ui" line="3179"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3247"/>
@@ -2373,13 +2363,13 @@ aquí.</translation>
     <message>
         <location filename="configdialog.ui" line="3629"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3650"/>
         <location filename="configdialog.ui" line="3698"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3653"/>
@@ -2552,7 +2542,7 @@ aquí.</translation>
     <message>
         <location filename="configdialog.ui" line="4181"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4160"/>
@@ -2628,10 +2618,10 @@ aquí.</translation>
         <location filename="configdialog.ui" line="4298"/>
         <location filename="configdialog.ui" line="4353"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4321"/>
@@ -2666,17 +2656,17 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4401"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4408"/>
         <source>Paper Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4418"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4470"/>
@@ -3033,7 +3023,7 @@ comunes.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="24"/>
@@ -3048,7 +3038,7 @@ comunes.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
@@ -3433,12 +3423,12 @@ comunes.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="30"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="96"/>
         <source>\includeonly{file(s)}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="98"/>
@@ -3576,12 +3566,12 @@ comunes.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="132"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
@@ -3591,7 +3581,7 @@ comunes.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="134"/>
         <source>\underset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="135"/>
@@ -3910,7 +3900,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="396"/>
         <source>Move all to other view</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="editors.cpp" line="401"/>
@@ -3925,12 +3915,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="406"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="editors.cpp" line="408"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="editors.cpp" line="413"/>
@@ -3940,7 +3930,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="416"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4301,7 +4291,7 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferencias de Posicionamiento de la figura
@@ -4412,7 +4402,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1692"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre: %1&lt;/b&gt;
 </translation>
@@ -4493,12 +4483,12 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="latexstructure.cpp" line="202"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexstructure.cpp" line="204"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexstructure.cpp" line="219"/>
@@ -4598,17 +4588,14 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="latexeditorview.cpp" line="2376"/>
         <location filename="latexeditorview.cpp" line="2448"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre del archivo: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2389"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n referencia a esta etiqueta</numerusform>
-            <numerusform>%n referencias a esta etiqueta</numerusform>
-        </translation>
+        <translation><numerusform>%n referencia a esta etiqueta</numerusform><numerusform>%n referencias a esta etiqueta</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2394"/>
@@ -4694,10 +4681,6 @@ El asistente no admite órdenes </translation>
         <location filename="latexeditorview.cpp" line="2979"/>
         <source>Expand Level %1</source>
         <translation>Expandir el Nivel %1</translation>
-    </message>
-    <message>
-        <source>Open Document</source>
-        <translation type="vanished">Abrir Documento</translation>
     </message>
 </context>
 <context>
@@ -5385,12 +5368,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2412"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2432"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2433"/>
@@ -5400,7 +5383,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -5706,7 +5689,7 @@ Por favor ingrese la contraseña:</translation>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5805,7 +5788,7 @@ Por favor ingrese la contraseña:</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -6059,7 +6042,7 @@ Empezar de nuevo desde el principio? </translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="608"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="613"/>
@@ -6178,7 +6161,7 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1007"/>
@@ -6187,7 +6170,7 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1040"/>
@@ -6237,7 +6220,7 @@ falló.</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>El fichero original fue eliminado durante la operación de guardado. 
 Encontrará una copia en %1</translation>
@@ -6766,7 +6749,7 @@ La Opción Deshacer/Rehacer sería descartada por el auto-recargado.
     <message>
         <location filename="additionaltranslations.cpp" line="174"/>
         <source>picture-keyword</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="175"/>
@@ -7385,7 +7368,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
@@ -8098,142 +8081,142 @@ siguiente valor:
     <message>
         <location filename="structuretreeview.cpp" line="37"/>
         <source>Close document</source>
-        <translation type="unfinished">Cerrar el documento</translation>
+        <translation>Cerrar el documento</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="38"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished">Establecer como un documento principal</translation>
+        <translation>Establecer como un documento principal</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="39"/>
         <source>Open all related documents</source>
-        <translation type="unfinished">Abrir todos los documentos relacionados</translation>
+        <translation>Abrir todos los documentos relacionados</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="40"/>
         <source>Close all related documents</source>
-        <translation type="unfinished">Cerrar todos los documentos relacionados</translation>
+        <translation>Cerrar todos los documentos relacionados</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="42"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished">Quitar como documento principal</translation>
+        <translation>Quitar como documento principal</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="44"/>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished">Mostrar todos los documentos abiertos en este árbol</translation>
+        <translation>Mostrar todos los documentos abiertos en este árbol</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="46"/>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished">Mostrar solo el documento actual en este árbol</translation>
+        <translation>Mostrar solo el documento actual en este árbol</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="49"/>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished">Mueva el documento &amp;delante</translation>
+        <translation>Mueva el documento &amp;delante</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="50"/>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished">Mueva el documento al f&amp;inal</translation>
+        <translation>Mueva el documento al f&amp;inal</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="52"/>
         <location filename="structuretreeview.cpp" line="100"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished">Ampliar Subelementos</translation>
+        <translation>Ampliar Subelementos</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="53"/>
         <location filename="structuretreeview.cpp" line="101"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished">Contraer Subelementos</translation>
+        <translation>Contraer Subelementos</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="54"/>
         <source>Expand all documents</source>
-        <translation type="unfinished">Expandir todos los documentos</translation>
+        <translation>Expandir todos los documentos</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="55"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished">Contraer todos los documentos</translation>
+        <translation>Contraer todos los documentos</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="64"/>
         <source>Insert</source>
-        <translation type="unfinished">Insertar</translation>
+        <translation>Insertar</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="65"/>
         <location filename="structuretreeview.cpp" line="66"/>
         <source>Insert as %1</source>
-        <translation type="unfinished">Insertar como %1</translation>
+        <translation>Insertar como %1</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="68"/>
         <source>Find Usages</source>
-        <translation type="unfinished">Encuentra Usos</translation>
+        <translation>Encuentra Usos</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="79"/>
         <source>Insert Label</source>
-        <translation type="unfinished">Insertar Etiqueta</translation>
+        <translation>Insertar Etiqueta</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="83"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="unfinished">Inserte %1 a la etiqueta</translation>
+        <translation>Inserte %1 a la etiqueta</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="87"/>
         <source>Create Label</source>
-        <translation type="unfinished">Crear Etiqueta</translation>
+        <translation>Crear Etiqueta</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="91"/>
         <source>Copy</source>
-        <translation type="unfinished">Copiar</translation>
+        <translation>Copiar</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="92"/>
         <source>Cut</source>
-        <translation type="unfinished">Cortar</translation>
+        <translation>Cortar</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="93"/>
         <source>Paste Before</source>
-        <translation type="unfinished">Pegar antes</translation>
+        <translation>Pegar antes</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="94"/>
         <source>Paste After</source>
-        <translation type="unfinished">Pegar después</translation>
+        <translation>Pegar después</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="96"/>
         <source>Indent Section</source>
-        <translation type="unfinished">Aumentar Sangría de la sección</translation>
+        <translation>Aumentar Sangría de la sección</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="97"/>
         <source>Unindent Section</source>
-        <translation type="unfinished">Disminuir Sangría a la Sección</translation>
+        <translation>Disminuir Sangría a la Sección</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="108"/>
         <location filename="structuretreeview.cpp" line="115"/>
         <source>Go to Definition</source>
-        <translation type="unfinished">Ir a la Definición</translation>
+        <translation>Ir a la Definición</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="114"/>
         <source>Open Document</source>
-        <translation type="unfinished">Abrir Documento</translation>
+        <translation>Abrir Documento</translation>
     </message>
 </context>
 <context>
@@ -8264,12 +8247,12 @@ siguiente valor:
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8278,19 +8261,19 @@ siguiente valor:
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
@@ -8302,37 +8285,37 @@ siguiente valor:
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="39"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="75"/>
@@ -8352,7 +8335,7 @@ siguiente valor:
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
@@ -8370,7 +8353,7 @@ siguiente valor:
     <message>
         <location filename="syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="499"/>
@@ -8440,7 +8423,7 @@ siguiente valor:
     <message>
         <location filename="syntaxcheck.cpp" line="512"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="514"/>
@@ -9045,7 +9028,7 @@ no pudo ser eliminado.</translation>
         <location filename="texstudio.cpp" line="603"/>
         <location filename="texstudio.cpp" line="604"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="606"/>
@@ -9582,7 +9565,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="912"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="913"/>
@@ -9751,12 +9734,12 @@ no pudo ser eliminado.</translation>
         <location filename="texstudio.cpp" line="954"/>
         <source>Refresh Language Model</source>
         <oldsource>Refresh QNFA</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="955"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="956"/>
@@ -10062,12 +10045,12 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="1044"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1045"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1047"/>
@@ -10194,7 +10177,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="1134"/>
         <source>Statusbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1138"/>
@@ -10209,11 +10192,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="1141"/>
         <source>Close Element</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close Something</source>
-        <translation type="vanished">Cerrar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1144"/>
@@ -10384,7 +10363,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="1243"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1244"/>
@@ -10397,26 +10376,6 @@ no pudo ser eliminado.</translation>
         <translation>Copiar</translation>
     </message>
     <message>
-        <source>Cut</source>
-        <translation type="vanished">Cortar</translation>
-    </message>
-    <message>
-        <source>Paste Before</source>
-        <translation type="vanished">Pegar antes</translation>
-    </message>
-    <message>
-        <source>Paste After</source>
-        <translation type="vanished">Pegar después</translation>
-    </message>
-    <message>
-        <source>Indent Section</source>
-        <translation type="vanished">Aumentar Sangría de la sección</translation>
-    </message>
-    <message>
-        <source>Unindent Section</source>
-        <translation type="vanished">Disminuir Sangría a la Sección</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="1362"/>
         <source>Default</source>
         <translation>Predeterminado</translation>
@@ -10424,22 +10383,22 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="1390"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1394"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1399"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1403"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1458"/>
@@ -10775,7 +10734,7 @@ No se pudo guardar el archivo de imagen.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5597"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>No se puede detectar el nombre del archivo.
 Usted tiene que guardar un documento antes de poder compilarlo.</translation>
@@ -10834,12 +10793,12 @@ confía en este documento)
     <message>
         <location filename="texstudio.cpp" line="5858"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5861"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5922"/>
@@ -10855,18 +10814,6 @@ confía en este documento)
         <location filename="texstudio.cpp" line="5952"/>
         <source>Error:</source>
         <translation>Error:</translation>
-    </message>
-    <message>
-        <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;h4&gt;Cambio de los accesos directos predeterminados&lt;/h4&gt;&lt;p&gt;Conforme avanza el tiempo, los accesos directos de las herramientas principales se han convertido en algo fragmentado. Adicionalmente, en parte se superponen con teclas estándar. En particular, F1, F3, F10, F11 y F12 tienen reservada una función significativa en algunos sistemas.&lt;/p&gt;&lt;p&gt;Hemos decidido establecer esta asignación a favor de un diseño más coherente::&lt;/p&gt;&lt;ul&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt; se moverá de F1 a F5.&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Bibliografía&lt;/code&gt; se moverá de F11 a F8..&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Glosario&lt;/code&gt; se moverá de F10 a F9.&lt;li&gt;La herramienta &lt;code&gt;Índice&lt;/code&gt; no tendrá más un atajo (antes F12) debido a que esta no es utilizada muy a menudo.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Lamentamos, que tenga que volver a aprender el atajo más utilizado para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt;. Durante un período de transición, tanto F1 y F5 funcionarán. Al final, se reunirán las herramientas más importantes en el bloque central de F5-F8, lo cual  aumentará la usabilidad. Como de costumbre, todavía se puede personalizar totalmente los accesos directos en las opciones.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Do not show this message again.</source>
-        <translation type="vanished">No mostrar este mensaje nuevamente.</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="vanished">Aceptar</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5986"/>
@@ -10906,83 +10853,6 @@ confía en este documento)
         <translation>Se debe  guardar el archivo antes de que pueda ser definido como un documento principal.</translation>
     </message>
     <message>
-        <source>Close document</source>
-        <translation type="vanished">Cerrar el documento</translation>
-    </message>
-    <message>
-        <source>Set as explicit root document</source>
-        <translation type="vanished">Establecer como un documento principal</translation>
-    </message>
-    <message>
-        <source>Open all related documents</source>
-        <translation type="vanished">Abrir todos los documentos relacionados</translation>
-    </message>
-    <message>
-        <source>Close all related documents</source>
-        <translation type="vanished">Cerrar todos los documentos relacionados</translation>
-    </message>
-    <message>
-        <source>Remove explicit root document role</source>
-        <translation type="vanished">Quitar como documento principal</translation>
-    </message>
-    <message>
-        <source>Show all open documents in this tree</source>
-        <translation type="vanished">Mostrar todos los documentos abiertos en este árbol</translation>
-    </message>
-    <message>
-        <source>Show only current document in this tree</source>
-        <translation type="vanished">Mostrar solo el documento actual en este árbol</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;front</source>
-        <translation type="vanished">Mueva el documento &amp;delante</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;end</source>
-        <translation type="vanished">Mueva el documento al f&amp;inal</translation>
-    </message>
-    <message>
-        <source>Expand Subitems</source>
-        <translation type="vanished">Ampliar Subelementos</translation>
-    </message>
-    <message>
-        <source>Collapse Subitems</source>
-        <translation type="vanished">Contraer Subelementos</translation>
-    </message>
-    <message>
-        <source>Expand all documents</source>
-        <translation type="vanished">Expandir todos los documentos</translation>
-    </message>
-    <message>
-        <source>Collapse all documents</source>
-        <translation type="vanished">Contraer todos los documentos</translation>
-    </message>
-    <message>
-        <source>Insert</source>
-        <translation type="vanished">Insertar</translation>
-    </message>
-    <message>
-        <source>Insert as %1</source>
-        <translation type="vanished">Insertar como %1</translation>
-    </message>
-    <message>
-        <source>Find Usages</source>
-        <translation type="vanished">Encuentra Usos</translation>
-    </message>
-    <message>
-        <source>Insert Label</source>
-        <translation type="vanished">Insertar Etiqueta</translation>
-    </message>
-    <message>
-        <source>Insert %1 to Label</source>
-        <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="vanished">Inserte %1 a la etiqueta</translation>
-    </message>
-    <message>
-        <source>Create Label</source>
-        <translation type="vanished">Crear Etiqueta</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="8352"/>
         <source>commit comment:</source>
         <translation>hacer un comentario:</translation>
@@ -11000,7 +10870,7 @@ confía en este documento)
     <message>
         <location filename="texstudio.cpp" line="8910"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8912"/>
@@ -11214,7 +11084,7 @@ El mensaje ha sido detenido.
         <location filename="texstudio.cpp" line="10154"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10157"/>
@@ -11227,41 +11097,41 @@ El mensaje ha sido detenido.
         <location filename="texstudio.cpp" line="10167"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10169"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10172"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10174"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10177"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10179"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10184"/>
@@ -11293,7 +11163,7 @@ El mensaje ha sido detenido.
     <message>
         <location filename="texstudio.cpp" line="10453"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>

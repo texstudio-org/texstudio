@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -912,7 +910,7 @@ Please change your configuration and define command lists only at Options -&gt; 
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Визначає тип одержуваних сповіщень про оновлення:
  — Стабільні версії: виберіть цей тип, якщо стабільність найважливіша для вас.
@@ -1132,7 +1130,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1163,10 +1161,6 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="configdialog.ui" line="1119"/>
         <source>4</source>
         <translation>4</translation>
-    </message>
-    <message>
-        <source>Close Log-View with Esc-Key</source>
-        <translation type="vanished">Закривати перегляд журналу через клавішу Esc</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1160"/>
@@ -1612,10 +1606,6 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Перевірка правопису через контекстне меню:</translation>
     </message>
     <message>
-        <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
-        <translation type="vanished">Не залишати повноекранний режим при натисканні &lt;Esc&gt;</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="2266"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Показувати довідку про команди у вбудованому переглядачі pdf (texdoc)</translation>
@@ -1790,27 +1780,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Команда закрити елемент застосовується до певного списку елементів інтерфейсу (не всі перераховані тут). Буде закритий перший видимий елемент. З цим параметром ви можете виключити деякі параметри із закриття.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрити елемент (Esc)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрити перегляд журналу</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрити вбудований переглядач</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрити повноекранний режим</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -2158,12 +2148,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="3158"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо математична команда вставлена через завершення ззовні математичного середовища, то $$ автоматично вставляється.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3161"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично вставляти математичні розділювачі за потреби</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3171"/>
@@ -2633,8 +2623,8 @@ them here.</source>
         <location filename="configdialog.ui" line="4298"/>
         <location filename="configdialog.ui" line="4353"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Обробник вимальовування зображення, що використовується PDF-бібліотекою poppler.
 &apos;Splash&apos; використовується типово і підходить в більшості випадків.
@@ -3933,12 +3923,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="406"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Лише для читання</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="408"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Скасувати лише для читання</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="413"/>
@@ -4310,7 +4300,7 @@ Are you sure you want to undo all changes?</source>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Пріоритет розташування малюнка:
@@ -4421,7 +4411,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1692"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4607,7 +4597,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2376"/>
         <location filename="latexeditorview.cpp" line="2448"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4615,11 +4605,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2389"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилань на цю мітку</numerusform>
-        </translation>
+        <translation><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2394"/>
@@ -4705,10 +4691,6 @@ The wizard does not support command </source>
         <location filename="latexeditorview.cpp" line="2979"/>
         <source>Expand Level %1</source>
         <translation>Розкрити рівень %1</translation>
-    </message>
-    <message>
-        <source>Open Document</source>
-        <translation type="vanished">Відкрити документ</translation>
     </message>
 </context>
 <context>
@@ -5411,7 +5393,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматично ховати панель</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -6255,7 +6237,7 @@ failed.</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Оригінальний файл на диску був знищений під час збереження.
 Ви можете знайти копію у
@@ -8116,142 +8098,142 @@ Do you trust this script?</source>
     <message>
         <location filename="structuretreeview.cpp" line="37"/>
         <source>Close document</source>
-        <translation type="unfinished">Закрити документ</translation>
+        <translation>Закрити документ</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="38"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished">Задати як явний головний документ</translation>
+        <translation>Задати як явний головний документ</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="39"/>
         <source>Open all related documents</source>
-        <translation type="unfinished">Відкрити усі пов&apos;язані документи</translation>
+        <translation>Відкрити усі пов&apos;язані документи</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="40"/>
         <source>Close all related documents</source>
-        <translation type="unfinished">Закрити усі пов&apos;язані документи</translation>
+        <translation>Закрити усі пов&apos;язані документи</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="42"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished">Зняти позначку головного документа</translation>
+        <translation>Зняти позначку головного документа</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="44"/>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished">Показати усі відкриті документи у цьому дереві</translation>
+        <translation>Показати усі відкриті документи у цьому дереві</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="46"/>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished">Показувати лише поточний документ у цьому дереві</translation>
+        <translation>Показувати лише поточний документ у цьому дереві</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="49"/>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished">Пересунути документ на&amp;перед</translation>
+        <translation>Пересунути документ на&amp;перед</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="50"/>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished">Пересунути документ на&amp;зад</translation>
+        <translation>Пересунути документ на&amp;зад</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="52"/>
         <location filename="structuretreeview.cpp" line="100"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished">Розгорнути піделементи</translation>
+        <translation>Розгорнути піделементи</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="53"/>
         <location filename="structuretreeview.cpp" line="101"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished">Згорнути піделементи</translation>
+        <translation>Згорнути піделементи</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="54"/>
         <source>Expand all documents</source>
-        <translation type="unfinished">Розгорнути усі документи</translation>
+        <translation>Розгорнути усі документи</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="55"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished">Згорнути усі документи</translation>
+        <translation>Згорнути усі документи</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="64"/>
         <source>Insert</source>
-        <translation type="unfinished">Вставити</translation>
+        <translation>Вставити</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="65"/>
         <location filename="structuretreeview.cpp" line="66"/>
         <source>Insert as %1</source>
-        <translation type="unfinished">Вставити як %1</translation>
+        <translation>Вставити як %1</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="68"/>
         <source>Find Usages</source>
-        <translation type="unfinished">Знайти використання</translation>
+        <translation>Знайти використання</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="79"/>
         <source>Insert Label</source>
-        <translation type="unfinished">Вставити мітку</translation>
+        <translation>Вставити мітку</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="83"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="unfinished">Вставити %1 у мітку</translation>
+        <translation>Вставити %1 у мітку</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="87"/>
         <source>Create Label</source>
-        <translation type="unfinished">Нова мітка</translation>
+        <translation>Нова мітка</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="91"/>
         <source>Copy</source>
-        <translation type="unfinished">Копіювати</translation>
+        <translation>Копіювати</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="92"/>
         <source>Cut</source>
-        <translation type="unfinished">Вирізати</translation>
+        <translation>Вирізати</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="93"/>
         <source>Paste Before</source>
-        <translation type="unfinished">Вставити перед</translation>
+        <translation>Вставити перед</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="94"/>
         <source>Paste After</source>
-        <translation type="unfinished">Вставити після</translation>
+        <translation>Вставити після</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="96"/>
         <source>Indent Section</source>
-        <translation type="unfinished">Зробити відступ розділу</translation>
+        <translation>Зробити відступ розділу</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="97"/>
         <source>Unindent Section</source>
-        <translation type="unfinished">Вилучити відступ розділу</translation>
+        <translation>Вилучити відступ розділу</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="108"/>
         <location filename="structuretreeview.cpp" line="115"/>
         <source>Go to Definition</source>
-        <translation type="unfinished">Перейти до означення</translation>
+        <translation>Перейти до означення</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="114"/>
         <source>Open Document</source>
-        <translation type="unfinished">Відкрити документ</translation>
+        <translation>Відкрити документ</translation>
     </message>
 </context>
 <context>
@@ -10226,11 +10208,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1141"/>
         <source>Close Element</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close Something</source>
-        <translation type="vanished">Закрити щось</translation>
+        <translation>Закрити елемент</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1144"/>
@@ -10412,26 +10390,6 @@ failed.</source>
         <location filename="texstudio.cpp" line="2708"/>
         <source>Copy</source>
         <translation>Копіювати</translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="vanished">Вирізати</translation>
-    </message>
-    <message>
-        <source>Paste Before</source>
-        <translation type="vanished">Вставити перед</translation>
-    </message>
-    <message>
-        <source>Paste After</source>
-        <translation type="vanished">Вставити після</translation>
-    </message>
-    <message>
-        <source>Indent Section</source>
-        <translation type="vanished">Зробити відступ розділу</translation>
-    </message>
-    <message>
-        <source>Unindent Section</source>
-        <translation type="vanished">Вилучити відступ розділу</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1362"/>
@@ -10793,7 +10751,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5597"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Не вдається виявити назву файлу.
  Ви повинні зберегти документ, перш ніж його компілювати.</translation>
@@ -10871,18 +10829,6 @@ Do you want to allow and run the new, overriding command?
         <translation>Помилка: </translation>
     </message>
     <message>
-        <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;h4&gt;Зміна усталених скорочень&lt;/h4&gt;&lt;p&gt;Час від часу скорочення для головних інструментів стають дещо роздробленими. До того ж, вони частково перекриваються іншими стандартними клавішами. Зокрема, F1, F3, F10, F11 і F12 мають зарезервовані значення в деяких системах&lt;/p&gt;&lt;p&gt;Ми вирішили встановити таке правило на користь суміснішої схеми:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Скорочення &lt;code&gt;Збирання і перегляд&lt;/code&gt; зміниться з F1 на F5.&lt;/li&gt;&lt;li&gt;Скорочення &lt;code&gt;Бібліографія&lt;/code&gt; зміниться з F11 на F8.&lt;/li&gt;&lt;li&gt;Скорочення &lt;code&gt;Словник&lt;/code&gt; зміниться з F10 на F9.&lt;li&gt;Інструмент &lt;code&gt;Покажчик&lt;/code&gt; не матиме скорочення (усталено було F12), бо він викликається не надто часто.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Приносимо вибачення за те, що вам доведеться звикати до найвживаніших клавіш &lt;code&gt;Збирання і перегляд&lt;/code&gt;. На перехідний період будуть працювати і F1, і F5. В кінцевому підсумку зібрання найпопулярніших інструментів в центральному блоці F5-F8 поліпшить зручність. Як і раніше, ви можете встановлювати свої скорочення у налаштуваннях.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Do not show this message again.</source>
-        <translation type="vanished">Знову не показувати це повідомлення.</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="vanished">Гаразд</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="5986"/>
         <source>No open project or tex file to clean.</source>
         <translation>Не має відкритих файлів проекту або TeX для очищення.</translation>
@@ -10918,83 +10864,6 @@ Do you want to allow and run the new, overriding command?
         <location filename="texstudio.cpp" line="6728"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Необхідно зберегти файл перед заданням його, як головного документа.</translation>
-    </message>
-    <message>
-        <source>Close document</source>
-        <translation type="vanished">Закрити документ</translation>
-    </message>
-    <message>
-        <source>Set as explicit root document</source>
-        <translation type="vanished">Задати як явний головний документ</translation>
-    </message>
-    <message>
-        <source>Open all related documents</source>
-        <translation type="vanished">Відкрити усі пов&apos;язані документи</translation>
-    </message>
-    <message>
-        <source>Close all related documents</source>
-        <translation type="vanished">Закрити усі пов&apos;язані документи</translation>
-    </message>
-    <message>
-        <source>Remove explicit root document role</source>
-        <translation type="vanished">Зняти позначку головного документа</translation>
-    </message>
-    <message>
-        <source>Show all open documents in this tree</source>
-        <translation type="vanished">Показати усі відкриті документи у цьому дереві</translation>
-    </message>
-    <message>
-        <source>Show only current document in this tree</source>
-        <translation type="vanished">Показувати лише поточний документ у цьому дереві</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;front</source>
-        <translation type="vanished">Пересунути документ на&amp;перед</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;end</source>
-        <translation type="vanished">Пересунути документ на&amp;зад</translation>
-    </message>
-    <message>
-        <source>Expand Subitems</source>
-        <translation type="vanished">Розгорнути піделементи</translation>
-    </message>
-    <message>
-        <source>Collapse Subitems</source>
-        <translation type="vanished">Згорнути піделементи</translation>
-    </message>
-    <message>
-        <source>Expand all documents</source>
-        <translation type="vanished">Розгорнути усі документи</translation>
-    </message>
-    <message>
-        <source>Collapse all documents</source>
-        <translation type="vanished">Згорнути усі документи</translation>
-    </message>
-    <message>
-        <source>Insert</source>
-        <translation type="vanished">Вставити</translation>
-    </message>
-    <message>
-        <source>Insert as %1</source>
-        <translation type="vanished">Вставити як %1</translation>
-    </message>
-    <message>
-        <source>Find Usages</source>
-        <translation type="vanished">Знайти використання</translation>
-    </message>
-    <message>
-        <source>Insert Label</source>
-        <translation type="vanished">Вставити мітку</translation>
-    </message>
-    <message>
-        <source>Insert %1 to Label</source>
-        <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="vanished">Вставити %1 у мітку</translation>
-    </message>
-    <message>
-        <source>Create Label</source>
-        <translation type="vanished">Нова мітка</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8352"/>
