@@ -132,7 +132,7 @@ void SearchQuery::replaceAll()
 						cur->replaceSelectedText(newText);
 					} else {
 						// simple replacement
-						QList<SearchMatch> results = mModel->getSearchResults(dlh->text());
+						QList<SearchMatch> results = mModel->getSearchMatches(QDocumentLine(dlh));
 						if (!results.isEmpty()) {
 							int lineNr = doc->indexOf(dlh, search.lineNumberHints.value(i, -1));
 							int offset = 0;
@@ -154,6 +154,9 @@ void SearchQuery::replaceAll()
 LabelSearchQuery::LabelSearchQuery(QString label) :
 	SearchQuery(label, label, IsWord | IsCaseSensitive | SearchAgainAllowed | ReplaceAllowed)
 {
+	mModel = new LabelSearchResultModel(this);
+	mModel->setSearchExpression(label, label, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
+
 	mScope = ProjectScope;
 	mType = tr("Label Search");
 	mModel->setAllowPartialSelection(false);
