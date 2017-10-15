@@ -1238,6 +1238,8 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 {
 	ConfigDialog *confDlg = new ConfigDialog(parentToDialog);
+	UtilsUi::resizeInFontHeight(confDlg, 86, 52);
+
 	confDlg->riddled = configRiddled;
 	//----------managed properties--------------------
 	foreach (const ManagedProperty &mp, managedProperties)

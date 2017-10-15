@@ -49,6 +49,8 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	setWindowTitle(tr("Insert Graphic"));
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 33, 40);
+
 	ui.fileSelectButton->setIcon(getRealIcon("document-open"));
 	ui.pbSaveDefault->setIcon(getRealIcon("document-save"));
 

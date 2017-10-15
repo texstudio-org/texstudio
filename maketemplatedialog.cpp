@@ -1,6 +1,7 @@
 #include "maketemplatedialog.h"
 #include "ui_maketemplatedialog.h"
 #include "smallUsefulFunctions.h"
+#include "utilsUI.h"
 
 MakeTemplateDialog::MakeTemplateDialog(QString templateDir, QString editorFilename, QWidget *parent) :
 	QDialog(parent),
@@ -9,6 +10,7 @@ MakeTemplateDialog::MakeTemplateDialog(QString templateDir, QString editorFilena
 	m_editorFilename(editorFilename)
 {
 	ui->setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 31, 25);
 
 	connect(ui->buttonBox, SIGNAL(accepted()), SLOT(tryAccept()));
 	connect(ui->buttonBox, SIGNAL(rejected()), SLOT(reject()));

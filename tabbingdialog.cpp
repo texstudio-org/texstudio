@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 #include "tabbingdialog.h"
+#include "utilsUI.h"
 
 TabbingDialog::TabbingDialog(QWidget *parent, const char *name)
 	: QDialog(parent)
@@ -17,6 +18,7 @@ TabbingDialog::TabbingDialog(QWidget *parent, const char *name)
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 23, 12);
 
 	ui.spinBoxColumns->setValue(2);
 	ui.spinBoxColumns->setRange(2, 99);

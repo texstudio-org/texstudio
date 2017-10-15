@@ -2,6 +2,7 @@
 #include "ui_cleandialog.h"
 
 #include "configmanager.h"
+#include "utilsUI.h"
 
 QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,bcf,ilg,toc,ind,out,blg,fdb_latexmk,fls";
 QString CleanDialog::currentExtensions = CleanDialog::defaultExtensions;
@@ -14,6 +15,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	ui(new Ui::CleanDialog)
 {
 	ui->setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 38, 22);
 
 	ConfigManagerInterface *config = ConfigManager::getInstance();
 	config->registerOption("CleanDialog/Extensions", &currentExtensions, defaultExtensions);

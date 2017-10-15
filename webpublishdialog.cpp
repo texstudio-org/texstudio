@@ -13,6 +13,7 @@
 #include "webpublishdialog.h"
 #include "webpublishdialog_config.h"
 #include "smallUsefulFunctions.h"
+#include "utilsUI.h"
 
 WebPublishDialog::WebPublishDialog(QWidget *parent, WebPublishDialogConfig *aConfig, BuildManager  *aBuildManager, QTextCodec *input_codec)
 	: QDialog(parent), config(aConfig), buildManager(aBuildManager), codec (input_codec)
@@ -23,6 +24,8 @@ WebPublishDialog::WebPublishDialog(QWidget *parent, WebPublishDialogConfig *aCon
 	setWindowTitle(tr("Convert to Html"));
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 65, 35);
+
 	ui.alignmentcomboBox->insertItem(0, tr("Left"));
 	ui.alignmentcomboBox->insertItem(1, tr("Center"));
 	ui.alignmentcomboBox->insertItem(2, tr("Right"));

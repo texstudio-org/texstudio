@@ -2,12 +2,15 @@
 #include "latexparser/latexreader.h"
 #include "utilsUI.h"
 #include "ui_randomtextgenerator.h"
+#include "utilsUI.h"
 
 RandomTextGenerator::RandomTextGenerator(QWidget *parent, const QStringList &textLines):
 	QDialog(parent),
 	ui(new Ui::RandomTextGenerator), lines(textLines)
 {
 	ui->setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 41, 39);
+
 	connect(ui->generateButton, SIGNAL(clicked()), this, SLOT(generateText()));
 	connect(ui->latexInput, SIGNAL(toggled(bool)), SLOT(resetWords()));
 	connect(ui->punctationCheckBox, SIGNAL(toggled(bool)), SLOT(resetWords()));

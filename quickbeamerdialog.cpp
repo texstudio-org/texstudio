@@ -12,6 +12,7 @@
 #include "quickbeamerdialog.h"
 #include "universalinputdialog.h"
 #include "configmanagerinterface.h"
+#include "utilsUI.h"
 
 QString QuickBeamerDialog::document_encoding;
 
@@ -23,6 +24,8 @@ QuickBeamerDialog::QuickBeamerDialog(QWidget *parent, const QString &name)
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 72, 36);
+
 	ui.listWidgetBabel->setSelectionMode(QAbstractItemView::ExtendedSelection);
 	setWindowTitle(tr("Quick Beamer Presentation"));
 	labelImage = new QLabel(ui.scrollArea);

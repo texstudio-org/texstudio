@@ -12,6 +12,7 @@
 #include "quickdocumentdialog.h"
 #include "universalinputdialog.h"
 #include "configmanagerinterface.h"
+#include "utilsUI.h"
 
 qreal convertLatexLengthToMetre(const qreal &length, const QString &unit)
 {
@@ -44,6 +45,8 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString &name)
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 39, 37);
+
 	connect(ui.pushButtonClass , SIGNAL(clicked()), SLOT(addUserClass()));
 	ui.comboBoxSize->addItem("10pt");
 	ui.comboBoxSize->addItem("11pt");

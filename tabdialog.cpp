@@ -10,6 +10,7 @@
  ***************************************************************************/
 
 #include "tabdialog.h"
+#include "utilsUI.h"
 //#include <QDebug>
 
 
@@ -19,6 +20,7 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 53, 44);
 
 	colData col;
 	col.alignment=0;

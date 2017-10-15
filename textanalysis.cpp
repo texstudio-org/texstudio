@@ -1,6 +1,7 @@
 #include "textanalysis.h"
 
 #include "smallUsefulFunctions.h"
+#include "utilsUI.h"
 #include "latexparser/latexreader.h"
 #include "latexdocument.h"
 
@@ -93,6 +94,7 @@ TextAnalysisDialog::TextAnalysisDialog(QWidget *parent,  QString name)
 	setWindowTitle(name);
 	setAttribute(Qt::WA_DeleteOnClose);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 43, 51);
 
 	ui.resultView->setWordWrap(false);
 //connect(ui.comboBox, SIGNAL(activated(int)),this,SLOT(change(int)));

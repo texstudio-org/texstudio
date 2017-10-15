@@ -11,6 +11,7 @@
 #include "spellerdialog.h"
 
 #include "smallUsefulFunctions.h"
+#include "utilsUI.h"
 
 #include "qdocumentline.h"
 
@@ -24,6 +25,7 @@ SpellerDialog::SpellerDialog(QWidget *parent, SpellerUtility *utility)
 {
 	ui.setupUi(this);
 	setModal(true);
+	UtilsUi::resizeInFontHeight(this, 31, 26);
 
 	m_statusBar = new QStatusBar();
 	delete ui.dummyStatusBar;
