@@ -4,6 +4,7 @@
 #include "mostQtHeaders.h"
 
 class QDocument;
+class QDocumentLine;
 class QDocumentLineHandle;
 struct SearchInfo {
 	QPointer<QDocument> doc;
@@ -61,12 +62,12 @@ public:
 
 	void setAllowPartialSelection(bool b) { mAllowPartialSelection = b; }
 
-	QList<SearchMatch> getSearchResults(const QString &text) const;
+	virtual QList<SearchMatch> getSearchMatches(const QDocumentLine &docline) const;
 
 private:
 	QVariant dataForResultEntry(const SearchInfo &search, int lineIndex, int role) const;
 	QVariant dataForSearchResult(const SearchInfo &search, int role) const;
-	QString prepareReplacedText(const QString &text) const;
+	QString prepareReplacedText(const QDocumentLine &docline) const;
 
 	QList< SearchInfo > m_searches;
 	QString mExpression, mReplacementText;
@@ -77,5 +78,16 @@ private:
 
 Q_DECLARE_METATYPE(SearchMatch);
 Q_DECLARE_METATYPE(QList<SearchMatch>);
+
+
+class LabelSearchResultModel : public SearchResultModel
+{
+	Q_OBJECT
+
+public:
+	LabelSearchResultModel(QObject *parent = 0);
+
+	QList<SearchMatch> getSearchMatches(const QDocumentLine &docline) const;
+};
 
 #endif // SEARCHRESULTMODEL_H

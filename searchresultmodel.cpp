@@ -180,19 +180,19 @@ QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lin
 		if (!lineIndexValid) return "";
 		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
 		if (search.lineNumberHints[lineIndex] < 0) return "";
-		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
+		QDocumentLine docline = search.doc->line(search.lineNumberHints[lineIndex]);
 		if (role == Qt::DisplayRole) {
-			return ln.text();
+			return docline.text();
 		} else {  // tooltip role
-			return prepareReplacedText(ln.text());
+			return prepareReplacedText(docline);
 		}
 		break;
 	}
 	case MatchesRole: {
 		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
 		if (search.lineNumberHints[lineIndex] < 0) return QVariant();
-		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
-		return QVariant::fromValue<QList<SearchMatch> >(getSearchResults(ln.text()));
+		QDocumentLine docline = search.doc->line(search.lineNumberHints[lineIndex]);
+		return QVariant::fromValue<QList<SearchMatch> >(getSearchMatches(docline));
 	}
 	}
 	return QVariant();
@@ -295,10 +295,10 @@ void SearchResultModel::setSearchExpression(const QString &exp, const bool isCas
 	mIsRegExp = isRegExp;
 }
 
-QString SearchResultModel::prepareReplacedText(const QString &text) const
+QString SearchResultModel::prepareReplacedText(const QDocumentLine &docline) const
 {
-	QString result = text;
-	QList<SearchMatch> placements = getSearchResults(text);
+	QString result = docline.text();
+	QList<SearchMatch> placements = getSearchMatches(docline);
 	int offset = 0;
 	foreach (SearchMatch match, placements) {
 		if (mIsRegExp) {
@@ -321,11 +321,12 @@ QString SearchResultModel::prepareReplacedText(const QString &text) const
 	return result;
 }
 
-QList<SearchMatch> SearchResultModel::getSearchResults(const QString &text) const
+QList<SearchMatch> SearchResultModel::getSearchMatches(const QDocumentLine &docline) const
 {
-	if (mExpression.isEmpty()) return QList<SearchMatch>();
+	if (!docline.isValid() || mExpression.isEmpty()) return QList<SearchMatch>();
 
 	QRegExp regexp = generateRegExp(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
+	QString text = docline.text();
 
 	int i = 0;
 	QList<SearchMatch> result;
@@ -390,4 +391,41 @@ int SearchResultModel::getNextSearchResultColumn(const QString &text, int col)
 		}
 	}
 	return i_old;
+}
+
+
+LabelSearchResultModel::LabelSearchResultModel(QObject *parent) : SearchResultModel(parent)
+{
+}
+
+/*!
+ * This is a workaround:
+ * In contrast to LabelSearchQuery::run() which uses the internal label information, this
+ * function relies only on textual matching. It's currently only used for highlighting the
+ * results. The actual search and replace are handled by the query and have always been correct.
+ *
+ * To reduce the chance of false highlighting such as "label \\ref{label}", we assume that
+ * labels always appear in curly braces and only match those occurences.
+ *
+ * A clean solution would have to track not only the lines but also the column positions
+ * within the lines. Alternatively, the QDocumentLine might be queried for the label positions
+ * of the matching type.
+ */
+QList<SearchMatch> LabelSearchResultModel::getSearchMatches(const QDocumentLine &docline) const
+{
+	QList<SearchMatch> matches = SearchResultModel::getSearchMatches(docline);
+	const QString &text = docline.text();
+
+	for (int i = matches.count() - 1; i >= 0; i--) {
+		const SearchMatch &match = matches.at(i);
+		if ((match.pos <= 0)
+				|| (match.pos + match.length >= text.length())
+				|| (text.at(match.pos-1) != '{')
+				|| (text.at(match.pos + match.length) != '}')
+			) {
+			matches.removeAt(i);
+			continue;
+		}
+	}
+	return matches;
 }
