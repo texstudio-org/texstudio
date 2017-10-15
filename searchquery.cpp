@@ -176,6 +176,8 @@ void LabelSearchQuery::run(LatexDocument *doc)
 	foreach (QDocument *doc, usagesByDocument.keys()) {
 		addDocSearchResult(doc, usagesByDocument.value(doc));
 	}
+
+	emit runCompleted();
 }
 
 void LabelSearchQuery::replaceAll()
