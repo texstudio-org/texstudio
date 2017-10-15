@@ -5,6 +5,8 @@ EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 	QDialog(parent), edit(editor)
 {
 	setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 55, 26);
+
 	encodings->setSelectionBehavior(QAbstractItemView::SelectRows);
 	encodings->setRowCount(QTextCodec::availableMibs().size());
 	int row = 0;

@@ -22,6 +22,7 @@
 #include "qfoldpanel.h"
 
 #include "smallUsefulFunctions.h"
+#include "utilsUI.h"
 
 class StringListTableModel: public QAbstractTableModel
 {
@@ -138,6 +139,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 {
 	setWindowTitle(name);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 73, 35);
 
 	ui.splitter->setStretchFactor(0, 4);
 	ui.splitter->setStretchFactor(1, 6);

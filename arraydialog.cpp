@@ -10,12 +10,14 @@
  ***************************************************************************/
 
 #include "arraydialog.h"
+#include "utilsUI.h"
 
 ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 		:QDialog(parent) {
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 36, 30);
 
 	ui.tableWidget->setRowCount(2);
 	ui.tableWidget->setColumnCount(2);

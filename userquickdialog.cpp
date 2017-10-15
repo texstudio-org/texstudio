@@ -14,11 +14,13 @@
 #include <QDebug>
 
 #include "userquickdialog.h"
+#include "utilsUI.h"
 
 UserQuickDialog::UserQuickDialog(QWidget *parent, const QStringList &ids , const QStringList &usualNames, const QStringList &usualCommands)
 	: QDialog( parent)
 {
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 48, 22);
 
 	connect(ui.addButton, SIGNAL( clicked() ), this, SLOT( actionAddCommand() ) );
 	connect(ui.upButton, SIGNAL( clicked() ), this, SLOT( actionUp() ) );

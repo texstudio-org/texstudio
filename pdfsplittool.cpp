@@ -2,7 +2,7 @@
 
 #include "pdfsplittool.h"
 #include "ui_pdfsplittool.h"
-
+#include "utilsUI.h"
 
 #include <QFileDialog>
 #include <QFileInfo>
@@ -18,6 +18,7 @@ PDFSplitMergeTool::PDFSplitMergeTool(QWidget *parent, const QString &infile) :
 	ui(new Ui::PDFSplitTool)
 {
 	ui->setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 53, 14);
 	//ui->inputFileEdit->setText(infile);
 
 	connect(ui->outputFileButton, SIGNAL(clicked()), SLOT(outputFileDialog()));

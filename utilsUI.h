@@ -36,6 +36,8 @@ void updateToolTipWithShortcut(QAction *action, bool showShortcut);
 
 void enableTouchScrolling(QWidget *w, bool enable = true);
 
+void resizeInFontHeight(QWidget *w, int width, int height);
+
 }  // namespace UtilsUi
 
 #endif // UTILSUI_H

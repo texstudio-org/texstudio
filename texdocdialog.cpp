@@ -2,6 +2,7 @@
 #include "ui_texdocdialog.h"
 #include "help.h"
 #include "latexrepository.h"
+#include "utilsUI.h"
 
 TexdocDialog::TexdocDialog(QWidget *parent) :
 	QDialog(parent),
@@ -10,6 +11,8 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 	openButton(0)
 {
 	ui->setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 28, 10);
+
 	foreach (QAbstractButton *bt, ui->buttonBox->buttons()) {
 		if (ui->buttonBox->buttonRole(bt) == QDialogButtonBox::AcceptRole) {
 			openButton = bt;

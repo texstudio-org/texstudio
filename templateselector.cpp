@@ -50,6 +50,7 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 {
 	setModal(true);
 	ui.setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 61, 36);
 	setWindowTitle(name);
 
 	QGridLayout *gl = qobject_cast<QGridLayout *>(layout());

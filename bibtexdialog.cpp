@@ -1,5 +1,6 @@
 #include "bibtexdialog.h"
 #include "ui_bibtexdialog.h"
+#include "utilsUI.h"
 
 QList<BibTeXType> BibTeXDialog::bibtexEntryTypes;
 QList<BibTeXType> BibTeXDialog::biblatexEntryTypes;
@@ -335,6 +336,7 @@ BibTeXDialog::BibTeXDialog(QWidget *parent, const QStringList &fileList, int cur
 	m_ui(new Ui::BibTeXDialog)
 {
 	m_ui->setupUi(this);
+	UtilsUi::resizeInFontHeight(this, 59, 36);
 	m_ui->fileList->addItem(tr("<New File>"));
 	foreach (const QString &s, fileList)
 		m_ui->fileList->addItem(s);
