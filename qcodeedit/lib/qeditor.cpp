@@ -3104,7 +3104,13 @@ void QEditor::paintEvent(QPaintEvent *e)
 	QBrush bg = palette().base();
 	if ( m_doc->getBackground().isValid() )
 		bg.setColor(m_doc->getBackground());
-	p.fillRect(0, 0, qMax(viewport()->width(), m_doc->width()), qMax(viewport()->height(), m_doc->height()), bg);
+	int width = qMax(viewport()->width(), m_doc->width());
+	int height = qMax(viewport()->height(), m_doc->height() + m_doc->getLineSpacing());
+	// the actual visible height may be up to one line larger than the doc height,
+	// because the doc lines is are aligned to the top of the viewport. The viewport
+	// then shows n.x lines and when scolled to the very bottom, the .x < 1 line
+	// exceeds the document height.
+	p.fillRect(0, 0, width, height, bg);
 
 	p.save();
 	m_doc->draw(&p, ctx);
