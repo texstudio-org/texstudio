@@ -223,7 +223,7 @@ void TxsTabWidget::disconnectEditor(LatexEditorView *edView)
 void TxsTabWidget::updateTab(int index)
 {
 	//cache icons, getRealIcon is *really* slow
-	static QIcon readOnly = getRealIcon("syncSource-off");
+	static QIcon readOnly = getRealIcon("document-locked");
 	static QIcon modified = getRealIcon("modified");
 	static QIcon empty = QIcon(":/images/empty.png");
 
