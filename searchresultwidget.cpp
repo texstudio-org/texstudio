@@ -28,6 +28,9 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
     searchAgainButton = new QPushButton(tr("Update Search"));
 	connect(searchAgainButton, SIGNAL(clicked()), this, SLOT(updateSearch()));
 	replaceTextEdit = new QLineEdit;
+#if QT_VERSION >= 0x050200
+	replaceTextEdit->setClearButtonEnabled(true);
+#endif
 	replaceButton = new QPushButton(tr("Replace all"));
 
 	hLayout->addWidget(searchScopeBox);
