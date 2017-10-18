@@ -238,7 +238,8 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 				// draw icon
 				m_lines << fli.lineNr;
-				m_rects << drawIcon(p, e, xIconOffset, pos + yIconOffset, iconSize, isCollapsed, fli.lineNr == m_lastMouseLine);
+				m_rects << QRect(0, pos, m_width, ls);
+				drawIcon(p, e, xIconOffset, pos + yIconOffset, iconSize, isCollapsed, fli.lineNr == m_lastMouseLine);
 
 				if (!isCollapsed && fli.lineNr == m_lastMouseLine) {
 					// found the line with the mouse -> determine end of highlighting
