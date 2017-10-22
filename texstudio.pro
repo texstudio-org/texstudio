@@ -65,7 +65,6 @@ HEADERS += \
     encodingdialog.h \
     filechooser.h \
     fileselector.h \
-    findGlobalDialog.h \
     flowlayout.h \
     grammarcheck.h \
     grammarcheck_config.h \
@@ -171,7 +170,6 @@ SOURCES += \
     encodingdialog.cpp \
     filechooser.cpp \
     fileselector.cpp \
-    findGlobalDialog.cpp \
     flowlayout.cpp \
     grammarcheck.cpp \
     help.cpp \
@@ -260,7 +258,6 @@ FORMS += \
     configdialog.ui \
     encodingdialog.ui \
     filechooser.ui \
-    findGlobalDialog.ui \
     insertgraphics.ui \
     letterdialog.ui \
     maketemplatedialog.ui \

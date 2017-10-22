@@ -26,7 +26,6 @@
 #include "latexdocument.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
-#include "findGlobalDialog.h"
 #include "xmltagslistwidget.h"
 #include "spellerdialog.h"
 #include "textanalysis.h"
@@ -315,7 +314,6 @@ protected slots:
 	void editInsertUnicode(); ///< open dialog to insert a unicode character
 	void editInsertRefToNextLabel(const QString &refCmd = "\\ref", bool backward = false);
 	void editInsertRefToPrevLabel(const QString &refCmd = "\\ref");
-	void editFindGlobal();
 	void runSearch(SearchQuery *query);
 	void findLabelUsages(LatexDocument *doc, const QString &labelText);
 	SearchResultWidget *searchResultWidget();
@@ -634,8 +632,6 @@ protected:
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 
 	QSet<QString> latexPackageList, currentPackageList;
-
-	findGlobalDialog *findDlg;
 
 	QMap<QString, QString> *mReplacementList;
 
