@@ -429,6 +429,11 @@ void QSearchReplacePanel::display(int mode, bool replace)
 
 	if ( visible )
 	{
+		if (cFind->hasFocus()) {
+			emit showExtendedSearch();
+			return;
+		}
+
 		bool focusFindEdit = true;
 		if (m_search){
             // save current cursor position
