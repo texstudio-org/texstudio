@@ -623,10 +623,13 @@ QStringList envKeys(const QProcessEnvironment &env)
 
 // run the command in a separate process, wait and return the result
 // use for internal queries that should be silent. Not to be mixed up with BuildManager::runCommand
-QString execCommand(const QString &cmd)
+QString execCommand(const QString &cmd, QString additionalPaths)
 {
 	if (cmd.isEmpty()) return QString();
 	QProcess myProc(0);
+    if(!additionalPaths.isEmpty()){
+        updatePathSettings(&myProc,additionalPaths);
+    }
 	myProc.start(cmd);
 	myProc.waitForFinished();
 	QString result;

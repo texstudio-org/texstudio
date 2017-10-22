@@ -31,7 +31,7 @@ class KpathSeaParser : public PackageScanner
 	Q_OBJECT
 
 public:
-	explicit KpathSeaParser(QString kpsecmd, QObject *parent = 0);
+    explicit KpathSeaParser(QString kpsecmd, QObject *parent = 0, QString additionalPaths = "");
 
 protected:
 	void run();
@@ -39,6 +39,7 @@ protected:
 
 private:
 	QString kpseWhichCmd;
+    QString m_additionalPaths;
 };
 
 
