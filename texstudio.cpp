@@ -144,7 +144,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	runningPDFCommands = runningPDFAsyncCommands = 0;
 	completerPreview = false;
 	recheckLabels = true;
-	findDlg = 0;
 	cursorHistory = 0;
 	recentSessionList = 0;
 	editors = 0;
@@ -436,9 +435,6 @@ Texstudio::~Texstudio()
 	programStopped = true;
 
 	Guardian::shutdown();
-
-
-	delete findDlg;
 
 	if (latexStyleParser) latexStyleParser->stop();
 	if (packageListReader) packageListReader->stop();
@@ -838,7 +834,6 @@ void Texstudio::setupMenus()
 	newManagedEditorAction(submenu, "findinsamedir", tr("Continue F&ind"), "findInSameDir", Qt::CTRL + Qt::Key_M);
 	newManagedEditorAction(submenu, "findcount", tr("&Count"), "findCount");
 	newManagedEditorAction(submenu, "select", tr("&Select all matches..."), "selectAllMatches");
-	//newManagedAction(submenu,"findglobal",tr("Find &Dialog..."), SLOT(editFindGlobal()));
 	submenu->addSeparator();
 	newManagedEditorAction(submenu, "replace", tr("&Replace"), "replacePanel", Qt::CTRL + Qt::Key_R);
 	newManagedEditorAction(submenu, "replacenext", tr("Replace Next"), "replaceNext");
@@ -8232,35 +8227,6 @@ void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)
 void Texstudio::editInsertRefToPrevLabel(const QString &refCmd)
 {
 	editInsertRefToNextLabel(refCmd, true);
-}
-
-void Texstudio::editFindGlobal()
-{
-	if (!currentEditor()) return;
-	QEditor *e = currentEditor();
-	if (!findDlg)
-		findDlg = new findGlobalDialog(this);
-	if (e->cursor().hasSelection()) {
-		findDlg->setSearchWord(e->cursor().selectedText());
-	}
-	if (findDlg->exec()) {
-		QList<LatexDocument *> docs;
-		LatexDocument *doc = currentEditorView()->document;
-		switch (findDlg->getSearchScope()) {
-		case 1:
-			docs << doc;
-			break;
-		case 0:
-			docs << documents.getDocuments();
-			break;
-		case 2:
-			docs << doc->getListOfDocs();
-			break;
-		default:
-			break;
-		}
-		//updateFindGlobal(docs,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
-	}
 }
 
 void Texstudio::runSearch(SearchQuery *query)
