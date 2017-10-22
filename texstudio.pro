@@ -136,7 +136,6 @@ HEADERS += \
     usermacro.h \
     usermenudialog.h \
     userquickdialog.h \
-    usertooldialog.h \
     utilsSystem.h \
     utilsUI.h \
     utilsVersion.h \
@@ -235,7 +234,6 @@ SOURCES += \
     usermacro.cpp \
     usermenudialog.cpp \
     userquickdialog.cpp \
-    usertooldialog.cpp \
     utilsSystem.cpp \
     utilsUI.cpp \
     utilsVersion.cpp \
@@ -273,7 +271,6 @@ FORMS += \
     textanalysis.ui \
     usermenudialog.ui \
     userquickdialog.ui \
-    usertooldialog.ui \
     webpublishdialog.ui
 
 TRANSLATIONS += texstudio_ar.ts \

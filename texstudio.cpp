@@ -35,7 +35,6 @@
 #include "templateselector.h"
 #include "templatemanager.h"
 #include "usermenudialog.h"
-#include "usertooldialog.h"
 #include "aboutdialog.h"
 #include "encodingdialog.h"
 #include "encoding.h"
