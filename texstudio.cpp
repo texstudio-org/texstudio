@@ -9259,7 +9259,8 @@ void Texstudio::readinAllPackageNames()
 			else
 				packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this); // TeXlive on windows uses kpsewhich
 #else
-			packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this);
+            QString addPaths=BuildManager::resolvePaths(BuildManager::additionalSearchPaths);
+            packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this,addPaths);
 #endif
 			connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
 			packageListReader->start();
