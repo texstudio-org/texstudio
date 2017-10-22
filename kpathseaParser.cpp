@@ -40,10 +40,11 @@ void PackageScanner::stop()
 	stopped = true;
 }
 
-KpathSeaParser::KpathSeaParser(QString kpsecmd, QObject *parent) :
+KpathSeaParser::KpathSeaParser(QString kpsecmd, QObject *parent, QString additionalPaths) :
 	PackageScanner(parent)
 {
 	kpseWhichCmd = kpsecmd;
+    m_additionalPaths=additionalPaths;
 }
 
 void KpathSeaParser::run()
@@ -73,7 +74,7 @@ void KpathSeaParser::run()
 
 QString KpathSeaParser::kpsewhich(const QString &arg)
 {
-	return execCommand(kpseWhichCmd + " " + arg);
+    return execCommand(kpseWhichCmd + " " + arg,m_additionalPaths);
 }
 
 
