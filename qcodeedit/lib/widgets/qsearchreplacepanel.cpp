@@ -104,6 +104,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cFind = new QComboBox(this);
 	cFind->setEditable(true);
+#if QT_VERSION >= 0x050200
+	QLineEdit *leFind = new QLineEdit(cFind);
+	leFind->setClearButtonEnabled(true);
+	cFind->setLineEdit(leFind);
+#endif
 	cFind->completer()->setCompletionMode(QCompleter::PopupCompletion);
 	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cFind->setObjectName(("cFind"));
@@ -239,6 +244,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cReplace = new QComboBox(this);
 	cReplace->setEditable(true);
+#if QT_VERSION >= 0x050200
+	QLineEdit *leReplace = new QLineEdit();
+	leReplace->setClearButtonEnabled(true);
+	cReplace->setLineEdit(leReplace);
+#endif
 	cReplace->completer()->setCompletionMode(QCompleter::PopupCompletion);
     cReplace->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cReplace->setObjectName(("cReplace"));

@@ -448,6 +448,9 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument *doc): QDockWidget(doc), docume
 	gridLayout->addWidget(frame_2, 0, 0, 1, 1);
 
 	leFind = new QLineEdit(this);
+#if QT_VERSION >= 0x050200
+	leFind->setClearButtonEnabled(true);
+#endif
 	leFind->setObjectName(("leFind"));
 	QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
 	sizePolicy4.setHorizontalStretch(2);
