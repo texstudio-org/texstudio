@@ -1790,10 +1790,7 @@ bool Texstudio::activateEditorForFile(QString f, bool checkTemporaryNames, bool 
 	if (!edView) return false;
 	saveCurrentCursorToHistory();
 	if (!editors->containsEditor(edView)) return false;
-	editors->setCurrentEditor(edView);
-	if (setFocus) {
-		edView->editor->setFocus();
-	}
+	editors->setCurrentEditor(edView, setFocus);
 	return true;
 }
 

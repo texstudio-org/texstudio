@@ -226,8 +226,9 @@ LatexEditorView *Editors::currentEditor() const
 
 /*!
  * Sets the current editor. It is expected that (containsEditor(edView) == true).
+ * if setFocus, the focus will be changed to the new editor
  */
-void Editors::setCurrentEditor(LatexEditorView *edView)
+void Editors::setCurrentEditor(LatexEditorView *edView, bool setFocus)
 {
 	if (currentEditor() == edView) {
 		return;
@@ -238,7 +239,9 @@ void Editors::setCurrentEditor(LatexEditorView *edView)
 		bool b = changes->block();
 		setCurrentGroup(group);
 		tabGroups[group]->setCurrentEditor(edView);
-		edView->setFocus();
+		if (setFocus) {
+			edView->setFocus();
+		}
 		if (b) changes->release();
 		return;
 	}

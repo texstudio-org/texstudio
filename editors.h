@@ -29,7 +29,7 @@ public:
 	TxsTabWidget * currentTabWidget() const;
 
 	LatexEditorView * currentEditor() const;
-	void setCurrentEditor(LatexEditorView *edView);
+	void setCurrentEditor(LatexEditorView *edView, bool setFocus = true);
 
 	QList<LatexEditorView *> editors();
 	int tabGroupIndexFromEditor(LatexEditorView *edView) const;
