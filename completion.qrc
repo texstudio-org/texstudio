@@ -94,6 +94,7 @@
 <file>completion/latex-l2tabu.cwl</file>
 <file>completion/latex-mathsymbols.cwl</file>
 <file>completion/layout.cwl</file>
+<file>completion/letltxmacro.cwl</file>
 <file>completion/libertine.cwl</file>
 <file>completion/lipsum.cwl</file>
 <file>completion/listings.cwl</file>
