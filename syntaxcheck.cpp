@@ -724,8 +724,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					stack.pop();
 			}
 		}
-		if (tk.subtype == Token::definition && (tk.type == Token::braces || tk.type == Token::openBrace)) {
-			stack.push(tk);
+        if (tk.subtype == Token::definition ) { // don't check command definitions
+            if(tk.type == Token::braces || tk.type == Token::openBrace){
+                stack.push(tk);
+            }
 			continue;
 		}
         if (tk.type == Token::punctuation || tk.type == Token::symbol) {
