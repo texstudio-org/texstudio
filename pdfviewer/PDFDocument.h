@@ -38,10 +38,7 @@
 #else
 #include "poppler-qt5.h"
 #endif
-#include <synctex_parser_c-auto.h>
-#include <synctex_parser_local.h>
-#include "synctex_parser_advanced.h"
-#include "synctex_parser_utils.h"
+#include "qsynctex.h"
 
 //#include "ui_PDFDocument.h"
 #include "pdfrendermanager.h"
@@ -384,7 +381,7 @@ public:
 	Q_INVOKABLE void goToDestination(const QString &destName);
 	Q_INVOKABLE void goToPage(const int page);
 	Q_INVOKABLE void focus();
-	bool hasSyncData() { return scanner != NULL; } 
+	bool hasSyncData() { return scanner.isValid(); }
 
 	const QSharedPointer<Poppler::Document> &popplerDoc() const { return document; }
 
@@ -635,7 +632,7 @@ private:
 	QFileSystemWatcher *watcher;
 	QTimer *reloadTimer;
 
-    synctex_scanner_p scanner;
+	QSynctex::Scanner scanner;
 
 	static QList<PDFDocument *> docList;
 

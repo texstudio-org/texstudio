@@ -2241,7 +2241,7 @@ PDFScrollArea *PDFWidget::getScrollArea()
 QList<PDFDocument *> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
-    : renderManager(0), curFileSize(0), menubar(NULL), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
+    : renderManager(0), curFileSize(0), menubar(NULL), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
       syncFromSourceBlock(false), syncToSourceBlock(false)
 {
 	REQUIRE(pdfConfig);
@@ -2334,8 +2334,6 @@ PDFDocument::~PDFDocument()
 
 	docList.removeAll(this);
 	emit documentClosed();
-	if (scanner != NULL)
-		synctex_scanner_free(scanner);
 	if (renderManager)
 		delete renderManager;
 
@@ -3046,10 +3044,7 @@ void PDFDocument::loadCurrentFile(bool fillCache)
 	isReloading = true;
 	QApplication::setOverrideCursor(Qt::WaitCursor);
 
-	if (scanner != NULL) {
-		synctex_scanner_free(scanner);
-		scanner = NULL;
-	}
+	scanner.clear();
 
 	QString password;
 
@@ -3509,36 +3504,34 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 	if (pdfFile.isEmpty() && QFile::exists(baseName + ".pdf")) pdfFile = baseName + ".pdf";
 	else pdfFile = filename;
 
-    synctex_scanner_p scanner = synctex_scanner_new_with_output_file(QFile::encodeName(pdfFile).data(), NULL, 1);
-	if (!scanner) return "Failed to load file";
-
+	QSynctex::Scanner sc(pdfFile);
+	if (!sc.isValid()) return "Failed to load file";
 
 	QStringList result;
 
-	synctex_scanner_display(scanner);
+	sc.display();
 
 	result.append("Inputs:");
-    synctex_node_p node = synctex_scanner_input(scanner);
-	while (node != NULL) {
-		int tag = synctex_node_tag(node);
-		const char * name = tag >= 0 ? synctex_scanner_get_name(scanner, tag) : NULL;
-		result.append(QString("Input:%1:%2").arg(tag).arg(name));
-
-		node = synctex_node_sibling(node);
+	QSynctex::Node node = sc.inputNode();
+	while (node.isValid()) {
+		int tag = node.tag();
+		QString filename = tag >= 0 ? sc.fileName(tag) : "N/A";
+		result.append(QString("Input:%1:%2").arg(tag).arg(filename));
+		node = node.sibling();
 	}
 
 	result.append("");
 	result.append("Sheets:");
-	node = synctex_sheet(scanner, 1);
-	while (node != NULL) {
-        synctex_node_p cur = synctex_node_child(node);
-		int page = synctex_node_page(cur);
+	node = sc.sheet(1);
+	while (node.isValid()) {
+		QSynctex::Node cur = node.child();
+		int page = cur.page();
 		QSet<int> inputs;
-		while (cur != NULL) {
-			inputs.insert(synctex_node_tag(cur));
-			cur = synctex_node_next(cur);
+		while (cur.isValid()) {
+			inputs.insert(cur.tag());
+			cur = cur.next();
 		}
-		node = synctex_node_sibling(node);
+		node = node.sibling();
 
 		QString x = QString("Page:%1:").arg(page);
 		foreach (int i, inputs)
@@ -3546,7 +3539,6 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 		result.append(x);
 	}
 
-	synctex_scanner_free(scanner);
 	return result.join("\n");
 }
 
@@ -3563,78 +3555,56 @@ void PDFDocument::gotoAnnotation(const PDFAnnotation *ann)
 
 void PDFDocument::loadSyncData()
 {
-    scanner = synctex_scanner_new_with_output_file(QFile::encodeName(curFileUnnormalized).data(), NULL, 1);
-	if (scanner == NULL)
+	scanner.load(curFileUnnormalized);
+	if (!scanner.isValid())
 		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {
-		QString synctexName = QFile::decodeName(synctex_scanner_get_synctex(scanner));
-		statusBar()->showMessage(tr("SyncTeX: \"%1\"").arg(QDir::toNativeSeparators(synctexName)), 3000);
+		statusBar()->showMessage(tr("SyncTeX: \"%1\"").arg(QDir::toNativeSeparators(scanner.synctexFilename())), 3000);
 	}
-}
-
-QFileInfo synctex_scanner_get_name_fileinfo(const QDir &curDir, synctex_scanner_p scanner, synctex_node_p node, const char **rawName = 0)
-{
-	QFileInfo fileinfo;
-
-	const char *synctex_name = synctex_scanner_get_name(scanner, synctex_node_tag(node));
-	if (rawName) *rawName = synctex_name;
-	if (!synctex_name) return QFileInfo();
-
-	fileinfo = QFileInfo(curDir, QFile::decodeName(synctex_name)); //old synctex
-	if (fileinfo.exists()) return fileinfo;
-
-	fileinfo = QFileInfo(curDir, QString::fromUtf8(synctex_name)); //new synctex
-	if (fileinfo.exists()) return fileinfo;
-
-	fileinfo = QFileInfo(curDir, QString::fromLatin1(synctex_name)); //for safety (not used afaik)
-	if (fileinfo.exists()) return fileinfo;
-
-	return QFileInfo();
 }
 
 void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 {
-	if (scanner == NULL)
+	if (!scanner.isValid())
 		return;
 	pdfWidget->setHighlightPath(-1, QPainterPath());
 	pdfWidget->update();
-	if (synctex_edit_query(scanner, pageIndex + 1, pos.x(), pos.y()) > 0) {
-        synctex_node_p node;
-		QDir curDir(QFileInfo(curFile).canonicalPath());
-        while ((node = synctex_scanner_next_result(scanner)) != NULL) {
-			QString fullName = synctex_scanner_get_name_fileinfo(curDir, scanner, node).canonicalFilePath();
-			if (!globalConfig->syncFileMask.trimmed().isEmpty()) {
-				bool found = false;
-				foreach (const QString & s, globalConfig->syncFileMask.split(";"))
-				if (QRegExp(s.trimmed(), Qt::CaseSensitive, QRegExp::Wildcard).exactMatch(fullName)) {
-					found = true;
-					break;
-				}
-				if (!found) continue;
+	QDir curDir(QFileInfo(curFile).canonicalPath());
+	QSynctex::NodeIterator iter = scanner.editQuery(pageIndex + 1, pos.x(), pos.y());
+	while (iter.hasNext()) {
+		QSynctex::Node node = iter.next();
+		QString fullName = scanner.getNameFileInfo(curDir, node).canonicalFilePath();
+		if (!globalConfig->syncFileMask.trimmed().isEmpty()) {
+			bool found = false;
+			foreach (const QString & s, globalConfig->syncFileMask.split(";"))
+			if (QRegExp(s.trimmed(), Qt::CaseSensitive, QRegExp::Wildcard).exactMatch(fullName)) {
+				found = true;
+				break;
 			}
-
-			QString word;
-			if (!document.isNull() && pageIndex >= 0 && pageIndex < pdfWidget->realNumPages()) {
-				QScopedPointer<Poppler::Page> popplerPage(document->page(pageIndex));
-				if (popplerPage) {
-					word = popplerPage->text(QRectF(pos, pos).adjusted(-35, -10, 35, 10));
-					if (word.contains("\n")) word = word.split("\n")[word.split("\n").size() / 2];
-					// replace ligatures
-					word.replace(QChar(L'\xFB00'), QString("ff"));
-					word.replace(QChar(L'\xFB01'), QString("fi"));
-					word.replace(QChar(L'\xFB02'), QString("fl"));
-					word.replace(QChar(L'\xFB03'), QString("ffi"));
-					word.replace(QChar(L'\xFB04'), QString("ffl"));
-					word.replace(QChar(L'\xFB05'), QString("ft"));
-					word.replace(QChar(L'\xFB06'), QString("st"));
-				}
-			}
-
-			syncFromSourceBlock = true;
-			emit syncSource(fullName, synctex_node_line(node) - 1, activate, word.trimmed()); //-1 because txs is 0 based, but synctex seems to be 1 based
-			syncFromSourceBlock = false;
-			break; // FIXME: currently we just take the first hit
+			if (!found) continue;
 		}
+
+		QString word;
+		if (!document.isNull() && pageIndex >= 0 && pageIndex < pdfWidget->realNumPages()) {
+			QScopedPointer<Poppler::Page> popplerPage(document->page(pageIndex));
+			if (popplerPage) {
+				word = popplerPage->text(QRectF(pos, pos).adjusted(-35, -10, 35, 10));
+				if (word.contains("\n")) word = word.split("\n")[word.split("\n").size() / 2];
+				// replace ligatures
+				word.replace(QChar(L'\xFB00'), QString("ff"));
+				word.replace(QChar(L'\xFB01'), QString("fi"));
+				word.replace(QChar(L'\xFB02'), QString("fl"));
+				word.replace(QChar(L'\xFB03'), QString("ffi"));
+				word.replace(QChar(L'\xFB04'), QString("ffl"));
+				word.replace(QChar(L'\xFB05'), QString("ft"));
+				word.replace(QChar(L'\xFB06'), QString("st"));
+			}
+		}
+
+		syncFromSourceBlock = true;
+		emit syncSource(fullName, node.line() - 1, activate, word.trimmed()); //-1 because txs is 0 based, but synctex seems to be 1 based
+		syncFromSourceBlock = false;
+		break; // FIXME: currently we just take the first hit
 	}
 }
 
@@ -3645,50 +3615,48 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, DisplayFl
 	lastSyncSourceFile = sourceFile;
 	lastSyncLineNumber = lineNo;
 
-	if (scanner == NULL || syncFromSourceBlock)
+	if (!scanner.isValid() || syncFromSourceBlock)
 		return -1;
 
 	// find the name synctex is using for this source file...
 	QDir curDir(QFileInfo(curFile).canonicalPath());
-    synctex_node_p node = synctex_scanner_input(scanner);
+	QSynctex::Node node = scanner.inputNode();
 	const char *name;
 	bool found = false;
-	while (node != NULL) {
-		QFileInfo fi = synctex_scanner_get_name_fileinfo(curDir, scanner, node, &name);
+	while (node.isValid()) {
+
+		QFileInfo fi = scanner.getNameFileInfo(curDir, node, &name);
 		if (fi == lastSyncSourceFile) {
 			found = true;
 			break;
 		}
-		node = synctex_node_sibling(node);
+		node = node.sibling();
 	}
 	if (!found)
 		return -1;
 
-    if (synctex_display_query(scanner, name, lineNo, 0, 0) > 0) { //TODO: page int set to 0 , please fix/optimize
-		int page = -1;
-		QPainterPath path;
-        while ((node = synctex_scanner_next_result(scanner)) != NULL) {
-			if (page == -1)
-				page = synctex_node_page(node);
-			if (synctex_node_page(node) != page)
-				continue;
-			QRectF nodeRect(synctex_node_box_visible_h(node),
-			                synctex_node_box_visible_v(node) - synctex_node_box_visible_height(node),
-			                synctex_node_box_visible_width(node),
-			                synctex_node_box_visible_height(node) + synctex_node_box_visible_depth(node));
-			path.addRect(nodeRect);
-		}
-		if (page > 0) {
-			syncToSourceBlock = true;
-			path.setFillRule(Qt::WindingFill);
-			if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
-			pdfWidget->setHighlightPath(page - 1, path);
-			pdfWidget->update();
-			updateDisplayState(displayFlags);
-			syncToSourceBlock = false;
-			//pdfWidget->repaint();
-			return page - 1;
-		}
+	int page = -1;
+	QPainterPath path;
+
+	QSynctex::NodeIterator iter = scanner.displayQuery(name, lineNo, 0, 0);  // TODO: page_hint set to 0 , please fix/optimize
+	while (iter.hasNext()) {
+		QSynctex::Node node = iter.next();
+		if (page == -1)
+			page = node.page();
+		if (node.page() != page)
+			continue;
+		path.addRect(node.boxVisibleRect());
+	}
+	if (page > 0) {
+		syncToSourceBlock = true;
+		path.setFillRule(Qt::WindingFill);
+		if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
+		pdfWidget->setHighlightPath(page - 1, path);
+		pdfWidget->update();
+		updateDisplayState(displayFlags);
+		syncToSourceBlock = false;
+		//pdfWidget->repaint();
+		return page - 1;
 	}
 	return -1;
 }

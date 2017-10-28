@@ -15,7 +15,8 @@ HEADERS += \
     pdfviewer/pdfrendermanager.h \
     pdfviewer/PDFDocument_config.h \
     pdfviewer/pdfannotationdlg.h \
-    pdfviewer/pdfannotation.h
+    pdfviewer/pdfannotation.h \
+    pdfviewer/qsynctex.h
 
 SOURCES += \
     pdfviewer/PDFDocument.cpp \
@@ -23,7 +24,8 @@ SOURCES += \
     pdfviewer/pdfrenderengine.cpp \
     pdfviewer/pdfrendermanager.cpp \
     pdfviewer/pdfannotationdlg.cpp \
-    pdfviewer/pdfannotation.cpp
+    pdfviewer/pdfannotation.cpp \
+    pdfviewer/qsynctex.cpp
 
 FORMS += \
     pdfviewer/pdfannotationdlg.ui
