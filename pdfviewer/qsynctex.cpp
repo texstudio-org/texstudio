@@ -17,6 +17,8 @@
 
 #include "qsynctex.h"
 
+#include <QDir>
+
 #include <synctex_parser_c-auto.h>
 #include "synctex_parser_utils.h"
 
@@ -55,7 +57,7 @@ bool Scanner::load(const QString &filename)
 	return scanner != NULL;
 }
 
-bool Scanner::clear()
+void Scanner::clear()
 {
 	if (scanner) {
 		synctex_scanner_free(scanner);
@@ -68,7 +70,7 @@ QString Scanner::synctexFilename() const
 	return QFile::decodeName(synctex_scanner_get_synctex(scanner));
 }
 
-QFileInfo Scanner::getNameFileInfo(const QDir &curDir, const Node &node, const char **rawName)
+QFileInfo Scanner::getNameFileInfo(const QDir &curDir, const Node &node, const char **rawName) const
 {
 	QFileInfo fileinfo;
 
@@ -88,7 +90,7 @@ QFileInfo Scanner::getNameFileInfo(const QDir &curDir, const Node &node, const c
 	return QFileInfo();
 }
 
-NodeIterator Scanner::displayQuery(const char *name, int line, int column, int page_hint)
+NodeIterator Scanner::displayQuery(const char *name, int line, int column, int page_hint) const
 {
 	return NodeIterator(synctex_iterator_new_display(scanner, name, line, column, page_hint));
 }
@@ -98,9 +100,48 @@ NodeIterator Scanner::editQuery(int page, float h, float v)
 	return NodeIterator(synctex_iterator_new_edit(scanner, page, h, v));
 }
 
-Node Scanner::inputNode()
+Node Scanner::inputNode() const
 {
 	return Node(synctex_scanner_input(scanner));
+}
+
+
+//virtual
+PDFSyncPoint Scanner::syncFromTeX(const TeXSyncPoint &src, const QString &pdfFilename) const
+{
+	PDFSyncPoint pdfPoint;
+	pdfPoint.page = -1;
+
+	// Find the name SyncTeX is using for this source file...
+	const QFileInfo sourceFileInfo(src.filename);
+	QDir curDir(QFileInfo(pdfFilename).canonicalPath());
+	QSynctex::Node node = inputNode();
+	const char *name;
+	bool found = false;
+	while (node.isValid()) {
+		QFileInfo fi = getNameFileInfo(curDir, node, &name);
+		if (fi == sourceFileInfo) {
+			found = true;
+			break;
+		}
+		node = node.sibling();
+	}
+	if (!found)
+		return pdfPoint;
+
+	pdfPoint.filename = pdfFilename;
+
+	QSynctex::NodeIterator iter = displayQuery(name, src.line, src.column, 0);  // TODO: page_hint set to 0 , please fix/optimize
+	while (iter.hasNext()) {
+		QSynctex::Node node = iter.next();
+		if (pdfPoint.page < 0)
+			pdfPoint.page = node.page();
+		if (node.page() != pdfPoint.page)
+			continue;
+		pdfPoint.rects.append(node.boxVisibleRect());
+	}
+
+	return pdfPoint;
 }
 
 

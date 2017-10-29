@@ -127,15 +127,15 @@ public:
 	Scanner(const QString &filename, QObject *parent = Q_NULLPTR);
 
 	bool load(const QString &filename);
-	bool clear();
+	void clear();
 	bool isValid() const { return scanner != NULL; }
 
 	QString synctexFilename() const;
-	QFileInfo getNameFileInfo(const QDir &curDir, const Node &node, const char **rawName = 0);
+	QFileInfo getNameFileInfo(const QDir &curDir, const Node &node, const char **rawName = 0) const;
 
-	NodeIterator displayQuery(const char * name, int line, int column, int page_hint);
+	NodeIterator displayQuery(const char * name, int line, int column, int page_hint) const;
 	NodeIterator editQuery(int page, float h, float v);
-	Node inputNode();
+	Node inputNode() const;
 
 	Node sheet(int page) { return synctex_sheet(scanner, page); }
 	Node sheetContent(int page) { return synctex_sheet_content(scanner, page); }
@@ -144,6 +144,8 @@ public:
 
 	void display() { synctex_scanner_display(scanner); }
 	QString fileName(int tag) { return QFile::decodeName(synctex_scanner_get_name(scanner, tag)); }
+
+	PDFSyncPoint syncFromTeX(const TeXSyncPoint &src, const QString &pdfFilename) const;
 
 signals:
 
