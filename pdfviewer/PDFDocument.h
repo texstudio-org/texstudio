@@ -647,8 +647,8 @@ private:
 	int firstSearchPage;
 
 	bool wasMaximized;
-	bool syncFromSourceBlock;  //temporary disable sync from source
-	bool syncToSourceBlock;    //temporary disable sync to source (only for continuous scrolling)
+	bool syncFromSourceBlocked;  //temporary disable sync from source
+	bool syncToSourceBlocked;    //temporary disable sync to source (only for continuous scrolling)
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(PDFDocument::DisplayFlags)
 
