@@ -3608,7 +3608,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 	}
 }
 
-int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, DisplayFlags displayFlags)
+int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int column, DisplayFlags displayFlags)
 {
 	lineNo++; //input 0 based, synctex 1 based
 
@@ -3638,7 +3638,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, DisplayFl
 	int page = -1;
 	QPainterPath path;
 
-	QSynctex::NodeIterator iter = scanner.displayQuery(name, lineNo, 0, 0);  // TODO: page_hint set to 0 , please fix/optimize
+	QSynctex::NodeIterator iter = scanner.displayQuery(name, lineNo, column, 0);  // TODO: page_hint set to 0 , please fix/optimize
 	while (iter.hasNext()) {
 		QSynctex::Node node = iter.next();
 		if (page == -1)
