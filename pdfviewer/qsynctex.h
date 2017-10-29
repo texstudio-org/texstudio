@@ -29,6 +29,23 @@
 namespace QSynctex {
 
 
+///! Describes a location in a TeX source file
+struct TeXSyncPoint {
+	TeXSyncPoint() : line(0), column(0) {}
+	TeXSyncPoint(QString f, int ln, int col) : filename(f), line(ln), column(col) {}
+	QString filename;
+	int line;    // 1-based like in synctex
+	int column;  // 1-based like in synctex
+};
+
+///! Describes a location on a pdf page
+struct PDFSyncPoint {
+	QString filename;
+	int page;
+	QList<QRectF> rects;
+};
+
+
 class Node {
 	friend class Scanner;
 
