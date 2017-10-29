@@ -28,6 +28,7 @@
 
 namespace QSynctex {
 
+
 class Node {
 	friend class Scanner;
 
@@ -51,16 +52,29 @@ public:
 	Node argSibling() const { return synctex_node_arg_sibling(node); }
 	Node next() const { return synctex_node_next(node); }
 
+	/* Dimensions of the node in TeX small point coordinates, with origin at the top left corner. */
 	int x() const { return synctex_node_h(node); }
 	int y() const { return synctex_node_v(node); }
 	int width() const { return synctex_node_width(node); }
 	int height() const { return synctex_node_height(node); }
 
+	/* Dimensions of the enclosing box in TeX small point coordinates, with origin at the top left corner. */
 	int boxX() const { return synctex_node_box_h(node); }
 	int boxY() const { return synctex_node_box_v(node); }
 	int boxWidth() const { return synctex_node_box_width(node); }
 	int boxHeight() const { return synctex_node_box_height(node); }
 
+	/* Dimensions of the node in page coordinates, with origin at the top left corner. */
+	float visibleX() const { return synctex_node_visible_h(node); }
+	float visibleY() const { return synctex_node_visible_v(node); }
+	float visibleWidth() const { return synctex_node_visible_width(node); }
+	float visibleHeight() const { return synctex_node_visible_height(node); }
+
+	/* Dimensions of the enclosing box in page coordinates, with origin at the top left corner. */
+	float boxVisibleX() const { return synctex_node_box_visible_h(node); }
+	float boxVisibleY() const { return synctex_node_box_visible_v(node); }
+	float boxVisibleWidth() const { return synctex_node_box_visible_width(node); }
+	float boxVisibleHeight() const { return synctex_node_box_visible_height(node); }
 	QRectF boxVisibleRect() const;
 
 	void log() { synctex_node_log(node); }
@@ -102,7 +116,7 @@ public:
 	QString synctexFilename() const;
 	QFileInfo getNameFileInfo(const QDir &curDir, const Node &node, const char **rawName = 0);
 
-	NodeIterator displayQuery(const char * name,int line, int column, int page_hint);
+	NodeIterator displayQuery(const char * name, int line, int column, int page_hint);
 	NodeIterator editQuery(int page, float h, float v);
 	Node inputNode();
 
