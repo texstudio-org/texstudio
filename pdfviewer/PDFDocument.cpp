@@ -3608,6 +3608,14 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 	}
 }
 
+/*!
+ * \brief PDFDocument::syncFromSource
+ * \param sourceFile
+ * \param lineNo
+ * \param column
+ * \param displayFlags  window and widget actions such as changing focus, and raising a window.
+ * \return 0-based page number or -1 if the syncing was not successful.
+ */
 int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int column, DisplayFlags displayFlags)
 {
 	QSynctex::TeXSyncPoint sourcePoint(sourceFile, lineNo + 1, column + 1);  // synctex uses 1-based line and column
@@ -3616,47 +3624,23 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	if (!scanner.isValid() || syncFromSourceBlocked)
 		return -1;
 
-	// find the name synctex is using for this source file...
-	QDir curDir(QFileInfo(curFile).canonicalPath());
-	QSynctex::Node node = scanner.inputNode();
-	const char *name;
-	bool found = false;
-	while (node.isValid()) {
-
-		QFileInfo fi = scanner.getNameFileInfo(curDir, node, &name);
-		if (fi == QFileInfo(sourcePoint.filename)) {
-			found = true;
-			break;
-		}
-		node = node.sibling();
-	}
-	if (!found)
+	QSynctex::PDFSyncPoint pdfPoint = scanner.syncFromTeX(sourcePoint, curFile);
+	if (pdfPoint.page <= 0)
 		return -1;
 
-	int page = -1;
 	QPainterPath path;
-
-	QSynctex::NodeIterator iter = scanner.displayQuery(name, sourcePoint.line, sourcePoint.column, 0);  // TODO: page_hint set to 0 , please fix/optimize
-	while (iter.hasNext()) {
-		QSynctex::Node node = iter.next();
-		if (page == -1)
-			page = node.page();
-		if (node.page() != page)
-			continue;
-		path.addRect(node.boxVisibleRect());
+	foreach (const QRectF &r, pdfPoint.rects) {
+		path.addRect(r);
 	}
-	if (page > 0) {
-		syncToSourceBlocked = true;
-		path.setFillRule(Qt::WindingFill);
-		if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
-		pdfWidget->setHighlightPath(page - 1, path);
-		pdfWidget->update();
-		updateDisplayState(displayFlags);
-		syncToSourceBlocked = false;
-		//pdfWidget->repaint();
-		return page - 1;
-	}
-	return -1;
+	syncToSourceBlocked = true;
+	path.setFillRule(Qt::WindingFill);
+	if (path.isEmpty()) scrollArea->goToPage(pdfPoint.page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
+	pdfWidget->setHighlightPath(pdfPoint.page - 1, path);
+	pdfWidget->update();
+	updateDisplayState(displayFlags);
+	syncToSourceBlocked = false;
+	//pdfWidget->repaint();
+	return pdfPoint.page - 1;
 }
 
 void PDFDocument::setCurrentFile(const QString &fileName)
