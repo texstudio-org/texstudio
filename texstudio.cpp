@@ -5703,14 +5703,16 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 	pdfFile = buildManager.findFile(pdfDefFile, searchPaths);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
 	int ln = 0;
+	int col = 0;
 	if (currentEditorView()) {
+		col = currentEditorView()->editor->cursor().columnNumber();
 		ln = currentEditorView()->editor->cursor().lineNumber();
 		int originalLineNumber = currentEditorView()->document->lineToLineSnapshotLineNumber(currentEditorView()->editor->cursor().line());
 		if (originalLineNumber >= 0) ln = originalLineNumber;
 	}
 	foreach (PDFDocument *viewer, oldPDFs) {
 		viewer->loadFile(pdfFile, master, displayPolicy);
-		int pg = viewer->syncFromSource(getCurrentFileName(), ln, displayPolicy);
+		int pg = viewer->syncFromSource(getCurrentFileName(), ln, col, displayPolicy);
 		viewer->fillRenderCache(pg);
         if (viewer->embeddedMode && configManager.viewerEnlarged) {
             sidePanelSplitter->hide();
@@ -8287,11 +8289,12 @@ void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 			int lineNumber = cur.isValid() ? cur.lineNumber() : currentLine;
 			int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
 			if (originalLineNumber >= 0) lineNumber = originalLineNumber;
+			int col = cur.columnNumber();
 			PDFDocument::DisplayFlags displayPolicy = PDFDocument::NoDisplayFlags;
 			if (inForeground) displayPolicy = PDFDocument::Raise | PDFDocument::Focus;
 			foreach (PDFDocument *viewer, PDFDocument::documentList()) {
 				if (inForeground || viewer->followCursor()) {
-					viewer->syncFromSource(filename, lineNumber, displayPolicy);
+					viewer->syncFromSource(filename, lineNumber, col, displayPolicy);
 				}
 			}
 		}
