@@ -135,9 +135,6 @@ PDFSyncPoint Scanner::syncFromTeX(const TeXSyncPoint &src, const QString &pdfFil
 	QSynctex::NodeIterator iter = displayQuery(name, src.line, src.column, 0);  // TODO: page_hint set to 0 , please fix/optimize
 	while (iter.hasNext()) {
 		QSynctex::Node node = iter.next();
-		qDebug() << node;
-		QSynctex::Node sh = sheet(1);
-		debugNodeTree(sh);
 		if (pdfPoint.page < 0)
 			pdfPoint.page = node.page();
 		if (node.page() != pdfPoint.page)
