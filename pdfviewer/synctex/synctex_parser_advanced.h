@@ -3,8 +3,8 @@
  
  This file is part of the __SyncTeX__ package.
  
- [//]: # (Latest Revision: Fri Jul 14 16:20:41 UTC 2017)
- [//]: # (Version: 1.19)
+ [//]: # (Latest Revision: Sun Oct 15 15:09:55 UTC 2017)
+ [//]: # (Version: 1.21)
  
  See `synctex_parser_readme.md` for more details
  
@@ -245,6 +245,9 @@ extern "C" {
         synctex_data_proxy_h_idx    =  0,
         synctex_data_proxy_v_idx    =  1,
         synctex_data_proxy_hv_max   =  2,
+        /* handle */
+        synctex_data_handle_w_idx   =  0,
+        synctex_data_handle_w_max   =  1,
     };
 
     /*  each synctex node has a class */
@@ -388,7 +391,7 @@ extern "C" {
     int synctex_node_hbox_height(synctex_node_p node);
     int synctex_node_hbox_depth(synctex_node_p node);
     
-    synctex_scanner_p synctex_scanner_new();
+    synctex_scanner_p synctex_scanner_new(void);
     synctex_node_p synctex_node_new(synctex_scanner_p scanner,synctex_node_type_t type);
 
     /**

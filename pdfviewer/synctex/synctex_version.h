@@ -4,7 +4,7 @@ Copyright (c) 2008-2017 jerome DOT laurens AT u-bourgogne DOT fr
 This file is part of the __SyncTeX__ package.
 
 [//]: # (Latest Revision: Fri Jul 14 16:20:41 UTC 2017)
-[//]: # (Version: 1.20)
+[//]: # (Version: 1.21)
 
 See `synctex_parser_readme.md` for more details
 
@@ -52,7 +52,7 @@ I would appreciate to be listed as contributor and see "__SyncTeX__" highlighted
 
 #   define SYNCTEX_VERSION_MAJOR 1
 
-#   define SYNCTEX_VERSION_STRING "1.20"
+#   define SYNCTEX_VERSION_STRING "1.21"
 
 #   define SYNCTEX_CLI_VERSION_STRING "1.5"
 
