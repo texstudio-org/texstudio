@@ -22,6 +22,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QRectF>
+#include <QDebug>
 
 #include <synctex_parser.h>
 #include <synctex_parser_advanced.h>
@@ -46,6 +47,7 @@ struct PDFSyncPoint {
 };
 
 
+
 class Node {
 	friend class Scanner;
 
@@ -58,6 +60,7 @@ public:
 	int column() const { return synctex_node_column(node); }
 	int page() const { return synctex_node_page(node); }
 	QString sourceFileName() { return QFile::decodeName(synctex_node_get_name(node)); }
+	QString typeName() { return QString(synctex_node_isa(node)); }
 
 	Node parent() const { return synctex_node_parent(node); }
 	Node parentSheet() const { return synctex_node_parent_sheet(node); }
@@ -137,10 +140,10 @@ public:
 	NodeIterator editQuery(int page, float h, float v);
 	Node inputNode() const;
 
-	Node sheet(int page) { return synctex_sheet(scanner, page); }
-	Node sheetContent(int page) { return synctex_sheet_content(scanner, page); }
-	Node form(int tag) { return synctex_form(scanner, tag); }
-	Node formContent(int tag) { return synctex_form_content(scanner, tag); }
+	Node sheet(int page) const { return synctex_sheet(scanner, page); }
+	Node sheetContent(int page) const { return synctex_sheet_content(scanner, page); }
+	Node form(int tag) const { return synctex_form(scanner, tag); }
+	Node formContent(int tag) const { return synctex_form_content(scanner, tag); }
 
 	void display() { synctex_scanner_display(scanner); }
 	QString fileName(int tag) { return QFile::decodeName(synctex_scanner_get_name(scanner, tag)); }
@@ -155,6 +158,11 @@ private:
 	synctex_scanner_p scanner;
 };
 
+void debugNodeTree(QSynctex::Node node, int level=0);
+
 }  // namespace QSynctex
+
+
+QDebug operator<<(QDebug dbg, QSynctex::Node node);
 
 #endif // QSYNCTEX_H

@@ -124,6 +124,7 @@ PDFSyncPoint Scanner::syncFromTeX(const TeXSyncPoint &src, const QString &pdfFil
 			found = true;
 			break;
 		}
+
 		node = node.sibling();
 	}
 	if (!found)
@@ -134,6 +135,9 @@ PDFSyncPoint Scanner::syncFromTeX(const TeXSyncPoint &src, const QString &pdfFil
 	QSynctex::NodeIterator iter = displayQuery(name, src.line, src.column, 0);  // TODO: page_hint set to 0 , please fix/optimize
 	while (iter.hasNext()) {
 		QSynctex::Node node = iter.next();
+		qDebug() << node;
+		QSynctex::Node sh = sheet(1);
+		debugNodeTree(sh);
 		if (pdfPoint.page < 0)
 			pdfPoint.page = node.page();
 		if (node.page() != pdfPoint.page)
@@ -145,7 +149,24 @@ PDFSyncPoint Scanner::syncFromTeX(const TeXSyncPoint &src, const QString &pdfFil
 }
 
 
+void debugNodeTree(QSynctex::Node node, int level)
+{
+	if (!node.isValid())
+		return;
+	qDebug() << QString(2*level, ' ') << node;
+	debugNodeTree(node.child(), level + 1);
+	debugNodeTree(node.sibling(), level);
+}
+
 }  // namespace QSynctex
 
 
+QDebug operator<<(QDebug dbg, QSynctex::Node node)
+{
+	QString s = QString("Node(%1:t%2,l%3:p%4 (%5, %6 : %7, %8))").arg(node.typeName()).arg(node.tag()).arg(node.line()).arg(node.page())\
+				.arg(node.visibleX()/72.).arg(node.visibleY()/72.).arg(node.visibleWidth()/72.).arg(node.visibleHeight()/72.);
+	s += QString(" (%1, %2)").arg(node.x()).arg(node.y());
+	dbg << qPrintable(s);
+	return dbg;
+}
 
