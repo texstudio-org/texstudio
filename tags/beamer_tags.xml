@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texmakertags title="Beamer">
+<section title="New Beamer Slides">
+<item txt="empty slide" tag="\\begin{frame}"/>
+<item txt="slide with enumerate" tag="\\begin{frame}%\\\\frametitle{%&lt;title%>}%\\%%\\framesubtitle{%&lt;subtitle%>}%\\\\begin{enumerate}%\\\\item %&lt;content%>%\\\\end{enumerate}%\\\\end{frame}"/>
+<item txt="slide with itemize"   tag="\\begin{frame}%\\\\frametitle{%&lt;title%>}%\\%%\\framesubtitle{%&lt;subtitle%>}%\\\\begin{itemize}%\\\\item %&lt;content%>%\\\\end{itemize}%\\\\end{frame}"/>
+<item txt="slide with graphic"   tag="\\begin{frame}%\\\\frametitle{%&lt;title%>}%\\%%\\framesubtitle{%&lt;subtitle%>}%\\\\includegraphics[width=\\linewidth]{%&lt;file%>}%\\\\end{frame}"/>
+</section>
+</texmakertags>
