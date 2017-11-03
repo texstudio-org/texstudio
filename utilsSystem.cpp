@@ -341,6 +341,51 @@ QString joinPath(const QString &dirname, const QString &dirname2, const QString 
 	return ensureTrailingDirSeparator(dirname) + ensureTrailingDirSeparator(dirname2) + filename;
 }
 
+/// Removes any symbolic link inside the file path.
+/// Does nothing on Windows.
+QFileInfo getNonSymbolicFileInfo(const QFileInfo& info)
+{
+	const size_t MAX_DIR_DEPTH=32; //< Do not seek for symbolic links deeper than MAX_DIR_DEPTH.
+									// For performance issues and if the root directory was not catched (infinite loop).
+#ifdef Q_OS_UNIX
+	// Static array might be also used to prevent heap allocation for a small amont of data. QFileInfo is shared, so the size of the array is size_of(void*)*MAX_DIR_DEPTH
+	//QFileInfo stack[MAX_DIR_DEPTH];
+	QStack<QFileInfo> stack;
+	stack.reserve(MAX_DIR_DEPTH);
+	stack.push(info);
+	size_t depth = 0;
+	int lastChanged = 0;
+
+	QFileInfo pfi ;
+	do
+	{
+		QDir parent =  stack.top().dir();
+		pfi = QFileInfo(parent.absolutePath());
+		if (pfi.isSymLink())
+		{
+			pfi = QFileInfo(pfi.symLinkTarget());
+			lastChanged = depth; // = stack.size()-1;
+		}
+		stack.push(pfi);
+		depth++;
+	} while(!pfi.isRoot()  &&  depth < MAX_DIR_DEPTH);
+
+	//if (Q_UNLIKELY(lastChanged != -1))
+	//{
+		pfi = stack[lastChanged];
+		int i = lastChanged -1;
+		for(; i>= 0; i-- ){
+			QFileInfo& ci = stack[i];
+			pfi = QFileInfo( QDir(pfi.absoluteFilePath()), ci.fileName() );
+		}
+		return pfi;
+	//}
+
+#else
+	// Does nothing on Windows
+		return info;
+#endif
+}
 
 QString replaceFileExtension(const QString &filename, const QString &newExtension, bool appendIfNoExt)
 {
