@@ -211,7 +211,7 @@
         <location filename="bibtexdialog.cpp" line="40"/>
         <location filename="bibtexdialog.cpp" line="140"/>
         <source>Book&amp;let</source>
-        <translation type="unfinished"/>
+        <translation>کتاب&amp;چه</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="43"/>
@@ -817,7 +817,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="283"/>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>قالب:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="264"/>
@@ -887,7 +887,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="479"/>
         <source>Check LaTeX Configuration</source>
-        <translation type="unfinished"/>
+        <translation>پیکربندی LaTeX را بررسی کن</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="489"/>
@@ -1059,7 +1059,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="1016"/>
         <source>Additional Search Paths:</source>
-        <translation type="unfinished"/>
+        <translation>مسیرهای جست‌وجوی اضافی:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1023"/>
@@ -1711,7 +1711,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2303"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>پرانتزها را انتخاب کن</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2308"/>
@@ -1766,7 +1766,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>از حالت تمام صفحه خارج شو</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -5540,7 +5540,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="422"/>
         <source>File %1 does not exists</source>
-        <translation type="unfinished"/>
+        <translation>فایل %1 وجود ندارد</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="428"/>
@@ -6013,7 +6013,7 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="673"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1447"/>
         <source>&amp;Goto line...</source>
-        <translation type="unfinished"/>
+        <translation>به خط... &amp;برو</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="685"/>
@@ -9244,12 +9244,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="827"/>
         <source>To Lowercase</source>
-        <translation type="unfinished"/>
+        <translation>به حروف کوچک</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="828"/>
         <source>To Uppercase</source>
-        <translation type="unfinished"/>
+        <translation>به حروف بزرگ</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="829"/>
@@ -9758,7 +9758,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="999"/>
         <source>&amp;Asymptote</source>
-        <translation type="unfinished"/>
+        <translation>&amp;مجانب</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1001"/>
@@ -10890,7 +10890,7 @@ Please provide this file if you send a bug report.
     <message>
         <location filename="texstudio.cpp" line="9875"/>
         <source>Yes, continue the loop</source>
-        <translation type="unfinished"/>
+        <translation>بله، حلقه را ادامه بده</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9954"/>
@@ -10907,17 +10907,17 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="texstudio.cpp" line="9959"/>
         <source>I tried to die, but nothing happened.</source>
-        <translation type="unfinished"/>
+        <translation>من سعی کردم بمیرم، اما اتفاقی نیفتاد</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9988"/>
         <source>System Report</source>
-        <translation type="unfinished"/>
+        <translation>گزارش سیستم</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10127"/>
         <source>LT Report</source>
-        <translation type="unfinished"/>
+        <translation>گزارش LT</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10154"/>
@@ -10935,13 +10935,15 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="texstudio.cpp" line="10167"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"/>
+        <translation>بررسی همزمان فعال است.
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10169"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"/>
+        <translation>بررسی همزمان غیرفعال است!!!!
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10172"/>
@@ -11025,13 +11027,13 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="utilsSystem.cpp" line="549"/>
         <source>Show Containing Folder</source>
-        <translation type="unfinished"/>
+        <translation>پوشه‌ی مربوطه را نشان بده</translation>
     </message>
     <message>
         <location filename="utilsUI.cpp" line="44"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
-        <translation type="unfinished"/>
+        <translation>دوباره هشدار نده</translation>
     </message>
 </context>
 <context>
@@ -11076,7 +11078,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="63"/>
         <source>Total lines</source>
-        <translation type="unfinished"/>
+        <translation>تمام خط‌ها</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="70"/>
@@ -11242,7 +11244,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="textanalysis.ui" line="379"/>
         <source>Maximum words per phrase:</source>
-        <translation type="unfinished"/>
+        <translation>جداکثر کلمه در هر عبارت:</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="384"/>
@@ -11368,7 +11370,7 @@ If not, end characters are ignored.</source>
         <location filename="thesaurusdialog.cpp" line="359"/>
         <location filename="thesaurusdialog.cpp" line="395"/>
         <source>Category:</source>
-        <translation type="unfinished"/>
+        <translation>دسته‌بندی:</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="378"/>
@@ -11584,7 +11586,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="userquickdialog.ui" line="14"/>
         <source>Quick Build Command</source>
-        <translation type="unfinished"/>
+        <translation>دستور ساخت سریع</translation>
     </message>
     <message>
         <location filename="userquickdialog.ui" line="42"/>
@@ -11857,7 +11859,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.cpp" line="30"/>
         <source>Page numbers</source>
-        <translation type="unfinished"/>
+        <translation>شماره‌ی صفحه‌ها</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="31"/>
@@ -11878,7 +11880,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="130"/>
         <source>Running browser .</source>
-        <translation type="unfinished"/>
+        <translation>جست‌ و جو گر در حال اجرا</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="137"/>
@@ -11901,7 +11903,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="161"/>
         <source>  Running this command: </source>
-        <translation type="unfinished"/>
+        <translation>این دستور را اجرا کن:</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="183"/>
