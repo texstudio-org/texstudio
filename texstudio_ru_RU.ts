@@ -617,7 +617,9 @@ Please change your configuration and define command lists only at &apos;Options 
         <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Ожидается, что команда %1 неделима. Однако, сейчас она определена как цепь команд, состоящая из  %2 команд. Это не предусмотрено спецификацией и может привести к неожиданным побочным эффектам.
+
+Пожалуйста, измените ваши настройки и определите списки команд только в &apos;Параметры -&gt; Конфигурация TeXstudio -&gt; Компиляция&apos;, а не в &apos;Параметры -&gt; Конфигурация TeXstudio -&gt; Команды&apos;.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1017"/>
@@ -1781,27 +1783,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Закрыть элемент&quot; применяется к фиксированному списку элементов графического интерфейса (здесь не показан). Первый видимый элемент будет закрыт. С помощью этой настройки вы можете исключить некоторые элементы из списка на закрытие. </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть элемент (Esc)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть просмотр журнала</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть встроенный просмотрщик</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть полноэкранный режим</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -1816,7 +1818,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2419"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"/>
+        <translation>Позволять перетаскивание мышью</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2456"/>
@@ -2149,12 +2151,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="3158"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation>Если математическая команда вставлена через дополнение вне какого-либо математического окружения, то $$ вставляется автоматически.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3161"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation>Автоматически вводить математические разделители куда надо</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3171"/>
@@ -2549,7 +2551,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4181"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"/>
+        <translation>Круг без тени</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4160"/>
@@ -2671,12 +2673,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4408"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>Цвет бумаги</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4418"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>Цвет фона по умолчанию. Определите в виде шестнадцатеричного RGB-значения. Примечание: это повлияет только на те PDF-файлы, которые были загружены после изменения этой опции. Цвет бумаги уже открытых PDF-файлов не изменится.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4470"/>
@@ -3924,12 +3926,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="406"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>Установить режим только для чтения</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="408"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>Снять режим только для чтения</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="413"/>
@@ -3939,7 +3941,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="416"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть все другие документы</translation>
     </message>
 </context>
 <context>
@@ -5392,7 +5394,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Панель инструментов автосокрытия</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -5698,7 +5700,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"/>
+        <translation>Синхронизировать редактор при перепрыгивание на результаты поиска.</translation>
     </message>
 </context>
 <context>
@@ -5797,7 +5799,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>Открытие внешних файлов пока что поддерживается только для PDF-файлов.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -8262,12 +8264,12 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Удалить из избранного</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Добавить в избранное</translation>
     </message>
 </context>
 <context>
@@ -8276,19 +8278,19 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Операторы</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Отношения</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Стрелки</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
@@ -8300,37 +8302,37 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Греческий алфавит</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Кириллица</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Различная математика</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Различный текст</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="39"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>wasysym</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Специальные</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="75"/>
@@ -8350,7 +8352,7 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>Категория</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
@@ -8368,7 +8370,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>нераспознанное окружение</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="499"/>
@@ -9041,7 +9043,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="603"/>
         <location filename="texstudio.cpp" line="604"/>
         <source>Symbols</source>
-        <translation type="unfinished"/>
+        <translation>Символы</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="606"/>
@@ -10058,12 +10060,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1044"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Ввести программу как комментарий TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1045"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Внести инструмент библиографии как комментарий TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1047"/>
@@ -10205,7 +10207,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1141"/>
         <source>Close Element</source>
-        <translation type="unfinished"/>
+        <translation>Закрыть элемент</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1144"/>

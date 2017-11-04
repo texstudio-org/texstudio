@@ -2664,7 +2664,7 @@ Poznámka: Změna tohoto nastavení ovlivní jen následně otevřené dokumenty
     <message>
         <location filename="configdialog.ui" line="4408"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>Barva papíru</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4418"/>
