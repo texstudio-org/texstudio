@@ -8139,6 +8139,9 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 #ifdef Q_OS_WIN
 				absPath.replace('\\', '/');  // make sure the path argumment to \input uses '/' as dir separator
 #endif
+				if (absPath.contains(' ')) {
+					absPath = '"' + absPath + '"';
+				}
 				newLine.replace(start, end - start, absPath);
 			}
 			header << newLine;
