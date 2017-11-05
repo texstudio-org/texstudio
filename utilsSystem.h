@@ -53,6 +53,7 @@ QString getRelativeBaseNameToPath(const QString &file, QString basepath, bool ba
 QString getPathfromFilename(const QString &compFile);
 QString findAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &searchPaths, const QString &fallbackPath);
 QString getNonextistentFilename(const QString &guess, const QString &fallback = QString());
+QFileInfo getNonSymbolicFileInfo(const QFileInfo &info);
 
 QString getEnvironmentPath();
 QStringList getEnvironmentPathList();

@@ -76,6 +76,8 @@ public:
 
 private:
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle *, ReferencePair> &list);
+	void setFileNameInternal(const QString& fileName);
+	void setFileNameInternal(const QString& fileName, const QFileInfo &pairedFileInfo);
 
 public:
 	Q_INVOKABLE QStringList labelItems() const; ///< all labels in this document

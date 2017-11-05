@@ -83,20 +83,34 @@ void LatexDocument::setFileName(const QString &fileName)
 		while (iter.hasNext()) iter.next()->setLine(0);
 	}
 
-	this->fileName = fileName;
-	this->fileInfo = QFileInfo(fileName);
+	this->setFileNameInternal(fileName);
 	this->edView = 0;
 }
 
 void LatexDocument::setEditorView(LatexEditorView *edView)
 {
-	this->fileName = edView->editor->fileName();
-	this->fileInfo = edView->editor->fileInfo();
+	this->setFileNameInternal(edView->editor->fileName(), edView->editor->fileInfo());
 	this->edView = edView;
 	if (baseStructure) {
 		baseStructure->title = fileName;
 		emit updateElement(baseStructure);
 	}
+}
+
+/// Set the values of this->fileName and this->this->fileInfo
+/// Note: QFileInfo is cached, so the performance cost to recreate
+/// QFileInfo (instead of copying it from edView) should be very small.
+void LatexDocument::setFileNameInternal(const QString &fileName)
+{
+	setFileNameInternal(fileName, QFileInfo(fileName));
+}
+/// Set the values of this->fileName and this->this->fileInfo
+void LatexDocument::setFileNameInternal(const QString &fileName, const QFileInfo& pairedFileInfo)
+{
+	Q_ASSERT(fileName.isEmpty() || pairedFileInfo.isAbsolute());
+	this->fileName = fileName;
+	QFileInfo info = getNonSymbolicFileInfo(pairedFileInfo);
+	this->fileInfo = info;
 }
 
 LatexEditorView *LatexDocument::getEditorView() const
@@ -1573,6 +1587,7 @@ QStringList LatexDocument::someItems(const QMultiHash<QDocumentLineHandle *, Ref
 	return result;
 }
 
+
 QStringList LatexDocument::labelItems() const
 {
 	return someItems(mLabelItem);
@@ -1947,6 +1962,7 @@ LatexDocument *LatexDocuments::findDocument(const QString &fileName, bool checkT
 	}
 
 	QFileInfo fi(fileName);
+	fi = getNonSymbolicFileInfo(fi);
 	if (fi.exists()) {
 		foreach (LatexDocument *document, documents) {
 			if (document->getFileInfo() == fi) {
