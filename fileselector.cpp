@@ -3,11 +3,16 @@
 FileSelector::FileSelector(QWidget *parent, bool multiselect) :
 	QWidget(parent), multiselect(multiselect)
 {
-	setLayout(new QVBoxLayout());
+	setWindowFlags(Qt::Popup | Qt::FramelessWindowHint);
+	QVBoxLayout *vlayout = new QVBoxLayout();
+	vlayout->setContentsMargins(0, 0, 0, 0);
+	vlayout->setSpacing(0);
+	setLayout(vlayout);
+
 	list = new QListWidget(this);
-	layout()->addWidget(list);
+	vlayout->addWidget(list);
 	filter = new QLineEdit(this);
-	layout()->addWidget(filter);
+	vlayout->addWidget(filter);
 	connect(filter, SIGNAL(textChanged(QString)), SLOT(filterChanged(QString)));
 
 	filter->installEventFilter(this);
@@ -38,25 +43,28 @@ void FileSelector::init(const QStringList &files, int current)
 	}
 }
 
-void FileSelector::setCentered(const QRect &rect)
+void FileSelector::setCentered()
 {
-	QSize s = rect.size();
-	QPoint p = rect.topLeft();
+	if (parentWidget()) {
+		QRect rect= parentWidget()->geometry();
+		QSize s = rect.size();
+		QPoint p = rect.topLeft();
 
-	int fsw = s.width() / 2;
-	int scrollbarwidth = 50; //value that works on my computer...
-	/*if (list->verticalScrollBar()) {
-		QStyleOptionSlider sos;
-		sos.initFrom(list->verticalScrollBar());
-		scrollbarwidth = qAbs(list->verticalScrollBar()->style()->subControlRect(QStyle::CC_ScrollBar, &sos,  QStyle::SC_ScrollBarGroove, list->verticalScrollBar()).width());
-	}*/
-	QFontMetrics fm = list->fontMetrics();
-	for (int i = 0; i < rawFiles.size(); i++)
-		fsw = qMax(fsw, fm.width(rawFiles[i]) + scrollbarwidth );
-	fsw = qMin(fsw, s.width());
+		int fsw = s.width() / 2;
+		int scrollbarwidth = 50; //value that works on my computer...
+		/*if (list->verticalScrollBar()) {
+			QStyleOptionSlider sos;
+			sos.initFrom(list->verticalScrollBar());
+			scrollbarwidth = qAbs(list->verticalScrollBar()->style()->subControlRect(QStyle::CC_ScrollBar, &sos,  QStyle::SC_ScrollBarGroove, list->verticalScrollBar()).width());
+		}*/
+		QFontMetrics fm = list->fontMetrics();
+		for (int i = 0; i < rawFiles.size(); i++)
+			fsw = qMax(fsw, fm.width(rawFiles[i]) + scrollbarwidth );
+		fsw = qMin(fsw, s.width());
 
-	setGeometry(s.width() / 2 - fsw / 2 + p.x(), s.height() / 4 + p.y(), fsw, s.height() / 2);
-	setMinimumWidth(fsw); //set geometry alone leads to a too small window. but we need to call setGeometry first, or it crashes if fsw = s.width()
+		setGeometry(s.width() / 2 - fsw / 2 + p.x(), s.height() / 4 + p.y(), fsw, s.height() / 2);
+		setMinimumWidth(fsw); //set geometry alone leads to a too small window. but we need to call setGeometry first, or it crashes if fsw = s.width()
+	}
 }
 
 void FileSelector::filterChanged(const QString &newFilter)
@@ -103,6 +111,12 @@ void FileSelector::filterChanged(const QString &newFilter)
 	list->setCurrentRow(0);
 }
 
+void FileSelector::showEvent(QShowEvent *event)
+{
+	setCentered();
+	QWidget::showEvent(event);
+}
+
 bool FileSelector::eventFilter(QObject *obj, QEvent *event)
 {
 	if (event->type() == QEvent::KeyPress) {
@@ -133,7 +147,7 @@ bool FileSelector::eventFilter(QObject *obj, QEvent *event)
 			close();
 			return true;
 		}
-	} else if (obj == list && event->type() == QEvent::MouseButtonDblClick) {
+	} else if (event->type() == QEvent::MouseButtonDblClick) {
 		qDebug() << "??? todo, why is this not called ??";
 		emitChoosen();
 		return true;

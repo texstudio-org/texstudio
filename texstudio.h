@@ -236,9 +236,7 @@ protected slots:
 	void fileClose(); ///< close current editor
 	void fileCloseAll(); ///< close all open editors
 	void fileExit(); ///< exit application
-    void fileExitWithError(); ///< exit application with error code, used for auto-tests
-private:
-	void centerFileSelector();
+	void fileExitWithError(); ///< exit application with error code, used for auto-tests
 protected slots:
 	void fileOpenRecent();
 	void fileOpenAllRecent(); ///< open all files in recent file list
@@ -578,7 +576,6 @@ protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
-	virtual void resizeEvent(QResizeEvent *e);
 #ifdef Q_OS_WIN
     bool eventFilter(QObject *obj, QEvent *event);
 #endif
