@@ -301,7 +301,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	sidePanelSplitter = new MiniSplitter(Qt::Horizontal, this);
 	sidePanelSplitter->addWidget(centralVSplitter);
 
-	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);
+	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);  // top-level element: splits: [ everything else | PDF ]
 	mainHSplitter->addWidget(sidePanelSplitter);
 	mainHSplitter->setChildrenCollapsible(false);
 	setCentralWidget(mainHSplitter);
@@ -2929,11 +2929,6 @@ void Texstudio::updateUserMacros(bool updateMenu)
 	}
 }
 
-void Texstudio::centerFileSelector()
-{
-	if (!fileSelector) return;
-	fileSelector.data()->setCentered(centralWidget()->geometry());
-}
 /*!
  * \brief open file from recent list
  *
@@ -2975,7 +2970,6 @@ void Texstudio::fileRecentList()
 
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString, int, int, int)), SLOT(fileDocumentOpenFromChoosen(QString, int, int, int)));
 	fileSelector.data()->setVisible(true);
-	centerFileSelector();
 }
 
 void Texstudio::viewDocumentListHidden()
@@ -2990,7 +2984,6 @@ void Texstudio::viewDocumentListHidden()
 
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString, int, int, int)), SLOT(fileDocumentOpenFromChoosen(QString, int, int, int)));
 	fileSelector.data()->setVisible(true);
-	centerFileSelector();
 }
 
 void Texstudio::fileDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
@@ -3042,7 +3035,6 @@ void Texstudio::viewDocumentList()
 	fileSelector.data()->init(names, curIndex);
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString, int, int, int)), SLOT(viewDocumentOpenFromChoosen(QString, int, int, int)));
 	fileSelector.data()->setVisible(true);
-	centerFileSelector();
 }
 
 void Texstudio::viewDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
@@ -7142,11 +7134,6 @@ void Texstudio::changeEvent(QEvent *e)
 	}
 }
 
-void Texstudio::resizeEvent(QResizeEvent *e)
-{
-	centerFileSelector();
-	QMainWindow::resizeEvent(e);
-}
 #ifdef Q_OS_WIN
 // workaround for ´+t bug
 bool Texstudio::eventFilter(QObject *, QEvent *event)
