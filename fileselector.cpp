@@ -16,12 +16,12 @@ FileSelector::FileSelector(QWidget *parent, bool multiselect) :
 	connect(filter, SIGNAL(textChanged(QString)), SLOT(filterChanged(QString)));
 
 	filter->installEventFilter(this);
-	list->installEventFilter(this);
 
 	QPalette p = QApplication::palette(); //let the list appear selected (does not work with gtk+ style)
 	p.setColor(QPalette::Inactive, QPalette::Highlight, p.color(QPalette::Active, QPalette::Highlight));
 	p.setColor(QPalette::Inactive, QPalette::HighlightedText, p.color(QPalette::Active, QPalette::HighlightedText));
 	list->setPalette(p);
+	connect(list, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(emitChoosen()));
 
 	setAttribute(Qt::WA_DeleteOnClose);
 
@@ -147,10 +147,6 @@ bool FileSelector::eventFilter(QObject *obj, QEvent *event)
 			close();
 			return true;
 		}
-	} else if (event->type() == QEvent::MouseButtonDblClick) {
-		qDebug() << "??? todo, why is this not called ??";
-		emitChoosen();
-		return true;
 	}
 	return QObject::eventFilter(obj, event);
 }

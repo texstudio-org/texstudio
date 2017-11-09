@@ -21,6 +21,8 @@ private slots:
 protected:
 	virtual void showEvent(QShowEvent *event);
 	virtual bool eventFilter(QObject *obj, QEvent *event);
+
+protected slots:
 	void emitChoosen();
 
 private:
