@@ -2964,7 +2964,7 @@ QRect appendToBottom(QRect r, const QRect &s)
 void Texstudio::fileRecentList()
 {
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(this, true);
+	fileSelector = new FileSelector(editors, true);
 
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 
@@ -2975,7 +2975,7 @@ void Texstudio::fileRecentList()
 void Texstudio::viewDocumentListHidden()
 {
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(this, true);
+	fileSelector = new FileSelector(editors, true);
 
 	QStringList hiddenDocs;
 	foreach (LatexDocument *d, documents.hiddenDocuments)
@@ -3011,7 +3011,7 @@ bool mruEditorViewLessThan(const LatexEditorView *e1, const LatexEditorView *e2)
 void Texstudio::viewDocumentList()
 {
 	if (fileSelector) fileSelector.data()->deleteLater();
-	fileSelector = new FileSelector(this, false);
+	fileSelector = new FileSelector(editors, false);
 
 	LatexEditorView *curEdView = currentEditorView();
 	int curIndex = 0;

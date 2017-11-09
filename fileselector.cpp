@@ -14,7 +14,6 @@ FileSelector::FileSelector(QWidget *parent, bool multiselect) :
 	filter = new QLineEdit(this);
 	vlayout->addWidget(filter);
 	connect(filter, SIGNAL(textChanged(QString)), SLOT(filterChanged(QString)));
-
 	filter->installEventFilter(this);
 
 	QPalette p = QApplication::palette(); //let the list appear selected (does not work with gtk+ style)
@@ -46,9 +45,9 @@ void FileSelector::init(const QStringList &files, int current)
 void FileSelector::setCentered()
 {
 	if (parentWidget()) {
-		QRect rect= parentWidget()->geometry();
+		QRect rect = parentWidget()->geometry();
 		QSize s = rect.size();
-		QPoint p = rect.topLeft();
+		QPoint p = parentWidget()->mapToGlobal(rect.topLeft());  // popups live in global coordinates
 
 		int fsw = s.width() / 2;
 		int scrollbarwidth = 50; //value that works on my computer...
@@ -62,7 +61,7 @@ void FileSelector::setCentered()
 			fsw = qMax(fsw, fm.width(rawFiles[i]) + scrollbarwidth );
 		fsw = qMin(fsw, s.width());
 
-		setGeometry(s.width() / 2 - fsw / 2 + p.x(), s.height() / 4 + p.y(), fsw, s.height() / 2);
+		setGeometry(s.width() / 2 - fsw / 2 + p.x(), s.height() / 8 + p.y(), fsw, s.height() / 2);
 		setMinimumWidth(fsw); //set geometry alone leads to a too small window. but we need to call setGeometry first, or it crashes if fsw = s.width()
 	}
 }
