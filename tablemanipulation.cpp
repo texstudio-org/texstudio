@@ -15,6 +15,15 @@ QStringList LatexTables::mathTables = QStringList() << "align" << "align*" << "a
                                       << "gather" << "gather*" << "flalign" << "flalign*" << "alignat" << "alignat*"
                                       << "cases" << "aligned" << "gathered" << "alignedat";
 
+QSet<QString> environmentsRequiringTrailingLineBreak = QSet<QString>() << "supertabular";
+// Note: Apparently some environments always require a line break "\\". These should be specified here.
+// Some don't want one, e.g. align, blockarray, ...
+// And some can cope with both cases, e.g. tabular
+// Our approach is to remove the last line break unless it's neccesary, either because the
+// environment needs it, or there is additional stuff after the line break, such as "\\ \hline".
+// See also: https://tex.stackexchange.com/questions/400827/should-i-use-a-line-break-after-the-last-tabular-row
+
+
 void LatexTables::addRow(QDocumentCursor &c, const int numberOfColumns )
 {
 	QDocumentCursor cur(c);
@@ -883,7 +892,8 @@ void LatexTables::alignTableCols(QDocumentCursor &cur)
 
 	QStringList l_defs = splitColDef(alignment);
 	simplifyColDefs(l_defs);
-	QStringList content(ltm.getAlignedLines(l_defs));
+	bool forceNewline = environmentsRequiringTrailingLineBreak.contains(tableType);
+	QStringList content = ltm.getAlignedLines(l_defs, "\t", forceNewline);
 
 	QString result = beginPart + '\n';
 	for (int i = 0; i < content.count(); i++) {
@@ -1032,7 +1042,7 @@ void LatexTableModel::setContent(const QString &text)
 	*/
 }
 
-QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const QString &rowIndent) const
+QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const QString &rowIndent, bool forceLineBreakAtEnd) const
 {
 	QString delim = " & ";
 	QVector<QString> cl(lines.count());
@@ -1126,8 +1136,9 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 		}
 
 	}
-	if (!ret.isEmpty()) {
-        // no break at final line, except for cases like "\\ \hline" and empty column
+	if (!ret.isEmpty() && !forceLineBreakAtEnd) {
+		// smart removal of break "\\" at final line:
+		// except for cases like "\\ \hline" and empty column
 		QString &last = ret.last();
 		if (last.endsWith("\\\\")) {
             QString zw=trimRight(last.left(last.length() - 2));

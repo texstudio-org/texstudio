@@ -90,7 +90,7 @@ public:
 
 
 	void setContent(const QString &text);
-	QStringList getAlignedLines(const QStringList alignment, const QString &rowIndent = "\t") const;
+	QStringList getAlignedLines(const QStringList alignment, const QString &rowIndent = "\t", bool forceLineBreakAtEnd = false) const;
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const { Q_UNUSED(parent) return lines.count(); }
 	int columnCount(const QModelIndex &parent = QModelIndex()) const { Q_UNUSED(parent) return (lines.count() > 0) ? lines.at(0)->colCount() : 0; }
