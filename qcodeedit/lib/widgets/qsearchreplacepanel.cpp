@@ -307,7 +307,10 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     lReplacementText = new QLabel(this);
     lReplacementText->setMinimumHeight(buttonSize.height());
     int numButtonSpread = 5;
-    lReplacementText->setMinimumWidth(numButtonSpread * buttonSize.width() + (numButtonSpread-1) * flowLayout2->horizontalSpacing());
+    int lReplacementSize = numButtonSpread * buttonSize.width() + (numButtonSpread-1) * flowLayout2->horizontalSpacing();
+    // fixed size needed: unrestricted width would lead to shifting replace buttons
+    lReplacementText->setMinimumWidth(lReplacementSize);
+    lReplacementText->setMaximumWidth(lReplacementSize);
     flowLayout2->addWidget(lReplacementText);
 
 
@@ -1089,10 +1092,14 @@ void QSearchReplacePanel::cursorPositionChanged()
 
 void QSearchReplacePanel::updateReplacementHint(){
 	if (!m_search) return;
-	if (m_search->hasOption(QDocumentSearch::RegExp) || m_search->hasOption(QDocumentSearch::EscapeSeq))
-		lReplacementText->setText(m_search->replaceTextExpanded());
-	else
+	if (m_search->hasOption(QDocumentSearch::RegExp) || m_search->hasOption(QDocumentSearch::EscapeSeq)) {
+		QString text = m_search->replaceTextExpanded();
+		lReplacementText->setText(text);
+		lReplacementText->setToolTip(text.length() > 12 ? text : ""); // long texts might be truncated -> show in tooltip
+	} else {
 		lReplacementText->setText("");
+		lReplacementText->setToolTip("");
+	}
 }
 
 QString QSearchReplacePanel::getSearchText() const{
