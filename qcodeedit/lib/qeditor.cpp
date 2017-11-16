@@ -5737,14 +5737,20 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 	{
 		d->setText(m_cursor.selectedText());
 	} else {
-		QString serialized = m_cursor.selectedText();
+		// Multiple cursors. Use QMap to have the texts are ordered by line number.
+		// Ordering by m_mirrors, would be selection order, which may be unexpected.
+		// Also, selection order would require special handling of m_cursor insert
+		// position depending on selection order (see bug 2315).
+		// So line number order seems the more clear way to handle this.
+		QMap<int, QString> texts;
+		texts.insert(m_cursor.lineNumber(), m_cursor.selectedText());
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
 		{
-			serialized += '\n';
-			serialized += m.selectedText();
+			texts.insert(m.lineNumber(), m.selectedText());
 		}
 
+		QString serialized = texts.values().join('\n');
 		d->setText(serialized);
 		d->setData("text/column-selection", serialized.toLocal8Bit());
 	}
