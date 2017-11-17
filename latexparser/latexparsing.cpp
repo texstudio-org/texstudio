@@ -292,6 +292,18 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 if (lp.commandDefs.contains(command)) {
                     CommandDescription cd = lp.commandDefs.value(command);
                     cd.level = level;
+                    if(cd.bracketCommand){
+                        //command like \left
+                        if (tl.length() > i + 1 && tl.at(i + 1).length == 1 && tl.at(i + 1).start==tk.start+tk.length) {
+                            // add [( etc to command
+                            Token tk2=tl.at(i + 1);
+                            if(Token::tkOpen().contains(tk2.type)||Token::tkClose().contains(tk2.type)){
+                                command.append(line.mid(tk2.start, 1));
+                                i++;
+                            }
+                        }
+
+                    }
                     if ((cd.args > 0 || cd.optionalArgs > 0 || cd.bracketArgs > 0 ) && tk.subtype != Token::def) { // don't interpret commands in defintion (\newcommand{def})
                         cd.optionalCommandName=command;
                         commandStack.push(cd);

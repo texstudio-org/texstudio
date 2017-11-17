@@ -1481,6 +1481,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <tr><th>Classifier</th><th>Meaning</th></tr>
   <tr><td>*</td><td>unusual command which is used for completion only in with the "all" tab. This marker may be followed by other classifications.</td></tr>
   <tr><td>S</td><td>do not show in completer at all. This marker may be followed by other classifications.</td></tr>
+  <tr><td>M</td><td>do not use this as command description.</td></tr>
   <tr><td>m</td><td>valid only in math environment</td></tr>
   <tr><td>t</td><td>valid only in tabular environment (or similar)</td></tr>
   <tr><td>T</td><td>valid only in tabbing environment</td></tr>
@@ -1495,6 +1496,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>u</td><td>this command declares an used package like "\usepackage{package}"</td></tr>
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>
+  <tr><td>K</td><td>this command declares a bracket-like command like "\big{"</td></tr>
   <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix <code>%todo</code>. See todonotes.cwl for an example.</li>
 </td></tr>
   <tr><td>B</td><td>this command declares a color (will be used for color completion only, no syntax checking)</td></tr>

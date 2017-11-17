@@ -239,6 +239,11 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 				// get commandDefinition
 				CommandDescription cd = extractCommandDef(line, valid);
+                if(valid.contains('K')){
+                    // bracket command like \left etc
+                    cd.bracketCommand=true;
+                    valid.remove("K");
+                }
 				QString cmd = rxCom3.cap(1);
 				if (cmd == "\\begin") {
 					if (!package.commandDescriptions.contains(cmd)) {
@@ -278,7 +283,13 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					}
 
 				}
-				package.commandDescriptions.insert(cmd, cd);
+                if(!valid.contains('M')){
+                    package.commandDescriptions.insert(cmd, cd);
+                }else{
+                    // don't use line for command description
+                    valid.remove('M');
+                }
+
 
 				valid.remove('N'); // remove newtheorem declaration
 
