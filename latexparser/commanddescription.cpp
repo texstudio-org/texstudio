@@ -1,6 +1,6 @@
 #include "commanddescription.h"
 
-CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), args(0), level(0)
+CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), args(0), level(0),bracketCommand(false)
 {
 
 }

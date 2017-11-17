@@ -15,6 +15,7 @@ public:
 	int bracketArgs; ///< number of () arguments
 	int args; ///< number of mandatory arguments (in braces)
 	int level;
+    bool bracketCommand;
 	QList<Token::TokenType> argTypes; ///< define argument type as token
 	QList<Token::TokenType> optTypes; ///< define argument type as token
 	QList<Token::TokenType> bracketTypes; ///< define argument type as token
