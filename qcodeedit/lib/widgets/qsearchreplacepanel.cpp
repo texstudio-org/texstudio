@@ -438,7 +438,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 
 	if ( visible )
 	{
-		if (cFind->hasFocus()) {
+		if (cFind->hasFocus() && !replace && !isReplaceModeActive()) {
 			emit showExtendedSearch();
 			return;
 		}
