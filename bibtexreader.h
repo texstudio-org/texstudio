@@ -15,7 +15,7 @@ signals:
 	void sectionFound(QString content);
 
 public slots:
-	void searchSection(QString file, QString bibId);
+	void searchSection(QString file, QString bibId, int truncateLimit = 150);
 };
 
 #endif // BIBTEXREADER_H
