@@ -6,7 +6,20 @@ bibtexReader::bibtexReader(QObject *parent) :
 {
 }
 
-void bibtexReader::searchSection(QString file, QString bibId)
+/*!
+ * Makes sure, that the returned string is not longer than lengthLimit.
+ * Longer strings will be truncated and an ellipsis [...] is added to the end.
+ */
+QString truncateLine(const QString &line, int lengthLimit) {
+	if (line.length() < lengthLimit) {
+		return line;
+	}
+	int pos = line.lastIndexOf(' ', lengthLimit - 3);
+	if (pos < 0) pos = lengthLimit - 3;
+	return line.left(pos+1) + '[' + QChar(8230) + ']';
+}
+
+void bibtexReader::searchSection(QString file, QString bibId, int truncateLimit)
 {
 	QFile f(file);
 	if (!f.open(QFile::ReadOnly)) return; //ups...
@@ -32,13 +45,13 @@ void bibtexReader::searchSection(QString file, QString bibId)
 			if (id != bibId)
 				continue;
 			found = 10;
-			result = line;
+			result = truncateLine(line, truncateLimit);
 			continue;
 		}
 		if (found == 0 || (found > 0 && (line.startsWith('@') || line.isEmpty())))
 			break;
 		if (found >= 0) {
-			result += "\n" + line;
+			result += "\n" + truncateLine(line, truncateLimit);
 			found--;
 		}
 	} while (!line.isNull());
