@@ -5750,7 +5750,7 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 			texts.insert(m.lineNumber(), m.selectedText());
 		}
 
-		QString serialized = texts.values().join('\n');
+		QString serialized = QStringList(texts.values()).join("\n");
 		d->setText(serialized);
 		d->setData("text/column-selection", serialized.toLocal8Bit());
 	}
