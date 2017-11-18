@@ -18,6 +18,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	searchScopeBox->addItem(tr("Current Doc"), static_cast<uint>(SearchQuery::CurrentDocumentScope));
 	searchScopeBox->addItem(tr("All Docs"), static_cast<uint>(SearchQuery::GlobalScope));
 	searchScopeBox->addItem(tr("Project"), static_cast<uint>(SearchQuery::ProjectScope));
+	searchScopeBox->setCurrentIndex(ConfigManagerInterface::getInstance()->getOption("Search/ScopeIndex").toInt());
 	connect(searchScopeBox, SIGNAL(currentIndexChanged(int)), SLOT(updateSearch()));
 
 	searchTypeLabel = new QLabel;
@@ -115,7 +116,12 @@ void SearchResultWidget::searchCompleted()
 }
 
 void SearchResultWidget::updateSearchExpr(QString searchText){
-    searchTextLabel->setText(searchText);
+	searchTextLabel->setText(searchText);
+}
+
+void SearchResultWidget::saveConfig()
+{
+	ConfigManagerInterface::getInstance()->setOption("Search/ScopeIndex", searchScopeBox->currentIndex());
 }
 
 void SearchResultWidget::updateSearchScopeBox(SearchQuery::Scope sc)
