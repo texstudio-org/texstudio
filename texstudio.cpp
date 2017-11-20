@@ -3888,7 +3888,7 @@ void Texstudio::readSettings(bool reread)
 	spellerManager.setDefaultSpeller(configManager.spellLanguage);
 
 	ThesaurusDialog::setUserPath(configManager.configFileNameBase);
-	ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
+	ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 
 	symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
 	                                      config->value("Symbols/FavoriteIDs").toStringList());
@@ -6335,7 +6335,7 @@ void Texstudio::generalOptions()
 			QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
 
-		ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
+		ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 		if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);
 
 		// update syntaxChecking with alls docs

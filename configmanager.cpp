@@ -861,23 +861,27 @@ QSettings *ConfigManager::readSettings(bool reread)
 		thesaurus_database = "";
 	}
 	if (thesaurus_database != "") {
-		QFileInfo fi(thesaurus_database);
+		QFileInfo fi(parseDir(thesaurus_database));
 		if (!fi.exists()) { // try finding the file in other directories (e.g. after update tmx->txs
-			thesaurus_database = findResourceFile(fi.fileName());
+			thesaurus_database = findResourceFile(fi.fileName(), true, QStringList(), QStringList() << parseDir(thesaurus_database));
 		}
 	}
 	if (thesaurus_database == "") { // fall back to system or fixed language
+		QStringList preferredPaths = QStringList() << parseDir("[txs-settings-dir]/dictionaries");
 		QStringList fallBackPaths;
 #ifdef Q_OS_LINUX
 		fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes" ;
 #endif
-		thesaurus_database = findResourceFile("th_" + QString(QLocale::system().name()) + "_v2.dat", true, QStringList(), fallBackPaths);
-		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_en_US_v2.dat");
-		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_en_GB_v2.dat");
-		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_fr_FR_v2.dat");
-		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_de_DE_v2.dat");
+		thesaurus_database = findResourceFile("th_" + QString(QLocale::system().name()) + "_v2.dat", true, preferredPaths, fallBackPaths);
+		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_en_US_v2.dat", true, preferredPaths, fallBackPaths);
+		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_en_GB_v2.dat", true, preferredPaths, fallBackPaths);
+		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_fr_FR_v2.dat", true, preferredPaths, fallBackPaths);
+		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_de_DE_v2.dat", true, preferredPaths, fallBackPaths);
 	}
 	if (!thesaurus_database.isEmpty()) {
+		if (portableMode) {
+			thesaurus_database = reverseParseDir(thesaurus_database);
+		}
 		thesaurus_database = QDir::toNativeSeparators(thesaurus_database);
 	}
 
@@ -3353,6 +3357,9 @@ void ConfigManager::getDefaultEncoding(const QByteArray &, QTextCodec *&guess, i
 	}
 }
 
+/*!
+ * Replace "[txs-settings-dir]" and "[txs-app-dir]"  with the config and application paths.
+ */
 QString ConfigManager::parseDir(QString s) const
 {
 	s.replace("[txs-settings-dir]", removePathDelim(configBaseDir));
@@ -3365,6 +3372,9 @@ QStringList ConfigManager::parseDirList(const QString &s) const
 	return parseDir(s).split(";");
 }
 
+/*!
+ * Replace the config and application path with "[txs-settings-dir]" and "[txs-app-dir]" respectively.
+ */
 QString ConfigManager::reverseParseDir(QString s) const
 {
 	s.replace(removePathDelim(configBaseDir), "[txs-settings-dir]");
