@@ -4067,6 +4067,8 @@ void Texstudio::saveSettings(const QString &configName)
 	m_formats->save(*config, &defaultFormats);
 	config->endGroup();
 
+	searchResultWidget()->saveConfig();
+
 	// save usageCount in file of its own.
 	if (!asProfile) {
 		QFile file(configManager.configBaseDir + "wordCount.usage");
