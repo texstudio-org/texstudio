@@ -315,6 +315,18 @@ void LatexParsingTest::test_latexLexing_data() {
                                       << (Starts() << 0 << 8 << 9)
                                       << (Length() << 8 << 10 << 8)
                                       << (Levels() << 0 << 1 << 1);
+    QTest::newRow("square bracket in math") << "$\\big[ \\big]$"
+                                      << (TTypes() << T::command << T::command << T::command << T::command)
+                                      << (STypes() << T::none << T::none << T::none << T::none)
+                                      << (Starts() << 0 << 1 << 7 << 12)
+                                      << (Length() << 1 << 4 << 4 << 1)  // note: the brackets are ignored, they are not part of the command
+                                      << (Levels() << 0 << 0 << 0 << 0);
+    QTest::newRow("unmatched square bracket in math") << "$\\big[ \\big)$"
+                                      << (TTypes() << T::command << T::command << T::command << T::command)
+                                      << (STypes() << T::none << T::none << T::none << T::none)
+                                      << (Starts() << 0 << 1 << 7 << 12)
+                                      << (Length() << 1 << 4 << 4 << 1)  // note: the brackets are ignored, they are not part of the command
+                                      << (Levels() << 0 << 0 << 0 << 0);
 }
 
 void LatexParsingTest::test_latexLexing() {
@@ -345,7 +357,12 @@ void LatexParsingTest::test_latexLexing() {
         QDocumentLineHandle *dlh = doc->line(i).handle();
         tl.append(dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>());
     }
-    for(int i=0; i<tl.length(); i++){
+	qDebug() << "XXX";
+	for(int i=0; i<tl.length(); i++){
+		qDebug() << tl.at(i);
+	}
+
+	for(int i=0; i<tl.length(); i++){
         Token tk = tl.at(i);
         COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
         COMPARE_TOKENTYPE(tk.subtype, subtypes.value(i), ARG1("incorrect subtype at index %1", i));
