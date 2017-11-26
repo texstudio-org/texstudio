@@ -299,6 +299,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             Token tk2=tl.at(i + 1);
                             if(Token::tkOpen().contains(tk2.type)||Token::tkClose().contains(tk2.type)){
                                 command.append(line.mid(tk2.start, 1));
+                                tk.length++;
                                 i++;
                             }
                         }
