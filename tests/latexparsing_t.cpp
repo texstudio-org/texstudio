@@ -319,13 +319,13 @@ void LatexParsingTest::test_latexLexing_data() {
                                       << (TTypes() << T::command << T::command << T::command << T::command)
                                       << (STypes() << T::none << T::none << T::none << T::none)
                                       << (Starts() << 0 << 1 << 7 << 12)
-                                      << (Length() << 1 << 4 << 4 << 1)  // note: the brackets are ignored, they are not part of the command
+                                      << (Length() << 1 << 5 << 5 << 1)  // note: the brackets are ignored, they are not part of the command
                                       << (Levels() << 0 << 0 << 0 << 0);
     QTest::newRow("unmatched square bracket in math") << "$\\big[ \\big)$"
                                       << (TTypes() << T::command << T::command << T::command << T::command)
                                       << (STypes() << T::none << T::none << T::none << T::none)
                                       << (Starts() << 0 << 1 << 7 << 12)
-                                      << (Length() << 1 << 4 << 4 << 1)  // note: the brackets are ignored, they are not part of the command
+                                      << (Length() << 1 << 5 << 5 << 1)  // note: the brackets are ignored, they are not part of the command
                                       << (Levels() << 0 << 0 << 0 << 0);
 }
 
