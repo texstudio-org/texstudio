@@ -1,0 +1,135 @@
+From ac93ffa083b1f7c614e7cced92ee8d3debf4f69b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
+Date: Fri, 12 Feb 2016 08:00:59 -0500
+Subject: [PATCH 3/3] Add support for persistent GlobalParams
+
+---
+ qt4/src/poppler-document.cc |  1 +
+ qt4/src/poppler-private.cc  | 17 +++++++++++++----
+ qt4/src/poppler-private.h   |  1 +
+ qt5/src/poppler-document.cc |  1 +
+ qt5/src/poppler-private.cc  | 17 +++++++++++++----
+ qt5/src/poppler-private.h   |  1 +
+ 6 files changed, 30 insertions(+), 8 deletions(-)
+
+diff --git a/qt4/src/poppler-document.cc b/qt4/src/poppler-document.cc
+index 94f997d..83e9aa5 100644
+--- a/qt4/src/poppler-document.cc
++++ b/qt4/src/poppler-document.cc
+@@ -56,6 +56,7 @@
+ namespace Poppler {
+ 
+   int DocumentData::count = 0;
++  GBool DocumentData::ownGlobalParams = gFalse;
+ 
+   Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
+ 			   const QByteArray &userPassword)
+diff --git a/qt4/src/poppler-private.cc b/qt4/src/poppler-private.cc
+index cbf21b1..7b3b0c4 100644
+--- a/qt4/src/poppler-private.cc
++++ b/qt4/src/poppler-private.cc
+@@ -228,8 +228,13 @@ namespace Debug {
+         count --;
+         if ( count == 0 )
+         {
+-            utf8Map = 0;
+-            delete globalParams;
++            if ( ownGlobalParams )
++            {
++                utf8Map = 0;
++                delete globalParams;
++                globalParams = NULL;
++                ownGlobalParams = gFalse;
++            }
+         }
+       }
+     
+@@ -243,8 +248,12 @@ namespace Debug {
+       
+         if ( count == 0 )
+         {
+-            utf8Map = 0;
+-            globalParams = new GlobalParams();
++            if ( !globalParams )
++            {
++                utf8Map = 0;
++                globalParams = new GlobalParams();
++                ownGlobalParams = gTrue;
++            }
+             setErrorCallback(qt4ErrorFunction, NULL);
+         }
+         count ++;
+diff --git a/qt4/src/poppler-private.h b/qt4/src/poppler-private.h
+index 0d11e83..e0dbff3 100644
+--- a/qt4/src/poppler-private.h
++++ b/qt4/src/poppler-private.h
+@@ -147,6 +147,7 @@ namespace Poppler {
+ 	QColor paperColor;
+ 	int m_hints;
+ 	static int count;
++	static GBool ownGlobalParams;
+     };
+ 
+     class FontInfoData
+diff --git a/qt5/src/poppler-document.cc b/qt5/src/poppler-document.cc
+index 537dca3..0d75ef1 100644
+--- a/qt5/src/poppler-document.cc
++++ b/qt5/src/poppler-document.cc
+@@ -56,6 +56,7 @@
+ namespace Poppler {
+ 
+   int DocumentData::count = 0;
++  GBool DocumentData::ownGlobalParams = gFalse;
+ 
+   Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
+ 			   const QByteArray &userPassword)
+diff --git a/qt5/src/poppler-private.cc b/qt5/src/poppler-private.cc
+index 86855fd..575df4e 100644
+--- a/qt5/src/poppler-private.cc
++++ b/qt5/src/poppler-private.cc
+@@ -227,8 +227,13 @@ namespace Debug {
+         count --;
+         if ( count == 0 )
+         {
+-            utf8Map = 0;
+-            delete globalParams;
++            if ( ownGlobalParams )
++            {
++                utf8Map = 0;
++                delete globalParams;
++                globalParams = NULL;
++                ownGlobalParams = gFalse;
++            }
+         }
+       }
+     
+@@ -241,8 +246,12 @@ namespace Debug {
+       
+         if ( count == 0 )
+         {
+-            utf8Map = 0;
+-            globalParams = new GlobalParams();
++            if ( !globalParams )
++            {
++                utf8Map = 0;
++                globalParams = new GlobalParams();
++                ownGlobalParams = gTrue;
++            }
+             setErrorCallback(qt5ErrorFunction, NULL);
+         }
+         count ++;
+diff --git a/qt5/src/poppler-private.h b/qt5/src/poppler-private.h
+index df6290b..3d42d82 100644
+--- a/qt5/src/poppler-private.h
++++ b/qt5/src/poppler-private.h
+@@ -144,6 +144,7 @@ namespace Poppler {
+ 	QColor paperColor;
+ 	int m_hints;
+ 	static int count;
++	static GBool ownGlobalParams;
+     };
+ 
+     class FontInfoData
+-- 
+2.1.4
+

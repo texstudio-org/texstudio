@@ -1,0 +1,91 @@
+#!/usr/bin/env osascript
+(*
+ * This AppleScript file is a template that will format the appearance of the
+ * Drag N' Drop installer window. The original material came from DrNic's
+ * ChocTop project:
+ *
+ *     https://github.com/drnic/choctop
+ *
+ * Copyright © 2009 Dr Nic Williams, drnicwilliams@gmail.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the ‘Software’), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ * of the Software, and to permit persons to whom the Software is furnished to do
+ * so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *)
+-- Clean up if a previous run of this script aborted
+do shell script "if [ -f tw_tmp.dmg ]; then rm tw_tmp.dmg; fi"
+
+-- Make package DMG writable and mount it
+do shell script "hdiutil convert -format UDRW -o tw_tmp.dmg @CPACK_PACKAGE_FILE_NAME@.dmg"
+do shell script "hdiutil attach tw_tmp.dmg"
+do shell script "touch /Volumes/@CPACK_PACKAGE_FILE_NAME@/.DS_Store"
+do shell script "chmod +w /Volumes/@CPACK_PACKAGE_FILE_NAME@/.DS_Store"
+do shell script "SetFile -a -v /Volumes/@CPACK_PACKAGE_FILE_NAME@/background.png"
+
+-- Setup Drag N' Drop installer window layout
+tell application "Finder"
+  tell disk "@CPACK_PACKAGE_FILE_NAME@"
+    open
+      tell container window
+        set toolbar visible to false
+        set statusbar visible to false -- doesn't do anything at DMG open time
+        set current view to icon view
+        set the bounds to {50, 100, 450, 400}
+      end tell
+
+      set icon size of the icon view options of container window to 104
+      set text size of the icon view options of container window to 12
+      set arrangement of the icon view options of container window to not arranged
+
+    close
+
+    -- Get localized name of applications folder
+    set applications_folder to displayed name of (path to applications folder) -- i18n
+
+    -- Position icons. All points are measured in pixels from the upper
+    -- left corner of the window and anchor the *center* of the icon (even
+    -- though the documentation says "upper left corner")
+    --
+    -- So, to position the upper left corner of an icon:
+    --
+    --    (x, y) + 1/2 * icon size
+    --
+    -- Caveats: cannot place icons within 13 pixels of the left edge or 10
+    -- pixels of the top
+    set position of item applications_folder to {298, 158}
+    set position of item "TeXworks.app" to {102, 158}
+
+    open
+      set the bounds of the container window to {50, 100, 450, 400}
+      set background picture of the icon view options of container window to file "background.png"
+      update without registering applications
+    close
+
+  end tell
+
+  -- Allow some time for the Finder to update .DS_Store
+  delay 5
+end tell
+
+-- Unmount package and make read-only again
+do shell script "SetFile -a -V /Volumes/@CPACK_PACKAGE_FILE_NAME@/background.png"
+do shell script "chmod -w /Volumes/@CPACK_PACKAGE_FILE_NAME@/.DS_Store"
+do shell script "hdiutil detach /Volumes/@CPACK_PACKAGE_FILE_NAME@"
+do shell script "rm @CPACK_PACKAGE_FILE_NAME@.dmg"
+do shell script "hdiutil convert -format UDBZ -imagekey zlib-level=9 -o @CPACK_PACKAGE_FILE_NAME@.dmg tw_tmp.dmg"
+do shell script "rm tw_tmp.dmg"
+

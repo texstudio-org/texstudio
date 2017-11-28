@@ -1,0 +1,36 @@
+language: cpp
+matrix:
+  include:
+  - env: QT=qt5osx
+    os: osx
+  - env: QT=qt4
+    os: linux
+  - env: QT=qt5
+    os: linux
+  - env: QT=qt5NoPoppler
+    os: linux
+dist: trusty
+sudo: required
+branches:
+  only:
+  - master
+before_install:
+- "${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh"
+before_script:
+- export DISPLAY=:99.0
+- "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
+script:
+- make
+- export QT_QPA_PLATFORM=minimal
+- if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
+after_success:
+- "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
+deploy:
+  - provider: bintray
+    skip_cleanup: true
+    file: ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
+    user: sunderme
+    on:
+      condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
+    key:
+      secure: KO4K2bvulOZQOM83FJnMBoVX4eoMLevchzBtMyq86AB+kSuQBJCIL1a4IuKj5ADYoyUugulVytJj/FgjQ0wXljmyLQxkPPuMlBg1F081nWPbQCPbHDMQGyQnEoPOf7hml92Y9+88BzWeCfEYvZ+2x7SpO7bZSWiifCfgceKkYMOeDBbgTyfe/Dzwes+1iDXhGAPDkPI7uvt+gbbWo9SEhIjsIEov/R/65VCssq1S5D3cJHubpFpG961wFdjB/+QzGz3eJvfA8GLrukKScOArKJobW9A1gFzaUeHR8XyJL+b9eQdiQuphcrVSTgepZ51w8hqU9Qru7udbXF4scTuABTsXotXVluJHUNTdyBPG+n+D+NhZiheSBo734By/a1g46NYL54geKXnRC2aLkZggohTYHo+t8wcRv+tsmKQ6Jj2ruheoIVWaZabBZdq+FYKfZ4mEqCYD3xRhO7IHUYm4TexqeV8FmYsGgdJ3MKKmHOcHjFwndgQKDrM63fAzhsqBb3L3qmE53EfWU93iulfLBWA4906uzjSMb7bPE04cJxIPEaq2FhOitTW9ZsiUI2rw2P6DB9UCfXeTXO52La2dZtjmO/VTHJslbWe/H83QRRYzYdr+6WIcXINHNDTrQfz9FavYEJqPSQl4Loo5guweY11y7eX+C0cEeA8nJTkn2yw=

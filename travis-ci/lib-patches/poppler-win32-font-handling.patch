@@ -1,0 +1,53 @@
+diff --git a/poppler/GlobalParamsWin.cc b/poppler/GlobalParamsWin.cc
+index f989fb8..7ec1b8f 100644
+--- a/poppler/GlobalParamsWin.cc
++++ b/poppler/GlobalParamsWin.cc
+@@ -79,7 +79,8 @@ static struct {
+     {"Times-Italic",          "n021023l.pfb", "timesi.ttf"},
+     {"Times-Roman",           "n021003l.pfb", "times.ttf"},
+     // TODO: not sure if "wingding.ttf" is right
+-    {"ZapfDingbats",          "d050000l.pfb", "wingding.ttf"},
++// no, the symbol sets are quite different
++    {"ZapfDingbats",          "d050000l.pfb", NULL},
+ 
+     // those seem to be frequently accessed by PDF files and I kind of guess
+     // which font file do the refer to
+@@ -153,6 +154,11 @@ static struct {
+ 
+ #define FONTS_SUBDIR "\\fonts"
+ 
++/* mingw32 lacks this symbol, so add it here if necessary */
++#ifndef SHGFP_TYPE_CURRENT
++#define SHGFP_TYPE_CURRENT 0
++#endif
++
+ static void GetWindowsFontDir(char *winFontDir, int cbWinFontDirLen)
+ {
+     BOOL (__stdcall *SHGetSpecialFolderPathFunc)(HWND  hwndOwner,
+@@ -239,7 +245,7 @@ void GlobalParams::setupBaseFonts(char * dir)
+         if (displayFonts->lookup(fontName))
+             continue;
+ 
+-        if (dir) {
++        if (dir && displayFontTab[i].t1FileName) {
+             GooString *fontPath = appendToPath(new GooString(dir), displayFontTab[i].t1FileName);
+             if (FileExists(fontPath->getCString())) {
+                 AddFont(displayFonts, fontName, fontPath, displayFontT1);
+@@ -274,10 +280,15 @@ DisplayFontParam *GlobalParams::getDisplayFont(GfxFont *font) {
+     DisplayFontParam *  dfp;
+     GooString *         fontName = font->getName();
+     char *              substFontName = NULL;
++    char                appDir[MAX_PATH];
+ 
+     if (!fontName) return NULL;
+     lockGlobalParams;
+-    setupBaseFonts(NULL);
++    if (::GetModuleFileName(0, appDir, MAX_PATH) > 0)
++        setupBaseFonts(appendToPath(grabPath(appDir), "fonts")->getCString());
++    else
++        setupBaseFonts(NULL);
++    
+     dfp = (DisplayFontParam *)displayFonts->lookup(fontName);
+     if (!dfp) {
+         substFontName = findSubstituteName(fontName->getCString());
+
