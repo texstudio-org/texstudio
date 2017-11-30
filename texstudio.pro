@@ -39,258 +39,33 @@ else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
-HEADERS += \
-    aboutdialog.h \
-    arraydialog.h \
-    bibtexdialog.h \
-    bibtexparser.h \
-    bibtexreader.h \
-    bidiextender.h \
-    bookmarks.h \
-    buildmanager.h \
-    cleandialog.h \
-    codesnippet.h \
-    configdialog.h \
-    configmanager.h \
-    configmanagerinterface.h \
-    cursorhistory.h \
-    cursorposition.h \
-    dblclickmenubar.h \
-    debughelper.h \
-    diff/diff_match_patch.h \
-    diffoperations.h \
-    directoryreader.h \
-    editors.h \
-    encoding.h \
-    encodingdialog.h \
-    filechooser.h \
-    fileselector.h \
-    flowlayout.h \
-    grammarcheck.h \
-    grammarcheck_config.h \
-    help.h \
-    icondelegate.h \
-    insertgraphics.h \
-    insertgraphics_config.h \
-    kpathseaParser.h \
-    latexcompleter.h \
-    latexcompleter_config.h \
-    latexcompleter_p.h \
-    latexdocument.h \
-    latexeditorview.h \
-    latexeditorview_config.h \
-    latexlog.h \
-    latexlogwidget.h \
-    latexoutputfilter.h \
-    latexpackage.h \
-    latexrepository.h \
-    latexstructure.h \
-    latexstyleparser.h \
-    letterdialog.h \
-    libqmarkedscrollbar/src/markedscrollbar.h \
-    logeditor.h \
-    loghighlighter.h \
-    maketemplatedialog.h \
-    manhattanstyle.h \
-    mathassistant.h \
-    minisplitter.h \
-    modifiedQObject.h \
-    mostQtHeaders.h \
-    pdfsplittool.h \
-    qmetautils.h \
-    quickbeamerdialog.h \
-    quickdocumentdialog.h \
-    randomtextgenerator.h \
-    scriptengine.h \
-    scriptobject.h \
-    searchquery.h \
-    searchresultmodel.h \
-    searchresultwidget.h \
-    session.h \
-    sessionlist.h \
-    smallUsefulFunctions.h \
-    spellerdialog.h \
-    spellerutility.h \
-    structuretreeview.h \
-    styleanimator.h \
-    stylehelper.h \
-    svn.h \
-    syntaxcheck.h \
-    tabbingdialog.h \
-    tabdialog.h \
-    tablemanipulation.h \
-    templatemanager.h \
-    templatemanager_p.h \
-    templateselector.h \
-    texdocdialog.h \
-    texstudio.h \
-    textanalysis.h \
-    thesaurusdialog.h \
-    titledpanel.h \
-    toolwidgets.h \
-    txstabwidget.h \
-    unicodeinsertion.h \
-    universalinputdialog.h \
-    unixutils.h \
-    updatechecker.h \
-    usermacro.h \
-    usermenudialog.h \
-    userquickdialog.h \
-    utilsSystem.h \
-    utilsUI.h \
-    utilsVersion.h \
-    webpublishdialog.h \
-    webpublishdialog_config.h \
-    xmltagslistwidget.h
-
-SOURCES += \
-    aboutdialog.cpp \
-    additionaltranslations.cpp \
-    arraydialog.cpp \
-    bibtexdialog.cpp \
-    bibtexparser.cpp \
-    bibtexreader.cpp \
-    bidiextender.cpp \
-    bookmarks.cpp \
-    buildmanager.cpp \
-    cleandialog.cpp \
-    codesnippet.cpp \
-    configdialog.cpp \
-    configmanager.cpp \
-    cursorhistory.cpp \
-    cursorposition.cpp \
-    dblclickmenubar.cpp \
-    debughelper.cpp \
-    diff/diff_match_patch.cpp \
-    diffoperations.cpp \
-    directoryreader.cpp \
-    editors.cpp \
-    encoding.cpp \
-    encodingdialog.cpp \
-    filechooser.cpp \
-    fileselector.cpp \
-    flowlayout.cpp \
-    grammarcheck.cpp \
-    help.cpp \
-    icondelegate.cpp \
-    insertgraphics.cpp \
-    kpathseaParser.cpp \
-    latexcompleter.cpp \
-    latexdocument.cpp \
-    latexeditorview.cpp \
-    latexlog.cpp \
-    latexlogwidget.cpp \
-    latexoutputfilter.cpp \
-    latexpackage.cpp \
-    latexrepository.cpp \
-    latexstructure.cpp \
-    latexstyleparser.cpp \
-    letterdialog.cpp \
-    libqmarkedscrollbar/src/markedscrollbar.cpp \
-    logeditor.cpp \
-    loghighlighter.cpp \
-    main.cpp \
-    maketemplatedialog.cpp \
-    manhattanstyle.cpp \
-    mathassistant.cpp \
-    minisplitter.cpp \
-    pdfsplittool.cpp \
-    qmetautils.cpp \
-    quickbeamerdialog.cpp \
-    quickdocumentdialog.cpp \
-    randomtextgenerator.cpp \
-    scriptengine.cpp \
-    scriptobject.cpp \
-    searchquery.cpp \
-    searchresultmodel.cpp \
-    searchresultwidget.cpp \
-    session.cpp \
-    sessionlist.cpp \
-    smallUsefulFunctions.cpp \
-    spellerdialog.cpp \
-    spellerutility.cpp \
-    structuretreeview.cpp \
-    styleanimator.cpp \
-    stylehelper.cpp \
-    svn.cpp \
-    syntaxcheck.cpp \
-    tabbingdialog.cpp \
-    tabdialog.cpp \
-    tablemanipulation.cpp \
-    templatemanager.cpp \
-    templatemanager_p.cpp \
-    templateselector.cpp \
-    texdocdialog.cpp \
-    texstudio.cpp \
-    textanalysis.cpp \
-    thesaurusdialog.cpp \
-    titledpanel.cpp \
-    toolwidgets.cpp \
-    txstabwidget.cpp \
-    unicodeinsertion.cpp \
-    universalinputdialog.cpp \
-    unixutils.cpp \
-    updatechecker.cpp \
-    usermacro.cpp \
-    usermenudialog.cpp \
-    userquickdialog.cpp \
-    utilsSystem.cpp \
-    utilsUI.cpp \
-    utilsVersion.cpp \
-    webpublishdialog.cpp \
-    xmltagslistwidget.cpp
-
-win32: SOURCES += utilssystem_win.cpp
-else: SOURCES += utilssystem_unix.cpp
+# principal sources
+include(src/sources.pri)
 
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
     images.qrc
 
-FORMS += \
-    aboutdialog.ui \
-    arraydialog.ui \
-    bibtexdialog.ui \
-    cleandialog.ui \
-    configdialog.ui \
-    encodingdialog.ui \
-    filechooser.ui \
-    insertgraphics.ui \
-    letterdialog.ui \
-    maketemplatedialog.ui \
-    pdfsplittool.ui \
-    quickbeamerdialog.ui \
-    quickdocumentdialog.ui \
-    randomtextgenerator.ui \
-    spellerdialog.ui \
-    tabbingdialog.ui \
-    tabdialog.ui \
-    templateselector.ui \
-    texdocdialog.ui \
-    textanalysis.ui \
-    usermenudialog.ui \
-    userquickdialog.ui \
-    webpublishdialog.ui
 
-TRANSLATIONS += texstudio_ar.ts \
-    texstudio_cs.ts \
-    texstudio_de.ts \
-    texstudio_el.ts \
-    texstudio_es.ts \
-    texstudio_fa.ts \
-    texstudio_fr.ts \
-    texstudio_hu.ts \
-    texstudio_it.ts \
-    texstudio_ja.ts \
-    texstudio_nl.ts \
-    texstudio_pl.ts \
-    texstudio_pt_BR.ts \
-    texstudio_ru_RU.ts \
-    texstudio_tr_TR.ts \
-    texstudio_uk.ts \
-    texstudio_vi.ts \
-    texstudio_zh_CN.ts
+TRANSLATIONS += translation/texstudio_ar.ts \
+    translation/texstudio_cs.ts \
+    translation/texstudio_de.ts \
+    translation/texstudio_el.ts \
+    translation/texstudio_es.ts \
+    translation/texstudio_fa.ts \
+    translation/texstudio_fr.ts \
+    translation/texstudio_hu.ts \
+    translation/texstudio_it.ts \
+    translation/texstudio_ja.ts \
+    translation/texstudio_nl.ts \
+    translation/texstudio_pl.ts \
+    translation/texstudio_pt_BR.ts \
+    translation/texstudio_ru_RU.ts \
+    translation/texstudio_tr_TR.ts \
+    translation/texstudio_uk.ts \
+    translation/texstudio_vi.ts \
+    translation/texstudio_zh_CN.ts
 
 # ###############################
 win32:RC_FILE = win.rc
@@ -351,31 +126,31 @@ unix {
     OBJECTS_DIR = .obj
     utilities.files += utilities/latex2e.html \
         utilities/latex2e.css \
-        texstudio_ar.qm \
-        texstudio_cs.qm \
-        texstudio_de.qm \
-        texstudio_el.qm \
-        texstudio_es.qm \
-        texstudio_fa.qm \
-        texstudio_fr.qm \
-        texstudio_hu.qm \
-        texstudio_it.qm \
-        texstudio_ja.qm \
-        texstudio_nl.qm \
-        texstudio_pl.qm \
-        texstudio_pt_BR.qm \
-        texstudio_ru_RU.qm \
-        texstudio_tr_TR.qm \
-        texstudio_uk.qm \
-        texstudio_vi.qm \
-        texstudio_zh_CN.qm \
-        qt_cs.qm \
-        qt_de.qm \
-        qt_ja.qm \
-        qt_fr.qm \
-        qt_hu.qm \
-        qt_pl.qm \
-        qt_zh.qm \
+        translation/texstudio_ar.qm \
+        translation/texstudio_cs.qm \
+        translation/texstudio_de.qm \
+        translation/texstudio_el.qm \
+        translation/texstudio_es.qm \
+        translation/texstudio_fa.qm \
+        translation/texstudio_fr.qm \
+        translation/texstudio_hu.qm \
+        translation/texstudio_it.qm \
+        translation/texstudio_ja.qm \
+        translation/texstudio_nl.qm \
+        translation/texstudio_pl.qm \
+        translation/texstudio_pt_BR.qm \
+        translation/texstudio_ru_RU.qm \
+        translation/texstudio_tr_TR.qm \
+        translation/texstudio_uk.qm \
+        translation/texstudio_vi.qm \
+        translation/texstudio_zh_CN.qm \
+        translation/qt_cs.qm \
+        translation/qt_de.qm \
+        translation/qt_ja.qm \
+        translation/qt_fr.qm \
+        translation/qt_hu.qm \
+        translation/qt_pl.qm \
+        translation/qt_zh.qm \
         templates/tabletemplate_fullyframed_firstBold.js \
         templates/tabletemplate_fullyframed_firstBold.png \
         templates/tabletemplate_fullyframed_longtable.js \
@@ -498,11 +273,11 @@ isEmpty(USE_SYSTEM_HUNSPELL){
   PKGCONFIG += hunspell
 }
 
-include(qcodeedit/qcodeedit.pri)
+include(src/qcodeedit/qcodeedit.pri)
 
-include(latexparser/latexparser.pri)
+include(src/latexparser/latexparser.pri)
 
-include(symbolpanel/symbolpanel.pri)
+include(src/symbolpanel/symbolpanel.pri)
 
 isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC
@@ -525,55 +300,55 @@ CONFIG(debug, debug|release) {
     QT += testlib
 
     SOURCES += \
-        tests/codesnippet_t.cpp \
-        tests/encoding_t.cpp \
-        tests/latexcompleter_t.cpp \
-        tests/latexeditorview_bm.cpp \
-        tests/latexeditorview_t.cpp \
-        tests/latexoutputfilter_t.cpp \
-        tests/latexparser_t.cpp \
-        tests/latexparsing_t.cpp \
-        tests/qcetestutil.cpp \
-        tests/qdocumentcursor_t.cpp \
-        tests/qdocumentline_t.cpp \
-        tests/qdocumentsearch_t.cpp \
-        tests/qeditor_t.cpp \
-        tests/qsearchreplacepanel_t.cpp \
-        tests/scriptengine_t.cpp \
-        tests/smallUsefulFunctions_t.cpp \
-        tests/structureview_t.cpp \
-        tests/syntaxcheck_t.cpp \
-        tests/tablemanipulation_t.cpp \
-        tests/testmanager.cpp \
-        tests/testutil.cpp
+        src/tests/codesnippet_t.cpp \
+        src/tests/encoding_t.cpp \
+        src/tests/latexcompleter_t.cpp \
+        src/tests/latexeditorview_bm.cpp \
+        src/tests/latexeditorview_t.cpp \
+        src/tests/latexoutputfilter_t.cpp \
+        src/tests/latexparser_t.cpp \
+        src/tests/latexparsing_t.cpp \
+        src/tests/qcetestutil.cpp \
+        src/tests/qdocumentcursor_t.cpp \
+        src/tests/qdocumentline_t.cpp \
+        src/tests/qdocumentsearch_t.cpp \
+        src/tests/qeditor_t.cpp \
+        src/tests/qsearchreplacepanel_t.cpp \
+        src/tests/scriptengine_t.cpp \
+        src/tests/smallUsefulFunctions_t.cpp \
+        src/tests/structureview_t.cpp \
+        src/tests/syntaxcheck_t.cpp \
+        src/tests/tablemanipulation_t.cpp \
+        src/tests/testmanager.cpp \
+        src/tests/testutil.cpp
     HEADERS += \
-        tests/qsearchreplacepanel_t.h \
-        tests/updatechecker_t.h \
-        tests/qdocumentcursor_t.h \
-        tests/qdocumentline_t.h \
-        tests/qdocumentsearch_t.h \
-        tests/codesnippet_t.h \
-        tests/latexcompleter_t.h \
-        tests/latexeditorview_bm.h \
-        tests/latexeditorview_t.h \
-        tests/latexoutputfilter_t.h \
-        tests/latexparser_t.h \
-        tests/latexparsing_t.h \
-        tests/latexstyleparser_t.h \
-        tests/scriptengine_t.h \
-        tests/qeditor_t.h \
-        tests/buildmanager_t.h \
-        tests/tablemanipulation_t.h \
-        tests/smallUsefulFunctions_t.h \
-        tests/utilsui_t.h \
-        tests/utilsversion_t.h \
-        tests/encoding_t.h \
-        tests/help_t.h \
-        tests/syntaxcheck_t.h \
-        tests/qcetestutil.h \
-        tests/testmanager.h \
-        tests/testutil.h \
-        tests/structureview_t.h
+        src/tests/qsearchreplacepanel_t.h \
+        src/tests/updatechecker_t.h \
+        src/tests/qdocumentcursor_t.h \
+        src/tests/qdocumentline_t.h \
+        src/tests/qdocumentsearch_t.h \
+        src/tests/codesnippet_t.h \
+        src/tests/latexcompleter_t.h \
+        src/tests/latexeditorview_bm.h \
+        src/tests/latexeditorview_t.h \
+        src/tests/latexoutputfilter_t.h \
+        src/tests/latexparser_t.h \
+        src/tests/latexparsing_t.h \
+        src/tests/latexstyleparser_t.h \
+        src/tests/scriptengine_t.h \
+        src/tests/qeditor_t.h \
+        src/tests/buildmanager_t.h \
+        src/tests/tablemanipulation_t.h \
+        src/tests/smallUsefulFunctions_t.h \
+        src/tests/utilsui_t.h \
+        src/tests/utilsversion_t.h \
+        src/tests/encoding_t.h \
+        src/tests/help_t.h \
+        src/tests/syntaxcheck_t.h \
+        src/tests/qcetestutil.h \
+        src/tests/testmanager.h \
+        src/tests/testutil.h \
+        src/tests/structureview_t.h
     !greaterThan(QT_MAJOR_VERSION, 4) {
         win32:LIBS += -lQtTestd4
     } else {

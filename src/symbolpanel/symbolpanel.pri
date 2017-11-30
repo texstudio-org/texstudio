@@ -5,13 +5,13 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 HEADERS += \
-    symbolpanel/proxymodels.h \
-    symbolpanel/symbollistmodel.h \
-    symbolpanel/symbollistview.h \
-    symbolpanel/symbolwidget.h
+    $$PWD/proxymodels.h \
+    $$PWD/symbollistmodel.h \
+    $$PWD/symbollistview.h \
+    $$PWD/symbolwidget.h
 
 SOURCES += \
-    symbolpanel/proxymodels.cpp \
-    symbolpanel/symbollistmodel.cpp \
-    symbolpanel/symbollistview.cpp \
-    symbolpanel/symbolwidget.cpp
+    $$PWD/proxymodels.cpp \
+    $$PWD/symbollistmodel.cpp \
+    $$PWD/symbollistview.cpp \
+    $$PWD/symbolwidget.cpp
