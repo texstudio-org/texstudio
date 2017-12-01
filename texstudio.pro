@@ -35,7 +35,7 @@ QT += \
     DEFINES += PHONON
 }
 contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
-else:include(qtsingleapplication/qtsingleapplication.pri)
+else:include(src/qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
@@ -114,9 +114,7 @@ unix:!macx {
     }
     INSTALLS += applicationmenu 
     INSTALLS += icon
-    SOURCES += xkb/XKeyboard.cpp
-    HEADERS += xkb/XKeyboard.h xkb/X11Exception.h
-    LIBS += -lX11
+    include(src/xkb/xkb.pri)
 }
 
 # ##########UNIX + MACX###############
@@ -267,7 +265,7 @@ unix {
 
 isEmpty(USE_SYSTEM_HUNSPELL){
   DEFINES += HUNSPELL_STATIC
-  include(hunspell/hunspell.pri)
+  include(src/hunspell/hunspell.pri)
 } else {
   CONFIG += link_pkgconfig
   PKGCONFIG += hunspell
@@ -281,7 +279,7 @@ include(src/symbolpanel/symbolpanel.pri)
 
 isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC
-  include(quazip/quazip/quazip.pri)
+  include(src/quazip/quazip/quazip.pri)
 } else {
   isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
   isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
@@ -290,7 +288,7 @@ isEmpty(USE_SYSTEM_QUAZIP) {
   LIBS += $${QUAZIP_LIB}
 }
 
-include(pdfviewer/pdfviewer.pri)
+include(src/pdfviewer/pdfviewer.pri)
 
 # ###############################
 

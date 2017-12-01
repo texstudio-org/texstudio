@@ -9,26 +9,26 @@ include(synctex/synctex.pri)
 
 
 HEADERS += \
-    pdfviewer/PDFDocument.h \
-    pdfviewer/PDFDocks.h \
-    pdfviewer/pdfrenderengine.h \
-    pdfviewer/pdfrendermanager.h \
-    pdfviewer/PDFDocument_config.h \
-    pdfviewer/pdfannotationdlg.h \
-    pdfviewer/pdfannotation.h \
-    pdfviewer/qsynctex.h
+    $$PWD/PDFDocument.h \
+    $$PWD/PDFDocks.h \
+    $$PWD/pdfrenderengine.h \
+    $$PWD/pdfrendermanager.h \
+    $$PWD/PDFDocument_config.h \
+    $$PWD/pdfannotationdlg.h \
+    $$PWD/pdfannotation.h \
+    $$PWD/qsynctex.h
 
 SOURCES += \
-    pdfviewer/PDFDocument.cpp \
-    pdfviewer/PDFDocks.cpp \
-    pdfviewer/pdfrenderengine.cpp \
-    pdfviewer/pdfrendermanager.cpp \
-    pdfviewer/pdfannotationdlg.cpp \
-    pdfviewer/pdfannotation.cpp \
-    pdfviewer/qsynctex.cpp
+    $$PWD/PDFDocument.cpp \
+    $$PWD/PDFDocks.cpp \
+    $$PWD/pdfrenderengine.cpp \
+    $$PWD/pdfrendermanager.cpp \
+    $$PWD/pdfannotationdlg.cpp \
+    $$PWD/pdfannotation.cpp \
+    $$PWD/qsynctex.cpp
 
 FORMS += \
-    pdfviewer/pdfannotationdlg.ui
+    $$PWD/pdfannotationdlg.ui
 
 
 # ################################
