@@ -4,7 +4,7 @@
     <message>
         <location filename="aboutdialog.ui" line="14"/>
         <source>About TeXstudio</source>
-        <translation>Σχετικά με το TeXstudio...</translation>
+        <translation>Σχετικά με το TeXstudio</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="81"/>
@@ -657,7 +657,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="buildmanager.cpp" line="1462"/>
         <source>Error: No command given</source>
-        <translation>Σφάλμα: δεν δόθηκε εντολή</translation>
+        <translation>Σφάλμα: Δε δόθηκε εντολή</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1493"/>
@@ -1798,7 +1798,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός Λειτουργίας Πλήρους Οθόνης</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -2139,7 +2139,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="3158"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation>Εάν μια μαθηματική εντολή εισάγεται μέσω συμπλήρωσης έξω από οποιοδήποτε μαθηματικό περιβάλλον, το σύμβολο $$ εισάγεται αυτόματα.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3161"/>
@@ -4421,7 +4421,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="2385"/>
         <source>Unknown magic comment</source>
-        <translation type="unfinished"/>
+        <translation>Άγνωστο μαγικό σχόλιο</translation>
     </message>
 </context>
 <context>
@@ -8177,12 +8177,12 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση από τα Αγαπημένα</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη στα Αγαπημένα</translation>
     </message>
 </context>
 <context>
@@ -8203,7 +8203,7 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Βέλη</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
@@ -8215,7 +8215,7 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Ελληνικά</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
@@ -8265,7 +8265,7 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>Κατηγορία</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
@@ -8283,7 +8283,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>μη αναγνωρισμένο περιβάλλον</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="499"/>
@@ -8954,7 +8954,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="603"/>
         <location filename="texstudio.cpp" line="604"/>
         <source>Symbols</source>
-        <translation type="unfinished"/>
+        <translation>Σύμβολα</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="606"/>
@@ -9240,12 +9240,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="814"/>
         <source>Expand Selection to Word</source>
-        <translation type="unfinished"/>
+        <translation>Επέκταση Επιλογής στη Λέξη</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="815"/>
         <source>Expand Selection to Line</source>
-        <translation type="unfinished"/>
+        <translation>Επέκταση Επιλογής στη Γραμμή</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="817"/>
@@ -9950,7 +9950,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1040"/>
         <source>Add magic comments ...</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη μαγικών σχολίων ...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1041"/>
@@ -9961,17 +9961,17 @@ failed.</source>
         <location filename="texstudio.cpp" line="1042"/>
         <location filename="texstudio.cpp" line="1371"/>
         <source>Insert language as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή γλώσσας ως σχόλιο TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1043"/>
         <source>Insert document coding as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή κωδικοποίησης εγγράφου ως σχόλιο TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1044"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή προγράμματος ως σχόλιο TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1045"/>
@@ -10690,7 +10690,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5766"/>
         <source>(c) use the default command</source>
-        <translation type="unfinished"/>
+        <translation>(γ) χρήση της προεπιλεγμένης εντολής</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5827"/>
