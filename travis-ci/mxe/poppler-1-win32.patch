@@ -1,0 +1,156 @@
+From 8dd9a8e5240d34ca8a75f0035273dbf00409b704 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
+Date: Sun, 5 Nov 2017 20:53:42 +0100
+Subject: [PATCH 1/3] Only check for Type1 fonts in custom directory if path is
+ non-NULL
+
+Otherwise, programs using poppler may crash
+Proposed upstream at https://bugs.freedesktop.org/show_bug.cgi?id=49037
+---
+ poppler/GlobalParamsWin.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/poppler/GlobalParamsWin.cc b/poppler/GlobalParamsWin.cc
+index f122fcb6..a7440b9a 100644
+--- a/poppler/GlobalParamsWin.cc
++++ b/poppler/GlobalParamsWin.cc
+@@ -426,7 +426,7 @@ void GlobalParams::setupBaseFonts(char * dir)
+         if (fontFiles->lookup(fontName))
+             continue;
+ 
+-        if (dir) {
++        if (dir && displayFontTab[i].t1FileName) {
+             GooString *fontPath = appendToPath(new GooString(dir), displayFontTab[i].t1FileName);
+             if (FileExists(fontPath->getCString()) ||
+                 FileExists(replaceSuffix(fontPath, ".pfb", ".pfa")->getCString())) {
+-- 
+2.14.1
+
+From bb465dc6571ce004df8a71839b777e537ed64561 Mon Sep 17 00:00:00 2001
+From: darealshinji <djcj@gmx.de>
+Date: Thu, 14 Jul 2016 13:21:26 +0200
+Subject: [PATCH 2/3] enable cross-building DLLs
+
+---
+ cpp/poppler-global.h     | 2 +-
+ poppler/GlobalParams.cc  | 2 ++
+ poppler/XpdfPluginAPI.h  | 4 ++--
+ qt4/src/poppler-export.h | 2 +-
+ qt5/src/poppler-export.h | 2 +-
+ 5 files changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/cpp/poppler-global.h b/cpp/poppler-global.h
+index eb7ec244..7550afc3 100644
+--- a/cpp/poppler-global.h
++++ b/cpp/poppler-global.h
+@@ -21,7 +21,7 @@
+ #ifndef POPPLER_GLOBAL_H
+ #define POPPLER_GLOBAL_H
+ 
+-#if defined(_WIN32)
++#if defined(_WIN32) && defined(DLL_EXPORT)
+ #  define LIB_EXPORT __declspec(dllexport)
+ #  define LIB_IMPORT __declspec(dllimport)
+ #else
+diff --git a/poppler/GlobalParams.cc b/poppler/GlobalParams.cc
+index 26669930..d17673a4 100644
+--- a/poppler/GlobalParams.cc
++++ b/poppler/GlobalParams.cc
+@@ -133,6 +133,7 @@ GlobalParams *globalParams = NULL;
+ 
+ static HMODULE hmodule;
+ 
++#ifdef DLL_EXPORT
+ extern "C" {
+   /* Provide declaration to squelch -Wmissing-declarations warning */
+   BOOL WINAPI
+@@ -154,6 +155,7 @@ extern "C" {
+     return TRUE;
+   }
+ }
++#endif
+ 
+ static const char *
+ get_poppler_datadir (void)
+diff --git a/poppler/XpdfPluginAPI.h b/poppler/XpdfPluginAPI.h
+index 6ed890a8..02f064ff 100644
+--- a/poppler/XpdfPluginAPI.h
++++ b/poppler/XpdfPluginAPI.h
+@@ -47,7 +47,7 @@ extern "C" {
+  */
+ #define xpdfPluginAPIVersion 1
+ 
+-#ifdef _WIN32
++#ifdef _WIN32 && defined(DLL_EXPORT)
+ #  ifdef __cplusplus
+ #    define PLUGINFUNC(retType) extern "C" __declspec(dllexport) retType
+ #  else
+@@ -286,7 +286,7 @@ void (*_xpdfRegisterSecurityHandler)(XpdfSecurityHandler *handler);
+ 
+ } XpdfPluginVecTable;
+ 
+-#ifdef _WIN32
++#if defined(_WIN32) && defined(DLL_EXPORT)
+ 
+ extern __declspec(dllexport) XpdfPluginVecTable xpdfPluginVecTable;
+ 
+diff --git a/qt4/src/poppler-export.h b/qt4/src/poppler-export.h
+index 2e2f6ff8..eb6a2a6e 100644
+--- a/qt4/src/poppler-export.h
++++ b/qt4/src/poppler-export.h
+@@ -2,7 +2,7 @@
+ * This file is used to set the poppler_qt4_EXPORT macros right.
+ * This is needed for setting the visibility on windows, it will have no effect on other platforms.
+ */
+-#if defined(_WIN32)
++#if defined(_WIN32) && defined(DLL_EXPORT)
+ # define _POPPLER_QT4_LIB_EXPORT __declspec(dllexport)
+ # define _POPPLER_QT4_LIB_IMPORT __declspec(dllimport)
+ #elif defined(__GNUC__)
+diff --git a/qt5/src/poppler-export.h b/qt5/src/poppler-export.h
+index 24a4b177..d7e87dc0 100644
+--- a/qt5/src/poppler-export.h
++++ b/qt5/src/poppler-export.h
+@@ -2,7 +2,7 @@
+ * This file is used to set the poppler_qt5_EXPORT macros right.
+ * This is needed for setting the visibility on windows, it will have no effect on other platforms.
+ */
+-#if defined(_WIN32)
++#if defined(_WIN32) && defined(DLL_EXPORT)
+ # define _POPPLER_QT5_LIB_EXPORT __declspec(dllexport)
+ # define _POPPLER_QT5_LIB_IMPORT __declspec(dllimport)
+ #elif defined(__GNUC__)
+-- 
+2.14.1
+
+From 2744424dfc6350389015097ea8dabed3b1126c8a Mon Sep 17 00:00:00 2001
+From: Boris Nagaev <bnagaev@gmail.com>
+Date: Wed, 27 Jul 2016 10:29:52 +0200
+Subject: [PATCH 3/3] do not try to use mman.h (package mman-win32)
+
+fix https://github.com/mxe/mxe/issues/1455
+---
+ poppler/CairoFontEngine.cc | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/poppler/CairoFontEngine.cc b/poppler/CairoFontEngine.cc
+index a375e0af..82e1f2e1 100644
+--- a/poppler/CairoFontEngine.cc
++++ b/poppler/CairoFontEngine.cc
+@@ -49,13 +49,6 @@
+ #include "Gfx.h"
+ #include "Page.h"
+ 
+-#if defined(HAVE_FCNTL_H) && defined(HAVE_SYS_MMAN_H) && defined(HAVE_SYS_STAT_H)
+-#include <fcntl.h>
+-#include <sys/stat.h>
+-#include <sys/mman.h>
+-#define CAN_CHECK_OPEN_FACES 1
+-#endif
+-
+ #ifdef USE_GCC_PRAGMAS
+ #pragma implementation
+ #endif
+-- 
+2.14.1
+

@@ -1,0 +1,118 @@
+From ebb63c29d32d752d410ad1952de88caf707eb60c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
+Date: Mon, 6 Nov 2017 06:59:37 +0100
+Subject: [PATCH] Use a custom font directory on Windows
+
+Uses the share/fonts directory alongside the application/poppler library
+---
+ poppler/GlobalParams.cc    | 36 +++++++++++++++++++++++++++++++++---
+ poppler/GlobalParams.h     |  2 +-
+ poppler/GlobalParamsWin.cc |  4 ++--
+ 3 files changed, 36 insertions(+), 6 deletions(-)
+
+diff --git a/poppler/GlobalParams.cc b/poppler/GlobalParams.cc
+index d17673a4..fb64d8a7 100644
+--- a/poppler/GlobalParams.cc
++++ b/poppler/GlobalParams.cc
+@@ -188,6 +188,36 @@ get_poppler_datadir (void)
+ #undef POPPLER_DATADIR
+ #define POPPLER_DATADIR get_poppler_datadir ()
+ 
++static const char *
++get_poppler_fontsdir (void)
++{
++  static char retval[MAX_PATH];
++  static int beenhere = 0;
++
++  unsigned char *p;
++
++  if (beenhere)
++    return retval;
++
++  if (!GetModuleFileName (hmodule, (CHAR *) retval, sizeof(retval) - 20))
++    return POPPLER_DATADIR;
++
++  p = _mbsrchr ((unsigned char *) retval, '\\');
++  *p = '\0';
++  p = _mbsrchr ((unsigned char *) retval, '\\');
++  if (p) {
++    if (stricmp ((const char *) (p+1), "bin") == 0)
++      *p = '\0';
++  }
++  strcat (retval, "\\share\\fonts");
++
++  beenhere = 1;
++
++  return retval;
++}
++#undef POPPLER_FONTSDIR
++#define POPPLER_FONTSDIR get_poppler_fontsdir ()
++
+ #endif
+ 
+ //------------------------------------------------------------------------
+@@ -1070,7 +1100,7 @@ static FcPattern *buildFcPattern(GfxFont *font, GooString *base14Name)
+ GooString *GlobalParams::findFontFile(GooString *fontName) {
+   GooString *path;
+ 
+-  setupBaseFonts(NULL);
++  setupBaseFonts(POPPLER_FONTSDIR);
+   lockGlobalParams;
+   if ((path = (GooString *)fontFiles->lookup(fontName))) {
+     path = path->copy();
+@@ -1086,7 +1116,7 @@ GooString *GlobalParams::findFontFile(GooString *fontName) {
+ */
+ #ifdef WITH_FONTCONFIGURATION_FONTCONFIG
+ // not needed for fontconfig
+-void GlobalParams::setupBaseFonts(char *dir) {
++void GlobalParams::setupBaseFonts(const char *dir) {
+ }
+ 
+ GooString *GlobalParams::findBase14FontFile(GooString *base14Name, GfxFont *font) {
+@@ -1300,7 +1330,7 @@ static const char *displayFontDirs[] = {
+   NULL
+ };
+ 
+-void GlobalParams::setupBaseFonts(char *dir) {
++void GlobalParams::setupBaseFonts(const char *dir) {
+   GooString *fontName;
+   GooString *fileName;
+   FILE *f;
+diff --git a/poppler/GlobalParams.h b/poppler/GlobalParams.h
+index 7c61ae44..7b444eee 100644
+--- a/poppler/GlobalParams.h
++++ b/poppler/GlobalParams.h
+@@ -108,7 +108,7 @@ public:
+ 
+   ~GlobalParams();
+ 
+-  void setupBaseFonts(char *dir);
++  void setupBaseFonts(const char *dir);
+ 
+   //----- accessors
+ 
+diff --git a/poppler/GlobalParamsWin.cc b/poppler/GlobalParamsWin.cc
+index a7440b9a..8f8c8364 100644
+--- a/poppler/GlobalParamsWin.cc
++++ b/poppler/GlobalParamsWin.cc
+@@ -408,7 +408,7 @@ static GooString* replaceSuffix(GooString *path,
+ }
+ 
+ 
+-void GlobalParams::setupBaseFonts(char * dir)
++void GlobalParams::setupBaseFonts(const char * dir = NULL)
+ {
+     const char *dataRoot = popplerDataDir ? popplerDataDir : POPPLER_DATADIR;
+     GooString *fileName = NULL;
+@@ -556,7 +556,7 @@ GooString *GlobalParams::findSystemFontFile(GfxFont *font,
+   GooString *fontName = font->getName();
+   if (!fontName) return NULL;
+   lockGlobalParams;
+-  setupBaseFonts(NULL);
++  setupBaseFonts(POPPLER_FONTSDIR);
+ 
+   // TODO: base14Name should be changed?
+   // In the system using FontConfig, findSystemFontFile() uses
+-- 
+2.14.1
+
