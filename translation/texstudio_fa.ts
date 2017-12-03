@@ -1741,7 +1741,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2449"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"/>
+        <translation>المان‌های در توضیحات را نشان بده</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1127"/>
@@ -2188,7 +2188,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3373"/>
         <source>Words Between Repetitions:</source>
-        <translation type="unfinished"/>
+        <translation>کلمات با تکرارهای میانٍ:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3383"/>
@@ -3345,7 +3345,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>New line - \\</source>
-        <translation type="unfinished"/>
+        <translation>خط جدید - \\</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="19"/>
@@ -4506,7 +4506,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2187"/>
         <source>Add to Dictionary</source>
-        <translation type="unfinished"/>
+        <translation>به لغت‌نامه اضافه کن</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2366"/>
@@ -5196,7 +5196,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2459"/>
         <source>Presentation</source>
-        <translation type="unfinished"/>
+        <translation>ارائه</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2453"/>
