@@ -918,8 +918,16 @@ QSettings *ConfigManager::readSettings(bool reread)
 	}
 
 	completerConfig->words.clear();
-	foreach (const QString &cwlFile, cwlFiles) {
+    QSet<QString>loadedFiles;
+    QStringList tobeLoaded=cwlFiles;
+    //foreach (const QString &cwlFile, cwlFiles) {
+    while(!tobeLoaded.isEmpty()){
+        QString cwlFile=tobeLoaded.takeFirst();
+        if(loadedFiles.contains(cwlFile))
+            continue;
+        loadedFiles.insert(cwlFile);
 		LatexPackage pck = loadCwlFile(cwlFile, completerConfig);
+        tobeLoaded.append(pck.requiredPackages);
 		completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
 		latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
@@ -933,7 +941,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 			set.unite(set2);
 			latexParser.possibleCommands[elem] = set;
 		}
-	}
+    }
 
 	completerConfig->setFiles(cwlFiles);
 	// remove old solution from .ini
@@ -1584,10 +1592,17 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		latexParser.clear();
 		latexParser.init();
 		//completerConfig->words=loadCwlFiles(newFiles,ltxCommands,completerConfig);
-		completerConfig->words.clear();
-		foreach (const QString &cwlFile, newFiles) {
-			LatexPackage pck = loadCwlFile(cwlFile, completerConfig);
-			completerConfig->words.unite(pck.completionWords);
+        completerConfig->words.clear();
+        QSet<QString>loadedFiles;
+        QStringList tobeLoaded=newFiles;
+        while(!tobeLoaded.isEmpty()){
+            QString cwlFile=tobeLoaded.takeFirst();
+            if(loadedFiles.contains(cwlFile))
+                continue;
+            loadedFiles.insert(cwlFile);
+            LatexPackage pck = loadCwlFile(cwlFile, completerConfig);
+            tobeLoaded.append(pck.requiredPackages);
+            completerConfig->words.unite(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
 			latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 			latexParser.environmentAliases.unite(pck.environmentAliases);
