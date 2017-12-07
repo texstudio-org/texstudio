@@ -1,0 +1,10 @@
+.moc
+Makefile
+.obj
+.ui
+qrc_*.cpp
+texstudio
+texstudio.pro.user
+translation/.tx/
+.qmake.stash
+
