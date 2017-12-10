@@ -10,7 +10,7 @@ cd "${TRAVIS_BUILD_DIR}"
 print_headline "Getting dependencies for building for ${QT} on ${TRAVIS_OS_NAME}"
 
 if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-	if [ $QT = "qt5win"]; then
+	if [ $QT = "qt5win" ]; then
 		MXEDIR="/usr/lib/mxe"
 		MXETARGET="i686-w64-mingw32.static"
 
