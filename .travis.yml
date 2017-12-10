@@ -9,6 +9,8 @@ matrix:
     os: linux
   - env: QT=qt5NoPoppler
     os: linux
+  - env: QT=qt5win
+    os: linux
 dist: trusty
 sudo: required
 branches:
