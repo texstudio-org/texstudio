@@ -404,7 +404,7 @@ exists(./.hg2) | exists(./.hg) {
   }
 } else {
   !exists(./hg_revision.cpp){
-    win32: system(echo const char * TEXSTUDIO_HG_REVISION = 0; > hg_revision.cpp)
+    win32:isEmpty(MXE): system(echo const char * TEXSTUDIO_HG_REVISION = 0; > hg_revision.cpp)
     else: system(echo \"const char * TEXSTUDIO_HG_REVISION = 0;\" > hg_revision.cpp)
   }
   SOURCES += hg_revision.cpp
