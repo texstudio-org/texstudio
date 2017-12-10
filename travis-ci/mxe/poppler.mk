@@ -20,7 +20,7 @@ endef
 define $(PKG)_BUILD
     mkdir -p '$(1)/build'
     cd '$(1)/build' && '$(TARGET)-cmake' .. -DENABLE_XPDF_HEADERS=ON -DENABLE_LIBOPENJPEG='none' -DENABLE_UTILS=OFF -DBUILD_GTK_TESTS=OFF -DBUILD_QT4_TESTS=OFF -DBUILD_QT5_TESTS=OFF -DBUILD_CPP_TESTS=OFF
-    $(MAKE) -C '$(1)/build' -j '$(JOBS)' $(MXE_DISABLE_CRUFT) HTML_DIR=
+    $(MAKE) -C '$(1)/build' -j 1 $(MXE_DISABLE_CRUFT) HTML_DIR=
     $(MAKE) -C '$(1)/build' -j 1 install $(MXE_DISABLE_CRUFT) HTML_DIR=
 
     # Test program

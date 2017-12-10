@@ -34,7 +34,7 @@ FORMS += \
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
-    win32 {
+    win32:isEmpty(MXE) {
         !greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
             INCLUDEPATH  += ./src/pdfviewer/include_win32
             LIBS += ./zlib1.dll ./libpoppler-qt4.dll
@@ -54,6 +54,12 @@ isEmpty(NO_POPPLER_PREVIEW) {
         CONFIG += link_pkgconfig
 
         PKGCONFIG += $${poppler_qt_pkg}
+
+	!isEmpty(MXE){
+		message("Using MXE")
+		PKGCONFIG += lcms2
+		PKGCONFIG += libtiff-4
+	}
 
         greaterThan(QT_MAJOR_VERSION,4){
             PKG_CONFIG_EXE = $$pkgConfigExecutable()
