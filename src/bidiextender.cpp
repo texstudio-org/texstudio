@@ -15,7 +15,7 @@
 #endif
 
 #if defined( Q_OS_WIN )
-#include "Windows.h"
+#include "windows.h"
 #else
 typedef int HKL;
 #endif

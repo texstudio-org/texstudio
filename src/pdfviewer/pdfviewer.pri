@@ -36,10 +36,10 @@ FORMS += \
 isEmpty(NO_POPPLER_PREVIEW) {
     win32 {
         !greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
-            INCLUDEPATH  += ./pdfviewer/include_win32
+            INCLUDEPATH  += ./src/pdfviewer/include_win32
             LIBS += ./zlib1.dll ./libpoppler-qt4.dll
         } else { # Qt5
-            INCLUDEPATH  += ./pdfviewer/include_win32_qt5
+            INCLUDEPATH  += ./src/pdfviewer/include_win32_qt5
             LIBS += ./zlib1.dll ./libpoppler-qt5.dll
         }
         DEFINES += HAS_POPPLER_24
