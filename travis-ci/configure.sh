@@ -18,7 +18,8 @@ elif [ $QT = qt5NoPoppler ]; then
 elif [ $QT = qt4 ]; then
 	qmake texstudio.pro CONFIG+=debug
 elif [ $QT = qt5win ]; then
-	echo_and_run "${MXEDIR}/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1"
+	PATH=$PATH:${MXEDIR}/usr/bin
+	$MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1
 elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	/usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
 fi
