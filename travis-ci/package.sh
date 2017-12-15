@@ -125,7 +125,7 @@ if [ "${QT}" = "qt5win" ]; then
 		},
 		"files":
 		[
-			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip", "uploadPattern": "texstudio-win-${VERSION_NAME}.zip"}
+			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip", "uploadPattern": "texstudio-win-${VERSION_NAME}.zip"},
 			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio_installer.exe", "uploadPattern": "texstudio-win-${VERSION_NAME}.exe"}
 		],
 		"publish": true
