@@ -1,0 +1,16 @@
+#include:catchfile
+#include:ifluatex
+#include:pdftexcmds
+#include:shellesc
+\cygwinname
+\linuxname
+\macosxname
+\notwindowsname
+\unknownplatform
+\windowsname
+\ifshellescape
+\ifwindows
+\iflinux
+\ifmacosx
+\ifcygwin
+\platformname

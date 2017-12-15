@@ -81,6 +81,7 @@
 <file>completion/hyperref.cwl</file>
 <file>completion/ifluatex.cwl</file>
 <file>completion/ifpdf.cwl</file>
+<file>completion/ifplatform.cwl</file>
 <file>completion/iftex.cwl</file>
 <file>completion/ifthen.cwl</file>
 <file>completion/ifvtex.cwl</file>
