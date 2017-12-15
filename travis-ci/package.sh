@@ -60,7 +60,7 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	cat > "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json" <<EOF
 	{
 		"package": {
-			"name": "texstudio",
+			"name": "texstudio-osx",
 			"repo": "texstudio",
 			"subject": "sunderme"
 		},
@@ -79,6 +79,57 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 EOF
 
 cat "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
+fi
+
+if [ "${QT}" = "qt5win" ]; then
+	print_info "package build into zip for win"
+	print_info "Assembling package"
+	echo_and_run "mkdir -p \"package-zip/share\""
+	echo_and_run "cp \"${BUILDDIR}/texstudio.exe\" \"package-zip/\""
+	echo_and_run "cp -r \"${BUILDDIR}/translation\" \"package-zip/translations\""
+	echo_and_run "cp -r \"${BUILDDIR}/templates\" \"package-zip\""
+	echo_and_run "cp -r \"${BUILDDIR}/utilities/manual\" \"package-zip/help\""
+	echo_and_run "cp -r \"${BUILDDIR}/utilities/dictionares\" \"package-zip/dictionaries\""
+	echo_and_run "cp -r \"${BUILDDIR}/utilities/TexTablet\" \"package-zip/TexTablet\""
+	
+	print_info "Fetching poppler data"
+	wget --no-check-certificate "${POPPLERDATA_URL}"
+	CHKSUM=$(openssl dgst -sha256 "${POPPLERDATA_FILE}" 2> /dev/null)
+	if [ "${CHKSUM}" != "SHA256(${POPPLERDATA_FILE})= ${POPPLERDATA_SHA256}" ]; then
+		print_error "Wrong checksum"
+		print_error "${CHKSUM}"
+		print_error "(expected: ${POPPLERDATA_SHA256})"
+		exit 1
+	fi
+	echo_and_run "tar -x -C \"package-zip/share/\" -f \"${BUILDDIR}/${POPPLERDATA_FILE}\" && mv \"package-zip/share/${POPPLERDATA_SUBDIR}\" \"package-zip/share/poppler\""
+
+	print_info "zipping '${TRAVIS_BUILD_DIR}/texstudio-${TARGET_OS}-${VERSION_NAME}.zip'"
+	echo_and_run "cd package-zip && zip -r \"${BUILDDIR}/texstudio-win-${VERSION_NAME}.zip\" *"
+
+	print_info "Preparing bintray.json"
+	cat > "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json" <<EOF
+	{
+		"package": {
+			"name": "texstudio-win",
+			"repo": "texstudio",
+			"subject": "sunderme"
+		},
+
+		"version": {
+			"name": "${VERSION_NAME}",
+			"released": "${RELEASE_DATE}",
+			"gpgSign": false
+		},
+		"files":
+		[
+			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip", "uploadPattern": "texstudio-win-${VERSION_NAME}.zip"}
+		],
+		"publish": true
+	}
+EOF
+
+cat "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
+
 fi
 
 cd "${TRAVIS_BUILD_DIR}"
