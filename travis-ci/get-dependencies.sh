@@ -31,7 +31,7 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 		echo_and_run "sudo apt-get -qq update"
 
 		print_info "Installing packages: curl freetype gcc jpeg lcms libpng lua pkg-config qtbase qtscript qttools tiff"
-		sudo apt-get install -y mxe-i686-w64-mingw32.static-curl mxe-i686-w64-mingw32.static-freetype mxe-i686-w64-mingw32.static-gcc mxe-i686-w64-mingw32.static-jpeg mxe-i686-w64-mingw32.static-lcms mxe-i686-w64-mingw32.static-libpng mxe-i686-w64-mingw32.static-lua mxe-i686-w64-mingw32.static-pkgconf mxe-i686-w64-mingw32.static-qtbase mxe-i686-w64-mingw32.static-qtscript mxe-i686-w64-mingw32.static-qttools mxe-i686-w64-mingw32.static-tiff
+		sudo apt-get install -y mxe-i686-w64-mingw32.static-curl mxe-i686-w64-mingw32.static-freetype mxe-i686-w64-mingw32.static-gcc mxe-i686-w64-mingw32.static-jpeg mxe-i686-w64-mingw32.static-lcms mxe-i686-w64-mingw32.static-libpng mxe-i686-w64-mingw32.static-lua mxe-i686-w64-mingw32.static-pkgconf mxe-i686-w64-mingw32.static-qtbase mxe-i686-w64-mingw32.static-qtscript mxe-i686-w64-mingw32.static-qttools mxe-i686-w64-mingw32.static-tiff mxe-i686-w64-mingw32.static-nsis
 
 		print_info "Make MXE writable"
 		sudo chmod -R a+w "${MXEDIR}"

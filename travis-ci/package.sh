@@ -83,6 +83,9 @@ fi
 
 if [ "${QT}" = "qt5win" ]; then
 	print_info "package build into zip for win"
+	print_info "make installer"
+	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/texstudio.nsi\" \"${TRAVIS_BUILD_DIR}/\""
+	echo_and_run "/usr/lib/mxe/usr/bin/i686-w64-mingw32.static-makensis texstudio.nsi"
 	print_info "Assembling package"
 	echo_and_run "mkdir -p \"package-zip/share\""
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio.exe\" \"package-zip/\""
@@ -123,6 +126,7 @@ if [ "${QT}" = "qt5win" ]; then
 		"files":
 		[
 			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip", "uploadPattern": "texstudio-win-${VERSION_NAME}.zip"}
+			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio_installer.exe", "uploadPattern": "texstudio-win-${VERSION_NAME}.exe"}
 		],
 		"publish": true
 	}
