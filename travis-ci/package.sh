@@ -89,7 +89,7 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/translation\" \"package-zip/translations\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/templates\" \"package-zip\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/manual\" \"package-zip/help\""
-	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/dictionares\" \"package-zip/dictionaries\""
+	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/dictionaries\" \"package-zip/dictionaries\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/TexTablet\" \"package-zip/TexTablet\""
 	
 	print_info "Fetching poppler data"
