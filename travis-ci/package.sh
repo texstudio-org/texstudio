@@ -101,10 +101,10 @@ if [ "${QT}" = "qt5win" ]; then
 		print_error "(expected: ${POPPLERDATA_SHA256})"
 		exit 1
 	fi
-	echo_and_run "tar -x -C \"package-zip/share/\" -f \"${BUILDDIR}/${POPPLERDATA_FILE}\" && mv \"package-zip/share/${POPPLERDATA_SUBDIR}\" \"package-zip/share/poppler\""
+	echo_and_run "tar -x -C \"package-zip/share/\" -f \"${TRAVIS_BUILD_DIR}/${POPPLERDATA_FILE}\" && mv \"package-zip/share/${POPPLERDATA_SUBDIR}\" \"package-zip/share/poppler\""
 
 	print_info "zipping '${TRAVIS_BUILD_DIR}/texstudio-${TARGET_OS}-${VERSION_NAME}.zip'"
-	echo_and_run "cd package-zip && zip -r \"${BUILDDIR}/texstudio-win-${VERSION_NAME}.zip\" *"
+	echo_and_run "cd package-zip && zip -r \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" *"
 
 	print_info "Preparing bintray.json"
 	cat > "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json" <<EOF
