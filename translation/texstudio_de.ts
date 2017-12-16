@@ -10745,10 +10745,10 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation>Das Dokument &quot;%1&quot; möchte das Koammdo &quot;%2&quot; durch &quot;%3&quot; ersetzen
-.
-Möchten Sie dies erlauben und das neue Kommando ausführen 
-?
+        <translation>Das Dokument &quot;%1&quot; möchte das Kommando &quot;%2&quot; durch &quot;%3&quot; ersetzen.
+
+Möchten Sie dies erlauben und das neue Kommando ausführen ?
+
 (a) Ja, erlaube es für dieses Dokument (wenn Sie dem Dokument vertrauen)
 (b) Ja, erlaube es für alle Dokumente
 (c) Nein, nutze das Standardkommando &quot;%2&quot;
