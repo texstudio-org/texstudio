@@ -16,6 +16,7 @@ sudo: required
 branches:
   only:
   - master
+  - /^\d+.\d+(.\d+)?(\S*)?$/
 before_install:
 - "${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh"
 before_script:
@@ -37,4 +38,5 @@ deploy:
       condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
     key:
        secure: "a+wBb+wBfp+Ufsam08u98ycnYih3641Qwr1cm1G4BEOYinvLHrWPwQMEtIpGN+ohQ5/2fPC7ayY0F8aJQog6SZEsW3eZjg4eUYcm2gwubLnleke+hYSMqkdgE765lBbLjZW2hh6WLNLpS8chIyF1xhJPWCVS8FyKvcstqMVOgO9NUco/luzyO58oegq+Oz/C182/pKQ3jeqtU2GqOSRpQAF+MQnD1T2EDaAtS/+dcnI2E+HATVXhr6zZCxLmSayZFYrz9riSOUKNeugLU2T9ZPo275xM1OeCLCFWeGrosC5Hp3AnO5A7BWrmb5i7i4JZuFtNjDJIBJNbSEq2zLxp/stuu3MCIg+VsqJw/iJGDsseClUB6H8Fx9k60ZrFs4nI+Cw87WmhUKeMgd3KmamPkmXoNC6a5jYRRkhuP0gkgIsxQVb1lViz/t7efIglB9ZmXaJwjxRvWk3YHHDpEY0/ztpfhqjtWlllQV2HcSOA4GYgf4/ez5aTYRRnSsgPKdo8yNQPjTXmj3I06MTOnNKf1aBF9edv2cxrmIYnAyJoydTUUZhOJjys1ixhXZXtIbGb09QKm86oqCk4r9rn2XePa7guO+Ql/uu56O+WCrICfbFHx3IXiRcLSgggXIo61x2B7SLOZ30PDT4uy4SccyQNMFEv11qwelFQFguoTvLr0XM="
+
 
