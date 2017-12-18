@@ -54,7 +54,8 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg	
 
 	print_info "Renaming .dmg"
-	mv "${TRAVIS_BUILD_DIR}/"texstudio.dmg "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"
+	cp "${TRAVIS_BUILD_DIR}/texstudio.dmg" "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
+	mv "${TRAVIS_BUILD_DIR}/texstudio.dmg" "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"
 
 	print_info "Preparing bintray.json"
 	cat > "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json" <<EOF
@@ -88,6 +89,7 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "/usr/lib/mxe/usr/bin/i686-w64-mingw32.static-makensis texstudio.nsi"
 	print_info "Assembling package"
 	echo_and_run "mkdir -p \"package-zip/share\""
+	echo_and_run "mkdir -p \"package-zip/config\""
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio.exe\" \"package-zip/\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/translation\" \"package-zip/translations\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/templates\" \"package-zip\""

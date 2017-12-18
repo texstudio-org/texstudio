@@ -16,7 +16,7 @@ sudo: required
 branches:
   only:
   - master
-  - /^\d+.\d+(.\d+)?(\S*)?$/
+  - "/^\\d+.\\d+(.\\d+)?(\\S*)?$/"
 before_install:
 - "${TRAVIS_BUILD_DIR}/travis-ci/get-dependencies.sh"
 before_script:
@@ -38,5 +38,13 @@ deploy:
       condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
     key:
        secure: "a+wBb+wBfp+Ufsam08u98ycnYih3641Qwr1cm1G4BEOYinvLHrWPwQMEtIpGN+ohQ5/2fPC7ayY0F8aJQog6SZEsW3eZjg4eUYcm2gwubLnleke+hYSMqkdgE765lBbLjZW2hh6WLNLpS8chIyF1xhJPWCVS8FyKvcstqMVOgO9NUco/luzyO58oegq+Oz/C182/pKQ3jeqtU2GqOSRpQAF+MQnD1T2EDaAtS/+dcnI2E+HATVXhr6zZCxLmSayZFYrz9riSOUKNeugLU2T9ZPo275xM1OeCLCFWeGrosC5Hp3AnO5A7BWrmb5i7i4JZuFtNjDJIBJNbSEq2zLxp/stuu3MCIg+VsqJw/iJGDsseClUB6H8Fx9k60ZrFs4nI+Cw87WmhUKeMgd3KmamPkmXoNC6a5jYRRkhuP0gkgIsxQVb1lViz/t7efIglB9ZmXaJwjxRvWk3YHHDpEY0/ztpfhqjtWlllQV2HcSOA4GYgf4/ez5aTYRRnSsgPKdo8yNQPjTXmj3I06MTOnNKf1aBF9edv2cxrmIYnAyJoydTUUZhOJjys1ixhXZXtIbGb09QKm86oqCk4r9rn2XePa7guO+Ql/uu56O+WCrICfbFHx3IXiRcLSgggXIo61x2B7SLOZ30PDT4uy4SccyQNMFEv11qwelFQFguoTvLr0XM="
-
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure: DQEuiEzNzXF9EhGLmMN/SrDjinVJbMgdmEZtokY9ZPp+yLqTHcvdX4EfuzbVElz14dAOK2H4TBK2q+13ZjCzuvWdgbdb72M4lNOk7YcHmpxK4XuvhYxsY02QxO0zTHCqWhZGL87jrTlBWICEZCuvXAg7/FHry0HqSsukUmP6cCVeIB8q33+8GwOVPUjXF9kRf9UgogtFhIcS0TwwGezdngkhonxBJYgaEYgZRxMPts1Fb+7ifmtjbZwF2QUUYZQvp0dFeI8S0w0lQKP+gVxNY8CAYKnIJ/STFJA6tXCstpKL2EPjbOhgI34DYBTCg4+peFOOLbVpBlwhInOeaYF35VryjulpMsNM9LdJH9gXiSOHOr4vxnr2M4ijLssd+p2dCZ1oeG9kHfARupmtmKer8lbrPkHrD1QGiwEOnrIZqV0TrJvnXTlJDtbOJnB+43lCzsIHJ4WDTpREHq8p2XoVBljlcVac3Kl6MmY5LVNtbdwBxirWF8hheEh/K4Cxv9wzktsP20/M3wpk2VFf2qL9ZxjugtxoT92WRVuHtCvLN8Zp+ekHZuhik5ImJXvVOavCy76SpBbJhz1sSnbjM2pFy9F9dHzYkMAVEX2i1iHQJKSVl82YpaqW0QTUAdRcyRLL4KVQOYAPJp8Ne9kkRc/rhX1aVOY3kp1GzInAEAJ89vA=
+    file: 
+      - "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
+    on:
+      tags: true 
+      condition: -f "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
 
