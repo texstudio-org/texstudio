@@ -7,4 +7,5 @@ texstudio
 texstudio.pro.user
 translation/.tx/
 .qmake.stash
+hg_revision.cpp
 
