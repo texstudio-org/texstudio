@@ -64,41 +64,7 @@ void LatexPackage::unite(LatexPackage &add, bool forCompletion)
 	environmentAliases.unite(add.environmentAliases);
 	specialTreatmentCommands.unite(add.specialTreatmentCommands);
 	specialDefCommands.unite(add.specialDefCommands);
-	//commandDescriptions.unite(add.commandDescriptions); //expensive
-	foreach (QString elem, add.commandDescriptions.keys()) {
-		if (commandDescriptions.contains(elem)) {
-			CommandDescription cd = commandDescriptions.value(elem);
-			CommandDescription cd_neu = add.commandDescriptions.value(elem);
-			if (cd_neu.args > cd.args) {
-				//simple selection criteria
-				commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
-			} else {
-				// when same number of args (>0), general arg is considered inferior
-				if ( (cd_neu.args == cd.args) && (cd.args > 0)) {
-					if (cd_neu.optionalArgs > cd.optionalArgs) {
-						// same number of arguments but more optional arguments
-						commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
-					} else {
-						if (cd_neu.optionalArgs == cd.optionalArgs) {
-							bool override = true;
-							for (int i = 0; i < cd.args; i++) {
-								if (cd_neu.argTypes.at(i) == Token::generalArg)
-									override = false;
-							}
-							for (int i = 0; i < cd.optionalArgs; i++) {
-								if (cd_neu.optTypes.at(i) == Token::generalArg)
-									override = false;
-							}
-							if (override)
-								commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
-						}
-					}
-				}
-			}
-		} else {
-			commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
-		}
-	}
+    commandDescriptions.unite(add.commandDescriptions); // overloaded unit, which does not overwrite well defined CDs with poorly defined ones
 
 	//possibleCommands.unite(add.possibleCommands);
 	foreach (const QString &elem, add.possibleCommands.keys()) { //expensive

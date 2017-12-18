@@ -28,6 +28,15 @@ typedef QStack<CommandDescription> CommandStack;
 
 Q_DECLARE_METATYPE(CommandStack);
 
-typedef QHash<QString, CommandDescription> CommandDescriptionHash;
+//typedef QHash<QString, CommandDescription> CommandDescriptionHash;
+/*!
+ * \brief special definiton of QHash<QString, CommandDescription>
+ * It defines a special version of unite which avoids overwritiung good defined CDs with poorly defined one (...#S)
+ */
+class CommandDescriptionHash : public QHash<QString, CommandDescription>
+{
+public:
+    void unite(const CommandDescriptionHash &other); // special unite which avoids overwritiung good defined CDs with poorly defined one (...#S)
+};
 
 #endif // COMMANDDESCRIPTION_H
