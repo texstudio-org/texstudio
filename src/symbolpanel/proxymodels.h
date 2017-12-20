@@ -12,7 +12,7 @@ public:
 	MostUsedProxyModel(QObject *parent = 0);
 
 protected:
-	bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 };
 
 
@@ -24,7 +24,7 @@ public:
 	BooleanFilterProxyModel(QObject *parent = 0);
 
 protected:
-	bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 };
 
 
