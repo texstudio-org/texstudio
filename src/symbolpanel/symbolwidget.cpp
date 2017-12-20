@@ -113,7 +113,9 @@ void SymbolWidget::setupSerachArea(QVBoxLayout *vLayout)
 	vLayout->addLayout(hLayout);
 
 	leFilter = new QLineEdit();
+#if QT_VERSION >= 0x040700
 	leFilter->setPlaceholderText(tr("Search"));
+#endif
 	hLayout->addWidget(leFilter);
 
 	categoryFilterButton = new QToolButton();
