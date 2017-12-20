@@ -3456,7 +3456,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 #ifdef HAS_POPPLER_31
             if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchFlags)) {
 #else
-            if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchMode)) {
+            if (page->search(searchText, QRectF(rectLeft, rectTop,  lastSearchResult.selRect.width(),  lastSearchResult.selRect.height()) , searchDir, searchMode)) {
 #endif
 				lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
 				lastSearchResult.doc = this;
