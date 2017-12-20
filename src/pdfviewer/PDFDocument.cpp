@@ -3447,18 +3447,19 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 			if (!page)
 				return;
 
-            double rectLeft, rectTop, rectRight, rectBottom;
-            rectLeft = lastSearchResult.selRect.left();
-            rectTop = lastSearchResult.selRect.top();
-            rectRight = lastSearchResult.selRect.right();
-            rectBottom = lastSearchResult.selRect.bottom();
+
 
 #ifdef HAS_POPPLER_31
-            if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchFlags)) {
+			double rectLeft, rectTop, rectRight, rectBottom;
+			rectLeft = lastSearchResult.selRect.left();
+			rectTop = lastSearchResult.selRect.top();
+			rectRight = lastSearchResult.selRect.right();
+			rectBottom = lastSearchResult.selRect.bottom();
+			if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchFlags)) {
+			        lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
 #else
-            if (page->search(searchText, QRectF(rectLeft, rectTop,  lastSearchResult.selRect.width(),  lastSearchResult.selRect.height()) , searchDir, searchMode)) {
+			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
 #endif
-				lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
 				lastSearchResult.doc = this;
 				lastSearchResult.pageIdx = pageIdx;
 				QPainterPath p;
