@@ -29,6 +29,9 @@
         <file>images/logo128.png</file>
         <file>images/webpublish.png</file>
         <file>images/egg.png</file>
+        <file>images/egg-santa.png</file>
+        <file>images/egg-witch.png</file>
+        <file>images/egg-easter.png</file>
         <file>images/splash.png</file>
         <file>images/splash_large.png</file>
         <file alias="appicon">images/appicon.png</file>
