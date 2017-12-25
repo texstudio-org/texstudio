@@ -6902,7 +6902,12 @@ void Texstudio::viewCloseElement()
 	QTime ct = QTime::currentTime();
 	if (ct.second() % 5 != 0) return;
 	for (int i = 2; i < 63; i++) if (ct.minute() != i && ct.minute() % i  == 0) return;
-	UtilsUi::txsInformation("<html><head></head><body><img src=':/images/egg.png'></body></html>");
+	QDate cd = QDate::currentDate();
+	const char * mode = "";
+	if (cd.month() == 12 && cd.day() >= 20) mode = "-santa";
+	else if ( (cd.month() == 10 && cd.day() >= 30) || (cd.month() == 11 && cd.day() == 1)) mode = "-witch";
+   else if ( (cd.month() == 3 && cd.day() >= 22) || (cd.month() == 4 && cd.day() <= 25)) mode = "-easter";
+	UtilsUi::txsInformation(QString("<html><head></head><body><img src=':/images/egg%1.png'></body></html>").arg(mode));
 }
 
 void Texstudio::setFullScreenMode()
