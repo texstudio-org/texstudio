@@ -143,9 +143,21 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 
 			it->recipients.removeAll(0);
 
+			QFileInfo fi(it.key());
+			qint64 size = fi.size();
+			QDateTime lastModified = fi.lastModified();
 			foreach ( QObject *r, it->recipients )
 				QMetaObject::invokeMethod(r, "fileChanged", Q_ARG(QString, it.key()));
-
+			fi.refresh();
+			if (fi.size() != size || fi.lastModified() != lastModified) {
+				QHash<QString, Watch>::iterator it2 = m_targets.find(it.key());
+				if (it2 != m_targets.end()) {
+					it2->state = Recent | Duplicate;
+					it2->size = size;
+					it2->lastModified = lastModified;
+				}
+				++ postponedEmissions;
+			}
 			//it = m_state.erase(it);
 		}
 
@@ -180,13 +192,12 @@ void QReliableFileWatch::sourceChanged(const QString& filepath)
 	m_timer.stop();
 
 	QHash<QString, Watch>::iterator it = m_targets.find(filepath);
-
 	if ( it == m_targets.end() )
 		return;
 
 	qDebug("%s modified.", qPrintable(filepath));
 	QFileInfo info(filepath);
-	if(it->lastModified==info.lastModified()){
+	if(it->lastModified==info.lastModified() && it->size==info.size()){
 		qDebug("filtered");
 		return;
 	}
