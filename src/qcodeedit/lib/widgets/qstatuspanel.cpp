@@ -183,7 +183,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 		if ( xpos + w + _warn.width() < width() )
 		{
 			m_conflictSpot = width() - (w + _warn.width());
-			p->drawText(width() - w + 15, ascent, s);
+			p->drawText(m_conflictSpot + _warn.width(), ascent, s);
 			p->drawPixmap(m_conflictSpot, (ls - _warn.height()) / 2 + 2, _warn);
 		} else if ( xpos + _warn.width() < width() ) {
 			m_conflictSpot = width() - _warn.width();

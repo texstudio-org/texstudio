@@ -914,22 +914,32 @@ void QEditor::save()
 
 		setFileName(fn);
 	} else if ( isInConflict() ) {
-		int ret = QMessageBox::warning(this,
-										tr("Conflict!"),
-										tr(
-											"%1\nhas been modified by another application.\n"
-											"Press \"Save\" to overwrite the file on disk\n"
-											"Press \"Reset\"to be reload the file from disk.\n"
-											"Press \"Ignore\" to ignore this warning.\n"
-										).arg(fileName()),
-											QMessageBox::Save
-										|
-											QMessageBox::Reset
-										|
-											QMessageBox::Ignore
-										|
-											QMessageBox::Cancel
-										);
+		QMessageBox msg (QMessageBox::Warning,
+		             tr("Conflict!"),
+		             tr(
+		               "%1\nhas been modified by another application.\n"
+		               "Press \"Save\" to overwrite the file on disk\n"
+		               "Press \"Reset\" to reload the file from disk.\n"
+		               "Press \"Diff\" to show differences in the editor.\n"
+		               "Press \"Ignore\" to ignore this warning.\n"
+		               ).arg(fileName()),
+		             QMessageBox::NoButton,
+		             this);
+		msg.addButton(QMessageBox::Save);
+		msg.addButton(QMessageBox::Reset);
+		msg.addButton(QMessageBox::Ignore);
+		QAbstractButton * diffBtn = msg.addButton(tr("Diff"), QMessageBox::ActionRole);
+		msg.setDefaultButton(msg.addButton(QMessageBox::Cancel));
+		if (msg.exec() == QMessageBox::NoButton) {
+			if ( msg.clickedButton() == diffBtn ) {
+				m_saveState = Undefined;
+				emit fileInConflictShowDiff();
+			}
+			return;
+		}
+		QAbstractButton * button = msg.clickedButton();
+		int ret = msg.standardButton(button);
+
 		if ( ret == QMessageBox::Save )
 		{
 			m_saveState = Undefined;
@@ -939,6 +949,10 @@ void QEditor::save()
 			return;
 		} else if ( ret == QMessageBox::Ignore ) {
 			m_saveState = Undefined;
+			return;
+		} else if ( button == diffBtn ){
+			m_saveState = Undefined;
+			emit fileInConflictShowDiff(); //guess this branch is unused
 			return;
 		} else {
 			return;
@@ -1213,29 +1227,29 @@ void QEditor::fileChanged(const QString& file)
 	{
 		watcher()->removeWatch(QString(), this); //no duplicated questions
 
-        if(isHidden() && mSilentReloadOnExternalChanges){ // if hidden, just close the editor
-            emit requestClose();
-            return;
-        }
+		if(isHidden() && mSilentReloadOnExternalChanges){ // if hidden, just close the editor
+			emit requestClose();
+			return;
+		}
 
-        int ret = QMessageBox::warning(this, tr("File deleted"), tr("The file %1 has been deleted on disk.\n"
-                                                                    "Should I save the document as it is to restore the file?\n").arg(fileName()), QMessageBox::Save | QMessageBox::Ignore);
-        if (ret == QMessageBox::Save) {
-            if ( QFileInfo(file).exists() ) {
-                QMessageBox::warning(this, tr("File deleted"), tr("Well, this is strange: The file %1 is not deleted anymore.\n"
-                                                                  "Probably someone else restored it and therefore I'm not going to override the (possible modified) version on the disk.").arg(fileName()), QMessageBox::Ok);
-                m_saveState = Conflict;
-                reconnectWatcher();
-                return;
-            } else {
-                m_saveState = Undefined;
-                save(); //save will reconnect the watcher
-                return;
-            }
-        }
+		int ret = QMessageBox::warning(this, tr("File deleted"), tr("The file %1 has been deleted on disk.\n"
+		                                                            "Should I save the document as it is to restore the file?\n").arg(fileName()), QMessageBox::Save | QMessageBox::Ignore);
+		if (ret == QMessageBox::Save) {
+			if ( QFileInfo(file).exists() ) {
+				QMessageBox::warning(this, tr("File deleted"), tr("Well, this is strange: The file %1 is not deleted anymore.\n"
+				                                                  "Probably someone else restored it and therefore I'm not going to override the (possible modified) version on the disk.").arg(fileName()), QMessageBox::Ok);
+				m_saveState = Conflict;
+				reconnectWatcher();
+				return;
+			} else {
+				m_saveState = Undefined;
+				save(); //save will reconnect the watcher
+				return;
+			}
+		}
 
-        if ( QFileInfo(file).exists() )
-            reconnectWatcher();
+		if ( QFileInfo(file).exists() )
+			reconnectWatcher();
 
 	} else if ( !isContentModified() )
 	{
@@ -1248,27 +1262,27 @@ void QEditor::fileChanged(const QString& file)
 			watcher()->removeWatch(QString(), this); //no duplicated questions
 			
 			int ret = QMessageBox::warning(this,
-										tr("File changed"),
-										tr(
-											"%1\nhas been modified by another application.\n\n"
-											"Undo/Redo stack would be discarded by the auto-reload.\n"
-											"Do you wish to keep up to date by reloading the file?\n\n"
-											"(Note: You can permanently enable silent reloading in the options.)"
-										).arg(fileName()),
-											QMessageBox::Yes
-										|
-											QMessageBox::No
-										);
+			                               tr("File changed"),
+			                               tr(
+			                                 "%1\nhas been modified by another application.\n\n"
+			                                 "Undo/Redo stack would be discarded by the auto-reload.\n"
+			                                 "Do you wish to keep up to date by reloading the file?\n\n"
+			                                 "(Note: You can permanently enable silent reloading in the options.)"
+			                                 ).arg(fileName()),
+			                               QMessageBox::Yes
+			                               |
+			                               QMessageBox::No
+			                               );
 
 			if ( ret == QMessageBox::No )
 				autoReload = false;
-			reconnectWatcher(); 
+			reconnectWatcher();
 		}
 
 		if ( autoReload ){
 			reload();
 			return;
-		    }
+		}
 	}
 
 	// TODO : check for actual modification (using a checksum?)

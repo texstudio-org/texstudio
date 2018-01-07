@@ -528,7 +528,7 @@ protected slots:
 	void templateEdit(const QString &fname);
 
 	void fileReloaded();
-	void fileInConflict();
+	void fileInConflictShowDiff();
 	void fileAutoReloading(QString fname);
 
 	void jumpToSearchResult(QDocument *doc, int lineNumber, const SearchQuery *query);

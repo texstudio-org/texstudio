@@ -521,6 +521,7 @@ public slots:
 
 		void fileReloaded();
 		void fileInConflict();
+		void fileInConflictShowDiff();
 		void fileAutoReloading(QString fname);
 		void needUpdatedCompleter();
         void requestClose();

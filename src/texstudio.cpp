@@ -1700,7 +1700,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(execMacro(Macro, MacroExecContext)), this, SLOT(execMacro(Macro, MacroExecContext)));
 
 	connect(edit->editor, SIGNAL(fileReloaded()), this, SLOT(fileReloaded()));
-	connect(edit->editor, SIGNAL(fileInConflict()), this, SLOT(fileInConflict()));
+	connect(edit->editor, SIGNAL(fileInConflictShowDiff()), this, SLOT(fileInConflictShowDiff()));
 	connect(edit->editor, SIGNAL(fileAutoReloading(QString)), this, SLOT(fileAutoReloading(QString)));
 
 	if (Guardian::instance()) { // Guardian is not yet there when this is called at program startup
@@ -9666,43 +9666,29 @@ void Texstudio::declareConflictResolved()
 /*!
  * \brief mark svn conflict of current file resolved
  */
-void Texstudio::fileInConflict()
+void Texstudio::fileInConflictShowDiff()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
 	REQUIRE(mEditor);
 	if (!QFileInfo(mEditor->fileName()).exists())  //create new qfileinfo to avoid caching
 		return;
-	int ret = QMessageBox::warning(this,
-	                               tr("Conflict!"),
-	                               tr(
-	                                   "%1\nhas been modified by another application.\n"
-	                                   "Press \"OK\" to show differences\n"
-	                                   "Press \"Cancel\"to do nothing.\n"
-	                               ).arg(mEditor->fileName()),
-	                               QMessageBox::Ok
-	                               |
-	                               QMessageBox::Cancel
-	                              );
-	if (ret == QMessageBox::Ok) {
-		//remove old markers
-		removeDiffMarkers();
+	removeDiffMarkers();
 
-		if (!checkSVNConflicted(false)) {
+	if (!checkSVNConflicted(false)) {
 
-			LatexDocument *doc2 = diffLoadDocHidden(mEditor->fileName());
-			if (!doc2)
-				return;
-			LatexDocument *doc = qobject_cast<LatexDocument *>(mEditor->document());
-			doc2->setObjectName("diffObejct");
-			doc2->setParent(doc);
-			diffDocs(doc, doc2);
-			//delete doc2;
+		LatexDocument *doc2 = diffLoadDocHidden(mEditor->fileName());
+		if (!doc2)
+			return;
+		LatexDocument *doc = qobject_cast<LatexDocument *>(mEditor->document());
+		doc2->setObjectName("diffObejct");
+		doc2->setParent(doc);
+		diffDocs(doc, doc2);
+		//delete doc2;
 
-			// show changes (by calling LatexEditorView::documentContentChanged)
-			LatexEditorView *edView = doc->getEditorView();
-			if (edView)
-				edView->documentContentChanged(0, edView->document->lines());
-		}
+		// show changes (by calling LatexEditorView::documentContentChanged)
+		LatexEditorView *edView = doc->getEditorView();
+		if (edView)
+			edView->documentContentChanged(0, edView->document->lines());
 	}
 }
 
