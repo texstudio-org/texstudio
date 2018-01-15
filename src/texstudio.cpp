@@ -3428,14 +3428,16 @@ void Texstudio::editDuplicateLine()
 	if (!currentEditor()) return;
 	QEditor *ed = currentEditor();
 	QList<QDocumentCursor> cursors = ed->cursors();
-	for (int i = 0; i < cursors.length(); i++)
-		cursors[i].setAutoUpdated(false);
+    for (int i = 0; i < cursors.length(); i++)
+        cursors[i].setAutoUpdated(false);
 	QList<QPair<int, int> > blocks = currentEditorView()->getSelectedLineBlocks();
 	for (int i = blocks.size() - 1; i >= 0; i--) {
 		QDocumentCursor edit = ed->document()->cursor(blocks[i].first, 0, blocks[i].second);
 		QString text = edit.selectedText();
-		edit.selectionEnd().insertText("\n" + text);
+        edit.selectionEnd().insertText("\n" + text);
 	}
+    if(cursors.length()>0)
+        ed->setCursor(cursors[0]);
 }
 
 void Texstudio::editAlignMirrors()
