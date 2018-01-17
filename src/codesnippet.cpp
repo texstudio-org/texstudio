@@ -413,7 +413,7 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	editor->document()->clearLanguageMatches();
 	editor->insertText(*cursor, line); //don't use cursor->insertText to keep autoindentation working
 
-	if (editBlockOpened) cursor->endEditBlock();
+    if (editBlockOpened && savedSelection.isEmpty()) cursor->endEditBlock();
 
 	// on single line commands only: replace command
 	if (byCompleter && autoReplaceCommands && lines.size() == 1 && (line.startsWith('\\') || isKeyVal) ) {
@@ -535,11 +535,16 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 		return;
 	}
 	if (!savedSelection.isEmpty()) {
-		QDocumentCursor oldCursor = editor->cursor();
-		editor->cursor().insertText(savedSelection, true);
+        QDocumentCursor oldCursor = editor->cursor();
+        //editor->cursor().insertText(savedSelection, true);
+        cursor->moveTo(editor->cursor());
+        if(oldCursor.hasSelection())
+            cursor->moveTo(oldCursor.anchorLineNumber(),oldCursor.anchorColumnNumber(),QDocumentCursor::KeepAnchor);
+        cursor->insertText(savedSelection, true);
+        cursor->endEditBlock();
 		if (!editor->cursor().hasSelection() && alwaysSelect) {
-			oldCursor.movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-			editor->setCursor(oldCursor);
+            cursor->movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+            editor->setCursor(*cursor);
 		}
 		if (autoSelectPlaceholder != -1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this synchronizes the placeholder mirrors with the current placeholder text
 	}
