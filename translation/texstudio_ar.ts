@@ -102,7 +102,7 @@
     <message>
         <location filename="arraydialog.ui" line="61"/>
         <source>Environment</source>
-        <translation type="unfinished"/>
+        <translation>بيئة</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="81"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="bibtexdialog.ui" line="80"/>
         <source>Insert Empty, Optional Fields</source>
-        <translation type="unfinished"/>
+        <translation>ادراج حقول فارغة، اختيارية</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="19"/>
@@ -244,7 +244,7 @@
         <location filename="bibtexdialog.cpp" line="62"/>
         <location filename="bibtexdialog.cpp" line="188"/>
         <source>Miscellan&amp;eous</source>
-        <translation type="unfinished"/>
+        <translation>متفرقات</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="99"/>
@@ -264,7 +264,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="123"/>
         <source>Supplemental Material in a Book</source>
-        <translation type="unfinished"/>
+        <translation>مادة تكميلية في كتاب</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="148"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="buildmanager.cpp" line="269"/>
         <source>Stop Compile</source>
-        <translation>ايقاف التحويل</translation>
+        <translation>إيقاف التحويل</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="293"/>
@@ -11537,7 +11537,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="usermenudialog.ui" line="313"/>
         <source>Environment</source>
-        <translation type="unfinished"/>
+        <translation>بيئة</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="326"/>

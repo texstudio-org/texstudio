@@ -2838,7 +2838,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="682"/>
         <source>Select thesaurus database</source>
-        <translation type="unfinished"/>
+        <translation>پایگاه داده‌ی مترادف‌ها را انتخاب کن</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="687"/>
@@ -4020,7 +4020,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/gotoline.ui" line="53"/>
         <source>G&amp;o</source>
-        <translation type="unfinished"/>
+        <translation>ب&amp;رو</translation>
     </message>
 </context>
 <context>
@@ -4367,7 +4367,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="38"/>
         <source>BIBLIOGRAPHY</source>
-        <translation type="unfinished"/>
+        <translation>کتاب‌شناسی</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="39"/>
@@ -5306,7 +5306,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2432"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;بزرگ‌بینی</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2433"/>
@@ -8868,7 +8868,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="394"/>
         <source>Asymptote files</source>
-        <translation type="unfinished"/>
+        <translation>فایل‌های جانبی</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="395"/>
@@ -8928,7 +8928,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="610"/>
         <source>Asymptote Commands</source>
-        <translation type="unfinished"/>
+        <translation>دستورات جانبی</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="611"/>
