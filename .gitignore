@@ -8,4 +8,5 @@ texstudio.pro.user
 translation/.tx/
 .qmake.stash
 hg_revision.cpp
+src/git_revision.cpp
 

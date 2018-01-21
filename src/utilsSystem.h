@@ -13,7 +13,7 @@
 #define LIST_RESERVE(list, count)
 #endif
 
-extern const char *TEXSTUDIO_HG_REVISION;
+extern const char *TEXSTUDIO_GIT_REVISION;
 
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
 

@@ -393,21 +393,22 @@ CONFIG(team):!CONFIG(build_pass) {
 OTHER_FILES += universalinputdialog.*
 
 # add mercurial revision
-exists(./.hg2) | exists(./.hg) {
+exists(./.git)  {
   win32: {
-    message(HG)
-    QMAKE_PRE_LINK += \"$${PWD}/hg_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
-    LIBS += hg_revision.o
+    message(GIT)
+    QMAKE_PRE_LINK += \"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
+    LIBS += git_revision.o
   } else {
-    QMAKE_PRE_LINK += \"$${PWD}/hg_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\"
-    LIBS += hg_revision.o
+    message(GIT)
+    QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\"
+    LIBS += git_revision.o
   }
 } else {
-  !exists(./hg_revision.cpp){
-    win32:isEmpty(MXE): system(echo const char * TEXSTUDIO_HG_REVISION = 0; > hg_revision.cpp)
-    else: system(echo \"const char * TEXSTUDIO_HG_REVISION = 0;\" > hg_revision.cpp)
+  !exists(./git_revision.cpp){
+    win32:isEmpty(MXE): system(echo const char * TEXSTUDIO_GIT_REVISION = 0; > src\git_revision.cpp)
+    else: system(echo \"const char * TEXSTUDIO_GIT_REVISION = 0;\" > src/git_revision.cpp)
   }
-  SOURCES += hg_revision.cpp
+  SOURCES += src/git_revision.cpp
 }
 
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered -Wempty-body -Wsign-compare -Waddress -Wlogical-op -Winline

@@ -1,9 +1,9 @@
 #include "utilsVersion.h"
 #include "mostQtHeaders.h"
 
-int hgRevisionToInt(const char *)
+int gitRevisionToInt(const char *)
 {
-	QString s = QString(TEXSTUDIO_HG_REVISION).split(':').at(0);
+    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').at(1);
 	if (s.endsWith('+'))
 		s = s.left(s.length() - 1);
 	return s.toInt();
@@ -40,9 +40,9 @@ bool Version::versionNumberIsValid(const QString &versionNumber)
  * Return the revision number from a hg revision string, e.g. "1234:asassdasd" -> 1234.
  * Returns 0 if the input string is not a vailid hg revision string.
  */
-int Version::parseHgRevisionNumber(const QString &revision)
+int Version::parseGitRevisionNumber(const QString &revision)
 {
-	return revision.split(':')[0].remove('+').toInt();
+    return revision.split('-')[1].toInt();
 }
 
 // compares two versions strings
@@ -66,7 +66,7 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
 Version Version::current()
 {
 	Version v(TXSVERSION);
-	QString s = QString(TEXSTUDIO_HG_REVISION).split(':').at(0);
+    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').at(1);
 	if (s.endsWith('+'))
 		s = s.left(s.length() - 1);
 	v.revision = s.toInt();

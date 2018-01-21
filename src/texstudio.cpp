@@ -9766,7 +9766,7 @@ void Texstudio::recoverFromCrash()
 			ThreadBreaker::sleep(1);
 			if (t &&  t == killAtCrashedThread) {
 				name += QString(" forced kill in %1").arg((long int)t, sizeof(long int) * 2, 16, QChar('0'));
-				name += QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_HG_REVISION).arg(COMPILED_DEBUG_OR_RELEASE);
+                name += QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_GIT_REVISION).arg(COMPILED_DEBUG_OR_RELEASE);
 				backtraceFilename = print_backtrace(name);
 				exit(1);
 			}
@@ -9787,7 +9787,7 @@ void Texstudio::recoverFromCrash()
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 
 	if (nestedCrashes <= 2) {
-		backtraceFilename = print_backtrace(name + QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_HG_REVISION).arg(COMPILED_DEBUG_OR_RELEASE));
+        backtraceFilename = print_backtrace(name + QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_GIT_REVISION).arg(COMPILED_DEBUG_OR_RELEASE));
 	}
 
 	//hide editor views in case the error occured during drawing

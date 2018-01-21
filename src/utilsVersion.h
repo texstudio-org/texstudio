@@ -2,13 +2,13 @@
 #define UTILSVERSION_H
 
 #define TEXSTUDIO "TeXstudio"
-#define TXSVERSION "2.12.7"
+#define TXSVERSION "2.12.8"
 
-#define TXSVERSION_NUMERIC 0x021207
+#define TXSVERSION_NUMERIC 0x021208
 
 #define IS_DEVELOPMENT_VERSION (TXSVERSION_NUMERIC & 0x000001)
 
-extern const char *TEXSTUDIO_HG_REVISION;
+extern const char *TEXSTUDIO_GIT_REVISION;
 
 #ifdef QT_NO_DEBUG
 #define COMPILED_DEBUG_OR_RELEASE "R"
@@ -18,7 +18,7 @@ extern const char *TEXSTUDIO_HG_REVISION;
 
 #include "mostQtHeaders.h"
 
-int hgRevisionToInt(const char *);
+int gitRevisionToInt(const char *);
 
 class Version
 {
@@ -28,7 +28,7 @@ public:
 	static VersionCompareResult compareIntVersion(const QList<int> &v1, const QList<int> &v2);
 	static QList<int> parseVersionNumber(const QString &versionNumber);
 	static bool versionNumberIsValid(const QString &versionNumber);
-	static int parseHgRevisionNumber(const QString &revision);
+    static int parseGitRevisionNumber(const QString &revision);
 
 	Version() : revision(0) {}
 	Version(QString number, int rev = 0) : versionNumber(number), revision(rev) {}
@@ -37,7 +37,7 @@ public:
 	QString platform;       // "win" or "mac" or "linux"
 	QString versionNumber;  // "2.10.2"
 	QString type;           // "stable", "release candidate" or "development"
-	int revision;           // 5310
+    int revision;           // 5310, now changed to revision after tag as deliverd by "git describe"
 
 	bool operator > (const Version &other) const;
 
