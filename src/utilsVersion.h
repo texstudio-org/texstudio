@@ -32,6 +32,7 @@ public:
 
 	Version() : revision(0) {}
 	Version(QString number, int rev = 0) : versionNumber(number), revision(rev) {}
+    Version(QString number, QString tp,int rev = 0) : versionNumber(number), type(tp), revision(rev) {}
 	static Version current();
 
 	QString platform;       // "win" or "mac" or "linux"

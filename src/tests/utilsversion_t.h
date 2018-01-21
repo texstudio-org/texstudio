@@ -35,7 +35,7 @@ private slots:
 		QTest::newRow("invalid") << "2.4b" << "2.4" << (int) Version::Invalid;
 		QTest::newRow("twodigit") << "2.10.0" << "2.9.4" << (int) Version::Higher;
 		QTest::newRow("additionalText") << "2.10.0 Release Candidate" << "2.10.0" << (int) Version::Same;
-		QTest::newRow("additionalText2") << "2.10.0-RC" << "2.10.0" << (int) Version::Same;
+        QTest::newRow("additionalText2") << "2.10.0-RC" << "2.10.0" << (int) Version::Same;
 	}
 
 	void compareStringVersion() {
@@ -92,6 +92,40 @@ private slots:
 
 		QEQUAL(Version(ver1, rev1) > Version(ver2, rev2), expectedResult);
 	}
+
+    void operatorLarger2_data() {
+        QTest::addColumn<QString>("ver1");
+        QTest::addColumn<QString>("tp1");
+        QTest::addColumn<int>("rev1");
+        QTest::addColumn<QString>("ver2");
+        QTest::addColumn<QString>("tp2");
+        QTest::addColumn<int>("rev2");
+        QTest::addColumn<bool>("expectedResult");
+
+        QTest::newRow("larger1") << "2.3.1" << "stable" << 100 << "2.3" << "stable" << 100 << true;
+        QTest::newRow("larger2") << "2.3.2" << "stable" << 100 << "2.3.1" << "stable" << 100 << true;
+        QTest::newRow("larger3") << "2.4.1" << "stable" << 100 << "2.3.4" << "stable" << 100 << true;
+        QTest::newRow("larger4") << "2.4.1" << "stable" << 100 << "2.4.1" << "beta" << 100 << true;
+        QTest::newRow("larger5") << "2.4.1" << "stable" << 100 << "2.4.1" << "release candidate" << 100 << true;
+        QTest::newRow("larger6") << "2.4.1" << "stable" << 100 << "2.4.1" << "development" << 100 << true;
+        QTest::newRow("larger7") << "2.4.1" << "beta" << 2 << "2.4.1" << "beta" << 1 << true;
+        QTest::newRow("larger8") << "2.4.1" << "release candidate" << 1 << "2.4.1" << "beta" << 5 << true;
+        QTest::newRow("larger8") << "2.4.1" << "release candidate" << 1 << "2.4.1" << "development" << 5 << true;
+        QTest::newRow("larger8") << "2.4.1" << "beta" << 1 << "2.4.1" << "development" << 5 << true;
+
+    }
+
+    void operatorLarger2() {
+        QFETCH(QString, ver1);
+        QFETCH(QString, tp1);
+        QFETCH(int, rev1);
+        QFETCH(QString, ver2);
+        QFETCH(QString, tp2);
+        QFETCH(int, rev2);
+        QFETCH(bool, expectedResult);
+
+        QEQUAL(Version(ver1, tp1, rev1) > Version(ver2, tp2, rev2), expectedResult);
+    }
 
 private:
 	bool allTests;

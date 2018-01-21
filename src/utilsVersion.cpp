@@ -32,7 +32,7 @@ QList<int> Version::parseVersionNumber(const QString &versionNumber)
 
 bool Version::versionNumberIsValid(const QString &versionNumber)
 {
-	return (parseVersionNumber(versionNumber).length() == 3);
+    return ( (parseVersionNumber(versionNumber).length() == 3)||(parseVersionNumber(versionNumber).length() == 4));
 }
 
 
@@ -54,12 +54,17 @@ Version::VersionCompareResult Version::compareStringVersion(const QString &v1, c
 
 Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, const QList<int> &v2)
 {
-	if (v1.length() != 3 || v2.length() != 3)
+    if (v1.length() < 3 || v2.length() < 3)
 		return Invalid;
+    if (v1.length() > 4 || v2.length() > 4)
+        return Invalid;
 	for (int i=0; i<v1.count(); i++) {
+        if(i>=v2.count()) return Higher;
 		if (v1.at(i) < v2.at(i)) return Lower;
 		else if (v1.at(i) > v2.at(i)) return Higher;
 	}
+    if(v1.count()<v2.count())
+        return Lower;
 	return Same;
 }
 
@@ -70,6 +75,19 @@ Version Version::current()
 	if (s.endsWith('+'))
 		s = s.left(s.length() - 1);
 	v.revision = s.toInt();
+    if(QString(TEXSTUDIO_GIT_REVISION).contains("RC")||QString(TEXSTUDIO_GIT_REVISION).contains("rc")){
+        v.type="release candidate";
+    }
+    if(QString(TEXSTUDIO_GIT_REVISION).contains("beta")){
+        v.type="beta";
+    }
+    if(v.type.isEmpty()){
+        if(v.revision<2){
+            v.type="stable";
+        }else{
+            v.type="development";
+        }
+    }
 #if defined(Q_OS_WIN)
 	v.platform =  "win";
 #elif defined(Q_OS_MAC)
@@ -84,8 +102,21 @@ Version Version::current()
 bool Version::operator >(const Version &other) const
 {
 	VersionCompareResult res = compareStringVersion(versionNumber, other.versionNumber);
-	bool revisionLarger = (revision > 0 && other.revision > 0 && revision > other.revision);
-	return (res == Higher || (res == Same && revisionLarger));
+    if(res!=Same)
+        return (res == Higher);
+    if(type==other.type){
+        bool revisionLarger = (revision > 0 && other.revision > 0 && revision > other.revision);
+        return revisionLarger;
+    }
+    int lvl=3;
+    if(type=="release candidate") lvl=2;
+    if(type=="beta") lvl=1;
+    if(type=="development") lvl=0;
+    int lvl_other=3;
+    if(other.type=="release candidate") lvl_other=2;
+    if(other.type=="beta") lvl_other=1;
+    if(other.type=="development") lvl_other=0;
+    return lvl>lvl_other;
 }
 
 bool Version::isEmpty() const
