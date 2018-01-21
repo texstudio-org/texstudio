@@ -3,7 +3,7 @@
 
 int gitRevisionToInt(const char *)
 {
-    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').at(1);
+    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').value(1,"0");
 	if (s.endsWith('+'))
 		s = s.left(s.length() - 1);
 	return s.toInt();
@@ -66,7 +66,7 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
 Version Version::current()
 {
 	Version v(TXSVERSION);
-    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').at(1);
+    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').value(1,"0");
 	if (s.endsWith('+'))
 		s = s.left(s.length() - 1);
 	v.revision = s.toInt();
