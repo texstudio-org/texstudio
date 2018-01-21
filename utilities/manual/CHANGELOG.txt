@@ -1,3 +1,8 @@
+TeXstudio 2.12.8
+----------------
+- bug fixes
+- build for OSX High Sierra
+
 TeXstudio 2.12.6
 ----------------
 - use Breeze window theme on KDE Plasma 5 (thanks to Alexander Wilms)
@@ -890,7 +895,7 @@ TexMakerX 1.9
 - extended word completion system to use "kile"-word lists (*.cwl)
 - key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells
 - complete normal texttext by proposing earlier used text parts
-- "User Tags"” (user defined text blocks) can be inserted by using user defined abbreviations which replaced in the completion process
+- "User Tags"\94 (user defined text blocks) can be inserted by using user defined abbreviations which replaced in the completion process
 - user defined latex commands are automatically scanned and can be used for command completion
 - new documents can be created by using templates
 - extended and improved symbol panel
@@ -899,7 +904,7 @@ TexMakerX 1.9
 - preview for selected text in the status panel or as tool tip
 - status/log/error panel can also be used in a tabbed manner
 - online spell checking suppressed on (some) latex command options like \ref{label} and some more
-- fix: online spell checker handles escaped chars like “a or \”{a} now correctly
+- fix: online spell checker handles escaped chars like \93a or \\94{a} now correctly
 - context menu of the structure view: selecting a complete section or indenting a section
 - added a thesaurus was added
 - lots of bug fixes
