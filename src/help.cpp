@@ -191,6 +191,17 @@ void Help::texdocAvailableRequestFinished(int exitCode)
 	if (!proc) return;
 	QString package = proc->property("package").toString();
 	QString docCommand = proc->readAll();
+    if(!isMiktexTexdoc() && !docCommand.isEmpty()){
+        // analyze texdoc --list result in more detail, as it gives results even for partially matched names
+        QStringList lines=docCommand.split("\n");
+        QString line=lines.first();
+        QStringList cols=line.split("\t");
+        if(cols.count()>4){
+            if(cols.value(1).startsWith("-")){
+                docCommand.clear(); // only partial, no real match
+            }
+        }
+    }
 
 	emit texdocAvailableReply(package, !docCommand.isEmpty(), QString());
 	proc->deleteLater();
