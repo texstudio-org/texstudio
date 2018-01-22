@@ -394,7 +394,7 @@ OTHER_FILES += universalinputdialog.*
 
 # add mercurial revision
 exists(./.git)  {
-  win32: {
+  win32:isEmpty(MXE): {
     message(GIT)
     QMAKE_PRE_LINK += \"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
     LIBS += git_revision.o
