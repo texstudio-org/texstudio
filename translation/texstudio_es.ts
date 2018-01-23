@@ -69,7 +69,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="36"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio usa flowlayout a partir de ejemplos de Qt5.6.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -675,7 +675,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="buildmanager.cpp" line="1505"/>
         <source>Parent Command</source>
-        <translation type="unfinished"/>
+        <translation>Comando padre</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1506"/>
@@ -1104,17 +1104,17 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     <message>
         <location filename="configdialog.ui" line="1040"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar registro en caso de error de compilación</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1047"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Permite redefinir comandos usando comentarios de estilo&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; y &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. Véase el manual para más detalles.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1050"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation>Interpreta la definición del comando en comentarios mágicos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1080"/>
@@ -1159,7 +1159,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location filename="configdialog.ui" line="1160"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Muestra accesos directos en la ayuda emergente</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1183"/>
