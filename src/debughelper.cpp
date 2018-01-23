@@ -3,6 +3,12 @@
 #include "smallUsefulFunctions.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+//backtrace is only available on GNU libc
+#ifndef __GLIBC__
+#define NO_CRASH_HANDLER
+#endif
+
 #ifndef NO_CRASH_HANDLER
 #if (defined(x86_64) || defined(__x86_64__))
 #define CPU_IS_X86_64
@@ -408,7 +414,7 @@ QString temporaryFileNameFormat()
 	return QDir::tempPath() + QString("/texstudio_backtrace%1.txt");
 }
 
-#else
+#elif defined(__GLIBC__)
 #include "execinfo.h"
 QString temporaryFileNameFormat()
 {
