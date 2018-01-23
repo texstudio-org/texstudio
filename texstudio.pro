@@ -396,11 +396,11 @@ OTHER_FILES += universalinputdialog.*
 exists(./.git)  {
   win32:isEmpty(MXE): {
     message(GIT)
-    QMAKE_PRE_LINK += \"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
+    QMAKE_PRE_LINK += \"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
     LIBS += git_revision.o
   } else {
     message(GIT)
-    QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\"
+    QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
     LIBS += git_revision.o
   }
 } else {
