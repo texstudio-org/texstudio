@@ -4478,7 +4478,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexstructure.cpp" line="219"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>Nie znaleziono pliku.</translation>
     </message>
 </context>
 <context>
@@ -6041,7 +6041,7 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="633"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1441"/>
         <source>&amp;Select all</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz w&amp;szystko</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="645"/>
@@ -6053,7 +6053,7 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="653"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1444"/>
         <source>Fin&amp;d next</source>
-        <translation type="unfinished"/>
+        <translation>Znaj&amp;dź następny</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="661"/>

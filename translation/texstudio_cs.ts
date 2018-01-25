@@ -1781,22 +1781,22 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít prvek (Esc)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít pohled na zápis</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít vložený prohlížeč</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít režim na celou obrazovku</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -1811,7 +1811,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="2419"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"/>
+        <translation>Povolit přetažení a upuštění</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2456"/>
@@ -2149,7 +2149,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="3161"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky vložit matematické oddělovací znaky, kde jsou potřeba</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3171"/>
@@ -2542,7 +2542,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="configdialog.ui" line="4181"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"/>
+        <translation>Kruh bez stínu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4160"/>
@@ -3917,12 +3917,12 @@ hcete je odstranit?</translation>
     <message>
         <location filename="editors.cpp" line="406"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>Nastavit pouze pro čtení</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="408"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>Zrušit nastavení pouze pro čtení</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="413"/>
@@ -3932,7 +3932,7 @@ hcete je odstranit?</translation>
     <message>
         <location filename="editors.cpp" line="416"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít všechny ostatní dokumenty</translation>
     </message>
 </context>
 <context>
@@ -5384,7 +5384,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky skrýt nástrojový pruh</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -5674,7 +5674,7 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="600"/>
         <source>Words</source>
-        <translation>Celé slovo</translation>
+        <translation>Slova</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="601"/>
@@ -5690,7 +5690,7 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"/>
+        <translation>Seřídit editor při skočení na výsledky hledání.</translation>
     </message>
 </context>
 <context>
@@ -5789,7 +5789,7 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>Otevírání vnějších souborů je nyní podporováno jen pro PDF.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -8255,12 +8255,12 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Odstranit z nejoblíbenějších</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Přidat k nejoblíbenějším</translation>
     </message>
 </context>
 <context>
@@ -8269,19 +8269,19 @@ Důvěřujete tomuto skriptu?</translation>
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Operátory</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Symboly a operátory</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Šipky</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
@@ -8293,37 +8293,37 @@ Důvěřujete tomuto skriptu?</translation>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Řecké</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Cyrilické</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Různé matematické</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Různé textové</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="39"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>wasysym</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Zvláštní</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="75"/>
@@ -8343,7 +8343,7 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>Skupina</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
@@ -8361,7 +8361,7 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <location filename="syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>Nerozpoznané prostředí</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="499"/>
@@ -9037,7 +9037,7 @@ se nepodařilo odstranit.</translation>
         <location filename="texstudio.cpp" line="603"/>
         <location filename="texstudio.cpp" line="604"/>
         <source>Symbols</source>
-        <translation type="unfinished"/>
+        <translation>Symboly</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="606"/>
@@ -10054,12 +10054,12 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="1044"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Vložit program jako poznámku TeXu</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1045"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Vložit bibliografický nástrojjako poznámku TeXu</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1047"/>
@@ -10201,7 +10201,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="1141"/>
         <source>Close Element</source>
-        <translation type="unfinished"/>
+        <translation>Zavřít prvek</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1144"/>

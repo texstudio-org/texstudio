@@ -617,9 +617,9 @@ Please change your configuration and define command lists only at &apos;Options 
         <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation>Ожидается, что команда %1 неделима. Однако, сейчас она определена как цепь команд, состоящая из  %2 команд. Это не предусмотрено спецификацией и может привести к неожиданным побочным эффектам.
+        <translation>Ожидается, что команда %1 неделима. Однако сейчас она определена как цепь команд, состоящая из %2 команд. Это не предусмотрено спецификацией и может привести к неожиданным побочным эффектам.
 
-Пожалуйста, измените ваши настройки и определите списки команд только в &apos;Параметры -&gt; Конфигурация TeXstudio -&gt; Компиляция&apos;, а не в &apos;Параметры -&gt; Конфигурация TeXstudio -&gt; Команды&apos;.</translation>
+Пожалуйста, измените ваши настройки и определите списки команд только в «Параметры -&gt; Конфигурация TeXstudio -&gt; Компиляция», а не в «Параметры -&gt; Конфигурация TeXstudio -&gt; Команды».</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1017"/>
@@ -884,7 +884,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="453"/>
         <source>Restore Previous Session at Startup</source>
-        <translation>Восстанавлиать последнюю сессию при запуске</translation>
+        <translation>Восстанавливать последнюю сессию при запуске</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="460"/>
@@ -913,9 +913,9 @@ Please change your configuration and define command lists only at Options -&gt; 
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Определяет тип получаемых оповещений об обновлениях:
-- стабильные версии — выберите этот тип, если стабильность наиболее важна для вас.
-- релиз-кандидаты — близки к будущему релизу в отношении функциональности и стабильности. Выберите этот тип, чтобы получать предварительные версии будущих релизов и помочь нам тестированием версии перед тем, как она будет опубликована как официальный релиз. (Также получение оповещений о стабильных версиях.)
-- версии для разработчиков — содержат последнюю функциональность, но могут быть нестабильными. (Получение оповещений также о стабильных версиях и релиз-кандидатах.)</translation>
+— стабильные версии — выберите этот тип, если стабильность наиболее важна для вас.
+— релиз-кандидаты — близки к будущему релизу в отношении функциональности и стабильности. Выберите этот тип, чтобы получать предварительные версии будущих релизов и помочь нам тестированием версии перед тем, как она будет опубликована как официальный релиз. (Также получение оповещений о стабильных версиях.)
+— версии для разработчиков — содержат последнюю функциональность, но могут быть нестабильными. (Получение оповещений также о стабильных версиях и релиз-кандидатах.)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="508"/>
@@ -1783,7 +1783,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation>&quot;Закрыть элемент&quot; применяется к фиксированному списку элементов графического интерфейса (здесь не показан). Первый видимый элемент будет закрыт. С помощью этой настройки вы можете исключить некоторые элементы из списка на закрытие. </translation>
+        <translation>«Закрыть элемент» применяется к фиксированному списку элементов графического интерфейса (показаны не все). Первый видимый элемент будет закрыт. С помощью этой настройки вы можете исключить некоторые элементы из списка на закрытие. </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1130"/>
@@ -1818,7 +1818,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2419"/>
         <source>Allow Drag and Drop</source>
-        <translation>Позволять перетаскивание мышью</translation>
+        <translation>Разрешить перетаскивание мышью</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2456"/>
@@ -2151,12 +2151,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="3158"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation>Если математическая команда вставлена через дополнение вне какого-либо математического окружения, то $$ вставляется автоматически.</translation>
+        <translation>Если математическая команда вставлена через заполнение вне какого-либо математического окружения, то $$ вставляется автоматически.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3161"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation>Автоматически вводить математические разделители куда надо</translation>
+        <translation>Автоматически вводить математические разделители в нужное место</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3171"/>
@@ -2730,9 +2730,9 @@ Note: Changing this setting will only affect documents that are opened afterward
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
-        <translation>Введенная вами быстрая клавиша есть стандартная клавиша символа.
-Вы не сможете вводить этот символ. Хотите, тем не менее, задать 
-эту клавишу?</translation>
+        <translation>Введенная быстрая клавиша уже существует как стандартная клавиша символа.
+Вы не сможете вводить этот символ. Вы уверены, что хотите
+задать эту клавишу?</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="242"/>
@@ -3926,12 +3926,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="406"/>
         <source>Set Read-Only</source>
-        <translation>Установить режим только для чтения</translation>
+        <translation>Установить режим «Только для чтения»</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="408"/>
         <source>Unset Read-Only</source>
-        <translation>Снять режим только для чтения</translation>
+        <translation>Снять режим «Только для чтения»</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="413"/>
@@ -4558,7 +4558,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="540"/>
         <source>use yours</source>
-        <translation>использовать ваш</translation>
+        <translation>использовать свой</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="544"/>
@@ -5394,7 +5394,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
         <source>Auto-hide Toolbar</source>
-        <translation>Панель инструментов автосокрытия</translation>
+        <translation>Автоматически скрывать панель инструментов</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -5700,7 +5700,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation>Синхронизировать редактор при перепрыгивание на результаты поиска.</translation>
+        <translation>Синхронизировать редактор при перепрыгивании на результаты поиска.</translation>
     </message>
 </context>
 <context>
@@ -5799,7 +5799,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation>Открытие внешних файлов пока что поддерживается только для PDF-файлов.</translation>
+        <translation>Открытие внешних файлов пока что поддерживается только для PDF.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -8264,12 +8264,12 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation>Удалить из избранного</translation>
+        <translation>Удалить из «Избранного»</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation>Добавить в избранное</translation>
+        <translation>Добавить в «Избранное»</translation>
     </message>
 </context>
 <context>
@@ -10060,12 +10060,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1044"/>
         <source>Insert program as TeX comment</source>
-        <translation>Ввести программу как комментарий TeX</translation>
+        <translation>Вставить программу как комментарий TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1045"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation>Внести инструмент библиографии как комментарий TeX</translation>
+        <translation>Вставить инструмент библиографии как комментарий TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1047"/>
@@ -10817,12 +10817,12 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5922"/>
         <source>You cannot compile the document in a non writable directory.</source>
-        <translation>Вы не можете компилировать документ в директории, защищенной от записи.</translation>
+        <translation>Вы не можете компилировать документ в директории, защищённой от записи.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5924"/>
         <source>Could not start %1.</source>
-        <translation>Не удается запуститьt %1.</translation>
+        <translation>Не удаётся запустить %1.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5952"/>
@@ -10874,12 +10874,12 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="8354"/>
         <source>check in whole directory ?</source>
-        <translation>зарегистрировать целую директорию?</translation>
+        <translation>проверить во всей папке?</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8631"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
-        <translation>Внимание: диалог автоматически закроется при ручном редактировании текста!</translation>
+        <translation>Внимание: окно автоматически закроется при ручном редактировании текста!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8910"/>
