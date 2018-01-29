@@ -3,11 +3,11 @@
 # These three must be integers
 !define VERSIONMAJOR 2
 !define VERSIONMINOR 12
-!define VERSIONBUILD 7
+!define VERSIONBUILD 8
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
-!define HELPURL "http://texstudio.org" # "Support Information" link
-!define UPDATEURL "http://texstudio.org" # "Product Updates" link
+!define HELPURL "https://texstudio.org" # "Support Information" link
+!define UPDATEURL "https://texstudio.org" # "Product Updates" link
 !define ABOUTURL "https://texstudio.org" # "Publisher" link
 
 # define the name of the installer
