@@ -1115,6 +1115,9 @@ void SimulatedCPU::set_from_real()
 #else
 #error Unknown processor architecture
 #endif
+
+#undef geteip
+	
 geteip:
 	this->pc = (char *) && geteip;
 }
