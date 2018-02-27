@@ -344,8 +344,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setAcceptDrops(true);
 	//installEventFilter(this);
 
-	UpdateChecker::instance()->autoCheck();
-
 	completer = new LatexCompleter(latexParser, this);
 	completer->setConfig(configManager.completerConfig);
 	completer->setPackageList(&latexPackageList);
@@ -458,6 +456,7 @@ void Texstudio::startupCompleted()
 		buildManager.checkLatexConfiguration(noWarnAgain);
 		configManager.checkLatexConfiguration = !noWarnAgain;
 	}
+	UpdateChecker::instance()->autoCheck();
 	// package reading (at least with Miktex) apparently slows down the startup
 	// the first rendering of lines in QDocumentPrivate::draw() gets very slow
 	// therefore we defer it until the main window is completely loaded
