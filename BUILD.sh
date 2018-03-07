@@ -64,8 +64,7 @@ case "$OPTION_DEBUG" in
   d|deb|debug) readoption "Do you want to include tests in the debug build?" yes; OPTION_TESTS=$NEWVALUE;;
   *) OPTION_TESTS=yes;;
 esac
-NCORES=$(grep -c ^processor /proc/cpuinfo)
-readvalue "Do you want to build using how many cores? (suggested $NCORES)" 1;
+readvalue "Do you want to build using how many cores?" 4;
 OPTION_CORES=$NEWVALUE
 if [ "$OPTION_CORES" -lt 1 ] || [ "$OPTION_CORES" -gt 8 ]; then
 CORES=1
