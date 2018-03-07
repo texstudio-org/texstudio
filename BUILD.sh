@@ -64,13 +64,6 @@ case "$OPTION_DEBUG" in
   d|deb|debug) readoption "Do you want to include tests in the debug build?" yes; OPTION_TESTS=$NEWVALUE;;
   *) OPTION_TESTS=yes;;
 esac
-readvalue "Do you want to build using how many cores?" 4;
-OPTION_CORES=$NEWVALUE
-if [ "$OPTION_CORES" -lt 1 ] || [ "$OPTION_CORES" -gt 8 ]; then
-CORES=1
-else
-CORES=$OPTION_CORES
-fi
 
 if [ ! -f $QTDIR/bin/qmake ]; then 
 echo "Warning, QT path may be invalid"
@@ -96,7 +89,7 @@ if [ "$SYSTEM" = 1 ]
 then
   echo "Starting compilation"
   $QMAKE PREFIX=$PREFIX $TXSCOMPILEOPTIONS texstudio.pro
-  make -j $CORES
+  make -j 4
   echo "Compilation done"
   make install
   echo "Compilation and installation done"
