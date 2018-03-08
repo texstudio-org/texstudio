@@ -956,7 +956,11 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 	} else {
 		line = text.mid(startCol, endCol - startCol).trimmed();
 		endCol += 2; // now behind "\\"
-
+        // check for line break with * (nopagebreak, i.e. \\*)
+        if (endCol < text.length() - 1 && text[endCol] == '*') {
+            endCol++;
+            lineBreakOption = "*";
+        }
 		// check for line break with option, e.g. \\[1em]
 		if (endCol < text.length() - 1 && text[endCol] == '[') {
 			int startOpt = endCol;
@@ -965,7 +969,7 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 				UtilsUi::txsWarning("Could not parse table code: Missing closing bracket: \\[");
 				return 0;
 			}
-			lineBreakOption = text.mid(startOpt, endOpt - startOpt + 1).trimmed();
+            lineBreakOption += text.mid(startOpt, endOpt - startOpt + 1).trimmed();
 			endCol = endOpt + 1;
 		}
 	}
