@@ -80,7 +80,6 @@ if [ "$OPTION_PHONON" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS PHONON
 if [ "$OPTION_TESTS" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_TESTS=true"; fi
 case "$OPTION_DEBUG" in r|rel|release) TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS  CONFIG-=debug CONFIG-=debug_and_release CONFIG+=release";; esac
 
-
 PATH=$QTDIR/bin:$PATH
 LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
 DYLD_LIBRARY_PATH=$QTDIR/lib:$DYLD_LIBRARY_PATH
@@ -90,7 +89,7 @@ if [ "$SYSTEM" = 1 ]
 then
   echo "Starting compilation"
   $QMAKE PREFIX=$PREFIX $TXSCOMPILEOPTIONS texstudio.pro
-  make
+  make -j 4
   echo "Compilation done"
   make install
   echo "Compilation and installation done"
