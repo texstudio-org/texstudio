@@ -191,7 +191,7 @@
 \glspluralsuffix#S
 \glspostdescription#S
 \glsrefentry{arg1}#S
-\glsresetall{arg1}#S
+\glsresetall[glossaryList]#*
 \glsresetentrycounter#S
 \glsresetentrylist#S
 \glsresetsubentrycounter#S
@@ -214,8 +214,7 @@
 \glssymbolsgroupname#S
 \glstarget{arg1}{arg2}#S
 \glstextformat{arg1}#S
-\glsunsetall{arg1}#S
-\glsunset{arg1}#S
+\glsunsetall[glossaryList]#*
 \glswritefiles#S
 \hyperbf{arg1}#S
 \hyperemph{arg1}#S
@@ -416,8 +415,8 @@
 \glskeylisttok#S
 \glslabeltok#S
 \glslink#S
-\glslocalreset#S
-\glslocalunset#S
+\glslocalreset{label}#*
+\glslocalunset{label}#*
 \glslongtok#S
 \glsname#S
 \glsnonumberlistfalse#S
@@ -447,7 +446,7 @@
 \glstranslatetrue#S
 \glsucmarkfalse#S
 \glsucmarktrue#S
-\glsunset#S
+\glsunset{label}#*
 \glsuseri#S
 \glsuserii#S
 \glsuseriii#S
