@@ -1973,7 +1973,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	documents.updateMasterSlaveRelations(doc, recheck);
 
-	if (recheck) {
+    if (recheck || hidden) {
 		doc->updateLtxCommands();
 	}
 
