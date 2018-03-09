@@ -167,6 +167,9 @@ public:
 	QString logFileEncoding, bibFileEncoding;
 	bool autoLoadChildren;
 
+    // insert cite command, when no context available
+    QString citeCommand;
+
 	//autosave
 	int autosaveEveryMinutes;
 

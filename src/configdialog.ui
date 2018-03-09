@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>11</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -905,7 +905,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>208</width>
+                   <width>224</width>
                    <height>70</height>
                   </rect>
                  </property>
@@ -943,7 +943,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="images.qrc">
+                     <iconset resource="../images.qrc">
                       <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                     </property>
                    </widget>
@@ -977,7 +977,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="images.qrc">
+                     <iconset resource="../images.qrc">
                       <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                     </property>
                    </widget>
@@ -994,7 +994,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="images.qrc">
+                     <iconset resource="../images.qrc">
                       <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                     </property>
                    </widget>
@@ -1284,7 +1284,7 @@ Then you can select a new shortcut by one of the following ways:
               <string/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../images.qrc">
                <normaloff>:/images-ng/left.svgz</normaloff>:/images-ng/left.svgz</iconset>
              </property>
             </widget>
@@ -1298,7 +1298,7 @@ Then you can select a new shortcut by one of the following ways:
               <string notr="true"/>
              </property>
              <property name="icon">
-              <iconset resource="images.qrc">
+              <iconset resource="../images.qrc">
                <normaloff>:/images-ng/right.svgz</normaloff>:/images-ng/right.svgz</iconset>
              </property>
             </widget>
@@ -1916,9 +1916,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>-308</y>
             <width>868</width>
-            <height>1561</height>
+            <height>1588</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2267,20 +2267,6 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="16" column="0" colspan="2">
-               <widget class="QCheckBox" name="checkBoxMonitorFilesForExternalChanges">
-                <property name="text">
-                 <string>Monitor open files for external changes</string>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_82">
-                <property name="text">
-                 <string>Triple-Click Selection:</string>
-                </property>
-               </widget>
-              </item>
               <item row="10" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxTripleClickSelection">
                 <item>
@@ -2308,6 +2294,20 @@ Then you can select a new shortcut by one of the following ways:
                   <string>Select Line</string>
                  </property>
                 </item>
+               </widget>
+              </item>
+              <item row="16" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxMonitorFilesForExternalChanges">
+                <property name="text">
+                 <string>Monitor open files for external changes</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_82">
+                <property name="text">
+                 <string>Triple-Click Selection:</string>
+                </property>
                </widget>
               </item>
               <item row="15" column="0" colspan="2">
@@ -2354,24 +2354,6 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="19" column="0">
-               <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
-                <property name="toolTip">
-                 <string>When using unicode characters in the source code, LaTeX still has
-to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
-                </property>
-                <property name="text">
-                 <string>Insert Symbol as Unicode</string>
-                </property>
-               </widget>
-              </item>
-              <item row="20" column="2">
-               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
-                <property name="text">
-                 <string>Go to error when displaying log</string>
-                </property>
-               </widget>
-              </item>
               <item row="11" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxLineWrap">
                 <item>
@@ -2396,6 +2378,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </item>
                </widget>
               </item>
+              <item row="19" column="0">
+               <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
+                <property name="toolTip">
+                 <string>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
+                </property>
+                <property name="text">
+                 <string>Insert Symbol as Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="20" column="2">
+               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
+                <property name="text">
+                 <string>Go to error when displaying log</string>
+                </property>
+               </widget>
+              </item>
+              <item row="22" column="1" colspan="2">
+               <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
+              </item>
               <item row="3" column="2" colspan="2">
                <widget class="QCheckBox" name="checkBoxImageToolTip">
                 <property name="text">
@@ -2410,15 +2413,25 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="22" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
-              </item>
               <item row="6" column="0" colspan="2">
                <widget class="QCheckBox" name="checkBoxAllowDragAndDrop">
                 <property name="text">
                  <string>Allow Drag and Drop</string>
                 </property>
                </widget>
+              </item>
+              <item row="24" column="0">
+               <widget class="QLabel" name="label_85">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs can push citations into texstudio by calling texstudio --insert-cite &amp;quot;citation&amp;quot;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the command given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Latex Command for pushed citations:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="24" column="1" colspan="2">
+               <widget class="QLineEdit" name="lineEditCiteCommand"/>
               </item>
              </layout>
             </widget>
@@ -2607,7 +2620,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
@@ -2618,7 +2631,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
@@ -3266,7 +3279,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
@@ -3317,7 +3330,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
@@ -3463,7 +3476,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
@@ -3524,7 +3537,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
@@ -3666,7 +3679,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
@@ -3680,7 +3693,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/edit-undo.svg</normaloff>:/images-ng/edit-undo.svg</iconset>
                 </property>
                </widget>
@@ -3708,7 +3721,7 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="images.qrc">
+                 <iconset resource="../images.qrc">
                   <normaloff>:/images-ng/edit-undo.svg</normaloff>:/images-ng/edit-undo.svg</iconset>
                 </property>
                </widget>
@@ -4628,7 +4641,7 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>

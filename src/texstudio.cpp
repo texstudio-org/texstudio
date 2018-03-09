@@ -4779,7 +4779,7 @@ void Texstudio::insertCitation(const QString &text)
 	// which causes a crash when determining the insertCol later on.
 	if (context == LatexParser::Citation && cursorCol == line.length() && cursorCol > 0) cursorCol--;
 
-	// if cursor is directly behind a cite command, isert into that command
+    // if cursor is directly behind a cite command, insert into that command
 	if (context != LatexParser::Citation && cursorCol > 0) {
 		LatexParser::ContextType prevContext = LatexParser::Unknown;
 		prevContext = latexParser.findContext(line, cursorCol - 1, command, value);
@@ -4811,7 +4811,7 @@ void Texstudio::insertCitation(const QString &text)
 	} else {
 		QString tag;
 		if (citeCmd.isEmpty())
-			tag = citeCmd = "\\cite{" + citeKey + "}";
+            tag = citeCmd = configManager.citeCommand+"{" + citeKey + "}";
 		else
 			tag = text;
 		insertTag(tag, tag.length());

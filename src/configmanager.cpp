@@ -586,6 +586,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
     registerOption("Editor/todo comment regExp", &editorConfig->regExpTodoComment, "%\\s*(TODO|todo)",&pseudoDialog->leRegExpTODO);
 
+    registerOption("Editor/insertCiteCommand",&citeCommand,"\\cite",&pseudoDialog->lineEditCiteCommand);
+
 	//table autoformating
 	registerOption("TableAutoformat/Special Commands", &tableAutoFormatSpecialCommands, "\\hline,\\cline,\\intertext,\\shortintertext,\\toprule,\\midrule,\\bottomrule", &pseudoDialog->leTableFormatingSpecialCommands);
 	registerOption("TableAutoformat/Special Command Position", &tableAutoFormatSpecialCommandPos, 0, &pseudoDialog->cbTableFormatingSpecialCommandPos);
