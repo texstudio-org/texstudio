@@ -1916,7 +1916,7 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-308</y>
+            <y>-441</y>
             <width>868</width>
             <height>1588</height>
            </rect>
@@ -2423,7 +2423,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
               <item row="24" column="0">
                <widget class="QLabel" name="label_85">
                 <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs can push citations into texstudio by calling texstudio --insert-cite &amp;quot;citation&amp;quot;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the command given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:'monospace';&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
                  <string>Latex Command for pushed citations:</string>
