@@ -661,6 +661,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if (arg.contains("keys") || arg == "keyvals" || arg == "%<options%>") return Token::keyValArg;
 	if (arg == "options") return Token::packageoption;
 	if (arg == "class") return Token::documentclass;
+    if (arg == "formula") return Token::formula;
 	if (arg == "beamertheme") return Token::beamertheme;
 	if (arg == "keylist" || arg == "bibid") return Token::bibItem;
 	if (arg == "placement" || arg == "position") return Token::placement;

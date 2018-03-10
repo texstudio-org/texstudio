@@ -25,8 +25,8 @@
 # Chapter 4. The Basic Principle
 #
 #
-\ch{input}
-\ch[%<options%>]{input}
+\ch{formula}
+\ch[%<options%>]{formula}
 #
 #
 # Chapter 5. Stoichiometric Factors
