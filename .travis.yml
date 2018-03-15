@@ -29,8 +29,10 @@ script:
 - if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
 after_success:
 - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
-deploy:
-  - provider: bintray
+deploy: 
+  - edge:
+      branch: v1.8.47
+    provider: bintray
     skip_cleanup: true
     file: ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
     user: sunderme
