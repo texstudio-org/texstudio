@@ -296,7 +296,7 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("dvips",       "dvips",        "DviPs",       "-o %.ps %.dvi", "Tools/Dvips");
 	registerCommand("dvipng",      "dvipng",       "DviPng",      "-T tight -D 120 %.dvi", "Tools/Dvipng");
 	registerCommand("ps2pdf",      "ps2pdf",       "Ps2Pdf",      "%.ps", "Tools/Ps2pdf");
-	registerCommand("dvipdf",      "dvipdf;dvipdfm",       "DviPdf",      "%.dvi", "Tools/Dvipdf");
+	registerCommand("dvipdf",      "dvipdfmx",       "DviPdf",      "%.dvi", "Tools/Dvipdf");
 	registerCommand("bibtex",      "bibtex",       "BibTeX",       ON_WIN("%") ON_NIX("%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
 	registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", ON_WIN("%") ON_NIX("%.aux"));
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
@@ -1501,7 +1501,7 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 	// check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
 	foreach (const CommandToRun elem, expansion.commands) {
 		if (elem.command.isEmpty()) {
-			emit processNotification(tr("Error: One command expansion invalid.") + 
+			emit processNotification(tr("Error: One command expansion invalid.") +
 			                         QString("\n    %1: %2").arg(tr("Parent Command"), elem.parentCommand) +
 			                         QString("\n    %1: %2").arg(tr("Primary Command"), expansion.primaryCommand));
 			if (!BuildManager_hadSuccessfulProcessStart) {
@@ -2003,7 +2003,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		QString processedFile = p1->getFile();
 		if (processedFile.endsWith(".tex"))
 			processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", processedFile).first());
-			// TODO: fromNativeSeparators is a workaround to fix bug 
+			// TODO: fromNativeSeparators is a workaround to fix bug
 			// yields different dir separators depending on the context. This should be fixed (which direction?).
 			// Test (on win): switch preview between dvipng and pdflatex
 		QString fn = parseExtendedCommandLine("?am).pdf", processedFile).first();
