@@ -33,9 +33,9 @@ QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, B
 
 // *INDENT-OFF* (astyle-config)
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
-CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(LATEXMK, latexmk)
+CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(PLATEX, platex) CMD_DEFINE(UPLATEX, uplatex) CMD_DEFINE(LATEXMK, latexmk)
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
-CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(BIBTEX8, bibtex8) CMD_DEFINE(BIBER, biber) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
+CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MENDEX, mendex) CMD_DEFINE(UPMENDEX, upmendex) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(BIBTEX8, bibtex8) CMD_DEFINE(BIBER, biber) CMD_DEFINE(PBIBTEX, pbibtex) CMD_DEFINE(UPBIBTEX, upbibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
 CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(GLOSSARY, glossary) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
 CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
@@ -44,7 +44,7 @@ CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
 
 //! These commands should not consist of a command list, but rather a single command.
 //! Otherwise surpising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
-const QStringList atomicCommands = QStringList() << "txs:///latex" << "txs:///pdflatex" << "txs:///xelatex"<< "txs:///lualatex" << "txs:///latexmk";
+const QStringList atomicCommands = QStringList() << "txs:///latex" << "txs:///pdflatex" << "txs:///xelatex" << "txs:///lualatex" << "txs:///platex" << "txs:///uplatex" << "txs:///latexmk";
 
 QString searchBaseCommand(const QString &cmd, QString options);
 QString getCommandLineViewDvi();
@@ -290,6 +290,8 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("pdflatex",    "pdflatex",     "PdfLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "Tools/Pdflatex");
 	registerCommand("xelatex",     "xelatex",      "XeLaTeX",     "-synctex=1 -interaction=nonstopmode %.tex", "");
 	registerCommand("lualatex",    "lualatex",     "LuaLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "");
+	registerCommand("platex",      "platex",       tr("pLaTeX (Japanese)"), "-synctex=1 -interaction=nonstopmode %.tex", "");
+	registerCommand("uplatex",     "uplatex",      tr("upLaTeX (Japanese)"), "-synctex=1 -interaction=nonstopmode %.tex", "");
 	registerCommand("view-dvi",    "",             tr("DVI Viewer"), "%.dvi", "Tools/Dvi", &getCommandLineViewDvi);
 	registerCommand("view-ps",     "",             tr("PS Viewer"), "%.ps", "Tools/Ps", &getCommandLineViewPs);
 	registerCommand("view-pdf-external", "",        tr("External PDF Viewer"), "%.pdf", "Tools/Pdf", &getCommandLineViewPdfExternal);
@@ -300,7 +302,11 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("bibtex",      "bibtex",       "BibTeX",       ON_WIN("%") ON_NIX("%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
 	registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", ON_WIN("%") ON_NIX("%.aux"));
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
+	registerCommand("pbibtex",     "pbibtex", tr("pBibTeX (Japanese)"), ON_WIN("%") ON_NIX("%.aux"));
+	registerCommand("upbibtex",    "upbibtex", tr("upBibTeX (Japanese)"), ON_WIN("%") ON_NIX("%.aux"));
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
+	registerCommand("mendex",   "mendex",    tr("Mendex (Japanese)"),   "-U %.idx");
+	registerCommand("upmendex",   "upmendex",    tr("upMendex (Japanese)"),   "%.idx");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
 	registerCommand("makeglossaries", "makeglossaries", "Makeglossaries", "%");
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
@@ -314,8 +320,8 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("quick", tr("Build & View"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick", true, descriptionList);
 
 	descriptionList.clear();
-	descriptionList << tr("PdfLaTeX") << tr("LaTeX") << tr("XeLaTeX") << tr("LuaLaTeX") << tr("Latexmk");
-	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs:///lualatex" << "txs:///latexmk", "", true, descriptionList);
+	descriptionList << tr("PdfLaTeX") << tr("LaTeX") << tr("XeLaTeX") << tr("LuaLaTeX") << tr("pLaTeX (Japanese)") << tr("upLaTeX (Japanese)") << tr("Latexmk");
+	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs:///lualatex" << "txs:///platex" << "txs:///uplatex" << "txs:///latexmk", "", true, descriptionList);
 	descriptionList.clear();
 	descriptionList << tr("PDF Viewer") << tr("DVI Viewer") << tr("PS Viewer");
 	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps", "", true, descriptionList);
@@ -323,11 +329,11 @@ void BuildManager::initDefaultCommandNames()
 	descriptionList << tr("Internal PDF Viewer (Embedded)") << tr("Internal PDF Viewer (Windowed)")  << tr("External PDF Viewer");
 	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-internal" << "txs:///view-pdf-external", "", true, descriptionList);
 	descriptionList.clear();
-	descriptionList << tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
-	registerCommand("bibliography", tr("Default Bibliography Tool"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber", "", true, descriptionList);
+	descriptionList << tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber") << tr("pBibTeX (Japanese)") << tr("upBibTeX (Japanese)");
+	registerCommand("bibliography", tr("Default Bibliography Tool"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber" << "txs:///pbibtex" << "txs:///upbibtex", "", true, descriptionList);
 	descriptionList.clear();
-	descriptionList << tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
-	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy", "", true, descriptionList);
+	descriptionList << tr("MakeIndex") << tr("TexIndy") << tr("Mendex (Japanese)") << tr("upMendex (Japanese)");
+	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy" << "txs:///mendex" << "txs:///upmendex", "", true, descriptionList);
 	descriptionList.clear();
 	descriptionList << tr("Makeglossaries");
 	registerCommand("glossary", tr("Default Glossary Tool"), QStringList() << "txs:///makeglossaries", "", true, descriptionList);
@@ -1907,8 +1913,8 @@ void BuildManager::setAllCommands(const CommandMapping &cmds, const QStringList 
 	static QStringList latexCommandsUnexpanded, rerunnableCommandsUnexpanded, pdfCommandsUnexpanded, stdoutCommandsUnexpanded, viewerCommandsUnexpanded;
 	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/LaTeX", &latexCommandsUnexpanded, QStringList() << "latex" << "pdflatex" << "xelatex" << "lualatex" << "latexmk" << "compile");
 	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Rerunnable", &rerunnableCommandsUnexpanded, QStringList() << "latex" << "pdflatex" << "xelatex" << "lualatex");
-	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Pdf", &pdfCommandsUnexpanded, QStringList() << "pdflatex" << "xelatex" << "lualatex" << "latexmk" << "dvipdf" << "ps2pdf");
-	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Stdout", &stdoutCommandsUnexpanded, QStringList() << "bibtex" << "biber" << "bibtex8" << "bibliography");
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Pdf", &pdfCommandsUnexpanded, QStringList() << "pdflatex" << "xelatex" << "lualatex" << "platex" << "uplatex" << "latexmk" << "dvipdf" << "ps2pdf");
+	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Stdout", &stdoutCommandsUnexpanded, QStringList() << "bibtex" << "biber" << "bibtex8" << "pbibtex" << "upbibtex" << "bibliography");
 	ConfigManagerInterface::getInstance()->registerOption("Tools/Kind/Viewer", &viewerCommandsUnexpanded, QStringList() << "view-pdf" << "view-ps" << "view-dvi" << "view-pdf-internal" << "view-pdf-external" << "view");
 
 	QList<QStringList *> lists = QList<QStringList *>() << &latexCommands << &rerunnableCommands << &pdfCommands << &stdoutCommands << &viewerCommands;
@@ -1933,6 +1939,8 @@ QString BuildManager::guessCompilerFromProgramMagicComment(const QString &progra
 	else if (program == "pdflatex") return BuildManager::CMD_PDFLATEX;
 	else if (program == "xelatex") return BuildManager::CMD_XELATEX;
 	else if (program == "luatex" || program == "lualatex") return BuildManager::CMD_LUALATEX;
+	else if (program == "platex") return BuildManager::CMD_PLATEX;
+	else if (program == "uplatex") return BuildManager::CMD_UPLATEX;
 	return QString();
 
 }

@@ -2750,7 +2750,7 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 	int off = 1;
 
 	// rerun button
-	static QStringList rerunnable = QStringList() << "latex" << "pdflatex" << "lualatex" << "xelatex" << "quick" << "compile" << "ps-chain" << "dvi-chain" << "pdf-chain" << "dvi-pdf-chain" << "dvi-ps-pdf-chain" << "asy-dvi-chain" << "asy-pdf-chain" << "pre-compile" << "internal-pre-compile" << "recompile-bibliography";
+	static QStringList rerunnable = QStringList() << "latex" << "pdflatex" << "lualatex" << "xelatex" << "platex"<< "uplatex" << "quick" << "compile" << "ps-chain" << "dvi-chain" << "pdf-chain" << "dvi-pdf-chain" << "dvi-ps-pdf-chain" << "asy-dvi-chain" << "asy-pdf-chain" << "pre-compile" << "internal-pre-compile" << "recompile-bibliography";
 	if (cmd.user || rerunnable.contains(cmd.id)) {
 		QIcon icon;
 		pb = new QPushButton();
