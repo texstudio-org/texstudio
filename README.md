@@ -1,53 +1,78 @@
-#TeXstudio [![Build Status](https://travis-ci.org/texstudio-org/texstudio.svg?branch=master)](https://travis-ci.org/texstudio-org/texstudio)
+# TeXstudio [![Build Status](https://travis-ci.org/texstudio-org/texstudio.svg?branch=master)](https://travis-ci.org/texstudio-org/texstudio)
+
 
 TeXstudio is a fully featured LaTeX editor. Our goal is to make writing LaTeX documents as easy and comfortable as possible. Some of the outstanding features of TeXstudio are an integrated pdf viewer with (almost) word-level synchronization, live inline preview, advanced syntax-highlighting, live checking of references, citations, latex commands, spelling and grammar. Find out more at our website.
 
-##Features 
+## Features 
 
-###Comfortable Editing
 
-* Multi-Cursors  [!Multi-Cursors](https://texstudio.org/images/block-cursor.png)
+### Comfortable Editing
+ 
+
+* Multi-Cursors  
+
 
 Edit multiple positions at the same time. Vertical blocks can even be copied and pasted.
 
-* Auto completion [!Auto completion](https://texstudio.org/images/link-overlay.png)
+![Multi-Cursors](https://texstudio.org/images/block-cursor.png)
+
+* Auto completion 
+
 
 Suggests possible LaTeX commands as you type. There is a tooltip help explaining the command.
 
 Completion works also for references and bibliography entries.
 
-* More than 1000 mathematical symbols [!Symbols](https://texstudio.org/images/symbols.png)
+![Auto completion](https://texstudio.org/images/link-overlay.png)
+
+* More than 1000 mathematical symbols 
+
 
 Quick access to more than 1000 mathematical symbols.
 
-* Bookmarks [!](https://texstudio.org/images/bookmarks.png)
+![Symbols](https://texstudio.org/images/symbols.png)
+
+* Bookmarks 
+
 
 Use bookmarks too keep references to important places in your text and to navigate there quickly.
 
 Tooltips show a preview of the code position.
 
-* Link overlay [!](https://texstudio.org/images/link-overlay.png)
+![Bookmarks](https://texstudio.org/images/bookmarks.png)
+
+* Link overlays 
+
 
 Filenames, references and citations turn into links when moving the mouse over them while holding <Ctrl>.
 
 Also here, tooltips show a preview of the code position.
 
-* Assistants for images, tables, formulas, ... [!](https://texstudio.org/images/assistants.png)
+![Link overlays](https://texstudio.org/images/link-overlay.png)
+
+* Assistants for images, tables, formulas, ... 
+
 
 Generate blocks of code using assistants without the need for detailed LaTeX knowledge.
 
-* Drag & drop support for images [!](https://texstudio.org/images/dragdropimages.png)
+![assistants](https://texstudio.org/images/assistants.png)
+
+* Drag & drop support for images 
 
 When you drag an image on the editor the image assistant opens. From there it's just one more click to have the code for the image inclusion. Of course, we try to make the paths relative. This also works with multiple images.
 
-* Table-formatting [!](https://texstudio.org/images/table-formating.png)
+![drag & drop](https://texstudio.org/images/dragdropimages.png)
+
+* Table-formatting 
 
 
 You can copy / paste / insert new table columns with a single click.
 
 The table-autoformatter aligns the table code.
 
-###Keep The Overview
+![table formatting](https://texstudio.org/images/table-formating.png)
+
+### Keep The Overview
 
 
 *  Structure view
@@ -58,9 +83,9 @@ The table-autoformatter aligns the table code.
 *  Interactive reference checker
 *  Clear display of LaTeX errors and warnings (in editor and as list)
 
-[!Inline Checking](https://texstudio.org/images/inlineChecking_zoom.png)
+![Inline Checking](https://texstudio.org/images/inlineChecking_zoom.png)
 
-###Advanced build system
+### Advanced build system
 
 
 * Built-in support for various LaTeX compilers, index, bibliography and glossary tools, Latexmk, and many more
@@ -68,9 +93,9 @@ The table-autoformatter aligns the table code.
 * Run any program you like
 * Completely customizable for the creation of the complete document
 
-[!Error Highlighting](https://texstudio.org/images/errorHighlighting_zoom.png)
+![Error Highlighting](https://texstudio.org/images/errorHighlighting_zoom.png)
 
-###View The Result
+### View The Result
 
 
 * Integrated PDF viewer with (almost) word-level syncing
@@ -78,7 +103,7 @@ The table-autoformatter aligns the table code.
 * Tooltip preview for included images
 
 
-###Easy Setup
+### Easy Setup
 
 
 * Installers or packages available for Windows, Linux and Mac OS X
@@ -86,17 +111,17 @@ The table-autoformatter aligns the table code.
 * Automatic detection of MikTeX, TeX Live, Ghostscript and Standardlatex
 * SVN support
 
-##Participate
+## Participate
 
 As an open source project TeXstudio strongly benefits from an active community.
 
-###Use and spread the word
-
+### Use and spread the word
+ 
 The easiest way to help on the development with TeXstudio is to use it! Furthermore, if you like TeXstudio, tell all your friends and colleagues about it.
 
 In particular we are looking for people who want to try the most recent features before they are officially released. If you are interested download and subscribe to [release candidates and development snapshots](https://texstudio.org/#snapshots).
 
-###Give Feedback
+### Give Feedback
 
 User feedback is highly welcome. Depending on the type of feedback you may use different channels to communicate.
 
@@ -104,7 +129,7 @@ User feedback is highly welcome. Depending on the type of feedback you may use d
 Please set a label whether this is a feature request/enhancement, a question or a bug report. 
 In case of a bug report, please state version and operation system and a description which allows to reproduce the issue on another computer.
 
-###Contribute
+### Contribute
 
 You do not necessarily have to be a programmer to help and make TeXstudio even better. There are many ways to contribute.
 
