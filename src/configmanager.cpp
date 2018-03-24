@@ -1945,9 +1945,10 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems)
 		newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));
 	}
 	// update quote replacement
-	if (replaceQuotes >= 1 && replaceQuotes < 8) {
-		static const char *open[8] = {"",  "``", "\"<", "\"`", "\\og ",  "\">", "\\enquote{", "\xE2\x80\x9C" /*“*/};
-		static const char *close[8] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"         , "\xE2\x80\x9D" /*”*/};
+	const int autoQuoteCount = 9;
+	if (replaceQuotes >= 1 && replaceQuotes < autoQuoteCount) {
+		static const char *open[autoQuoteCount] = {"",  "``", "\"<", "\"`", "\\og ",  "\">", "\\enquote{", "\xE2\x80\x9C" /*“*/, ",,"};
+		static const char *close[autoQuoteCount] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"         , "\xE2\x80\x9D" /*”*/, "''"};
 		completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, QString::fromUtf8(open[replaceQuotes]), "", "(?language:latex)(?<=\\s|[(:]|^)\""));
 		completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, QString::fromUtf8(close[replaceQuotes]), "", "(?language:latex)(?<=\\S)\""));
 	}
