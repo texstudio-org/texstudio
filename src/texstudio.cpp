@@ -971,6 +971,8 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "pdflatex", tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), "compile-pdf")->setData(BuildManager::CMD_PDFLATEX);
 	newManagedAction(submenu, "xelatex", "&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), "compile-xelatex")->setData(BuildManager::CMD_XELATEX);
 	newManagedAction(submenu, "lualatex", "L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), "compile-lua")->setData(BuildManager::CMD_LUALATEX);
+	newManagedAction(submenu, "platex", "pLaTeX (Japanese)", SLOT(commandFromAction()), QKeySequence(), "compile-platex")->setData(BuildManager::CMD_PLATEX);
+	newManagedAction(submenu, "uplatex", "upLaTeX (Japanese)", SLOT(commandFromAction()), QKeySequence(), "compile-uplatex")->setData(BuildManager::CMD_UPLATEX);
 	submenu->addSeparator();
 	newManagedAction(submenu, "dvi2ps", tr("DVI->PS"), SLOT(commandFromAction()), QKeySequence(), "convert-dvips")->setData(BuildManager::CMD_DVIPS);
 	newManagedAction(submenu, "ps2pdf", tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), "convert-pspdf")->setData(BuildManager::CMD_PS2PDF);
@@ -983,9 +985,13 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "bibtex", tr("&Bibtex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBTEX);
 	newManagedAction(submenu, "bibtex8", tr("&Bibtex 8-Bit"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBTEX8);
 	newManagedAction(submenu, "biber", tr("Bibe&r"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBER);
+	newManagedAction(submenu, "pbibtex", tr("pBibtex (Japanese)"), SLOT(commandFromAction()))->setData(BuildManager::CMD_PBIBTEX);
+	newManagedAction(submenu, "upbibtex", tr("upBibtex (Japanese)"), SLOT(commandFromAction()))->setData(BuildManager::CMD_UPBIBTEX);
 	submenu->addSeparator();
 	newManagedAction(submenu, "makeindex", tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
 	newManagedAction(submenu, "texindy", tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
+	newManagedAction(submenu, "makeindex", tr("Mendex (Japanese)"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MENDEX);
+	newManagedAction(submenu, "makeindex", tr("upMendex (Japanese)"), SLOT(commandFromAction()))->setData(BuildManager::CMD_UPMENDEX);
 	newManagedAction(submenu, "makeglossaries", tr("&Makeglossaries"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_MAKEGLOSSARIES);
 	submenu->addSeparator();
 	newManagedAction(submenu, "metapost", tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
