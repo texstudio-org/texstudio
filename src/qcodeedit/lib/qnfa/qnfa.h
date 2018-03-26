@@ -81,7 +81,9 @@ enum NFAAssertion
 	Space			= 512,
 	NonSpace		= 1024,
 	
-	CaseSensitive	= 2048
+	CaseSensitive	= 2048,
+
+	LineStart = 4096
 };
 
 struct QCharTreeNode;

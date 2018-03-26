@@ -416,6 +416,10 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 							
 							break;
 						}
+
+						if ( (chain->assertion & LineStart)
+						     && (idx >= 1) )
+							break;
 						
 						QChar cc = *di;
 						bool found = match(cc, chain);
@@ -683,10 +687,18 @@ void addSequence(QNFA *lexer, const QString& w, int action, bool cs)
 	addNFA(lexer, seq);
 }
 
+static inline QNFA* makeQNFA(quint16& pendingAssertion){
+	QNFA* nfa = new QNFA;
+	nfa->assertion = pendingAssertion;
+	pendingAssertion = 0;
+	return nfa;
+}
+
 QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 {
 	QNFA *nfa, *set = 0, *prev = 0, *first = 0;
-	
+	quint16 pendingAssertion = 0;
+
 	for ( int i = 0; i < length; ++i )
 	{
 		QChar c = d[i];
@@ -708,7 +720,7 @@ QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 			{
 				set->c << c.unicode();
 			} else {
-				nfa = new QNFA;
+				nfa = makeQNFA(pendingAssertion);
 				nfa->c << c.unicode();
 				
 				if ( prev )
@@ -738,7 +750,7 @@ QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 					set->c << QLatin1Char('$').unicode() << c.unicode();
 				
 			} else {
-				nfa = new QNFA;
+				nfa = makeQNFA(pendingAssertion);
 				
 				if ( c == QLatin1Char('s') )
 					nfa->assertion |= Space;
@@ -773,7 +785,7 @@ QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 			
 			// enter set...
 			
-			set = new QNFA;
+			set = makeQNFA(pendingAssertion);
 			
 			//qDebug("set start");
 			
@@ -865,9 +877,11 @@ QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 			if ( prev ) prev->assertion |= ZeroOrMore;
 		} else if ( c == QLatin1Char('?') ) {
 			if ( prev ) prev->assertion |= ZeroOrOne;
+		} else if ( c == QLatin1Char('^') ) {
+			pendingAssertion = LineStart;
 		} else {
-			nfa = new QNFA;
-			
+			nfa = makeQNFA(pendingAssertion);
+
 			if ( c.isLetter() && !cs )
 			{
 				nfa->c << c.toLower().unicode() << c.toUpper().unicode();

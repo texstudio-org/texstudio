@@ -71,11 +71,11 @@ environments in smallUsefulFunctions.cpp)
 	<!-- ========================= dtx COMMAND ====================== -->
 	
 	<context id="comment/single" format="comment" stayOnLine="true" >
-		<start>^^A</start>
+		<start>\^\^A</start>
 		<stop exclusive="false">\n</stop>
 	</context>	
 	
-	<sequence id="dtxSpecialChar" format="dtx:specialchar">^^[JKLM]</sequence>
+	<sequence id="dtxSpecialChar" format="dtx:specialchar">\^\^[JKLM]</sequence>
 	
 	<!-- a better regex for the guards would be &lt;!?[A-Za-z0-9]+([&amp;\|,]!?[A-Za-z0-9]+)*&gt;
 	     but grouping is currently not supported by QCE - maybe in a later version. So we have to use 
