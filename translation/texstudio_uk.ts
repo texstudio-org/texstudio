@@ -1276,7 +1276,7 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="1400"/>
         <location filename="../src/configdialog.ui" line="1407"/>
         <source>Reset</source>
-        <translation>Перезапуск</translation>
+        <translation>Оновити</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1414"/>
@@ -1792,12 +1792,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2426"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Зовнішні програми (на кшталт Zotero) можуть надсилати цитування в texstudio через виклик: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Якщо курсор ще не перебуває в команді цитування, то ця &amp;quot;команда&amp;quot; вказана тут використовується як \cite-команда.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2429"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation>Команди Latex для надісланих цитувань:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2442"/>
@@ -6152,7 +6152,13 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"/>
+        <translation>%1
+змінений іншою програмою.
+Щоб записати файл на диск, натисніть &quot;Зберегти&quot;.
+Щоб перевантажити файл із диску, натисніть &quot;Оновити&quot;.
+Щоб показати різниці в редакторі, натисніть „ Різниця“
+Щоб знехтувати цим повідомленням, натисніть &quot;Нехтувати&quot;.
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="931"/>
@@ -11619,7 +11625,7 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Нова кандидат-версія TeXstudio вже доступна.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Поточна версія:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Остання стабільна версія:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Кандидат-версія:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Ви можете звантажити її із &lt;a href=&apos;%7&apos;&gt;веб-сайту TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
@@ -11629,7 +11635,7 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="211"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Нова версія для розробників TeXstudio вже доступна.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Поточна версія:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Остання стабільна версія:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Остання версія для розробників:&lt;/td&gt;&lt;td&gt;%5 (бета %6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Ви можете звантажити її із &lt;a href=&apos;%7&apos;&gt;веб-сайту TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>

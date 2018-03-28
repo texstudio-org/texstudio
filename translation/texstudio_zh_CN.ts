@@ -69,7 +69,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="36"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio 使用来自 Qt5.6 示例的 flowlayout。</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="38"/>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="40"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation>这个软件根据自由软件基金会发布的 GPL (第二版) 授权给用户.</translation>
+        <translation>这个软件根据自由软件基金会发布的通用公共许可证（第二版）授权给用户。</translation>
     </message>
 </context>
 <context>
@@ -893,7 +893,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="479"/>
         <source>Check LaTeX Configuration</source>
-        <translation>检查LaTex配置</translation>
+        <translation>检查 LaTeX 配置</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="489"/>
@@ -1784,7 +1784,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2419"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"/>
+        <translation>允许拖放</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2426"/>
@@ -2151,12 +2151,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3171"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation>如果在非数学环境下插入数学命令，编辑器会自动在两端补上$ $</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3174"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation>自动在需要的地方插入数学定界符号</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3184"/>
@@ -2177,7 +2177,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3192"/>
         <source>Permanently active completion files:</source>
-        <translation>永久激活竣工档案：</translation>
+        <translation>永久激活补全文件：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3260"/>
@@ -2458,7 +2458,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3885"/>
         <source>Auto Update:</source>
-        <translation>自动升级:</translation>
+        <translation>自动刷新：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3898"/>
@@ -2468,7 +2468,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3906"/>
         <source>Auto Update Delay:</source>
-        <translation>自动升级延迟:</translation>
+        <translation>自动刷新延迟：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3929"/>
@@ -2550,7 +2550,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4173"/>
         <source> dpi</source>
-        <translation>分辨率</translation>
+        <translation>dpi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4184"/>
@@ -2565,7 +2565,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4194"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"/>
+        <translation>无阴影的圆圈</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4202"/>
@@ -2673,12 +2673,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4421"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>背景色</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4431"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>默认的背景颜色，由十六进制的RGB数值指定。注意：修改背景颜色在PDF重新加载后生效。已经打开的PDF的背景色不会被修改</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4483"/>
@@ -3921,12 +3921,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="409"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>设为只读</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="411"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>取消只读设置</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="416"/>
@@ -3936,7 +3936,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="419"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>关闭所有其他文档</translation>
     </message>
 </context>
 <context>
@@ -5332,7 +5332,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2462"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>自动隐藏工具栏</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2480"/>
@@ -5791,7 +5791,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>目前只支持打开PDF格式的外部文件</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -8261,19 +8261,19 @@ Do you trust this script?</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>运算符</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>关系</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>箭头</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="34"/>
@@ -8335,7 +8335,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="122"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>类别</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="133"/>
@@ -8353,7 +8353,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>未识别的环境</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="499"/>
@@ -9010,7 +9010,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="545"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>侧栏</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="584"/>
@@ -9028,7 +9028,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="597"/>
         <location filename="../src/texstudio.cpp" line="598"/>
         <source>Symbols</source>
-        <translation type="unfinished"/>
+        <translation>符号</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="600"/>
@@ -9058,7 +9058,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="605"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Beamer 命令</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="730"/>
@@ -10176,7 +10176,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1127"/>
         <source>Statusbar</source>
-        <translation type="unfinished"/>
+        <translation>状态栏</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1131"/>
@@ -10191,7 +10191,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1134"/>
         <source>Close Element</source>
-        <translation type="unfinished"/>
+        <translation>关闭元素</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1137"/>
@@ -11085,14 +11085,18 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>语法检查已开启
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10118"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"/>
+        <translation>语法检查已关闭
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10121"/>
