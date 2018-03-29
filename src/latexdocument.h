@@ -83,7 +83,7 @@ public:
 	Q_INVOKABLE QStringList labelItems() const; ///< all labels in this document
 	Q_INVOKABLE QStringList refItems() const; ///< all references in this document
 	Q_INVOKABLE QStringList bibItems() const; ///< all bibitem defined in this document
-	Q_INVOKABLE QList<CodeSnippet> userCommandList() const ///< all user commands defined in this document
+    Q_INVOKABLE QList<CodeSnippet> userCommandList() const ///< all user commands defined in this document
 	{
 		QList<CodeSnippet> csl = mUserCommandList.values();
 		qSort(csl);

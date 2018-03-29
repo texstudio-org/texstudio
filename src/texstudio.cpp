@@ -7201,6 +7201,8 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 }
 #endif
 
+typedef QPair<int, int> PairIntInt;
+
 void Texstudio::updateCompleter(LatexEditorView *edView)
 {
 	CodeSnippetList words;
@@ -7212,6 +7214,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
 	QList<LatexDocument *> docs;
 	LatexParser ltxCommands = LatexParser::getInstance();
+    LatexCompleterConfig *config = completer->getConfig();
 
 	if (edView && edView->document) {
 		// determine from which docs data needs to be collected
@@ -7219,7 +7222,20 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
 		// collect user commands and references
 		foreach (LatexDocument *doc, docs) {
-			words.unite(doc->userCommandList());
+            QList<CodeSnippet> userList=doc->userCommandList();
+            if(config){
+                CodeSnippetList::iterator it;
+                for(it=userList.begin();it!=userList.end();it++){
+                    QList<QPair<int, int> >res = config->usage.values(it->index);
+                    foreach (const PairIntInt &elem, res) {
+                        if (elem.first == it->snippetLength) {
+                            (*it).usageCount = elem.second;
+                            break;
+                        }
+                    }
+                }
+            }
+            words.unite(userList);
 			words.unite(doc->additionalCommandsList());
 
 			ltxCommands.append(doc->ltxCommands);
@@ -7299,7 +7315,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 		}
 	}
 	// add context completion
-	LatexCompleterConfig *config = completer->getConfig();
 	if (config) {
 		foreach (const QString &elem, config->specialCompletionKeys) {
 			completer->setContextWords(ltxCommands.possibleCommands[elem], elem);

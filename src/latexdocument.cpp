@@ -773,6 +773,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 						cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
 				}
 				CodeSnippet cs(cmdName);
+                cs.index = qHash(cmdName);
+                cs.snippetLength = cmdName.length();
 				if (isDefWidth)
 					cs.type = CodeSnippet::length;
 				mUserCommandList.insert(line(i).handle(), cs);
