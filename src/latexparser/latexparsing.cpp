@@ -236,6 +236,34 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             lineLength=tk.start; // limit linelength to comment start
             break; // stop at comment start
 	    }
+        // special definition handling, is not interpreted !!
+        if(!stack.isEmpty() && stack.top().subtype==Token::definition){
+            if(tk.type==Token::openBrace){
+                tk.subtype=Token::definition;
+                tk.level = level; // push old level on stack in order to restore that level later and to distinguish between arguments and arbitrary braces
+                tk.argLevel = RUNAWAYLIMIT; // run-away prevention
+                stack.push(tk);
+                tk.level++;
+                lexed << tk;
+                level++;
+                continue;
+            }else{
+                if(tk.type==Token::closeBrace){
+                    Token tk1=stack.pop();
+                    if(!stack.isEmpty() && stack.top().subtype==Token::definition){ // check if more than openBrace/defintion are on the stack, if yes , juts pop it and continue in definition mode
+                        tk.subtype=Token::definition;
+                        lexed << tk;
+                        level=tk1.level; // restore original level
+                        continue; // still definition mode
+                    }else{
+                        stack.push(tk1); // restore stack, so that the following code can handle brace fusion
+                    }
+                }else{
+                    continue; // ignore tokens in definition
+                }
+            }
+        }
+        // continue normal operation
 	    if (tk.type == Token::command) {
             QString command = line.mid(tk.start, tk.length);
             if (tl.length() > i + 1 && tl.at(i + 1).type == Token::punctuation && line.mid(tl.at(i + 1).start, 1) == "*") {

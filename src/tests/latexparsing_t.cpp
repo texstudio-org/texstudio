@@ -236,23 +236,23 @@ void LatexParsingTest::test_latexLexing_data() {
                                          << (Length() << 11 << 6 << 4 << 4 << 1)
                                          << (Levels() << 0 << 1 << 1 << 1 << 1);
     QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
-                                        << (TTypes() << T::command << T::braces << T::def << T::braces << T::word)
-                                        << (STypes() << T::none << T::def << T::none << T::definition << T::definition)
-                                        << (Starts() << 0 << 11 << 12 << 17 << 18)
-                                        << (Length() << 11 << 6 << 4 << 6 << 4)
-                                        << (Levels() << 0 << 1 << 1 << 1 << 1);
+                                        << (TTypes() << T::command << T::braces << T::def << T::braces)
+                                        << (STypes() << T::none << T::def << T::none << T::definition)
+                                        << (Starts() << 0 << 11 << 12 << 17 )
+                                        << (Length() << 11 << 6 << 4 << 6 )
+                                        << (Levels() << 0 << 1 << 1 << 1 );
     QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
-                                         << (TTypes() << T::command << T::braces << T::def << T::braces << T::word)
-                                         << (STypes() << T::none << T::def << T::none << T::definition << T::definition)
-                                         << (Starts() << 0 << 11 << 12 << 17 << 18)
-                                         << (Length() << 11 << 6 << 4 << 6 << 4)
-                                         << (Levels() << 0 << 1 << 1 << 1 << 1);
+                                         << (TTypes() << T::command << T::braces << T::def << T::braces)
+                                         << (STypes() << T::none << T::def << T::none << T::definition)
+                                         << (Starts() << 0 << 11 << 12 << 17 )
+                                         << (Length() << 11 << 6 << 4 << 6 )
+                                         << (Levels() << 0 << 1 << 1 << 1 );
     QTest::newRow("newcommand command3") << "\\newcommand{\\paragraph}{test}"
-                                         << (TTypes() << T::command << T::braces << T::def << T::braces << T::word)
-                                         << (STypes() << T::none << T::def << T::none << T::definition << T::definition)
-                                         << (Starts() << 0 << 11 << 12 << 23 << 24)
-                                         << (Length() << 11 << 12 << 10 << 6 << 4)
-                                         << (Levels() << 0 << 1 << 1 << 1 << 1);
+                                         << (TTypes() << T::command << T::braces << T::def << T::braces )
+                                         << (STypes() << T::none << T::def << T::none << T::definition )
+                                         << (Starts() << 0 << 11 << 12 << 23 )
+                                         << (Length() << 11 << 12 << 10 << 6 )
+                                         << (Levels() << 0 << 1 << 1 << 1 );
     /*
     QTest::newRow("newcommand nobrace") << "\\newcommand\\foo{test}"
                                         << (TTypes() << T::command << T::def << T::braces << T::word)
@@ -830,11 +830,8 @@ void LatexParsingTest::test_getCommandFromToken_data() {
     QTest::newRow("multi arg3") << "bummerang  \\newcommand{abc}{def}"
                             << 4 << 0
                             << "\\newcommand";
-    QTest::newRow("multi arg4") << "bummerang  \\newcommand{abc}{def} werd"
-                            << 5 << 0
-                            << "\\newcommand";
     QTest::newRow("multi arg5") << "bummerang  \\newcommand{abc}{def} werd"
-                            << 6 << 0
+                            << 5 << 0
                             << "";
     QTest::newRow("multi arg6") << "bummerang  \\newcommand{abc} def werd"
                             << 4 << 0
@@ -876,7 +873,7 @@ void LatexParsingTest::test_getCommandFromToken() {
     QDocumentLineHandle *dlh = doc->line(lineNr).handle();
     TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
-    QString result = Parsing::getCommandFromToken(tl.at(nr));
+    QString result = Parsing::getCommandFromToken(tl.value(nr,Token()));
 
     QCOMPARE(result, desiredResult);
 
