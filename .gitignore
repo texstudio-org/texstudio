@@ -5,6 +5,7 @@ Makefile
 qrc_*.cpp
 texstudio
 texstudio.pro.user
+texstudio.pri
 translation/.tx/
 .qmake.stash
 hg_revision.cpp
