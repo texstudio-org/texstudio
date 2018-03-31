@@ -30,9 +30,7 @@ script:
 after_success:
 - "${TRAVIS_BUILD_DIR}/travis-ci/package.sh"
 deploy: 
-  - edge:
-      branch: v1.8.47
-    provider: bintray
+  - provider: bintray
     skip_cleanup: true
     file: ${TRAVIS_BUILD_DIR}/travis-ci/bintray.json
     user: sunderme
