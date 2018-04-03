@@ -1483,6 +1483,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 		}
 		if (flags & CF_FORCE_PACKAGE) {
 			eow.remove("_");
+            eow.remove("-");
 		}
 		if (flags == CF_FORCE_VISIBLE_LIST)
 			eow.remove("{");
