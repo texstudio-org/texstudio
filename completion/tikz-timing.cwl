@@ -44,7 +44,7 @@
 \tikztiminglet{arg1}#*
 \tikztimingchar{arg1}#*
 \tikztimingecopy{arg1}#*
-\begin{tikztimingtable}#n\tikzpicture
+\begin{tikztimingtable}#n\tikzpicture,tabular
 \end{tikztimingtable}#*
 &#/tikztimingtable
 \extracode#/tikztimingtable
