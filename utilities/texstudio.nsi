@@ -74,7 +74,7 @@ File utilities\dictionaries\th_*_v2.dat
 
  
 # define uninstaller name
-WriteUninstaller $INSTDIR\uninstaller.exe
+WriteUninstaller $INSTDIR\uninstall.exe
 
 # Start Menu
 createDirectory "$SMPROGRAMS\${APPNAME}"
