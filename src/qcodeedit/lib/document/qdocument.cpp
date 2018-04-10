@@ -6739,6 +6739,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 									/* alternate */ alternate};
 
 	lcxt.docLineNr = textLine(firstLine, &wrap);
+    if(lcxt.docLineNr<firstLine)
+        return; // invalid situation, apparently textLine return last valid linenr even firstLine is invalied, beyond end
 	firstLine -= wrap;
 	lcxt.editLineNr = firstLine;
 	lcxt.firstLine = firstLine;
