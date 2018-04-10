@@ -541,8 +541,8 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
         if(oldCursor.hasSelection())
             cursor->moveTo(oldCursor.anchorLineNumber(),oldCursor.anchorColumnNumber(),QDocumentCursor::KeepAnchor);
         cursor->insertText(savedSelection, true);
-        cursor->endEditBlock();
-		if (!editor->cursor().hasSelection() && alwaysSelect) {
+        //cursor->endEditBlock();
+        if (!cursor->hasSelection() && alwaysSelect) {
             cursor->movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
             editor->setCursor(*cursor);
 		}
