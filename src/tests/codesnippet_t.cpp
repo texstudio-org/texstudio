@@ -370,7 +370,7 @@ void CodeSnippetTest::nestedInsert_data(){
 	ed->setFlag(QEditor::WeakIndent,false);
 	ed->setFlag(QEditor::ReplaceIndentTabs,false);
 
-	QTest::newRow("simple")
+    QTest::newRow("simple")
 		<< "abcdef"
 		<< 0 << 0 << 3
 		<< "\\abc{%<here%>}"
@@ -413,7 +413,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< 0
 		<< "just\nme"
 		<< "abc\\la{just\nme}def"
-		<< CP(1,2,2);
+        << CP(1,2,2);
 	QTest::newRow("selection reinserted at cursor pos")
 		<< "abcdef"
 		<< 0 << 0 << 3
@@ -421,7 +421,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< 0
 		<< "just me %|"
 		<< "abc\\la{just me here}def"
-		<< CP(0,19,19,
+        << CP(0,15,19,
 		   QList<CP>()<<CP(0,7,19));
 	QTest::newRow("selection multiline reinserted at cursor pos")
 		<< "abcdef"
@@ -430,7 +430,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< 0
 		<< "just\nme %|"
 		<< "abc\\la{just\nme here}def"
-		<< CP(1,7,7);
+        << CP(1,3,7);
 
 	//begin MAGIC
 	//begin MAGIC (don't forget to change this when the spells changes)

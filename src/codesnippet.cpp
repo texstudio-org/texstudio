@@ -544,8 +544,8 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
         //cursor->endEditBlock();
         if (!cursor->hasSelection() && alwaysSelect) {
             cursor->movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-            editor->setCursor(*cursor);
 		}
+        editor->setCursor(*cursor);
 		if (autoSelectPlaceholder != -1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this synchronizes the placeholder mirrors with the current placeholder text
 	}
 }
