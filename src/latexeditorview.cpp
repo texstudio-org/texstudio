@@ -750,6 +750,7 @@ void LatexEditorView::deleteLines(bool toStart, bool toEnd)
 		}
 	}
 	document->endMacro();
+    editor->setCursor(cursors[0]);
 	if (!toStart || !toEnd)
 		for (int i=0;i<newMirrors.size();i++)
 			editor->addCursorMirror(newMirrors[i]); //one cursor / line
