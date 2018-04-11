@@ -51,7 +51,7 @@ echo "VERSION_NAME = ${VERSION_NAME}"
 
 if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	print_info "Running macdeployqt"
-	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg -libpath=/usr/local/poppler/lib -verbose=2
+	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg -libpath=/usr/local/Cellar/poppler/0.61.0-texworks/lib -verbose=3
 
 	print_info "Renaming .dmg"
 	cp "${TRAVIS_BUILD_DIR}/texstudio.dmg" "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
