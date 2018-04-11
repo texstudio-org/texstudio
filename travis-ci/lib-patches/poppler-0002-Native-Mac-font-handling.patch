@@ -1,4 +1,4 @@
-From 0c5aa940df3fbd449951a79c37c11ba5941ec701 Mon Sep 17 00:00:00 2001
+From 7e589e6976301a4a8c5e0a42d654e684c7f7d798 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
 Date: Thu, 11 Feb 2016 23:14:20 -0500
 Subject: [PATCH 2/3] Native Mac font handling
@@ -6,26 +6,30 @@ Subject: [PATCH 2/3] Native Mac font handling
 ---
  CMakeLists.txt                 |  12 +-
  config.h.cmake                 |   3 +
+ configure.ac                   |  19 ++-
+ m4/mac-framework.m4            |  30 ++++
  poppler/GlobalParams.cc        |  18 +++
  poppler/GlobalParams.h         |   7 +
  poppler/GlobalParamsMac.cc     | 314 +++++++++++++++++++++++++++++++++++++++++
  poppler/poppler-config.h.cmake |   5 +
- 6 files changed, 358 insertions(+), 1 deletion(-)
+ poppler/poppler-config.h.in    |   5 +
+ 9 files changed, 411 insertions(+), 2 deletions(-)
+ create mode 100644 m4/mac-framework.m4
  create mode 100644 poppler/GlobalParamsMac.cc
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index bb74c6a2..c16df62c 100644
+index d30fa4b..a429e6b 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -90,15 +90,20 @@ endif()
+@@ -72,15 +72,20 @@ endif()
  
  if(WIN32)
    set(_default_fontconfiguration "win32")
 +elseif(APPLE)
 +  set(_default_fontconfiguration "mac")
- else()
+ else(WIN32)
    set(_default_fontconfiguration "fontconfig")
- endif()
+ endif(WIN32)
 -set(FONT_CONFIGURATION "${_default_fontconfiguration}" CACHE STRING "The font configuration backend (win32|fontconfig).")
 +set(FONT_CONFIGURATION "${_default_fontconfiguration}" CACHE STRING "The font configuration backend (win32|mac|fontconfig).")
  string(TOLOWER "${FONT_CONFIGURATION}" font_configuration)
@@ -38,11 +42,11 @@ index bb74c6a2..c16df62c 100644
 +  set(WITH_FONTCONFIGURATION_MAC ON)
  elseif(font_configuration STREQUAL "fontconfig")
    set(WITH_FONTCONFIGURATION_FONTCONFIG ON)
- else()
-@@ -283,6 +288,11 @@ if(WITH_FONTCONFIGURATION_WIN32)
+ else(font_configuration STREQUAL "win32")
+@@ -217,6 +222,11 @@ if(WITH_FONTCONFIGURATION_WIN32)
      add_definitions(-D_WIN32_IE=0x0500)
-   endif()
- endif()
+   endif(MINGW)
+ endif(WITH_FONTCONFIGURATION_WIN32)
 +
 +if(WITH_FONTCONFIGURATION_MAC)
 +  set(CMAKE_SHARED_LINKER_FLAGS "-framework ApplicationServices ${CMAKE_SHARED_LINKER_FLAGS}")
@@ -52,24 +56,109 @@ index bb74c6a2..c16df62c 100644
    ${CMAKE_CURRENT_SOURCE_DIR}
    ${CMAKE_CURRENT_SOURCE_DIR}/fofi
 diff --git a/config.h.cmake b/config.h.cmake
-index abebd6f2..0d2a6921 100644
+index 440a13d..d4dd998 100644
 --- a/config.h.cmake
 +++ b/config.h.cmake
-@@ -189,6 +189,9 @@
- /* Use fontconfig font configuration backend */
- #cmakedefine WITH_FONTCONFIGURATION_FONTCONFIG 1
+@@ -207,6 +207,9 @@
+ /* OpenJPEG with the OPJ_DPARAMETERS_IGNORE_PCLR_CMAP_CDEF_FLAG flag */
+ #cmakedefine WITH_OPENJPEG_IGNORE_PCLR_CMAP_CDEF_FLAG 1
  
 +/* Use Mac font configuration backend */
 +#cmakedefine WITH_FONTCONFIGURATION_MAC 1
 +
- /* Use win32 font configuration backend */
- #cmakedefine WITH_FONTCONFIGURATION_WIN32 1
+ /* Define to 1 if the X Window System is missing or not being used. */
+ /* #undef X_DISPLAY_MISSING */
  
+diff --git a/configure.ac b/configure.ac
+index 45575be..871c2d3 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -55,6 +55,9 @@ case "$host_os" in
+     # Use mingw's ansi stdio extensions
+     CXXFLAGS="$CXXFLAGS -D__USE_MINGW_ANSI_STDIO=1"
+   ;;
++  darwin*)
++    os_mac=yes
++  ;;
+ esac
+ 
+ AC_SUBST(win32_libs)
+@@ -503,12 +506,15 @@ AC_SUBST(FREETYPE_LIBS)
+ 
+ AC_MSG_CHECKING([which font configuration to use])
+ AC_ARG_WITH([font_configuration],
+-   [AS_HELP_STRING([--with-font-configuration=fontconfig|win32],
++   [AS_HELP_STRING([--with-font-configuration=fontconfig|win32|mac],
+                    [Select font configuration backend])],
+    [],
+    [if test x$os_win32 = xyes; then
+         # default to win32 on native Windows.
+         with_font_configuration=win32
++    elif test x$os_mac = xyes; then
++        # default to mac on native Mac.
++        with_font_configuration=mac
+     else
+         # default to fontconig everywhere else.
+         with_font_configuration=fontconfig
+@@ -524,6 +530,17 @@ case $with_font_configuration in
+      # Set the minimum required Internet Explorer version to 5.0
+      CPPFLAGS="$CPPFLAGS -D_WIN32_IE=0x0500"
+      ;;
++  mac)
++     AC_DEFINE([WITH_FONTCONFIGURATION_MAC],
++               [1],[Use Mac OS X font configuration backend])
++     KPSE_CHECK_FRAMEWORK([ApplicationServices], [ATSFontRef fontRef])
++     if test x$kpse_cv_have_ApplicationServices != xyes; then
++        AC_MSG_ERROR([invalid font configuration setting: mac
++           You do not seem to have the ApplicationServices framework
++           Please install it or set the font configuration method manually
++           (e.g., --with-font-configuration=fontconfig).])
++     fi
++  ;;
+   fontconfig)
+      AC_DEFINE([WITH_FONTCONFIGURATION_FONTCONFIG],
+                [1],[Use fontconfig font configuration backend])
+diff --git a/m4/mac-framework.m4 b/m4/mac-framework.m4
+new file mode 100644
+index 0000000..8a060ee
+--- /dev/null
++++ b/m4/mac-framework.m4
+@@ -0,0 +1,30 @@
++# based on kpse-macos-framework.m4 from the TeX Live source tree
++# -------------------------------------------------------------------
++# Original copyright notice:
++#
++# Public macros for the TeX Live (TL) tree.
++# Copyright (C) 2005 - 2008 Jonathan Kew <jfkthame@gmail.com>
++# Copyright (C) 2009 Peter Breitenlohner <tex-live@tug.org>
++#
++# This file is free software; the copyright holders
++# give unlimited permission to copy and/or distribute it,
++# with or without modifications, as long as this notice is preserved.
++# -------------------------------------------------------------------
++#
++# serial 0
++
++# KPSE_CHECK_FRAMEWORK(FRAMEWORK, BODY)
++# -------------------------------------
++# Check for the Mac OS X framework FRAMEWORK (using BODY) and if found,
++# set kpse_cv_have_FRAMEWORK to yes and define HAVE_FRAMEWORK.
++AC_DEFUN([KPSE_CHECK_FRAMEWORK],
++[AC_CACHE_CHECK([for Mac OS X $1 framework],
++                [kpse_cv_have_$1],
++                [AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <$1/$1.h>]],
++                                                    [[$2]])],
++                                   [kpse_cv_have_$1=yes],
++                                   [kpse_cv_have_$1=no])])
++AS_IF([test "x$kpse_cv_have_$1" = xyes],
++      [AC_DEFINE([HAVE_]AS_TR_CPP([$1]), 1,
++                 [Define to 1 if you have the Mac OS X $1 framework.])])[]dnl
++]) # KPSE_CHECK_FRAMEWORK
 diff --git a/poppler/GlobalParams.cc b/poppler/GlobalParams.cc
-index 26669930..10ddc29e 100644
+index e543408..b5efdaf 100644
 --- a/poppler/GlobalParams.cc
 +++ b/poppler/GlobalParams.cc
-@@ -264,6 +264,9 @@ public:
+@@ -276,6 +276,9 @@ public:
  #ifdef WITH_FONTCONFIGURATION_FONTCONFIG
    void addFcFont(SysFontInfo *si) {fonts->append(si);}
  #endif
@@ -78,8 +167,8 @@ index 26669930..10ddc29e 100644
 +#endif
  private:
  
- #ifdef _WIN32
-@@ -604,6 +607,10 @@ GlobalParams::GlobalParams(const char *customPopplerDataDir)
+ #ifdef WIN32
+@@ -634,6 +637,10 @@ GlobalParams::GlobalParams(const char *customPopplerDataDir)
    plugins = new GooList();
    securityHandlers = new GooList();
  #endif
@@ -90,28 +179,28 @@ index 26669930..10ddc29e 100644
  
    // set up the initial nameToUnicode tables
    for (i = 0; nameToUnicodeZapfDingbatsTab[i].name; ++i) {
-@@ -767,6 +774,12 @@ GlobalParams::~GlobalParams() {
-   deleteGooHash(fontFiles, GooString);
+@@ -800,6 +807,12 @@ GlobalParams::~GlobalParams() {
  #ifdef _WIN32
    deleteGooHash(substFiles, GooString);
-+#endif
+ #endif
 +#if WITH_FONTCONFIGURATION_MAC
 +  while (numTempFontFiles > 0) {
 +    --numTempFontFiles;
 +    unlink(tempFontFiles[numTempFontFiles]);
 +  }
- #endif
++#endif
    delete sysFonts;
-   delete textEncoding;
-@@ -1084,6 +1097,7 @@ GooString *GlobalParams::findFontFile(GooString *fontName) {
+   if (psFile) {
+     delete psFile;
+@@ -1149,6 +1162,7 @@ GooString *GlobalParams::findFontFile(GooString *fontName) {
  */
- #ifdef WITH_FONTCONFIGURATION_FONTCONFIG
+ #if WITH_FONTCONFIGURATION_FONTCONFIG
  // not needed for fontconfig
 +#warning "<<<<<<<<<<<<<<<<< FONTCONFIG"
  void GlobalParams::setupBaseFonts(char *dir) {
  }
  
-@@ -1262,6 +1276,9 @@ fin:
+@@ -1327,6 +1341,9 @@ fin:
  GooString *GlobalParams::findBase14FontFile(GooString *base14Name, GfxFont *font) {
    return findFontFile(base14Name);
  }
@@ -121,7 +210,7 @@ index 26669930..10ddc29e 100644
  #else
  GooString *GlobalParams::findBase14FontFile(GooString *base14Name, GfxFont *font) {
    return findFontFile(base14Name);
-@@ -1298,6 +1315,7 @@ static const char *displayFontDirs[] = {
+@@ -1363,6 +1380,7 @@ static const char *displayFontDirs[] = {
    NULL
  };
  
@@ -130,10 +219,10 @@ index 26669930..10ddc29e 100644
    GooString *fontName;
    GooString *fileName;
 diff --git a/poppler/GlobalParams.h b/poppler/GlobalParams.h
-index 7c61ae44..50a547ef 100644
+index 16d615a..4100a82 100644
 --- a/poppler/GlobalParams.h
 +++ b/poppler/GlobalParams.h
-@@ -151,6 +151,9 @@ public:
+@@ -194,6 +194,9 @@ public:
  #ifdef ENABLE_PLUGINS
    GBool loadPlugin(char *type, char *name);
  #endif
@@ -143,20 +232,20 @@ index 7c61ae44..50a547ef 100644
  
    GooList *getEncodingNames();
  
-@@ -211,6 +214,10 @@ private:
-   GBool baseFontsInitialized;
+@@ -269,6 +272,10 @@ private:
  #ifdef _WIN32
    GooHash *substFiles;	// windows font substitutes (for CID fonts)
-+#endif
+ #endif
 +#if WITH_FONTCONFIGURATION_MAC
 +  char **tempFontFiles;
 +  int numTempFontFiles;
- #endif
++#endif
    GooHash *fontFiles;		// font files: font name mapped to path
  				//   [GString]
+   GooList *fontDirs;		// list of font dirs [GString]
 diff --git a/poppler/GlobalParamsMac.cc b/poppler/GlobalParamsMac.cc
 new file mode 100644
-index 00000000..10b1236f
+index 0000000..10b1236
 --- /dev/null
 +++ b/poppler/GlobalParamsMac.cc
 @@ -0,0 +1,314 @@
@@ -475,7 +564,7 @@ index 00000000..10b1236f
 +	return path->copy();
 +}
 diff --git a/poppler/poppler-config.h.cmake b/poppler/poppler-config.h.cmake
-index 3a13e811..184363fc 100644
+index e3e2cfb..3a2082f 100644
 --- a/poppler/poppler-config.h.cmake
 +++ b/poppler/poppler-config.h.cmake
 @@ -61,6 +61,11 @@
@@ -490,6 +579,22 @@ index 3a13e811..184363fc 100644
  /* Support for curl is compiled in. */
  #ifndef POPPLER_HAS_CURL_SUPPORT
  #cmakedefine POPPLER_HAS_CURL_SUPPORT 1
+diff --git a/poppler/poppler-config.h.in b/poppler/poppler-config.h.in
+index cb77eb7..92f133e 100644
+--- a/poppler/poppler-config.h.in
++++ b/poppler/poppler-config.h.in
+@@ -61,6 +61,11 @@
+ #undef TEXTOUT_WORD_LIST
+ #endif
+ 
++/* Use mac font configuration backend */
++#ifndef WITH_FONTCONFIGURATION_MAC
++#undef WITH_FONTCONFIGURATION_MAC
++#endif
++
+ /* Support for curl is compiled in. */
+ #ifndef POPPLER_HAS_CURL_SUPPORT
+ #undef POPPLER_HAS_CURL_SUPPORT
 -- 
-2.14.1
+2.1.4
 
