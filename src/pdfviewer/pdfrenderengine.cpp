@@ -88,17 +88,21 @@ void PDFRenderEngine::run()
 				QSizeF pageSize = page->pageSizeF();
 
 				QPainter p(&image);
-				p.setPen(Qt::blue);
-				p.scale(command.xres * pageSize.width() / 72.0, command.yres * pageSize.height() / 72.0);
-				if (command.x != -1 && command.y != -1) p.translate(command.x, command.y);
-				if (command.rotate != Poppler::Page::Rotate0) {
-					if (command.rotate != Poppler::Page::Rotate90) p.rotate(90);
-					else if (command.rotate != Poppler::Page::Rotate180) p.rotate(180);
-					else if (command.rotate != Poppler::Page::Rotate270) p.rotate(270);
-				}
-				foreach (Poppler::Annotation *annon, page->annotations())
-					if (annon->subType() == Poppler::Annotation::AMovie)
-						p.drawRect(annon->boundary() );
+                p.scale(command.xres * pageSize.width() / 72.0, command.yres * pageSize.height() / 72.0);
+                QPen pen;
+                pen.setWidthF(0.01);
+                pen.setColor(Qt::blue);
+                p.setPen(pen);
+                if (command.x != -1 && command.y != -1) p.translate(command.x, command.y);
+                if (command.rotate != Poppler::Page::Rotate0) {
+                    if (command.rotate == Poppler::Page::Rotate90) p.rotate(90);
+                    else if (command.rotate == Poppler::Page::Rotate180) p.rotate(180);
+                    else if (command.rotate == Poppler::Page::Rotate270) p.rotate(270);
+                }
+                foreach (Poppler::Annotation *annon, page->annotations())
+                    if (annon->subType() == Poppler::Annotation::AMovie){
+                        p.drawRect(annon->boundary() );
+                    }
 
 				delete page;
 				if (!queue->stopped) //qDebug() << command.ticket << " send from "<<QThread::currentThreadId(),
