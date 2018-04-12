@@ -60,7 +60,7 @@ class Poppler < Formula
   depends_on "freetype"
   depends_on "gettext"
   depends_on "glib"
-  depends_on "gobject-introspection"
+#  depends_on "gobject-introspection"
   depends_on "jpeg"
   depends_on "libpng"
   depends_on "libtiff"
