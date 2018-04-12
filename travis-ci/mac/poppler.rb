@@ -88,7 +88,6 @@ class Poppler < Formula
       --enable-xpdf-headers
       --enable-poppler-glib
       --disable-gtk-test
-      --enable-introspection=yes
       --disable-poppler-qt4
     ]
 
