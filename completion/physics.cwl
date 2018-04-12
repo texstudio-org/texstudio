@@ -320,15 +320,15 @@
 \vqty{expression}#m
 \vu*{expression}#m
 \vu{expression}#m
-\diagonalmatrix{matrix element 1,matrix element 2,...}#Sm
-\dmat{matrix element 1,matrix element 2,...}#Sm
-\antidiagonalmatrix{matrix element 1,matrix element 2,...}#Sm
-\admat{matrix element 1,matrix element 2,...}#Sm
-\identitymatrix{n}#Sm
-\imat{n}#Sm
-\paulimatrix{n}#Sm
-\pmat{n}#Sm
-\xmatrix{matrix element}{n}{m}#Sm
-\xmat{matrix element}{n}{m}#Sm
-\zeromatrix{n}{m}#Sm
-\zmat{n}{m}#Sm
+\diagonalmatrix{matrix element 1,matrix element 2,...}#*m
+\dmat{matrix element 1,matrix element 2,...}#*m
+\antidiagonalmatrix{matrix element 1,matrix element 2,...}#*m
+\admat{matrix element 1,matrix element 2,...}#*m
+\identitymatrix{n}#*m
+\imat{n}#*m
+\paulimatrix{n}#*m
+\pmat{n}#*m
+\xmatrix{matrix element}{n}{m}#*m
+\xmat{matrix element}{n}{m}#*m
+\zeromatrix{n}{m}#*m
+\zmat{n}{m}#*m
