@@ -3256,6 +3256,8 @@ void PDFDocument::setStateEnlarged(bool state)
  */
 bool PDFDocument::closeElement()
 {
+	ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+
 	if (actionPresentation->isChecked()) {
 		//restore state of docks
 		if (dwVisSearch)
@@ -3268,21 +3270,22 @@ bool PDFDocument::closeElement()
 			dwOutline->show();
 		if (dwVisOverview)
 			dwOverview->show();
-	}
-	if (actionFull_Screen->isChecked() || actionPresentation->isChecked()) toggleFullScreen(false);
-	else if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
+		toggleFullScreen(false);
+	} else if (configManager->useEscForClosingFullscreen && actionFull_Screen->isChecked()) {
+		toggleFullScreen(false);
+	} else if (dwFonts && dwFonts->isVisible()) dwFonts->hide();
 	else if (dwSearch && dwSearch->isVisible()) dwSearch->hide();
 	else if (dwInfo && dwInfo->isVisible()) dwInfo->hide();
 	else if (dwClock && dwClock->isVisible()) dwClock->hide();
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
-	else {
-        if(isVisible()){ // avoid crash on osx where esc key is passed to hidden window
-            actionClose->trigger();
-            return true;
-        }
+	else if (configManager->useEscForClosingEmbeddedViewer && isVisible()) {
+		// Note: avoid crash on osx where esc key is passed to hidden window
+		actionClose->trigger();
+	} else {
+		return false;  // nothing to close
 	}
-	return false;
+	return true;
 }
 
 void PDFDocument::tileWindows()
