@@ -4441,6 +4441,7 @@ void Texstudio::normalCompletion()
 	case Token::env:
 	case Token::beginEnv:
 		if (mCompleterNeedsUpdate) updateCompleter();
+        generateMirror(true);
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
 	case Token::labelRef:
