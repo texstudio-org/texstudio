@@ -6740,6 +6740,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
     lcxt.docLineNr = textLine(firstLine, &wrap);
 
+    if(lcxt.docLineNr<0){
+        return;
+    }
+
 	firstLine -= wrap;
 	lcxt.editLineNr = firstLine;
 	lcxt.firstLine = firstLine;
@@ -8490,7 +8494,9 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 		if ( wrap )
 			*wrap = m_lines.last()->m_frontiers.count();
 
-		return m_lines.count() - 1;
+        //return m_lines.count() - 1;
+        //qDebug()<<"force";
+        return -1;
 	}
 
 	return visualLine + mess;
