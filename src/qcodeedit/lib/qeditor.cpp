@@ -499,9 +499,6 @@ void QEditor::init(bool actions,QDocument *doc)
 
 	connect(m_doc, SIGNAL(slowOperationStarted()), SIGNAL(slowOperationStarted()));
 	connect(m_doc, SIGNAL(slowOperationEnded()), SIGNAL(slowOperationEnded()));
-	
-	m_cursor = QDocumentCursor(m_doc);
-	m_cursor.setAutoUpdated(true);
 
 	m_cursorLinesFromViewTop=0;
 	m_lastColumn=-2;
@@ -755,6 +752,8 @@ void QEditor::init(bool actions,QDocument *doc)
 	if (!m_defaultKeysSet) getEditOperations();
 
 	setWindowTitle("[*]"); //remove warning of setWindowModified
+
+	setCursor(QDocumentCursor());
 }
 
 /*!
@@ -3700,14 +3699,14 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 					//remove existing mirrors if one is at the same position
 					if ( m_cursor.isWithinSelection(cursor) || m_cursor.equal(cursor) )
 					{
-						m_cursor = QDocumentCursor();
 						if ( m_mirrors.size() )
 						{
 							m_cursor = m_mirrors.takeFirst();
 							if (m_cursorMirrorBlockAnchor >= 0)
 								m_cursorMirrorBlockAnchor--;
-							break;
-						}
+						} else
+							setCursor(cursor);
+						break;
 					} else {
 						bool removedExisting = false;
 						for ( int i = 0; i < m_mirrors.size(); i++ )
@@ -5427,6 +5426,8 @@ void QEditor::repaintCursor()
 		viewport()->update();
 		return;
 	}
+	if (m_cursor.isNull())
+		return;
 	//check whether Format/Layout needs update
 	bool updateAll=false;
 	for(int i=getFirstVisibleLine();i<=getLastVisibleLine();i++){
