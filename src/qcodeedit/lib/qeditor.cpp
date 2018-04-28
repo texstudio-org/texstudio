@@ -3628,9 +3628,10 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 			selectCursorMirrorBlock(newCursor, e->modifiers() & Qt::ShiftModifier);
 		} else {
 			if (m_multiClickCursor.isValid()) {
-				QDocumentCursor selection(m_multiClickCursor, newCursor);
-				selection.expandSelect(m_multiClickCursor.property("isTripleClick").toBool() ? QDocumentCursor::LineUnderCursor : m_doubleClickSelectionType);
-				m_cursor = selection;
+				m_cursor.select(m_multiClickCursor.lineNumber(), m_multiClickCursor.columnNumber(),
+				                newCursor.lineNumber(), newCursor.columnNumber()
+				                );
+				m_cursor.expandSelect(m_multiClickCursor.property("isTripleClick").toBool() ? QDocumentCursor::LineUnderCursor : m_doubleClickSelectionType);
 			} else {
 				m_cursor.setSelectionBoundary(newCursor);
 			}
