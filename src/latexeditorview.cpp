@@ -2322,7 +2322,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 	// new way
 	QDocumentLineHandle *dlh = cursor.line().handle();
 
-	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+	TokenList tl = dlh ? dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>() : TokenList();
 
 	//Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
 	TokenStack ts = Parsing::getContext(dlh, cursor.columnNumber());

@@ -1054,6 +1054,7 @@ TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention
  */
 TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 {
+	if (!dlh) return TokenStack();
 	dlh->lockForRead();
 	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	dlh->unlock();
