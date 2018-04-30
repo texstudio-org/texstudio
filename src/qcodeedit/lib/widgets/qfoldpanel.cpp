@@ -143,7 +143,8 @@ void QFoldPanel::contextMenuEvent(QContextMenuEvent *e)
 	}
 
 	int line=editor()->document()->lineNumber(editor()->verticalOffset()+e->y());
-	if (line>-1) emit contextMenuRequested(line, e->globalPos());
+	if (editor()->document()->line(line).isValid())
+		emit contextMenuRequested(line, e->globalPos());
 }
 
 
