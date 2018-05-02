@@ -1,4 +1,4 @@
-From ac93ffa083b1f7c614e7cced92ee8d3debf4f69b Mon Sep 17 00:00:00 2001
+From 7cf56cb33691563a81c6e5a43afef9541741542d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
 Date: Fri, 12 Feb 2016 08:00:59 -0500
 Subject: [PATCH 3/3] Add support for persistent GlobalParams
@@ -13,10 +13,10 @@ Subject: [PATCH 3/3] Add support for persistent GlobalParams
  6 files changed, 30 insertions(+), 8 deletions(-)
 
 diff --git a/qt4/src/poppler-document.cc b/qt4/src/poppler-document.cc
-index 94f997d..83e9aa5 100644
+index d6e2fbf7..ae0717d6 100644
 --- a/qt4/src/poppler-document.cc
 +++ b/qt4/src/poppler-document.cc
-@@ -56,6 +56,7 @@
+@@ -58,6 +58,7 @@
  namespace Poppler {
  
    int DocumentData::count = 0;
@@ -25,10 +25,10 @@ index 94f997d..83e9aa5 100644
    Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
  			   const QByteArray &userPassword)
 diff --git a/qt4/src/poppler-private.cc b/qt4/src/poppler-private.cc
-index cbf21b1..7b3b0c4 100644
+index 1338a185..42bcb2fd 100644
 --- a/qt4/src/poppler-private.cc
 +++ b/qt4/src/poppler-private.cc
-@@ -228,8 +228,13 @@ namespace Debug {
+@@ -237,8 +237,13 @@ namespace Debug {
          count --;
          if ( count == 0 )
          {
@@ -44,7 +44,7 @@ index cbf21b1..7b3b0c4 100644
          }
        }
      
-@@ -243,8 +248,12 @@ namespace Debug {
+@@ -252,8 +257,12 @@ namespace Debug {
        
          if ( count == 0 )
          {
@@ -60,10 +60,10 @@ index cbf21b1..7b3b0c4 100644
          }
          count ++;
 diff --git a/qt4/src/poppler-private.h b/qt4/src/poppler-private.h
-index 0d11e83..e0dbff3 100644
+index a5ad3f3e..9fea0a66 100644
 --- a/qt4/src/poppler-private.h
 +++ b/qt4/src/poppler-private.h
-@@ -147,6 +147,7 @@ namespace Poppler {
+@@ -148,6 +148,7 @@ namespace Poppler {
  	QColor paperColor;
  	int m_hints;
  	static int count;
@@ -72,10 +72,10 @@ index 0d11e83..e0dbff3 100644
  
      class FontInfoData
 diff --git a/qt5/src/poppler-document.cc b/qt5/src/poppler-document.cc
-index 537dca3..0d75ef1 100644
+index 03077f99..62623a40 100644
 --- a/qt5/src/poppler-document.cc
 +++ b/qt5/src/poppler-document.cc
-@@ -56,6 +56,7 @@
+@@ -58,6 +58,7 @@
  namespace Poppler {
  
    int DocumentData::count = 0;
@@ -84,10 +84,10 @@ index 537dca3..0d75ef1 100644
    Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
  			   const QByteArray &userPassword)
 diff --git a/qt5/src/poppler-private.cc b/qt5/src/poppler-private.cc
-index 86855fd..575df4e 100644
+index 23fb8466..13f890c0 100644
 --- a/qt5/src/poppler-private.cc
 +++ b/qt5/src/poppler-private.cc
-@@ -227,8 +227,13 @@ namespace Debug {
+@@ -236,8 +236,13 @@ namespace Debug {
          count --;
          if ( count == 0 )
          {
@@ -103,7 +103,7 @@ index 86855fd..575df4e 100644
          }
        }
      
-@@ -241,8 +246,12 @@ namespace Debug {
+@@ -250,8 +255,12 @@ namespace Debug {
        
          if ( count == 0 )
          {
@@ -119,10 +119,10 @@ index 86855fd..575df4e 100644
          }
          count ++;
 diff --git a/qt5/src/poppler-private.h b/qt5/src/poppler-private.h
-index df6290b..3d42d82 100644
+index 6d0d1943..3e56dd9c 100644
 --- a/qt5/src/poppler-private.h
 +++ b/qt5/src/poppler-private.h
-@@ -144,6 +144,7 @@ namespace Poppler {
+@@ -146,6 +146,7 @@ namespace Poppler {
  	QColor paperColor;
  	int m_hints;
  	static int count;
@@ -131,5 +131,5 @@ index df6290b..3d42d82 100644
  
      class FontInfoData
 -- 
-2.1.4
+2.14.1
 
