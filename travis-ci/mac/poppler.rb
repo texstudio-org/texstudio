@@ -57,7 +57,6 @@ class Poppler < Formula
   depends_on "freetype"
   depends_on "gettext"
   depends_on "glib"
-  depends_on "gobject-introspection"
   depends_on "jpeg"
   depends_on "libpng"
   depends_on "libtiff"
@@ -82,7 +81,7 @@ class Poppler < Formula
       -DENABLE_XPDF_HEADERS=ON
       -DENABLE_GLIB=ON
       -DBUILD_GTK_TESTS=OFF
-      -DWITH_GObjectIntrospection=ON
+      -DWITH_GObjectIntrospection=OFF
       -DENABLE_QT4=OFF
       -DCMAKE_INSTALL_INCLUDEDIR=#{include}
       -DCMAKE_INSTALL_LIBDIR=#{lib}
