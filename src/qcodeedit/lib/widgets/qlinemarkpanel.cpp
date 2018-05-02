@@ -214,8 +214,9 @@ void QLineMarkPanel::mouseReleaseEvent(QMouseEvent *e)
 		return;
 	}
 
-    int line=editor()->document()->lineNumber(editor()->verticalOffset()+e->y());
-    if (line>-1) emit lineClicked(line);
+	int line=editor()->document()->lineNumber(editor()->verticalOffset()+e->y());
+	if (editor()->document()->line(line).isValid())
+		emit lineClicked(line);
 
 	//QMessageBox::warning(0, 0, "clik.");
 
@@ -255,7 +256,8 @@ void QLineMarkPanel::contextMenuEvent(QContextMenuEvent *e)
 	}
 
 	int line=editor()->document()->lineNumber(editor()->verticalOffset()+e->y());
-	if (line>-1) emit contextMenuRequested(line, e->globalPos());
+	if (editor()->document()->line(line).isValid())
+		emit contextMenuRequested(line, e->globalPos());
 
 	/*
 	QTextBlock b;

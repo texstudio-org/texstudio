@@ -5004,6 +5004,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 					p.ry() += QDocumentPrivate::m_lineSpacing;
 					m_doc->cursorForDocumentPosition(p, line, offset);
 				}
+				if ( line >= end ) {
+					line = end - 1;
+					offset = m_doc->line(line).length();
+				}
 				return true;
 			}
 
@@ -6730,19 +6734,19 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	int wrap = 0;
 	DrawTextLineContext lcxt = { /* docLineNr */ 0,
-									/* editLineNr */ 0,
-									/* firstLine */ 0,
-									/* pos */ 0,
-									/* visiblePos */ 0,
-									/* inSelection */ false,
-									/* base */ base,
-									/* alternate */ alternate};
+	                             /* editLineNr */ 0,
+	                             /* firstLine */ 0,
+	                             /* pos */ 0,
+	                             /* visiblePos */ 0,
+	                             /* inSelection */ false,
+	                             /* base */ base,
+	                             /* alternate */ alternate};
 
-    lcxt.docLineNr = textLine(firstLine, &wrap);
+	lcxt.docLineNr = textLine(firstLine, &wrap);
 
-    if(lcxt.docLineNr<0){
-        return;
-    }
+	if( lcxt.docLineNr < 0 || lcxt.docLineNr >= m_lines.count()  ){
+		return;
+	}
 
 	firstLine -= wrap;
 	lcxt.editLineNr = firstLine;
@@ -8494,9 +8498,7 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 		if ( wrap )
 			*wrap = m_lines.last()->m_frontiers.count();
 
-        //return m_lines.count() - 1;
-        //qDebug()<<"force";
-        return -1;
+		return m_lines.count();
 	}
 
 	return visualLine + mess;
