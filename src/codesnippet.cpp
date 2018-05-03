@@ -541,7 +541,7 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
         if(oldCursor.hasSelection())
             cursor->moveTo(oldCursor.anchorLineNumber(),oldCursor.anchorColumnNumber(),QDocumentCursor::KeepAnchor);
         cursor->insertText(savedSelection, true);
-        //cursor->endEditBlock();
+        cursor->endEditBlock(); // necessary to generate undo stack when ctrl+b on selection (bug #135)
         if (!cursor->hasSelection() && alwaysSelect) {
             cursor->movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 		}
