@@ -106,10 +106,15 @@ class Poppler < Formula
     end
 
     libpoppler = (lib/"libpoppler.dylib").readlink
-    ["#{lib}/libpoppler-cpp.dylib", "#{lib}/libpoppler-glib.dylib", "#{lib}/libpoppler-qt5.dylib",
+    ["#{lib}/libpoppler-cpp.dylib", "#{lib}/libpoppler-glib.dylib", "#{lib}/libpoppler-qt5.dylib", 
      *Dir["#{bin}/*"]].each do |f|
       macho = MachO.open(f)
-      macho.change_dylib("@rpath/#{libpoppler}", "#{lib}/#{libpoppler}")
+      lst=macho.linked_dylibs()
+      lst.each do |ln|
+        if ln.match(/^@rpath/)
+          macho.change_dylib(ln, ln.gsub("@rpath","/usr/local/opt/poppler/lib"))
+        end
+      end
       macho.write!
     end
   end
