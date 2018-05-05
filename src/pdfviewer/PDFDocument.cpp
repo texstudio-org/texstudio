@@ -3415,8 +3415,11 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 	int startPage = lastSearchResult.pageIdx;
 	if (lastSearchResult.pageIdx != pdfWidget->getPageIndex()) {
-		if (pdfWidget->pageStep() == 1 ||
-		        pdfWidget->getPageIndex() != pdfWidget->normalizedPageIndex(lastSearchResult.pageIdx)) {
+        // function to check that lastSearchResult is visible is missing
+        // quick workaround is that the at least the page is shown, even partially
+        // visible pages
+        int visPages=pdfWidget->visiblePages(); // function return too large a number, buggy
+        if (((pdfWidget->getPageIndex()+visPages-1) < pdfWidget->normalizedPageIndex(lastSearchResult.pageIdx)) || (pdfWidget->getPageIndex() > pdfWidget->normalizedPageIndex(lastSearchResult.pageIdx))) {
 			startPage = pdfWidget->getPageIndex();
 			lastSearchResult.selRect = backwards ? QRectF(0, 100000, 1, 1) : QRectF();
 		}

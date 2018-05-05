@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>517</height>
+    <width>457</width>
+    <height>574</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -69,7 +69,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset resource="../images.qrc">
          <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
        </property>
        <property name="iconSize">
@@ -300,7 +300,49 @@
         </property>
        </widget>
       </item>
-      <item row="9" column="1" colspan="2">
+      <item row="8" column="1" colspan="2">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLineEdit" name="lePlacement"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbPlaceExpand">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../texstudio.qrc">
+            <normaloff>:/images/up-arrow-circle-silver.png</normaloff>:/images/up-arrow-circle-silver.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <widget class="QLineEdit" name="leShortCaption">
+        <property name="toolTip">
+         <string>Caption for display in the list of tables</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>  Short</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>  Long</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1" rowspan="2" colspan="2">
        <widget class="QFrame" name="placementCheckboxes">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -349,7 +391,14 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0" colspan="4">
+         <item row="0" column="4">
+          <widget class="QCheckBox" name="cbPlaceHereFloatPackage">
+           <property name="text">
+            <string>Here (H)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="5">
           <widget class="QCheckBox" name="cbPlaceForce">
            <property name="text">
             <string>Override Internal Layout Parameters</string>
@@ -357,48 +406,6 @@
           </widget>
          </item>
         </layout>
-       </widget>
-      </item>
-      <item row="8" column="1" colspan="2">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <widget class="QLineEdit" name="lePlacement"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pbPlaceExpand">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="texstudio.qrc">
-            <normaloff>:/images/up-arrow-circle-silver.png</normaloff>:/images/up-arrow-circle-silver.png</iconset>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="QLineEdit" name="leShortCaption">
-        <property name="toolTip">
-         <string>Caption for display in the list of tables</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>  Short</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>  Long</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-        </property>
        </widget>
       </item>
      </layout>
@@ -506,8 +513,8 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="images.qrc"/>
-  <include location="texstudio.qrc"/>
+  <include location="../texstudio.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>

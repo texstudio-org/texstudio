@@ -10,6 +10,8 @@
 !define UPDATEURL "https://texstudio.org" # "Product Updates" link
 !define ABOUTURL "https://texstudio.org" # "Publisher" link
 
+!include "FileAssociation.nsh"
+
 # define the name of the installer
 Outfile "texstudio_installer.exe"
 
@@ -76,6 +78,9 @@ File utilities\dictionaries\th_*_v2.dat
 # define uninstaller name
 WriteUninstaller $INSTDIR\uninstall.exe
 
+# associate .tex
+${registerExtension} $INSTDIR\texstudio.exe ".tex" "tex File"
+
 # Start Menu
 createDirectory "$SMPROGRAMS\${APPNAME}"
 createShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" \
@@ -123,6 +128,9 @@ rmDir "$SMPROGRAMS\${APPNAME}"
  
 # Always delete uninstaller first
 Delete $INSTDIR\uninstaller.exe
+
+# remove file association
+${unregisterExtension} ".tex" "tex File"
  
 # now delete installed file
 Delete $INSTDIR\*

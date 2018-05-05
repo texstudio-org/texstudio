@@ -21,13 +21,13 @@
 PlacementValidator::PlacementValidator(QObject *parent)
 	: QRegExpValidator(parent)
 {
-	setRegExp(QRegExp("t?b?p?h?!?"));
+	setRegExp(QRegExp("t?b?p?h?H?!?"));
 }
 
 void PlacementValidator::fixup(QString &input) const
 {
 	QString cleaned;
-	foreach (const QChar &c, QString("tbph!")) {
+	foreach (const QChar &c, QString("tbphH!")) {
 		if (input.contains(c.toLatin1())) cleaned.append(c);
 	}
 	input = cleaned;
@@ -70,6 +70,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	connect(ui.cbPlaceBottom, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.cbPlacePage, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.cbPlaceHere, SIGNAL(clicked()), this, SLOT(updatePlacement()));
+	connect(ui.cbPlaceHereFloatPackage, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.cbPlaceForce, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.pbSaveDefault, SIGNAL(clicked()), this, SLOT(saveDefault()));
 	connect(this, SIGNAL(fileNameChanged(const QString &)), this, SLOT(updateLabel(const QString &)));
@@ -83,6 +84,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	                    "[b] Bottom: At the bottom of the page\n"
 	                    "[p] Page: On a separate page with figures\n"
 	                    "[h] Here: At this position in the text\n"
+	                    "[H] Here: At this precise location in the text (requires float package)\n"
 	                    "[!]: Override internal parameters LaTeX uses for determining `good' float positions.\n\n"
 	                    "Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this."
 	                ));
@@ -91,6 +93,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	ui.cbPlaceBottom->setToolTip(tooltip);
 	ui.cbPlacePage->setToolTip(tooltip);
 	ui.cbPlaceHere->setToolTip(tooltip);
+	ui.cbPlaceHereFloatPackage->setToolTip(tooltip);
 	ui.cbPlaceForce->setToolTip(tooltip);
 
 	includeOptionChanged();
@@ -489,12 +492,13 @@ void InsertGraphics::updatePlacement()
 {
 	QObject *s = sender();
 
-	if (s == ui.cbPlaceTop || s == ui.cbPlaceBottom || s == ui.cbPlacePage || s == ui.cbPlaceHere || s == ui.cbPlaceForce) {
+	if (s == ui.cbPlaceTop || s == ui.cbPlaceBottom || s == ui.cbPlacePage || s == ui.cbPlaceHere || s == ui.cbPlaceForce || s == ui.cbPlaceHereFloatPackage) {
 		QString pl;
 		if (ui.cbPlaceTop->isChecked()) pl.append('t');
 		if (ui.cbPlaceBottom->isChecked()) pl.append('b');
 		if (ui.cbPlacePage->isChecked()) pl.append('p');
 		if (ui.cbPlaceHere->isChecked()) pl.append('h');
+		if (ui.cbPlaceHereFloatPackage->isChecked()) pl.append('H');
 		if (ui.cbPlaceForce->isChecked()) pl.append('!');
 		ui.lePlacement->setText(pl);
 	} else {
@@ -503,6 +507,7 @@ void InsertGraphics::updatePlacement()
 		ui.cbPlaceBottom->setChecked(pl.contains('b'));
 		ui.cbPlacePage->setChecked(pl.contains('p'));
 		ui.cbPlaceHere->setChecked(pl.contains('h'));
+		ui.cbPlaceHereFloatPackage->setChecked(pl.contains('H'));
 		ui.cbPlaceForce->setChecked(pl.contains('!'));
 	}
 }
