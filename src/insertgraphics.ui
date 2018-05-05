@@ -349,7 +349,14 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0" colspan="4">
+         <item row="0" column="4">
+          <widget class="QCheckBox" name="cbPlaceHereFloatPackage">
+           <property name="text">
+            <string>Here (H)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="5">
           <widget class="QCheckBox" name="cbPlaceForce">
            <property name="text">
             <string>Override Internal Layout Parameters</string>
