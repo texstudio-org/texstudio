@@ -85,7 +85,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	                    "[p] Page: On a page dedicated to figures\n"
 	                    "[h] Here: At this position in the text\n"
 	                    "[H] Here: Strictly at this position in the text (requires float package)\n"
-	                    "[!]: Override internal parameters LaTeX used for determining `good' float positions.\n\n"
+	                    "[!]: Override internal parameters LaTeX uses for determining `good' float positions.\n\n"
 	                    "Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this."
 	                ));
 	ui.lePlacement->setToolTip(tooltip);
