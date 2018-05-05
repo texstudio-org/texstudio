@@ -80,13 +80,13 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	togglePlacementCheckboxes(true);
 	QString tooltip(tr(
 	                    "Placement preferences for the figure\n\n"
-	                    "[t] Top: At the top the page\n"
+	                    "[t] Top: At the top of the page\n"
 	                    "[b] Bottom: At the bottom of the page\n"
-	                    "[p] Page: On a separate page with figures\n"
+	                    "[p] Page: On a page dedicated to figures\n"
 	                    "[h] Here: At this position in the text\n"
-	                    "[H] Here: At this precise location in the text (requires float package)\n"
-	                    "[!]: Override internal parameters LaTeX uses for determining `good' float positions.\n\n"
-	                    "Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this."
+	                    "[H] Here: Strictly at this position in the text (requires float package)\n"
+	                    "[!]: Override internal parameters LaTeX used for determining `good' float positions.\n\n"
+	                    "Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this."
 	                ));
 	ui.lePlacement->setToolTip(tooltip);
 	ui.cbPlaceTop->setToolTip(tooltip);
