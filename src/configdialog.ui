@@ -1775,6 +1775,11 @@ Then you can select a new shortcut by one of the following ways:
               <string>Polish Quotes: ,, ''</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Polish Quotes (unicode): „ ”</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="0" column="3" colspan="2">
