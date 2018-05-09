@@ -74,6 +74,7 @@ number-angle-product=
 \gibi
 \giga
 \GPa#*
+\gram
 \gray
 \GW#*
 \hartree
