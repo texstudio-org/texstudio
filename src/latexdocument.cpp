@@ -358,8 +358,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 		}
 	}
 
-    //emit structureUpdated(this, newSection);
-    emit setHighlightedEntry(newSection);
+    emit structureUpdated(this, newSection);
+    //emit setHighlightedEntry(newSection);
 
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
@@ -1176,8 +1176,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 		}
 
-        //emit structureUpdated(this, newSection);
-        emit setHighlightedEntry(newSection);
+        emit structureUpdated(this, newSection);
+        //emit setHighlightedEntry(newSection);
 	}
 	StructureEntry *se;
 	foreach (se, MapOfTodo.values())

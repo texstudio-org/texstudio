@@ -114,7 +114,6 @@ public:
 	bool getSingleDocMode();
 	void moveDocs(int from, int to);
 
-public slots:
     void setHighlightedEntry(StructureEntry *entry);
 
 private slots:
