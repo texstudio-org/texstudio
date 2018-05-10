@@ -790,13 +790,13 @@ Please change your configuration and define command lists only at &apos;Options 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="208"/>
-        <location filename="../src/configdialog.ui" line="1937"/>
+        <location filename="../src/configdialog.ui" line="1947"/>
         <source>Appearance</source>
         <translation>Giao diện</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="220"/>
-        <location filename="../src/configdialog.ui" line="3625"/>
+        <location filename="../src/configdialog.ui" line="3635"/>
         <source>Language:</source>
         <translation>Ngôn ngữ:</translation>
     </message>
@@ -1038,8 +1038,8 @@ thêm vào trước &lt;b&gt;c:&lt;/b&gt; cho tệp hiện tại thay vì tệp 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="863"/>
-        <location filename="../src/configdialog.ui" line="2159"/>
-        <location filename="../src/configdialog.ui" line="3893"/>
+        <location filename="../src/configdialog.ui" line="2169"/>
+        <location filename="../src/configdialog.ui" line="3903"/>
         <source>Never</source>
         <translation>Không bao giờ</translation>
     </message>
@@ -1383,8 +1383,8 @@ Sau đó, bạn có thể chọn một phím tắt mới theo một trong các c
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1698"/>
-        <location filename="../src/configdialog.ui" line="3978"/>
-        <location filename="../src/configdialog.ui" line="4153"/>
+        <location filename="../src/configdialog.ui" line="3988"/>
+        <location filename="../src/configdialog.ui" line="4163"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1434,332 +1434,342 @@ Sau đó, bạn có thể chọn một phím tắt mới theo một trong các c
         <translation>Trích dẫn tiếng Anh (unicode): “ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1778"/>
+        <location filename="../src/configdialog.ui" line="1775"/>
+        <source>Polish Quotes: ,, &apos;&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1780"/>
+        <source>Polish Quotes (unicode): „ ”</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="1788"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Chỉ hiện phông monospaced font</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1789"/>
+        <location filename="../src/configdialog.ui" line="1799"/>
         <source>Ignore Indentation</source>
         <translation>Bỏ qua thụt đầu dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1794"/>
+        <location filename="../src/configdialog.ui" line="1804"/>
         <source>Keep Indentation</source>
         <translation>Giữ thụt đầu dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1799"/>
+        <location filename="../src/configdialog.ui" line="1809"/>
         <source>Indent and Unindent Automatically</source>
         <translation>Thụt dòng và bỏ thụt dòng tự động</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1807"/>
+        <location filename="../src/configdialog.ui" line="1817"/>
         <source>Check non tex files</source>
         <translation>Kiểm tra tệp phi tex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1829"/>
+        <location filename="../src/configdialog.ui" line="1839"/>
         <source>Spelling</source>
         <translation>Chính tả</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1836"/>
+        <location filename="../src/configdialog.ui" line="1846"/>
         <source>Grammar</source>
         <translation>Ngữ pháp</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1843"/>
+        <location filename="../src/configdialog.ui" line="1853"/>
         <source>Citations</source>
         <translation>Trích dẫn</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1850"/>
+        <location filename="../src/configdialog.ui" line="1860"/>
         <source>References</source>
         <translation>Tham chiếu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1857"/>
+        <location filename="../src/configdialog.ui" line="1867"/>
         <source>Syntax</source>
         <translation>Cú pháp</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1864"/>
+        <location filename="../src/configdialog.ui" line="1874"/>
         <source>Package</source>
         <translation>Gói</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1874"/>
+        <location filename="../src/configdialog.ui" line="1884"/>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation>Quét bản phân phối LaTeX cho gói đã cài đặt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1884"/>
+        <location filename="../src/configdialog.ui" line="1894"/>
         <source>Replace Tab in Text by Spaces</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1945"/>
+        <location filename="../src/configdialog.ui" line="1955"/>
         <source>Show Line Numbers:</source>
         <translation>Hiện số dòng:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1956"/>
+        <location filename="../src/configdialog.ui" line="1966"/>
         <source>No Line Numbers</source>
         <translation>Không có số dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1961"/>
+        <location filename="../src/configdialog.ui" line="1971"/>
         <source>All Line Numbers</source>
         <translation>Tất cả số dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1966"/>
+        <location filename="../src/configdialog.ui" line="1976"/>
         <source>Only Important Line Numbers</source>
         <translation>Chỉ số dòng quan trọng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1989"/>
+        <location filename="../src/configdialog.ui" line="1999"/>
         <source>Show State Panel</source>
         <translation>Hiện bảng điều khiển trạng thái</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2001"/>
+        <location filename="../src/configdialog.ui" line="2011"/>
         <source>Tab Width:</source>
         <translation>Chiều rộng thẻ:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2036"/>
+        <location filename="../src/configdialog.ui" line="2046"/>
         <source>Show Whitespace</source>
         <translation>Hiển thị khoảng trắng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2049"/>
+        <location filename="../src/configdialog.ui" line="2059"/>
         <source>Show Line Change State</source>
         <translation>Hiện trạng thái thay đổi dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2059"/>
+        <location filename="../src/configdialog.ui" line="2069"/>
         <source>Draw cursor as a thick line</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2062"/>
+        <location filename="../src/configdialog.ui" line="2072"/>
         <source>Bold Cursor</source>
         <translation>Chuột đậm</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2078"/>
+        <location filename="../src/configdialog.ui" line="2088"/>
         <source>Search Panel</source>
         <translation>Tìm kiếm bảng điều khiển</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2084"/>
+        <location filename="../src/configdialog.ui" line="2094"/>
         <source>Close search and replace panel together</source>
         <translation>Đóng bảng điều khiển tìm kiếm và thay thế cùng nhau</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2094"/>
+        <location filename="../src/configdialog.ui" line="2104"/>
         <source>Use single line selection as Search Word</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2104"/>
+        <location filename="../src/configdialog.ui" line="2114"/>
         <source>Restrict search scope to an existing selection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2114"/>
+        <location filename="../src/configdialog.ui" line="2124"/>
         <source>Special options</source>
         <translation>Tùy chọn đặc biệt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2123"/>
+        <location filename="../src/configdialog.ui" line="2133"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Hiện trình đánh dấu bản ghi khi nhấn mục bản ghi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2131"/>
+        <location filename="../src/configdialog.ui" line="2141"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2136"/>
+        <location filename="../src/configdialog.ui" line="2146"/>
         <source>Create Dedicated Submenu</source>
         <translation>Tạo menu con chuyên dụng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2144"/>
+        <location filename="../src/configdialog.ui" line="2154"/>
         <source>Spellchecking via context menu:</source>
         <translation>Kiểm tra chính tả thông qua menu ngữ cảnh</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2151"/>
+        <location filename="../src/configdialog.ui" line="2161"/>
         <source>Default Log Encoding</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2164"/>
+        <location filename="../src/configdialog.ui" line="2174"/>
         <source>1 minute</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2169"/>
+        <location filename="../src/configdialog.ui" line="2179"/>
         <source>2 minutes</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2174"/>
+        <location filename="../src/configdialog.ui" line="2184"/>
         <source>5 minutes</source>
         <translation>5 phút</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2179"/>
+        <location filename="../src/configdialog.ui" line="2189"/>
         <source>10 minutes</source>
         <translation>10 phút</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2184"/>
+        <location filename="../src/configdialog.ui" line="2194"/>
         <source>20 minutes</source>
         <translation>20 phút</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2189"/>
+        <location filename="../src/configdialog.ui" line="2199"/>
         <source>60 minutes</source>
         <translation>60 phút</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2197"/>
+        <location filename="../src/configdialog.ui" line="2207"/>
         <source>Auto Complete Parentheses</source>
         <translation>Tự động điền dấu ngoặc</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2204"/>
+        <location filename="../src/configdialog.ui" line="2214"/>
         <source>Smooth Scrolling</source>
         <translation>Cuộn mượt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2211"/>
+        <location filename="../src/configdialog.ui" line="2221"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Con lăn của chuột</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2218"/>
+        <location filename="../src/configdialog.ui" line="2228"/>
         <source>Auto Save All Files:</source>
         <translation>Tự động lưu tất cả các tệp:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2228"/>
+        <location filename="../src/configdialog.ui" line="2238"/>
         <source>Line Wrapping:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2235"/>
+        <location filename="../src/configdialog.ui" line="2245"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2257"/>
+        <location filename="../src/configdialog.ui" line="2267"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2266"/>
+        <location filename="../src/configdialog.ui" line="2276"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2274"/>
+        <location filename="../src/configdialog.ui" line="2284"/>
         <source>Select Word</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2279"/>
+        <location filename="../src/configdialog.ui" line="2289"/>
         <source>Select Word or Command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2284"/>
+        <location filename="../src/configdialog.ui" line="2294"/>
         <source>Select Parentheses Content</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2289"/>
+        <location filename="../src/configdialog.ui" line="2299"/>
         <source>Select Parentheses</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2294"/>
+        <location filename="../src/configdialog.ui" line="2304"/>
         <source>Select Line</source>
         <translation>Chọn dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2302"/>
+        <location filename="../src/configdialog.ui" line="2312"/>
         <source>Monitor open files for external changes</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2309"/>
+        <location filename="../src/configdialog.ui" line="2319"/>
         <source>Triple-Click Selection:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2316"/>
+        <location filename="../src/configdialog.ui" line="2326"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2319"/>
+        <location filename="../src/configdialog.ui" line="2329"/>
         <source>Safe writing of files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2326"/>
+        <location filename="../src/configdialog.ui" line="2336"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2333"/>
+        <location filename="../src/configdialog.ui" line="2343"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2336"/>
+        <location filename="../src/configdialog.ui" line="2346"/>
         <source>Center Document in Editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2343"/>
+        <location filename="../src/configdialog.ui" line="2353"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Hiện trợ giúp như chú giải công cụ vào văn bản trong trình soạn thảo</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2350"/>
+        <location filename="../src/configdialog.ui" line="2360"/>
         <source>Maximal Characters:</source>
         <translation>Ký tự tối đa:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2361"/>
+        <location filename="../src/configdialog.ui" line="2371"/>
         <source>No Line Wrap</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2366"/>
+        <location filename="../src/configdialog.ui" line="2376"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2371"/>
+        <location filename="../src/configdialog.ui" line="2381"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2376"/>
+        <location filename="../src/configdialog.ui" line="2386"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2384"/>
+        <location filename="../src/configdialog.ui" line="2394"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Khi sử dụng các ký tự unicode trong mã nguồn, LaTeX vẫn có
@@ -1767,280 +1777,280 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
 dùng các gói thích hợp cho các ký tự unicode trong tài liệu của bạn.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2388"/>
+        <location filename="../src/configdialog.ui" line="2398"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Thêm biểu tượng dạng Unicode</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2395"/>
+        <location filename="../src/configdialog.ui" line="2405"/>
         <source>Go to error when displaying log</source>
         <translation>Đến lỗi khi hiển thị bản ghi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2405"/>
+        <location filename="../src/configdialog.ui" line="2415"/>
         <source>Show image tooltip on image files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2412"/>
+        <location filename="../src/configdialog.ui" line="2422"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2419"/>
+        <location filename="../src/configdialog.ui" line="2429"/>
         <source>Allow Drag and Drop</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2426"/>
+        <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2429"/>
+        <location filename="../src/configdialog.ui" line="2439"/>
         <source>Latex Command for pushed citations:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2442"/>
+        <location filename="../src/configdialog.ui" line="2452"/>
         <source>Structure Panel</source>
         <translation>Bảng điều khiển cấu trúc</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2448"/>
+        <location filename="../src/configdialog.ui" line="2458"/>
         <source>Mark structure elements beyond \end{document}</source>
         <translation>Đánh dấu các yếu tố cấu trúc ngoài \end{document}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2455"/>
+        <location filename="../src/configdialog.ui" line="2465"/>
         <source>Reference commands in context menu:</source>
         <translation>Tham khảo lệnh trong menu ngữ cảnh:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2462"/>
+        <location filename="../src/configdialog.ui" line="2472"/>
         <source>Show elements in comments</source>
         <translation>Hiển thị các yếu tố bằng bình luận</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2469"/>
+        <location filename="../src/configdialog.ui" line="2479"/>
         <source>Mark structure elements in appendix</source>
         <translation>Đánh dấu yếu tố cấu trúc trong phụ lục</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2476"/>
+        <location filename="../src/configdialog.ui" line="2486"/>
         <source>Regular expression for TODO comment: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2489"/>
+        <location filename="../src/configdialog.ui" line="2499"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Giữ thụt đầu dòng của bao gồm trong cây cấu trúc</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2507"/>
+        <location filename="../src/configdialog.ui" line="2517"/>
         <source>Bibliography</source>
         <translation>Tài liệu tham khảo</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2513"/>
+        <location filename="../src/configdialog.ui" line="2523"/>
         <source>bib File Encoding:</source>
         <translation>Mã hóa tệp bib:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2520"/>
+        <location filename="../src/configdialog.ui" line="2530"/>
         <source>Parse BibTeX</source>
         <translation>Phân tích cú pháp BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2533"/>
+        <location filename="../src/configdialog.ui" line="2543"/>
         <source>Table Autoformating</source>
         <translation>Tự động định dạng bảng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2539"/>
+        <location filename="../src/configdialog.ui" line="2549"/>
         <source>One Line Per Cell</source>
         <translation>Một dòng mỗi ô</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2547"/>
+        <location filename="../src/configdialog.ui" line="2557"/>
         <source>Behind Line Break</source>
         <translation>Sau dấu ngắt dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2552"/>
+        <location filename="../src/configdialog.ui" line="2562"/>
         <source>Separate Line (No Indent)</source>
         <translation>Ngắt dòng (không thụt dòng)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2557"/>
+        <location filename="../src/configdialog.ui" line="2567"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Ngắt dòng (thụt dòng cột đầu tiên)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2565"/>
+        <location filename="../src/configdialog.ui" line="2575"/>
         <source>Special Commands Position:</source>
         <translation>Vị trí lệnh đặc biệt:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2575"/>
+        <location filename="../src/configdialog.ui" line="2585"/>
         <source>Special Commands:</source>
         <translation>Lệnh đặc biệt:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2585"/>
+        <location filename="../src/configdialog.ui" line="2595"/>
         <source>Additional Search Paths</source>
         <translation>Đường dẫn tìm kiếm bổ sung:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2594"/>
+        <location filename="../src/configdialog.ui" line="2604"/>
         <source>Bib Files:</source>
         <translation>Tệp Bib:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2607"/>
+        <location filename="../src/configdialog.ui" line="2617"/>
         <source>Image Files:</source>
         <translation>Tệp hình ảnh:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2645"/>
+        <location filename="../src/configdialog.ui" line="2655"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2651"/>
+        <location filename="../src/configdialog.ui" line="2661"/>
         <source>Automatically insert LRM characters</source>
         <translation>Tự động chèn ký tự LRM</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2658"/>
+        <location filename="../src/configdialog.ui" line="2668"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2665"/>
+        <location filename="../src/configdialog.ui" line="2675"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Tự động chuyển bố cục bàn phím:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2672"/>
+        <location filename="../src/configdialog.ui" line="2682"/>
         <source>depending on character direction</source>
         <translation>tùy thuộc vào vị trí ký tự</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2679"/>
+        <location filename="../src/configdialog.ui" line="2689"/>
         <source>depending on text/math mode</source>
         <translation>phục thuộc chế độ văn bản/toán học</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2689"/>
+        <location filename="../src/configdialog.ui" line="2699"/>
         <source>Hacks/Workarounds</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2695"/>
+        <location filename="../src/configdialog.ui" line="2705"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2702"/>
+        <location filename="../src/configdialog.ui" line="2712"/>
         <source>Try to automatically choose best display options</source>
         <translation>Thử chọn tùy chọn hiển thị tốt nhất</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2720"/>
+        <location filename="../src/configdialog.ui" line="2730"/>
         <source>Render Mode:</source>
         <translation>Chế độ render:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2728"/>
+        <location filename="../src/configdialog.ui" line="2738"/>
         <source>QCE (recommended)</source>
         <translation>QCE (khuyên dùng)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2733"/>
+        <location filename="../src/configdialog.ui" line="2743"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2738"/>
+        <location filename="../src/configdialog.ui" line="2748"/>
         <source>Single Letter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2746"/>
+        <location filename="../src/configdialog.ui" line="2756"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Nếu bộ nhớ cache của các đường cung cấp được kích hoạt, dòng kết xuất được lưu trữ trong bộ nhớ cache, vì vậy nó không có để được render. Dẫn đến một sự cải thiện tốc độ (đặc biệt là trên Mac), với việc tiêu tốn bộ nhớ nhiều hơn.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2749"/>
+        <location filename="../src/configdialog.ui" line="2759"/>
         <source>Disable cache of rendered lines</source>
         <translation>Vô hiệu hóa bộ nhớ cache của dòng đã render</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2756"/>
+        <location filename="../src/configdialog.ui" line="2766"/>
         <source>Disable fixed pitch mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2763"/>
+        <location filename="../src/configdialog.ui" line="2773"/>
         <source>Disable cache of character width</source>
         <translation>Vô hiệu hóa bộ nhớ cache của độ rộng ký tự</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2770"/>
+        <location filename="../src/configdialog.ui" line="2780"/>
         <source>Use QImage as cache type</source>
         <translation>Dùng QImage như loại cache</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2833"/>
+        <location filename="../src/configdialog.ui" line="2843"/>
         <source>Formats</source>
         <translation>Định dạng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2856"/>
+        <location filename="../src/configdialog.ui" line="2866"/>
         <source>Here the highlighting of custom environments can be changed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2870"/>
+        <location filename="../src/configdialog.ui" line="2880"/>
         <source>Custom Environment</source>
         <translation>Tùy chọn môi trường</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2875"/>
+        <location filename="../src/configdialog.ui" line="2885"/>
         <source>Type of Environment</source>
         <translation>Loại môi trường</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2885"/>
+        <location filename="../src/configdialog.ui" line="2895"/>
         <source>Here you can add another environment for custom highlighting.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2888"/>
-        <location filename="../src/configdialog.ui" line="2935"/>
+        <location filename="../src/configdialog.ui" line="2898"/>
+        <location filename="../src/configdialog.ui" line="2945"/>
         <source>Add Line</source>
         <translation>Thêm dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2895"/>
-        <location filename="../src/configdialog.ui" line="2942"/>
+        <location filename="../src/configdialog.ui" line="2905"/>
+        <location filename="../src/configdialog.ui" line="2952"/>
         <source>Remove Line</source>
         <translation>Xóa dòng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2925"/>
+        <location filename="../src/configdialog.ui" line="2935"/>
         <source>Additional Commands</source>
         <translation>Lệnh bổ sung</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2980"/>
+        <location filename="../src/configdialog.ui" line="2990"/>
         <location filename="../src/configdialog.cpp" line="509"/>
         <source>Completion</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2986"/>
+        <location filename="../src/configdialog.ui" line="2996"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2052,113 +2062,113 @@ dùng các gói thích hợp cho các ký tự unicode trong tài liệu của b
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2996"/>
+        <location filename="../src/configdialog.ui" line="3006"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Tư động thay lệnh LateX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3003"/>
+        <location filename="../src/configdialog.ui" line="3013"/>
         <source>Insert Arguments</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3013"/>
+        <location filename="../src/configdialog.ui" line="3023"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3016"/>
+        <location filename="../src/configdialog.ui" line="3026"/>
         <source>ToolTip-Preview</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3023"/>
+        <location filename="../src/configdialog.ui" line="3033"/>
         <source>Arguments as Placeholders</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3033"/>
+        <location filename="../src/configdialog.ui" line="3043"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3036"/>
+        <location filename="../src/configdialog.ui" line="3046"/>
         <source>ToolTip-Help</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3046"/>
+        <location filename="../src/configdialog.ui" line="3056"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3049"/>
+        <location filename="../src/configdialog.ui" line="3059"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3058"/>
+        <location filename="../src/configdialog.ui" line="3068"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3061"/>
+        <location filename="../src/configdialog.ui" line="3071"/>
         <source>Tab Bar Size</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3071"/>
+        <location filename="../src/configdialog.ui" line="3081"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3105"/>
+        <location filename="../src/configdialog.ui" line="3115"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3115"/>
+        <location filename="../src/configdialog.ui" line="3125"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3118"/>
+        <location filename="../src/configdialog.ui" line="3128"/>
         <source>Auto Complete Common Prefix</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3130"/>
+        <location filename="../src/configdialog.ui" line="3140"/>
         <source>Preferred Commands Set:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3138"/>
+        <location filename="../src/configdialog.ui" line="3148"/>
         <source>Typical</source>
         <translation>Điển hình</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3143"/>
+        <location filename="../src/configdialog.ui" line="3153"/>
         <source>Most Used</source>
         <translation>Được dùng hầu hết</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3148"/>
+        <location filename="../src/configdialog.ui" line="3158"/>
         <source>All</source>
         <translation>Tất cả</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3171"/>
+        <location filename="../src/configdialog.ui" line="3181"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3174"/>
+        <location filename="../src/configdialog.ui" line="3184"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3184"/>
-        <location filename="../src/configdialog.ui" line="3199"/>
+        <location filename="../src/configdialog.ui" line="3194"/>
+        <location filename="../src/configdialog.ui" line="3209"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2173,461 +2183,461 @@ những tệp hoàn thành sử dụng cụ thể, bạn có thể thực thi c�
 của chúng bằng cách kích hoạt tại đây.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3192"/>
+        <location filename="../src/configdialog.ui" line="3202"/>
         <source>Permanently active completion files:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3260"/>
+        <location filename="../src/configdialog.ui" line="3270"/>
         <source>Spell Check</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3266"/>
+        <location filename="../src/configdialog.ui" line="3276"/>
         <source>Default Language:</source>
         <translation>Ngôn ngữ mặc định:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3293"/>
+        <location filename="../src/configdialog.ui" line="3303"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Thư mục từ điển chính tả:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3300"/>
+        <location filename="../src/configdialog.ui" line="3310"/>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3310"/>
+        <location filename="../src/configdialog.ui" line="3320"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3317"/>
+        <location filename="../src/configdialog.ui" line="3327"/>
         <source>Thesaurus Database:</source>
         <translation>Cơ sở dữ liệu từ điển:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3347"/>
+        <location filename="../src/configdialog.ui" line="3357"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3360"/>
+        <location filename="../src/configdialog.ui" line="3370"/>
         <source>Import Dictionary...</source>
         <translation>Nhập từ điển...</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3370"/>
+        <location filename="../src/configdialog.ui" line="3380"/>
         <source>Internal Grammar Check</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3376"/>
+        <location filename="../src/configdialog.ui" line="3386"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3379"/>
+        <location filename="../src/configdialog.ui" line="3389"/>
         <source>Check for Word Repetitions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3386"/>
+        <location filename="../src/configdialog.ui" line="3396"/>
         <source>Words Between Repetitions:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3396"/>
+        <location filename="../src/configdialog.ui" line="3406"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3406"/>
+        <location filename="../src/configdialog.ui" line="3416"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3416"/>
+        <location filename="../src/configdialog.ui" line="3426"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3426"/>
+        <location filename="../src/configdialog.ui" line="3436"/>
         <source>Long Range Repetitions:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3436"/>
+        <location filename="../src/configdialog.ui" line="3446"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3446"/>
+        <location filename="../src/configdialog.ui" line="3456"/>
         <source>Wordlist Directory:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3453"/>
+        <location filename="../src/configdialog.ui" line="3463"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3456"/>
+        <location filename="../src/configdialog.ui" line="3466"/>
         <source>Check for Bad Words</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3463"/>
+        <location filename="../src/configdialog.ui" line="3473"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3490"/>
+        <location filename="../src/configdialog.ui" line="3500"/>
         <source>LanguageTool</source>
         <translation>Công cụ ngôn ngữ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3496"/>
+        <location filename="../src/configdialog.ui" line="3506"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3503"/>
+        <location filename="../src/configdialog.ui" line="3513"/>
         <source>LT Path:</source>
         <translation>Đường dẫn LT:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3510"/>
+        <location filename="../src/configdialog.ui" line="3520"/>
         <source>Start LanguageTool if not running</source>
         <translation>Khởi chạy công cụ ngôn ngữ nếu chưa chạy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3517"/>
+        <location filename="../src/configdialog.ui" line="3527"/>
         <source>Server URL: </source>
         <translation>URL máy chủ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3524"/>
+        <location filename="../src/configdialog.ui" line="3534"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3548"/>
+        <location filename="../src/configdialog.ui" line="3558"/>
         <source>Ignored Rules:</source>
         <translation>Quy tắc được bỏ qua:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3555"/>
         <location filename="../src/configdialog.ui" line="3565"/>
         <location filename="../src/configdialog.ui" line="3575"/>
-        <location filename="../src/configdialog.ui" line="3605"/>
+        <location filename="../src/configdialog.ui" line="3585"/>
+        <location filename="../src/configdialog.ui" line="3615"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3585"/>
+        <location filename="../src/configdialog.ui" line="3595"/>
         <source>Special Rules 3:</source>
         <translation>Quy tắc đặc biệt 3:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3595"/>
+        <location filename="../src/configdialog.ui" line="3605"/>
         <source>Special Rules 2:</source>
         <translation>Quy tắc đặc biệt 2:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3615"/>
+        <location filename="../src/configdialog.ui" line="3625"/>
         <source>Special Rules 1:</source>
         <translation>Quy tắc đặc biệt 1</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3632"/>
+        <location filename="../src/configdialog.ui" line="3642"/>
         <source>Special Rules 4:</source>
         <translation>Quy tắc đặc biệt 4:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3642"/>
+        <location filename="../src/configdialog.ui" line="3652"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3649"/>
+        <location filename="../src/configdialog.ui" line="3659"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3656"/>
+        <location filename="../src/configdialog.ui" line="3666"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3663"/>
-        <location filename="../src/configdialog.ui" line="3711"/>
+        <location filename="../src/configdialog.ui" line="3673"/>
+        <location filename="../src/configdialog.ui" line="3721"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3666"/>
+        <location filename="../src/configdialog.ui" line="3676"/>
         <source>LT Arguments:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3690"/>
-        <location filename="../src/configdialog.ui" line="3718"/>
+        <location filename="../src/configdialog.ui" line="3700"/>
+        <location filename="../src/configdialog.ui" line="3728"/>
         <source>Restore Default</source>
         <translation>Khôi phục mặc định</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3704"/>
+        <location filename="../src/configdialog.ui" line="3714"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>Url kết nối công cụ ngôn ngữ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3795"/>
+        <location filename="../src/configdialog.ui" line="3805"/>
         <source>Segment Preview</source>
         <translation>Xem trước phân đoạn</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3801"/>
+        <location filename="../src/configdialog.ui" line="3811"/>
         <source>Command:</source>
         <translation>Lệnh:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3812"/>
+        <location filename="../src/configdialog.ui" line="3822"/>
         <source>Preview with dvipng</source>
         <translation>Xem trước với dvipng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3817"/>
+        <location filename="../src/configdialog.ui" line="3827"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Xem trước với dvipng --follow (parallel)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3822"/>
+        <location filename="../src/configdialog.ui" line="3832"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Xem trước với dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3827"/>
+        <location filename="../src/configdialog.ui" line="3837"/>
         <source>Preview with pdflatex</source>
         <translation>Xem trước với pdflatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3835"/>
+        <location filename="../src/configdialog.ui" line="3845"/>
         <source>Display Mode:</source>
         <translation>Chế độ hiển thị:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3849"/>
+        <location filename="../src/configdialog.ui" line="3859"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3854"/>
+        <location filename="../src/configdialog.ui" line="3864"/>
         <source>Always show preview in preview panel</source>
         <translation>Luôn hiện xem trước trong bảng điều khiển xem trước</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3859"/>
+        <location filename="../src/configdialog.ui" line="3869"/>
         <source>Always show preview as tool tip</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3864"/>
+        <location filename="../src/configdialog.ui" line="3874"/>
         <source>Always show both</source>
         <translation>Luôn hiển thị cả hai</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3869"/>
+        <location filename="../src/configdialog.ui" line="3879"/>
         <source>Inline</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3874"/>
+        <location filename="../src/configdialog.ui" line="3884"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Hiện trong trình xem embedded</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3882"/>
+        <location filename="../src/configdialog.ui" line="3892"/>
         <source>Update the preview on text change</source>
         <translation>Tự động xem trước những thay đổi văn bản</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3885"/>
+        <location filename="../src/configdialog.ui" line="3895"/>
         <source>Auto Update:</source>
         <translation>Tự động cập nhật:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3898"/>
+        <location filename="../src/configdialog.ui" line="3908"/>
         <source>Previously previewed text</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3906"/>
+        <location filename="../src/configdialog.ui" line="3916"/>
         <source>Auto Update Delay:</source>
         <translation>Độ trễ tự động cập nhật:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3929"/>
+        <location filename="../src/configdialog.ui" line="3939"/>
         <source>Replace beamer class by article</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3942"/>
+        <location filename="../src/configdialog.ui" line="3952"/>
         <source>Precompile Preamble</source>
         <translation>BIên dịch lại Preamble</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3955"/>
+        <location filename="../src/configdialog.ui" line="3965"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3965"/>
-        <location filename="../src/configdialog.ui" line="4130"/>
+        <location filename="../src/configdialog.ui" line="3975"/>
+        <location filename="../src/configdialog.ui" line="4140"/>
         <source>Scaling:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4060"/>
+        <location filename="../src/configdialog.ui" line="4070"/>
         <location filename="../src/configdialog.cpp" line="512"/>
         <source>Internal PDF Viewer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4066"/>
+        <location filename="../src/configdialog.ui" line="4076"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Xác định như hệ thập lục phân giá trị RGBA.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4069"/>
+        <location filename="../src/configdialog.ui" line="4079"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4083"/>
+        <location filename="../src/configdialog.ui" line="4093"/>
         <source>Original Size</source>
         <translation>Kích thước ban đầu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4088"/>
+        <location filename="../src/configdialog.ui" line="4098"/>
         <source>Fit to Window Width</source>
         <translation>Vừa chiều rộng cửa sổ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4093"/>
+        <location filename="../src/configdialog.ui" line="4103"/>
         <source>Fit to Window Size</source>
         <translation>Vừa kích cỡ cửa sổ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4098"/>
+        <location filename="../src/configdialog.ui" line="4108"/>
         <source>Scaled Size</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4103"/>
+        <location filename="../src/configdialog.ui" line="4113"/>
         <source>Fit to Text Width</source>
         <translation>Vừa chiều rộng văn bản</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4111"/>
+        <location filename="../src/configdialog.ui" line="4121"/>
         <source>Infinite</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4137"/>
+        <location filename="../src/configdialog.ui" line="4147"/>
         <source>Scale Option:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4166"/>
+        <location filename="../src/configdialog.ui" line="4176"/>
         <source>Magnifier Size:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4173"/>
+        <location filename="../src/configdialog.ui" line="4183"/>
         <source> dpi</source>
         <translation>dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4184"/>
+        <location filename="../src/configdialog.ui" line="4194"/>
         <source>Square</source>
         <translation>Hình vuông</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4189"/>
+        <location filename="../src/configdialog.ui" line="4199"/>
         <source>Circle</source>
         <translation>Vòng tròn</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4194"/>
+        <location filename="../src/configdialog.ui" line="4204"/>
         <source>Circle without shadow</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4202"/>
+        <location filename="../src/configdialog.ui" line="4212"/>
         <source>Highlight Duration</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4212"/>
+        <location filename="../src/configdialog.ui" line="4222"/>
         <source>Screen Resolution:</source>
         <translation>Độ phân giải màn hình:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4232"/>
+        <location filename="../src/configdialog.ui" line="4242"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4242"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source>Border</source>
         <translation>Khung</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4249"/>
+        <location filename="../src/configdialog.ui" line="4259"/>
         <source>Magnifier Shape:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4256"/>
+        <location filename="../src/configdialog.ui" line="4266"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Tự động ẩn thanh công cụ ở chế độ embedded</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4263"/>
+        <location filename="../src/configdialog.ui" line="4273"/>
         <source>Highlight Color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4273"/>
+        <location filename="../src/configdialog.ui" line="4283"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4283"/>
+        <location filename="../src/configdialog.ui" line="4293"/>
         <source>Buffered</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4288"/>
+        <location filename="../src/configdialog.ui" line="4298"/>
         <source>Direct</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4293"/>
+        <location filename="../src/configdialog.ui" line="4303"/>
         <source>Hybrid</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4301"/>
+        <location filename="../src/configdialog.ui" line="4311"/>
         <source>Cache Size:</source>
         <translation>Kích cỡ cache:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4311"/>
-        <location filename="../src/configdialog.ui" line="4366"/>
+        <location filename="../src/configdialog.ui" line="4321"/>
+        <location filename="../src/configdialog.ui" line="4376"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2635,82 +2645,82 @@ Note: Changing this setting will only affect documents that are opened afterward
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4334"/>
+        <location filename="../src/configdialog.ui" line="4344"/>
         <source> px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4356"/>
+        <location filename="../src/configdialog.ui" line="4366"/>
         <source>Synchronized Files Types:</source>
         <translation>Loại tệp đã đồng bộ:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4372"/>
+        <location filename="../src/configdialog.ui" line="4382"/>
         <source>Render Backend:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4382"/>
+        <location filename="../src/configdialog.ui" line="4392"/>
         <source>Load Strategy:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4392"/>
+        <location filename="../src/configdialog.ui" line="4402"/>
         <source> MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4414"/>
+        <location filename="../src/configdialog.ui" line="4424"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Lưu ý: Chế độ Windowed/embedded được cấu hình tại Dựng -&gt; Trình xem PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4421"/>
+        <location filename="../src/configdialog.ui" line="4431"/>
         <source>Paper Color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4431"/>
+        <location filename="../src/configdialog.ui" line="4441"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4483"/>
+        <location filename="../src/configdialog.ui" line="4493"/>
         <source>Select how txs checks in saved files</source>
         <translation>Chọn cách để txs kiểm tra tệp đã l</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4487"/>
+        <location filename="../src/configdialog.ui" line="4497"/>
         <source>No automatic check-in after save</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4492"/>
+        <location filename="../src/configdialog.ui" line="4502"/>
         <source>Check-in after File/Save only</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4497"/>
+        <location filename="../src/configdialog.ui" line="4507"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4505"/>
+        <location filename="../src/configdialog.ui" line="4515"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4512"/>
+        <location filename="../src/configdialog.ui" line="4522"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4515"/>
+        <location filename="../src/configdialog.ui" line="4525"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4524"/>
+        <location filename="../src/configdialog.ui" line="4534"/>
         <source>SVN Directory Search Depth: </source>
         <translation type="unfinished"/>
     </message>
@@ -3697,7 +3707,7 @@ nâng cao chỉ có thể xem thiết lập phổ biến.</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1397"/>
-        <location filename="../src/configmanager.cpp" line="2536"/>
+        <location filename="../src/configmanager.cpp" line="2537"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;none&gt;</translation>
     </message>
@@ -3769,37 +3779,37 @@ Bạn có muốn gỡ bỏ chúng?</translation>
         <translation>Tài liệu gốc:</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2537"/>
+        <location filename="../src/configmanager.cpp" line="2538"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;default&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2702"/>
+        <location filename="../src/configmanager.cpp" line="2703"/>
         <source>Configure</source>
         <translation>Cấu hình</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2709"/>
+        <location filename="../src/configmanager.cpp" line="2710"/>
         <source>Select Program</source>
         <translation>Chọn chương trình</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2716"/>
+        <location filename="../src/configmanager.cpp" line="2717"/>
         <source>Restore Default</source>
         <translation>Khôi phục mặc định</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2763"/>
+        <location filename="../src/configmanager.cpp" line="2764"/>
         <source>Repeat contained compilation commands</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2811"/>
+        <location filename="../src/configmanager.cpp" line="2812"/>
         <source>Add</source>
         <translation>Thêm</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2874"/>
+        <location filename="../src/configmanager.cpp" line="2875"/>
         <source>Browse program</source>
         <translation>Duyệt chương trình</translation>
     </message>
@@ -4216,62 +4226,67 @@ Bạn có chắc muốn hủy bỏ tất cả thay đổi?</translation>
         <translation>Vị trí</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="327"/>
+        <location filename="../src/insertgraphics.ui" line="369"/>
         <source>Top</source>
         <translation>Đỉnh</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="334"/>
+        <location filename="../src/insertgraphics.ui" line="376"/>
         <source>Bottom</source>
         <translation>Đáy</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="341"/>
+        <location filename="../src/insertgraphics.ui" line="383"/>
         <source>Page</source>
         <translation>Trang</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="348"/>
+        <location filename="../src/insertgraphics.ui" line="390"/>
         <source>Here</source>
         <translation>Tại đây</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="355"/>
+        <location filename="../src/insertgraphics.ui" line="397"/>
+        <source>Here (H)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="404"/>
         <source>Override Internal Layout Parameters</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="383"/>
+        <location filename="../src/insertgraphics.ui" line="324"/>
         <source>Caption for display in the list of tables</source>
         <translation>Nhãn cho hiển thị danh sách bảng</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="390"/>
+        <location filename="../src/insertgraphics.ui" line="331"/>
         <source>  Short</source>
         <translation>Ngắn</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="397"/>
+        <location filename="../src/insertgraphics.ui" line="338"/>
         <source>  Long</source>
         <translation>Dài</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="433"/>
+        <location filename="../src/insertgraphics.ui" line="440"/>
         <source>Save current settings as default.</source>
         <translation>Lưu thiết lập hiện tại như mặc định.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="436"/>
+        <location filename="../src/insertgraphics.ui" line="443"/>
         <source>as Default</source>
         <translation>như mặc định</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="460"/>
+        <location filename="../src/insertgraphics.ui" line="467"/>
         <source>OK</source>
         <translation>Đồng ý</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="470"/>
+        <location filename="../src/insertgraphics.ui" line="477"/>
         <source>Cancel</source>
         <translation>Hủy</translation>
     </message>
@@ -4281,66 +4296,67 @@ Bạn có chắc muốn hủy bỏ tất cả thay đổi?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="76"/>
+        <location filename="../src/insertgraphics.cpp" line="77"/>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="80"/>
+        <location filename="../src/insertgraphics.cpp" line="81"/>
         <source>Placement preferences for the figure
 
-[t] Top: At the top the page
+[t] Top: At the top of the page
 [b] Bottom: At the bottom of the page
-[p] Page: On a separate page with figures
+[p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
+[H] Here: Strictly at this position in the text (requires float package)
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
-Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
+Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="259"/>
+        <location filename="../src/insertgraphics.cpp" line="262"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
         <translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="276"/>
+        <location filename="../src/insertgraphics.cpp" line="279"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
         <translation>Không thể phân tích mã đồ họa bao gồm:
 Trình thuật sỹ không hỗ trợ môi trường</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="285"/>
+        <location filename="../src/insertgraphics.cpp" line="288"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
         <translation>Không thể phân tích mã đồ họa bao gồm:
 Lệnh \caption không hợp lệ</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="299"/>
+        <location filename="../src/insertgraphics.cpp" line="302"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
         <translation>Không thể phân tích mã đồ họa bao gồm:
 Thiếu tùy chọn \includegraphics</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="316"/>
+        <location filename="../src/insertgraphics.cpp" line="319"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
         <translation>Không thể phân tích mã đồ họa bao gồm:
 Trình thuật sỹ không hỗ trợ lệnh</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="417"/>
+        <location filename="../src/insertgraphics.cpp" line="420"/>
         <source>Images</source>
         <translation>Hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="419"/>
+        <location filename="../src/insertgraphics.cpp" line="422"/>
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Chọn một tệp</translation>
@@ -4357,46 +4373,46 @@ Trình thuật sỹ không hỗ trợ lệnh</translation>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1178"/>
-        <location filename="../src/latexcompleter.cpp" line="1187"/>
+        <location filename="../src/latexcompleter.cpp" line="1197"/>
+        <location filename="../src/latexcompleter.cpp" line="1206"/>
         <source>typical</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1179"/>
-        <location filename="../src/latexcompleter.cpp" line="1188"/>
+        <location filename="../src/latexcompleter.cpp" line="1198"/>
+        <location filename="../src/latexcompleter.cpp" line="1207"/>
         <source>most used</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1180"/>
-        <location filename="../src/latexcompleter.cpp" line="1189"/>
+        <location filename="../src/latexcompleter.cpp" line="1199"/>
+        <location filename="../src/latexcompleter.cpp" line="1208"/>
         <source>all</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1181"/>
-        <location filename="../src/latexcompleter.cpp" line="1190"/>
+        <location filename="../src/latexcompleter.cpp" line="1200"/>
+        <location filename="../src/latexcompleter.cpp" line="1209"/>
         <source>press shift+space to change view</source>
         <translation>nhấn shift+space để thay đổi cách xem</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1347"/>
+        <location filename="../src/latexcompleter.cpp" line="1366"/>
         <source> (Usertag)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1681"/>
+        <location filename="../src/latexcompleter.cpp" line="1701"/>
         <source>label missing!</source>
         <translation>thiếu nhãn!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1683"/>
+        <location filename="../src/latexcompleter.cpp" line="1703"/>
         <source>label multiple times defined!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1692"/>
+        <location filename="../src/latexcompleter.cpp" line="1712"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Tên tệp: %1&lt;/b&gt;
@@ -4436,17 +4452,17 @@ Trình thuật sỹ không hỗ trợ lệnh</translation>
         <translation>BLOCKS</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2384"/>
+        <location filename="../src/latexdocument.cpp" line="2386"/>
         <source>Invalid codec</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2398"/>
+        <location filename="../src/latexdocument.cpp" line="2400"/>
         <source>Missing value for -job-name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2401"/>
+        <location filename="../src/latexdocument.cpp" line="2403"/>
         <source>Unknown magic comment</source>
         <translation>Không rõ bình luận ma thuật</translation>
     </message>
@@ -4555,126 +4571,126 @@ Trình thuật sỹ không hỗ trợ lệnh</translation>
         <translation>Đến PDF</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="1043"/>
+        <location filename="../src/latexeditorview.cpp" line="1044"/>
         <source>untitled</source>
         <translation>chưa có tiêu đề</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2154"/>
+        <location filename="../src/latexeditorview.cpp" line="2155"/>
         <source>Delete</source>
         <translation>Xóa</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2187"/>
+        <location filename="../src/latexeditorview.cpp" line="2188"/>
         <source>Add to Dictionary</source>
         <translation>Thêm vào từ điển</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2366"/>
+        <location filename="../src/latexeditorview.cpp" line="2367"/>
         <source>label missing!</source>
         <translation>thiếu nhãn!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2368"/>
-        <location filename="../src/latexeditorview.cpp" line="2386"/>
+        <location filename="../src/latexeditorview.cpp" line="2369"/>
+        <location filename="../src/latexeditorview.cpp" line="2387"/>
         <source>label multiple times defined!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2376"/>
-        <location filename="../src/latexeditorview.cpp" line="2448"/>
+        <location filename="../src/latexeditorview.cpp" line="2377"/>
+        <location filename="../src/latexeditorview.cpp" line="2449"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Tên tệp: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2389"/>
+        <location filename="../src/latexeditorview.cpp" line="2390"/>
         <source>%n reference(s) to this label</source>
         <translation><numerusform>%n tham chiếu(s) cho nhãn này</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2394"/>
+        <location filename="../src/latexeditorview.cpp" line="2395"/>
         <source>Class</source>
         <translation>Lớp</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2394"/>
+        <location filename="../src/latexeditorview.cpp" line="2395"/>
         <source>Package</source>
         <translation>Gói</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2398"/>
+        <location filename="../src/latexeditorview.cpp" line="2399"/>
         <source>Beamer Theme</source>
         <translation>Giao diện Beamer </translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2407"/>
+        <location filename="../src/latexeditorview.cpp" line="2408"/>
         <source>not found</source>
         <translation>không được tìm thấy</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2423"/>
+        <location filename="../src/latexeditorview.cpp" line="2424"/>
         <source>Citation correct (reading ...)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2429"/>
+        <location filename="../src/latexeditorview.cpp" line="2430"/>
         <source>Citation missing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2432"/>
+        <location filename="../src/latexeditorview.cpp" line="2433"/>
         <source>Warning:</source>
         <translation>Cảnh báo:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2432"/>
+        <location filename="../src/latexeditorview.cpp" line="2433"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2796"/>
+        <location filename="../src/latexeditorview.cpp" line="2797"/>
         <source>Save Preview Image</source>
         <translation>Lưu hình ảnh xem trước</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2796"/>
+        <location filename="../src/latexeditorview.cpp" line="2797"/>
         <source>Images</source>
         <translation>Hình ảnh</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2926"/>
+        <location filename="../src/latexeditorview.cpp" line="2927"/>
         <source>Remove Bookmark</source>
         <translation>Gỡ bỏ đánh dấu</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2934"/>
+        <location filename="../src/latexeditorview.cpp" line="2935"/>
         <source>Unnamed Bookmark</source>
         <translation>Đánh dấu chưa được đặt tên</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2939"/>
+        <location filename="../src/latexeditorview.cpp" line="2940"/>
         <source>Bookmark</source>
         <translation>Đánh dấu</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2966"/>
+        <location filename="../src/latexeditorview.cpp" line="2967"/>
         <source>Collapse All</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2970"/>
+        <location filename="../src/latexeditorview.cpp" line="2971"/>
         <source>Collapse Level %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2975"/>
+        <location filename="../src/latexeditorview.cpp" line="2976"/>
         <source>Expand All</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2979"/>
+        <location filename="../src/latexeditorview.cpp" line="2980"/>
         <source>Expand Level %1</source>
         <translation type="unfinished"/>
     </message>
@@ -5449,7 +5465,7 @@ Bạn có muốn ghi đè nó?</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3071"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4220"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4226"/>
         <source>Close</source>
         <translation>Hủy</translation>
     </message>
@@ -5498,47 +5514,47 @@ You can now enter the password:</source>
 Bạn có thể nhập mật khẩu ngay bây giờ:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3444"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3450"/>
         <source>Searching for</source>
         <translation>Tìm kiếm cho</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3572"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3578"/>
         <source>No SyncTeX data available</source>
         <translation>Không có dữ liệu SyncTeX sẵn dùng</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3574"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3580"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3663"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3669"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3741"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3747"/>
         <source>Page %1 of %2</source>
         <translation>Trang %1 của %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3742"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3748"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>Trang %1 đến %2 của %3</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3767"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3773"/>
         <source>Open PDF</source>
         <translation>Mở PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4047"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4053"/>
         <source>Print</source>
         <translation>In</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4221"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4227"/>
         <source>Close Message</source>
         <translation>Đóng tin nhắn</translation>
     </message>
@@ -5984,148 +6000,148 @@ Restart from the beginning?</source>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="199"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="704"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1470"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="701"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1469"/>
         <source>Default</source>
         <translation>Mặc định</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="524"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1443"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="521"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
         <source>&amp;Undo</source>
         <translation>Hoàn &amp;tác</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="535"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="532"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1443"/>
         <source>&amp;Redo</source>
         <translation>Làm &amp;lại</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="550"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1446"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1445"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Cắt</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="561"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1447"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1446"/>
         <source>&amp;Copy</source>
         <translation>Sao &amp;chép</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="572"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1448"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="569"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1447"/>
         <source>&amp;Paste</source>
         <translation>&amp;Dán</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="588"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="585"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1449"/>
         <source>&amp;Indent</source>
         <translation>&amp;Thụt lề</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="596"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
         <source>&amp;Unindent</source>
         <translation>&amp;Bỏ thụt lề</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="608"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
         <source>Toggle &amp;Comment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="613"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1452"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
         <source>Co&amp;mment</source>
         <translation>&amp;Bình luận</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="621"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1453"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1452"/>
         <source>Unc&amp;omment</source>
         <translation>B&amp;ỏ bình luận</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="633"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1455"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1454"/>
         <source>&amp;Select all</source>
         <translation>&amp;Chọn hết</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="645"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1457"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="642"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1456"/>
         <source>&amp;Find</source>
         <translation>&amp;Tìm kiếm</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="653"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1458"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="650"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1457"/>
         <source>Fin&amp;d next</source>
         <translation>Tìm t&amp;iếp</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="661"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1459"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="658"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1458"/>
         <source>&amp;Replace</source>
         <translation>T&amp;hay thế </translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="673"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1461"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="670"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1460"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Đến dòng...</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="685"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
         <source>Dynamic line wrapping</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="697"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1467"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="694"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1466"/>
         <source>Input binding</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="722"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="719"/>
         <source>Line endings</source>
         <translation>Kết thúc dòng</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="729"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="726"/>
         <source>Conservative</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="727"/>
         <source>Local</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="731"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="728"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="732"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="729"/>
         <source>Dos/Windows</source>
         <translation>Dos/Windows</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="733"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
         <source>Old Mac</source>
         <translation>Mac cũ</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="918"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="917"/>
         <source>Conflict!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="919"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="918"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -6136,29 +6152,29 @@ Press &quot;Ignore&quot; to ignore this warning.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="931"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="930"/>
         <source>Diff</source>
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1011"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1021"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1053"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1090"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1112"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1010"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1020"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1052"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1089"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1111"/>
         <source>Saving failed</source>
         <translation>Lưu thất bại</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1012"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1011"/>
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1021"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1090"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1020"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1089"/>
         <source>Could not get write permissions on file
 %1.
 
@@ -6166,7 +6182,7 @@ Perhaps it is read-only or opened in another program?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1054"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1053"/>
         <source>There seems to be not enough space to save the file at
 %1
 
@@ -6193,17 +6209,17 @@ này là kết quả việc mất dữ liệu.
 </translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1079"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
         <source>Warning</source>
         <translation>Cảnh báo</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1080"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1079"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
         <translation>Tạo một bản sao lưu của tập tin thất bại. Bạn vẫn có thể tiếp tục lưu. Tuy nhiên, nếu hành động lưu không thành công, bạn có thể mất dữ liệu trong tập tin gốc. Bạn có muốn tiếp tục không?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>Writing the document to file
 %1
 failed.</source>
@@ -6212,7 +6228,7 @@ failed.</source>
 đã thất bại.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1108"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1107"/>
         <source>The original file on disk was destroyed during the save operation.
 You'll find a copy at
 %1</source>
@@ -6221,13 +6237,13 @@ Bạn sẽ tìm thấy một bản sao tại
 %1</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1235"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1239"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1234"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1238"/>
         <source>File deleted</source>
         <translation>Tệp đã được xóa</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1235"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1234"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
@@ -6236,19 +6252,19 @@ Tôi có nên lưu các tài liệu để khôi phục lại các tập tin?
 </translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1239"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1238"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
         <translation>Vâng, thật kỳ lạ: Tệp %1 không bị xóa nữa.
 Có lẽ một người nào khác đã khôi phục nó và do đó tôi không thể ghi đè lên (có thể đã được sửa đổi) phiên bản trên đĩa.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1265"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1264"/>
         <source>File changed</source>
         <translation>Tệp đã được thay đổi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1266"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1265"/>
         <source>%1
 has been modified by another application.
 
@@ -6259,37 +6275,37 @@ Do you wish to keep up to date by reloading the file?
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1342"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1341"/>
         <source>Print Source Code</source>
         <translation>In mã nguồn</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1473"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1472"/>
         <source>&amp;Edit</source>
         <translation>&amp;Sửa</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1474"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1473"/>
         <source>&amp;Search</source>
         <translation>&amp;Tìm kiếm</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1476"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1475"/>
         <source>Edit</source>
         <translation>Sửa</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1477"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1476"/>
         <source>Search</source>
         <translation>Tìm kiếm</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1599"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1598"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1601"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1600"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
@@ -8934,7 +8950,7 @@ Tệp
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="338"/>
-        <location filename="../src/texstudio.cpp" line="5934"/>
+        <location filename="../src/texstudio.cpp" line="5935"/>
         <source>Ready</source>
         <translation>Sẵn sàng</translation>
     </message>
@@ -8975,8 +8991,8 @@ Tệp
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="392"/>
-        <location filename="../src/texstudio.cpp" line="8893"/>
-        <location filename="../src/texstudio.cpp" line="8903"/>
+        <location filename="../src/texstudio.cpp" line="8909"/>
+        <location filename="../src/texstudio.cpp" line="8919"/>
         <source>All files</source>
         <translation>Tất cả các tệp</translation>
     </message>
@@ -9215,7 +9231,7 @@ Tệp
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="784"/>
-        <location filename="../src/texstudio.cpp" line="9094"/>
+        <location filename="../src/texstudio.cpp" line="9110"/>
         <source>&amp;Close</source>
         <translation>&amp;Hủy</translation>
     </message>
@@ -10375,9 +10391,9 @@ Tệp
     <message>
         <location filename="../src/texstudio.cpp" line="1463"/>
         <location filename="../src/texstudio.cpp" line="1464"/>
-        <location filename="../src/texstudio.cpp" line="5532"/>
-        <location filename="../src/texstudio.cpp" line="5535"/>
+        <location filename="../src/texstudio.cpp" line="5533"/>
         <location filename="../src/texstudio.cpp" line="5536"/>
+        <location filename="../src/texstudio.cpp" line="5537"/>
         <source>Encoding</source>
         <translation>Mã hóa</translation>
     </message>
@@ -10431,13 +10447,13 @@ Tệp
     <message>
         <location filename="../src/texstudio.cpp" line="1923"/>
         <location filename="../src/texstudio.cpp" line="3647"/>
-        <location filename="../src/texstudio.cpp" line="5583"/>
-        <location filename="../src/texstudio.cpp" line="6064"/>
-        <location filename="../src/texstudio.cpp" line="6221"/>
-        <location filename="../src/texstudio.cpp" line="6223"/>
-        <location filename="../src/texstudio.cpp" line="6230"/>
-        <location filename="../src/texstudio.cpp" line="6232"/>
-        <location filename="../src/texstudio.cpp" line="9584"/>
+        <location filename="../src/texstudio.cpp" line="5584"/>
+        <location filename="../src/texstudio.cpp" line="6065"/>
+        <location filename="../src/texstudio.cpp" line="6222"/>
+        <location filename="../src/texstudio.cpp" line="6224"/>
+        <location filename="../src/texstudio.cpp" line="6231"/>
+        <location filename="../src/texstudio.cpp" line="6233"/>
+        <location filename="../src/texstudio.cpp" line="9600"/>
         <source>Error</source>
         <translation>Lỗi</translation>
     </message>
@@ -10488,7 +10504,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2477"/>
-        <location filename="../src/texstudio.cpp" line="9414"/>
+        <location filename="../src/texstudio.cpp" line="9430"/>
         <source>Open Files</source>
         <translation>Mở tệp</translation>
     </message>
@@ -10644,8 +10660,8 @@ tệp khác này trước khi bạn có thể ghi đè lên nó.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3630"/>
-        <location filename="../src/texstudio.cpp" line="5981"/>
-        <location filename="../src/texstudio.cpp" line="6010"/>
+        <location filename="../src/texstudio.cpp" line="5982"/>
+        <location filename="../src/texstudio.cpp" line="6011"/>
         <source>No document open</source>
         <translation type="unfinished"/>
     </message>
@@ -10665,60 +10681,60 @@ tệp khác này trước khi bạn có thể ghi đè lên nó.</translation>
         <translation>Không thể ghi tệp thiết lập %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5256"/>
+        <location filename="../src/texstudio.cpp" line="5257"/>
         <source>Quick Start</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5278"/>
+        <location filename="../src/texstudio.cpp" line="5279"/>
         <source>Quick Beamer Presentation</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5315"/>
+        <location filename="../src/texstudio.cpp" line="5316"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5347"/>
+        <location filename="../src/texstudio.cpp" line="5348"/>
         <source>Type: %1</source>
         <translation>Loại: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5391"/>
+        <location filename="../src/texstudio.cpp" line="5392"/>
         <source>Edit User &amp;Tags</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5441"/>
+        <location filename="../src/texstudio.cpp" line="5442"/>
         <source>Labels:</source>
         <translation>Nhãn:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5530"/>
+        <location filename="../src/texstudio.cpp" line="5531"/>
         <source>Encoding Aliases: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5583"/>
+        <location filename="../src/texstudio.cpp" line="5584"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Không thể nhận diện tên tệp.
 Bạn phải lưu một tài liệu trước khi bạn có thể biên dịch nó.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5590"/>
+        <location filename="../src/texstudio.cpp" line="5591"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Không thể nhận diện tên tệp</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5726"/>
+        <location filename="../src/texstudio.cpp" line="5727"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5746"/>
+        <location filename="../src/texstudio.cpp" line="5747"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10734,200 +10750,200 @@ Bạn có muốn cho phép và chạy lệnh mới?
 (c)Không, đừng dùng lệnh &quot;%3&quot; và chạy lệnh mặc định &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5752"/>
+        <location filename="../src/texstudio.cpp" line="5753"/>
         <source>(a) allow for this document</source>
         <translation>(a) cho phép tài liệu này</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5753"/>
+        <location filename="../src/texstudio.cpp" line="5754"/>
         <source>(b) allow for all documents</source>
         <translation>(b) cho phép cho tất cả tài liệu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5754"/>
+        <location filename="../src/texstudio.cpp" line="5755"/>
         <source>(c) use the default command</source>
         <translation>(c) dùng lệnh mặc định</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5815"/>
+        <location filename="../src/texstudio.cpp" line="5816"/>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5846"/>
+        <location filename="../src/texstudio.cpp" line="5847"/>
         <source>%!TeX program used: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5849"/>
+        <location filename="../src/texstudio.cpp" line="5850"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5910"/>
+        <location filename="../src/texstudio.cpp" line="5911"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5912"/>
+        <location filename="../src/texstudio.cpp" line="5913"/>
         <source>Could not start %1.</source>
         <translation>Không thể khởi chạy %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5940"/>
+        <location filename="../src/texstudio.cpp" line="5941"/>
         <source>Error:</source>
         <translation>Lỗi:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5974"/>
+        <location filename="../src/texstudio.cpp" line="5975"/>
         <source>No open project or tex file to clean.</source>
         <translation>Không có dự án mở hoặc tệp tex cần dọn dẹp.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6014"/>
+        <location filename="../src/texstudio.cpp" line="6015"/>
         <source>Text Analysis</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6035"/>
+        <location filename="../src/texstudio.cpp" line="6036"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6064"/>
+        <location filename="../src/texstudio.cpp" line="6065"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Tệp nên được lưu và biên dịch trước khi bạn có thể xem bản ghi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6221"/>
-        <location filename="../src/texstudio.cpp" line="6230"/>
+        <location filename="../src/texstudio.cpp" line="6222"/>
+        <location filename="../src/texstudio.cpp" line="6231"/>
         <source>File not found</source>
         <translation>Không tìm thấy tệp</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6223"/>
-        <location filename="../src/texstudio.cpp" line="6232"/>
+        <location filename="../src/texstudio.cpp" line="6224"/>
+        <location filename="../src/texstudio.cpp" line="6233"/>
         <source>Could not open browser</source>
         <translation>Không thể mở trình duyệt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6716"/>
+        <location filename="../src/texstudio.cpp" line="6717"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8309"/>
+        <location filename="../src/texstudio.cpp" line="8325"/>
         <source>commit comment:</source>
         <translation>ủy thác bình luận</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8311"/>
+        <location filename="../src/texstudio.cpp" line="8327"/>
         <source>check in whole directory ?</source>
         <translation>kiểm tra toàn bộ thư mục?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8588"/>
+        <location filename="../src/texstudio.cpp" line="8604"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8867"/>
+        <location filename="../src/texstudio.cpp" line="8883"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8869"/>
+        <location filename="../src/texstudio.cpp" line="8885"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Tệp &quot;%1&quot; không tồn tại.
 Bạn có muốn tạo nó?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8893"/>
+        <location filename="../src/texstudio.cpp" line="8909"/>
         <source>Save Profile</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8893"/>
-        <location filename="../src/texstudio.cpp" line="8903"/>
+        <location filename="../src/texstudio.cpp" line="8909"/>
+        <location filename="../src/texstudio.cpp" line="8919"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8903"/>
+        <location filename="../src/texstudio.cpp" line="8919"/>
         <source>Load Profile</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8953"/>
+        <location filename="../src/texstudio.cpp" line="8969"/>
         <source>Failed to read profile file %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9076"/>
+        <location filename="../src/texstudio.cpp" line="9092"/>
         <source>Problem</source>
         <translation>Vấn đề</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9076"/>
+        <location filename="../src/texstudio.cpp" line="9092"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9081"/>
+        <location filename="../src/texstudio.cpp" line="9097"/>
         <source>Find Word Repetitions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9090"/>
+        <location filename="../src/texstudio.cpp" line="9106"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Tìm tiếp</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9092"/>
+        <location filename="../src/texstudio.cpp" line="9108"/>
         <source>&amp;Find Previous</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9143"/>
+        <location filename="../src/texstudio.cpp" line="9159"/>
         <source>Reached beginning of text.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9143"/>
+        <location filename="../src/texstudio.cpp" line="9159"/>
         <source>Reached end of text.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9414"/>
-        <location filename="../src/texstudio.cpp" line="9624"/>
-        <location filename="../src/texstudio.cpp" line="9627"/>
+        <location filename="../src/texstudio.cpp" line="9430"/>
+        <location filename="../src/texstudio.cpp" line="9640"/>
+        <location filename="../src/texstudio.cpp" line="9643"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Tệp LaTeX (*.tex);;Tất cả các tệp (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9584"/>
+        <location filename="../src/texstudio.cpp" line="9600"/>
         <source>You do not have read permission to this file.</source>
         <translation>Bạn không được cấp quyền đọc tệp này</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9624"/>
+        <location filename="../src/texstudio.cpp" line="9640"/>
         <source>Open Compare File</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9627"/>
+        <location filename="../src/texstudio.cpp" line="9643"/>
         <source>Open Base File</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9708"/>
+        <location filename="../src/texstudio.cpp" line="9724"/>
         <source>SVN Conflict!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9709"/>
+        <location filename="../src/texstudio.cpp" line="9725"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -10935,14 +10951,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9806"/>
-        <location filename="../src/texstudio.cpp" line="9897"/>
-        <location filename="../src/texstudio.cpp" line="9903"/>
+        <location filename="../src/texstudio.cpp" line="9822"/>
+        <location filename="../src/texstudio.cpp" line="9913"/>
+        <location filename="../src/texstudio.cpp" line="9919"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9810"/>
+        <location filename="../src/texstudio.cpp" line="9826"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -10951,7 +10967,7 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9813"/>
+        <location filename="../src/texstudio.cpp" line="9829"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10960,141 +10976,141 @@ Please provide this file if you send a bug report.
 %2 Bạn muốn giữ TeXstudio chạy? Điều này có thể gây hư hỏng dữ liệu.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9814"/>
+        <location filename="../src/texstudio.cpp" line="9830"/>
         <source>Yes, try to recover</source>
         <translation>Vâng, thử khôi phục</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9815"/>
-        <location filename="../src/texstudio.cpp" line="9820"/>
-        <location filename="../src/texstudio.cpp" line="9899"/>
+        <location filename="../src/texstudio.cpp" line="9831"/>
+        <location filename="../src/texstudio.cpp" line="9836"/>
+        <location filename="../src/texstudio.cpp" line="9915"/>
         <source>No, kill the program</source>
         <translation>Không, tắt chương trình ngay</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9817"/>
+        <location filename="../src/texstudio.cpp" line="9833"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9818"/>
+        <location filename="../src/texstudio.cpp" line="9834"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9819"/>
+        <location filename="../src/texstudio.cpp" line="9835"/>
         <source>Yes, continue the loop</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9898"/>
+        <location filename="../src/texstudio.cpp" line="9914"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9899"/>
+        <location filename="../src/texstudio.cpp" line="9915"/>
         <source>Yes</source>
         <translation>Có</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9903"/>
+        <location filename="../src/texstudio.cpp" line="9919"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9932"/>
+        <location filename="../src/texstudio.cpp" line="9948"/>
         <source>System Report</source>
         <translation>Báo cáo hệ thống</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10071"/>
+        <location filename="../src/texstudio.cpp" line="10087"/>
         <source>LT Report</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10098"/>
+        <location filename="../src/texstudio.cpp" line="10114"/>
         <source>process failed to start
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10101"/>
+        <location filename="../src/texstudio.cpp" line="10117"/>
         <source>process crashed
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10111"/>
+        <location filename="../src/texstudio.cpp" line="10127"/>
         <source>Real-time checking is enabled.
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10113"/>
+        <location filename="../src/texstudio.cpp" line="10129"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10116"/>
+        <location filename="../src/texstudio.cpp" line="10132"/>
         <source>Grammar checking is enabled.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10118"/>
+        <location filename="../src/texstudio.cpp" line="10134"/>
         <source>Grammar checking is disabled!!!
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10121"/>
+        <location filename="../src/texstudio.cpp" line="10137"/>
         <source>Tries to start automatically.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10123"/>
+        <location filename="../src/texstudio.cpp" line="10139"/>
         <source>Autostart disabled.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10128"/>
+        <location filename="../src/texstudio.cpp" line="10144"/>
         <source>LT current status: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10131"/>
+        <location filename="../src/texstudio.cpp" line="10147"/>
         <source>working</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10134"/>
+        <location filename="../src/texstudio.cpp" line="10150"/>
         <source>error</source>
         <translation>lỗi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10137"/>
+        <location filename="../src/texstudio.cpp" line="10153"/>
         <source>unknown</source>
         <translation>không biết</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10143"/>
+        <location filename="../src/texstudio.cpp" line="10159"/>
         <source>LT-URL: %1
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10397"/>
+        <location filename="../src/texstudio.cpp" line="10413"/>
         <source>Error when communicating with LT: %1</source>
         <translation type="unfinished"/>
     </message>
