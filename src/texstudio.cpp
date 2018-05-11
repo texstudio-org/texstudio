@@ -23,6 +23,7 @@
 
 #include "dblclickmenubar.h"
 #include "filechooser.h"
+#include "filedialog.h"
 #include "tabdialog.h"
 #include "arraydialog.h"
 #include "bibtexdialog.h"
@@ -2474,7 +2475,7 @@ void Texstudio::fileOpen()
 			currentDir = fi.absolutePath();
 		}
 	}
-	QStringList files = QFileDialog::getOpenFileNames(this, tr("Open Files"), currentDir, fileFilters,  &selectedFileFilter);
+	QStringList files = FileDialog::getOpenFileNames(this, tr("Open Files"), currentDir, fileFilters,  &selectedFileFilter);
 
 	recheckLabels = false; // impede label rechecking on hidden docs
 	QList<LatexEditorView *>listViews;
@@ -2577,7 +2578,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 	// get a file name
 	QString fn = fileName;
 	if (!saveSilently || fn.isEmpty()) {
-		fn = QFileDialog::getSaveFileName(this, tr("Save As"), currentDir, fileFilters, &selectedFileFilter);
+		fn = FileDialog::getSaveFileName(this, tr("Save As"), currentDir, fileFilters, &selectedFileFilter);
 		if (!fn.isEmpty()) {
 			static QRegExp fileExt("\\*(\\.[^ )]+)");
 			if (fileExt.indexIn(selectedFileFilter) > -1) {
@@ -2695,7 +2696,7 @@ void Texstudio::fileUtilCopyMove(bool move)
 {
 	QString fn = documents.getCurrentFileName();
 	if (fn.isEmpty()) return;
-	QString newfn = QFileDialog::getSaveFileName(this, move ? tr("Rename/Move") : tr("Copy"), fn, fileFilters, &selectedFileFilter);
+	QString newfn = FileDialog::getSaveFileName(this, move ? tr("Rename/Move") : tr("Copy"), fn, fileFilters, &selectedFileFilter);
 	if (newfn.isEmpty()) return;
 	if (fn == newfn) return;
 	QFile::Permissions permissions = QFile(fn).permissions();
@@ -3099,7 +3100,7 @@ void Texstudio::fileLoadSession()
 			openDir = doc->getFileInfo().path();
 		}
 	}
-	QString fn = QFileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
+	QString fn = FileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
 	loadSession(fn);
 	recentSessionList->addFilenameToList(fn);
@@ -3117,7 +3118,7 @@ void Texstudio::fileSaveSession()
 		}
 	}
 
-	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
+	QString fn = FileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
 	if (!getCurrentSession().save(fn, configManager.sessionStoreRelativePaths)) {
 		UtilsUi::txsCritical(tr("Saving of session failed."));
@@ -3356,7 +3357,7 @@ void Texstudio::editPasteImage(QImage image)
 	}
 	QString filter = tr("Image Formats (%1)").arg(filters.join(" "));
 	filenameSuggestion = getNonextistentFilename(filenameSuggestion, rootDir);
-	QString filename = QFileDialog::getSaveFileName(this, tr("Save Image"), filenameSuggestion, filter, &filter);
+	QString filename = FileDialog::getSaveFileName(this, tr("Save Image"), filenameSuggestion, filter, &filter);
 	if (filename.isEmpty()) return;
 	filenameSuggestion = filename;
 
@@ -8906,17 +8907,14 @@ void Texstudio::cursorHovered()
 void Texstudio::saveProfile()
 {
 	QString currentDir = configManager.configBaseDir;
-	QString fname = QFileDialog::getSaveFileName(this, tr("Save Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile);;" + tr("All files") + " (*)");
-	QFileInfo info(fname);
-	if (info.suffix().isEmpty())
-		fname += ".txsprofile";
+	QString fname = FileDialog::getSaveFileName(this, tr("Save Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile);;" + tr("All files") + " (*)");
 	saveSettings(fname);
 }
 
 void Texstudio::loadProfile()
 {
 	QString currentDir = configManager.configBaseDir;
-	QString fname = QFileDialog::getOpenFileName(this, tr("Load Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile);;" + tr("All files") + " (*)");
+	QString fname = FileDialog::getOpenFileName(this, tr("Load Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile);;" + tr("All files") + " (*)");
 	if (fname.isNull())
 		return;
 	if (QFileInfo(fname).isReadable()) {
@@ -9427,7 +9425,7 @@ void Texstudio::fileDiff()
 			currentDir = fi.absolutePath();
 		}
 	}
-	QStringList files = QFileDialog::getOpenFileNames(this, tr("Open Files"), currentDir, tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
+	QStringList files = FileDialog::getOpenFileNames(this, tr("Open Files"), currentDir, tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
 	if (files.isEmpty())
 		return;
 	//
@@ -9637,10 +9635,10 @@ void Texstudio::fileDiff3()
 			currentDir = fi.absolutePath();
 		}
 	}
-	QStringList files = QFileDialog::getOpenFileNames(this, tr("Open Compare File"), currentDir, tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
+	QStringList files = FileDialog::getOpenFileNames(this, tr("Open Compare File"), currentDir, tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
 	if (files.isEmpty())
 		return;
-	QStringList basefiles = QFileDialog::getOpenFileNames(this, tr("Open Base File"), currentDir, tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
+	QStringList basefiles = FileDialog::getOpenFileNames(this, tr("Open Base File"), currentDir, tr("LaTeX Files (*.tex);;All Files (*)"),  &selectedFileFilter);
 	if (basefiles.isEmpty())
 		return;
 	showDiff3(files.first(), basefiles.first());

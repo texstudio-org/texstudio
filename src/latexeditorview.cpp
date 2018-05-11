@@ -12,6 +12,7 @@
 #include "latexeditorview.h"
 #include "latexeditorview_config.h"
 
+#include "filedialog.h"
 #include "latexcompleter.h"
 #include "latexdocument.h"
 #include "smallUsefulFunctions.h"
@@ -2794,7 +2795,7 @@ void LatexEditorView::saveImageFromAction()
 
 	QPixmap pm = act->data().value<QPixmap>();
 
-	QString fname = QFileDialog::getSaveFileName(this , tr("Save Preview Image"), lastSaveDir, tr("Images") + " (*.png *.jpg *.jpeg)");
+	QString fname = FileDialog::getSaveFileName(this , tr("Save Preview Image"), lastSaveDir, tr("Images") + " (*.png *.jpg *.jpeg)");
 	if (fname.isEmpty()) return;
 
 	QFileInfo fi(fname);

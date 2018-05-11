@@ -160,7 +160,7 @@ public:
 	QStringList recentFilesList, recentProjectList, recentSessionList;
 	QMap<QString, QString> recentFileHighlightLanguage;
 	int maxRecentFiles, maxRecentProjects, maxRecentSessions;
-	bool rememberFileFilter;
+	bool rememberFileFilter, useNativeFileDialog;
 	bool sessionRestore;
 	bool sessionStoreRelativePaths;
 	bool parseBibTeX, parseMaster;
