@@ -1,8 +1,10 @@
 #ifndef FILEDIALOG_H
 #define FILEDIALOG_H
 
+#include <QWidget>
 #include <QString>
 #include <QStringList>
+
 
 class FileDialog
 {
