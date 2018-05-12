@@ -3,6 +3,7 @@
 #include "pdfsplittool.h"
 #include "ui_pdfsplittool.h"
 #include "utilsUI.h"
+#include "filedialog.h"
 
 #include <QFileDialog>
 #include <QFileInfo>
@@ -39,7 +40,7 @@ PDFSplitMergeTool::PDFSplitMergeTool(QWidget *parent, const QString &infile) :
 
 void PDFSplitMergeTool::outputFileDialog()
 {
-	QString newFile = QFileDialog::getOpenFileName(this, tr("Save PDF"), ui->outputFileEdit->text(), "PDF (*.pdf);;All files (*)");
+	QString newFile = FileDialog::getOpenFileName(this, tr("Save PDF"), ui->outputFileEdit->text(), "PDF (*.pdf);;All files (*)");
 	if (!newFile.isEmpty()) ui->outputFileEdit->setText(newFile);
 }
 
@@ -50,7 +51,7 @@ void PDFSplitMergeTool::inputFileDialog()
 	QLineEdit *le = qobject_cast<QLineEdit *> ( l->itemAt(1)->widget() );
 	REQUIRE(le);
 
-	QString newFile = QFileDialog::getOpenFileName(this, tr("Open PDF"), le->text(), "PDF (*.pdf);;All files (*)");
+	QString newFile = FileDialog::getOpenFileName(this, tr("Open PDF"), le->text(), "PDF (*.pdf);;All files (*)");
 	if (!newFile.isEmpty()) le->setText(newFile);
 }
 

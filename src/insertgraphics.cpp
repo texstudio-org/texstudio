@@ -12,6 +12,7 @@
 #include "mostQtHeaders.h"
 #include "insertgraphics.h"
 #include "insertgraphics_config.h"
+#include "filedialog.h"
 
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexparser.h"
@@ -419,7 +420,7 @@ void InsertGraphics::chooseFile()
 	};
 	QString filter = tr("Images") + " (" + exts.join(" ") + ")";
 	filter += QString(";;PGF/TikZ (*.pgf *.tex)");
-	fn = QFileDialog::getOpenFileName(this, tr("Select a File", "Wizard"), texFile.absolutePath(), filter);
+	fn = FileDialog::getOpenFileName(this, tr("Select a File", "Wizard"), texFile.absolutePath(), filter);
 	if (!fn.isEmpty()) {
 		ui.leFile->setText(fn);
 		if (ui.leLabel->text().isEmpty()) {

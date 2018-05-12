@@ -103,7 +103,8 @@ HEADERS += \
     $$PWD/utilsVersion.h \
     $$PWD/webpublishdialog.h \
     $$PWD/webpublishdialog_config.h \
-    $$PWD/xmltagslistwidget.h
+    $$PWD/xmltagslistwidget.h \
+    $$PWD/filedialog.h
 
 SOURCES += \
     $$PWD/aboutdialog.cpp \
@@ -200,7 +201,8 @@ SOURCES += \
     $$PWD/utilsUI.cpp \
     $$PWD/utilsVersion.cpp \
     $$PWD/webpublishdialog.cpp \
-    $$PWD/xmltagslistwidget.cpp
+    $$PWD/xmltagslistwidget.cpp \
+    $$PWD/filedialog.cpp
 
 FORMS += \
     $$PWD/aboutdialog.ui \

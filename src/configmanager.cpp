@@ -2,6 +2,7 @@
 #include "configmanager.h"
 
 #include "configdialog.h"
+#include "filedialog.h"
 #include "latexeditorview.h"
 #include "latexpackage.h"
 #include "latexcompleter_config.h"
@@ -451,6 +452,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Recent Project Files", &recentProjectList);
 	registerOption("Files/Recent Session Files", &recentSessionList);
 	registerOption("Files/Remember File Filter", &rememberFileFilter, true, &pseudoDialog->checkBoxRememberFileFilter);
+	registerOption("Files/Use Native File Dialog", &useNativeFileDialog, true, &pseudoDialog->checkBoxUseNativeFileDialog);
 	registerOption("Files/Recent Files Highlighting", &recentFileHighlightLanguage);
 	registerOption("Files/RestoreSession", &sessionRestore, true, &pseudoDialog->checkBoxRestoreSession);
 
@@ -2872,7 +2874,7 @@ void ConfigManager::browseCommand()
 		if (path.startsWith('"')) path = path.remove(0, 1);
 		if (path.endsWith('"')) path.chop(1);
 	}
-	QString location = QFileDialog::getOpenFileName(0, tr("Browse program"), path, "Program (*)", 0, QFileDialog::DontResolveSymlinks);
+	QString location = FileDialog::getOpenFileName(0, tr("Browse program"), path, "Program (*)", 0, QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"), QString("/"));
 		location = "\"" + location + "\" " + tempCommands.value(getCmdID(w)).defaultArgs;

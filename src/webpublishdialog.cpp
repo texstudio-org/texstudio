@@ -14,6 +14,7 @@
 #include "webpublishdialog_config.h"
 #include "smallUsefulFunctions.h"
 #include "utilsUI.h"
+#include "filedialog.h"
 
 WebPublishDialog::WebPublishDialog(QWidget *parent, WebPublishDialogConfig *aConfig, BuildManager  *aBuildManager, QTextCodec *input_codec)
 	: QDialog(parent), config(aConfig), buildManager(aBuildManager), codec (input_codec)
@@ -851,7 +852,7 @@ void WebPublishDialog::proceedSlot()
 
 void WebPublishDialog::browseSlot()
 {
-	QString fn = QFileDialog::getOpenFileName(this, tr("Open File"), config->lastdir, tr("TeX files (*.tex);;All files (*.*)"));
+	QString fn =  FileDialog::getOpenFileName(this, tr("Open File"), config->lastdir, tr("TeX files (*.tex);;All files (*.*)"));
 	if (!fn.isEmpty()) {
 		ui.inputfileEdit->setText(fn);
 	}

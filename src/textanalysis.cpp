@@ -8,8 +8,7 @@
 #include "qeditor.h"
 #include "qdocument.h"
 #include "qdocumentline.h"
-
-#include <QFileDialog>
+#include "filedialog.h"
 
 //#include "latexeditorview.h"
 //#include <QMessageBox>
@@ -445,7 +444,7 @@ QByteArray escapeAsCSV(const QString &s)
 
 void TextAnalysisDialog::slotExportButton()
 {
-	QString fn = QFileDialog::getSaveFileName(this, tr("CSV Export"), editor ? editor->document()->getFileName().replace(".tex", ".csv") : QString(), tr("CSV file") + " (*.csv)" ";;" + tr("All files") + " (*)");
+	QString fn = FileDialog::getSaveFileName(this, tr("CSV Export"), editor ? editor->document()->getFileName().replace(".tex", ".csv") : QString(), tr("CSV file") + " (*.csv)" ";;" + tr("All files") + " (*)");
 	if (fn.isEmpty()) return;
 	QFile f(fn);
 	if (!f.open(QFile::WriteOnly))

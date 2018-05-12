@@ -44,6 +44,7 @@
 #include "titledpanel.h"
 
 #include "pdfsplittool.h"
+#include "filedialog.h"
 
 //#include "GlobalParams.h"
 
@@ -3770,7 +3771,7 @@ void PDFDocument::goToSource()
 
 void PDFDocument::fileOpen()
 {
-	QString newFile = QFileDialog::getOpenFileName(this, tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
+	QString newFile = FileDialog::getOpenFileName(this, tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
 	if (newFile.isEmpty()) return;
 	loadFile(newFile, QFileInfo(), NoDisplayFlags);
 }

@@ -12,6 +12,7 @@
 #include "mostQtHeaders.h"
 
 #include "filechooser.h"
+#include "filedialog.h"
 
 #include "smallUsefulFunctions.h"
 
@@ -47,7 +48,7 @@ QString FileChooser::fileName() const
 void FileChooser::chooseFile()
 {
 	QString fn;
-	fn = QFileDialog::getOpenFileName(this, tr("Select a File"), dir, filter);
+	fn = FileDialog::getOpenFileName(this, tr("Select a File"), dir, filter);
 	if (!fn.isEmpty()) {
 		ui.lineEdit->setText(fn);
 		emit fileNameChanged(fn);

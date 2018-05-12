@@ -1,6 +1,7 @@
 #include "utilsUI.h"
 #include "utilsSystem.h"
 #include "utilsVersion.h"
+#include "filedialog.h"
 
 
 extern void hideSplash();
@@ -160,7 +161,7 @@ bool browse(QWidget *w, const QString &title, const QString &extension, const QS
 	if (path.endsWith('"')) path.chop(1);
 	if (path.isEmpty()) path = startPath;
 	if (extension == "/") path = QFileDialog::getExistingDirectory(0, title, path);
-	else path = QFileDialog::getOpenFileName(0, title, path, extension, 0, QFileDialog::DontResolveSymlinks);
+	else path = FileDialog::getOpenFileName(0, title, path, extension, 0, QFileDialog::DontResolveSymlinks);
 	if (!path.isEmpty()) {
 		path = QDir::toNativeSeparators(path);
 		if (list && !oldpath.isEmpty()) path = oldpath + pathSep + path;
