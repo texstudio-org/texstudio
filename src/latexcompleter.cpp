@@ -1002,9 +1002,13 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
 			QChar lst = wordp[wordp.length() - 1];
 			ushort nr = lst.unicode();
 			wordp[wordp.length() - 1] = QChar(nr + 1);
-			QList<CompletionWord>::const_iterator it2 = qLowerBound(baselist, CompletionWord(wordp));
+            QList<CompletionWord>::const_iterator it2 = qLowerBound(baselist, CompletionWord(wordp));
 			mWordCount = it2 - it;
-			mLastWordInList = *(--it2);
+            if(it2==baselist.constBegin()){
+                mLastWordInList = baselist.last();
+            }else{
+                mLastWordInList = *(--it2);
+            }
 		}
 	}
 
