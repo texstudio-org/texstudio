@@ -7,7 +7,7 @@
 \begin{otherlanguage*}{language}
 \end{otherlanguage}
 \foreignlanguage{language}{text}
-\begin{hypenrules}{option}
+\begin{hyphenrules}{option}
 \end{hyphenrules}
 \languagename
 \iflanguage{language}{if true}{if false}
