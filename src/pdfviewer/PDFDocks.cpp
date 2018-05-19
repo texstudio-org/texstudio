@@ -760,8 +760,10 @@ void
 PDFScrollArea::resizeEvent(QResizeEvent *)
 {
 	Q_ASSERT(pdf);
-	if (continuous)
-		pdf->setGridSize(pdf->gridCols(), height() / pdf->gridRowHeight() + 2);
+	if (continuous) {
+		pdf->setGridSize(pdf->gridCols(), height() / pdf->gridRowHeight() + 2, true);
+		pdf->reloadPage(false);
+	}
 	emit resized();
 	updateScrollBars();
 }
