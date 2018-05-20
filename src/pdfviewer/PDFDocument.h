@@ -176,7 +176,7 @@ public:
 	int pageFromPos(const QPoint &pos) const;
 	QRect pageRect(int page) const;
 	QSizeF maxPageSizeF() const;
-	QSizeF gridSizeF(bool ignoreVerticalGrid = false) const;
+	QSizeF maxPageSizeFDpiAdjusted() const;
 	QRectF horizontalTextRangeF();
 
 	Q_INVOKABLE void zoom(qreal scale);

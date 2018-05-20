@@ -702,10 +702,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			//QPainter p;
 			//p.begin(&image);
 			// paint border betweend pages
-			int totalBorderX = (gridx - 1) * GridBorder;
-			int totalBorderY = (gridy - 1) * GridBorder;
-			int realPageSizeX = (rect().width() - totalBorderX) / gridx;
-			int realPageSizeY = (rect().height() - totalBorderY) / gridy;
+			QSizeF realPageSize = maxPageSizeFDpiAdjusted() * scaleFactor;
+
+			int realPageSizeX = qRound(realPageSize.width());
+			int realPageSizeY = qRound(realPageSize.height());
 
 			//painter.save();
 			for (int i = 1; i < gridx; i++) {
@@ -1474,7 +1474,9 @@ void PDFWidget::updateCursor(const QPoint &pos)
 void PDFWidget::adjustSize()
 {
 	if (pages.empty()) return;
-	QSize pageSize = (gridSizeF() * scaleFactor * dpi / 72.0).toSize();
+	QSize pageSize = (maxPageSizeFDpiAdjusted() * scaleFactor).toSize();
+	pageSize.rwidth() = pageSize.rwidth() * gridx + (gridx - 1) * GridBorder;
+	pageSize.rheight() = pageSize.rheight() * gridy + (gridy - 1) * GridBorder;
 	if (pageSize != size()) {
 		PDFScrollArea *scrollArea = getScrollArea();
 		if (!scrollArea) return;
@@ -1687,7 +1689,7 @@ int PDFWidget::gridCols() const
 
 int PDFWidget::gridRowHeight() const
 {
-	return gridPageRect(0).height() + GridBorder;
+	return maxPageSizeF().height() * scaleFactor * dpi / 72.0 + GridBorder;
 }
 
 int PDFWidget::gridBorder() const
@@ -1890,8 +1892,8 @@ void PDFWidget::fitWidth(bool checked)
 		scaleOption = kFitWidth;
 		QAbstractScrollArea	*scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
-			qreal portWidth = scrollArea->viewport()->width();
-			QSizeF	pageSize = gridSizeF(true) * dpi / 72.0;
+			qreal portWidth = scrollArea->viewport()->width() - gridBorder() * (gridx - 1);
+			QSizeF	pageSize = maxPageSizeFDpiAdjusted() * gridx;
 			scaleFactor = portWidth / pageSize.width();
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
@@ -1914,14 +1916,15 @@ void PDFWidget::fitTextWidth(bool checked)
 		QAbstractScrollArea	*scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			int margin = 8;
-			qreal portWidth = scrollArea->viewport()->width();
+			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
 
 			QRectF textRect = horizontalTextRangeF();
 			if (!textRect.isValid()) return;
-			qreal targetWidth = gridSizeF(true).width() - (maxPageSizeF().width() - textRect.width());
+			qreal targetWidth = maxPageSizeFDpiAdjusted().width() * (gridx - 1) + textRect.width() * dpi / 72.0;
+			//qreal targetWidth = textRect.width() * dpi / 72.0;
 			// total with of all pages in the grid - textMargin of a single page
 			// for a 1x grid, targetWith is the same as textRect.width()
-			scaleFactor = portWidth / ((targetWidth * dpi / 72.0) + 2 * margin);
+			scaleFactor = portWidth / ((targetWidth ) + 2 * margin);
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
 			else if (scaleFactor > kMaxScaleFactor)
@@ -1943,9 +1946,9 @@ void PDFWidget::fitWindow(bool checked)
 		scaleOption = kFitWindow;
 		PDFScrollArea	*scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
-			qreal portWidth = scrollArea->viewport()->width();
-			qreal portHeight = scrollArea->viewport()->height();
-			QSizeF	pageSize = gridSizeF(true) * dpi / 72.0;
+			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
+			qreal portHeight = scrollArea->viewport()->height() - GridBorder * (gridy - 1);
+			QSizeF	pageSize = maxPageSizeFDpiAdjusted();
 			qreal sfh = portWidth / pageSize.width();
 			qreal sfv = portHeight / pageSize.height();
 			scaleFactor = sfh < sfv ? sfh : sfv;
@@ -2050,10 +2053,11 @@ QRect PDFWidget::gridPageRect(int pageIndex) const
 {
 	if (gridx * gridy <= 1)
 		return rect();
-	int totalBorderX = (gridx - 1) * GridBorder;
-	int totalBorderY = (gridy - 1) * GridBorder;
-	int realPageSizeX = (rect().width() - totalBorderX) / gridx;
-	int realPageSizeY = (rect().height() - totalBorderY) / gridy;
+
+	QSizeF realPageSize = maxPageSizeFDpiAdjusted() * scaleFactor;
+
+	int realPageSizeX = qRound(realPageSize.width());
+	int realPageSizeY = qRound(realPageSize.height());
 
 	QPoint p((realPageSizeX + GridBorder) * (pageIndex % gridx), (realPageSizeY + GridBorder) * (pageIndex / gridx));
 	return QRect(p, QPoint(p.x() + realPageSizeX, p.y() + realPageSizeY));
@@ -2136,7 +2140,7 @@ QRect PDFWidget::pageRect(int page) const
 
 QSizeF PDFWidget::maxPageSizeF() const
 {
-	REQUIRE_RET(!document.isNull(), QSizeF());
+	if (document.isNull()) return QSizeF();
 	//QSizeF maxPageSize;
 	//foreach (int page, pages) {
 	if (!maxPageSize.isValid()) {
@@ -2149,6 +2153,11 @@ QSizeF PDFWidget::maxPageSizeF() const
 		}
 	}
 	return maxPageSize;
+}
+
+QSizeF PDFWidget::maxPageSizeFDpiAdjusted() const
+{
+	return maxPageSizeF() * dpi / 72.0;
 }
 
 // calculates the maximal horizontal text range (xmin, xmax) over the total document.
@@ -2200,13 +2209,6 @@ QRectF PDFWidget::horizontalTextRangeF()
 	return horizontalTextRange;
 }
 
-QSizeF PDFWidget::gridSizeF(bool ignoreVerticalGrid) const
-{
-	QSizeF maxPageSize = maxPageSizeF();
-	int usedy = ignoreVerticalGrid ? 1 : gridy;
-	return QSizeF(maxPageSize.width() * gridx + GridBorder * (gridx - 1),
-	              maxPageSize.height() * usedy + GridBorder * (usedy - 1));
-}
 
 void PDFWidget::saveState()
 {
