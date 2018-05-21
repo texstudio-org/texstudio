@@ -949,6 +949,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if (pdfdocument && pdfdocument->embeddedMode)
 		setFocus();
+	updateCurrentPageHistoryOffset();
 	if (clickedLink) {
 		int page;
 		QPointF scaledPos;
@@ -1535,7 +1536,7 @@ int PDFWidget::currentPageHistoryIndex() const
 	return pageHistoryIndex;
 }
 
-const QList<int> PDFWidget::currentPageHistory() const
+const QList<PDFPageHistoryItem> PDFWidget::currentPageHistory() const
 {
 	return pageHistory;
 }
@@ -1594,12 +1595,12 @@ void PDFWidget::reloadPage(bool sync)
 	update();
 	updateStatusBar();
 
-	if (0 <= pageHistoryIndex && pageHistoryIndex < pageHistory.size() && pageHistory[pageHistoryIndex] == realPageIndex ) ;
-	else if (0 <= pageHistoryIndex - 1 && pageHistoryIndex - 1 < pageHistory.size() && pageHistory[pageHistoryIndex - 1] == realPageIndex ) pageHistoryIndex--;
-	else if (0 <= pageHistoryIndex + 1 && pageHistoryIndex + 1 < pageHistory.size() && pageHistory[pageHistoryIndex + 1] == realPageIndex ) pageHistoryIndex++;
+	if (0 <= pageHistoryIndex && pageHistoryIndex < pageHistory.size() && pageHistory[pageHistoryIndex].page == realPageIndex ) ;
+	else if (0 <= pageHistoryIndex - 1 && pageHistoryIndex - 1 < pageHistory.size() && pageHistory[pageHistoryIndex - 1].page == realPageIndex ) pageHistoryIndex--;
+	else if (0 <= pageHistoryIndex + 1 && pageHistoryIndex + 1 < pageHistory.size() && pageHistory[pageHistoryIndex + 1].page == realPageIndex ) pageHistoryIndex++;
 	else {
 		while (pageHistory.size() > pageHistoryIndex + 1) pageHistory.removeLast();
-		pageHistory.append(realPageIndex);
+		pageHistory.append(PDFPageHistoryItem(realPageIndex, 0, 0));
 		while (pageHistory.size() > 50) pageHistory.removeFirst();
 		pageHistoryIndex = pageHistory.size() - 1;
 	}
@@ -1617,6 +1618,17 @@ void PDFWidget::updateStatusBar()
 #ifdef PHONON
 	if (movie) movie->place();
 #endif
+}
+
+void PDFWidget::updateCurrentPageHistoryOffset(){
+	if (pageHistoryIndex < 0 || pageHistoryIndex >= pageHistory.size()) return;
+	if (realPageIndex != pageHistory[pageHistoryIndex].page) return;
+	QPointF out;
+	int page;
+	mapToScaledPosition(mapFromParent(QPoint()), page, out);
+	if (page != realPageIndex) return;
+	pageHistory[pageHistoryIndex].x = out.x();
+	pageHistory[pageHistoryIndex].y = out.y();
 }
 
 PDFDocument *PDFWidget::getPDFDocument()
@@ -1738,7 +1750,7 @@ void PDFWidget::goForward()
 	if (pageHistoryIndex + 1 < pageHistory.size()) {
 		pageHistoryIndex++;
 		REQUIRE(!document.isNull() && getScrollArea());
-		getScrollArea()->goToPage(pageHistory[pageHistoryIndex], true);
+		goToPageRelativePosition(pageHistory[pageHistoryIndex].page, pageHistory[pageHistoryIndex].x, pageHistory[pageHistoryIndex].y);
 	}
 }
 
@@ -1747,7 +1759,7 @@ void PDFWidget::goBack()
 	if (pageHistoryIndex > 0) {
 		pageHistoryIndex--;
 		REQUIRE(!document.isNull() && getScrollArea());
-		getScrollArea()->goToPage(pageHistory[pageHistoryIndex], true);
+		goToPageRelativePosition(pageHistory[pageHistoryIndex].page, pageHistory[pageHistoryIndex].x, pageHistory[pageHistoryIndex].y);
 	}
 }
 
@@ -3648,6 +3660,8 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	QSynctex::PDFSyncPoint pdfPoint = scanner.syncFromTeX(sourcePoint, curFile);
 	if (pdfPoint.page <= 0)
 		return -1;
+
+	pdfWidget->updateCurrentPageHistoryOffset();
 
 	QPainterPath path;
 	foreach (const QRectF &r, pdfPoint.rects) {
