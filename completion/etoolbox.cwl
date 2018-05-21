@@ -113,7 +113,7 @@
 \gluegdef{command}{glue expression}#*
 \gpreto{hook}{code}#*
 \ifbool{bool}{true}{false}#*
-\ifboolexpr{true}{false}#*
+\ifboolexpr{expression}{true}{false}#*
 \ifcsltxprotect{true}{false}#*
 \ifcsstring{true}{false}#*
 \ifdefltxprotect{true}{false}#*
