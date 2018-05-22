@@ -127,6 +127,13 @@ typedef enum {
 	kFitTextWidth
 } autoScaleOption;
 
+struct PDFPageHistoryItem{
+	int page;
+	float x, y;
+	PDFPageHistoryItem():page(0),x(0),y(0){}
+	PDFPageHistoryItem(int page, float x, float y):page(page),x(x),y(y){}
+};
+
 class PDFScrollArea;
 class PDFWidget : public QLabel
 {
@@ -166,7 +173,8 @@ public:
 	double totalScaleFactor() const;
 
 	int currentPageHistoryIndex() const;
-	const QList<int> currentPageHistory() const;
+	const QList<PDFPageHistoryItem> currentPageHistory() const;
+	void updateCurrentPageHistoryOffset();
 
 	QPoint gridPagePosition(int pageIndex) const;
 	QRect gridPageRect(int pageIndex) const;
@@ -317,7 +325,7 @@ private:
 	mutable QSizeF maxPageSize; //cache pageSize
 	mutable QRectF horizontalTextRange;
 
-	QList<int> pageHistory;
+	QList<PDFPageHistoryItem> pageHistory;
 	int pageHistoryIndex;
 
 	PDFDocument *pdfdocument;
