@@ -44,7 +44,17 @@
     <kudo>UserDocs</kudo>
   </kudos>
 
-  <url type="homepage">http://texstudio.sourceforge.net/</url>
-
+  <url type="homepage">https://texstudio.org/</url>
+  <url type="bugtracker">https://github.com/texstudio-org/texstudio/issues</url>
+  <url type="faq">https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions</url>
+  
+  <developer_name>Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann</developer_name>
+  
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
+  
+  <releases>
+    <release date="2018-02-02" version="2.12.8"/>
+    <release date="2017-07-25" version="2.12.6"/>
+  </releases>
+  
 </component>
