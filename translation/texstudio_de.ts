@@ -1044,7 +1044,7 @@ Wenn &lt;b&gt;c:&lt;/b&gt; vorangestellt wird (inkl. Doppelpunkt), wird die aktu
     <message>
         <location filename="../src/configdialog.ui" line="881"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation>Manche LaTeX-Konstruktionen (z. B. Referenzen) benötigen mehrere Übersetzungsdurchläufe bevor sie korrekt angezeigt werden.</translation>
+        <translation>Manche LaTeX-Konstruktionen (z. B. Referenzen) erfordern mehrere Kompilierungsvorgänge bevor sie korrekt angezeigt werden.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="884"/>
@@ -4242,7 +4242,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation>Here (H)</translation>
+        <translation>hier (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4391,7 +4391,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
         <location filename="../src/latexcompleter.cpp" line="1199"/>
         <location filename="../src/latexcompleter.cpp" line="1208"/>
         <source>all</source>
-        <translation>Alle</translation>
+        <translation>alle</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1200"/>
@@ -11009,7 +11009,7 @@ Please provide this file if you send a bug report.
     <message>
         <location filename="../src/texstudio.cpp" line="9830"/>
         <source>Yes, try to recover</source>
-        <translation>Ja, ignoriere das Problem</translation>
+        <translation>Ja, versuche es wiederherzustellen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9831"/>
@@ -11316,7 +11316,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
         <translation>Optionen:
-&quot;Zeige alle Phrasen&quot;: Alle phrasen werdene angezeigt.
+&quot;Zeige alle Phrasen&quot;: Alle Phrasen werden angezeigt.
 &quot;Minimale Phrasenlänge:&quot; Nur Phrasen mit mindestens so vielen Zeichen werden angezeigt (z.B.: &quot;ein Test&quot; hat 8 Zeichen)
 &quot;Minimale Wordlänge (für eins):&quot;: Es werdn nur Phrasen angezeigt, bei denen ein Wort so viele Zeichen hat (&quot;ein Test&quot; hätte also 3 Zeichen)
 &quot;Minimale Wordlänge (für alle):&quot;: Es werden nur Phrasen angezeigt, bei denen jedes Wort so viele Zeichen hat (&quot;ein Test&quot; hätte also 4)
@@ -11597,7 +11597,7 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Eine neuer Release-Kandidat von TeXstudio ist verfügbar .&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Diese Version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte stabile Version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release-Kandidat:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die neue Versuin kann von der &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt; runtergeladen werden.</translation>
+        <translation>Eine neuer Release-Kandidat von TeXstudio ist verfügbar .&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Diese Version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte stabile Version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release-Kandidat:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die neue Version kann von der &lt;a href=&apos;%7&apos;&gt;TeXstudio Website&lt;/a&gt; runtergeladen werden.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
@@ -11827,7 +11827,7 @@ Man kann den speziellen Wert ?txs-start verwenden, um das Skript bei txs start z
     <message>
         <location filename="../src/webpublishdialog.ui" line="128"/>
         <source>Tocdepth :</source>
-        <translation>Tocdepth :</translation>
+        <translation>Gliederungsebene :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="135"/>

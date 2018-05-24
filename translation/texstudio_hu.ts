@@ -669,7 +669,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
         <location filename="../src/buildmanager.cpp" line="1495"/>
         <location filename="../src/buildmanager.cpp" line="1508"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX változatot,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a &quot;Parancsok&quot; beállítási fülön.&lt;br&gt; A(La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztés nélkül dolgozni.</translation>
+        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX változatot,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a „Parancsok” beállítási fülön.&lt;br&gt; A (La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztés nélkül dolgozni.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1504"/>
@@ -1436,12 +1436,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1775"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Lengyel iédőjelek: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1780"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Lengyel idézőjelek (Unicode): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1788"/>
@@ -4249,7 +4249,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Itt (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4314,7 +4314,16 @@ Biztos benne, hogy visszavon minden változást?</translation>
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Paraméterek az ábrák elhelyezésére
+
+[t]: A lap tetejére
+[b]: A lap aljára
+[p]: Egy ábráknak fenntartott lapra
+[h]: Erre a helyre a szövegben
+[H]: Szigorúan erre a helyre a szövegben
+[!]: A LaTeX által „jónak” tekintett pozíció belső meghatározási paramétereinek felülbírálása.
+
+Megjegyzés: Ezek a megjelenítési paraméterek csak javaslatok. Ha a megjelenítés túl csúnyán nézne ki, a LaTeX figyelmen kívül hagyhatja.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="262"/>
@@ -10537,7 +10546,7 @@ Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</tran
         <location filename="../src/texstudio.cpp" line="2477"/>
         <location filename="../src/texstudio.cpp" line="9430"/>
         <source>Open Files</source>
-        <translation>Nyitott fájlok</translation>
+        <translation>Fájlok megnyitása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2511"/>

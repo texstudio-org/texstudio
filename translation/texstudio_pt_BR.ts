@@ -1433,12 +1433,12 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location filename="../src/configdialog.ui" line="1775"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Aspas Polonesa: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1780"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Aspas Polonesa (unicode): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1788"/>
@@ -4253,7 +4253,7 @@ Deseja desfazer todas as alterações?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Aqui (Here) (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4318,7 +4318,16 @@ Deseja desfazer todas as alterações?</translation>
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Preferências para o posicionamento da figura
+
+[t] Top: No topo da página
+[b] Bottom: Na base da página
+[p] Page: Em uma página dedicada às figuras
+[h] Here: Nesta posição do texto
+[H] Here: Exatamente nesta posição do texto (requer pacote float)
+[!]: Sobrescrever os parâmetros internos usados pelo LaTeX para determinar um `bom&apos; posicionamento.
+
+Nota: Os 4 primeiros posicionamentos são simplesmente sugestões. Se o layout da página for muito ruim, o LaTeX poderá ignorá-los.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="262"/>

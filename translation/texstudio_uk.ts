@@ -1435,12 +1435,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1775"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Польські лапки: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1780"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Польські лапки (юнікод): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1788"/>
@@ -4257,7 +4257,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Тут (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4322,7 +4322,16 @@ Are you sure you want to undo all changes?</source>
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Пріоритет розташування малюнка:
+
+[t] Вгорі: вгорі сторінки
+[b] Внизу: внизу сторінки
+[p] Сторінка: на окремій сторінці з малюнками
+[h] Тут: в даній позиції тексту
+[H] Тут: строго у цій позиції тексту (потрібний пакет float)
+[!]: Переписати внутрішні параметри, які використовує LaTeX для визначення `гарних&apos; позицій для плаваючих елементів.
+
+Зауваження: перші чотири параметр є лише пропонованими порядками. Якщо макет підсумкової сторінки виявиться надто поганий, то LaTeX може проігнорувати їх.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="262"/>
@@ -4616,7 +4625,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2390"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform></translation>
+        <translation><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2395"/>
