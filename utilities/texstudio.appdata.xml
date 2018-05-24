@@ -14,18 +14,18 @@
     <p>
       Our goal is to make writing LaTeX as easy and comfortable as possible.
       This is achieved through a rich feature set including:
-      <ul>
-        <li>Easy source code navigation: Structure view, links, cursor history</li>
-        <li>Detailed syntax highlighting</li>
-        <li>Auto-completion</li>
-        <li>Live checking for spelling, grammar, citations, references, syntax and packages</li>
-        <li>Innovative table editing</li>
-        <li>Clear display of LaTeX errors and warnings (in editor and as list)</li>
-        <li>Integrated PDF viewer with (almost) word-level syncing</li>
-        <li>Live-updating inline preview for formulas and code segments</li>
-        <li>Scripting support</li>
-      </ul>
     </p>
+    <ul>
+      <li>Easy source code navigation: Structure view, links, cursor history</li>
+      <li>Detailed syntax highlighting</li>
+      <li>Auto-completion</li>
+      <li>Live checking for spelling, grammar, citations, references, syntax and packages</li>
+      <li>Innovative table editing</li>
+      <li>Clear display of LaTeX errors and warnings (in editor and as list)</li>
+      <li>Integrated PDF viewer with (almost) word-level syncing</li>
+      <li>Live-updating inline preview for formulas and code segments</li>
+      <li>Scripting support</li>
+    </ul>
   </description>
 
   <launchable type="desktop-id">texstudio.desktop</launchable>
