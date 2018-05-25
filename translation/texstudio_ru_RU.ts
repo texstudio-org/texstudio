@@ -1437,12 +1437,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1775"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Польские кавычки: „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1780"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Польские кавычки (Юникод): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1788"/>

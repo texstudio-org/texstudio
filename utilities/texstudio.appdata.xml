@@ -14,18 +14,18 @@
     <p>
       Our goal is to make writing LaTeX as easy and comfortable as possible.
       This is achieved through a rich feature set including:
-      <ul>
-        <li>Easy source code navigation: Structure view, links, cursor history</li>
-        <li>Detailed syntax highlighting</li>
-        <li>Auto-completion</li>
-        <li>Live checking for spelling, grammar, citations, references, syntax and packages</li>
-        <li>Innovative table editing</li>
-        <li>Clear display of LaTeX errors and warnings (in editor and as list)</li>
-        <li>Integrated PDF viewer with (almost) word-level syncing</li>
-        <li>Live-updating inline preview for formulas and code segments</li>
-        <li>Scripting support</li>
-      </ul>
     </p>
+    <ul>
+      <li>Easy source code navigation: Structure view, links, cursor history</li>
+      <li>Detailed syntax highlighting</li>
+      <li>Auto-completion</li>
+      <li>Live checking for spelling, grammar, citations, references, syntax and packages</li>
+      <li>Innovative table editing</li>
+      <li>Clear display of LaTeX errors and warnings (in editor and as list)</li>
+      <li>Integrated PDF viewer with (almost) word-level syncing</li>
+      <li>Live-updating inline preview for formulas and code segments</li>
+      <li>Scripting support</li>
+    </ul>
   </description>
 
   <launchable type="desktop-id">texstudio.desktop</launchable>
@@ -44,7 +44,17 @@
     <kudo>UserDocs</kudo>
   </kudos>
 
-  <url type="homepage">http://texstudio.sourceforge.net/</url>
-
+  <url type="homepage">https://texstudio.org/</url>
+  <url type="bugtracker">https://github.com/texstudio-org/texstudio/issues</url>
+  <url type="faq">https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions</url>
+  
+  <developer_name>Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann</developer_name>
+  
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
+  
+  <releases>
+    <release date="2018-02-02" version="2.12.8"/>
+    <release date="2017-07-25" version="2.12.6"/>
+  </releases>
+  
 </component>

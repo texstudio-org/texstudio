@@ -1432,12 +1432,12 @@ Esto cambia la escala de las barras de herramientas verticales (para pantallas d
     <message>
         <location filename="../src/configdialog.ui" line="1775"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Comillas polacas: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1780"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Comillas polacas (unicode): ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1788"/>
@@ -1799,12 +1799,12 @@ que renderizar los caracteres. Dado que unicode no es compatible de forma nativa
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programas externos (tales como Zotero) pueden colocar citas en TeXstudio utilizando: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Si el cursor no se encuentra en un entorno de cita, el &amp;quot;command&amp;quot; dado aquí se utilizará como el comando \cite.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2439"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation>Comando/orden LaTeX para citas push:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2452"/>
@@ -2162,12 +2162,12 @@ Aquí puede añadir otro entorno de resaltado personalizado.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3181"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation>Si un comando u orden matemática se escribe fuera de un entorno matemático, $$ se insertará automáticamente.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3184"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation>Insertar automáticamente marcadores de matemáticas donde se necesiten</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3194"/>
@@ -2188,7 +2188,7 @@ aquí.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3202"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"/>
+        <translation>Archivos de finalización permanentemente activos:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3270"/>
@@ -2377,7 +2377,7 @@ aquí.</translation>
         <location filename="../src/configdialog.ui" line="3673"/>
         <location filename="../src/configdialog.ui" line="3721"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Argumentos transferidos cuando se inició LanguageTool. Esta opción solo tendrá efecto si LanguageTool se inició desde TeXstudio (es decir, no desde un servidor que ya estuviera activo).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3676"/>
@@ -2645,7 +2645,10 @@ aquí.</translation>
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"/>
+        <translation>El motor usado por la librería PDF. 
+&apos;Splash&apos; es la opción predeterminada y funciona en la mayoría de las situaciones.
+Si tiene problemas de rendereo puede intentar con el motor alternativo &apos;Arthur&apos;.
+Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4344"/>
@@ -2685,7 +2688,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4441"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>Color de fondo predeterminado. Especifique un valor RGB hexadecimal. Nota: Esto sólo afectará a los PDF cargados después de los cambios introducidos. El color del papel de los PDF abiertos no cambiará.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4493"/>
@@ -3097,7 +3100,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"/>
+        <translation>Símbolos matemáticos de apilamiento</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
@@ -3117,7 +3120,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"/>
+        <translation>Insertar/Incluir &amp;Archivos</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="31"/>
@@ -4251,7 +4254,7 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Aquí - Here (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4316,7 +4319,16 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Preferencia sobre la posición de una figura:
+
+[t] Top: En la parte alta de la página
+[b] Bottom: En la parte baja de la página
+[p] Page: En la parte de la página dedicada a las figuras
+[h] Here: En esta posición del texto
+[H] HERE: Estrictamente en esta posición del texto (requiere el paquete float)
+[!]: Sobreescribe los parámetros internos que LaTeX utiliza para determinar la &apos;buena&apos; posición de las imágenes.
+
+Nota: Las primeras cuatro opciones son sólo sugerencias. Si la página resultante luce &apos;mal&apos;, LaTeX puede igonarlas.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="262"/>
@@ -4497,7 +4509,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/latexstructure.cpp" line="202"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Más allá del final del documento.</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="204"/>
@@ -5701,7 +5713,7 @@ Por favor ingrese la contraseña:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="611"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"/>
+        <translation>Sincronizar el editor cuando salte a los resultados de búsqueda.</translation>
     </message>
 </context>
 <context>
@@ -5800,7 +5812,7 @@ Por favor ingrese la contraseña:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>Abrir archivos externos sólo permite arichivos PDF.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -6153,7 +6165,13 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"/>
+        <translation>%1
+Ha sido modificado por otra aplicación
+Presione &quot;Guardar&quot; para sobrescribir el archivo
+Presione &quot;Resetear&quot; para volver a cargar el archivo original
+Presione &quot;Comparar&quot; para mostrar las diferencias en el editor
+Presione &quot;Ignorar&quot; para ignorar esta alerta
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="930"/>
@@ -6185,7 +6203,10 @@ Si el archivo ya existía en el disco, esta operación no lo modificó.</transla
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation>Permisos insuficientes para escribir en el archivo
+%1.
+
+Tal vez es de sólo lectura o está abierto en otro programa.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1053"/>
@@ -7383,7 +7404,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation type="unfinished"/>
+        <translation>Derecha a izquierda RTL (right to left)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
@@ -8306,7 +8327,7 @@ siguiente valor:
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Cirílico</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="37"/>
@@ -8438,7 +8459,7 @@ siguiente valor:
     <message>
         <location filename="../src/syntaxcheck.cpp" line="512"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>Orden fuera del entorno</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="514"/>
@@ -9748,12 +9769,12 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="947"/>
         <source>Refresh Language Model</source>
-        <translation type="unfinished"/>
+        <translation>Volver a cargar el Modelo de Lenguaje</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="948"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation type="unfinished"/>
+        <translation>Forzar una actualización del modelo de lenguaje dinámico utilizado para resaltar y comprimir/expandir. Idealmente no tendrías que ejecutar esta acción, pues las actualizaciones suelen ser automáticas.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="949"/>
@@ -10064,7 +10085,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1038"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Insertar la bibliografía como un comentario TeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1040"/>
@@ -10392,12 +10413,12 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1383"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"/>
+        <translation>Conectado a LanguageTool en %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1387"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"/>
+        <translation>Ningún servidor LanguageTool encontrado en %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1392"/>
@@ -10807,12 +10828,12 @@ confía en este documento)
     <message>
         <location filename="../src/texstudio.cpp" line="5847"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation>Programa %!TeX utilizado: %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5850"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"/>
+        <translation>¡Programa %!TeX no reconocido! (%1). Utilizando el predeterminado.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5911"/>
@@ -11129,7 +11150,9 @@ El mensaje ha sido detenido.
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Intentando iniciar automáticamente.
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10139"/>
