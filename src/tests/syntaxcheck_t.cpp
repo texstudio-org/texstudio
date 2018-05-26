@@ -205,10 +205,16 @@ void SyntaxCheckTest::checkkeyval_data(){
              <<"\\SI[modea]{test}"<<true;
      QTest::newRow("key/value")
              <<"\\SI[mode=text]{test}"<<false;
+     QTest::newRow("key/value, with -")
+             <<"\\si[per-mode=reciprocal-positive-first]{dfg}"<<false;
      QTest::newRow("key/value,error key")
              <<"\\SI[modea=text]{test}"<<true;
+     QTest::newRow("key/value, with -, error key")
+             <<"\\si[per-moded=reciprocal-positive-first]{dfg}"<<true;
      QTest::newRow("key/value,error value")
              <<"\\SI[mode=texta]{test}"<<true;
+     QTest::newRow("key/value, with -, error val")
+             <<"\\si[per-mode=reciprocal-positive-firstd]{dfg}"<<true;
      QTest::newRow("2 key/value")
              <<"\\SI[color=red,mode=text]{test}"<<false;
      QTest::newRow("2 key/value,error key")
