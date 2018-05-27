@@ -538,12 +538,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 continue;
             }
             if (tk.type == Token::symbol && line.mid(tk.start, 1) == "=") {
-                lastComma = 1;
+                //lastComma = -1;
                 lastEqual = level;
                 level++;
                 continue;
             }
-            if (lastComma < 0) {
+            if (lastComma < 0 ) {
                 tk.level = level;
                 tk.type = Token::keyVal_key;
                 if(!commandStack.isEmpty()){
@@ -556,12 +556,33 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             } else {
                 if (lastEqual <= -1e6) {
                     lexed[lastComma].length = tk.start + tk.length - lexed[lastComma].start;
+                    keyName= line.mid(tk.start, lexed[lastComma].length);
                 } else {
                     tk.level = level;
                     tk.subtype = Token::keyVal_val;
+                    // special treatment for "-"
+                    if (tk.type == Token::punctuation && line.mid(tk.start, 1) == "-") {
+                        if(lastComma==(lexed.length()-2)){
+                            if((lexed[lastComma+1].start+lexed[lastComma+1].length==tk.start)&&lexed[lastComma+1].type==Token::word){
+                                // "-" directly follows previous word
+                                lexed[lastComma+1].length++;
+                                continue;
+                            }
+                        }
+                    }
+                    // special treatment for word if is adjacent to "-"
+                    if (tk.type == Token::word) {
+                        if(lastComma==(lexed.length()-2)){
+                            if((lexed[lastComma+1].start+lexed[lastComma+1].length==tk.start)&&lexed[lastComma+1].type==Token::word && line.mid(tk.start-1,1)=="-"){
+                                Token tk2=lexed.takeLast();
+                                tk2.length+=tk.length;
+                                tk=tk2; // allow handling by the code below
+                            }
+                        }
+                    }
                     if (!commandStack.isEmpty() && lp.commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
                         CommandDescription cd = lp.commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
-                        tk.type = cd.argTypes.value(0, Token::keyVal_val); // onyl types can be set in key_val as they ned to be recognaized later
+                        tk.type = cd.argTypes.value(0, Token::keyVal_val); // only types can be set in key_val as they need to be recognized later
                         if(!lexed.isEmpty() && lexed.last().type==tk.type && lexed.last().subtype==tk.subtype){
                             lexed.last().length=tk.start+tk.length-lexed.last().start;
                             continue;
