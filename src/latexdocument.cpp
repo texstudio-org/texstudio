@@ -762,15 +762,18 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				if (!removedUserCommands.removeAll(cmdName)) {
 					addedUserCommands << cmdName;
 				}
-
+                QString cmdNameWithoutOptional=cmdName;
 				for (int j = 0; j < optionCount; j++) {
 					if (j == 0) {
-						if (!def)
+                        if (!def){
 							cmdName.append("{%<arg1%|%>}");
-						else
+                            cmdNameWithoutOptional.append("{%<arg1%|%>}");
+                        } else
 							cmdName.append("[%<opt. arg1%|%>]");
-					} else
+                    } else {
 						cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
+                        cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
+                    }
 				}
 				CodeSnippet cs(cmdName);
                 cs.index = qHash(cmdName);
@@ -778,6 +781,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				if (isDefWidth)
 					cs.type = CodeSnippet::length;
 				mUserCommandList.insert(line(i).handle(), cs);
+                if(def){ // optional argument, add version without that argument as well
+                    CodeSnippet cs(cmdNameWithoutOptional);
+                    cs.index = qHash(cmdNameWithoutOptional);
+                    cs.snippetLength = cmdNameWithoutOptional.length();
+                    if (isDefWidth)
+                        cs.type = CodeSnippet::length;
+                    mUserCommandList.insert(line(i).handle(), cs);
+                }
 				// remove obsolete Overlays (maybe this can be refined
 				//updateSyntaxCheck=true;
 				continue;
