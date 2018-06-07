@@ -4260,7 +4260,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Здесь (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4325,7 +4325,16 @@ Are you sure you want to undo all changes?</source>
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Установка предпочтений для рисунка
+
+[t] Сверху: в самом начале страницы
+[b] Снизу: в самом низу страницы
+[p] Страница: на странице относящейся  к рисункам
+[h] Здесь: на этом месте в тексте
+[H] Здесь: строго на этом месте в тексте (требуется пакет float)
+[!]: Отвергнуть внутренние параметры LaTeX используемые для определения «хороших» плавающих позиций.
+
+Примечание: Первые 4 настройки размещения являются просто рекомендациями. Если в результате страница выглядит плохо, то LaTeX может игнорировать их.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="262"/>
