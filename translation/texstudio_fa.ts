@@ -4548,7 +4548,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2390"/>
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2395"/>
