@@ -669,6 +669,7 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 
 	QNetworkRequest req(server);
     req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=UTF-8");
+    req.setRawHeader("User-Agent", QString("texstudio %1").arg(TXSVERSION).toUtf8());
 	QByteArray post;
 	post.reserve(text.length() + 50);
 	post.append("language=" + lang + "&text=");
