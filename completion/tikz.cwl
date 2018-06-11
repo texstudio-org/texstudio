@@ -7,6 +7,7 @@
 \tikzoption{arg1}#*
 \tikzsetexternalprefix{prefix}#*
 \tikzexternalize#*
+\tikzsetnextfilename{name}#*
 \csname#*
 \tikzaddafternodepathoption{arg1}#*
 \tikzparentanchor#*
