@@ -23,7 +23,7 @@ Suggests possible LaTeX commands as you type. There is a tooltip help explaining
 
 Completion works also for references and bibliography entries.
 
-![Auto completion](https://texstudio.org/images/link-overlay.png)
+![Auto completion](https://texstudio.org/images/autocompletion-help.png)
 
 * More than 1000 mathematical symbols 
 
