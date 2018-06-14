@@ -51,5 +51,5 @@
 \vertlines[name]{points}#/tikztimingtable
 \begin{pgfonlayer}#/tikztimingtable
 \end{pgfonlayer}#*/tikztimingtable
-
+\usetikztiminglibrary#*
 
