@@ -48,6 +48,7 @@ naturalnames#true,false
 nesting#true,false
 pageanchor#true,false
 pagebackref#true,false
+pdftex
 pdfauthor=
 pdfborder=
 pdfcenterwindow#true,false
