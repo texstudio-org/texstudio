@@ -51,5 +51,18 @@
 \vertlines[name]{points}#/tikztimingtable
 \begin{pgfonlayer}#/tikztimingtable
 \end{pgfonlayer}#*/tikztimingtable
-
+\usetikztiminglibrary{keyvals}#*
+#keyvals:\usetikztiminglibrary
+arrows
+either
+overlays
+clockarrows
+columntype
+nicetabs
+counters
+advnodes
+ifsym
+interval
+beamer
+#endkeyvals
 
