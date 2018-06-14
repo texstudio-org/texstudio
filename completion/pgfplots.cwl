@@ -26,5 +26,7 @@
 \addplot gnuplot {%<gnuplot code%>};#*n/axis,semilogxaxis,semilogyaxis,loglogaxis
 \addplot file {%<file%>};#*n/axis,semilogxaxis,semilogyaxis,loglogaxis
 \legend#/axis,semilogxaxis,semilogyaxis,loglogaxis
+\addlegendentry#/axis,semilogxaxis,semilogyaxis,loglogaxis
+\addlegendimage#/axis,semilogxaxis,semilogyaxis,loglogaxis
 \pgfplotsset{%<settings%>}
 \pgfplotsset{compat=%<version number%>,%<other settings%>}
