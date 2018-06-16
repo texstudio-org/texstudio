@@ -1,8 +1,11 @@
 # The mathtools package was created by Morten Hogholm and Lars Madsen daleif@imf.au.dk
-# This file was created by Carlos Eduardo Valencia Urbina (2014-08-08). It contains most of the current commands of the mathtools  package.
+# This file was created by Carlos Eduardo Valencia Urbina (2014-08-08). It contains most of the current commands of the mathtools package.
 # URL: http://www.ctan.org/pkg/mathtools
+# thatlittleboy/2018-05-07 edited
+
 #include:amsmath
-\mathtoolsset{key val list}
+#include:graphicx
+\mathtoolsset{%<options%>}
 #keyvals:\mathtoolsset
 showonlyrefs#true,false
 showmanualtags#true,false
