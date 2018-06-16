@@ -870,6 +870,7 @@ void QDocumentEraseCommand::undo()
 	}
 
 	updateCursorsOnInsertion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
+    m_doc->setProposedPosition(QDocumentCursor());
 
 	markUndone(hl);
 

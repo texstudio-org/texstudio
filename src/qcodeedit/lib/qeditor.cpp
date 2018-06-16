@@ -2458,8 +2458,8 @@ void QEditor::undo()
 		m_doc->undo();
 
 		QDocumentCursor c=m_doc->getProposedPosition();
-		if(c.isValid() && !m_mirrors.size())
-			setCursor(c);
+        if(c.isValid() && !m_mirrors.size())
+            setCursor(c);
 
 
 		ensureCursorVisible();
