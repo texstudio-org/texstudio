@@ -876,6 +876,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 		if (tk.type == Token::command) {
 			QString word = line.mid(tk.start, tk.length);
+            if(!tk.optionalCommandName.isEmpty()){
+                word=tk.optionalCommandName;
+            }
 			Token tkEnvName;
 
 			if (word == "\\begin" || word == "\\end") {
