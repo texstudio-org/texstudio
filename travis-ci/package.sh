@@ -83,7 +83,7 @@ cat "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
 fi
 
 
-if [ "${QT}" = "qt5" ]; then
+if [ "${QT}" = "qt5Release" ]; then
 	print_info "Running linuxdeployqt"
 
 	make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/
@@ -117,7 +117,6 @@ if [ "${QT}" = "qt5" ]; then
 		"publish": true
 	}
 EOF
-
 
 cat "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
 fi
