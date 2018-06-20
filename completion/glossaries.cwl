@@ -393,7 +393,7 @@
 \glscompatible-2.07true#S
 \glsdesc#S
 \glsdescplural#S
-\glsdisp#S
+\glsdisp{label}{text}
 \glsdisplay#S
 \glsentrycounterfalse#S
 \glsentrycountertrue#S
