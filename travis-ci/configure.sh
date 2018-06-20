@@ -17,6 +17,8 @@ elif [ $QT = qt5NoPoppler ]; then
 	qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1
 elif [ $QT = qt4 ]; then
 	qmake texstudio.pro CONFIG+=debug
+elif [ $QT = qt5Release ]; then
+	qmake texstudio.pro CONFIG-=debug
 elif [ $QT = qt5win ]; then
 	PATH=$PATH:${MXEDIR}/usr/bin
 	$MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1

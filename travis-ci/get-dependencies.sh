@@ -51,7 +51,7 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 		if [ $QT = "qt4" ]; then
 			print_info "Installing packages: QT4"
 			sudo apt-get install qt4-qmake  libpoppler-qt4-dev zlib1g-dev pkg-config libx11-dev
-		elif [ $QT = "qt5" ]; then
+		elif [ $QT = "qt5" ] || [ $QT = "qt5Release" ] ; then
 			print_info "Installing packages: QT5"
 			sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
 		elif [ $QT = "qt5NoPoppler" ]; then
