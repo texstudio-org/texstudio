@@ -3,8 +3,12 @@
 
 \import{full path}{file}
 \import*{full path}{file}
+\inputfrom{full path}{file}
+\inputfrom*{full path}{file}
 \subimport{relative path}{file}
 \subimport*{relative path}{file}
+\subinputfrom{relative path}{file}
+\subinputfrom*{relative path}{file}
 \includefrom{full path}{file}
 \includefrom*{full path}{file}
 \subincludefrom{relative path}{file}
