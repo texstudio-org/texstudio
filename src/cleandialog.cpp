@@ -183,6 +183,8 @@ QStringList CleanDialog::filesToRemoveFromDir(const QDir &dir, const QStringList
 	}
 	if (recursive) {
 		foreach (const QFileInfo &fi, dir.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
+            if(fi.fileName().startsWith("."))
+                continue; // filter directories starting with . (e.g. .git) since they are not automatiocally hidden on windows
 			files << filesToRemoveFromDir(fi.absoluteFilePath(), extensionFilter, recursive);
 		}
 	}

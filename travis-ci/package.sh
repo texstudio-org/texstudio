@@ -82,6 +82,45 @@ EOF
 cat "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
 fi
 
+
+if [ "${QT}" = "qt5Release" ]; then
+	print_info "Running linuxdeployqt"
+
+	make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/
+	wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+	chmod a+x linuxdeployqt-continuous-x86_64.AppImage
+	unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
+	export VERSION=${TRAVIS_OS_NAME}-${VERSION_NAME}
+	./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -extra-plugins=iconengines/libqsvgicon.so
+	./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+	mv "${TRAVIS_BUILD_DIR}/TeXstudio-${VERSION}-x86_64.AppImage" "texstudio-${VERSION}-x86_64.AppImage"
+
+
+	print_info "Preparing bintray.json"
+	cat > "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json" <<EOF
+	{
+		"package": {
+			"name": "texstudio-linux",
+			"repo": "texstudio",
+			"subject": "sunderme"
+		},
+
+		"version": {
+			"name": "${VERSION_NAME}",
+			"released": "${RELEASE_DATE}",
+			"gpgSign": false
+		},
+		"files":
+		[
+			{"includePattern": "${TRAVIS_BUILD_DIR}/texstudio-${VERSION}-x86_64.AppImage", "uploadPattern": "texstudio-${VERSION}-x86_64.AppImage"}
+		],
+		"publish": true
+	}
+EOF
+
+cat "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json"
+fi
+
 if [ "${QT}" = "qt5win" ]; then
 	print_info "package build into zip for win"
 	print_info "make installer"
