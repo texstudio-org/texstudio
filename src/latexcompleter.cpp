@@ -1046,7 +1046,7 @@ void CompletionListModel::incUsage(const QModelIndex &index)
 			for (int j = 0; j < res.size(); ++j) {
 				if (res.at(j).first == curWord.snippetLength) {
 					config->usage.remove(curWord.index, res.at(j));
-					config->usage.insert(curWord.index, qMakePair(curWord.snippetLength, it->usageCount));
+                    config->usage.insert(curWord.index, qMakePair(curWord.snippetLength, it->usageCount));
 					replaced = true;
 					break;
 				}
