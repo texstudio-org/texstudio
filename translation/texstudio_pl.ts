@@ -1100,7 +1100,7 @@ Zmienne zapisywane jako: $MYVAR. Wielkość liter ma znaczenie.
     <message>
         <location filename="../src/configdialog.ui" line="1047"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>Wyświetl log jeżeli wystąpi błąd kompilacji</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1054"/>
@@ -1165,17 +1165,17 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"/>
+        <translation>Zamknij podgląd loga</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1150"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Zamknij wbudowaną przeglądarkę</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1157"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Wyłącz tryb pełnoekranowy</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1167"/>
@@ -1341,7 +1341,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1634"/>
         <source>Folding</source>
-        <translation type="unfinished"/>
+        <translation>Zawijanie</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1641"/>
@@ -1598,7 +1598,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="2168"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Domyślne kodowanie loga</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2181"/>
@@ -1703,7 +1703,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="2326"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>Zaznaczanie potrójnym kliknięciem:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2333"/>
@@ -1713,7 +1713,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="2336"/>
         <source>Safe writing of files</source>
-        <translation type="unfinished"/>
+        <translation>Bezpieczne zapisywanie plików</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2343"/>
@@ -1728,7 +1728,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="2353"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Wyśrodkuj dokument w edytorze</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2360"/>
