@@ -45,7 +45,7 @@
 	<key>CFBundleName</key>
 	<string>TeXstudio</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.12.8</string>
+	<string>2.12.10</string>
 	<key>AppleMagnifiedMode</key>
 	<false/>
 </dict>

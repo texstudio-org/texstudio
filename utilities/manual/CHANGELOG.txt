@@ -1,3 +1,8 @@
+TeXstudio 2.12.10
+----------------
+- bug fixes
+- fix structure view with Qt >5.10
+
 TeXstudio 2.12.8
 ----------------
 - bug fixes
