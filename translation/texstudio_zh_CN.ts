@@ -9216,12 +9216,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="775"/>
         <source>Show difference between two files</source>
-        <translation>显示文档的不同</translation>
+        <translation>显示两个文档的不同</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="776"/>
         <source>Show difference between two files in relation to base file</source>
-        <translation>显示文档的不同</translation>
+        <translation>显示两个文档与基本文档的不同</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="777"/>
