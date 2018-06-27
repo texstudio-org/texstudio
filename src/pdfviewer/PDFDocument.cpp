@@ -949,13 +949,19 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if (pdfdocument && pdfdocument->embeddedMode)
 		setFocus();
+	if (pageHistoryIndex != pageHistory.size() - 1) {
+		pageHistory.append(PDFPageHistoryItem(realPageIndex, 0, 0));
+		pageHistoryIndex = pageHistory.size() - 1;
+	}
 	updateCurrentPageHistoryOffset();
 	if (clickedLink) {
 		int page;
 		QPointF scaledPos;
 		mapToScaledPosition(event->pos(), page, scaledPos);
 		if (page > -1 && clickedLink->linkArea().contains(scaledPos)) {
+			pageHistoryIndex = pageHistory.size();
 			doLink(clickedLink);
+			updateCurrentPageHistoryOffset();
 		}
 	} else if (clickedAnnotation) {
 		int page;
@@ -1756,8 +1762,10 @@ void PDFWidget::goForward()
 
 void PDFWidget::goBack()
 {
+	if (pageHistory.isEmpty()) return;
 	if (pageHistoryIndex > 0) {
 		pageHistoryIndex--;
+		while (pageHistoryIndex >= pageHistory.size()) pageHistoryIndex--;
 		REQUIRE(!document.isNull() && getScrollArea());
 		goToPageRelativePosition(pageHistory[pageHistoryIndex].page, pageHistory[pageHistoryIndex].x, pageHistory[pageHistoryIndex].y);
 	}
