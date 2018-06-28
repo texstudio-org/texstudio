@@ -268,7 +268,7 @@ private:
 	void annotationClicked(QSharedPointer<Poppler::Annotation> annotation, int page);
 	void doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor = 1.0);
 
-	PDFScrollArea *getScrollArea();
+	PDFScrollArea *getScrollArea() const;
 
 	QSharedPointer<Poppler::Document> document;
 	QMutex textwidthCalculationMutex;

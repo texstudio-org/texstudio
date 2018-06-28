@@ -797,6 +797,7 @@ void PDFScrollArea::updateWidgetPosition()
 		pdf->goToPageDirect((pos / rowHeight)*pdf->gridCols() , true);
 	}
 	updateWidgetPositionStackWatch--;
+	pdf->updateStatusBar(); //need to update page count when a new page is scrolled in visible area
 }
 
 void PDFScrollArea::updateScrollBars()

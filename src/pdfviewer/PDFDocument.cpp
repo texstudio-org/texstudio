@@ -949,13 +949,19 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if (pdfdocument && pdfdocument->embeddedMode)
 		setFocus();
+	if (pageHistoryIndex != pageHistory.size() - 1) {
+		pageHistory.append(PDFPageHistoryItem(realPageIndex, 0, 0));
+		pageHistoryIndex = pageHistory.size() - 1;
+	}
 	updateCurrentPageHistoryOffset();
 	if (clickedLink) {
 		int page;
 		QPointF scaledPos;
 		mapToScaledPosition(event->pos(), page, scaledPos);
 		if (page > -1 && clickedLink->linkArea().contains(scaledPos)) {
+			pageHistoryIndex = pageHistory.size();
 			doLink(clickedLink);
+			updateCurrentPageHistoryOffset();
 		}
 	} else if (clickedAnnotation) {
 		int page;
@@ -1663,7 +1669,13 @@ void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault)
 
 int PDFWidget::visiblePages() const
 {
-	return pages.size();
+	if (pages.isEmpty()) return 0;
+	int firstPage = pages.first();
+	int lastPage = pages.last();
+	int visibleHeight = getScrollArea()->viewport()->height() - this->y();
+	while (lastPage > firstPage && pageRect(lastPage).top() >= visibleHeight)
+		lastPage--;
+	return lastPage - firstPage + 1;
 }
 
 int PDFWidget::pseudoNumPages()  const
@@ -1756,8 +1768,10 @@ void PDFWidget::goForward()
 
 void PDFWidget::goBack()
 {
+	if (pageHistory.isEmpty()) return;
 	if (pageHistoryIndex > 0) {
 		pageHistoryIndex--;
+		while (pageHistoryIndex >= pageHistory.size()) pageHistoryIndex--;
 		REQUIRE(!document.isNull() && getScrollArea());
 		goToPageRelativePosition(pageHistory[pageHistoryIndex].page, pageHistory[pageHistoryIndex].x, pageHistory[pageHistoryIndex].y);
 	}
@@ -2241,7 +2255,7 @@ void PDFWidget::restoreState()
 	emit changedScaleOption(scaleOption);
 }
 
-PDFScrollArea *PDFWidget::getScrollArea()
+PDFScrollArea *PDFWidget::getScrollArea() const
 {
 	QWidget *parent = parentWidget();
 	if (parent != NULL)
@@ -3761,7 +3775,7 @@ void PDFDocument::showPage(int page)
 	int p = page; //-pdfWidget->getPageOffset();
 	if (p < 1)
 		p = 1;
-	int p2 = page + pdfWidget->visiblePages() - 1 - pdfWidget->getPageOffset();
+	int p2 = page + pdfWidget->visiblePages() - 1;
 	if (pdfWidget->visiblePages() <= 1) pageLabel->setText(tr("Page %1 of %2").arg(p).arg(pdfWidget->realNumPages()));
 	else pageLabel->setText(tr("Pages %1 to %2 of %3").arg(p).arg(p2).arg(pdfWidget->realNumPages()));
 	pageCountLabel->setText(QString("%1").arg(pdfWidget->realNumPages()));
