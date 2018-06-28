@@ -43,7 +43,7 @@ see quazip/(un)zip.h files for details. Basically it's the zlib license.
 
 #include <QtTest/QtTest>
 
-bool createTestFiles(const QStringList &fileNames, const QString &dir)
+bool createTestFiles(const QStringList &fileNames, int size, const QString &dir)
 {
     QDir curDir;
     foreach (QString fileName, fileNames) {
@@ -69,8 +69,14 @@ bool createTestFiles(const QStringList &fileNames, const QString &dir)
                         fileName.toUtf8().constData());
                 return false;
             }
-            QTextStream testStream(&testFile);
-            testStream << "This is a test file named " << fileName << endl;
+            if (size == -1) {
+                QTextStream testStream(&testFile);
+                testStream << "This is a test file named " << fileName << endl;
+            } else {
+                for (int i = 0; i < size; ++i) {
+                    testFile.putChar(static_cast<char>('0' + i % 10));
+                }
+            }
         }
     }
     return true;

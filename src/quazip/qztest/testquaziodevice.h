@@ -31,6 +31,7 @@ class TestQuaZIODevice: public QObject {
     Q_OBJECT
 private slots:
     void read();
+    void readMany();
     void write();
 };
 

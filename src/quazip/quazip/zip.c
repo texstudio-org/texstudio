@@ -12,6 +12,9 @@
          Modifications for QIODevice support and other QuaZIP fixes
          Copyright (C) 2005-2014 Sergey A. Tachenov
 
+         Fixing static code analysis issues
+         Copyright (C) 2016 Intel Deutschland GmbH
+
          Changes
    Oct-2009 - Mathias Svensson - Remove old C style function prototypes
    Oct-2009 - Mathias Svensson - Added Zip64 Support when creating new file archives
@@ -192,7 +195,7 @@ typedef struct
 
 #ifndef NOCRYPT
 #define INCLUDECRYPTINGCODE_IFCRYPTALLOWED
-#include "crypt.h"
+#include "minizip_crypt.h"
 #endif
 
 local linkedlist_datablock_internal* allocate_new_datablock()
@@ -527,13 +530,14 @@ local ZPOS64_T zip64local_SearchCentralDir(const zlib_filefunc64_32_def* pzlib_f
     if (ZREAD64(*pzlib_filefunc_def,filestream,buf,uReadSize)!=uReadSize)
       break;
 
-    for (i=(int)uReadSize-3; (i--)>0;)
+    for (i=(int)uReadSize-3; (i--)>0;){
       if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) &&
         ((*(buf+i+2))==0x05) && ((*(buf+i+3))==0x06))
       {
         uPosFound = uReadPos+i;
         break;
       }
+    }
 
       if (uPosFound!=0)
         break;
@@ -1171,6 +1175,9 @@ extern int ZEXPORT zipOpenNewFileInZip4_64 (zipFile file, const char* filename, 
     zi->ci.size_centralExtraFree = 32; /* Extra space we have reserved in case we need to add ZIP64 extra info data */
 
     zi->ci.central_header = (char*)ALLOC((uInt)zi->ci.size_centralheader + zi->ci.size_centralExtraFree);
+    if(!zi->ci.central_header) {
+      return (Z_MEM_ERROR);
+    }
 
     zi->ci.size_centralExtra = size_extrafield_global;
     zip64local_putValue_inmemory(zi->ci.central_header,(uLong)CENTRALHEADERMAGIC,4);
@@ -1509,15 +1516,9 @@ extern int ZEXPORT zipWriteInFileInZip (zipFile file,const void* buf,unsigned in
 
           if ((zi->ci.method == Z_DEFLATED) && (!zi->ci.raw))
           {
-              uLong uTotalOutBefore = zi->ci.stream.total_out;
+              uInt uAvailOutBefore = zi->ci.stream.avail_out;
               err=deflate(&zi->ci.stream,  Z_NO_FLUSH);
-              if(uTotalOutBefore > zi->ci.stream.total_out)
-              {
-                int bBreak = 0;
-                bBreak++;
-              }
-
-              zi->ci.pos_in_buffered_data += (uInt)(zi->ci.stream.total_out - uTotalOutBefore) ;
+              zi->ci.pos_in_buffered_data += uAvailOutBefore - zi->ci.stream.avail_out;
           }
           else
           {
@@ -1571,7 +1572,7 @@ extern int ZEXPORT zipCloseFileInZipRaw64 (zipFile file, ZPOS64_T uncompressed_s
                 {
                         while (err==ZIP_OK)
                         {
-                                uLong uTotalOutBefore;
+                                uLong uAvailOutBefore;
                                 if (zi->ci.stream.avail_out == 0)
                                 {
                                         if (zip64FlushWriteBuffer(zi) == ZIP_ERRNO)
@@ -1579,9 +1580,9 @@ extern int ZEXPORT zipCloseFileInZipRaw64 (zipFile file, ZPOS64_T uncompressed_s
                                         zi->ci.stream.avail_out = (uInt)Z_BUFSIZE;
                                         zi->ci.stream.next_out = zi->ci.buffered_data;
                                 }
-                                uTotalOutBefore = zi->ci.stream.total_out;
+                                uAvailOutBefore = zi->ci.stream.avail_out;
                                 err=deflate(&zi->ci.stream,  Z_FINISH);
-                                zi->ci.pos_in_buffered_data += (uInt)(zi->ci.stream.total_out - uTotalOutBefore) ;
+                                zi->ci.pos_in_buffered_data += uAvailOutBefore - zi->ci.stream.avail_out;
                         }
                 }
     else if ((zi->ci.method == Z_BZIP2ED) && (!zi->ci.raw))
@@ -2031,6 +2032,9 @@ extern int ZEXPORT zipRemoveExtraInfoBlock (char* pData, int* dataLen, short sHe
     return ZIP_PARAMERROR;
 
   pNewHeader = (char*)ALLOC(*dataLen);
+  if(!pNewHeader) {
+    return Z_MEM_ERROR;
+  }
   pTmp = pNewHeader;
 
   while(p < (pData + *dataLen))

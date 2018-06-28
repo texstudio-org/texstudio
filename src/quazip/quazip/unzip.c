@@ -15,6 +15,8 @@
 
          For more info read MiniZip_info.txt
 
+         Modifications for static code analysis report
+         Copyright (C) 2016 Intel Deutschland GmbH
 
   ------------------------------------------------------------------------------------
   Decryption code comes from crypt.c by Info-ZIP but has been greatly reduced in terms of
@@ -28,7 +30,7 @@
   If, for some reason, all these files are missing, the Info-ZIP license
   also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
 
-        crypt.c (full version) by Info-ZIP.      Last revised:  [see crypt.h]
+        crypt.c (full version) by Info-ZIP.      Last revised:  [see minizip_crypt.h]
 
   The encryption/decryption parts of this source code (as opposed to the
   non-echoing password parts) were originally written in Europe.  The
@@ -197,7 +199,7 @@ typedef struct
 
 
 #ifndef NOUNCRYPT
-#include "crypt.h"
+#include "minizip_crypt.h"
 #endif
 
 /* ===========================================================================
@@ -1594,6 +1596,7 @@ extern int ZEXPORT unzOpenCurrentFile3 (unzFile file, int* method,
         pfile_in_zip_read_info->stream_initialised=Z_DEFLATED;
       else
       {
+        TRYFREE(pfile_in_zip_read_info->read_buffer);
         TRYFREE(pfile_in_zip_read_info);
         return err;
       }
@@ -1845,38 +1848,30 @@ extern int ZEXPORT unzReadCurrentFile  (unzFile file, voidp buf, unsigned len)
         } /* end Z_BZIP2ED */
         else
         {
-            ZPOS64_T uTotalOutBefore,uTotalOutAfter;
+            uInt uAvailOutBefore,uAvailOutAfter;
             const Bytef *bufBefore;
-            ZPOS64_T uOutThis;
+            uInt uOutThis;
             int flush=Z_SYNC_FLUSH;
 
-            uTotalOutBefore = pfile_in_zip_read_info->stream.total_out;
+            uAvailOutBefore = pfile_in_zip_read_info->stream.avail_out;
             bufBefore = pfile_in_zip_read_info->stream.next_out;
 
-            /*
-            if ((pfile_in_zip_read_info->rest_read_uncompressed ==
-                     pfile_in_zip_read_info->stream.avail_out) &&
-                (pfile_in_zip_read_info->rest_read_compressed == 0))
-                flush = Z_FINISH;
-            */
             err=inflate(&pfile_in_zip_read_info->stream,flush);
 
             if ((err>=0) && (pfile_in_zip_read_info->stream.msg!=NULL))
               err = Z_DATA_ERROR;
 
-            uTotalOutAfter = pfile_in_zip_read_info->stream.total_out;
-            uOutThis = uTotalOutAfter-uTotalOutBefore;
+            uAvailOutAfter = pfile_in_zip_read_info->stream.avail_out;
+            uOutThis = uAvailOutBefore - uAvailOutAfter;
 
             pfile_in_zip_read_info->total_out_64 = pfile_in_zip_read_info->total_out_64 + uOutThis;
 
-            pfile_in_zip_read_info->crc32 =
-                crc32(pfile_in_zip_read_info->crc32,bufBefore,
-                        (uInt)(uOutThis));
+            pfile_in_zip_read_info->crc32
+                    = crc32(pfile_in_zip_read_info->crc32,bufBefore, uOutThis);
 
-            pfile_in_zip_read_info->rest_read_uncompressed -=
-                uOutThis;
+            pfile_in_zip_read_info->rest_read_uncompressed -= uOutThis;
 
-            iRead += (uInt)(uTotalOutAfter - uTotalOutBefore);
+            iRead += uAvailOutBefore - uAvailOutAfter;
 
             if (err==Z_STREAM_END)
                 return (iRead==0) ? UNZ_EOF : iRead;

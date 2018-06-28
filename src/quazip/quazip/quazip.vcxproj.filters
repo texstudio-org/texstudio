@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crypt.h">
+    <ClInclude Include="minizip_crypt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ioapi.h">

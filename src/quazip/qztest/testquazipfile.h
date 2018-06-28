@@ -37,8 +37,10 @@ private slots:
     void bytesAvailable();
     void atEnd_data();
     void atEnd();
-    void pos_data();
-    void pos();
+    void posRead_data();
+    void posRead();
+    void posWrite_data();
+    void posWrite();
     void getZip();
     void setZipName();
     void getFileInfo();
