@@ -52,6 +52,35 @@ void TestQuaZIODevice::read()
     QVERIFY(!testDevice.isOpen());
 }
 
+void TestQuaZIODevice::readMany()
+{
+    QByteArray buf(256, 0);
+    z_stream zouts;
+    zouts.zalloc = (alloc_func) NULL;
+    zouts.zfree = (free_func) NULL;
+    zouts.opaque = NULL;
+    deflateInit(&zouts, Z_DEFAULT_COMPRESSION);
+    zouts.next_in = reinterpret_cast<Bytef*>(const_cast<char*>("testtest"));
+    zouts.avail_in = 8;
+    zouts.next_out = reinterpret_cast<Bytef*>(buf.data());
+    zouts.avail_out = buf.size();
+    deflate(&zouts, Z_FINISH);
+    deflateEnd(&zouts);
+    QBuffer testBuffer(&buf);
+    testBuffer.open(QIODevice::ReadOnly);
+    QuaZIODevice testDevice(&testBuffer);
+    QVERIFY(testDevice.open(QIODevice::ReadOnly));
+    char outBuf[4];
+    QCOMPARE(testDevice.read(outBuf, 4), static_cast<qint64>(4));
+    QVERIFY(!testDevice.atEnd());
+    QVERIFY(testDevice.bytesAvailable() > 0);
+    QCOMPARE(testDevice.read(4).size(), 4);
+    QCOMPARE(testDevice.bytesAvailable(), static_cast<qint64>(0));
+    QVERIFY(testDevice.atEnd());
+    testDevice.close();
+    QVERIFY(!testDevice.isOpen());
+}
+
 void TestQuaZIODevice::write()
 {
     QByteArray buf(256, 0);

@@ -5,3 +5,5 @@ moc -o moc\moc_testquazipfile.cpp testquazipfile.h
 moc -o moc\moc_testquazipdir.cpp testquazipdir.h
 moc -o moc\moc_testquagzipfile.cpp testquagzipfile.h
 moc -o moc\moc_testquaziodevice.cpp testquaziodevice.h
+moc -o moc\moc_testquazipfileinfo.cpp testquazipfileinfo.h
+moc -o moc\moc_testquazipnewinfo.cpp testquazipnewinfo.h

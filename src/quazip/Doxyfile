@@ -31,7 +31,7 @@ PROJECT_NAME           = QuaZIP
 # This could be handy for archiving the generated documentation or
 # if some version control system is used.
 
-PROJECT_NUMBER         = quazip-0-7-1
+PROJECT_NUMBER         = quazip-0-7-6
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer
@@ -610,7 +610,7 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
 
-INPUT                  =
+INPUT                  = quazip
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is
@@ -645,7 +645,7 @@ RECURSIVE              = YES
 EXCLUDE                = quazip/unzip.h \
                          quazip/zip.h \
                          quazip/ioapi.h \
-                         quazip/crypt.h \
+                         quazip/minizip_crypt.h \
                          qztest/
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or
@@ -1491,7 +1491,7 @@ SKIP_FUNCTION_MACROS   = YES
 # If a tag file is not located in the directory in which doxygen
 # is run, you must also specify the path to the tagfile here.
 
-TAGFILES               =
+TAGFILES               = qtcore.tags=http://doc.qt.io/qt-5.9/
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create
 # a tag file that is based on the input files it reads.

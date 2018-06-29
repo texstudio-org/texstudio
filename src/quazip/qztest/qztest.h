@@ -30,8 +30,9 @@ see quazip/(un)zip.h files for details. Basically it's the zlib license.
 #include <QStringList>
 #include <QTextCodec>
 
-extern bool createTestFiles(const QStringList &fileNames, const QString
-        &dir = "tmp");
+extern bool createTestFiles(const QStringList &fileNames,
+                            int size = -1,
+                            const QString &dir = "tmp");
 extern void removeTestFiles(const QStringList &fileNames, const QString
         &dir = "tmp");
 extern bool createTestArchive(const QString &zipName, 
