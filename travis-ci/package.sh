@@ -152,7 +152,7 @@ if [ "${QT}" = "qt5win" ]; then
 	print_info "zipping '${TRAVIS_BUILD_DIR}/texstudio-${TARGET_OS}-${VERSION_NAME}.zip'"
 	echo_and_run "cd package-zip && zip -r \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" *"
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" \"${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-win-portable-qt5.zip\" "
-	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio-installer.exe\" \"${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-win-qt5.exe\" "
+	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio_installer.exe\" \"${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-win-qt5.exe\" "
 
 	print_info "Preparing bintray.json"
 	cat > "${TRAVIS_BUILD_DIR}/travis-ci/bintray.json" <<EOF
