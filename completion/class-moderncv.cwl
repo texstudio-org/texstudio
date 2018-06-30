@@ -21,7 +21,7 @@
 \email{%<email%>}#n
 \homepage{%<home% page>}#n
 \extrainfo{%<extra info%>}#n
-\photo[%<height photo>][%<frame thickness%>]{%<picture file%>}#n
+\photo[%<height photo%>][%<frame thickness%>]{%<picture file%>}#n
 \quote{%<some quote%>}#n
 \makecvtitle#n
 \cventry{%<year%>--%<year%>}{%<degree or job title%>}{%<institution or employer%>}{%<city%>}{%<grade%>}{%<description%>}#n
