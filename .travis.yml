@@ -76,5 +76,5 @@ deploy:
       - "${TRAVIS_BUILD_DIR}/texstudio-${VERSION}-x86_64.AppImage"
     on:
       tags: true 
-      condition: -f "${TRAVIS_BUILD_DIR}/texstudio-${VERSION}-x86_64.AppImage"
+      condition: -f "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-x86_64.AppImage"
 
