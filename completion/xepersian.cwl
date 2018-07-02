@@ -63,7 +63,7 @@
 \Latincite
 \harfinumeral{integer}
 \adadinumeral{integer}
-\tartibinumeral{integer
+\tartibinumeral{integer}
 \DefaultMathsDigits
 \PersianMathsDigits
 \AutoMathsDigits
