@@ -190,6 +190,7 @@ private slots:
 	void latexPreviewCompleted(int status);
 	void dvi2psPreviewCompleted(int status);
 	void conversionPreviewCompleted(int status);
+    void PreviewLatexCompleted(int status);
 	void commandLineRequestedDefault(const QString &cmdId, QString *result, bool *user);
 	void runInternalCommandThroughProcessX();
 	void emitEndRunningSubCommandFromProcessX(int);
