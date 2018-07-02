@@ -27,7 +27,7 @@
 \unsetRTL
 \setRTL
 \setRL
-\unsetLT
+\unsetLTR
 \begin{LTR}
 \end{LTR}
 \begin{RTL}
@@ -46,7 +46,7 @@
 \LTRthanks{text}
 \RTLthanks{text}
 \footnotetext[num]{text}
-\LTRfootnotetex[num]{text}
+\LTRfootnotetext[num]{text}
 \RTLfootnotetext[num]{text}
 \autofootnoterule
 \rightfootnoterule
@@ -54,8 +54,8 @@
 \LRfootnoterule
 \textwidthfootnoterule
 \SplitFootnoteRule
-\debugfootnotedirectio
-\RTLdblco
+\debugfootnotedirection
+\RTLdblcol
 \LTRdblcol
 \XeTeX
 \XeLaTeX
@@ -69,7 +69,7 @@
 \hboxR
 \hboxL
 \vboxR
-\vbox
+\vboxL
 \bidillap
 \bidirlap
 \begin{LTRitems}
