@@ -5,8 +5,21 @@ TeXstudio 2.12.10
 
 TeXstudio 2.12.8
 ----------------
-- bug fixes
+- improved tokenizer for syntax checking and completion
+- pressing Ctrl+F while the editor search has focus opens the extended search, i.e., you'll get extended search by pressing Ctrl+F twice
+- automatically insert math delimiters ($) when inserting a math command outside of a math env (can be turned off, default on)
+- change copy behavior of multiple cursors from selection order to line order
+- file list is now a transparent popup window: closes when clicked outside
+- combine file conflict and show diff dialog
+- fix file watcher not recognizing multiple changes to a file in quick succession
+- improved detection of package names when opening texdoc
+- new symbol panel layout
+- some touch scrolling on certain panels
+- updated synctex and poppler libraries for pdf viewer
+- fix undo when a snippet is inserted and a selection is inserted as well
+- fix some parts of the editor background may not be drawn in the correct color
 - build for OSX High Sierra
+- various other fixes
 
 TeXstudio 2.12.6
 ----------------
