@@ -35,7 +35,7 @@
 \LRE{text}
 \LR{text}
 \RLE{text}
-\RL{text
+\RL{text}
 \footnote{text}
 \LTRfootnote{text}
 \RTLfootnote{text}
