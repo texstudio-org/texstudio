@@ -4,10 +4,10 @@
 # Equivalent Persian Commands, documentclasses and some other commands are not included
 
 #include:bidi
-\xepersianversion
-\xepersiandate
-\KashidaOn
-\KashidaOff
+\xepersianversion#*
+\xepersiandate#*
+\KashidaOn#*
+\KashidaOff#*
 \eqcommand{command-name in Persian}{original LATEX command-name}
 \eqenvironment{environment-name in Persian}{original LATEX environment-name}
 \settextfont[Options]{font name}
@@ -17,7 +17,7 @@
 \setmathttdigitfont[Options]{font name}
 \defpersianfont\CS[Options]{font name}
 \deflatinfont\CS[Options]{font name}
-\setpersiansansfont[Options]{font name}
+\setpersiansansfont[Options]{font name}#
 \persiansffamily
 \textpersiansf{text}
 \setpersianmonofont[Options]{font name}
@@ -26,18 +26,18 @@
 \setiranicfont[Options]{font name}
 \iranicfamily
 \textiranic{text}
-\setnavarfont[Options]{font name}
-\navarfamily
-\textnavar{text}
-\setpookfont[Options]{font name}
-\pookfamily
-\textpook{text}
-\setsayehfont[Options]{font name}
-\sayehfamily
-\textsayeh{text}
+\setnavarfont[Options]{font name}#*
+\navarfamily#*
+\textnavar{text}#*
+\setpookfont[Options]{font name}#*
+\pookfamily#*
+\textpook{text}#*
+\setsayehfont[Options]{font name}#*
+\sayehfamily#*
+\textsayeh{text}#*
 \setlatinsansfont[Options]{font name}
-\sffamily
-\textsf{text}
+\sffamily#*
+\textsf{text}#*
 \setlatinmonofont[Options]{font name}
 \ttfamily
 \texttt{text}
@@ -53,13 +53,13 @@
 \rl{text}
 \persianyear
 \persianmonth
-\persianda
+\persianday
 \today
 \latintoday
 \twocolumnstableofcontents
 \XePersian
 \plq
-\pr
+\prq
 \Latincite
 \harfinumeral{integer}
 \adadinumeral{integer}
