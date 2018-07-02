@@ -1827,6 +1827,8 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 		//follow mode is a tricky features which allows dvipng to run while tex isn't finished
 		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvipng/[--follow]", ffn);
 		if (!p2) return; // command failed, not set ?
+        p1->setProperty("proc",QVariant::fromValue(p2));
+        connect(p1,SIGNAL(finished(int)),this,SLOT(PreviewLatexCompleted(int)));
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
 		connect(p2, SIGNAL(finished(int)), this, SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
@@ -2026,6 +2028,14 @@ void BuildManager::dvi2psPreviewCompleted(int status)
 	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
 	connect(p3, SIGNAL(finished(int)), this, SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
+}
+void BuildManager::PreviewLatexCompleted(int status){
+    if(status!=0){
+        // latex compile failed, kill dvipng
+        ProcessX *p1 = qobject_cast<ProcessX *> (sender());
+        ProcessX *p2=p1->property("proc").value<ProcessX *>();
+        p2->terminate();
+    }
 }
 
 void BuildManager::conversionPreviewCompleted(int status)
