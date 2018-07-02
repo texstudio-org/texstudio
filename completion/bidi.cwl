@@ -3,20 +3,20 @@
 
 # some commands are not included
 
-\bidiversion
-\bididate
-\TeXXeTOn
-\TeXXeTOf
+\bidiversion#*
+\bididate#*
+\TeXXeTOn#*
+\TeXXeTOf#*
 \normalfootnotes
 \twocolumnfootnotes
 \threecolumnfootnotes
 \fourcolumnfootnotes
 \fivecolumnfootnotes
-\sixcolumnfootnotes
-\sevencolumnfootnotes
-\eightcolumnfootnotes
-\ninecolumnfootnotes
-\tencolumnfootnotes
+\sixcolumnfootnotes#*
+\sevencolumnfootnotes#*
+\eightcolumnfootnotes#*
+\ninecolumnfootnotes#*
+\tencolumnfootnotes#*
 \RTLcolumnfootnotes
 \LTRcolumnfootnotes
 \paragraphfootnotes
