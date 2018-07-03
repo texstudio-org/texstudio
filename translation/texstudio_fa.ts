@@ -2108,7 +2108,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3147"/>
         <source>Preferred Commands Set:</source>
-        <translation type="unfinished"/>
+        <translation>مجموعه دستورات ترجیح داده شده:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3155"/>
@@ -4919,7 +4919,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="36"/>
         <source>Highlight</source>
-        <translation type="unfinished"/>
+        <translation>برجسته کن</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="38"/>
@@ -10963,7 +10963,9 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>بررسی قواعد دستوری فعال است.
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10132"/>
@@ -11896,7 +11898,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="669"/>
         <source>Writing page</source>
-        <translation type="unfinished"/>
+        <translation>صفحه‌ی نگارش</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="669"/>

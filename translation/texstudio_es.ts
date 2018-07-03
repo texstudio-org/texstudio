@@ -873,7 +873,7 @@ Cambie su configuración y defina las listas de orden solo en &apos;Opciones -&g
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"/>
+        <translation>Utilizar los diálogos de archivo del sistema</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="451"/>

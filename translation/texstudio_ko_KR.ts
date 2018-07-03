@@ -122,7 +122,7 @@
     <message>
         <location filename="../src/arraydialog.cpp" line="33"/>
         <source>Center</source>
-        <translation>가운데</translation>
+        <translation>중앙</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.cpp" line="34"/>
@@ -1125,22 +1125,22 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="1111"/>
         <location filename="../src/configdialog.ui" line="1358"/>
         <source>1</source>
-        <translation type="unfinished"/>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1116"/>
         <source>2</source>
-        <translation type="unfinished"/>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1121"/>
         <source>3</source>
-        <translation type="unfinished"/>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1126"/>
         <source>4</source>
-        <translation type="unfinished"/>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1134"/>
@@ -1192,7 +1192,7 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="1215"/>
         <location filename="../src/configdialog.cpp" line="496"/>
         <source>Command</source>
-        <translation type="unfinished"/>
+        <translation>명령어</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1220"/>
@@ -1458,7 +1458,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1853"/>
         <source>Grammar</source>
-        <translation type="unfinished"/>
+        <translation>문법</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1860"/>
@@ -1468,7 +1468,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1867"/>
         <source>References</source>
-        <translation type="unfinished"/>
+        <translation>참고문헌</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1874"/>
@@ -1633,7 +1633,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2228"/>
         <source>Mouse Wheel Zoom</source>
-        <translation type="unfinished"/>
+        <translation>마우스 스크롤로 확대</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2235"/>
@@ -1643,7 +1643,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2245"/>
         <source>Line Wrapping:</source>
-        <translation type="unfinished"/>
+        <translation>줄 바꿈:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2252"/>
@@ -1718,7 +1718,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2353"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>편집기 중앙에 문서 두기</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2360"/>
@@ -1733,7 +1733,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2378"/>
         <source>No Line Wrap</source>
-        <translation type="unfinished"/>
+        <translation>줄바꿈 없음</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2383"/>
@@ -1779,7 +1779,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"/>
+        <translation>드래그 앤 드롭 허용</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2443"/>
@@ -1829,12 +1829,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2524"/>
         <source>Bibliography</source>
-        <translation type="unfinished"/>
+        <translation>참고문헌</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2530"/>
         <source>bib File Encoding:</source>
-        <translation type="unfinished"/>
+        <translation>bib 파일 인코딩</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2537"/>
@@ -1844,12 +1844,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2550"/>
         <source>Table Autoformating</source>
-        <translation type="unfinished"/>
+        <translation>표 형식 자동맞춤</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2556"/>
         <source>One Line Per Cell</source>
-        <translation type="unfinished"/>
+        <translation>한 셀당 한 줄</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2564"/>
@@ -2010,18 +2010,18 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="../src/configdialog.ui" line="2905"/>
         <location filename="../src/configdialog.ui" line="2952"/>
         <source>Add Line</source>
-        <translation type="unfinished"/>
+        <translation>열 추가</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2912"/>
         <location filename="../src/configdialog.ui" line="2959"/>
         <source>Remove Line</source>
-        <translation type="unfinished"/>
+        <translation>열 제거</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2942"/>
         <source>Additional Commands</source>
-        <translation type="unfinished"/>
+        <translation>추가 명령어</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2997"/>
@@ -3037,7 +3037,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Bibliography</source>
-        <translation type="unfinished"/>
+        <translation>참고문헌</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
