@@ -22,6 +22,7 @@ enum LatexCompileResult {
 };
 Q_DECLARE_METATYPE(LatexCompileResult)
 
+
 enum RunCommandFlag {
 	RCF_SHOW_STDOUT = 1,    //bibliography command (=> show stdout)
 	RCF_COMPILES_TEX = 4, //latex command, show the log
@@ -255,7 +256,7 @@ private:
 };
 
 //#define PROFILE_PROCESSES
-
+Q_DECLARE_METATYPE(ProcessX *)
 //this process can handle dde and normal commands
 class ProcessX: public QProcess
 {
