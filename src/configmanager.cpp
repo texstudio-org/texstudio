@@ -751,7 +751,7 @@ QString ConfigManager::portableConfigDir()
 
 bool ConfigManager::isPortableMode()
 {
-	return QDir(portableConfigDir()).exists();
+    return (QDir(portableConfigDir()).exists() || !configDirOverride.isEmpty());
 }
 
 /*!
