@@ -7939,6 +7939,10 @@ void Texstudio::clearPreview()
 		for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
 			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
 			        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
+                // remove cookies from last previewed line
+                int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
+                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
+                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
 				// remove mark
 				int sid = edit->document()->getFormatId("previewSelection");
 				if (!sid) return;
