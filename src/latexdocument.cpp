@@ -748,6 +748,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				completerNeedsUpdate = true;
 				//Tokens cmdName;
 				QString cmdName = Parsing::getArg(args, Token::def);
+                cmdName.replace("@","@@"); // special treatment for commandnames containing @
 				bool isDefWidth = true;
 				if (cmdName.isEmpty())
 					cmdName = Parsing::getArg(args, Token::defWidth);

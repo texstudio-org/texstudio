@@ -947,29 +947,35 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
 						words.append(cw);
 				} else {
 					// cite command
-					if (it->word.contains('@')) {
-						QString ln = it->lines[0];
-						ln.replace('@', "%<bibid%>");
-						words.append(CompletionWord(ln));
-						cnt++;
-						foreach (const CompletionWord id, wordsCitations) {
-							CompletionWord cw = *it;
-							int index = cw.lines[0].indexOf("@");
-							cw.word.replace("@", id.word);
-							cw.sortWord.replace("@", id.word);
-							cw.lines[0].replace("@", id.word);
-							for (int i = 0; i < cw.placeHolders.count(); i++) {
-								if (cw.placeHolders[i].isEmpty())
-									continue;
-								for (int j = 0; j < cw.placeHolders[i].count(); j++) {
-									CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
-									if (ph.offset > index)
-										ph.offset += id.word.length() - 1;
-								}
-							}
-							words.append(cw);
-						}
-						cnt += wordsCitations.length();
+                    if (it->word.contains('@')) {
+                        if(it->word.contains("@@")){ // special treatment for command-names containing @
+                            QString ln = it->lines[0];
+                            ln.replace("@@", "@");
+                            words.append(CompletionWord(ln));
+                        }else{
+                            QString ln = it->lines[0];
+                            ln.replace('@', "%<bibid%>");
+                            words.append(CompletionWord(ln));
+                            cnt++;
+                            foreach (const CompletionWord id, wordsCitations) {
+                                CompletionWord cw = *it;
+                                int index = cw.lines[0].indexOf("@");
+                                cw.word.replace("@", id.word);
+                                cw.sortWord.replace("@", id.word);
+                                cw.lines[0].replace("@", id.word);
+                                for (int i = 0; i < cw.placeHolders.count(); i++) {
+                                    if (cw.placeHolders[i].isEmpty())
+                                        continue;
+                                    for (int j = 0; j < cw.placeHolders[i].count(); j++) {
+                                        CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
+                                        if (ph.offset > index)
+                                            ph.offset += id.word.length() - 1;
+                                    }
+                                }
+                                words.append(cw);
+                            }
+                            cnt += wordsCitations.length();
+                        }
 					} else {
 						words.append(*it);
 					}
