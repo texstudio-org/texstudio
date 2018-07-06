@@ -18,7 +18,7 @@
 #include "smallUsefulFunctions.h"
 #include <QtTest/QtTest>
 
-QDocumentLineTest::QDocumentLineTest()
+QDocumentLineTest::QDocumentLineTest():savedFixedPitch(false),savedSpaceWidth(0), savedLeftPadding(0),savedWorkAroundFPM(false), savedWorkAroundFSCD(false), savedWorkAroundFQTL(false)
 {
 	doc=new QDocument(this);
 
