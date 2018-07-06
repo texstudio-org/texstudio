@@ -4860,15 +4860,15 @@ void Texstudio::insertFormula(const QString &formula)
 			currentEditorView()->editor->setCursor(cur);
 			fm = fm.mid(1, fm.length() - 2);             // removes surrounding $...$
 		} else {
-			//TODO is terhe a better way than hard coding? Since there is no difference in the formats between
+            //TODO is there a better way than hard coding? Since there is no difference in the formats between
 			//start and end tags. \[|\] is hard identify without.
 			QString editorFormula = dl.text().mid(col);
 			if (editorFormula.startsWith("\\[")) {
-				col += 2;
+                //col += 2; unused code
 				currentEditorView()->editor->setCursor(cur);
 				fm = fm.mid(1, fm.length() - 2);         // removes surrounding $...$
 			} else if (editorFormula.startsWith("$")) {
-				col += 1;
+                // col += 1; unused code
 				currentEditorView()->editor->setCursor(cur);
 				fm = fm.mid(1, fm.length() - 2);         // removes surrounding $...$
 			} else {
