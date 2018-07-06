@@ -123,9 +123,9 @@ void SearchResultModel::removeAllSearches()
 	endResetModel();
 }
 
-int SearchResultModel::columnCount(const QModelIndex &parent) const
+int SearchResultModel::columnCount(const QModelIndex &) const
 {
-	return parent.isValid() ? 1 : 1;
+    return 1;
 }
 
 int SearchResultModel::rowCount(const QModelIndex &parent) const
