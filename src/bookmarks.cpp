@@ -162,8 +162,9 @@ void Bookmarks::updateLineWithBookmark(int lineNr)
 		return;
 	QString text = doc->getFileInfo().fileName();
 	QDocumentLineHandle *dlh = doc->line(lineNr).handle();
-    if(!dlh)
+    if(!dlh){
         return;
+    }
 	QList<QListWidgetItem *> lst = bookmarksWidget->findItems(text, Qt::MatchStartsWith);
 	foreach (QListWidgetItem *item, lst) {
 		QDocumentLineHandle *dlh_item = qvariant_cast<QDocumentLineHandle *>(item->data(DocLineHandle));

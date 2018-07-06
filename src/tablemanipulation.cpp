@@ -998,8 +998,9 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 	if (!lineBreakOption.isEmpty()) ltl->setLineBreakOption(lineBreakOption);
 
     startCol = endCol;
-    if(startCol<0)
+    if(startCol<0){
         startCol=text.length();
+    }
 
 	return ltl;
 }

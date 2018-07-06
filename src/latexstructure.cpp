@@ -87,7 +87,6 @@ int StructureEntry::getRealParentRow() const
 void StructureEntry::debugPrint(const char *message) const
 {
 	qDebug("%s %p", message, this);
-	if (!this) return;
 	qDebug("   level: %i", level);
 	qDebug("   type: %i", (int)type);
 	qDebug("   line nr: %i", lineNumber);

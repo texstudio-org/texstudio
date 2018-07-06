@@ -736,8 +736,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			Token tkCmd;
 			TokenList args;
 			QString cmd;
-			int cmdStart = Parsing::findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
+            int cmdStart = Parsing::findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
 			if (cmdStart < 0) break;
+            cmdStart=tkCmd.start; // from here, cmdStart is line column position of command
 			cmd = curLine.mid(tkCmd.start, tkCmd.length);
 
 			QString firstArg = Parsing::getArg(args, dlh, 0, ArgumentList::Mandatory);

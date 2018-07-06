@@ -723,8 +723,9 @@ void Texstudio::setupMenus()
 	//TODO: correct somewhen
 
 	configManager.menuParent = this;
-    if(configManager.menuParents.isEmpty())
+    if(configManager.menuParents.isEmpty()){
         configManager.menuParents.append(this);
+    }
 	configManager.menuParentsBar = menuBar();
 
 	//file
@@ -6909,7 +6910,7 @@ void Texstudio::viewCloseElement()
 	const char * mode = "";
 	if (cd.month() == 12 && cd.day() >= 20) mode = "-santa";
 	else if ( (cd.month() == 10 && cd.day() >= 30) || (cd.month() == 11 && cd.day() == 1)) mode = "-witch";
-   else if ( (cd.month() == 3 && cd.day() >= 22) || (cd.month() == 4 && cd.day() <= 25)) mode = "-easter";
+    else if ( (cd.month() == 3 && cd.day() >= 22) || (cd.month() == 4 && cd.day() <= 25)) mode = "-easter";
 	UtilsUi::txsInformation(QString("<html><head></head><body><img src=':/images/egg%1.png'></body></html>").arg(mode));
 }
 
