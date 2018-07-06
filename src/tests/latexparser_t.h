@@ -32,12 +32,12 @@ class TestToken: public QString
 	}
 public:
 	int type, position;
-	TestToken(): QString(), type(NW_IGNORED_TOKEN), soll(QString()) { }
+    TestToken(): QString(), type(NW_IGNORED_TOKEN), position(-1), soll(QString()) { }
 	TestToken(const TestToken &token): QString(token), type(token.type), position(token.position), soll(token.soll) { }
-	TestToken(const QString &str): QString(str), soll(str) { guessType(); }
-	TestToken(const char *cstr): QString(cstr), soll(QString(cstr)) { guessType(); }
-	TestToken(const QString &str, int atype): QString(str), type(atype), soll(str) {}
-	TestToken(const QString &str, const QString result, int atype): QString(str), type(atype), soll(result) {}
+    TestToken(const QString &str): QString(str), position(-1), soll(str) { guessType(); }
+    TestToken(const char *cstr): QString(cstr), position(-1), soll(QString(cstr)) { guessType(); }
+    TestToken(const QString &str, int atype): QString(str), type(atype), position(-1), soll(str) {}
+    TestToken(const QString &str, const QString result, int atype): QString(str), type(atype), position(-1), soll(result) {}
 	bool operator ==(const QString &other)
 	{
 		return soll.compare(other) == 0;
