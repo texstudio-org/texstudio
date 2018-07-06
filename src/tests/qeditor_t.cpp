@@ -93,9 +93,11 @@ void QEditorTest::loadSave(){
 	editor->setText(editor->document()->text()+"Save test", false);
 	editor->save();
     QFile tf2(tfn);
-    tf2.open(QIODevice::ReadOnly);
-    QString writtenText=outCodec->toUnicode( tf2.readAll());
-    tf2.close();
+    QString writtenText;
+    if(tf2.open(QIODevice::ReadOnly)){
+        writtenText=outCodec->toUnicode( tf2.readAll());
+        tf2.close();
+    }
 
 	QEQUAL2(writtenText, testTextWithLineEndings+"Save test", "file text check, file:"+tfn);
 	QVERIFY2(writtenText.contains(outLineEnding), qPrintable("file don't contain right line ending, file"+tfn));
