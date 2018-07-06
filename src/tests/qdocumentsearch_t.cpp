@@ -7,7 +7,7 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-QDocumentSearchTest::QDocumentSearchTest(QEditor* editor, bool all): QObject(0), ed(editor), all(all){
+QDocumentSearchTest::QDocumentSearchTest(QEditor* editor, bool all): QObject(0), ds(NULL), ed(editor), all(all){
 	ed->setFlag(QEditor::HardLineWrap, false);
 }
 void QDocumentSearchTest::initTestCase(){
