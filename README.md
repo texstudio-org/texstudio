@@ -1,4 +1,4 @@
-# TeXstudio [![Build Status](https://travis-ci.org/texstudio-org/texstudio.svg?branch=master)](https://travis-ci.org/texstudio-org/texstudio)
+# TeXstudio [![Build Status](https://travis-ci.org/texstudio-org/texstudio.svg?branch=master)](https://travis-ci.org/texstudio-org/texstudio) [![Coverity Scan Build Status](https://img.shields.io/coverity/scan/5228.svg)](https://scan.coverity.com/projects/texstudio)
 
 
 TeXstudio is a fully featured LaTeX editor. Our goal is to make writing LaTeX documents as easy and comfortable as possible. Some of the outstanding features of TeXstudio are an integrated pdf viewer with (almost) word-level synchronization, live inline preview, advanced syntax-highlighting, live checking of references, citations, latex commands, spelling and grammar. Find out more at our website.
