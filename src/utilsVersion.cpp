@@ -56,15 +56,17 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
 {
     if (v1.length() < 3 || v2.length() < 3)
 		return Invalid;
-    if (v1.length() > 4 || v2.length() > 4)
+    if (v1.length() > 4 || v2.length() > 4){
         return Invalid;
+    }
 	for (int i=0; i<v1.count(); i++) {
         if(i>=v2.count()) return Higher;
 		if (v1.at(i) < v2.at(i)) return Lower;
 		else if (v1.at(i) > v2.at(i)) return Higher;
 	}
-    if(v1.count()<v2.count())
+    if(v1.count()<v2.count()){
         return Lower;
+    }
 	return Same;
 }
 

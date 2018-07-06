@@ -1299,8 +1299,9 @@ int QDocument::getLineSpacing()
 
 void QDocument::setLineSpacingFactor(double scale)
 {
-    if(qFuzzyCompare(scale,QDocumentPrivate::m_lineSpacingFactor))
+    if(qFuzzyCompare(scale,QDocumentPrivate::m_lineSpacingFactor)){
         return; // don't set fonts when spacing is not changed !
+    }
 	QDocumentPrivate::m_lineSpacingFactor = (scale<1.0)?1.0:scale;
 
 	if ( !QDocumentPrivate::m_font ) return;
@@ -5118,8 +5119,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			{
 				int curline=line;
 			    //goto next line start
-			    if (m_doc->line(line).cursorToDocumentOffset(offset+1).y()!=m_doc->line(line).cursorToDocumentOffset(offset-1).y())
-				offset++; //can this ever happen?
+                if (m_doc->line(line).cursorToDocumentOffset(offset+1).y()!=m_doc->line(line).cursorToDocumentOffset(offset-1).y()){
+                    offset++; //can this ever happen?
+                }
 				QPoint p = documentPosition();
 				p.rx() = -1;
 				p.ry() += QDocumentPrivate::m_lineSpacing;
@@ -7261,8 +7263,9 @@ void QDocumentPrivate::setCursorBold(bool bold)
 
 void QDocumentPrivate::setWidth(int width)
 {
-    if(m_width==width)
+    if(m_width==width){
         return; // no change if width is not changed
+    }
 
 	int oldConstraint = m_constrained;
 	m_constrained = width > 0 ;

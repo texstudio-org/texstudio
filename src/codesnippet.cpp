@@ -167,6 +167,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
 				curLine += "%";
 				word += "%";
 			// no break
+                [[gnu::fallthrough]];
 			case '\\':
 				if (currentChar.toLatin1() == '\n' || replacePercentNewline) {
 					lines.append(curLine);

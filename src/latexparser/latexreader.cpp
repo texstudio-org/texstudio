@@ -233,7 +233,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands)
 				}
 				break;
 			} else {
-				;   //first character is escaped, fall through to default case
+                [[gnu::fallthrough]];   //first character is escaped, fall through to default case
 			}
 		default:
 			//if (reference==-1) {

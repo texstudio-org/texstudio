@@ -401,6 +401,7 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			else
 				return KeyvalValue;
 		}
+        [[gnu::fallthrough]];
 	}
 	default:
 		return Unknown;

@@ -838,6 +838,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 			break;
 		}
 		// no break,
+        [[gnu::fallthrough]];
 	case Latex3Warning:
 		if (!strLine.startsWith('*') || strLine.startsWith("****************************************")) {
 			found = false;

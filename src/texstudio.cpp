@@ -3429,8 +3429,9 @@ void Texstudio::editDuplicateLine()
 	if (!currentEditor()) return;
 	QEditor *ed = currentEditor();
 	QList<QDocumentCursor> cursors = ed->cursors();
-    for (int i = 0; i < cursors.length(); i++)
+    for (int i = 0; i < cursors.length(); i++){
         cursors[i].setAutoUpdated(false);
+    }
 	QList<QPair<int, int> > blocks = currentEditorView()->getSelectedLineBlocks();
 	for (int i = blocks.size() - 1; i >= 0; i--) {
 		QDocumentCursor edit = ed->document()->cursor(blocks[i].first, 0, blocks[i].second);
@@ -4246,9 +4247,9 @@ void Texstudio::clickedOnStructureEntry(const QModelIndex &index)
 			if ((name.toLower() == "texroot") || (name.toLower() == "root")) {
 				QString fname = doc->findFileName(val);
 				load(fname);
-				break;
 			}
 		}
+        break;
 	case StructureEntry::SE_SECTION:
 	case StructureEntry::SE_TODO:
 	case StructureEntry::SE_LABEL: {
@@ -5782,8 +5783,9 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 	foreach (const LatexDocument *doc, docs)
 		foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles())
 			bibFiles.insert(bf.absolute);
-    if(bibFiles.isEmpty())
+    if(bibFiles.isEmpty()){
         return; // don't try to compile bibtex files if there none
+    }
 	if (bibFiles == rootDoc->lastCompiledBibTeXFiles) {
 		QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
 		if (bbl.exists()) {
@@ -8135,8 +8137,9 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 {
 	LatexEditorView *edView = rootDoc->getEditorView();
-    if (!edView)
+    if (!edView){
         return QStringList();
+    }
 	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
 	if (m_endingLine < 0) return QStringList(); // can't create header
 	QStringList header;
