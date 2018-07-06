@@ -10,7 +10,7 @@ class QDocumentCursor;
 class QDocumentCursorTest: public QObject{
 	Q_OBJECT
 public:
-        QDocumentCursorTest(bool autoTests):m_autoTests(autoTests){}
+        QDocumentCursorTest(bool autoTests):doc(NULL),m_autoTests(autoTests){}
 	private:
 		QDocument *doc;
         bool m_autoTests;
