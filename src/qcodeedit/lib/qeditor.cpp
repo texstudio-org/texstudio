@@ -3028,7 +3028,7 @@ bool QEditor::event(QEvent *e)
 	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) && m_doc )
 		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewport()->height()) / m_doc->getLineSpacing()));
 
-	if ( e->type() == QEvent::Resize && flag(LineWrap) )
+    if ( e->type() == QEvent::Resize && flag(LineWrap)  && m_doc)
 	{
 		//qDebug("resize adjust (1) : wrapping to %i", viewport()->width());
 		m_doc->setWidthConstraint(wrapWidth());

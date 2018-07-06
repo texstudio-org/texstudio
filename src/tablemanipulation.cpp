@@ -143,7 +143,6 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 			do {
 				result = findNextToken(cur, nTokens);
 			} while (result == 1);
-			breakLoop = (result < 0); // end of tabular reached (eof or \end)
 			if (result < 1) break; //end of tabular line reached
 		}
 		if (result == -1) break;
