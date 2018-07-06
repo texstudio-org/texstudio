@@ -3581,7 +3581,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 		RenderRange r;
 		r.position = 0;
 		r.length = m_text.length();
-		r.format = fullSel ? FORMAT_SELECTION : 0;
+        r.format = fullSel ? FORMAT_SELECTION : 0;
 
 		*ranges << r;
 	}

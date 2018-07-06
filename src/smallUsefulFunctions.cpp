@@ -212,10 +212,12 @@ QString latexToPlainWordwithReplacementList(const QString &word, QMap<QString, Q
         result=w;
     }
     // remove leading and trailing "
-    if(result.startsWith("\""))
+    if(result.startsWith("\"")){
         result=result.mid(1);
-    if(result.endsWith("\""))
+    }
+    if(result.endsWith("\"")){
         result.chop(1);
+    }
 	return result;
 }
 

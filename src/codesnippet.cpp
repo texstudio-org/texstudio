@@ -177,6 +177,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
 					//curLine+="\n";
 					break;
 				}
+                [[gnu::fallthrough]];
 			default: // escape was not an escape character ...
 				curLine += '%';
 				curLine += currentChar;
