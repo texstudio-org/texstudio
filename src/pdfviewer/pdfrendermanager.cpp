@@ -110,7 +110,7 @@ void PDFRenderManager::setLoadStrategy(int strategy)
 	loadStrategy = strategy;
 }
 
-class HiddenByteArray: protected QByteArray
+class HiddenByteArray: public QByteArray
 {
 public:
 	HiddenByteArray(): QByteArray() {}
@@ -139,7 +139,7 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	try {
 
 		if (loadStrategy == DirectLoad) {
-			docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
+            docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
 		} else {
 			// load data into buffer and check for completeness
 			queueAdministration->documentData = f.readAll();
