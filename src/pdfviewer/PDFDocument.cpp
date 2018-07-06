@@ -1434,7 +1434,6 @@ void PDFWidget::updateCursor(const QPoint &pos)
 				tooltip = browse->url();
 			} else if (link->linkType() == Poppler::Link::Goto) {
 				const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link);
-				Q_ASSERT(UtilsUi::browse != NULL);
 				if (go->isExternal()) {
 					tooltip = go->fileName();
 				}

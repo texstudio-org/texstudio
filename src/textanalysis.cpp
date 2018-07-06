@@ -373,6 +373,7 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString, int> &map)
 		break;
 	case 1:
 		minLen = ui.minimumLengthSpin->value(); //no break!
+        [[gnu::fallthrough]];
 	default:
 		if (filtered) {
 			for (QMap<QString, int>::const_iterator it = map.constBegin(); it != map.constEnd(); ++it)
