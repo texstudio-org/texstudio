@@ -110,7 +110,7 @@ void PDFRenderManager::setLoadStrategy(int strategy)
 	loadStrategy = strategy;
 }
 
-class HiddenByteArray: public QByteArray
+class HiddenByteArray: protected QByteArray
 {
 public:
 	HiddenByteArray(): QByteArray() {}

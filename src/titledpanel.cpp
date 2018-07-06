@@ -17,6 +17,7 @@ TitledPanelPage::TitledPanelPage(QWidget *widget, const QString &id, const QStri
 	allPages.insert(id, this);
 
 	m_widget = widget;
+    Q_ASSERT(m_widget);
 	m_widget->setProperty("containingPage", QVariant::fromValue<TitledPanelPage *>(this));
 	QFrame *f = qobject_cast<QFrame *>(m_widget); // remove frame form widget if it has one
 	if (f) f->setFrameShape(QFrame::NoFrame);
