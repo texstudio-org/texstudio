@@ -264,8 +264,9 @@ void StructureTreeView::editSectionCopy()
 {
 	// called by action
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(currentIndex());
+    if(!entry) return;
 	LatexEditorView *edView = entry->document->getEditorView();
-	if (!entry || !edView) return;
+    if(!edView) return;
 	editors->setCurrentEditor(edView);
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
@@ -287,8 +288,9 @@ void StructureTreeView::editSectionCut()
 {
 	// called by action
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(currentIndex());
+    if (!entry) return;
 	LatexEditorView *edView = entry->document->getEditorView();
-	if (!entry || !edView) return;
+    if (!edView) return;
 	editors->setCurrentEditor(edView);
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
@@ -309,8 +311,9 @@ void StructureTreeView::editSectionCut()
 void StructureTreeView::editSectionPasteBefore()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(currentIndex());
+    if (!entry) return;
 	LatexEditorView *edView = entry->document->getEditorView();
-	if (!entry || !edView) return;
+    if (!edView) return;
 	editors->setCurrentEditor(edView);
 
 	int line = entry->getRealLineNumber();
@@ -327,8 +330,9 @@ void StructureTreeView::editSectionPasteBefore()
 void StructureTreeView::editSectionPasteAfter()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(currentIndex());
+    if (!entry) return;
 	LatexEditorView *edView = entry->document->getEditorView();
-	if (!entry || !edView) return;
+    if (!edView) return;
 	editors->setCurrentEditor(edView);
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
@@ -357,8 +361,9 @@ void StructureTreeView::editSectionPasteAfter()
 void StructureTreeView::editIndentSection()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(currentIndex());
+    if (!entry) return;
 	LatexEditorView *edView = entry->document->getEditorView();
-	if (!entry || !edView) return;
+    if (!edView) return;
 	editors->setCurrentEditor(edView);
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
@@ -394,8 +399,9 @@ void StructureTreeView::editIndentSection()
 void StructureTreeView::editUnIndentSection()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(currentIndex());
+    if (!entry) return;
 	LatexEditorView *edView = entry->document->getEditorView();
-	if (!entry || !edView) return;
+    if (!edView) return;
 	editors->setCurrentEditor(edView);
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
