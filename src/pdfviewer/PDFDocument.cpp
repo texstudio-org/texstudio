@@ -2343,21 +2343,24 @@ PDFDocument::~PDFDocument()
 
     ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
 
+    if(configManager){
 #if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
-    QList<QKeySequence> keys=configManager->specialShortcuts.keys();
-    foreach(QKeySequence key,keys){
-	QList<QAction *>acts=configManager->specialShortcuts.values(key);
-	foreach(QAction *act,acts){
-	    if(act->objectName().startsWith("pdf")){
-		configManager->specialShortcuts.remove(key,act);
-	    }
-	}
-    }
+        QList<QKeySequence> keys=configManager->specialShortcuts.keys();
+        foreach(QKeySequence key,keys){
+            QList<QAction *>acts=configManager->specialShortcuts.values(key);
+            foreach(QAction *act,acts){
+                if(act->objectName().startsWith("pdf")){
+                    configManager->specialShortcuts.remove(key,act);
+                }
+            }
+        }
 #endif
 
-    configManager->menuParents.removeAll(menuroot);
-    foreach (QMenu *menu, menus) {
-        configManager->managedMenus.removeAll(menu);
+
+        configManager->menuParents.removeAll(menuroot);
+        foreach (QMenu *menu, menus) {
+            configManager->managedMenus.removeAll(menu);
+        }
     }
 
 	docList.removeAll(this);
@@ -2412,6 +2415,7 @@ void PDFDocument::setupToolBar(){
 void PDFDocument::setupMenus(bool embedded)
 {
     ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+    if(!configManager) return;
     menuroot=new QMenu(this);
 
     menubar = new QMenuBar(0);
