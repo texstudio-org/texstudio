@@ -170,7 +170,13 @@ public:
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
 			CodeSnippet::PlaceholderMode phMode = (LatexCompleter::config && LatexCompleter::config->usePlaceholders) ? CodeSnippet::PlacehodersActive : CodeSnippet::PlaceholdersRemoved;
-            if(cw.lines.size()==1 && completer->latexParser.possibleCommands["math"].contains(cw.word)){
+            QString cwCmd=cw.word;
+            QRegExp rx("\\\\[a-zA-Z]+");
+            int pos=rx.indexIn(cwCmd);
+            if(pos>-1){
+                cwCmd=rx.cap(0);
+            }
+            if(cw.lines.size()==1 && completer->latexParser.possibleCommands["math"].contains(cwCmd)){
                 LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
                 Q_ASSERT(view);
                 bool inMath=view->isInMathHighlighting(cursor);
@@ -178,6 +184,14 @@ public:
                     // add $$ to mathcommand outsiode math env
                     cw.lines.first().prepend("$");
                     cw.lines.first().append("$");
+                    // move cursors
+                    if(cw.cursorOffset>-1) cw.cursorOffset++;
+                    if(cw.anchorOffset>-1) cw.anchorOffset++;
+                    for(int i=0;i<cw.placeHolders.size();i++){
+                        for(int j=0;j<cw.placeHolders[i].size();j++){
+                            cw.placeHolders[i][j].offset++;
+                        }
+                    }
                 }
             }
 			cw.insertAt(editor, &cursor, phMode, !completer->startedFromTriggerKey, completer->forcedKeyval);
