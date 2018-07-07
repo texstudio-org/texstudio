@@ -3286,6 +3286,7 @@ void PDFDocument::setStateEnlarged(bool state)
 bool PDFDocument::closeElement()
 {
 	ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+    if(!configManager) return false;
 
 	if (actionPresentation->isChecked()) {
 		//restore state of docks
