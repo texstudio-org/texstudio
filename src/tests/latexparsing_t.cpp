@@ -213,7 +213,7 @@ void LatexParsingTest::test_latexLexing_data() {
                                      << (Levels() << 0 << 1 << 1<< 1 << 1);
     QTest::newRow("section command, multi-line optional") << "\\section[ab\ncd]{text\ntest}"
                                      << (TTypes() << T::command << T::openSquare << T::word<< T::word<<T::closeSquareBracket<< T::openBrace << T::word<< T::word<<T::closeBrace)
-                                     << (STypes() << T::none <<T::title << T::title<<T::title<<T::title << T::title << T::title<<T::title<<T::title)
+                                     << (STypes() << T::none <<T::shorttitle << T::shorttitle<<T::shorttitle<<T::shorttitle << T::title << T::title<<T::title<<T::title)
                                      << (Starts() << 0 << 8 << 9 << 0 << 2 << 3 << 4 << 0 << 4)
                                      << (Length() << 8 << 3 << 2 << 2 << 1 << 5 << 4 << 4 << 1)
                                      << (Levels() << 0 << 1 << 1 << 1 << 1 << 1 << 1 << 1 << 1);
