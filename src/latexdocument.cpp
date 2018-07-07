@@ -1085,7 +1085,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
 				if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
 				if (mBeyondEnd && indexOf(mBeyondEnd) < i) newSection->setContext(StructureEntry::BeyondEnd);
-				QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
+                //QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
+                QString firstOptArg = Parsing::getArg(args, Token::shorttitle);
 				if (!firstOptArg.isEmpty() && firstOptArg != "[]") // workaround, actually getArg should return "" for "[]"
 					firstArg = firstOptArg;
                 if(cmd=="\\begin"){

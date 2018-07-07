@@ -643,7 +643,8 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	}
 	// type from name
 	if (arg == "text") return Token::text;
-	if (arg == "title" || arg == "short title" ) return Token::title;
+    if (arg == "title") return Token::title;
+    if (arg == "short title" ) return Token::shorttitle;
 	if (arg == "package") return Token::package;
 	if (arg == "cols" || arg == "preamble") return Token::colDef;
 	if (arg == "color") return Token::color;

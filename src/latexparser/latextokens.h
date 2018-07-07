@@ -43,7 +43,7 @@ public:
 	enum TokenType {none = 0, word, command, braces, bracket,
 	                squareBracket, openBrace, openBracket, openSquare, closeBrace,
 	                closeBracket, closeSquareBracket, math, comment, commandUnknown, label, bibItem, file, imagefile, bibfile,
-	                keyValArg, keyVal_key, keyVal_val, list, text, env, beginEnv, def, labelRef, package, width, placement, colDef, title, todo, url, documentclass, beamertheme, packageoption,
+                    keyValArg, keyVal_key, keyVal_val, list, text, env, beginEnv, def, labelRef, package, width, placement, colDef, title,shorttitle, todo, url, documentclass, beamertheme, packageoption,
                     color, verbatimStart, verbatimStop, verbatim, symbol, punctuation, number, generalArg, defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList, specialArg, newTheorem,newBibItem,formula,_end = 255
 	               };
 	static QString tokenTypeName(TokenType t);
