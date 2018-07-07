@@ -250,7 +250,7 @@ private:
 	int minimum_width;
 	//QToolButton *bClose;
 	QLineEdit *leFind;
-	QToolButton *bNext, *bPrevious, *bCount;
+    QToolButton *bNext, *bPrevious;
 	QCheckBox *cbCase;
 	/*QCheckBox *cbWords;
 	QCheckBox *cbRegExp;*/
