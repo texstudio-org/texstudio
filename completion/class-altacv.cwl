@@ -49,3 +49,5 @@
 \cvref{%<name%>}{%<institue%>}{%<email%>}
 \addsidebar
 \addnextpagesidebar
+\begin{fullwidth}
+\end{fullwidth}
