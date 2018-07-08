@@ -798,7 +798,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 }
 
 #if QT_VERSION >= 0x050000
-GrammarCheckLanguageToolJSON::GrammarCheckLanguageToolJSON(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
+GrammarCheckLanguageToolJSON::GrammarCheckLanguageToolJSON(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true),startTime(0)
 {
 
 }

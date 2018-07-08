@@ -183,9 +183,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	QFile styleSheetFile(configManager.configBaseDir + "stylesheet.qss");
 	if (styleSheetFile.exists()) {
-		styleSheetFile.open(QFile::ReadOnly);
-		setStyleSheet(styleSheetFile.readAll());
-		styleSheetFile.close();
+        if(styleSheetFile.open(QFile::ReadOnly)){
+            setStyleSheet(styleSheetFile.readAll());
+            styleSheetFile.close();
+        }
 	}
 
 	setWindowIcon(QIcon(":/images/logo128.png"));
