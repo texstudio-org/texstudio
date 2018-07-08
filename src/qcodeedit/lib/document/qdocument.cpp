@@ -7025,7 +7025,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			pr->fillRect(0, 0, m_leftPadding, ht, background);
 		} else if (fullSelection) {
 			pr->fillRect(0, 0, m_leftPadding, ht, background);
-			pr->fillRect(m_leftPadding, 0, m_width - m_leftPadding, ht, fullSelection ? selectionBackground : background);
+            pr->fillRect(m_leftPadding, 0, m_width - m_leftPadding, ht, selectionBackground);
 		} else
 			pr->fillRect(0, 0, m_width, ht, background);
 
