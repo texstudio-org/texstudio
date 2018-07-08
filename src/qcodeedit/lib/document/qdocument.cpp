@@ -4690,6 +4690,7 @@ void QDocumentCursorHandle::shift(int offset)
 void QDocumentCursorHandle::refreshColumnMemory()
 {
 	//m_max = m_doc->line(line).cursorToX(offset);
+    if(!m_doc) return;
 	m_max = hasFlag(ColumnMemory) ? m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset).x() : 0;
 }
 
