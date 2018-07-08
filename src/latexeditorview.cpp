@@ -1976,7 +1976,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			if (tk.type == Token::comment)
 				break;
 			if (latexLikeChecking) {
-                if (tk.subtype == Token::title && (tk.type == Token::braces || tk.type == Token::openBrace)) {
+                if ((tk.subtype == Token::title || tk.subtype == Token::shorttitle) && (tk.type == Token::braces || tk.type == Token::openBrace)) {
 					line.addOverlay(QFormatRange(tk.innerStart(), tk.innerLength(), structureFormat));
 					addedOverlayStructure = true;
 				}
@@ -2043,7 +2043,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				}
 			}// if latexLineCheking
             int tkLength=tk.length;
-			if (tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::todo || tk.subtype == Token::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
+            if (tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
 				QString word = tk.getText();
                 if(tkNr+1 < tl.length()){
                     //check if next token is . or -

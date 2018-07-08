@@ -4609,7 +4609,7 @@ void Texstudio::insertTextCompletion()
         QString txt;
         for(int k=0;k<tl.size();k++) {
             Token tk=tl.at(k);
-            if(!txt.isEmpty() || (tk.type==Token::word && (tk.subtype==Token::none || tk.subtype==Token::text || tk.subtype==Token::generalArg || tk.subtype==Token::title || tk.subtype==Token::todo))){
+            if(!txt.isEmpty() || (tk.type==Token::word && (tk.subtype==Token::none || tk.subtype==Token::text || tk.subtype==Token::generalArg || tk.subtype==Token::title || tk.subtype==Token::shorttitle || tk.subtype==Token::todo))){
                 txt+=tk.getText();
                 if(txt.startsWith(word)){
                     if(word.length()<txt.length()){
