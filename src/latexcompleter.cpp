@@ -6,6 +6,7 @@
 #include "smallUsefulFunctions.h"
 
 #include "qdocumentline.h"
+#include "qdocument_p.h"
 #include "qeditorinputbinding.h"
 #include "qformatfactory.h"
 #include "qdocumentline_p.h"
@@ -62,10 +63,10 @@ public:
 	{
 		if (!editor) return;
 		maxWritten += text.length();
-		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder() < editor->placeHolderCount() )
-			editor->document()->beginMacro();
-		editor->cursor().insertText(text);
-		//cursor mirrors
+        if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder() < editor->placeHolderCount() )
+            editor->document()->beginMacro();
+        editor->write(text);
+        //cursor mirrors
 		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder() < editor->placeHolderCount() ) {
 			PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
 
@@ -77,7 +78,7 @@ public:
 				ph.mirrors[phm].replaceSelectedText(baseText);
 			}
 			editor->document()->endMacro();
-		}
+        }
 		//end cursor mirrors
 		if (editor->cursor().columnNumber() > curStart + 1 && !completer->isVisible()) {
 			QString wrd = getCurWord();
@@ -312,11 +313,13 @@ public:
 		bool handled = false;
 		if (event->key() == Qt::Key_Backspace) {
 			maxWritten--;
-			editor->cursor().deletePreviousChar();
-			if (editor->cursor().columnNumber() <= curStart) {
+            QDocumentCursorHandle *dch=editor->cursorHandle();
+            Q_ASSERT(dch);
+            dch->deletePreviousChar();
+            if (dch->columnNumber() <= curStart) {
 				resetBinding();
 				return true;
-			} else if (editor->cursor().columnNumber() + 1 <= curStart && !showAlways) {
+            } else if (dch->columnNumber() + 1 <= curStart && !showAlways) {
 				completer->widget->hide();
 				return true;
 			}
