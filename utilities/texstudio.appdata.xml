@@ -32,7 +32,7 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>http://texstudio.sourceforge.net/resources/appdata/txs_screenshot_application.png</image>
+      <image>https://raw.githubusercontent.com/texstudio-org/texstudio/master/utilities/screenshot1.png</image>
     </screenshot>
   </screenshots>
 
@@ -53,6 +53,7 @@
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   
   <releases>
+    <release date="2018-07-06" version="2.12.10"/>
     <release date="2018-02-02" version="2.12.8"/>
     <release date="2017-07-25" version="2.12.6"/>
   </releases>
