@@ -19,10 +19,12 @@ public:
 signals:
 	void addToFavorites(const QString &id);
 	void removeFromFavorites(const QString &id);
+	void insertSymbol(const QString &id);
 
 protected slots:
 	void emitAddToFavorites();
 	void emitRemoveFromFavorites();
+	void emitInsertSymbol();
 
 private:
 	int m_symbolSize;

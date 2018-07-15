@@ -6,7 +6,7 @@
 #include <QSortFilterProxyModel>
 
 
-SymbolWidget::SymbolWidget(SymbolListModel *model, QWidget *parent) : QWidget(parent)
+SymbolWidget::SymbolWidget(SymbolListModel *model, bool &insertUnicode, QWidget *parent) : QWidget(parent), insertUnicode(insertUnicode)
 {
 	setupData(model);
 
@@ -19,7 +19,7 @@ SymbolWidget::SymbolWidget(SymbolListModel *model, QWidget *parent) : QWidget(pa
 	addHLine(vLayout);
 	setupMostUsedArea(vLayout);
 	addHLine(vLayout);
-	setupSerachArea(vLayout);
+	setupSearchArea(vLayout);
 
 	setSymbolSize(32);
 }
@@ -79,9 +79,7 @@ void SymbolWidget::setupFavoritesArea(QVBoxLayout *vLayout)
 	favoritesListView = new SymbolListView();
 	favoritesListView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 	favoritesListView->setModel(favoritesProxyModel);
-	connect(favoritesListView, SIGNAL(clicked(QModelIndex)), this, SLOT(symbolClicked(QModelIndex)));
-	connect(favoritesListView, SIGNAL(addToFavorites(QString)), symbolListModel, SLOT(addFavorite(QString)));
-	connect(favoritesListView, SIGNAL(removeFromFavorites(QString)), symbolListModel, SLOT(removeFavorite(QString)));
+	initSymbolListView(favoritesListView);
 	vLayout->addWidget(favoritesListView);
 }
 
@@ -99,13 +97,11 @@ void SymbolWidget::setupMostUsedArea(QVBoxLayout *vLayout)
 	mostUsedListView = new SymbolListView();
 	mostUsedListView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 	mostUsedListView->setModel(mostUsedProxyModel);
-	connect(mostUsedListView, SIGNAL(clicked(QModelIndex)), this, SLOT(symbolClicked(QModelIndex)));
-	connect(mostUsedListView, SIGNAL(addToFavorites(QString)), symbolListModel, SLOT(addFavorite(QString)));
-	connect(mostUsedListView, SIGNAL(removeFromFavorites(QString)), symbolListModel, SLOT(removeFavorite(QString)));
+	initSymbolListView(mostUsedListView);
 	vLayout->addWidget(mostUsedListView);
 }
 
-void SymbolWidget::setupSerachArea(QVBoxLayout *vLayout)
+void SymbolWidget::setupSearchArea(QVBoxLayout *vLayout)
 {
 	QHBoxLayout *hLayout = new QHBoxLayout;
 	hLayout->setContentsMargins(4, 2, 4, 2);
@@ -151,10 +147,15 @@ void SymbolWidget::setupSerachArea(QVBoxLayout *vLayout)
 
 	symbolListView = new SymbolListView();
 	symbolListView->setModel(commandFilterProxyModel);
+	initSymbolListView(symbolListView);
+	vLayout->addWidget(symbolListView);
+}
+
+void SymbolWidget::initSymbolListView(SymbolListView *symbolListView){
 	connect(symbolListView, SIGNAL(clicked(QModelIndex)), this, SLOT(symbolClicked(QModelIndex)));
 	connect(symbolListView, SIGNAL(addToFavorites(QString)), symbolListModel, SLOT(addFavorite(QString)));
 	connect(symbolListView, SIGNAL(removeFromFavorites(QString)), symbolListModel, SLOT(removeFavorite(QString)));
-	vLayout->addWidget(symbolListView);
+	connect(symbolListView, SIGNAL(insertSymbol(QString)), this, SIGNAL(insertSymbol(QString)));
 }
 
 void SymbolWidget::addHLine(QVBoxLayout *vLayout)
@@ -182,7 +183,9 @@ void SymbolWidget::setCategoryFilterFromAction()
 
 void SymbolWidget::symbolClicked(const QModelIndex &index)
 {
-	QString command = index.model()->data(index, SymbolListModel::CommandRole).toString();
+	QString command;
+	if (insertUnicode) command = index.model()->data(index, SymbolListModel::UnicodeRole).toString();
+	if (command.isEmpty()) command = index.model()->data(index, SymbolListModel::CommandRole).toString();
 	QString id = index.model()->data(index, SymbolListModel::IdRole).toString();
 	if (!id.isEmpty()) {
 		symbolListModel->incrementUsage(id);
@@ -191,3 +194,4 @@ void SymbolWidget::symbolClicked(const QModelIndex &index)
 	mostUsedProxyModel->invalidate();
 	mostUsedProxyModel->sort(0, Qt::DescendingOrder);
 }
+

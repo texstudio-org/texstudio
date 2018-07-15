@@ -201,7 +201,7 @@ public:
 	bool scanInstalledLatexPackages;
 
 	// input unicode instead of latex command from symbolgrid (if available)
-	bool insertUTF;
+	bool insertSymbolsAsUnicode;
 
 	//menus
     QObjectList menuParents;

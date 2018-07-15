@@ -174,6 +174,8 @@ QVariant SymbolListModel::data(const QModelIndex &index, int role) const
 		return symbols[r].id;
 	case CommandRole:
 		return symbols[r].command;
+	case UnicodeRole:
+		return symbols[r].unicode;
 	case CategoryRole:
 		return symbols[r].category;
 	case UsageCountRole:

@@ -23,6 +23,7 @@ public:
 	enum AdditionalDataRoles {
 		IdRole=Qt::UserRole,
 		CommandRole,
+		UnicodeRole,
 		CategoryRole,
 		UsageCountRole,
 		FavoriteRole,

@@ -12,7 +12,7 @@ class SymbolWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	SymbolWidget(SymbolListModel *model, QWidget *parent = Q_NULLPTR);
+	SymbolWidget(SymbolListModel *model, bool &insertUnicode, QWidget *parent = Q_NULLPTR);
 
 	void setSymbolSize(int size);
 	const SymbolListModel * model() const { return symbolListModel; }
@@ -26,7 +26,8 @@ protected:
 	void setupData(SymbolListModel *model);
 	void setupFavoritesArea(QVBoxLayout *vLayout);
 	void setupMostUsedArea(QVBoxLayout *vLayout);
-	void setupSerachArea(QVBoxLayout *vLayout);
+	void setupSearchArea(QVBoxLayout *vLayout);
+	void initSymbolListView(SymbolListView *symbolListView);
 	SymbolListView *newSymbolListView();
 
 protected slots:
@@ -35,6 +36,7 @@ protected slots:
 	void symbolClicked(const QModelIndex &index);
 
 private:
+	bool &insertUnicode;
 	QLineEdit *leFilter;
 	QToolButton *categoryFilterButton;
 	SymbolListView *favoritesListView;

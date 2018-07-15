@@ -45,6 +45,16 @@ void SymbolListView::contextMenuEvent(QContextMenuEvent *event)
 			act->setData(index.model()->data(index, SymbolListModel::IdRole));
 			connect(act, SIGNAL(triggered()), this, SLOT(emitAddToFavorites()));
 		}
+		if (index.data(SymbolListModel::CommandRole).toString().length()) {
+			QAction *act = menu.addAction(tr("Insert command"));
+			act->setData(index.data(SymbolListModel::CommandRole));
+			connect(act, SIGNAL(triggered()), this, SLOT(emitInsertSymbol()));
+		}
+		if (index.data(SymbolListModel::UnicodeRole).toString().length()) {
+			QAction *act = menu.addAction(tr("Insert unicode"));
+			act->setData(index.data(SymbolListModel::UnicodeRole));
+			connect(act, SIGNAL(triggered()), this, SLOT(emitInsertSymbol()));
+		}
 		menu.exec(event->globalPos());
 	}
 }
@@ -66,3 +76,13 @@ void SymbolListView::emitRemoveFromFavorites()
 		emit removeFromFavorites(id);
 	}
 }
+
+void SymbolListView::emitInsertSymbol()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		QString s = act->data().toString();
+		emit insertSymbol(s);
+	}
+}
+

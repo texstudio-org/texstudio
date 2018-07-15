@@ -593,7 +593,7 @@ void Texstudio::setupDockWidgets()
 	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 
 	if (!leftPanel->widget("symbols")) {
-		symbolWidget = new SymbolWidget(symbolListModel, this);
+		symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
 		symbolWidget->setSymbolSize(configManager.guiSymbolGridIconSize);
 		connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
 		leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
