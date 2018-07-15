@@ -305,6 +305,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     flowLayout2->addWidget(cbEscapeSeq);
 
     lReplacementText = new QLabel(this);
+    lReplacementText->setTextFormat(Qt::PlainText);
     lReplacementText->setMinimumHeight(buttonSize.height());
     int numButtonSpread = 5;
     int lReplacementSize = numButtonSpread * buttonSize.width() + (numButtonSpread-1) * flowLayout2->horizontalSpacing();
