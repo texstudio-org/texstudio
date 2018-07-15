@@ -1,7 +1,12 @@
 TeXstudio 2.12.10
 ----------------
-- bug fixes
+- improvement recognized latex commands and packages for completion/syntax checking
+- complete package names when they contain minus
+- do not clean .git subfolder with auxiliary files
+- pdf viewer: improved previous page jumping, fix embedded movie boxes (when compiled with phonon)
+- option to use qt file dialog rather than system file dialog
 - fix structure view with Qt >5.10
+- bug fixes
 
 TeXstudio 2.12.8
 ----------------

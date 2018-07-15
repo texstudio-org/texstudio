@@ -14,7 +14,8 @@ TeXstudio is a fully featured LaTeX editor. Our goal is to make writing LaTeX do
 
 Edit multiple positions at the same time. Vertical blocks can even be copied and pasted.
 
-![Multi-Cursors](https://texstudio.org/images/block-cursor.png)
+<p align="center">
+<img alt="Multi-Cursors" src="https://texstudio.org/images/block-cursor.png"> </p>
 
 * Auto completion 
 
@@ -23,14 +24,15 @@ Suggests possible LaTeX commands as you type. There is a tooltip help explaining
 
 Completion works also for references and bibliography entries.
 
-![Auto completion](https://texstudio.org/images/autocompletion-help.png)
+<p align="center">
+<img alt="Auto completion" src="https://texstudio.org/images/autocompletion-help.png"> </p>
 
 * More than 1000 mathematical symbols 
 
 
 Quick access to more than 1000 mathematical symbols.
 
-![Symbols](https://texstudio.org/images/symbols.png)
+<p align="center"><img alt="Symbols" src="https://texstudio.org/images/symbols.png"> </p>
 
 * Bookmarks 
 
@@ -39,7 +41,7 @@ Use bookmarks too keep references to important places in your text and to naviga
 
 Tooltips show a preview of the code position.
 
-![Bookmarks](https://texstudio.org/images/bookmarks.png)
+<p align="center"><img alt="Bookmarks" src="https://texstudio.org/images/bookmarks.png"> </p>
 
 * Link overlays 
 
@@ -48,20 +50,20 @@ Filenames, references and citations turn into links when moving the mouse over t
 
 Also here, tooltips show a preview of the code position.
 
-![Link overlays](https://texstudio.org/images/link-overlay.png)
+<p align="center"><img alt="Link overlays" src="https://texstudio.org/images/link-overlay.png"> </p>
 
 * Assistants for images, tables, formulas, ... 
 
 
 Generate blocks of code using assistants without the need for detailed LaTeX knowledge.
 
-![assistants](https://texstudio.org/images/assistants.png)
+<p align="center"><img alt="assistants" src="https://texstudio.org/images/assistants.png"> </p>
 
 * Drag & drop support for images 
 
 When you drag an image on the editor the image assistant opens. From there it's just one more click to have the code for the image inclusion. Of course, we try to make the paths relative. This also works with multiple images.
 
-![drag & drop](https://texstudio.org/images/dragdropimages.png)
+<p align="center"><img alt="drag & drop" src="https://texstudio.org/images/dragdropimages.png"> </p>
 
 * Table-formatting 
 
@@ -70,7 +72,7 @@ You can copy / paste / insert new table columns with a single click.
 
 The table-autoformatter aligns the table code.
 
-![table formatting](https://texstudio.org/images/table-formating.png)
+<p align="center"><img alt="table formatting" src="https://texstudio.org/images/table-formating.png"> </p>
 
 ### Keep The Overview
 
@@ -83,7 +85,7 @@ The table-autoformatter aligns the table code.
 *  Interactive reference checker
 *  Clear display of LaTeX errors and warnings (in editor and as list)
 
-![Inline Checking](https://texstudio.org/images/inlineChecking_zoom.png)
+<p align="center"><img alt="Inline Checking" src="https://texstudio.org/images/inlineChecking_zoom.png"> </p>
 
 ### Advanced build system
 
@@ -93,7 +95,7 @@ The table-autoformatter aligns the table code.
 * Run any program you like
 * Completely customizable for the creation of the complete document
 
-![Error Highlighting](https://texstudio.org/images/errorHighlighting_zoom.png)
+<p align="center"><img alt="Error Highlighting" src="https://texstudio.org/images/errorHighlighting_zoom.png"> </p>
 
 ### View The Result
 
