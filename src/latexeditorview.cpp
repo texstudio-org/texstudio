@@ -2869,7 +2869,12 @@ void LatexEditorViewConfig::settingsChanged()
 	else hackDisableFixedPitch = lettersHaveDifferentWidth || sameLettersHaveDifferentWidth;
 	hackDisableWidthCache = sameLettersHaveDifferentWidth;
 
+#if defined( Q_OS_LINUX ) || defined( Q_OS_WIN )
+	hackDisableLineCache = true;
+#else
+	hackDisableLineCache = false;
 	//hackDisableLineCache = isRetinaMac();
+#endif
 	hackRenderingMode = 0; //always use qce, best tested
 
 	lastFontFamily = fontFamily;
