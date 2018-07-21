@@ -5758,7 +5758,7 @@ void QDocumentCursorHandle::endEditBlock()
 	// inside a command block
 	block->setWeakLock(true);
 
-	m_doc->execute(block);
+	execute(block);
 }
 
 QDocumentCursor QDocumentCursorHandle::selectionStart() const
