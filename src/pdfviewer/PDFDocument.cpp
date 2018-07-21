@@ -2453,7 +2453,9 @@ void PDFDocument::setupMenus(bool embedded)
     actionCursor_follows_scrolling->setCheckable(true);
     actionSynchronize_multiple_views=configManager->newManagedAction(menuroot,menuEdit, "syncViews", tr("Synchronize multiple views"), this, "", QList<QKeySequence>());
     actionSynchronize_multiple_views->setCheckable(true);
-	menuEdit->addSeparator();
+    actionNoSynchronization=configManager->newManagedAction(menuroot,menuEdit, "noSynchronization", tr("Ignore for synchronization"), this, "", QList<QKeySequence>());
+    actionNoSynchronization->setCheckable(true);
+  menuEdit->addSeparator();
     actionInvertColors=configManager->newManagedAction(menuroot,menuEdit, "invertColors", tr("Invert Colors"), pdfWidget, SLOT(update()), QList<QKeySequence>());
     actionInvertColors->setCheckable(true);
     actionGrayscale=configManager->newManagedAction(menuroot,menuEdit, "grayscale", tr("Grayscale"), pdfWidget, SLOT(update()), QList<QKeySequence>());
@@ -2968,6 +2970,11 @@ bool PDFDocument::followCursor() const
 	return globalConfig->followFromCursor;
 }
 
+bool PDFDocument::ignoreSynchronization() const
+{
+	return actionNoSynchronization->isChecked();
+}
+
 void PDFDocument::changeEvent(QEvent *event)
 {
 	if (event->type() == QEvent::LanguageChange) {
@@ -3006,7 +3013,7 @@ void PDFDocument::closeEvent(QCloseEvent *event)
 
 void PDFDocument::syncFromView(const QString &pdfFile, const QFileInfo &masterFile, int page)
 {
-	if (!actionSynchronize_multiple_views->isChecked())
+	if (!actionSynchronize_multiple_views->isChecked() || ignoreSynchronization())
 		return;
 	if (pdfFile != curFile || this->masterFile != masterFile)
 		loadFile(pdfFile, masterFile, NoDisplayFlags);
@@ -3673,7 +3680,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	QSynctex::TeXSyncPoint sourcePoint(sourceFile, lineNo + 1, column + 1);  // synctex uses 1-based line and column
 	lastSyncPoint = sourcePoint;
 
-	if (!scanner.isValid() || syncFromSourceBlocked)
+	if (!scanner.isValid() || syncFromSourceBlocked || ignoreSynchronization())
 		return -1;
 
 	QSynctex::PDFSyncPoint pdfPoint = scanner.syncFromTeX(sourcePoint, curFile);

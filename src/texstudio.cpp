@@ -5669,6 +5669,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		for (int i = oldPDFs.size() - 1; i >= 0; i--)
 			if (oldPDFs[i]->embeddedMode)
 				oldPDFs.removeAt(i);
+	for (int i = oldPDFs.size() - 1; i >= 0; i--)
+		if (oldPDFs[i]->ignoreSynchronization())
+			oldPDFs.removeAt(i);
 
 	//if closing and opening is set, reuse the first document (reuse = optimization, so it does not close a viewer and creates an equal viewer afterwards)
 	PDFDocument *reuse = 0;
