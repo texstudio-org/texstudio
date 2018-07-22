@@ -6253,7 +6253,7 @@ void QEditor::paintMarks(){
 }
 
 void QEditor::addMark(QDocumentLineHandle *dlh, QColor color, QString type){
-    if(dlh==NULL)
+    if(dlh==nullptr)
         return;
     MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
     scrlBar->addMark(dlh,color,type);

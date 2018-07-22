@@ -2824,7 +2824,7 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
 	QString seName;
 	QString val;
 
-	if (!magicCommentList) return NULL;
+    if (!magicCommentList) return nullptr;
 
 	StructureEntryIterator iter(magicCommentList);
 	while (iter.hasNext()) {
@@ -2832,7 +2832,7 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
 		splitMagicComment(se->title, seName, val);
 		if (seName == name) return se;
 	}
-	return NULL;
+    return nullptr;
 }
 
 /*!
@@ -2843,7 +2843,7 @@ void LatexDocument::updateMagicComment(const QString &name, const QString &val, 
     QString line(QString("% %1 %2 = %3").arg(prefix).arg(name).arg(val));
 
 	StructureEntry *se = getMagicCommentEntry(name);
-	QDocumentLineHandle *dlh = se ? se->getLineHandle() : NULL;
+    QDocumentLineHandle *dlh = se ? se->getLineHandle() : nullptr;
 	if (dlh) {
 		QString n, v;
 		splitMagicComment(se->title, n, v);

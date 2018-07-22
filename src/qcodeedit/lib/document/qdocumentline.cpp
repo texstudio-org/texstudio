@@ -48,7 +48,7 @@
 */
 
 QDocumentLine::QDocumentLine(QDocument *doc)
- : m_handle(doc ? doc->impl()->at(0) : 0)
+ : m_handle(doc ? doc->impl()->at(0) : nullptr)
 {
 	//m_lines_backing_store << this;
 	
@@ -126,7 +126,7 @@ QDocumentLine& QDocumentLine::operator = (const QDocumentLine& l)
 */
 QDocument* QDocumentLine::document() const
 {
-	return m_handle ? m_handle->document() : 0;
+    return m_handle ? m_handle->document() : nullptr;
 }
 
 /*!
@@ -170,7 +170,7 @@ bool QDocumentLine::isNull() const
 */
 bool QDocumentLine::isValid() const
 {
-    return m_handle ? m_handle->document()!=NULL : false;
+    return m_handle ? m_handle->document()!=nullptr : false;
 }
 
 /*!
@@ -444,7 +444,7 @@ bool QDocumentLine::isRTLByText() const{
 }
 
 QTextLayout* QDocumentLine::getLayout() const{
-	return m_handle ? m_handle->m_layout : 0;
+    return m_handle ? m_handle->m_layout : nullptr;
 }
 
 int QDocumentLine::leftCursorPosition(int oldPos) const{
@@ -633,7 +633,7 @@ void QDocumentLine::setParentheses(const QVector<QParenthesis>& parentheses)
 */
 QNFAMatchContext* QDocumentLine::matchContext()
 {
-	return m_handle ? &m_handle->m_context : 0;
+    return m_handle ? &m_handle->m_context : nullptr;
 }
 
 /*! @} */

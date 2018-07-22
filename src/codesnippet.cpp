@@ -67,7 +67,7 @@ void parseSnippetPlaceHolder(const QString &snippet, int &i, QString &curLine, C
 
 
 secondLevelBreak:
-	int snippetEnd;
+    int snippetEnd=-1;
 	if (i >= snippet.length()) return;
 	if ((snippet.at(i) != ':') || ((snippetEnd = snippet.indexOf("%>", i)) == -1)) return;
 
@@ -167,7 +167,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
 				curLine += "%";
 				word += "%";
 			// no break
-                [[gnu::fallthrough]];
+                [[clang::fallthrough]];
 			case '\\':
 				if (currentChar.toLatin1() == '\n' || replacePercentNewline) {
 					lines.append(curLine);
@@ -177,7 +177,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
 					//curLine+="\n";
 					break;
 				}
-                [[gnu::fallthrough]];
+                [[clang::fallthrough]];
 			default: // escape was not an escape character ...
 				curLine += '%';
 				curLine += currentChar;
@@ -310,7 +310,7 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	QRegExp rx("%\\((.+)%\\)");
 	int pos = rx.indexIn(line, 0);
 	if (pos > -1) {
-		FileChooser sfDlg(0, QApplication::tr("Select a File"));
+        FileChooser sfDlg(nullptr, QApplication::tr("Select a File"));
 		sfDlg.setFilter(rx.cap(1));
 		LatexDocument *doc = qobject_cast<LatexDocument *>(cursor->document());
 		QString path = doc->parent->getCompileFileName();

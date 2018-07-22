@@ -354,7 +354,7 @@ void MarkedScrollBar::paintEvent(QPaintEvent *event)
         {
             if(doc){
                 if(mark->pos<0){ // not cached
-                    if(mark->dlh!=0){
+                    if(mark->dlh!=nullptr){
                         int ln=doc->indexOf(mark->dlh);
                         if(ln<0)
                             continue; // did not find line

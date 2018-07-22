@@ -21,7 +21,7 @@
 class CompleterInputBinding: public QEditorInputBinding
 {
 public:
-	CompleterInputBinding(): active(0), showAlways(false), showMostUsed(0), completer(0), editor(0), oldBinding(0), curStart(0), maxWritten(0), curLineNumber(0) {}
+    CompleterInputBinding(): active(0), showAlways(false), showMostUsed(0), completer(nullptr), editor(nullptr), oldBinding(nullptr), curStart(0), maxWritten(0), curLineNumber(0) {}
 	virtual QString id() const
 	{
 		return "TXS::CompleterInputBinding";
@@ -655,7 +655,7 @@ public:
 		active = true;
 		completer = caller;
 		editor = edit;
-		oldBinding = (editor->inputBindings().count() > 0 ? editor->inputBindings()[0] : 0);
+        oldBinding = (editor->inputBindings().count() > 0 ? editor->inputBindings()[0] : nullptr);
 		editor->setInputBinding(this);
 		curStart = start > 0 ? start : 0;
 		maxWritten = editor->cursor().columnNumber();
@@ -694,7 +694,7 @@ CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
 class CompletionItemDelegate: public QItemDelegate
 {
 public:
-	CompletionItemDelegate(QObject *parent = 0): QItemDelegate(parent)
+    CompletionItemDelegate(QObject *parent = nullptr): QItemDelegate(parent)
 	{
 	}
 
@@ -755,7 +755,7 @@ public:
 
 
 //----------------------------list model------------------------------------
-LatexCompleterConfig *CompletionListModel::config = 0;
+LatexCompleterConfig *CompletionListModel::config = nullptr;
 int CompletionListModel::rowCount(const QModelIndex &parent) const
 {
 	Q_UNUSED(parent);
@@ -1192,15 +1192,15 @@ void CompletionListModel::setConfig(LatexCompleterConfig *newConfig)
 
 
 //------------------------------completer-----------------------------------
-LatexReference *LatexCompleter::latexReference = 0;
-LatexCompleterConfig *LatexCompleter::config = 0;
+LatexReference *LatexCompleter::latexReference = nullptr;
+LatexCompleterConfig *LatexCompleter::config = nullptr;
 
 LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObject(p), latexParser(latexParser), maxWordLen(0), editorAutoCloseChars(false), forcedRef(false),
 	forcedGraphic(false), forcedCite(false), forcedPackage(false), forcedKeyval(false), forcedSpecialOption(false), forcedLength(false), startedFromTriggerKey(false)
 {
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget *>(parent()))
-		QMessageBox::critical(0, "Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n") +
+        QMessageBox::critical(nullptr, "Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n") +
 		                      QString("Please report it ASAP to the bug tracker on texstudio.sf.net and check if your computer is going to explode!\n") +
 		                      QString("(please report the bug *before* going to a safe place, you could rescue others)"), QMessageBox::Ok);
 	list = new QListView(qobject_cast<QWidget *>(parent()));
@@ -1210,11 +1210,11 @@ LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObj
 	list->setFocusPolicy(Qt::NoFocus);
 	list->setItemDelegate(new CompletionItemDelegate(list));
 	list->setAutoFillBackground(true);
-	editor = 0;
+    editor = nullptr;
 	workingDir = "/";
-	dirReader = 0;
-	bibReader = 0;
-	packageList = 0;
+    dirReader = nullptr;
+    bibReader = nullptr;
+    packageList = nullptr;
 	widget = new QWidget(qobject_cast<QWidget *>(parent()));
 	//widget->setAutoFillBackground(true);
 	QVBoxLayout *layout = new QVBoxLayout;
@@ -1789,7 +1789,7 @@ void LatexCompleter::showTooltip(QString text)
 
 void LatexCompleter::editorDestroyed()
 {
-	editor = 0;
+    editor = nullptr;
 }
 
 void LatexCompleter::bibtexSectionFound(QString content)

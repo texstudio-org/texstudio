@@ -398,7 +398,7 @@ void TextAnalysisDialog::slotCount()
 
 	displayed.updateAll();
 
-	ui.resultView->setModel(NULL);
+    ui.resultView->setModel(nullptr);
 	ui.resultView->setModel(&displayed);
 
 	ui.resultView->setShowGrid(false);
