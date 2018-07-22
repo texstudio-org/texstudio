@@ -60,7 +60,7 @@ class DefaultInputBinding: public QEditorInputBinding
 {
 	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
-	DefaultInputBinding(): completerConfig(0), editorViewConfig(0), contextMenu(0), isDoubleClick(false) {}
+    DefaultInputBinding(): completerConfig(nullptr), editorViewConfig(nullptr), contextMenu(nullptr), isDoubleClick(false) {}
 	virtual QString id() const
 	{
 		return "TXS::DefaultInputBinding";
@@ -99,7 +99,7 @@ static const QString LRMStr = QChar(LRM);
 bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 {
 	Q_ASSERT(completerConfig);
-	QLanguageDefinition *language = editor->document() ? editor->document()->languageDefinition() : 0;
+    QLanguageDefinition *language = editor->document() ? editor->document()->languageDefinition() : nullptr;
 	QDocumentLine line = editor->cursor().selectionStart().line();
 	int column = editor->cursor().selectionStart().columnNumber();
 	QString prev = line.text().mid(0, column) + event->text(); //TODO: optimize
@@ -251,7 +251,7 @@ bool DefaultInputBinding::keyReleaseEvent(QKeyEvent *event, QEditor *editor)
 
 bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor)
 {
-	LatexEditorView *edView = 0;
+    LatexEditorView *edView = nullptr;
 
 	switch (event->button()) {
 	case Qt::XButton1:
@@ -339,7 +339,7 @@ bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *edi
 
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor)
 {
-	if (!contextMenu) contextMenu = new QMenu(0);
+    if (!contextMenu) contextMenu = new QMenu(nullptr);
 	contextMenu->clear();
 	contextMenu->setProperty("isSpellingPopulated", QVariant());  // delete information on spelling
 	QDocumentCursor cursor;
@@ -587,12 +587,12 @@ DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 
 
 //----------------------------------LatexEditorView-----------------------------------
-LatexCompleter *LatexEditorView::completer = 0;
+LatexCompleter *LatexEditorView::completer = nullptr;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 //Q_DECLARE_METATYPE(LatexEditorView *)
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig, LatexDocument *doc) : QWidget(parent), document(0), latexPackageList(0), spellerManager(0), speller(0), useDefaultSpeller(true), curChangePos(-1), config(aconfig), bibReader(0)
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig, LatexDocument *doc) : QWidget(parent), document(nullptr), latexPackageList(nullptr), spellerManager(nullptr), speller(nullptr), useDefaultSpeller(true), curChangePos(-1), config(aconfig), bibReader(nullptr)
 {
 	Q_ASSERT(config);
 
@@ -1587,13 +1587,13 @@ void LatexEditorView::updateFormatSettings()
 		                         &math_KeywordFormat, "math-keyword",
 		                         &asymptoteBlockFormat, "asymptote:block",
 		                         &preEditFormat, "preedit",
-		                         0, 0
+                                 nullptr, nullptr
 		                        };
 #undef F
 		const void **temp = formats;
 		while (*temp) {
 			int *c = (static_cast<int *>(const_cast<void *>(*temp)));
-			Q_ASSERT(c != 0);
+            Q_ASSERT(c != nullptr);
 			*c = QDocument::defaultFormatScheme()->id(QString(static_cast<const char *>(*(temp + 1))));
 			temp += 2;
 		}
@@ -2112,7 +2112,6 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle *l)
 		lineToLogEntries.erase(it);
 	}
 
-	QPair<int, int> p;
 	//QMessageBox::information(0,QString::number(nr),"",0);
 	for (int i = changePositions.size() - 1; i >= 0; i--)
 		if (changePositions[i].dlh() == l)
@@ -2147,7 +2146,7 @@ void LatexEditorView::spellCheckingAlwaysIgnore()
 void LatexEditorView::addReplaceActions(QMenu *menu, const QStringList &replacements, bool italic)
 {
 	if (!menu) return;
-	QAction *before = 0;
+    QAction *before = nullptr;
 	if (!menu->actions().isEmpty()) before = menu->actions()[0];
 
 	foreach (const QString &text, replacements) {
@@ -2907,7 +2906,7 @@ QString BracketInvertAffector::affect(const QKeyEvent *, const QString &base, in
 	return after;
 }
 
-BracketInvertAffector *inverterSingleton = 0;
+BracketInvertAffector *inverterSingleton = nullptr;
 
 BracketInvertAffector *BracketInvertAffector::instance()
 {
