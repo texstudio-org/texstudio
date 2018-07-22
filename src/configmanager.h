@@ -34,7 +34,7 @@ class ConfigManager: public QObject, public ConfigManagerInterface
 	Q_OBJECT
 
 public:
-	ConfigManager(QObject *parent = 0);
+    ConfigManager(QObject *parent = nullptr);
 	~ConfigManager();
 
 	QString iniPath();

@@ -391,13 +391,13 @@ QString getCmdID(QWidget *w)
 }
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
-	buildManager(0), editorConfig(new LatexEditorViewConfig),
+    buildManager(nullptr), editorConfig(new LatexEditorViewConfig),
 	completerConfig (new LatexCompleterConfig),
 	webPublishDialogConfig (new WebPublishDialogConfig),
 	pdfDocumentConfig(new PDFDocumentConfig),
 	insertGraphicsConfig(new InsertGraphicsConfig),
 	grammarCheckerConfig(new GrammarCheckerConfig),
-	menuParent(0), menuParentsBar(0), modifyMenuContentsFirstCall(true), persistentConfig(0)
+    menuParent(nullptr), menuParentsBar(0), modifyMenuContentsFirstCall(true), persistentConfig(0)
 {
 
 	Q_ASSERT(!globalConfigManager);
@@ -421,7 +421,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	                                      "main/latex/spacing/newline" << "separator" <<
 	                                      "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt"));
 
-	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog *) 0;
+    Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog *) nullptr;
 
 	registerOption("Startup/CheckLatexConfiguration", &checkLatexConfiguration, true, &pseudoDialog->checkBoxCheckLatexConfiguration);
 
@@ -731,7 +731,7 @@ ConfigManager::~ConfigManager()
 	delete webPublishDialogConfig;
 	delete insertGraphicsConfig;
 	if (persistentConfig) delete persistentConfig;
-	globalConfigManager = 0;
+    globalConfigManager = 0;
 }
 
 QString ConfigManager::iniPath()
@@ -1886,7 +1886,7 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 {
 	QSet<int> reservedShortcuts = QSet<int>() << Qt::SHIFT+Qt::Key_F3;  // workaround to prevent overwriting search backward
 	QMenu *menu = getManagedMenu(menuName);
-	REQUIRE_RET(menu, 0);
+    REQUIRE_RET(menu, nullptr);
 	Q_ASSERT(menu->objectName() == menuName);
 	Q_ASSERT(data.isEmpty() || data.length()==items.length());
 	bool hasData = !data.isEmpty();
@@ -1901,7 +1901,7 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		}
 		if (watchedMenus.contains(menuName))
 			emit watchedMenuChanged(menuName);
-		return 0;
+        return nullptr;
 	}
 	//recreate
 	for (int i = 0; i < actions.count(); i++)
@@ -2017,7 +2017,7 @@ QMenu *ConfigManager::newManagedMenu(QMenu *menu, const QString &id, const QStri
 QAction *ConfigManager::newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile)
 {
 	if (!menuParent) qFatal("No menu parent!");
-	REQUIRE_RET(menu, 0);
+    REQUIRE_RET(menu, nullptr);
 	QString menuId = menu->objectName();
 	QString completeId = menu->objectName() + "/" + id;
 
@@ -2057,7 +2057,7 @@ QAction *ConfigManager::newManagedAction(QWidget *menu, const QString &id, const
 QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const QString &id, const QString &text, QObject *obj,const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile)
 {
     if (!obj) qFatal("No menu parent!");
-    REQUIRE_RET(menu, 0);
+    REQUIRE_RET(menu, nullptr);
     QString menuId = menu->objectName();
     QString completeId = menu->objectName() + "/" + id;
 
@@ -2131,7 +2131,7 @@ QAction *ConfigManager::newManagedAction(QWidget *menu, const QString &id, QActi
 
 QAction *ConfigManager::getManagedAction(const QString &id)
 {
-	QAction *act = 0;
+    QAction *act = nullptr;
     if(menuParents.count()>0){
         for(int i=0;i<menuParents.count();i++){
             QObject *obj=menuParents.at(i);
@@ -2140,14 +2140,14 @@ QAction *ConfigManager::getManagedAction(const QString &id)
                 break;
         }
     }
-	if (act == 0) qWarning("Can't find internal action %s", id.toLatin1().data());
+    if (act == nullptr) qWarning("Can't find internal action %s", id.toLatin1().data());
 	return act;
 }
 
 QList<QAction *>ConfigManager::getManagedActions(const QString &id)
 {
     QList<QAction *>actions;
-    QAction *act = 0;
+    QAction *act = nullptr;
     if(menuParents.count()>0){
         for(int i=0;i<menuParents.count();i++){
             QObject *obj=menuParents.at(i);
@@ -2169,7 +2169,7 @@ QList<QAction *> ConfigManager::getManagedActions(const QStringList &ids, const 
 	}
 	foreach (const QString &id, ids) {
 		QAction *act = menuParent->findChild<QAction *>(commonPrefix + id);
-		if (act == 0) qWarning("Can't find internal action %s", id.toLatin1().data());
+        if (act == nullptr) qWarning("Can't find internal action %s", id.toLatin1().data());
 		else actions << act;
 	}
 	return actions;
@@ -2177,9 +2177,9 @@ QList<QAction *> ConfigManager::getManagedActions(const QStringList &ids, const 
 
 QMenu *ConfigManager::getManagedMenu(const QString &id)
 {
-	QMenu *menu = 0;
+    QMenu *menu = nullptr;
 	if (menuParent) menu = menuParent->findChild<QMenu *>(id);
-	if (menu == 0) qWarning("Can't find internal menu %s", id.toLatin1().data());
+    if (menu == nullptr) qWarning("Can't find internal menu %s", id.toLatin1().data());
 	return menu;
 }
 
@@ -2327,7 +2327,7 @@ void ConfigManager::modifyMenuContent(QStringList &ids, const QString &id)
 	QStringList m = i.value().toStringList();
 	//qDebug() << id << ": ===> " << m.join(", ");
 	QAction *act = menuParent->findChild<QAction *>(id);
-	QMenu *mainMenu = 0;
+    QMenu *mainMenu = nullptr;
 	if (!act) {
 		mainMenu = menuParent->findChild<QMenu *>(id);
 		if (mainMenu) act = mainMenu->menuAction();
@@ -2337,7 +2337,7 @@ void ConfigManager::modifyMenuContent(QStringList &ids, const QString &id)
 		newlyCreated = true;
 		QString before = m.value(3);
 		modifyMenuContent(ids, before);
-		QAction *prevact = 0;
+        QAction *prevact = nullptr;
 		if (!before.endsWith('/'))
 			prevact = menuParent->findChild<QAction *>(before);
 		else {
@@ -2370,7 +2370,7 @@ void ConfigManager::modifyMenuContent(QStringList &ids, const QString &id)
 					defSlot = tempmenu->property("defaultSlot").toByteArray();
 				}
 			}
-			act = newManagedAction(menu, ownId, m.first(), defSlot.isEmpty() ? 0 : defSlot.data());
+            act = newManagedAction(menu, ownId, m.first(), defSlot.isEmpty() ? nullptr : defSlot.data());
 		}
 		if  (prevact) {
 			menu->removeAction(act);
@@ -2495,7 +2495,7 @@ void ConfigManager::loadManagedMenus(const QString &f)
 
 		for (int i = 0; i < f.count(); i++)
 			if (f.at(i).nodeName() == "menu")
-				loadManagedMenu(0, f.at(i).toElement());
+                loadManagedMenu(nullptr, f.at(i).toElement());
 	}
 }
 
@@ -2874,7 +2874,7 @@ void ConfigManager::browseCommand()
 		if (path.startsWith('"')) path = path.remove(0, 1);
 		if (path.endsWith('"')) path.chop(1);
 	}
-	QString location = FileDialog::getOpenFileName(0, tr("Browse program"), path, "Program (*)", 0, QFileDialog::DontResolveSymlinks);
+    QString location = FileDialog::getOpenFileName(nullptr, tr("Browse program"), path, "Program (*)", nullptr, QFileDialog::DontResolveSymlinks);
 	if (!location.isEmpty()) {
 		location.replace(QString("\\"), QString("/"));
 		location = "\"" + location + "\" " + tempCommands.value(getCmdID(w)).defaultArgs;
@@ -3068,7 +3068,7 @@ void ConfigManager::moveCommand(int dir, int atRow)
 // manipulate latex menus
 QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *parent, QMenu *menu)
 {
-	if (!menu) return 0;
+    if (!menu) return nullptr;
 	static QStringList relevantMenus = QStringList() << "main/tools" << "main/latex" << "main/math";
 	QTreeWidgetItem *menuitem = new QTreeWidgetItem(parent, QStringList(menu->title()));
 	bool advanced = false;
@@ -3092,7 +3092,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 	QList<QAction *> acts = menu->actions();
 	for (int i = 0; i < acts.size(); i++) {
 		bool subAdvanced = advanced;
-		QTreeWidgetItem *twi = 0;
+        QTreeWidgetItem *twi = nullptr;
 		if (acts[i]->menu()) twi = managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
 			subAdvanced |= !acts[i]->data().isValid();
@@ -3238,7 +3238,7 @@ void ConfigManager::registerOption(const QString &name, void *storage, PropertyT
 
 void ConfigManager::registerOption(const QString &name, void *storage, PropertyType type, QVariant def)
 {
-	registerOption(name, storage, type, def, 0);
+    registerOption(name, storage, type, def, nullptr);
 }
 
 #define REGISTER_OPTION(TYPE, ID) \
@@ -3256,7 +3256,7 @@ void ConfigManager::setOption(const QString &name, const QVariant &value)
 {
 	REQUIRE(persistentConfig);
 	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/" + name);
-	ManagedProperty *option = 0;
+    ManagedProperty *option = nullptr;
 	if (rname.startsWith("texmaker/") && ((option = getManagedProperty(rname.mid(9))))) {
 		option->valueFromQVariant(value);
 		return;
@@ -3268,7 +3268,7 @@ QVariant ConfigManager::getOption(const QString &name, const QVariant &defaultVa
 {
 	REQUIRE_RET(persistentConfig, QVariant());
 	QString rname = name.startsWith("/") ? name.mid(1) : ("texmaker/" + name);
-	const ManagedProperty *option = 0;
+    const ManagedProperty *option = nullptr;
 	if (rname.startsWith("texmaker/") && (option = getManagedProperty(rname.mid(9))))
 		return option->valueToQVariant();
 	return persistentConfig->value(rname, defaultValue);
@@ -3332,21 +3332,21 @@ ManagedProperty *ConfigManager::getManagedProperty(const void *storage)
 {
 	for (int i = 0; i < managedProperties.size(); i++)
 		if (managedProperties[i].storage == storage) return &managedProperties[i];
-	return 0;
+    return nullptr;
 }
 
 ManagedProperty *ConfigManager::getManagedProperty(const QString &name)
 {
 	for (int i = 0; i < managedProperties.size(); i++)
 		if (managedProperties[i].name == name) return &managedProperties[i];
-	return 0;
+    return nullptr;
 }
 
 const ManagedProperty *ConfigManager::getManagedProperty(const QString &name) const
 {
 	for (int i = 0; i < managedProperties.size(); i++)
 		if (managedProperties[i].name == name) return &managedProperties[i];
-	return 0;
+    return nullptr;
 }
 
 void ConfigManager::getDefaultEncoding(const QByteArray &, QTextCodec *&guess, int &sure)

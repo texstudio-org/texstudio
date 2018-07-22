@@ -23,12 +23,12 @@ class UnicodeInsertion : public QWidget
 	Q_OBJECT
 
 public:
-	UnicodeInsertion(QWidget *parent, int defCharCode = 0);
+    UnicodeInsertion(QWidget *parent, uint defCharCode = 0);
 
 private:
 	QLineEditWithMetaText *edit;
 	QTableWidget *table;
-	int defaultCharCode;
+    uint defaultCharCode;
 
 	void setTableText(int r, int c, const QString &s);
 

@@ -1392,7 +1392,6 @@ void Texstudio::updateLanguageToolStatus()
 			statusLabelLanguageTool->setToolTip(QString(tr("No LanguageTool server found at %1")).arg(grammarCheck->serverUrl()));
 			break;
 		case GrammarCheck::LTS_Unknown:
-		default:
 			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
 			statusLabelLanguageTool->setToolTip(tr("LanguageTool status unknown"));
 	}
@@ -2816,7 +2815,6 @@ repeatAfterFileSavingFailed:
 		case 2:
 		default:
 			return;
-			break;
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
@@ -3146,7 +3144,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
 	QProgressDialog progress(this);
 	if (showProgress) {
 		progress.setMaximum(s.files().size());
-		progress.setCancelButton(0);
+		progress.setCancelButton(nullptr);
 		progress.setMinimumDuration(3000);
 		progress.setLabel(new QLabel());
 	}
@@ -3698,7 +3696,7 @@ void Texstudio::editInsertUnicode()
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditor()->cursor();
 	if (!c.isValid()) return;
-	int curPoint = 0;
+	uint curPoint = 0;
 	if (c.hasSelection()) {
 		QString sel = c.selectedText();
 		if (sel.length() == 1) curPoint = sel[0].unicode();
@@ -5422,7 +5420,7 @@ void Texstudio::macroDialogAccepted()
 	updateUserMacros();
 	completer->updateAbbreviations();
 	userMacroDialog->deleteLater();
-	userMacroDialog = 0;
+	userMacroDialog = nullptr;
 }
 
 void Texstudio::macroDialogRejected()
@@ -5686,8 +5684,10 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 	//close old
 	for (int i = oldPDFs.size() - 1; i >= 0; i--)
 		if ( (oldPDFs[i]->embeddedMode && closeEmbedded) ||
-		        (!oldPDFs[i]->embeddedMode && closeWindowed) )
-			oldPDFs[i]->close(), oldPDFs.removeAt(i);
+		     (!oldPDFs[i]->embeddedMode && closeWindowed) ){
+		        oldPDFs[i]->close();
+			oldPDFs.removeAt(i);
+		}
 
 
 	//open new
@@ -5752,7 +5752,7 @@ bool Texstudio::checkProgramPermission(const QString &program, const QString &cm
 	static QStringList individualProgramWhiteList;
 	configManager.registerOption("Tools/Individual Program Whitelist", &individualProgramWhiteList, QStringList());
 	if (!id.isEmpty() && individualProgramWhiteList.contains(id + "=" + program)) return true;
-	int t = QMessageBox::warning(0, TEXSTUDIO,
+	int t = QMessageBox::warning(nullptr, TEXSTUDIO,
 	                             tr("The document \"%1\" wants to override the command \"%2\" with \"%3\".\n\n"
 	                                "Do you want to allow and run the new, overriding command?\n\n"
 	                                "(a) Yes, allow the new command for this document (only if you trust this document)\n"
@@ -6037,7 +6037,7 @@ void Texstudio::analyseText()
 
 void Texstudio::analyseTextFormDestroyed()
 {
-	textAnalysisDlg = 0;
+        textAnalysisDlg = nullptr;
 }
 
 void Texstudio::generateRandomText()
@@ -6296,7 +6296,7 @@ void Texstudio::generalOptions()
 
     // init pdf shortcuts if pdfviewer is not open
 #ifndef NO_POPPLER_PREVIEW
-    PDFDocument *pdfviewerWindow=NULL;
+    PDFDocument *pdfviewerWindow=nullptr;
     if(PDFDocument::documentList().isEmpty()){
         pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, false);
         pdfviewerWindow->hide();
@@ -6337,7 +6337,7 @@ void Texstudio::generalOptions()
 
 		GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 
-		if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(0);
+		if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(nullptr);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 		QDocument::removeGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 		QDocument::removeGuessEncodingCallback(&Encoding::guessEncoding);
@@ -6530,7 +6530,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 	}
 
 	if (line != -1) {
-		gotoLine(line, col, 0, QEditor::KeepSurrounding | QEditor::ExpandFold);
+	        gotoLine(line, col, nullptr, QEditor::KeepSurrounding | QEditor::ExpandFold);
 		QTimer::singleShot(500, currentEditor(), SLOT(ensureCursorVisible())); //reshow cursor in case the windows size changes
 	}
 
@@ -6584,7 +6584,7 @@ bool Texstudio::executeTests(const QStringList &args)
                 qDebug()<<"Autotest execution failed!";
                 return false;
             }else{
-                QMessageBox::critical(0, "wtf?", "test failed", QMessageBox::Ok);
+		QMessageBox::critical(nullptr, "wtf?", "test failed", QMessageBox::Ok);
             }
         }
 		if (allTests) configManager.debugLastFullTestRun = myself.lastModified();
@@ -6710,7 +6710,7 @@ void Texstudio::onOtherInstanceMessage(const QString &msg)   // Added slot for m
 
 void Texstudio::setAutomaticRootDetection()
 {
-	documents.setMasterDocument(0);
+        documents.setMasterDocument(nullptr);
 }
 
 void Texstudio::setExplicitRootDocument(LatexDocument *doc)
@@ -6827,7 +6827,7 @@ void Texstudio::focusViewer()
 			}
 		}
 		// try: PDF for master file
-		LatexDocument *rootDoc = documents.getRootDocumentForDoc(0);
+		LatexDocument *rootDoc = documents.getRootDocumentForDoc(nullptr);
 		if (rootDoc) {
 			QFileInfo masterFile = rootDoc->getFileInfo();
 			foreach (PDFDocument *viewer, viewers) {
@@ -7432,7 +7432,7 @@ void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
 		setLogMarksVisible(true);
 	}
 	//get line
-	QDocumentLineHandle *dlh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
+	QDocumentLineHandle *dlh = currentEditorView()->logEntryToLine.value(logEntryNumber, nullptr);
 	if (!dlh) return;
 	//goto
 	gotoLine(currentEditor()->document()->indexOf(dlh));
@@ -7524,7 +7524,7 @@ bool Texstudio::gotoLogEntryAt(int newLineNumber)
 	QList<int> errors = currentEditorView()->lineToLogEntries.values(lh);
 	QString msg = outputView->getLogWidget()->getLogModel()->htmlErrorTable(errors);
 
-	QToolTip::showText(p, msg, 0);
+	QToolTip::showText(p, msg, nullptr);
 	LatexEditorView::hideTooltipWhenLeavingLine = newLineNumber;
 	return true;
 }
@@ -7602,7 +7602,10 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 					//also skip next character after that nonsense
 				}
 			}
-			if (score > bestScore) bestScore = score, bestMatch = i;
+			if (score > bestScore){
+			    bestScore = score;
+			    bestMatch = i;
+			}
 		}
 		if (bestScore > guessedWord.size() * 5 / 3) columns.append(bestMatch); //accept if 0.33 similarity
 	}
@@ -7626,7 +7629,7 @@ void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate,
 		if (originalLineNumber >= 0) line = originalLineNumber;
 	}
 
-	gotoLine(line, 0, 0, QEditor::Navigation, activate);
+	gotoLine(line, 0, nullptr, QEditor::Navigation, activate);
 	Q_ASSERT(currentEditor());
 
 	// guessedWord may appear multiple times -> we highlight them all
@@ -7804,9 +7807,9 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 #if QT_VERSION >= 0x050000
 	devPixelRatio = devicePixelRatio();
 #endif
-	float scale = configManager.segmentPreviewScalePercent / 100.;
-	float min = 0.2;
-	float max = 100;
+	double scale = configManager.segmentPreviewScalePercent / 100.;
+	double min = 0.2;
+	double max = 100;
 	scale = qMax(min, qMin(max, scale)) * devPixelRatio;
 	bool fromPDF = false;
 
@@ -7830,7 +7833,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 			}
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
-			float c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
+			double c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
 			pixmap = QPixmap::fromImage(page->renderToImage(logicalDpiX() * scale * c, logicalDpiY() * scale * c));
             previewCache.insert(source.text,pixmap);
 			delete page;
@@ -7848,7 +7851,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
             previewCache.insert(source.text,pixmap);
             if (scale < 0.99 || 1.01 < scale) {
                 // TODO: this does scale the pixmaps, but it would be better to render higher resolution images directly in the compilation process.
-                pixmap = pixmap.scaledToWidth(pixmap.width() * scale, Qt::SmoothTransformation);
+		pixmap = pixmap.scaledToWidth(qRound(pixmap.width() * scale), Qt::SmoothTransformation);
             }
         }
 	}
@@ -7879,7 +7882,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		int w = pixmap.width();
 		if (w > screen.width()) w = screen.width() - 2;
 		if (!fromPDF) {
-			QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w / devPixelRatio), 0);
+		        QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w / devPixelRatio), nullptr);
 		} else {
 			QString text;
 #if QT_VERSION >= 0x040700
@@ -7894,7 +7897,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				completerPreview = false;
 				completer->showTooltip(text);
 			} else {
-				QToolTip::showText(p, text, 0);
+			        QToolTip::showText(p, text, nullptr);
 			}
 		}
 		LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
@@ -8004,7 +8007,7 @@ void Texstudio::showImgPreview(const QString &fname)
 			completerPreview = false;
 			emit imgPreview(text);
 		} else {
-			QToolTip::showText(p, text, 0);
+		        QToolTip::showText(p, text, nullptr);
 			LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
 		}
 	}
@@ -8047,7 +8050,7 @@ void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
 	if (completerPreview) {
 		emit imgPreview(text);
 	} else {
-		QToolTip::showText(p, text, 0);
+	        QToolTip::showText(p, text, nullptr);
 		LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
 	}
 #ifndef NO_POPPLER_PREVIEW
@@ -8633,7 +8636,7 @@ void Texstudio::showOldRevisions()
 void Texstudio::svnDialogClosed()
 {
 	if (cmbLog->currentIndex() == 0) currentEditor()->document()->setClean();
-	svndlg = 0;
+	svndlg = nullptr;
 }
 
 void Texstudio::changeToRevision(QString rev, QString old_rev)
@@ -9023,7 +9026,7 @@ void Texstudio::removeColumnCB()
 	}
 	int ln = cur.lineNumber();
 	for (int i = 0; i < numberOfColumns; i++) {
-		LatexTables::removeColumn(currentEditorView()->document, ln, col, 0);
+	        LatexTables::removeColumn(currentEditorView()->document, ln, col, nullptr);
 	}
 }
 
@@ -9225,7 +9228,7 @@ void Texstudio::stopPackageParser()
 void Texstudio::packageParserFinished()
 {
 	delete latexStyleParser;
-	latexStyleParser = 0;
+        latexStyleParser = nullptr;
 }
 
 void Texstudio::readinAllPackageNames()
@@ -9267,7 +9270,7 @@ void Texstudio::packageListReadCompleted(QSet<QString> packages)
 		PackageScanner::savePackageList(packages, QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
 		packageListReader->wait();
 		delete packageListReader;
-		packageListReader = 0;
+		packageListReader = nullptr;
 	}
 	foreach (LatexDocument *doc, documents.getDocuments()) {
 		LatexEditorView *edView = doc->getEditorView();
@@ -9299,7 +9302,7 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 {
 	QKeySequence seq = QKeySequence::fromString(shortcut, QKeySequence::PortableText);
 	if (seq.count() > 0) {
-		int key = seq[0] & ~Qt::KeyboardModifierMask;
+	        int key = seq[0] & ~Qt::KeyboardModifierMask;
 		Qt::KeyboardModifiers modifiers = static_cast<Qt::KeyboardModifiers>(seq[0]) & Qt::KeyboardModifierMask;
 		// TODO: we could additionally provide the text for the KeyEvent (necessary for actually typing characters
 		QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, key, modifiers);
@@ -9351,7 +9354,7 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 	// structure commands
 	addStructureCommandsToDom(doc, latexParser.possibleCommands);
 
-	QLanguageDefinition *oldLangDef = 0, *newLangDef = 0;
+	QLanguageDefinition *oldLangDef = nullptr, *newLangDef = nullptr;
 	oldLangDef = m_lang.d;
 	Q_ASSERT(oldLangDef);
 
@@ -9600,7 +9603,7 @@ LatexDocument *Texstudio::diffLoadDocHidden(QString f)
 	if (regcheck.exactMatch(f)) f_real = regcheck.cap(1);
 #endif
 
-	if (!QFile::exists(f_real)) return 0;
+	if (!QFile::exists(f_real)) return nullptr;
 
 	LatexDocument *doc = new LatexDocument(this);
 	//LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
@@ -9612,7 +9615,7 @@ LatexDocument *Texstudio::diffLoadDocHidden(QString f)
 	if (!file.open(QIODevice::ReadOnly)) {
 		QMessageBox::warning(this, tr("Error"), tr("You do not have read permission to this file."));
         delete doc;
-		return 0;
+		return nullptr;
 	}
 	file.close();
 
@@ -9772,8 +9775,8 @@ bool Texstudio::checkSVNConflicted(bool substituteContents)
 }
 
 
-QThread *killAtCrashedThread = 0;
-QThread *lastCrashedThread = 0;
+QThread *killAtCrashedThread = nullptr;
+QThread *lastCrashedThread = nullptr;
 
 void recover()
 {
@@ -9824,7 +9827,7 @@ void Texstudio::recoverFromCrash()
 
 	//save recover information
 	foreach (LatexEditorView *edView, txsInstance->editors->editors()) {
-		QEditor *ed = edView ? edView->editor : 0;
+	        QEditor *ed = edView ? edView->editor : nullptr;
 		if (ed && ed->isContentModified() && !ed->fileName().isEmpty())
 			ed->saveEmergencyBackup(ed->fileName() + ".recover.bak~");
 	}
@@ -10164,9 +10167,6 @@ void Texstudio::checkLanguageTool()
         break;
     case GrammarCheck::LTS_Unknown:
         result +=tr("unknown");
-        break;
-    default:
-        break;
     }
     result += "\n\n";
     result +=tr("LT-URL: %1\n").arg(grammarCheck->serverUrl());
