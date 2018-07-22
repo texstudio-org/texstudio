@@ -88,7 +88,7 @@ void PDFDock::changeLanguage()
 
 static void fillToc(const QDomNode &parent, QTreeWidget *tree, QTreeWidgetItem *parentItem)
 {
-	QTreeWidgetItem *newitem = 0;
+    QTreeWidgetItem *newitem = nullptr;
 	for (QDomNode node = parent.firstChild(); !node.isNull(); node = node.nextSibling()) {
 		QDomElement e = node.toElement();
 
@@ -152,7 +152,7 @@ void PDFOutlineDock::fillInfo()
 	if (!document || document->popplerDoc().isNull()) return;
 	const QDomDocument *toc = document->popplerDoc()->toc();
 	if (toc) {
-		fillToc(*toc, tree, 0);
+        fillToc(*toc, tree, nullptr);
 		connect(tree, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(followTocSelection()));
 		delete toc;
 	} else {
@@ -269,7 +269,7 @@ QSize PDFDockListWidget::sizeHint() const
 PDFOverviewModel::PDFOverviewModel(QObject *parent)
 	: QAbstractListModel(parent)
 {
-	document = 0;
+    document = nullptr;
 	cache.clear();
 }
 
@@ -308,7 +308,7 @@ void PDFOverviewModel::setDocument(PDFDocument *doc)
 		endResetModel();
 		return;
 	}
-	if (!doc->widget() || document->popplerDoc().isNull()) document = 0;
+    if (!doc->widget() || document->popplerDoc().isNull()) document = nullptr;
 	cache.clear();
 	endResetModel();
 }
@@ -630,7 +630,7 @@ bool PDFSearchDock::hasFlagSync() const
 //////////////// SCROLL AREA ////////////////
 
 PDFScrollArea::PDFScrollArea(QWidget *parent)
-	: QAbstractScrollArea(parent), continuous(true), pdf(0), updateWidgetPositionStackWatch(0), onResizeStackWatch(0)
+    : QAbstractScrollArea(parent), continuous(true), pdf(nullptr), updateWidgetPositionStackWatch(0), onResizeStackWatch(0)
 {
 	viewport()->setBackgroundRole(QPalette::NoRole);
 	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
@@ -644,7 +644,7 @@ void PDFScrollArea::setPDFWidget(PDFWidget *widget)
 	//from qt
 	if (pdf == widget) return;
 	if (pdf) delete pdf;
-	pdf = 0;
+    pdf = nullptr;
 	horizontalScrollBar()->setValue(0);
 	verticalScrollBar()->setValue(0);
 	if (widget->parentWidget() != viewport())
@@ -696,7 +696,7 @@ void PDFScrollArea::setContinuous(bool cont)
 	if (!cont) pdf->setGridSize(pdf->gridCols(), 1);
 	else {
 		int page = pdf->getPageIndex();
-		resizeEvent(0);
+        resizeEvent(nullptr);
 		goToPage(page, false);
 	}
 }
@@ -876,7 +876,7 @@ void PDFOverviewDock::fillInfo()
 
 void PDFOverviewDock::documentClosed()
 {
-	qobject_cast<PDFOverviewModel *>(list->model())->setDocument(0);
+    qobject_cast<PDFOverviewModel *>(list->model())->setDocument(nullptr);
 	PDFDock::documentClosed();
 }
 
@@ -941,7 +941,7 @@ void PDFClockDock::onTimer()
 
 void PDFClockDock::restart()
 {
-	int delta = start.secsTo(end);
+    qint64 delta = start.secsTo(end);
 	start = QDateTime::currentDateTime();
 	end = start.addSecs(delta);
 	update();
@@ -950,7 +950,7 @@ void PDFClockDock::restart()
 void PDFClockDock::setInterval()
 {
 	bool ok;
-	int interval = QInputDialog::getInt(0, "TeXstudio", tr("New clock interval (in minutes)"), 60, 1, 9999, 5, &ok);
+    int interval = QInputDialog::getInt(nullptr, "TeXstudio", tr("New clock interval (in minutes)"), 60, 1, 9999, 5, &ok);
 	if (!ok) return;
 	setInterval(interval);
 }
@@ -1004,7 +1004,7 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 }
 
 
-MessageFrame::MessageFrame(QWidget *parent) : QFrame(parent), label(0)
+MessageFrame::MessageFrame(QWidget *parent) : QFrame(parent), label(nullptr)
 {
 	QHBoxLayout *layout = new QHBoxLayout();
 	setLayout(layout);

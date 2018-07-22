@@ -64,7 +64,7 @@ const int kSelectText = 3;
 const int kSelectImage = 4;
 const int kPresentation = 5; //left-click: next, rclick: prev (for these presentation/mouse-pointer)
 
-static PDFDocumentConfig *globalConfig = 0;
+static PDFDocumentConfig *globalConfig = nullptr;
 bool PDFDocument::isCompiling = false;
 bool PDFDocument::isMaybeCompiling = false;
 
@@ -303,7 +303,7 @@ void PDFMagnifier::reshape()
 	if (!globalConfig || globalConfig->magnifierShape == oldshape) return;
 
 	switch (globalConfig->magnifierShape) {
-	case 2: ;
+    case 2: [[clang::fallthrough]];
 	case 1: { //circular
 	        int side = qMin(width(), height());
 		QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
@@ -2418,7 +2418,7 @@ void PDFDocument::setupMenus(bool embedded)
     if(!configManager) return;
     menuroot=new QMenu(this);
 
-    menubar = new QMenuBar(0);
+    menubar = new QMenuBar(nullptr);
 	menubar->setObjectName(QString::fromUtf8("menubar"));
 	menubar->setGeometry(QRect(0, 0, 1197, 21));
 
@@ -2427,7 +2427,7 @@ void PDFDocument::setupMenus(bool embedded)
     menuFile=configManager->newManagedMenu(menuroot,menubar,"pdf/file",QApplication::translate("PDFDocument", "&File"));
     menuEdit_2=configManager->newManagedMenu(menuroot,menubar,"pdf/edit",QApplication::translate("PDFDocument", "&Edit"));
     menuView=configManager->newManagedMenu(menuroot,menubar,"pdf/view",QApplication::translate("PDFDocument", "&View"));
-    menuGrid=configManager->newManagedMenu(menuView,NULL,"pdf/view/grid",QApplication::translate("PDFDocument", "Grid"));
+    menuGrid=configManager->newManagedMenu(menuView,nullptr,"pdf/view/grid",QApplication::translate("PDFDocument", "Grid"));
     menuWindow=configManager->newManagedMenu(menuroot,menubar,"pdf/window",QApplication::translate("PDFDocument", "&Window"));
     menuEdit=configManager->newManagedMenu(menuroot,menubar,"pdf/config",QApplication::translate("PDFDocument", "&Configure"));
     menuHelp=configManager->newManagedMenu(menuroot,menubar,"pdf/help",QApplication::translate("PDFDocument", "&Help"));
@@ -2644,7 +2644,7 @@ void PDFDocument::init(bool embedded)
 	if (bt) bt->setChecked(true);
 	pdfWidget->setTool(globalConfig->editTool);
 
-	comboZoom = 0;
+    comboZoom = nullptr;
 
 	int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
 	toolBar->setIconSize(QSize(sz, sz));
@@ -2813,10 +2813,10 @@ void PDFDocument::init(bool embedded)
 
         //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
-		conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, 0);
+        conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, nullptr);
         connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
 		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
-		conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, 0);
+        conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, nullptr);
 	} else {
 		pdfWidget->setGridSize(1, 1, true);
 		pdfWidget->setSinglePageStep(true);
@@ -2989,9 +2989,9 @@ void PDFDocument::changeEvent(QEvent *event)
 
 void PDFDocument::sideBySide()
 {
-	QWidget *mainWindow = 0;
+    QWidget *mainWindow = nullptr;
 	foreach (QWidget *widget, QApplication::topLevelWidgets())
-		if (!widget->isHidden() && widget != this &&  qobject_cast<QMainWindow *>(widget) != 0) {
+        if (!widget->isHidden() && widget != this &&  qobject_cast<QMainWindow *>(widget) != nullptr) {
 			mainWindow = widget;
 			break;
 		}
@@ -3093,7 +3093,7 @@ retryNow:
 	if (renderManager) {
 		renderManager->stopRendering();
 		renderManager->deleteLater();
-		renderManager = 0;
+        renderManager = nullptr;
 	}
 
 	renderManager = new PDFRenderManager(this);
@@ -3120,7 +3120,7 @@ retryNow:
 
 	if (document.isNull()) {
 		delete renderManager;
-		renderManager = 0;
+        renderManager = nullptr;
 		switch (error) {
 		case PDFRenderManager::NoError:
 			break;
@@ -3139,7 +3139,7 @@ retryNow:
 		case PDFRenderManager::FileLocked: {
 			statusBar()->showMessage(tr("PDF file \"%1\" is locked.").arg(curFile));
 			bool ok;
-			password = QInputDialog::getText(0, tr("PDF password"), tr("PDF file \"%1\" is locked.\nYou can now enter the password:").arg(curFile), QLineEdit::Password, password, &ok );
+            password = QInputDialog::getText(nullptr, tr("PDF password"), tr("PDF file \"%1\" is locked.\nYou can now enter the password:").arg(curFile), QLineEdit::Password, password, &ok );
 			if (ok) goto retryNow;
 			break;
 		}
@@ -3416,7 +3416,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 	int pageIdx;
 #ifdef HAS_POPPLER_31
-    Poppler::Page::SearchFlags searchFlags = 0;
+    Poppler::Page::SearchFlags searchFlags = nullptr;
 #else
     Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
 #endif
@@ -3721,7 +3721,7 @@ PDFDocument *PDFDocument::findDocument(const QString &fileName)
 		if (theDoc && theDoc->curFile == canonicalFilePath)
 			return theDoc;
 	}
-	return NULL;
+    return nullptr;
 }
 
 void PDFDocument::saveGeometryToConfig()
@@ -3739,7 +3739,7 @@ void PDFDocument::saveGeometryToConfig()
 void PDFDocument::zoomToRight(QWidget *otherWindow)
 {
 	QDesktopWidget *desktop = QApplication::desktop();
-	QRect screenRect = desktop->availableGeometry(otherWindow == NULL ? this : otherWindow);
+    QRect screenRect = desktop->availableGeometry(otherWindow == nullptr ? this : otherWindow);
 	screenRect.setTop(screenRect.top() + 22);
 	screenRect.setLeft((screenRect.left() + screenRect.right()) / 2 + 1);
 	screenRect.setBottom(screenRect.bottom() - 1);
@@ -3944,7 +3944,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		pdfWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
 		if (exitFullscreen) {
 			delete exitFullscreen;
-			exitFullscreen = 0;
+            exitFullscreen = nullptr;
 		}
 		if (wasContinuous) actionContinuous->setChecked(true);
 	}
@@ -4280,7 +4280,7 @@ void PDFDocument::setToolbarsVisible(bool visible)
 
 void PDFDocument::splitMergeTool()
 {
-	PDFSplitMergeTool *psmt = new PDFSplitMergeTool(0, fileName());
+    PDFSplitMergeTool *psmt = new PDFSplitMergeTool(nullptr, fileName());
 	connect(psmt, SIGNAL(runCommand(QString, QFileInfo, QFileInfo, int)), SIGNAL(runCommand(QString, QFileInfo, QFileInfo, int)));
 	psmt->show();
 }
