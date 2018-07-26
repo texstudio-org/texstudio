@@ -70,7 +70,7 @@ QStringList findHistory, replaceHistory;
 	\brief Constructor
 */
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
-	: QPanel(p),m_search(0),m_lastDirection(false),useLineForSearch(false),searchOnlyInSelection(false)
+    : QPanel(p),m_search(nullptr),m_lastDirection(false),useLineForSearch(false),searchOnlyInSelection(false)
 {
 	setObjectName("searchPanel");
 	
@@ -79,7 +79,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	// do it completely programatic
     //this->resize(801, 21);
     QVBoxLayout *vboxLayout=new QVBoxLayout(this);
-    QWidget *searchWidget=new QWidget(0);
+    QWidget *searchWidget=new QWidget(nullptr);
     //searchWidget->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::MinimumExpanding);
     vboxLayout->addWidget(searchWidget);
     FlowLayoutX *flowLayout=new FlowLayoutX(searchWidget,1,1,1);
@@ -640,7 +640,7 @@ void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool
 	if (!isVisible()) display(1,false);
 	if (m_search && m_search->searchText()!=text) {
 		delete m_search;
-		m_search=0;
+        m_search=nullptr;
 	}
 	//if (!m_search) editor()->setCursorPosition(0,0); ??
 	if(!m_search) init();
