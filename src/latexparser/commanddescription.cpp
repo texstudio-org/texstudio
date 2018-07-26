@@ -8,7 +8,7 @@ CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), args(
 QString tokenTypesToString(const QList<Token::TokenType>& types)
 {
 	QStringList res;
-	for (int i=0;i<types.length();i++) res << QString("%1").arg((int)types[i]);
+    foreach (const Token::TokenType &type,types) res << QString("%1").arg(type);
 	return res.join(" ");
 }
 
@@ -27,7 +27,7 @@ void CommandDescriptionHash::unite(const CommandDescriptionHash &other){
     // checks whether cd is already present
     // it is only overwritten, if the new definition contain *more* arguments
     // thus automatically generated definitions like \section#S are not used to disturb present functionality
-    foreach (QString elem, other.keys()) {
+    foreach (const QString &elem, other.keys()) {
         if (this->contains(elem)) {
             CommandDescription cd = this->value(elem);
             CommandDescription cd_neu = other.value(elem);

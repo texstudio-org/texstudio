@@ -52,7 +52,7 @@ QString getCommandLineViewPs();
 QString getCommandLineViewPdfExternal();
 QString getCommandLineGhostscript();
 
-CommandInfo::CommandInfo(): user(false), meta(false), rerunCompiler(false), guessFunc(0) {}
+CommandInfo::CommandInfo(): user(false), meta(false), rerunCompiler(false), guessFunc(nullptr) {}
 
 QString CommandInfo::guessCommandLine() const
 {
@@ -258,7 +258,7 @@ QString BuildManager::resolvePaths(QString paths)
 		return paths;
 }
 
-BuildManager::BuildManager(): processWaitedFor(0)
+BuildManager::BuildManager(): processWaitedFor(nullptr)
 #ifdef Q_OS_WIN32
 	, pidInst(0)
 #endif
@@ -927,7 +927,10 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 				UtilsUi::txsInformation(tr("You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer."));
 				modifiers.clear();
 			}
-			if (options.override.removeAll) parameters.clear(), modifiers.clear();
+            if (options.override.removeAll) {
+                parameters.clear();
+                modifiers.clear();
+            }
 
 			bool user;
 			QString cmd = getCommandLine(cmdName, &user);
@@ -1304,7 +1307,7 @@ void BuildManager::readSettings(QSettings &settings)
 			if (idx >= 0 && idx < userToolDisplayNames.length()) {
 				displayName = userToolDisplayNames[idx];
 			}
-			registerCommand(id, "", displayName, "", "", 0, true).commandLine = cmd;
+            registerCommand(id, "", displayName, "", "", nullptr, true).commandLine = cmd;
 		} else {
 			// default command
 			it.value().commandLine = cmd;
@@ -1370,7 +1373,7 @@ void BuildManager::readSettings(QSettings &settings)
 		if (!deprecatedUserToolNames[i].endsWith("!!!CONVERTED!!!")) {
 			QString cmd = deprecatedUserToolCommands[i];
 			cmd.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
-			CommandInfo &ci = registerCommand(QString("user%1").arg(i), "", deprecatedUserToolNames[i], "", "", 0, true);
+            CommandInfo &ci = registerCommand(QString("user%1").arg(i), "", deprecatedUserToolNames[i], "", "", nullptr, true);
 			ci.commandLine = cmd;
 			userToolOrder << ci.id;
 			userToolDisplayNames << ci.displayName;
@@ -1381,7 +1384,7 @@ void BuildManager::readSettings(QSettings &settings)
 		QString temp = settings.value(QString("User/Tool%1").arg(i), "").toString();
 		if (!temp.isEmpty()) {
 			temp.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
-			CommandInfo &ci = registerCommand(QString("userold%1").arg(i), "", settings.value(QString("User/ToolName%1").arg(i)).toString(), "", "", 0, true);
+            CommandInfo &ci = registerCommand(QString("userold%1").arg(i), "", settings.value(QString("User/ToolName%1").arg(i)).toString(), "", "", nullptr, true);
 			ci.commandLine  = temp;
 			userToolOrder << ci.id;
 			userToolDisplayNames << ci.displayName;
@@ -1596,13 +1599,13 @@ ProcessX *BuildManager::firstProcessOfDirectExpansion(const QString &command, co
         options.nestingDeep=1; // tweak to avoid pop-up error messages
     }
 	ExpandedCommands expansion = expandCommandLine(command, options);
-	if (options.canceled) return 0;
+    if (options.canceled) return nullptr;
 
-	if (expansion.commands.isEmpty()) return 0;
+    if (expansion.commands.isEmpty()) { return nullptr; }
 
     foreach(CommandToRun elem,expansion.commands){
         if(elem.command.isEmpty()){
-            return 0; // error in command expansion
+            return nullptr; // error in command expansion
         }
 
     }
@@ -1614,7 +1617,7 @@ ProcessX *BuildManager::firstProcessOfDirectExpansion(const QString &command, co
 ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &mainFile, bool singleInstance)
 {
 	if (singleInstance && runningCommands.contains(cmd))
-		return 0;
+        return nullptr;
 
 	ProcessX *proc = new ProcessX(this, cmd, mainFile.absoluteFilePath());
 	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
@@ -1650,7 +1653,7 @@ bool BuildManager::waitForProcess(ProcessX *p)
 	}
 	QApplication::restoreOverrideCursor();
 	bool result = processWaitedFor;
-	processWaitedFor = 0;
+    processWaitedFor = nullptr;
 	m_stopBuildAction->setEnabled(false);
 	return result;
 }
@@ -1752,7 +1755,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				QFileInfo fi(*tf);
 				preambleFormatFile = fi.completeBaseName();
 				previewFileNames.append(fi.absoluteFilePath());
-				ProcessX *p = 0;
+                ProcessX *p = nullptr;
 				if (dvi2pngMode == DPM_EMBEDDED_PDF) {
 					p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %3 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName()).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
 				} else {
@@ -1805,7 +1808,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	tf->setAutoRemove(false);
 	tf->close();
 	delete tf; // tex file needs to be freed
-	ProcessX *p1 = 0;
+    ProcessX *p1 = nullptr;
 	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
 		// start conversion
 		// tex -> dvi
@@ -1877,7 +1880,7 @@ QString BuildManager::editCommandList(const QString &list, const QString &exclud
 		if (!ids[i].startsWith(TXS_CMD_PREFIX)) ids[i] = TXS_CMD_PREFIX + ids[i];
 	}
 
-	UserQuickDialog uqd(0, ids, names, commands);
+    UserQuickDialog uqd(nullptr, ids, names, commands);
 	uqd.setCommandList(list);
 	if (uqd.exec() == QDialog::Accepted) return uqd.getCommandList();
 	else return list;

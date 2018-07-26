@@ -57,7 +57,7 @@ public:
 	void append(const LatexParser &elem); ///< append values
 	void substract(const LatexParser &elem); ///< remove values
 	void clear(); ///< set to default values
-	void importCwlAliases(QString filename); ///< import package aliases from disc
+    void importCwlAliases(const QString filename); ///< import package aliases from disc
 };
 Q_DECLARE_METATYPE(LatexParser)
 

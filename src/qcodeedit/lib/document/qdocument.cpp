@@ -950,7 +950,7 @@ QColor QDocument::getForeground() const{
 */
 QLanguageDefinition* QDocument::languageDefinition() const
 {
-	return m_impl ? m_impl->m_language : 0;
+    return m_impl ? m_impl->m_language : nullptr;
 }
 
 /*!
@@ -1048,7 +1048,7 @@ void QDocument::print(QPrinter *pr)
 
 	if ( pr->printRange() == QPrinter::Selection )
 	{
-		qWarning("printing selection not implemented yet");
+        qWarning()<<"printing selection not implemented yet";
 		return;
 	}
 
@@ -1056,7 +1056,7 @@ void QDocument::print(QPrinter *pr)
 	{
 		// TODO: got to temporarily wrap text to fit page size
 
-		qWarning("temporary wrapping not implementated yet");
+        qWarning()<<"temporary wrapping not implementated yet";
 	}
 
 	const int lineCount = lines();
@@ -2298,7 +2298,7 @@ QDocumentLineHandle::QDocumentLineHandle(const QString& s, QDocument *d)
 #endif
  , m_indent(0)
  , m_state(QDocumentLine::LayoutDirty)
- , m_layout(0)
+ , m_layout(nullptr)
  , lineHasSelection(QDocumentLineHandle::noSel)
  , mTicket(0)
 {

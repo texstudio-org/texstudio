@@ -30,10 +30,10 @@ Q_DECLARE_METATYPE(QList<PDFDocument *>)
 #endif
 Q_DECLARE_METATYPE(QString *)
 
-BuildManager *scriptengine::buildManager = 0;
-Texstudio *scriptengine::app = 0;
+BuildManager *scriptengine::buildManager = nullptr;
+Texstudio *scriptengine::app = nullptr;
 
-QList<Macro> *scriptengine::macros = 0;
+QList<Macro> *scriptengine::macros = nullptr;
 
 //copied from trolltech mailing list
 template <typename Tp> QScriptValue qScriptValueFromQObject(QScriptEngine *engine, Tp const &qobject)
@@ -46,7 +46,7 @@ template <typename Tp> void qScriptValueToQObject(const QScriptValue &value, Tp 
 	qobject = qobject_cast<Tp>(value.toQObject());
 }
 
-template <typename Tp> int qScriptRegisterQObjectMetaType( QScriptEngine *engine, const QScriptValue &prototype = QScriptValue(), Tp * /* dummy */ = 0)
+template <typename Tp> int qScriptRegisterQObjectMetaType( QScriptEngine *engine, const QScriptValue &prototype = QScriptValue(), Tp * /* dummy */ = nullptr)
 {
 	return qScriptRegisterMetaType<Tp>(engine, qScriptValueFromQObject, qScriptValueToQObject, prototype);
 }
@@ -445,7 +445,7 @@ void TimeoutWrapper::run()
 	deleteLater();
 }
 
-scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(0), m_editor(0), m_allowWrite(false)
+scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
 {
 	engine = new QScriptEngine(this);
 	qScriptRegisterQObjectMetaType<QDocument *>(engine);
@@ -534,7 +534,7 @@ template<> inline QScriptValue qscriptQMetaObjectConstructor<UniversalInputDialo
 
 void scriptengine::run()
 {
-	if (globalObject) delete globalObject;
+    delete globalObject;
 	globalObject = new ScriptObject(m_script, buildManager, app);
 	if (m_allowWrite) {
 		globalObject->registerAllowedWrite();
@@ -543,7 +543,7 @@ void scriptengine::run()
 	globalValue.setPrototype(engine->globalObject());
 	engine->setGlobalObject(globalValue);
 
-	QDocumentCursor c( m_editor ? m_editor->cursorHandle() : 0); //create from handle, so modifying the cursor in the script directly affects the actual cursor
+    QDocumentCursor c( m_editor ? m_editor->cursorHandle() : nullptr); //create from handle, so modifying the cursor in the script directly affects the actual cursor
 	QScriptValue cursorValue;
 	if (m_editorView)
 		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
@@ -572,7 +572,7 @@ void scriptengine::run()
 	QScriptValue uidClass = engine->scriptValueFromQMetaObject<UniversalInputDialogScript>();
 	engine->globalObject().setProperty("UniversalInputDialog", uidClass);
 
-	FileChooser flchooser(0, scriptengine::tr("File Chooser"));
+    FileChooser flchooser(nullptr, scriptengine::tr("File Chooser"));
 	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 
 	engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
@@ -592,7 +592,7 @@ void scriptengine::run()
 		QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(engine->uncaughtExceptionLineNumber()).arg(engine->uncaughtException().toString());
 		error += "\n" + QString(tr("Backtrace %1")).arg(engine->uncaughtExceptionBacktrace().join(", "));
 		qDebug() << error;
-		QMessageBox::critical(0, tr("Script-Error"), error);
+        QMessageBox::critical(nullptr, tr("Script-Error"), error);
 	}
 
 	if (m_editor) {
@@ -602,7 +602,7 @@ void scriptengine::run()
 
 	if (!globalObject->backgroundScript) {
 		delete globalObject;
-		globalObject = 0;
+        globalObject = nullptr;
 	}
 }
 
@@ -618,7 +618,7 @@ UniversalInputDialogScript::~UniversalInputDialogScript()
 
 QScriptValue UniversalInputDialogScript::add(const QScriptValue &def, const QScriptValue &description, const QScriptValue &id)
 {
-	QWidget *w = 0;
+    QWidget *w = nullptr;
 	if (def.isArray()) {
 		QStringList options;
 		QScriptValueIterator it(def);

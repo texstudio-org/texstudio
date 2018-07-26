@@ -70,7 +70,7 @@ PDFRenderManager::PDFRenderManager(QObject *parent, int limitQueues) :
 			queueAdministration->num_renderQueues = QThread::idealThreadCount();
 	}
 	for (int i = 0; i < queueAdministration->num_renderQueues; i++) {
-		PDFRenderEngine *renderQueue = new PDFRenderEngine(0, queueAdministration);
+        auto *renderQueue = new PDFRenderEngine(nullptr, queueAdministration);
 		connect(renderQueue, SIGNAL(sendImage(QImage, int, int)), this, SLOT(addToCache(QImage, int, int)));
 		queueAdministration->renderQueues.append(renderQueue);
 	}
@@ -169,7 +169,7 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 	if (docPtr->isLocked()) {
 		delete docPtr;
-		docPtr = 0;
+        docPtr = nullptr;
 		error = FileLocked;
 		return QSharedPointer<Poppler::Document>();
 	}
@@ -443,9 +443,9 @@ void PDFRenderManager::fillCache(int pg)
 	while (i >= min || j < max) {
 		j++;
 		if (i >= min && i < max && !renderedPage.contains(i)) // don't rerender page
-			renderToImage(i, 0, "");
+            renderToImage(i, nullptr, "");
 		if (j >= min && j < max && !renderedPage.contains(j)) // don't rerender page
-			renderToImage(j, 0, "");
+            renderToImage(j, nullptr, "");
 		i--;
 	}
 	mFillCacheMode = false;

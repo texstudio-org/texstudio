@@ -42,7 +42,7 @@ QDocumentCommand::QDocumentCommand(Command c, QDocument *d, QDocumentCommand *p)
  : QUndoCommand(p),
 	m_state(false), m_first(true), m_doc(d),
 	m_redoOffset(0), m_undoOffset(0),
-	m_silent(false), m_keepAnchor(false), m_command(c), m_cursor(0)
+    m_silent(false), m_keepAnchor(false), m_command(c), m_cursor(nullptr)
 {
 
 }
@@ -308,7 +308,7 @@ void QDocumentCommand::updateCursorsOnInsertion(int line, int column, int prefix
 				//qDebug("expand (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				if ( (ch->m_begLine > ch->m_endLine) || (ch->m_begLine == ch->m_endLine && ch->m_begOffset >= ch->m_endOffset) )
 					growPosOnInsertion(&ch->m_begLine, &ch->m_begOffset, line, column, prefixLength, numLines, suffixLength);
-				 else
+                else
 					growPosOnInsertion(&ch->m_endLine, &ch->m_endOffset, line, column, prefixLength, numLines, suffixLength);
 				//qDebug("into (%i, %i : %i, %i)", ch->m_begLine, ch->m_begOffset, ch->m_endLine, ch->m_endOffset);
 				continue;
@@ -498,7 +498,7 @@ void QDocumentCommand::markUndone(QDocumentLineHandle *h)
 	{
 		--it->first;
 	} else {
-		qDebug("warning: status data and/or undo stack corrupted...");
+        qDebug()<<"warning: status data and/or undo stack corrupted...";
 		m_doc->impl()->m_status[h] = qMakePair(-1, 0);
 	}
 }
@@ -527,7 +527,7 @@ QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
     QStringList lines;
     if (!text.contains("\n") && text.contains("\r"))  //mac line ending
       lines = text.split(QLatin1Char('\r'), QString::KeepEmptyParts);
-     else
+    else
       lines = text.split(QLatin1Char('\n'), QString::KeepEmptyParts);
 
 	if ( !m_doc || text.isEmpty() )
@@ -756,20 +756,23 @@ QDocumentEraseCommand::~QDocumentEraseCommand()
 
 bool QDocumentEraseCommand::mergeWith(const QUndoCommand *command)
 {
-	int new_line=static_cast<const QDocumentEraseCommand*>(command)->m_data.lineNumber;
-	int new_startOffset=static_cast<const QDocumentEraseCommand*>(command)->m_data.startOffset;
-	int myLenght=static_cast<const QDocumentEraseCommand*>(command)->m_data.begin.length();
-	if(static_cast<const QDocumentEraseCommand*>(command)->m_data.endOffset!=-1) return false;
+    const QDocumentEraseCommand *eraseCommand=dynamic_cast<const QDocumentEraseCommand*>(command);
+    if(eraseCommand==nullptr)
+        return false;
+    int new_line=eraseCommand->m_data.lineNumber;
+    int new_startOffset=eraseCommand->m_data.startOffset;
+    int myLenght=eraseCommand->m_data.begin.length();
+    if(eraseCommand->m_data.endOffset!=-1) return false;
 	if(m_data.endOffset!=-1) return false;
 	if(new_line==m_data.lineNumber && new_startOffset+myLenght==m_data.startOffset){ //backspace
-		m_data.begin=static_cast<const QDocumentEraseCommand*>(command)->m_data.begin+m_data.begin;
+        m_data.begin=eraseCommand->m_data.begin+m_data.begin;
 		m_data.startOffset=new_startOffset;
-		m_undoOffset+=static_cast<const QDocumentEraseCommand*>(command)->m_undoOffset;
+        m_undoOffset+=eraseCommand->m_undoOffset;
 		return true;
 	}
 	if(new_line==m_data.lineNumber && new_startOffset==m_data.startOffset){ //delete char
-		m_data.begin+=static_cast<const QDocumentEraseCommand*>(command)->m_data.begin;
-		m_undoOffset+=static_cast<const QDocumentEraseCommand*>(command)->m_undoOffset;
+        m_data.begin+=eraseCommand->m_data.begin;
+        m_undoOffset+=eraseCommand->m_undoOffset;
 		//m_data.startOffset=new_startOffset;
 		return true;
 	}

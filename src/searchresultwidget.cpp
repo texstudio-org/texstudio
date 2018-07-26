@@ -3,7 +3,7 @@
 #include "configmanagerinterface.h"
 
 
-SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query(0)
+SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query(nullptr)
 {
 	query = new SearchQuery("", "", SearchQuery::NoFlags);
 	QString editorFontFamily = ConfigManagerInterface::getInstance()->getOption("Editor/Font Family").toString();
@@ -79,9 +79,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
  */
 void SearchResultWidget::setQuery(SearchQuery *sq)
 {
-	if (query) {
-		delete query;
-	}
+    delete query;
 	query = sq;
 	query->setParent(this);
 	searchTypeLabel->setText(query->type() + ":");

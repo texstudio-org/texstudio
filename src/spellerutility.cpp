@@ -15,7 +15,7 @@
 
 int SpellerUtility::spellcheckErrorFormat = -1;
 
-SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(0), spellCodec(0)
+SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(nullptr), spellCodec(nullptr)
 {
 	checkCache.reserve(1020);
 }
@@ -45,7 +45,7 @@ bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
 	}
 	spell_encoding = QString(pChecker->get_dic_encoding());
 	spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
-	if (spellCodec == 0) {
+    if (spellCodec == nullptr) {
 		mLastError = "Could not determine encoding.";
 		unload();
 		emit dictionaryLoaded();

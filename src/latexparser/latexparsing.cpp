@@ -762,9 +762,7 @@ int findCommandWithArgsFromTL(const TokenList &tl, Token &cmd, TokenList &args, 
 
 QString getArg(const TokenList &tl, Token::TokenType type)
 {
-    for (int i = 0; i < tl.length(); i++) {
-        Token tk = tl.at(i);
-
+    foreach (Token tk, tl) {
         if (tk.subtype==type) {
             QString result;
             QString line=tk.getText();
@@ -804,7 +802,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 	static const QSet<Token::TokenType> tokensForMandatoryBraceArg = QSet<Token::TokenType>() << Token::braces;
 	static const QSet<Token::TokenType> tokensForOptionalArg = QSet<Token::TokenType>() << Token::squareBracket << Token::openSquare;
 
-	const QSet<Token::TokenType> *searchTokens = 0;
+    const QSet<Token::TokenType> *searchTokens = nullptr;
 
 	if (type == ArgumentList::Mandatory) {
 		searchTokens = &tokensForMandatoryArg;
@@ -824,8 +822,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
     }
     while( (lineNr)<doc->lineCount() && cnt<RUNAWAYLIMIT){
         QString line = dlh->text();
-        for (int i = 0; i < tl.length(); i++) {
-            Token tk = tl.at(i);
+        foreach (Token tk,tl) {
             if(tk.level>level)
                 continue; //only use tokens from the same option-level
 

@@ -1010,9 +1010,9 @@ void showTooltipLimited(QPoint pos, QString text, int relatedWidgetWidth)
 	// estimate width of coming tooltip
 	// rather dirty code
 	bool textWillWarp = Qt::mightBeRichText(text);
-	QLabel lLabel(0, Qt::ToolTip);
+    QLabel lLabel(nullptr, Qt::ToolTip);
 	lLabel.setFont(QToolTip::font());
-	lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
+    lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, nullptr, &lLabel));
 	lLabel.setFrameStyle(QFrame::StyledPanel);
 	lLabel.setAlignment(Qt::AlignLeft);
 	lLabel.setIndent(1);

@@ -14,7 +14,7 @@ const QString & getCommonEOW()
 
 const int LatexParser::MAX_STRUCTURE_LEVEL = 10;
 
-LatexParser *LatexParserInstance = 0;
+LatexParser *LatexParserInstance = nullptr;
 
 LatexParser::LatexParser()
 {
@@ -27,7 +27,7 @@ LatexParser::LatexParser()
 LatexParser::~LatexParser()
 {
 	if (LatexParserInstance == this) {
-		LatexParserInstance = 0;
+        LatexParserInstance = nullptr;
 	}
 }
 
@@ -76,8 +76,9 @@ int LatexParser::commentStart(const QString &text)
 	QString test = text;
 	test.replace("\\\\", "  ");
 	int cs = test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
-	if (cs > -1) return cs + 1;
-	else return -1;
+    if (cs > -1) {
+        return cs + 1;
+    } else return -1;
 }
 
 /// remove comment from text, take care of multiple backslashes before comment character ...
@@ -401,7 +402,7 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			else
 				return KeyvalValue;
 		}
-        [[gnu::fallthrough]];
+        [[clang::fallthrough]];
 	}
 	default:
 		return Unknown;
@@ -449,7 +450,7 @@ void LatexParser::clear()
 	init();
 }
 
-void LatexParser::importCwlAliases(QString filename)
+void LatexParser::importCwlAliases(const QString filename)
 {
 	QFile tagsfile(filename);
 	if (tagsfile.open(QFile::ReadOnly)) {

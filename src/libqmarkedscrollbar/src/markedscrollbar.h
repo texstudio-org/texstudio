@@ -31,7 +31,7 @@ class MarkedScrollBar : public QScrollBar
     Q_OBJECT
 
 public:
-    MarkedScrollBar(QWidget *parent = 0);
+    MarkedScrollBar(QWidget *parent = nullptr);
 
     void addMark(int position, const QColor &colour,
                  const QString &identifier = "");
@@ -39,7 +39,7 @@ public:
                  const QString &identifier = "");
     void removeMark(int position);
     void removeMark(const QString &identifier);
-    void removeMark(int position,QString type);
+    void removeMark(int position, const QString &type);
     void removeMark(QDocumentLineHandle *dlh,QString type);
     void removeAllMarks();
     void removeMarksLessThan(int position);
