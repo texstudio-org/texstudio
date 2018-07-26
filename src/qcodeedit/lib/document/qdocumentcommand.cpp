@@ -890,7 +890,7 @@ QStringList QDocumentEraseCommand::debugRepresentation() const{
 	QStringList result;
 	result << QString("ERASE COMMAND: %1:%2 to %3:%4").arg(m_data.lineNumber).arg(m_data.startOffset).arg(m_data.lineNumber+m_data.handles.size()).arg(m_data.endOffset);
 	result << QString("     Erased text: \"%1\", \"%2\"").arg(m_data.begin).arg(m_data.end);
-	if (m_data.handles.size()) {
+    if (!m_data.handles.empty()) {
 		result << ("     Erased lines:");
 		for (int i=0; i < m_data.handles.size(); i++)
 			result << (QString("     %1").arg((intptr_t)(m_data.handles[i]),8,16) + (m_doc->indexOf(m_data.handles[i]) >= 0?"\""+m_data.handles[i]->text()+"\"":"<ERASED>") );
