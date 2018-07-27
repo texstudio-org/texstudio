@@ -285,9 +285,13 @@ isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC
   include(src/quazip/quazip/quazip.pri)
 } else {
-  isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
-  isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
-
+  greaterThan(QT_MAJOR_VERSION, 4) { #Qt5
+    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
+    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
+  } else { #Qt4
+    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
+    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
+  }
   INCLUDEPATH += $${QUAZIP_INCLUDE}
   LIBS += $${QUAZIP_LIB}
 }
