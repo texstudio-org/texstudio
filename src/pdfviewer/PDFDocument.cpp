@@ -2516,7 +2516,11 @@ void PDFDocument::setupMenus(bool embedded)
 	menuGrid->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
 	menuWindow->addAction(menuShow->menuAction());
+#if (QT_VERSION > 0x050a00) && (defined(Q_OS_MAC))
+    actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()); // osx work around
+#else
     actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()<<Qt::Key_Escape);
+#endif
 	menuWindow->addSeparator();
     actionSide_by_Side=configManager->newManagedAction(menuroot,menuWindow, "stack", tr("Stac&k"), this, SLOT(stackWindows()), QList<QKeySequence>());
     actionTile=configManager->newManagedAction(menuroot,menuWindow, "tile", tr("&Tile"), this, SLOT(tileWindows()), QList<QKeySequence>());
@@ -3909,7 +3913,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			menuBar()->hide();
 			actionFull_Screen->setChecked(false);
 			actionPresentation->setChecked(true);
-			exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(closeElement())); //hiding the menubar disables normal shortcut
+            exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(closeElement())); //hiding the menubar disables normal shortcut
 			pdfWidget->setTool(kPresentation);
 			pdfWidget->setContextMenuPolicy(Qt::NoContextMenu);
 			dwOutline->hide();
