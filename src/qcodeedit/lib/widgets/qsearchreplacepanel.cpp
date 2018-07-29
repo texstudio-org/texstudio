@@ -357,7 +357,7 @@ QSearchReplacePanel::~QSearchReplacePanel()
 {
 	if ( m_search )
 		delete m_search;
-	m_search=0;
+    m_search=nullptr;
 }
 
 /*!
@@ -487,7 +487,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 			cReplace->lineEdit()->selectAll();
 		}
 		//show();
-	}else closeEvent(0);
+    }else closeEvent(nullptr);
 		
 	setVisible(visible);
 
@@ -1027,7 +1027,7 @@ void QSearchReplacePanel::init()
 	if ( m_search )
 	{
 		delete m_search;
-		m_search = 0;
+        m_search = nullptr;
 	}
 
 	QDocumentSearch::Options opt;
