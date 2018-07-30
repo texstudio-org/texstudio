@@ -271,6 +271,7 @@ isEmpty(USE_SYSTEM_HUNSPELL){
   DEFINES += HUNSPELL_STATIC
   include(src/hunspell/hunspell.pri)
 } else {
+  message(System hunspell)
   CONFIG += link_pkgconfig
   PKGCONFIG += hunspell
 }
@@ -286,9 +287,11 @@ isEmpty(USE_SYSTEM_QUAZIP) {
   include(src/quazip/quazip/quazip.pri)
 } else {
   greaterThan(QT_MAJOR_VERSION, 4) { #Qt5
+    message(System quazip5)
     isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
     isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
   } else { #Qt4
+    message(System quazip)
     isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
     isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
   }
