@@ -1,5 +1,5 @@
 !define APPNAME "TeXstudio"
-!define DESCRIPTION "A short description goes here"
+!define DESCRIPTION "TeXstudio is a fully featured LaTeX editor."
 # These three must be integers
 !define VERSIONMAJOR 2
 !define VERSIONMINOR 12
