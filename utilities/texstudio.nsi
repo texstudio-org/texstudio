@@ -3,7 +3,7 @@
 # These three must be integers
 !define VERSIONMAJOR 2
 !define VERSIONMINOR 12
-!define VERSIONBUILD 8
+!define VERSIONBUILD 10
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 !define HELPURL "https://texstudio.org" # "Support Information" link
@@ -111,7 +111,7 @@ function un.onInit
 	SetShellVarContext all
  
 	#Verify the uninstaller - last chance to back out
-	MessageBox MB_OKCANCEL "Permanantly remove ${APPNAME}?" IDOK next
+	MessageBox MB_OKCANCEL "Permanantly remove ${APPNAME}?" /SD IDOK IDOK next
 		Abort
 	next:
 	#!insertmacro VerifyUserIsAdmin
