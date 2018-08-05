@@ -1806,8 +1806,10 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 			hideDocInEditor(document->getEditorView());
 			return;
 		}
-		if (view) delete view;
+        delete view;
+        view=nullptr;
 		delete document;
+        document=nullptr;
 	} else {
 		if (hidden) {
 			hiddenDocuments.removeAll(document);
@@ -1816,7 +1818,8 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		document->setFileName(document->getFileName());
 		model->resetAll();
 		document->clearAppendix();
-		if (view) delete view;
+        delete view;
+        view=nullptr;
 		if (document == currentDocument)
             currentDocument = nullptr;
 	}
