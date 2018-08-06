@@ -1807,9 +1807,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 			return;
 		}
         delete view;
-        view=nullptr;
 		delete document;
-        document=nullptr;
 	} else {
 		if (hidden) {
 			hiddenDocuments.removeAll(document);
@@ -1819,7 +1817,6 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		model->resetAll();
 		document->clearAppendix();
         delete view;
-        view=nullptr;
 		if (document == currentDocument)
             currentDocument = nullptr;
 	}
