@@ -104,11 +104,11 @@ void qScriptValueToQFileInfo(const QScriptValue &value, QFileInfo &fi)
 ScriptObject *needPrivileges(QScriptEngine *engine, const QString &fn, const QString &args, bool write = true)
 {
 	ScriptObject *sc = qobject_cast<ScriptObject *>(engine->globalObject().toQObject());
-	REQUIRE_RET(sc, 0);
+    REQUIRE_RET(sc, nullptr);
 	if (write) {
-		if (!sc->needWritePrivileges(fn, args)) return 0;
+        if (!sc->needWritePrivileges(fn, args)) return nullptr;
 	} else {
-		if (!sc->needReadPrivileges(fn, args)) return 0;
+        if (!sc->needReadPrivileges(fn, args)) return nullptr;
 	}
 	return sc;
 }
@@ -129,11 +129,11 @@ quintptr pointerObsfuscationKey()   //hide true pointers from scripts
 QString *getStrPtr(QScriptValue value)
 {
 	if (!value.property("dataStore").isValid())
-		return 0;
+        return nullptr;
 	bool ok = false;
 	quintptr ptr = value.property("dataStore").toVariant().toULongLong(&ok);
 	if (!ok || ptr == 0 || ptr == pointerObsfuscationKey())
-		return 0;
+        return nullptr;
 	return (QString *)(ptr ^ pointerObsfuscationKey());
 }
 
@@ -166,7 +166,7 @@ QScriptValue qScriptValueFromStringPtr(QScriptEngine *engine, QString *const &st
 
 void qScriptValueToStringPtr(const QScriptValue &value, QString *&str)
 {
-	str = 0;
+    str = nullptr;
 	QString *s = getStrPtr(value);
 	if (!s) {
 		if (!value.isObject()) return;
@@ -412,7 +412,7 @@ QScriptValue include(QScriptContext *context, QScriptEngine *engine)
 
 	QScriptContext *currentContext = engine->currentContext();
 	QScriptContext *parentContext = currentContext->parentContext();
-	if (parentContext != 0) {
+    if (parentContext != nullptr) {
 		currentContext->setActivationObject(parentContext->activationObject());
 		currentContext->setThisObject(parentContext->thisObject());
 	}
@@ -510,7 +510,7 @@ void scriptengine::setEditorView(LatexEditorView *edView)
 /* partly copied from qt's Q_SCRIPT_DECLARE_QMETAOBJECT */ \
 template<> inline QScriptValue qscriptQMetaObjectConstructor<UniversalInputDialogScript>(QScriptContext *ctx, QScriptEngine *eng, UniversalInputDialogScript *)
 {
-	UniversalInputDialogScript *t = new UniversalInputDialogScript(eng, 0);
+    UniversalInputDialogScript *t = new UniversalInputDialogScript(eng, nullptr);
 
 	if (ctx->argumentCount()) {
 		if (!ctx->argument(0).isArray() || !(ctx->argument(1).isArray() || ctx->argument(1).isUndefined()))

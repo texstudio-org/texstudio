@@ -4,14 +4,14 @@
 #include "buildmanager.h"
 
 SearchQuery::SearchQuery(QString expr, QString replaceText, SearchFlags f) :
-	mType(tr("Search")), mScope(CurrentDocumentScope), mModel(0), searchFlags(f)
+    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(f)
 {
 	mModel = new SearchResultModel(this);
 	mModel->setSearchExpression(expr, replaceText, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
 }
 
 SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive, bool isWord, bool isRegExp) :
-	mType(tr("Search")), mScope(CurrentDocumentScope), mModel(0), searchFlags(NoFlags)
+    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(NoFlags)
 {
 	setFlag(IsCaseSensitive, isCaseSensitive);
 	setFlag(IsWord, isWord);

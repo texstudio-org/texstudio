@@ -32,7 +32,7 @@ public:
 void ThesaurusDatabaseType::clear()
 {
 	if (buffer) delete buffer;
-	buffer = 0;
+    buffer = nullptr;
 	thesaurus.clear();
 	fileName.clear();
 }
@@ -101,7 +101,7 @@ void ThesaurusDatabaseType::load(QFile &file)
 	}
 }
 
-ThesaurusDatabaseType::ThesaurusDatabaseType(): buffer(0)
+ThesaurusDatabaseType::ThesaurusDatabaseType(): buffer(nullptr)
 {
 }
 
@@ -432,7 +432,7 @@ void ThesaurusDialog::loadDatabase(const QString &fileName )
 
 ThesaurusDatabaseType *ThesaurusDialog::retrieveDatabase()
 {
-	if (globalThesaurusNeededFileName  == "") return 0;
+    if (globalThesaurusNeededFileName  == "") return nullptr;
 #if QT_VERSION >= 0x040500
 	if (thesaurusFuture.isRunning())
 		thesaurusFuture.waitForFinished();
@@ -441,6 +441,6 @@ ThesaurusDatabaseType *ThesaurusDialog::retrieveDatabase()
 		loadDatabase(globalThesaurusNeededFileName);
 	}
 #endif
-	if (globalThesaurus.fileName != globalThesaurusNeededFileName) return 0;
+    if (globalThesaurus.fileName != globalThesaurusNeededFileName) return nullptr;
 	return &globalThesaurus;
 }

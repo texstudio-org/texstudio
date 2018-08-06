@@ -29,7 +29,7 @@ static QList<QNFA*> _deleted;
 QNFA::QNFA()
  : type(Char), assertion(0), actionid(0)
 {
-	out.next = 0;
+    out.next = nullptr;
 	
 	++_count;
 	
@@ -50,13 +50,13 @@ QNFA::~QNFA()
 	if ( (type & CxtBeg) && out.branch )
 	{
 		delete out.branch;
-		out.branch = 0;
+        out.branch = nullptr;
 	}
 	
 	if ( out.next && !_deleted.contains(out.next) )
 	{
 		delete out.next;
-		out.next = 0;
+        out.next = nullptr;
 	}
 }
 
@@ -148,7 +148,7 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 	
 	quint16 c = 0;
 	const QChar *di = d;
-	QNFA *chain = 0, *start = 0;
+    QNFA *chain = nullptr, *start = nullptr;
 	int index = 0, lastCxt = 0, len, idx;
 	bool bFound, bEscape = false, bEscaped = false;
 	bool wPrev = false, wCur = false;
@@ -578,7 +578,7 @@ QNFA* context(const QString& start, const QString& stop, const QString&, int act
 	if ( !beg )
 	{
 		qWarning("Invalid context start sequence.");
-		return 0;
+        return nullptr;
 	}
 	
 	nfa = new QNFA;
@@ -602,7 +602,7 @@ QNFA* context(const QString& start, const QString& stop, const QString&, int act
 		delete end;
 		
 		qWarning("Invalid context stop sequence.");
-		return 0;
+        return nullptr;
 	}
 	
 	nfa = new QNFA;
@@ -696,7 +696,7 @@ static inline QNFA* makeQNFA(quint16& pendingAssertion){
 
 QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 {
-	QNFA *nfa, *set = 0, *prev = 0, *first = 0;
+    QNFA *nfa, *set = nullptr, *prev = nullptr, *first = nullptr;
 	quint16 pendingAssertion = 0;
 
 	for ( int i = 0; i < length; ++i )
@@ -803,7 +803,7 @@ QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 				prev->out.next = set;
 			
 			prev = set;
-			set = 0;
+            set = nullptr;
 			
 			//qDebug("set end");
 			/*

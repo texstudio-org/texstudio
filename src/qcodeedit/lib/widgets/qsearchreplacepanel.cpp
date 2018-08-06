@@ -355,8 +355,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 */
 QSearchReplacePanel::~QSearchReplacePanel()
 {
-	if ( m_search )
-		delete m_search;
+    delete m_search;
     m_search=nullptr;
 }
 

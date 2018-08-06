@@ -34,7 +34,7 @@ const char *PROPERTY_ADD_BUTTON = "addButton";
 Q_DECLARE_METATYPE(QPushButton *)
 
 
-ManagedProperty::ManagedProperty(): storage(0), type(PT_VOID), widgetOffset(0)
+ManagedProperty::ManagedProperty(): storage(nullptr), type(PT_VOID), widgetOffset(0)
 {
 }
 
@@ -66,7 +66,7 @@ void ManagedProperty::deallocate()
 }
 
 
-static ConfigManager *globalConfigManager = 0;
+static ConfigManager *globalConfigManager = nullptr;
 
 ConfigManagerInterface *ConfigManagerInterface::getInstance()
 {
@@ -397,7 +397,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	pdfDocumentConfig(new PDFDocumentConfig),
 	insertGraphicsConfig(new InsertGraphicsConfig),
 	grammarCheckerConfig(new GrammarCheckerConfig),
-    menuParent(nullptr), menuParentsBar(0), modifyMenuContentsFirstCall(true), persistentConfig(0)
+    menuParent(nullptr), menuParentsBar(nullptr), modifyMenuContentsFirstCall(true), persistentConfig(nullptr)
 {
 
 	Q_ASSERT(!globalConfigManager);

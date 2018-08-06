@@ -10,7 +10,7 @@
 QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
 {
 	editor=ed;
-	if (editor->getFileCodec()!=0) defaultCodec = editor->getFileCodec();
+    if (editor->getFileCodec()!=nullptr) defaultCodec = editor->getFileCodec();
 	else defaultCodec = QTextCodec::codecForName("latin1");
 	ed->setFlag(QEditor::HardLineWrap, false);
 	ed->setFlag(QEditor::AutoCloseChars, true);
@@ -83,7 +83,7 @@ void QEditorTest::loadSave(){
 
 	//Load
 	editor->setFileCodec(QTextCodec::codecForName("iso-8859-5"));
-	editor->load(tfn,autodetect?0:outCodec);
+    editor->load(tfn,autodetect?nullptr:outCodec);
 	editor->document()->setLineEnding(editor->document()->originalLineEnding()); //TODO: find out why this line is only needed iff the editor passed by the testmanager is used and not if a new QEditor(0) is created
     QEQUAL2(editor->document()->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromLatin1(editor->getFileCodec()->name()):"<null>"));
     QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromLatin1(editor->getFileCodec()->name())).arg(QString::fromLatin1(outCodec->name())).arg(autodetect)));

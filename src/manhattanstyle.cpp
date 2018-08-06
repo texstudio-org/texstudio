@@ -138,7 +138,7 @@ ManhattanStyle::ManhattanStyle(const QString &baseStyleName)
 ManhattanStyle::~ManhattanStyle()
 {
 	delete d;
-	d = 0;
+    d = nullptr;
 }
 
 bool ManhattanStyle::isValid()

@@ -123,7 +123,7 @@ void StructureTreeView::expandSubitems()
 	if (!contextEntry)
 		return;
 	UtilsUi::setSubtreeExpanded(this, contextIndex, true);
-	contextEntry = 0;
+    contextEntry = nullptr;
 }
 
 void StructureTreeView::collapseSubitems()
@@ -131,7 +131,7 @@ void StructureTreeView::collapseSubitems()
 	if (!contextEntry)
 		return;
 	UtilsUi::setSubtreeExpanded(this, contextIndex, false);
-	contextEntry = 0;
+    contextEntry = nullptr;
 }
 
 void StructureTreeView::expandAllDocuments()

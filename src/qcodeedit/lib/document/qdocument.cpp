@@ -664,7 +664,7 @@ void QDocument::setText(const QString& s, bool allowUndo)
 	{
 //		emit lineRemoved(h);
 //		emit lineDeleted(h);
-		h->m_doc = 0;
+        h->m_doc = nullptr;
 		h->deref();
 	}
 
@@ -743,13 +743,13 @@ void QDocument::setText(const QString& s, bool allowUndo)
 }
 
 QTextCodec* guessEncoding(const QByteArray& data){
-	QTextCodec* guess = 0;
+    QTextCodec* guess = nullptr;
 	int sure = 1;
 	guess = Encoding::guessEncodingBasic(data, &sure);
 	if (!guessEncodingCallbacks.empty())
 		foreach (const GuessEncodingCallback& callback, guessEncodingCallbacks)
 			callback(data, guess, sure);
-	if (guess!=0) return guess;
+    if (guess!=nullptr) return guess;
 	else return QTextCodec::codecForName("UTF-8"); //default
 }
 
@@ -779,7 +779,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 	{
 		// instant load for files smaller than 500kb
 		QByteArray d = f.readAll();
-		if (codec == 0)
+        if (codec == nullptr)
 			codec=guessEncoding(d);
 
 		setText(codec->toUnicode(d), false);
@@ -794,7 +794,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		//m_lastFileState.checksum = 0;
 
 		ba = f.read(100000);
-		if (codec == 0)
+        if (codec == nullptr)
 			codec=guessEncoding(ba);
 
 		QTextDecoder *dec = codec->makeDecoder();
@@ -847,7 +847,7 @@ void QDocument::startChunkLoading()
 	{
 //		emit lineRemoved(h);
 //		emit lineDeleted(h);
-		h->m_doc = 0;
+        h->m_doc = nullptr;
 		h->deref();
  	}
 
@@ -915,7 +915,7 @@ void QDocument::stopChunkLoading()
 */
 QFormatScheme* QDocument::formatScheme() const
 {
-	return m_impl ? m_impl->m_formatScheme : 0;
+    return m_impl ? m_impl->m_formatScheme : nullptr;
 }
 
 /*!
@@ -1377,7 +1377,7 @@ void QDocument::setShowSpaces(WhiteSpaceMode m)
 */
 QDocumentCursor* QDocument::editCursor() const
 {
-	return m_impl ? m_impl->m_editCursor : 0;
+    return m_impl ? m_impl->m_editCursor : nullptr;
 }
 
 /*!
@@ -1515,7 +1515,7 @@ void QDocument::markFormatCacheDirty(){
 */
 QDocumentLine QDocument::line(int line) const
 {
-	return QDocumentLine(m_impl ? m_impl->at(line) : 0);
+    return QDocumentLine(m_impl ? m_impl->at(line) : nullptr);
 }
 
 /*!
@@ -2278,7 +2278,7 @@ QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
 #endif
  , m_indent(0)
  , m_state(QDocumentLine::LayoutDirty)
- , m_layout(0)
+ , m_layout(nullptr)
  , lineHasSelection(QDocumentLineHandle::noSel)
  , mTicket(0)
 {
@@ -3447,10 +3447,9 @@ void QDocumentLineHandle::layout(int lineNr) const
 			m_doc->impl()->m_height += (lw-oldLW)*m_doc->impl()->m_lineSpacing;
 		}
 	} else {
-		if ( m_layout )
-			delete m_layout;
+        delete m_layout;
 
-		m_layout = 0;
+        m_layout = nullptr;
 
 		// fix https://sourceforge.net/p/texstudio/bugs/2255/
 		if (hasFlag(QDocumentLine::LayoutedByQTextLayout)) {
@@ -4205,7 +4204,7 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset, int maxL
 	}
 	if (toOffset == -1) toOffset = m_text.length();
 	QList<RenderRange> ranges;
-	splitAtFormatChanges(&ranges,0);
+    splitAtFormatChanges(&ranges,nullptr);
 	QString result = "<pre>";
 	int col = 0;
 	int wrapCount = 0;
@@ -5640,7 +5639,7 @@ void QDocumentCursorHandle::deleteChar()
 	if ( l.isNull() || atEnd() )
 		return;
 
-	QDocumentCommand *command = 0;
+    QDocumentCommand *command = nullptr;
 
 	if ( !atLineEnd() )
 	{
@@ -5683,7 +5682,7 @@ void QDocumentCursorHandle::deletePreviousChar()
 	if ( l.isNull() || atStart() )
 		return;
 
-	QDocumentCommand *command = 0;
+    QDocumentCommand *command = nullptr;
 
 	if ( !atLineStart() )
 	{
@@ -6979,9 +6978,9 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		}
 	} else {
 		int ht = m_lineSpacing*(wrap+1 - pseudoWrap);
-		QImage *image = 0;
-		QPixmap *pixmap = 0;
-		QPainter *pr = 0;
+        QImage *image = nullptr;
+        QPixmap *pixmap = nullptr;
+        QPainter *pr = nullptr;
 		if (useLineCache) {
 			if (imageCache) {
 #if QT_VERSION >= 0x050000
@@ -8662,7 +8661,7 @@ void QDocumentPrivate::removeAutoUpdatedCursor(QDocumentCursorHandle* c){
 void QDocumentPrivate::discardAutoUpdatedCursors(bool documentDeleted){
 	foreach (QDocumentCursorHandle* h, m_autoUpdatedCursorList){
 		h->clearFlag(QDocumentCursorHandle::AutoUpdated);
-		if (documentDeleted) h->m_doc = 0;
+        if (documentDeleted) h->m_doc = nullptr;
 	}
 	m_autoUpdatedCursorList.clear();
 }

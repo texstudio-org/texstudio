@@ -129,7 +129,7 @@ void ScriptEngineTest::script_data(){
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, newText);
-	scriptengine eng(0);
+    scriptengine eng(nullptr);
 	eng.setEditorView(edView);
 	eng.setScript(script);
 	eng.run();

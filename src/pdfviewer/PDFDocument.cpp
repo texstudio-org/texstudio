@@ -2365,10 +2365,11 @@ PDFDocument::~PDFDocument()
 
 	docList.removeAll(this);
 	emit documentClosed();
-	if (renderManager)
-		delete renderManager;
+    delete renderManager;
+    renderManager=nullptr;
 
     delete menubar;
+    menubar=nullptr;
 }
 
 void PDFDocument::setupToolBar(){

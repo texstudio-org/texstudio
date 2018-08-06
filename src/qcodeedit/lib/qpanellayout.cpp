@@ -246,7 +246,7 @@ QLayoutItem* QPanelLayout::itemAt(int idx) const
 	if ( wrapper )
 		return wrapper->item;
 	else
-		return 0;
+        return nullptr;
 	
 }
 
@@ -259,13 +259,13 @@ QLayoutItem* QPanelLayout::takeAt(int idx)
 	{
 		PanelWrapper *layoutStruct = m_list.takeAt(idx);
 		Q_ASSERT(layoutStruct);
-		if (!layoutStruct) return 0;
+        if (!layoutStruct) return nullptr;
 		QLayoutItem* li =  layoutStruct->item;
 		delete layoutStruct;
 		return li;
 	}
 	
-	return 0;
+    return nullptr;
 }
 
 /*!

@@ -50,7 +50,7 @@ QStatusPanel::QStatusPanel(QWidget *p)
 {
 	setObjectName("statusPanel");
 	setFixedHeight(fontMetrics().lineSpacing() + 4);
-	timer=0;
+    timer=nullptr;
 
 }
 
@@ -82,7 +82,7 @@ void QStatusPanel::editorChange(QEditor *e)
 		if(timer) {
 			disconnect(timer, SIGNAL(timeout()), this, SLOT(update()));
 			delete timer;
-			timer=0;
+            timer=nullptr;
 		}
 
 	}
@@ -196,7 +196,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	if(!e->displayModifyTime() && timer){
 		disconnect(timer, SIGNAL(timeout()), this, SLOT(update()));
 		delete timer;
-		timer=0;
+        timer=nullptr;
 	}
 
 	if(e->displayModifyTime() && !timer){

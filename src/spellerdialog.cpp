@@ -69,7 +69,7 @@ SpellerDialog::~SpellerDialog()
 
 void SpellerDialog::setEditorView(LatexEditorView *edView)
 {
-	editor = edView ? edView->editor : 0;
+    editor = edView ? edView->editor : nullptr;
 	editorView = edView;
 }
 

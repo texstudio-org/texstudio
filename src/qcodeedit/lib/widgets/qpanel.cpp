@@ -44,7 +44,7 @@ QHash<QString, QPanelCreator*>& QPanel::creators()
 QPanel* QPanel::panel(const QString& id, QWidget *p)
 {
 	if ( !creators().contains(id) )
-		return 0;
+        return nullptr;
 	
 	return creators().value(id)->panel(p);
 }

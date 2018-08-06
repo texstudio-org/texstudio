@@ -7,10 +7,10 @@
 #include <QMutex>
 
 
-Help *Help::m_Instance = 0;
+Help *Help::m_Instance = nullptr;
 
 Help::Help() :
-	QObject(0)
+    QObject(nullptr)
 {
 }
 

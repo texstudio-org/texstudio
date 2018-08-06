@@ -6,20 +6,20 @@
 #include <QNetworkProxyFactory>
 #include <QMutex>
 
-UpdateChecker *UpdateChecker::m_Instance = 0;
+UpdateChecker *UpdateChecker::m_Instance = nullptr;
 
 UpdateChecker::UpdateChecker() :
-	QObject(0), silent(true)
+    QObject(nullptr), silent(true)
 {
 	QNetworkProxyFactory::setUseSystemConfiguration(true);
 	//networkManager = new QNetworkAccessManager();
     // activate networkManager only when directly needed as it causes network delays on mac (Bug 1717/1738)
-    networkManager=0;
+    networkManager=nullptr;
 }
 
 UpdateChecker::~UpdateChecker()
 {
-	m_Instance = 0;
+    m_Instance = nullptr;
 }
 
 QString UpdateChecker::lastCheckAsString()
@@ -62,7 +62,7 @@ void UpdateChecker::onRequestError()
 	UtilsUi::txsCritical(tr("Update check failed with error:\n") + reply->errorString());
 
     networkManager->deleteLater();
-    networkManager=0;
+    networkManager=nullptr;
 }
 
 void UpdateChecker::onRequestCompleted()
@@ -76,7 +76,7 @@ void UpdateChecker::onRequestCompleted()
 	checkForNewVersion();
 
     networkManager->deleteLater();
-    networkManager=0;
+    networkManager=nullptr;
 }
 
 void UpdateChecker::parseData(const QByteArray &data)

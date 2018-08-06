@@ -1,10 +1,10 @@
 #include "latexrepository.h"
 #include <QMutex>
 
-LatexRepository *LatexRepository::m_Instance = 0;
+LatexRepository *LatexRepository::m_Instance = nullptr;
 
 LatexRepository::LatexRepository() :
-	QObject(0), m_dataSource(None)
+    QObject(nullptr), m_dataSource(None)
 {
 	loadStaticPackageList(":/utilities/packageList");
 }

@@ -671,7 +671,7 @@ QStringList envKeys(const QProcessEnvironment &env)
 QString execCommand(const QString &cmd, QString additionalPaths)
 {
 	if (cmd.isEmpty()) return QString();
-	QProcess myProc(0);
+    QProcess myProc(nullptr);
     if(!additionalPaths.isEmpty()){
         updatePathSettings(&myProc,additionalPaths);
     }
@@ -701,7 +701,7 @@ void ThreadBreaker::forceTerminate(QThread *t)
 	t->terminate();
 }
 
-SafeThread::SafeThread(): QThread(0), crashed(false) {}
+SafeThread::SafeThread(): QThread(nullptr), crashed(false) {}
 SafeThread::SafeThread(QObject *parent): QThread(parent), crashed(false) {}
 
 void SafeThread::wait(unsigned long time)

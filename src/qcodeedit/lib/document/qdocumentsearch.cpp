@@ -524,7 +524,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	if ( m_string.isEmpty() )
 		return 0;
 
-	if ( overrideScope && !overrideScope->isValid() ) overrideScope = 0;
+    if ( overrideScope && !overrideScope->isValid() ) overrideScope = nullptr;
 	
 	const QDocumentCursor& scope = overrideScope ? *overrideScope : m_scope;
 	
@@ -544,7 +544,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				m_cursor.movePosition(1, QDocumentCursor::End);
 			
 		} else {
-			QMessageBox::warning(0, 0, "Unable to perform search operation");
+            QMessageBox::warning(nullptr, nullptr, "Unable to perform search operation");
 		}
 	}
 

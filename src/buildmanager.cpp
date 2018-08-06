@@ -1667,7 +1667,7 @@ void BuildManager::killCurrentProcess()
 {
 	if (!processWaitedFor) return;
 	processWaitedFor->kill();
-	processWaitedFor = 0;
+    processWaitedFor = nullptr;
 }
 
 QString BuildManager::createTemporaryFileName()
@@ -2226,7 +2226,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 #endif
 
 ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const QString &fileToCompile):
-	QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0), stdoutCodec(0)
+    QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(nullptr), stdoutCodec(nullptr)
 {
 
 	QString stdoutRedirection, stderrRedirection;

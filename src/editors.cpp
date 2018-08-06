@@ -30,7 +30,7 @@
  *    class should depend on this as little as possible.
  */
 Editors::Editors(QWidget *parent) :
-	QWidget(parent), splitter(0), currentGroupIndex(-1)
+    QWidget(parent), splitter(nullptr), currentGroupIndex(-1)
 {
 	splitter = new MiniSplitter(Qt::Horizontal);
 	splitter->setChildrenCollapsible(false);
@@ -214,13 +214,13 @@ TxsTabWidget *Editors::currentTabWidget() const
 {
 	if (currentGroupIndex >= 0 && currentGroupIndex < tabGroups.length())
 		return tabGroups[currentGroupIndex];
-	return 0;
+    return nullptr;
 }
 
 LatexEditorView *Editors::currentEditor() const
 {
 	TxsTabWidget *tabs = currentTabWidget();
-	if (!tabs) return 0;
+    if (!tabs) return nullptr;
 	return qobject_cast<LatexEditorView *>(tabs->currentWidget());
 }
 
@@ -479,7 +479,7 @@ void Editors::moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int 
 {
 	if (!target || target->containsEditor(edView)) {
 		// only move within the tab
-		if (target == 0) target = tabWidgetFromEditor(edView);
+        if (target == nullptr) target = tabWidgetFromEditor(edView);
 		if (targetIndex < 0) targetIndex = qMax(0, target->count() - 1);
 		int currentIndex = target->indexOf(edView);
 		if (currentIndex != targetIndex) {  // nothing todo otherwise
@@ -520,7 +520,7 @@ int Editors::tabGroupIndexFromEditor(LatexEditorView *edView) const
 TxsTabWidget *Editors::tabWidgetFromEditor(LatexEditorView *edView) const
 {
 	int group = tabGroupIndexFromEditor(edView);
-	if (group < 0) return 0;
+    if (group < 0) return nullptr;
 	return tabGroups[group];
 }
 
@@ -561,7 +561,7 @@ void Editors::setCurrentGroup(int index)
  * If you have return statements in the intermediate code, be sure to place the release command
  * also before every return.
  */
-EditorChangeProxy::EditorChangeProxy(Editors *e) : editors(e), currentEditorAtBlock(0), blocked(false) {}
+EditorChangeProxy::EditorChangeProxy(Editors *e) : editors(e), currentEditorAtBlock(nullptr), blocked(false) {}
 
 //#define ecpDebug(x) qDebug(x)
 #define ecpDebug(x)

@@ -187,8 +187,8 @@ void ScriptObject::registerAsBackgroundScript(const QString &name)
 	static QMap<QString, QPointer<ScriptObject> > backgroundScripts;
 
 	QString realName = name.isEmpty() ? getScriptHash() : name;
-	if (!backgroundScripts.value(realName, QPointer<ScriptObject>(0)).isNull())
-		delete backgroundScripts.value(realName, QPointer<ScriptObject>(0)).data();
+    if (!backgroundScripts.value(realName, QPointer<ScriptObject>(nullptr)).isNull())
+        delete backgroundScripts.value(realName, QPointer<ScriptObject>(nullptr)).data();
 	backgroundScripts.insert(realName, this);
 	backgroundScript = true;
 }
@@ -196,7 +196,7 @@ void ScriptObject::registerAsBackgroundScript(const QString &name)
 QWidget *ScriptObject::createUI(const QString &path, QWidget *parent)
 {
 	QFile f(path);
-	if (!f.open(QFile::ReadOnly)) return 0;
+    if (!f.open(QFile::ReadOnly)) return nullptr;
 	return QUiLoader().load(&f, parent);
 }
 

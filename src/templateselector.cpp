@@ -46,7 +46,7 @@ void PreviewLabel::setPixmapWithResizing(const QPixmap &pm)
 
 
 TemplateSelector::TemplateSelector(QString name, QWidget *parent)
-	: QDialog(parent), previewLabel(0)
+    : QDialog(parent), previewLabel(nullptr)
 {
 	setModal(true);
 	ui.setupUi(this);
@@ -87,7 +87,7 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 	ui.warningIcon->setToolTip(warnTooltip);
 	ui.warningText->setToolTip(warnTooltip);
 
-	showInfo(0, 0);
+    showInfo(nullptr, nullptr);
 }
 
 TemplateSelector::~TemplateSelector()

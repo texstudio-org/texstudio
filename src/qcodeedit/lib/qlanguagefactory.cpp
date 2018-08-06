@@ -180,8 +180,8 @@ bool QLanguageFactory::setLanguageFromName(QEditor *e, const QString& lang){
 	if ( lang.isEmpty() && !m_data.contains(lang))
 	{
 		//qDebug("no lang match for %s", qPrintable(file));
-		e->setLanguageDefinition(0);
-		e->setCompletionEngine(0);
+        e->setLanguageDefinition(nullptr);
+        e->setCompletionEngine(nullptr);
 		e->document()->setFormatScheme(m_defaultFormatScheme);
 
 		if ( oldLang ) {
@@ -194,7 +194,7 @@ bool QLanguageFactory::setLanguageFromName(QEditor *e, const QString& lang){
 		const LangData& data = m_data[lang];
 
 		e->setLanguageDefinition(data.d);
-		e->setCompletionEngine(data.e ? data.e->clone() : 0);
+        e->setCompletionEngine(data.e ? data.e->clone() : nullptr);
 		e->document()->setFormatScheme(data.s ? data.s : m_defaultFormatScheme);
 
 		if ( oldLang != data.d ) {
@@ -325,9 +325,8 @@ void QLanguageFactory::deleteLangData(const LangData& d){
 		delete d.s;
 
 	//qDebug() << "delete: "<<d.d;
-	if (d.d)
-		delete d.d;
-	//delete d.e;
+
+    delete d.d;
 }
 }
 

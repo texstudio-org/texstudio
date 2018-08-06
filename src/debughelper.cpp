@@ -1363,7 +1363,7 @@ void initCrashHandler(int mode)
 
 //==================GUARDIAN==================
 
-Guardian *guardian = 0;
+Guardian *guardian = nullptr;
 bool running = true;
 volatile int mainEventLoopTicks = 0;
 volatile bool undoRecovering = false;

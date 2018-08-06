@@ -5,23 +5,23 @@
 #include "qlanguagefactory.h"
 #include "qdocument.h"
 
-Macro::Macro() : triggerLookBehind(false), document(0)
+Macro::Macro() : triggerLookBehind(false), document(nullptr)
 {
 }
 
-Macro::Macro(const QString &nname, const QString &typedTag, const QString &nabbrev, const QString &ntrigger): triggerLookBehind(false), document(0)
+Macro::Macro(const QString &nname, const QString &typedTag, const QString &nabbrev, const QString &ntrigger): triggerLookBehind(false), document(nullptr)
 {
 	Macro::Type typ;
 	QString tag = parseTypedTag(typedTag, typ);
 	init(nname, typ, tag, nabbrev, ntrigger);
 }
 
-Macro::Macro(const QString &nname, Macro::Type ntype, const QString &ntag, const QString &nabbrev, const QString &ntrigger): triggerLookBehind(false), document(0)
+Macro::Macro(const QString &nname, Macro::Type ntype, const QString &ntag, const QString &nabbrev, const QString &ntrigger): triggerLookBehind(false), document(nullptr)
 {
 	init(nname, ntype, ntag, nabbrev, ntrigger);
 }
 
-Macro::Macro(const QStringList &fieldList): triggerLookBehind(false), document(0)
+Macro::Macro(const QStringList &fieldList): triggerLookBehind(false), document(nullptr)
 {
 	if (fieldList.count() >= 4) {
 		Macro::Type t;
@@ -44,7 +44,7 @@ void Macro::init(const QString &nname, Macro::Type ntype, const QString &ntag, c
 	trigger = ntrigger;
 	triggerLookBehind = false;
 	QString realtrigger = trigger;
-	triggers = 0;
+    triggers = nullptr;
 	if (realtrigger.trimmed().startsWith("?")) {
 		QStringList sl = realtrigger.split("|");
 		realtrigger.clear();

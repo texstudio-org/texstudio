@@ -208,7 +208,7 @@ void QEditConfig::apply()
 	QDocument::setShowSpaces(ws);
 
 	if ( cbEncoding->currentText() == "System" )
-		QDocument::setDefaultCodec(0);
+        QDocument::setDefaultCodec(nullptr);
 	else
 		QDocument::setDefaultCodec(QTextCodec::codecForName(cbEncoding->currentText().toLatin1()));
 

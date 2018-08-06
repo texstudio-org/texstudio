@@ -172,7 +172,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 QList<QEditor*> QEditor::m_editors;
-QEditorInputBindingInterface* QEditor::m_defaultBinding = 0;
+QEditorInputBindingInterface* QEditor::m_defaultBinding = nullptr;
 QHash<QString, QEditorInputBindingInterface*> QEditor::m_registeredBindings;
 bool QEditor::m_defaultKeysSet = false;
 QHash<QString, int> QEditor::m_registeredKeys;
@@ -319,12 +319,12 @@ void QEditor::setDefaultFlags(int flags)
 */
 QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
-	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
-	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0),
+    pMenu(nullptr), m_lineEndingsMenu(nullptr), m_lineEndingsActions(nullptr),
+    m_bindingsMenu(nullptr), aDefaultBinding(nullptr), m_bindingsActions(nullptr),
+    m_doc(nullptr), m_definition(nullptr),
 	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::LineUnderCursor),
 	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-	mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(0)
+    mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(nullptr)
 {
 	m_editors << this;
 
@@ -339,9 +339,9 @@ QEditor::QEditor(QWidget *p)
 */
 QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
  : QAbstractScrollArea(p),
-	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
-	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0),
+    pMenu(nullptr), m_lineEndingsMenu(nullptr), m_lineEndingsActions(nullptr),
+    m_bindingsMenu(nullptr), aDefaultBinding(nullptr), m_bindingsActions(nullptr),
+    m_doc(nullptr), m_definition(nullptr),
 	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::ParenthesesOuter),
 	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
 	mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(0)
@@ -362,10 +362,10 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
 */
 QEditor::QEditor(const QString& s, QWidget *p)
  : QAbstractScrollArea(p),
-	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
-	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
+    pMenu(nullptr), m_lineEndingsMenu(nullptr), m_lineEndingsActions(nullptr),
+    m_bindingsMenu(nullptr), aDefaultBinding(nullptr), m_bindingsActions(nullptr),
+    m_doc(nullptr), m_definition(nullptr), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+        mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(nullptr)
 {
 	m_editors << this;
 
@@ -384,10 +384,10 @@ QEditor::QEditor(const QString& s, QWidget *p)
 */
 QEditor::QEditor(const QString& s, bool actions, QWidget *p)
  : QAbstractScrollArea(p),
-	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
-	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-	mDisplayModifyTime(true), m_useQSaveFile(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_scrollAnimation(0)
+    pMenu(nullptr), m_lineEndingsMenu(nullptr), m_lineEndingsActions(nullptr),
+    m_bindingsMenu(nullptr), aDefaultBinding(nullptr), m_bindingsActions(nullptr),
+    m_doc(nullptr), m_definition(nullptr), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+    mDisplayModifyTime(true), m_useQSaveFile(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_scrollAnimation(nullptr)
 {
 	m_editors << this;
 
@@ -2077,7 +2077,7 @@ void QEditor::addPlaceHolder(const PlaceHolder& p, bool autoUpdate)
 	{
 		int mirrorLen = ph.length;
 		if (ph.affector)
-			mirrorLen = ph.affector->affect(0, ph.cursor.selectedText(), m_placeHolders.size()-1, i).length();
+            mirrorLen = ph.affector->affect(nullptr, ph.cursor.selectedText(), m_placeHolders.size()-1, i).length();
 
 
 		ph.mirrors[i].setAutoUpdated(autoUpdate);
@@ -2095,7 +2095,7 @@ void QEditor::addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c){
 	ph.mirrors << c;
 	ph.mirrors.last().setAutoUpdated(true);
 	ph.mirrors.last().setAutoErasable(true);
-	int mirrorLen = ph.affector ? ph.affector->affect(0, ph.cursor.selectedText(), placeHolderId, ph.mirrors.size()-1).length() : ph.length;
+    int mirrorLen = ph.affector ? ph.affector->affect(nullptr, ph.cursor.selectedText(), placeHolderId, ph.mirrors.size()-1).length() : ph.length;
 	ph.mirrors.last().movePosition(mirrorLen, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 }
 
@@ -2249,7 +2249,7 @@ void QEditor::setPlaceHolder(int i, bool selectCursors)
 	for ( int j=0; j< ph.mirrors.size(); j++)
 	{
 		QDocumentCursor &mc = ph.mirrors[j];
-		QString mirrored = ph.affector ? ph.affector->affect(0, base, i, j) : base;
+        QString mirrored = ph.affector ? ph.affector->affect(nullptr, base, i, j) : base;
 		if (mc.selectedText()!=mirrored){
 			//qDebug() << "resync placeholder mirror for " << m_curPlaceHolder << " mirror "<<j << " was: " << mc.selectedText() << " should be " << cc.selectedText() << " from " << cc.anchorLineNumber() << ":" << cc.anchorColumnNumber() << "->" << cc.lineNumber() << ":"<<cc.columnNumber()<<"\n";
 			//if mirror synchronization is broken => resyncronize
@@ -2349,7 +2349,7 @@ void QEditor::setCompletionEngine(QCodeCompletionEngine *e)
 {
 	if ( m_completionEngine )
 	{
-		m_completionEngine->setEditor(0);
+        m_completionEngine->setEditor(nullptr);
 		m_completionEngine->deleteLater();
 	}
 
@@ -3158,7 +3158,7 @@ void QEditor::timerEvent(QTimerEvent *e)
 
 		if ( m_cursor.hasSelection() )
 			on &= style()->styleHint(QStyle::SH_BlinkCursorWhenTextSelected,
-									0,
+                                    nullptr,
 									this) != 0;
 
 		setFlag(CursorOn, on);

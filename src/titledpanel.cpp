@@ -6,7 +6,7 @@ Q_DECLARE_METATYPE(QAction *)
 QHash<QString, TitledPanelPage *> TitledPanelPage::allPages;
 
 TitledPanelPage::TitledPanelPage(QWidget *widget, const QString &id, const QString &text, const QIcon &icon) :
-	m_widget(0), m_visibleAction(0), m_selectAction(0), m_toolbarActions(0)
+    m_widget(nullptr), m_visibleAction(nullptr), m_selectAction(nullptr), m_toolbarActions(nullptr)
 {
 #ifndef QT_NO_DEBUG
 	if (allPages.contains(id)) {
@@ -108,8 +108,8 @@ void TitledPanelPage::setIcon(const QIcon &icon)
 /*** class TitledPanel ***/
 
 TitledPanel::TitledPanel(QWidget *parent) :
-	QFrame(parent), mToggleViewAction(0), closeAction(0), pageSelectActions(0), selectorStyle(ComboSelector), vLayout(0),
-	topbar(0), lbTopbarLabel(0), cbTopbarSelector(0), tbTopbarSelector(0), stack(0)
+    QFrame(parent), mToggleViewAction(nullptr), closeAction(0), pageSelectActions(0), selectorStyle(ComboSelector), vLayout(0),
+    topbar(nullptr), lbTopbarLabel(nullptr), cbTopbarSelector(nullptr), tbTopbarSelector(nullptr), stack(nullptr)
 {
 	setFrameShape(QFrame::Box);
 	setFrameShadow(QFrame::Plain);
@@ -165,7 +165,7 @@ void TitledPanel::removePage(TitledPanelPage *page, bool guiUpdate)
 	disconnect(page->m_visibleAction, SIGNAL(toggled(bool)), this, SLOT(togglePageVisibleFromAction(bool)));
 
 	stack->removeWidget(page->m_widget);
-	page->setParent(0);
+    page->setParent(nullptr);
 
 	int i = pages.indexOf(page);
 	if (i >= 0) pages.removeAt(i);
@@ -182,7 +182,7 @@ TitledPanelPage *TitledPanel::pageFromId(const QString &id)
 {
 	TitledPanelPage *page = TitledPanelPage::fromId(id);
 	if (!page || !pages.contains(page))
-		return 0;
+        return nullptr;
 	return page;
 }
 
@@ -221,7 +221,7 @@ void TitledPanel::setCurrentPage(const QString &id)
 TitledPanelPage *TitledPanel::currentPage() const
 {
 	QWidget *w = stack->currentWidget();
-	if (!w) return 0;
+    if (!w) return nullptr;
 	return qvariant_cast<TitledPanelPage *>(w->property("containingPage"));
 }
 
@@ -277,7 +277,7 @@ void TitledPanel::updateTopbar()
 	}
 
 	int visiblePageCount = 0;
-	TitledPanelPage *firstVisiblePage = 0;
+    TitledPanelPage *firstVisiblePage = nullptr;
 	foreach (TitledPanelPage *p, pages) {
 		if (p->visible()) {
 			if (!firstVisiblePage) firstVisiblePage = p;
@@ -286,9 +286,9 @@ void TitledPanel::updateTopbar()
 	}
 
 	// will be deleted together with oldTopbar because they are children of it
-	lbTopbarLabel = 0;
-	cbTopbarSelector = 0;
-	tbTopbarSelector = 0;
+    lbTopbarLabel = nullptr;
+    cbTopbarSelector = nullptr;
+    tbTopbarSelector = nullptr;
 
 	if (visiblePageCount == 1) {
 		lbTopbarLabel = new QLabel(firstVisiblePage->m_title);

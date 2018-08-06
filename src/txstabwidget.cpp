@@ -85,7 +85,7 @@ void TxsTabWidget::setCurrentEditor(LatexEditorView *edView)
 
 LatexEditorView *TxsTabWidget::editorAt(QPoint p) {
 	int index = tabBar()->tabAt(p);
-	if (index < 0) return 0;
+    if (index < 0) return nullptr;
 	return qobject_cast<LatexEditorView *>(widget(index));
 }
 
@@ -191,7 +191,7 @@ void TxsTabWidget::removeEditor(LatexEditorView *edView)
 LatexEditorView *TxsTabWidget::editorAt(int index)
 {
 	if (index < 0 || index >= count())
-		return 0;
+        return nullptr;
 	return qobject_cast<LatexEditorView *>(widget(index));
 }
 

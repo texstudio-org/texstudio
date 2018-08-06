@@ -8,7 +8,7 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::TexdocDialog),
 	packageNameValidator(this),
-	openButton(0)
+    openButton(nullptr)
 {
 	ui->setupUi(this);
 	UtilsUi::resizeInFontHeight(this, 28, 10);

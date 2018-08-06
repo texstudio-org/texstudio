@@ -119,7 +119,7 @@ QList<QCodeEdit*> QCodeEdit::m_instances;
 	The created editor object comes with builtin actions.
 */
 QCodeEdit::QCodeEdit(QWidget *p)
- : m_panelsMenu(0)
+ : m_panelsMenu(nullptr)
 {
 	m_editor = new QEditor(p);
 	m_watcher = new QPanelWatcher(this);
@@ -133,7 +133,7 @@ QCodeEdit::QCodeEdit(QWidget *p)
 	\param actions whether the QEditor object should create builtin actions
 */
 QCodeEdit::QCodeEdit(bool actions, QWidget *p, QDocument *doc)
- : m_panelsMenu(0)
+ : m_panelsMenu(nullptr)
 {
 	m_editor = new QEditor(actions, p,doc);
 	m_watcher = new QPanelWatcher(this);
@@ -149,7 +149,7 @@ QCodeEdit::QCodeEdit(bool actions, QWidget *p, QDocument *doc)
 	The created editor object comes with builtin actions.
 */
 QCodeEdit::QCodeEdit(const QString& layout, QWidget *p)
- : m_panelsMenu(0)
+ : m_panelsMenu(nullptr)
 {
 	m_editor = new QEditor(p);
 	m_watcher = new QPanelWatcher(this);
@@ -164,7 +164,7 @@ QCodeEdit::QCodeEdit(const QString& layout, QWidget *p)
 	\param actions whether the QEditor object should create builtin actions
 */
 QCodeEdit::QCodeEdit(const QString& layout, bool actions, QWidget *p)
- : m_panelsMenu(0)
+ : m_panelsMenu(nullptr)
 {
 	m_editor = new QEditor(actions, p);
 	m_watcher = new QPanelWatcher(this);
@@ -179,7 +179,7 @@ QCodeEdit::QCodeEdit(const QString& layout, bool actions, QWidget *p)
 	\param p panel layout to associate with the editor
 */
 QCodeEdit::QCodeEdit(QEditor *e, QPanelLayout *p)
- : m_panelsMenu(0)
+ : m_panelsMenu(nullptr)
 {
 	m_editor = e;
 	m_watcher = new QPanelWatcher(this);
@@ -194,7 +194,7 @@ QCodeEdit::QCodeEdit(QEditor *e, QPanelLayout *p)
 	\param l structure of the panel layout
 */
 QCodeEdit::QCodeEdit(QEditor *e, const QString& l)
- : m_panelsMenu(0)
+ : m_panelsMenu(nullptr)
 {
 	m_editor = e;
 	m_watcher = new QPanelWatcher(this);
@@ -390,7 +390,7 @@ QCodeEdit* QCodeEdit::manager(QEditor *e)
 		if ( m->m_editor == e )
 			return m;
 	
-	return 0;
+    return nullptr;
 }
 
 /*!
@@ -402,6 +402,6 @@ QEditor* QCodeEdit::managed(const QString& f)
 		if ( m && m->m_editor && (m->m_editor->fileName() == f) )
 			return m->m_editor;
 	
-	return 0;
+    return nullptr;
 }
 

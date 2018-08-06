@@ -90,7 +90,7 @@ void TableManipulationTest::addCol(){
 	QFETCH(QString, newText);
 	
 	ed->setText(text, false);
-	LatexTables::addColumn(ed->document(),row,col,0);
+    LatexTables::addColumn(ed->document(),row,col,nullptr);
 
     ed->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(ed->document()->text(), newText);

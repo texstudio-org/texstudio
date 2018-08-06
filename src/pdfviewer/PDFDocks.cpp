@@ -643,7 +643,7 @@ void PDFScrollArea::setPDFWidget(PDFWidget *widget)
 {
 	//from qt
 	if (pdf == widget) return;
-	if (pdf) delete pdf;
+    delete pdf;
     pdf = nullptr;
 	horizontalScrollBar()->setValue(0);
 	verticalScrollBar()->setValue(0);

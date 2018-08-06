@@ -272,7 +272,7 @@ void OutputViewWidget::changeEvent(QEvent *event)
 Q_DECLARE_METATYPE(QAction *)
 
 CustomWidgetList::CustomWidgetList(QWidget *parent):
-	QWidget(parent), stack(0), toolbar(0)
+    QWidget(parent), stack(nullptr), toolbar(nullptr)
 {
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
@@ -435,7 +435,7 @@ QWidget *CustomWidgetList::widget(const QString &id) const
 	for (int i = 0; i < widgets.size(); i++)
 		if (widgetId(widgets[i]) == id)
 			return widgets[i];
-	return 0;
+    return nullptr;
 }
 
 QList<QWidget *> CustomWidgetList::getWidgets() const

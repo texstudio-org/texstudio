@@ -62,7 +62,7 @@ QTextCodec * QTextCodecForTeXShopName(const QByteArray &enc)
 	//      "DOS Chinese Simplified",       "",
 	//      "GBK",                          "",
 	//      "GB 2312",                      "",
-	return 0;
+    return nullptr;
 }
 
 /*! search for first \usepackage[.*]{<packageName>} outside of a comment
@@ -138,7 +138,7 @@ QTextCodec * QTextCodecForLatexName(QString str)
 	//if (str == "nextstep, next?
 
 	//return QTextCodec::codecForName(str); //try it anyways
-	return 0;
+    return nullptr;
 }
 
 QStringList latexNamesForTextCodec(const QTextCodec *codec)
@@ -215,7 +215,7 @@ QTextCodec *guessEncodingBasic(const QByteArray &data, int *outSure)
 {
 	const char *str = data.data();
 	int size = data.size();
-	QTextCodec *guess = 0;
+    QTextCodec *guess = nullptr;
 	int sure = 1;
 	if (size > 0) {
 		unsigned char prev = str[0];
