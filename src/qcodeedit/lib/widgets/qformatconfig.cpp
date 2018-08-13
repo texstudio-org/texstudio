@@ -41,7 +41,7 @@
 
 */
 
-QFormatConfig::QFormatConfig(QWidget *w)
+QFormatConfig::QFormatConfig(QWidget *w, bool adaptStyle)
  : QWidget(w), m_autonomous(false), m_currentScheme(nullptr)
 {
 	setupUi(this);
@@ -93,7 +93,9 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	// https://bugreports.qt-project.org/browse/QTBUG-25148
 	// https://sourceforge.net/p/texstudio/bugs/615/
 	// https://sourceforge.net/p/texstudio/bugs/630/
-	m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
+	if (adaptStyle) {
+		m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
+	}
 #endif
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
