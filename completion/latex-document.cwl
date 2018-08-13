@@ -165,7 +165,7 @@
 \botfigrule#*
 \cal
 \caption{text}
-\caption[short text]{text}
+\caption[short text%text]{text}
 \chapter{title}#L1
 \chapter*{title}#L1
 \chapter[short title]{title}#L1
@@ -188,7 +188,7 @@
 \descriptionlabel{code}#*
 \documentclass[keyvals]{class}
 \documentclass{class}
-\em
+\em#*
 \emph{text}
 \enlargethispage*{size}
 \enlargethispage{size}
