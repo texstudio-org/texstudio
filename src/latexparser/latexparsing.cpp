@@ -436,6 +436,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     int j = lexed.length() - 1;
                     while (j >= 0 && lexed.at(j).start > tk1.start)
                         j--;
+                    bool forceContinue=false;
                     if (j >= 0 && lexed.at(j).start == tk1.start) {
                         if (Token::tkSingleArg().contains(tk1.subtype) || tk1.subtype >= Token::specialArg) { // all special args are assumed single word arguments
                             // join all args for intended single word argument
@@ -463,11 +464,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                     stack.push(tk3);
                                 } else { // only care for further arguments if not in verbatim mode (see minted)
                                     CommandDescription cd = lp.commandDefs.value("\\begin{" + env + "}", CommandDescription());
-                                    if (cd.args > 1) {
+                                    if ((cd.args > 1)||(cd.args==1 && cd.optionalArgs>0)) {
                                         cd.args--;
                                         cd.argTypes.takeFirst();
                                         cd.optionalCommandName="\\begin{" + env + "}";
                                         commandStack.push(cd);
+                                        forceContinue=true;
                                     }
                                 }
                             }
@@ -478,6 +480,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         // remove commands from commandstack with higher level, as they can't have any valid arguments anymore
                         while (!commandStack.isEmpty() && commandStack.top().level > level) {
                             commandStack.pop();
+                        }
+                        if(forceContinue){
+                            forceContinue=false;
+                            continue;
                         }
                     } else { // opening not found, whyever (should not happen)
                         //level--;
