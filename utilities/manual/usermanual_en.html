@@ -382,7 +382,7 @@ Built-in templates can not be changed.</p>
 <p><IMG src="doc5.png" border="1" alt="Appendix"></p>
 <p>The "Structure View" is automatically updated as you type. You can also use the "Refresh Structure" (menu "Idefix") command at any moment.</p>
 <p>The structure view shows labels, sections, includes and beamer blocks and todos.</p>
-<p>There are two kind of todos that will be listed a) todos from a todo-like command, e.g. \todo{} from the package todonotes. b) todo-like comments: This is a comment with a capitalized first word, e.g. "% TODO", "%FIXME", "%ASK".</p>
+<p>There are two kind of todos that will be listed a) todos from a todo-like command, e.g. \todo{} from the package todonotes. b) todo-comments: This is a comment with a "% TODO" or "%todo". You can adapt the regular expression for other comments to be marked as todo-comment in <em>options/advanced editor/Regular Expression for TODO comment</em>, e.g "%\s?[A-Z][A-Z_\-]+" for any capital letter only comment.</p>
 <p>
 The structure view also offers a context menu which allows one to copy/cut all text which belongs to a section (including subsection) and paste it before or after a section.
 Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
