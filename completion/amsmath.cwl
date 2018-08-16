@@ -11,7 +11,7 @@
 \begin{alignat*}{ncols}#\math,array
 \begin{aligned}#m\array
 \begin{aligned}[alignment]#m\array
-\begin{alignedat}#m\array
+\begin{alignedat}{ncols}#m\array
 \begin{bmatrix}#m\array
 \begin{Bmatrix}#m\array
 \begin{cases}#\array
