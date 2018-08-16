@@ -4,6 +4,7 @@
 
 #include:caption
 \p#S
+\subref{key}#r
 \newtheorem{subfigure}#N
 \captionsetup[sub]{options}
 \phantomsubcaption
