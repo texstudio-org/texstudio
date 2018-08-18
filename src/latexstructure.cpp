@@ -214,6 +214,19 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 			QString tooltip("<html><b>" + htmlTitle + "</b>");
 			if (entry->getCachedLineNumber() > -1)
 				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+			LatexDocument *dc = documents.findDocument(entry->title+".tex");
+			if (dc != nullptr) {
+				foreach (StructureEntry *se, dc->baseStructure->children) {
+					if (se->type == StructureEntry::SE_SECTION ) {
+						tooltip.append(QString("<br><b>%1</b>").arg(se->title));
+						foreach (StructureEntry *se2, se->children) {
+							if (se->type == StructureEntry::SE_SECTION ) {
+								tooltip.append(QString("<br>&nbsp;%1 ").arg(se2->title));
+							}
+						}
+					}
+				}
+			}
 			if (!entry->valid)
 				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(missingFileColor.name(), tr("File not found.")));
 			return QVariant(tooltip);
