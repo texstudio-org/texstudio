@@ -3682,6 +3682,13 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 		} else {
 			QDocumentCursor cursor = cursorForPosition(p);
 
+			if (!cursor.isValid() && !cursor.line().isValid() && cursor.lineNumber() > 0) {
+				// clicked beyond end of doc: lineNumber is last line + 1
+				// move cursor to end of doc.
+				cursor.setLineNumber(cursor.lineNumber() - 1);
+				cursor.movePosition(1, QDocumentCursor::EndOfLine);
+			}
+
 			if ( cursor.isNull() )
 				break;
 
