@@ -176,6 +176,7 @@
 <file>completion/theorem.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikz.cwl</file>
+<file>completion/tikzorbital.cwl</file>
 <file>completion/tikz-timing.cwl</file>
 <file>completion/titlesec.cwl</file>
 <file>completion/tocbibind.cwl</file>
