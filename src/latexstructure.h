@@ -117,7 +117,7 @@ public:
     void setHighlightedEntry(StructureEntry *entry);
 
 private slots:
-	void structureUpdated(LatexDocument *document, StructureEntry *highlight = 0);
+    void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
 	void structureLost(LatexDocument *document);
 	void removeElement(StructureEntry *se, int row);
 	void removeElementFinished();

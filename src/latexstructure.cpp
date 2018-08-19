@@ -160,7 +160,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 	static const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
 
 	if (!index.isValid()) return QVariant();
-	StructureEntry *entry = (StructureEntry *) index.internalPointer();
+    StructureEntry *entry = static_cast<StructureEntry *>(index.internalPointer());
 	if (!entry) return QVariant();
 	QString result;
 	switch (role) {
@@ -201,6 +201,11 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
 			if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
 				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+            // show preview if file is loaded
+            if(LatexDocument *doc=entry->document){
+                int l=entry->getRealLineNumber();
+                tooltip += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+            }
 			tooltip.append("</html>");
 			return QVariant(tooltip);
 		}
@@ -214,8 +219,19 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 			QString tooltip("<html><b>" + htmlTitle + "</b>");
 			if (entry->getCachedLineNumber() > -1)
 				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
-			if (!entry->valid)
+            if (!entry->valid){
 				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(missingFileColor.name(), tr("File not found.")));
+            }else{
+                // show preview if file is loaded
+                if(LatexDocument *doc=entry->document){
+                    QString fileName=entry->title;
+                    fileName=doc->getAbsoluteFilePath(fileName,".tex");
+                    LatexDocument *incDoc = documents.findDocument(fileName);
+                    if(incDoc){
+                        tooltip += incDoc->exportAsHtml(incDoc->cursor(0, 0,qMin(5,incDoc->lines()-1)), true, true, 60);
+                    }
+                }
+            }
 			return QVariant(tooltip);
 		}
 		if (entry->getCachedLineNumber() > -1)
@@ -280,7 +296,7 @@ int LatexDocumentsModel::rowCount ( const QModelIndex &parent ) const
 {
 	if (!parent.isValid()) return documents.documents.count();
 	else {
-		StructureEntry *entry = (StructureEntry *) parent.internalPointer();
+        StructureEntry *entry = static_cast<StructureEntry *>(parent.internalPointer());
 		if (!entry) return 0;
 		return entry->children.size();
 	}
@@ -297,7 +313,7 @@ QModelIndex LatexDocumentsModel::index ( int row, int column, const QModelIndex 
 	if (column != 0) return QModelIndex(); //one column
 	if (row < 0) return QModelIndex(); //shouldn't happen
 	if (parent.isValid()) {
-		const StructureEntry *entry = (StructureEntry *) parent.internalPointer();
+        const StructureEntry *entry = static_cast<StructureEntry *>(parent.internalPointer());
 		if (!entry) return QModelIndex(); //should never happen
 		if (row >= entry->children.size()) return QModelIndex(); //shouldn't happen in a correct view
 		return createIndex(row, column, entry->children.at(row));
@@ -334,7 +350,7 @@ QModelIndex LatexDocumentsModel::index ( StructureEntry *entry ) const
 QModelIndex LatexDocumentsModel::parent ( const QModelIndex &index ) const
 {
 	if (!index.isValid()) return QModelIndex();
-	const StructureEntry *entry = (StructureEntry *) index.internalPointer();
+    const StructureEntry *entry = static_cast<StructureEntry *>(index.internalPointer());
 #ifndef QT_NO_DEBUG
     const LatexDocument *found = nullptr;
 	foreach (const LatexDocument *ld, documents.documents)
@@ -374,7 +390,7 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex &index ) const
 StructureEntry *LatexDocumentsModel::indexToStructureEntry(const QModelIndex &index )
 {
     if (!index.isValid()) return nullptr;
-	StructureEntry *result = (StructureEntry *)index.internalPointer();
+    StructureEntry *result = static_cast<StructureEntry *>(index.internalPointer());
     if (!result || !result->document) return nullptr;
 	return result;
 }
