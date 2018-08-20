@@ -22,7 +22,7 @@ POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf7
 
 # Gather information
 
-# GNU extensions for sed are not supported; on Linux, --posix mimicks this behaviour
+# GNU extensions for sed are not supported; on Linux, --posix mimics this behaviour
 TXS_VERSION=$(sed -ne 's/^#define TXSVERSION "\(.*\)".*$/\1/p' src/utilsVersion.h)
 echo "TXS_VERSION = ${TXS_VERSION}"
 

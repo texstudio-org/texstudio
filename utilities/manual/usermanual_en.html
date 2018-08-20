@@ -94,7 +94,7 @@ TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a diffe
 </p>
 <ul>
 <li>"Folding" toggles the editors code-folding capability (hide sections of the text).
-<li>The selection box "Indentation mode" lets you select, wether indented lines are followed by lines of the same indentation after pressing Enter or letting TeXstudio do automatic indentation.
+<li>The selection box "Indentation mode" lets you select, whether indented lines are followed by lines of the same indentation after pressing Enter or letting TeXstudio do automatic indentation.
 </ul>
 <p><IMG src="configure_editor.png" border="1" alt="Configure Editor"></p>
 <h2 id="SECTION02">1.2 Configuring the latex related commands</h2>
@@ -169,7 +169,7 @@ This also means that you can change every command as you want, ignoring its old 
 <tr><td>--(no-)auto-close</td><td>Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
 <tr><td>--(no-)focus</td><td>Determines whether the viewer should be focused (default: focus iff windowed)</td></tr>
 <tr><td>--(no-)foreground</td><td>Determines whether the viewer should be brought to front (default: foreground)</td></tr>
-<tr><td>filename</td><td>Determines the file to open. Like in other commands, <a href="#SECTION02">file patterns</a> are supported. If this parameter is not provided, TXS uses <code>"?am.pdf"</code>, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in <code>Options -> Build -> Build Options -> Additional Serach Paths -> PDF Files</code></td></tr>
+<tr><td>filename</td><td>Determines the file to open. Like in other commands, <a href="#SECTION02">file patterns</a> are supported. If this parameter is not provided, TXS uses <code>"?am.pdf"</code>, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in <code>Options -> Build -> Build Options -> Additional Search Paths -> PDF Files</code></td></tr>
 </table>
 
 <p>It is also possible to modify the arguments of called subcommands with argument modifiers or  by adding a new argument . These modifiers are passed through called lists, so it will always change the arguments of the finally called program, even if the directly called subcommand is just a wrapper around another command:<br><br>
@@ -184,7 +184,7 @@ This also means that you can change every command as you want, ignoring its old 
 </table>
 
 <p>
-Finally, there are also hidden options, which can only be changed by modifing the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
+Finally, there are also hidden options, which can only be changed by modifying the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
 </p>
 <h2 id="SECTION02a2">1.3.2 Details of the execution environment</h2>
 <h3>Environment Variables</h3>
@@ -240,7 +240,7 @@ cmd /C "/path/to/testscript.bat foo > bar"
 <p><IMG src="configure_general.png" border="1" alt="Configure General"></p>
 <h2 id="SECTION03">1.4.1 Configuring the spell checker</h2>
 <p>
-TeXstudio offers an integrated spellchecker which can be used either via a dialog or dirctly while typing. All text outside of LaTeX commands is checked. Additionally, text in options of LaTeX commands is also checked. TeXstudio determines if an option contains natural text and thus should be spell checked by looking up its definition in the completion word lists. For more information on completion word lists see the section on <a href="#SECTION040">completion</a> and the <a href="#CWLDESCRIPTION">description of the cwl format</a>.</p>
+TeXstudio offers an integrated spellchecker which can be used either via a dialog or directly while typing. All text outside of LaTeX commands is checked. Additionally, text in options of LaTeX commands is also checked. TeXstudio determines if an option contains natural text and thus should be spell checked by looking up its definition in the completion word lists. For more information on completion word lists see the section on <a href="#SECTION040">completion</a> and the <a href="#CWLDESCRIPTION">description of the cwl format</a>.</p>
 <p>The spell checker uses the Hunspell dictionary format, which is widely used, e.g. in OpenOffice, LibreOffice and Firefox. The each dictionary consists of two files (<code>.dic</code> and <code>.aff</code>). French, British and German dictionaries are distributed with TeXstudio. You can add additional dictionaries yourself by placting them in the dictionary path. A particularly convenient way to get additional dictionaries is downloading a dictionary extension of <A href="http://extensions.openoffice.org/" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A> or <a href="https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any">LibreOffice</a> and importing them using the button <i>Import Dictionary</i> in the options.</p>
 <p>You can specify one or more search paths for the dictionaries in the options. Multiple paths need to be separated by semicolon. With the paths you can use the special strings <code>[txs-app-dir]</code> and <code>[txs-settings-dir]</code>. These are expanded to the path of the executable and the config file (<code>texstudio.ini</code>) respectively. This expansion is particularly useful if you use a portable version on a USB stick in which the actual location of the program may depend on the computer you are using.</p>
 <p><IMG src="spellcheck_options.png" border="1" alt="Spellcheck Options"></p>
@@ -301,7 +301,7 @@ If a shortcut should be set to default value or removed completely, the items "&
 <p><IMG src="configure_shortcuts.png" border="1" alt="Configure Shortcuts"></p>
 <h2 id="SECTION06">1.7 Configuring the Latex/Math-Menu (Advanced option)</h2>
 <p>The Math/Latex-Menu can be adapted to user likings.
-For this menu items can be renamed and a new Latex-Code can be placed. The apropriate item can be be directly edited by doubleclicking on them.
+For this menu items can be renamed and a new Latex-Code can be placed. The appropriate item can be be directly edited by doubleclicking on them.
 </p>
 <p><IMG src="configure_customizeMenu.png" border="1" alt="Customize Menu"></p>
 <h2 id="SECTION07">1.8 Configuring the Custom Toolbar (Advanced option)</h2>
@@ -316,13 +316,13 @@ Linux and Mac OSX normally provide already svn tools, for Windows, the installat
 <p>The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the Commands page in the options.
 On the SVN page you can can choose the degree of automation (see below) WSVN, see below.
 </p>
-<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the commmand line or the GUI of your choice).
+<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the command line or the GUI of your choice).
 Once you have a working copy, TeXstudio can operate on it.
 </p>
 <p>
 "Automatically check in after save" allows TeXstudio to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
 Since text documents are rather small compared to disk spaces, size of the svn database should not be a problem.
-In addition newly saved files (save as) are automatically added to svn control,provided that the directory is alredy under svn control.
+In addition newly saved files (save as) are automatically added to svn control,provided that the directory is already under svn control.
 If that is not the case, TeXstudio searches in "SVN Directory Search Depth" directory above the current diorectory for a svn controlled directory to which the subdirectories and the TeX-Document will be added.
 If no appropriate directory is found, a repository is automatically generated in a directory called "./repo" and the document is added.
 Thus the user does not need to look up the necessary commands to set up a repository. This functionality is only activated when "Auto checkin in" is enabled !
@@ -357,7 +357,7 @@ A dialogue gives a selection of templates.</p>
 Built-in templates can not be changed.</p>
 <p>User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
 <h3 id="SECTION12aa">2.2.2.1 The Template Format</h3>
-<p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all .tex files in a zip achive. Optionally, meta data can be stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported in the meta data:</p>
+<p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all .tex files in a zip archive. Optionally, meta data can be stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported in the meta data:</p>
 <pre>
 {
 "Name"        : "Book",
@@ -404,7 +404,7 @@ Section can be indented/unindented which means that the hierarchy level is chang
 </ul>
 <p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronymes which require a fixed capitalization (e.g. "TeXstudio").</p>
 <h3>Escaping reserved characters</h3>
-<p>If you have text containing reserved TeX characters and want the text to appear literally in your document, you have to escape the reserved charaters to prevent LaTeX from interpreting them. The following functions take care of that (Menu: Idefix)</p>
+<p>If you have text containing reserved TeX characters and want the text to appear literally in your document, you have to escape the reserved characters to prevent LaTeX from interpreting them. The following functions take care of that (Menu: Idefix)</p>
 <ul>
 <li>Paste to LaTeX: Takes the text from the clipboard and escapes reserved characters prior to pasting into the editor.</li>
 <li>Convert to LaTeX: Escapes the reserved characters in the current selection.</li>
@@ -460,8 +460,8 @@ The wizard also comes into play when you drag   drop an image file to your docum
 If the list contains words which all start with the same letter combination, you can press Tab to complete all common letters. If only one element is present in the list, Tab selects this one to do the completion, like Enter. This behaviour is similar to tab completion in bash shells.
 You can also press Ctrl+Space to open this list whenever you want.<br>
 If a tag has different options, a short descriptive text is inserted into your text, telling you the meaning of each option. You can press Ctrl+Left, Ctrl+Right to select all positions.<br>
-Furthermore normal text can be completed by starting to type a word and pressing Ctrl+Space. All apropriate words in the current document are used as possible suggestions.<br>
-If a enviroment is to be inserted, typing in the beginning of the environment name and pressing Ctrl+Alt+Space gives suggestions for adequate enviroments which are inserted completely with \begin{env}..\end{env}<br>
+Furthermore normal text can be completed by starting to type a word and pressing Ctrl+Space. All appropriate words in the current document are used as possible suggestions.<br>
+If a environment is to be inserted, typing in the beginning of the environment name and pressing Ctrl+Alt+Space gives suggestions for adequate environments which are inserted completely with \begin{env}..\end{env}<br>
 And finally user tags can be assigned a abbreviation which can also be used with completion. Just type in the start of the abbreviation and start the completion with Ctrl+Space. The abbreviation should show up in the completion list, especially marked with &ldquo;abbreviation (template)&rdquo;.<br>
 If you change a command by completing a new command, only the command name is substituted. The same is true for environments, where the environment is changed in the \begin- and \end-command.
 </p>
@@ -513,7 +513,7 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 <p>Obviously, TeXstudio can only use information (defined commands, labels, document hirachy, etc.) that it is aware of. We use the information in all opened files, but if a label in a multi-file document is defined in a not-loaded files, TeXstudio does not know about it and will mark it as missing in references. To remedy this, you can just open the corresponding file as well.</p>
 
 <p>More recent versions of TeXstudio have an advanced option <code>Editor -> Automatically load included files</code>. It's disabled by default for performance reasons with older systems. When you enable this option, TeXstudio will automatically load and parse all files of multi-file-documents as soon as one of the files is opened. You may have to set the magic comment <code>% !TeX root = root-filename</code> if you do not have the root document open.
-With this option enabled TeXstudio will allways know about your complete document and act accordingly when performing highlighting or completion.</p>
+With this option enabled TeXstudio will always know about your complete document and act accordingly when performing highlighting or completion.</p>
 
 
 <h2 id="SECTION32a">4.2 Syntax Check</h2>
@@ -635,7 +635,7 @@ Note: texstudio needs that the env-name starts with "%", though that character i
   <tr><th colspan=2>Editor object</th></tr>
   <tr>
   	<td> editor.search(searchFor, [options], [scope], [callback]) </td>
-	<td> Searchs something in the editor.
+	<td> Searches something in the editor.
 	     <ul>
 	     <li>searchFor is the text which is searched. It can be either a string (e.g. "..") or a regexp (e.g. /[.]{2}/). </li>
 	     <li>options is a string and a combination of "i", "g", "w" to specify a case-<em>i</em>nsensitive search, a <em>g</em>lobal search (continue after the first match) or a whole-<em>w</em>ord-only search. </li>
@@ -808,7 +808,7 @@ Note: texstudio needs that the env-name starts with "%", though that character i
 <tr><td>editor.document().getMagicComment(name);</td><td>  Returns the content of a magic comment, if it exists   </td></tr>
 <tr><td>editor.document().updateMagicComment(name, value, [create = false]);</td><td>  Changes a magic comment  </td></tr>
 <tr><td>editor.document().labelItems/refItems/bibItems</td><td>  Returns the ids of all labels/references or included bibliography files. </td></tr>
-<tr><td>editor.document().getLastEnvName(lineNr)</td><td>  Returns the name of the current enviroment (at the end of the line). </td></tr>
+<tr><td>editor.document().getLastEnvName(lineNr)</td><td>  Returns the name of the current environment (at the end of the line). </td></tr>
 
   <tr><th colspan=2>Document Manager object</th></tr>
   <tr><td>documentManager.currentDocument </td><td>   Current document (usually the same as editor.document(), unless the script is running in background mode) </td></tr>
@@ -1123,7 +1123,7 @@ Synopsis :<br>
 TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
 Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned. Additionally you can CTRL+left click on a word in the text editor to jump to the pdf or use the context menu and select "Go To PDF".<br>
 Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
-Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor oposition in the editor.
+Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor opposition in the editor.
 Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
 </p>
 
@@ -1232,7 +1232,7 @@ Launch TeXstudio from qpdfview: <span class="command">texstudio "%1" -line %2</s
 </li>
 <li>
 <code>% !TeX root = filename</code>
-<p>Defines the root document for this file (i.e. the file which will be passed to the LaTeX compiler when building). This setting override the automatic root detection in TeXstudio. In turn, it's overridden, if an <i>explict root document</i> is set at <code>Options -> Root Document</code>.</p>
+<p>Defines the root document for this file (i.e. the file which will be passed to the LaTeX compiler when building). This setting override the automatic root detection in TeXstudio. In turn, it's overridden, if an <i>explicit root document</i> is set at <code>Options -> Root Document</code>.</p>
 </li>
 <li>
 <code>% !TeX program = pdflatex</code>
@@ -1447,15 +1447,15 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>text</code> or ends with <code>%text</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked).</li>
   <li><code>title</code> or <code>short title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section)</li>
   <li><code>bibid</code> and <code>keylists</code>: If used in a command classified as "C". See the classifier description below.</li>
-  <li><code>cmd</code> and <code>command</code> or ends with <code>%cmd</code>: defintion for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
-  <li><code>def</code> and <code>definition</code>: actual defintion for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
+  <li><code>cmd</code> and <code>command</code> or ends with <code>%cmd</code>: definition for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
+  <li><code>def</code> and <code>definition</code>: actual definition for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
   <li><code>args</code>: number of arguments for command, e.g. \newcommand{cmd}[args]{definition}.</li>
   <li><code>package</code>:package name, e.g. \usepackage{package}</li>
   <li><code>citekey</code>:definition of new citation key name, e.g. \bibitem{citekey}</li>
   <li><code>title</code> and <code>short title</code>:section name, e.g. \section[short title]{title}</li>
   <li><code>color</code>:color name, e.g. \textcolor{color}</li>
   <li><code>width</code>,<code>length</code>,<code>height</code> or ends with <code>%l</code>:width or length option e.g. \abc{size%l}</li>
-  <li><code>cols</code> and <code>preamble</code>:columns defintion in tabular,etc. , e.g. \begin{tabular}{cols}</li>
+  <li><code>cols</code> and <code>preamble</code>:columns definition in tabular,etc. , e.g. \begin{tabular}{cols}</li>
   <li><code>file</code>:file name</li>
   <li><code>URL</code>:URL</li>
   <li><code>options</code>:package options, e.g. \usepackage[options]</li>
@@ -1476,7 +1476,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
 <h3>4.13.3 Classification format</h3>
-<p>The follwing classifications are known to TXS:</p>
+<p>The following classifications are known to TXS:</p>
 <table>
 <tr><th>Classifier</th><th>Meaning</th></tr>
   <tr><td>*</td><td>unusual command which is used for completion only in with the "all" tab. This marker may be followed by other classifications.</td></tr>
@@ -1524,8 +1524,8 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <h3>4.13.4 cwl guidelines</h3>
 <p>Though TeXstudio can automatically create cwls from packages, these autogenerated cwls do not contain meaningful argument names and no classification of commands. Therefore we ship hand-tuned cwls for many packages. We encourage users  to contribute new cwl files. These should have the following attributes:</p>
 <ul>
-  <li><b>package-based:</b> Each cwl should correspond to a package. The exception are some cwls containing fundamental (La)TeX commmands, but we've already written them so you should not have to bother. The cwl should be named like the package so that automatic loading works. If you <code>\usepackage{mypackage}</code> TeXstudio will load mypackage.cwl if available.</li>
-  <li><b>complete:</b> The cwl should contain all commands in the package. If you use a non-specified command in the editor, the syntaxchecker will mark it as unkown.</li>
+  <li><b>package-based:</b> Each cwl should correspond to a package. The exception are some cwls containing fundamental (La)TeX commands, but we've already written them so you should not have to bother. The cwl should be named like the package so that automatic loading works. If you <code>\usepackage{mypackage}</code> TeXstudio will load mypackage.cwl if available.</li>
+  <li><b>complete:</b> The cwl should contain all commands in the package. If you use a non-specified command in the editor, the syntaxchecker will mark it as unknown.</li>
   <li><b>specific:</b> The commands should be classified if possible. This allows TeXstudio to give additional context to the command (e.g. warn if a math command is used outside of a math environment or check references and citations.</li>
   <li><b>priorized:</b> Some packages may specify very many commands. Mark the unusual ones by the *-classifier to prevent the completer from overcrowding with rarely used commands.</li>
 </ul>
@@ -1550,7 +1550,7 @@ c&amp;d\\
 </pre>
 <p>
 Place the cursor inside the table and select the menu "Latex/Manipulate Tables/Remodel Table Using Template".<br>
-Now you can select a template which defines the formating of the table.
+Now you can select a template which defines the formatting of the table.
 A number of templates are predefined by txs:
 <ul>
 <li>fullyframed_firstBold</li>
@@ -1571,7 +1571,7 @@ c&amp;d\\ \hline
 <h3>4.14.1 Creating table templates</h3>
 
 <p>The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.</p>
-<p>Meta data is used to provide additional information for the template. It can be stored in a <code>metaData</code> object in the source code. The code <code>var metaData = {</code> has to start on the first line of the file. Currently only string values are accepted. It is possible to use html tags for formating. Example:</p>
+<p>Meta data is used to provide additional information for the template. It can be stored in a <code>metaData</code> object in the source code. The code <code>var metaData = {</code> has to start on the first line of the file. Currently only string values are accepted. It is possible to use html tags for formatting. Example:</p>
 <pre>
 var metaData = {
 "Name"       : "Colored rows",
@@ -1586,8 +1586,8 @@ var metaData = {
 <ul>
 <li>def   the simplified table definition without any formatting (i.e. ll instead of |l|l|)</li>
 <li>defSplit   the table definition split by column (array=l,l,p{2cm})</li>
-<li>env   the actual enviroment name of the old table like "tabular" or "longtable"</li>
-<li>tab   the actual table. It is a list of lines, each line is a list of columsn which contains the cell content as string</li>
+<li>env   the actual environment name of the old table like "tabular" or "longtable"</li>
+<li>tab   the actual table. It is a list of lines, each line is a list of columns which contains the cell content as string</li>
 </ul>
 <br>
 <p>To see the principle of work, the source for the "plain_tabular" template is given here.
@@ -1609,7 +1609,7 @@ for(var i=0;i&lt;tab.length;i++){  // loop through all rows of the table
 	}
 	println("\\\\") // close row with \\, note that js demands for backslashes in the string
 }
-println("\\end{tabular}") // close enviroment
+println("\\end{tabular}") // close environment
 </pre>
 <p>As can be seen in the example, the table has to be rebuilt completely, thus allowing new formatting.
 A second example gives a slightly more elaborate table (fullyframed_firstBold):
@@ -1646,15 +1646,15 @@ println("\\end{"+env+"}")
 </p>
 
 <h1 id="TENTATIVE-FEATURES">5. Tentative Features</h1>
-<p>These features allow you to modify core aspects of TeXstudio and thus provide a great flexibility of adapting TeXstudio to your needs. Since these features are either complex or are tightly bound to the internals, we cannot guarantee functionality in all cases and forever. For once, we do not have enough resources to provide full support. Additionaly, the dependence on internals conficts with our need to freely change internals without restriction for future development.</p>
-<p>Nevertheless, we decided that these features may be of interest for experiended users. As a compromize, we provide these features tentatively.</p>
+<p>These features allow you to modify core aspects of TeXstudio and thus provide a great flexibility of adapting TeXstudio to your needs. Since these features are either complex or are tightly bound to the internals, we cannot guarantee functionality in all cases and forever. For once, we do not have enough resources to provide full support. Additionally, the dependence on internals conflicts with our need to freely change internals without restriction for future development.</p>
+<p>Nevertheless, we decided that these features may be of interest for experiended users. As a compromise, we provide these features tentatively.</p>
 <p><strong>We do not guarantee any of this will still be working in future versions. Functionality may change or be removed without notice.</strong></p>
 
 <h2 id="ADVANCED-SCRIPTING">5.1 Advanced Skripting</h2>
 <p>You can modify the behavior or add new functionality using <a href="#JAVASCRIPT-MACROS">Script Macros</a>. The section above lists the core commands, but there are more commands which are not documented. A number of them are used in the <a href="https://sourceforge.net/p/texstudio/wiki/Scripts/">examples section in the wiki</a>. The names and signatures of these functions are directly bound to the internal C++ code of TeXstudio and thus may change as we further develop TeXstudio.</p>
 
 <h2 id="STYLESHEETS">5.2 Style Sheets</h2>
-<p>Qt supports modifying the appearence of an application using <a href="http://doc.qt.io/qt-5/stylesheet-syntax.html">style sheets</a>. You may use this to adapt the GUI of the main window by placing a file <code>stylesheet.qss</code> into the settings directory. The file is read at program startup.</p>
+<p>Qt supports modifying the appearance of an application using <a href="http://doc.qt.io/qt-5/stylesheet-syntax.html">style sheets</a>. You may use this to adapt the GUI of the main window by placing a file <code>stylesheet.qss</code> into the settings directory. The file is read at program startup.</p>
 
 <p>Please note that the style sheet may interfere with other ways of configuring the GUI, in particular the style color scheme and other options. Therefore we do not guarantee a consistent behavior when using style sheets</p>
 

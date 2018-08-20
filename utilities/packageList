@@ -1093,7 +1093,7 @@ hyphen-turkmen: Turkmen hyphenation patterns.
 hyphen-ukrainian: Ukrainian hyphenation patterns.
 hyphen-uppersorbian: Upper Sorbian hyphenation patterns.
 hyphen-welsh: Welsh hyphenation patterns.
-hyphenat: Disable/enable hypenation.
+hyphenat: Disable/enable hyphenation.
 hyphenex: Generate a hyphenation exceptions file.
 hyplain: Basic support for multiple languages in Plain TeX.
 ibycus-babel: Use the Ibycus 4 Greek font with Babel
@@ -1230,7 +1230,7 @@ latex-tabellen: LaTeX Tabellen.
 latex-tds: A structured copy of the LaTeX distribution.
 latex-veryshortguide: The Very Short Guide to LaTeX.
 latex-web-companion: Examples from The LaTeX Web Companion.
-latex2e-help-texinfo: Unoffical reference manual covering LaTeX2e.
+latex2e-help-texinfo: Unofficial reference manual covering LaTeX2e.
 latex2e-help-texinfo-spanish: (shortdesc missing)
 latex2man: Translate LaTeX-based manual pages into Unix man format.
 latex4wp: A LaTeX guide specifically designed for word processor users.
