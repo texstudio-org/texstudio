@@ -256,13 +256,16 @@ QString LatexReference::getTextForTooltip(const QString &command)
 {
 	QString sectionText = getSectionText(command);
 	QString partialText;
-	if (sectionText.count('\n') > 30) { // tooltip would be very large: try to get a reasonable smaller string
-		if (command.startsWith("\\begin{")) {
+    if (sectionText.count('\n') > 30) { // tooltip would be very large: try to get a reasonable smaller string
+        if (command.startsWith("\\begin{")) {
 			return truncateLines(sectionText, 30);
 		} else {
 			partialText = getPartialText(command);
-			if (!partialText.isEmpty()) return partialText;
-		}
+            int nr=partialText.count('\n');
+            if(nr<10)
+                return truncateLines(sectionText, 30);
+            if (!partialText.isEmpty()) return partialText;
+        }
 	}
 	return sectionText;
 }
