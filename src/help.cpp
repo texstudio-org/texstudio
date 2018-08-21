@@ -329,7 +329,7 @@ QString LatexReference::getPartialText(const QString &command)
 /* parses the index of the reference manual and extracts the anchor names for the commands */
 void LatexReference::makeIndex()
 {
-	QString startTag("<table class=\"index-fn\"");
+	QString startTag("<table class=\"index-cp\"");
 	QString endTag("</table>");
 
 	int start = m_htmltext.indexOf(startTag);
