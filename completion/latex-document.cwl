@@ -136,7 +136,7 @@
 \end{verse}
 \end{Vmatrix}
 \end{vmatrix}
-\ensuremath{text}
+\ensuremath{formula}
 \bezier{n}(x1,y1)(x2,y2)(x3,y3)#*/picture
 \bf#*
 \bfseries
