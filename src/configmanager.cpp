@@ -62,7 +62,7 @@ void ManagedProperty::deallocate()
 	default:
 		Q_ASSERT(false);
 	}
-	storage = 0;
+    storage = nullptr;
 }
 
 
@@ -215,10 +215,10 @@ void ManagedProperty::writeToObject(QObject *w) const
 	if (doubleSpinBox) {
 		switch (type) {
 		case PT_DOUBLE:
-			doubleSpinBox->setValue(*((double *)storage));
+            doubleSpinBox->setValue(*(static_cast<double *>(storage)));
 			break;
 		case PT_FLOAT:
-			doubleSpinBox->setValue(*((float *)storage));
+            doubleSpinBox->setValue(*(static_cast<float *>(storage)));
 			break;
 		default:
 			Q_ASSERT(false);
@@ -228,17 +228,17 @@ void ManagedProperty::writeToObject(QObject *w) const
 	QAction *action = qobject_cast<QAction *>(w);
 	if (action) {
 		Q_ASSERT(type == PT_BOOL);
-		action->setChecked(*((bool *)storage));
+        action->setChecked(*(static_cast<bool *>(storage)));
 		return;
 	}
 	QTextEdit *textEdit = qobject_cast<QTextEdit *>(w);
 	if (textEdit) {
 		switch (type) {
 		case PT_STRING:
-			textEdit->setPlainText(*((QString *)storage));
+            textEdit->setPlainText(*(static_cast<QString *>(storage)));
 			break;
 		case PT_STRINGLIST:
-			textEdit->setPlainText(((QStringList *)storage)->join("\n"));
+            textEdit->setPlainText((static_cast<QStringList *>(storage))->join("\n"));
 			break;
 		default:
 			Q_ASSERT(false);
@@ -293,8 +293,8 @@ bool ManagedProperty::readFromObject(const QObject *w)
 			READ_FROM_OBJECT(QString, comboBox->currentText())
 		case PT_STRINGLIST: {
 			QString oldvalue;
-			if (!((QStringList *)storage)->isEmpty())
-				oldvalue = ((QStringList *)storage)->first();
+            if (!(static_cast<QStringList *>(storage))->isEmpty())
+                oldvalue = (static_cast<QStringList *>(storage))->first();
 			*((QStringList *)storage) = QStringList(comboBox->currentText());
 			return oldvalue != comboBox->currentText();
 		}
@@ -336,9 +336,10 @@ bool ManagedProperty::readFromObject(const QObject *w)
 }
 #undef READ_FROM_OBJECT
 
-QTextCodec *ConfigManager::newFileEncoding = 0;
+QTextCodec *ConfigManager::newFileEncoding = nullptr;
 QString ConfigManager::configDirOverride;
 bool ConfigManager::dontRestoreSession=false;
+int ConfigManager::RUNAWAYLIMIT=30;
 
 QString getText(QWidget *w)
 {
@@ -722,6 +723,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);
 	registerOption("Debug/Last Full Test Run", &debugLastFullTestRun);
 #endif
+
+    // runaway limit for lexing
+    registerOption("Editor/RUNAWAYLIMIT", &RUNAWAYLIMIT , 30);
 }
 
 ConfigManager::~ConfigManager()
@@ -731,7 +735,7 @@ ConfigManager::~ConfigManager()
 	delete webPublishDialogConfig;
 	delete insertGraphicsConfig;
 	if (persistentConfig) delete persistentConfig;
-    globalConfigManager = 0;
+    globalConfigManager = nullptr;
 }
 
 QString ConfigManager::iniPath()

@@ -231,6 +231,7 @@ public:
 
 	static QString configDirOverride;
     static bool dontRestoreSession;
+    static int RUNAWAYLIMIT;
 private:
 	void setupDirectoryStructure();
 	void moveCwls();
