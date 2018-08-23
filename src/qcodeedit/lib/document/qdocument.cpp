@@ -769,7 +769,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		return;
 	}
 
-	const int size = f.size();
+    const qint64 size = f.size();
 	//const int size = m_lastFileState.size = f.size();
 
 	bool slow = (size > 30 * 1024);
@@ -3992,7 +3992,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 #if (QT_VERSION >= 0x050000) && defined(Q_OS_MAC) && (QT_VERSION < 0x050200)
                             p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
 #else
-							p->drawText(QPoint(xpos, baseline), QString((ushort)0xb7));
+                            p->drawText(QPoint(xpos, baseline), QString(static_cast<ushort>(0xb7)));
 #endif
 							p->restore();
 						}
@@ -6500,7 +6500,7 @@ QFormatScheme* QDocumentPrivate::m_defaultFormatScheme = getStaticDefault<QForma
 QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 
 bool QDocumentPrivate::m_fixedPitch;
-QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=0;
+QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=nullptr;
 double QDocumentPrivate::m_lineSpacingFactor = 1.0;
 bool QDocumentPrivate::m_centerDocumentInEditor = false;
 int QDocumentPrivate::m_staticCachesLogicalDpiY = -1;// resolution for which the caches are valid (depends on OS gui scaling)
@@ -7284,7 +7284,7 @@ void QDocumentPrivate::setWidth(int width)
 
 			while ( it != m_wrapped.end() )
 			{
-				QDocumentLineHandle *h = it.key() < m_lines.count() ? m_lines.at(it.key()) : 0;
+                QDocumentLineHandle *h = it.key() < m_lines.count() ? m_lines.at(it.key()) : nullptr;
 
 				if ( h )
 					h->updateWrap(it.key());
@@ -7687,7 +7687,7 @@ int QDocumentPrivate::textWidthSingleLetterFallback(int fid, const QString& text
 	int rwidth = 0;
 	foreach (const QChar& c, text){
 		const QChar::Category cat = c.category();
-		int char_id;
+        int char_id;
 		if (cat == QChar::Other_Surrogate) {
 			if (c.isHighSurrogate()) {
 				lastSurrogate = c;
@@ -7962,7 +7962,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 
 QDocumentLineHandle* QDocumentPrivate::at(int line) const
 {
-	return ((line >= 0) && (line < m_lines.count())) ? m_lines.at(line) : 0;
+    return ((line >= 0) && (line < m_lines.count())) ? m_lines.at(line) : nullptr;
 }
 template <typename T> inline int hintedIndexOf (const QVector<T>& list, const T& elem, int hint) {
 	if (hint < 2) return list.indexOf(elem);

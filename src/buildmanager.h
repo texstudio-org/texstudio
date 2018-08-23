@@ -143,11 +143,11 @@ public:
 	}
 
 public slots:
-	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
+    bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
 	Q_INVOKABLE void killCurrentProcess();
 private:
 	bool checkExpandedCommands(const ExpandedCommands &expandedCommands);
-	bool runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
+    bool runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
 public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
@@ -161,7 +161,7 @@ public:
 
 	static QString createTemporaryFileName(); //don't forget to remove the file!
 
-	void preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec = 0);
+    void preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec = nullptr);
 	void clearPreviewPreambleCache();
 
 	Q_INVOKABLE bool isCommandDirectlyDefined(const QString &id) const;
@@ -203,7 +203,7 @@ signals:
     void clearLogs();
 	void previewAvailable(const QString &filename, const PreviewSource &source);
 
-	void commandLineRequested(const QString &cmdId, QString *result, bool *user = 0);
+    void commandLineRequested(const QString &cmdId, QString *result, bool *user = nullptr);
 	void runInternalCommand(const QString &cmdId, const QFileInfo &mainfile, const QString &options);
 
 	void latexCompiled(LatexCompileResult *rerun);
@@ -216,7 +216,7 @@ private:
 	void initDefaultCommandNames();
 	void checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands);
 
-	CommandInfo &registerCommand(const QString &id, const QString &basename, const QString &displayName, const QString &args, const QString &oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
+    CommandInfo &registerCommand(const QString &id, const QString &basename, const QString &displayName, const QString &args, const QString &oldConfig = "", GuessCommandLineFunc guessFunc = nullptr, bool user = false);
 	CommandInfo &registerCommand(const QString &id, const QString &displayname, const QStringList &alternatives, const QString &oldConfig = "", const bool metaCommand = true, const QStringList simpleDescriptions = QStringList());
 	Q_INVOKABLE QString getCommandLine(const QString &id, bool *user);
 	friend class ProcessX;
@@ -263,7 +263,7 @@ class ProcessX: public QProcess
 	Q_OBJECT
 
 public:
-	ProcessX(BuildManager *parent = 0, const QString &assignedCommand = "", const QString &fileToCompile = "");
+    ProcessX(BuildManager *parent = nullptr, const QString &assignedCommand = "", const QString &fileToCompile = "");
 	static QString reformatShellLiteralQuotes(QString cmd);
 	void startCommand();
 	bool waitForStarted(int timeOut = 30000);

@@ -75,7 +75,7 @@ void TexstudioApp::init(QStringList &cmdLine)
 	splash->show();
 	processEvents();
 
-	mw = new Texstudio(0, 0, splash);
+    mw = new Texstudio(nullptr, nullptr, splash);
 	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
 	splash->finish(mw);
 	delete splash;

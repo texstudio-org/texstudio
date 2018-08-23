@@ -88,7 +88,7 @@ void StructureEntry::debugPrint(const char *message) const
 {
 	qDebug("%s %p", message, this);
 	qDebug("   level: %i", level);
-	qDebug("   type: %i", (int)type);
+    qDebug("   type: %i", static_cast<int>(type));
 	qDebug("   line nr: %i", lineNumber);
 	qDebug("   title: %s", qPrintable(title));
 }

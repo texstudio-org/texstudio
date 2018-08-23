@@ -27,7 +27,7 @@ public:
 
 	static int commentStart(const QString &text);
 	static QString cutComment(const QString &text);
-	static bool resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts = 0);
+    static bool resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts = nullptr);
 	static QString removeOptionBrackets(const QString &option);
 	int structureDepth()
 	{

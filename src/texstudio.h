@@ -64,14 +64,12 @@ class StructureTreeView;
 
 Q_DECLARE_METATYPE(QSet<QString>)
 
-static int RUNAWAYLIMIT=30; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the argument is unclosed
-
 class Texstudio : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	Texstudio(QWidget *parent = 0, Qt::WindowFlags flags = 0, QSplashScreen *splash = 0);
+    Texstudio(QWidget *parent = nullptr, Qt::WindowFlags flags = nullptr, QSplashScreen *splash = nullptr);
 	~Texstudio();
 
 	Q_INVOKABLE QString getCurrentFileName(); ///< returns the absolute file name of the current file or "" if none is opene
@@ -97,7 +95,7 @@ protected:
 	Q_INVOKABLE inline QMenu *newManagedMenu(QMenu *menu, const QString &id, const QString &text) { return configManager.newManagedMenu(menu, id, text); }
     Q_INVOKABLE QAction *newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
 	Q_INVOKABLE QAction *newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
-	Q_INVOKABLE QAction *newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName = 0, const QKeySequence &shortCut = 0, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
+    Q_INVOKABLE QAction *newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
 	Q_INVOKABLE QAction *newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
 	Q_INVOKABLE inline QAction *newManagedAction(QWidget *menu, const QString &id, QAction *act) { return configManager.newManagedAction(menu, id, act); }
 	Q_INVOKABLE inline QMenu *getManagedMenu(const QString &id) { return configManager.getManagedMenu(id); }
@@ -281,7 +279,7 @@ private slots:
 	void fileDiffMerge();
 	void declareConflictResolved();
 protected slots:
-	void openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = 0); // signaled by latexViewer to open specific file
+    void openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = nullptr); // signaled by latexViewer to open specific file
 
 	void editUndo(); ///< undo changes in text editor
 	void editRedo(); ///< redo changes in text editor
@@ -342,7 +340,7 @@ protected slots:
 
 	void getExpandedStructureEntries(const QModelIndex &index, QSet<QString> &expandedEntryTags, QString baseTag = QString());
 	void expandStructureEntries(const QModelIndex index, const QSet<QString> &expandedEntryTags, QString baseTag = QString());
-	void updateStructure(bool initial = false, LatexDocument *doc = 0, bool hidden = false);
+    void updateStructure(bool initial = false, LatexDocument *doc = nullptr, bool hidden = false);
 	void showStructure();
 	void clickedOnStructureEntry(const QModelIndex &index);
 	void structureContextMenuCloseDocument(LatexDocument *document);
@@ -428,8 +426,8 @@ private slots:
 	void endRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async);
 
 
-	bool runCommand(const QString &commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
-	bool runCommandNoSpecialChars(QString commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
+    bool runCommand(const QString &commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
+    bool runCommandNoSpecialChars(QString commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
 	void setStatusMessageProcess(const QString &message);
 protected slots:
 	void processNotification(const QString &message);
@@ -494,13 +492,13 @@ protected slots:
 	void masterDocumentChanged(LatexDocument *doc);
 	void aboutToDeleteDocument(LatexDocument *doc);
 
-	void updateCompleter(LatexEditorView *edView = 0);
+    void updateCompleter(LatexEditorView *edView = nullptr);
 	void completerNeedsUpdate();
 	void needUpdatedCompleter();
 
 	void outputPageChanged(const QString &id);
 
-	void gotoLine(int line, int col = 0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation, bool setFocus = true); // line is 0 based
+    void gotoLine(int line, int col = 0, LatexEditorView *edView = nullptr, QEditor::MoveFlags mflags = QEditor::Navigation, bool setFocus = true); // line is 0 based
 	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name
 	void gotoLine(LatexDocument *doc, int line, int col=0);
 	void gotoLogEntryEditorOnly(int logEntryNumber);
@@ -635,7 +633,7 @@ protected:
 	QMap<QString, QString> *mReplacementList;
 
 public:
-	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
+    Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText)
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode &mode = QClipboard::Clipboard) const;
 	Q_INVOKABLE void setClipboardText(const QString &text, const QClipboard::Mode &mode = QClipboard::Clipboard);
 	Q_INVOKABLE int getVersion() const; ///< return current version number of txs (coded in hex,32 bit)

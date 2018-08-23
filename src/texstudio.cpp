@@ -9796,7 +9796,7 @@ void Texstudio::recoverFromCrash()
 		while (!programStopped) {
 			ThreadBreaker::sleep(1);
 			if (t &&  t == killAtCrashedThread) {
-				name += QString(" forced kill in %1").arg((long int)t, sizeof(long int) * 2, 16, QChar('0'));
+                name += QString(" forced kill in %1").arg(reinterpret_cast<long int>(t), sizeof(long int) * 2, 16, QChar('0'));
                 name += QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_GIT_REVISION).arg(COMPILED_DEBUG_OR_RELEASE);
 				backtraceFilename = print_backtrace(name);
 				exit(1);
@@ -9920,7 +9920,7 @@ void Texstudio::threadCrashed()
 	QThread *thread = lastCrashedThread;
 
 	QString threadName = "<unknown>";
-	QString threadId = QString("%1").arg((long)(thread), sizeof(long int) * 2, 16, QChar('0'));
+    QString threadId = QString("%1").arg(reinterpret_cast<long>(thread), sizeof(long int) * 2, 16, QChar('0'));
 	if (qobject_cast<QThread *>(static_cast<QObject *>(thread)))
 		threadName = QString("%1 %2").arg(threadId).arg(qobject_cast<QThread *>(thread)->objectName());
 

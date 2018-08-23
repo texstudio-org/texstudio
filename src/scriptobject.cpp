@@ -189,8 +189,8 @@ void ScriptObject::registerAsBackgroundScript(const QString &name)
 	QString realName = name.isEmpty() ? getScriptHash() : name;
     if (!backgroundScripts.value(realName, QPointer<ScriptObject>(nullptr)).isNull())
         delete backgroundScripts.value(realName, QPointer<ScriptObject>(nullptr)).data();
-	backgroundScripts.insert(realName, this);
-	backgroundScript = true;
+    backgroundScripts.insert(realName, this);
+    backgroundScript = true;
 }
 
 QWidget *ScriptObject::createUI(const QString &path, QWidget *parent)

@@ -995,7 +995,7 @@ void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<G
 		int f;
 		if (error.error == GET_UNKNOWN) f = grammarMistakeFormat;
 		else {
-			int index = (int)(error.error) - 1;
+            int index = static_cast<int>(error.error) - 1;
 			REQUIRE(index < grammarFormats.size());
 			if (grammarFormatsDisabled[index]) continue;
 			f = grammarFormats[index];
@@ -2637,7 +2637,7 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 
 QString LatexEditorViewConfig::translateEditOperation(int key)
 {
-	return QEditor::translateEditOperation((QEditor::EditOperation)key);
+    return QEditor::translateEditOperation(static_cast<QEditor::EditOperation>(key));
 }
 
 QList<int> LatexEditorViewConfig::possibleEditOperations()
@@ -2708,7 +2708,7 @@ QList<int> LatexEditorViewConfig::possibleEditOperations()
 		QEditor::UnindentSelection
 	};
 	QList<int> res;
-	int operationCount = (int)(sizeof(temp) / sizeof(int)); //sizeof(array) is possible with c-arrays
+    int operationCount = static_cast<int>(sizeof(temp) / sizeof(int)); //sizeof(array) is possible with c-arrays
 	for (int i = 0; i < operationCount; i++)
 		res << temp[i];
 	return res;

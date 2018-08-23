@@ -44,7 +44,7 @@ ManagedProperty::ManagedProperty(): storage(nullptr), type(PT_VOID), widgetOffse
 	ManagedProperty ManagedProperty::fromValue(TYPE value) { \
 		ManagedProperty res;    \
 			res.storage = new TYPE; \
-		*((TYPE*)(res.storage)) = value; \
+        *(static_cast<TYPE*>(res.storage)) = value; \
 		res.type = ID;                   \
 		res.def = res.valueToQVariant(); \
 		res.widgetOffset = 0;            \
@@ -56,7 +56,7 @@ PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
 void ManagedProperty::deallocate()
 {
 	switch (type) {
-#define CASE(TYPE, ID) case ID: delete ((TYPE*)(storage)); break;
+#define CASE(TYPE, ID) case ID: delete (static_cast<TYPE*>(storage)); break;
 		PROPERTY_TYPE_FOREACH_MACRO(CASE)
 #undef CASE
 	default:
@@ -77,17 +77,17 @@ ConfigManagerInterface *ConfigManagerInterface::getInstance()
 Q_DECLARE_METATYPE(ManagedProperty *)
 Q_DECLARE_METATYPE(StringStringMap)
 
-ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0) {}
+ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(nullptr) {}
 
 QVariant ManagedProperty::valueToQVariant() const
 {
 	Q_ASSERT(storage);
 	if (!storage) return QVariant();
 	switch (type) {
-#define CONVERT(TYPE, ID) case ID: return *((TYPE*)storage);
+#define CONVERT(TYPE, ID) case ID: return *(static_cast<TYPE*>(storage));
 		PROPERTY_TYPE_FOREACH_MACRO_SIMPLE(CONVERT)
 #undef CONVERT
-#define CONVERT(TYPE, ID) case ID: return QVariant::fromValue<TYPE>(*((TYPE*)storage));
+#define CONVERT(TYPE, ID) case ID: return QVariant::fromValue<TYPE>(*(static_cast<TYPE*>(storage)));
 		PROPERTY_TYPE_FOREACH_MACRO_COMPLEX(CONVERT)
 #undef CONVERT
 	default:
@@ -102,37 +102,37 @@ void ManagedProperty::valueFromQVariant(const QVariant v)
 	if (!storage) return;
 	switch (type) {
 	case PT_VARIANT:
-		*((QVariant *)storage) = v;
+        *(static_cast<QVariant *>(storage)) = v;
 		break;
 	case PT_INT:
-		*((int *)storage) = v.toInt();
+        *(static_cast<int *>(storage)) = v.toInt();
 		break;
 	case PT_BOOL:
-		*((bool *)storage) = v.toBool();
+        *(static_cast<bool *>(storage)) = v.toBool();
 		break;
 	case PT_STRING:
-		*((QString *)storage) = v.toString();
+        *(static_cast<QString *>(storage)) = v.toString();
 		break;
 	case PT_STRINGLIST:
-		*((QStringList *)storage) = v.toStringList();
+        *(static_cast<QStringList *>(storage)) = v.toStringList();
 		break;
 	case PT_DATETIME:
-		*((QDateTime *)storage) = v.toDateTime();
+        *(static_cast<QDateTime *>(storage)) = v.toDateTime();
 		break;
 	case PT_FLOAT:
-		*((float *)storage) = v.toFloat();
+        *(static_cast<float *>(storage)) = v.toFloat();
 		break;
 	case PT_DOUBLE:
-		*((double *)storage) = v.toDouble();
+        *(static_cast<double *>(storage)) = v.toDouble();
 		break;
 	case PT_BYTEARRAY:
-		*((QByteArray *)storage) = v.toByteArray();
+        *(static_cast<QByteArray *>(storage)) = v.toByteArray();
 		break;
 	case PT_LIST:
-		*((QList<QVariant> *)storage) = v.toList();
+        *(static_cast<QList<QVariant> *>(storage)) = v.toList();
 		break;
 	case PT_MAP_STRING_STRING:
-		*((StringStringMap *)storage) = v.value<StringStringMap>();
+        *(static_cast<StringStringMap *>(storage)) = v.value<StringStringMap>();
 		break;
 	default:
 		Q_ASSERT(false);
@@ -147,19 +147,19 @@ void ManagedProperty::writeToObject(QObject *w) const
 	QCheckBox *checkBox = qobject_cast<QCheckBox *>(w);
 	if (checkBox) {
 		Q_ASSERT(type == PT_BOOL);
-		checkBox->setChecked(*((bool *)storage));
+        checkBox->setChecked(*(static_cast<bool *>(storage)));
 		return;
 	}
 	QToolButton *toolButton = qobject_cast<QToolButton *>(w);
 	if (toolButton) {
 		Q_ASSERT(type == PT_BOOL);
-		toolButton->setChecked(*((bool *)storage));
+        toolButton->setChecked(*(static_cast<bool *>(storage)));
 		return;
 	}
 	QLineEdit *edit = qobject_cast<QLineEdit *>(w);
 	if (edit) {
 		Q_ASSERT(type == PT_STRING);
-		edit->setText(*((QString *)storage));
+        edit->setText(*(static_cast<QString *>(storage)));
 		return;
 	}
 	/*QTextEdit* tedit = qobject_cast<QTextEdit*>(w);
@@ -170,26 +170,26 @@ void ManagedProperty::writeToObject(QObject *w) const
 	QSpinBox *spinBox = qobject_cast<QSpinBox *>(w);
 	if (spinBox) {
 		Q_ASSERT(type == PT_INT);
-		spinBox->setValue(*((int *)storage));
+        spinBox->setValue(*(static_cast<int *>(storage)));
 		return;
 	}
 	QComboBox *comboBox = qobject_cast<QComboBox *>(w);
 	if (comboBox) {
 		switch (type) {
 		case PT_BOOL:
-			comboBox->setCurrentIndex(*((bool *)storage) ? 1 : 0);
+            comboBox->setCurrentIndex(*(static_cast<bool *>(storage)) ? 1 : 0);
 			return;
 		case PT_INT:
-			comboBox->setCurrentIndex(*((int *)storage));
+            comboBox->setCurrentIndex(*(static_cast<int *>(storage)));
 			return;
 		case PT_STRING: {
-			int index = comboBox->findText(*(QString *)storage);
+            int index = comboBox->findText(*static_cast<QString *>(storage));
 			if (index > 0) comboBox->setCurrentIndex(index);
-			if (comboBox->isEditable()) comboBox->setEditText(*(QString *)storage);
+            if (comboBox->isEditable()) comboBox->setEditText(*static_cast<QString *>(storage));
 			return;
 		}
 		case PT_STRINGLIST: {
-			QStringList &sl = *(QStringList *)storage;
+            QStringList &sl = *static_cast<QStringList *>(storage);
 
 			int cp = comboBox->lineEdit() ? comboBox->lineEdit()->cursorPosition() : -1000;
 			while (comboBox->count() > sl.size())
@@ -251,9 +251,9 @@ void ManagedProperty::writeToObject(QObject *w) const
 bool ManagedProperty::readFromObject(const QObject *w)
 {
 #define READ_FROM_OBJECT(TYPE, VALUE) {           \
-	TYPE oldvalue = *((TYPE*)storage);         \
-	*((TYPE*)storage) = VALUE;                 \
-	return oldvalue != *((TYPE*)storage);      \
+    TYPE oldvalue = *(static_cast<TYPE*>(storage));         \
+    *(static_cast<TYPE*>(storage)) = VALUE;                 \
+    return oldvalue != *(static_cast<TYPE*>(storage));      \
 }
 	Q_ASSERT(storage);
 	if (!storage) return false;
@@ -295,7 +295,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 			QString oldvalue;
             if (!(static_cast<QStringList *>(storage))->isEmpty())
                 oldvalue = (static_cast<QStringList *>(storage))->first();
-			*((QStringList *)storage) = QStringList(comboBox->currentText());
+            *(static_cast<QStringList *>(storage)) = QStringList(comboBox->currentText());
 			return oldvalue != comboBox->currentText();
 		}
 		default:
@@ -422,7 +422,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	                                      "main/latex/spacing/newline" << "separator" <<
 	                                      "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt"));
 
-    Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog *) nullptr;
+    Ui::ConfigDialog *pseudoDialog = static_cast<Ui::ConfigDialog *>(nullptr);
 
 	registerOption("Startup/CheckLatexConfiguration", &checkLatexConfiguration, true, &pseudoDialog->checkBoxCheckLatexConfiguration);
 
@@ -478,7 +478,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
-	registerOption("Spell/Dic", &spell_dic, "<dic not found>", 0);
+    registerOption("Spell/Dic", &spell_dic, "<dic not found>", nullptr);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
 
 	//updates
@@ -565,7 +565,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//completion
 	registerOption("Editor/Completion", &completerConfig->enabled, true, &pseudoDialog->checkBoxCompletion);
 	Q_ASSERT(sizeof(int) == sizeof(LatexCompleterConfig::CaseSensitive));
-	registerOption("Editor/Completion Case Sensitive", (int *)&completerConfig->caseSensitive, 2);
+    registerOption("Editor/Completion Case Sensitive", (int *)&completerConfig->caseSensitive, 2);
 	registerOption("Editor/Completion Complete Common Prefix", &completerConfig->completeCommonPrefix, true, &pseudoDialog->checkBoxCompletePrefix);
     registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, false, &pseudoDialog->checkBoxEOWCompletes);
 	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
@@ -680,7 +680,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
 
 	//preview
-	registerOption("Preview/Mode", (int *)&previewMode, (int)PM_INLINE, &pseudoDialog->comboBoxPreviewMode);
+    registerOption("Preview/Mode", (int *)&previewMode, static_cast<int>(PM_INLINE), &pseudoDialog->comboBoxPreviewMode);
 	registerOption("Preview/Auto Preview", (int *)&autoPreview, 1, &pseudoDialog->comboBoxAutoPreview);
 	registerOption("Preview/Auto Preview Delay", &autoPreviewDelay, 300, &pseudoDialog->spinBoxAutoPreviewDelay);
 	registerOption("Preview/SegmentPreviewScalePercent", &segmentPreviewScalePercent, 150, &pseudoDialog->spinBoxSegmentPreviewScalePercent);
@@ -909,7 +909,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 			QDataStream in(&file);
 			quint32 magicNumer, version;
 			in >>  magicNumer >> version;
-			if (magicNumer == (quint32)0xA0B0C0D0 && version == 1) {
+            if (magicNumer == static_cast<quint32>(0xA0B0C0D0) && version == 1) {
 				in.setVersion(QDataStream::Qt_4_0);
 				uint key;
 				int length, usage;
@@ -963,7 +963,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	//build commands
 	if (!buildManager) {
 		UtilsUi::txsCritical("No build Manager created! => crash");
-		return 0;
+        return nullptr;
 	}
 	buildManager->readSettings(*config);
 	runLaTeXBibTeXLaTeX = config->value("Tools/After BibTeX Change", "tmx://latex && tmx://bibtex && tmx://latex").toString() != "";
@@ -1264,7 +1264,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	//----------managed properties--------------------
 	foreach (const ManagedProperty &mp, managedProperties)
 		if (mp.widgetOffset)
-			mp.writeToObject(*((QWidget **)((char *)&confDlg->ui + mp.widgetOffset))); //convert to char*, because the offset is in bytes
+            mp.writeToObject(*((QWidget **)((char *)&confDlg->ui + mp.widgetOffset))); //convert to char*, because the offset is in bytes
 
 	//files
 	//if (newfile_encoding)
@@ -1330,7 +1330,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	if (20 < autosaveEveryMinutes) confDlg->ui.comboBoxAutoSave->setCurrentIndex(6);
 	//--build things
 	//normal commands
-	pdflatexEdit = 0;
+    pdflatexEdit = nullptr;
 	tempCommands = buildManager->getAllCommands();
 	QStringList tempOrder = buildManager->getCommandsOrder();
 	rerunButtons.clear();
@@ -1364,7 +1364,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.shortcutTree->addTopLevelItem(menuShortcuts);
 	menuShortcuts->setExpanded(true);
 #ifndef NO_POPPLER_PREVIEW
-    QTreeWidgetItem *menuShortcutsPDF = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << QString(tr("Menus PDF-Viewer")));
+    QTreeWidgetItem *menuShortcutsPDF = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList() << QString(tr("Menus PDF-Viewer")));
     QSet<QString> usedMenus;
     foreach (QMenu *menu, managedMenus){
         if(usedMenus.contains(menu->objectName()))
@@ -1378,11 +1378,11 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
     menuShortcutsPDF->setExpanded(true);
 #endif
 
-	QTreeWidgetItem *editorItem = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << ConfigDialog::tr("Editor"));
+    QTreeWidgetItem *editorItem = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList() << ConfigDialog::tr("Editor"));
 	QTreeWidgetItem *editorKeys = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Basic Key Mapping"));
 	const int editorKeys_EditOperationRole = Qt::UserRole;
 
-	Q_ASSERT((int)Qt::CTRL == (int)Qt::ControlModifier && (int)Qt::ALT == (int)Qt::AltModifier && (int)Qt::SHIFT == (int)Qt::ShiftModifier && (int)Qt::META == (int)Qt::MetaModifier);
+    Q_ASSERT((int)Qt::CTRL == static_cast<int>(Qt::ControlModifier) && static_cast<int>(Qt::ALT) == static_cast<int>(Qt::AltModifier) && static_cast<int>(Qt::SHIFT) == static_cast<int>(Qt::ShiftModifier) && static_cast<int>(Qt::META) == static_cast<int>(Qt::MetaModifier));
 	QMultiMap<int, QString> keysReversed;
 	QHash<QString, int>::const_iterator it = this->editorKeys.constBegin();
 	while (it != this->editorKeys.constEnd()) {
@@ -1398,7 +1398,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 			listEmpty = true;
 		}
 		foreach (const QString key, keys) {
-			QTreeWidgetItem *twi = 0;
+            QTreeWidgetItem *twi = nullptr;
 			if (listEmpty) {
 				twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << tr("<none>"));
 			} else {
@@ -1437,7 +1437,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	manipulatedMenuTree.clear();
 	superAdvancedItems.clear();
 	foreach (QMenu *menu, managedMenus) {
-		QTreeWidgetItem *menuLatex = managedLatexMenuToTreeWidget(0, menu);
+        QTreeWidgetItem *menuLatex = managedLatexMenuToTreeWidget(nullptr, menu);
 		if (menuLatex) {
 			confDlg->ui.menuTree->addTopLevelItem(menuLatex);
 			menuLatex->setExpanded(true);
@@ -1494,7 +1494,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 			QTableWidgetItem *item = new QTableWidgetItem(env);
 			confDlg->ui.twHighlighEnvirons->setItem(l, 0, item);
 			//item=new QTableWidgetItem(i.value());
-			QComboBox *cb = new QComboBox(0);
+            QComboBox *cb = new QComboBox(nullptr);
 			cb->insertItems(0, enviromentModes);
 			cb->setCurrentIndex(i.value().toInt());
 			confDlg->ui.twHighlighEnvirons->setCellWidget(l, 1, cb);
@@ -1503,7 +1503,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		QTableWidgetItem *item = new QTableWidgetItem("");
 		confDlg->ui.twHighlighEnvirons->setItem(l, 0, item);
 		//item=new QTableWidgetItem(i.value());
-		QComboBox *cb = new QComboBox(0);
+        QComboBox *cb = new QComboBox(nullptr);
 		cb->insertItems(0, enviromentModes);
 		confDlg->ui.twHighlighEnvirons->setCellWidget(l, 1, cb);
 
@@ -1626,8 +1626,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		}
 		completerConfig->setFiles(newFiles);
 		//preview
-		previewMode = (PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
-		buildManager->dvi2pngMode = (BuildManager::Dvi2PngMode) confDlg->ui.comboBoxDvi2PngMode->currentIndex();
+        previewMode = static_cast<PreviewMode>(confDlg->ui.comboBoxPreviewMode->currentIndex());
+        buildManager->dvi2pngMode = static_cast<BuildManager::Dvi2PngMode>(confDlg->ui.comboBoxDvi2PngMode->currentIndex());
 #ifdef NO_POPPLER_PREVIEW
 		if (buildManager->dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) {
 			buildManager->dvi2pngMode = BuildManager::DPM_DVIPNG; //fallback when poppler is not included
@@ -1861,7 +1861,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems)
 			act->setVisible(true);
 			QString temp = recentProjectList.at(i);
 			temp.replace("&", "&&");
-			act->setText(tr("Master Document: ") + (i <= 13 ? QString("&%1 ").arg((char)('M' + i)) : "") + QDir::toNativeSeparators(temp));
+            act->setText(tr("Master Document: ") + (i <= 13 ? QString("&%1 ").arg(static_cast<char>('M' + i)) : "") + QDir::toNativeSeparators(temp));
 			act->setData(recentProjectList.at(i));
 		} else act->setVisible(false);
 	}
@@ -3230,7 +3230,7 @@ void ConfigManager::registerOption(const QString &name, void *storage, PropertyT
 	temp.storage = storage;
 	temp.type = type;
 	temp.def = def;
-	temp.widgetOffset = (ptrdiff_t)displayWidgetOffset;
+    temp.widgetOffset = reinterpret_cast<ptrdiff_t>(displayWidgetOffset);
 	managedProperties << temp;
 
 	if (persistentConfig) {
@@ -3250,7 +3250,7 @@ void ConfigManager::registerOption(const QString &name, void *storage, PropertyT
 		registerOption(name, storage, ID, def, displayWidgetOffset); \
 	} \
 	void ConfigManager::registerOption(const QString& name, TYPE* storage, QVariant def){ \
-		registerOption(name, storage, ID, def, 0); \
+        registerOption(name, storage, ID, def, nullptr); \
 	}
 PROPERTY_TYPE_FOREACH_MACRO(REGISTER_OPTION)
 #undef REGISTER_OPTION
@@ -3453,10 +3453,10 @@ void ConfigManager::managedOptionBoolToggled()
 	ManagedProperty *property = sender()->property("managedProperty").value<ManagedProperty *>();
 	REQUIRE(property);
 	REQUIRE(property->type == PT_BOOL);
-	if ((state > 0) == *(bool *)(property->storage)) return;
+    if ((state > 0) == *static_cast<bool *>(property->storage)) return;
 	if (managedOptionObjects[property].first & LO_DIRECT_OVERRIDE) {
 		//full sync
-		*(bool *)property->storage = (state > 0);
+        *static_cast<bool *>(property->storage) = (state > 0);
 	} else {
 		//voting
 		int totalState = 0;
@@ -3464,8 +3464,8 @@ void ConfigManager::managedOptionBoolToggled()
 			totalState += isChecked(o);
 
 		if (totalState == 0) totalState = state;
-		if ((totalState > 0) == *(bool *)(property->storage)) return;
-		*(bool *)property->storage = (totalState > 0);
+        if ((totalState > 0) == *static_cast<bool *>(property->storage)) return;
+        *static_cast<bool *>(property->storage) = (totalState > 0);
 	}
 	updateManagedOptionObjects(property);
 }

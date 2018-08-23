@@ -1063,7 +1063,7 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
 #endif
 
 	if (viewerCommands.contains(subcmd) && !isAcrobat && singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
-	return (RunCommandFlags)(result);
+    return static_cast<RunCommandFlags>(result);
 }
 
 bool BuildManager::hasCommandLine(const QString &program)
@@ -1249,7 +1249,7 @@ void BuildManager::registerOptions(ConfigManagerInterface &cmi)
 	cmi.registerOption("Tools/Max Expanding Nesting Deep", &maxExpandingNestingDeep, 10);
 	Q_ASSERT(sizeof(dvi2pngMode) == sizeof(int));
     cmi.registerOption("Tools/Dvi2Png Mode", reinterpret_cast<int *>(&dvi2pngMode), 3);
-	cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int *>(&saveFilesBeforeCompiling), (int)SFBC_ONLY_NAMED);
+    cmi.registerOption("Files/Save Files Before Compiling", reinterpret_cast<int *>(&saveFilesBeforeCompiling), static_cast<int>(SFBC_ONLY_NAMED));
 	cmi.registerOption("Preview/Remove Beamer Class", &previewRemoveBeamer, true);
 	cmi.registerOption("Preview/Precompile Preamble", &previewPrecompilePreamble, true);
 
@@ -2085,7 +2085,10 @@ bool BuildManager::testAndRunInternalCommand(const QString &cmd, const QFileInfo
 	int space = cmd.indexOf(' ');
 	QString cmdId, options;
 	if (space == -1 ) cmdId = cmd;
-	else cmdId = cmd.left(space), options = cmd.mid(space + 1);
+    else {
+        cmdId = cmd.left(space);
+        options = cmd.mid(space + 1);
+    }
 	if (internalCommands.contains(cmdId)) {
 		emit runInternalCommand(cmdId, mainFile, options);
 		return true;

@@ -91,11 +91,11 @@ class QCE_EXPORT QDocumentLine
 			LayoutedByQTextLayout	= 64
 		};
 		
-		Q_DECLARE_FLAGS(States, State);
+        Q_DECLARE_FLAGS(States, State)
 		
 		explicit QDocumentLine(QDocument *doc);
 		QDocumentLine(const QDocumentLine& line);
-		QDocumentLine(QDocumentLineHandle *h = 0);
+        QDocumentLine(QDocumentLineHandle *h = nullptr);
 		
 		~QDocumentLine();
 		
