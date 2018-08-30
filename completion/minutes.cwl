@@ -1,3 +1,8 @@
+\minutesstyle{keyvals}
+#keyvals:\minutesstyle
+vote=#text
+header=#text
+#endkeyvals
 \begin{Minutes}{title}
 \foreignMinutes
 \end{Minutes}
