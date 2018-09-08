@@ -4427,8 +4427,9 @@ void Texstudio::normalCompletion()
 	}
 
 	Token::TokenType type = tk.type;
-	if (tk.subtype != Token::none)
+	if (tk.subtype != Token::none && type!=Token::command && type!=Token::commandUnknown){
 		type = tk.subtype;
+	}
 	if (type == Token::specialArg) {
 		int df = int(type - Token::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
