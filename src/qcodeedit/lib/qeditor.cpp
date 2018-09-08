@@ -5063,6 +5063,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
         if (autoBracket == writtenBracket)
             autoComplete = false; //don't things like "" or $$ (assuming only single letter self closing brackets exists)
 
+        // no idea what the following code is supposed to do, it is probably erroneous
+        // e.g {abc} abc |   , insert "{" at | will give a false match to the previous closing brace
         int prev = c.line().text().lastIndexOf(writtenBracket, c.columnNumber());
         if (prev >= 0) {
             QDocumentCursor prevc = c.document()->cursor(c.lineNumber(), prev, c.lineNumber(), prev + writtenBracket.size() );
