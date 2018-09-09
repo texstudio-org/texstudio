@@ -816,11 +816,11 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("counting 2") << ">((())))<" << 0 << 1 << "(" << ">(((())))<";
 	QTest::newRow("counting 3") << ">((()()))())<" << 0 << 1 << "(" << ">(((()()))())<";
     QTest::newRow("counting 4") << ">(())<" << 0 << 4 << "(" << ">(()())<";
-	QTest::newRow("multi line search") << ">\n\n\\]<" << 0 << 1 << "\\[" << ">\\[\n\n\\]<";
+    QTest::newRow("multi line search") << ">\n\n)<" << 0 << 1 << "(" << ">(\n\n)<";
 	QTest::newRow("insert-match-to-close-mixed") << ">[{}])<" << 0 << 1 << "(" << ">([{}])<";
 	QTest::newRow("insert-match-to-close-mixed-with-same") << ">([{}]))<" << 0 << 1 << "(" << ">(([{}]))<";
 	QTest::newRow("insert-match-to-close-mixed-with-same2") << ">([{}]))<" << 0 << 2 << "(" << ">(([{}]))<";
-	QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "((((((())))))";
+    QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "(()((((())))))"; // previous expected outcome was unlogical, why not autocomlete if all parentehsis prior already match ?
 	QTest::newRow("following") << " ()" << 0 << 0 << "(" << "() ()";
 	QTest::newRow("following2") << " \\(\\)" << 0 << 0 << "\\(" << "\\(\\) \\(\\)";
 	QTest::newRow("following2withExistingMismatch") << " {\\(\\)" << 0 << 0 << "\\(" << "\\(\\) {\\(\\)";
