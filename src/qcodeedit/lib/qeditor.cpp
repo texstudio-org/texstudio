@@ -5048,7 +5048,6 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
     //prepare for auto bracket insertion
     QString writtenBracket;
     QString autoBracket;
-    QDocumentCursor previousBracketMatch;
     bool autoComplete = false;
     if (flag(AutoCloseChars) && !autoOverridePlaceHolder
             && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())
@@ -5065,38 +5064,55 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
         // no idea what the following code is supposed to do, it is probably erroneous
         // e.g {abc} abc |   , insert "{" at | will give a false match to the previous closing brace
-	// check what would be the matching element if we inserted it
-	c.insertText(text);
-	QDocumentCursor prevc(c);
-	QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(prevc);
-	bool found=false;
-	for (int i=0; i < matches.size(); i++) {
-	    if (matches[i][0].anchorColumnNumber() == c.anchorColumnNumber()-1) {
-		if(matches[i][1].selectedText()==autoBracket){
-		    prevc=matches[i][1];
-		    found=true;
-		    break;
-		}
-	    } else if (matches[i][1].anchorColumnNumber()==c.anchorColumnNumber()-1) {
-		if(matches[i][0].selectedText()==autoBracket){
-		    prevc=matches[i][0];
-		    found=true;
-		    break;
-		}
-	    }
-	}
-	for(int k=0;k<text.size();k++){
-	    c.deletePreviousChar();
-	}
-	if(found){
-	    // check whether the found element has a matching element without our insertion
-	    prevc.flipSelection();
-	    matches = languageDefinition()->getMatches(prevc);
-	    if(matches.isEmpty()){
-		// no opening element without our insertion, so our insertion should *not* be autoclosed
-		autoComplete=false;
-	    }
-	}
+        // check what would be the matching element if we inserted it
+        if(autoComplete){
+            c.insertText(text);
+            // check if we are handling a multi-chrachter parenthesis, e.g. \[
+            QString newAutoBracket;
+            const QString& lineText = c.line().text().mid(0, c.columnNumber());
+            foreach (const QString& s, languageDefinition()->openingParenthesis()){
+                if (s.length() >= text.length() &&  //don't complete bracket of pasted text or codesnippets
+                        lineText.endsWith(s)){
+                    newAutoBracket = languageDefinition()->getClosingParenthesis(s);
+                    writtenBracket = s;
+                    break;
+                }
+            }
+            if (newAutoBracket != autoBracket) {
+                autoBracket=newAutoBracket;
+            }
+
+            QDocumentCursor prevc(c);
+            QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(prevc);
+            bool found=false;
+            for (int i=0; i < matches.size(); i++) {
+                if (matches[i][0].anchorColumnNumber() == c.anchorColumnNumber()-writtenBracket.size()) {
+                    if(matches[i][1].selectedText()==autoBracket){
+                        prevc=matches[i][1];
+                        found=true;
+                        break;
+                    }
+                } else if (matches[i][1].anchorColumnNumber()==c.anchorColumnNumber()-writtenBracket.size()) {
+                    if(matches[i][0].selectedText()==autoBracket){
+                        prevc=matches[i][0];
+                        found=true;
+                        break;
+                    }
+                }
+            }
+            for(int k=0;k<text.size();k++){
+                c.deletePreviousChar();
+            }
+            if(found){
+                // check whether the found element has a matching element without our insertion
+                prevc.flipSelection();
+                matches = languageDefinition()->getMatches(prevc);
+                if(matches.isEmpty()){
+                    // no opening element without our insertion, so our insertion should *not* be autoclosed
+                    autoComplete=false;
+                }
+            }
+        }
     }
 
     //insert
