@@ -344,7 +344,7 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
     m_doc(nullptr), m_definition(nullptr),
 	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::ParenthesesOuter),
 	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-	mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(0)
+    mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(nullptr)
 {
 	m_editors << this;
 
@@ -705,7 +705,7 @@ void QEditor::init(bool actions,QDocument *doc)
 		m_bindingsMenu->addAction(aDefaultBinding);
 		m_bindingsMenu->addSeparator();
 		m_bindingsActions->addAction(aDefaultBinding);
-		m_registeredBindings["default"] = 0;
+        m_registeredBindings["default"] = nullptr;
 
 		updateBindingsMenu();
 
@@ -1484,7 +1484,7 @@ QAction* QEditor::action(const QString& s)
 {
 	QHash<QString, QAction*>::const_iterator it = m_actions.constFind(s);
 
-	return it != m_actions.constEnd() ? *it : 0;
+    return it != m_actions.constEnd() ? *it : nullptr;
 }
 
 /*!
