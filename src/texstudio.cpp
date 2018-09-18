@@ -5827,6 +5827,10 @@ void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile
 	} else UtilsUi::txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 
+void Texstudio::runInternalCommand(const QString &cmd, const QString &mainfile, const QString &options){
+    runInternalCommand(cmd,QFileInfo(mainfile),options);
+}
+
 void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool *)
 {
 	if (!buildManager.m_interpetCommandDefinitionInMagicComment) return;
