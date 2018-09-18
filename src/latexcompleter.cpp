@@ -143,24 +143,7 @@ public:
 			}
 
 			for (int i = maxWritten - cursor.columnNumber(); i > 0; i--) cursor.deleteChar();
-            QString line=cursor.line().text();;
-            if(line.mid(curStart,cursor.columnNumber() - curStart).contains('{')&&line.mid(cursor.columnNumber()).contains('}')){
-                // check if completion started in \begin{ab|cd} ... remove cd} before inserting text
-                int j=-1;
-                for(int i = cursor.columnNumber(); i < line.length(); i++){
-                    if(line.at(i)=='}'){
-                        j=i;
-                        break;
-                    }
-                    if(line.at(i)=='{'){
-                        break;
-                    }
-                }
-                if(j>-1){
-                    for (int i = 0; i <= j-cursor.columnNumber(); i++) cursor.deleteChar();
-                }
 
-            }
 			for (int i = cursor.columnNumber() - curStart; i > 0; i--) cursor.deletePreviousChar();
 			if (!autoOverridenText.isEmpty()) {
 				cursor.insertText(autoOverridenText);
