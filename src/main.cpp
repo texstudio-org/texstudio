@@ -198,6 +198,9 @@ int main(int argc, char **argv)
 	}
 
 	a.setApplicationName( TEXSTUDIO );
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && defined(Q_OS_LINUX)
+	a.setDesktopFileName("texstudio");
+#endif
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
 	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
