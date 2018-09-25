@@ -92,11 +92,11 @@ createShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" \
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "QuietUninstallString" "$\"$INSTDIR\uninstall.exe$\" /S"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "InstallLocation" "$\"$INSTDIR$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayIcon" "$\"$INSTDIR\logo.ico$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "Publisher" "$\"Benito van der Zander$\""
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "Publisher" "Benito van der Zander"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "HelpLink" "$\"${HELPURL}$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "URLUpdateInfo" "$\"${UPDATEURL}$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "URLInfoAbout" "$\"${ABOUTURL}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayVersion" "$\"${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}$\""
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayVersion" "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "VersionMajor" ${VERSIONMAJOR}
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "VersionMinor" ${VERSIONMINOR}
 	# There is no option for modifying or repairing the install
@@ -122,9 +122,9 @@ functionEnd
 Section "Uninstall"
 
 # Remove Start Menu launcher
-delete "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk"
+Delete "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk"
 # Try to remove the Start Menu folder - this will only happen if it is empty
-rmDir "$SMPROGRAMS\${APPNAME}"
+RMDir "$SMPROGRAMS\${APPNAME}"
  
 # Always delete uninstaller first
 Delete $INSTDIR\uninstaller.exe
@@ -133,10 +133,17 @@ Delete $INSTDIR\uninstaller.exe
 ${unregisterExtension} ".tex" "tex File"
  
 # now delete installed file
+RMDir /r $INSTDIR\translations
+RMDir /r $INSTDIR\templates
+RMDir /r $INSTDIR\help
+RMDir /r $INSTDIR\share\poppler
+RMDir    $INSTDIR\share
+RMDir /r $INSTDIR\TexTablet
+RMDir /r $INSTDIR\dictionaries
 Delete $INSTDIR\*
 
 # Try to remove the install directory - this will only happen if it is empty
-rmDir $INSTDIR
+RMDir $INSTDIR
 
 # Remove uninstaller information from the registry
 DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}"
