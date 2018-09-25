@@ -575,3 +575,17 @@ gray#B
 black#B
 white#B
 cyan#B
+#repl:\"a ä
+#repl:\"o ö
+#repl:\"u ü
+#repl:\"A Ä
+#repl:\"O Ö
+#repl:\"U Ü
+#repl:\'a á
+#repl:\'e é
+#repl:\'o ó
+#repl:\'u ú
+#repl:\`a à
+#repl:\`e è
+#repl:\`o ò
+#repl:\`u ù

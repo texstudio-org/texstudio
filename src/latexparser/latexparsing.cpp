@@ -291,6 +291,23 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 
                 continue;
             } else {
+                // special treatment for character changing commands like \"a (ä)
+                if(tk.length==2 && command[1].isPunct()){
+                    if (i + 1 < tl.length()) {
+                        Token tk2 = tl.at(i + 1);
+                        if (tk2.start == tk.start + tk.length && tk2.type == Token::word) {
+                            i = i + 1;
+                            tk.length += tk2.length ;
+                            tk.type = Token::word;
+                        }
+                        if (!lexed.isEmpty() && lexed.last().type == Token::word) {
+                            if (lexed.last().start + lexed.last().length == tk.start) {
+                                lexed.last().length += tk.length;
+                                continue;
+                            }
+                        }
+                    }
+                }
                 if (!stack.isEmpty()) {
                     tk.subtype = stack.top().subtype;
                     if (tk.subtype == Token::keyValArg && lastEqual > -1) {
