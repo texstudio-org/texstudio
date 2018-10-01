@@ -264,6 +264,9 @@
 \insertverticalnavigation
 \insertframenumber
 \inserttotalframenumber
+\insertframenumberinappendix
+\insertappendixframenumber
+\insertmainframenumber
 \insertframestartpage
 \insertframeendpage
 \insertsubsectionstartpage
