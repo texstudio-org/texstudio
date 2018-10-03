@@ -28,8 +28,8 @@
 \cvitem{%<item%>}{%<item description%>}#n
 \cvitemwithcomment{%<item%>}{%<item description%>}{%<comment%>}#n
 \cvdoubleitem{%<item%>}{%<item description%>}{%<item%>}{%<item description%>}#n
-\cvlistitem{%<item%>}#n
-\cvlistdoubleitem{%<item%>}{%<item%>}#n
+\cvlistitem{item%text}#n
+\cvlistdoubleitem{item%text}{item%text}#n
 \begin{cvcolumns}#n
 \end{cvcolumns}#n
 \cvcolumn{%<category%>}{%<comment%>}#n/cvcolumns
