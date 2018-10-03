@@ -357,7 +357,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         commandStack.push(cd);
                     }
                 } else {
-                    tk.type = Token::commandUnknown;
+                    if(tk.type==Token::command){
+                        tk.type = Token::commandUnknown;
+                    }
                 }
                 lexed << tk;
             }
