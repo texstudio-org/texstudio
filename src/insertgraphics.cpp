@@ -357,13 +357,14 @@ QString InsertGraphics::getFormattedFilename(const QString filename) const
 QString InsertGraphics::getCaptionLabelString(const InsertGraphicsConfig &conf) const
 {
 	QString s;
-	if (!conf.caption.isEmpty() || !conf.shortCaption.isEmpty()) {
+	bool captionProvided = !conf.caption.isEmpty() || !conf.shortCaption.isEmpty();
+	if (captionProvided) {
 		s.append("\\caption");
 		if (!conf.shortCaption.isEmpty()) s.append("[" + conf.shortCaption + "]");
 		s.append("{" + conf.caption + "}\n");
 	}
 	if (!conf.label.isEmpty()) {
-		if (conf.caption.isEmpty()) s.append("\\caption{}\n");
+		if (!captionProvided) s.append("\\caption{}\n");
 		s.append("\\label{" + conf.label + "}\n");
 	}
 	return s;
