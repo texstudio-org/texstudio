@@ -411,6 +411,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxUseQSaveWrite->setVisible(false);
 #endif
 
+    ui.checkBoxShowCommentedElementsInStructure->setVisible(false); // hide non-functional option, maybe it can be fixed in future
+
 	ui.contentsWidget->setIconSize(QSize(32, 32));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
 	//ui.contentsWidget->setMovement(QListView::Static);
