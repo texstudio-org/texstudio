@@ -597,10 +597,10 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 	}
 	rememberLastSearch(findHistory,cFind->currentText(),m_search->options() & QDocumentSearch::Silent);
 	rememberLastSearch(replaceHistory,cReplace->currentText(),m_search->options() & QDocumentSearch::Silent);
-	if (isVisible() && !cbHasFocus(cFind) && !cbHasFocus(cReplace) ) {
+    /*if (isVisible() && !cbHasFocus(cFind) && !cbHasFocus(cReplace) ) {
 		if (replace) cReplace->setFocus();
 		else cFind->setFocus();
-	}
+    }*/
 	updateReplacementHint();
 }
 
