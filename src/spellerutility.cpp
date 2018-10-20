@@ -233,7 +233,7 @@ bool SpellerManager::isOxtDictionary(const QString &fileName)
 		}
 	}
 	if (affFile.length() <= 4 || dicFile.length() <= 4) return false;
-	if (affFile.left(affFile.length() - 4) != affFile.left(affFile.length() - 4)) return false; // different names
+	if (affFile.left(affFile.length() - 4) != dicFile.left(dicFile.length() - 4)) return false; // different names
 	return true;
 }
 

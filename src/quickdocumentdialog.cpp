@@ -315,7 +315,6 @@ void QuickDocumentDialog::geometryValuesChanged()
 	else if (sender() == ui.spinBoxGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
 	else if (sender() == ui.spinBoxGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
 	else if (sender() == ui.spinBoxGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
-	else if (sender() == ui.spinBoxGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
 
 	static const QStringList paperFormats = QStringList()
 	                                        << "a0paper" << "841" << "1189" << "mm"
