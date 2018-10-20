@@ -56,6 +56,7 @@ TRANSLATIONS += translation/texstudio_ar.ts \
     translation/texstudio_fa.ts \
     translation/texstudio_fr.ts \
     translation/texstudio_hu.ts \
+    translation/texstudio_id_ID.ts \
     translation/texstudio_it.ts \
     translation/texstudio_ja.ts \
     translation/texstudio_ko.ts \
@@ -134,6 +135,7 @@ unix {
         translation/texstudio_fa.qm \
         translation/texstudio_fr.qm \
         translation/texstudio_hu.qm \
+	translation/texstudio_id_ID.qm \
         translation/texstudio_it.qm \
         translation/texstudio_ja.qm \
         translation/texstudio_ko.qm \
