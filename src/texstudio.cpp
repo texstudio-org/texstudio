@@ -8951,17 +8951,6 @@ void Texstudio::loadProfile()
 			foreach (const QString &key, keys) {
 				//special treatment for macros/usercommands (list maybe shorter than before)
 				if (key.startsWith("texmaker/Macros")) {
-					if (!macro) { //remove old values
-						config->beginGroup("texmaker");
-						config->remove("Macros");
-						config->endGroup();
-						configManager.completerConfig->userMacros.clear();
-					}
-					QStringList ls = profile->value(key).toStringList();
-					if (!ls.isEmpty()) {
-						configManager.completerConfig->userMacros.append(Macro(ls));
-						macro = true;
-					}
 					continue;
 				}
 				if (key == "texmaker/Tools/User Order") {
@@ -8978,6 +8967,19 @@ void Texstudio::loadProfile()
 					continue;  // handled above
 				}
 				config->setValue(key, profile->value(key));
+			}
+			// handle macros
+			for (int i = 0; i < 1000; i++) {
+			    QStringList ls = profile->value(QString("texmaker/Macros/%1").arg(i)).toStringList();
+			    if (ls.isEmpty()) break;
+			    if (!macro) { //remove old values
+				config->beginGroup("texmaker");
+				config->remove("Macros");
+				config->endGroup();
+				configManager.completerConfig->userMacros.clear();
+			    }
+			    configManager.completerConfig->userMacros.append(Macro(ls));
+			    macro=true;
 			}
 		}
 		delete profile;
