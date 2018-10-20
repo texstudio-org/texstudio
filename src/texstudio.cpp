@@ -3347,9 +3347,9 @@ void Texstudio::editPaste()
 
 void Texstudio::editPasteImage(QImage image)
 {
+	if (!currentEditorView()) return;
 	static QString filenameSuggestion;  // keep for future calls
 	QString rootDir = currentEditorView()->document->getRootDocument()->getFileInfo().absolutePath();
-	if (!currentEditorView()) return;
 	if (filenameSuggestion.isEmpty()) {
 		filenameSuggestion = rootDir + "/screenshot001.png";
 	}
