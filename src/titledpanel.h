@@ -18,14 +18,14 @@ public:
 	~TitledPanelPage();
 
 	void addToolbarAction(QAction *act);
-	void addToolbarActions(QList<QAction *> actions);
+	void addToolbarActions(const QList<QAction *>& actions);
 
 	inline QString id() const;
 	QWidget *widget();
 	bool visible() const;
 
 	static TitledPanelPage *fromId(const QString &id);
-	static void updatePageTitle(const QString &id, const QString newTitle);
+	static void updatePageTitle(const QString &id, const QString& newTitle);
 
 signals:
 	void titleChanged(QString);

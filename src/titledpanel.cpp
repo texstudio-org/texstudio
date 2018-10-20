@@ -19,7 +19,7 @@ TitledPanelPage::TitledPanelPage(QWidget *widget, const QString &id, const QStri
 	m_widget = widget;
     Q_ASSERT(m_widget);
 	m_widget->setProperty("containingPage", QVariant::fromValue<TitledPanelPage *>(this));
-	QFrame *f = qobject_cast<QFrame *>(m_widget); // remove frame form widget if it has one
+	auto *f = qobject_cast<QFrame *>(m_widget); // remove frame form widget if it has one
 	if (f) f->setFrameShape(QFrame::NoFrame);
 
 	m_id = id;
@@ -53,7 +53,7 @@ void TitledPanelPage::addToolbarAction(QAction *act)
 	m_toolbarActions->append(act);
 }
 
-void TitledPanelPage::addToolbarActions(QList<QAction *> actions)
+void TitledPanelPage::addToolbarActions(const QList<QAction *>& actions)
 {
 	m_toolbarActions->append(actions);
 }
@@ -80,7 +80,7 @@ TitledPanelPage *TitledPanelPage::fromId(const QString &id)
 	return page;
 }
 
-void TitledPanelPage::updatePageTitle(const QString &id, const QString newTitle)
+void TitledPanelPage::updatePageTitle(const QString &id, const QString& newTitle)
 {
 	TitledPanelPage *page = allPages.value(id);
 	if (page) page->setTitle(newTitle);
@@ -108,7 +108,7 @@ void TitledPanelPage::setIcon(const QIcon &icon)
 /*** class TitledPanel ***/
 
 TitledPanel::TitledPanel(QWidget *parent) :
-    QFrame(parent), mToggleViewAction(nullptr), closeAction(0), pageSelectActions(0), selectorStyle(ComboSelector), vLayout(0),
+    QFrame(parent), mToggleViewAction(nullptr), closeAction(nullptr), pageSelectActions(nullptr), selectorStyle(ComboSelector), vLayout(nullptr),
     topbar(nullptr), lbTopbarLabel(nullptr), cbTopbarSelector(nullptr), tbTopbarSelector(nullptr), stack(nullptr)
 {
 	setFrameShape(QFrame::Box);
@@ -413,7 +413,7 @@ void TitledPanel::updatePageSelector(TitledPanelPage *page)
 
 void TitledPanel::onPageTitleChange()
 {
-	TitledPanelPage *page = qobject_cast<TitledPanelPage *>(sender());
+	auto *page = qobject_cast<TitledPanelPage *>(sender());
 	if (!page) return;
 
 	updatePageSelector(page);
@@ -421,7 +421,7 @@ void TitledPanel::onPageTitleChange()
 
 void TitledPanel::onPageIconChange()
 {
-	QAction *act = qobject_cast<QAction *>(sender());
+	auto *act = qobject_cast<QAction *>(sender());
 	if (act) {
 		// TODO update page select controls
 		qDebug() << "Page icon change not yet implemented";
@@ -430,21 +430,21 @@ void TitledPanel::onPageIconChange()
 
 void TitledPanel::setActivePageFromAction()
 {
-	QAction *act = qobject_cast<QAction *>(sender());
+	auto *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
 	setCurrentPage(act->data().toString());
 }
 
 void TitledPanel::setActivePageFromComboBox(int index)
 {
-	QComboBox *box = qobject_cast<QComboBox *>(sender());
+	auto *box = qobject_cast<QComboBox *>(sender());
 	if (box)
 		setCurrentPage(box->itemData(index).toString());
 }
 
 void TitledPanel::setActivePageFromTabBar(int index)
 {
-	QTabBar *tabBar = qobject_cast<QTabBar *>(sender());
+	auto *tabBar = qobject_cast<QTabBar *>(sender());
 	if (tabBar)
 		setCurrentPage(tabBar->tabData(index).toString());
 }
@@ -452,7 +452,7 @@ void TitledPanel::setActivePageFromTabBar(int index)
 void TitledPanel::togglePageVisibleFromAction(bool on)
 {
 	Q_UNUSED(on);
-	QAction *act = qobject_cast<QAction *>(sender());
+	auto *act = qobject_cast<QAction *>(sender());
 	if (!act || act->data().toString() == "") return;
 
 	// TODO maybe just remove(id)
