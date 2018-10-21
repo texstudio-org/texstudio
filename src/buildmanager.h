@@ -68,6 +68,8 @@ struct CommandInfo {
 
 	QString getPrettyCommand() const;
 	QString getBaseName() const { return baseName; }
+    QString getProgramName() const;
+    QString getProgramNameUnquoted() const;
 private:
 	friend class BuildManager;
 	QString baseName;
@@ -76,8 +78,6 @@ private:
 public:
 	static QString getProgramName(const QString &commandLine);
 	static QString getProgramNameUnquoted(const QString &commandLine);
-private:
-	QString getProgramName() const;
 };
 
 struct ExpandingOptions {

@@ -9185,7 +9185,7 @@ void Texstudio::findNextWordRepetion()
 void Texstudio::importPackage(QString name)
 {
 	if (!latexStyleParser) {
-		QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
+        QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).getProgramNameUnquoted();
 		QString baseDir;
 		if (!QFileInfo(cmd_latex).isRelative())
 			baseDir = QFileInfo(cmd_latex).absolutePath() + "/";
@@ -9249,7 +9249,7 @@ void Texstudio::readinAllPackageNames()
 		}
 		if (configManager.scanInstalledLatexPackages) {
 			// start reading actually installed packages
-			QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
+            QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).getProgramNameUnquoted();
 			QString baseDir;
 			if (!QFileInfo(cmd_latex).isRelative())
 				baseDir = QFileInfo(cmd_latex).absolutePath() + "/";
@@ -9972,10 +9972,7 @@ void Texstudio::checkLatexInstall()
     m_languages->setLanguageFromName(currentEditor(), "Plain text");
 
 	CommandInfo cmdInfo = buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
-	QString cmd = cmdInfo.getBaseName();
-	int index = cmdInfo.commandLine.indexOf(cmd);
-	if (index > -1)
-		cmd = cmdInfo.commandLine.left(index) + cmd;
+    QString cmd = cmdInfo.getProgramName();
 	// where is pdflatex located
 #ifdef Q_OS_WIN
 	runCommand("where " + cmd, &buffer);

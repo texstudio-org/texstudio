@@ -125,6 +125,11 @@ QString CommandInfo::getProgramName() const
 	return getProgramName(commandLine);
 }
 
+QString CommandInfo::getProgramNameUnquoted() const
+{
+    return getProgramNameUnquoted(commandLine);
+}
+
 ExpandingOptions::ExpandingOptions(const QFileInfo &mainFile, const QFileInfo &currentFile, const int currentLine): mainFile(mainFile), currentFile(currentFile), currentLine(currentLine), nestingDeep(0), canceled(false)
 {
 	override.removeAll = false;
