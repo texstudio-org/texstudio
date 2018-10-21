@@ -991,7 +991,7 @@ void addWord(QCharTree& tree, const QString& w, int action, bool cs)
 		node.value.action = action;
 		
 		it->next[0] = node;
-	} else if ( 0 ) {
+	} else if ( false ) {
 		QChar c = w.at(0);
 		quint16 u = c.unicode();
 		

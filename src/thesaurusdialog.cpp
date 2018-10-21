@@ -31,7 +31,7 @@ public:
 
 void ThesaurusDatabaseType::clear()
 {
-	if (buffer) delete buffer;
+	delete buffer;
     buffer = nullptr;
 	thesaurus.clear();
 	fileName.clear();

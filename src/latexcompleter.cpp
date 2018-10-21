@@ -21,7 +21,7 @@
 class CompleterInputBinding: public QEditorInputBinding
 {
 public:
-    CompleterInputBinding(): active(0), showAlways(false), showMostUsed(0), completer(nullptr), editor(nullptr), oldBinding(nullptr), curStart(0), maxWritten(0), curLineNumber(0) {}
+    CompleterInputBinding(): active(false), showAlways(false), showMostUsed(0), completer(nullptr), editor(nullptr), oldBinding(nullptr), curStart(0), maxWritten(0), curLineNumber(0) {}
 	virtual QString id() const
 	{
 		return "TXS::CompleterInputBinding";

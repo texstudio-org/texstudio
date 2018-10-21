@@ -91,7 +91,7 @@ void TexstudioApp::init(QStringList &cmdLine)
 
 TexstudioApp::~TexstudioApp()
 {
-	if (mw) delete mw;
+	delete mw;
 }
 
 bool TexstudioApp::event(QEvent *event)

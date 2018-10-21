@@ -213,7 +213,7 @@ void RandomTextGenerator::generateText()
 
 	if (ui->exportCheckBox->isChecked()) {
 		ui->outputEdit->setText(tr("Finished generation"));
-		textStream.setDevice(0);
+		textStream.setDevice(nullptr);
 	} else {
 		ui->outputEdit->setText(text);
 	}

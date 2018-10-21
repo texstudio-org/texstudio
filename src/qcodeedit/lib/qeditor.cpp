@@ -1044,7 +1044,7 @@ bool QEditor::writeToFile(const QString &filename, const QByteArray &data) {
 
 	// check available disk space
 	quint64 freeBytes;
-	while (1) {
+	while (true) {
 		if (!getDiskFreeSpace(QFileInfo(filename).canonicalPath(), freeBytes)) break;
 		if (static_cast<quint64>(data.size()) < freeBytes) break;
 
@@ -1173,7 +1173,7 @@ void QEditor::saveEmergencyBackup(const QString& filename){
 
 		sucessfullySaved = f.write(data) == data.size();
 		f.flush();
-	} while (0);
+	} while (false);
 
 	if (!sucessfullySaved)
 		QFile::remove(filename);

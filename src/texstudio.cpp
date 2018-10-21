@@ -1341,7 +1341,7 @@ void Texstudio::setupToolBars()
 
 void Texstudio::updateAvailableLanguages()
 {
-	if (spellLanguageActions) delete spellLanguageActions;
+	delete spellLanguageActions;
 
 	spellLanguageActions = new QActionGroup(statusTbLanguage);
 	spellLanguageActions->setExclusive(true);
@@ -2907,7 +2907,7 @@ bool Texstudio::canCloseNow(bool saveSettings)
 	if (saveSettings)
 		this->saveSettings();
 	closeAllFiles();
-	if (userMacroDialog) delete userMacroDialog;
+	delete userMacroDialog;
 	spellerManager.unloadAll();  //this saves the ignore list
 	programStopped = true;
 	Guardian::shutdown();
@@ -9899,7 +9899,7 @@ void Texstudio::recoverFromCrash()
 	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
 		delete mb;
 		Guardian::continueEndlessLoop();
-		while (1) ;
+		while (true) ;
 	}
 
 	//restore editor views

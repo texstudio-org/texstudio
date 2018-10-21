@@ -734,7 +734,7 @@ ConfigManager::~ConfigManager()
 	delete completerConfig;
 	delete webPublishDialogConfig;
 	delete insertGraphicsConfig;
-	if (persistentConfig) delete persistentConfig;
+	delete persistentConfig;
     globalConfigManager = nullptr;
 }
 
@@ -1356,7 +1356,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.pushButtonGrammarLTJava->setIcon(fileOpenIcon);
 
 	//menu shortcuts
-	QTreeWidgetItem *menuShortcuts = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << QString(tr("Menus")));
+	QTreeWidgetItem *menuShortcuts = new QTreeWidgetItem((QTreeWidget *)nullptr, QStringList() << QString(tr("Menus")));
     foreach (QMenu *menu, managedMenus){
         if(menu->objectName().startsWith("main"))
             managedMenuToTreeWidget(menuShortcuts, menu);
@@ -2968,7 +2968,7 @@ void ConfigManager::removeCommand()
 		QWidget *w = li->widget();
 		if (w && nameWidget != li->widget()->property(PROPERTY_NAME_WIDGET).value<QWidget *>()) break;
 		userGridLayout->removeItem(li);
-		if (w) delete w;
+        delete w;
 		delete li;
 	}
 	delete userGridLayout->takeAt(index);

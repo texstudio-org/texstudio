@@ -22,7 +22,7 @@ GrammarCheck::GrammarCheck(QObject *parent) :
  */
 GrammarCheck::~GrammarCheck()
 {
-	if (latexParser) delete latexParser;
+	delete latexParser;
 }
 /*!
  * \brief GrammarCheck::init
@@ -533,7 +533,7 @@ GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): Gra
 
 GrammarCheckLanguageToolSOAP::~GrammarCheckLanguageToolSOAP()
 {
-	if (nam) delete nam;
+	delete nam;
 }
 /*!
  * \brief GrammarCheckLanguageToolSOAP::init
@@ -805,7 +805,7 @@ GrammarCheckLanguageToolJSON::GrammarCheckLanguageToolJSON(QObject *parent): Gra
 
 GrammarCheckLanguageToolJSON::~GrammarCheckLanguageToolJSON()
 {
-    if (nam) delete nam;
+    delete nam;
 }
 /*!
  * \brief GrammarCheckLanguageToolJSON::init

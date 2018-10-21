@@ -399,7 +399,7 @@ void QLineMarksInfoCenter::loadMarkTypes(const QString& f)
 				if ( value.contains('@') )
 				{
 					t.color = QColor(value.section('@', 0, 0, QString::SectionSkipEmpty));
-					t.color.setAlpha(value.section('@', 1, 1, QString::SectionSkipEmpty).toUInt(0, 16));
+					t.color.setAlpha(value.section('@', 1, 1, QString::SectionSkipEmpty).toUInt(nullptr, 16));
 				} else {
 					t.color = QColor(value);
 				}

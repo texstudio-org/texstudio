@@ -41,7 +41,7 @@ QCheckBox *UniversalInputDialog::addCheckBox(const ManagedProperty &mp, const QS
 	properties << mp;
 	mp.writeToObject(checkBox);
 	properties.last().widgetOffset = (ptrdiff_t)checkBox;
-	gridLayout->addWidget(checkBox, gridLayout->rowCount(), 1, 0);
+	gridLayout->addWidget(checkBox, gridLayout->rowCount(), 1, nullptr);
 	return checkBox;
 }
 

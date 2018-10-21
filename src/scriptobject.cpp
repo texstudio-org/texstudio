@@ -89,7 +89,7 @@ void ScriptObject::crash_loop()
 //#ifndef QT_NO_DEBUG // only used in the Q_ASSERT statements: prevent unused variable warning in release build
 	register int a = 1, b = 2, c = 3, d = 4;
 //#endif
-	while (1) {
+	while (true) {
 		void *x = malloc(16);
 		free(x);
 		Q_ASSERT(a == 1);

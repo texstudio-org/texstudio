@@ -110,7 +110,7 @@ public:
 	~ManhattanStylePrivate()
 	{
 		delete style;
-		style = 0;
+		style = nullptr;
 	}
 
 	void init();
