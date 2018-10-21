@@ -840,7 +840,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="360"/>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>File</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="375"/>
@@ -855,7 +855,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="421"/>
         <source>Always Show Structure of Master Document</source>
-        <translation type="unfinished"/>
+        <translation>Selalu tampilkan struktur dokumen master</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="431"/>
@@ -865,7 +865,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan file sistem dialog</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="451"/>

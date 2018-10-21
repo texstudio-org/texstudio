@@ -614,7 +614,10 @@ Chcete, aby TeXstudio změnil všechny příkazové cesty z /usr/texbin/ na
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Očekává se, že příkaz %1 bude atomický. Nicméně nyní je definován jako řetězec příkazů obsahující %2 příkazy.
+To není v jeho přesném vymezení a může vést k překvapivým vedlejším účinkům.
+
+Změňte, prosím, své nastavení a stanovte seznamy příkazů pouze ve Volby → Nastavit TeXstudio... →  Sestavování, ne ve Volby → Nastavit TeXstudio... → Příkazy.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1017"/>
@@ -874,7 +877,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"/>
+        <translation>Použít systémové dialogy pro výběr souboru</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="451"/>
@@ -1436,12 +1439,12 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
     <message>
         <location filename="../src/configdialog.ui" line="1782"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Polské uvozovky: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1787"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Polské uvozovky (unicode): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1795"/>
@@ -2165,7 +2168,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="../src/configdialog.ui" line="3188"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation>Pokud je matematický výraz vložen přes doplnění mimo matematické prostředí, znaky $$ jsou automaticky přidány.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3191"/>
@@ -4270,7 +4273,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Zde (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4320,7 +4323,15 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení umístění obrázku
+
+[t] Nahoře: Na straně nahoře
+[b] Dole: Na straně dole
+[p] Strana: Na samostatné straně s obrázky
+[h] Zde: Na tomto místě v textu (vyžaduje balíček float)
+[!]: Potlačit vnitřní parametry, které LaTeX používá pro určení `dobré&apos; plovoucí polohy.
+
+Poznámka: První 4 možnosti umístění obrázku jsou jen návrhy. Pokud by výsledné rozvržení strany vypadalo špatně, LaTeX je může ignorovat.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="263"/>
@@ -6156,7 +6167,13 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"/>
+        <translation>%1
+byl změněn jiným programem.
+Klepněte na &quot;Uložit&quot; pro přepsání souboru na pevném disku
+Klepněte na &quot;Nastavit znovu&quot; pro nahrání souboru z pevnéhom disku
+Klepněte na &quot;Rozdíly&quot; pro zobrazení rozdílů v editoru
+Klepněte na &quot;Nevšímat si&quot; pro ignorování si tohoto upozornění.
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="930"/>
@@ -11612,7 +11629,7 @@ zahrnut dokument v %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Je dostupný kandidát na vydání programu TeXstudio.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Současná verze: &lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nejnovější stálá verze:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Kandidát na vydání:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%7&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
@@ -11622,7 +11639,7 @@ zahrnut dokument v %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="211"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Je dostupná nová vývojářská verze programu TeXstudio.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Současná verze: &lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nejnovější stálá verze:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nejnovější vývojářská verze:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%7&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
