@@ -147,8 +147,10 @@ QScriptValue getSetStrValue(QScriptContext *context, QScriptEngine *engine)
 	}
 	if (!s) return engine->undefinedValue();
 	if (setterMode) {
-		if (!needPrivileges(engine, "string setting", context->argument(0).toString()))
+        if (!needPrivileges(engine, "string setting", context->argument(0).toString())){
+            delete s;
 			return engine->undefinedValue();
+        }
 		*s = context->argument(0).toString();
 	}
 	return engine->newVariant(*s);
