@@ -35,8 +35,8 @@ void PreviewLabel::setPixmapWithResizing(const QPixmap &pm)
 		return;
 	}
 
-	double relWidth = pm.width() / ((double) contentsRect().width());
-	double relHeight = pm.height() / ((double) contentsRect().height());
+    double relWidth = pm.width() / static_cast<double>( contentsRect().width());
+    double relHeight = pm.height() / static_cast<double>(contentsRect().height());
 	if (relWidth > 1.0 || relHeight > 1.0) {
 		setPixmap(pm.scaled(contentsRect().size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	} else {
@@ -195,7 +195,7 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
 			ui.rbCreateInEditor->setEnabled(true);
 		}
 	} else {
-		AbstractTemplateResource *res = (currentItem) ? (currentItem->data(0, ResourceRole).value<AbstractTemplateResource *>()) : 0;
+        AbstractTemplateResource *res = (currentItem) ? (currentItem->data(0, ResourceRole).value<AbstractTemplateResource *>()) : nullptr;
 		// if !res the currentItem is invalid
 		pbOk->setEnabled(false);
 		ui.lbName->setText(res ? res->name() : "");
