@@ -10,7 +10,7 @@ class TemplateHandle
 {
 public:
 	friend class Template;
-	TemplateHandle() : m_tmpl(0) {}
+    TemplateHandle() : m_tmpl(nullptr) {}
 	TemplateHandle(const TemplateHandle &th);
 	explicit TemplateHandle(Template *tmpl);
 	~TemplateHandle();
