@@ -37,6 +37,9 @@ public:
 
 	QString snippet() const;
 	QString script() const;
+    QString shortcut() const;
+
+    void setShortcut(const QString &sc);
 
 	QString typedTag() const;
 	static QString parseTypedTag(QString typedTag, Macro::Type &retType);
@@ -45,6 +48,9 @@ public:
 	bool isActiveForTrigger(SpecialTrigger trigger) const;
 	bool isActiveForLanguage(QLanguageDefinition *lang) const;
 	bool isActiveForFormat(int format) const;
+
+    bool load(const QString &fileName);
+    bool save(const QString &fileName) const;
 
 	LatexDocument *document;
 
@@ -62,6 +68,8 @@ private:
 	QList<int> triggerFormats;
 	QString triggerFormatExcludesUnprocessed;
 	QList<int> triggerFormatExcludes;
+
+    QString m_shortcut;
 };
 
 

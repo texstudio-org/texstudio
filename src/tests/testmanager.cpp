@@ -24,6 +24,7 @@
 #include "utilsui_t.h"
 #include "utilsversion_t.h"
 #include "help_t.h"
+#include "usermacro_t.h"
 #include "latexoutputfilter_t.h"
 #include <QtTest/QtTest>
 
@@ -90,10 +91,11 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new StructureViewTest(edView,edView->document,level==TL_ALL)
 		<< new TableManipulationTest(editor)
 		<< new SyntaxCheckTest(edView)
-		<< new UpdateCheckerTest(level==TL_ALL)
+        << new UpdateCheckerTest(level==TL_ALL)
 		<< new UtilsUITest(level==TL_ALL)
         << new VersionTest(level==TL_ALL)
-        << new HelpTest();
+        << new HelpTest()
+        << new UserMacroTest();
 	bool allPassed=true;
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";

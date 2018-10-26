@@ -1209,10 +1209,13 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->setValue("User/New Key Replacements Created", true);
 
 	//user macros
+    QDir().mkpath(configBaseDir+"/macro");
+
 	int index = 0;
 	foreach (const Macro &macro, completerConfig->userMacros) {
 		if (macro.name == TXS_AUTO_REPLACE_QUOTE_OPEN || macro.name == TXS_AUTO_REPLACE_QUOTE_CLOSE || macro.document)
 			continue;
+        macro.save(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index));
 		config->setValue(QString("Macros/%1").arg(index++), macro.toStringList());
 	}
 	while (config->contains(QString("Macros/%1").arg(index))) { //remove old macros which are not used any more
