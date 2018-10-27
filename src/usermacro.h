@@ -27,7 +27,7 @@ public:
 
 	static Macro fromTypedTag(const QString &typedTag);
 
-	QString name, abbrev;
+    QString name, abbrev,description,menu;
 	Type type;
 	QString trigger;
 	QRegExp triggerRegex;

@@ -13,6 +13,8 @@ void UserMacroTest::saveRead_data(){
     QTest::addColumn<QString>("abbrev");
     QTest::addColumn<QString>("trigger");
     QTest::addColumn<QString>("shortcut");
+    QTest::addColumn<QString>("menu");
+    QTest::addColumn<QString>("description");
 
     QTest::newRow("trivial")
         << "abcd"
@@ -20,12 +22,16 @@ void UserMacroTest::saveRead_data(){
         << "abc"
         << "dfg"
         << "rth"
+        << "dfsdf"
+        << "sdfsdf"
         << "fgh";
 
     QTest::newRow("env")
         << "abcd"
         << "Environment"
         << "abc"
+        << ""
+        << ""
         << ""
         << ""
         << "";
@@ -36,11 +42,15 @@ void UserMacroTest::saveRead_data(){
         << "abc\ncde\ndef"
         << ""
         << ""
+        << ""
+        << ""
         << "";
     QTest::newRow("quotes")
         << "abcd"
         << "Script"
         << "abc\nc\"de\"\ndef"
+        << ""
+        << ""
         << ""
         << ""
         << "";
@@ -50,11 +60,15 @@ void UserMacroTest::saveRead_data(){
         << "abc\nc\\\"de\\\"\ndef"
         << ""
         << ""
+        << ""
+        << ""
         << "";
     QTest::newRow("brackets")
         << "abcd"
         << "Script"
         << "abc\ncd]fsd\nd[ef"
+        << ""
+        << ""
         << ""
         << ""
         << "";
@@ -70,6 +84,8 @@ void UserMacroTest::saveRead(){
     QFETCH(QString, abbrev);
     QFETCH(QString, trigger);
     QFETCH(QString, shortcut);
+    QFETCH(QString, menu);
+    QFETCH(QString, description);
     Macro::Type tp=Macro::Snippet;
     if(type=="Script"){
         tp=Macro::Script;
@@ -79,6 +95,8 @@ void UserMacroTest::saveRead(){
     }
     Macro macro(name,tp,tag,abbrev,trigger);
     macro.setShortcut(shortcut);
+    macro.menu=menu;
+    macro.description=description;
     macro.save(fileName);
     Macro macro2;
     macro2.load(fileName);
@@ -86,4 +104,6 @@ void UserMacroTest::saveRead(){
     QCOMPARE(macro2.type,tp);
     QCOMPARE(macro2.trigger,trigger);
     QCOMPARE(macro2.shortcut(),shortcut);
+    QCOMPARE(macro2.menu,menu);
+    QCOMPARE(macro2.description,description);
 }

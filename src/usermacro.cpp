@@ -245,10 +245,21 @@ bool Macro::save(const QString &fileName) const {
         line.replace("\"","\\\"");
         out << " \"" << line << "\" \n";
     }
-
+    out << "\n ],\n";
+    out << "\"description\" : [\n";
+    first=true;
+    foreach(QString line,description.split("\n")){
+        if(!first){
+            out << ",\n";
+        }
+        first=false;
+        line.replace("\"","\\\"");
+        out << " \"" << line << "\" \n";
+    }
     out << "\n ],\n";
     out << "\"abbrev\" : \"" <<abbrev << "\" ,\n";
     out << "\"trigger\" : \"" <<trigger << "\" ,\n";
+    out << "\"menu\" : \"" <<menu << "\" ,\n";
     out << "\"shortcut\" : \"" <<m_shortcut << "\" ,\n";
     out << "}\n" ;
     return true; // successfully finished
@@ -269,6 +280,8 @@ bool Macro::load(const QString &fileName){
     QString typedTag=parseTypedTag(rawData.value("tag"),typ);
     init(rawData.value("name"),typ,typedTag,rawData.value("abbrev"),rawData.value("trigger"));
     m_shortcut=rawData.value("shortcut");
+    menu=rawData.value("menu");
+    description=rawData.value("description");
     return true;
 }
 
