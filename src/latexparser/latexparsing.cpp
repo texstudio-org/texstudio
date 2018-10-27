@@ -292,7 +292,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 continue;
             } else {
                 // special treatment for character changing commands like \"a (ä)
-                if(tk.length==2 && command[1].isPunct() && command[1]!=QChar('\\')){
+                if(tk.length==2 && command[1].isPunct() && command[1]!=QChar('\\') && !QString("()[]{}").contains(command[1])){
                     if (i + 1 < tl.length()) {
                         Token tk2 = tl.at(i + 1);
                         if (tk2.start == tk.start + tk.length && tk2.type == Token::word) {
