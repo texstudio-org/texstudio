@@ -254,13 +254,13 @@ bool Macro::save(const QString &fileName) const {
         }
         first=false;
         line.replace("\"","\\\"");
-        out << " \"" << line << "\" \n";
+        out << " \"" << line << "\"";
     }
     out << "\n ],\n";
     out << "\"abbrev\" : \"" <<abbrev << "\" ,\n";
     out << "\"trigger\" : \"" <<trigger << "\" ,\n";
     out << "\"menu\" : \"" <<menu << "\" ,\n";
-    out << "\"shortcut\" : \"" <<m_shortcut << "\" ,\n";
+    out << "\"shortcut\" : \"" <<m_shortcut << "\"\n";
     out << "}\n" ;
     return true; // successfully finished
 }

@@ -1947,9 +1947,15 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 	return menu;
 }
 
-void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems)
+void ConfigManager::clearMenu(QMenu *menu){
+    QList<QAction *> actions = menu->actions();
+    for (int i = 0; i < actions.count(); i++){
+        menu->removeAction(actions[i]); //neccessary or it crashes
+    }
+}
+
+void ConfigManager::updateUserMacroMenu()
 {
-	QStringList macronames;
 	// remove quote replacement from list
 	for (int i = 0; i < completerConfig->userMacros.count(); i++) {
 		Macro m = completerConfig->userMacros.at(i);
@@ -1959,11 +1965,29 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems)
 		}
 	}
 
-	foreach (const Macro &m, completerConfig->userMacros)
-		if (!m.document)
-			macronames << m.name;
+    QMenu *recreatedMenu = getManagedMenu("main/macros");
+    clearMenu(recreatedMenu);
+    int i=0;
+    QMenu *menu=nullptr;
+    foreach (const Macro &m, completerConfig->userMacros){
+        if (!m.document){
+            menu=recreatedMenu;
+            QList<QKeySequence> shortcuts;
+            if(!m.shortcut().isEmpty()){
+                shortcuts<<QKeySequence(m.shortcut());
+            }
+            // create/find apropriate submenu
+            if(!m.menu.isEmpty()){
+                foreach(const QString &name,m.menu.split("/")){
+                    menu=newManagedMenu(menu,name,name);
+                }
+            }
 
-	QMenu *recreatedMenu = updateListMenu("main/macros", macronames, "tag", false, SLOT(insertUserTag()), Qt::SHIFT + Qt::Key_F1, alwaysRecreateMenuItems);
+            QString id = "tag" + QString::number(i);
+            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), shortcuts);
+            act->setData(i++);
+        }
+    }
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
 		newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));
