@@ -994,50 +994,65 @@ QSettings *ConfigManager::readSettings(bool reread)
 
 	//user macros
 	if (!reread) {
-		if (config->value("Macros/0").isValid()) {
-			for (int i = 0; i < 1000; i++) {
-				QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
-				if (ls.isEmpty()) break;
-				completerConfig->userMacros.append(Macro(ls));
-			}
-			for (int i = 0; i < keyReplace.size(); i++) {
-				completerConfig->userMacros.append(Macro(
-				                                       tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
-				                                       keyReplaceBeforeWord[i].replace("%", "%%"),
-				                                       "",
-				                                       "(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i])
-				                                   ));
-				completerConfig->userMacros.append(Macro(
-				                                       tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
-				                                       keyReplaceAfterWord[i].replace("%", "%%"),
-				                                       "",
-				                                       "(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i])
-				                                   ));
-			}
-		} else {
-			// try importing old macros
-			QStringList userTags = config->value("User/Tags").toStringList();
-			QStringList userNames = config->value("User/TagNames").toStringList();
-			QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
-			QStringList userTriggers = config->value("User/TagTriggers").toStringList();
+        QDir dir(configBaseDir+"/macro");
+        if(dir.exists()){
+            // use file based macros
+            for (int i = 0; i < 1000; i++) {
+                QString fileName=QString(configBaseDir+"/macro/Macro_%1.txsMacro").arg(i);
+                if(QFile(fileName).exists()){
+                    Macro macro;
+                    macro.load(fileName);
+                    completerConfig->userMacros.append(macro);
+                }else{
+                    break;
+                }
+            }
+        }else{
+            if (config->value("Macros/0").isValid()) {
+                for (int i = 0; i < 1000; i++) {
+                    QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
+                    if (ls.isEmpty()) break;
+                    completerConfig->userMacros.append(Macro(ls));
+                }
+                for (int i = 0; i < keyReplace.size(); i++) {
+                    completerConfig->userMacros.append(Macro(
+                                                           tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
+                                                           keyReplaceBeforeWord[i].replace("%", "%%"),
+                                                           "",
+                                                           "(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i])
+                                                           ));
+                    completerConfig->userMacros.append(Macro(
+                                                           tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
+                                                           keyReplaceAfterWord[i].replace("%", "%%"),
+                                                           "",
+                                                           "(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i])
+                                                           ));
+                }
+            } else {
+                // try importing old macros
+                QStringList userTags = config->value("User/Tags").toStringList();
+                QStringList userNames = config->value("User/TagNames").toStringList();
+                QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
+                QStringList userTriggers = config->value("User/TagTriggers").toStringList();
 
-			while (userTriggers.size() < userTags.size()) userTriggers << "";
+                while (userTriggers.size() < userTags.size()) userTriggers << "";
 
-			for (int i = 0; i < keyReplace.size(); i++) {
-				userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
-				userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
-				userAbbrevs.append("");
-				userTriggers.append("(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i]));
+                for (int i = 0; i < keyReplace.size(); i++) {
+                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
+                    userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
+                    userAbbrevs.append("");
+                    userTriggers.append("(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i]));
 
-				userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
-				userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
-				userAbbrevs.append("");
-				userTriggers.append("(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i]));
-			}
+                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
+                    userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
+                    userAbbrevs.append("");
+                    userTriggers.append("(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i]));
+                }
 
-			for (int i = 0; i < userTags.size(); i++)
-				completerConfig->userMacros.append(Macro(userNames.value(i, ""), userTags[i], userAbbrevs.value(i, ""), userTriggers.value(i, "")));
-		}
+                for (int i = 0; i < userTags.size(); i++)
+                    completerConfig->userMacros.append(Macro(userNames.value(i, ""), userTags[i], userAbbrevs.value(i, ""), userTriggers.value(i, "")));
+            }
+        }
 		// import old svn setting
 		if (config->contains("Tools/Auto Checkin after Save")) {
 			bool oldSetting = config->value("Tools/Auto Checkin after Save", false).toBool();
