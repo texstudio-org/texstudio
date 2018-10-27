@@ -104,6 +104,7 @@
 <file>completion/logsys.cwl</file>
 <file>completion/longtable.cwl</file>
 <file>completion/lscape.cwl</file>
+<file>completion/ltablex.cwl</file>
 <file>completion/ltxtable.cwl</file>
 <file>completion/luatex.cwl</file>
 <file>completion/luatodonotes.cwl</file>
