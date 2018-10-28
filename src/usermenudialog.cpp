@@ -212,6 +212,9 @@ void UserMenuDialog::addMacro(const Macro &m)
 	tags << m.typedTag();
 	abbrevs << m.abbrev;
 	triggers << m.trigger;
+    shortcuts << m.shortcut();
+    descriptions << m.description;
+    menus << m.menu;
 }
 
 Macro UserMenuDialog::getMacro(int i) const
@@ -220,7 +223,14 @@ Macro UserMenuDialog::getMacro(int i) const
 	Q_ASSERT(names.size() == tags.size());
 	Q_ASSERT(names.size() == abbrevs.size());
 	Q_ASSERT(names.size() == triggers.size());
-	return Macro(names[i], tags[i], abbrevs[i], triggers[i]);
+    Q_ASSERT(names.size() == menus.size());
+    Q_ASSERT(names.size() == descriptions.size());
+    Q_ASSERT(names.size() == shortcuts.size());
+    Macro m(names[i], tags[i], abbrevs[i], triggers[i]);
+    m.setShortcut(shortcuts[i]);
+    m.menu=menus[i];
+    m.description=descriptions[i];
+    return m;
 }
 
 int UserMenuDialog::macroCount() const

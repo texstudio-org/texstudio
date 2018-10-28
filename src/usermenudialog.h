@@ -25,7 +25,7 @@ class UserMenuDialog : public QDialog
 	Q_OBJECT
 
 public:
-	UserMenuDialog(QWidget *parent = 0, QString name = "", QLanguageFactory *languageFactory = 0);
+    UserMenuDialog(QWidget *parent = nullptr, QString name = "", QLanguageFactory *languageFactory = nullptr);
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
@@ -34,7 +34,7 @@ public:
 	int macroCount() const;
 
 private:
-	QStringList names, tags, abbrevs, triggers;
+    QStringList names, tags, abbrevs, triggers,shortcuts,descriptions,menus;
 
 	QCodeEdit *codeedit;
 	QLanguageFactory *languages;
