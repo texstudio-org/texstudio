@@ -192,6 +192,11 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	ui.tagEdit->layout()->setMargin(0);
 	ui.tagEdit->layout()->addWidget(codeedit->editor());
 
+    // limit height of description editor
+    QFontMetrics m (ui.teDescription->font());
+    int RowHeight = m.lineSpacing();
+    ui.teDescription->setFixedHeight(4 * RowHeight);
+
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
     connect(ui.teDescription, SIGNAL(textChanged()), SLOT(descriptionChanged()));
