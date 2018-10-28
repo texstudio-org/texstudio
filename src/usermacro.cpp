@@ -243,7 +243,7 @@ bool Macro::save(const QString &fileName) const {
         }
         first=false;
         line.replace("\"","\\\"");
-        out << " \"" << line << "\" \n";
+        out << " \"" << line << "\"";
     }
     out << "\n ],\n";
     out << "\"description\" : [\n";

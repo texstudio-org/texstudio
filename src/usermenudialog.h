@@ -58,6 +58,8 @@ private slots:
 	void slotMoveDown();
 	void textChanged();
 	void nameChanged();
+    void descriptionChanged();
+    void shortcutChanged();
 	void abbrevChanged();
 	void triggerChanged();
 	void showTooltip();

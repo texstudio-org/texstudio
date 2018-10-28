@@ -53,7 +53,7 @@ int StringListTableModel::rowCount ( const QModelIndex &parent) const
 
 int StringListTableModel::columnCount ( const QModelIndex &parent) const
 {
-	return parent.isValid() ? 0 : lists.size();
+    return parent.isValid() ? 0 : lists.size();
 }
 
 QVariant StringListTableModel::data ( const QModelIndex &index, int role) const
@@ -194,6 +194,8 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
+    connect(ui.teDescription, SIGNAL(textChanged()), SLOT(descriptionChanged()));
+    connect(ui.cbShortcut, SIGNAL(currentTextChanged(QString)), SLOT(shortcutChanged()));
 	connect(ui.abbrevEdit, SIGNAL(textEdited(QString)), SLOT(abbrevChanged()));
 	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
 	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
@@ -245,6 +247,8 @@ void UserMenuDialog::init()
 	model->addStringList(&abbrevs, tr("Abbrev"));
 	model->addStringList(&triggers, tr("Trigger"));
 	model->addStringList(&tags, tr("Tag"));
+    model->addStringList(&descriptions, tr("Description"));
+    model->addStringList(&shortcuts, tr("Shortcuts"));
 	ui.tableView->setModel(model);
 	ui.tableView->resizeColumnsToContents();
 	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), SLOT(change(const QModelIndex &, const QModelIndex &)));
@@ -271,6 +275,10 @@ void UserMenuDialog::change(const QModelIndex &modelIndex, const QModelIndex &)
 		ui.abbrevEdit->setText(abbrevs.value(index, ""));
 	if (triggers.value(index, "") != ui.triggerEdit->text())
 		ui.triggerEdit->setText(triggers.value(index, ""));
+    if (shortcuts.value(index, "") != ui.cbShortcut->currentText())
+        ui.cbShortcut->setCurrentText(shortcuts.value(index, ""));
+    if (descriptions.value(index, "") != ui.teDescription->document()->toPlainText())
+        ui.teDescription->document()->setPlainText(descriptions.value(index, ""));
 
 }
 
@@ -300,6 +308,8 @@ void UserMenuDialog::slotAdd()
 		model->setData(model->index(0, model->listId(&names)), ui.itemEdit->text());
 		model->setData(model->index(0, model->listId(&abbrevs)), ui.abbrevEdit->text());
 		model->setData(model->index(0, model->listId(&triggers)), ui.triggerEdit->text());
+        model->setData(model->index(0, model->listId(&descriptions)), ui.teDescription->document()->toPlainText());
+        model->setData(model->index(0, model->listId(&shortcuts)), ui.cbShortcut->currentText());
 	}
 	ui.tableView->setCurrentIndex(model->index(ui.tableView->currentIndex().row() + 1, 0));
 }
@@ -382,6 +392,19 @@ void UserMenuDialog::nameChanged()
 	if (!ui.tableView->currentIndex().isValid()) return;
 	int i = ui.tableView->currentIndex().row();
 	model->setData(model->index(i, model->listId(&names)), ui.itemEdit->text());
+}
+void UserMenuDialog::descriptionChanged()
+{
+    if (!ui.tableView->currentIndex().isValid()) return;
+    int i = ui.tableView->currentIndex().row();
+    model->setData(model->index(i, model->listId(&descriptions)), ui.teDescription->document()->toPlainText());
+}
+
+void UserMenuDialog::shortcutChanged()
+{
+    if (!ui.tableView->currentIndex().isValid()) return;
+    int i = ui.tableView->currentIndex().row();
+    model->setData(model->index(i, model->listId(&shortcuts)), ui.cbShortcut->currentText());
 }
 
 void UserMenuDialog::abbrevChanged()
