@@ -1948,10 +1948,17 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 }
 
 void ConfigManager::clearMenu(QMenu *menu){
-    QList<QAction *> actions = menu->actions();
+    QList<QMenu *> lst=menu->findChildren<QMenu *>();
+    foreach(QMenu *m,lst){
+        clearMenu(m);
+        delete m;
+    }
+    menu->clear();
+    /*QList<QAction *> actions = menu->actions();
     for (int i = 0; i < actions.count(); i++){
         menu->removeAction(actions[i]); //neccessary or it crashes
-    }
+    }*/
+
 }
 
 void ConfigManager::updateUserMacroMenu()
