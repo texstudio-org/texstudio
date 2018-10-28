@@ -1954,11 +1954,6 @@ void ConfigManager::clearMenu(QMenu *menu){
         delete m;
     }
     menu->clear();
-    /*QList<QAction *> actions = menu->actions();
-    for (int i = 0; i < actions.count(); i++){
-        menu->removeAction(actions[i]); //neccessary or it crashes
-    }*/
-
 }
 
 void ConfigManager::updateUserMacroMenu()
