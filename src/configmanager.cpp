@@ -1224,12 +1224,18 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->setValue("User/New Key Replacements Created", true);
 
 	//user macros
-    QDir().mkpath(configBaseDir+"/macro");
+    bool newlyCreatedPath=!QDir(configBaseDir+"/macro").exists();
+    if(newlyCreatedPath){
+        newlyCreatedPath=QDir().mkpath(configBaseDir+"/macro");
+    }
 
 	int index = 0;
-	foreach (const Macro &macro, completerConfig->userMacros) {
+    foreach (Macro macro, completerConfig->userMacros) {
 		if (macro.name == TXS_AUTO_REPLACE_QUOTE_OPEN || macro.name == TXS_AUTO_REPLACE_QUOTE_CLOSE || macro.document)
 			continue;
+        if(newlyCreatedPath && index<10 && index!=2){
+            macro.setShortcut(QString("Shift+F%1").arg(index+1));
+        }
         macro.save(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index));
 		config->setValue(QString("Macros/%1").arg(index++), macro.toStringList());
 	}
