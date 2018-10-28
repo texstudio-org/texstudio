@@ -200,7 +200,11 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
     connect(ui.teDescription, SIGNAL(textChanged()), SLOT(descriptionChanged()));
+#if QT_VERSION >= 0x050000
     connect(ui.cbShortcut, SIGNAL(currentTextChanged(QString)), SLOT(shortcutChanged()));
+#else
+    connect(ui.cbShortcut, SIGNAL(editTextChanged(QString)), SLOT(shortcutChanged()));
+#endif
 	connect(ui.abbrevEdit, SIGNAL(textEdited(QString)), SLOT(abbrevChanged()));
 	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
 	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
@@ -284,8 +288,13 @@ void UserMenuDialog::change(const QModelIndex &modelIndex, const QModelIndex &)
 		ui.abbrevEdit->setText(abbrevs.value(index, ""));
 	if (triggers.value(index, "") != ui.triggerEdit->text())
 		ui.triggerEdit->setText(triggers.value(index, ""));
+#if QT_VERSION >= 0x050000
     if (shortcuts.value(index, "") != ui.cbShortcut->currentText())
         ui.cbShortcut->setCurrentText(shortcuts.value(index, ""));
+#else
+    if (shortcuts.value(index, "") != ui.cbShortcut->currentText())
+        ui.cbShortcut->setEditText(shortcuts.value(index, ""));
+#endif
     if (descriptions.value(index, "") != ui.teDescription->toPlainText())
         ui.teDescription->setPlainText(descriptions.value(index, ""));
 
