@@ -282,8 +282,8 @@ void UserMenuDialog::change(const QModelIndex &modelIndex, const QModelIndex &)
 		ui.triggerEdit->setText(triggers.value(index, ""));
     if (shortcuts.value(index, "") != ui.cbShortcut->currentText())
         ui.cbShortcut->setCurrentText(shortcuts.value(index, ""));
-    if (descriptions.value(index, "") != ui.teDescription->document()->toPlainText())
-        ui.teDescription->document()->setPlainText(descriptions.value(index, ""));
+    if (descriptions.value(index, "") != ui.teDescription->toPlainText())
+        ui.teDescription->setPlainText(descriptions.value(index, ""));
 
 }
 
