@@ -176,7 +176,7 @@ public:
 	bool addRecentFile(const QString &fileName, bool asMaster);  //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems = false);
 	QMenu *updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems = false, int additionalEntries = 2, const QList<QVariant> data=QList<QVariant>());
-	void updateUserMacroMenu(bool alwaysRecreateMenuItems = false);
+    void updateUserMacroMenu();
 
 	QString additionalBibPaths;
 	QString additionalImagePaths;
@@ -238,6 +238,7 @@ private:
 	void connectExtendedSlot(QAction *act, const QString &slot);
 	bool modifyMenuContentsFirstCall;
 	void modifyMenuContent(QStringList &ids, const QString &id);
+    void clearMenu(QMenu *menu);
 public:
 	void modifyMenuContents();
     void modifyManagedShortcuts(QString startsWith="");

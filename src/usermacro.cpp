@@ -157,15 +157,25 @@ QString Macro::script() const
 {
 	if (type == Script)
 		return tag;
-	return QString();
+    return QString();
+}
+
+QString Macro::shortcut() const
+{
+    return m_shortcut;
+}
+
+void Macro::setShortcut(const QString &sc)
+{
+    m_shortcut=sc;
 }
 
 QString Macro::typedTag() const
 {
 	switch(type) {
-	case Snippet: return tag;
-	case Environment: return "%" + tag;
-	case Script: return "%SCRIPT\n" + tag;
+    case Snippet: return tag;
+    case Environment: return "%" + tag;
+    case Script: return "%SCRIPT\n" + tag;
 	default:
 		qDebug() << "unknown macro type" << type;
 	}
@@ -215,4 +225,64 @@ bool Macro::isActiveForFormat(int format) const
 	// if no trigger format is specified, the macro is active for all formats.
 	return (triggerFormats.isEmpty() || triggerFormats.contains(format)) && (!triggerFormatExcludes.contains(format));
 }
+
+bool Macro::save(const QString &fileName) const {
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+    QTextStream out(&file);
+    QString tag= typedTag();
+
+    out << "{\n" ;
+    out << "\"name\" : \"" << name << "\" ,\n";
+    out << "\"tag\" : [\n";
+    bool first=true;
+    foreach(QString line,tag.split("\n")){
+        if(!first){
+            out << ",\n";
+        }
+        first=false;
+        line.replace("\"","\\\"");
+        out << " \"" << line << "\"";
+    }
+    out << "\n ],\n";
+    out << "\"description\" : [\n";
+    first=true;
+    foreach(QString line,description.split("\n")){
+        if(!first){
+            out << ",\n";
+        }
+        first=false;
+        line.replace("\"","\\\"");
+        out << " \"" << line << "\"";
+    }
+    out << "\n ],\n";
+    out << "\"abbrev\" : \"" <<abbrev << "\" ,\n";
+    out << "\"trigger\" : \"" <<trigger << "\" ,\n";
+    out << "\"menu\" : \"" <<menu << "\" ,\n";
+    out << "\"shortcut\" : \"" <<m_shortcut << "\"\n";
+    out << "}\n" ;
+    return true; // successfully finished
+}
+
+bool Macro::load(const QString &fileName){
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+    QTextStream in(&file);
+    QHash<QString,QString>rawData;
+    bool success=minimalJsonParse(in.readAll(), rawData);
+    if(!success){
+        return false;
+    }
+    // distrbute data on internal structure
+    Macro::Type typ;
+    QString typedTag=parseTypedTag(rawData.value("tag"),typ);
+    init(rawData.value("name"),typ,typedTag,rawData.value("abbrev"),rawData.value("trigger"));
+    m_shortcut=rawData.value("shortcut");
+    menu=rawData.value("menu");
+    description=rawData.value("description");
+    return true;
+}
+
 

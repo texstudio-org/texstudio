@@ -994,50 +994,65 @@ QSettings *ConfigManager::readSettings(bool reread)
 
 	//user macros
 	if (!reread) {
-		if (config->value("Macros/0").isValid()) {
-			for (int i = 0; i < 1000; i++) {
-				QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
-				if (ls.isEmpty()) break;
-				completerConfig->userMacros.append(Macro(ls));
-			}
-			for (int i = 0; i < keyReplace.size(); i++) {
-				completerConfig->userMacros.append(Macro(
-				                                       tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
-				                                       keyReplaceBeforeWord[i].replace("%", "%%"),
-				                                       "",
-				                                       "(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i])
-				                                   ));
-				completerConfig->userMacros.append(Macro(
-				                                       tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
-				                                       keyReplaceAfterWord[i].replace("%", "%%"),
-				                                       "",
-				                                       "(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i])
-				                                   ));
-			}
-		} else {
-			// try importing old macros
-			QStringList userTags = config->value("User/Tags").toStringList();
-			QStringList userNames = config->value("User/TagNames").toStringList();
-			QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
-			QStringList userTriggers = config->value("User/TagTriggers").toStringList();
+        QDir dir(configBaseDir+"/macro");
+        if(dir.exists()){
+            // use file based macros
+            for (int i = 0; i < 1000; i++) {
+                QString fileName=QString(configBaseDir+"/macro/Macro_%1.txsMacro").arg(i);
+                if(QFile(fileName).exists()){
+                    Macro macro;
+                    macro.load(fileName);
+                    completerConfig->userMacros.append(macro);
+                }else{
+                    break;
+                }
+            }
+        }else{
+            if (config->value("Macros/0").isValid()) {
+                for (int i = 0; i < 1000; i++) {
+                    QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
+                    if (ls.isEmpty()) break;
+                    completerConfig->userMacros.append(Macro(ls));
+                }
+                for (int i = 0; i < keyReplace.size(); i++) {
+                    completerConfig->userMacros.append(Macro(
+                                                           tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
+                                                           keyReplaceBeforeWord[i].replace("%", "%%"),
+                                                           "",
+                                                           "(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i])
+                                                           ));
+                    completerConfig->userMacros.append(Macro(
+                                                           tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
+                                                           keyReplaceAfterWord[i].replace("%", "%%"),
+                                                           "",
+                                                           "(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i])
+                                                           ));
+                }
+            } else {
+                // try importing old macros
+                QStringList userTags = config->value("User/Tags").toStringList();
+                QStringList userNames = config->value("User/TagNames").toStringList();
+                QStringList userAbbrevs = config->value("User/TagAbbrevs").toStringList();
+                QStringList userTriggers = config->value("User/TagTriggers").toStringList();
 
-			while (userTriggers.size() < userTags.size()) userTriggers << "";
+                while (userTriggers.size() < userTags.size()) userTriggers << "";
 
-			for (int i = 0; i < keyReplace.size(); i++) {
-				userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
-				userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
-				userAbbrevs.append("");
-				userTriggers.append("(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i]));
+                for (int i = 0; i < keyReplace.size(); i++) {
+                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
+                    userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
+                    userAbbrevs.append("");
+                    userTriggers.append("(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i]));
 
-				userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
-				userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
-				userAbbrevs.append("");
-				userTriggers.append("(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i]));
-			}
+                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
+                    userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
+                    userAbbrevs.append("");
+                    userTriggers.append("(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i]));
+                }
 
-			for (int i = 0; i < userTags.size(); i++)
-				completerConfig->userMacros.append(Macro(userNames.value(i, ""), userTags[i], userAbbrevs.value(i, ""), userTriggers.value(i, "")));
-		}
+                for (int i = 0; i < userTags.size(); i++)
+                    completerConfig->userMacros.append(Macro(userNames.value(i, ""), userTags[i], userAbbrevs.value(i, ""), userTriggers.value(i, "")));
+            }
+        }
 		// import old svn setting
 		if (config->contains("Tools/Auto Checkin after Save")) {
 			bool oldSetting = config->value("Tools/Auto Checkin after Save", false).toBool();
@@ -1209,10 +1224,19 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->setValue("User/New Key Replacements Created", true);
 
 	//user macros
+    bool newlyCreatedPath=!QDir(configBaseDir+"/macro").exists();
+    if(newlyCreatedPath){
+        newlyCreatedPath=QDir().mkpath(configBaseDir+"/macro");
+    }
+
 	int index = 0;
-	foreach (const Macro &macro, completerConfig->userMacros) {
+    foreach (Macro macro, completerConfig->userMacros) {
 		if (macro.name == TXS_AUTO_REPLACE_QUOTE_OPEN || macro.name == TXS_AUTO_REPLACE_QUOTE_CLOSE || macro.document)
 			continue;
+        if(newlyCreatedPath && index<10 && index!=2){
+            macro.setShortcut(QString("Shift+F%1").arg(index+1));
+        }
+        macro.save(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index));
 		config->setValue(QString("Macros/%1").arg(index++), macro.toStringList());
 	}
 	while (config->contains(QString("Macros/%1").arg(index))) { //remove old macros which are not used any more
@@ -1929,9 +1953,17 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 	return menu;
 }
 
-void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems)
+void ConfigManager::clearMenu(QMenu *menu){
+    QList<QMenu *> lst=menu->findChildren<QMenu *>();
+    foreach(QMenu *m,lst){
+        clearMenu(m);
+        delete m;
+    }
+    menu->clear();
+}
+
+void ConfigManager::updateUserMacroMenu()
 {
-	QStringList macronames;
 	// remove quote replacement from list
 	for (int i = 0; i < completerConfig->userMacros.count(); i++) {
 		Macro m = completerConfig->userMacros.at(i);
@@ -1941,11 +1973,29 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems)
 		}
 	}
 
-	foreach (const Macro &m, completerConfig->userMacros)
-		if (!m.document)
-			macronames << m.name;
+    QMenu *recreatedMenu = getManagedMenu("main/macros");
+    clearMenu(recreatedMenu);
+    int i=0;
+    QMenu *menu=nullptr;
+    foreach (const Macro &m, completerConfig->userMacros){
+        if (!m.document){
+            menu=recreatedMenu;
+            QList<QKeySequence> shortcuts;
+            if(!m.shortcut().isEmpty()){
+                shortcuts<<QKeySequence(m.shortcut());
+            }
+            // create/find apropriate submenu
+            if(!m.menu.isEmpty()){
+                foreach(const QString &name,m.menu.split("/")){
+                    menu=newManagedMenu(menu,name,name);
+                }
+            }
 
-	QMenu *recreatedMenu = updateListMenu("main/macros", macronames, "tag", false, SLOT(insertUserTag()), Qt::SHIFT + Qt::Key_F1, alwaysRecreateMenuItems);
+            QString id = "tag" + QString::number(i);
+            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), shortcuts);
+            act->setData(i++);
+        }
+    }
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
 		newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));

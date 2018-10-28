@@ -790,7 +790,7 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map)
 			if (text.at(endStr - 1) != '\\') break;
 		}
 		if (endStr < 0) return false;
-		key = text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes qoutes
+        key = text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes quotes
 		key.replace("\\\"", "\"");
 
 		col = endStr + 1;
@@ -799,17 +799,49 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map)
 		col++;
 		while (col < len && text.at(col).isSpace()) col++;
 
-		if (col >= len || (text.at(col)) != '"') return false;
-		startStr = col;
-		endStr = startStr;
-		while (endStr >= 0) {
-			endStr = text.indexOf('"', endStr + 1);
-			if (text.at(endStr - 1) != '\\') break;
-		}
-		if (endStr < 0) return false;
-		val = text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes qoutes
-		val.replace("\\\"", "\"");
-		map[key] = val;
+        if (col >= len || (text.at(col) != '"' && text.at(col) != '[')) return false;
+        if(text.at(col) == '"'){
+            // single string mode
+            startStr = col;
+            endStr = startStr;
+            while (endStr >= 0) {
+                endStr = text.indexOf('"', endStr + 1);
+                if (text.at(endStr - 1) != '\\') break;
+            }
+            if (endStr < 0) return false;
+            val = text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes qoutes
+        }else{
+            // list mode
+            // multiple lines are concatenated via \n
+            int endArray=text.indexOf("],\n", col);
+            do {
+                startStr = col;
+                while (startStr >= 0) {
+                    startStr = text.indexOf('"', startStr + 1);
+                    if (text.at(endStr - 1) != '\\') break;
+                }
+                if(startStr>=0 && endStr<endArray){
+                    col=startStr+1;
+                }
+                endStr = startStr;
+                while (endStr >= 0) {
+                    endStr = text.indexOf('"', endStr + 1);
+                    if (text.at(endStr - 1) != '\\') break;
+                }
+                if(endStr>=0 && endStr<endArray){
+                    col=endStr+1;
+                }
+                if(endStr<endArray && endStr>-1 && startStr>-1){
+                    if(!val.isEmpty()){
+                        val += "\n";
+                    }
+                    val += text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes qoutes
+                }
+            }while(endStr<endArray);
+            endStr=endArray;
+        }
+        val.replace("\\\"", "\"");
+        map[key] = val;
 
 		col = endStr + 1;
 		while (col < len && text.at(col).isSpace()) col++;

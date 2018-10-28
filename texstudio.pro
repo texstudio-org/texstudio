@@ -330,6 +330,7 @@ CONFIG(debug, debug|release) {
         src/tests/structureview_t.cpp \
         src/tests/syntaxcheck_t.cpp \
         src/tests/tablemanipulation_t.cpp \
+	src/tests/usermacro_t.cpp \
         src/tests/testmanager.cpp \
         src/tests/testutil.cpp
     HEADERS += \
@@ -359,6 +360,7 @@ CONFIG(debug, debug|release) {
         src/tests/qcetestutil.h \
         src/tests/testmanager.h \
         src/tests/testutil.h \
+        src/tests/usermacro_t.h \
         src/tests/structureview_t.h
     !greaterThan(QT_MAJOR_VERSION, 4) {
         win32:LIBS += -lQtTestd4

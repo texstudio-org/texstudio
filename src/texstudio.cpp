@@ -4198,9 +4198,11 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 		// admitedly this solution is expensive (though working)
 		//TODO: does not working when entering \usepackage in text ... !
 
+        bool previouslyEmpty=doc->localMacros.isEmpty();
 		doc->updateMagicCommentScripts();
 		configManager.completerConfig->userMacros << doc->localMacros;
-		updateUserMacros();
+        if(!doc->localMacros.isEmpty() || !previouslyEmpty)
+            updateUserMacros();
 	} else {
 		// updateStructure() rebuilds the complete structure model. Therefore, all expansion states in the view are lost
 		// to work around this, we save the a tag (unique idetifier) of all expanded entries and restore the expansion state after update
