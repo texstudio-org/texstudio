@@ -255,7 +255,11 @@ void UserMenuDialog::init()
     model->addStringList(&descriptions, tr("Description"));
     model->addStringList(&shortcuts, tr("Shortcuts"));
 	ui.tableView->setModel(model);
-	ui.tableView->resizeColumnsToContents();
+    int rc=model->columnCount();
+    for(int i=1;i<rc;i++){
+        ui.tableView->hideColumn(i);
+    }
+    //ui.tableView->resizeColumnsToContents();
 	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), SLOT(change(const QModelIndex &, const QModelIndex &)));
 	if (model->rowCount() > 0) ui.tableView->setCurrentIndex(model->index(0, 0));
 	connect(model, SIGNAL(dataChanged(QModelIndex, QModelIndex)), SLOT(modelDataChanged(QModelIndex, QModelIndex)));
