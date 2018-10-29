@@ -222,14 +222,15 @@ void SmallUsefulFunctionsTest::test_minimalJsonParse_data()
 	QTest::addColumn<QStringList>("vals");
 
 	QTest::newRow("empty") << "" << true << QStringList() << QStringList();
-	QTest::newRow("empty") << "{}" << true << QStringList() << QStringList();
-	QTest::newRow("single") << " { \"key\"  : \"val\" } " << true << (QStringList() << "key") << (QStringList() << "val");
-	QTest::newRow("two") << "{\"key\":\"val\",\"key2\":\"val2\"} " << true << (QStringList() << "key" << "key2") << (QStringList() << "val" << "val2");
-	QTest::newRow("escapedQoute") << "{\"key\":\"val\\\"more\"}" << true << (QStringList() << "key") << (QStringList() << "val\"more");
-	QTest::newRow("missingClose") << "{\"key\":\"val\"" << false << (QStringList() << "key") << (QStringList() << "val");
-	QTest::newRow("missingQuote1") << "{key:\"val\"}" << false << QStringList() << QStringList();
-	QTest::newRow("missingQuote2") << "{\"key:\"val\"}" << false << QStringList() << QStringList();
-	QTest::newRow("missingQuote3") << "{key\":\"val\"}" << false << QStringList() << QStringList();
+    QTest::newRow("empty") << "{\n}" << true << QStringList() << QStringList();
+    // to simplify the parser (and allow backslash reliable), enforce one key per line, every key ends with \n.
+    QTest::newRow("single") << " { \"key\"  : \"val\" \n} " << true << (QStringList() << "key") << (QStringList() << "val");
+    QTest::newRow("two") << "{\"key\":\"val\",\n\"key2\":\"val2\"\n} " << true << (QStringList() << "key" << "key2") << (QStringList() << "val" << "val2");
+    QTest::newRow("escapedQoute") << "{\"key\":\"val\\\"more\"\n}" << true << (QStringList() << "key") << (QStringList() << "val\"more");
+    QTest::newRow("missingClose") << "{\"key\":\"val\"\n" << false << (QStringList() << "key") << (QStringList() << "val");
+    QTest::newRow("missingQuote1") << "{key:\"val\"\n}" << false << QStringList() << QStringList();
+    QTest::newRow("missingQuote2") << "{\"key:\"val\"\n}" << false << QStringList() << QStringList();
+    QTest::newRow("missingQuote3") << "{key\":\"val\"\n}" << false << QStringList() << QStringList();
 }
 
 void SmallUsefulFunctionsTest::test_minimalJsonParse()

@@ -73,6 +73,26 @@ void UserMacroTest::saveRead_data(){
         << ""
         << "";
 
+    QTest::newRow("name with backslash at end")
+        << "abcd\\"
+        << "Script"
+        << "abc\ncd]fsd\nd[ef"
+        << ""
+        << ""
+        << ""
+        << ""
+        << "";
+
+    QTest::newRow("name/tag with backslash at end")
+        << "abcd\\"
+        << "Script"
+        << "abc\ncd]fsd\nd[ef\\"
+        << ""
+        << ""
+        << ""
+        << ""
+        << "";
+
 
 }
 

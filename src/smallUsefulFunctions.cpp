@@ -804,10 +804,7 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map)
             // single string mode
             startStr = col;
             endStr = startStr;
-            while (endStr >= 0) {
-                endStr = text.indexOf('"', endStr + 1);
-                if (text.at(endStr - 1) != '\\') break;
-            }
+            endStr = text.indexOf(QRegExp("\"\\s*[,]?\n"), endStr + 1);
             if (endStr < 0) return false;
             val = text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes qoutes
         }else{
