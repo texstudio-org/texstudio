@@ -29,7 +29,7 @@ public:
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
-	void addMacro(const Macro &m);
+    void addMacro(const Macro &m,bool insertRow=false);
 	Macro getMacro(int i) const;
 	int macroCount() const;
 
@@ -56,6 +56,8 @@ private slots:
 	void slotRemove();
 	void slotMoveUp();
 	void slotMoveDown();
+    void importMacro();
+    void exportMacro();
 	void textChanged();
 	void nameChanged();
     void descriptionChanged();

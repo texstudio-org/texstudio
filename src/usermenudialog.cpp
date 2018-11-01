@@ -153,6 +153,9 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
 	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
 
+    connect(ui.pbExport,SIGNAL(clicked()), SLOT(exportMacro()));
+    connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
+
 
 	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeTypeToNormal()));
 	connect(ui.radioButtonEnvironment, SIGNAL(clicked()), SLOT(changeTypeToEnvironment()));
@@ -217,15 +220,28 @@ UserMenuDialog::~UserMenuDialog()
 	delete codeedit;
 }
 
-void UserMenuDialog::addMacro(const Macro &m)
+void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
 {
-	names << m.name;
-	tags << m.typedTag();
-	abbrevs << m.abbrev;
-	triggers << m.trigger;
-    shortcuts << m.shortcut();
-    descriptions << m.description;
-    menus << m.menu;
+    if(insertRow){
+        int i=model->rowCount();
+        model->insertRow(i);
+        model->setData(model->index(i, model->listId(&names)), m.name);
+        model->setData(model->index(i, model->listId(&tags)), m.typedTag());
+        model->setData(model->index(i, model->listId(&abbrevs)), m.abbrev);
+        model->setData(model->index(i, model->listId(&triggers)), m.trigger);
+        model->setData(model->index(i, model->listId(&shortcuts)), m.shortcut());
+        model->setData(model->index(i, model->listId(&descriptions)), m.description);
+        //model->setData(model->index(i, model->listId(&menus)), m.menu);
+        menus << m.menu; // not yet part of the model
+    }else{
+        names << m.name;
+        tags << m.typedTag();
+        abbrevs << m.abbrev;
+        triggers << m.trigger;
+        shortcuts << m.shortcut();
+        descriptions << m.description;
+        menus << m.menu;
+    }
 }
 
 Macro UserMenuDialog::getMacro(int i) const
@@ -358,7 +374,28 @@ void UserMenuDialog::slotMoveDown()
 	if (r + 1 >= model->rowCount()) return;
 	ui.tableView->setCurrentIndex(QModelIndex());
 	model->swapRows(r, r + 1);
-	ui.tableView->setCurrentIndex(model->index(r + 1, 0));
+    ui.tableView->setCurrentIndex(model->index(r + 1, 0));
+}
+
+void UserMenuDialog::importMacro()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Import macro"), "", tr("txs macro files (*.txsMacro)"));
+    if(!fileName.isEmpty()){
+        Macro m;
+        m.load(fileName);
+        addMacro(m,true);
+    }
+}
+
+void UserMenuDialog::exportMacro()
+{
+    int index = ui.tableView->currentIndex().row();
+    if (index < 0) return;
+    QString fileName = QFileDialog::getSaveFileName(this,tr("Export macro"), "", tr("txs macro files (*.txsMacro)"));
+    if(!fileName.isEmpty()){
+        Macro m=getMacro(index);
+        m.save(fileName);
+    }
 }
 
 
