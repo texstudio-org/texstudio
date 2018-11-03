@@ -270,8 +270,14 @@ bool Macro::load(const QString &fileName){
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
     QTextStream in(&file);
+    QString text=in.readAll();
+    return loadFromText(text);
+}
+
+bool Macro::loadFromText(const QString &text)
+{
     QHash<QString,QString>rawData;
-    bool success=minimalJsonParse(in.readAll(), rawData);
+    bool success=minimalJsonParse(text, rawData);
     if(!success){
         return false;
     }

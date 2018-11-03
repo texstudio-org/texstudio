@@ -214,6 +214,11 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
 	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
 
+#if QT_VERSION < 0x050000
+    // no macro browsing with <qt5
+    ui.pbBrowse->hide();
+#endif
+
 }
 
 UserMenuDialog::~UserMenuDialog()
@@ -405,7 +410,10 @@ void UserMenuDialog::browseMacrosOnRepository(){
     // open special dialog for macro browser
     MacroBrowserUI *mbUI=new MacroBrowserUI(this);
     if(mbUI->exec()){
-        qDebug()<<"done";
+        QList<Macro> lst=mbUI->getSelectedMacros();
+        foreach(const auto &m,lst){
+            addMacro(m,true);
+        }
     }
 }
 

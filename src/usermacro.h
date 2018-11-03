@@ -50,6 +50,7 @@ public:
 	bool isActiveForFormat(int format) const;
 
     bool load(const QString &fileName);
+    bool loadFromText(const QString &text);
     bool save(const QString &fileName) const;
 
 	LatexDocument *document;

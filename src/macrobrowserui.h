@@ -5,6 +5,7 @@
 #include "configmanager.h"
 #include <QNetworkAccessManager>
 #include <QPlainTextEdit>
+#include "usermacro.h"
 
 class MacroBrowserUI : public QDialog
 {
@@ -13,6 +14,8 @@ class MacroBrowserUI : public QDialog
 public:
     MacroBrowserUI(QWidget *parent=nullptr);
     ~MacroBrowserUI();
+
+    QList<Macro> getSelectedMacros();
 
 private slots:
     void onRequestError();
@@ -26,6 +29,7 @@ protected:
     QLineEdit *leName;
     QPlainTextEdit *teDescription;
     QString currentPath;
+    QHash<QString,QString> cache;
 
     ConfigManager *config;
 

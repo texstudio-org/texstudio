@@ -51,7 +51,26 @@ MacroBrowserUI::~MacroBrowserUI()
     networkManager=nullptr;
 }
 
+QList<Macro> MacroBrowserUI::getSelectedMacros()
+{
+    QList<Macro> lst;
+    for(int i=0;i<tableWidget->rowCount();i++){
+        QTableWidgetItem *item=tableWidget->item(i,0);
+        if(item->checkState()==Qt::Checked){
+            QString url=item->data(Qt::UserRole).toString();
+            QString macroJson=cache.value(url);
+            if(!macroJson.isEmpty()){
+                Macro m;
+                m.loadFromText(macroJson);
+                lst << m;
+            }
+        }
+    }
+    return lst;
+}
+
 const QNetworkRequest::Attribute AttributeDirectURL = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User);
+const QNetworkRequest::Attribute AttributeURL = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User+1);
 
 void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
 {
@@ -68,6 +87,7 @@ void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
     QNetworkRequest request = QNetworkRequest(QUrl(url));
     request.setRawHeader("User-Agent", "TeXstudio Macro Browser");
     request.setAttribute(AttributeDirectURL,directURL);
+    request.setAttribute(AttributeURL,url);
     QNetworkReply *reply = networkManager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(onRequestCompleted()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onRequestError()));
@@ -126,6 +146,9 @@ void MacroBrowserUI::onRequestCompleted()
             text+=v.toString();
         }
         teDescription->setPlainText(text);
+        // cache complete macro
+        QString url=reply->request().attribute(AttributeURL).toString();
+        cache.insert(url,QString(ba));
     }else{
         // folder overview requested
         tableWidget->clear();
