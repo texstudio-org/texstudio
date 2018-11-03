@@ -30,6 +30,7 @@ protected:
     QPlainTextEdit *teDescription;
     QString currentPath;
     QHash<QString,QString> cache;
+    QHash<QString,QList<QTableWidgetItem *> > itemCache;
 
     ConfigManager *config;
 

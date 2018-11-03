@@ -49,23 +49,30 @@ MacroBrowserUI::~MacroBrowserUI()
 {
     networkManager->deleteLater();
     networkManager=nullptr;
+    foreach(QList<QTableWidgetItem *>lst,itemCache){
+        foreach(auto *item,lst){
+            delete item;
+        }
+    }
 }
 
 QList<Macro> MacroBrowserUI::getSelectedMacros()
 {
     QList<Macro> lst;
-    for(int i=0;i<tableWidget->rowCount();i++){
-        QTableWidgetItem *item=tableWidget->item(i,0);
-        if(item->checkState()==Qt::Checked){
-            QString url=item->data(Qt::UserRole).toString();
-            QString macroJson=cache.value(url);
-            if(!macroJson.isEmpty()){
-                Macro m;
-                m.loadFromText(macroJson);
-                lst << m;
+    foreach(QList<QTableWidgetItem *>listOfItems,itemCache){
+        foreach(auto *item,listOfItems){
+            if(item->checkState()==Qt::Checked){
+                QString url=item->data(Qt::UserRole).toString();
+                QString macroJson=cache.value(url);
+                if(!macroJson.isEmpty()){
+                    Macro m;
+                    m.loadFromText(macroJson);
+                    lst << m;
+                }
             }
         }
     }
+
     return lst;
 }
 
@@ -104,7 +111,25 @@ void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
         }else{
             url=currentPath+"/"+item->text();
         }
-        requestMacroList(url);
+        if(itemCache.contains(url)){
+            // reuse cached
+            currentPath=url;
+            int i=0;
+            for(int i=0;i<tableWidget->rowCount();i++){
+                tableWidget->takeItem(i,0);
+            }
+            if(!url.isEmpty()){
+                auto *item=new QTableWidgetItem(QIcon::fromTheme("file"),"..");
+                tableWidget->setRowCount(i+1);
+                tableWidget->setItem(i++,0,item);
+            }
+            foreach(QTableWidgetItem *item,itemCache.value(url)){
+                tableWidget->setRowCount(i+1);
+                tableWidget->setItem(i++,0,item);
+            }
+        }else{
+            requestMacroList(url);
+        }
     }else{
         requestMacroList(url,true);
     }
@@ -151,7 +176,10 @@ void MacroBrowserUI::onRequestCompleted()
         cache.insert(url,QString(ba));
     }else{
         // folder overview requested
-        tableWidget->clear();
+        //tableWidget->clearContents();
+        for(int i=0;i<tableWidget->rowCount();i++){
+            tableWidget->takeItem(i,0);
+        }
         QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
         QJsonArray elements=jsonDoc.array();
         int i=0;
@@ -161,6 +189,7 @@ void MacroBrowserUI::onRequestCompleted()
             tableWidget->setRowCount(i+1);
             tableWidget->setItem(i++,0,item);
         }
+        QList<QTableWidgetItem*> listOfItems;
         foreach(auto element,elements){
             QJsonObject dd=element.toObject();
             if(dd["type"].toString()=="file"){
@@ -174,6 +203,7 @@ void MacroBrowserUI::onRequestCompleted()
                     if(i==1){
                         requestMacroList(item->data(Qt::UserRole).toString(),true);
                     }
+                    listOfItems<<item;
                 }
             }else{
                 // folder
@@ -181,11 +211,12 @@ void MacroBrowserUI::onRequestCompleted()
                 auto *item=new QTableWidgetItem(QIcon::fromTheme("folder"),name);
                 tableWidget->setRowCount(i+1);
                 tableWidget->setItem(i++,0,item);
+                listOfItems<<item;
             }
             //tableWidget->setRowCount(i);
         }
         tableWidget->setCurrentCell(0,0);
-
+        itemCache.insert(currentPath,listOfItems);
     }
 #endif
 }
