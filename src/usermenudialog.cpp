@@ -20,6 +20,7 @@
 #include "qgotolinepanel.h"
 #include "qsearchreplacepanel.h"
 #include "qfoldpanel.h"
+#include "macrobrowserui.h"
 
 #include "smallUsefulFunctions.h"
 #include "utilsUI.h"
@@ -155,6 +156,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 
     connect(ui.pbExport,SIGNAL(clicked()), SLOT(exportMacro()));
     connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
+    connect(ui.pbBrowse,SIGNAL(clicked()), SLOT(browseMacrosOnRepository()));
 
 
 	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeTypeToNormal()));
@@ -279,6 +281,7 @@ void UserMenuDialog::init()
     for(int i=1;i<rc;i++){
         ui.tableView->hideColumn(i);
     }
+    ui.tableView->horizontalHeader()->setStretchLastSection(true);
     //ui.tableView->resizeColumnsToContents();
 	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), SLOT(change(const QModelIndex &, const QModelIndex &)));
 	if (model->rowCount() > 0) ui.tableView->setCurrentIndex(model->index(0, 0));
@@ -398,6 +401,13 @@ void UserMenuDialog::exportMacro()
     }
 }
 
+void UserMenuDialog::browseMacrosOnRepository(){
+    // open special dialog for macro browser
+    MacroBrowserUI *mbUI=new MacroBrowserUI(this);
+    if(mbUI->exec()){
+        qDebug()<<"done";
+    }
+}
 
 void UserMenuDialog::changeTypeToNormal()
 {

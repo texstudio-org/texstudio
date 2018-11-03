@@ -481,6 +481,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("Spell/Dic", &spell_dic, "<dic not found>", nullptr);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
 
+    //macro repository
+    registerOption("Macros/RepositoryURL", &URLmacroRepository, "https://api.github.com/repos/texstudio-org/texstudio-macro/contents/", nullptr);
+
 	//updates
 	registerOption("Update/AutoCheck", &autoUpdateCheck, true, &pseudoDialog->checkBoxAutoUpdateCheck);
 	registerOption("Update/UpdateLevel", &updateLevel, 0, &pseudoDialog->comboBoxUpdateLevel);

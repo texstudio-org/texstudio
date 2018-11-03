@@ -1,0 +1,145 @@
+#include "macrobrowserui.h"
+#include <QNetworkReply>
+#include <QNetworkProxyFactory>
+#if QT_VERSION >= 0x050000
+#include <QJsonDocument>
+#include <QJsonArray>
+#endif
+
+MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
+{
+    tableWidget=new QTableWidget(4,1);
+    tableWidget->setHorizontalHeaderLabels(QStringList()<<"Macro name");
+    tableWidget->horizontalHeader()->setStretchLastSection(true);
+    connect(tableWidget,SIGNAL(itemClicked(QTableWidgetItem *)),SLOT(itemClicked(QTableWidgetItem *)));
+    auto *lblName=new QLabel(tr("Name"));
+    lblName->setAlignment(Qt::AlignRight);
+    auto *lblDescription=new QLabel(tr("Description"));
+    lblDescription->setAlignment(Qt::AlignRight|Qt::AlignTop);
+    leName=new QLineEdit();
+    leName->setReadOnly(true);
+    teDescription=new QPlainTextEdit();
+    teDescription->setReadOnly(true);
+    auto *gridLay=new QGridLayout();
+    gridLay->setColumnStretch(0,1);
+    gridLay->setColumnStretch(1,0);
+    gridLay->setColumnStretch(2,1);
+    gridLay->addWidget(tableWidget,1,0,5,1);
+    gridLay->addWidget(lblName,1,1);
+    gridLay->addWidget(lblDescription,2,1);
+    gridLay->addWidget(leName,1,2);
+    gridLay->addWidget(teDescription,2,2);
+
+    buttonBox=new QDialogButtonBox();
+    buttonBox->setStandardButtons(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    auto *layout=new QVBoxLayout();
+    layout->addLayout(gridLay);
+    layout->addWidget(buttonBox);
+    setLayout(layout);
+    setWindowTitle(tr("Browse macros from repository"));
+    config=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    networkManager = new QNetworkAccessManager();
+
+    requestMacroList("");
+}
+
+MacroBrowserUI::~MacroBrowserUI()
+{
+    networkManager->deleteLater();
+    networkManager=nullptr;
+}
+
+const QNetworkRequest::Attribute AttributeDirectURL = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User);
+
+void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
+{
+    if(!networkManager){
+        return;
+    }
+    //QString url=config->URLmacroRepository+path;
+    QString url="https://api.github.com/repos/sunderme/texstudio-macro/contents/"+path;
+    if(directURL){
+        url=path;
+    }
+    QNetworkRequest request = QNetworkRequest(QUrl(url));
+    request.setRawHeader("User-Agent", "TeXstudio Macro Browser");
+    request.setAttribute(AttributeDirectURL,directURL);
+    QNetworkReply *reply = networkManager->get(request);
+    connect(reply, SIGNAL(finished()), SLOT(onRequestCompleted()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onRequestError()));
+}
+
+void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
+{
+    requestMacroList(item->data(Qt::UserRole).toString(),true);
+}
+
+void MacroBrowserUI::onRequestError()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    if (!reply) return;
+
+    QMessageBox::warning(this, tr("Browse macro repository"),
+                                   tr("Repository not found. Network error:%1").arg(reply->errorString()),
+                                   QMessageBox::Ok,
+                                   QMessageBox::Ok);
+    networkManager->deleteLater();
+    networkManager=nullptr;
+}
+
+void MacroBrowserUI::onRequestCompleted()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    if (!reply || reply->error() != QNetworkReply::NoError) return;
+
+    QByteArray ba = reply->readAll();
+
+#if QT_VERSION >= 0x050000
+    if(reply->request().attribute(AttributeDirectURL).toBool()){
+        // download requested
+        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
+        QJsonObject dd=jsonDoc.object();
+        leName->setText(dd["name"].toString());
+        QJsonArray array=dd["description"].toArray();
+        QVariantList vl=array.toVariantList();
+        QString text;
+        foreach(auto v,vl){
+            if(!text.isEmpty()){
+                text+="\n";
+            }
+            text+=v.toString();
+        }
+        teDescription->setPlainText(text);
+    }else{
+        // folder overview requested
+        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
+        QJsonArray elements=jsonDoc.array();
+        int i=0;
+        foreach(auto element,elements){
+            QJsonObject dd=element.toObject();
+            if(dd["type"].toString()=="file"){
+                QString name=dd["name"].toString();
+                if(name.endsWith(".txsMacro")){
+                    auto *item=new QTableWidgetItem(name);
+                    item->setData(Qt::UserRole,dd["download_url"].toString());
+                    tableWidget->setRowCount(i+1);
+                    tableWidget->setItem(i++,0,item);
+                    if(i==1){
+                        requestMacroList(item->data(Qt::UserRole).toString(),true);
+                    }
+                }
+            }else{
+                // folder
+            }
+            //tableWidget->setRowCount(i);
+        }
+        tableWidget->setCurrentCell(0,0);
+
+    }
+#endif
+}
+
+
+

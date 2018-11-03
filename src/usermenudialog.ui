@@ -67,6 +67,16 @@
           </spacer>
          </item>
          <item>
+          <widget class="QPushButton" name="pbBrowse">
+           <property name="toolTip">
+            <string>Browse offered macros on txs site.</string>
+           </property>
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pbExport">
            <property name="toolTip">
             <string>Export macro to file</string>

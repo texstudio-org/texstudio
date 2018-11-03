@@ -203,6 +203,8 @@ public:
 	// input unicode instead of latex command from symbolgrid (if available)
 	bool insertSymbolsAsUnicode;
 
+    // macro repository
+    QString URLmacroRepository;
 	//menus
     QObjectList menuParents;
     QObject *menuParent; //lets assume there is only one
