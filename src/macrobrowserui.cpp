@@ -62,6 +62,8 @@ void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
     QString url="https://api.github.com/repos/sunderme/texstudio-macro/contents/"+path;
     if(directURL){
         url=path;
+    }else{
+        currentPath=path;
     }
     QNetworkRequest request = QNetworkRequest(QUrl(url));
     request.setRawHeader("User-Agent", "TeXstudio Macro Browser");
@@ -73,7 +75,19 @@ void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
 
 void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
 {
-    requestMacroList(item->data(Qt::UserRole).toString(),true);
+    QString url=item->data(Qt::UserRole).toString();
+    if(url.isEmpty()){
+        // descend into folder
+        if(item->text()==".."){
+            int c=currentPath.lastIndexOf('/');
+            url=currentPath.left(c);
+        }else{
+            url=currentPath+"/"+item->text();
+        }
+        requestMacroList(url);
+    }else{
+        requestMacroList(url,true);
+    }
 }
 
 void MacroBrowserUI::onRequestError()
@@ -114,16 +128,24 @@ void MacroBrowserUI::onRequestCompleted()
         teDescription->setPlainText(text);
     }else{
         // folder overview requested
+        tableWidget->clear();
         QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
         QJsonArray elements=jsonDoc.array();
         int i=0;
+        // add .. (up)
+        if(!currentPath.isEmpty()){
+            auto *item=new QTableWidgetItem(QIcon::fromTheme("file"),"..");
+            tableWidget->setRowCount(i+1);
+            tableWidget->setItem(i++,0,item);
+        }
         foreach(auto element,elements){
             QJsonObject dd=element.toObject();
             if(dd["type"].toString()=="file"){
                 QString name=dd["name"].toString();
                 if(name.endsWith(".txsMacro")){
-                    auto *item=new QTableWidgetItem(name);
+                    auto *item=new QTableWidgetItem(QIcon::fromTheme("file"),name);
                     item->setData(Qt::UserRole,dd["download_url"].toString());
+                    item->setCheckState(Qt::Unchecked);
                     tableWidget->setRowCount(i+1);
                     tableWidget->setItem(i++,0,item);
                     if(i==1){
@@ -132,6 +154,10 @@ void MacroBrowserUI::onRequestCompleted()
                 }
             }else{
                 // folder
+                QString name=dd["name"].toString();
+                auto *item=new QTableWidgetItem(QIcon::fromTheme("folder"),name);
+                tableWidget->setRowCount(i+1);
+                tableWidget->setItem(i++,0,item);
             }
             //tableWidget->setRowCount(i);
         }

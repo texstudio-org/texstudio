@@ -25,6 +25,7 @@ protected:
     QDialogButtonBox *buttonBox;
     QLineEdit *leName;
     QPlainTextEdit *teDescription;
+    QString currentPath;
 
     ConfigManager *config;
 
