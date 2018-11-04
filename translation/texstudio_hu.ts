@@ -878,7 +878,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"/>
+        <translation>A rendszer fájlválasztó párbeszédablakának használata</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="451"/>

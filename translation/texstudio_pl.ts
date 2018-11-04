@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="28"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
-        <translation>TeXstudio zawiera kody z programów Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) oraz SyncTeX (stworzony prez Jerome&apos;a Laurens).</translation>
+        <translation>TeXstudio zawiera kod programów Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) oraz SyncTeX (stworzony przez Jerome’a Laurensa).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="29"/>
@@ -102,7 +102,7 @@
     <message>
         <location filename="../src/arraydialog.ui" line="61"/>
         <source>Environment</source>
-        <translation>Otoczenie</translation>
+        <translation>Środowisko</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="81"/>
@@ -137,7 +137,7 @@
     <message>
         <location filename="../src/arraydialog.cpp" line="43"/>
         <source>Quick Array</source>
-        <translation>Szybka tablica (array)</translation>
+        <translation>Szybka tablica</translation>
     </message>
 </context>
 <context>
@@ -176,7 +176,7 @@
         <location filename="../src/bibtexdialog.cpp" line="20"/>
         <location filename="../src/bibtexdialog.cpp" line="77"/>
         <source>Article in &amp;Journal</source>
-        <translation>Artykuł w &amp;Czasopiśmie</translation>
+        <translation>Artykuł w &amp;czasopiśmie</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="23"/>
@@ -188,7 +188,7 @@
         <location filename="../src/bibtexdialog.cpp" line="26"/>
         <location filename="../src/bibtexdialog.cpp" line="166"/>
         <source>Article in a &amp;Collection</source>
-        <translation>Artykuł w &amp;kolekcji</translation>
+        <translation>Artykuł w &amp;zbiorze</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="29"/>
@@ -226,7 +226,7 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="52"/>
         <source>Technical &amp;Report</source>
-        <translation>Raport &amp;Techniczny</translation>
+        <translation>Raport &amp;techniczny</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="56"/>
@@ -264,7 +264,7 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="124"/>
         <source>Supplemental Material in a Book</source>
-        <translation>Dodatkowe informacje w książce </translation>
+        <translation>Informacje dodatkowe w książce </translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="149"/>
@@ -279,12 +279,12 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="174"/>
         <source>Supplemental Material in a Collection</source>
-        <translation type="unfinished"/>
+        <translation>Materiał dodatkowy w zbiorze</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="199"/>
         <source>Online Resource</source>
-        <translation>Zasoby sieciowe</translation>
+        <translation>Zasoby online</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="211"/>
@@ -299,7 +299,7 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="234"/>
         <source>Supplemental Material in a Periodical</source>
-        <translation>Dodatkowe materiały w periodyku</translation>
+        <translation>Informacje dodatkowe w periodyku</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="261"/>
@@ -352,12 +352,12 @@
     <message>
         <location filename="../src/bookmarks.cpp" line="70"/>
         <source>Move Up</source>
-        <translation>Przejdź w górę</translation>
+        <translation>Przenieś w górę</translation>
     </message>
     <message>
         <location filename="../src/bookmarks.cpp" line="73"/>
         <source>Move Down</source>
-        <translation>Przejdź w dół</translation>
+        <translation>Przenieś w dół</translation>
     </message>
     <message>
         <location filename="../src/bookmarks.cpp" line="76"/>
@@ -429,13 +429,13 @@
         <location filename="../src/buildmanager.cpp" line="313"/>
         <location filename="../src/buildmanager.cpp" line="338"/>
         <source>DVI-&gt;PDF Chain</source>
-        <translation>Łańcuch DVI-&gt; PDF</translation>
+        <translation>Łańcuch DVI → PDF</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="313"/>
         <location filename="../src/buildmanager.cpp" line="339"/>
         <source>DVI-&gt;PS-&gt;PDF Chain</source>
-        <translation>Łańcuch DVI-&gt;PS-&gt;PDF</translation>
+        <translation>Łańcuch DVI → PS → PDF</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="313"/>
@@ -482,7 +482,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="318"/>
         <source>Default Compiler</source>
-        <translation>Domyślny kompilator</translation>
+        <translation>Kompilator domyślny</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="320"/>
@@ -493,7 +493,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="321"/>
         <source>Default Viewer</source>
-        <translation>Domyślna przeglądarka</translation>
+        <translation>Przeglądarka domyślna</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="323"/>
@@ -556,7 +556,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="345"/>
         <source>Recompile Bibliography</source>
-        <translation>Przekompiluj Bibliografię</translation>
+        <translation>Przekompiluj bibliografię</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="378"/>
@@ -581,12 +581,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="../src/buildmanager.cpp" line="400"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation>Niektóre polecenia odnoszą się do lokalizacji /usr/bin</translation>
+        <translation>Niektóre polecenia odnoszą się do położeń w /usr/texbin/</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="874"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
-        <translation>Polecenie zostało rozwinięte do %1 poziomów, Kontynuować rozwinięcie do &quot;%2&quot;?</translation>
+        <translation>Polecenie zostało rozwinięte do %1 poziomu, Kontynuować rozwijanie „%2”?</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="927"/>
@@ -665,12 +665,12 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1505"/>
         <source>Parent Command</source>
-        <translation>Komenda nadrzędna</translation>
+        <translation>Polecenie nadrzędne</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1506"/>
         <source>Primary Command</source>
-        <translation>Komenda główna</translation>
+        <translation>Polecenie główne</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1873"/>
@@ -834,7 +834,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="347"/>
         <source>MRU Document Chooser</source>
-        <translation type="unfinished"/>
+        <translation>Lista ostatnio używanych dokumentów</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="360"/>
@@ -844,17 +844,17 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="375"/>
         <source>Max. Recent Documents:</source>
-        <translation>Liczba ostatnich plików:</translation>
+        <translation>Maks. liczba ostatnich dokumentów:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="401"/>
         <source>Max. Recent Master Documents:</source>
-        <translation>Liczba ostatnich plików głównych:</translation>
+        <translation>Maks. liczba ostatnich dokumentów wzorcowych:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="421"/>
         <source>Always Show Structure of Master Document</source>
-        <translation>Zawsze pokazuj strukturę pliku głównego</translation>
+        <translation>Zawsze pokazuj strukturę dokumentu wzorcowego</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="431"/>
@@ -864,7 +864,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"/>
+        <translation>Użyj systemowych okien dialogowych dla plików</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="451"/>
@@ -879,7 +879,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="467"/>
         <source>Store relative paths</source>
-        <translation>Zapisuj ścieżki względne</translation>
+        <translation>Przechowuj ścieżki względne</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="480"/>
@@ -903,9 +903,9 @@ Please change your configuration and define command lists only at &apos;Options 
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Określa rodzaje powiadomień o aktualizacjach, które otrzymasz:
-- Wydania stabilne: Wybierz, jeśli stabilność jest dla ciebie najważniejsza.
-- Wydania kandydujące: Są zbliżone do przyszłych wersji, pod względem funkcji i stabilności. Wybierz jeśli chcesz mieć wgląd w nadchodzące wydania i pomóc testować je zanim zostaną oficjalnie opublikowane. (Powiadamia także o wydaniach stabilnych)
-- Wersje rozwojowe: Zawierają najnowsze funkcje, ale mogą być niestabilne. (Powiadamia także o wydaniach stabilnych i wydaniach kandydujących).</translation>
+– Wydania stabilne: wybierz, jeśli stabilność jest dla ciebie najważniejsza;
+– Wydania kandydujące: są zbliżone do przyszłych wersji pod względem funkcji i stabilności; wybierz, jeśli chcesz mieć wgląd w nadchodzące wydania i pomóc w ich testach przed oficjalnym wydaniem (zawiera również powiadomienia o wydaniach stabilnych);
+– Wersje rozwojowe: zawierają najnowsze funkcje, ale mogą być niestabilne (zawiera również powiadomienia o wydaniach stabilnych i kandydujących).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="515"/>
@@ -961,7 +961,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/configdialog.ui" line="669"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
-        <translation>&lt;b&gt;%&lt;/b&gt;: nazwa pliku bez rozszerzenia; &lt;b&gt;@&lt;/b&gt;: numer linii; &lt;b&gt;?[selektor][symbol kończący]&lt;/b&gt;: sformatowana nazwa pliku
+        <translation>&lt;b&gt;%&lt;/b&gt;: nazwa pliku bez rozszerzenia; &lt;b&gt;@&lt;/b&gt;: numer wiersza; &lt;b&gt;?[selektor][symbol kończący]&lt;/b&gt;: sformatowana nazwa pliku
 </translation>
     </message>
     <message>
@@ -972,12 +972,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation>&lt;i&gt;Selektory:&lt;/i&gt; kombinacja of &lt;b&gt;a&lt;/b&gt;: ścieżki bezwzględnej, &lt;!--&lt;i&gt;r&lt;/i&gt;: ścieżki względnej, --&gt;&lt;b&gt;m&lt;/b&gt;: bazowej nazwy pliku bez rozszerzenia,&lt;b&gt;e&lt;/b&gt;: rozszerzenia, &lt;b&gt;r&lt;/b&gt;: ścieżki względnej do głównej, &lt;b&gt;*&lt;/b&gt;: wszystkich plików pasujących do wzorca&lt;br /&gt;
+        <translation>&lt;i&gt;Selektory:&lt;/i&gt; kombinacja &lt;b&gt;a&lt;/b&gt;: ścieżki bezwzględnej, &lt;!--&lt;i&gt;r&lt;/i&gt;: ścieżki względnej, --&gt;&lt;b&gt;m&lt;/b&gt;: nazwy pliku bazowego bez rozszerzenia,&lt;b&gt;e&lt;/b&gt;: rozszerzenia, &lt;b&gt;r&lt;/b&gt;: ścieżki względnej do głównej, &lt;b&gt;*&lt;/b&gt;: wszystkich plików pasujących do wzorca&lt;br /&gt;
 przyimek kończący &lt;b&gt;c:&lt;/b&gt; używa pliku bieżącego zamiast głównego (wymagany dwukropek)&lt;br /&gt;
 &lt;i&gt;Symbole kończące:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: kończy selektor. Następujące znaki, umieszczone po selektorze, mają dodatkowe znaczenie&lt;br /&gt;
 &lt;b&gt;&quot;&lt;/b&gt;: dołącza podwójny cudzysłów, &lt;b&gt;.&lt;/b&gt; (kropka) dodaje kropkę na końcu, (spacja):dodaje spację na końcu&lt;br /&gt;
-&lt;i&gt;Przykłady:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: ścieżka bezwzględna i pełna nazwa ujęte w podwójny cudzysłów, &lt;b&gt;?e)&lt;/b&gt; samo rozszerzenie bez poprzedzającej je kropki (np tex), &lt;br /&gt;
-&lt;b&gt;?m&quot;&lt;/b&gt; nazwa pliku bez rozszerzenia ujęta w podwójny cudzysłów (identycznie jak &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nazwa pliku z rozszerzeniem (np przykład.tex), &lt;b&gt;?*.aux&lt;/b&gt;: wszystkie pliki .aux w bieżącym katalogu</translation>
+&lt;i&gt;Przykłady:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: ścieżka bezwzględna i pełna nazwa ujęte w podwójny cudzysłów, &lt;b&gt;?e)&lt;/b&gt; samo rozszerzenie bez poprzedzającej je kropki (np. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; nazwa pliku bez rozszerzenia ujęta w podwójny cudzysłów (identycznie jak &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nazwa pliku z rozszerzeniem (np. przykład.tex), &lt;b&gt;?*.aux&lt;/b&gt;: wszystkie pliki .aux w bieżącym katalogu</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="701"/>
@@ -989,7 +989,7 @@ przyimek kończący &lt;b&gt;c:&lt;/b&gt; używa pliku bieżącego zamiast głó
     <message>
         <location filename="../src/configdialog.ui" line="779"/>
         <source>Meta Commands</source>
-        <translation>Meta polecenia</translation>
+        <translation>Metapolecenia</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="792"/>
@@ -1004,7 +1004,7 @@ przyimek kończący &lt;b&gt;c:&lt;/b&gt; używa pliku bieżącego zamiast głó
     <message>
         <location filename="../src/configdialog.ui" line="814"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation>Uruchom txs:///recompile-bibliography jeżeli zmieniły się pliki bib</translation>
+        <translation>Uruchamia txs:///recompile-bibliography po zmianie plików bib.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="817"/>
@@ -1014,17 +1014,17 @@ przyimek kończący &lt;b&gt;c:&lt;/b&gt; używa pliku bieżącego zamiast głó
     <message>
         <location filename="../src/configdialog.ui" line="824"/>
         <source>Show messages when starting compiling</source>
-        <translation>Pokazuj wiadomości kiedy zaczynasz kompilować</translation>
+        <translation>Pokaż wiadomości przy rozpoczęciu kompilowania</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="849"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation>Nie otwieraj nowego podglądu jeśli plik dvi/ps/pdf jest już otwarty</translation>
+        <translation>Nie otwieraj nowego podglądu, jeśli plik dvi/ps/pdf jest już otwarty</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="856"/>
         <source>Show stdout:</source>
-        <translation>Pokaż stdout:</translation>
+        <translation>Pokaż standardowe wyjście:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="870"/>
@@ -1041,17 +1041,17 @@ przyimek kończący &lt;b&gt;c:&lt;/b&gt; używa pliku bieżącego zamiast głó
     <message>
         <location filename="../src/configdialog.ui" line="880"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
-        <translation>Zawsze (jeśli nie przekierowane &gt; /dev/null)</translation>
+        <translation>Zawsze (jeśli nie przekierowane &gt;/dev/null)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="888"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation>Niektóre konstrukcje LaTeX (np odnośniki) muszą być kompilowane kilkukrotnie, zanim wyświetlą się poprawnie.</translation>
+        <translation>Niektóre konstrukcje LaTeX (np. odnośniki) wymagają do poprawnego wyświetlenia kilku cykli kompilacji.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="891"/>
         <source>Maximum Compile Repetitions:</source>
-        <translation>Maksymalna ilość powtórzeń kompilacji:</translation>
+        <translation>Maks. powtórzeń kompilacji:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="961"/>
@@ -1066,7 +1066,7 @@ przyimek kończący &lt;b&gt;c:&lt;/b&gt; używa pliku bieżącego zamiast głó
     <message>
         <location filename="../src/configdialog.ui" line="1012"/>
         <source>Log File</source>
-        <translation>Plik logu</translation>
+        <translation>Plik dziennika</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1023"/>
@@ -1100,7 +1100,7 @@ Zmienne zapisywane jako: $MYVAR. Wielkość liter ma znaczenie.
     <message>
         <location filename="../src/configdialog.ui" line="1047"/>
         <source>Show log in case of compile error</source>
-        <translation>Wyświetl log jeżeli wystąpi błąd kompilacji</translation>
+        <translation>Pokaż dziennik w przypadku błędu kompilacji</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1054"/>
@@ -1160,12 +1160,12 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1137"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"/>
+        <translation>Zamknij element (Esc)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
         <source>Close Log-View</source>
-        <translation>Zamknij podgląd loga</translation>
+        <translation>Zamknij podgląd dziennika</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1150"/>
@@ -1180,7 +1180,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1167"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż skróty w podpowiedziach</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1190"/>
@@ -3871,7 +3871,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="233"/>
         <source>Local</source>
-        <translation type="unfinished"/>
+        <translation>Lokalne</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="238"/>
@@ -3886,7 +3886,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="248"/>
         <source>Old Mac</source>
-        <translation type="unfinished"/>
+        <translation>Stare Mac</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="256"/>
@@ -3939,7 +3939,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="419"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>Zamknij pozostałe dokumenty</translation>
     </message>
 </context>
 <context>
@@ -4058,12 +4058,12 @@ Czy na pewno chcesz cofnąć wszystkie dokonane zmiany?</translation>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
         <source>Select the line you want to go to :</source>
-        <translation>Wybierz linię do której chcesz przejść:</translation>
+        <translation>Wybierz wiersz, do którego chcesz przejść:</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
         <source>line </source>
-        <translation>linia</translation>
+        <translation>wiersz</translation>
     </message>
 </context>
 <context>
@@ -4468,13 +4468,13 @@ The wizard does not support command </source>
         <location filename="../src/latexstructure.cpp" line="176"/>
         <location filename="../src/latexstructure.cpp" line="223"/>
         <source> (Line %1)</source>
-        <translation> (Linia %1)</translation>
+        <translation> (Wiersz %1)</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="197"/>
         <location filename="../src/latexstructure.cpp" line="217"/>
         <source>Line</source>
-        <translation>Linia</translation>
+        <translation>Wiersz</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="200"/>
@@ -4484,12 +4484,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexstructure.cpp" line="202"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Poza końcem dokumentu</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="204"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"/>
+        <translation>W dodatku.</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="219"/>
@@ -4522,7 +4522,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="468"/>
         <source>Open Bibliography</source>
-        <translation>Otwórz Bibliografię</translation>
+        <translation>Otwórz bibliografię</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="477"/>
@@ -4543,17 +4543,17 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="514"/>
         <source>Thesaurus...</source>
-        <translation>Wyrazy bliskoznaczne...</translation>
+        <translation>Tezaurus...</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="541"/>
         <source>use yours</source>
-        <translation type="unfinished"/>
+        <translation>użyj twojego</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="545"/>
         <source>use other&apos;s</source>
-        <translation type="unfinished"/>
+        <translation>użyj czyjegoś</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="561"/>
@@ -4611,7 +4611,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2400"/>
         <source>Beamer Theme</source>
-        <translation>Styl Beamera</translation>
+        <translation>Motyw beamer</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2409"/>
@@ -4646,7 +4646,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2798"/>
         <source>Images</source>
-        <translation>Obrazki</translation>
+        <translation>Obrazy</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2928"/>
@@ -4656,7 +4656,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2936"/>
         <source>Unnamed Bookmark</source>
-        <translation>Zakładka bez nazwy</translation>
+        <translation>Nienazwana zakładka</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2941"/>
@@ -4689,7 +4689,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlog.cpp" line="27"/>
         <source>Click to jump to the line</source>
-        <translation>Kliknij aby przejść do linii</translation>
+        <translation>Naciśnij, by przejść do wiersza</translation>
     </message>
     <message>
         <location filename="../src/latexlog.cpp" line="36"/>
@@ -4712,7 +4712,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlog.cpp" line="47"/>
         <source>line</source>
-        <translation>linia</translation>
+        <translation>wiersz</translation>
     </message>
     <message>
         <location filename="../src/latexlog.cpp" line="63"/>
@@ -4727,7 +4727,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlog.cpp" line="67"/>
         <source>Line</source>
-        <translation>Linia</translation>
+        <translation>Wiersz</translation>
     </message>
     <message>
         <location filename="../src/latexlog.cpp" line="69"/>
@@ -4755,7 +4755,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="74"/>
         <source>No log file available</source>
-        <translation>Brak pliku logu</translation>
+        <translation>Plik dziennika niedostępny</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="85"/>
@@ -4765,7 +4765,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="88"/>
         <source>Log File</source>
-        <translation>Plik logu</translation>
+        <translation>Plik dziennika</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="91"/>
@@ -4834,7 +4834,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/letterdialog.cpp" line="55"/>
         <source>Quick Letter</source>
-        <translation>Szybki list</translation>
+        <translation>Szybka litera</translation>
     </message>
 </context>
 <context>
@@ -4842,7 +4842,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="14"/>
         <source>Make Template</source>
-        <translation>Stwórz szablon</translation>
+        <translation>Utwórz szablon</translation>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="20"/>
@@ -4888,7 +4888,8 @@ The wizard does not support command </source>
         <location filename="../src/maketemplatedialog.cpp" line="45"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
-        <translation>Szablon o tej nazwie już istnieje. Czy chcesz go nadpisać?</translation>
+        <translation>Szablon o tej nazwie już istnieje.
+Chcesz go nadpisać?</translation>
     </message>
 </context>
 <context>
@@ -4915,7 +4916,7 @@ Do you want to overwrite it?</source>
         <location filename="../src/toolwidgets.cpp" line="150"/>
         <location filename="../src/toolwidgets.cpp" line="237"/>
         <source>Messages / Log File</source>
-        <translation>Komunikaty / Plik logu</translation>
+        <translation>Komunikaty / Plik dziennika</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="162"/>
@@ -4927,7 +4928,7 @@ Do you want to overwrite it?</source>
         <location filename="../src/toolwidgets.cpp" line="167"/>
         <location filename="../src/toolwidgets.cpp" line="239"/>
         <source>Log</source>
-        <translation>Log</translation>
+        <translation>Dziennik</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="173"/>
@@ -4957,12 +4958,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="34"/>
         <source>Geometric</source>
-        <translation type="unfinished"/>
+        <translation>Geometryczne</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="36"/>
         <source>Highlight</source>
-        <translation>Podświetlenie</translation>
+        <translation>Wyróżnienie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="38"/>
@@ -4972,7 +4973,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="40"/>
         <source>Ink</source>
-        <translation type="unfinished"/>
+        <translation>Tusz</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="42"/>
@@ -5061,12 +5062,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="498"/>
         <source>Find next occurence</source>
-        <translation>Znajdz następne wystąpienie</translation>
+        <translation>Znajdź kolejne wystąpienie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="499"/>
         <source>Find previous occurence</source>
-        <translation>Znajdz poprzednie wystąpienie</translation>
+        <translation>Znajdź poprzednie wystąpienie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="501"/>
@@ -5089,7 +5090,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="915"/>
         <source>Restart</source>
-        <translation>Zrestartuj</translation>
+        <translation>Uruchom ponownie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="932"/>
@@ -5132,7 +5133,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2412"/>
         <source>&amp;View</source>
-        <translation>Po&amp;dejrzyj</translation>
+        <translation>Wi&amp;dok</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2413"/>
@@ -5147,7 +5148,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2415"/>
         <source>&amp;Configure</source>
-        <translation>&amp;Konfiguruj</translation>
+        <translation>&amp;Konfiguracja</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2416"/>
@@ -5157,12 +5158,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2422"/>
         <source>User &amp;Manual...</source>
-        <translation>&amp;Podręcznik użytkownika</translation>
+        <translation>&amp;Podręcznik użytkownika…</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2425"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>O programie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2426"/>
@@ -5172,7 +5173,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2427"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation>Podziel &amp;&amp; złącz...</translation>
+        <translation>Podziel i scal...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2428"/>
@@ -5192,7 +5193,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2433"/>
         <source>Scrolling follows cursor</source>
-        <translation type="unfinished"/>
+        <translation>Przewijanie podąża za kursorem</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2435"/>
@@ -5202,7 +5203,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2437"/>
         <source>Synchronize multiple views</source>
-        <translation type="unfinished"/>
+        <translation>Synchronizuj widoki</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2440"/>
@@ -5217,12 +5218,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2445"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Powiększenie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2446"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Przewijanie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2448"/>
@@ -5272,7 +5273,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2459"/>
         <source>&amp;Actual Size</source>
-        <translation>Obecny rozmi&amp;ar</translation>
+        <translation>Rozmi&amp;ar rzeczywisty</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2460"/>
@@ -5307,7 +5308,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2473"/>
         <source>External Viewer</source>
-        <translation>Zewnętrzny podgląd</translation>
+        <translation>Podgląd zewnętrzny</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2474"/>
@@ -5317,7 +5318,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2475"/>
         <source>Shrink Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Zmniejsz podgląd</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2476"/>
@@ -5347,12 +5348,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2502"/>
         <source>Stac&amp;k</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Stos</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2503"/>
         <source>&amp;Tile</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kafelki</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2504"/>
@@ -5387,7 +5388,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2513"/>
         <source>Quick Build</source>
-        <translation type="unfinished"/>
+        <translation>Szybkie budowanie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2542"/>
@@ -5617,7 +5618,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="430"/>
         <source>P&amp;ause</source>
-        <translation>P&amp;auza</translation>
+        <translation>W&amp;strzymaj</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="431"/>
@@ -5671,12 +5672,12 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="603"/>
         <source>Words</source>
-        <translation type="unfinished"/>
+        <translation>Wyrazy</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="604"/>
         <source>Only searches for whole words.</source>
-        <translation>Wyszukuje tylko całe słowa.</translation>
+        <translation>Wyszukuje tylko całe wyrazy.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="610"/>
@@ -5709,7 +5710,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="146"/>
         <source>Add page range</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj zakres stron</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="249"/>
@@ -5727,17 +5728,17 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/pdfsplittool.ui" line="14"/>
         <source>Split &amp; Merge</source>
-        <translation>Podziel &amp; złącz</translation>
+        <translation>Podziel i scal</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="40"/>
         <source>Split &amp;&amp; Merge</source>
-        <translation>Podziel &amp;&amp; złącz</translation>
+        <translation>Podziel i scal</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="47"/>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Zaplecze:</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="87"/>
@@ -5795,7 +5796,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1085"/>
         <source>Could not open link:</source>
-        <translation>Nie można otworzyć odnośnika:</translation>
+        <translation>Nie można otworzyć łącza:</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1196"/>
@@ -5838,7 +5839,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="127"/>
         <source>Reset Zoom</source>
-        <translation>Resetuj powiększenie</translation>
+        <translation>Bez powiększenia</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="128"/>
@@ -5848,7 +5849,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="132"/>
         <source>Center</source>
-        <translation>Centruj</translation>
+        <translation>Wyśrodkuj</translation>
     </message>
 </context>
 <context>
@@ -5904,7 +5905,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/utilsUI.cpp" line="98"/>
         <source>none</source>
-        <translation>nic</translation>
+        <translation>brak</translation>
     </message>
 </context>
 <context>
@@ -5978,12 +5979,12 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="265"/>
         <source>Panels</source>
-        <translation type="unfinished"/>
+        <translation>Panele</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
         <source>&amp;View</source>
-        <translation>Po&amp;dejrzyj</translation>
+        <translation>Po&amp;dgląd</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="199"/>
@@ -6008,7 +6009,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1445"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>Wy&amp;tnij</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
@@ -6032,24 +6033,24 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
         <source>&amp;Unindent</source>
-        <translation>&amp;Usuń wcięcie</translation>
+        <translation>Z&amp;mniejsz wcięcie</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Przełącz &amp;komentarz</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
         <source>Co&amp;mment</source>
-        <translation type="unfinished"/>
+        <translation>Zako&amp;mentuj</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1452"/>
         <source>Unc&amp;omment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Odkomentuj</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
@@ -6079,7 +6080,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="670"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1460"/>
         <source>&amp;Goto line...</source>
-        <translation type="unfinished"/>
+        <translation>I&amp;dź do wiersza…</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
@@ -6100,12 +6101,12 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="726"/>
         <source>Conservative</source>
-        <translation type="unfinished"/>
+        <translation>Zachowawcze</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="727"/>
         <source>Local</source>
-        <translation type="unfinished"/>
+        <translation>Lokalne</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="728"/>
@@ -6120,7 +6121,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
         <source>Old Mac</source>
-        <translation type="unfinished"/>
+        <translation>Stare Mac</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="917"/>
@@ -6141,7 +6142,7 @@ Press &quot;Ignore&quot; to ignore this warning.
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="930"/>
         <source>Diff</source>
-        <translation>Diff</translation>
+        <translation>Różnice</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1010"/>
@@ -6281,79 +6282,79 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4593"/>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4594"/>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Niepoprawny</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4596"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4612"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4628"/>
         <source>Internal</source>
-        <translation type="unfinished"/>
+        <translation>Wewnętrzny</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4598"/>
         <source>Move cursor up</source>
-        <translation>Przesuń kursor do góry</translation>
+        <translation>Przenieś kursor w górę</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4599"/>
         <source>Move cursor down</source>
-        <translation>Przesuń kursor w dół</translation>
+        <translation>Przenieś kursor w dół</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4600"/>
         <source>Move cursor left (1 character)</source>
-        <translation>Przesuń kursor w lewo (1 znak)</translation>
+        <translation>Przenieś kursor w lewo (1 znak)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4601"/>
         <source>Move cursor right (1 character)</source>
-        <translation>Przesuń kursor w prawo (1 znak)</translation>
+        <translation>Przenieś kursor w prawo (1 znak)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4602"/>
         <source>Move cursor left (1 word)</source>
-        <translation>Przesuń kursor w lewo (1 słowo)</translation>
+        <translation>Przenieś kursor w lewo (1 wyraz)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4603"/>
         <source>Move cursor right (1 word)</source>
-        <translation>Przesuń kursor w prawo (1 słowo)</translation>
+        <translation>Przenieś kursor w prawo (1 wyraz)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4604"/>
         <source>Move cursor to line start</source>
-        <translation>Przesuń kursor na początek wiersza</translation>
+        <translation>Przenieś kursor na początek wiersza</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4605"/>
         <source>Move cursor to line end</source>
-        <translation>Przesuń kursor na koniec wiersza</translation>
+        <translation>Przenieś kursor na koniec wiersza</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4606"/>
         <source>Move cursor to document start</source>
-        <translation>Przesuń kursor na początek dokumentu</translation>
+        <translation>Przenieś kursor na początek dokumentu</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4607"/>
         <source>Move cursor to document end</source>
-        <translation>Przesuń kursor na koniec dokumentu</translation>
+        <translation>Przenieś kursor na koniec dokumentu</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4609"/>
         <source>Move cursor one page up</source>
-        <translation>Przesuń kursor do góry o stronę</translation>
+        <translation>Przenieś kursor w górę o stronę</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4610"/>
         <source>Move cursor one page down</source>
-        <translation>Przesuń kursor w dół o stronę</translation>
+        <translation>Przenieś kursor w dół o stronę</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4614"/>
@@ -6368,22 +6369,22 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4616"/>
         <source>Select left (1 character)</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz w lewo (1 znak)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4617"/>
         <source>Select right (1 character)</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz w prawo (1 znak)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4618"/>
         <source>Select left (1 word)</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz w lewo (1 wyraz)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4619"/>
         <source>Select right (1 word)</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz w prawo (1 wyraz)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4620"/>
@@ -6408,12 +6409,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4625"/>
         <source>Select page up</source>
-        <translation>Zaznacz stronę wyżej</translation>
+        <translation>Zaznacz stronę w górę</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4626"/>
         <source>Select page down</source>
-        <translation>Zaznacz stronę niżej</translation>
+        <translation>Zaznacz stronę w dół</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4630"/>
@@ -6428,17 +6429,17 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4632"/>
         <source>Delete left word</source>
-        <translation>Usuń słowo po lewej</translation>
+        <translation>Usuń wyraz po lewej</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4633"/>
         <source>Delete right word</source>
-        <translation>Usuń słowo po prawej</translation>
+        <translation>Usuń wyraz po prawej</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4634"/>
         <source>New line</source>
-        <translation>Nowa linia</translation>
+        <translation>Nowy wiersz</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4636"/>
@@ -6503,12 +6504,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4649"/>
         <source>Create cursor mirror up</source>
-        <translation>Utwórz klon kursora powyżej</translation>
+        <translation>Dodaj kursor w górę</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4650"/>
         <source>Create cursor mirror down</source>
-        <translation>Utwórz klon kursora poniżej</translation>
+        <translation>Dodaj kursor w dół</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4651"/>
@@ -6543,7 +6544,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4657"/>
         <source>Tab or Indent selection</source>
-        <translation type="unfinished"/>
+        <translation>Tabulator lub wcięcie zaznaczenia</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4658"/>
@@ -6553,12 +6554,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4659"/>
         <source>Indent selection</source>
-        <translation>Dodaj wcięcie do zaznaczenia</translation>
+        <translation>Zwiększ wcięcie zaznaczenia</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4660"/>
         <source>Unindent selection</source>
-        <translation>Usuń wcięcie z zaznaczenia</translation>
+        <translation>Zmniejsz wcięcie zaznaczenia</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4663"/>
@@ -6580,17 +6581,17 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>background</source>
-        <translation>Tło</translation>
+        <translation>tło</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>line:error</source>
-        <translation type="unfinished"/>
+        <translation>wiersz:błąd</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>line:warning</source>
-        <translation type="unfinished"/>
+        <translation>wiersz:ostrzeżenie</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
@@ -6600,7 +6601,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>line:bookmark</source>
-        <translation type="unfinished"/>
+        <translation>wiersz:zakładka</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
@@ -6665,7 +6666,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>comment</source>
-        <translation type="unfinished"/>
+        <translation>komentarz</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="163"/>
@@ -6685,7 +6686,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>link</source>
-        <translation type="unfinished"/>
+        <translation>łącze</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="167"/>
@@ -6695,7 +6696,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>verbatim</source>
-        <translation type="unfinished"/>
+        <translation>verbatim</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="169"/>
@@ -6755,7 +6756,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>text</source>
-        <translation type="unfinished"/>
+        <translation>tekst</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="181"/>
@@ -7060,7 +7061,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
         <source>Strikeout</source>
-        <translation type="unfinished"/>
+        <translation>Przekreślenie</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="70"/>
@@ -7080,12 +7081,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
         <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
-        <translation>Kolor wierszy (używany przez wszystkie formaty wierszy: podkreślenie, nadkreślenie, ...)</translation>
+        <translation>Kolor linii (używany we wszystkich formatowaniach wierszy: podkreślenie, nadkreślenie, ...)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="78"/>
         <source>Font Family</source>
-        <translation>Rodzina czcionki</translation>
+        <translation>Rodzina czcionek</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="79"/>
@@ -7340,7 +7341,7 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation type="unfinished"/>
+        <translation>PDL</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
@@ -7360,7 +7361,7 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="180"/>
         <source>Conflict</source>
-        <translation type="unfinished"/>
+        <translation>Konflikt</translation>
     </message>
 </context>
 <context>
@@ -7412,7 +7413,7 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Okno dialogowe</translation>
     </message>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="22"/>
@@ -7475,7 +7476,7 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="64"/>
         <source>Class Options</source>
-        <translation>Opcje Klasy</translation>
+        <translation>Opcje klas</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="84"/>
@@ -7744,7 +7745,7 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="109"/>
         <source>You didn&apos;t select an order!</source>
-        <translation type="unfinished"/>
+        <translation>Nie wybrano porządku</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="112"/>
@@ -8204,7 +8205,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="295"/>
         <source>Unicode Character: </source>
-        <translation>Znak Unicode: </translation>
+        <translation>Znak unikodu: </translation>
     </message>
 </context>
 <context>
@@ -8212,12 +8213,12 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Usuń z ulubionych</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj do ulubionych</translation>
     </message>
 </context>
 <context>
@@ -8226,49 +8227,49 @@ Czy ufasz temu skryptowi?</translation>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Operatory</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Relacje</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Strzałki</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="34"/>
         <source>Delimiters</source>
         <comment>Operator category</comment>
-        <translation>Symbole grupujące i separatory</translation>
+        <translation>Ograniczniki</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Greka</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Cyrylica</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Różne matematyczne</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Różne tekstowe</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="39"/>
@@ -8280,7 +8281,7 @@ Czy ufasz temu skryptowi?</translation>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>Specjalne</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="75"/>
@@ -8300,7 +8301,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="122"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>Kategoria</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="133"/>
@@ -8318,7 +8319,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>nierozpoznane środowisko</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="499"/>
@@ -8368,12 +8369,12 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="508"/>
         <source>closing environment which has not been opened</source>
-        <translation>zamykanie nie otwartego otoczenia</translation>
+        <translation>zamykanie środowiska, które nie zostało otwarte</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="509"/>
         <source>environment not closed</source>
-        <translation>nie zamknięte otoczenie</translation>
+        <translation>niezamknięte środowisko</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="510"/>
@@ -8524,7 +8525,7 @@ Czy ufasz temu skryptowi?</translation>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>None</source>
         <comment>tabular left border</comment>
-        <translation type="unfinished"/>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
@@ -8536,7 +8537,7 @@ Czy ufasz temu skryptowi?</translation>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>None</source>
         <comment>tabular right border</comment>
-        <translation type="unfinished"/>
+        <translation>Brak</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
@@ -9525,7 +9526,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="906"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Przełącz &amp;komentarz</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="907"/>
@@ -10724,7 +10725,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="5755"/>
         <source>(b) allow for all documents</source>
-        <translation>(a) zezwól we wszystkich dokumentach</translation>
+        <translation>(b) zezwól we wszystkich dokumentach</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5756"/>
@@ -10816,13 +10817,14 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="8884"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można utworzyć pliku „%1”.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="8886"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
-        <translation>Plik &quot;%1&quot; nie istnieje. Czy chcesz go utworzyć?</translation>
+        <translation>Plik „%1” nie istnieje.
+Chcesz go utworzyć?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="8910"/>
@@ -11093,17 +11095,17 @@ Czy chcesz by TeXstudio był wciąż włączony? Może to spowodować uszkodzeni
     <message>
         <location filename="../src/utilsSystem.cpp" line="551"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation>Nie można znaleźć explorer.exe po ścieżce uruchomienia Eksploratora Windows.</translation>
+        <translation>Nie można znaleźć explorer.exe na ścieżce systemowej, by uruchomić Eksplorator Windows.</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="590"/>
         <source>Show in Explorer</source>
-        <translation>Pokaż w Explorerze</translation>
+        <translation>Pokaż w Eksploratorze</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="592"/>
         <source>Show in Finder</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż w Finderze</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="594"/>
@@ -11371,7 +11373,7 @@ Jeśli nie, znaki kończące będą ignorowane.</translation>
     <message>
         <location filename="../src/textanalysis.cpp" line="62"/>
         <source>Word/Phrase</source>
-        <translation type="unfinished"/>
+        <translation>Wyraz/fraza</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.cpp" line="63"/>
@@ -11410,12 +11412,12 @@ Jeśli nie, znaki kończące będą ignorowane.</translation>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="136"/>
         <source>Starts With ...</source>
-        <translation>Zaczyna się przez ...</translation>
+        <translation>Zaczyna się od…</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="137"/>
         <source>Contains ...</source>
-        <translation>Zawiera ...</translation>
+        <translation>Zawiera…</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="138"/>
@@ -11425,17 +11427,17 @@ Jeśli nie, znaki kończące będą ignorowane.</translation>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="139"/>
         <source>Add Own Word</source>
-        <translation>Dodaj własne słowo</translation>
+        <translation>Dodaj swój wyraz</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="140"/>
         <source>Remove Own Word</source>
-        <translation>Usuń własny wyraz</translation>
+        <translation>Usuń swój wyraz</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="180"/>
         <source>Thesaurus</source>
-        <translation>Słownik wyrazów bliskoznacznych</translation>
+        <translation>Tezaurus</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="246"/>
@@ -11457,7 +11459,7 @@ Jeśli nie, znaki kończące będą ignorowane.</translation>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="378"/>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
-        <translation>Czy chcesz dodać &quot;%1&quot; jako synonim do &quot;%2&quot; lub &quot;%3&quot;?</translation>
+        <translation>Chcesz dodać „%1” jako synonim „%2” lub „%3”?</translation>
     </message>
 </context>
 <context>
@@ -11533,7 +11535,7 @@ wstawiono dokument w %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Dostępna jest nowa wersja TeXstudio.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Bieżąca wersja:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Ostatnia stabilna wersja:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Możesz pobrać ją z &lt;a href=&apos;%3&apos;&gt;serwisu TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="236"/>
@@ -11543,7 +11545,7 @@ wstawiono dokument w %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="248"/>
         <source>TeXstudio Update</source>
-        <translation>Uaktualnienie TeXstudio</translation>
+        <translation>Aktualizacja TeXstudio</translation>
     </message>
 </context>
 <context>
@@ -11619,7 +11621,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="313"/>
         <source>Environment</source>
-        <translation>Otoczenie</translation>
+        <translation>Środowisko</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="326"/>
@@ -11654,12 +11656,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="237"/>
         <source>Tag</source>
-        <translation>Tag</translation>
+        <translation>Znacznik</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="299"/>
         <source>Do you really want to delete the current macro?</source>
-        <translation>Czy na pewno chcesz usunąć obecne makro?</translation>
+        <translation>Na pewno chcesz usunąć bieżące makro?</translation>
     </message>
 </context>
 <context>
@@ -11667,7 +11669,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/userquickdialog.ui" line="14"/>
         <source>Quick Build Command</source>
-        <translation>Polecenie szybkiej kompilacji</translation>
+        <translation>Polecenie szybkiego budowania</translation>
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="42"/>
@@ -11677,7 +11679,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/userquickdialog.ui" line="70"/>
         <source>Ordered list of commands :</source>
-        <translation>Posortowana lista poleceń:</translation>
+        <translation>Uporządkowana lista poleceń:</translation>
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="80"/>
@@ -11716,17 +11718,17 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="../src/webpublishdialog.ui" line="14"/>
         <location filename="../src/webpublishdialog.cpp" line="25"/>
         <source>Convert to Html</source>
-        <translation>Skonwertuj do Htmla</translation>
+        <translation>Konwertuj do HTML</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="60"/>
         <source>LaTeX options</source>
-        <translation>Opcje LaTeX-a</translation>
+        <translation>Opcje LaTeX</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="98"/>
         <source>Number of LaTeX compilations for the input file</source>
-        <translation type="unfinished"/>
+        <translation>Liczba kompilacji LaTeX pliku wejściowego</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="114"/>
@@ -11801,7 +11803,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="266"/>
         <source>Create an index page ?</source>
-        <translation>Czy utworzyć stronę indeksu?</translation>
+        <translation>Utworzyć stronę indeksu?</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="273"/>
@@ -11866,7 +11868,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.cpp" line="31"/>
         <source>Center</source>
-        <translation>Centruj</translation>
+        <translation>Wyśrodkuj</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="32"/>
@@ -12008,7 +12010,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/scriptengine.cpp" line="575"/>
         <source>File Chooser</source>
-        <translation>Wybieracz pliku</translation>
+        <translation>Wybór pliku</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="592"/>
@@ -12032,7 +12034,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/templateselector.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Okno dialogowe</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="66"/>
@@ -12047,12 +12049,12 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/templateselector.ui" line="205"/>
         <source>Create in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Utwórz w edytorze</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="238"/>
         <source>Target folder not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Folder docelowy nie jest pusty.</translation>
     </message>
 </context>
 </TS>
