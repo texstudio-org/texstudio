@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -912,7 +910,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
         <location filename="../src/configdialog.ui" line="508"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define os tipos de aviso de atualização que receberá:
 - Versões Estáveis: escolha esta se estabilidade é mais importante para você.
@@ -1132,7 +1130,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-sensi
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1094"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2648,8 +2646,8 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <location filename="../src/configdialog.ui" line="4331"/>
         <location filename="../src/configdialog.ui" line="4386"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Renderização usada pela biblioteca PDF poppler.
 &apos;Splash&apos; é o padrão e adequada à maioria das situações.
@@ -4322,7 +4320,7 @@ Deseja desfazer todas as alterações?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferências para o posicionamento da figura
@@ -4434,7 +4432,7 @@ O assistente não suporta comandos</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1722"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome do arquivo: %1&lt;/b&gt;
 </translation>
@@ -4620,7 +4618,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2377"/>
         <location filename="../src/latexeditorview.cpp" line="2449"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome do arquivo: %1&lt;/b&gt;
 </translation>
@@ -4628,10 +4626,7 @@ O assistente não suporta comandos</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2390"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n referência para este rótulo</numerusform>
-            <numerusform>%n referência(s) para este rótulo</numerusform>
-        </translation>
+        <translation><numerusform>%n referência para este rótulo</numerusform><numerusform>%n referência(s) para este rótulo</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2395"/>
@@ -4877,27 +4872,27 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="17"/>
         <source>Description</source>
-        <translation type="unfinished">Descrição</translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="43"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar macros do repositório</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="145"/>
         <source>Browse macro repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar repositório de macros</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="146"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Repositório não encontrado. Erro: %1</translation>
     </message>
 </context>
 <context>
@@ -5271,7 +5266,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2457"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorar para sincronização</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2460"/>
@@ -6301,7 +6296,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1107"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>O arquivo original no disco foi destruído durante o processo de salvamento.
 Você encontrará uma cópia em
@@ -8337,12 +8332,12 @@ Você confia neste script?</translation>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir comando</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
         <source>Insert unicode</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir unicode</translation>
     </message>
 </context>
 <context>
@@ -10822,7 +10817,7 @@ salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5591"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Não foi possível determinar o nome do arquivo.
 Você tem que salvar um documento antes de compilá-lo.</translation>
@@ -11726,32 +11721,32 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="72"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar macros oferecidas no site do txs.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="75"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Navegar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="82"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar macro para arquivo</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="85"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="92"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar macro do arquivo</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="95"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="112"/>
@@ -11860,68 +11855,68 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
         <location filename="../src/usermenudialog.ui" line="443"/>
         <location filename="../src/usermenudialog.cpp" line="282"/>
         <source>Description</source>
-        <translation type="unfinished">Descrição</translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="450"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Atalho</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="471"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="476"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="481"/>
         <location filename="../src/usermenudialog.ui" line="486"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="491"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="496"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="501"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="506"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="511"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="516"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="521"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="279"/>
@@ -11936,7 +11931,7 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
     <message>
         <location filename="../src/usermenudialog.cpp" line="283"/>
         <source>Shortcuts</source>
-        <translation type="unfinished">Atalhos</translation>
+        <translation>Atalhos</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="361"/>
@@ -11946,18 +11941,18 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
     <message>
         <location filename="../src/usermenudialog.cpp" line="390"/>
         <source>Import macro</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar macro</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="390"/>
         <location filename="../src/usermenudialog.cpp" line="402"/>
         <source>txs macro files (*.txsMacro)</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivos de macro txs (*.txsMacro)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="402"/>
         <source>Export macro</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar macro</translation>
     </message>
 </context>
 <context>

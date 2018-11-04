@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -914,7 +912,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/configdialog.ui" line="508"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Визначає тип одержуваних сповіщень про оновлення:
  — Стабільні версії: виберіть цей тип, якщо стабільність найважливіша для вас.
@@ -1134,7 +1132,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1094"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2651,8 +2649,8 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="4331"/>
         <location filename="../src/configdialog.ui" line="4386"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Обробник вимальовування зображення, що використовується PDF-бібліотекою poppler.
 &apos;Splash&apos; використовується типово і підходить в більшості випадків.
@@ -4326,7 +4324,7 @@ Are you sure you want to undo all changes?</source>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Пріоритет розташування малюнка:
@@ -4438,7 +4436,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1722"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4624,7 +4622,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2377"/>
         <location filename="../src/latexeditorview.cpp" line="2449"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4632,11 +4630,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2390"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилань на цю мітку</numerusform>
-        </translation>
+        <translation><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2395"/>
@@ -4882,27 +4876,27 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
         <source>Name</source>
-        <translation type="unfinished">Назва</translation>
+        <translation>Назва</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="17"/>
         <source>Description</source>
-        <translation type="unfinished">Опис</translation>
+        <translation>Опис</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="43"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Огляд макросів зі сховища</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="145"/>
         <source>Browse macro repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Огляд сховища макросів</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="146"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Сховище не знайдено. Помилка мережі:%1</translation>
     </message>
 </context>
 <context>
@@ -5276,7 +5270,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2457"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation>Нехтувати для синхронізації</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2460"/>
@@ -6252,7 +6246,7 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation>Не можливо отримати права запису у файл
+        <translation>Неможливо отримати права запису у файл
 %1.
 
 Можливо, він доступний лише для читання або відкритий у іншій програмі?</translation>
@@ -6307,7 +6301,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1107"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Оригінальний файл на диску був знищений під час збереження.
 Ви можете знайти копію у
@@ -8344,12 +8338,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставити команду</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
         <source>Insert unicode</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставити символ юнікоду</translation>
     </message>
 </context>
 <context>
@@ -10754,7 +10748,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3367"/>
         <source>Could not save the image file.</source>
-        <translation>Не можливо зберегти файл зображення.</translation>
+        <translation>Неможливо зберегти файл зображення.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3618"/>
@@ -10830,7 +10824,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5591"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Не вдається виявити назву файлу.
  Ви повинні зберегти документ, перш ніж його компілювати.</translation>
@@ -10900,7 +10894,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="5930"/>
         <source>Could not start %1.</source>
-        <translation>Не можна записати %1.</translation>
+        <translation>Неможливо запустити %1.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5958"/>
@@ -11735,32 +11729,32 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="72"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"></translation>
+        <translation>Перегляд запропонованих макросів на сайті TexStudio.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="75"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Переглянути</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="82"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Експортувати макрос у файл</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="85"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Експорт</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="92"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Імпортувати макрос із файлу</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="95"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Імпорт</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="112"/>
@@ -11869,68 +11863,68 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="../src/usermenudialog.ui" line="443"/>
         <location filename="../src/usermenudialog.cpp" line="282"/>
         <source>Description</source>
-        <translation type="unfinished">Опис</translation>
+        <translation>Опис</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="450"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Скорочення</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="471"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F2</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="476"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="481"/>
         <location filename="../src/usermenudialog.ui" line="486"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F5</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="491"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F6</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="496"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F7</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="501"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F8</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="506"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F9</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="511"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F10</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="516"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F11</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="521"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F12</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="279"/>
@@ -11945,7 +11939,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="283"/>
         <source>Shortcuts</source>
-        <translation type="unfinished">Скорочення</translation>
+        <translation>Скорочення</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="361"/>
@@ -11955,18 +11949,18 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="390"/>
         <source>Import macro</source>
-        <translation type="unfinished"></translation>
+        <translation>Імпортувати макрос</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="390"/>
         <location filename="../src/usermenudialog.cpp" line="402"/>
         <source>txs macro files (*.txsMacro)</source>
-        <translation type="unfinished"></translation>
+        <translation>файли макросів txs (*.txsMacro)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="402"/>
         <source>Export macro</source>
-        <translation type="unfinished"></translation>
+        <translation>Експортувати макрос</translation>
     </message>
 </context>
 <context>
@@ -12223,7 +12217,7 @@ The html files are located in the %1 directory.</source>
         <location filename="../src/webpublishdialog.cpp" line="141"/>
         <location filename="../src/webpublishdialog.cpp" line="173"/>
         <source>could not start the command</source>
-        <translation>Не вдається виконати команду</translation>
+        <translation>неможливо запустити команду</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="146"/>
