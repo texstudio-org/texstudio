@@ -32,8 +32,10 @@ MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
 
     buttonBox=new QDialogButtonBox();
     buttonBox->setStandardButtons(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+#if QT_VERSION>= 0x050000
     connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+#endif
     auto *layout=new QVBoxLayout();
     layout->addLayout(gridLay);
     layout->addWidget(buttonBox);
