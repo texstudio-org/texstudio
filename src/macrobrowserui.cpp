@@ -86,8 +86,8 @@ void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
     if(!networkManager){
         return;
     }
-    //QString url=config->URLmacroRepository+path;
-    QString url="https://api.github.com/repos/sunderme/texstudio-macro/contents/"+path;
+    QString url=config->URLmacroRepository+path;
+    //QString url="https://api.github.com/repos/sunderme/texstudio-macro/contents/"+path;
     if(directURL){
         url=path;
     }else{
