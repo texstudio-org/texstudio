@@ -4921,27 +4921,27 @@ l&apos;assistant ne supporte pas la commande </translation>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="17"/>
         <source>Description</source>
-        <translation type="unfinished">Description</translation>
+        <translation>Description</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="43"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir les macros depuis le dépôt</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="145"/>
         <source>Browse macro repository</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir la macros du dépôt</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="146"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dépôt introuvable. Erreur réseau : %1</translation>
     </message>
 </context>
 <context>
@@ -5315,7 +5315,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2457"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation>Omettre pour la synchronisation</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2460"/>
@@ -8383,12 +8383,12 @@ Faites-vous confiance à ce script ?</translation>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer une commande</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
         <source>Insert unicode</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer un caractère unicode</translation>
     </message>
 </context>
 <context>
@@ -11783,32 +11783,32 @@ document inclus dans %1</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="72"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir les macros disponibles sur le site de TXS</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="75"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="82"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la macro dans le fichier</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="85"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="92"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer la macro depuis le fichier</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="95"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="112"/>
@@ -11915,68 +11915,68 @@ Il est possible d&apos;utiliser la valeur spéciale ?txs-start pour démarrer ce
         <location filename="../src/usermenudialog.ui" line="443"/>
         <location filename="../src/usermenudialog.cpp" line="282"/>
         <source>Description</source>
-        <translation type="unfinished">Description</translation>
+        <translation>Description</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="450"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>Raccourci</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="471"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F2</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="476"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F4</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="481"/>
         <location filename="../src/usermenudialog.ui" line="486"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F5</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="491"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F6</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="496"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F7</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="501"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F8</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="506"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F9</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="511"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F10</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="516"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F11</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="521"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"></translation>
+        <translation>Maj+F12</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="279"/>
@@ -11991,7 +11991,7 @@ Il est possible d&apos;utiliser la valeur spéciale ?txs-start pour démarrer ce
     <message>
         <location filename="../src/usermenudialog.cpp" line="283"/>
         <source>Shortcuts</source>
-        <translation type="unfinished">Raccourcis clavier</translation>
+        <translation>Raccourcis clavier</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="361"/>
@@ -12001,18 +12001,18 @@ Il est possible d&apos;utiliser la valeur spéciale ?txs-start pour démarrer ce
     <message>
         <location filename="../src/usermenudialog.cpp" line="390"/>
         <source>Import macro</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer la macro</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="390"/>
         <location filename="../src/usermenudialog.cpp" line="402"/>
         <source>txs macro files (*.txsMacro)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier de macros TXS (*.txsMacro)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="402"/>
         <source>Export macro</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la macro</translation>
     </message>
 </context>
 <context>
