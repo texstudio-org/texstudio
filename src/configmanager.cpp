@@ -1313,7 +1313,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
 
 	lastLanguage = language;
-	QStringList languageFiles = findResourceFiles("translations", "texstudio_*.qm") << findResourceFiles("", "texstudio_*.qm");
+    QStringList languageFiles = findResourceFiles("translation", "texstudio_*.qm") << findResourceFiles("", "texstudio_*.qm");
 	for (int i = languageFiles.count() - 1; i >= 0; i--) {
 		QString temp = languageFiles[i].mid(languageFiles[i].indexOf("_") + 1);
 		temp.truncate(temp.indexOf("."));
