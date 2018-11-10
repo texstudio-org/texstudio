@@ -847,7 +847,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
         level=tl.first().level;
     }
     while( (lineNr)<doc->lineCount() && cnt<ConfigManager::RUNAWAYLIMIT){
-        QString line = dlh->text();
+        QString line = dlh ? dlh->text() : "";
         foreach (Token tk,tl) {
             if(tk.level>level)
                 continue; //only use tokens from the same option-level
