@@ -184,15 +184,14 @@ QTreeWidgetItem *UserMenuDialog::findCreateFolder(const QString &menu)
     QList<QTreeWidgetItem*>results=ui.treeWidget->findItems(topFolder,Qt::MatchExactly);
     bool found=false;
     foreach(parent,results){
-        QVariant v=parent->data(0,Qt::UserRole);
-        if(!v.isValid()){
+        if(parent->type()==1){
             found=true;
             break;
         }
     }
     if(!found){
         // create folder
-        parent=new QTreeWidgetItem(ui.treeWidget);
+        parent=new QTreeWidgetItem(ui.treeWidget,1);
         parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
         parent->setText(0,topFolder);
         parent->setIcon(0,QIcon::fromTheme("folder"));
@@ -211,8 +210,7 @@ QTreeWidgetItem *UserMenuDialog::findCreateFolder(QTreeWidgetItem *parent, QStri
     for(int i=0;i<parent->childCount();i++){
         QTreeWidgetItem *item=parent->child(i);
         if(item->text(0)==topFolder){
-            QVariant v=item->data(0,Qt::UserRole);
-            if(!v.isValid()){
+            if(item->type()==1){
                 found=true;
                 parent=item;
                 break;
@@ -221,7 +219,7 @@ QTreeWidgetItem *UserMenuDialog::findCreateFolder(QTreeWidgetItem *parent, QStri
     }
     if(!found){
         // create folder
-        parent=new QTreeWidgetItem(parent);
+        parent=new QTreeWidgetItem(parent,1);
         parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
         parent->setText(0,topFolder);
         parent->setIcon(0,QIcon::fromTheme("folder"));
@@ -298,9 +296,11 @@ void UserMenuDialog::slotRemove()
         UtilsUi::txsInformation(tr("Folder is not empty."));
         return;
     }
-
-	if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro?")))
-		return;
+    if(item->type()==0){
+        // only confirm for macros, not for folders
+        if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro?")))
+            return;
+    }
 
     QTreeWidgetItem *parent=item->parent();
     if(parent){
@@ -315,7 +315,7 @@ void UserMenuDialog::slotRemove()
 }
 
 void UserMenuDialog::slotAddFolder(){
-    auto *item=new QTreeWidgetItem(ui.treeWidget);
+    auto *item=new QTreeWidgetItem(ui.treeWidget,1);
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
     item->setText(0,"Folder");
     item->setIcon(0,QIcon::fromTheme("folder"));
@@ -384,7 +384,7 @@ void UserMenuDialog::importMacro()
 void UserMenuDialog::exportMacro()
 {
     QTreeWidgetItem *item=ui.treeWidget->currentItem();
-    if(item==nullptr) return;
+    if(item==nullptr || item->type()==1) return;
     QString fileName = QFileDialog::getSaveFileName(this,tr("Export macro"), "", tr("txs macro files (*.txsMacro)"));
     if(!fileName.isEmpty()){
         QVariant v=item->data(0,Qt::UserRole);
