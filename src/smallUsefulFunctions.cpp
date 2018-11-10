@@ -815,7 +815,7 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map)
                 startStr = col;
                 while (startStr >= 0) {
                     startStr = text.indexOf('"', startStr + 1);
-                    if (text.at(endStr - 1) != '\\') break;
+                    if (text.at(startStr - 1) != '\\') break;
                 }
                 if(startStr>=0 && endStr<endArray){
                     col=startStr+1;
