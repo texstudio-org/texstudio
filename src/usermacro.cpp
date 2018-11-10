@@ -179,7 +179,12 @@ QString Macro::typedTag() const
 	default:
 		qDebug() << "unknown macro type" << type;
 	}
-	return QString();
+    return QString();
+}
+
+void Macro::setTypedTag(const QString &m_tag)
+{
+    tag=parseTypedTag(m_tag,type);
 }
 
 QString Macro::parseTypedTag(QString typedTag, Macro::Type &retType)
