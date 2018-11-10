@@ -121,14 +121,11 @@ UserMenuDialog::~UserMenuDialog()
 
 void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
 {
+    auto *item=new QTreeWidgetItem(ui.treeWidget);
+    item->setText(0,m.name);
+    item->setData(0,Qt::UserRole,QVariant::fromValue(m));
     if(insertRow){
-        auto *item=new QTreeWidgetItem(ui.treeWidget);
-        item->setText(0,m.name);
-        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
-    }else{
-        auto *item=new QTreeWidgetItem(ui.treeWidget);
-        item->setText(0,m.name);
-        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+        ui.treeWidget->setCurrentItem(item);
     }
 }
 
