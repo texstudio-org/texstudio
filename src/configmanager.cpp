@@ -1957,10 +1957,13 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 }
 
 void ConfigManager::clearMenu(QMenu *menu){
-    QList<QMenu *> lst=menu->findChildren<QMenu *>(QString(),Qt::FindDirectChildrenOnly);
-    foreach(QMenu *m,lst){
-        clearMenu(m);
-        delete m;
+    QList<QObject*> lst=menu->children();
+    foreach(QObject *obj,lst){
+        QMenu *m=qobject_cast<QMenu *>(obj);
+        if(m){
+            clearMenu(m);
+            delete m;
+        }
     }
     menu->clear();
 }
