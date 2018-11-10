@@ -123,6 +123,17 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="pushButtonAddFolder">
+           <property name="text">
+            <string>Folder</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../images.qrc">
+             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButtonRemove">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">

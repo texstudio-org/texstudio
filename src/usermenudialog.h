@@ -31,9 +31,11 @@ public:
 
     void addMacro(const Macro &m,bool insertRow=false);
     QList<Macro> getMacros() const;
-    QList<Macro> getMacros(QTreeWidgetItem *item) const;
+    QList<Macro> getMacros(QTreeWidgetItem *item,const QString &path) const;
 
 private:
+    QTreeWidgetItem* findCreateFolder(const QString &menu);
+    QTreeWidgetItem* findCreateFolder(QTreeWidgetItem *parent, QStringList folders);
 
 	QCodeEdit *codeedit;
 	QLanguageFactory *languages;
@@ -48,6 +50,7 @@ private slots:
 	void slotRunScript();
 	void slotAdd();
 	void slotRemove();
+    void slotAddFolder();
 	void slotMoveUp();
 	void slotMoveDown();
     void importMacro();

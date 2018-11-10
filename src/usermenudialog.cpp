@@ -40,6 +40,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.runScriptButton, SIGNAL(clicked()), SLOT(slotRunScript()));
 
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), SLOT(slotAdd()));
+    connect(ui.pushButtonAddFolder, SIGNAL(clicked()), SLOT(slotAddFolder()));
 	connect(ui.pushButtonRemove, SIGNAL(clicked()), SLOT(slotRemove()));
 	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
 	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
@@ -93,6 +94,8 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
     ui.teDescription->setFixedHeight(4 * RowHeight);
 
     connect(ui.treeWidget,SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,SLOT(change(QTreeWidgetItem*,QTreeWidgetItem*)));
+    ui.treeWidget->setDragEnabled(true);
+    ui.treeWidget->setDragDropMode(QAbstractItemView::InternalMove);
 
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
@@ -121,11 +124,21 @@ UserMenuDialog::~UserMenuDialog()
 
 void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
 {
-    auto *item=new QTreeWidgetItem(ui.treeWidget);
+    auto *item=new QTreeWidgetItem();
+    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
     item->setText(0,m.name);
     item->setData(0,Qt::UserRole,QVariant::fromValue(m));
     if(insertRow){
+        ui.treeWidget->addTopLevelItem(item);
         ui.treeWidget->setCurrentItem(item);
+    }else{
+        // generate tree/folder if necessary
+        if(!m.menu.isEmpty()){
+            QTreeWidgetItem *parent=findCreateFolder(m.menu);
+            parent->addChild(item);
+        }else{
+            ui.treeWidget->addTopLevelItem(item);
+        }
     }
 }
 
@@ -135,27 +148,86 @@ QList<Macro> UserMenuDialog::getMacros() const
     QList<Macro> results;
     for(int i=0;i<ui.treeWidget->topLevelItemCount();i++){
         QTreeWidgetItem *element=ui.treeWidget->topLevelItem(i);
-        results<<getMacros(element);
+        results<<getMacros(element,"");
     }
     return results;
 }
 
-QList<Macro> UserMenuDialog::getMacros(QTreeWidgetItem *item) const
+QList<Macro> UserMenuDialog::getMacros(QTreeWidgetItem *item, const QString &path) const
 {
     QList<Macro> results;
     if(item->childCount()){
         for(int i=0;i<item->childCount();i++){
             QTreeWidgetItem *element=item->child(i);
-            results<<getMacros(element);
+            results<<getMacros(element,path+item->text(0)+"/");
         }
     }else{
         QVariant v=item->data(0,Qt::UserRole);
         if(v.isValid()){
             Macro m=v.value<Macro>();
+            QString s=path;
+            if(s.endsWith('/')){
+                s=s.left(s.length()-1);
+            }
+            m.menu=s;
             results<<m;
         }
     }
     return results;
+}
+
+QTreeWidgetItem *UserMenuDialog::findCreateFolder(const QString &menu)
+{
+    QTreeWidgetItem *parent=nullptr;
+    QStringList folders=menu.split('/');
+    QString topFolder=folders.takeFirst();
+    QList<QTreeWidgetItem*>results=ui.treeWidget->findItems(topFolder,Qt::MatchExactly);
+    bool found=false;
+    foreach(parent,results){
+        QVariant v=parent->data(0,Qt::UserRole);
+        if(!v.isValid()){
+            found=true;
+            break;
+        }
+    }
+    if(!found){
+        // create folder
+        parent=new QTreeWidgetItem(ui.treeWidget);
+        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+        parent->setText(0,topFolder);
+        parent->setIcon(0,QIcon::fromTheme("folder"));
+        ui.treeWidget->addTopLevelItem(parent);
+    }
+    parent=findCreateFolder(parent,folders);
+    return parent;
+}
+
+QTreeWidgetItem *UserMenuDialog::findCreateFolder(QTreeWidgetItem *parent, QStringList folders)
+{
+    if(folders.isEmpty())
+        return parent;
+    QString topFolder=folders.takeFirst();
+    bool found=false;
+    for(int i=0;i<parent->childCount();i++){
+        QTreeWidgetItem *item=parent->child(i);
+        if(item->text(0)==topFolder){
+            QVariant v=item->data(0,Qt::UserRole);
+            if(!v.isValid()){
+                found=true;
+                parent=item;
+                break;
+            }
+        }
+    }
+    if(!found){
+        // create folder
+        parent=new QTreeWidgetItem(parent);
+        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+        parent->setText(0,topFolder);
+        parent->setIcon(0,QIcon::fromTheme("folder"));
+    }
+    parent=findCreateFolder(parent,folders);
+    return parent;
 }
 
 void UserMenuDialog::change(QTreeWidgetItem *current,QTreeWidgetItem *previous)
@@ -209,6 +281,7 @@ void UserMenuDialog::slotRunScript()
 void UserMenuDialog::slotAdd()
 {
     auto *item=new QTreeWidgetItem(ui.treeWidget);
+    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
     item->setText(0,"");
     Macro m;
     item->setData(0,Qt::UserRole,QVariant::fromValue(m));
@@ -218,21 +291,36 @@ void UserMenuDialog::slotAdd()
 
 void UserMenuDialog::slotRemove()
 {
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr)
+        return;
+    if(item->childCount()){
+        UtilsUi::txsInformation(tr("Folder is not empty."));
+        return;
+    }
+
 	if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro?")))
 		return;
-    QTreeWidgetItem *item=ui.treeWidget->currentItem();
-    if(item){
-        QTreeWidgetItem *parent=item->parent();
-        if(parent){
-            int index = parent->indexOfChild(item);
-            QTreeWidgetItem* child = parent->takeChild(index);
-            delete child;
-        }else{
-            int index = ui.treeWidget->indexOfTopLevelItem(item);
-            QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
-            delete child;
-        }
+
+    QTreeWidgetItem *parent=item->parent();
+    if(parent){
+        int index = parent->indexOfChild(item);
+        QTreeWidgetItem* child = parent->takeChild(index);
+        delete child;
+    }else{
+        int index = ui.treeWidget->indexOfTopLevelItem(item);
+        QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
+        delete child;
     }
+}
+
+void UserMenuDialog::slotAddFolder(){
+    auto *item=new QTreeWidgetItem(ui.treeWidget);
+    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+    item->setText(0,"Folder");
+    item->setIcon(0,QIcon::fromTheme("folder"));
+    ui.treeWidget->addTopLevelItem(item);
+    ui.treeWidget->setCurrentItem(item);
 }
 
 void UserMenuDialog::slotMoveUp()
