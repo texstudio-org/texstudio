@@ -3794,32 +3794,32 @@ Deseja removê-las?</translation>
         <translation>&lt;padrão&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2762"/>
+        <location filename="../src/configmanager.cpp" line="2765"/>
         <source>Configure</source>
         <translation>Configurar</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2769"/>
+        <location filename="../src/configmanager.cpp" line="2772"/>
         <source>Select Program</source>
         <translation>Selecionar Programa</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2776"/>
+        <location filename="../src/configmanager.cpp" line="2779"/>
         <source>Restore Default</source>
         <translation>Restaurar Padrão</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2823"/>
+        <location filename="../src/configmanager.cpp" line="2826"/>
         <source>Repeat contained compilation commands</source>
         <translation>Repetir comandos de compilação assinalados</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2871"/>
+        <location filename="../src/configmanager.cpp" line="2874"/>
         <source>Add</source>
         <translation>Adicionar</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2934"/>
+        <location filename="../src/configmanager.cpp" line="2937"/>
         <source>Browse program</source>
         <translation>Selecionar Programa</translation>
     </message>
@@ -11719,74 +11719,77 @@ documento incluído em %1</translation>
         <translation>Editar Macros</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="72"/>
+        <location filename="../src/usermenudialog.ui" line="77"/>
         <source>Browse offered macros on txs site.</source>
         <translation>Navegar macros oferecidas no site do txs.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="75"/>
+        <location filename="../src/usermenudialog.ui" line="80"/>
         <source>Browse</source>
         <translation>Navegar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="82"/>
+        <location filename="../src/usermenudialog.ui" line="87"/>
         <source>Export macro to file</source>
         <translation>Exportar macro para arquivo</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="85"/>
+        <location filename="../src/usermenudialog.ui" line="90"/>
         <source>Export</source>
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="92"/>
+        <location filename="../src/usermenudialog.ui" line="97"/>
         <source>Import macro from file</source>
         <translation>Importar macro do arquivo</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="95"/>
+        <location filename="../src/usermenudialog.ui" line="100"/>
         <source>Import</source>
         <translation>Importar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="112"/>
+        <location filename="../src/usermenudialog.ui" line="117"/>
         <source>Add</source>
         <translation>Adicionar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="129"/>
+        <location filename="../src/usermenudialog.ui" line="128"/>
+        <source>Folder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.ui" line="145"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="165"/>
+        <location filename="../src/usermenudialog.ui" line="181"/>
         <source>Up</source>
         <translation>Acima</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="188"/>
+        <location filename="../src/usermenudialog.ui" line="204"/>
         <source>Down</source>
         <translation>Abaixo</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="205"/>
-        <location filename="../src/usermenudialog.cpp" line="278"/>
+        <location filename="../src/usermenudialog.ui" line="221"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="222"/>
+        <location filename="../src/usermenudialog.ui" line="238"/>
         <source>Abbreviation</source>
         <translation>Abreviatura</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="234"/>
-        <location filename="../src/usermenudialog.cpp" line="280"/>
+        <location filename="../src/usermenudialog.ui" line="250"/>
         <source>Trigger</source>
         <translation>Gatilho</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="311"/>
+        <location filename="../src/usermenudialog.ui" line="327"/>
         <source>If this trigger string is written in any tex document, 
 it is replaced by the current tag.
 
@@ -11812,145 +11815,134 @@ e (?&lt;=\s|^) para marcar substituições que devem somente ocorrer antes de um
 Você pode utilizar o valor especial ?txs-start para iniciar o script junto com txs.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="344"/>
+        <location filename="../src/usermenudialog.ui" line="360"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="353"/>
+        <location filename="../src/usermenudialog.ui" line="369"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="360"/>
+        <location filename="../src/usermenudialog.ui" line="376"/>
         <source>Environment</source>
         <translation>Ambiente</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="373"/>
+        <location filename="../src/usermenudialog.ui" line="389"/>
         <source>Script</source>
         <translation>Script</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="382"/>
+        <location filename="../src/usermenudialog.ui" line="398"/>
         <source>LaTeX Content</source>
         <translation>Conteúdo LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="407"/>
+        <location filename="../src/usermenudialog.ui" line="423"/>
         <source>Run Script</source>
         <translation>Executar Script</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="427"/>
+        <location filename="../src/usermenudialog.ui" line="443"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="434"/>
+        <location filename="../src/usermenudialog.ui" line="450"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="443"/>
-        <location filename="../src/usermenudialog.cpp" line="282"/>
+        <location filename="../src/usermenudialog.ui" line="459"/>
         <source>Description</source>
         <translation>Descrição</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="450"/>
+        <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shortcut</source>
         <translation>Atalho</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="466"/>
+        <location filename="../src/usermenudialog.ui" line="482"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F1</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="471"/>
+        <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F2</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="476"/>
+        <location filename="../src/usermenudialog.ui" line="492"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F4</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="481"/>
-        <location filename="../src/usermenudialog.ui" line="486"/>
+        <location filename="../src/usermenudialog.ui" line="497"/>
+        <location filename="../src/usermenudialog.ui" line="502"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F5</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="491"/>
+        <location filename="../src/usermenudialog.ui" line="507"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F6</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="496"/>
+        <location filename="../src/usermenudialog.ui" line="512"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F7</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="501"/>
+        <location filename="../src/usermenudialog.ui" line="517"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F8</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="506"/>
+        <location filename="../src/usermenudialog.ui" line="522"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F9</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="511"/>
+        <location filename="../src/usermenudialog.ui" line="527"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F10</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="516"/>
+        <location filename="../src/usermenudialog.ui" line="532"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F11</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="521"/>
+        <location filename="../src/usermenudialog.ui" line="537"/>
         <source>Shift+F12</source>
+        <translation>Shift+F12</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.cpp" line="296"/>
+        <source>Folder is not empty.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="279"/>
-        <source>Abbrev</source>
-        <translation>Abrev.</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.cpp" line="281"/>
-        <source>Tag</source>
-        <translation>Etiqueta</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.cpp" line="283"/>
-        <source>Shortcuts</source>
-        <translation>Atalhos</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.cpp" line="361"/>
+        <location filename="../src/usermenudialog.cpp" line="301"/>
         <source>Do you really want to delete the current macro?</source>
         <translation>Deseja realmente apagar a macro atual?</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="390"/>
+        <location filename="../src/usermenudialog.cpp" line="376"/>
         <source>Import macro</source>
         <translation>Importar macro</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="390"/>
-        <location filename="../src/usermenudialog.cpp" line="402"/>
+        <location filename="../src/usermenudialog.cpp" line="376"/>
+        <location filename="../src/usermenudialog.cpp" line="388"/>
         <source>txs macro files (*.txsMacro)</source>
         <translation>arquivos de macro txs (*.txsMacro)</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="402"/>
+        <location filename="../src/usermenudialog.cpp" line="388"/>
         <source>Export macro</source>
         <translation>Exportar macro</translation>
     </message>

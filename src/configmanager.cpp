@@ -1313,7 +1313,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
 
 	lastLanguage = language;
-	QStringList languageFiles = findResourceFiles("translations", "texstudio_*.qm") << findResourceFiles("", "texstudio_*.qm");
+    QStringList languageFiles = findResourceFiles("translation", "texstudio_*.qm") << findResourceFiles("", "texstudio_*.qm");
 	for (int i = languageFiles.count() - 1; i >= 0; i--) {
 		QString temp = languageFiles[i].mid(languageFiles[i].indexOf("_") + 1);
 		temp.truncate(temp.indexOf("."));
@@ -1957,10 +1957,13 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 }
 
 void ConfigManager::clearMenu(QMenu *menu){
-    QList<QMenu *> lst=menu->findChildren<QMenu *>();
-    foreach(QMenu *m,lst){
-        clearMenu(m);
-        delete m;
+    QList<QObject*> lst=menu->children();
+    foreach(QObject *obj,lst){
+        QMenu *m=qobject_cast<QMenu *>(obj);
+        if(m){
+            clearMenu(m);
+            delete m;
+        }
     }
     menu->clear();
 }
@@ -2616,7 +2619,10 @@ void ConfigManager::loadTranslations(QString locale)
 		if (locale.length() < 2) locale = "en";
 	}
 	QString txsTranslationFile = findResourceFile("texstudio_" + locale + ".qm");
-	//if (txsTranslationFile!="") {
+
+    if (txsTranslationFile.isEmpty()) {
+        txsTranslationFile = findResourceFile("translation/texstudio_" + locale + ".qm");
+    }
 	appTranslator->load(txsTranslationFile);
 	basicTranslator->load(findResourceFile("qt_" + locale + ".qm"));
 	//}

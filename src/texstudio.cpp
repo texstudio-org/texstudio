@@ -5402,7 +5402,7 @@ void Texstudio::editMacros()
 				continue;
 			userMacroDialog->addMacro(m);
 		}
-		userMacroDialog->init();
+        //userMacroDialog->init();
 		connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
 		connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
 		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
@@ -5415,9 +5415,9 @@ void Texstudio::editMacros()
 void Texstudio::macroDialogAccepted()
 {
 	configManager.completerConfig->userMacros.clear();
-	for (int i = 0; i < userMacroDialog->macroCount(); i++) {
-		configManager.completerConfig->userMacros << userMacroDialog->getMacro(i);
-	}
+
+    configManager.completerConfig->userMacros << userMacroDialog->getMacros();
+
 	for (int i = 0; i < documents.documents.size(); i++)
 		configManager.completerConfig->userMacros << documents.documents[i]->localMacros;
 	updateUserMacros();

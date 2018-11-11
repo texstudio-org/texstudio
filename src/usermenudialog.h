@@ -19,7 +19,7 @@
 class QCodeEdit;
 class QLanguageFactory;
 class QSearchReplacePanel;
-class StringListTableModel;
+
 class UserMenuDialog : public QDialog
 {
 	Q_OBJECT
@@ -30,30 +30,27 @@ public:
 	Ui::UserMenuDialog ui;
 
     void addMacro(const Macro &m,bool insertRow=false);
-	Macro getMacro(int i) const;
-	int macroCount() const;
+    QList<Macro> getMacros() const;
+    QList<Macro> getMacros(QTreeWidgetItem *item,const QString &path) const;
 
 private:
-    QStringList names, tags, abbrevs, triggers,shortcuts,descriptions,menus;
+    QTreeWidgetItem* findCreateFolder(const QString &menu);
+    QTreeWidgetItem* findCreateFolder(QTreeWidgetItem *parent, QStringList folders);
 
 	QCodeEdit *codeedit;
 	QLanguageFactory *languages;
 	QSearchReplacePanel *searchReplacePanel;
-	StringListTableModel *model;
-
-public slots:
-	void init();
 
 signals:
 	void runScript(const QString &script);
 
 private slots:
-	void change(const QModelIndex &nev, const QModelIndex &old);
-	void modelDataChanged(const QModelIndex &from , const QModelIndex &to);
+    void change(QTreeWidgetItem *current,QTreeWidgetItem *previous);
 	void slotOk();
 	void slotRunScript();
 	void slotAdd();
 	void slotRemove();
+    void slotAddFolder();
 	void slotMoveUp();
 	void slotMoveDown();
     void importMacro();

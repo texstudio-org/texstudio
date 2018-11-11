@@ -42,6 +42,7 @@ public:
     void setShortcut(const QString &sc);
 
 	QString typedTag() const;
+    void setTypedTag(const QString &m_tag);
 	static QString parseTypedTag(QString typedTag, Macro::Type &retType);
 
 	void parseTriggerLanguage(QLanguageFactory *langFactory);
@@ -73,6 +74,7 @@ private:
     QString m_shortcut;
 };
 
+Q_DECLARE_METATYPE(Macro);
 
 class MacroExecContext {
 public:

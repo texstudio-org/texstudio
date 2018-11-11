@@ -971,8 +971,13 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			annotationClicked(clickedAnnotation, page);
 		}
 	} else if (currentTool == kPresentation) {
-		if (event->button() == Qt::LeftButton) goNext();
-		else if (event->button() == Qt::RightButton) goPrev();
+        if(usingTool== kMagnifier){
+            usingTool = kNone;
+            magnifier->close();
+        }else{
+            if (event->button() == Qt::LeftButton) goNext();
+            else if (event->button() == Qt::RightButton) goPrev();
+        }
 	} else {
 		switch (usingTool) {
 		case kNone:
