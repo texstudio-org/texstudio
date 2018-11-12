@@ -11756,7 +11756,7 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="128"/>
         <source>Folder</source>
-        <translation type="unfinished"/>
+        <translation>Pasta</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="145"/>
@@ -11923,7 +11923,7 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
     <message>
         <location filename="../src/usermenudialog.cpp" line="296"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"/>
+        <translation>A pasta não está vazia.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="301"/>

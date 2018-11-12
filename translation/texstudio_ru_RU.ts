@@ -2403,12 +2403,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3724"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation>Url для соединения с LanguageTool.</translation>
+        <translation>URL для соединения с LanguageTool.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3815"/>
         <source>Segment Preview</source>
-        <translation>Параметры предпросмотра</translation>
+        <translation>Предпросмотра фрагмента</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3821"/>
@@ -2438,7 +2438,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3855"/>
         <source>Display Mode:</source>
-        <translation>Режим дисплея:</translation>
+        <translation>Режим отображения:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3869"/>
@@ -2458,7 +2458,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3884"/>
         <source>Always show both</source>
-        <translation>Всегда показывать и то, и другое</translation>
+        <translation>Всегда показывать оба</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3889"/>
@@ -2656,9 +2656,9 @@ them here.</source>
 If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Обработчик формирования изображения, используемый PDF-библиотекой poppler.
-&apos;Splash&apos; используется по умолчанию и подходит в большинстве случаев.
-При появлении ошибок формирования изображения вы можете попробовать альтернативный обработчик &apos;Arthur&apos;.
-Замечание: смена этой настройки повлияет только на документы, которые открыты после смены.</translation>
+«Splash» (по умолчанию) подходит в большинстве случаев.
+При появлении ошибок формирования изображения вы можете попробовать альтернативный обработчик «Arthur».
+Примечание: смена этой настройки повлияет только на документы, которые будут открыты впоследствии.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4354"/>
@@ -8915,7 +8915,7 @@ failed.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>Custom</source>
-        <translation>Настройка</translation>
+        <translation>Произвольный</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="237"/>
@@ -8930,7 +8930,7 @@ failed.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>Tools</source>
-        <translation>Инструменты</translation>
+        <translation>Программы</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="240"/>
@@ -8974,13 +8974,13 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation>Двоичные данные</translation>
+        <translation>Бинарный</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
-        <translation>Файл TeX&apos;а DTX</translation>
+        <translation>DTX-файл TeX’а</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
@@ -9022,7 +9022,7 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation>Макро (La)TeX</translation>
+        <translation>Макрос (La)TeX</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="256"/>
@@ -9281,7 +9281,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="777"/>
         <source>Lock &amp;PDF</source>
-        <translation>Закрыть &amp;PDF для изменений</translation>
+        <translation>Заблокировать &amp;PDF для изменений</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="778"/>
@@ -9306,7 +9306,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="782"/>
         <source>Try to merge differences</source>
-        <translation>Пытаться объединить различия</translation>
+        <translation>Попытаться объединить различия</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="783"/>
@@ -9658,7 +9658,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="911"/>
         <source>&amp;Comment</source>
-        <translation>&amp;Комментировать</translation>
+        <translation>За&amp;комментировать</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="912"/>
@@ -9683,7 +9683,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="916"/>
         <source>R&amp;epeat Hard Line Break</source>
-        <translation>&amp;Повторить жесткий разрыв строки</translation>
+        <translation>&amp;Повторить жёсткий разрыв строки</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="919"/>
@@ -9976,7 +9976,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="999"/>
         <source>&amp;User</source>
         <comment>menu</comment>
-        <translation>&amp;Пользователь</translation>
+        <translation>&amp;Пользовательский</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1002"/>
@@ -10006,7 +10006,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1011"/>
         <source>C&amp;onvert Source to Html...</source>
-        <translation>К&amp;онвертировать источник в HTML...</translation>
+        <translation>К&amp;онвертировать исходник в HTML...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1013"/>
@@ -10016,7 +10016,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1014"/>
         <source>Generate &amp;Random Text...</source>
-        <translation>Создать &amp;случайный текст...</translation>
+        <translation>Сгенерировать &amp;случайный текст...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1016"/>
@@ -11765,7 +11765,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="128"/>
         <source>Folder</source>
-        <translation type="unfinished"/>
+        <translation>Папка</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="145"/>
@@ -11932,7 +11932,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="296"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Папка не пуста.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="301"/>

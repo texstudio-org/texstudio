@@ -11764,7 +11764,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="128"/>
         <source>Folder</source>
-        <translation type="unfinished"/>
+        <translation>Тека</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="145"/>
@@ -11931,7 +11931,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="296"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Тека не порожня.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="301"/>
