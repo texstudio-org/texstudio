@@ -1,3 +1,10 @@
+TeXstudio 2.12.12
+----------------
+- improve macro handling, provide gui that directly downloads macros from github.com/texstudio-org/texstudio-macro
+- add cwls
+- fix rare bug that the character appear reverse order
+- bug fixes
+
 TeXstudio 2.12.10
 ----------------
 - improvement recognized latex commands and packages for completion/syntax checking
