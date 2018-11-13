@@ -320,6 +320,10 @@ void UserMenuDialog::slotRemove()
         QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
         delete child;
     }
+    if(ui.treeWidget->topLevelItemCount()==0){
+        // add empty macro
+        slotAdd();
+    }
 }
 
 void UserMenuDialog::slotAddFolder(){
