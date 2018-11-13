@@ -4271,7 +4271,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>此处(H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -10424,7 +10424,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1241"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>检查语言工具</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1242"/>

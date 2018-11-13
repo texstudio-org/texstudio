@@ -1800,7 +1800,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"/>
+        <translation>Να επιτρέπεται η μεταφορά και απόθεση</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2443"/>
@@ -2261,7 +2261,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3446"/>
         <source>Long Range Repetitions:</source>
-        <translation type="unfinished"/>
+        <translation>Επαναλήψεις μεγάλης εμβέλειας:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3456"/>
@@ -2477,7 +2477,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3949"/>
         <source>Replace beamer class by article</source>
-        <translation type="unfinished"/>
+        <translation>Αντικατάσταση της κλάσης beamer από την κλάση article</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3962"/>
@@ -2569,7 +2569,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4214"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"/>
+        <translation>Κύκλος χωρίς σκιά.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4222"/>
@@ -2648,7 +2648,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4376"/>
         <source>Synchronized Files Types:</source>
-        <translation type="unfinished"/>
+        <translation>Τύποι συγχρονισμένων αρχείων:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4392"/>
@@ -2673,7 +2673,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4441"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα χαρτιού</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4451"/>
@@ -2990,7 +2990,9 @@ However this path is not contained in the dictionary path list. Do you want to a
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation type="unfinished"/>
+        <translation>Έχετε ενεργοποιήσει τις προχωρημένες επιλογές. Αυτό επιτρέπει σε κάποιον να
+ρυθμίσει το TXS με μεγάλη λεπτομέρεια. Απενεργοποιήστε τις προχωρημένες
+επιλογές για να δείτε μόνο τις πιο συνηθισμένες ρυθμίσεις.</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1409"/>
@@ -3053,7 +3055,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="20"/>
         <source>Cross References</source>
-        <translation type="unfinished"/>
+        <translation>Διασταυρούμενες αναφορές</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
@@ -3931,7 +3933,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="419"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>Κλείσιμο όλων των υπόλοιπων εγγράφων</translation>
     </message>
 </context>
 <context>
@@ -3999,7 +4001,9 @@ Are you sure you want accept data loss?</source>
         <source>The document has been changed.
 These changes will be lost, if you reload it with the new encoding.
 Are you sure you want to undo all changes?</source>
-        <translation type="unfinished"/>
+        <translation>Το έγγραφο έχει αλλάξει.
+Αυτές οι αλλαγές θα χαθούν, αν το επαναφορτώσετε με τη νέα κωδικοποίηση.
+Είστε βέβαιοι ότι θέλετε να αναιρέσετε όλες τις αλλαγές;</translation>
     </message>
 </context>
 <context>
@@ -4169,7 +4173,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="219"/>
         <source>Place in Figure Environment</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθέτηση σε περιβάλλον εικόνας</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="228"/>
@@ -4249,7 +4253,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>Εδώ (Ε)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4405,7 +4409,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/diffoperations.cpp" line="24"/>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation type="unfinished"/>
+        <translation>Άγνωστο σφάλμα. Πιθανή κατάρρευση. Παρακαλείστε να ξεκινήσετε ξανά το TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="35"/>
@@ -4603,7 +4607,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2399"/>
         <source>Beamer Theme</source>
-        <translation type="unfinished"/>
+        <translation>Θέμα Beamer</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2408"/>
@@ -4613,12 +4617,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2424"/>
         <source>Citation correct (reading ...)</source>
-        <translation type="unfinished"/>
+        <translation>Παραπομπή σωστή (ανάγνωση ...)</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2430"/>
         <source>Citation missing</source>
-        <translation type="unfinished"/>
+        <translation>Απουσία παραπομπής</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2433"/>
@@ -4908,7 +4912,8 @@ The wizard does not support command </source>
         <location filename="../src/maketemplatedialog.cpp" line="45"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Υπάρχει ήδη ένα πρότυπο με αυτό το όνομα.
+Θέλετε να το αντικαταστήσετε;</translation>
     </message>
 </context>
 <context>
@@ -5076,17 +5081,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="497"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished"/>
+        <translation>Κείμενο ή μοτίβο για αναζήτηση</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="498"/>
         <source>Find next occurence</source>
-        <translation type="unfinished"/>
+        <translation>Βρείτε την επόμενη εμφάνιση</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="499"/>
         <source>Find previous occurence</source>
-        <translation type="unfinished"/>
+        <translation>Βρείτε την προηγούμενη εμφάνιση</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="501"/>
@@ -5812,7 +5817,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1072"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>Το άνοιγμα εξωτερικών αρχείων προς το παρόν υποστηρίζεται μόνο για αρχεία PDF.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1091"/>
@@ -6209,7 +6214,17 @@ When ignoring this warning TeXstudio will try save to the specified
 location. However if there is really not enough space, this will
 result in data loss.
 </source>
-        <translation type="unfinished"/>
+        <translation>Δεν φαίνεται να υπάρχει χώρος για να αποθηκεύσετε το αρχείο στο
+%1
+
+Μέγεθος αρχείου: %2 kB
+Ελεύθερος χώρος: %3 kB
+
+Θα πρέπει να καθαρίσετε λίγο χώρο και να προσπαθήσετε ξανά. Εναλλακτικά μπορείτε
+να ακυρώσετε τη λειτουργία αποθήκευσης και να το αποθηκεύσετε σε μια άλλη θέση.
+Αν αγνοηθεί αυτή η προειδοποίηση, το TeXstudio θα προσπαθήσει να αποθηκεύσει το αρχείο στην καθορισμένη
+θέση. Ωστόσο, εάν δεν υπάρχει πραγματικά αρκετός χώρος, αυτό θα
+οδηγήσει σε απώλεια δεδομένων.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
@@ -6219,7 +6234,7 @@ result in data loss.
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1079"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Η δημιουργία ενός αντίγραφου ασφαλείας του αρχείου απέτυχε. Μπορείτε να συνεχίσετε την αποθήκευση. Ωστόσο, εάν η ενέργεια αποθήκευσης αποτύχει, ενδέχεται να χάσετε τα δεδομένα στο αρχικό αρχείο. Θέλετε να συνεχίσετε;</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
@@ -7278,7 +7293,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="328"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished"/>
+        <translation>Κείμενο ή μοτίβο για αναζήτηση</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="329"/>
@@ -8050,7 +8065,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/spellerutility.cpp" line="251"/>
         <source>Dictionary import failed: No files could be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή λεξικού απέτυχε: Δεν ήταν δυνατή η εξαγωγή αρχείων.</translation>
     </message>
 </context>
 <context>
@@ -8130,12 +8145,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/structuretreeview.cpp" line="54"/>
         <source>Expand all documents</source>
-        <translation type="unfinished"/>
+        <translation>Ανάπτυξη όλων των εγγράφων</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="55"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished"/>
+        <translation>Σύμπτυξη όλων των εγγράφων</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="64"/>
@@ -8249,7 +8264,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή εντολής</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
@@ -8778,7 +8793,7 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="266"/>
         <source>Are you sure to delete the following template?</source>
-        <translation type="unfinished"/>
+        <translation>Είστε βέβαιοι ότι θέλετε να διαγράψετε το παρακάτω πρότυπο;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="273"/>
@@ -9056,7 +9071,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="609"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Εντολές Beamer</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="735"/>
@@ -10097,7 +10112,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1061"/>
         <source>Math Assistant...</source>
-        <translation type="unfinished"/>
+        <translation>Βοηθός Μαθηματικών...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1090"/>
@@ -11592,22 +11607,22 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="87"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"/>
+        <translation>Εξαγωγή μακροεντολής σε αρχείο</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="90"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Εξαγωγή</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="97"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή μακροεντολής από αρχείο</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="100"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="117"/>
@@ -11617,7 +11632,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="128"/>
         <source>Folder</source>
-        <translation type="unfinished"/>
+        <translation>Φάκελος</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="145"/>
@@ -11713,68 +11728,68 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Συντόμευση</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="482"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F2</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="492"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="497"/>
         <location filename="../src/usermenudialog.ui" line="502"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F5</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="507"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F6</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="512"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F7</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="517"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F8</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="522"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F9</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="527"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F10</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="532"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F11</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="537"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F12</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="296"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Ο φάκελος δεν είναι κενός</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="301"/>
@@ -11784,18 +11799,18 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="376"/>
         <source>Import macro</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή μακροεντολής</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="376"/>
         <location filename="../src/usermenudialog.cpp" line="388"/>
         <source>txs macro files (*.txsMacro)</source>
-        <translation type="unfinished"/>
+        <translation>Αρχεία μακροεντολών txs (*.txsMacro)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="388"/>
         <source>Export macro</source>
-        <translation type="unfinished"/>
+        <translation>Εξαγωγή μακροεντολής</translation>
     </message>
 </context>
 <context>
@@ -11937,7 +11952,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="266"/>
         <source>Create an index page ?</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία σελίδας ευρετηρίου;</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="273"/>
@@ -11952,7 +11967,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="287"/>
         <source>Create index :</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία ευρετηρίου :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="316"/>
@@ -12112,7 +12127,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="742"/>
         <source>Writing index page</source>
-        <translation type="unfinished"/>
+        <translation>Εγγραφή σελίδας ευρετηρίου</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="808"/>
