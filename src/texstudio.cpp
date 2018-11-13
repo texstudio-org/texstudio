@@ -5395,21 +5395,28 @@ void Texstudio::runScript(const QString &script, const MacroExecContext &context
 
 void Texstudio::editMacros()
 {
-	if (!userMacroDialog)  {
-	        userMacroDialog = new UserMenuDialog(nullptr, tr("Edit User &Tags"), m_languages);
-		foreach (const Macro &m, configManager.completerConfig->userMacros) {
-			if (m.name == "TMX:Replace Quote Open" || m.name == "TMX:Replace Quote Close" || m.document)
-				continue;
-			userMacroDialog->addMacro(m);
-		}
-        //userMacroDialog->init();
-		connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
-		connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
-		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
-	}
-	userMacroDialog->show();
-	userMacroDialog->raise();
-	userMacroDialog->setFocus();
+    if (!userMacroDialog)  {
+        userMacroDialog = new UserMenuDialog(nullptr, tr("Edit User &Tags"), m_languages);
+        bool atLeastOneAdded=false;
+        foreach (const Macro &m, configManager.completerConfig->userMacros) {
+            if (m.name == "TMX:Replace Quote Open" || m.name == "TMX:Replace Quote Close" || m.document)
+                continue;
+            userMacroDialog->addMacro(m);
+            atLeastOneAdded=true;
+        }
+        if(!atLeastOneAdded){
+            // add one empty macro in case of empty macro least
+            Macro m;
+            userMacroDialog->addMacro(m);
+        }
+        userMacroDialog->selectFirst();
+        connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
+        connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
+        connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
+    }
+    userMacroDialog->show();
+    userMacroDialog->raise();
+    userMacroDialog->setFocus();
 }
 
 void Texstudio::macroDialogAccepted()

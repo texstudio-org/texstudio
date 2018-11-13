@@ -33,6 +33,8 @@ public:
     QList<Macro> getMacros() const;
     QList<Macro> getMacros(QTreeWidgetItem *item,const QString &path) const;
 
+    void selectFirst();
+
 private:
     QTreeWidgetItem* findCreateFolder(const QString &menu);
     QTreeWidgetItem* findCreateFolder(QTreeWidgetItem *parent, QStringList folders);

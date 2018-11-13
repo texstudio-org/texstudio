@@ -39,6 +39,8 @@ public:
 	QString script() const;
     QString shortcut() const;
 
+    bool isEmpty() const;
+
     void setShortcut(const QString &sc);
 
 	QString typedTag() const;

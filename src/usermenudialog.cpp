@@ -165,15 +165,23 @@ QList<Macro> UserMenuDialog::getMacros(QTreeWidgetItem *item, const QString &pat
         QVariant v=item->data(0,Qt::UserRole);
         if(v.isValid()){
             Macro m=v.value<Macro>();
-            QString s=path;
-            if(s.endsWith('/')){
-                s=s.left(s.length()-1);
+            if(!m.isEmpty()){
+                QString s=path;
+                if(s.endsWith('/')){
+                    s=s.left(s.length()-1);
+                }
+                m.menu=s;
+                results<<m;
             }
-            m.menu=s;
-            results<<m;
         }
     }
     return results;
+}
+
+void UserMenuDialog::selectFirst()
+{
+    auto *item=ui.treeWidget->topLevelItem(0);
+    ui.treeWidget->setCurrentItem(item);
 }
 
 QTreeWidgetItem *UserMenuDialog::findCreateFolder(const QString &menu)

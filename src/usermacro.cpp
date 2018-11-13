@@ -165,6 +165,11 @@ QString Macro::shortcut() const
     return m_shortcut;
 }
 
+bool Macro::isEmpty() const
+{
+    return name.isEmpty() && tag.isEmpty() && trigger.isEmpty();
+}
+
 void Macro::setShortcut(const QString &sc)
 {
     m_shortcut=sc;
