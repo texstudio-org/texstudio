@@ -1242,10 +1242,17 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
         macro.save(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index));
 		config->setValue(QString("Macros/%1").arg(index++), macro.toStringList());
 	}
+    // remove unused macro files
+    // lazy approach, only first macro is removed
+    QFile fn(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index));
+    if(fn.exists()){
+        fn.remove();
+    }
 	while (config->contains(QString("Macros/%1").arg(index))) { //remove old macros which are not used any more
 		config->remove(QString("Macros/%1").arg(index));
 		index++;
 	}
+
 	// remove old Tags
 	config->remove("User/Tags");
 	config->remove("User/TagNames");
