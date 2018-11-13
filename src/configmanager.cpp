@@ -2175,6 +2175,7 @@ QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &
 		return newManagedAction(menu, id, text, slotName, shortCuts, iconFile);
 	menu->addAction(old);
 	old->setText(text);
+    old->setShortcuts(shortCuts);
 	if (watchedMenus.contains(menu->objectName()))
 		emit watchedMenuChanged(menu->objectName());
 	return old;

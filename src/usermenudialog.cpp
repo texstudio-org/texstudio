@@ -484,7 +484,7 @@ void UserMenuDialog::shortcutChanged()
     QVariant v=item->data(0,Qt::UserRole);
     if(v.isValid()){
         Macro m=v.value<Macro>();
-        m.description=ui.cbShortcut->currentText();
+        m.setShortcut(ui.cbShortcut->currentText());
         item->setData(0,Qt::UserRole,QVariant::fromValue(m));
     }
 }
