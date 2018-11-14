@@ -93,6 +93,12 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
     int RowHeight = m.lineSpacing();
     ui.teDescription->setFixedHeight(4 * RowHeight);
 
+    QStringList lst;
+    for(char i=0;i<26;i++){
+        lst<<QString("Ctrl+M,Ctrl+%1").arg(QChar('A'+i));
+    }
+    ui.cbShortcut->addItems(lst);
+
     connect(ui.treeWidget,SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,SLOT(change(QTreeWidgetItem*,QTreeWidgetItem*)));
     ui.treeWidget->setDragEnabled(true);
     ui.treeWidget->setDragDropMode(QAbstractItemView::InternalMove);
