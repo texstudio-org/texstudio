@@ -538,11 +538,15 @@ You can can select and copy old parts to transfer them to the most recent versio
 most recent version though yet unsaved.
 </p>
 <h2 id="SECTION33">4.5 Personal macros</h2>
-<p>TeXstudio allows you to insert your own macros (shortcuts : Shift+F1...Shift+F10). These macros are defined with the "Macros - Edit Macros" menu.
-Macros can consist of simple text which is directly placed into txs. It can also be an "environment" which are automatically extended by begin/end and it can be a java script.
+<p>TeXstudio allows you to insert your own macros. These macros are defined with the "Macros - Edit Macros" menu.
+Macros can consist of simple text which is directly placed into txs. It can also be an "environment" which are automatically extended by begin/end or it can be a java script.
 The needed functionality can be selected by checkbox.<br>
 The "abbreviation" is a pseudo-command for the latex completer. If the pseudo-command is completed, the macro will be inserted instead. Note that the pseudo-command needs to start with a backslash ("\").<br>
 "Trigger" is a regular expression which triggers the inclusion of the macro: When the last written characters match this expression, they are removed and the macro is inserted/executed. (see <a href="#sectionTriggers">below</a> for more details).<br>
+Some macros can be directly downloaded from an internet repository. The dialog is ctarted with the button "Browse". For easier data exhange, macros can be im- and exported to a file. If you want to add a macro of your own to that repository, you can hand it in as a feature request on <a href="https://github.com/texstudio-org/texstudio/issues">Github</a>. <br>
+Each macro can be assigned a fixed shortcut in the "Shortcut" box.<br>
+The list of macros on the left-hand side represents the macro ordering in the macro-menu. It is rearranged with the "up"/"down"/"add"/"remove" buttons or with drag and drop. Folders can be added to sort a larger number of macros sensibly. To move macros into/from folders, only drag and drop works.<br>
+The "run script" button directly executes a script in in the editor for testing.<br>
 <br>
 <p><IMG src="doc17.png" border="1" alt="doc17"></p>
 
