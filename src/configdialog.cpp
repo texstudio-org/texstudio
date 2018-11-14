@@ -900,6 +900,28 @@ bool ConfigDialog::metaFilterRecurseLayout(const QString &filter, QLayout *layou
 			}
 			return showThis;
 		}
+        QFormLayout *formLayout= qobject_cast<QFormLayout *>(layout);
+        if(formLayout){
+            foreach (int item, visibles) {
+                QWidget *w=formLayout->itemAt(item)->widget();
+                if(!qobject_cast<QLabel *>(w)){
+                    w=formLayout->labelForField(w);
+                    if (w){
+                        w->setVisible(!w->property("hideWidget").toBool());
+                    }
+                }else{
+                    for(int l=0;l<formLayout->rowCount();l++){
+                        QLayoutItem *li=formLayout->itemAt(l,QFormLayout::FieldRole);
+                        if(li){
+                            QWidget *w2=li->widget();
+                            if(w2 && formLayout->labelForField(w2)==w){
+                                w2->setVisible(!w2->property("hideWidget").toBool());
+                            }
+                        }
+                    }
+                }
+            }
+        }
 	}
 	return showThis;
 }

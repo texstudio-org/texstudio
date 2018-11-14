@@ -1373,8 +1373,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	rerunButtons.clear();
 	commandInputs.clear();
 	createCommandList(confDlg->ui.groupBoxCommands, tempOrder, false, false);
-	createCommandList(confDlg->ui.groupBoxMetaCommands, tempOrder, false, true);
-	createCommandList(confDlg->ui.groupBoxUserCommands, tempOrder, true, false);
+    createCommandList(confDlg->ui.groupBoxMetaCommands, tempOrder, false, true);
+    createCommandList(confDlg->ui.groupBoxUserCommands, tempOrder, true, false);
 	confDlg->setBuildManger(buildManager);
 
 	//quickbuild/more page
