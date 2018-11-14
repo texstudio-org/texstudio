@@ -14,7 +14,7 @@ matrix:
     os: linux
   - env: QT=qt5win
     os: linux
-dist: trusty
+dist: xenial
 sudo: required
 branches:
   only:
