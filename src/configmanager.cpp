@@ -1263,6 +1263,9 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->beginWriteArray("keysetting");
 	for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
 		config->setArrayIndex(i);
+        if(managedMenuNewShortcuts[i].first.startsWith("main/macros/tag")){
+            continue;
+        }
 		config->setValue("id", managedMenuNewShortcuts[i].first);
 		config->setValue("key", managedMenuNewShortcuts[i].second);
 	}
