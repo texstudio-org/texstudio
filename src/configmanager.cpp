@@ -1263,7 +1263,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->beginWriteArray("keysetting");
 	for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
 		config->setArrayIndex(i);
-        if(managedMenuNewShortcuts[i].first.startsWith("main/macros/tag")){
+        if(managedMenuNewShortcuts[i].first.startsWith("main/macros/")){
             continue;
         }
 		config->setValue("id", managedMenuNewShortcuts[i].first);
@@ -1784,6 +1784,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		specialShortcuts.clear();
 #endif
 		treeWidgetToManagedMenuTo(menuShortcuts);
+        updateUserMacroShortcuts(); // update macro shortcuts from menu
 #ifndef NO_POPPLER_PREVIEW
         treeWidgetToManagedMenuTo(menuShortcutsPDF);
 #endif
@@ -1976,6 +1977,25 @@ void ConfigManager::clearMenu(QMenu *menu){
         }
     }
     menu->clear();
+}
+
+void ConfigManager::updateUserMacroShortcuts(){
+    // if the macro shortcuts have been changed via options, the macros needs to be updated to reflect that shortcuts
+    int i=0;
+    for(auto &m : completerConfig->userMacros){
+        if (!m.document){
+            QString mn=m.menu;
+            if(!mn.isEmpty()){
+                mn.append('/');
+            }
+            QString id = "main/macros/"+mn+"tag" + QString::number(i);
+            QAction *act = getManagedAction(id);
+            if(act){
+                m.setShortcut(act->shortcut().toString());
+            }
+            i++;
+        }
+    }
 }
 
 void ConfigManager::updateUserMacroMenu()
