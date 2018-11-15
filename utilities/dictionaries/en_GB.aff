@@ -1,14 +1,30 @@
-# Affix file for British English MySpell dictionary
+# Affix file for British English MySpell dictionary.
 # Also suitable as basis for Commonwealth and European English.
 # Built from scratch for MySpell. Released under LGPL.
 #
-# David Bartlett, Andrew Brown.
-# R 1.18, 11/04/05
-# 
-# 2006-02-07 - NOSUGGEST, COMPOUNDRULE patches (nemeth AT OOo)
-SET ISO8859-1
-TRY esiaénrtolcdugmfphbyvkw-'.zqjxSNRTLCGDMFPHBEAUYOIVKWóöâôZQJXÅçèîêàïüäñ
+# Sources used to verify the spelling of the words which
+# Marco Pinto included in the dictionary:
+#   1) Oxford Dictionaries;    4) Wiktionary (used with caution);
+#   2) Collins Dictionary;     5) Wikipedia (used with caution);   
+#   3) Macmillan Dictionary;   6) Physical dictionaries.
+#
+# Main difficulties developing this dictionary:
+#   1) Proper names;
+#   2) Possessive forms;
+#   3) Plurals.
+#
+# David Bartlett, Andrew Brown, Marco A.G.Pinto.
+# V 2.66, 2018-11-01
+
+SET UTF-8
+
+TRY esiaÃ©nrtolcdugmfphbyvkw-'.zqjxSNRTLCGDMFPHBEAUYOIVKWÃ³Ã¶Ã¢Ã´ZQJXÃ…Ã§Ã¨Ã®ÃªÃ Ã¯Ã¼Ã¤Ã±
+
+ICONV 1
+ICONV â€™ '
+
 NOSUGGEST !
+
 # ordinal numbers
 COMPOUNDMIN 1
 # only in compounds: 1th, 2th, 3th
@@ -19,7 +35,8 @@ ONLYINCOMPOUND _
 COMPOUNDRULE 2
 COMPOUNDRULE #*0{
 COMPOUNDRULE #*@}
-WORDCHARS 0123456789
+WORDCHARS 0123456789â€™
+
 REP 27
 REP f ph
 REP ph f
@@ -48,6 +65,7 @@ REP ght t
 REP ok OK
 REP ts ce
 REP ce ts
+
 PFX A Y 2
 PFX A 0 re [^e] 
 PFX A 0 re- e 
@@ -84,6 +102,7 @@ PFX O Y 1
 PFX O 0 non- . 
 PFX 4 Y 1
 PFX 4 0 trans . 
+
 SFX V Y 15
 SFX V 0 tive [aio] 
 SFX V b ptive b 
@@ -608,7 +627,7 @@ SFX m 0 smen's [aeiou][bdklmnt]e
 SFX m 0 men's [^aeiou][bdklmnt]e 
 SFX m 0 men's [^bdklmnt]e 
 SFX m 0 men's [^bdeknmt] 
-SFX 5 Y 15
+SFX 5 Y 16
 SFX 5 0 swoman [bdknmt] 
 SFX 5 0 swoman [aeiou][bdklmnt]e 
 SFX 5 0 woman [^aeiou][bdklmnt]e 
@@ -624,6 +643,7 @@ SFX 5 0 swoman's [aeiou][bdklmnt]e
 SFX 5 0 woman's [^aeiou][bdklmnt]e 
 SFX 5 0 woman's [^bdklmnt]e 
 SFX 5 0 woman's [^bdeknmt] 
+SFX 5 0 women's [^bdeknmt] 
 SFX 6 Y 3
 SFX 6 y iful [^aeiou]y 
 SFX 6 0 ful [aeiou]y 
