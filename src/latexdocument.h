@@ -41,7 +41,7 @@ class LatexDocument: public QDocument
 	Q_OBJECT
 
 public:
-	LatexDocument(QObject *parent = 0);
+    LatexDocument(QObject *parent = nullptr);
 	~LatexDocument();
 
 	enum CookieType {
@@ -112,7 +112,7 @@ public:
 	QDocumentSelection sectionSelection(StructureEntry *section);
 	void clearAppendix()
 	{
-		mAppendixLine = 0;
+        mAppendixLine = nullptr;
 	}
 	StructureEntry *findSectionForLine(int currentLine);
 
@@ -132,7 +132,7 @@ public:
 	{
 		return masterDocument;
 	}
-	const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = 0) const;
+    const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = nullptr) const;
 	Q_INVOKABLE LatexDocument *getRootDocument();
 	Q_INVOKABLE LatexDocument *getTopMasterDocument()
 	{
@@ -141,7 +141,7 @@ public:
 
 	Q_INVOKABLE QStringList includedFiles();
 	Q_INVOKABLE QStringList includedFilesAndParent();
-	Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = 0);
+    Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = nullptr);
 
 	LatexParser ltxCommands, lp;
 
@@ -262,7 +262,7 @@ public slots:
 
 signals:
 	void hasBeenIncluded(const LatexDocument &newMasterDocument);
-	void structureUpdated(LatexDocument *document, StructureEntry *highlight = 0);
+    void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
     void setHighlightedEntry(StructureEntry *highlight);
 	void structureLost(LatexDocument *document);
 	void removeElement(StructureEntry *se, int row);
@@ -315,7 +315,7 @@ public:
 	Q_PROPERTY(LatexDocument *masterDocument READ getMasterDocument);
 	Q_PROPERTY(QList<LatexDocument *> documents READ getDocuments); //<- semicolon necessary due to qt bug 22992
 
-	Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = 0) const ; ///< no argument means current doc ...
+    Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = nullptr) const ; ///< no argument means current doc ...
 
 	Q_INVOKABLE QString getCurrentFileName() const; ///< returns the absolute file name of the current file or "" if none is opened
 	Q_INVOKABLE QString getCompileFileName() const; ///< returns the absolute file name of the file to be compiled (master or current)

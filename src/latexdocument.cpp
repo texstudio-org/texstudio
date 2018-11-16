@@ -205,7 +205,7 @@ protected:
 class LatexStructureMergerMerge: public LatexStructureMerger{
 public:
 	LatexStructureMergerMerge (LatexDocument* document, int maxDepth, int linenr, int count):
-		LatexStructureMerger(document, maxDepth), linenr(linenr), count(count){
+        LatexStructureMerger(document, maxDepth), linenr(linenr), count(count),flatStructure(nullptr) {
     }
 	void operator ()(QList<StructureEntry *> &flatStructure){
 		this->flatStructure = &flatStructure;

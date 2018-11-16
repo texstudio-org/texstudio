@@ -11,9 +11,10 @@
 
 StructureTreeView::StructureTreeView(Editors *edts, const LatexDocuments &docs, const ConfigManager &config, QWidget *parent) :
 	QTreeView(parent),
+    contextEntry(nullptr),
 	editors(edts),
 	documents(docs),
-	configManager(config)
+    configManager(config)
 {
 	header()->hide();
 	setObjectName("StructureTree");
