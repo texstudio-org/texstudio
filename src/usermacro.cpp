@@ -5,7 +5,7 @@
 #include "qlanguagefactory.h"
 #include "qdocument.h"
 
-Macro::Macro() : triggerLookBehind(false), document(nullptr)
+Macro::Macro() : type(Snippet), triggerLookBehind(false), document(nullptr)
 {
 }
 
