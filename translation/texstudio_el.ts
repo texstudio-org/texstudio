@@ -1438,12 +1438,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1782"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Πολωνικά εισαγωγικά: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1787"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Πολωνικά εισαγωγικά (unicode): ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1795"/>
@@ -2176,7 +2176,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation>Το TXS προσπαθεί να φορτώσει αυτόματα τα αρχεία ολοκλήρωσης για πακέτα αν
+βρεθεί εντολή \usepackage{}. Αυτά τα αρχεία δεν εμφανίζονται εδώ. 
+Ο έλεγχος εδώ δεν είναι συνήθως είναι απαραίτητος. 
+Ωστόσο, εάν αποτύχει η αυτόματη αναζήτηση ή θέλετε να συμπεριλάβετε
+ειδικά αρχεία συμπλήρωσης χρήστη, μπορείτε να επιβάλλετε τη χρήση τους ενεργοποιώντας
+τα εδώ.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3212"/>
@@ -2246,7 +2251,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3416"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"/>
+        <translation>Οι ίδιες λέξεις χαρακτηρίζονται ως επανάληψη, αν δεν είναι περισσότερες από αυτό τον αριθμό λέξεων μεταξύ τους.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3426"/>
@@ -2256,7 +2261,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3436"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation type="unfinished"/>
+        <translation>Μόνο λέξεις με αυτό το μήκος ελέγχονται για επαναλήψεις μεγάλης εμβέλειας.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3446"/>
@@ -2678,7 +2683,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4451"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>Προεπιλεγμένο χρώμα φόντου. Καθορίστε ως δεκαεξαδική τιμή RGB. Σημείωση: Αυτό θα επηρεάσει μόνο τα αρχεία PDF που έχουν φορτωθεί μετά την αλλαγή της επιλογής. Το χρώμα χαρτιού των ήδη ανοιγμένων αρχείων PDF δεν τροποποιείται.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4503"/>
@@ -2688,7 +2693,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4507"/>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"/>
+        <translation>Μη αυτόματο check-in μετά την αποθήκευση</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4512"/>
@@ -2730,7 +2735,9 @@ Note: Changing this setting will only affect documents that are opened afterward
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Η συντόμευση που πληκτρολογήσατε είναι ένα τυπικό πλήκτρο χαρακτήρα.
+Δεν θέλετε να μπορείτε να πληκτρολογείτε αυτόν τον χαρακτήρα. Επιθυμείτε
+για να ρυθμίσετε το πλήκτρο ούτως ή άλλως;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="244"/>
@@ -2983,7 +2990,9 @@ to set the key anyway?</source>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
-        <translation type="unfinished"/>
+        <translation>Το λεξικό έχει εισαχθεί στο
+, %1.
+Ωστόσο, αυτή η διαδρομή δεν περιλαμβάνεται στη λίστα διαδρομών λεξικών. Θέλετε να την προσθέσετε;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1201"/>
@@ -5307,7 +5316,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2480"/>
         <source>Fit to Wi&amp;dth</source>
-        <translation type="unfinished"/>
+        <translation>Προσαρμογή στο πλάτος</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2482"/>
@@ -5367,7 +5376,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2518"/>
         <source>Single Page Step</source>
-        <translation type="unfinished"/>
+        <translation>Βήμα μιας σελίδας</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2521"/>
@@ -5508,12 +5517,12 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3139"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>Αποτυχία φόρτωσης του αρχείου &quot;%1&quot; λόγω κακής κατανομής. ίσως δεν είναι έγκυρο έγγραφο PDF.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3142"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>Αποτυχία φόρτωσης του αρχείου &quot;%1&quot; λόγω εξαίρεσης. ίσως δεν είναι έγκυρο έγγραφο PDF.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3145"/>
@@ -9972,7 +9981,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1027"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Χειρισμός πινάκων</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1028"/>
@@ -10026,7 +10035,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1036"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Μετατροπή πίνακα χρησιμοποιώντας πρότυπο</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1037"/>
@@ -10072,7 +10081,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1049"/>
         <source>&amp;Wizards</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Οδηγοί</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1050"/>
@@ -10107,7 +10116,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1058"/>
         <source>Insert &amp;Graphic...</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή &amp;Εικόνας</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1061"/>
@@ -10122,7 +10131,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1092"/>
         <source>&amp;Insert Bibliography Entry...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Εισαγωγή βιβλιογραφικής εγγραφής</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1094"/>
@@ -10375,7 +10384,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1241"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος LanguageTool</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1242"/>
@@ -10390,17 +10399,17 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1388"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"/>
+        <translation>Συνδέθηκε με το LanguageTool στο %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1392"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"/>
+        <translation>Δεν βρέθηκε διακομιστής LanguageTool στο %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1396"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>Άγνωστη κατάσταση LanguageTool</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1400"/>
@@ -10429,7 +10438,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1498"/>
         <source>Insert encoding as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή κωδικοποίησης ως σχόλιο TeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1512"/>
@@ -10615,7 +10624,7 @@ this other file before you can overwrite it.</source>
         <location filename="../src/texstudio.cpp" line="2995"/>
         <location filename="../src/texstudio.cpp" line="3075"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
-        <translation type="unfinished"/>
+        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει πια. Θέλετε να το καταργήσετε από την πρόσφατη λίστα αρχείων;</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3088"/>
@@ -10869,7 +10878,8 @@ Do you want to allow and run the new, overriding command?
         <location filename="../src/texstudio.cpp" line="8911"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
-        <translation type="unfinished"/>
+        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει.
+Θέλετε να το δημιουργήσετε;</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="8935"/>
@@ -10984,7 +10994,9 @@ Please provide this file if you send a bug report.
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation>Το TeXstudio έχει καταρρεύσει λόγω %1.
+
+%2 Θέλετε να διατηρήσετε το TeXstudio σε λειτουργία; Αυτό μπορεί να προκαλέσει καταστροφή δεδομένων.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9855"/>
@@ -11003,7 +11015,9 @@ Please provide this file if you send a bug report.
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation>Το TeXstudio έχει παύσει λόγω ενός πιθανού ατελείωτου βρόχου.
+
+%1 Θέλετε να διατηρήσετε το πρόγραμμα σε λειτουργία; Αυτό μπορεί να προκαλέσει καταστροφή δεδομένων.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9859"/>
@@ -11046,19 +11060,22 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/texstudio.cpp" line="10136"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"/>
+        <translation>η διαδικασία απέτυχε να ξεκινήσει
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10139"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"/>
+        <translation>Η διαδικασία κατέρρευσε
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10149"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"/>
+        <translation>Ο έλεγχος σε πραγματικό χρόνο είναι ενεργοποιημένος.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10151"/>
