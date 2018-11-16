@@ -2032,11 +2032,9 @@ void ConfigManager::updateUserMacroMenu()
             act->setData(i++);
         }
     }
-	if (recreatedMenu) {
-		recreatedMenu->addSeparator();
-		newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));
-	}
-	// update quote replacement
+    recreatedMenu->addSeparator();
+    newOrLostOldManagedAction(recreatedMenu, "manage", QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));
+    // update quote replacement
 	const int autoQuoteCount = 10;
 	if (replaceQuotes >= 1 && replaceQuotes < autoQuoteCount) {
 		static const char *open[autoQuoteCount] = {"",  "``", "\"<", "\"`", "\\og ",  "\">", "\\enquote{", "\xE2\x80\x9C" /*“*/, ",,", "\u201E"};
