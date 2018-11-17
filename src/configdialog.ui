@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>11</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,7 +185,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>868</width>
+            <width>632</width>
             <height>678</height>
            </rect>
           </property>
@@ -3155,6 +3155,11 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
               <item>
                <property name="text">
                 <string>Most Used</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Fuzzy</string>
                </property>
               </item>
               <item>
