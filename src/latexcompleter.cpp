@@ -920,17 +920,20 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                         break;
                     if(item.sortWord.at(i)==word.at(l)){
                         if(lastMatch+1==i)
-                            score+=5;
+                            score+=20;
+                        score-=i; // later position are degraded
                         lastMatch=i;
                         l++;
                     }
                 }
+                // reduce score for atypical or unused
+                score+=item.usageCount<=0 ? 10*item.usageCount : 10;
                 bool inserted=false;
                 for(int i=0;i<words.length();i++){
                     if(scoringList.at(i)>=score)
                         continue;
-                    scoringList.insert(i-1,score);
-                    words.insert(i-1,item);
+                    scoringList.insert(i,score);
+                    words.insert(i,item);
                     inserted=true;
                     break;
                 }
@@ -940,6 +943,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                 }
             }
         }
+        //qDebug()<<words.value(0).sortWord<<scoringList.value(0)<<words.value(1).sortWord<<scoringList.value(1)<<words.value(2).sortWord<<scoringList.value(2);
     }else{
         // normal sorting
         if (!fetchMore) {
