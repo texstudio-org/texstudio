@@ -367,7 +367,7 @@ public:
 			//showMostUsed=!showMostUsed;
 			//handled=true;
 			showMostUsed++;
-			if (showMostUsed > 2)
+            if (showMostUsed > 3)
 				showMostUsed = 0;
 			completer->tbAbove->setCurrentIndex(showMostUsed);
 			completer->tbBelow->setCurrentIndex(showMostUsed);
@@ -899,124 +899,166 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
 	}
 	int cnt = 0;
 	QString sortWord = makeSortWord(word);
-	if (!fetchMore) {
-		it = qLowerBound(baselist.begin(), baselist.end(), CompletionWord(word));
-	}
-	// special treatment for citation commands as they generated on the fly
-	//TODO: needs to be adapted to later code
-	if (it == baselist.end() || !it->word.startsWith(word, cs)) {
-		int i = word.lastIndexOf("{");
-		QString test = word.left(i) + "{@}";
-		if (wordsCitationCommands.contains(CompletionWord(test))) {
-			QString citeStart = word.mid(i + 1);
-			foreach (const CompletionWord id, wordsCitations) {
-				if (id.word.startsWith(citeStart)) {
-					CompletionWord cw(test);
-					cw.word.replace("@", id.word);
-					cw.sortWord.replace("@", id.word);
-					cw.lines[0].replace("@", id.word);
-					words.append(cw);
-				}
-			}
-		}
-	}
-	//
-	while (it != baselist.end()) {
-		if (it->word.startsWith(word, cs) &&
-		        (!checkFirstChar || it->word[1] == word[1]) ) {
+    if(mostUsed==3){
+        //fuzzy search
+        // proof of concept
+        // generate regexp
+        QStringList chars=word.split("",QString::SkipEmptyParts);
+        QString regExpression=chars.join(".*");
+        QRegExp rx(regExpression);
+        QList<int> scoringList;
+        for(const auto & item : baselist){
+            if(rx.indexIn(item.sortWord)!=-1){
+                // calculate score
+                int score=0;
+                int l=0;
+                int lastMatch=0;
+                for(int i=0;i<item.sortWord.length();i++){
+                    if(l>=word.length())
+                        break;
+                    if(item.sortWord.at(i)==word.at(l)){
+                        if(lastMatch+1==i)
+                            score+=5;
+                        lastMatch=i;
+                        l++;
+                    }
+                }
+                bool inserted=false;
+                for(int i=0;i<words.length();i++){
+                    if(scoringList.at(i)>=score)
+                        continue;
+                    scoringList.insert(i-1,score);
+                    words.insert(i-1,item);
+                    inserted=true;
+                    break;
+                }
+                if(!inserted){
+                    words<<item;
+                    scoringList<<score;
+                }
+            }
+        }
+    }else{
+        // normal sorting
+        if (!fetchMore) {
+            it = qLowerBound(baselist.begin(), baselist.end(), CompletionWord(word));
+        }
+        // special treatment for citation commands as they generated on the fly
+        //TODO: needs to be adapted to later code
+        if (it == baselist.end() || !it->word.startsWith(word, cs)) {
+            int i = word.lastIndexOf("{");
+            QString test = word.left(i) + "{@}";
+            if (wordsCitationCommands.contains(CompletionWord(test))) {
+                QString citeStart = word.mid(i + 1);
+                foreach (const CompletionWord id, wordsCitations) {
+                    if (id.word.startsWith(citeStart)) {
+                        CompletionWord cw(test);
+                        cw.word.replace("@", id.word);
+                        cw.sortWord.replace("@", id.word);
+                        cw.lines[0].replace("@", id.word);
+                        words.append(cw);
+                    }
+                }
+            }
+        }
+        //
+        while (it != baselist.end()) {
+            if (it->word.startsWith(word, cs) &&
+                    (!checkFirstChar || it->word[1] == word[1]) ) {
 
-			if (mostUsed == 2 || it->usageCount >= mostUsed || it->usageCount == -2) {
-				if (mostUsed < 2 && type != CodeSnippet::none && it->type != type) {
-					++it;
-					continue; // leave out words which don't have the proper type (except for all-mode)
-				}
-				if (mEnvMode) {
-					CompletionWord cw = *it;
-					if (cw.word.startsWith("\\begin") || cw.word.startsWith("\\end")) {
-						QString text = cw.word;
-						int i = text.indexOf('}');
-						text.truncate(i + 1);
-						cw.word = text;
-						cw.sortWord = text;
-						cw.lines = QStringList(text);
-						cw.placeHolders.clear();
-						cw.placeHolders.append(QList<CodeSnippetPlaceHolder>());
-					}
-
-					if (!words.contains(cw))
-						words.append(cw);
-				} else {
-					// cite command
-                    if (it->word.contains('@')) {
-                        if(it->word.contains("@@")){ // special treatment for command-names containing @
-                            QString ln = it->lines[0];
-                            ln.replace("@@", "@");
-                            words.append(CompletionWord(ln));
-                        }else{
-                            QString ln = it->lines[0];
-                            ln.replace('@', "%<bibid%>");
-                            words.append(CompletionWord(ln));
-                            cnt++;
-                            foreach (const CompletionWord id, wordsCitations) {
-                                CompletionWord cw = *it;
-                                int index = cw.lines[0].indexOf("@");
-                                cw.word.replace("@", id.word);
-                                cw.sortWord.replace("@", id.word);
-                                cw.lines[0].replace("@", id.word);
-                                for (int i = 0; i < cw.placeHolders.count(); i++) {
-                                    if (cw.placeHolders[i].isEmpty())
-                                        continue;
-                                    for (int j = 0; j < cw.placeHolders[i].count(); j++) {
-                                        CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
-                                        if (ph.offset > index)
-                                            ph.offset += id.word.length() - 1;
-                                    }
-                                }
-                                words.append(cw);
-                            }
-                            cnt += wordsCitations.length();
+                if (mostUsed == 2 || it->usageCount >= mostUsed || it->usageCount == -2) {
+                    if (mostUsed < 2 && type != CodeSnippet::none && it->type != type) {
+                        ++it;
+                        continue; // leave out words which don't have the proper type (except for all-mode)
+                    }
+                    if (mEnvMode) {
+                        CompletionWord cw = *it;
+                        if (cw.word.startsWith("\\begin") || cw.word.startsWith("\\end")) {
+                            QString text = cw.word;
+                            int i = text.indexOf('}');
+                            text.truncate(i + 1);
+                            cw.word = text;
+                            cw.sortWord = text;
+                            cw.lines = QStringList(text);
+                            cw.placeHolders.clear();
+                            cw.placeHolders.append(QList<CodeSnippetPlaceHolder>());
                         }
-					} else {
-						words.append(*it);
-					}
-				}
-				cnt++;
-			}
-		} else {
-			if (!it->sortWord.startsWith(sortWord))
-				break; // sorted list
-		}
-		++it;
-		if (cnt > 100) {
-			mCanFetchMore = true;
-			break;
-		}
-	}
-	curWord = word;
-	if (!fetchMore) {
-		mWordCount = words.count();
-		if (!words.isEmpty())
-			mLastWordInList = words.last();
-	}
-	if (mCanFetchMore && !fetchMore) {
-		// calculate real number of rows
-		QString wordp = word;
-		if (wordp.isEmpty()) {
-			mWordCount = baselist.count();
-			mLastWordInList = baselist.last();
-		} else {
-			QChar lst = wordp[wordp.length() - 1];
-			ushort nr = lst.unicode();
-			wordp[wordp.length() - 1] = QChar(nr + 1);
+
+                        if (!words.contains(cw))
+                            words.append(cw);
+                    } else {
+                        // cite command
+                        if (it->word.contains('@')) {
+                            if(it->word.contains("@@")){ // special treatment for command-names containing @
+                                QString ln = it->lines[0];
+                                ln.replace("@@", "@");
+                                words.append(CompletionWord(ln));
+                            }else{
+                                QString ln = it->lines[0];
+                                ln.replace('@', "%<bibid%>");
+                                words.append(CompletionWord(ln));
+                                cnt++;
+                                foreach (const CompletionWord id, wordsCitations) {
+                                    CompletionWord cw = *it;
+                                    int index = cw.lines[0].indexOf("@");
+                                    cw.word.replace("@", id.word);
+                                    cw.sortWord.replace("@", id.word);
+                                    cw.lines[0].replace("@", id.word);
+                                    for (int i = 0; i < cw.placeHolders.count(); i++) {
+                                        if (cw.placeHolders[i].isEmpty())
+                                            continue;
+                                        for (int j = 0; j < cw.placeHolders[i].count(); j++) {
+                                            CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
+                                            if (ph.offset > index)
+                                                ph.offset += id.word.length() - 1;
+                                        }
+                                    }
+                                    words.append(cw);
+                                }
+                                cnt += wordsCitations.length();
+                            }
+                        } else {
+                            words.append(*it);
+                        }
+                    }
+                    cnt++;
+                }
+            } else {
+                if (!it->sortWord.startsWith(sortWord))
+                    break; // sorted list
+            }
+            ++it;
+            if (cnt > 100) {
+                mCanFetchMore = true;
+                break;
+            }
+        }
+    }
+    curWord = word;
+    if (!fetchMore) {
+        mWordCount = words.count();
+        if (!words.isEmpty())
+            mLastWordInList = words.last();
+    }
+    if (mCanFetchMore && !fetchMore) {
+        // calculate real number of rows
+        QString wordp = word;
+        if (wordp.isEmpty()) {
+            mWordCount = baselist.count();
+            mLastWordInList = baselist.last();
+        } else {
+            QChar lst = wordp[wordp.length() - 1];
+            ushort nr = lst.unicode();
+            wordp[wordp.length() - 1] = QChar(nr + 1);
             QList<CompletionWord>::const_iterator it2 = qLowerBound(baselist, CompletionWord(wordp));
-			mWordCount = it2 - it;
+            mWordCount = it2 - it;
             if(it2==baselist.constBegin()){
                 mLastWordInList = baselist.last();
             }else{
                 mLastWordInList = *(--it2);
             }
-		}
-	}
+        }
+    }
 
 	if (!fetchMore) {
 #if QT_VERSION>=QT_VERSION_CHECK(5,0,0)
@@ -1207,6 +1249,7 @@ LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObj
 	tbAbove->addTab(tr("typical"));
 	tbAbove->addTab(tr("most used"));
 	tbAbove->addTab(tr("all"));
+    tbAbove->addTab(tr("fuzzy"));
 	tbAbove->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbAbove);
 	tbAbove->hide();
@@ -1216,6 +1259,7 @@ LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObj
 	tbBelow->addTab(tr("typical"));
 	tbBelow->addTab(tr("most used"));
 	tbBelow->addTab(tr("all"));
+    tbBelow->addTab(tr("fuzzy"));
 	tbBelow->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbBelow);
 	widget->setLayout(layout);
@@ -1617,7 +1661,7 @@ int LatexCompleter::countWords()
 
 void LatexCompleter::setTab(int index)
 {
-	Q_ASSERT(index >= 0 && index < 3);
+    Q_ASSERT(index >= 0 && index < 4);
 	if (tbBelow->isVisible())
 		tbBelow->setCurrentIndex(index);
 	if (tbAbove->isVisible())
