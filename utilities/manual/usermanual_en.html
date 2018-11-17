@@ -463,7 +463,15 @@ If a tag has different options, a short descriptive text is inserted into your t
 Furthermore normal text can be completed by starting to type a word and pressing Ctrl+Space. All appropriate words in the current document are used as possible suggestions.<br>
 If a environment is to be inserted, typing in the beginning of the environment name and pressing Ctrl+Alt+Space gives suggestions for adequate environments which are inserted completely with \begin{env}..\end{env}<br>
 And finally user tags can be assigned a abbreviation which can also be used with completion. Just type in the start of the abbreviation and start the completion with Ctrl+Space. The abbreviation should show up in the completion list, especially marked with &ldquo;abbreviation (template)&rdquo;.<br>
-If you change a command by completing a new command, only the command name is substituted. The same is true for environments, where the environment is changed in the \begin- and \end-command.
+If you change a command by completing a new command, only the command name is substituted. The same is true for environments, where the environment is changed in the \begin- and \end-command.<br>
+<br>
+The completer has several operation modes which are shown in the tab below the command list.<br>
+<ul>
+<li>Typical: list only typical commands and filter out rather unusual commands.</li>
+<li>Most used: list only commands which have already been used in the completer by the user. Is empty if txs has not been used before.</li>
+<li>Fuzzy: search the command in a fuzzy way. The command needs to contain all given letters in the same order though with a arbitrary of letters between them. E.g. \bf lists, among others, \<b>b</b>egin{<b>f</b>igure}</li>
+<li>All: list all known commands.</li>
+</ul>
 </p>
 
 <h2 id="SECTION114">2.14 Thesaurus</h2>
