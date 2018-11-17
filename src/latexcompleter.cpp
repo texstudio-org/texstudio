@@ -926,6 +926,18 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                         l++;
                     }
                 }
+                CompletionWord cw=item;
+                if (cw.word.contains('@')) {
+                    if(cw.word.contains("@@")){ // special treatment for command-names containing @
+                        QString ln = cw.lines[0];
+                        ln.replace("@@", "@");
+                        cw=CompletionWord(ln);
+                    }else{
+                        QString ln = cw.lines[0];
+                        ln.replace('@', "%<bibid%>");
+                        cw=CompletionWord(ln);
+                    }
+                }
                 // reduce score for atypical or unused
                 score+=item.usageCount<=0 ? 10*item.usageCount : 10;
                 bool inserted=false;
@@ -933,12 +945,13 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                     if(scoringList.at(i)>=score)
                         continue;
                     scoringList.insert(i,score);
-                    words.insert(i,item);
+
+                    words.insert(i,cw);
                     inserted=true;
                     break;
                 }
                 if(!inserted){
-                    words<<item;
+                    words<<cw;
                     scoringList<<score;
                 }
             }
