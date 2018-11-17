@@ -85,10 +85,10 @@ public:
 			completer->filterList(wrd, showMostUsed);
 			completer->widget->show();
 			if (showMostUsed == 1 && completer->countWords() == 0) { // if prefered list is empty, take next more extensive one
-				completer->setTab(0);
+                completer->setTab(0); // typical
 			}
 			if (showMostUsed == 0 && completer->countWords() == 0) {
-				completer->setTab(2);
+                completer->setTab(3); // all
 			}
 			completer->adjustWidget();
 		}
@@ -899,7 +899,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
 	}
 	int cnt = 0;
 	QString sortWord = makeSortWord(word);
-    if(mostUsed==3){
+    if(mostUsed==2){
         //fuzzy search
         // proof of concept
         // generate regexp
@@ -910,6 +910,8 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         for(const auto & item : baselist){
             if(rx.indexIn(item.sortWord)!=-1){
                 // calculate score
+                // rather simple approach
+                // letter directly adjacent are voted up
                 int score=0;
                 int l=0;
                 int lastMatch=0;
@@ -966,7 +968,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
             if (it->word.startsWith(word, cs) &&
                     (!checkFirstChar || it->word[1] == word[1]) ) {
 
-                if (mostUsed == 2 || it->usageCount >= mostUsed || it->usageCount == -2) {
+                if (mostUsed == 3 || it->usageCount >= mostUsed || it->usageCount == -2) {
                     if (mostUsed < 2 && type != CodeSnippet::none && it->type != type) {
                         ++it;
                         continue; // leave out words which don't have the proper type (except for all-mode)
@@ -1248,8 +1250,8 @@ LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObj
 	tbAbove->setShape(QTabBar::RoundedNorth);
 	tbAbove->addTab(tr("typical"));
 	tbAbove->addTab(tr("most used"));
-	tbAbove->addTab(tr("all"));
     tbAbove->addTab(tr("fuzzy"));
+	tbAbove->addTab(tr("all"));
 	tbAbove->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbAbove);
 	tbAbove->hide();
@@ -1258,8 +1260,8 @@ LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObj
 	tbBelow->setShape(QTabBar::RoundedSouth);
 	tbBelow->addTab(tr("typical"));
 	tbBelow->addTab(tr("most used"));
-	tbBelow->addTab(tr("all"));
     tbBelow->addTab(tr("fuzzy"));
+	tbBelow->addTab(tr("all"));
 	tbBelow->setToolTip(tr("press shift+space to change view"));
 	layout->addWidget(tbBelow);
 	widget->setLayout(layout);
@@ -1599,11 +1601,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 	} else completerInputBinding->bindTo(editor, this, false, c.columnNumber() - 1);
 
 	if (completerInputBinding->getMostUsed() == 1 && countWords() == 0) { // if prefered list is empty, take next more extensive one
-		setTab(0);
+        setTab(0); // typical
 		adjustWidget();
 	}
 	if (completerInputBinding->getMostUsed() && countWords() == 0) {
-		setTab(2);
+        setTab(3); // all
 		adjustWidget();
 	}
 
@@ -1623,7 +1625,7 @@ void LatexCompleter::directoryLoaded(QString , QSet<QString> content)
 	listModel->setBaseWords(content, CT_NORMALTEXT);
 	listModel->baselist = listModel->wordsText;
 	//setTab(2);
-	completerInputBinding->setMostUsed(2);
+    completerInputBinding->setMostUsed(3); // all
 	adjustWidget();
 }
 
