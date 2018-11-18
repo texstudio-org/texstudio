@@ -1336,10 +1336,10 @@ void BuildManager::readSettings(QSettings &settings)
 				if (import.startsWith(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER)) {
 					import.remove(0, DEPRECACTED_TMX_INTERNAL_PDF_VIEWER.length() + 1);
 					cmd.commandLine = import;
-					commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
+                    //commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
 				} else {
 					cmd.commandLine = import;
-					commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
+                    //commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
 				}
 			} else cmd.commandLine = import;
 		}
