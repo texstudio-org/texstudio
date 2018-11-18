@@ -237,7 +237,6 @@ public:
 		// filter list for longest common characters
 		if (words.count() > 1) {
 			QString myResult = words.first().word;
-			qDebug() << myResult << my_curWord;
 			int curWordLength = my_curWord.length();
 			my_curWord = completer->listModel->getLastWord().word;
 
@@ -255,6 +254,15 @@ public:
 			}
 
 			removeRightWordPart();
+            if(showMostUsed==2){
+                // fuzzy mode
+                // remove left hand side as well
+                QDocumentCursor cursor = editor->cursor();
+                for (int i = curWordLength; i > 0; i--) cursor.deletePreviousChar();
+                maxWritten = cursor.columnNumber();
+                editor->setCursor(cursor);
+                curWordLength=0;
+            }
 			insertText(myResult.right(myResult.length() - curWordLength));
 			completer->filterList(getCurWord(), getMostUsed());
 			if (!completer->list->currentIndex().isValid())
