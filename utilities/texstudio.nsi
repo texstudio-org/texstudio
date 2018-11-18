@@ -63,6 +63,9 @@ File utilities\manual\*
 SetOutPath $INSTDIR\share\poppler
 File /r utilities\poppler-data\*
 
+SetOutPath $INSTDIR\share\fonts
+File /r travis-ci\mxe\fonts\*
+
 SetOutPath $INSTDIR\TexTablet
 File utilities\TexTablet\*
 
