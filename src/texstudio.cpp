@@ -4606,6 +4606,11 @@ void Texstudio::insertTextCompletion()
     QSet<QString> words;
 
     QDocument *doc=currentEditor()->document();
+    // generate regexp for getting fuzzy results
+    // here the first letter must match, the rest can be fuzzy
+    QStringList chars=word.split("",QString::SkipEmptyParts);
+    QString regExpression=chars.join(".*");
+    QRegExp rx("^"+regExpression);
 
     for(int i=0;i<doc->lineCount();i++){
         QDocumentLineHandle *dlh=doc->line(i).handle();
@@ -4659,6 +4664,10 @@ void Texstudio::insertTextCompletion()
                                 k++;
                             }
                         }
+                    }
+                }else{
+                    if(rx.indexIn(txt)!=-1){
+                        words<<txt;
                     }
                 }
             }
