@@ -22,7 +22,7 @@ class QuickDocumentDialog : public QDialog  {
 	Q_OBJECT
 
 public:
-	QuickDocumentDialog(QWidget *parent=0, const QString& name=0);
+    QuickDocumentDialog(QWidget *parent=nullptr, const QString& name=nullptr);
 	~QuickDocumentDialog();
 	Ui::QuickDocumentDialog ui;
 
