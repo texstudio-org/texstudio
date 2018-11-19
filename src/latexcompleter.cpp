@@ -919,8 +919,8 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         //fuzzy search
         // proof of concept
         // generate regexp
-        QTime tm;
-        tm.start();
+        //QTime tm;
+        //tm.start();
         QStringList chars=word.split("",QString::SkipEmptyParts);
         if(chars.value(0)==QChar('\\')){
             chars.takeFirst();
@@ -966,7 +966,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         });
 
         std::stable_sort(words.begin(),words.end(),cwLessThan);
-        qDebug()<<tm.elapsed();
+        //qDebug()<<tm.elapsed();
     }else{
         // normal sorting
         if (!fetchMore) {
