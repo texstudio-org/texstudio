@@ -29,8 +29,8 @@ struct CodeSnippetPlaceHolder {
 class CodeSnippet
 {
 public:
-	CodeSnippet(): cursorLine(-1), cursorOffset(-1), anchorOffset(-1), usageCount(0), index(0), snippetLength(0), type(none) {} ///< generate empty codesnippet
-	CodeSnippet(const CodeSnippet &cw): word(cw.word), sortWord(cw.sortWord), lines(cw.lines), cursorLine(cw.cursorLine), cursorOffset(cw.cursorOffset), anchorOffset(cw.anchorOffset), placeHolders(cw.placeHolders), usageCount(cw.usageCount), index(cw.index), snippetLength(cw.snippetLength), type(cw.type), name(cw.name) {} ///< copy constructor
+    CodeSnippet(): cursorLine(-1), cursorOffset(-1), anchorOffset(-1), usageCount(0), index(0), snippetLength(0), score(0), type(none) {} ///< generate empty codesnippet
+    CodeSnippet(const CodeSnippet &cw): word(cw.word), sortWord(cw.sortWord), lines(cw.lines), cursorLine(cw.cursorLine), cursorOffset(cw.cursorOffset), anchorOffset(cw.anchorOffset), placeHolders(cw.placeHolders), usageCount(cw.usageCount), index(cw.index), snippetLength(cw.snippetLength), score(cw.score), type(cw.type), name(cw.name) {} ///< copy constructor
 	CodeSnippet(const QString &newWord, bool replacePercentNewline = true); ///< generate codesnippet from text string
 	bool operator< (const CodeSnippet &cw) const; ///< define sorting operator
 	bool operator== (const CodeSnippet &cw) const;
@@ -48,6 +48,7 @@ public:
 	int usageCount; ///< usage count for favourite detection
 	uint index; ///< hash index for usage count identification
 	int snippetLength; ///< number of characters
+    int score;
     enum Type {none, length,userConstruct};
 	Type type;
 

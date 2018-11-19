@@ -100,6 +100,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
 	usageCount = 0;
 	index = 0;
 	snippetLength = 0;
+    score = 0;
 	type = none;
 	QString curLine;
 

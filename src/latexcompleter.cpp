@@ -15,6 +15,8 @@
 #include "qdocument.h"
 
 #include <algorithm>
+#include <QtConcurrentFilter>
+#include <QtConcurrentMap>
 
 
 //------------------------------Default Input Binding--------------------------------
@@ -886,6 +888,12 @@ void CompletionListModel::setEnvironMode(bool mode)
 	mEnvMode = mode;
 }
 
+bool cwLessThan(const CompletionWord &s1, const CompletionWord &s2)
+{
+    return s1.score > s2.score;
+}
+
+
 void CompletionListModel::filterList(const QString &word, int mostUsed, bool fetchMore, CodeSnippet::Type type)
 {
 	if (mostUsed < 0)
@@ -911,60 +919,54 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         //fuzzy search
         // proof of concept
         // generate regexp
+        QTime tm;
+        tm.start();
         QStringList chars=word.split("",QString::SkipEmptyParts);
+        if(chars.value(0)==QChar('\\')){
+            chars.takeFirst();
+        }
         QString regExpression=chars.join(".*");
+
         QRegExp rx(regExpression);
         QList<int> scoringList;
-        for(const auto & item : baselist){
-            if(rx.indexIn(item.sortWord)!=-1){
-                // calculate score
-                // rather simple approach
-                // letter directly adjacent are voted up
-                int score=0;
-                int l=0;
-                int lastMatch=0;
-                for(int i=0;i<item.sortWord.length();i++){
-                    if(l>=word.length())
-                        break;
-                    if(item.sortWord.at(i)==word.at(l)){
-                        if(lastMatch+1==i)
-                            score+=20;
-                        score-=i; // later position are degraded
-                        lastMatch=i;
-                        l++;
-                    }
-                }
-                CompletionWord cw=item;
-                if (cw.word.contains('@')) {
-                    if(cw.word.contains("@@")){ // special treatment for command-names containing @
-                        QString ln = cw.lines[0];
-                        ln.replace("@@", "@");
-                        cw=CompletionWord(ln);
-                    }else{
-                        QString ln = cw.lines[0];
-                        ln.replace('@', "%<bibid%>");
-                        cw=CompletionWord(ln);
-                    }
-                }
-                // reduce score for atypical or unused
-                score+=item.usageCount<=0 ? 10*item.usageCount : 10;
-                bool inserted=false;
-                for(int i=0;i<words.length();i++){
-                    if(scoringList.at(i)>=score)
-                        continue;
-                    scoringList.insert(i,score);
 
-                    words.insert(i,cw);
-                    inserted=true;
+        words=QtConcurrent::blockingFiltered(baselist,[rx](const CompletionWord &item){
+            return item.sortWord.contains(rx);
+        });
+
+        QtConcurrent::blockingMap(words,[word](CompletionWord &item){
+            int score=0;
+            int l=0;
+            int lastMatch=0;
+            for(int i=0;i<item.sortWord.length();i++){
+                if(l>=word.length())
                     break;
-                }
-                if(!inserted){
-                    words<<cw;
-                    scoringList<<score;
+                if(item.sortWord.at(i)==word.at(l)){
+                    if(lastMatch+1==i)
+                        score+=20;
+                    score-=i; // later position are degraded
+                    lastMatch=i;
+                    l++;
                 }
             }
-        }
-        //qDebug()<<words.value(0).sortWord<<scoringList.value(0)<<words.value(1).sortWord<<scoringList.value(1)<<words.value(2).sortWord<<scoringList.value(2);
+            if (item.word.contains('@')) {
+                if(item.word.contains("@@")){ // special treatment for command-names containing @
+                    QString ln = item.lines[0];
+                    ln.replace("@@", "@");
+                    item=CompletionWord(ln);
+                }else{
+                    QString ln = item.lines[0];
+                    ln.replace('@', "%<bibid%>");
+                    item=CompletionWord(ln);
+                }
+            }
+            // reduce score for atypical or unused
+            score+=item.usageCount<=0 ? 10*item.usageCount : 10;
+            item.score=score;
+        });
+
+        std::stable_sort(words.begin(),words.end(),cwLessThan);
+        qDebug()<<tm.elapsed();
     }else{
         // normal sorting
         if (!fetchMore) {
