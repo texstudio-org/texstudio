@@ -961,7 +961,10 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                 }
             }
             // reduce score for atypical or unused
-            score+=item.usageCount<=0 ? 10*item.usageCount : 10;
+            if(item.index){
+                // don't upvote reference commands
+                score+=item.usageCount<=0 ? 10*item.usageCount : 10;
+            }
             item.score=score;
         });
 
