@@ -937,7 +937,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         QtConcurrent::blockingMap(words,[word](CompletionWord &item){
             int score=0;
             int l=0;
-            int lastMatch=0;
+            int lastMatch=-2;
             for(int i=0;i<item.sortWord.length();i++){
                 if(l>=word.length())
                     break;
