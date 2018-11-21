@@ -4349,7 +4349,7 @@ Note: The first 4 placement preferences are just suggestions. If the resulting p
         <location filename="../src/insertgraphics.cpp" line="263"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation>Не удается обработать код включения графики:
+        <translation>Не удаётся обработать код включения графики:
 недостаточное число аргументов для </translation>
     </message>
     <message>
@@ -4430,7 +4430,7 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="1272"/>
         <location filename="../src/latexcompleter.cpp" line="1282"/>
         <source>press shift+space to change view</source>
-        <translation>нажмите shift+пробел, чтобы изменить вид</translation>
+        <translation>нажмите Shift+пробел, чтобы изменить вид</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1439"/>
@@ -4445,13 +4445,14 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1776"/>
         <source>label multiple times defined!</source>
-        <translation>многократно определенная метка!</translation>
+        <translation>метка определена более одного раза!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1785"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Имя файла: %1&lt;/b</translation>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Имя файла: %1&lt;/b&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -4459,12 +4460,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/diffoperations.cpp" line="24"/>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation>Неизвестная ошибка. Возможно падение программы. Советуем перезапустить TeXstudio</translation>
+        <translation>Неизвестная ошибка. Возможно аварийное завершение программы. Советуем перезапустить TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="35"/>
         <source>MAGIC_COMMENTS</source>
-        <translation>СПЕЦ-КОММЕНТАРИИ</translation>
+        <translation>СПЕЦКОММЕНТАРИИ</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="36"/>
@@ -4499,7 +4500,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexdocument.cpp" line="2416"/>
         <source>Unknown magic comment</source>
-        <translation>Неизвестный спец-комментарий</translation>
+        <translation>Неизвестный спецкомментарий</translation>
     </message>
 </context>
 <context>
@@ -4598,7 +4599,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="545"/>
         <source>use other&apos;s</source>
-        <translation>использовать другой</translation>
+        <translation>использовать чужой</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="561"/>
@@ -4629,19 +4630,20 @@ The wizard does not support command </source>
         <location filename="../src/latexeditorview.cpp" line="2369"/>
         <location filename="../src/latexeditorview.cpp" line="2387"/>
         <source>label multiple times defined!</source>
-        <translation>многократно определенная метка!</translation>
+        <translation>метка определена более одного раза!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2377"/>
         <location filename="../src/latexeditorview.cpp" line="2449"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Имя файла: %1&lt;/b</translation>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Имя файла: %1&lt;/b&gt;
+</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2390"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n ссылка на этот label</numerusform><numerusform>%n ссылок на этот label</numerusform><numerusform>%n ссылок на этот label</numerusform><numerusform>%n ссылка (ссылок) на этот label</numerusform></translation>
+        <translation><numerusform>%n ссылка на эту метку</numerusform><numerusform>%n ссылки на эту метку</numerusform><numerusform>%n ссылок на эту метку</numerusform><numerusform>%n ссыл(ка/ки/ок) на эту метку</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2395"/>
@@ -4841,7 +4843,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="129"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
-        <translation>Лог-файл слишком большой (%1 Мб), вы уверены, что хотите загрузить его?</translation>
+        <translation>Лог-файл слишком большой (%1 МБ). Вы уверены, что хотите загрузить его?</translation>
     </message>
 </context>
 <context>
@@ -4869,7 +4871,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/letterdialog.ui" line="114"/>
         <source>OK</source>
-        <translation>Ок</translation>
+        <translation>ОК</translation>
     </message>
     <message>
         <location filename="../src/letterdialog.ui" line="121"/>
@@ -5201,7 +5203,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2434"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Поиск</translation>
+        <translation>&amp;Правка</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2435"/>
@@ -5246,7 +5248,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2450"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation>Разделение &amp;&amp; слияние</translation>
+        <translation>Разбить или объединить...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2451"/>
@@ -5276,7 +5278,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2460"/>
         <source>Synchronize multiple views</source>
-        <translation>Синхронизовать разные изображения</translation>
+        <translation>Синхронизовать разные просмотрщики</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2462"/>
@@ -5432,7 +5434,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2532"/>
         <source>&amp;Tile</source>
-        <translation>Черепи&amp;цей</translation>
+        <translation>&amp;Плиткой</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2533"/>
