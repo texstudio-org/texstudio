@@ -49,6 +49,7 @@ void SymbolWidget::setupData(SymbolListModel *model)
 	favoritesProxyModel = new BooleanFilterProxyModel;
 	favoritesProxyModel->setSourceModel(symbolListModel);
 	favoritesProxyModel->setFilterRole(SymbolListModel::FavoriteRole);
+	connect(symbolListModel, SIGNAL(favoritesChanged()), favoritesProxyModel, SLOT(invalidate()));
 
 	mostUsedProxyModel = new MostUsedProxyModel;
 	mostUsedProxyModel->setSourceModel(symbolListModel);
