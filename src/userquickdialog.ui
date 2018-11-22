@@ -42,7 +42,7 @@
         <string>Add</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset resource="../images.qrc">
          <normaloff>:/images-ng/right.svgz</normaloff>:/images-ng/right.svgz</iconset>
        </property>
       </widget>
@@ -80,7 +80,7 @@
         <string>Up</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset resource="../images.qrc">
          <normaloff>:/images-ng/up.svgz</normaloff>:/images-ng/up.svgz</iconset>
        </property>
       </widget>
@@ -91,7 +91,7 @@
         <string>Down</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset resource="../images.qrc">
          <normaloff>:/images-ng/down.svgz</normaloff>:/images-ng/down.svgz</iconset>
        </property>
       </widget>
@@ -127,7 +127,7 @@
   <tabstop>listWidget</tabstop>
  </tabstops>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>
