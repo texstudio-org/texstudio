@@ -29,8 +29,8 @@ qreal convertLatexLengthToMetre(const qreal &length, const QString &unit)
 }
 
 //options for the configmanager
-QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherEncodingList, QuickDocumentDialog::otherOptionsList;
-QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::author;
+QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherEncodingList, QuickDocumentDialog::otherBabelOptionsList, QuickDocumentDialog::otherOptionsList;
+QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::babel_language, QuickDocumentDialog::author;
 bool QuickDocumentDialog::ams_packages, QuickDocumentDialog::makeidx_package, QuickDocumentDialog::graphicx_package;
 double geometryPageWidth, geometryPageHeight, geometryMarginLeft, geometryMarginRight, geometryMarginTop, geometryMarginBottom;
 QString geometryPageWidthUnit, geometryPageHeightUnit, geometryMarginLeftUnit, geometryMarginRightUnit, geometryMarginTopUnit, geometryMarginBottomUnit;
@@ -53,6 +53,7 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString &name)
 	ui.comboBoxSize->addItem("12pt");
 	connect(ui.pushButtonPaper , SIGNAL(clicked()), SLOT(addUserPaper()));
 	connect(ui.pushButtonEncoding , SIGNAL(clicked()), SLOT(addUserEncoding()));
+	connect(ui.pushButtonBabel, SIGNAL(clicked()), SLOT(addBabelOption()));
 	connect(ui.pushButtonOptions , SIGNAL(clicked()), SLOT(addUserOptions()));
 	ui.listWidgetOptions->setSelectionMode(QAbstractItemView::ExtendedSelection);
 	setWindowTitle(tr("Quick Start"));
@@ -103,6 +104,8 @@ QString QuickDocumentDialog::getNewDocumentText()
 	tag += QString("\n");
 	if (ui.comboBoxEncoding->currentText().startsWith("utf8x"))
 		tag += QString("\\usepackage{ucs}\n");
+	if (ui.comboBoxBabel->currentText() != "NONE")
+		tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
 	if (ui.checkBoxAMS->isChecked())
 		tag += QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
 	if (ui.checkBoxIDX->isChecked())
@@ -141,11 +144,13 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface &configManager)
 	configManager.registerOption("Tools/User Class", &otherClassList);
 	configManager.registerOption("Tools/User Paper", &otherPaperList);
 	configManager.registerOption("Tools/User Encoding", &otherEncodingList);
+	configManager.registerOption("Tools/User Babel Options", &otherBabelOptionsList);
 	configManager.registerOption("Tools/User Options", &otherOptionsList);
 	configManager.registerOption("Quick/Class", &document_class, "article");
 	configManager.registerOption("Quick/Typeface", &typeface_size, "10pt");
 	configManager.registerOption("Quick/Papersize", &paper_size, "a4paper");
 	configManager.registerOption("Quick/Encoding", &document_encoding, "latin1");
+	configManager.registerOption("Quick/Babel", &babel_language, "NONE");
 	configManager.registerOption("Quick/AMS", &ams_packages, true);
 	configManager.registerOption("Quick/MakeIndex", &makeidx_package, false);
 	configManager.registerOption("Quick/graphicx", &graphicx_package, true);
@@ -174,6 +179,24 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface &configManager)
 
 	configManagerInterface = &configManager;
 }
+
+QStringList babelLanguages = QStringList()
+  << "arabic"
+  << "czech"
+  << "english"
+  << "farsi"
+  << "finnish"
+  << "french"
+  << "ngerman"
+  << "greek"
+  << "icelandic"
+  << "italian"
+  << "magyar"
+  << "polish"
+  << "portuguese"
+  << "russian"
+  << "slovak"
+  << "spanish" ;
 
 void QuickDocumentDialog::Init()
 {
@@ -216,6 +239,12 @@ void QuickDocumentDialog::Init()
 	ui.comboBoxEncoding->addItem("NONE");
 	if (!otherEncodingList.isEmpty()) ui.comboBoxEncoding->addItems(otherEncodingList);
 
+	ui.comboBoxBabel->clear();
+	ui.comboBoxBabel->addItem("NONE");
+	ui.comboBoxBabel->addItems(babelLanguages);
+	if (!otherBabelOptionsList.isEmpty()) ui.comboBoxBabel->addItems(otherBabelOptionsList);
+
+
 	ui.listWidgetOptions->clear();
 	ui.listWidgetOptions->addItem("landscape");
 	ui.listWidgetOptions->addItem("draft");
@@ -238,6 +267,7 @@ void QuickDocumentDialog::Init()
 	configManagerInterface->linkOptionToDialogWidget(&typeface_size, ui.comboBoxSize);
 	configManagerInterface->linkOptionToDialogWidget(&paper_size, ui.comboBoxPaper);
 	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxEncoding);
+	configManagerInterface->linkOptionToDialogWidget(&babel_language, ui.comboBoxBabel);
 	configManagerInterface->linkOptionToDialogWidget(&ams_packages, ui.checkBoxAMS);
 	configManagerInterface->linkOptionToDialogWidget(&makeidx_package, ui.checkBoxIDX);
 	configManagerInterface->linkOptionToDialogWidget(&graphicx_package, ui.checkBoxGraphicx);
@@ -427,6 +457,17 @@ void QuickDocumentDialog::addUserEncoding()
 	dialog.addVariable(&newoption, tr("New:"));
 	if (dialog.exec() && !newoption.isEmpty()) {
 		otherEncodingList.append(newoption);
+		Init();
+	}
+}
+
+void QuickDocumentDialog::addBabelOption()
+{
+	QString newoption;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&newoption, tr("New:"));
+	if (dialog.exec() && !newoption.isEmpty()) {
+		otherBabelOptionsList.append(newoption);
 		Init();
 	}
 }

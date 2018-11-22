@@ -60,6 +60,8 @@ void QuickBeamerDialog::registerOptions(ConfigManagerInterface &configManager)
 	configManager.registerOption("Beamer/Encoding", &document_encoding, "utf8");
 }
 
+extern QStringList babelLanguages;
+
 void QuickBeamerDialog::Init()
 {
 	ui.comboBoxSize->clear();
@@ -129,22 +131,7 @@ void QuickBeamerDialog::Init()
 	ui.comboBoxEncoding->addItem( "NONE" );
 
 	ui.listWidgetBabel->clear();
-	ui.listWidgetBabel->addItem("arabic" );
-	ui.listWidgetBabel->addItem("czech" );
-	ui.listWidgetBabel->addItem("english" );
-	ui.listWidgetBabel->addItem("farsi" );
-	ui.listWidgetBabel->addItem("finnish" );
-	ui.listWidgetBabel->addItem("french" );
-	ui.listWidgetBabel->addItem("ngerman" );
-	ui.listWidgetBabel->addItem("greek" );
-	ui.listWidgetBabel->addItem("icelandic" );
-	ui.listWidgetBabel->addItem("italian" );
-	ui.listWidgetBabel->addItem("magyar" );
-	ui.listWidgetBabel->addItem("polish" );
-	ui.listWidgetBabel->addItem("portuguese" );
-	ui.listWidgetBabel->addItem("russian" );
-	ui.listWidgetBabel->addItem("slovak" );
-	ui.listWidgetBabel->addItem("spanish" );
+	ui.listWidgetBabel->addItems(babelLanguages);
 
 	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxEncoding);
 }
