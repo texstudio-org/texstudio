@@ -2,7 +2,7 @@
 #include "symbollistmodel.h"
 #include "utilsUI.h"
 
-SymbolListView::SymbolListView(QWidget *parent) : QListView(parent)
+SymbolListView::SymbolListView(QWidget *parent) : QListView(parent),m_symbolSize(32),m_gridSize(40)
 {
 	setViewMode(QListView::IconMode);
 	setWrapping(true);
