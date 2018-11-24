@@ -21,7 +21,7 @@ Macro::Macro(const QString &nname, Macro::Type ntype, const QString &ntag, const
 	init(nname, ntype, ntag, nabbrev, ntrigger);
 }
 
-Macro::Macro(const QStringList &fieldList): triggerLookBehind(false), document(nullptr)
+Macro::Macro(const QStringList &fieldList): type(Snippet), triggerLookBehind(false), document(nullptr)
 {
 	if (fieldList.count() >= 4) {
 		Macro::Type t;
