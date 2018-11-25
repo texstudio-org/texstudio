@@ -499,4 +499,6 @@
 \addheadbox{beamer color}{box template}
 \addfootbox{beamer color}{box template}
 \includeonlyframes{frame label list}
-
+\secname
+\subsecname
+\subsubsecname
