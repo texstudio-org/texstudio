@@ -214,7 +214,7 @@
 \footnotetext{text}
 \footnote[number]{text}
 \footnote{text}
-\frac{%<num%:translatable%>}{%<den%:translatable%>}
+\frac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \framebox(xdimen,ydimen)[position]{text}
 \framebox(xdimen,ydimen){text}
 \framebox[width][position]{text}

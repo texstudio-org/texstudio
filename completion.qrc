@@ -58,6 +58,7 @@
 <file>completion/doi.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/enumerate.cwl</file>
+<file>completion/enumitem.cwl</file>
 <file>completion/epigraph.cwl</file>
 <file>completion/epstopdf.cwl</file>
 <file>completion/etoolbox.cwl</file>
