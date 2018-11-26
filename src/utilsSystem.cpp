@@ -135,6 +135,11 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 	searchFiles << ":" + dn; //resource fall back
 	searchFiles.append(additionalPreferredPaths);
 	searchFiles << QCoreApplication::applicationDirPath() + dn; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
+    searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 
 #if !defined(PREFIX)
