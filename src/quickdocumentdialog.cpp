@@ -149,7 +149,7 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface &configManager)
 	configManager.registerOption("Quick/Class", &document_class, "article");
 	configManager.registerOption("Quick/Typeface", &typeface_size, "10pt");
 	configManager.registerOption("Quick/Papersize", &paper_size, "a4paper");
-	configManager.registerOption("Quick/Encoding", &document_encoding, "latin1");
+    configManager.registerOption("Quick/Encoding", &document_encoding, "utf8");
 	configManager.registerOption("Quick/Babel", &babel_language, "NONE");
 	configManager.registerOption("Quick/AMS", &ams_packages, true);
 	configManager.registerOption("Quick/MakeIndex", &makeidx_package, false);
