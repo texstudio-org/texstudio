@@ -67,21 +67,21 @@
 	<li><a href="#SECTION35">4.7 Metapost support</a></li>
 	<li><a href="#SECTION36">4.8 The "Convert to Html" command</a></li>
 	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TeXstudio</a></li>
-	<li><a href="#SECTION_TEXCOM">4.10 Advanced header usage</a></li>
-	<li><a href="#SECTION38">4.11 Synopsis of the TeXstudio command</a></li>
-	<li><a href="#SECTION39">4.12 Keyboard shortcuts</a></li>
+	<li><a href="#TEXCOM">4.10 Advanced header usage</a></li>
+	<li><a href="#TEXSTUDIO-CMD">4.11 Synopsis of the TeXstudio command</a></li>
+	<li><a href="#SHORTCUTS">4.12 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.13 Description of the cwl format</a></li>
 	<li><a href="#TABLETEMPLATE">4.14 Using table templates</a></li>
 	</ul>
 </li>
 <li><a href="#TENTATIVE-FEATURES">5. Experimental Features</a>
 	<ul>
-	<li><a href="#ADVANCED-SCRIPTING">5.1 Advanced Skripting</a></li>
+	<li><a href="#ADVANCED-SCRIPTING">5.1 Advanced Scripting</a></li>
 	<li><a href="#STYLESHEETS">5.2 Style Sheets</a></li>
 	<li><a href="#LANGUAGEDEF">5.3 Writing your own language definitions</a></li>
 	</ul>
 </li>
-<li><a href="#SECTIONNEW">Changelog</a></li>
+<li><a href="#CHANGELOG">Changelog</a></li>
 </ul>
 <hr>
 
@@ -89,7 +89,7 @@
 <p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advanced options" in the lower left corner.</p>
 <h2 id="SECTION01">1.1 Configuring the editor</h2>
 <p>
-You may change the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
+You may change the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. <code>\usepackage[utf8]{inputenc}</code>, if you use utf-8).<br>
 TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the auto detection)
 </p>
 <ul>
@@ -127,7 +127,7 @@ A useful alternative might be using the "latexmk" as compile command (if the com
 The advanced options allows finer customization which is in general not necessary.<br>
 </p>
 <p><IMG src="configure_build.png" border="1" alt="Configure Build System"></p>
-<p>User commands can be defined here by "adding" them. Each user command has a name with a pattern <code>&lt;command id&gt;:&lt;display name&gt;</code>, e.g. <code>user0:User Command 0</code>. The command id has to be unique and must not contain spaces. In <a href="SECTION02a1">advanced mode</a>, you can reference it using <code>txs:///"&lt;command id&gt;</code>. The display name will be shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
+<p>User commands can be defined here by "adding" them. Each user command has a name with a pattern <code>&lt;command id&gt;:&lt;display name&gt;</code>, e.g. <code>user0:User Command 0</code>. The command id has to be unique and must not contain spaces. In <a href="#SECTION02a1">advanced mode</a>, you can reference it using <code>txs:///"&lt;command id&gt;</code>. The display name will be shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
 User commands can either consist of a combination of known commands by selecting them from a list of available commands. This is triggered by clicking the spanner-symbol.<br>
 Alternatively a command can be directly selected through the file system.</p>
 <p><IMG src="doc21.png" border="1" alt="Configure user commands from known commands"></p>
@@ -139,7 +139,7 @@ Alternatively a command can be directly selected through the file system.</p>
 <p>Every txs-command is a list of external programs/latex-commands and other txs-commands to call. An external program can be called with its usual command line, while a txs-command with id "foobar" is called by txs:///foobar. <br>
 The commands in the list are separated by |, which is just a separator (i.e. it will <i>not</i> pass the stdout from one program to the stdin of the next).
 
-<p>Note: Use command lists only for the meta and user commands listed at <code>Options -> Build</code>. Do not use then at <code>Options -> Commands</code>. The latter should just be single commands 
+<p>Note: Use command lists only for the meta and user commands listed at <code>Options -> Build</code>. Do not use then at <code>Options -> Commands</code>. The latter should just be single commands
 (i.e. do not use | there). While it's currently working in some cases, generally we do not guarantee this behavior. It can have surprising side effects such abortion of compilation in some cases. Also, the use of | at <code>Commands</code> may be prohibited completely without further notice in the future.</p>
 
 <p>Each of these txs-command has a unique id, which is shown as tooltip of the displayed name for "normal" commands and in the edit box for user commands. Some important commands are usual: txs:///quick (Build & View, the old quickbuild), txs:///compile (Default compiler), txs:///view (Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex), txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External pdf viewer).
@@ -196,7 +196,7 @@ setting than programs started from a shell (because some variables may only defi
 By default, TeXstudio parses environment variables in your commands. The syntax is adapted to the according operating system. A variable MYVAR would be written as <code>%MYVAR%</code> on
 Windows and <code>$MYVAR</code> on Linux and OS X. Windows environment variables are case-insensitive, whereas they are case-sensitive on Linux and OS X. Parsing of environment variables
 can be deactivated in the Build section of the options.
-</p> 
+</p>
 <h3>Working Directory</h3>
 <p>
 The working directory is set to the path of root document.
@@ -268,7 +268,7 @@ Furthermore the completion list contains partially additional information to det
 
 <p>In the advanced config mode, you can also mark certain LT rules as "special" whose matches will then be highlighted in a different/customizable way. This can be useful to do a stylistic analysis, e.g. by creating a own rule in LT highlighting all verbs or all adverbs.
 
-<p>Independent from LanguageTool, TeXstudio also checks for repeated and bad (imprecise/slang) words. The repetition check looks several words behind and marks repetition of short words in the immediate surrounding and repetition of long words up to 10 words before. These distances and lengths can be changed on the advanced grammar config page.
+<p>Independent from LanguageTool, TeXstudio also checks for repeated and bad (imprecise/slang) words. The repetition check looks several words behind and marks repetition of short words in the immediate vicinity and repetition of long words up to 10 words before. These distances and lengths can be changed in the advanced grammar config page.
 
 
 <h2 id="SECTION040">1.5 Configuring the autocompletion</h2>
@@ -278,17 +278,17 @@ TeXstudio understands the use of \documentclass and \usepackage in order to sele
 However TeXstudio allows one to select the additional word lists under
 "Configure TeXstudio" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
 Concerning auto completion, TeXstudio allows one to adapt the behaviour to your liking.
-Following options are available:</p>
+The following options are available:</p>
 <ul>
 <li>Completion enabled: self explanatory
-<li>Case sensitive: let's you complete e.g. \Large from \la ...
+<li>Case sensitive: lets you complete e.g. \Large from \la ...
 <li>in first character: ?
 <li>Auto Complete Common Prefix: if only one item is in the list or all items in the completion list share common starting characters, the common characters are directly inserted, like pressing the key Tab.
 <li>Complete selected text when non-word character is pressed: when in completion mode, pressing a non-word character like space, leads to accepting the selected word. This may speed up typing.
 <li>Enable ToolTip-Help: show tool tips on selected latex commands in the completion list.
-<li>Use Placeholders: if the completed commands have options which need to be filled out, "place holder" are put at this positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
+<li>Use Placeholders: if the completed commands have options which need to be filled out, placeholders are put at these positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
 </ul>
-<p>If your favorite package is not yet present for completion (and then as well not for syntax check), you can provide a list of your own by placing a file "packagename.cwl" in the config directory. This directory is placed in ~/.config/texstudio under linux and usually "c:\Documents and Settings/User/AppData/Roaming/texstudio" under windows. Basically the file contains a list of valid commands. A Description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
+<p>If your favorite package is not yet present for completion (and syntax checking), you can provide a list of your own by placing a file "packagename.cwl" in the <a href="https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions#where-are-the-settings-stored">config directory</a>. This directory is placed in ~/.config/texstudio under Linux and usually "c:\Documents and Settings/User/AppData/Roaming/texstudio" under Windows. Basically the file contains a list of valid commands. A description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
 </p>
 
 <p><IMG src="configure_completion.png" border="1" alt="Configure Completion"></p>
@@ -296,7 +296,11 @@ Following options are available:</p>
 <p>
 Shortcuts can be changed by double clicking on "Current Shortcut" or "Additional Shortcut".
 A shortcut can be selected from the drop down list or put in as text directly.
-If a shortcut should be set to default value or removed completely, the items "&lt;default&gt;" or "&lt;none&gt;" at the top of the list can be selected.
+A shortcut can be assigned a multiple keystroke combinations, for example <code>CTRL+M,CTRL+A</code> (either upper or lower case is allowed, but the comma is important).
+If a shortcut should be set to default value or removed completely, the items "&lt;default&gt;" or "&lt;none&gt;" at the top of the list can be selected respectively.
+</p>
+<p>
+A rough overview of the available (default) keyboard shortcuts can be found in <a href="#SHORTCUTS">Section 4.12</a>.
 </p>
 <p><IMG src="configure_shortcuts.png" border="1" alt="Configure Shortcuts"></p>
 <h2 id="SECTION06">1.7 Configuring the Latex/Math-Menu (Advanced option)</h2>
@@ -311,26 +315,26 @@ Since many of those item don't have icons, user icons can be loaded as well. Thi
 <p><IMG src="configure_customToolbar.png" border="1" alt="Customize Toolbars"></p>
 <h2 id="SECTION08">1.9 Configuring SVN support</h2>
 <p>To supports SVN (subversion) for document versioning. To make use of it, the SVN commandline tools need to be installed.
-Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
+Linux and Mac OSX normally provide already SVN tools, for Windows, the installation of "SlikSVN" is recommended.
 </p>
 <p>The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the Commands page in the options.
 On the SVN page you can can choose the degree of automation (see below) WSVN, see below.
 </p>
-<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the command line or the GUI of your choice).
+<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either SVN checkout on the command line or the GUI of your choice).
 Once you have a working copy, TeXstudio can operate on it.
 </p>
 <p>
-"Automatically check in after save" allows TeXstudio to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
-Since text documents are rather small compared to disk spaces, size of the svn database should not be a problem.
-In addition newly saved files (save as) are automatically added to svn control,provided that the directory is already under svn control.
-If that is not the case, TeXstudio searches in "SVN Directory Search Depth" directory above the current diorectory for a svn controlled directory to which the subdirectories and the TeX-Document will be added.
+"Automatically check in after save" allows TeXstudio to perform an SVN check in after every save of a document, thus providing a very complete history of the creation of a document.
+Since text documents are rather small compared to disk spaces, size of the SVN database should not be a problem.
+In addition newly saved files (save as) are automatically added to SVN control,provided that the directory is already under SVN control.
+If that is not the case, TeXstudio searches in "SVN Directory Search Depth" directory above the current diorectory for a SVN controlled directory to which the subdirectories and the TeX-Document will be added.
 If no appropriate directory is found, a repository is automatically generated in a directory called "./repo" and the document is added.
 Thus the user does not need to look up the necessary commands to set up a repository. This functionality is only activated when "Auto checkin in" is enabled !
 </p>
 <p>
-With "User SVN revisions to undo before last save" TeXstudio will perform undo as usually, but if there are no further undoable commands in the internal storage, the document will be changed to the previous version in svn history.
+With "User SVN revisions to undo before last save" TeXstudio will perform undo as usually, but if there are no further undoable commands in the internal storage, the document will be changed to the previous version in SVN history.
 Further undo commands allows one to back further to older revisions, whereas a redo goes forward to more recent versions.
-This is a more interactive approach than choosing svn revisions directly via a menu command, see <a href="#SECTION33a">section 4.3</a>
+This is a more interactive approach than choosing SVN revisions directly via a menu command, see <a href="#SECTION33a">section 4.4</a>.
 </p>
 <p><IMG src="configure_svn.png" border="1" alt="Configure SVN"></p>
 <h1 id="SECTION1">2. Editing a TeX document</h1>
@@ -338,7 +342,7 @@ This is a more interactive approach than choosing svn revisions directly via a m
 <p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
 <p><IMG src="doc1.png" border="1" alt="Standard commands"></p>
 
-<h2 id="SECTION12a">2.2 Creating a new document</h2>
+<h2 id="SECTION12">2.2 Creating a new document</h2>
 
 <p>There are two different ways to create a new document that are described in the following subsections:</p>
 
@@ -347,16 +351,16 @@ This is a more interactive approach than choosing svn revisions directly via a m
 <p><IMG src="doc2.png" border="1" alt="Quick Start"></p>
 <p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All your settings are recorded.</p>
 <p>You can also type your own preamble model in the editor : with the "Copy/paste" or "Save As" commands, you can use it for a new document.</p>
-<h2 id="SECTION12a">2.2.2 Using Templates to start a new document</h2>
+<h2 id="SECTION12b">2.2.2 Using Templates to start a new document</h2>
 <p>For new documents, templates can be used by using the command "File/New from template".
 A dialogue gives a selection of templates.</p>
 <p><IMG src="template.png" border="1" alt="Templates"></p>
 <p>You can either create a new editor document from the template or create it as file(s) on disk and open these in the editor. The former option is not available for multi-file templates.</p>
-<p>New templates can be created by using the command "File/Make Template" on a opened document which you like to have has a template. Note that this dialog currently does not support the full capabilities of the template system. In particular you cannot supply a preview image or create a multi-file template with it. You'll have to do this manually (see the <a href="#SECTION12aa">template format</a>).</p>
+<p>New templates can be created by using the command "File/Make Template" on a opened document which you like to have has a template. Note that this dialog currently does not support the full capabilities of the template system. In particular you cannot supply a preview image or create a multi-file template with it. You'll have to do this manually (see the <a href="#SECTION12ba">template format</a>).</p>
 <p>User added templates can be edited or deleted by using the context menu in the template selection dialogue.
 Built-in templates can not be changed.</p>
 <p>User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
-<h3 id="SECTION12aa">2.2.2.1 The Template Format</h3>
+<h3 id="SECTION12ba">2.2.2.1 The Template Format</h3>
 <p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all .tex files in a zip archive. Optionally, meta data can be stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported in the meta data:</p>
 <pre>
 {
@@ -415,7 +419,7 @@ Section can be indented/unindented which means that the hierarchy level is chang
 <h2 id="SECTION17">2.7 Inserting a list</h2>
 <p>The usual list environments code can be insert quickly via the "LaTeX-List" menu.<br>Note : the shortcut for the \item command is Ctrl+Shift+I.</p>
 <h2 id="SECTION18">2.8 Inserting a table</h2>
-<p>With the "Tabular" wizard ("Wizard" menu), t he LaTeX code for a tabular environment can be quickly inserted :</p>
+<p>With the "Tabular" wizard ("Wizard" menu), the LaTeX code for a tabular environment can be quickly inserted :</p>
 <p><IMG src="doc7.png" border="1" alt="Tabular Wizard"></p>
 <p>You can set the main features of your table.<br>Note : this dialog allows you to type directly the code in the cells.<br>The corresponding LaTeX code is automatically inserted in the editor.</p>
 <h2 id="SECTION18a">2.8.1 Manipulating tables</h2>
@@ -456,16 +460,16 @@ The wizard also comes into play when you drag   drop an image file to your docum
 <p>You can also define the format of your mathematical text via the "Math" menu.<br>For the "array" environments, a wizard (like the "Tabular" wizard) is available in the "Wizard" menu. With this wizard, you can select the environment : array, matrix, pmatrix.... The cells can be directly completed.</p>
 <p><IMG src="doc13.png" border="1" alt="Array Wizard"></p>
 <h2 id="SECTION113">2.13 Auto Completion</h2>
-<p>Whenever you press \  followed by a letter, a list of possible LaTex tags is shown where you select the right one. If you write additional letters the list is filtered, so that only the tags starting with the already written text are shown.
+<p>Whenever you press \  followed by a letter, a list of possible LaTeX tags is shown where you select the right one. If you type additional letters, the list is filtered, so that only the tags starting with the already written text are shown.
 If the list contains words which all start with the same letter combination, you can press Tab to complete all common letters. If only one element is present in the list, Tab selects this one to do the completion, like Enter. This behaviour is similar to tab completion in bash shells.
 You can also press Ctrl+Space to open this list whenever you want.<br>
 If a tag has different options, a short descriptive text is inserted into your text, telling you the meaning of each option. You can press Ctrl+Left, Ctrl+Right to select all positions.<br>
 Furthermore normal text can be completed by starting to type a word and pressing Ctrl+Space. All appropriate words in the current document are used as possible suggestions.<br>
-If a environment is to be inserted, typing in the beginning of the environment name and pressing Ctrl+Alt+Space gives suggestions for adequate environments which are inserted completely with \begin{env}..\end{env}<br>
-And finally user tags can be assigned a abbreviation which can also be used with completion. Just type in the start of the abbreviation and start the completion with Ctrl+Space. The abbreviation should show up in the completion list, especially marked with &ldquo;abbreviation (template)&rdquo;.<br>
+If an environment is to be inserted, typing in the beginning of the environment name and pressing Ctrl+Alt+Space gives suggestions for adequate environments which are inserted completely with \begin{env}..\end{env}.<br>
+And finally, user tags can be assigned an abbreviation which can also be used with completion. Just type in the start of the abbreviation and start the completion with Ctrl+Space. The abbreviation should show up in the completion list, especially marked with &ldquo;abbreviation (template)&rdquo;.<br>
 If you change a command by completing a new command, only the command name is substituted. The same is true for environments, where the environment is changed in the \begin- and \end-command.<br>
 <br>
-The completer has several operation modes which are shown in the tab below the command list.<br>
+The completer has several operation modes which are shown in the tabs below the command list.<br>
 <ul>
 <li>Typical: list only typical commands and filter out rather unusual commands.</li>
 <li>Most used: list only commands which have already been used in the completer by the user. Is empty if txs has not been used before.</li>
@@ -488,7 +492,7 @@ This word can be changed manually. It is also used to do further investigations 
 <p>With the shortcut Alt+Del, the word under the cursor is deleted.
 If it is a command, the command is deleted including opening and closing braces.
 E.g. "\textbf{text}" leave "text".
-If it is an environment, the enclosing bengin/end are removed.</p>
+If it is an environment, the enclosing begin/end are removed.</p>
 <h3>Rename environment</h3>
 <p>If you place the cursor on an environment name or the corresponding begin- or end-command, after a moment a mirror-cursor is activated on the environment name which allows synchronous change of the environment name in the begin- and end-command.
 So if you want to change a "\begin{tabular}...\end{tabular}" construction to "\begin{tabularx}...\end{tabularx}", place the text cursor on "tabular", wait for a second and then, after the mirror-cursor appears, change "tabular" to "tabularx".</p>
@@ -499,7 +503,7 @@ E.g. you have a "text", select it and start typing "\textbf", command which is c
 <h2 id="SECTION22">3.1 Compiling</h2>
 <p>The easiest way to compile a document is to use the "Compile" command or the "Build&amp;View" command ("Compile" button - shortcut : F6). You can select the default command via the "Configure TeXstudio" dialog.<br>(You can also launch each command one by one in the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).</p>
 <p><IMG src="compile_toolbar.png" border="1" alt="compile_toolbar">
-<p><b>Warning: all your files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
+<p><b>Warning: all your files must have an extension and you can't compile an "untitled" file or a file with a space in its name</b>.</p>
 <h2 id="SECTION23">3.2 The log files</h2>
 <p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
 Remark : a summary of the latex errors and warnings is displayed before the full log file.</p>
@@ -514,7 +518,7 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 <h3 id="sec:rootdocument">4.1.1 Root Document</h3>
 <p>The root document is the top-most file in a multi-file document. For a single-file document this is the file itself. By default, all calls to LaTeX will be performed on the root document.</p>
 <p>TeXstudio automatically detects the root document. If that does not work, you can place a magic comment <code>% !TeX root = root-filename</code> at the top of your included files.</p>
-<p>As a last resort, you may set an <i>explicit root document</i> via <code>Options -> Root Document -> Set Current Document As Explicit Root</code>. This setting takes absolute precence. All the commands of the "Tools" menu will be called on this document (to be more precise the build system will expland the placeholder <code>%</code> to the root document), no matter which document is active in the editor. Additionally, labels and usercommands which are defined in any open document, can be used for completion in any open document.</p>
+<p>As a last resort, you may set an <i>explicit root document</i> via <code>Options -> Root Document -> Set Current Document As Explicit Root</code>. This setting takes absolute precedence. All the commands of the "Tools" menu will be called on this document (to be more precise, the build system will expand the placeholder <code>%</code> to the root document), no matter which document is active in the editor. Additionally, labels and usercommands which are defined in any open document, can be used for completion in any open document.</p>
 <p>In earlier versions, the <i>explicit root document</i> was somewhat misleadingly called <i>master document</i>.</p>
 
 <h3 id="sec:rootdocument">4.1.2 Loaded Documents</h3>
@@ -535,15 +539,15 @@ The number of columns is analyzed and checked in the subsequent rows. If more or
 <p><IMG src="doc16.png" border="1" alt="Bibliography Menu"></p>
 <h2 id="SECTION33a">4.4 SVN Support</h2>
 <p>
-Apart from the supported svn features already describes in section 1.8, TeXstudio supports two more commands.
+Apart from the supported SVN features already describes in section 1.8, TeXstudio supports two more commands.
 </p>
 <p>
-"File/chekin" performs an explicit save and check in, with a input dialog which asks for an checkin in message which is stored in the svn history.
+"File/chekin" performs an explicit save and check in, with a input dialog which asks for an checkin in message which is stored in the SVN history.
 </p>
 <p>
-"File/Show old Revisions" pops up a dialog, which shows all alvailable revisions. A selection of an older revision leads to instatanious change of the current document to that older revision.
-You can can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version. If you start editing that document directly, the dialog is closed and the present text is your new
-most recent version though yet unsaved.
+"File/Show old Revisions" pops up a dialog, which shows all available revisions. A selection of an older revision leads to instantaneous change of the current document to that older revision.
+You can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version.
+If you start editing that document directly, the dialog is closed and the present text will be your new most recent version though yet unsaved.
 </p>
 <h2 id="SECTION33">4.5 Personal macros</h2>
 <p>TeXstudio allows you to insert your own macros. These macros are defined with the "Macros - Edit Macros" menu.
@@ -551,10 +555,10 @@ Macros can consist of simple text which is directly placed into txs. It can also
 The needed functionality can be selected by checkbox.<br>
 The "abbreviation" is a pseudo-command for the latex completer. If the pseudo-command is completed, the macro will be inserted instead. Note that the pseudo-command needs to start with a backslash ("\").<br>
 "Trigger" is a regular expression which triggers the inclusion of the macro: When the last written characters match this expression, they are removed and the macro is inserted/executed. (see <a href="#sectionTriggers">below</a> for more details).<br>
-Some macros can be directly downloaded from an internet repository. The dialog is ctarted with the button "Browse". For easier data exhange, macros can be im- and exported to a file. If you want to add a macro of your own to that repository, you can hand it in as a feature request on <a href="https://github.com/texstudio-org/texstudio/issues">Github</a>. <br>
+Some macros can be directly downloaded from an internet repository. The dialog is started with the button "Browse". For easier data exchange, macros can be im- and exported to a file. If you want to add a macro of your own to that repository, you can hand it in as a feature request on <a href="https://github.com/texstudio-org/texstudio/issues">Github</a>. <br>
 Each macro can be assigned a fixed shortcut in the "Shortcut" box.<br>
 The list of macros on the left-hand side represents the macro ordering in the macro-menu. It is rearranged with the "up"/"down"/"add"/"remove" buttons or with drag and drop. Folders can be added to sort a larger number of macros sensibly. To move macros into/from folders, only drag and drop works.<br>
-The "run script" button directly executes a script in in the editor for testing.<br>
+The "run script" button directly executes a script in the editor for testing.<br>
 <br>
 <p><IMG src="doc17.png" border="1" alt="doc17"></p>
 
@@ -588,7 +592,7 @@ Note: texstudio needs that the env-name starts with "%", though that character i
 <h3 id="JAVASCRIPT-MACROS">4.5.3 Script Macros</h3>
 <p>Instead of using code snippets, you can also make use of scripting with QtScript. QtScript is an application scripting language based on <a href="http://doc.qt.io/qt-5/ecmascript.html">ECMAScript</a>. Since QtScript and JavaScript are both an implementation of ECMAScript, you'll pick up QtScript easily if you are familiar with JavaScript.</p>
 
-<p>Put "%SCRIPT" in the first line to declare a macro as a script. Here are the objects that provide the interface to the To the TeXstudio internals:</p>
+<p>Put "%SCRIPT" in the first line to declare a macro as a script. Here are the objects that provide the interface to the TeXstudio internals:</p>
 <ul>
 <li>"editor" allows some top level operations like searching/save/load. in the current document</li>
 <li>"cursor" gives access to cursor operations like moving, inserting and deleting texts.</li>
@@ -626,7 +630,7 @@ Note: texstudio needs that the env-name starts with "%", though that character i
     <li>exitCode: The exit code</li>
     <li>exitStatus: The qt exit status</li>
     <li>terminate or kill: Stops the process</li>
-    </ul> 
+    </ul>
 	If workingDirectory is not set, the working directory will be inherited from the TeXstudio executable.
   </td></tr>
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
@@ -1063,7 +1067,7 @@ registerAsBackgroundScript("abc");                   //keep function valid
 ui.show();                                           //show dialog
 </pre> The dialog is described in an ui file which can be created with the Qt Designer. </li>
 </ul>
-<p>More examples can be found in the <a href='https://sourceforge.net/p/texstudio/wiki/Scripts/'>Wiki</a>.
+<p>More examples can be found in the <a href='https://github.com/texstudio-org/texstudio/wiki/Scripts'>Wiki</a>.
 <h3 id="sectionTriggers">4.5.4 Triggers</h3>
 <h4>4.5.4.1 Regular Expressions</h4>
 <p>In its simplest form, the trigger is simply a text, which is replaced by the macro.
@@ -1102,7 +1106,7 @@ triggerMatches[1] == 'a'
 <tr><td>?new-file</td><td>A new file is created</td></tr>
 <tr><td>?new-from-template</td><td>A new file is created from a template</td></tr>
 <tr><td>?load-file</td><td>A file is loaded</td></tr>
-<tr><td>?load-this-file</td><td>The file containing the macro is loaded (only makes sense, if the  script is defined as <a href="#SECTION_TEXCOM">magic comment</a>)</td></tr>
+<tr><td>?load-this-file</td><td>The file containing the macro is loaded (only makes sense, if the script is defined as <a href="#TEXCOM">magic comment</a>)</td></tr>
 <tr><td>?save-file</td><td>A file is saved</td></tr>
 <tr><td>?close-file</td><td>A file is closed</td></tr>
 <tr><td>?master-changed</td><td>A document is un/defined as master document</td></tr>
@@ -1231,7 +1235,7 @@ Launch qpdfview from TeXstudio: <span class="command">qpdfview --unique ?am.pdf#
 Launch TeXstudio from qpdfview: <span class="command">texstudio "%1" -line %2</span>
 </p>
 
-<h2 id="SECTION_TEXCOM">4.10 Advanced header usage</h2>
+<h2 id="TEXCOM">4.10 Advanced header usage</h2>
 <p>So called "magic comments" are a way to adapt the options of the editor on a per-document level. The concept was <a href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a> and has been adopted in a number of editors since. TeXstudio supports the following magic comments:</p>
 <ul class="magiccomments">
 <li>
@@ -1272,7 +1276,7 @@ Changes during an edit session will only take effect when you reopen the file.
 <p>The special <code>% !BIB program</code> command is understood for compatibility with TeXShop and TeXWorks (also in the variant <code>% !BIB TS-program</code>). This is equivalent to <code>% !TeX TXS-program:bibliography = txs:///biber</code></p>
 </li>
 </ul>
-<h2 id="SECTION38">4.11 Synopsis of the TeXstudio command</h2>
+<h2 id="TEXSTUDIO-CMD">4.11 Synopsis of the TeXstudio command</h2>
 <p>
 <code>texstudio file [--config DIR] [--root] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy] [--no-session]</code><br><br>
 <table>
@@ -1297,7 +1301,7 @@ Changes during an edit session will only take effect when you reopen the file.
 Note: The most common tests are run automatically, if there were changes to the executable (i.e. TXS has been compiled since the last run). Furthermore all tests are run once a week.
 </p>
 
-<h2 id="SECTION39">4.12 Keyboard shortcuts</h2>
+<h2 id="SHORTCUTS">4.12 Keyboard shortcuts</h2>
 <p>
 The keyboard shortcuts can be modified at Options -> Shortcuts.
 <p>
@@ -1476,7 +1480,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>key</code>:label/ref key</li>
   <li><code>label</code> with option <code>#r</code> or key ending with <code>%ref</code>:ref key</li>
   <li><code>label</code> with option <code>#l</code> or key ending with <code>%labeldef</code>:defines a label</li>
-  
+
   <li><code>labellist</code>:list of labels as employed by cleveref</li>
   <li><code>bib file</code> and <code>bib files</code>:bibliography file</li>
   <li><code>class</code>:document class</li>
@@ -1662,8 +1666,8 @@ println("\\end{"+env+"}")
 <p>Nevertheless, we decided that these features may be of interest for experiended users. As a compromise, we provide these features tentatively.</p>
 <p><strong>We do not guarantee any of this will still be working in future versions. Functionality may change or be removed without notice.</strong></p>
 
-<h2 id="ADVANCED-SCRIPTING">5.1 Advanced Skripting</h2>
-<p>You can modify the behavior or add new functionality using <a href="#JAVASCRIPT-MACROS">Script Macros</a>. The section above lists the core commands, but there are more commands which are not documented. A number of them are used in the <a href="https://sourceforge.net/p/texstudio/wiki/Scripts/">examples section in the wiki</a>. The names and signatures of these functions are directly bound to the internal C++ code of TeXstudio and thus may change as we further develop TeXstudio.</p>
+<h2 id="ADVANCED-SCRIPTING">5.1 Advanced Scripting</h2>
+<p>You can modify the behavior or add new functionality using <a href="#JAVASCRIPT-MACROS">Script Macros</a>. The section above lists the core commands, but there are more commands which are not documented. A number of them are used in the <a href="https://github.com/texstudio-org/texstudio/wiki/Scripts">examples section in the wiki</a>. The names and signatures of these functions are directly bound to the internal C++ code of TeXstudio and thus may change as we further develop TeXstudio.</p>
 
 <h2 id="STYLESHEETS">5.2 Style Sheets</h2>
 <p>Qt supports modifying the appearance of an application using <a href="http://doc.qt.io/qt-5/stylesheet-syntax.html">style sheets</a>. You may use this to adapt the GUI of the main window by placing a file <code>stylesheet.qss</code> into the settings directory. The file is read at program startup.</p>
@@ -1673,9 +1677,9 @@ println("\\end{"+env+"}")
 <h2 id="LANGUAGEDEF">5.3 Writing your own language definitions</h2>
 <p>TeXstudio uses QCodeEdit as editor component. It specifies languages in a special xml format named QNFA. This includes highlighting, parentheses (for matching) and code folding. In a normal TeXstudio installation you won't find any .qnfa files, because we compile the files of the included languages into the binary. You can add your own languages or overwrite the default ones by placing appropriate .qnfa files in a <code>languages</code> folder inside the settings directory. Definitions here take precedence over the builtin ones.</p>
 
-<p>The .qnfa file specifies the syntax of the language. The actual format information is specified in a .qxf file. You can either use the formats specified in <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">defaultFormats.qxf</a> or provide your own .qxf file along with the .qnfa file.<p>
+<p>The .qnfa file specifies the syntax of the language. The actual format information is specified in a .qxf file. You can either use the formats specified in <a href="https://github.com/texstudio-org/texstudio/tree/master/utilities/qxs">defaultFormats.qxf</a> or provide your own .qxf file along with the .qnfa file.<p>
 
-<p>You should read the <a href="http://texstudio.sourceforge.net/manual/qce/QNFA.html">syntax format specification</a> and have a look at the <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">formats shipped with TeXstudio</a>.<p>
+<p>You should read the <a href="http://texstudio.sourceforge.net/manual/qce/QNFA.html">syntax format specification</a> and have a look at the <a href="https://github.com/texstudio-org/texstudio/tree/master/utilities/qxs">formats shipped with TeXstudio</a>.<p>
 
 
 <p>Note: We expose the language specification to you as end-user to give you more flexibility in adapting TeXstudio to your needs. But you should take it as is, because we don't have the capacity to give support here. It's a powerful API, but neither polished nor fully featured. You might find some constructs in the shipped .qnfa files, which are not documented in the syntax format specification. Additionally, the regular-expression based formatting of QNFA is not sufficient to define all the highlighting we wanted for LaTeX. Therefore we have extra highlighting functionality directly implemented in the sourcecode for the "(La)TeX" language, e.g. the highlighting inside the parentheses of <code>\begin</code> and <code>\end</code>. You won't be able to modify this or add it to other languages.<p>
@@ -1733,8 +1737,8 @@ println("\\end{"+env+"}")
 <p>The results is the following highlighting:</p>
 <img src="format_example.png" border=1>
 
-<h1 id="SECTIONNEW">Changelog</h1>
+<h1 id="CHANGELOG">Changelog</h1>
 
-<p>The changelog can be found at <a href="http://texstudio.sourceforge.net/manual/current/CHANGELOG.txt">http://texstudio.sourceforge.net/manual/current/CHANGELOG.txt</a>.</p>
+<p>The changelog can be found in the <a href="https://github.com/texstudio-org/texstudio/blob/master/utilities/manual/CHANGELOG.txt">Github repository</a>.</p>
 
 </body></html>
