@@ -245,11 +245,43 @@ public:
 			if (reducedRange && words.count() > 10) {
 				my_curWord = words.at(10).word;
 			}
-			for (int j = curWordLength; (j < my_curWord.length() && j < myResult.length()); j++) {
-				if (myResult[j] != my_curWord[j]) {
-					myResult = myResult.left(j);
-				}
-			}
+
+
+            if(showMostUsed==2){
+                // as the list is unsorted, all words must be checked !!!
+                int j=0;
+                bool allIdentical=false;
+                for (j = 0; (j < my_curWord.length() && j < myResult.length()); j++) {
+                    for(const auto &cw : words){
+                        if(cw.word.length()<=j){
+                            allIdentical=false;
+                            break;
+                        }
+                        if(cw.word[j]!=myResult[j]){
+                            allIdentical=false;
+                            break;
+                        }
+                        allIdentical=true;
+                    }
+                    if(!allIdentical){
+                        break;
+                    }
+                }
+                if(!allIdentical){
+                    j=j-1;
+                }
+                if(j>0){
+                    myResult = myResult.left(j);
+                }else{
+                    return true;
+                }
+            }else{
+                for (int j = curWordLength; (j < my_curWord.length() && j < myResult.length()); j++) {
+                    if (myResult[j] != my_curWord[j]) {
+                        myResult = myResult.left(j);
+                    }
+                }
+            }
 
 			if (myResult.length() == curWordLength) {
 				return false;  // no common segment to complete
