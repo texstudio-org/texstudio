@@ -1,3 +1,9 @@
+TeXstudio 2.12.14
+----------------
+- fix bug that not all available GUI languages are shown
+- tweak fuzzy completer
+- fix template presentation
+
 TeXstudio 2.12.12
 ----------------
 - improve macro handling, provide gui that directly downloads macros from github.com/texstudio-org/texstudio-macro
