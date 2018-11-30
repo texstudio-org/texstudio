@@ -143,6 +143,20 @@ public:
 				editor->document()->endMacro();
 				return true;
 			}
+            // check whether cursor is inside math in case of automatic delimter insertion
+            // this is done here as the charcter format is used for detection and here we are sure that at least 1 character was used.
+            QString cwCmd=cw.word;
+            QRegExp rx("\\\\[a-zA-Z]+");
+            int pos=rx.indexIn(cwCmd);
+            if(pos>-1){
+                cwCmd=rx.cap(0);
+            }
+            bool inMath=false;
+            if(cw.lines.size()==1 && completer->latexParser.possibleCommands["math"].contains(cwCmd)){
+                LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
+                Q_ASSERT(view);
+                inMath=view->isInMathHighlighting(cursor);
+            }
 
 			for (int i = maxWritten - cursor.columnNumber(); i > 0; i--) cursor.deleteChar();
 
@@ -156,16 +170,8 @@ public:
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
 			CodeSnippet::PlaceholderMode phMode = (LatexCompleter::config && LatexCompleter::config->usePlaceholders) ? CodeSnippet::PlacehodersActive : CodeSnippet::PlaceholdersRemoved;
-            QString cwCmd=cw.word;
-            QRegExp rx("\\\\[a-zA-Z]+");
-            int pos=rx.indexIn(cwCmd);
-            if(pos>-1){
-                cwCmd=rx.cap(0);
-            }
+
             if(cw.lines.size()==1 && completer->latexParser.possibleCommands["math"].contains(cwCmd)){
-                LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
-                Q_ASSERT(view);
-                bool inMath=view->isInMathHighlighting(cursor);
                 if(!inMath && LatexCompleter::config && LatexCompleter::config->autoInsertMathDelimiters){
                     // add $$ to mathcommand outsiode math env
                     cw.lines.first().prepend("$");
