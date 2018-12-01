@@ -43,7 +43,7 @@
 \fsscrm
 \pch[number]
 \mch[number]
-\fpch[number
+\fpch[number]
 \fmch[number]
 \delp
 \delm
@@ -105,8 +105,8 @@
 
 \NewChemIUPAC{cs}{declaration}#*
 \ProvideChemIUPAC{cs}{declaration}#*
-RenewChemIUPAC{cs}{declaration}#*
-\DeclareCHemIUPAC{cs}{declaration}#*
+\RenewChemIUPAC{cs}{declaration}#*
+\DeclareChemIUPAC{cs}{declaration}#*
 \LetChemIUPAC{cs1}{cs2}#*
 \NewChemIUPACShorthand{shorthand token}{cs}#*
 \RenewChemIUPACShorthand{shorthand token}{cs}#*
@@ -195,7 +195,7 @@ RenewChemIUPAC{cs}{declaration}#*
 \sipnetwork
 \star
 
-\makepolymerdelims[otpions]{height}{opening node}{closing node}#*
+\makepolymerdelims[options]{height}{opening node}{closing node}#*
 
 
 # reactions-module
@@ -259,9 +259,9 @@ RenewChemIUPAC{cs}{declaration}#*
 \end{experimental}
 \data{type}[specification]#\experimental
 \data*{type}[specification]#\experimental
-\NMR{%<isotope%>,%<element%[%<coupling cores%>]}($<frequency%>,%<freq. unit%>)[%<solvent%>]#\experimental
-\J(%<bonds%>;%<nuceli%>)[%<unit%>]{%<num-list%>}#\experimental
-\J(%<bonds%>;%<nuceli%>){%<num-list%>}#\experimental
+\NMR{%<isotope%>,%<element%>[%<coupling cores%>]}(%<frequency%>,%<freq. unit%>)[%<solvent%>]#\experimental
+\J(%<bonds%>;%<nuclei%>)[%<unit%>]{%<num-list%>}#\experimental
+\J(%<bonds%>;%<nuclei%>){%<num-list%>}#\experimental
 \J[%<unit%>]{%<num-list%>}#\experimental
 \J{%<num-list%>}#\experimental
 \#{number of nuclei}#\experimental
@@ -311,9 +311,9 @@ RenewChemIUPAC{cs}{declaration}#*
 
 # units-module
 \atmosphere
-\atmosphere
+\atm
 \calory
-\calory
+\cal
 \cmc
 \molar
 \moLar

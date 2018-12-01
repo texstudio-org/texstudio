@@ -31,6 +31,7 @@
 <file>completion/caption.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/chemformula.cwl</file>
+<file>completion/chemmacros.cwl</file>
 <file>completion/chemstyle.cwl</file>
 <file>completion/circuitikz.cwl</file>
 <file>completion/cite.cwl</file>
