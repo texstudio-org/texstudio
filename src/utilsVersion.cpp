@@ -113,11 +113,11 @@ bool Version::operator >(const Version &other) const
     int lvl=3;
     if(type=="release candidate") lvl=2;
     if(type=="beta") lvl=1;
-    if(type=="development") lvl=0;
+    if(type=="development") lvl=4;
     int lvl_other=3;
     if(other.type=="release candidate") lvl_other=2;
     if(other.type=="beta") lvl_other=1;
-    if(other.type=="development") lvl_other=0;
+    if(other.type=="development") lvl_other=4;
     return lvl>lvl_other;
 }
 
