@@ -2164,7 +2164,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="3162"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Karmaşık</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3167"/>
@@ -4415,7 +4415,7 @@ Yardımcı komutu desteklemiyor</translation>
         <location filename="../src/latexcompleter.cpp" line="1283"/>
         <location filename="../src/latexcompleter.cpp" line="1293"/>
         <source>fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>karmaşık</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1284"/>
@@ -4896,17 +4896,17 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="43"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"/>
+        <translation>Depodaki makrolara gözat</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="145"/>
         <source>Browse macro repository</source>
-        <translation type="unfinished"/>
+        <translation>Makro deposuna gözat</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="146"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"/>
+        <translation>Depo bulunamadı. Ağ sorunu:%1</translation>
     </message>
 </context>
 <context>
@@ -5280,7 +5280,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2462"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Eşitlemede yok sayılsın</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2465"/>
@@ -7650,7 +7650,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="292"/>
         <source>Babel</source>
-        <translation type="unfinished"/>
+        <translation>Babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="313"/>
@@ -8352,12 +8352,12 @@ Bu betiğe güvenilsin mi?</translation>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"/>
+        <translation>Komut ekle</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
         <source>Insert unicode</source>
-        <translation type="unfinished"/>
+        <translation>Unikod ekle</translation>
     </message>
 </context>
 <context>
@@ -11735,32 +11735,32 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="77"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"/>
+        <translation>txs sitesinde önerilen makrolara gözat.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="80"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Gözat</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="87"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"/>
+        <translation>Makroyu dosya olarak dışa aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="90"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Dışa Aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="97"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"/>
+        <translation>Makroyu dosyadan içe aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="100"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>İçe Aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="117"/>
@@ -11770,7 +11770,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="128"/>
         <source>Folder</source>
-        <translation type="unfinished"/>
+        <translation>Klasör</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="145"/>
@@ -11877,68 +11877,68 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Kısayol</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="482"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F2</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="492"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="497"/>
         <location filename="../src/usermenudialog.ui" line="502"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F5</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="507"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F6</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="512"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F7</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="517"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F8</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="522"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F9</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="527"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F10</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="532"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F11</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="537"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F12</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="310"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Klasör boş değil.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="315"/>
@@ -11948,18 +11948,18 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
     <message>
         <location filename="../src/usermenudialog.cpp" line="394"/>
         <source>Import macro</source>
-        <translation type="unfinished"/>
+        <translation>Makroyu içe aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="394"/>
         <location filename="../src/usermenudialog.cpp" line="406"/>
         <source>txs macro files (*.txsMacro)</source>
-        <translation type="unfinished"/>
+        <translation>txs makro dosyaları (*.txsMacro)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="406"/>
         <source>Export macro</source>
-        <translation type="unfinished"/>
+        <translation>Makroyu dışa aktar</translation>
     </message>
 </context>
 <context>

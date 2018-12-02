@@ -2163,7 +2163,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3162"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>模糊</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3167"/>
@@ -3719,7 +3719,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1404"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"/>
+        <translation>PDF浏览器菜单</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1440"/>
@@ -4401,7 +4401,7 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="1283"/>
         <location filename="../src/latexcompleter.cpp" line="1293"/>
         <source>fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>模糊</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1284"/>
@@ -4518,7 +4518,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexstructure.cpp" line="203"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"/>
+        <translation>在附录</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="223"/>
@@ -5266,7 +5266,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2462"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"/>
+        <translation>忽略同步</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2465"/>
@@ -6225,7 +6225,9 @@ Press &quot;Ignore&quot; to ignore this warning.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+不能写入。错误代码 (%2): %3。
+如果该文件在磁盘上已存在，它将不能被此操作改变。</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1020"/>
@@ -8394,7 +8396,7 @@ Do you trust this script?</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>特殊</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="76"/>
