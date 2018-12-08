@@ -2577,14 +2577,14 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 						   it would introduce a newline into the word which changes its meaning.
 						*/
 
-						if (!d->m_hardLineWrap) {
+                        if (!d->m_hardLineWrap || isCJK) {
 							// agressive wrap inside the word
 							m_frontiers << qMakePair(idx, rx);
 							lastActualBreak = idx;
 							lastBreak = idx;
 							lastX = rx;
 							x = minx;
-						}
+                        }
 					} else {
 						Q_ASSERT(lastBreak <= idx);
 						Q_ASSERT(lastBreak > 0);
@@ -7267,7 +7267,7 @@ void QDocumentPrivate::setWidth(int width)
         return; // no change if width is not changed
     }
 
-	int oldConstraint = m_constrained;
+    bool oldConstraint = m_constrained;
 	m_constrained = width > 0 ;
 
 	if ( m_constrained || m_forceLineWrapCalculation )
