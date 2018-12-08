@@ -1136,7 +1136,7 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 			if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + lineTerm);
 			break;
 		default:
-			Q_ASSERT("Invalid metaLineCommand pos");
+            qDebug("Invalid metaLineCommand pos");
 		}
 
 	}
