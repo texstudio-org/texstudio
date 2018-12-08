@@ -8,7 +8,7 @@ class DblClickMenuBar : public QMenuBar
 	Q_OBJECT
 
 public:
-	explicit DblClickMenuBar(QWidget *parent = 0);
+    explicit DblClickMenuBar(QWidget *parent = nullptr);
 
 signals:
 	void doubleClicked(); // emitted when double clicking empty part of menu bar
