@@ -12,7 +12,7 @@
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 {
 #ifdef Q_OS_WIN
-	wchar_t d[path.size() + 1];
+    wchar_t* d = new wchar_t[path.size() + 1];
 	int len = path.toWCharArray(d);
 	d[len] = 0;
 
@@ -20,9 +20,11 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 	freeBytesToCaller.QuadPart = 0L;
 
 	if ( !GetDiskFreeSpaceEx( d, &freeBytesToCaller, NULL, NULL ) ) {
+        delete d;
 		qDebug() << "ERROR: Call to GetDiskFreeSpaceEx() failed on path" << path;
 		return false;
 	}
+    delete d;
 	freeBytes = freeBytesToCaller.QuadPart;
 	return true;
 #else

@@ -7793,7 +7793,7 @@ void Texstudio::previewLatex()
 	}
 	if (!previewc.hasSelection()) {
 		// special handling for cusor in the middle of \[ or \]
-		if (c.previousChar() == '\\' and (c.nextChar() == '[' || c.nextChar() == ']')) {
+        if (c.previousChar() == '\\' && (c.nextChar() == '[' || c.nextChar() == ']')) {
 			c.movePosition(1, QDocumentCursor::PreviousCharacter);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}

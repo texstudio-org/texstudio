@@ -16,8 +16,10 @@ void diffDocs(LatexDocument *doc, LatexDocument *doc2, bool dontAddLines)
 		dmp.diff_cleanupSemantic(diffList);
 	} catch (const char *c) {
 		if (c) error = QString(c);
+#ifndef _MSC_VER
 	} catch (char *c) {
 		if (c) error = QString(c);
+#endif
 	} catch (const QString &s) {
 		error = s;
 	} catch (...) {
