@@ -407,31 +407,34 @@ CONFIG(team):!CONFIG(build_pass) {
 }
 OTHER_FILES += universalinputdialog.*
 
-# add mercurial revision
+# add git revision
 exists(./.git)  {
   win32:isEmpty(MXE): {
     message(GIT)
-    QMAKE_PRE_LINK += \"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
-    LIBS += git_revision.o
+    system(\"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
+    SOURCES += src/git_revision.cpp
   } else {
     message(GIT)
     QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
     LIBS += git_revision.o
   }
 } else {
-  !exists(./git_revision.cpp){
+  !exists(src/git_revision.cpp){
     win32:isEmpty(MXE): system(echo const char * TEXSTUDIO_GIT_REVISION = 0; > src\git_revision.cpp)
     else: system(echo \"const char * TEXSTUDIO_GIT_REVISION = 0;\" > src/git_revision.cpp)
   }
   SOURCES += src/git_revision.cpp
 }
 
-#QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered -Wempty-body -Wsign-compare -Waddress -Wlogical-op -Winline
-QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline
-QMAKE_CXXFLAGS += -std=c++0x
-!win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
-else {
-  QMAKE_CXXFLAGS += -gstabs -g
-  QMAKE_LFLAGS -= -Wl,-s
-  QMAKE_LFLAGS_RELEASE -= -Wl,-s
+!win32-msvc*: {
+  QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline
+  QMAKE_CXXFLAGS += -std=c++0x
+  !win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
+  else {
+    QMAKE_CXXFLAGS += -gstabs -g
+    QMAKE_LFLAGS -= -Wl,-s
+    QMAKE_LFLAGS_RELEASE -= -Wl,-s
+  }
+} else {
+  DEFINES += _CRT_SECURE_NO_WARNINGS
 }

@@ -559,7 +559,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		bool replaceSelectedText = false;
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
 			replaceSelectedText = true;
-		} else if (m_regexp.pattern().contains("(?=") or m_regexp.pattern().contains("(?!")) {
+        } else if (m_regexp.pattern().contains("(?=") || m_regexp.pattern().contains("(?!")) {
 			// special handling for lookahead: The selected text is not enough to match the regexp
 			// because the lookahead context is missing. Therefore we have to find matches to the
 			// whole line until we find the original selection. Only then, we know that the original
