@@ -4,7 +4,7 @@
 #include "mostQtHeaders.h"
 
 
-class StructureEntry;
+struct StructureEntry;
 class Editors;
 class LatexDocuments;
 class LatexDocument;

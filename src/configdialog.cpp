@@ -244,7 +244,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 				if (UtilsUi::txsConfirmWarning(QString(ConfigDialog::tr("The shortcut <%1> is already assigned to the command:")).arg(value) + "\n" + duplicate + "\n\n" + ConfigDialog::tr("Do you wish to remove the old assignment and bind the shortcut to the new command?"))) {
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					foreach (QTreeWidgetItem *twi, li) {
-                        if (twi && twi->text(2) == value) twi->setText(2, "");
+						if (twi && twi->text(2) == value) twi->setText(2, "");
 					}
 				} else {
 					return;
