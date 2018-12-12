@@ -1,0 +1,99 @@
+set(INC_DIRECTORIES
+	${INC_DIRECTORIES}
+	${CMAKE_CURRENT_SOURCE_DIR}/lib
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/document
+	#${CMAKE_CURRENT_SOURCE_DIR}/lib/language
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa
+	${CMAKE_CURRENT_SOURCE_DIR}
+	PARENT_SCOPE
+)
+set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -D_QCODE_EDIT_BUILD_ -DQNFA_BUILD PARENT_SCOPE)
+
+set(HEADER_FILES ${HEADER_FILES}
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditor.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditorfactory.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qcodeedit.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qpanellayout.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformatfactory.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformatscheme.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qlinemarksinfocenter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qreliablefilewatch.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditorinputbinding.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditorinputbindinginterface.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformat.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocument.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocument_p.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentcommand.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentcursor.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentline.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentsearch.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qcodecompletionengine.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qlanguagedefinition.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qlanguagefactory.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qpanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qlinenumberpanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qlinemarkpanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qlinechangepanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qfoldpanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qstatuspanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsearchreplacepanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinedialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinepanel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qeditconfig.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qformatconfig.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsimplecolorpicker.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qcalltip.h
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfa.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfadefinition.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/light_vector.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/xml2qnfa.h
+	PARENT_SCOPE
+)
+
+set(SOURCE_FILES ${SOURCE_FILES}
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditorfactory.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qcodeedit.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qpanellayout.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformatscheme.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qlinemarksinfocenter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qreliablefilewatch.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditorinputbinding.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformat.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocument.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentcommand.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentcursor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentcursor_p.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentline.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentline_p.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/document/qdocumentsearch.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qcodecompletionengine.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qlanguagedefinition.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qlanguagefactory.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qpanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qlinenumberpanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qlinemarkpanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qlinechangepanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qfoldpanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qstatuspanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsearchreplacepanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinedialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinepanel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qeditconfig.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qformatconfig.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsimplecolorpicker.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qcalltip.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfa.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfadefinition.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/xml2qnfa.cpp
+    PARENT_SCOPE
+)
+
+set(FORM_FILES ${FORM_FILES}
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/gotoline.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/gotolinedialog.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/editconfig.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/formatconfig.ui
+    PARENT_SCOPE
+)

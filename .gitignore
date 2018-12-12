@@ -11,3 +11,4 @@ translation/.tx/
 hg_revision.cpp
 src/git_revision.cpp
 cov-int/
+CMakeLists.txt.user
