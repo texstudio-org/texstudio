@@ -164,6 +164,7 @@
 <file>completion/scrtime.cwl</file>
 <file>completion/secsty.cwl</file>
 <file>completion/setspace.cwl</file>
+<file>completion/shellesc.cwl</file>
 <file>completion/siunitx.cwl</file>
 <file>completion/siunitx-special.cwl</file>
 <file>completion/subcaption.cwl</file>
