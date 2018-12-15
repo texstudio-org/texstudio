@@ -5288,7 +5288,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	    cutBuffer.clear();
 	} else {
 	    copiedCursor.insertText(autoBracket);
-	    addPlaceHolder(ph);
+        if(!autoBracket.startsWith('\\')){ // don't set placeholder for commands e.g. \} or \left as it pretty much inhibits enterring normal commands
+            addPlaceHolder(ph);
+        }
 	    c.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
 	}
     }
