@@ -241,6 +241,7 @@ bool Macro::save(const QString &fileName) const {
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
     QTextStream out(&file);
+    out.setCodec("UTF-8");
     QString tag= typedTag();
 
     out << "{\n" ;
@@ -280,6 +281,7 @@ bool Macro::load(const QString &fileName){
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
     QTextStream in(&file);
+    in.setCodec("UTF-8");
     QString text=in.readAll();
     return loadFromText(text);
 }
