@@ -31,7 +31,7 @@ header=#text
 \begin{Vote}
 \vote{text}{yes}{no}{-}[text]
 \end{Vote}
-\decisionTheme{ref%labeldef}{title}
+\decisiontheme{ref%labeldef}{title}
 \decision{ref%ref}{text}[longText%text]
 \listofdecisions
 \begin{Argumentation}
