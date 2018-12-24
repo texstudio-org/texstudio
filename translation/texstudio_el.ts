@@ -3034,7 +3034,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="13"/>
         <source>&amp;List Environments</source>
-        <translation>&amp;List Environments</translation>
+        <translation>&amp;Περιβάλλοντα Λίστας</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="14"/>
@@ -4267,7 +4267,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation>Εδώ (Ε)</translation>
+        <translation>Εδώ (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -6060,7 +6060,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1445"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>Αποκο&amp;πή</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
@@ -8973,7 +8973,7 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation>(La)TeX Macro</translation>
+        <translation>Μακροεντολές (La)TeX</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="256"/>
@@ -8996,7 +8996,7 @@ failed.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="2036"/>
         <source>Edit &amp;Macros...</source>
-        <translation>Επεξεργασία &amp;Macros...</translation>
+        <translation>Επεξεργασία &amp;Μακροεντολών...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="340"/>
@@ -9584,12 +9584,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="904"/>
         <source>Pas&amp;te as LaTeX</source>
-        <translation type="unfinished"/>
+        <translation>Επικό&amp;λληση ως LaTeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="905"/>
         <source>Co&amp;nvert to LaTeX</source>
-        <translation type="unfinished"/>
+        <translation>Με&amp;τατροπή σε LaTeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="906"/>
@@ -10170,7 +10170,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1113"/>
         <source>Ma&amp;cros</source>
-        <translation>Ma&amp;cros</translation>
+        <translation>Μα&amp;κροεντολές</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1119"/>
@@ -10329,7 +10329,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1210"/>
         <source>&amp;Configure TeXstudio...</source>
-        <translation>&amp;Ρύθμιση TeXstudio...</translation>
+        <translation>&amp;Ρυθμίσεις TeXstudio...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1213"/>
@@ -11626,7 +11626,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="19"/>
         <source>Edit Macros</source>
-        <translation>Επεξεργασία εντολών Macros</translation>
+        <translation>Επεξεργασία Μακροεντολών</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="77"/>
@@ -11828,7 +11828,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="315"/>
         <source>Do you really want to delete the current macro?</source>
-        <translation>Θέλετε σίγουρα να διαγράψετε τις υπάρχουσες εντολές macro;</translation>
+        <translation>Θέλετε σίγουρα να διαγράψετε τις υπάρχουσες μακροεντολές;</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="394"/>
