@@ -25,8 +25,12 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 		JOBS=$(grep '^processor' /proc/cpuinfo | wc -l)
 
 		print_info "Adding pkg.mxe.cc apt repo"
-		echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mxeapt.list > /dev/null
-		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB
+		sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86B72ED9
+		#sudo add-apt-repository 'deb [arch=amd64] http://mirror.mxe.cc/repos/apt trusty main'
+		# or https for xenial
+		sudo add-apt-repository 'deb [arch=amd64] https://mirror.mxe.cc/repos/apt xenial main'
+		#echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mxeapt.list > /dev/null
+		#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB
 		print_info "Updating apt cache"
 		echo_and_run "sudo apt-get -qq update"
 
