@@ -24,6 +24,7 @@ public:
 	bool usePlaceholders;
 	int tabRelFontSizePercent;
     bool autoInsertMathDelimiters;
+    QString startMathDelimiter,stopMathDelimiter;
     enum PreferedCompletionTab {CPC_TYPICAL, CPC_MOSTUSED, CPC_FUZZY, CPC_ALL};
 	PreferedCompletionTab preferedCompletionTab;
 	CodeSnippetList words;

@@ -174,8 +174,8 @@ public:
             if(cw.lines.size()==1 && completer->latexParser.possibleCommands["math"].contains(cwCmd)){
                 if(!inMath && LatexCompleter::config && LatexCompleter::config->autoInsertMathDelimiters){
                     // add $$ to mathcommand outsiode math env
-                    cw.lines.first().prepend("$");
-                    cw.lines.first().append("$");
+                    cw.lines.first().prepend(LatexCompleter::config->startMathDelimiter);
+                    cw.lines.first().append(LatexCompleter::config->stopMathDelimiter);
                     // move cursors
                     if(cw.cursorOffset>-1) cw.cursorOffset++;
                     if(cw.anchorOffset>-1) cw.anchorOffset++;

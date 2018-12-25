@@ -578,6 +578,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Completion Prefered Tab", (int *)&completerConfig->preferedCompletionTab, 0, &pseudoDialog->comboBoxPreferedTab);
 	registerOption("Editor/Completion Tab Relative Font Size Percent", &completerConfig->tabRelFontSizePercent, 100, &pseudoDialog->spinBoxTabRelFontSize);
     registerOption("Editor/Completion Auto Insert Math", &completerConfig->autoInsertMathDelimiters, true, &pseudoDialog->checkBoxAutoInsertMathDelimiters);
+    registerOption("Editor/Completion Auto Insert Math Start", &completerConfig->startMathDelimiter,"$");
+    registerOption("Editor/Completion Auto Insert Math Stop", &completerConfig->stopMathDelimiter,"$");
 
 
 	registerOption("Editor/Auto Insert LRM", &editorConfig->autoInsertLRM, false, &pseudoDialog->checkBoxAutoLRM);
