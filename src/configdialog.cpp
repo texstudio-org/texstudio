@@ -989,8 +989,11 @@ void ConfigDialog::actionsChanged(int actionClass)
 	}
 
 	const QList<QMenu *> &menus = (actionClass == 0) ? standardToolbarMenus : allMenus;
-	foreach (const QMenu *menu, menus)
+    foreach (const QMenu *menu, menus){
+        if(menu->objectName().startsWith("pdf"))
+            continue; // filter out menus for pdf viewer
         populatePossibleActions(nullptr, menu, actionClass != 0);
+    }
 }
 
 void ConfigDialog::toToolbarClicked()
