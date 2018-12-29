@@ -41,7 +41,6 @@
         <file>tags/brackets_tags.xml</file>
         <file>tags/metapost_tags.xml</file>
         <file>tags/pstricks_tags.xml</file>
-        <file>tags/tikz_tags.xml</file>
         <file>images/masterdoc.png</file>
         <file>images/down-arrow-circle-silver.png</file>
         <file>images/up-arrow-circle-silver.png</file>
@@ -78,5 +77,6 @@
         <file>images/beamer/Szeged.png</file>
         <file>images/beamer/Warsaw.png</file>
         <file>tags/beamer_tags.xml</file>
+        <file>tags/xymatrix_tags.xml</file>
     </qresource>
 </RCC>
