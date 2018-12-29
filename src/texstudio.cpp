@@ -607,6 +607,7 @@ void Texstudio::setupDockWidgets()
 	addTagList("tikz", getRealIconFile("tikz"), tr("Tikz Commands"), "tikz_tags.xml");
 	addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
     addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
+    addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
 
 	leftPanel->showWidgets();
 
@@ -7793,7 +7794,7 @@ void Texstudio::previewLatex()
 	}
 	if (!previewc.hasSelection()) {
 		// special handling for cusor in the middle of \[ or \]
-		if (c.previousChar() == '\\' && (c.nextChar() == '[' || c.nextChar() == ']')) {
+		if (c.previousChar() == '\\' and (c.nextChar() == '[' || c.nextChar() == ']')) {
 			c.movePosition(1, QDocumentCursor::PreviousCharacter);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
