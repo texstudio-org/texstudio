@@ -1706,7 +1706,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="2305"/>
         <source>Select Line</source>
-        <translation>Sélectionner &amp;ligne</translation>
+        <translation>Sélectionner ligne</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2313"/>
@@ -2155,7 +2155,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="3152"/>
         <source>Typical</source>
-        <translation>Typiques</translation>
+        <translation>Typique</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3157"/>
@@ -2175,7 +2175,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="3190"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation>Si une commande mathématique est entré via complétion en dehors d&apos;un environnement mathématique, $$ est inséré automatiquement.</translation>
+        <translation>Si une commande mathématique est entrée via complétion en dehors d&apos;un environnement mathématique, $$ est inséré automatiquement.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3193"/>
@@ -4403,7 +4403,7 @@ l&apos;assistant ne supporte pas la commande</translation>
         <location filename="../src/latexcompleter.cpp" line="1281"/>
         <location filename="../src/latexcompleter.cpp" line="1291"/>
         <source>typical</source>
-        <translation>Typiques</translation>
+        <translation>Typique</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1282"/>
@@ -9791,7 +9791,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="938"/>
         <source>Select Line</source>
-        <translation>Sélectionner &amp;ligne</translation>
+        <translation>Sélectionner ligne</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="939"/>

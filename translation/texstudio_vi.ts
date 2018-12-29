@@ -1071,7 +1071,7 @@ thêm vào trước &lt;b&gt;c:&lt;/b&gt; cho tệp hiện tại thay vì tệp 
     <message>
         <location filename="../src/configdialog.ui" line="948"/>
         <source>Commands ($PATH)</source>
-        <translation type="unfinished"/>
+        <translation>Lệnh ($PATH)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="955"/>
@@ -1178,7 +1178,7 @@ Sau đó, bạn có thể chọn một phím tắt mới theo một trong các c
     <message>
         <location filename="../src/configdialog.ui" line="1137"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"/>
+        <translation>Thoát xem bản ghi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1144"/>
@@ -1188,7 +1188,7 @@ Sau đó, bạn có thể chọn một phím tắt mới theo một trong các c
     <message>
         <location filename="../src/configdialog.ui" line="1151"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Thoát chế độ toàn màn hình</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1161"/>
@@ -1616,12 +1616,12 @@ Sau đó, bạn có thể chọn một phím tắt mới theo một trong các c
     <message>
         <location filename="../src/configdialog.ui" line="2175"/>
         <source>1 minute</source>
-        <translation type="unfinished"/>
+        <translation>1 phút</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2180"/>
         <source>2 minutes</source>
-        <translation type="unfinished"/>
+        <translation>2 phút</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2185"/>
@@ -2200,7 +2200,7 @@ của chúng bằng cách kích hoạt tại đây.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3279"/>
         <source>Spell Check</source>
-        <translation type="unfinished"/>
+        <translation>Kiểm tra chính tả</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3285"/>
