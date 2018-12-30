@@ -58,7 +58,7 @@ graphs
 fadings
 decorations
 automata
-background
+backgrounds
 calc
 calendar
 chains
