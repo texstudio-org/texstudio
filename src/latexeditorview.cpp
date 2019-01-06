@@ -2185,7 +2185,7 @@ void LatexEditorView::addSpellingActions(QMenu *menu, QString word, bool dedicat
 	QStringList suggestions = speller->suggest(word);
 	addReplaceActions(menu, suggestions, false);
 
-	QAction *act = new QAction(LatexEditorView::tr("Add to Dictionary"), menu);
+	QAction *act = new QAction(LatexEditorView::tr("Add to Ignore List"), menu);
 	connect(act, SIGNAL(triggered()), this, SLOT(spellCheckingAlwaysIgnore()));
 	if (dedicatedMenu) {
 		menu->addSeparator();
