@@ -3316,7 +3316,7 @@ them here.</string>
               <item row="0" column="1" colspan="4">
                <widget class="QLineEdit" name="leDictDir">
                 <property name="toolTip">
-                 <string>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</string>
+                 <string>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</string>
                 </property>
                </widget>
               </item>
