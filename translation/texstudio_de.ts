@@ -536,12 +536,12 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="337"/>
         <source>Makeglossaries</source>
-        <translation>Makeglossaries</translation>
+        <translation>Erstelle Glossar</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="338"/>
         <source>Default Glossary Tool</source>
-        <translation>Standard Glossary Programm</translation>
+        <translation>Standard Glossar Programm</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="348"/>
