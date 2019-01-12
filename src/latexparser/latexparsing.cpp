@@ -840,6 +840,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 	if (!searchTokens)
 		return QString();
 
+    bool skipOptionalArgument=false;
     int cnt=0;
 	int k = 0;
     int level=1;
@@ -851,8 +852,16 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
         foreach (Token tk,tl) {
             if(tk.level>level)
                 continue; //only use tokens from the same option-level
-
-
+            if(tk.level<level){
+                // something wrong with the parsed arguments, abort procedure
+                return "";
+            }
+            if(skipOptionalArgument) {
+                if(tk.type==Token::closeSquareBracket && tk.level==level){
+                    skipOptionalArgument=false;
+                }
+                continue;
+            }
             if (searchTokens->contains(tk.type)) {
                 if(tk.argLevel==-1)
                     continue; // token is part of argument
@@ -885,6 +894,11 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
                 if (type==ArgumentList::MandatoryWithBraces && tk.type!=Token::squareBracket){
                     //mandatorywithbraces can't have other arguments except optional
                     return QString();
+                }
+                if (type==ArgumentList::Mandatory && tk.type==Token::openSquare && tk.level==level){
+                    // gracefully jump over multiline optional argument
+                    skipOptionalArgument=true;
+                    break; // skip rest of current line as close squareBracket can't be in there
                 }
 			}
         }
