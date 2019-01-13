@@ -654,6 +654,14 @@ void LatexParsingTest::test_getArg2_data() {
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
                                             << (QStringList() <<"  te asdasd");
+    QTest::newRow("text command, multi-line with optional arg") << "\\usepackage[abc,\n cde]\n{hyperref}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"hyperref");
+    QTest::newRow("text command, multi-line with optional arg with unknown command") << "\\usepackage[abc,\n \\cde]\n{hyperref}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"hyperref");
 
 }
 
