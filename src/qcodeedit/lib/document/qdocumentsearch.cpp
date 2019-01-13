@@ -655,6 +655,11 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		int coloffset = 0;
 		QString s = l.text();
 
+        if ( bounded ) {
+            // update boundaries as scope is changed when changing text
+            boundaries = scope.selection();
+        }
+
 		if ( backward )
 		{
 			if ( bounded && (boundaries.startLine == ln) )

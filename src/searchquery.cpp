@@ -120,7 +120,7 @@ void SearchQuery::replaceAll()
 		QDocumentCursor *cur = new QDocumentCursor(doc);
 		for (int i = 0; i < search.checked.size(); i++) {
 			if (search.checked.value(i, false)) {
-				QDocumentLineHandle *dlh = search.lines.value(i, 0);
+                QDocumentLineHandle *dlh = search.lines.value(i, nullptr);
 				if (dlh) {
 					if (isReg) {
 						QRegExp rx(searchExpression(), isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);
