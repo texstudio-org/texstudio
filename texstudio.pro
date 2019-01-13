@@ -390,23 +390,6 @@ freebsd-* {
     message("tests disabled as you wish.")
 }
 
-
-# ###############################
-# add files to svn if team is set
-CONFIG(team):!CONFIG(build_pass) {
-    SVNPREPATH = ./
-    SVNPATH = /.svn/text-base/
-    SVNEXT = .svn-base
-    ALLFILES = $${HEADERS}
-    ALLFILES += $${SOURCES}
-    ALLFILES += $${FORMS}
-    for(filename, ALLFILES):!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) {
-        warning($${filename} not contained in svn base will be added)
-        system(svn add $${filename})
-    }
-}
-OTHER_FILES += universalinputdialog.*
-
 # add git revision
 exists(./.git)  {
   win32:isEmpty(MXE): {
