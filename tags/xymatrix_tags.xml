@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <texmakertags title="XY matrix">
+<section title="Package">
+<item txt="load XY package" tag="\\usepackage[all]{xy}"/>
+</section>
 <section title="Exact Sequences">
 <item txt="empty" tag="\\xymatrix{%&lt;%>}"/>
 <item txt="long" tag="\\xymatrix{\\cdots\\ar[r] &amp; %&lt;A%> \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[r] &amp; \\cdots}"/>
