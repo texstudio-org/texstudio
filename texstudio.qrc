@@ -42,6 +42,7 @@
         <file>tags/metapost_tags.xml</file>
         <file>tags/pstricks_tags.xml</file>
         <file>tags/tikz_tags.xml</file>
+        <file>tags/xymatrix_tags.xml</file>
         <file>images/masterdoc.png</file>
         <file>images/down-arrow-circle-silver.png</file>
         <file>images/up-arrow-circle-silver.png</file>

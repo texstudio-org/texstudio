@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texmakertags title="XY matrix">
+<section title="Exact Sequences">
+<item txt="empty" tag="\\xymatrix{%&lt;%>}"/>
+<item txt="long" tag="\\xymatrix{\\cdots\\ar[r] &amp; %&lt;A%> \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[r] &amp; \\cdots}"/>
+<item txt="short" tag="\\xymatrix{0 \\ar[r] &amp; %&lt;A%> \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[r]^-{%&lt;g%>} &amp; %&lt;C%> \\ar[r] &amp; 0}"/>
+<item txt="long ladder" tag="\\xymatrix{%\\  \\cdots \\ar[r] &amp; %&lt;A%> \\ar[d]_-{%&lt;\\alpha%>} \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[d]^-{%&lt;\\beta%>} \\ar[r] &amp; \\cdots \\\\%\\  \\cdots \\ar[r] &amp; %&lt;A'%> \\ar[r]_-{%&lt;f'%>} &amp; %&lt;B'%> \\ar[r] &amp; \\cdots%\\}"/>
+<item txt="short ladder" tag="\\xymatrix{%\\  0 \\ar[r] &amp; %&lt;A%> \\ar[d]_-{%&lt;\\alpha%>} \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[d]_-{%&lt;\\beta%>} \\ar[r]^-{%&lt;g%>} &amp; %&lt;C%> \\ar[d]^-{%&lt;\\gamma%>} \\ar[r] &amp; 0 \\\\%\\  0 \\ar[r] &amp; %&lt;A'%> \\ar[r]_-{%&lt;f'%>} &amp; %&lt;B'%> \\ar[r]_-{%&lt;g'%>} &amp; %&lt;C'%> \\ar[r] &amp; 0%\\}"/>
+</section>
+<section title="Squares">
+<item txt="only grid" tag="\\xymatrix{%\\  %&lt;A%> &amp; %&lt;B%> \\\\%\\  %&lt;C%> &amp; %&lt;D%>%\\}"/>
+<item txt="pullback" tag="\\xymatrix{%\\  %&lt;P%> \\ar[d]_-{%&lt;p_1%>} \\ar[r]^-{%&lt;p_2%>} &amp; %&lt;Y%> \\ar[d]^-{%&lt;g%>} \\\\%\\  %&lt;X%> \\ar[r]_-{%&lt;f%>} &amp; %&lt;Z%>%\\}"/>
+<item txt="pushout" tag="\\xymatrix{%\\  %&lt;P%> &amp; %&lt;Y%> \ar[l]_-{%&lt;i_2%>} \\\\%\\  %&lt;X%> \ar[u]^-{%&lt;i_1%>} &amp; %&lt;Z%> \ar[l]^-{%&lt;f%>} \ar[u]_-{%&lt;g%>}%\\}"/>
+<item txt="pullback (universal property)" tag="\\xymatrix{%\\  %&lt;Q%> \\ar@/_3ex/[ddr]_-{%&lt;q_1%>} \\ar@/^3ex/[rrd]^-{%&lt;q_2%>} \\ar@{-->}[rd]|-{%&lt;u%>}\\\\%\\  &amp; %&lt;P%> \\ar[d]_-{%&lt;p_1%>} \\ar[r]^-{%&lt;p_2%>} &amp; %&lt;Y%> \\ar[d]^-{%&lt;g%>} \\\\%\\  &amp; %&lt;X%> \\ar[r]_-{%&lt;f%>} &amp; %&lt;Z%>%\\}"/>
+<item txt="pushout (universal property)" tag="\\xymatrix{%\\  %&lt;Q%> \\\\%\\  &amp; %&lt;P%> \\ar@{-->}[ul]|-{%&lt;u%>} &amp; %&lt;Y%> \ar[l]_-{%&lt;i_2%>} \\ar@/_3ex/[ull]_-{%&lt;j_2%>} \\\\%\\  &amp; %&lt;X%> \ar[u]^-{%&lt;i_1%>} \\ar@/^3ex/[luu]^-{%&lt;j_1%>} &amp; %&lt;Z%> \ar[l]^-{%&lt;f%>} \ar[u]_-{%&lt;g%>}%\\}"/>
+<!--
+<item txt="up left -&gt down right" tag="\\xymatrix{A &amp; B \\ar[l]_-{f} \\\\ A' \\ar[u]^-{\\alpha} &amp; B' \\ar[l]^-{f'} \\ar[u]_-{\\beta}}"/>
+<item txt="up left &lt- down right" tag="\\xymatrix{A \\ar[dr]_-{h} \\ar[r]^-{f} &amp; B \\ar[d]^-{g} \\\\ &amp; C}"/>
+-->
+</section>
+<section title="Triangles">
+<item txt="right down" tag="\\xymatrix{%\\  %&lt;A%> \\ar[dr]_-{%&lt;h%>} \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[d]^-{%&lt;g%>} \\\\%\\  &amp; %&lt;C%>%\\}"/>
+<item txt="down right" tag="\\xymatrix{%\\  %&lt;A%> \\ar[d]_-{%&lt;f%>} \\ar[rd]^-{%&lt;h%>} \\\\%\\  %&lt;B%> \\ar[r]_-{%&lt;g%>} &amp; %&lt;C%>%\\}"/>
+<item txt="up left" tag="\\xymatrix{%\\  %&lt;C%> &amp; %&lt;B%> \\ar[l]_-{%&lt;g%>} \\\\%\\  &amp; %&lt;A%> \\ar[ul]^-{%&lt;h%>} \\ar[u]_-{%&lt;f%>}%\\}"/>
+<item txt="left up" tag="\\xymatrix{%\\  %&lt;C%> &amp; \\\\%\\  %&lt;B%> \\ar[u]^-{%&lt;g%>} &amp; %&lt;A%> \\ar[ul]_-{%&lt;h%>} \\ar[l]^-{%&lt;f%>}%\\}"/>
+<!--
+<item txt="" tag="\\xymatrix{%\\  A \\ar[d]_-{f} \\ar[r]^-{h} &amp; C \\\\%\\  B \\ar[ru]_-{g}%\\}"/>
+<item txt="" tag="\\xymatrix{%\\  A \\ar[dr]_-{f} \\ar[r]^-{h} &amp; C \\\\%\\  &amp; B \\ar[u]_-{g}%\\}"/>
+-->
+</section>
+<section title="Arrows (default style)">
+<item txt="right" tag="\\ar[r]^-{%&lt;label%>}"/>
+<item txt="left" tag="\\ar[l]_-{%&lt;label%>}"/>
+<item txt="up" tag="\\ar[u]^-{%&lt;label%>}"/>
+<item txt="down" tag="\\ar[d]_-{%&lt;label%>}"/>
+<item txt="up right" tag="\\ar[ur]^-{%&lt;label%>}"/>
+<item txt="up left" tag="\\ar[ul]^-{%&lt;label%>}"/>
+<item txt="down right" tag="\\ar[dr]^-{%&lt;label%>}"/>
+<item txt="down left" tag="\\ar[dl]^-{%&lt;label%>}"/>
+</section>
+<section title="Arrow Styles">
+<item txt="empty" tag="\\ar@{}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="solid (default)" tag="\\ar@{->}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="dashed" tag="\\ar@{-->}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="dotted" tag="\\ar@{.>}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="double" tag="\\ar@{=>}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="wave" tag="\\ar@{~>}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="solid no tip" tag="\\ar@{-}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="dashed no tip" tag="\\ar@{--}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="dotted no tip" tag="\\ar@{.}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="double no tip" tag="\\ar@{=}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="wave no tip" tag="\\ar@{~}[%&lt;dir%>]^-{%&lt;label%>}"/>
+</section>
+<section title="Curved Arrows">
+<item txt="over" tag="\\ar@/^%&lt;1ex%>/[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="under" tag="\\ar@/_%&lt;1ex%>/[%&lt;dir%>]^-{%&lt;label%>}"/>
+</section>
+</texmakertags>
