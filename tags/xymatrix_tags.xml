@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <texmakertags title="XY matrix">
-<section title="Package">
-<item txt="load XY package" tag="\\usepackage[all]{xy}"/>
+<section title="General">
+<item txt="\\usepackage[all]{xy} (on preamble)" tag="\\usepackage[all]{xy}"/>
+<item txt="empty" tag="\\xymatrix{%&lt;%>}"/>
+<item txt="right map" tag="\\xymatrix{%&lt;A%> \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%>}"/>
+<item txt="left map" tag="\\xymatrix{%&lt;A%> &amp; %&lt;B%> \\ar[l]_-{%&lt;f%>}}"/>
+<item txt="down map" tag="\\xymatrix{%&lt;A%> \\ar[d]_-{%&lt;f%>} \\\\ %&lt;B%>}"/>
+<item txt="up map" tag="\\xymatrix{%&lt;A%> \\\\ %&lt;B%> \\ar[u]^-{%&lt;f%>}}"/>
 </section>
 <section title="Exact Sequences">
-<item txt="empty" tag="\\xymatrix{%&lt;%>}"/>
 <item txt="long" tag="\\xymatrix{\\cdots\\ar[r] &amp; %&lt;A%> \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[r] &amp; \\cdots}"/>
 <item txt="short" tag="\\xymatrix{0 \\ar[r] &amp; %&lt;A%> \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[r]^-{%&lt;g%>} &amp; %&lt;C%> \\ar[r] &amp; 0}"/>
 <item txt="long ladder" tag="\\xymatrix{%\\  \\cdots \\ar[r] &amp; %&lt;A%> \\ar[d]_-{%&lt;\\alpha%>} \\ar[r]^-{%&lt;f%>} &amp; %&lt;B%> \\ar[d]^-{%&lt;\\beta%>} \\ar[r] &amp; \\cdots \\\\%\\  \\cdots \\ar[r] &amp; %&lt;A'%> \\ar[r]_-{%&lt;f'%>} &amp; %&lt;B'%> \\ar[r] &amp; \\cdots%\\}"/>
@@ -42,7 +46,7 @@
 <item txt="down left" tag="\\ar[dl]^-{%&lt;label%>}"/>
 </section>
 <section title="Arrow Styles">
-<item txt="empty" tag="\\ar@{}[%&lt;dir%>]^-{%&lt;label%>}"/>
+<item txt="blank" tag="\\ar@{}[%&lt;dir%>]^-{%&lt;label%>}"/>
 <item txt="solid (default)" tag="\\ar@{->}[%&lt;dir%>]^-{%&lt;label%>}"/>
 <item txt="dashed" tag="\\ar@{-->}[%&lt;dir%>]^-{%&lt;label%>}"/>
 <item txt="dotted" tag="\\ar@{.>}[%&lt;dir%>]^-{%&lt;label%>}"/>
