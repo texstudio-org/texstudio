@@ -8,6 +8,7 @@ matrix:
     os: linux
   - env: QT=qt5
     os: linux
+    services: xvfb
   - env: QT=qt5NoPoppler
     os: linux
   - env: QT=qt5Release
