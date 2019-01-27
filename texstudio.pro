@@ -49,6 +49,7 @@ RESOURCES += texstudio.qrc \
 
 
 TRANSLATIONS += translation/texstudio_ar.ts \
+    translation/texstudio_br.ts \
     translation/texstudio_cs.ts \
     translation/texstudio_de.ts \
     translation/texstudio_el.ts \
@@ -128,6 +129,7 @@ unix {
     utilities.files += utilities/latex2e.html \
         utilities/latex2e.css \
         translation/texstudio_ar.qm \
+        translation/texstudio_br.qm \
         translation/texstudio_cs.qm \
         translation/texstudio_de.qm \
         translation/texstudio_el.qm \
