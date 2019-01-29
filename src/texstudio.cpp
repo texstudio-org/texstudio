@@ -80,6 +80,8 @@
 
 #include "qnfadefinition.h"
 
+#include "PDFDocument_config.h"
+
 /*! \file texstudio.cpp
  * contains the GUI definition as well as some helper functions
  */
@@ -396,6 +398,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	if (!configManager.rememberFileFilter)
 		selectedFileFilter = filters.first();
 
+    enlargedViewer=false;
 
 	//setup autosave timer
 	connect(&autosaveTimer, SIGNAL(timeout()), this, SLOT(fileSaveAll()));
@@ -10331,6 +10334,12 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 		return;
 	sidePanelSplitter->hide();
 	configManager.viewerEnlarged = true;
+    PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
+    if(!enlargedViewer){
+        rememberFollowFromScroll=pdfConfig->followFromScroll;
+    }
+    enlargedViewer=true;
+    pdfConfig->followFromScroll=false;
 	viewer->setStateEnlarged(true);
 #endif
 }
@@ -10350,6 +10359,11 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 	PDFDocument *viewer = oldPDFs.first();
 	if (!viewer->embeddedMode)
 		return;
+    if(enlargedViewer){
+        PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
+        pdfConfig->followFromScroll=rememberFollowFromScroll;
+        enlargedViewer=false;
+    }
 	viewer->setStateEnlarged(false);
 #endif
 }

@@ -628,6 +628,8 @@ protected:
 
 	bool recheckLabels;
 
+    bool rememberFollowFromScroll,enlargedViewer;
+
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 
 	QSet<QString> latexPackageList, currentPackageList;
