@@ -18,3 +18,5 @@
 \subcaption{heading}
 \subcaption[list entry]{heading}
 \subcaption*{heading}#/minipage
+\subref{key}#r
+\subref*{key}#r
