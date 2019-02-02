@@ -7263,7 +7263,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             QList<CodeSnippet> userList=doc->userCommandList();
             if(config){
                 CodeSnippetList::iterator it;
-                for(it=userList.begin();it!=userList.end();it++){
+		for(it=userList.begin();it!=userList.end();++it){
                     QList<QPair<int, int> >res = config->usage.values(it->index);
                     foreach (const PairIntInt &elem, res) {
                         if (elem.first == it->snippetLength) {
