@@ -795,7 +795,7 @@ void LatexTables::generateTableFromTemplate(LatexEditorView *edView, QString tem
 	for (int i = 0; i < table.size(); i++) {
 		QStringList lst = table.at(i);
 		QStringList::iterator it;
-		for (it = lst.begin(); it != lst.end(); it++) {
+        for (it = lst.begin(); it != lst.end(); ++it) {
 			QString str = *it;
 			str.replace("\\", "\\\\");
 			str.replace("\"", "\\\"");
