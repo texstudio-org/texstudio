@@ -398,7 +398,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	pdfDocumentConfig(new PDFDocumentConfig),
 	insertGraphicsConfig(new InsertGraphicsConfig),
 	grammarCheckerConfig(new GrammarCheckerConfig),
-    menuParent(nullptr), menuParentsBar(nullptr), modifyMenuContentsFirstCall(true), persistentConfig(nullptr)
+    menuParent(nullptr), menuParentsBar(nullptr), modifyMenuContentsFirstCall(true), pdflatexEdit(nullptr), persistentConfig(nullptr)
 {
 
 	Q_ASSERT(!globalConfigManager);
@@ -1369,7 +1369,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	if (20 < autosaveEveryMinutes) confDlg->ui.comboBoxAutoSave->setCurrentIndex(6);
 	//--build things
 	//normal commands
-    pdflatexEdit = nullptr;
 	tempCommands = buildManager->getAllCommands();
 	QStringList tempOrder = buildManager->getCommandsOrder();
 	rerunButtons.clear();
