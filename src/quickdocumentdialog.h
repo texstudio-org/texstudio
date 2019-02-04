@@ -29,9 +29,10 @@ public:
 	QString getNewDocumentText();
 
 	static QString document_encoding;
+	static QString font_encoding;
 
 private:
-	static QStringList otherClassList, otherPaperList, otherInputEncodingList, otherBabelOptionsList, otherOptionsList;
+	static QStringList otherClassList, otherPaperList, otherInputEncodingList, otherFontEncodingList, otherBabelOptionsList, otherOptionsList;
 	static QString document_class, typeface_size, paper_size, babel_language, author;
 	static bool ams_packages, makeidx_package, graphicx_package;
 	static ConfigManagerInterface* configManagerInterface;
@@ -50,6 +51,7 @@ private slots:
 	void addUserClass();
 	void addUserPaper();
 	void addUserInputEncoding();
+	void addUserFontEncoding();
 	void addBabelOption();
 	void addUserOptions();
 };
