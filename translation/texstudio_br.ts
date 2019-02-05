@@ -565,11 +565,11 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation>OSX 10.11 na ro ket an tu d&apos;an arloadoù da skrivañ amañ ken. War ar fed-mañ, ar stummoù nevez
+        <translation>OSX 10.11 na ro ket an tu d&apos;an arloadoù da skrivañ amañ ken. Padal, stummoù nevez
 MacTeX o deus chañchet an hent danevell daouel e /Library/TeX/texbin/.
 
-Ha c&apos;hoant ho peus e erlec&apos;hiañ TeXstudio an holl hentoù urzhiad
-/usr/texbin/ ha /Library/TeX/texbin/ ?</translation>
+Ha c&apos;hoant ho peus erlec&apos;hiañ TeXstudio e-barzh an holl hentoù urzhiad adalek /usr/texbin/ da
+%1?</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="394"/>
@@ -580,22 +580,28 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation type="unfinished"/>
+        <translation>OSX 10.11 na ro ket an tu d&apos;an arloadoù da skrivañ amañ ken. Ret e vo deoc&apos;h
+hizivaat MacTeX betek ar stumm 2015.
+
+Kavet e vo, goude-se, programmoù MacTeX e-barzh /Library/TeX/texbin/.
+
+Ha c&apos;hoant ho peus erlec&apos;hiañ TeXstudio e-barzh an holl hentoù urzhiad adalek /usr/texbin/ da
+ /Library/TeX/texbin/ ?</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="405"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="unfinished"/>
+        <translation>Darn hoc&apos;h urzhiadoù a ra davee da lec&apos;hiadurioù e-barzh /usr/texbin/</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="879"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>An urzhiad a zo bet astennet da %1 live. Ha fellout a ra deoc&apos;h kenderc&apos;hel da astenn &quot;%2&quot;?</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="932"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation type="unfinished"/>
+        <translation>Implijet ho peus txs:///command[... or txs:///command{... aozerien, met degemer a reomp aozerien ar stumm txs:///command/[... pe txs:///command/{... gant ur slash lostgeraet evit mirout puroc&apos;h ar sintaks.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="943"/>
@@ -608,7 +614,9 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>An urzhiad %1 a zo gortozet evel bezañ atomek. Daoust da-se termenet eo evel un urzhiad-chadenn hag a endalc&apos;h %2 urzhiad. Dibaseal a ran ar spisadurioù hag e c&apos;hall degas efedoù a-eil renk souezhus.
+
+Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &apos;Zibarzhioù -&gt; Kefluniañ TeXstudio -&gt; Chom hep sevel da &apos;Zibarzhioù -&gt; Kefluniañ TeXstudio -&gt; Urzhiadoù&apos;.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1026"/>
@@ -618,37 +626,37 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1444"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;eus bet kavet dasparzhadur ebet eus LaTeX war ho sistem. Dre-se, an urzhiadoù a genglot na vezont ket kefluniet. Ar pezh a dalvez n&apos;hallit ket kempunañ ho teuliadoù er stumm ezvont ho peus c&apos;hoant (d.sk. pdf).</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1448"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>An dasparzhadurioù poblek eus LaTeX war Windows a zo %1 et %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1450"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
-        <translation type="unfinished"/>
+        <translation>M&apos;emaoc&apos;h gant ar soñj labourat gant LaTeX, fellout a raio deoc&apos;h staliañ unan bennak anezho hep mar.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1453"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
-        <translation type="unfinished"/>
+        <translation>Un dasparzhadur poblek-tre eus LaTeX war OSX a zo anvet %1.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1455"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
-        <translation type="unfinished"/>
+        <translation>M&apos;ho peus c&apos;hoant da labourat gant LaTeX, bez ho po c&apos;hoant d&apos;e staliañ hep mar.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1458"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
-        <translation type="unfinished"/>
+        <translation>M&apos;ho peus c&apos;hoant da labourat gant LaTeX, bez ho po c&apos;hoant da staliañ un dasparzhadur eus LaTeX hep mar.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1471"/>
         <source>Error: No command given</source>
-        <translation type="unfinished"/>
+        <translation>Fazi: Urzhiad ebet roet</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1502"/>
@@ -972,13 +980,19 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Diuzerioù:&lt;/i&gt; ur c&apos;henaozad a &lt;b&gt;a&lt;/b&gt;: hent absolud, &lt;!--&lt;i&gt;r&lt;/i&gt;: hent relativel, --&gt;&lt;b&gt;m&lt;/b&gt;: anv diazrestr diastenn,&lt;b&gt;e&lt;/b&gt;: astenn, &lt;b&gt;r&lt;/b&gt;: hent relativel d&apos;ar mestr, &lt;b&gt;*&lt;/b&gt;: an holl restroù o kenglotañ gant ar patrom da-heul&lt;br /&gt;
+raklakaat &lt;b&gt;c:&lt;/b&gt; evit ar restroù red e-plas ar restr mestr (bann hag all)&lt;br /&gt;
+&lt;i&gt;Echuiñ an arouezioù:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: diuzerioù fin. An arouezioù da-heul a echu an diuzer ha bez o deus sterioù disheñvel ouzhpenn&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: lakaat etre klochedigoù, &lt;b&gt;.&lt;/b&gt; (pik) em-ouzhpennañ ur pik d&apos;ar fin, (esaouenn): em-ouzhpennañ un esaouenn er fin&lt;br /&gt;
+&lt;i&gt;Skouerioù:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: anv-restr absolud klok etre klochedigoù, &lt;b&gt;?e)&lt;/b&gt; an astenn, hepken, hep pik kentañ (d.sk. tex), &lt;br /&gt;
+&lt;b&gt;?m&quot;&lt;/b&gt; anv-restr doubl-klochedet hep astenn (heñvel ouzh &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; anv-restr hep astenn (d.sk. skouer.tex), &lt;b&gt;?*.aux&lt;/b&gt;: an holl .aux restroù e-barzh ar c&apos;havlec&apos;h red</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="701"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; ha &lt;b&gt;?? &lt;/b&gt; a zeu da vezañ: %, @ pe ?
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="779"/>
@@ -7415,7 +7429,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Diviz</translation>
     </message>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="22"/>
@@ -10982,7 +10996,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="9956"/>
         <source>Yes</source>
-        <translation type="unfinished"/>
+        <translation>Ya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9960"/>
@@ -11871,12 +11885,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="186"/>
         <source>Html options</source>
-        <translation type="unfinished"/>
+        <translation>Dibarzhioù Html</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="224"/>
         <source>Title :</source>
-        <translation type="unfinished"/>
+        <translation>Titl:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="231"/>
@@ -11921,7 +11935,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="287"/>
         <source>Create index :</source>
-        <translation type="unfinished"/>
+        <translation>Krouiñ an indeks</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="316"/>
@@ -11931,12 +11945,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="336"/>
         <source>Launch</source>
-        <translation type="unfinished"/>
+        <translation>Loc&apos;hañ</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="350"/>
         <source>Input File :</source>
-        <translation type="unfinished"/>
+        <translation>Restr enmont:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="371"/>
@@ -11946,22 +11960,22 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="378"/>
         <source>Browser :</source>
-        <translation type="unfinished"/>
+        <translation>Merdeer:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="390"/>
         <source>Images options</source>
-        <translation type="unfinished"/>
+        <translation>Dibarzhioù skeudenn</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="411"/>
         <source>Images Width :</source>
-        <translation type="unfinished"/>
+        <translation>Ledanded ar skeudenn:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="418"/>
         <source>Width of the largest image</source>
-        <translation type="unfinished"/>
+        <translation>Ledanded ar skeudenn vrasañ</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="30"/>
@@ -11981,22 +11995,22 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.cpp" line="33"/>
         <source>Icons</source>
-        <translation type="unfinished"/>
+        <translation>Ikonioù</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="34"/>
         <source>Page numbers</source>
-        <translation type="unfinished"/>
+        <translation>Niver pajenn</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="35"/>
         <source>Yes</source>
-        <translation type="unfinished"/>
+        <translation>Ya</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="36"/>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>Ket</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="129"/>
@@ -12025,17 +12039,17 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="146"/>
         <source>Input file not found.</source>
-        <translation type="unfinished"/>
+        <translation>Restr enmont nann-kavet.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="165"/>
         <source>  Running this command: </source>
-        <translation type="unfinished"/>
+        <translation>Lakaat da vont an urzhiad:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="187"/>
         <source>a process has failed</source>
-        <translation type="unfinished"/>
+        <translation>c&apos;hwitet en deus un argerzh</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="490"/>
@@ -12043,7 +12057,7 @@ The html files are located in the %1 directory.</source>
         <location filename="../src/webpublishdialog.cpp" line="680"/>
         <location filename="../src/webpublishdialog.cpp" line="745"/>
         <source>Can&apos;t open</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;hall ket digeriñ</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="497"/>
@@ -12060,17 +12074,17 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="514"/>
         <source>Compiling input file. Please wait...</source>
-        <translation type="unfinished"/>
+        <translation>O kempunañ ar restroù enmont. Gortozit mar plij...</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="625"/>
         <source>Scanning files. Please wait...</source>
-        <translation type="unfinished"/>
+        <translation>O skanniñ restroù. Gortozit mar plij...</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="669"/>
         <source>Writing page</source>
-        <translation type="unfinished"/>
+        <translation>Pajenn skrivañ</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="669"/>
@@ -12080,22 +12094,22 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="742"/>
         <source>Writing index page</source>
-        <translation type="unfinished"/>
+        <translation>Pajenn skrivañ indeksoù</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="808"/>
         <source>Fatal error : </source>
-        <translation type="unfinished"/>
+        <translation>Fazi diremed:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="840"/>
         <source>LaTeX errors detected.</source>
-        <translation type="unfinished"/>
+        <translation>Fazioù LaTeX diguzhet.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="855"/>
         <source>Open File</source>
-        <translation type="unfinished"/>
+        <translation>Digeriñ ar restr</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="855"/>
@@ -12113,7 +12127,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/scriptengine.cpp" line="577"/>
         <source>File Chooser</source>
-        <translation type="unfinished"/>
+        <translation>Dibaber restroù</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="594"/>
@@ -12129,7 +12143,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/scriptengine.cpp" line="597"/>
         <source>Script-Error</source>
-        <translation type="unfinished"/>
+        <translation>Fazi-skrid</translation>
     </message>
 </context>
 <context>
@@ -12137,27 +12151,27 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/templateselector.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Diviz</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="66"/>
         <source>Author:</source>
-        <translation type="unfinished"/>
+        <translation>Aozer:</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="173"/>
         <source>Create in Folder:</source>
-        <translation type="unfinished"/>
+        <translation>Krouiñ en teuliad:</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="205"/>
         <source>Create in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Krouit en aozer</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="238"/>
         <source>Target folder not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Neket goullo an teuliad bukenn.</translation>
     </message>
 </context>
 </TS>

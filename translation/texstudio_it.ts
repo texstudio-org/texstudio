@@ -613,7 +613,9 @@ Vuoi che TeXstudio cambi tutti i percorsi dei comandi da /usr/texbin/ a
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando %1 dovrebbe essere atomico. Comunque è in questo momento definito come una sequenza di comandi contenente %2 comandi. Questo va oltre la specifica e potrebbe portare ad effetti collaterali inaspettati.
+
+Per piacere cambia la tua configurazione e definisci le liste di comandi solo a &apos;Opzioni-&gt;Configura TeXstudio-&gt;Costruzione&apos; e non a &apos;Opzioni-&gt;Configura TeXstudio-&gt;Comandi&apos;.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1026"/>
@@ -1113,12 +1115,12 @@ Le variabili sono scritte come: %MYVAR%. C&apos;è differenza tra minuscole e ma
     <message>
         <location filename="../src/configdialog.ui" line="1041"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Questo permette di ridefinire comandi utilizzando commenti di stile &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; e &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. Per i dettagli controlla il manuale.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1044"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation>Interpreta la definizione di comandi nei commenti magici</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1081"/>
@@ -1163,7 +1165,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="1128"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"/>
+        <translation>Chiudi elemento si applica ad una lista fissa di elementi dell&apos;interfaccia grafica (non elencati tutti qui). Il primo elemento visibile sarà chiuso. Con questa impostazione puoi escludere certi elementi dall&apos;essere chiusi.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1131"/>
@@ -1173,17 +1175,17 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="1137"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"/>
+        <translation>Chiudi la vista dei registri</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1144"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Chiudi il visualizzatore incorporato</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1151"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Chiudi la modalità a schermo intero</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1161"/>
@@ -1436,12 +1438,12 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="1776"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Virgolette polacche: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1781"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Virgolette polacche (unicode): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1789"/>
@@ -1591,12 +1593,12 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="2142"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi una voce direttamente al menù contestuale</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2147"/>
         <source>Create Dedicated Submenu</source>
-        <translation type="unfinished"/>
+        <translation>Crea un sottomenù dedicato</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2155"/>
@@ -1606,7 +1608,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="2162"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codifica del registro predefinita</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2175"/>
@@ -1681,22 +1683,22 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="2285"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona parola</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2290"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona parola o comando</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2295"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona il contenuto delle parentesi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2300"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona parentesi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2305"/>
@@ -1711,7 +1713,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="2320"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>Selezione con triplo-clic</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2327"/>
@@ -1736,7 +1738,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="2347"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Centra il documento nell&apos;editor</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2354"/>
@@ -1798,12 +1800,12 @@ ancora convertirli in caratteri. Finchè unicode non sarà supportato nativament
     <message>
         <location filename="../src/configdialog.ui" line="2430"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"/>
+        <translation>Permetti il drag-and-drop</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2437"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programmi esterni (come Zotero) possono  inserire citazioni all&apos;interno di texstudio chiamando: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt; texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Se il cursore non è già in un comando di citazione, il &amp;quot;comando&amp;quot; dato sarà utilizzato come \cite-command&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2440"/>
@@ -1813,7 +1815,7 @@ ancora convertirli in caratteri. Finchè unicode non sarà supportato nativament
     <message>
         <location filename="../src/configdialog.ui" line="2453"/>
         <source>Structure Panel</source>
-        <translation type="unfinished"/>
+        <translation>Pannello strutturato</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2459"/>
@@ -1823,7 +1825,7 @@ ancora convertirli in caratteri. Finchè unicode non sarà supportato nativament
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>
         <source>Reference commands in context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Riferisciti a comandi nel menù contestuale</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2503"/>
@@ -1833,12 +1835,12 @@ ancora convertirli in caratteri. Finchè unicode non sarà supportato nativament
     <message>
         <location filename="../src/configdialog.ui" line="2473"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"/>
+        <translation>Segna elementi della struttura nell&apos;appendice</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2480"/>
         <source>Regular expression for TODO comment: </source>
-        <translation type="unfinished"/>
+        <translation>Espressione regolare per un commento TODO:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2493"/>
@@ -1933,12 +1935,12 @@ ancora convertirli in caratteri. Finchè unicode non sarà supportato nativament
     <message>
         <location filename="../src/configdialog.ui" line="2686"/>
         <source>depending on character direction</source>
-        <translation type="unfinished"/>
+        <translation>Dipendente dalla direzione del carattere</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2693"/>
         <source>depending on text/math mode</source>
-        <translation type="unfinished"/>
+        <translation>Dipendente dalla modalità testo/matematica</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2703"/>
@@ -2001,7 +2003,7 @@ al prezzo di un maggiore impiego di memoria.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="2784"/>
         <source>Use QImage as cache type</source>
-        <translation type="unfinished"/>
+        <translation>Usa QImage come tipo della cache</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2847"/>
@@ -2011,7 +2013,7 @@ al prezzo di un maggiore impiego di memoria.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="2870"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Qui la parte evidenziata di ambienti personalizzati può essere modificata.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2884"/>
@@ -2026,7 +2028,7 @@ al prezzo di un maggiore impiego di memoria.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="2899"/>
         <source>Here you can add another environment for custom highlighting.</source>
-        <translation type="unfinished"/>
+        <translation>Qui puoi aggiungere un altro ambiente per evidenziazioni personalizzate. </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2902"/>
@@ -2083,7 +2085,7 @@ al prezzo di un maggiore impiego di memoria.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3027"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"/>
+        <translation>Mostra un tooltip con testo selezionato per etichette/elementi della bibliografia, colori in anteprima o immagini</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3030"/>
@@ -2093,7 +2095,7 @@ al prezzo di un maggiore impiego di memoria.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3037"/>
         <source>Arguments as Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Argomenti come variabile metasintattica</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3047"/>
@@ -2165,7 +2167,7 @@ puoi premere &lt;Tab&gt; per inserirli automaticamente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3162"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Confuso</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3167"/>
@@ -2175,12 +2177,12 @@ puoi premere &lt;Tab&gt; per inserirli automaticamente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3190"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation>Se un comando matematico è inserito via completamento automatico all&apos;infuori di un ambiente matematico, i simboli $$ verranno inseriti automaticamente.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3193"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci automaticamente delimitatori matematici quando necessario</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3203"/>
@@ -2200,7 +2202,7 @@ per il completamento, puoi forzarne l&apos;uso attivandoli qui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3211"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"/>
+        <translation>Attiva permanentemente completamento file:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3279"/>
@@ -2220,7 +2222,7 @@ per il completamento, puoi forzarne l&apos;uso attivandoli qui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3319"/>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>Una o più cartelle dove cercare per glossari. Percorsi multipli possono essere indicati se separati da punto e virgola. Puoi utilizzare le parole chiave speciali [txs-settings-dir] e [txs-app-dir] che saranno risolte nelle rispettive cartelle.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3329"/>
@@ -2392,12 +2394,12 @@ possono essere controllate per ripetizioni a grande distanza.</translation>
         <location filename="../src/configdialog.ui" line="3682"/>
         <location filename="../src/configdialog.ui" line="3730"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Argomenti passati quando parte LanguageTool. Questa opzione ha effetto solo se LanguageTool viene fatto partire da TeXstudio (ad esempio non se si fa partire da un server che sta già girando).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3685"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>Argomenti LT:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3709"/>
@@ -3050,7 +3052,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="14"/>
         <source>Boxes</source>
-        <translation type="unfinished"/>
+        <translation>Scatole</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="15"/>
@@ -3095,7 +3097,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation type="unfinished"/>
+        <translation>Equazioni matematiche</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="24"/>
@@ -3110,7 +3112,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"/>
+        <translation>Simboli matematici di impilamento</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
@@ -3130,7 +3132,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci/includi &amp;File</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="31"/>
@@ -3220,7 +3222,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="48"/>
         <source>\begin{flushleft}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="49"/>
@@ -3235,17 +3237,17 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="51"/>
         <source>\begin{quotation}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{citazione}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="52"/>
         <source>\begin{verse}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{verso}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="53"/>
         <source>\begin{verbatim}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{testuale}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="54"/>
@@ -3260,17 +3262,17 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="56"/>
         <source>\begin{titlepage}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{titolopagina}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="57"/>
         <source>\begin{itemize}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{elenco}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="58"/>
         <source>\begin{enumerate}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{enumerazione}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="59"/>
@@ -3280,7 +3282,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="60"/>
         <source>\begin{list}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{lista}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="61"/>
