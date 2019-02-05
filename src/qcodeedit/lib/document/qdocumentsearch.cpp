@@ -40,9 +40,8 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_option(opt), m_string(f),  m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
+ : m_option(opt), m_string(f), m_replace(r), m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
 {
-	m_replace=r;
 	connectToEditor();
 }
 void QDocumentSearch::connectToEditor(){
