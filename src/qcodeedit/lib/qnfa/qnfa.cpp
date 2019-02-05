@@ -69,7 +69,7 @@ QNFABranch::~QNFABranch()
 		if ( at(i) && !_deleted.contains(at(i)) )
 		{
 			delete (*this)[i];
-			(*this)[i] = 0;
+            (*this)[i] = nullptr;
 		}
 	}
 }
@@ -162,8 +162,8 @@ void match(QNFAMatchContext *lexer, const QChar *d, int length, QNFAMatchNotifie
 		//while ( lexer->meaningless.contains(d[index].unicode()) && ((index + 1) < length) )
 		//	++index;
 		
-		if ( index >= length )
-			break;
+        //if ( index >= length )
+        //	break;
 		
 		c = di->unicode();
 		
