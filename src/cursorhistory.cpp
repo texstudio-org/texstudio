@@ -34,7 +34,7 @@ bool CursorHistory::insertPos(QDocumentCursor cur, bool deleteBehindCurrent)
 	connectUnique(pos.doc(), SIGNAL(lineRemoved(QDocumentLineHandle *)), this, SLOT(lineDeleted(QDocumentLineHandle *)));
 
 	if (deleteBehindCurrent && currentEntry != history.end()) {
-		currentEntry++;
+        ++currentEntry;
 		currentEntry = history.erase(currentEntry, history.end());
 	}
     if (currentEntry == history.end() && currentEntry != history.begin()) --currentEntry;
