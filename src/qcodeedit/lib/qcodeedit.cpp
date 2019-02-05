@@ -42,7 +42,7 @@
 class QPanelWatcher : public QObject
 {
 	public:
-		QPanelWatcher(QCodeEdit *e)
+        explicit QPanelWatcher(QCodeEdit *e)
 		 : qce(e)
 		{
 		
@@ -337,7 +337,7 @@ QList<QPanel*> QCodeEdit::panels(const QString& type) const
 QAction* QCodeEdit::toggleViewAction(QPanel *p) const
 {
 	int idx = panels().indexOf(p);
-	return idx == -1 ? 0 : m_actions.at(idx);
+    return idx == -1 ? nullptr : m_actions.at(idx);
 }
 
 /*!
