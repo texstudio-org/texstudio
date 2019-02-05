@@ -8023,7 +8023,7 @@ QDocumentLineHandle* QDocumentPrivate::previous(const QDocumentLineHandle *l) co
 
 	int idx = m_lines.indexOf(const_cast<QDocumentLineHandle*>(l));
 
-    return ((idx != -1) && (idx > 0)) ? m_lines.at(idx - 1) : nullptr;
+    return (idx > 0) ? m_lines.at(idx - 1) : nullptr;
 }
 
 void QDocumentPrivate::beginChangeBlock()
