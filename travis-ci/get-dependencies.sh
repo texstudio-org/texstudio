@@ -70,7 +70,7 @@ elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	brew update > brew_update.log || { print_error "Updating homebrew failed"; cat brew_update.log; exit 1; }
 	print_info "Brewing packages: qt5 poppler"
 	brew install qt5
-	brew install "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb" --with-qt --enable-xpdf-headers
+	brew install "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb" --with-qt
 else
 	print_error "Unsupported host/target combination '${TRAVIS_OS_NAME}'"
 	exit 1
