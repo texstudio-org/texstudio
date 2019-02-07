@@ -992,7 +992,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 			*/
 		} else for (int i = 0; i < keyReplaceCount; i++) {
 				keyReplace.append(config->value("User/KeyReplace" + QVariant(i).toString(), i != 0 ? "'" : "\"").toString());
-				keyReplaceAfterWord.append(config->value("User/KeyReplaceAfterWord" + QVariant(i).toString(), i != 0 ? "" : "").toString());
+                keyReplaceAfterWord.append(config->value("User/KeyReplaceAfterWord" + QVariant(i).toString(), "").toString());
 				keyReplaceBeforeWord.append(config->value("User/KeyReplaceBeforeWord" + QVariant(i).toString(), i != 0 ? "" : "\">").toString());
 			}
 	}
