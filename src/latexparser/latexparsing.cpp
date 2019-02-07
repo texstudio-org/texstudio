@@ -502,7 +502,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             commandStack.pop();
                         }
                         if(forceContinue){
-                            forceContinue=false;
                             continue;
                         }
                     } else { // opening not found, whyever (should not happen)
