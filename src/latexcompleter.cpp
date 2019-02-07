@@ -725,7 +725,7 @@ CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
 class CompletionItemDelegate: public QItemDelegate
 {
 public:
-    CompletionItemDelegate(QObject *parent = nullptr): QItemDelegate(parent)
+    explicit CompletionItemDelegate(QObject *parent = nullptr): QItemDelegate(parent)
 	{
 	}
 

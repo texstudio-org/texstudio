@@ -45,12 +45,12 @@ uint qHash(const QPointer<QDocument>& p) { return qHash((QDocument*)(p)); }
 class QNFANotifier : public QNFAMatchHandler
 {
 	public:
-		QNFANotifier(const QString& line)
+        explicit QNFANotifier(const QString& line)
 		{
 			m_formats.fill(0, line.length());
 		}
 
-		QNFANotifier(const QDocumentLine& line)
+        explicit QNFANotifier(const QDocumentLine& line)
 		 : m_line(line)
 		{
 			m_formats.fill(0, line.length());
