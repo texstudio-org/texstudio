@@ -29,8 +29,8 @@ qreal convertLatexLengthToMetre(const qreal &length, const QString &unit)
 }
 
 //options for the configmanager
-QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherEncodingList, QuickDocumentDialog::otherBabelOptionsList, QuickDocumentDialog::otherOptionsList;
-QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::babel_language, QuickDocumentDialog::author;
+QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherInputEncodingList, QuickDocumentDialog::otherFontEncodingList, QuickDocumentDialog::otherBabelOptionsList, QuickDocumentDialog::otherOptionsList;
+QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::font_encoding, QuickDocumentDialog::babel_language, QuickDocumentDialog::author;
 bool QuickDocumentDialog::ams_packages, QuickDocumentDialog::makeidx_package, QuickDocumentDialog::graphicx_package;
 double geometryPageWidth, geometryPageHeight, geometryMarginLeft, geometryMarginRight, geometryMarginTop, geometryMarginBottom;
 QString geometryPageWidthUnit, geometryPageHeightUnit, geometryMarginLeftUnit, geometryMarginRightUnit, geometryMarginTopUnit, geometryMarginBottomUnit;
@@ -52,7 +52,8 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString &name)
 	ui.comboBoxSize->addItem("11pt");
 	ui.comboBoxSize->addItem("12pt");
 	connect(ui.pushButtonPaper , SIGNAL(clicked()), SLOT(addUserPaper()));
-	connect(ui.pushButtonEncoding , SIGNAL(clicked()), SLOT(addUserEncoding()));
+	connect(ui.pushButtonInputEncoding , SIGNAL(clicked()), SLOT(addUserInputEncoding()));
+	connect(ui.pushButtonFontEncoding , SIGNAL(clicked()), SLOT(addUserFontEncoding()));
 	connect(ui.pushButtonBabel, SIGNAL(clicked()), SLOT(addBabelOption()));
 	connect(ui.pushButtonOptions , SIGNAL(clicked()), SLOT(addUserOptions()));
 	ui.listWidgetOptions->setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -100,9 +101,15 @@ QString QuickDocumentDialog::getNewDocumentText()
 	tag += opt + QString("]{");
 	tag += ui.comboBoxClass->currentText() + QString("}");
 	tag += QString("\n");
-	if (ui.comboBoxEncoding->currentText() != "NONE") tag += QString("\\usepackage[") + ui.comboBoxEncoding->currentText() + QString("]{inputenc}");
-	tag += QString("\n");
-	if (ui.comboBoxEncoding->currentText().startsWith("utf8x"))
+	if (ui.comboBoxInputEncoding->currentText() != "NONE") {
+		tag += QString("\\usepackage[") + ui.comboBoxInputEncoding->currentText() + QString("]{inputenc}");
+		tag += QString("\n");
+	}
+	if (ui.comboBoxFontEncoding->currentText() != "NONE") {
+		tag += QString("\\usepackage[") + ui.comboBoxFontEncoding->currentText() + QString("]{fontenc}");
+		tag += QString("\n");
+	}
+	if (ui.comboBoxInputEncoding->currentText().startsWith("utf8x"))
 		tag += QString("\\usepackage{ucs}\n");
 	if (ui.comboBoxBabel->currentText() != "NONE")
 		tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
@@ -143,13 +150,15 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface &configManager)
 {
 	configManager.registerOption("Tools/User Class", &otherClassList);
 	configManager.registerOption("Tools/User Paper", &otherPaperList);
-	configManager.registerOption("Tools/User Encoding", &otherEncodingList);
+	configManager.registerOption("Tools/User Encoding", &otherInputEncodingList);
+	configManager.registerOption("Tools/User Font Encoding", &otherFontEncodingList);
 	configManager.registerOption("Tools/User Babel Options", &otherBabelOptionsList);
 	configManager.registerOption("Tools/User Options", &otherOptionsList);
 	configManager.registerOption("Quick/Class", &document_class, "article");
 	configManager.registerOption("Quick/Typeface", &typeface_size, "10pt");
 	configManager.registerOption("Quick/Papersize", &paper_size, "a4paper");
-    configManager.registerOption("Quick/Encoding", &document_encoding, "utf8");
+	configManager.registerOption("Quick/Encoding", &document_encoding, "utf8");
+	configManager.registerOption("Quick/FontEncoding", &font_encoding, "T1");
 	configManager.registerOption("Quick/Babel", &babel_language, "NONE");
 	configManager.registerOption("Quick/AMS", &ams_packages, true);
 	configManager.registerOption("Quick/MakeIndex", &makeidx_package, false);
@@ -217,33 +226,66 @@ void QuickDocumentDialog::Init()
 	ui.comboBoxPaper->addItem("executivepaper");
 	if (!otherPaperList.isEmpty()) ui.comboBoxPaper->addItems(otherPaperList);
 
-	ui.comboBoxEncoding->clear();
-	ui.comboBoxEncoding->addItem("latin1");
-	ui.comboBoxEncoding->addItem("latin2");
-	ui.comboBoxEncoding->addItem("latin3");
-	ui.comboBoxEncoding->addItem("latin5");
-	ui.comboBoxEncoding->addItem("utf8");
-	ui.comboBoxEncoding->addItem("utf8x");
-	ui.comboBoxEncoding->addItem("ascii");
-	ui.comboBoxEncoding->addItem("decmulti");
-	ui.comboBoxEncoding->addItem("cp850");
-	ui.comboBoxEncoding->addItem("cp852");
-	ui.comboBoxEncoding->addItem("cp437");
-	ui.comboBoxEncoding->addItem("cp437de");
-	ui.comboBoxEncoding->addItem("cp865");
-	ui.comboBoxEncoding->addItem("applemac");
-	ui.comboBoxEncoding->addItem("next");
-	ui.comboBoxEncoding->addItem("ansinew");
-	ui.comboBoxEncoding->addItem("cp1252");
-	ui.comboBoxEncoding->addItem("cp1250");
-	ui.comboBoxEncoding->addItem("NONE");
-	if (!otherEncodingList.isEmpty()) ui.comboBoxEncoding->addItems(otherEncodingList);
+	ui.comboBoxInputEncoding->clear();
+	ui.comboBoxInputEncoding->addItem("latin1");
+	ui.comboBoxInputEncoding->addItem("latin2");
+	ui.comboBoxInputEncoding->addItem("latin3");
+	ui.comboBoxInputEncoding->addItem("latin5");
+	ui.comboBoxInputEncoding->addItem("utf8");
+	ui.comboBoxInputEncoding->addItem("utf8x");
+	ui.comboBoxInputEncoding->addItem("ascii");
+	ui.comboBoxInputEncoding->addItem("decmulti");
+	ui.comboBoxInputEncoding->addItem("cp850");
+	ui.comboBoxInputEncoding->addItem("cp852");
+	ui.comboBoxInputEncoding->addItem("cp437");
+	ui.comboBoxInputEncoding->addItem("cp437de");
+	ui.comboBoxInputEncoding->addItem("cp865");
+	ui.comboBoxInputEncoding->addItem("applemac");
+	ui.comboBoxInputEncoding->addItem("next");
+	ui.comboBoxInputEncoding->addItem("ansinew");
+	ui.comboBoxInputEncoding->addItem("cp1252");
+	ui.comboBoxInputEncoding->addItem("cp1250");
+	ui.comboBoxInputEncoding->addItem("NONE");
+	if (!otherInputEncodingList.isEmpty()) ui.comboBoxInputEncoding->addItems(otherInputEncodingList);
+
+	ui.comboBoxFontEncoding->clear();
+	ui.comboBoxFontEncoding->addItem("OT1");
+	ui.comboBoxFontEncoding->addItem("OT2");
+	ui.comboBoxFontEncoding->addItem("OT3");
+	ui.comboBoxFontEncoding->addItem("OT4");
+	ui.comboBoxFontEncoding->addItem("OT5");
+	ui.comboBoxFontEncoding->addItem("OT6");
+	ui.comboBoxFontEncoding->addItem("T1");
+	ui.comboBoxFontEncoding->addItem("T2A");
+	ui.comboBoxFontEncoding->addItem("T2B");
+	ui.comboBoxFontEncoding->addItem("T2C");
+	ui.comboBoxFontEncoding->addItem("T3");
+	ui.comboBoxFontEncoding->addItem("T4");
+	ui.comboBoxFontEncoding->addItem("T5");
+	ui.comboBoxFontEncoding->addItem("T6");
+	ui.comboBoxFontEncoding->addItem("T7");
+	ui.comboBoxFontEncoding->addItem("TS1");
+	ui.comboBoxFontEncoding->addItem("TS3");
+	ui.comboBoxFontEncoding->addItem("X2");
+	ui.comboBoxFontEncoding->addItem("OML");
+	ui.comboBoxFontEncoding->addItem("OMS");
+	ui.comboBoxFontEncoding->addItem("OMX");
+	ui.comboBoxFontEncoding->addItem("C..");
+	ui.comboBoxFontEncoding->addItem("E..");
+	ui.comboBoxFontEncoding->addItem("L..");
+	ui.comboBoxFontEncoding->addItem("LY1");
+	ui.comboBoxFontEncoding->addItem("LV1");
+	ui.comboBoxFontEncoding->addItem("LGR");
+	ui.comboBoxFontEncoding->addItem("PD1");
+	ui.comboBoxFontEncoding->addItem("PU");
+	ui.comboBoxFontEncoding->addItem("U");
+	ui.comboBoxFontEncoding->addItem("NONE");
+	if (!otherFontEncodingList.isEmpty()) ui.comboBoxFontEncoding->addItems(otherFontEncodingList);
 
 	ui.comboBoxBabel->clear();
 	ui.comboBoxBabel->addItem("NONE");
 	ui.comboBoxBabel->addItems(babelLanguages);
 	if (!otherBabelOptionsList.isEmpty()) ui.comboBoxBabel->addItems(otherBabelOptionsList);
-
 
 	ui.listWidgetOptions->clear();
 	ui.listWidgetOptions->addItem("landscape");
@@ -266,7 +308,8 @@ void QuickDocumentDialog::Init()
 	configManagerInterface->linkOptionToDialogWidget(&document_class, ui.comboBoxClass);
 	configManagerInterface->linkOptionToDialogWidget(&typeface_size, ui.comboBoxSize);
 	configManagerInterface->linkOptionToDialogWidget(&paper_size, ui.comboBoxPaper);
-	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxEncoding);
+	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxInputEncoding);
+	configManagerInterface->linkOptionToDialogWidget(&font_encoding, ui.comboBoxFontEncoding);
 	configManagerInterface->linkOptionToDialogWidget(&babel_language, ui.comboBoxBabel);
 	configManagerInterface->linkOptionToDialogWidget(&ams_packages, ui.checkBoxAMS);
 	configManagerInterface->linkOptionToDialogWidget(&makeidx_package, ui.checkBoxIDX);
@@ -450,13 +493,24 @@ void QuickDocumentDialog::addUserPaper()
 	}
 }
 
-void QuickDocumentDialog::addUserEncoding()
+void QuickDocumentDialog::addUserInputEncoding()
 {
 	QString newoption;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&newoption, tr("New:"));
 	if (dialog.exec() && !newoption.isEmpty()) {
-		otherEncodingList.append(newoption);
+		otherInputEncodingList.append(newoption);
+		Init();
+	}
+}
+
+void QuickDocumentDialog::addUserFontEncoding()
+{
+	QString newoption;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&newoption, tr("New:"));
+	if (dialog.exec() && !newoption.isEmpty()) {
+		otherFontEncodingList.append(newoption);
 		Init();
 	}
 }

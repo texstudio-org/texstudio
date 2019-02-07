@@ -99,41 +99,8 @@
          <property name="spacing">
           <number>6</number>
          </property>
-         <item row="3" column="2">
-          <widget class="QPushButton" name="pushButtonEncoding">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../images.qrc">
-             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="comboBoxSize"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="comboBoxEncoding"/>
-         </item>
-         <item row="8" column="1">
-          <widget class="QListWidget" name="listWidgetOptions"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="labelPaper">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Paper Size</string>
-           </property>
-          </widget>
-         </item>
          <item row="8" column="0">
-          <widget class="QLabel" name="labelOptions">
+          <widget class="QLabel" name="labelTitle">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
@@ -141,12 +108,22 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Other Options</string>
+            <string>Title</string>
            </property>
           </widget>
          </item>
          <item row="7" column="1">
-          <widget class="QLineEdit" name="lineEditTitle"/>
+          <widget class="QLineEdit" name="lineEditAuthor"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="labelBabel">
+           <property name="text">
+            <string>Babel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBoxClass"/>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="labelClass">
@@ -161,56 +138,14 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="comboBoxPaper"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="comboBoxClass"/>
-         </item>
-         <item row="5" column="0">
-          <widget class="QCheckBox" name="checkBoxAMS">
-           <property name="text">
-            <string>AMS Packages</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="labelEncoding">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Encoding</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QPushButton" name="pushButtonPaper">
+         <item row="0" column="2">
+          <widget class="QPushButton" name="pushButtonClass">
            <property name="text">
             <string/>
            </property>
            <property name="icon">
             <iconset resource="../images.qrc">
              <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="labelAuthor">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Author</string>
            </property>
           </widget>
          </item>
@@ -227,8 +162,11 @@
            </property>
           </widget>
          </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="labelTitle">
+         <item row="3" column="1">
+          <widget class="QComboBox" name="comboBoxInputEncoding"/>
+         </item>
+         <item row="9" column="0">
+          <widget class="QLabel" name="labelOptions">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
              <horstretch>0</horstretch>
@@ -236,12 +174,12 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Title</string>
+            <string>Other Options</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="pushButtonClass">
+         <item row="5" column="2">
+          <widget class="QPushButton" name="pushButtonBabel">
            <property name="text">
             <string/>
            </property>
@@ -251,7 +189,10 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
+         <item row="1" column="1">
+          <widget class="QComboBox" name="comboBoxSize"/>
+         </item>
+         <item row="6" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
             <widget class="QCheckBox" name="checkBoxIDX">
@@ -269,10 +210,18 @@
            </item>
           </layout>
          </item>
-         <item row="6" column="1">
-          <widget class="QLineEdit" name="lineEditAuthor"/>
+         <item row="2" column="2">
+          <widget class="QPushButton" name="pushButtonPaper">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../images.qrc">
+             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
+           </property>
+          </widget>
          </item>
-         <item row="8" column="2">
+         <item row="9" column="2">
           <widget class="QPushButton" name="pushButtonOptions">
            <property name="text">
             <string/>
@@ -283,18 +232,90 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
-          <widget class="QComboBox" name="comboBoxBabel"/>
+         <item row="9" column="1">
+          <widget class="QListWidget" name="listWidgetOptions"/>
          </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="labelBabel">
+         <item row="6" column="0">
+          <widget class="QCheckBox" name="checkBoxAMS">
            <property name="text">
-            <string>Babel</string>
+            <string>AMS Packages</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelPaper">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Paper Size</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QPushButton" name="pushButtonInputEncoding">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../images.qrc">
+             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QLineEdit" name="lineEditTitle"/>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="comboBoxBabel"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="comboBoxPaper"/>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="labelAuthor">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Author</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="labelInputEncoding">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Input encoding</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="labelFontEncoding">
+           <property name="text">
+            <string>Font encoding</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="comboBoxFontEncoding"/>
+         </item>
          <item row="4" column="2">
-          <widget class="QPushButton" name="pushButtonBabel">
+          <widget class="QPushButton" name="pushButtonFontEncoding">
            <property name="text">
             <string/>
            </property>
