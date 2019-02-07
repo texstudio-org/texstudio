@@ -162,7 +162,7 @@ SearchTreeDelegate::SearchTreeDelegate(QString editorFontFamily, QObject *parent
 void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
                                const QModelIndex &index) const
 {
-	QPalette::ColorGroup    cg  = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
+    QPalette::ColorGroup    cg  = (option.state & QStyle::State_Enabled) ? QPalette::Normal : QPalette::Disabled;
 
 	/*if( cg == QPalette::Normal && !(option.state & QStyle::State_Active) )
 	    cg = QPalette::Inactive;*/
