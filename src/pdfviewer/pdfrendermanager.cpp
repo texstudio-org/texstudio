@@ -114,7 +114,7 @@ class HiddenByteArray: public QByteArray
 {
 public:
 	HiddenByteArray(): QByteArray() {}
-	HiddenByteArray(const QString &s): QByteArray(s.toLatin1()) {}
+    explicit HiddenByteArray(const QString &s): QByteArray(s.toLatin1()) {}
 	~HiddenByteArray()
 	{
 		for (int i = 0; i < length(); i++)
