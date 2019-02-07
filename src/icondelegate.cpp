@@ -280,9 +280,9 @@ QPixmap IconDelegate::decoration(const QStyleOptionViewItem &option, const QVari
 	switch (variant.type()) {
 	case QVariant::Icon:
 		return qvariant_cast<QIcon>(variant).pixmap(option.decorationSize * overScale,
-		        option.state & QStyle::State_Enabled
+                (option.state & QStyle::State_Enabled)
 		        ? QIcon::Normal : QIcon::Disabled,
-		        option.state & QStyle::State_Open
+                (option.state & QStyle::State_Open)
 		        ? QIcon::On : QIcon::Off);
 	case QVariant::Color: {
 		static QPixmap pixmap(20, 20);
