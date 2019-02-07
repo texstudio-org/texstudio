@@ -885,7 +885,6 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords, const Q
 	for (QSet<QString>::const_iterator i = newwords.constBegin(); i != newwords.constEnd(); ++i) {
 		QString str = *i;
 		QString validValues;
-		bool rare = false;
 		if (str.contains("#")) {
 			int j = str.indexOf("#");
 			validValues = str.mid(j + 1);
@@ -898,11 +897,8 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords, const Q
 		}
 		CompletionWord cw(str);
 		cw.index = 0;
-		if (rare) {
-			cw.usageCount = -2;
-		} else {
-			cw.usageCount = 2;
-		}
+        cw.usageCount = 2;
+
 		cw.snippetLength = 0;
 		newWordList.append(cw);
 	}
