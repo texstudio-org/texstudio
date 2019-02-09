@@ -12,7 +12,7 @@ void directoryReader::readDirectory(QString path)
 	QSet<QString> files;
 	foreach (QFileInfo elem, lst) {
 		if (elem.isDir()) {
-			files.insert(elem.fileName() + QDir::separator());
+            files.insert(elem.fileName() + "/");
 		} else {
 			files.insert(elem.fileName());
 		}

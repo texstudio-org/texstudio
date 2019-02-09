@@ -675,7 +675,7 @@ public:
 			Q_ASSERT(view);
 			view->mayNeedToOpenCompleter();
 		}
-		if (completer && completer->completingGraphic() && curWord.endsWith(QDir::separator())) {
+        if (completer && completer->completingGraphic() && curWord.endsWith("/")) {
 			completer->complete(editor, LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));
 		}
 	}
@@ -1647,11 +1647,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 		QString path;
 		if (flags & CF_FORCE_GRAPHIC) {
 			QString fn = lineText.mid(start, c.columnNumber() - start);
-			int lastIndex = fn.lastIndexOf(QDir::separator());
+            int lastIndex = fn.lastIndexOf("/");
 			if (lastIndex >= 0)
 				start = start + lastIndex + 1;
 			if (fn.isEmpty())
-				fn = workingDir + QDir::separator();
+                fn = workingDir + "/";
 
             QFileInfo fi(QDir(workingDir),fn);
 			path = fi.absolutePath();
