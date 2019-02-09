@@ -568,14 +568,14 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	//completion
 	registerOption("Editor/Completion", &completerConfig->enabled, true, &pseudoDialog->checkBoxCompletion);
 	Q_ASSERT(sizeof(int) == sizeof(LatexCompleterConfig::CaseSensitive));
-    registerOption("Editor/Completion Case Sensitive", (int *)&completerConfig->caseSensitive, 2);
+    registerOption("Editor/Completion Case Sensitive", reinterpret_cast<int *>(&completerConfig->caseSensitive), 2);
 	registerOption("Editor/Completion Complete Common Prefix", &completerConfig->completeCommonPrefix, true, &pseudoDialog->checkBoxCompletePrefix);
     registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, false, &pseudoDialog->checkBoxEOWCompletes);
 	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
 	registerOption("Editor/Completion Enable Tooltip Preview", &completerConfig->tooltipPreview, true, &pseudoDialog->checkBoxToolTipCompletePreview);
 	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
 	registerOption("Editor/Completion Show Placeholders", &editorConfig->showPlaceholders, true, &pseudoDialog->checkBoxShowPlaceholders);
-	registerOption("Editor/Completion Prefered Tab", (int *)&completerConfig->preferedCompletionTab, 0, &pseudoDialog->comboBoxPreferedTab);
+    registerOption("Editor/Completion Prefered Tab", reinterpret_cast<int *>(&completerConfig->preferedCompletionTab), 0, &pseudoDialog->comboBoxPreferedTab);
 	registerOption("Editor/Completion Tab Relative Font Size Percent", &completerConfig->tabRelFontSizePercent, 100, &pseudoDialog->spinBoxTabRelFontSize);
     registerOption("Editor/Completion Auto Insert Math", &completerConfig->autoInsertMathDelimiters, true, &pseudoDialog->checkBoxAutoInsertMathDelimiters);
     registerOption("Editor/Completion Auto Insert Math Start", &completerConfig->startMathDelimiter,"$");
@@ -685,8 +685,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Interface/Language", &language, "", &pseudoDialog->comboBoxLanguage);
 
 	//preview
-    registerOption("Preview/Mode", (int *)&previewMode, static_cast<int>(PM_INLINE), &pseudoDialog->comboBoxPreviewMode);
-	registerOption("Preview/Auto Preview", (int *)&autoPreview, 1, &pseudoDialog->comboBoxAutoPreview);
+    registerOption("Preview/Mode", reinterpret_cast<int *>(&previewMode), static_cast<int>(PM_INLINE), &pseudoDialog->comboBoxPreviewMode);
+    registerOption("Preview/Auto Preview", reinterpret_cast<int *>(&autoPreview), 1, &pseudoDialog->comboBoxAutoPreview);
 	registerOption("Preview/Auto Preview Delay", &autoPreviewDelay, 300, &pseudoDialog->spinBoxAutoPreviewDelay);
 	registerOption("Preview/SegmentPreviewScalePercent", &segmentPreviewScalePercent, 150, &pseudoDialog->spinBoxSegmentPreviewScalePercent);
 
@@ -1394,7 +1394,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.pushButtonGrammarLTJava->setIcon(fileOpenIcon);
 
 	//menu shortcuts
-	QTreeWidgetItem *menuShortcuts = new QTreeWidgetItem((QTreeWidget *)nullptr, QStringList() << QString(tr("Menus")));
+    QTreeWidgetItem *menuShortcuts = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList() << QString(tr("Menus")));
     foreach (QMenu *menu, managedMenus){
         if(menu->objectName().startsWith("main"))
             managedMenuToTreeWidget(menuShortcuts, menu);
@@ -1420,7 +1420,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	QTreeWidgetItem *editorKeys = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Basic Key Mapping"));
 	const int editorKeys_EditOperationRole = Qt::UserRole;
 
-    Q_ASSERT((int)Qt::CTRL == static_cast<int>(Qt::ControlModifier) && static_cast<int>(Qt::ALT) == static_cast<int>(Qt::AltModifier) && static_cast<int>(Qt::SHIFT) == static_cast<int>(Qt::ShiftModifier) && static_cast<int>(Qt::META) == static_cast<int>(Qt::MetaModifier));
+    Q_ASSERT(static_cast<int>(Qt::CTRL) == static_cast<int>(Qt::ControlModifier) && static_cast<int>(Qt::ALT) == static_cast<int>(Qt::AltModifier) && static_cast<int>(Qt::SHIFT) == static_cast<int>(Qt::ShiftModifier) && static_cast<int>(Qt::META) == static_cast<int>(Qt::MetaModifier));
 	QMultiMap<int, QString> keysReversed;
 	QHash<QString, int>::const_iterator it = this->editorKeys.constBegin();
 	while (it != this->editorKeys.constEnd()) {
