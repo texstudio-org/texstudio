@@ -832,11 +832,6 @@ void PDFScrollArea::updateScrollBars()
 
 
 //////////////// Overview ////////////////
-struct renderInfo {
-	Poppler::Page *page;
-	PDFWidget *widget;
-};
-
 
 PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	: PDFDock(doc), toGenerate(0)
