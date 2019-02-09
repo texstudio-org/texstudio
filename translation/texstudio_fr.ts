@@ -5132,12 +5132,12 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="498"/>
         <source>Find next occurence</source>
-        <translation>Chercher l&apos;occurence suivante</translation>
+        <translation>Chercher l&apos;occurrence suivante</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="499"/>
         <source>Find previous occurence</source>
-        <translation>Chercher l&apos;occurence précédente</translation>
+        <translation>Chercher l&apos;occurrence précédente</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="501"/>
@@ -7321,11 +7321,11 @@ Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation>Ceci interprète le texte à chercher comme un expression rationnelle.
-Quelques expressions régulières communes:
- r* va trouver tous les r, r+ équivaut à rr*, a? va trouver les a seuls,
- () groupe des expressions, [xyz] va trouver x,y, ou z, . trouve tout, \. trouve .
-Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une sous-occurence.</translation>
+        <translation>Ceci interprète le texte à chercher comme une expression régulière.
+Quelques expressions régulières communes :
+ r* va trouver tous les r ; r+ équivaut à rr* ; a? va trouver les a seuls ;
+ () groupe des expressions ; [xyz] va trouver x, y, ou z ; . trouve tout ; \. trouve .
+Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une sous-occurrence.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="189"/>
@@ -7382,7 +7382,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="331"/>
         <source>Count occurences</source>
-        <translation>Compter les occurences</translation>
+        <translation>Compter les occurrences</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
