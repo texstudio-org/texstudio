@@ -66,6 +66,7 @@ TRANSLATIONS += translation/texstudio_ar.ts \
     translation/texstudio_pl.ts \
     translation/texstudio_pt_BR.ts \
     translation/texstudio_ru_RU.ts \
+    translation/texstudio_sv.ts \
     translation/texstudio_tr_TR.ts \
     translation/texstudio_uk.ts \
     translation/texstudio_vi.ts \
@@ -146,6 +147,7 @@ unix {
         translation/texstudio_pl.qm \
         translation/texstudio_pt_BR.qm \
         translation/texstudio_ru_RU.qm \
+        translation/texstudio_sv.qm \
         translation/texstudio_tr_TR.qm \
         translation/texstudio_uk.qm \
         translation/texstudio_vi.qm \
