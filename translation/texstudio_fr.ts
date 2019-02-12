@@ -3276,7 +3276,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="59"/>
         <source>\begin{description}</source>
-        <translation>De &amp;description - \begin{description}</translation>
+        <translation>&amp;Description - \begin{description}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="60"/>

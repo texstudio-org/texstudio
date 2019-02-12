@@ -1834,7 +1834,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>Pastas com dicionários Hunspell separados por ponto e vírgula. As palavras-chave [txs-settings-dir] e [txs-app-dir] serão reservadas para os respectivos diretórios.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2473"/>
@@ -7648,12 +7648,12 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificação de entrada</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificação de Fonte</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -9171,7 +9171,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="613"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>Comandos XY</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="739"/>

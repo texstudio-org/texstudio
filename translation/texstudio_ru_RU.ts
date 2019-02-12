@@ -1839,7 +1839,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>Папки со словарями Hunspell, разделённые точкой с запятой. Специальные выражения [txs-settings-dir] и [txs-app-dir] могут указывать на соответствующие папки.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2473"/>
@@ -5797,12 +5797,12 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="249"/>
         <source>From:</source>
-        <translation>От:</translation>
+        <translation>С:</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="254"/>
         <source>To:</source>
-        <translation>До:</translation>
+        <translation>По:</translation>
     </message>
 </context>
 <context>
@@ -5815,7 +5815,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfsplittool.ui" line="40"/>
         <source>Split &amp;&amp; Merge</source>
-        <translation>Разд. &amp;&amp; сл.</translation>
+        <translation>Раздел. &amp;&amp; слиян.</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="47"/>
@@ -5835,7 +5835,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfsplittool.ui" line="109"/>
         <source>Add input file</source>
-        <translation>Добав. вх. файл</translation>
+        <translation>Доб. вход. файл</translation>
     </message>
 </context>
 <context>
@@ -5878,7 +5878,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1096"/>
         <source>Could not open link:</source>
-        <translation>Не удается открыть ссылку:</translation>
+        <translation>Не удаётся открыть ссылку:</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1207"/>
@@ -5888,7 +5888,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1879"/>
         <source>Go to Page</source>
-        <translation>Перейти к странице</translation>
+        <translation>Перейти на страницу</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1880"/>
@@ -5921,7 +5921,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="127"/>
         <source>Reset Zoom</source>
-        <translation>Сбросить увеличение</translation>
+        <translation>Сбросить масштаб</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="128"/>
@@ -6004,7 +6004,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="726"/>
         <source>Replacement prompt</source>
-        <translation>Приглашение замены</translation>
+        <translation>Спрашивать о замене</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="727"/>
@@ -6019,7 +6019,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="732"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
-        <translation>%1 (из %2 найденных до сих пор) образцов заменен(ы)</translation>
+        <translation>%1 (из %2 найденных до сих пор) выражений заменено</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="770"/>
@@ -6038,7 +6038,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="782"/>
         <source>Failure</source>
-        <translation>Отказ</translation>
+        <translation>Не удалось.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="802"/>
@@ -6050,7 +6050,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="803"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="824"/>
         <source>%1 (of %2) occurences have been replaced</source>
-        <translation>%1 (из %2) образцов заменен(ы)</translation>
+        <translation>%1 (из %2) выражений заменено</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="804"/>
@@ -6117,7 +6117,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
         <source>&amp;Unindent</source>
-        <translation>Удалить &amp;отступ</translation>
+        <translation>Убрать &amp;отступ</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
@@ -6128,7 +6128,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
         <source>Co&amp;mment</source>
-        <translation>&amp;Комментировать</translation>
+        <translation>&amp;Закомментировать</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
@@ -6169,7 +6169,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
         <source>Dynamic line wrapping</source>
-        <translation>Сворачивать строки динамически</translation>
+        <translation>Динамический перенос строк</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="694"/>
@@ -7654,12 +7654,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Кодировка текста</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Кодировка шрифта</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -9176,7 +9176,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="613"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>Команды XY</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="739"/>

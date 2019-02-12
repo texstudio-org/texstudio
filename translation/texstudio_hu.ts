@@ -1838,7 +1838,7 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>A Hunspell szótárakat tartalmazó mappák pontosvesszőkkel vannak elválasztva. A [txs-settings-dir] és a [txs-app-dir] speciális kulcsszavak a megfelelő könyvtáraikhoz képest lesznek feloldva.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2473"/>
@@ -7637,12 +7637,12 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Bemenet kódolása</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Betűkészlet kódolása</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -9160,7 +9160,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="613"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>XY parancsok</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="739"/>

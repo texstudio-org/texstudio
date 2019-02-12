@@ -1837,7 +1837,7 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>Kavlec&apos;hioù gant ar geriadurioù Hunspell skejet gant pikoù-skej. Gellout a rit ober gant gerioù-alc&apos;hwez ispisial [txs-settings-dir] hag ivez [txs-app-dir] hag a vo dirouestlet e-barzh pep a gavlec&apos;h.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2473"/>
@@ -2265,12 +2265,12 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3415"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"/>
+        <translation>Ar gerioù heñvel a vez merket evel adlavaradur ma n&apos;eus ket muioc&apos;h evit an niver-mañ a c&apos;herioù kenetrezo.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3425"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"/>
+        <translation>Gerioù heñvel hag hiroc&apos;h a vez merket evel adlavaradur war hir hed ma n&apos;eus ket muioc&apos;h evit an niver-mañ a c&apos;herioù kenetrezo.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3435"/>
@@ -2285,7 +2285,7 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3455"/>
         <source>Min Length of Words with Long Repetition:</source>
-        <translation type="unfinished"/>
+        <translation>Hirder min. ar gerioù gant un adlavaradur hir:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3465"/>
@@ -2295,7 +2295,7 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3472"/>
         <source>Certain informal or weak words will be highlighted.</source>
-        <translation type="unfinished"/>
+        <translation>Gerioù diardoù &apos;zo pe gwan memes a vo islinennet.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3475"/>
@@ -2335,12 +2335,12 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3543"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation type="unfinished"/>
+        <translation>Listenn reolennoù LanguageTool skejet gant virgulennoù na vo ket islinennet evel fazioù.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3567"/>
         <source>Ignored Rules:</source>
-        <translation type="unfinished"/>
+        <translation>Fazioù graet van outo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3574"/>
@@ -2348,7 +2348,7 @@ anezho amañ.</translation>
         <location filename="../src/configdialog.ui" line="3594"/>
         <location filename="../src/configdialog.ui" line="3624"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation>Listenn reolennoù LanguageTool skejet gant virgulennoù hag a vo islinennet en ur furmad ispisial.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3604"/>
@@ -2373,12 +2373,12 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3661"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Distaolet e vo diwar yezh an difazier reizhskrivañ implijet e-barzh an teuliad.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3668"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation type="unfinished"/>
+        <translation>Sevenner Java, implijet evit loc&apos;hañ LanguageTool, ma ne &apos;z a ket en-dro.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3675"/>
@@ -2410,7 +2410,7 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3814"/>
         <source>Segment Preview</source>
-        <translation type="unfinished"/>
+        <translation>Rakwel ar skizhad</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3820"/>
@@ -2815,42 +2815,42 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="484"/>
         <source>DTX files</source>
-        <translation type="unfinished"/>
+        <translation>Restroù DTX</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="485"/>
         <source>Sweave / Pweave</source>
-        <translation type="unfinished"/>
+        <translation>Sweave / Pweave</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="486"/>
         <source>Asymptote</source>
-        <translation type="unfinished"/>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="487"/>
         <source>Lua</source>
-        <translation type="unfinished"/>
+        <translation>Lua</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="488"/>
         <source>QtScript</source>
-        <translation type="unfinished"/>
+        <translation>QtScript</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="498"/>
         <source>Default Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Berradurioù dre ziouer</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="498"/>
         <source>Current Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Berradurioù red</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="498"/>
         <source>Additional Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Berradurioù ouzhpenn</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="502"/>
@@ -2865,7 +2865,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="504"/>
         <source>Build</source>
-        <translation type="unfinished"/>
+        <translation>Savet</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="507"/>
@@ -2875,27 +2875,27 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="508"/>
         <source>GUI Scaling</source>
-        <translation type="unfinished"/>
+        <translation>Skeulaouiñ GUI</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="510"/>
         <source>Adv. Editor</source>
-        <translation type="unfinished"/>
+        <translation>Aozer Adv.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="511"/>
         <source>Syntax Highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Islinennañ ar Sintaks</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="512"/>
         <source>Custom Highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Islinennañ personnel</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="514"/>
         <source>Language Checking</source>
-        <translation type="unfinished"/>
+        <translation>Gwiriadenn yezh</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="517"/>
@@ -2905,27 +2905,27 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="558"/>
         <source>(option filter)</source>
-        <translation type="unfinished"/>
+        <translation>(dibarzh sil)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="686"/>
         <source>Select thesaurus database</source>
-        <translation type="unfinished"/>
+        <translation>Diuzañ diaz-roadennoù thesaurus:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="691"/>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"/>
+        <translation>Diuzañ al listennadoù gerioù yezhadurel dir</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="696"/>
         <source>Select the LanguageTool jar</source>
-        <translation type="unfinished"/>
+        <translation>Diuzañ LanguageTool jar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="701"/>
         <source>Select java</source>
-        <translation type="unfinished"/>
+        <translation>Diuzañ java</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="714"/>
@@ -2935,27 +2935,27 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="719"/>
         <source>Search Path for Logs</source>
-        <translation type="unfinished"/>
+        <translation>Diuzañ an hent evit an danevelloù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="724"/>
         <source>Search Path .bib Files</source>
-        <translation type="unfinished"/>
+        <translation>Klask hent restroù .bib</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="729"/>
         <source>Search Path for Images</source>
-        <translation type="unfinished"/>
+        <translation>Klask hent evit skeudennoù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="734"/>
         <source>Search Path for PDFs</source>
-        <translation type="unfinished"/>
+        <translation>Klask hent evit PDFoù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="739"/>
         <source>Search Path for Commands</source>
-        <translation type="unfinished"/>
+        <translation>Klask hent evit urzhiadoù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="785"/>
@@ -2965,12 +2965,12 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="1036"/>
         <source>Load Other Icon</source>
-        <translation type="unfinished"/>
+        <translation>Kargañ Ikonioù all</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1037"/>
         <source>Insert Separator</source>
-        <translation type="unfinished"/>
+        <translation>Enlakaat dispartier</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1045"/>
@@ -3044,17 +3044,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="14"/>
         <source>Boxes</source>
-        <translation type="unfinished"/>
+        <translation>Boestoù</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="15"/>
         <source>Font St&amp;yles</source>
-        <translation type="unfinished"/>
+        <translation>St&amp;il ar skritur</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="16"/>
         <source>Font Sizes</source>
-        <translation type="unfinished"/>
+        <translation>Ment ar skritur</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="17"/>
@@ -3064,7 +3064,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="18"/>
         <source>&amp;Vertical Spacing</source>
-        <translation type="unfinished"/>
+        <translation>Esaouiñ a-blom</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="19"/>
@@ -3084,22 +3084,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>&amp;Math</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mate</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation type="unfinished"/>
+        <translation>Kevatalennoù Mate</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="24"/>
         <source>Math &amp;Functions</source>
-        <translation type="unfinished"/>
+        <translation>Mate &amp;Arc&apos;hweladurioù</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="25"/>
         <source>Math Font St&amp;yles</source>
-        <translation type="unfinished"/>
+        <translation>St&amp;il ar skritur Mate</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
@@ -3109,27 +3109,27 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Accents</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aksantoù Mate</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math S&amp;paces</source>
-        <translation type="unfinished"/>
+        <translation>Esaouennoù Mate</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="29"/>
         <source>AMS packages</source>
-        <translation type="unfinished"/>
+        <translation>Pakadoù AMS</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"/>
+        <translation>Enmont/Enklozañ Restroù</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="31"/>
         <source>\begin{document}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{&amp;teul}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -3204,7 +3204,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="46"/>
         <source>\begin{&lt;environment&gt;}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{&lt;environment&gt;}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="47"/>
@@ -3214,67 +3214,67 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="48"/>
         <source>\begin{flushleft}</source>
-        <translation type="unfinished"/>
+        <translation>Steudañ a-gleiz - \begin{flushleft}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="49"/>
         <source>\begin{flushright}</source>
-        <translation type="unfinished"/>
+        <translation>Steudañ a-zehoù - \begin{flushleft}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="50"/>
         <source>\begin{quote}</source>
-        <translation type="unfinished"/>
+        <translation>Arroudenn v&amp;err - \begin{quote}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="51"/>
         <source>\begin{quotation}</source>
-        <translation type="unfinished"/>
+        <translation>Arroudenn h&amp;ir - \begin{quote}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="52"/>
         <source>\begin{verse}</source>
-        <translation type="unfinished"/>
+        <translation>Barzhon&amp;eg - \begin{verse}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="53"/>
         <source>\begin{verbatim}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Verbatim - \begin{verbatim}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="54"/>
         <source>\begin{table}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Taolenn flod - \begin{table}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="55"/>
         <source>\begin{figure}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Lun flod - \begin{figure}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="56"/>
         <source>\begin{titlepage}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pajenn an titl pennañ - \begin{titlepage}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="57"/>
         <source>\begin{itemize}</source>
-        <translation type="unfinished"/>
+        <translation>Diaoz (padelligoù) - \begin{itemize}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="58"/>
         <source>\begin{enumerate}</source>
-        <translation type="unfinished"/>
+        <translation>Aozet (niverelaet) - \begin{enumerate}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="59"/>
         <source>\begin{description}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Deskrivadur - \begin{description}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="60"/>
         <source>\begin{list}</source>
-        <translation type="unfinished"/>
+        <translation>Listenn c&apos;henerek - \begin{list}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="61"/>
@@ -3329,7 +3329,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
         <source>\begin{minipage}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{minipage}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
@@ -3339,57 +3339,57 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="73"/>
         <source>Emphasis - \emph</source>
-        <translation type="unfinished"/>
+        <translation>Pouezañ - \emph</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>Italics - \textit</source>
-        <translation type="unfinished"/>
+        <translation>Italikoù - \textit</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>Slanted - \textsl</source>
-        <translation type="unfinished"/>
+        <translation>Stouet - \textsl</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="76"/>
         <source>Boldface - \textbf</source>
-        <translation type="unfinished"/>
+        <translation>Druz - \textbf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="77"/>
         <source>Typewriter - \texttt</source>
-        <translation type="unfinished"/>
+        <translation>Skriverez - \texttt</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="78"/>
         <source>Small Caps - \textsc</source>
-        <translation type="unfinished"/>
+        <translation>Pennlizherennoùigoù - \textsc</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="79"/>
         <source>Sans Serif - \textsf</source>
-        <translation type="unfinished"/>
+        <translation>Sans Serif - \textsf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="80"/>
         <source>Underline - \underline</source>
-        <translation type="unfinished"/>
+        <translation>Islinennet - \underline</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="81"/>
         <source>tiny</source>
-        <translation type="unfinished"/>
+        <translation>bihan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="82"/>
         <source>scriptsize</source>
-        <translation type="unfinished"/>
+        <translation>ment ar skript</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="83"/>
         <source>footnotesize</source>
-        <translation type="unfinished"/>
+        <translation>ment notennoù traoñ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="84"/>
@@ -3429,12 +3429,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="91"/>
         <source>\begin{tabbing}</source>
-        <translation type="unfinished"/>
+        <translation>Taolennadurioù - \begin{ta&amp;bbing}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="92"/>
         <source>\begin{tabular}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Taolenn - \begin{tabular}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="93"/>
@@ -3444,22 +3444,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="94"/>
         <source>\includegraphics{file}</source>
-        <translation type="unfinished"/>
+        <translation>\includegraphics{file}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="95"/>
         <source>\include{file}</source>
-        <translation type="unfinished"/>
+        <translation>\include{file}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{file(s)}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{file(s)}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
         <source>\input{file}</source>
-        <translation type="unfinished"/>
+        <translation>\input{file}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="98"/>
@@ -3479,7 +3479,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="101"/>
         <source>footnote</source>
-        <translation type="unfinished"/>
+        <translation>notenn draoñ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="102"/>
@@ -8894,7 +8894,7 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="245"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="246"/>
@@ -8924,7 +8924,7 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Lua</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>
@@ -8936,7 +8936,7 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>QtScript</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="253"/>
@@ -10079,7 +10079,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1049"/>
         <source>&amp;Math</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Math</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1053"/>
