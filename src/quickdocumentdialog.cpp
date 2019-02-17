@@ -192,6 +192,7 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface &configManager)
 QStringList babelLanguages = QStringList()
   << "arabic"
   << "czech"
+  << "dutch"
   << "english"
   << "farsi"
   << "finnish"
