@@ -24,10 +24,10 @@
 \photo[%<height photo%>][%<frame thickness%>]{%<picture file%>}#n
 \quote{%<some quote%>}#n
 \makecvtitle#n
-\cventry{%<year%>--%<year%>}{%<degree or job title%>}{%<institution or employer%>}{%<city%>}{%<grade%>}{%<description%>}#n
-\cvitem{%<item%>}{%<item description%>}#n
-\cvitemwithcomment{%<item%>}{%<item description%>}{%<comment%>}#n
-\cvdoubleitem{%<item%>}{%<item description%>}{%<item%>}{%<item description%>}#n
+\cventry{%<year%>--%<year%>}{degree or job title%text}{institution or employer%text}{city%text}{grade%text}{description%text}#n
+\cvitem{item%text}{item description%text}#n
+\cvitemwithcomment{item%text}{item description%text}{comment%text}#n
+\cvdoubleitem{item%text}{item description%text}{item%text}{item description%text}#n
 \cvlistitem{item%text}#n
 \cvlistdoubleitem{item%text}{item%text}#n
 \begin{cvcolumns}#n
