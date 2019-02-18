@@ -565,11 +565,10 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation>OSX 10.11 tillåter inte längre applikationer att skriva där.
-Därför,
-senaste versioner av MacTeX ändrade sökvägen till /Library/TeX/texbin/
+        <translation>Sedan OSX 10.11 tillåter systemet inte längre applikationer att skriva till den platsen.
+Därför har senare versioner av MacTeX bytt sökvägen för bin till /Library/TeX/texbin/
 
-Vill du att TeXstudio ska ändra alla kommandons sökvägar från /usr/texbin/ till
+Vill du att TeXstudio ska ändra alla kommandons sökvägar från /usr/texbin/ till 
 %1?</translation>
     </message>
     <message>
@@ -678,7 +677,7 @@ Var vänlig ändra din konfiguration och definiera kommandolistor enbart i: &apo
     <message>
         <location filename="../src/buildmanager.cpp" line="1514"/>
         <source>Parent Command</source>
-        <translation type="unfinished"/>
+        <translation>Förälderkommando</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1515"/>
@@ -1582,7 +1581,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2134"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"/>
+        <translation>Visa markörer när loggpost väljs</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2142"/>
@@ -1637,7 +1636,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2208"/>
         <source>Auto Complete Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Komplettera automatiskt parenteser</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2215"/>
@@ -1667,7 +1666,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2268"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation type="unfinished"/>
+        <translation>Ladda automatiskt om sparade filer när de ändrats av externa program (kastar bort ångerhistoriken)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2277"/>
@@ -1838,7 +1837,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2480"/>
         <source>Regular expression for TODO comment: </source>
-        <translation type="unfinished"/>
+        <translation>Reguljära uttryck för TODO-kommentarer:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2493"/>
@@ -2046,7 +2045,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="../src/configdialog.ui" line="2994"/>
         <location filename="../src/configdialog.cpp" line="513"/>
         <source>Completion</source>
-        <translation type="unfinished"/>
+        <translation>Komplettering</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3000"/>
@@ -2834,17 +2833,17 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="502"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Allmänt</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="503"/>
         <source>Commands</source>
-        <translation type="unfinished"/>
+        <translation>Kommandon</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="504"/>
         <source>Build</source>
-        <translation type="unfinished"/>
+        <translation>Bygg</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="507"/>
@@ -5239,7 +5238,7 @@ Vill du skriva över den?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2462"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Ignorera vid synkronisering...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2465"/>
@@ -5369,7 +5368,7 @@ Vill du skriva över den?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2520"/>
         <source>Custom...</source>
-        <translation type="unfinished"/>
+        <translation>Apassning...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2523"/>
@@ -7579,12 +7578,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Kodning för indata</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Kodning för teckensnitt</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -8157,13 +8156,13 @@ Litar du på det här skriptet?</translation>
         <location filename="../src/structuretreeview.cpp" line="53"/>
         <location filename="../src/structuretreeview.cpp" line="101"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished"/>
+        <translation>Expandera underelement</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="54"/>
         <location filename="../src/structuretreeview.cpp" line="102"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished"/>
+        <translation>Kollapsa underelement</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="55"/>
