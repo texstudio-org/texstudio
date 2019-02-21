@@ -7646,12 +7646,12 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Vstupní kódování</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Kódování písma</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -9171,7 +9171,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="613"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>Příkazy XY</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="739"/>

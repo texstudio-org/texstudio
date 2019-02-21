@@ -1834,7 +1834,7 @@ que renderizar los caracteres. Dado que unicode no es compatible de forma nativa
     <message>
         <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>Uno o más directorios para buscar diccionarios. Varias rutas de acceso pueden separarse con punto y coma. Puede utilizar las palabras clave especiales [txs-settings-dir] y [txs-app-dir]  que se resuelven hacia los respectivos directorios.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2473"/>
@@ -2167,7 +2167,7 @@ Aquí puede añadir otro entorno de resaltado personalizado.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3162"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Borroso</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3167"/>
@@ -4413,7 +4413,7 @@ El asistente no admite órdenes </translation>
         <location filename="../src/latexcompleter.cpp" line="1317"/>
         <location filename="../src/latexcompleter.cpp" line="1327"/>
         <source>fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>borroso</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1318"/>
@@ -7639,17 +7639,17 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="121"/>
         <source>Babel</source>
-        <translation type="unfinished"/>
+        <translation>Babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificación de la entrada</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificación del tipo de letra</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -9171,7 +9171,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="613"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>XY órdenes</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="739"/>

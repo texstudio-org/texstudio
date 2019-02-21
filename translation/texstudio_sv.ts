@@ -1359,7 +1359,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1655"/>
         <source>Automatic Encoding Detection:</source>
-        <translation>Automatiskt detektering av kodning</translation>
+        <translation>Automatiskt detektering av teckenkodning</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1665"/>
@@ -1852,7 +1852,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2527"/>
         <source>bib File Encoding:</source>
-        <translation>bib-filenkodning:</translation>
+        <translation>Teckenkodning för bib-fil:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2534"/>
@@ -3850,7 +3850,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="209"/>
         <source>Default encoding</source>
-        <translation>Standard-kodning</translation>
+        <translation>Standard-teckenkodning</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="219"/>
@@ -3982,7 +3982,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="../src/encodingdialog.cpp" line="35"/>
         <source>Select Encoding for</source>
-        <translation>Välj kodning för</translation>
+        <translation>Välj teckenkodning för</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.cpp" line="52"/>
@@ -3997,7 +3997,7 @@ Are you sure you want accept data loss?</source>
 These changes will be lost, if you reload it with the new encoding.
 Are you sure you want to undo all changes?</source>
         <translation>Dokumentet har ändrats.
-Dessa ändringar kommer gå förlorade om du väljer att ladda om filen med en ny kodning.
+Dessa ändringar kommer gå förlorade om du väljer att ladda om filen med en ny teckenkodning.
 Är du säker på att du vill kasta bort alla ändringar?</translation>
     </message>
 </context>
@@ -4811,7 +4811,7 @@ Guiden stödjer inte kommandon.</translation>
     <message>
         <location filename="../src/letterdialog.ui" line="56"/>
         <source>Encoding</source>
-        <translation>Kodning</translation>
+        <translation>Teckenkodning</translation>
     </message>
     <message>
         <location filename="../src/letterdialog.ui" line="63"/>
@@ -4836,7 +4836,7 @@ Guiden stödjer inte kommandon.</translation>
     <message>
         <location filename="../src/letterdialog.cpp" line="55"/>
         <source>Quick Letter</source>
-        <translation>Snabbt brev</translation>
+        <translation>Guide för att skapa ett brev</translation>
     </message>
 </context>
 <context>
@@ -7470,7 +7470,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="29"/>
         <source>Encoding</source>
-        <translation>Kodning</translation>
+        <translation>Teckenkodning</translation>
     </message>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="39"/>
@@ -7505,7 +7505,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickbeamerdialog.cpp" line="30"/>
         <source>Quick Beamer Presentation</source>
-        <translation>Snabb Beamer-presentation</translation>
+        <translation>Guide för att skapa en Beamer-presentation</translation>
     </message>
 </context>
 <context>
@@ -7578,7 +7578,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation>Kodning för indata</translation>
+        <translation>Teckenkodning för indata</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
@@ -8621,7 +8621,7 @@ Litar du på det här skriptet?</translation>
     <message>
         <location filename="../src/tabdialog.cpp" line="111"/>
         <source>Quick Tabular</source>
-        <translation type="unfinished"/>
+        <translation>Infoga tabell (tabular)</translation>
     </message>
 </context>
 <context>
@@ -8654,7 +8654,7 @@ Litar du på det här skriptet?</translation>
     <message>
         <location filename="../src/tabbingdialog.cpp" line="28"/>
         <source>Quick Tabbing</source>
-        <translation type="unfinished"/>
+        <translation>Infoga tabell (tabbing)</translation>
     </message>
 </context>
 <context>
@@ -9161,7 +9161,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="761"/>
         <source>Save A&amp;ll</source>
-        <translation>Spara &amp;alla</translation>
+        <translation>Spara a&amp;lla</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="762"/>
@@ -9287,7 +9287,7 @@ kunde inte raderas.</translation>
         <location filename="../src/texstudio.cpp" line="793"/>
         <location filename="../src/texstudio.cpp" line="9155"/>
         <source>&amp;Close</source>
-        <translation>&amp;Stäng</translation>
+        <translation>St&amp;äng</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="794"/>
@@ -9342,7 +9342,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="814"/>
         <source>&amp;Selection</source>
-        <translation>Markering</translation>
+        <translation>&amp;Markering</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="815"/>
@@ -9568,7 +9568,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="898"/>
         <source>Setup Encoding...</source>
-        <translation>Inställning kodning</translation>
+        <translation>Ställ in teckenkodning</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="899"/>
@@ -10107,7 +10107,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1054"/>
         <source>Quick &amp;Start...</source>
-        <translation>Snabb &amp;start...</translation>
+        <translation>Guide för att skapa ett dokument</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1055"/>
@@ -10122,17 +10122,17 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1059"/>
         <source>Quick &amp;Tabular...</source>
-        <translation type="unfinished"/>
+        <translation>Infoga tabell (tabular)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1060"/>
         <source>Quick T&amp;abbing...</source>
-        <translation type="unfinished"/>
+        <translation>Infoga tabell (tabbing)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1061"/>
         <source>Quick &amp;Array...</source>
-        <translation type="unfinished"/>
+        <translation>Snabb tabell (array)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1062"/>
@@ -10174,7 +10174,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1117"/>
         <source>Ma&amp;cros</source>
-        <translation>Makro</translation>
+        <translation>Ma&amp;kron</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1123"/>
@@ -10189,7 +10189,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1125"/>
         <source>Open Documents</source>
-        <translation>Öppna dokument</translation>
+        <translation>Öppna dokument...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1126"/>
@@ -10214,7 +10214,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1133"/>
         <source>Show</source>
-        <translation>Visa</translation>
+        <translation>Visa...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1136"/>
@@ -10328,7 +10328,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1213"/>
         <source>&amp;Options</source>
-        <translation>&amp;Alternativ</translation>
+        <translation>Alter&amp;nativ</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1214"/>
@@ -10449,7 +10449,7 @@ kunde inte raderas.</translation>
         <location filename="../src/texstudio.cpp" line="5563"/>
         <location filename="../src/texstudio.cpp" line="5564"/>
         <source>Encoding</source>
-        <translation>Kodning</translation>
+        <translation>Teckenkodning</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1494"/>
@@ -10459,7 +10459,7 @@ kunde inte raderas.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1502"/>
         <source>Insert encoding as TeX comment</source>
-        <translation>Infoga kodning som TeX-kommentar</translation>
+        <translation>Infoga teckenkodning som TeX-kommentar</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1516"/>
@@ -10771,7 +10771,7 @@ du kan skriva över den.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5558"/>
         <source>Encoding Aliases: </source>
-        <translation type="unfinished"/>
+        <translation>Alias för teckenkodning:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5611"/>

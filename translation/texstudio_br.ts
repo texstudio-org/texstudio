@@ -39,22 +39,22 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="30"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation>TeXstudio a implij ar c&apos;hlas DSingleApplication (Aozer: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Lisañs: GPL).</translation>
+        <translation>TeXstudio a implij ar c&apos;hlas DSingleApplication (Aozer: Dima Fedorov Levit - Pep Gwir Miret Strizh (C) BioImage Informatics - Lisañs: GPL).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="31"/>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation>TeXstudio a implij TexTablet (MIT Lisañs, Copyright (c) 2012 Steven Lovegrove).</translation>
+        <translation>TeXstudio a implij TexTablet (Lisañs MIT, Pep Gwir Miret Strizh (c) 2012 Steven Lovegrove).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation>TeXstudio a implij QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov ha kendaolerien).</translation>
+        <translation>TeXstudio a implij QuaZip (LGPL, Pep Gwir Miret Strizh (C) 2005-2012 Sergey A. Tachenov ha kendaolerien).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation>TeXstudio a implij To Title Case (MIT Lisañs, Copyright (c) 2008-2013 David Gouch).</translation>
+        <translation>TeXstudio a implij To Title Case (Lisañs MIT, Pep Gwir Miret Strizh (c) 2008-2013 David Gouch).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="34"/>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="40"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation>Ar programm-mañ a vez dasparzhet dindan al lisañs « Lisañs Stumm 2 ar GNU General Public » evel m&apos;eo bet embannet gant ar Free Software Foundation.</translation>
+        <translation>Ar programm-mañ a vez dasparzhet dindan al lisañs « Lisañs Stumm 2 ar GNU General Public » evel m&apos;eo bet embannet gant Diazezadur ar Meziantoù Frank (Free Software Foundation).</translation>
     </message>
 </context>
 <context>
