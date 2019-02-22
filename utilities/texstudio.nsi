@@ -36,7 +36,10 @@ page instfiles
 
 # default section
 Section "install"
- 
+
+# sets $SMPROGRAMS to all users 
+SetShellVarContext all
+
 # define the output path for this file
 SetOutPath $INSTDIR
  
@@ -85,8 +88,7 @@ WriteUninstaller $INSTDIR\uninstall.exe
 ${registerExtension} $INSTDIR\texstudio.exe ".tex" "tex File"
 
 # Start Menu
-createDirectory "$SMPROGRAMS\${APPNAME}"
-createShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" \
+createShortCut "$SMPROGRAMS\${APPNAME}.lnk" \
 "$INSTDIR\texstudio.exe" "" ""
 
 # Registry information for add/remove programs
@@ -124,10 +126,11 @@ functionEnd
 # the section will always be named "Uninstall"
 Section "Uninstall"
 
+# sets $SMPROGRAMS to all users 
+SetShellVarContext all
+	
 # Remove Start Menu launcher
-Delete "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk"
-# Try to remove the Start Menu folder - this will only happen if it is empty
-RMDir "$SMPROGRAMS\${APPNAME}"
+delete "$SMPROGRAMS\${APPNAME}.lnk"
  
 # Always delete uninstaller first
 Delete $INSTDIR\uninstaller.exe
