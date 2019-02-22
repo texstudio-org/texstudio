@@ -65,7 +65,7 @@ bool isProbablyLTRLanguageCode(HKL id)
 		kb::XKeyboard xkb;
 		kb::string_vector installedLangSymbols = kb::parse3(xkb.get_kb_string(), kb::nonsyms());
 		id --;
-		if (id >= 0 && id < (int) installedLangSymbols.size())
+        if (id >= 0 && id < static_cast<HKL>(installedLangSymbols.size()))
 			return isProbablyLTRLanguageRaw(installedLangSymbols[id]);
 	} catch (X11Exception) { }
 	return false;

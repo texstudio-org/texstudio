@@ -13,7 +13,7 @@ class CleanDialog : public QDialog
 	Q_OBJECT
 
 public:
-	explicit CleanDialog(QWidget *parent = 0);
+    explicit CleanDialog(QWidget *parent = nullptr);
 	~CleanDialog();
 
 	bool checkClean(const LatexDocuments &docs);

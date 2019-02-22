@@ -20,122 +20,13 @@
 #include "qgotolinepanel.h"
 #include "qsearchreplacepanel.h"
 #include "qfoldpanel.h"
+#include "macrobrowserui.h"
 
 #include "smallUsefulFunctions.h"
 #include "utilsUI.h"
 
-class StringListTableModel: public QAbstractTableModel
-{
-public:
-	StringListTableModel(QObject *p): QAbstractTableModel(p) {}
-	virtual int rowCount ( const QModelIndex &parent = QModelIndex() ) const;
-	virtual int columnCount ( const QModelIndex &parent = QModelIndex() ) const;
-	virtual QVariant data ( const QModelIndex &index, int role = Qt::DisplayRole) const;
-	virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-	void addStringList(QStringList *list, const QString &name);
-
-	virtual void insertRow(int row, const QModelIndex &parent = QModelIndex());
-	virtual void removeRow(int row, const QModelIndex &parent = QModelIndex());
-	void swapRows(int a, int b);
-	virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-	Qt::ItemFlags flags ( const QModelIndex &index ) const;
-
-	int listId(const QStringList *sl) const;
-private:
-	QList<QPair<QString, QStringList *> > lists;
-};
-
-int StringListTableModel::rowCount ( const QModelIndex &parent) const
-{
-	if (parent.isValid() || lists.isEmpty()) return 0;
-	return lists.first().second->size();
-}
-
-int StringListTableModel::columnCount ( const QModelIndex &parent) const
-{
-	return parent.isValid() ? 0 : lists.size();
-}
-
-QVariant StringListTableModel::data ( const QModelIndex &index, int role) const
-{
-	if (role != Qt::DisplayRole && role != Qt::EditRole) return QVariant();
-	if (index.column() >= lists.size()) return QVariant();
-	if (index.row() >= lists[index.column()].second->size()) return QVariant();
-	return lists[index.column()].second->at(index.row());
-}
-
-QVariant StringListTableModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
-	if (orientation == Qt::Vertical || role != Qt::DisplayRole) {
-		return QAbstractTableModel::headerData(section, orientation, role);
-	}
-	if (section >= lists.size()) return QVariant();
-	return lists[section].first;
-}
-
-void StringListTableModel::insertRow(int row, const QModelIndex &parent)
-{
-	if (parent.isValid()) return;
-	beginInsertRows(parent, row, row);
-	for (int i = 0; i < lists.size(); i++)
-		lists[i].second->insert(row, "");
-	endInsertRows();
-}
-
-void StringListTableModel::removeRow(int row, const QModelIndex &parent)
-{
-	if (parent.isValid() || row < 0) return;
-	beginRemoveRows(parent, row, row);
-	for (int i = 0; i < lists.size(); i++)
-		lists[i].second->removeAt(row);
-	endRemoveRows();
-	//reset(); //begin/end removerows crashes
-}
-
-void StringListTableModel::swapRows(int a, int b)
-{
-	if (a < 0 || b < 0 || a >= rowCount() || b >= rowCount()) return;
-	for (int i = 0; i < lists.size(); i++) {
-		QString temp = lists[i].second->at(a);
-		setData(index(a, i), lists[i].second->at(b));
-		setData(index(b, i), temp);
-	}
-}
-
-bool StringListTableModel::setData(const QModelIndex &index, const QVariant &value, int )
-{
-	if (!index.isValid()) return false;
-	if (lists[index.column()].second->at(index.row()) == value.toString()) return true;
-	lists[index.column()].second->replace(index.row(), value.toString());
-	emit dataChanged(index, index);
-	return true;
-}
-
-Qt::ItemFlags StringListTableModel::flags ( const QModelIndex &index ) const
-{
-	if (!index.isValid() || index.row() < 0 || index.column() < 0 || index.column() >= lists.size() || index.row() >= lists.first().second->size())
-		return Qt::NoItemFlags;
-	if (index.column() < lists.size() - 1 || !lists[index.column()].second->at(index.row()).contains("\n"))
-		return Qt::ItemIsEditable | Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-	else
-		return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-}
-
-int StringListTableModel::listId(const QStringList *sl) const
-{
-	for (int i = 0; i < lists.size(); i++)
-		if (lists[i].second == sl) return i;
-	return -1;
-}
-
-void StringListTableModel::addStringList(QStringList *list, const QString &name)
-{
-	lists << QPair<QString, QStringList *>(name, list);
-}
-
-
 UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory *languageFactory)
-	: QDialog(parent), languages(languageFactory), model(0)
+    : QDialog(parent), languages(languageFactory)
 {
 	setWindowTitle(name);
 	ui.setupUi(this);
@@ -149,9 +40,14 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.runScriptButton, SIGNAL(clicked()), SLOT(slotRunScript()));
 
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), SLOT(slotAdd()));
+    connect(ui.pushButtonAddFolder, SIGNAL(clicked()), SLOT(slotAddFolder()));
 	connect(ui.pushButtonRemove, SIGNAL(clicked()), SLOT(slotRemove()));
 	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
 	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
+
+    connect(ui.pbExport,SIGNAL(clicked()), SLOT(exportMacro()));
+    connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
+    connect(ui.pbBrowse,SIGNAL(clicked()), SLOT(browseMacrosOnRepository()));
 
 
 	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeTypeToNormal()));
@@ -192,11 +88,37 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	ui.tagEdit->layout()->setMargin(0);
 	ui.tagEdit->layout()->addWidget(codeedit->editor());
 
+    // limit height of description editor
+    QFontMetrics m (ui.teDescription->font());
+    int RowHeight = m.lineSpacing();
+    ui.teDescription->setFixedHeight(4 * RowHeight);
+
+    QStringList lst;
+    for(char i=0;i<26;i++){
+        lst<<QString("Ctrl+M,Ctrl+%1").arg(QChar('A'+i));
+    }
+    ui.cbShortcut->addItems(lst);
+
+    connect(ui.treeWidget,SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,SLOT(change(QTreeWidgetItem*,QTreeWidgetItem*)));
+    ui.treeWidget->setDragEnabled(true);
+    ui.treeWidget->setDragDropMode(QAbstractItemView::InternalMove);
+
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
+    connect(ui.teDescription, SIGNAL(textChanged()), SLOT(descriptionChanged()));
+#if QT_VERSION >= 0x050000
+    connect(ui.cbShortcut, SIGNAL(currentTextChanged(QString)), SLOT(shortcutChanged()));
+#else
+    connect(ui.cbShortcut, SIGNAL(editTextChanged(QString)), SLOT(shortcutChanged()));
+#endif
 	connect(ui.abbrevEdit, SIGNAL(textEdited(QString)), SLOT(abbrevChanged()));
 	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
 	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
+
+#if QT_VERSION < 0x050000
+    // no macro browsing with <qt5
+    ui.pbBrowse->hide();
+#endif
 
 }
 
@@ -206,68 +128,154 @@ UserMenuDialog::~UserMenuDialog()
 	delete codeedit;
 }
 
-void UserMenuDialog::addMacro(const Macro &m)
+void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
 {
-	names << m.name;
-	tags << m.typedTag();
-	abbrevs << m.abbrev;
-	triggers << m.trigger;
+    auto *item=new QTreeWidgetItem();
+    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+    item->setText(0,m.name);
+    item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    if(insertRow){
+        ui.treeWidget->addTopLevelItem(item);
+        ui.treeWidget->setCurrentItem(item);
+    }else{
+        // generate tree/folder if necessary
+        if(!m.menu.isEmpty()){
+            QTreeWidgetItem *parent=findCreateFolder(m.menu);
+            parent->addChild(item);
+        }else{
+            ui.treeWidget->addTopLevelItem(item);
+        }
+    }
 }
 
-Macro UserMenuDialog::getMacro(int i) const
+
+QList<Macro> UserMenuDialog::getMacros() const
 {
-	if (i >= names.count()) return Macro();
-	Q_ASSERT(names.size() == tags.size());
-	Q_ASSERT(names.size() == abbrevs.size());
-	Q_ASSERT(names.size() == triggers.size());
-	return Macro(names[i], tags[i], abbrevs[i], triggers[i]);
+    QList<Macro> results;
+    for(int i=0;i<ui.treeWidget->topLevelItemCount();i++){
+        QTreeWidgetItem *element=ui.treeWidget->topLevelItem(i);
+        results<<getMacros(element,"");
+    }
+    return results;
 }
 
-int UserMenuDialog::macroCount() const
+QList<Macro> UserMenuDialog::getMacros(QTreeWidgetItem *item, const QString &path) const
 {
-	return names.count();
+    QList<Macro> results;
+    if(item->childCount()){
+        for(int i=0;i<item->childCount();i++){
+            QTreeWidgetItem *element=item->child(i);
+            results<<getMacros(element,path+item->text(0)+"/");
+        }
+    }else{
+        QVariant v=item->data(0,Qt::UserRole);
+        if(v.isValid()){
+            Macro m=v.value<Macro>();
+            if(!m.isEmpty()){
+                QString s=path;
+                if(s.endsWith('/')){
+                    s=s.left(s.length()-1);
+                }
+                m.menu=s;
+                results<<m;
+            }
+        }
+    }
+    return results;
 }
 
-void UserMenuDialog::init()
+void UserMenuDialog::selectFirst()
 {
-	model = new StringListTableModel(this);
-	model->addStringList(&names, tr("Name"));
-	model->addStringList(&abbrevs, tr("Abbrev"));
-	model->addStringList(&triggers, tr("Trigger"));
-	model->addStringList(&tags, tr("Tag"));
-	ui.tableView->setModel(model);
-	ui.tableView->resizeColumnsToContents();
-	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), SLOT(change(const QModelIndex &, const QModelIndex &)));
-	if (model->rowCount() > 0) ui.tableView->setCurrentIndex(model->index(0, 0));
-	connect(model, SIGNAL(dataChanged(QModelIndex, QModelIndex)), SLOT(modelDataChanged(QModelIndex, QModelIndex)));
+    auto *item=ui.treeWidget->topLevelItem(0);
+    ui.treeWidget->setCurrentItem(item);
 }
 
-void UserMenuDialog::change(const QModelIndex &modelIndex, const QModelIndex &)
+QTreeWidgetItem *UserMenuDialog::findCreateFolder(const QString &menu)
 {
-	int index = modelIndex.row();
-	if (index < 0) return;
-	if (codeedit->editor()->text() != tags.value(index, "")) {
-		codeedit->editor()->setText(tags.value(index, ""), false);
-		if (languages) {
-			QString line = codeedit->editor()->text(0);
-			if (line == "%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
-			else if (line.startsWith("%") && !line.startsWith("%%")) languages->setLanguage(codeedit->editor(), "");
-			else languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
-		}
-	}
-	if (names.value(index, "") != ui.itemEdit->text())
-		ui.itemEdit->setText(names.value(index, ""));
-	if (abbrevs.value(index, "") != ui.abbrevEdit->text())
-		ui.abbrevEdit->setText(abbrevs.value(index, ""));
-	if (triggers.value(index, "") != ui.triggerEdit->text())
-		ui.triggerEdit->setText(triggers.value(index, ""));
-
+    QTreeWidgetItem *parent=nullptr;
+    QStringList folders=menu.split('/');
+    QString topFolder=folders.takeFirst();
+    QList<QTreeWidgetItem*>results=ui.treeWidget->findItems(topFolder,Qt::MatchExactly);
+    bool found=false;
+    foreach(parent,results){
+        if(parent->type()==1){
+            found=true;
+            break;
+        }
+    }
+    if(!found){
+        // create folder
+        parent=new QTreeWidgetItem(ui.treeWidget,1);
+        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+        parent->setText(0,topFolder);
+        parent->setIcon(0,QIcon::fromTheme("folder"));
+        ui.treeWidget->addTopLevelItem(parent);
+    }
+    parent=findCreateFolder(parent,folders);
+    return parent;
 }
 
-void UserMenuDialog::modelDataChanged(const QModelIndex &from , const QModelIndex &)
+QTreeWidgetItem *UserMenuDialog::findCreateFolder(QTreeWidgetItem *parent, QStringList folders)
 {
-	change(from, QModelIndex());
-	//better to set only changed column?
+    if(folders.isEmpty())
+        return parent;
+    QString topFolder=folders.takeFirst();
+    bool found=false;
+    for(int i=0;i<parent->childCount();i++){
+        QTreeWidgetItem *item=parent->child(i);
+        if(item->text(0)==topFolder){
+            if(item->type()==1){
+                found=true;
+                parent=item;
+                break;
+            }
+        }
+    }
+    if(!found){
+        // create folder
+        parent=new QTreeWidgetItem(parent,1);
+        parent->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+        parent->setText(0,topFolder);
+        parent->setIcon(0,QIcon::fromTheme("folder"));
+    }
+    parent=findCreateFolder(parent,folders);
+    return parent;
+}
+
+void UserMenuDialog::change(QTreeWidgetItem *current,QTreeWidgetItem *previous)
+{
+    Q_UNUSED(previous);
+    if (current==nullptr) return;
+    QVariant v=current->data(0,Qt::UserRole);
+    if(v.isValid()){
+        Macro m=v.value<Macro>();
+        if (m.name != ui.itemEdit->text())
+            ui.itemEdit->setText(m.name);
+        if (m.abbrev != ui.abbrevEdit->text())
+            ui.abbrevEdit->setText(m.abbrev);
+        if (m.trigger != ui.triggerEdit->text())
+            ui.triggerEdit->setText(m.trigger);
+
+        if (m.shortcut() != ui.cbShortcut->currentText()){
+#if QT_VERSION >= 0x050000
+            ui.cbShortcut->setCurrentText(m.shortcut());
+#else
+            ui.cbShortcut->setEditText(m.shortcut());
+#endif
+        }
+        if (m.description != ui.teDescription->toPlainText())
+            ui.teDescription->setPlainText(m.description);
+
+        if (codeedit->editor()->text() != m.typedTag()) {
+            codeedit->editor()->setText(m.typedTag(), false);
+            if (languages) {
+                QString line = codeedit->editor()->text(0);
+                if (line == "%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
+                else if (line.startsWith("%") && !line.startsWith("%%")) languages->setLanguage(codeedit->editor(), "");
+                else languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
+            }
+        }
+    }
 }
 
 void UserMenuDialog::slotOk()
@@ -284,45 +292,137 @@ void UserMenuDialog::slotRunScript()
 
 void UserMenuDialog::slotAdd()
 {
-	model->insertRow(ui.tableView->currentIndex().row() + 1);
-	if (model->rowCount() == 1) {
-		model->setData(model->index(0, model->listId(&tags)), codeedit->editor()->text());
-		model->setData(model->index(0, model->listId(&names)), ui.itemEdit->text());
-		model->setData(model->index(0, model->listId(&abbrevs)), ui.abbrevEdit->text());
-		model->setData(model->index(0, model->listId(&triggers)), ui.triggerEdit->text());
-	}
-	ui.tableView->setCurrentIndex(model->index(ui.tableView->currentIndex().row() + 1, 0));
+    auto *item=new QTreeWidgetItem(ui.treeWidget);
+    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+    item->setText(0,"");
+    Macro m;
+    item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    ui.treeWidget->addTopLevelItem(item);
+    ui.treeWidget->setCurrentItem(item);
 }
 
 void UserMenuDialog::slotRemove()
 {
-	if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro?")))
-		return;
-	int index = ui.tableView->currentIndex().row();
-	if (index < 0) return;
-	model->removeRow(index);
-	change(ui.tableView->currentIndex(), QModelIndex());
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr)
+        return;
+    if(item->childCount()){
+        UtilsUi::txsInformation(tr("Folder is not empty."));
+        return;
+    }
+    if(item->type()==0){
+        // only confirm for macros, not for folders
+        if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro?")))
+            return;
+    }
 
+    QTreeWidgetItem *parent=item->parent();
+    if(parent){
+        int index = parent->indexOfChild(item);
+        QTreeWidgetItem* child = parent->takeChild(index);
+        delete child;
+    }else{
+        int index = ui.treeWidget->indexOfTopLevelItem(item);
+        QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
+        delete child;
+    }
+    if(ui.treeWidget->topLevelItemCount()==0){
+        // add empty macro
+        slotAdd();
+    }
+}
+
+void UserMenuDialog::slotAddFolder(){
+    auto *item=new QTreeWidgetItem(ui.treeWidget,1);
+    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+    item->setText(0,"Folder");
+    item->setIcon(0,QIcon::fromTheme("folder"));
+    ui.treeWidget->addTopLevelItem(item);
+    ui.treeWidget->setCurrentItem(item);
 }
 
 void UserMenuDialog::slotMoveUp()
 {
-	int r = ui.tableView->currentIndex().row();
-	if (r < 1) return;
-	ui.tableView->setCurrentIndex(QModelIndex()); //remove selection because otherwise the changed text creates a feedback loop removing one entry
-	model->swapRows(r, r - 1);
-	ui.tableView->setCurrentIndex(model->index(r - 1, 0));
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    int row  = ui.treeWidget->currentIndex().row();
+    if (item && row > 0)
+    {
+        QTreeWidgetItem* parent = item->parent();
+        if(parent){
+            int index = parent->indexOfChild(item);
+            QTreeWidgetItem* child = parent->takeChild(index);
+            parent->insertChild(index-1, child);
+            parent->setExpanded(true);
+            child->setExpanded(true);
+            ui.treeWidget->setCurrentItem(item);
+        }else{
+            int index = ui.treeWidget->indexOfTopLevelItem(item);
+            QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
+            ui.treeWidget->insertTopLevelItem(index-1, child);
+            ui.treeWidget->setCurrentItem(item);
+        }
+    }
 }
 
 void UserMenuDialog::slotMoveDown()
 {
-	int r = ui.tableView->currentIndex().row();
-	if (r + 1 >= model->rowCount()) return;
-	ui.tableView->setCurrentIndex(QModelIndex());
-	model->swapRows(r, r + 1);
-	ui.tableView->setCurrentIndex(model->index(r + 1, 0));
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if (item){
+        QTreeWidgetItem* parent = item->parent();
+        if(parent){
+            int index = parent->indexOfChild(item);
+            if(index< (parent->childCount()-1)){
+                QTreeWidgetItem* child = parent->takeChild(index);
+                parent->insertChild(index+1, child);
+                parent->setExpanded(true);
+                child->setExpanded(true);
+                ui.treeWidget->setCurrentItem(item);
+            }
+        }else{
+            int index = ui.treeWidget->indexOfTopLevelItem(item);
+            if(index<(ui.treeWidget->topLevelItemCount()-1)){
+                QTreeWidgetItem* child = ui.treeWidget->takeTopLevelItem(index);
+                ui.treeWidget->insertTopLevelItem(index+1, child);
+                ui.treeWidget->setCurrentItem(item);
+            }
+        }
+    }
 }
 
+void UserMenuDialog::importMacro()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Import macro"), "", tr("txs macro files (*.txsMacro)"));
+    if(!fileName.isEmpty()){
+        Macro m;
+        m.load(fileName);
+        addMacro(m,true);
+    }
+}
+
+void UserMenuDialog::exportMacro()
+{
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr || item->type()==1) return;
+    QString fileName = QFileDialog::getSaveFileName(this,tr("Export macro"), "", tr("txs macro files (*.txsMacro)"));
+    if(!fileName.isEmpty()){
+        QVariant v=item->data(0,Qt::UserRole);
+        if(v.isValid()){
+            Macro m=v.value<Macro>();
+            m.save(fileName);
+        }
+    }
+}
+
+void UserMenuDialog::browseMacrosOnRepository(){
+    // open special dialog for macro browser
+    MacroBrowserUI *mbUI=new MacroBrowserUI(this);
+    if(mbUI->exec()){
+        QList<Macro> lst=mbUI->getSelectedMacros();
+        foreach(const auto &m,lst){
+            addMacro(m,true);
+        }
+    }
+}
 
 void UserMenuDialog::changeTypeToNormal()
 {
@@ -361,31 +461,74 @@ void UserMenuDialog::textChanged()
 	if (line == "%SCRIPT") ui.radioButtonScript->setChecked(true);
 	else if (line.startsWith("%") && !line.startsWith("%%")) ui.radioButtonEnvironment->setChecked(true);
 	else ui.radioButtonNormal->setChecked(true);
-	if (!ui.tableView->currentIndex().isValid()) return;
-	int i = ui.tableView->currentIndex().row();
-	model->setData(model->index(i, model->listId(&tags)), codeedit->editor()->text());
-
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr) return;
+    QVariant v=item->data(0,Qt::UserRole);
+    if(v.isValid()){
+        Macro m=v.value<Macro>();
+        m.setTypedTag(codeedit->editor()->text());
+        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    }
 }
 
 void UserMenuDialog::nameChanged()
 {
-	if (!ui.tableView->currentIndex().isValid()) return;
-	int i = ui.tableView->currentIndex().row();
-	model->setData(model->index(i, model->listId(&names)), ui.itemEdit->text());
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr) return;
+    QVariant v=item->data(0,Qt::UserRole);
+    if(v.isValid()){
+        Macro m=v.value<Macro>();
+        m.name=ui.itemEdit->text();
+        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+        item->setText(0,m.name);
+    }
+}
+void UserMenuDialog::descriptionChanged()
+{
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr) return;
+    QVariant v=item->data(0,Qt::UserRole);
+    if(v.isValid()){
+        Macro m=v.value<Macro>();
+        m.description=ui.teDescription->document()->toPlainText();
+        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    }
+}
+
+void UserMenuDialog::shortcutChanged()
+{
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr) return;
+    QVariant v=item->data(0,Qt::UserRole);
+    if(v.isValid()){
+        Macro m=v.value<Macro>();
+        m.setShortcut(ui.cbShortcut->currentText());
+        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    }
 }
 
 void UserMenuDialog::abbrevChanged()
 {
-	if (!ui.tableView->currentIndex().isValid()) return;
-	int i = ui.tableView->currentIndex().row();
-	model->setData(model->index(i, model->listId(&abbrevs)), ui.abbrevEdit->text());
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr) return;
+    QVariant v=item->data(0,Qt::UserRole);
+    if(v.isValid()){
+        Macro m=v.value<Macro>();
+        m.abbrev=ui.abbrevEdit->text();
+        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    }
 }
 
 void UserMenuDialog::triggerChanged()
 {
-	if (!ui.tableView->currentIndex().isValid()) return;
-	int i = ui.tableView->currentIndex().row();
-	model->setData(model->index(i, model->listId(&triggers)), ui.triggerEdit->text());
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if(item==nullptr) return;
+    QVariant v=item->data(0,Qt::UserRole);
+    if(v.isValid()){
+        Macro m=v.value<Macro>();
+        m.trigger=ui.triggerEdit->text();
+        item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+    }
 }
 
 void UserMenuDialog::showTooltip()

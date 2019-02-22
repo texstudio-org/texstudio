@@ -50,7 +50,7 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::largeLogo()
 {
-	QDialog *dlg = new QDialog(0);
+    QDialog *dlg = new QDialog(nullptr);
 	dlg->setAttribute(Qt::WA_DeleteOnClose);
 	dlg->setLayout(new QHBoxLayout(dlg));
 	QLabel *label = new QLabel(dlg);

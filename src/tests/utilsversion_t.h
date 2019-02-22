@@ -107,11 +107,11 @@ private slots:
         QTest::newRow("larger3") << "2.4.1" << "stable" << 100 << "2.3.4" << "stable" << 100 << true;
         QTest::newRow("larger4") << "2.4.1" << "stable" << 100 << "2.4.1" << "beta" << 100 << true;
         QTest::newRow("larger5") << "2.4.1" << "stable" << 100 << "2.4.1" << "release candidate" << 100 << true;
-        QTest::newRow("larger6") << "2.4.1" << "stable" << 100 << "2.4.1" << "development" << 100 << true;
+        QTest::newRow("larger6") << "2.4.1" << "stable" << 100 << "2.4.1" << "development" << 100 << false;
         QTest::newRow("larger7") << "2.4.1" << "beta" << 2 << "2.4.1" << "beta" << 1 << true;
         QTest::newRow("larger8") << "2.4.1" << "release candidate" << 1 << "2.4.1" << "beta" << 5 << true;
-        QTest::newRow("larger8") << "2.4.1" << "release candidate" << 1 << "2.4.1" << "development" << 5 << true;
-        QTest::newRow("larger8") << "2.4.1" << "beta" << 1 << "2.4.1" << "development" << 5 << true;
+        QTest::newRow("larger9") << "2.4.1" << "release candidate" << 1 << "2.4.1" << "development" << 5 << true;
+        QTest::newRow("larger10") << "2.4.1" << "beta" << 1 << "2.4.1" << "development" << 5 << true;
 
     }
 

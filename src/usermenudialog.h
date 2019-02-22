@@ -19,45 +19,49 @@
 class QCodeEdit;
 class QLanguageFactory;
 class QSearchReplacePanel;
-class StringListTableModel;
+
 class UserMenuDialog : public QDialog
 {
 	Q_OBJECT
 
 public:
-	UserMenuDialog(QWidget *parent = 0, QString name = "", QLanguageFactory *languageFactory = 0);
+    UserMenuDialog(QWidget *parent = nullptr, QString name = "", QLanguageFactory *languageFactory = nullptr);
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
-	void addMacro(const Macro &m);
-	Macro getMacro(int i) const;
-	int macroCount() const;
+    void addMacro(const Macro &m,bool insertRow=false);
+    QList<Macro> getMacros() const;
+    QList<Macro> getMacros(QTreeWidgetItem *item,const QString &path) const;
+
+    void selectFirst();
 
 private:
-	QStringList names, tags, abbrevs, triggers;
+    QTreeWidgetItem* findCreateFolder(const QString &menu);
+    QTreeWidgetItem* findCreateFolder(QTreeWidgetItem *parent, QStringList folders);
 
 	QCodeEdit *codeedit;
 	QLanguageFactory *languages;
 	QSearchReplacePanel *searchReplacePanel;
-	StringListTableModel *model;
-
-public slots:
-	void init();
 
 signals:
 	void runScript(const QString &script);
 
 private slots:
-	void change(const QModelIndex &nev, const QModelIndex &old);
-	void modelDataChanged(const QModelIndex &from , const QModelIndex &to);
+    void change(QTreeWidgetItem *current,QTreeWidgetItem *previous);
 	void slotOk();
 	void slotRunScript();
 	void slotAdd();
 	void slotRemove();
+    void slotAddFolder();
 	void slotMoveUp();
 	void slotMoveDown();
+    void importMacro();
+    void exportMacro();
+    void browseMacrosOnRepository();
 	void textChanged();
 	void nameChanged();
+    void descriptionChanged();
+    void shortcutChanged();
 	void abbrevChanged();
 	void triggerChanged();
 	void showTooltip();

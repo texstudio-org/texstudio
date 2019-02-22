@@ -44,7 +44,7 @@
 #define QLINE_MARKS_DUMP_VERSION		1
 #define QLINE_MARKS_DUMP_VERSION_MIN	1
 
-QLineMarksInfoCenter* QLineMarksInfoCenter::m_instance = 0;
+QLineMarksInfoCenter* QLineMarksInfoCenter::m_instance = nullptr;
 
 QLineMarksInfoCenter* QLineMarksInfoCenter::instance()
 {
@@ -56,10 +56,9 @@ QLineMarksInfoCenter* QLineMarksInfoCenter::instance()
 
 void QLineMarksInfoCenter::destroy()
 {
-	if ( m_instance )
-		delete m_instance;
+    delete m_instance;
 	
-	m_instance = 0;
+    m_instance = nullptr;
 }
 
 QLineMarkTypeList &QLineMarksInfoCenter::markTypes(){
@@ -68,7 +67,7 @@ QLineMarkTypeList &QLineMarksInfoCenter::markTypes(){
 
 
 QLineMarksInfoCenter::QLineMarksInfoCenter()
- : QObject(0)
+ : QObject(nullptr)
 {
 	qRegisterMetaType<QLineMark>("QLineMark");
 }
@@ -400,7 +399,7 @@ void QLineMarksInfoCenter::loadMarkTypes(const QString& f)
 				if ( value.contains('@') )
 				{
 					t.color = QColor(value.section('@', 0, 0, QString::SectionSkipEmpty));
-					t.color.setAlpha(value.section('@', 1, 1, QString::SectionSkipEmpty).toUInt(0, 16));
+					t.color.setAlpha(value.section('@', 1, 1, QString::SectionSkipEmpty).toUInt(nullptr, 16));
 				} else {
 					t.color = QColor(value);
 				}

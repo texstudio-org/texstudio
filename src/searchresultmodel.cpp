@@ -240,7 +240,7 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const
 Qt::ItemFlags SearchResultModel::flags(const QModelIndex &index) const
 {
 	if (!index.isValid())
-		return 0;
+        return nullptr;
 
 	return Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable ;
 }
@@ -346,8 +346,8 @@ QList<SearchMatch> SearchResultModel::getSearchMatches(const QDocumentLine &docl
 QDocument *SearchResultModel::getDocument(const QModelIndex &index)
 {
 	int i = searchIndexFromIid(index.internalId());
-	if (i < 0 || i >= m_searches.size()) return 0;
-	if (!m_searches[i].doc) return 0;
+    if (i < 0 || i >= m_searches.size()) return nullptr;
+    if (!m_searches[i].doc) return nullptr;
 	return m_searches[i].doc;
 }
 

@@ -18,10 +18,10 @@
 #include <QItemEditorCreatorBase>
 #include <QStyledItemDelegate>
 
-static const QRegExpValidator wordValidator(QRegExp("[^<].*"), 0);
+static const QRegExpValidator wordValidator(QRegExp("[^<].*"), nullptr);
 
 SpellerDialog::SpellerDialog(QWidget *parent, SpellerUtility *utility)
-	: QDialog(parent), m_statusBar(0), m_speller(utility), editor(0), editorView(0)
+    : QDialog(parent), m_statusBar(nullptr), m_speller(utility), editor(nullptr), editorView(nullptr)
 {
 	ui.setupUi(this);
 	setModal(true);
@@ -69,7 +69,7 @@ SpellerDialog::~SpellerDialog()
 
 void SpellerDialog::setEditorView(LatexEditorView *edView)
 {
-	editor = edView ? edView->editor : 0;
+    editor = edView ? edView->editor : nullptr;
 	editorView = edView;
 }
 

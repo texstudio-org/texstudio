@@ -45,8 +45,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
-         <normaloff>:/images-ng/undo.svg</normaloff>:/images-ng/undo.svg</iconset>
+        <iconset resource="../images.qrc">
+         <normaloff>:/images-ng/edit-undo.svg</normaloff>:/images-ng/edit-undo.svg</iconset>
        </property>
       </widget>
      </item>
@@ -101,7 +101,7 @@
   <tabstop>pbResetExtensions</tabstop>
  </tabstops>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>

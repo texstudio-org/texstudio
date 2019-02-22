@@ -27,7 +27,7 @@ public:
 
 	static Macro fromTypedTag(const QString &typedTag);
 
-	QString name, abbrev;
+    QString name, abbrev,description,menu;
 	Type type;
 	QString trigger;
 	QRegExp triggerRegex;
@@ -37,14 +37,24 @@ public:
 
 	QString snippet() const;
 	QString script() const;
+    QString shortcut() const;
+
+    bool isEmpty() const;
+
+    void setShortcut(const QString &sc);
 
 	QString typedTag() const;
+    void setTypedTag(const QString &m_tag);
 	static QString parseTypedTag(QString typedTag, Macro::Type &retType);
 
 	void parseTriggerLanguage(QLanguageFactory *langFactory);
 	bool isActiveForTrigger(SpecialTrigger trigger) const;
 	bool isActiveForLanguage(QLanguageDefinition *lang) const;
 	bool isActiveForFormat(int format) const;
+
+    bool load(const QString &fileName);
+    bool loadFromText(const QString &text);
+    bool save(const QString &fileName) const;
 
 	LatexDocument *document;
 
@@ -62,8 +72,11 @@ private:
 	QList<int> triggerFormats;
 	QString triggerFormatExcludesUnprocessed;
 	QList<int> triggerFormatExcludes;
+
+    QString m_shortcut;
 };
 
+Q_DECLARE_METATYPE(Macro);
 
 class MacroExecContext {
 public:

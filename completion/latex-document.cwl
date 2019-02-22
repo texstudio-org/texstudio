@@ -136,7 +136,7 @@
 \end{verse}
 \end{Vmatrix}
 \end{vmatrix}
-\ensuremath{text}
+\ensuremath{formula}
 \bezier{n}(x1,y1)(x2,y2)(x3,y3)#*/picture
 \bf#*
 \bfseries
@@ -165,7 +165,7 @@
 \botfigrule#*
 \cal
 \caption{text}
-\caption[short text]{text}
+\caption[short text%text]{text}
 \chapter{title}#L1
 \chapter*{title}#L1
 \chapter[short title]{title}#L1
@@ -188,7 +188,7 @@
 \descriptionlabel{code}#*
 \documentclass[keyvals]{class}
 \documentclass{class}
-\em
+\em#*
 \emph{text}
 \enlargethispage*{size}
 \enlargethispage{size}
@@ -214,7 +214,7 @@
 \footnotetext{text}
 \footnote[number]{text}
 \footnote{text}
-\frac{%<num%:translatable%>}{%<den%:translatable%>}
+\frac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \framebox(xdimen,ydimen)[position]{text}
 \framebox(xdimen,ydimen){text}
 \framebox[width][position]{text}
@@ -498,72 +498,72 @@
 \vspace{length}
 \width
 # new definitions
-\newcommand{cmd}[args][default]{def}
-\newcommand{cmd}[args]{def}
-\newcommand{cmd}{def}
-\newcommand*{cmd}[args][default]{def}
-\newcommand*{cmd}[args]{def}
-\newcommand*{cmd}{def}
-\providecommand{cmd}[args][default]{def}#*
-\providecommand{cmd}[args]{def}#*
-\providecommand{cmd}{def}#*
+\newcommand{cmd}[args][default]{def}#d
+\newcommand{cmd}[args]{def}#d
+\newcommand{cmd}{def}#d
+\newcommand*{cmd}[args][default]{def}#d
+\newcommand*{cmd}[args]{def}#d
+\newcommand*{cmd}{def}#d
+\providecommand{cmd}[args][default]{def}#*d
+\providecommand{cmd}[args]{def}#*d
+\providecommand{cmd}{def}#*d
 \newenvironment{name}[args][default]{begdef}{enddef}
 \newenvironment{name}[args]{begdef}{enddef}
 \newenvironment{name}{begdef}{enddef}
-\renewcommand{cmd}[args][default]{def}
-\renewcommand{cmd}[args]{def}
-\renewcommand{cmd}{def}
-\renewcommand*{cmd}[args][default]{def}
-\renewcommand*{cmd}[args]{def}
-\renewcommand*{cmd}{def}
+\renewcommand{cmd}[args][default]{def}#d
+\renewcommand{cmd}[args]{def}#d
+\renewcommand{cmd}{def}#d
+\renewcommand*{cmd}[args][default]{def}#d
+\renewcommand*{cmd}[args]{def}#d
+\renewcommand*{cmd}{def}#d
 \renewenvironment{name}[args][default]{begdef}{enddef}
 \renewenvironment{name}[args]{begdef}{enddef}
 \renewenvironment{name}{begdef}{enddef}
 \left#mK
 \left(#m
-\left(%|\right)#m
-\left[%|\right]#m
-\left\lbrace#m
-\left|%|\right|#m
-\left\|#m
+\left(%|\right)#mM
+\left[%|\right]#mM
+\left\lbrace#mM
+\left|%|\right|#mM
+\left\|#mM
 \left/#m
-\left\backslash#m
-\left\langle#m
-\left\lbrace#m
-\left\lfloor#m
-\left\lceil#m
-\left\uparrow#m
-\left\downarrow#m
-\left\updownarrow#m
-\left\Uparrow#m
-\left\Downarrow#m
-\left\Updownarrow#m
+\left\backslash#mM
+\left\langle#mM
+\left\lbrace#mM
+\left\lfloor#mM
+\left\lceil#mM
+\left\uparrow#mM
+\left\downarrow#mM
+\left\updownarrow#mM
+\left\Uparrow#mM
+\left\Downarrow#mM
+\left\Updownarrow#mM
 \left.#m
 \left)#m*
-\left]#m*
-\left\rangle#m*
-\left\rbrace#m*
+\left]#mM*
+\left\rangle#mM*
+\left\rbrace#mM*
 \right#mK
 \right)#m
 \right]#m
-\right\rbrace#m
+\right\rbrace#mM
 \right|#m
 \right\|#m
 \right/#m
-\right\backslash#m
-\right\rangle#m
-\right\rbrace#m
-\right\rfloor#m
-\right\rceil#m
-\right\uparrow#m
-\right\downarrow#m
-\right\updownarrow#m
-\right\Uparrow#m
-\right\Downarrow#m
-\right\Updownarrow#m
+\right\backslash#mM
+\right\rangle#mM
+\right\rbrace#mM
+\right\rfloor#mM
+\right\rceil#mM
+\right\uparrow#mM
+\right\downarrow#mM
+\right\updownarrow#mM
+\right\Uparrow#mM
+\right\Downarrow#mM
+\right\Updownarrow#mM
 \right.#m
 \right(#m*
-\right[#m*
+\right[#mM*
 \right\langle#m*
 \right\lbrace#m*
 # colors
@@ -575,3 +575,17 @@ gray#B
 black#B
 white#B
 cyan#B
+#repl:\"a ä
+#repl:\"o ö
+#repl:\"u ü
+#repl:\"A Ä
+#repl:\"O Ö
+#repl:\"U Ü
+#repl:\'a á
+#repl:\'e é
+#repl:\'o ó
+#repl:\'u ú
+#repl:\`a à
+#repl:\`e è
+#repl:\`o ò
+#repl:\`u ù

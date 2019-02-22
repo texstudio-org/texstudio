@@ -11,8 +11,8 @@ class LatexTables
 {
 public:
 	static void addRow(QDocumentCursor &c, const int numberOfColumns );
-	static void addColumn(QDocument *doc, const int lineNumber, const int afterColumn, QStringList *cutBuffer = 0);
-	static void removeColumn(QDocument *doc, const int lineNumber, const int column, QStringList *cutBuffer = 0);
+    static void addColumn(QDocument *doc, const int lineNumber, const int afterColumn, QStringList *cutBuffer = nullptr);
+    static void removeColumn(QDocument *doc, const int lineNumber, const int column, QStringList *cutBuffer = nullptr);
 	static void removeRow(QDocumentCursor &c);
 	static int findNextToken(QDocumentCursor &cur, QStringList tokens, bool keepAnchor = false, bool backwards = false);
 	static int getColumn(QDocumentCursor &cur);
@@ -21,7 +21,7 @@ public:
 	static int getNumberOfColumns(QDocumentCursor &cur);
 	static int getNumberOfColumns(QStringList values);
 	static bool inTableEnv(QDocumentCursor &cur);
-	static int getNumOfColsInMultiColumn(const QString &str, QString *outAlignment = 0, QString *outText = 0);
+    static int getNumOfColsInMultiColumn(const QString &str, QString *outAlignment = nullptr, QString *outText = nullptr);
 	static int incNumOfColsInMultiColumn(const QString &str, int add);
 	static void addHLine(QDocumentCursor &c, const int numberOfLines = -1, const bool remove = false);
 	static QStringList splitColDef(QString def);
@@ -42,7 +42,7 @@ class LatexTableLine : public QObject
 	Q_OBJECT
 
 public:
-	LatexTableLine(QObject *parent = 0);
+    LatexTableLine(QObject *parent = nullptr);
 
 	enum MultiColFlag {MCNone, MCStart, MCMid, MCEnd};
 
@@ -86,7 +86,7 @@ class LatexTableModel : public QAbstractTableModel
 	friend class TableManipulationTest;
 #endif
 public:
-	LatexTableModel(QObject *parent = 0);
+    LatexTableModel(QObject *parent = nullptr);
 
 
 	void setContent(const QString &text);

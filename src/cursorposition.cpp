@@ -4,7 +4,7 @@
 #include "qdocumentcursor.h"
 
 QDocumentLineTrackedHandle::QDocumentLineTrackedHandle(const QDocumentCursor &c):
-	m_doc(0), m_dlh(0), m_oldLineNumber(0)
+    m_doc(nullptr), m_dlh(nullptr), m_oldLineNumber(0)
 {
 	if (c.isValid()) {
 		m_doc = qobject_cast<QDocument *>(c.document());

@@ -81,12 +81,12 @@
 */
 
 QDocumentCursor::QDocumentCursor(QDocument *doc)
- : QObject(0),m_handle(new QDocumentCursorHandle(doc))
+ : QObject(nullptr),m_handle(new QDocumentCursorHandle(doc))
 {
 	m_handle->ref();
 }
 
-QDocumentCursor::QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to): QObject(0){
+QDocumentCursor::QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to): QObject(nullptr){
 	Q_ASSERT(from.document() == to.document());
 	Q_ASSERT(from.handle());
 	Q_ASSERT(to.handle());
@@ -101,7 +101,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& from, const QDocumentCur
 }
 
 QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
- : QObject(0),m_handle(0)
+ : QObject(nullptr),m_handle(nullptr)
 {
 	if ( cursor.m_handle )
 	{
@@ -111,7 +111,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
 }
 
 QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag)
- : QObject(0),m_handle(0)
+ : QObject(nullptr),m_handle(nullptr)
 {
 	if ( cursor.m_handle )
 	{
@@ -123,7 +123,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool clone
 
 
 QDocumentCursor::QDocumentCursor(QDocument *doc, int line, int column, int lineTo, int columnTo)
- : QObject(0),m_handle(new QDocumentCursorHandle(doc, line, column, lineTo, columnTo))
+ : QObject(nullptr),m_handle(new QDocumentCursorHandle(doc, line, column, lineTo, columnTo))
 {
 	m_handle->ref();
 }
@@ -140,7 +140,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentLine& line, int column)
 */
 
 QDocumentCursor::QDocumentCursor(QDocumentCursorHandle *handle)
- : QObject(0),m_handle(handle)
+ : QObject(nullptr),m_handle(handle)
 {
 	if ( m_handle )
 		m_handle->ref();
@@ -184,7 +184,7 @@ QDocumentCursor& QDocumentCursor::operator = (const QDocumentCursor& c)
 		//qWarning("Setting a cursor to null");
 		
 		m_handle->deref();
-		m_handle = 0;
+        m_handle = nullptr;
 	}
 	
 	return *this;
@@ -406,7 +406,7 @@ bool QDocumentCursor::atLineStart() const
 */
 QDocument* QDocumentCursor::document() const
 {
-	return m_handle ? m_handle->document() : 0;
+    return m_handle ? m_handle->document() : nullptr;
 }
 
 /*!

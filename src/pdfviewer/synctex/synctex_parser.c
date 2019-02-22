@@ -5944,11 +5944,11 @@ SYNCTEX_INLINE static synctex_status_t _synctex_post_process(synctex_scanner_p s
 /*  Used when parsing the synctex file
  */
 static synctex_status_t _synctex_scan_content(synctex_scanner_p scanner) {
-    scanner->reader->lastv = -1;
-    synctex_status_t status = 0;
     if (NULL == scanner) {
         return SYNCTEX_STATUS_BAD_ARGUMENT;
     }
+    scanner->reader->lastv = -1;
+    synctex_status_t status = 0;
     /*  Find where this section starts */
 content_not_found:
     status = _synctex_match_string(scanner,"Content:");

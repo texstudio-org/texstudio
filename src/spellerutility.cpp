@@ -15,7 +15,7 @@
 
 int SpellerUtility::spellcheckErrorFormat = -1;
 
-SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(0), spellCodec(0)
+SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(nullptr), spellCodec(nullptr)
 {
 	checkCache.reserve(1020);
 }
@@ -45,7 +45,7 @@ bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
 	}
 	spell_encoding = QString(pChecker->get_dic_encoding());
 	spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
-	if (spellCodec == 0) {
+    if (spellCodec == nullptr) {
 		mLastError = "Could not determine encoding.";
 		unload();
 		emit dictionaryLoaded();
@@ -109,9 +109,9 @@ void SpellerUtility::unload()
 	saveIgnoreList();
 	currentDic = "";
 	ignoreListFileName = "";
-	if (pChecker != 0) {
+    if (pChecker != nullptr) {
 		delete pChecker;
-		pChecker = 0;
+        pChecker = nullptr;
 	}
 }
 
@@ -157,7 +157,7 @@ SpellerUtility::~SpellerUtility()
 
 bool SpellerUtility::check(QString word)
 {
-	if (currentDic == "" || pChecker == 0) return true; //no speller => everything is correct
+    if (currentDic == "" || pChecker == nullptr) return true; //no speller => everything is correct
 	if (word.length() <= 1) return true;
 	if (ignoredWords.contains(word)) return true;
 	if (word.endsWith('.') && ignoredWords.contains(word.left(word.length() - 1))) return true;
@@ -177,7 +177,7 @@ bool SpellerUtility::check(QString word)
 QStringList SpellerUtility::suggest(QString word)
 {
 	Q_ASSERT(pChecker);
-	if (currentDic == "" || pChecker == 0) return QStringList(); //no speller => everything is correct
+    if (currentDic == "" || pChecker == nullptr) return QStringList(); //no speller => everything is correct
     std::vector<std::string> wlst;
     QByteArray encodedString = spellCodec->fromUnicode(word);
 #if QT_VERSION >= 0x050400
@@ -213,7 +213,7 @@ SpellerManager::~SpellerManager()
 	unloadAll();
 	if (emptySpeller) {
 		delete emptySpeller;
-		emptySpeller = 0;
+        emptySpeller = nullptr;
 	}
 }
 
@@ -233,7 +233,7 @@ bool SpellerManager::isOxtDictionary(const QString &fileName)
 		}
 	}
 	if (affFile.length() <= 4 || dicFile.length() <= 4) return false;
-	if (affFile.left(affFile.length() - 4) != affFile.left(affFile.length() - 4)) return false; // different names
+	if (affFile.left(affFile.length() - 4) != dicFile.left(dicFile.length() - 4)) return false; // different names
 	return true;
 }
 
@@ -370,13 +370,13 @@ SpellerUtility *SpellerManager::getSpeller(QString name)
 	if (name == "<default>") name = mDefaultSpellerName;
 	if (!dictFiles.contains(name)) return emptySpeller;
 
-	SpellerUtility *su = dicts.value(name, 0);
+    SpellerUtility *su = dicts.value(name, nullptr);
 	if (!su) {
 		su = new SpellerUtility(name);
 		if (!su->loadDictionary(dictFiles.value(name), ignoreFilePrefix)) {
 			UtilsUi::txsWarning(QString("Loading of dictionary failed:\n%1\n\n%2").arg(dictFiles.value(name)).arg(su->mLastError));
 			delete su;
-			return 0;
+            return nullptr;
 		}
 		dicts.insert(name, su);
 	}

@@ -141,7 +141,7 @@ void QReliableFileWatch::timerEvent(QTimerEvent *e)
 
 			//qDebug("%s emission.", qPrintable(it.key()));
 
-			it->recipients.removeAll(0);
+            it->recipients.removeAll(nullptr);
 
 			QFileInfo fi(it.key());
 			qint64 size = fi.size();

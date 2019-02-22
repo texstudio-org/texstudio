@@ -45,6 +45,9 @@ public slots:
 	void addFavorite(const QString &id);
 	void removeFavorite(const QString &id);
 
+signals:
+	void favoritesChanged();
+
 protected:
 	void loadSymbols(const QString &category, const QStringList &fileNames);
 	QIcon getIcon(const SymbolItem &item) const;

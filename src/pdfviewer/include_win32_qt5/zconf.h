@@ -8,7 +8,9 @@
 #ifndef ZCONF_H
 #define ZCONF_H
 /* #undef Z_PREFIX */
+#ifndef _MSC_VER
 #define Z_HAVE_UNISTD_H
+#endif
 
 /*
  * If you *really* need a unique prefix for all types and library functions,

@@ -50,10 +50,10 @@ class QCE_EXPORT QCodeEdit
 			East
 		};
 		
-		QCodeEdit(QWidget *p = 0);
-		QCodeEdit(bool actions, QWidget *p = 0, QDocument *doc=0);
-		QCodeEdit(const QString& layout, QWidget *p = 0);
-		QCodeEdit(const QString& layout, bool actions, QWidget *p = 0);
+        QCodeEdit(QWidget *p = nullptr);
+        QCodeEdit(bool actions, QWidget *p = nullptr, QDocument *doc=nullptr);
+        QCodeEdit(const QString& layout, QWidget *p = nullptr);
+        QCodeEdit(const QString& layout, bool actions, QWidget *p = nullptr);
 		virtual ~QCodeEdit();
 		
 		QEditor* editor() const;

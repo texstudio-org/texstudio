@@ -35,12 +35,12 @@
 Animation * StyleAnimator::widgetAnimation(const QWidget *widget) const
 {
     if (!widget)
-        return 0;
+        return nullptr;
     foreach (Animation *a, animations) {
         if (a->widget() == widget)
             return a;
     }
-    return 0;
+    return nullptr;
 }
 
 void Animation::paint(QPainter *painter, const QStyleOption *option)

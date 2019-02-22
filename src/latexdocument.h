@@ -41,7 +41,7 @@ class LatexDocument: public QDocument
 	Q_OBJECT
 
 public:
-	LatexDocument(QObject *parent = 0);
+    LatexDocument(QObject *parent = nullptr);
 	~LatexDocument();
 
 	enum CookieType {
@@ -56,9 +56,9 @@ public:
 	QFileInfo getFileInfo() const;
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
 
-	Q_PROPERTY(QString fileName READ getFileName);
-	Q_PROPERTY(QFileInfo fileInfo READ getFileInfo);
-	Q_PROPERTY(LatexEditorView *editorView READ getEditorView);
+    Q_PROPERTY(QString fileName READ getFileName)
+    Q_PROPERTY(QFileInfo fileInfo READ getFileInfo)
+    Q_PROPERTY(LatexEditorView *editorView READ getEditorView)
 
 	bool isHidden(); ///< true if editor is not displayed
 
@@ -100,9 +100,9 @@ public:
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name); ///< get line/column from label name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
-	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = 0);
-	Q_INVOKABLE void replaceLabel(const QString &name, const QString &newName, QDocumentCursor *cursor = 0);
-	Q_INVOKABLE void replaceRefs(const QString &name, const QString &newName, QDocumentCursor *cursor = 0);
+    Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);
+    Q_INVOKABLE void replaceLabel(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
+    Q_INVOKABLE void replaceRefs(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
 	Q_INVOKABLE void replaceLabelsAndRefs(const QString &name, const QString &newName);
 
 	void patchLinesContaining(const QStringList cmds);
@@ -112,7 +112,7 @@ public:
 	QDocumentSelection sectionSelection(StructureEntry *section);
 	void clearAppendix()
 	{
-		mAppendixLine = 0;
+        mAppendixLine = nullptr;
 	}
 	StructureEntry *findSectionForLine(int currentLine);
 
@@ -132,7 +132,7 @@ public:
 	{
 		return masterDocument;
 	}
-	const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = 0) const;
+    const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = nullptr) const;
 	Q_INVOKABLE LatexDocument *getRootDocument();
 	Q_INVOKABLE LatexDocument *getTopMasterDocument()
 	{
@@ -141,7 +141,7 @@ public:
 
 	Q_INVOKABLE QStringList includedFiles();
 	Q_INVOKABLE QStringList includedFilesAndParent();
-	Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = 0);
+    Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = nullptr);
 
 	LatexParser ltxCommands, lp;
 
@@ -262,7 +262,7 @@ public slots:
 
 signals:
 	void hasBeenIncluded(const LatexDocument &newMasterDocument);
-	void structureUpdated(LatexDocument *document, StructureEntry *highlight = 0);
+    void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
     void setHighlightedEntry(StructureEntry *highlight);
 	void structureLost(LatexDocument *document);
 	void removeElement(StructureEntry *se, int row);
@@ -311,11 +311,11 @@ public:
 	Q_INVOKABLE LatexDocument *getMasterDocument() const; ///< get explicit master if set
 	Q_INVOKABLE QList<LatexDocument *> getDocuments() const; ///< get all documents (visible&hidden)
 
-	Q_PROPERTY(LatexDocument *currentDocument READ getCurrentDocument);
-	Q_PROPERTY(LatexDocument *masterDocument READ getMasterDocument);
-	Q_PROPERTY(QList<LatexDocument *> documents READ getDocuments); //<- semicolon necessary due to qt bug 22992
+    Q_PROPERTY(LatexDocument *currentDocument READ getCurrentDocument)
+    Q_PROPERTY(LatexDocument *masterDocument READ getMasterDocument)
+    Q_PROPERTY(QList<LatexDocument *> documents READ getDocuments); //<- semicolon necessary due to qt bug 22992
 
-	Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = 0) const ; ///< no argument means current doc ...
+    Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = nullptr) const ; ///< no argument means current doc ...
 
 	Q_INVOKABLE QString getCurrentFileName() const; ///< returns the absolute file name of the current file or "" if none is opened
 	Q_INVOKABLE QString getCompileFileName() const; ///< returns the absolute file name of the file to be compiled (master or current)

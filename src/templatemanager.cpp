@@ -102,7 +102,7 @@ AbstractTemplateResource *TemplateManager::createResourceFromXMLNode(const QDomE
 {
 	if (resElem.tagName() != "Resource") {
 		qDebug() << "Not an XML Resource Node";
-		return 0;
+        return nullptr;
 	}
 
 	QString name, path, description;
@@ -156,7 +156,7 @@ AbstractTemplateResource *TemplateManager::createResourceFromXMLNode(const QDomE
 		tplResource->setEditable(isEditable);
 		return tplResource;
 	}
-	return 0;
+    return nullptr;
 }
 
 QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QString &filename)

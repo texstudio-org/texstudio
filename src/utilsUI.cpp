@@ -69,7 +69,7 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 		}
 	}
 
-	if (combo == 0)
+    if (combo == nullptr)
 		combo = new QToolButton(parent);
 	if (height != 0)
 		combo->setMinimumHeight(height);
@@ -107,13 +107,13 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 
 QToolButton *comboToolButtonFromAction(QAction *action)
 {
-	if (!action) return 0;
+    if (!action) return nullptr;
 	QToolButton *button = qobject_cast<QToolButton *>(action->parent());
 	if (!button) {
 		QMenu *menu = qobject_cast<QMenu *>(action->parent());
-		if (!menu) return 0;
+        if (!menu) return nullptr;
 		button = qobject_cast<QToolButton *>(menu->parent());
-		if (!button) return 0;
+        if (!button) return nullptr;
 	}
 	return button;
 }
@@ -160,8 +160,8 @@ bool browse(QWidget *w, const QString &title, const QString &extension, const QS
 	if (path.startsWith('"')) path.remove(0, 1);
 	if (path.endsWith('"')) path.chop(1);
 	if (path.isEmpty()) path = startPath;
-	if (extension == "/") path = QFileDialog::getExistingDirectory(0, title, path);
-	else path = FileDialog::getOpenFileName(0, title, path, extension, 0, QFileDialog::DontResolveSymlinks);
+    if (extension == "/") path = QFileDialog::getExistingDirectory(nullptr, title, path);
+    else path = FileDialog::getOpenFileName(nullptr, title, path, extension, nullptr, QFileDialog::DontResolveSymlinks);
 	if (!path.isEmpty()) {
 		path = QDir::toNativeSeparators(path);
 		if (list && !oldpath.isEmpty()) path = oldpath + pathSep + path;

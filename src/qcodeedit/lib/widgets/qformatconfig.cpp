@@ -41,8 +41,8 @@
 
 */
 
-QFormatConfig::QFormatConfig(QWidget *w)
- : QWidget(w), m_autonomous(false), m_currentScheme(0)
+QFormatConfig::QFormatConfig(QWidget *w, bool adaptStyle)
+ : QWidget(w), m_autonomous(false), m_currentScheme(nullptr)
 {
 	setupUi(this);
 
@@ -55,7 +55,7 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	for  (int i=0;i<m_table->columnCount();i++)
 		if ( !m_table->horizontalHeaderItem(i) )
 			m_table->setHorizontalHeaderItem(i, new QTableWidgetItem());
-	Q_ASSERT(m_table->horizontalHeaderItem(0)!=0);
+    Q_ASSERT(m_table->horizontalHeaderItem(0)!=nullptr);
 	m_table->horizontalHeaderItem(0)->setText(tr("Identifier"));
 	m_table->horizontalHeaderItem(1)->setToolTip(tr("Bold"));
     m_table->horizontalHeaderItem(1)->setIcon(getRealIcon("bold"));
@@ -93,7 +93,9 @@ QFormatConfig::QFormatConfig(QWidget *w)
 	// https://bugreports.qt-project.org/browse/QTBUG-25148
 	// https://sourceforge.net/p/texstudio/bugs/615/
 	// https://sourceforge.net/p/texstudio/bugs/630/
-	m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
+	if (adaptStyle) {
+		m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
+	}
 #endif
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
@@ -184,7 +186,7 @@ void QFormatConfig::removeScheme(QFormatScheme *s)
 {
 	if ( m_currentScheme == s )
 	{
-		m_currentScheme = 0;
+        m_currentScheme = nullptr;
 	}
 
 	for ( int i = 0; i < m_schemes.count(); ++i )
@@ -589,7 +591,7 @@ void QFormatConfig::hideEvent(QHideEvent *e)
 	{
 		// TODO : provide custom widget to allow user to select which items should be saved?
 		int ret = QMessageBox::warning(
-									0,
+                                    nullptr,
 									tr("Unsaved changes"),
 									tr("There are unsaved changes in this format scheme.\nDo you want them to be saved?"),
 									QMessageBox::Save | QMessageBox::Discard

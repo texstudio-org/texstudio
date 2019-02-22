@@ -49,6 +49,7 @@ RESOURCES += texstudio.qrc \
 
 
 TRANSLATIONS += translation/texstudio_ar.ts \
+    translation/texstudio_br.ts \
     translation/texstudio_cs.ts \
     translation/texstudio_de.ts \
     translation/texstudio_el.ts \
@@ -56,6 +57,7 @@ TRANSLATIONS += translation/texstudio_ar.ts \
     translation/texstudio_fa.ts \
     translation/texstudio_fr.ts \
     translation/texstudio_hu.ts \
+    translation/texstudio_id_ID.ts \
     translation/texstudio_it.ts \
     translation/texstudio_ja.ts \
     translation/texstudio_ko.ts \
@@ -64,6 +66,7 @@ TRANSLATIONS += translation/texstudio_ar.ts \
     translation/texstudio_pl.ts \
     translation/texstudio_pt_BR.ts \
     translation/texstudio_ru_RU.ts \
+    translation/texstudio_sv.ts \
     translation/texstudio_tr_TR.ts \
     translation/texstudio_uk.ts \
     translation/texstudio_vi.ts \
@@ -127,6 +130,7 @@ unix {
     utilities.files += utilities/latex2e.html \
         utilities/latex2e.css \
         translation/texstudio_ar.qm \
+        translation/texstudio_br.qm \
         translation/texstudio_cs.qm \
         translation/texstudio_de.qm \
         translation/texstudio_el.qm \
@@ -134,6 +138,7 @@ unix {
         translation/texstudio_fa.qm \
         translation/texstudio_fr.qm \
         translation/texstudio_hu.qm \
+	translation/texstudio_id_ID.qm \
         translation/texstudio_it.qm \
         translation/texstudio_ja.qm \
         translation/texstudio_ko.qm \
@@ -142,6 +147,7 @@ unix {
         translation/texstudio_pl.qm \
         translation/texstudio_pt_BR.qm \
         translation/texstudio_ru_RU.qm \
+        translation/texstudio_sv.qm \
         translation/texstudio_tr_TR.qm \
         translation/texstudio_uk.qm \
         translation/texstudio_vi.qm \
@@ -271,6 +277,7 @@ isEmpty(USE_SYSTEM_HUNSPELL){
   DEFINES += HUNSPELL_STATIC
   include(src/hunspell/hunspell.pri)
 } else {
+  message(System hunspell)
   CONFIG += link_pkgconfig
   PKGCONFIG += hunspell
 }
@@ -285,9 +292,15 @@ isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC
   include(src/quazip/quazip/quazip.pri)
 } else {
-  isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
-  isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
-
+  greaterThan(QT_MAJOR_VERSION, 4) { #Qt5
+    message(System quazip5)
+    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
+    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
+  } else { #Qt4
+    message(System quazip)
+    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
+    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
+  }
   INCLUDEPATH += $${QUAZIP_INCLUDE}
   LIBS += $${QUAZIP_LIB}
 }
@@ -321,6 +334,7 @@ CONFIG(debug, debug|release) {
         src/tests/structureview_t.cpp \
         src/tests/syntaxcheck_t.cpp \
         src/tests/tablemanipulation_t.cpp \
+	src/tests/usermacro_t.cpp \
         src/tests/testmanager.cpp \
         src/tests/testutil.cpp
     HEADERS += \
@@ -350,6 +364,7 @@ CONFIG(debug, debug|release) {
         src/tests/qcetestutil.h \
         src/tests/testmanager.h \
         src/tests/testutil.h \
+        src/tests/usermacro_t.h \
         src/tests/structureview_t.h
     !greaterThan(QT_MAJOR_VERSION, 4) {
         win32:LIBS += -lQtTestd4
@@ -379,48 +394,34 @@ freebsd-* {
     message("tests disabled as you wish.")
 }
 
-
-# ###############################
-# add files to svn if team is set
-CONFIG(team):!CONFIG(build_pass) {
-    SVNPREPATH = ./
-    SVNPATH = /.svn/text-base/
-    SVNEXT = .svn-base
-    ALLFILES = $${HEADERS}
-    ALLFILES += $${SOURCES}
-    ALLFILES += $${FORMS}
-    for(filename, ALLFILES):!exists($${SVNPREPATH}$$dirname(filename)$${SVNPATH}$$basename(filename)$${SVNEXT}) {
-        warning($${filename} not contained in svn base will be added)
-        system(svn add $${filename})
-    }
-}
-OTHER_FILES += universalinputdialog.*
-
-# add mercurial revision
+# add git revision
 exists(./.git)  {
   win32:isEmpty(MXE): {
     message(GIT)
-    QMAKE_PRE_LINK += \"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
-    LIBS += git_revision.o
+    system(\"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
+    SOURCES += src/git_revision.cpp
   } else {
     message(GIT)
     QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
     LIBS += git_revision.o
   }
 } else {
-  !exists(./git_revision.cpp){
+  !exists(src/git_revision.cpp){
     win32:isEmpty(MXE): system(echo const char * TEXSTUDIO_GIT_REVISION = 0; > src\git_revision.cpp)
     else: system(echo \"const char * TEXSTUDIO_GIT_REVISION = 0;\" > src/git_revision.cpp)
   }
   SOURCES += src/git_revision.cpp
 }
 
-#QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered -Wempty-body -Wsign-compare -Waddress -Wlogical-op -Winline
-QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline
-QMAKE_CXXFLAGS += -std=c++0x
-!win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
-else {
-  QMAKE_CXXFLAGS += -gstabs -g
-  QMAKE_LFLAGS -= -Wl,-s
-  QMAKE_LFLAGS_RELEASE -= -Wl,-s
+!win32-msvc*: {
+  QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline
+  QMAKE_CXXFLAGS += -std=c++0x
+  !win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
+  else {
+    QMAKE_CXXFLAGS += -gstabs -g
+    QMAKE_LFLAGS -= -Wl,-s
+    QMAKE_LFLAGS_RELEASE -= -Wl,-s
+  }
+} else {
+  DEFINES += _CRT_SECURE_NO_WARNINGS
 }

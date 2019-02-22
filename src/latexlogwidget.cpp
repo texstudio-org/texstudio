@@ -22,7 +22,7 @@ int getOptimalRowHeight(QTableView *tableView)
 }
 
 LatexLogWidget::LatexLogWidget(QWidget *parent) :
-	QWidget(parent), logModel(0), proxyModel(0), logpresent(false), filterErrorAction(0), filterWarningAction(0), filterBadBoxAction(0)
+    QWidget(parent), logModel(nullptr), proxyModel(nullptr), logpresent(false), filterErrorAction(nullptr), filterWarningAction(nullptr), filterBadBoxAction(nullptr)
 {
 	logModel = new LatexLogModel(this);//needs loaded line marks
 

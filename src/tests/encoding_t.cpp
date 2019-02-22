@@ -86,11 +86,11 @@ void EncodingTest::test_guessEncoding()
 	QFETCH(QString, text);
 	QFETCH(QString, encodingName);
 
-	QTextCodec *encoding = 0;
+    QTextCodec *encoding = nullptr;
 	int sure = 0;
 	Encoding::guessEncoding(text.toLatin1(), encoding, sure);
 	if (encodingName.isEmpty()) {
-		int b = (encoding == 0) ? 0 : 1 ;
+        int b = (encoding == nullptr) ? 0 : 1 ;
 		QEQUAL(0, b);
 	} else {
 		QEQUAL(encodingName, QString(encoding->name()));

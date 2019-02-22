@@ -19,8 +19,8 @@
 #undef Q_ASSERT
 #undef Q_ASSERT_X
 
-#define Q_ASSERT(cond) ((!(cond)) ? txs_assert(#cond,__FILE__,__LINE__) : qt_noop())
-#define Q_ASSERT_X(cond, where, what) ((!(cond)) ? txs_assert_x(where, what, __FILE__,__LINE__) : qt_noop())
+#define Q_ASSERT(cond) ((!(cond)) ? txs_assert(#cond,__FILE__,__LINE__) : static_cast<void>(0))
+#define Q_ASSERT_X(cond, where, what) ((!(cond)) ? txs_assert_x(where, what, __FILE__,__LINE__) : static_cast<void>(0))
 
 
 #define qt_assert txs_assert

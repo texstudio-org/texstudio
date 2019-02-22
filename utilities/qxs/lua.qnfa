@@ -3,7 +3,7 @@
 
 <!-- not needed, as long as this is only used for inclusion in tex.qnfa
      If we want to have standalone lua files, check if this interferes with 
-	 paranthesis in tex.qnfa and adjust the weight.
+	 parenthesis in tex.qnfa and adjust the weight.
 	<sequence parenthesis="round:open" parenthesisWeight="00">\(</sequence>
 	<sequence parenthesis="round:close" parenthesisWeight="00">\)</sequence>
 	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>

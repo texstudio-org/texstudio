@@ -1,9 +1,9 @@
 !define APPNAME "TeXstudio"
-!define DESCRIPTION "A short description goes here"
+!define DESCRIPTION "TeXstudio is a fully featured LaTeX editor."
 # These three must be integers
 !define VERSIONMAJOR 2
 !define VERSIONMINOR 12
-!define VERSIONBUILD 8
+!define VERSIONBUILD 14
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 !define HELPURL "https://texstudio.org" # "Support Information" link
@@ -66,6 +66,9 @@ File utilities\manual\*
 SetOutPath $INSTDIR\share\poppler
 File /r utilities\poppler-data\*
 
+SetOutPath $INSTDIR\share\fonts
+File /r travis-ci\mxe\fonts\*
+
 SetOutPath $INSTDIR\TexTablet
 File utilities\TexTablet\*
 
@@ -94,11 +97,11 @@ createShortCut "$SMPROGRAMS\${APPNAME}.lnk" \
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "QuietUninstallString" "$\"$INSTDIR\uninstall.exe$\" /S"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "InstallLocation" "$\"$INSTDIR$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayIcon" "$\"$INSTDIR\logo.ico$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "Publisher" "$\"Benito van der Zander$\""
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "Publisher" "Benito van der Zander"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "HelpLink" "$\"${HELPURL}$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "URLUpdateInfo" "$\"${UPDATEURL}$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "URLInfoAbout" "$\"${ABOUTURL}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayVersion" "$\"${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}$\""
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayVersion" "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "VersionMajor" ${VERSIONMAJOR}
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "VersionMinor" ${VERSIONMINOR}
 	# There is no option for modifying or repairing the install
@@ -113,7 +116,7 @@ function un.onInit
 	SetShellVarContext all
  
 	#Verify the uninstaller - last chance to back out
-	MessageBox MB_OKCANCEL "Permanantly remove ${APPNAME}?" IDOK next
+	MessageBox MB_OKCANCEL "Permanently remove ${APPNAME}?" /SD IDOK IDOK next
 		Abort
 	next:
 	#!insertmacro VerifyUserIsAdmin
@@ -136,10 +139,17 @@ Delete $INSTDIR\uninstaller.exe
 ${unregisterExtension} ".tex" "tex File"
  
 # now delete installed file
+RMDir /r $INSTDIR\translations
+RMDir /r $INSTDIR\templates
+RMDir /r $INSTDIR\help
+RMDir /r $INSTDIR\share\poppler
+RMDir    $INSTDIR\share
+RMDir /r $INSTDIR\TexTablet
+RMDir /r $INSTDIR\dictionaries
 Delete $INSTDIR\*
 
 # Try to remove the install directory - this will only happen if it is empty
-rmDir $INSTDIR
+RMDir $INSTDIR
 
 # Remove uninstaller information from the registry
 DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}"

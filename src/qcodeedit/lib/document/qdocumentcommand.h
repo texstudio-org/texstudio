@@ -52,7 +52,7 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 			QList<QDocumentLineHandle*> handles;
 		};
 		
-		QDocumentCommand(Command c, QDocument *d, QDocumentCommand *p = 0);
+        QDocumentCommand(Command c, QDocument *d, QDocumentCommand *p = nullptr);
 		virtual ~QDocumentCommand();
 		
 		virtual int id() const;
@@ -107,7 +107,7 @@ class QCE_EXPORT QDocumentInsertCommand : public QDocumentCommand
 		QDocumentInsertCommand(	int l, int offset,
 								const QString& text,
 								QDocument *doc,
-								QDocumentCommand *p = 0);
+                                QDocumentCommand *p = nullptr);
 		
 		virtual ~QDocumentInsertCommand();
 		
@@ -127,7 +127,7 @@ class QCE_EXPORT QDocumentEraseCommand : public QDocumentCommand
 		QDocumentEraseCommand(	int bl, int bo,
 								int el, int eo,
 								QDocument *doc,
-								QDocumentCommand *p = 0);
+                                QDocumentCommand *p = nullptr);
 		
 		virtual ~QDocumentEraseCommand();
 		

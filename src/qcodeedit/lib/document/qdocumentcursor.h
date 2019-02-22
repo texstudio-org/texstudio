@@ -55,7 +55,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 			ThroughFolding  = 4
 		};
 		
-		Q_DECLARE_FLAGS(MoveMode, MoveFlag);
+        Q_DECLARE_FLAGS(MoveMode, MoveFlag)
 		
 		enum MoveOperation
 		{
@@ -101,7 +101,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag);
 		QDocumentCursor(QDocument *doc, int line, int column = 0, int lineTo = -1, int columnTo = -1);
 		//QDocumentCursor(const QDocumentLine& line, int column = 0);
-		QDocumentCursor(QDocumentCursorHandle* handle = 0);
+        QDocumentCursor(QDocumentCursorHandle* handle = nullptr);
 		QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to);
 
 		~QDocumentCursor();

@@ -204,7 +204,7 @@ void PDFSplitMergeTool::movePageRange(int dir)
 void PDFSplitMergeTool::resyncRows()
 {
 	bool firstInput = true, firstPage = true;
-	QLayout *lastInput = 0, *lastPage =  0;
+    QLayout *lastInput = nullptr, *lastPage =  nullptr;
 	for (int i = 0; i < ui->inputFileLayout->count(); i++) {
 		QLayout *l = ui->inputFileLayout->itemAt(i)->layout();
 		REQUIRE(l);
@@ -219,7 +219,7 @@ void PDFSplitMergeTool::resyncRows()
 
 			firstPage = true;
 			if (lastPage) lastPage->itemAt(COUNT_PAGE_ROW - 1)->widget()->setEnabled(false);
-			lastPage = 0;
+            lastPage = nullptr;
 			break;
 		case COUNT_PAGE_ROW:
 			l->itemAt(COUNT_PAGE_ROW - 2)->widget()->setEnabled(!firstPage);
@@ -280,7 +280,7 @@ void PDFSplitMergeTool::addPageRange(QLayout *parentLayout)
 
 void PDFSplitMergeTool::go()
 {
-	PDFSplitMerge *sm = 0;
+    PDFSplitMerge *sm = nullptr;
 	if (ui->backendGS->isChecked()) sm = new PDFSplitMergeGS();
 	else if (ui->backendPDFLatex->isChecked()) sm = new PDFSplitMergePDFPages();
 	if (!sm)

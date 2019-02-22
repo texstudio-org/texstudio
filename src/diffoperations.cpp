@@ -2,7 +2,7 @@
 #include "latexdocument.h"
 #include "latexeditorview.h"
 #include "smallUsefulFunctions.h"
-DiffOp::DiffOp(): start(0), length(0), type(Insert), lineWasModified(false), dlh(0) {}
+DiffOp::DiffOp(): start(0), length(0), type(Insert), lineWasModified(false), dlh(nullptr) {}
 
 void diffDocs(LatexDocument *doc, LatexDocument *doc2, bool dontAddLines)
 {
@@ -16,8 +16,10 @@ void diffDocs(LatexDocument *doc, LatexDocument *doc2, bool dontAddLines)
 		dmp.diff_cleanupSemantic(diffList);
 	} catch (const char *c) {
 		if (c) error = QString(c);
+#ifndef _MSC_VER
 	} catch (char *c) {
 		if (c) error = QString(c);
+#endif
 	} catch (const QString &s) {
 		error = s;
 	} catch (...) {
@@ -534,7 +536,7 @@ void diffMerge(LatexDocument *doc)
 				DiffOp op = lineData.at(j);
 				if (op.lineWasModified) {
 					whose = mine;
-					if (op.dlh != 0) {
+                    if (op.dlh != nullptr) {
 						QVariant var = op.dlh->getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
 						if (var.isValid()) {
 							whose = conflict;

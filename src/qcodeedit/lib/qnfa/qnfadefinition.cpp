@@ -45,12 +45,12 @@ uint qHash(const QPointer<QDocument>& p) { return qHash((QDocument*)(p)); }
 class QNFANotifier : public QNFAMatchHandler
 {
 	public:
-		QNFANotifier(const QString& line)
+        explicit QNFANotifier(const QString& line)
 		{
 			m_formats.fill(0, line.length());
 		}
 
-		QNFANotifier(const QDocumentLine& line)
+        explicit QNFANotifier(const QDocumentLine& line)
 		 : m_line(line)
 		{
 			m_formats.fill(0, line.length());
@@ -239,12 +239,12 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 	flushEmbedRequests(nd->m_language);
 
 	d->d = nd;
-	d->e = 0;
+    d->e = nullptr;
 	d->s = s;
 }
 
 QNFADefinition::QNFADefinition()
- : m_indentFold(false), m_root(0)
+ : m_indentFold(false), m_root(nullptr)
 {
 	for (unsigned int i=0;i < sizeof(m_openingParenthesisEnd)/sizeof(m_openingParenthesisEnd[0]); i++)
 		m_openingParenthesisEnd[i] = false;

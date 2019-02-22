@@ -1,0 +1,13 @@
+This directory contains a subset of the URW PostScript fonts required by PDF
+viewers.
+
+These are the fonts published by URW and now maintained on CTAN, not the
+modified fonts shipped with Ghostscript.
+
+For the rest of the URW PostScript fonts and some additional information, see
+http://www.ctan.org/tex-archive/fonts/urw/base35
+
+The files were renamed from the "Karl-Berry scheme" to the original URW scheme
+expected by the poppler library. For a list of font name mappings, see
+http://www.tug.org/fontname/html/URW-fonts.html
+

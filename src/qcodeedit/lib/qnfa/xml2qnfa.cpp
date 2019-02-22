@@ -49,7 +49,7 @@
 QXml2NFAParser::QXml2NFAParser(QFormatScheme *formatScheme, QHash<QString, int>& parenthesisIds, QHash<int, int>& parenthesisWeights, QHash<QString, int>& openingParenthesis, QHash<int, QString>& closingParenthesis):
 	f(formatScheme), pids(parenthesisIds), parenWeight(parenthesisWeights), parenOpening(openingParenthesis), parenClosing(closingParenthesis)
 {
-	singleLineCommentTarget = 0;
+    singleLineCommentTarget = nullptr;
 }
 
 bool stringToBool(const QString& s, bool previous)
@@ -345,13 +345,13 @@ void QXml2NFAParser::addToContext(	QNFA *cxt, QDomElement c, int fid,
 		QNFADefinition::addEmbedRequest(c.attribute("target"), cxt);
 	} else if ( tag == "context" ) {
 		QNFA	*nfa,
-				*start = 0,
-				*hstart = 0,
-				*cstart = 0,
-				*stop = 0,
-				*hstop = 0,
-				*escape = 0,
-				*hescape = 0;
+                *start = nullptr,
+                *hstart = nullptr,
+                *cstart = nullptr,
+                *stop = nullptr,
+                *hstop = nullptr,
+                *escape = nullptr,
+                *hescape = nullptr;
 		
 		QList<QNFA*> lStart, lStop, lEscape;
 		

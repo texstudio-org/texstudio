@@ -795,7 +795,7 @@ void LatexTables::generateTableFromTemplate(LatexEditorView *edView, QString tem
 	for (int i = 0; i < table.size(); i++) {
 		QStringList lst = table.at(i);
 		QStringList::iterator it;
-		for (it = lst.begin(); it != lst.end(); it++) {
+        for (it = lst.begin(); it != lst.end(); ++it) {
 			QString str = *it;
 			str.replace("\\", "\\\\");
 			str.replace("\"", "\\\"");
@@ -966,7 +966,7 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 			int endOpt = findClosingBracket(text, endCol, '[', ']');
 			if (endOpt < 0) {
 				UtilsUi::txsWarning("Could not parse table code: Missing closing bracket: \\[");
-				return 0;
+                return nullptr;
 			}
             lineBreakOption += text.mid(startOpt, endOpt - startOpt + 1).trimmed();
 			endCol = endOpt + 1;
@@ -1136,7 +1136,7 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 			if (!cl[row].isEmpty()) ret.append(rowIndent + cl[row] + lineTerm);
 			break;
 		default:
-			Q_ASSERT("Invalid metaLineCommand pos");
+            qDebug("Invalid metaLineCommand pos");
 		}
 
 	}

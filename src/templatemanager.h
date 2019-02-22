@@ -10,7 +10,7 @@ class TemplateHandle
 {
 public:
 	friend class Template;
-	TemplateHandle() : m_tmpl(0) {}
+    TemplateHandle() : m_tmpl(nullptr) {}
 	TemplateHandle(const TemplateHandle &th);
 	explicit TemplateHandle(Template *tmpl);
 	~TemplateHandle();
@@ -57,7 +57,7 @@ class TemplateManager : public QObject
 	Q_OBJECT
 
 public:
-	explicit TemplateManager(QObject *parent = 0);
+    explicit TemplateManager(QObject *parent = nullptr);
 
 	static void setConfigBaseDir(const QString &dir) { configBaseDir = dir; }
 	static QString userTemplateDir() { return configBaseDir + "templates/user/"; }
@@ -88,7 +88,7 @@ class LatexTemplateManager : public TemplateManager
 	Q_OBJECT
 
 public:
-	explicit LatexTemplateManager(QObject *parent = 0);
+    explicit LatexTemplateManager(QObject *parent = nullptr);
 };
 
 

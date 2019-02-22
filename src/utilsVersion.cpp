@@ -118,7 +118,7 @@ bool Version::operator >(const Version &other) const
     if(other.type=="release candidate") lvl_other=2;
     if(other.type=="beta") lvl_other=1;
     if(other.type=="development") lvl_other=0;
-    return lvl>lvl_other;
+    return lvl_other==0 && lvl==3 ? false : lvl>lvl_other; // special treatment a.b-dev > a.b stable but a.b-dev < a.b-beta/rc
 }
 
 bool Version::isEmpty() const

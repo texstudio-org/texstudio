@@ -22,6 +22,7 @@ class BooleanFilterProxyModel : public QSortFilterProxyModel
 
 public:
 	BooleanFilterProxyModel(QObject *parent = 0);
+	using QSortFilterProxyModel::invalidateFilter;
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;

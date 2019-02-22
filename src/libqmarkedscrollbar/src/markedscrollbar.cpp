@@ -46,7 +46,7 @@
 */
 
 MarkedScrollBar::MarkedScrollBar(QWidget *parent)
- : QScrollBar(parent), m_isClipped(true), doc(0)
+ : QScrollBar(parent), m_isClipped(true), doc(nullptr)
 {
 }
 
@@ -64,7 +64,7 @@ void MarkedScrollBar::addMark(int position, const QColor& colour,
     int ln=position;
     if(doc)
         ln=doc->visualLineNumber(position);
-    markData mark = { ln, position, NULL, colour, identifier };
+    markData mark = { ln, position, nullptr, colour, identifier };
     m_marks.append(mark);
 }
 /*!
@@ -104,7 +104,7 @@ void MarkedScrollBar::removeMark(int position)
     \param position The position of the mark to be removed if type is correct.
     \param type
 */
-void MarkedScrollBar::removeMark(int position,QString type)
+void MarkedScrollBar::removeMark(int position,const QString &type)
 {
     QMutableListIterator<markData> i(m_marks);
     while (i.hasNext())
@@ -354,7 +354,7 @@ void MarkedScrollBar::paintEvent(QPaintEvent *event)
         {
             if(doc){
                 if(mark->pos<0){ // not cached
-                    if(mark->dlh!=0){
+                    if(mark->dlh!=nullptr){
                         int ln=doc->indexOf(mark->dlh);
                         if(ln<0)
                             continue; // did not find line

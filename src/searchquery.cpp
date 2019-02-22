@@ -4,14 +4,14 @@
 #include "buildmanager.h"
 
 SearchQuery::SearchQuery(QString expr, QString replaceText, SearchFlags f) :
-	mType(tr("Search")), mScope(CurrentDocumentScope), mModel(0), searchFlags(f)
+    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(f)
 {
 	mModel = new SearchResultModel(this);
 	mModel->setSearchExpression(expr, replaceText, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
 }
 
 SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive, bool isWord, bool isRegExp) :
-	mType(tr("Search")), mScope(CurrentDocumentScope), mModel(0), searchFlags(NoFlags)
+    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(NoFlags)
 {
 	setFlag(IsCaseSensitive, isCaseSensitive);
 	setFlag(IsWord, isWord);
@@ -120,7 +120,7 @@ void SearchQuery::replaceAll()
 		QDocumentCursor *cur = new QDocumentCursor(doc);
 		for (int i = 0; i < search.checked.size(); i++) {
 			if (search.checked.value(i, false)) {
-				QDocumentLineHandle *dlh = search.lines.value(i, 0);
+                QDocumentLineHandle *dlh = search.lines.value(i, nullptr);
 				if (dlh) {
 					if (isReg) {
 						QRegExp rx(searchExpression(), isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);

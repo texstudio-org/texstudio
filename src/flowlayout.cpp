@@ -107,14 +107,14 @@ QLayoutItem *FlowLayoutX::takeAt(int index)
     if (index >= 0 && index < itemList.size())
         return itemList.takeAt(index);
     else
-        return 0;
+        return nullptr;
 }
 //! [5]
 
 //! [6]
 Qt::Orientations FlowLayoutX::expandingDirections() const
 {
-    return 0;
+    return nullptr;
 }
 //! [6]
 
@@ -169,7 +169,7 @@ int FlowLayoutX::doLayout(const QRect &rect, bool testOnly) const
 //! [10]
     QLayoutItem *item;
 
-    QLayoutItem * primaryItem = 0;
+    QLayoutItem * primaryItem = nullptr;
     int secondaryWidth = 0;
     foreach (item, itemList) {
         QWidget *wid = item->widget();
@@ -231,7 +231,7 @@ int FlowLayoutX::smartSpacing(QStyle::PixelMetric pm) const
         return -1;
     } else if (parent->isWidgetType()) {
         QWidget *pw = static_cast<QWidget *>(parent);
-        return pw->style()->pixelMetric(pm, 0, pw);
+        return pw->style()->pixelMetric(pm, nullptr, pw);
     } else {
         return static_cast<QLayout *>(parent)->spacing();
     }

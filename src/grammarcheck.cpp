@@ -12,7 +12,7 @@ GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error
 GrammarError::GrammarError(int offset, int length, const GrammarError &other): offset(offset), length(length), error(other.error), message(other.message), corrections(other.corrections) {}
 
 GrammarCheck::GrammarCheck(QObject *parent) :
-	QObject(parent), ltstatus(LTS_Unknown), backend(0), ticket(0), pendingProcessing(false), shuttingDown(false)
+    QObject(parent), ltstatus(LTS_Unknown), backend(nullptr), ticket(0), pendingProcessing(false), shuttingDown(false)
 {
 	latexParser = new LatexParser();
 }
@@ -22,7 +22,7 @@ GrammarCheck::GrammarCheck(QObject *parent) :
  */
 GrammarCheck::~GrammarCheck()
 {
-	if (latexParser) delete latexParser;
+	delete latexParser;
 }
 /*!
  * \brief GrammarCheck::init
@@ -397,7 +397,6 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 			if (words[w].length() == 1  && getCommonEOW().contains(words[w][0])) continue; //punctation
 
 			//check words
-			bool realCheck = true; //cr.lines[w] >= cr.linesToSkipDelta;
 			int truncatedChars = 0;
 			QString normalized = words[w].toLower();
 			if (normalized.endsWith('.')) {
@@ -412,16 +411,16 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 				}
 				continue;
 			} else prevSW.clear();
-			if (realCheck) {
-				int lastSeen = repeatedWordCheck.value(normalized, -1);
-				if (lastSeen > -1) {
-					int delta = totalWords - lastSeen;
-					if (delta <= MAX_REP_DELTA)
-						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w] - truncatedChars, GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
-					else if (config.maxRepetitionLongRangeDelta > config.maxRepetitionDelta && delta <= config.maxRepetitionLongRangeDelta && normalized.length() >= config.maxRepetitionLongRangeMinWordLength)
-						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
-				}
-			}
+
+            int lastSeen = repeatedWordCheck.value(normalized, -1);
+            if (lastSeen > -1) {
+                int delta = totalWords - lastSeen;
+                if (delta <= MAX_REP_DELTA)
+                    cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w] - truncatedChars, GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
+                else if (config.maxRepetitionLongRangeDelta > config.maxRepetitionDelta && delta <= config.maxRepetitionLongRangeDelta && normalized.length() >= config.maxRepetitionLongRangeMinWordLength)
+                    cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
+            }
+
 			repeatedWordCheck.insert(normalized, totalWords);
 		}
 	}
@@ -526,14 +525,14 @@ struct CheckRequestBackend {
 	CheckRequestBackend(int ti, int st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
 };
 
-GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
+GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): GrammarCheckBackend(parent), nam(nullptr), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
 {
 
 }
 
 GrammarCheckLanguageToolSOAP::~GrammarCheckLanguageToolSOAP()
 {
-	if (nam) delete nam;
+	delete nam;
 }
 /*!
  * \brief GrammarCheckLanguageToolSOAP::init
@@ -698,7 +697,7 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 	connectionAvailability = Terminated;
 	if (nam) {
 		nam->deleteLater();
-		nam = 0;
+        nam = nullptr;
 	}
 }
 /*!
@@ -726,7 +725,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 		if (connectionAvailability == Broken) {
 			if (delayedRequests.size()) delayedRequests.clear();
 			nam->deleteLater(); // shutdown unnecessary network manager (Bug 1717/1738)
-			nam = 0;
+            nam = nullptr;
 			return; //confirmed: no backend
 		}
 		//there might be a backend now, but we still don't have the results
@@ -798,14 +797,14 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 }
 
 #if QT_VERSION >= 0x050000
-GrammarCheckLanguageToolJSON::GrammarCheckLanguageToolJSON(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true),startTime(0)
+GrammarCheckLanguageToolJSON::GrammarCheckLanguageToolJSON(QObject *parent): GrammarCheckBackend(parent), nam(nullptr), connectionAvailability(Unknown), triedToStart(false), firstRequest(true),startTime(0)
 {
 
 }
 
 GrammarCheckLanguageToolJSON::~GrammarCheckLanguageToolJSON()
 {
-    if (nam) delete nam;
+    delete nam;
 }
 /*!
  * \brief GrammarCheckLanguageToolJSON::init
@@ -970,7 +969,7 @@ void GrammarCheckLanguageToolJSON::shutdown()
     connectionAvailability = Terminated;
     if (nam) {
         nam->deleteLater();
-        nam = 0;
+        nam = nullptr;
     }
 }
 /*!
@@ -1004,7 +1003,7 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
         if (connectionAvailability == Broken) {
             if (delayedRequests.size()) delayedRequests.clear();
             nam->deleteLater(); // shutdown unnecessary network manager (Bug 1717/1738)
-            nam = 0;
+            nam = nullptr;
             return; //confirmed: no backend
         }
         //there might be a backend now, but we still don't have the results

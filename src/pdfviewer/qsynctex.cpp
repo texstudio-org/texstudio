@@ -35,7 +35,7 @@ QRectF Node::boxVisibleRect() const
 }
 
 
-Scanner::Scanner(QObject *parent) : QObject(parent), scanner(NULL)
+Scanner::Scanner(QObject *parent) : QObject(parent), scanner(nullptr)
 {
 
 }
@@ -45,7 +45,7 @@ Scanner::~Scanner()
 	clear();
 }
 
-Scanner::Scanner(const QString &filename, QObject *parent) : QObject(parent), scanner(NULL)
+Scanner::Scanner(const QString &filename, QObject *parent) : QObject(parent), scanner(nullptr)
 {
 	load(filename);
 }
@@ -53,8 +53,8 @@ Scanner::Scanner(const QString &filename, QObject *parent) : QObject(parent), sc
 bool Scanner::load(const QString &filename)
 {
 	clear();
-	scanner = synctex_scanner_new_with_output_file(QFile::encodeName(filename).data(), NULL, 1);
-	return scanner != NULL;
+    scanner = synctex_scanner_new_with_output_file(QFile::encodeName(filename).data(), nullptr, 1);
+    return scanner != nullptr;
 }
 
 void Scanner::clear()
@@ -62,7 +62,7 @@ void Scanner::clear()
 	if (scanner) {
 		synctex_scanner_free(scanner);
 	}
-	scanner = NULL;
+    scanner = nullptr;
 }
 
 QString Scanner::synctexFilename() const

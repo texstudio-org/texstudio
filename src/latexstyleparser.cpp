@@ -11,7 +11,7 @@ LatexStyleParser::LatexStyleParser(QObject *parent, QString baseDirName, QString
 	mFiles.clear();
 	//check if pdflatex is present
 	texdefDir = kpsecmd.left(kpsecmd.length() - 9);
-	QProcess myProc(0);
+    QProcess myProc(nullptr);
 	//myProc.start(texdefDir+"texdef");
 	myProc.start(texdefDir + "pdflatex --version");
 	myProc.waitForFinished();
@@ -108,11 +108,12 @@ void LatexStyleParser::run()
 							QChar c = result.at(td.length());
 							switch (c.toLatin1()) {
 							case '#':
-								;
-							case '{':
-								;
+                                [[clang::fallthrough]];
+                            case '{':
+                                [[clang::fallthrough]];
 							case '[':
 								addCommand = false;
+                                break;
 							default:
 								break;
 							}
@@ -405,7 +406,7 @@ QString LatexStyleParser::kpsewhich(QString name, QString dirName) const
 		return "";  // don't check .sty/.cls
 	QString fn = name;
 	if (!kpseWhichCmd.isEmpty()) {
-		QProcess myProc(0);
+        QProcess myProc(nullptr);
 		QStringList options;
 		if (!dirName.isEmpty()) {
 			options << "-path=" + dirName;
@@ -428,7 +429,7 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn) const
 		return QStringList();
 
 	QString fname = fn.left(fn.length() - 4);
-	QProcess myProc(0);
+    QProcess myProc(nullptr);
 
 	//add exec search path
 	if (!texdefDir.isEmpty()) {
@@ -516,7 +517,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 	tf->close();
 
 
-	QProcess myProc(0);
+    QProcess myProc(nullptr);
 	//add exec search path
 	if (!texdefDir.isEmpty()) {
 		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();

@@ -123,7 +123,7 @@ IF ( ${CMAKE_INSTALL_PREFIX} MATCHES .*/_CPack_Packages/.* )
     FIXUP_QT5_EXECUTABLE(${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}.app "${QT_PLUGINS}" "${TeXworks_PLUGINS}" "${TeXworks_LIB_DIRS}")
   endif()
 
-  # Remove unecessary architectures from universal binaries
+  # Remove unnecessary architectures from universal binaries
   # -------------------------------------------------------
 
   # Some libraries copied from the OS X system, such as X11 libraries, may

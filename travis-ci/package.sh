@@ -22,7 +22,7 @@ POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf7
 
 # Gather information
 
-# GNU extensions for sed are not supported; on Linux, --posix mimicks this behaviour
+# GNU extensions for sed are not supported; on Linux, --posix mimics this behaviour
 TXS_VERSION=$(sed -ne 's/^#define TXSVERSION "\(.*\)".*$/\1/p' src/utilsVersion.h)
 echo "TXS_VERSION = ${TXS_VERSION}"
 
@@ -137,6 +137,8 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/manual\" \"package-zip/help\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/dictionaries\" \"package-zip/dictionaries\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/TexTablet\" \"package-zip/TexTablet\""
+        echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/travis-ci/mxe/fonts\" \"package-zip/share/\""
+
 	
 	print_info "Fetching poppler data"
 	wget --no-check-certificate "${POPPLERDATA_URL}"

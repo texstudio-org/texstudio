@@ -9,9 +9,9 @@
 \begin{alignat*}[alignment]{ncols}#\math,array
 \begin{alignat}{ncols}#\math,array
 \begin{alignat*}{ncols}#\math,array
-\begin{aligned}
-\begin{aligned}[alignment]
-\begin{alignedat}
+\begin{aligned}#m\array
+\begin{aligned}[alignment]#m\array
+\begin{alignedat}{ncols}#m\array
 \begin{bmatrix}#m\array
 \begin{Bmatrix}#m\array
 \begin{cases}#\array
@@ -33,9 +33,9 @@
 \begin{subequations}
 \begin{vmatrix}#m\array
 \begin{Vmatrix}#m\array
-\begin{xalignat}
-\begin{xalignat*}
-\begin{xxalignat}
+\begin{xalignat}#*
+\begin{xalignat*}#*
+\begin{xxalignat}#*
 \binom{above}{below}#m
 \bmod#m
 \boldsymbol{argument}#m

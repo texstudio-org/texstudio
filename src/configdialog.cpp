@@ -95,7 +95,7 @@ void ShortcutComboBox::focusInEvent(QFocusEvent *e)
 }
 
 
-ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(0)
+ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(nullptr)
 {
 	Q_UNUSED(parent);
 }
@@ -105,12 +105,12 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 {
 	Q_UNUSED(option);
 
-	if (!index.isValid()) return 0;
+    if (!index.isValid()) return nullptr;
 	const QAbstractItemModel *model = index.model();
 	if (model->index(index.row(), 0, index.parent()).isValid() &&
 	        model->data(model->index(index.row(), 0, index.parent()), Qt::DisplayRole) == deleteRowButton) {
 		//editor key replacement
-		if (index.column() == 0) return 0;
+        if (index.column() == 0) return nullptr;
 		return new QLineEdit(parent);
 	}
 
@@ -123,14 +123,14 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 			}
 			return ops;
 		}
-		if (index.column() != 2) return 0;
+        if (index.column() != 2) return nullptr;
 		//continue as key
 	}
 
 	//menu shortcut key
 	if (index.column() != 2 && index.column() != 3) {
 		UtilsUi::txsWarning(tr("To change a shortcut, edit the column \"Current Shortcut\" or \"Additional Shortcut\"."));
-		return 0;
+        return nullptr;
 	}
 	ShortcutComboBox *editor = new ShortcutComboBox(parent);
 
@@ -244,7 +244,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 				if (UtilsUi::txsConfirmWarning(QString(ConfigDialog::tr("The shortcut <%1> is already assigned to the command:")).arg(value) + "\n" + duplicate + "\n\n" + ConfigDialog::tr("Do you wish to remove the old assignment and bind the shortcut to the new command?"))) {
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					foreach (QTreeWidgetItem *twi, li) {
-						if (twi and twi->text(2) == value) twi->setText(2, "");
+						if (twi && twi->text(2) == value) twi->setText(2, "");
 					}
 				} else {
 					return;
@@ -308,7 +308,7 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem *item, int column)
 		REQUIRE(item->treeWidget());
 		REQUIRE(item->treeWidget()->topLevelItem(1));
 		QString newText = item->parent() == item->treeWidget()->topLevelItem(1)->child(1) ? deleteRowButton : "";
-		QTreeWidgetItem *twi = new QTreeWidgetItem((QTreeWidgetItem *)0, QStringList() << newText);
+        QTreeWidgetItem *twi = new QTreeWidgetItem((QTreeWidgetItem *)nullptr, QStringList() << newText);
 		twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
 		item->parent()->insertChild(item->parent()->childCount() - 1, twi);
 	}
@@ -384,7 +384,7 @@ void ComboBoxDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionV
 
 int ConfigDialog::lastUsedPage = 0;
 
-ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPDFViewer(0), riddled(false), oldToolbarIndex(-1), mBuildManager(0)
+ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPDFViewer(nullptr), riddled(false), oldToolbarIndex(-1), mBuildManager(nullptr)
 {
 	setModal(true);
 	ui.setupUi(this);
@@ -410,6 +410,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 #ifdef Q_OS_WIN
 	ui.checkBoxUseQSaveWrite->setVisible(false);
 #endif
+
+    ui.checkBoxShowCommentedElementsInStructure->setVisible(false); // hide non-functional option, maybe it can be fixed in future
 
 	ui.contentsWidget->setIconSize(QSize(32, 32));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
@@ -437,7 +439,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 		}
 	}
 
-	ui.comboBoxThesaurusFileName->setCompleter(0);
+    ui.comboBoxThesaurusFileName->setCompleter(nullptr);
 
 	connect(ui.pushButtonDictDir, SIGNAL(clicked()), this, SLOT(browseDictDir()));
 	connect(ui.leDictDir, SIGNAL(textChanged(QString)), this, SLOT(updateDefaultDictSelection(QString)));
@@ -461,7 +463,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.pbRemoveLine, SIGNAL(clicked()), this, SLOT(custEnvRemoveLine()));
 	connect(ui.pbAddSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxAddLine()));
 	connect(ui.pbRemoveSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxRemoveLine()));
-	environModes = 0;
+    environModes = nullptr;
 	//pagequick
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
 	connect(ui.pushButtonGrammarLTPath, SIGNAL(clicked()), this, SLOT(browseGrammarLTPath()));
@@ -470,7 +472,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
     connect(ui.pushButtonResetLTArgs, SIGNAL(clicked()), this, SLOT(resetLTArgs()));
 
 
-	fmConfig = new QFormatConfig(ui.formatConfigBox);
+	fmConfig = new QFormatConfig(ui.formatConfigBox, parent->styleSheet().isEmpty());
 	fmConfig->setToolTip(tr("Here the syntax highlighting for various commands, environments and selections can be changed."));
 	fmConfig->addCategory(tr("Basic highlighting")) << "normal" << "background" << "comment" << "magicComment" << "commentTodo" << "keyword" << "extra-keyword" << "math-delimiter" << "math-keyword" << "numbers" << "text" << "align-ampersand" << "environment" << "structure" << "link" << "escapeseq" << "verbatim" << "picture" << "picture-keyword" << "preedit";
 	fmConfig->addCategory(tr("LaTeX checking")) << "braceMatch" << "braceMismatch" << "latexSyntaxMistake" << "referencePresent" << "referenceMissing" << "referenceMultiple" << "citationPresent" << "citationMissing" << "packagePresent" << "packageMissing" << "temporaryCodeCompletion";
@@ -898,6 +900,28 @@ bool ConfigDialog::metaFilterRecurseLayout(const QString &filter, QLayout *layou
 			}
 			return showThis;
 		}
+        QFormLayout *formLayout= qobject_cast<QFormLayout *>(layout);
+        if(formLayout){
+            foreach (int item, visibles) {
+                QWidget *w=formLayout->itemAt(item)->widget();
+                if(!qobject_cast<QLabel *>(w)){
+                    w=formLayout->labelForField(w);
+                    if (w){
+                        w->setVisible(!w->property("hideWidget").toBool());
+                    }
+                }else{
+                    for(int l=0;l<formLayout->rowCount();l++){
+                        QLayoutItem *li=formLayout->itemAt(l,QFormLayout::FieldRole);
+                        if(li){
+                            QWidget *w2=li->widget();
+                            if(w2 && formLayout->labelForField(w2)==w){
+                                w2->setVisible(!w2->property("hideWidget").toBool());
+                            }
+                        }
+                    }
+                }
+            }
+        }
 	}
 	return showThis;
 }
@@ -965,8 +989,11 @@ void ConfigDialog::actionsChanged(int actionClass)
 	}
 
 	const QList<QMenu *> &menus = (actionClass == 0) ? standardToolbarMenus : allMenus;
-	foreach (const QMenu *menu, menus)
-		populatePossibleActions(0, menu, actionClass != 0);
+    foreach (const QMenu *menu, menus){
+        if(menu->objectName().startsWith("pdf"))
+            continue; // filter out menus for pdf viewer
+        populatePossibleActions(nullptr, menu, actionClass != 0);
+    }
 }
 
 void ConfigDialog::toToolbarClicked()
@@ -1076,7 +1103,7 @@ void ConfigDialog::populatePossibleActions(QTreeWidgetItem *parent, const QMenu 
 
 void ConfigDialog::importDictionary()
 {
-	QString filename = FileDialog::getOpenFileName(this, tr("Import Dictionary"), QString(), tr("OpenOffice Dictionary") + " (*.oxt)", 0, QFileDialog::DontResolveSymlinks);
+    QString filename = FileDialog::getOpenFileName(this, tr("Import Dictionary"), QString(), tr("OpenOffice Dictionary") + " (*.oxt)", nullptr, QFileDialog::DontResolveSymlinks);
 	if (filename.isNull()) return;
 
 	ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
@@ -1138,7 +1165,7 @@ void ConfigDialog::custEnvAddLine()
 
 	QTableWidgetItem *item = new QTableWidgetItem("");
 	ui.twHighlighEnvirons->setItem(i, 0, item);
-	QComboBox *cb = new QComboBox(0);
+    QComboBox *cb = new QComboBox(nullptr);
 	cb->insertItems(0, lst);
 	ui.twHighlighEnvirons->setCellWidget(i, 1, cb);
 }
@@ -1163,7 +1190,7 @@ void ConfigDialog::custEnvRemoveLine()
 
 		QTableWidgetItem *item = new QTableWidgetItem("");
 		ui.twHighlighEnvirons->setItem(i, 0, item);
-		QComboBox *cb = new QComboBox(0);
+        QComboBox *cb = new QComboBox(nullptr);
 		cb->insertItems(0, lst);
 		ui.twHighlighEnvirons->setCellWidget(i, 1, cb);
 	}

@@ -11,9 +11,10 @@
 
 StructureTreeView::StructureTreeView(Editors *edts, const LatexDocuments &docs, const ConfigManager &config, QWidget *parent) :
 	QTreeView(parent),
+    contextEntry(nullptr),
 	editors(edts),
 	documents(docs),
-	configManager(config)
+    configManager(config)
 {
 	header()->hide();
 	setObjectName("StructureTree");
@@ -123,7 +124,7 @@ void StructureTreeView::expandSubitems()
 	if (!contextEntry)
 		return;
 	UtilsUi::setSubtreeExpanded(this, contextIndex, true);
-	contextEntry = 0;
+    contextEntry = nullptr;
 }
 
 void StructureTreeView::collapseSubitems()
@@ -131,7 +132,7 @@ void StructureTreeView::collapseSubitems()
 	if (!contextEntry)
 		return;
 	UtilsUi::setSubtreeExpanded(this, contextIndex, false);
-	contextEntry = 0;
+    contextEntry = nullptr;
 }
 
 void StructureTreeView::expandAllDocuments()

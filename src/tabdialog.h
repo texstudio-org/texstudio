@@ -31,7 +31,7 @@ struct liData
 class TabDialog : public QDialog  {
    Q_OBJECT
 public:
-	TabDialog(QWidget *parent=0, const char *name=0);
+    TabDialog(QWidget *parent=nullptr, const char *name=nullptr);
 	~TabDialog();
 	Ui::TabDialog ui;
 QList<colData> colDataList;

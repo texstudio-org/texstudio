@@ -40,9 +40,8 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_option(opt), m_string(f),  m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
+ : m_option(opt), m_string(f), m_replace(r), m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
 {
-	m_replace=r;
 	connectToEditor();
 }
 void QDocumentSearch::connectToEditor(){
@@ -524,7 +523,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	if ( m_string.isEmpty() )
 		return 0;
 
-	if ( overrideScope && !overrideScope->isValid() ) overrideScope = 0;
+    if ( overrideScope && !overrideScope->isValid() ) overrideScope = nullptr;
 	
 	const QDocumentCursor& scope = overrideScope ? *overrideScope : m_scope;
 	
@@ -544,7 +543,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				m_cursor.movePosition(1, QDocumentCursor::End);
 			
 		} else {
-			QMessageBox::warning(0, 0, "Unable to perform search operation");
+            QMessageBox::warning(nullptr, nullptr, "Unable to perform search operation");
 		}
 	}
 
@@ -559,7 +558,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		bool replaceSelectedText = false;
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
 			replaceSelectedText = true;
-		} else if (m_regexp.pattern().contains("(?=") or m_regexp.pattern().contains("(?!")) {
+		} else if (m_regexp.pattern().contains("(?=") || m_regexp.pattern().contains("(?!")) {
 			// special handling for lookahead: The selected text is not enough to match the regexp
 			// because the lookahead context is missing. Therefore we have to find matches to the
 			// whole line until we find the original selection. Only then, we know that the original
@@ -654,6 +653,11 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		
 		int coloffset = 0;
 		QString s = l.text();
+
+        if ( bounded ) {
+            // update boundaries as scope is changed when changing text
+            boundaries = scope.selection();
+        }
 
 		if ( backward )
 		{

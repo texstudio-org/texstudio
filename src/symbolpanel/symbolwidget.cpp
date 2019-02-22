@@ -49,6 +49,7 @@ void SymbolWidget::setupData(SymbolListModel *model)
 	favoritesProxyModel = new BooleanFilterProxyModel;
 	favoritesProxyModel->setSourceModel(symbolListModel);
 	favoritesProxyModel->setFilterRole(SymbolListModel::FavoriteRole);
+	connect(symbolListModel, SIGNAL(favoritesChanged()), favoritesProxyModel, SLOT(invalidate()));
 
 	mostUsedProxyModel = new MostUsedProxyModel;
 	mostUsedProxyModel->setSourceModel(symbolListModel);
@@ -126,12 +127,12 @@ void SymbolWidget::setupSearchArea(QVBoxLayout *vLayout)
 	categoryFilterButton->setMinimumWidth(width);
 	hLayout->addWidget(categoryFilterButton);
 
-	QAction *actAllCategories = new QAction(tr("All"),NULL);  // does not need data
+    QAction *actAllCategories = new QAction(tr("All"),nullptr);  // does not need data
 	connect(actAllCategories, SIGNAL(triggered()), this, SLOT(setCategoryFilterFromAction()));
 	categoryFilterButton->addAction(actAllCategories);
 	bool isFirst = true;
 	foreach (const QString &category, categories) {
-		QAction *act = new QAction(categoryNames[category],NULL);
+        QAction *act = new QAction(categoryNames[category],nullptr);
 		categoryFilterButton->addAction(act);
 		act->setData(category);
 		connect(act, SIGNAL(triggered()), this, SLOT(setCategoryFilterFromAction()));

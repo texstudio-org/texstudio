@@ -42,7 +42,7 @@ Q_DECLARE_METATYPE(CP);
 Q_DECLARE_METATYPE(QList<CP>);
 
 
-CodeSnippetTest::CodeSnippetTest(QEditor* editor): QObject(0), 	ed(editor){
+CodeSnippetTest::CodeSnippetTest(QEditor* editor): QObject(nullptr), 	ed(editor){
 	ed->document()->setLineEnding(QDocument::Unix); //necessary to compare with "\n" separated lines
 }
 

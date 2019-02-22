@@ -37,10 +37,18 @@ isEmpty(NO_POPPLER_PREVIEW) {
     win32:isEmpty(MXE) {
         !greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
             INCLUDEPATH  += ./src/pdfviewer/include_win32
-            LIBS += ./zlib1.dll ./libpoppler-qt4.dll
+            win32-msvc*: {
+                LIBS += ./zlib.lib ./libpoppler-qt4.lib
+            } else {
+                LIBS += ./zlib1.dll ./libpoppler-qt4.dll
+            }
         } else { # Qt5
             INCLUDEPATH  += ./src/pdfviewer/include_win32_qt5
-            LIBS += ./zlib1.dll ./libpoppler-qt5.dll
+            win32-msvc*: {
+                LIBS += ./zlib.lib ./libpoppler-qt5.lib
+            } else {
+                LIBS += ./zlib1.dll ./libpoppler-qt5.dll
+            }
         }
         DEFINES += HAS_POPPLER_24
         DEFINES += HAS_POPPLER_31

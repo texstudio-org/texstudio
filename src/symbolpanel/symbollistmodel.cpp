@@ -212,6 +212,7 @@ void SymbolListModel::addFavorite(const QString &id)
 #else
 				emit dataChanged(index(i, 0), index(i, 0));
 #endif
+				emit favoritesChanged();
 				break;
 			}
 		}
@@ -228,6 +229,7 @@ void SymbolListModel::removeFavorite(const QString &id)
 #else
 				emit dataChanged(index(i, 0), index(i, 0));
 #endif
+				emit favoritesChanged();
 				break;
 			}
 		}

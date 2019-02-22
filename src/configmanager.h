@@ -34,7 +34,7 @@ class ConfigManager: public QObject, public ConfigManagerInterface
 	Q_OBJECT
 
 public:
-	ConfigManager(QObject *parent = 0);
+    ConfigManager(QObject *parent = nullptr);
 	~ConfigManager();
 
 	QString iniPath();
@@ -176,7 +176,8 @@ public:
 	bool addRecentFile(const QString &fileName, bool asMaster);  //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems = false);
 	QMenu *updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems = false, int additionalEntries = 2, const QList<QVariant> data=QList<QVariant>());
-	void updateUserMacroMenu(bool alwaysRecreateMenuItems = false);
+    void updateUserMacroMenu();
+    void updateUserMacroShortcuts();
 
 	QString additionalBibPaths;
 	QString additionalImagePaths;
@@ -203,6 +204,8 @@ public:
 	// input unicode instead of latex command from symbolgrid (if available)
 	bool insertSymbolsAsUnicode;
 
+    // macro repository
+    QString URLmacroRepository;
 	//menus
     QObjectList menuParents;
     QObject *menuParent; //lets assume there is only one
@@ -231,12 +234,14 @@ public:
 
 	static QString configDirOverride;
     static bool dontRestoreSession;
+    static int RUNAWAYLIMIT;
 private:
 	void setupDirectoryStructure();
 	void moveCwls();
 	void connectExtendedSlot(QAction *act, const QString &slot);
 	bool modifyMenuContentsFirstCall;
 	void modifyMenuContent(QStringList &ids, const QString &id);
+    void clearMenu(QMenu *menu);
 public:
 	void modifyMenuContents();
     void modifyManagedShortcuts(QString startsWith="");

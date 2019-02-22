@@ -12,7 +12,7 @@
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 {
 #ifdef Q_OS_WIN
-	wchar_t d[path.size() + 1];
+	wchar_t* d = new wchar_t[path.size() + 1];
 	int len = path.toWCharArray(d);
 	d[len] = 0;
 
@@ -20,9 +20,11 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 	freeBytesToCaller.QuadPart = 0L;
 
 	if ( !GetDiskFreeSpaceEx( d, &freeBytesToCaller, NULL, NULL ) ) {
+        delete[] d;
 		qDebug() << "ERROR: Call to GetDiskFreeSpaceEx() failed on path" << path;
 		return false;
 	}
+    delete[] d;
 	freeBytes = freeBytesToCaller.QuadPart;
 	return true;
 #else
@@ -135,6 +137,11 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 	searchFiles << ":" + dn; //resource fall back
 	searchFiles.append(additionalPreferredPaths);
 	searchFiles << QCoreApplication::applicationDirPath() + dn; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
+    searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 
 #if !defined(PREFIX)
@@ -671,7 +678,7 @@ QStringList envKeys(const QProcessEnvironment &env)
 QString execCommand(const QString &cmd, QString additionalPaths)
 {
 	if (cmd.isEmpty()) return QString();
-	QProcess myProc(0);
+    QProcess myProc(nullptr);
     if(!additionalPaths.isEmpty()){
         updatePathSettings(&myProc,additionalPaths);
     }
@@ -701,7 +708,7 @@ void ThreadBreaker::forceTerminate(QThread *t)
 	t->terminate();
 }
 
-SafeThread::SafeThread(): QThread(0), crashed(false) {}
+SafeThread::SafeThread(): QThread(nullptr), crashed(false) {}
 SafeThread::SafeThread(QObject *parent): QThread(parent), crashed(false) {}
 
 void SafeThread::wait(unsigned long time)

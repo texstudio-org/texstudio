@@ -5,9 +5,9 @@
 /*** TemplateHandle **********************************************************/
 
 // *INDENT-OFF* (astyle-config)
-TemplateHandle::TemplateHandle(const TemplateHandle &th) : m_tmpl(0) { setTmpl(th.m_tmpl); }
-TemplateHandle::TemplateHandle(Template *tmpl) : m_tmpl(0) { setTmpl(tmpl); }
-TemplateHandle::~TemplateHandle() { setTmpl(0); }
+TemplateHandle::TemplateHandle(const TemplateHandle &th) : m_tmpl(nullptr) { setTmpl(th.m_tmpl); }
+TemplateHandle::TemplateHandle(Template *tmpl) : m_tmpl(nullptr) { setTmpl(tmpl); }
+TemplateHandle::~TemplateHandle() { setTmpl(nullptr); }
 bool TemplateHandle::isValid() const         { return (m_tmpl); }
 TemplateHandle& TemplateHandle::operator = (const TemplateHandle& th) {
 	setTmpl(th.m_tmpl);

@@ -63,7 +63,7 @@ void ScriptObject::crash_assert()
 void ScriptObject::crash_sigsegv()
 {
 	if (!confirmWarning("Do you want to let txs crash with a SIGSEGV?")) return;
-	char *c = 0;
+    char *c = nullptr;
 	*c = 'A';
 }
 
@@ -89,7 +89,7 @@ void ScriptObject::crash_loop()
 //#ifndef QT_NO_DEBUG // only used in the Q_ASSERT statements: prevent unused variable warning in release build
 	register int a = 1, b = 2, c = 3, d = 4;
 //#endif
-	while (1) {
+	while (true) {
 		void *x = malloc(16);
 		free(x);
 		Q_ASSERT(a == 1);
@@ -108,13 +108,13 @@ void ScriptObject::crash_throw()
 ProcessX *ScriptObject::system(const QString &commandline, const QString &workingDirectory)
 {
 	if (!buildManager || !needWritePrivileges("system", commandline))
-		return 0;
-	ProcessX *p = 0;
+        return nullptr;
+    ProcessX *p = nullptr;
 	if (commandline.contains(BuildManager::TXS_CMD_PREFIX) || !commandline.contains("|"))
 		p = buildManager->firstProcessOfDirectExpansion(commandline, QFileInfo());
 	else
 		p = buildManager->newProcessInternal(commandline, QFileInfo()); //use internal, so people can pass | to sh
-	if (!p) return 0;
+    if (!p) return nullptr;
 	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
 	QMetaObject::invokeMethod(reinterpret_cast<QObject *>(app), "connectSubCommand", Q_ARG(ProcessX *, p), Q_ARG(bool, true));
 	if (!workingDirectory.isEmpty())
@@ -187,16 +187,16 @@ void ScriptObject::registerAsBackgroundScript(const QString &name)
 	static QMap<QString, QPointer<ScriptObject> > backgroundScripts;
 
 	QString realName = name.isEmpty() ? getScriptHash() : name;
-	if (!backgroundScripts.value(realName, QPointer<ScriptObject>(0)).isNull())
-		delete backgroundScripts.value(realName, QPointer<ScriptObject>(0)).data();
-	backgroundScripts.insert(realName, this);
-	backgroundScript = true;
+    if (!backgroundScripts.value(realName, QPointer<ScriptObject>(nullptr)).isNull())
+        delete backgroundScripts.value(realName, QPointer<ScriptObject>(nullptr)).data();
+    backgroundScripts.insert(realName, this);
+    backgroundScript = true;
 }
 
 QWidget *ScriptObject::createUI(const QString &path, QWidget *parent)
 {
 	QFile f(path);
-	if (!f.open(QFile::ReadOnly)) return 0;
+    if (!f.open(QFile::ReadOnly)) return nullptr;
 	return QUiLoader().load(&f, parent);
 }
 
@@ -309,7 +309,7 @@ bool ScriptObject::needWritePrivileges(const QString &fn, const QString &param)
 {
 	if (writeSecurityMode == 0) return false;
 	if (hasWritePrivileges()) return true;
-	int t = QMessageBox::question(0, "TeXstudio script watcher",
+    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
 	                              tr("The current script has requested to enter privileged write mode and call following function:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this call"),
 	                              tr("Yes, allow all calls it will ever make"), tr("No, abort the call"), 0, 2);
 	if (t == 0) return true; //only now
@@ -322,7 +322,7 @@ bool ScriptObject::needReadPrivileges(const QString &fn, const QString &param)
 {
 	if (readSecurityMode == 0) return false;
 	if (hasReadPrivileges()) return true;
-	int t = QMessageBox::question(0, "TeXstudio script watcher",
+    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
 	                              tr("The current script has requested to enter privileged mode and read the following value:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this reading"),
 	                              tr("Yes, grant permanent read access to everything"), tr("No, abort the call"), 0, 2);
 	if (t == 0) return true; //only now

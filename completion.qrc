@@ -31,8 +31,10 @@
 <file>completion/caption.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/chemformula.cwl</file>
+<file>completion/chemmacros.cwl</file>
 <file>completion/chemstyle.cwl</file>
 <file>completion/circuitikz.cwl</file>
+<file>completion/cite.cwl</file>
 <file>completion/class-altacv.cwl</file>
 <file>completion/class-beamer.cwl</file>
 <file>completion/class-book.cwl</file>
@@ -57,6 +59,7 @@
 <file>completion/doi.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/enumerate.cwl</file>
+<file>completion/enumitem.cwl</file>
 <file>completion/epigraph.cwl</file>
 <file>completion/epstopdf.cwl</file>
 <file>completion/etoolbox.cwl</file>
@@ -104,6 +107,7 @@
 <file>completion/logsys.cwl</file>
 <file>completion/longtable.cwl</file>
 <file>completion/lscape.cwl</file>
+<file>completion/ltablex.cwl</file>
 <file>completion/ltxtable.cwl</file>
 <file>completion/luatex.cwl</file>
 <file>completion/luatodonotes.cwl</file>
@@ -118,6 +122,7 @@
 <file>completion/mhchem.cwl</file>
 <file>completion/microtype.cwl</file>
 <file>completion/minted.cwl</file>
+<file>completion/minutes.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multido.cwl</file>
 <file>completion/multimedia.cwl</file>
@@ -135,6 +140,7 @@
 <file>completion/pgfcore.cwl</file>
 <file>completion/pgf.cwl</file>
 <file>completion/pgfplots.cwl</file>
+<file>completion/pgfplotstable.cwl</file>
 <file>completion/physics.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/placeins.cwl</file>
@@ -158,6 +164,7 @@
 <file>completion/scrtime.cwl</file>
 <file>completion/secsty.cwl</file>
 <file>completion/setspace.cwl</file>
+<file>completion/shellesc.cwl</file>
 <file>completion/siunitx.cwl</file>
 <file>completion/siunitx-special.cwl</file>
 <file>completion/subcaption.cwl</file>
@@ -176,6 +183,7 @@
 <file>completion/theorem.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikz.cwl</file>
+<file>completion/tikzorbital.cwl</file>
 <file>completion/tikz-timing.cwl</file>
 <file>completion/titlesec.cwl</file>
 <file>completion/tocbibind.cwl</file>
