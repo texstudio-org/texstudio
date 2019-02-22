@@ -12160,7 +12160,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/templateselector.ui" line="205"/>
         <source>Create in Editor</source>
-        <translation>أنشئ في المحرر</translation>
+        <translation>أٌنشئ في المحرر</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="238"/>

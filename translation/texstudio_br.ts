@@ -5536,12 +5536,13 @@ Ha fellout a ra deoc&apos;h e flastrañ?</translation>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3124"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+na seblant ket bezañ un teuliad PDF reizh. Pe e vez lovret ar restr pe e-barzh un argerzh krouiñ. O klask en-dro bep eil segondenn.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3138"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;heller ket kavout ar restr &apos;%1&apos;; dilamet eo bet marteze.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3141"/>
