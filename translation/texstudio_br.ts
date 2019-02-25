@@ -5547,17 +5547,17 @@ na seblant ket bezañ un teuliad PDF reizh. Pe e vez lovret ar restr pe e-barzh 
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3141"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;heller ket kargañ ar restr &quot;%1&quot;; neket ur PDF reizh marteze.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3144"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;heller ket kargañ ar restr &quot;%1&quot; abalamour d&apos;un deverk fall; neket ur PDF reizh marteze.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3147"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;heller ket kargañ ar restr &quot;%1&quot; abalamour d&apos;un nemedenn; neket ur PDF reizh marteze.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3150"/>
@@ -6839,12 +6839,12 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>braceMatch</source>
-        <translation type="unfinished"/>
+        <translation>Briatenn dereat</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>braceMismatch</source>
-        <translation type="unfinished"/>
+        <translation>Briatenn dizereat</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="177"/>

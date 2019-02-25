@@ -1838,7 +1838,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>Dossiers contenant des dictionnaires Hunspell, séparés par des points-virgules. Les mots clés spéciaux [txs-settings-dir] et [txs-app-dir] seront transformés en les dossiers respectifs. </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2473"/>
@@ -7648,12 +7648,12 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codage d&apos;entrée</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codage de fonte</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -9172,7 +9172,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="613"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>Commandes XY</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="739"/>
