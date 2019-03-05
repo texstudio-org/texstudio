@@ -1428,12 +1428,12 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1776"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Polskie cudzysłowy: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1781"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Polskie cudzysłowy (unikod): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1789"/>
@@ -2157,7 +2157,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="3162"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Rozmyte</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3167"/>
@@ -2680,7 +2680,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4440"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>Kolor papieru</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4450"/>
@@ -3621,27 +3621,27 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>Negative - \!</source>
-        <translation type="unfinished"/>
+        <translation>Ujemny – \!</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="136"/>
         <source>Thin - \,</source>
-        <translation type="unfinished"/>
+        <translation>Cienki – \,</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>Medium - \:</source>
-        <translation type="unfinished"/>
+        <translation>Średni – \:</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>Thick - \;</source>
-        <translation type="unfinished"/>
+        <translation>Gruby – \;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>Interword - \ </source>
-        <translation type="unfinished"/>
+        <translation>Międzywyrazowy – \ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
@@ -3929,12 +3929,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="409"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>Ustaw tylko do odczytu</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="411"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>Wyczyść tylko do odczytu</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="416"/>
@@ -5443,7 +5443,7 @@ Chcesz go nadpisać?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2627"/>
         <source>Windowed Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Podgląd w oknie</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2630"/>

@@ -150,7 +150,7 @@
     <message>
         <location filename="../src/bibtexdialog.ui" line="27"/>
         <source>Entry Type:</source>
-        <translation>Doare daveenn:</translation>
+        <translation>Doare enmont:</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.ui" line="50"/>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="29"/>
         <source>Chapter or &amp;Pages in a Book</source>
-        <translation>Chabistroù pe ur &amp;bajenn en ul levr</translation>
+        <translation>Chabistroù pe &amp;pajennoù en ul levr</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="32"/>
@@ -503,7 +503,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="328"/>
         <source>Internal PDF Viewer (Windowed)</source>
-        <translation>Lenner PDFoù diabarzh (Prenestraet)</translation>
+        <translation>Lenner PDFoù diabarzh (prenestraet)</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="331"/>
@@ -536,7 +536,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="337"/>
         <source>Makeglossaries</source>
-        <translation>Makeglossaries</translation>
+        <translation>Saver-geriaouegoù</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="338"/>
@@ -616,7 +616,7 @@ Ha c&apos;hoant ho peus erlec&apos;hiañ TeXstudio e-barzh an holl hentoù urzhi
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
         <translation>An urzhiad %1 a zo gortozet evel bezañ atomek. Daoust da-se termenet eo evel un urzhiad-chadenn hag a endalc&apos;h %2 urzhiad. Dibaseal a ran ar spisadurioù hag e c&apos;hall degas efedoù a-eil renk souezhus.
 
-Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &apos;Zibarzhioù -&gt; Kefluniañ TeXstudio -&gt; Chom hep sevel da &apos;Zibarzhioù -&gt; Kefluniañ TeXstudio -&gt; Urzhiadoù&apos;.</translation>
+Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &apos;Dibarzhioù -&gt; Kefluniañ TeXstudio -&gt; Chom hep sevel da &apos;Dibarzhioù -&gt; Kefluniañ TeXstudio -&gt; Urzhiadoù&apos;.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1026"/>
@@ -667,7 +667,7 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
         <location filename="../src/buildmanager.cpp" line="1504"/>
         <location filename="../src/buildmanager.cpp" line="1517"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Bezit sur ho peus staliet un dasparzhadur eus (La)TeX&lt;/b&gt; d.sk. MiKTeX pe TeX Live, ha termenet an hentoù mat evit an dasparzhadur-mañ war ar bajenn gefluniañ.&lt;br&gt;Un aozer (La)TeX evel TeXstudio n&apos;hall ket mont  hep an urzhiadoù (La)TeX pourvezet gant un dasparzhadur eus ar seurt.</translation>
+        <translation>&lt;b&gt;Bezit sur ho peus staliet un dasparzhadur eus (La)TeX&lt;/b&gt; d.sk. MiKTeX pe TeX Live, ha termenet an hentoù mat evit an dasparzhadur-mañ war ar bajenn gefluniañ.&lt;br&gt;Un aozer (La)TeX evel TeXstudio n&apos;hall ket mont hep an urzhiadoù (La)TeX pourvezet gant un dasparzhadur eus ar seurt.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1513"/>
@@ -705,7 +705,7 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
     <message>
         <location filename="../src/cleandialog.ui" line="20"/>
         <source>Scope</source>
-        <translation>Ledennad</translation>
+        <translation>Hedad</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.ui" line="30"/>
@@ -735,12 +735,12 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
     <message>
         <location filename="../src/cleandialog.cpp" line="63"/>
         <source>Current File</source>
-        <translation>Restr red</translation>
+        <translation>Restr war implij</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.cpp" line="65"/>
         <source>Current File Folder</source>
-        <translation>Teuliad ar restr red</translation>
+        <translation>Teuliad ar restr war implij</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.cpp" line="73"/>
@@ -750,7 +750,7 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
     <message>
         <location filename="../src/cleandialog.cpp" line="110"/>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
-        <translation>Evit ho surentez deoc&apos;h-c&apos;hwi hoc&apos;h-unan, naetadur na zilamo ket ar restroù gant an astennoù da-heul:</translation>
+        <translation>Evit ho surentez deoc&apos;h-c&apos;hwi hoc&apos;h-unan, an naetadur na zilamo ket ar restroù gant an astennoù da-heul:</translation>
     </message>
 </context>
 <context>
@@ -927,7 +927,7 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
     <message>
         <location filename="../src/configdialog.ui" line="520"/>
         <source>Release Candidates</source>
-        <translation>Stummoù &quot;emstriv&quot;</translation>
+        <translation>Stummoù war ar renk</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="525"/>
@@ -1048,7 +1048,7 @@ raklakaat &lt;b&gt;c:&lt;/b&gt; evit ar restroù red e-plas ar restr mestr (bann
     <message>
         <location filename="../src/configdialog.ui" line="869"/>
         <source>Only For User Commands</source>
-        <translation>Evit Urzhiadoù an implijer hepken</translation>
+        <translation>Evit urzhiadoù an implijer hepken</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="874"/>
@@ -1138,7 +1138,7 @@ Then you can select a new shortcut by one of the following ways:
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
         <translation>Evit aozañ, klikit-doubl war an enmontoù e-barzh &apos;Ar verradenn a-vremañ&apos; pe &apos;Ar verradenn ouzhpenn.
-A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez  you can select a new shortcut gant unan eus an doareoù a zo dindan:
+A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez gant unan eus an doareoù a zo dindan:
 (1) diuzañ adalek al listenn desachañ
 (2) pouezit war kenaozadur ar verradenn
 (3) skrivit chadenn ar verradenn</translation>
@@ -1254,7 +1254,7 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez  you can select a new sh
     <message>
         <location filename="../src/configdialog.ui" line="1325"/>
         <source>Here you can choose a toolbar to modify.</source>
-        <translation>Gellout a rit dibab amañ ur varrenn-ostilhoù da gemmañ.</translation>
+        <translation>Gellout a rit dibab amañ ur varrenn-ostilhoù da aozañ.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1332"/>
@@ -1343,7 +1343,7 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez  you can select a new sh
     <message>
         <location filename="../src/configdialog.ui" line="1611"/>
         <source>Automatically load included files</source>
-        <translation>Em-gargañ ar restroù enperzhiet</translation>
+        <translation>Em-gargañ ar restroù enklozet</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1621"/>
@@ -1378,12 +1378,12 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez  you can select a new sh
     <message>
         <location filename="../src/configdialog.ui" line="1672"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
-        <translation>n&apos;heller dibab hepken etre utf16/utf-8 hag ISO 8859-1!</translation>
+        <translation>n&apos;heller dibab etre utf16/utf-8 hag ISO 8859-1 hepken!</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1675"/>
         <source>Analyze Characters</source>
-        <translation>Dezrannadur an arouezioù</translation>
+        <translation>Analizañ an arouezioù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1699"/>
@@ -7316,7 +7316,10 @@ Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation type="unfinished"/>
+        <translation>An dra-se a jubenno an destenn a glasker evel un dro-lavar reoliataet:
+ r* a gavo forzh peseurt sammad a r, r+ kevatal da rr*, a? a gavo an &quot;a-ioù&quot; hepken,
+ () a strolla an troioù-lavar asambles, [xyz] a gavo x,y, pe z, . a gavo pep-tra, \. kavet .
+Gellout a rit ober gant \1 betek \9 e-barzh an destenn erlec&apos;hiañ da enlakaat un is-klotadenn.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="189"/>
@@ -7326,12 +7329,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="199"/>
         <source>Starts the search from the current cursor position.</source>
-        <translation type="unfinished"/>
+        <translation>Loc&apos;hañ an enklask adelek al lec&apos;h m&apos;emañ ar reti.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="210"/>
         <source>Only searches in the selected text.</source>
-        <translation type="unfinished"/>
+        <translation>Bevenniñ an enklask d&apos;an destenn ziuzet.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="220"/>
@@ -7341,18 +7344,19 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="289"/>
         <source>Ask before any match is replaced.</source>
-        <translation type="unfinished"/>
+        <translation>Kadarnaat a-raok kement erlec&apos;hiañ.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="299"/>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \</source>
-        <translation type="unfinished"/>
+        <translation>Enaouiñ implij an arouezioù achap. Deoc&apos;h da c&apos;houzout:
+\n = linenn nevez, \r = distro d&apos;al linenn, \t = taolennata, \\ = \</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="327"/>
         <source>Close search/replace panel</source>
-        <translation type="unfinished"/>
+        <translation>Serriñ ar bannell klask/erlec&apos;hiañ</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="328"/>
@@ -7377,7 +7381,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
         <source>Replacement text</source>
-        <translation type="unfinished"/>
+        <translation>Testenn erlec&apos;hiañ</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="333"/>
@@ -7413,12 +7417,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="588"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation type="unfinished"/>
+        <translation>An destenn glasket war he lerc&apos;h a zo %1 degouezh en destenn goude ar reti red. Ha fellout a ra deoc&apos;h adkregiñ adelek ar penn-kentañ?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="593"/>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation type="unfinished"/>
+        <translation>An destenn enklask a vez kavet %1 gwech war-hed ar zonenn enklask.</translation>
     </message>
 </context>
 <context>
@@ -7476,22 +7480,22 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="60"/>
         <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"/>
+        <translation>QIODevice::Append na vez ket kemeret e-kont evit GZIP</translation>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="66"/>
         <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"/>
+        <translation>Digoradur gzip evit al lenn hag ar skritur na vez ket kemeret e-kont</translation>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="74"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"/>
+        <translation>Gellout a rit digeriñ gzip evit lenn pe skrivañ. Peseurt mod a fell deoc&apos;h?</translation>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="80"/>
         <source>Could not gzopen() file</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;heller ket merañ ar restr gzopen()</translation>
     </message>
 </context>
 <context>
@@ -7499,12 +7503,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quazip/quazip/quaziodevice.cpp" line="147"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"/>
+        <translation>QIODevice::Append na vez ket kemeret e-kont evit QuaZIODevice</translation>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quaziodevice.cpp" line="152"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"/>
+        <translation>QIODevice::ReadWrite na vez ket kemeret e-kont evit QuaZIODevice</translation>
     </message>
 </context>
 <context>
@@ -7860,7 +7864,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="85"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation type="unfinished"/>
+        <translation>N’endalc&apos;h ger ebet ar restr a-vremañ, met bez hon eus da gaout un nebeud frazennoù evit gellet krouiñ un destenn dre-zegouezh diwarno</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="109"/>
@@ -7893,7 +7897,10 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"/>
+        <translation>Ar skript a-vremañ en deus goulennet mont er mod skrivañ brientekaet hag envel an arc&apos;hweladurioù da-heul:
+%1
+
+Ha fiziañs ho peus e-barzh ar skript-mañ?</translation>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="313"/>
@@ -7917,7 +7924,10 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"/>
+        <translation>Ar skript a-vremañ en deus goulennet mont er mod skrivañ brientekaet ha lenn an dalvoudegezh da-heul:
+%1
+
+Ha fiziañs ho peus e-barzh ar skript-mañ?</translation>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="326"/>
@@ -7927,7 +7937,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/scriptobject.cpp" line="327"/>
         <source>Yes, grant permanent read access to everything</source>
-        <translation type="unfinished"/>
+        <translation>Ya, aotren ur moned lenn peurbadus da bep-tra</translation>
     </message>
 </context>
 <context>
@@ -8018,12 +8028,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="132"/>
         <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Evit cheñch ur verradenn, aozit ar bann &quot;Berradenn a-vremañ&quot; pe &quot;Berradennoù ouzhpenn&quot;.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="182"/>
         <source>Only single characters are allowed as key</source>
-        <translation type="unfinished"/>
+        <translation>Aotreet e vez evit an arouezioù eeun evel alc&apos;hwez hepken</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="192"/>
@@ -8466,7 +8476,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="502"/>
         <source>tabular command outside tabular env</source>
-        <translation type="unfinished"/>
+        <translation>urzhiad taolennata en diavaez eus un endro dereat</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="503"/>
@@ -8476,17 +8486,17 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="504"/>
         <source>tabbing command outside tabbing env</source>
-        <translation type="unfinished"/>
+        <translation>urzhiad taolennaiñ en diavaez eus un endro dereat</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="505"/>
         <source>more cols in tabular than specified</source>
-        <translation type="unfinished"/>
+        <translation>muioc&apos;h a vannoù en daolenn evit pezh spisaet</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="506"/>
         <source>cols in tabular missing</source>
-        <translation type="unfinished"/>
+        <translation>bannoù a vank en daolenn</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="507"/>
@@ -8496,27 +8506,27 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="508"/>
         <source>closing environment which has not been opened</source>
-        <translation type="unfinished"/>
+        <translation>o serriñ an endro chomet dizigor</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="509"/>
         <source>environment not closed</source>
-        <translation type="unfinished"/>
+        <translation>endro ket sarret</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="510"/>
         <source>unrecognized key in key option</source>
-        <translation type="unfinished"/>
+        <translation>alc&apos;hwez dianavezet e perzhioù an alc&apos;hwez</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="511"/>
         <source>unrecognized value in key option</source>
-        <translation type="unfinished"/>
+        <translation>talvoudegezh dianavezet e perzhioù an alc&apos;hwez</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="512"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>urzhiad er-maez eus un endro dereat</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="514"/>
@@ -8751,7 +8761,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/templatemanager.cpp" line="89"/>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"/>
+        <translation>Patromoù chomet difiñv a zo c&apos;hoazh. Ha rankout a ra TeXstudio paouez da evezhiañ anezho?</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="138"/>
@@ -8787,12 +8797,12 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/templatemanager.cpp" line="219"/>
         <source>Select Table Template</source>
-        <translation type="unfinished"/>
+        <translation>Diuzañ ur patrom taolenn</translation>
     </message>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="52"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
-        <translation type="unfinished"/>
+        <translation>Neket goullo an teuliad bukenn. Aliet e vez instañsiañ e-barzh teuliadoù nevez. A-hent all ar restroù a zo anezho, a zo en arvar da vezañ flastret. Ha fellout a ra deoc&apos;h implijout an teuliad-mañ memestra?</translation>
     </message>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="119"/>
@@ -8811,12 +8821,12 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="86"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
-        <translation type="unfinished"/>
+        <translation>Aliet e vez instañsiañ e-barzh teuliadoù nevez. A-hent all ar restroù a zo anezho, a zo en arvar da vezañ flastret.</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="151"/>
         <source>Select Target Folder</source>
-        <translation type="unfinished"/>
+        <translation>Diuzañ an teuliad bukenn</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="181"/>
@@ -8985,7 +8995,7 @@ c&apos;hwitet.</translation>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Restr TeX dtx</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
@@ -10046,18 +10056,18 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1029"/>
         <source>Insert \ref to Next Label</source>
-        <translation type="unfinished"/>
+        <translation>Enlakaat \ref d&apos;al Label da zont</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1030"/>
         <source>Insert \ref to Previous Label</source>
-        <translation type="unfinished"/>
+        <translation>Enlakaat \ref d&apos;al Label kent</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1031"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Dazverañ taolennoù</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1032"/>
@@ -10111,7 +10121,7 @@ c&apos;hwitet.</translation>
         <location filename="../src/texstudio.cpp" line="1040"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Adverañ an daolenn adalek ur patrom</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1041"/>
@@ -10576,7 +10586,8 @@ c&apos;hwitet.</translation>
         <location filename="../src/texstudio.cpp" line="1991"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
-        <translation type="unfinished"/>
+        <translation>Ur restr adtapout enep sac&apos;h adalek %1 a zo bet kavet &apos;%2&apos;.
+Ha fellout a ra deoc&apos;h hec&apos;h adsevel?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1997"/>
@@ -10588,7 +10599,9 @@ Do you want to restore it?</source>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
-        <translation type="unfinished"/>
+        <translation>%1 a zo bet kempunet gant Qt %2, met a &apos;z a en-dro gant Qt %3.
+Kemerit al levraoueg seveniñ reizh (d.sk restroù .dll pe .so).
+Bez e vo fazioù ha sac&apos;hadennoù dre-zegouezh, mod-all.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2227"/>
@@ -10635,12 +10648,16 @@ Otherwise there might be random errors and crashes.</source>
 is currently not possible because a modified version of a file
 with this name is open in TeXstudio. You have to save or close
 this other file before you can overwrite it.</source>
-        <translation type="unfinished"/>
+        <translation>Enrollañ dindan an anv
+%1
+na vo ket posupl evit ar mare abalamour d&apos;ur stumm restr aozet
+gant an anv-mañ a zo war-implij e-barzh TeXstudio. Bez ho peus da enrollañ pe serriñ
+ar restr all-mañ a-raok na c&apos;hallfec&apos;h he flastrañ.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2623"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
-        <translation type="unfinished"/>
+        <translation>Ar PDF-mañ n&apos;hall ket bezañ sinkronelaet gant ar vammenn tex ken dre ma &apos;z eo bet cheñchet anv ar restr-vammenn dre un oberiadenn Enrollañ evel. Rankout a rit adkempunañ ar restr adanvet ha gwelet an disoc&apos;h.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2706"/>
@@ -10752,17 +10769,17 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3622"/>
         <source>Insert hard line breaks after so many characters:</source>
-        <translation type="unfinished"/>
+        <translation>Enlakaat troc&apos;h linennoù garv goude &quot;n&quot; arouezioù:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3623"/>
         <source>Smart scope selecting</source>
-        <translation type="unfinished"/>
+        <translation>Diuziñ hed speredek</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3624"/>
         <source>Join lines before wrapping</source>
-        <translation type="unfinished"/>
+        <translation>Stagañ al linennoù a-raok o fakañ</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3638"/>
@@ -10837,7 +10854,8 @@ Bez ho peus da enrollañ an teuliad a-raok gellet e gempunañ.</translation>
         <location filename="../src/texstudio.cpp" line="5759"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"/>
+        <translation>Bez ho peus anvet an urzhiad evit digeriñ al lenner PDFoù diabarzh.
+Ar pezh a zo, implijit e vez ganeoc&apos;h ur stumm eus TeXstudio hag a zo bet kempunet hep al lenner PDFoù diabarzh.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5779"/>
@@ -10848,7 +10866,13 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"/>
+        <translation>An teuliad &quot;%1&quot; a fell dezhañ erlec&apos;hañ an urzhiad &quot;%2&quot; gant &quot;%3&quot;.
+
+Ha fellout a ra deoc&apos;h aotren hag implijout an urzhiad erlec&apos;hiañ?
+
+(a) Ya &apos;vat, aotren an urzhiad nevez evit an teuliad-mañ (m&apos;ho peus fiziañs e-barzh ar restr-mañ hepken)
+(b) Ya &apos;vat, aotren an urzhiad da vezañ implijet evit an holl deuliadoù (m&apos;ho peus fiziañs e-barzh an urzhiad nevez evit ma aozfe an teuliadoù en un doare tidek)
+(c) Nann avat, chom hep implijout an urzhiad &quot;%3&quot; ha sevenit an urzhiad &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5785"/>
@@ -11049,14 +11073,17 @@ Ha fellout a ra deoc&apos;h he c&apos;hrouiñ?</translation>
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"/>
+        <translation>%1is dizemgleviet gant ar mirva.
+Pouezit war &quot;Mat eo&quot; evit diskouez an diforc&apos;hioù e-plas ar mammennoù ganet dre un is-stumm
+Pouezit war &quot;Nullañ&quot; evit chom hep ober tra pe dra.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9867"/>
         <location filename="../src/texstudio.cpp" line="9958"/>
         <location filename="../src/texstudio.cpp" line="9964"/>
         <source>TeXstudio Emergency</source>
-        <translation type="unfinished"/>
+        <translation>Skoazell prim TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9871"/>
@@ -11065,14 +11092,19 @@ Press &quot;Cancel&quot;to do nothing.
 Please provide this file if you send a bug report.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Un tresadur a zo bet skrivet e
+%1
+Pourvezit ar restr-mañ ma kasit un danevell draen, mar plij.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9874"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation>SAC&apos;HET en deus TeXstudio abalamour da %1.
+
+%2 Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9875"/>
@@ -11091,7 +11123,9 @@ Please provide this file if you send a bug report.
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio a zo bet paouezet abalamour d&apos;ur vouklenn difin.
+
+%1 Ha fellout a ra deoc&apos;h laoskel ar programm o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9879"/>
@@ -11108,7 +11142,9 @@ Please provide this file if you send a bug report.
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation>SAC&apos;HET en deus TeXstudio abalamour da %1 e-barzh an orjal %2.
+An orjal a zo bet paouezet.
+Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9960"/>
@@ -11234,7 +11270,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/utilsSystem.cpp" line="558"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation type="unfinished"/>
+        <translation>N&apos;heller ket kavout explorer.exe e-barzh an hent da loc&apos;hañ an Ergerzher Windows.</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="597"/>
@@ -11381,7 +11417,13 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation>Dibarzhioù posupl:
+&quot;Diskouez pep-tra&quot;: An holl frazennoù a vez diskouezet.
+&quot;Hirder bihanañ ar frazenn&quot;: Ur frazenn a vez diskouezet hepken, ma &apos;z eus da vihanañ kement a arouezioù. (d.sk. &quot;a test&quot; a zo 6 arouez)
+&quot;Hirder bihanañ ar ger (unan)&quot;: Ur frazenn a vez diskouezet hepken, ma endalc&apos;h ur ger gant da vihanañ gant kement a arouezioù. (d.sk. &quot;a test&quot; a zo 4 arouez)
+&quot;Hirder bihanañ ar ger (pep-tra)&quot;: Ur frazenn a vez diskouezet hepken, m&apos;o deus an holl c&apos;herioù o deus da vihanañ kement a arouezioù. (d.sk. &quot;a test&quot; a zo 1 arouez)
+&quot;Ober van ouzh pep-tra&quot;: Graet e vez van ouzh an holl c&apos;herioù berrañ.
+(d.sk gant an hirder 3, ar frazenn &quot;this is a test&quot; a zo par ouzh &quot;this test&quot;, padal an holl zibarzhioù all a skejo e-barzh &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, ha pa vefe ket diskouezet ar frazenn-mañ.)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -11426,7 +11468,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>
         <source>Only phrase are shown which appears at least so many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation>Ne vez diskouezet nemet ar frazennoù hag vez kavet meur a wech e-barzh an teuliad.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="317"/>
@@ -11496,7 +11538,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="430"/>
         <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation type="unfinished"/>
+        <translation>Termenit ma vo analizet an teuliad a-bezh, ar pezh diuzet hepken, pe ur chabistroù bennak.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="437"/>
@@ -11659,7 +11701,7 @@ teuliad endalc&apos;het e-barzh %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Ur stumm nevez eus TeXstudio a zo hegerz.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Stumm a-vremañ:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stumm stabil diwezhañ:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stumm diorren diwezhañ:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Gellout a rit pellgargañ anezhañ diwar &lt;a href=&apos;%7&apos;&gt;Lec&apos;hienn TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
@@ -11674,7 +11716,7 @@ teuliad endalc&apos;het e-barzh %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Ur stumm nevez eus TeXstudio a zo hegerz.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Stumm a-vremañ:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Stumm stabil diwezhañ:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Gellout a rit pellgargañ anezhañ diwar &lt;a href=&apos;%3&apos;&gt;Lec&apos;hienn TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="236"/>
@@ -11958,7 +12000,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/unixutils.cpp" line="60"/>
         <source>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Expands to&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;directory of current file&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;file name (with full path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;file name (without path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Argemmenn&lt;/th&gt;&lt;th&gt;Astenn da&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;kavlec&apos;h ar restr a-vremañ&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;anv restr (gant un hent klok)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;anv restr (hep hent)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</translation>
     </message>
 </context>
 <context>
@@ -11977,7 +12019,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="98"/>
         <source>Number of LaTeX compilations for the input file</source>
-        <translation type="unfinished"/>
+        <translation>Niver a gempunadurioù LaTeX evit ar restr enmont</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="114"/>
@@ -11997,7 +12039,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="135"/>
         <source>LaTeX code for the title of the table of contents</source>
-        <translation type="unfinished"/>
+        <translation>Kod LaTeX evit titl taolenn ar pennadoù</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="142"/>
@@ -12007,7 +12049,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="158"/>
         <source>Set the value of the LaTeX tocdepth counter</source>
-        <translation type="unfinished"/>
+        <translation>Termeniñ talvoudegezh konter tocdepth LaTeX</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="174"/>
@@ -12027,7 +12069,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="231"/>
         <source>Title of the html files</source>
-        <translation type="unfinished"/>
+        <translation>Titl ar restroù html</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="238"/>
@@ -12057,12 +12099,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="273"/>
         <source>Text displayed at the bottom of each html files </source>
-        <translation type="unfinished"/>
+        <translation>Testenn diskouezet e traoñ pep restr html</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="280"/>
         <source>Alignment in the html files</source>
-        <translation type="unfinished"/>
+        <translation>Linennadur er restroù html</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="287"/>
@@ -12072,7 +12114,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="316"/>
         <source>Browser command. Let&apos;s empty to not run the browser at the end of the conversion</source>
-        <translation type="unfinished"/>
+        <translation>Urzhiad merdeer. Klaskomp chom hep loc&apos;hañ ar merdeer e fin an emdroadur</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="336"/>
@@ -12148,7 +12190,8 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="../src/webpublishdialog.cpp" line="129"/>
         <source>Conversion done.
 The html files are located in the %1 directory.</source>
-        <translation type="unfinished"/>
+        <translation>Emdroadur graet.
+Ar restroù html a vez lec&apos;helaet er c&apos;havlec&apos;h %1.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="134"/>
