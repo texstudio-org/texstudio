@@ -11492,7 +11492,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <translation>Les paramètres de cette ligne déterminent combien de mots consécutifs constituent une même phrase.
 Si « Minimum &amp; maximum de mots par phrase ». est sélectionné, le nombre exact de mots est considéré
     (par ex. avec 2 pour la phrase précédente : « Les paramètres », « paramètres de », ...)
-Si seul « Maximum de mots par phrase » est sélectionné, les mots initaux sont aussi inclus
+Si seul « Maximum de mots par phrase » est sélectionné, les mots initiaux sont aussi inclus
     (par ex. : « Les », « Les paramètres », « paramètres de », ...)</translation>
     </message>
     <message>

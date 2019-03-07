@@ -1455,7 +1455,7 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez gant unan eus an doareo�
     <message>
         <location filename="../src/configdialog.ui" line="1800"/>
         <source>Ignore Indentation</source>
-        <translation>Na ober van ouzh endantadur</translation>
+        <translation>Na ober van ouzh an endantadur</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1805"/>
@@ -1710,7 +1710,7 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez gant unan eus an doareo�
     <message>
         <location filename="../src/configdialog.ui" line="2313"/>
         <source>Monitor open files for external changes</source>
-        <translation>Evezhiañ ar restroù digoret evit ar cheñchamantoù diavaez</translation>
+        <translation>Evezhiañ ar restroù digoret rak ar cheñchamantoù diavaez</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2320"/>
@@ -1735,17 +1735,17 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez gant unan eus an doareo�
     <message>
         <location filename="../src/configdialog.ui" line="2344"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation>An dra-se &apos;zo un efed gantañ hepken ma vez bevennet ledander an teuliadoù gant ul linenn eeun pe ul linenn galet.</translation>
+        <translation>An dra-se &apos;zo un efed gantañ hepken ma vez bevennet ledander an teuliadoù gant ul linenn eeun pe ul linenn gallet.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2347"/>
         <source>Center Document in Editor</source>
-        <translation>Kreizañ teuliad an aozer</translation>
+        <translation>Kreizañ teuliad en Aozer</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2354"/>
         <source>Show help as tooltip on text in editor</source>
-        <translation>Diskouez ar skoazell dindan lagadenn titouriñ war an destenn e-barzh an aozer</translation>
+        <translation>Diskouez ar skoazell evel lagadenn-titouriñ war an destenn en aozer</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2361"/>
@@ -1755,12 +1755,12 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez gant unan eus an doareo�
     <message>
         <location filename="../src/configdialog.ui" line="2372"/>
         <source>No Line Wrap</source>
-        <translation>Distro d&apos;al linenn ebet</translation>
+        <translation>Distro ebet d&apos;al linenn</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2377"/>
         <source>Soft Line Wrap at Window Edge</source>
-        <translation>Troc&apos;h linennoù dous war vord ar prenestr</translation>
+        <translation>Troc&apos;h linennoù dous war bord ar prenestr</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2382"/>
@@ -1792,7 +1792,7 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="2416"/>
         <source>Show image tooltip on image files</source>
-        <translation>Diskouez lagadenn ditouriñ ar skeudenn war ar restroù skeudenn</translation>
+        <translation>Diskouez al lagadenn-ditouriñ ar skeudenn war ar restroù skeudenn</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2423"/>
@@ -1802,12 +1802,12 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="2430"/>
         <source>Allow Drag and Drop</source>
-        <translation>Aotren ar stlejañ-dilec&apos;hiañ</translation>
+        <translation>Aotren ar rinklañ-fiñval</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2437"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programoù diavaez (evel da skouer Zotero) gellout a reer bountañ ar menegoù e-barzh texstudio en ur c&apos;hervel: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Ma ne vez ket ar reti e-barzh un urzhiad menegoù, an &amp;quot;urzhiad&amp;quot; roet amañ a vez implijet evel \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programoù diavaez (evel da skouer Zotero) a c&apos;hall bountañ ar menegoù e-barzh texstudio en ur c&apos;hervel: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Ma ne vez ket ar reti e-barzh un urzhiad menegoù, an &amp;quot;urzhiad&amp;quot; roet amañ a vez implijet evel \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2440"/>
@@ -1912,7 +1912,7 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="2608"/>
         <source>Bib Files:</source>
-        <translation>Teuliadoù:</translation>
+        <translation>Teuliadoù Bib:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2621"/>
@@ -1932,7 +1932,7 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="2672"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation>Mod reti bann hewal (d.l.e diblaseal ar reti war-zu an touchennoù biret e-barzh an destenn-RTL)</translation>
+        <translation>Mod reti bann hewel (d.l.e diblaseal ar reti war-zu an touchennoù biret e-barzh an destenn-RTL)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2679"/>
@@ -1962,7 +1962,7 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="2716"/>
         <source>Try to automatically choose best display options</source>
-        <translation>Klask em-zibab an opsionoù diskwel</translation>
+        <translation>Klask em-zibab an opsionoù diskwel gwellañ</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2734"/>
@@ -1982,17 +1982,17 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="2752"/>
         <source>Single Letter</source>
-        <translation>Lizherenn eeun</translation>
+        <translation>Lizherenn en hec&apos;h-unan</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2760"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation>Ma vez enaouet al linennoù rentet, al linennoù rentet a vez stoket e-barzh ur c&apos;hrubuilh, e-se ne rankont ket bezañ rentet adarre. Degas a ra ur wellaenn dizh (dreist-holl war Mac), diwar-goust un implij brasoc&apos;h eus ar memor.</translation>
+        <translation>Ma vez enaouet al linennoù rentet, bez e vezont stoket e-barzh ur c&apos;hrubuilh, e-se ne rankont ket bezañ rentet adarre. Degas a ra ur wellaenn dizh (dreist-holl war Mac), diwar-goust un implij brasoc&apos;h a vemor.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2763"/>
         <source>Disable cache of rendered lines</source>
-        <translation>Dilemel ar c&apos;hrubuilh al linenn rentet</translation>
+        <translation>Dilemel krubuilh al linenn rentet</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2770"/>
@@ -2119,17 +2119,17 @@ da rentañ an arouezioù. Dre ma ne gemer ket e kont LaTeX an unikod en un doare
     <message>
         <location filename="../src/configdialog.ui" line="3063"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation>Em-Loc&apos;hañ ar klokaer pa vez skrivet urzhiadoù LaTeX</translation>
+        <translation>Em-Loc&apos;hañ ar c&apos;hlokaer pa vez skrivet urzhiadoù LaTeX</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3072"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
-        <translation>Ment barrenn an ivinelloù en traoñ pe e-laez ar pourvezer</translation>
+        <translation>Ment barrenn an ivinelloù en traoñ pe e-laez ar c&apos;hlokaer</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3075"/>
         <source>Tab Bar Size</source>
-        <translation>Ment ar varrenn ivinelloù</translation>
+        <translation>Ment barrenn an ivinelloù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3085"/>
@@ -2205,7 +2205,7 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3211"/>
         <source>Permanently active completion files:</source>
-        <translation>Enaouiñ ar c&apos;hlokter pad restroù: </translation>
+        <translation>Enaouiñ en un doare padus ar restroù kloka oberiant:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3279"/>
@@ -2285,7 +2285,7 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3455"/>
         <source>Min Length of Words with Long Repetition:</source>
-        <translation>Hirder min. ar gerioù gant un adlavaradur hir:</translation>
+        <translation>Hirder bihanañ ar gerioù gant un adlavaradur hir:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3465"/>
@@ -2295,7 +2295,7 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3472"/>
         <source>Certain informal or weak words will be highlighted.</source>
-        <translation>Gerioù diardoù &apos;zo pe gwan a vo usskedet zoken.</translation>
+        <translation>Gerioù diardoù &apos;zo pe gwan a vo usskedet.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3475"/>
@@ -2455,7 +2455,7 @@ anezho amañ.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3878"/>
         <source>Always show preview as tool tip</source>
-        <translation>Diskouez ar rakwel evel ul lagadenn ditouriñ dalc&apos;hmat</translation>
+        <translation>Diskouez ar rakwel evel ul lagadenn-ditouriñ dalc&apos;hmat</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3883"/>
@@ -2657,7 +2657,9 @@ anezho amañ.</translation>
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation>Ar c&apos;heflusker rentañ implijet gant levraoueg PDF poppler. &apos;Splash&apos; a zo an dalvoudegezh dre-ziouer hag e tere ouzh darn vrasañ ar plegoù. Ma &apos;z eus kudennoù rentaoù, gellout a rit klask ar backend eilpennet &apos;Arthur&apos;.
+        <translation>Ar c&apos;heflusker rentañ implijet gant levraoueg PDF poppler.
+&apos;Splash&apos; a zo an dalvoudegezh dre-ziouer hag e tere ouzh darn vrasañ ar plegoù.
+Ma &apos;z eus kudennoù rentaoù, gellout a rit klask ar backend eilpennet &apos;Arthur&apos;.
 Notenn: Cheñch an arventenn-mañ a vo un efed war an teuliadoù digoret war-lerc&apos;h.</translation>
     </message>
     <message>
@@ -2948,17 +2950,17 @@ termeniñ an alc&apos;hwez n&apos;eus forzh penaos?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="729"/>
         <source>Search Path for Images</source>
-        <translation>Klask hent evit skeudennoù</translation>
+        <translation>Klask an hent evit ar skeudennoù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="734"/>
         <source>Search Path for PDFs</source>
-        <translation>Klask hent evit PDFoù</translation>
+        <translation>Klask an hent evit ar PDFoù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="739"/>
         <source>Search Path for Commands</source>
-        <translation>Klask hent evit urzhiadoù</translation>
+        <translation>Klask an hent evit urzhiadoù</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="785"/>
@@ -3014,7 +3016,7 @@ Koulskoude an hent-mañ na vez ket endalc&apos;het e-barzh listenn hent ar geria
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation>Ouzhpennet ho peus an dibarzhioù ouzhpenn. An dra-se a ro an aotre da-unan da gefluniañ TXS gant kalz a vunudoù. Dilemel an dibarzhioù araokaet adarre evit gwelet an arventennoù ordinalañ.</translation>
+        <translation>Ouzhpennet ho peus an dibarzhioù araokaet. An dra-se a ro an aotre da-unan da gefluniañ TXS gant kalz a vunudoù. Dilemel an dibarzhioù araokaet adarre evit gwelet an arventennoù ordinalañ.</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1420"/>
@@ -3297,12 +3299,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="64"/>
         <source>framebox</source>
-        <translation>framebox</translation>
+        <translation>boest-framm</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="65"/>
         <source>newsavebox</source>
-        <translation>newsavebox</translation>
+        <translation>boest-enrollañ-nevez</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="66"/>
@@ -3312,22 +3314,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="67"/>
         <source>savebox</source>
-        <translation>savebox</translation>
+        <translation>boest-enrollañ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>usebox</source>
-        <translation>usebox</translation>
+        <translation>boest-implij</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
         <source>raisebox</source>
-        <translation>raisebox</translation>
+        <translation>boest-sevel</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>parbox</source>
-        <translation>parbox</translation>
+        <translation>boest-parañ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
@@ -3447,22 +3449,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="94"/>
         <source>\includegraphics{file}</source>
-        <translation>\includegraphics{file}</translation>
+        <translation>\includegraphics{restr}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="95"/>
         <source>\include{file}</source>
-        <translation>\include{file}</translation>
+        <translation>\include{restr}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{file(s)}</source>
-        <translation>\includeonly{file(s)}</translation>
+        <translation>\includeonly{restr(où)}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
         <source>\input{file}</source>
-        <translation>\input{file}</translation>
+        <translation>\input{restr}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="98"/>
@@ -3507,77 +3509,77 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="110"/>
         <source>\begin{array}</source>
-        <translation>&amp;Taolenn mate. - \begin{array}</translation>
+        <translation>&amp;Taolenn matematikel - \begin{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>env equation</source>
-        <translation>kevatalenn endr</translation>
+        <translation>kevatalenn endro</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>env equation* (amsmath)</source>
-        <translation>kevatalenn endr* (ams-matematik)</translation>
+        <translation>kevatalenn endro* (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>env align (amsmath)</source>
-        <translation>&amp;linenn endr (ams-matematik)</translation>
+        <translation>&amp;linenn endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>env align* (amsmath)</source>
-        <translation>&amp;linenn endr* (ams-matematik)</translation>
+        <translation>&amp;linenn endro* (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env alignat (amsmath)</source>
-        <translation>linenna&amp;t endr (ams-matematik)</translation>
+        <translation>linenna&amp;t endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env alignat* (amsmath)</source>
-        <translation>linenna&amp;t* (ams-matematik)</translation>
+        <translation>linenna&amp;t* endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>env flalign (amsmath)</source>
-        <translation>&amp;flalign endr (ams-matematik)</translation>
+        <translation>&amp;flalign endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env flalign* (amsmath)</source>
-        <translation>&amp;flalign* endr (ams-matematik)</translation>
+        <translation>&amp;flalign* endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env gather (amsmath)</source>
-        <translation>&amp;dastum endr (ams-matematik)</translation>
+        <translation>&amp;dastum endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env gather* (amsmath)</source>
-        <translation>&amp;dastum* env (ams-matematik)</translation>
+        <translation>&amp;dastum* endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env multline (amsmath)</source>
-        <translation>&amp;lieslinenn endr (ams-matematik)</translation>
+        <translation>&amp;lieslinenn endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>env multline* (amsmath)</source>
-        <translation>&amp;lieslinenn* endr (ams-matematik)</translation>
+        <translation>&amp;lieslinenn* endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>env cases (amsmath)</source>
-        <translation>&amp;degouezhioù endr (ams-matematik)</translation>
+        <translation>&amp;degouezhioù endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env split (amsmath)</source>
-        <translation>&amp;rannet endr (ams-matematik)</translation>
+        <translation>&amp;rannet endro (ams-matematik)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
@@ -3685,7 +3687,7 @@ options again to only view the most common settings.</source>
         <location filename="../src/configmanager.cpp" line="1046"/>
         <location filename="../src/configmanager.cpp" line="1051"/>
         <source>Key replacement: %1 %2</source>
-        <translation>Erlec&apos;hiañ alc&apos;hwez: %1 %2</translation>
+        <translation>Erlec&apos;hiañ an alc&apos;hwez: %1 %2</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1024"/>
@@ -3969,7 +3971,7 @@ Ha fellout a ra deoc&apos;h dilemel anezho?</translation>
     <message>
         <location filename="../src/encodingdialog.ui" line="20"/>
         <source>TextLabel</source>
-        <translation>Testennlabel</translation>
+        <translation>Label-testenn</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="27"/>
@@ -4157,7 +4159,7 @@ Ha sur oc&apos;h ho peus c&apos;hoant da zizober an holl cheñchamantoù?</trans
         <location filename="../src/insertgraphics.ui" line="94"/>
         <location filename="../src/insertgraphics.ui" line="160"/>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Termeniñ an dibarzhioù evit \includegraphics[options]{file}.</translation>
+        <translation>Termeniñ an dibarzhioù evit \includegraphics[dibarzhioù]{restr}.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="97"/>
@@ -4364,7 +4366,7 @@ Invalid \caption command.</source>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
         <translation>N&apos;heller ket analizañ kod an enklozañ grafikoù:
-\Dibarzhioù enklozañ-grafikoù a vank.</translation>
+\dibarzhioù enklozañ-grafikoù a vank.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="320"/>
@@ -4423,7 +4425,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
         <location filename="../src/latexcompleter.cpp" line="1319"/>
         <location filename="../src/latexcompleter.cpp" line="1329"/>
         <source>press shift+space to change view</source>
-        <translation>pouezit war Lkd + Esaouenn evit cheñch gwel</translation>
+        <translation>pouezit war Lkd+esaouenn evit cheñch gwel</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1486"/>
@@ -4433,7 +4435,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1821"/>
         <source>label missing!</source>
-        <translation>label a vank!</translation>
+        <translation>mankout a ra ul label!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1823"/>
@@ -4458,7 +4460,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message>
         <location filename="../src/latexdocument.cpp" line="35"/>
         <source>MAGIC_COMMENTS</source>
-        <translation>EVEZHIADENNOÙ_HUDOUR</translation>
+        <translation>EVEZHIADENNOÙ_HUD</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="36"/>
@@ -4493,7 +4495,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message>
         <location filename="../src/latexdocument.cpp" line="2416"/>
         <source>Unknown magic comment</source>
-        <translation>Evezhiadenn hudour dizanv</translation>
+        <translation>Evezhiadenn hud dizanv</translation>
     </message>
 </context>
 <context>
@@ -4528,7 +4530,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message>
         <location filename="../src/latexstructure.cpp" line="203"/>
         <source>In Appendix.</source>
-        <translation>E Stagadenn.</translation>
+        <translation>E stagadenn.</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="223"/>
@@ -4617,7 +4619,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2367"/>
         <source>label missing!</source>
-        <translation>label a vank!</translation>
+        <translation>mankout a ra ul label!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2369"/>
@@ -4984,7 +4986,7 @@ Ha fellout a ra deoc&apos;h e flastrañ?</translation>
         <location filename="../src/toolwidgets.cpp" line="150"/>
         <location filename="../src/toolwidgets.cpp" line="237"/>
         <source>Messages / Log File</source>
-        <translation>Kemennadennoù / Restr renabl </translation>
+        <translation>Kemennadennoù / Restr renabl</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="162"/>
@@ -5336,12 +5338,12 @@ Ha fellout a ra deoc&apos;h e flastrañ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2482"/>
         <source>Zoom &amp;In</source>
-        <translation>Zoumañ</translation>
+        <translation>Zo&amp;umañ</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2483"/>
         <source>Zoom &amp;Out</source>
-        <translation>Dizoumañ</translation>
+        <translation>Diz&amp;oumañ</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2484"/>
@@ -5401,7 +5403,7 @@ Ha fellout a ra deoc&apos;h e flastrañ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2502"/>
         <source>Auto-hide Toolbar</source>
-        <translation>Em-guzhat barrenn-ostilhoù</translation>
+        <translation>Em-guzhat ar varrenn-ostilhoù</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2520"/>
@@ -5952,7 +5954,7 @@ Gellout a rit ebarzhiñ ar ger-tremen bremañ:</translation>
     <message>
         <location filename="../src/buildmanager.cpp" line="2435"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Bezit sur ho peus staliet un dasparzhadur eus (La)TeX&lt;/b&gt; d.sk. MiKTeX pe TeX Live, ha termenet an hentoù mat evit an dasparzhadur-mañ war ar bajenn gefluniañ.&lt;br&gt;Un aozer (La)TeX evel TeXstudio n&apos;hall ket mont  hep an urzhiadoù (La)TeX pourvezet gant un dasparzhadur eus ar seurt.</translation>
+        <translation>&lt;b&gt;Bezit sur ho peus staliet un dasparzhadur eus (La)TeX&lt;/b&gt; d.sk. MiKTeX pe TeX Live, ha termenet an hentoù mat evit an dasparzhadur-mañ war ar bajenn gefluniañ.&lt;br&gt;Un aozer (La)TeX evel TeXstudio n&apos;hall ket mont hep an urzhiadoù (La)TeX pourvezet gant un dasparzhadur eus ar seurt.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2439"/>
@@ -6305,7 +6307,7 @@ c&apos;hwitet.</translation>
 You'll find a copy at
 %1</source>
         <translation>Ar restr orin war an disk a zo bet distrujet e-pad an argerzh enrollañ.
-Gellout a rit kavout un eilenn da
+Gellout a rit kavout un eilenn el lec&apos;h-mañ
 %1</translation>
     </message>
     <message>
@@ -6333,7 +6335,7 @@ Hervez kont, unan bennak all a zo bet oc&apos;h adsevel anezhi, hag evit-se eo n
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1264"/>
         <source>File changed</source>
-        <translation>Restr kemmet</translation>
+        <translation>Restr gemmet</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1265"/>
@@ -6437,22 +6439,22 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4611"/>
         <source>Move cursor to line start</source>
-        <translation>Fiñval ar reti da benn-kentañ al linenn</translation>
+        <translation>Fiñval ar reti betek penn-kentañ al linenn</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4612"/>
         <source>Move cursor to line end</source>
-        <translation>Fiñval ar reti da zilost al linenn</translation>
+        <translation>Fiñval ar reti betek dilost al linenn</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4613"/>
         <source>Move cursor to document start</source>
-        <translation>Fiñval ar reti da benn-kentañ ar restr</translation>
+        <translation>Fiñval ar reti betek penn-kentañ ar restr</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4614"/>
         <source>Move cursor to document end</source>
-        <translation>Fiñval ar reti da zilost ar restr</translation>
+        <translation>Fiñval ar reti betek dilost ar restr</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4616"/>
@@ -6647,7 +6649,7 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4663"/>
         <source>Previous placeholder or character</source>
-        <translation>Dibarzh faltaziek pe arouezenn kent</translation>
+        <translation>Dibarzh faltaziek pe arouezenn gent</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4664"/>
@@ -6784,7 +6786,7 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>extra-keyword</source>
-        <translation>ger-alc&apos;hwez ekstra</translation>
+        <translation>ger-alc&apos;hwez-ekstra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
@@ -6919,12 +6921,12 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>latexSyntaxMistake</source>
-        <translation>fazi sintaks latex</translation>
+        <translation>fazi-sintaks-LaTeX</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>temporaryCodeCompletion</source>
-        <translation>KlokterKodpadennek</translation>
+        <translation>Klokter-Kod-padennek</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="193"/>
@@ -6939,7 +6941,7 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>referenceMissing</source>
-        <translation>Daveen a vank</translation>
+        <translation>Daveen-a-vank</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
@@ -6949,22 +6951,22 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>citationPresent</source>
-        <translation>Arroudenn a-vremañ</translation>
+        <translation>Arroudenn-a-vremañ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>citationMissing</source>
-        <translation>arroudennaVank</translation>
+        <translation>arroudenn-a-Vank</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>packagePresent</source>
-        <translation>Pakadur a-vremañ</translation>
+        <translation>Pakadur-a-vremañ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>packageMissing</source>
-        <translation>Pakadur a vank</translation>
+        <translation>Pakadur-a-vank</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="201"/>
@@ -6989,22 +6991,22 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>diffDelete</source>
-        <translation>Dilemel</translation>
+        <translation>Dilemel-diff</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
         <source>diffAdd</source>
-        <translation>Ouzhpennañ</translation>
+        <translation>Ouzhpennañ-diff</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>diffReplace</source>
-        <translation>Erlec&apos;hiañ</translation>
+        <translation>Erlec&apos;hiañ-diff</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="208"/>
         <source>previewSelection</source>
-        <translation>Rakwel diuzañ</translation>
+        <translation>Rakwel-diuzañ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="209"/>
@@ -7019,7 +7021,7 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>txs-test-pass</source>
-        <translation>test-txs-trec&apos;h</translation>
+        <translation>test-txs-berzh</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
@@ -7049,7 +7051,7 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>dtx:verbatim</source>
-        <translation>dtx:verbatim</translation>
+        <translation>dtx:ger-ha-ger</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="218"/>
@@ -7094,12 +7096,12 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>asymptote:string</source>
-        <translation>asymptote:Chadenn arouezioù</translation>
+        <translation>asymptote:chadenn</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>asymptote:comment</source>
-        <translation>asymptote:Evezhiadenn</translation>
+        <translation>asymptote:evezhiadenn</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="228"/>
@@ -7134,7 +7136,7 @@ Ha fellout a ra deoc&apos;h bezañ kelaouet en ur adkargañ ar restr?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>preedit</source>
-        <translation>Rak-embann</translation>
+        <translation>rak-embann</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="235"/>
@@ -7218,7 +7220,7 @@ Notenn: Ma vez brasoc&apos;h ar ment evit an etrelinenn, e c&apos;hall bezañ be
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="82"/>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
-        <translation>Ar priorelezh a spisao ar furmad treset da gentañ, ma vez arloet meur a furmad.</translation>
+        <translation>Ar briorelezh a spisao ar furmad treset da gentañ, ma vez arloet meur a furmad.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="281"/>
@@ -7236,8 +7238,8 @@ Notenn: Ma vez brasoc&apos;h ar ment evit an etrelinenn, e c&apos;hall bezañ be
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="596"/>
         <source>There are unsaved changes in this format scheme.
 Do you want them to be saved?</source>
-        <translation>Cheñchamantoù &apos;zo a zo nann-enrollet e-barzh ar brastres furmad-mañ.
-Ha fellout a ra deoc&apos;h e vefent enrollot?</translation>
+        <translation>Cheñchamantoù &apos;zo hag a zo nann-enrollet e-barzh ar brastres furmad-mañ.
+Ha fellout a ra deoc&apos;h e vefent enrollet?</translation>
     </message>
 </context>
 <context>
@@ -7317,7 +7319,7 @@ Some common regexps:
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>An dra-se a jubenno an destenn a glasker evel un dro-lavar reoliataet:
- r* a gavo forzh peseurt sammad a r, r+ kevatal da rr*, a? a gavo an &quot;a-ioù&quot; hepken,
+ r* a gavo forzh peseurt sammad a r, r+ kevatal da rr*, a? a gavo an &quot;a-ioù&quot; pe netra,
  () a strolla an troioù-lavar asambles, [xyz] a gavo x,y, pe z, . a gavo pep-tra, \. kavet .
 Gellout a rit ober gant \1 betek \9 e-barzh an destenn erlec&apos;hiañ da enlakaat un is-klotadenn.</translation>
     </message>
@@ -7344,7 +7346,7 @@ Gellout a rit ober gant \1 betek \9 e-barzh an destenn erlec&apos;hiañ da enlak
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="289"/>
         <source>Ask before any match is replaced.</source>
-        <translation>Kadarnaat a-raok kement erlec&apos;hiañ.</translation>
+        <translation>Kadarnaat a-raok na vefe erlec&apos;hiet kement klotaenn.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="299"/>
@@ -7417,7 +7419,7 @@ Gellout a rit ober gant \1 betek \9 e-barzh an destenn erlec&apos;hiañ da enlak
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="588"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation>An destenn glasket war he lerc&apos;h a zo %1 degouezh en destenn goude ar reti red. Ha fellout a ra deoc&apos;h adkregiñ adelek ar penn-kentañ?</translation>
+        <translation>An destenn a glaskec&apos;h war he lerc&apos;h a zo %1 degouezh en destenn goude ar reti red. Ha fellout a ra deoc&apos;h adkregiñ adelek ar penn-kentañ?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="593"/>
@@ -7539,7 +7541,7 @@ Gellout a rit ober gant \1 betek \9 e-barzh an destenn erlec&apos;hiañ da enlak
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="39"/>
         <source>Typeface Size</source>
-        <translation>Ment an doarefas</translation>
+        <translation>Ment an doare-fas</translation>
     </message>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="46"/>
@@ -7617,7 +7619,7 @@ Gellout a rit ober gant \1 betek \9 e-barzh an destenn erlec&apos;hiañ da enlak
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="161"/>
         <source>Typeface Size</source>
-        <translation>Ment an doarefas</translation>
+        <translation>Ment an doare-fas</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="257"/>
@@ -7847,7 +7849,7 @@ Gellout a rit ober gant \1 betek \9 e-barzh an destenn erlec&apos;hiañ da enlak
     <message>
         <location filename="../src/randomtextgenerator.ui" line="218"/>
         <source>Save to:</source>
-        <translation>Enrollañ e:</translation>
+        <translation>Enrollañ e-barzh:</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="47"/>
@@ -8364,7 +8366,7 @@ Ha fiziañs ho peus e-barzh ar skript-mañ?</translation>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation>Oberadurioù</translation>
+        <translation>Oberataerioù</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="32"/>
@@ -8950,7 +8952,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>Math</source>
-        <translation>&amp;Matematik</translation>
+        <translation>Matematik</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="241"/>
@@ -9256,7 +9258,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="769"/>
         <source>Set &amp;permissions...</source>
-        <translation>Termeniñ aotreadurioù....</translation>
+        <translation>Termeniñ &amp;aotreadurioù....</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="771"/>
@@ -9417,7 +9419,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="816"/>
         <source>Select All &amp;Occurences</source>
-        <translation>Diuzañ an holl &amp;zegouezhioù</translation>
+        <translation>Diuzañ an holl zeg&amp;ouezhioù</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="817"/>
@@ -9452,12 +9454,12 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="824"/>
         <source>Move Line &amp;Up</source>
-        <translation>Fiñval al linenn war-grec&apos;h</translation>
+        <translation>Fiñval al linenn war-&amp;grec&apos;h</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="825"/>
         <source>Move Line &amp;Down</source>
-        <translation>Fiñval al linenn war-draoñ</translation>
+        <translation>Fiñval al linenn war-&amp;draoñ</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="826"/>
@@ -9517,7 +9519,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="841"/>
         <source>Continue F&amp;ind</source>
-        <translation>Kendelc&apos;her da &amp;gavout</translation>
+        <translation>Kendelc&apos;her da &amp;glask</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="842"/>
@@ -9846,7 +9848,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="957"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation>Rediañ un hizivadur patrom yezh dinamek implijet evit usskediñ hag ar plegañ kod. Sur-mat didalvoudus rak an hizivadurioù a vez peurvuiañ en un doare emgefre.</translation>
+        <translation>Rediañ un hizivadur patrom yezh dinamek implijet evit usskediñ hag ar plegañ kod. Sur-mat didalvoudus rak an hizivadurioù a vez peurvuiañ en un doare emgefreek.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="958"/>
@@ -10162,7 +10164,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1049"/>
         <source>&amp;Math</source>
-        <translation>&amp;Math</translation>
+        <translation>&amp;Matematik</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1053"/>
@@ -10222,7 +10224,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1098"/>
         <source>Type</source>
-        <translation>doare</translation>
+        <translation>Doare</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1102"/>
@@ -10403,7 +10405,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1217"/>
         <source>Load &amp;Profile...</source>
-        <translation>Kargañ ar &amp;Profil...</translation>
+        <translation>Kargañ ar &amp;profil...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1218"/>
@@ -10430,7 +10432,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1226"/>
         <source>Detect &amp;Automatically</source>
-        <translation>Em-ziguzhañ</translation>
+        <translation>Em-ziguzh&amp;añ</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1234"/>
@@ -10445,12 +10447,12 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1238"/>
         <source>LaTeX Reference...</source>
-        <translation>LaTeX daveenn...</translation>
+        <translation>Daveenn LaTeX...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1239"/>
         <source>User Manual...</source>
-        <translation>Dornlevr an implijeer</translation>
+        <translation>Dornlevr an implijeer...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1240"/>
@@ -10639,7 +10641,7 @@ Bez e vo fazioù ha sac&apos;hadennoù dre-zegouezh, mod-all.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="2588"/>
         <source>Save As</source>
-        <translation>Enrollañ evel</translation>
+        <translation>Enrollañ dindan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2605"/>
@@ -10922,7 +10924,7 @@ Ha fellout a ra deoc&apos;h aotren hag implijout an urzhiad erlec&apos;hiañ?
     <message>
         <location filename="../src/texstudio.cpp" line="6012"/>
         <source>No open project or tex file to clean.</source>
-        <translation>Raktres ebet digor pe rest tex da netaat.</translation>
+        <translation>Raktres ebet digor pe restr tex da netaat.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6052"/>
@@ -11102,7 +11104,7 @@ Pourvezit ar restr-mañ ma kasit un danevell draen, mar plij.
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation>SAC&apos;HET en deus TeXstudio abalamour da %1.
+        <translation>SAC&apos;HET eo TeXstudio abalamour da %1.
 
 %2 Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
@@ -11142,7 +11144,7 @@ Pourvezit ar restr-mañ ma kasit un danevell draen, mar plij.
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation>SAC&apos;HET en deus TeXstudio abalamour da %1 e-barzh an orjal %2.
+        <translation>SAC&apos;HET eo TeXstudio abalamour da %1 e-barzh an orjal %2.
 An orjal a zo bet paouezet.
 Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
@@ -11458,7 +11460,12 @@ If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if 
 If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
-        <translation type="unfinished"/>
+        <translation>Ma vez diuzet &quot;pep-tra&quot;, an holl frazennoù a vez diskouezet.
+Ma vez diuzet &quot;hirder frazenn bihanañ&quot;, diskouezet e vez ur frazenn, hepken, m&apos;en devez kement ha arouezioù da vihanañ. (d.sk. &quot;a test&quot; &apos;zo 6 arouezenn enni)
+Ma vez diuzet &quot;hirder ger bihanañ (unan)&quot;, diskouezet e vez ur frazenn, hepken, m&apos;en devez enni ur ger gant kement a arouezioù en ennañ. (d.sk. &quot;a test&quot; a zo 4 arouez)
+Ma vez diuzet &quot;hirder ger bihanañ (pep-tra)&quot;, diskouezet e vez ur frazenn m&apos;en devez, hepken, an holl c&apos;herioù gant kement a arouezioù da vihanañ. (d.sk. &quot;a test&quot; a zo 1 arouez)
+Ma vez diuzet &quot;ober van da vat&quot;, ar gerioù berroc&apos;h a vez graet van outo da vat.
+(d.sk gant hirder 3, ar frazenn &quot;this is a test&quot; a zo par ouzh &quot;this test&quot;, pa skejo an dibarzhioù all e-barzh &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, ha pa ne vefe ket diskouezet frazenn ebet anezho)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
@@ -11476,7 +11483,10 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation>Kontroloù al linenn-mañ a dermeno pet ger diouzh renk a vez tretet evel bezañ ur frazenn en hec&apos;h-unan.
+Ma vez diuzet &quot;niver bihanañ ha brasañ a c&apos;herioù en ur frazenn», an niver resis a c&apos;herioù a vez kemeret e kont (d.sk. gant 2, e-barzh ar frazenn gent: &quot;the controls&quot;, &quot;controls in&quot;, ...)
+Ma vez diuzet &quot;niver brasañ a c&apos;herioù dre frazenn&quot; hepken, ar gerioù deraouek a vez enkorfet ivez
+(d.sk. &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="332"/>
@@ -11487,7 +11497,8 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <location filename="../src/textanalysis.ui" line="351"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</source>
-        <translation type="unfinished"/>
+        <translation>Ma vez kochet &quot;doujañ ouzh arouezioù fin ar frazenn&quot;, gerioù a-raok ha goude un arouezenn roet a vez tretet dalc&apos;hmat evel gerioù frazennoù disheñvel.
+Ha ma neket, an arouezioù fin a vez graet van outo.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="355"/>
@@ -11498,7 +11509,8 @@ If not, end characters are ignored.</source>
         <location filename="../src/textanalysis.ui" line="362"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
 If not, end characters are ignored.</source>
-        <translation type="unfinished"/>
+        <translation>Ma vez kochet &quot;doujañ ouzh arouezioù fin ar frazenn&quot;, gerioù a-raok ha goude un arouezenn roet a vez tretet dalc&apos;hmat evel gerioù frazennoù disheñvel.
+Ha ma neket, an arouezioù fin a vez graet van outo.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="366"/>
@@ -11639,7 +11651,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="378"/>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
-        <translation>Ha fellout a ra deoc&apos;h ouzhpennañ &quot;%1&quot; evel sinonim evit &quot;%2&quot; pe &quot;%3&quot;?</translation>
+        <translation>Ha fellout a ra deoc&apos;h ouzhpennañ &quot;%1&quot; evel sinonim da &quot;%2&quot; pe &quot;%3&quot;?</translation>
     </message>
 </context>
 <context>
@@ -11691,12 +11703,12 @@ teuliad endalc&apos;het e-barzh %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="182"/>
         <source>Update check failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Gwiriañ hizivadur c&apos;hwitet (stumm restr hizivaat direizh).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="188"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Gwiriañ hizivadur evit ar stummoù war ar renk c&apos;hwitet (stumm restr hizivaat direizh).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
@@ -11706,7 +11718,7 @@ teuliad endalc&apos;het e-barzh %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Gwiriañ hizivadur evit ar stummoù war ziorren c&apos;hwitet (stumm restr hizivaat direizh).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="211"/>
@@ -11721,7 +11733,7 @@ teuliad endalc&apos;het e-barzh %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="236"/>
         <source>TeXstudio is up-to-date.</source>
-        <translation>TeXstudio a zo war e-stumm diwezhañ.</translation>
+        <translation>TeXstudio a zo war e stumm diwezhañ.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="248"/>
@@ -11820,7 +11832,18 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation type="unfinished"/>
+        <translation>Ma vez skrivet ar chadenn distegnañ-mañ e-barzh forzh peseurt restr tex,
+erlec&apos;hiet e vez gant ar baliz a-vremañ.
+
+Ma krog an distegner-mañ gant (?&lt;= un dra bennak), kement-se a c&apos;hoarvezo
+ma vez skrivet un dra bennak a-raok a-raok al lodenn a chom eus an distegner.
+
+Dre ma neket ar chadenn-mañ ur chadenn eeun, un droienn reoliataet avat,
+(?&lt;=\S) a c&apos;hall bezañ implijet evit merkañ an erlec&apos;hiadennoù hag a rankfe c&apos;hoarvezout goude ur ger, hepmuiken,
+gellout a ra bezañ implijet ivez (?&lt;=\s|^) evit merkañ an erlec&apos;hiadennoù a rankfe c&apos;hoarvezout a-raok ur ger hepken.
+
+
+Gellout a reer implijout ivez an dalvoudegezh ispisial ?txs-start evit loc&apos;hañ gant ar skript-mañ pa loc&apos;h txs.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="360"/>
@@ -11931,7 +11954,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="310"/>
         <source>Folder is not empty.</source>
-        <translation>Neket goullou an teuliad</translation>
+        <translation>Neket goullo an teuliad.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="315"/>
@@ -12044,7 +12067,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="142"/>
         <source>The number of the ps page corresponding to the first numberline indexed in the toc file</source>
-        <translation type="unfinished"/>
+        <translation>Niver ar bajenn ps gentañ hag a genglot gant niver al linenn indekset er restr toc</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="158"/>
@@ -12196,7 +12219,7 @@ Ar restroù html a vez lec&apos;helaet er c&apos;havlec&apos;h %1.</translation>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="134"/>
         <source>Running browser .</source>
-        <translation>Merdeer war implij .</translation>
+        <translation>Merdeer war implij.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="141"/>
