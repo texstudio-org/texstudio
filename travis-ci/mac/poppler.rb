@@ -74,29 +74,19 @@ class Poppler < Formula
   end
 
   def install
-    ENV.cxx11 if build.with?("qt") || MacOS.version < :mavericks
+    ENV.cxx11
 
     args = std_cmake_args + %W[
       -DENABLE_XPDF_HEADERS=ON
       -DENABLE_GLIB=ON
+      -DENABLE_QT5=ON
+      -DENABLE_CMS=lcms2
       -DBUILD_GTK_TESTS=OFF
+      -DENABLE_UNSTABLE_API_ABI_HEADERS=ON
       -DWITH_GObjectIntrospection=OFF
-      -DENABLE_QT4=OFF
       -DCMAKE_INSTALL_INCLUDEDIR=#{include}
       -DCMAKE_INSTALL_LIBDIR=#{lib}
     ]
-
-    if build.with? "qt"
-      args << "-DENABLE_QT5=ON"
-    else
-      args << "-DENABLE_QT5=OFF"
-    end
-
-    if build.with? "little-cms2"
-      args << "-DENABLE_CMS=lcms2"
-    else
-      args << "-DENABLE_CMS=OFF"
-    end
 
     system "cmake", ".", *args
     system "make", "install"
