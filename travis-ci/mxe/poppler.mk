@@ -9,7 +9,7 @@ $(PKG)_SUBDIR   := poppler-$($(PKG)_VERSION)
 $(PKG)_FILE     := poppler-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://poppler.freedesktop.org/$($(PKG)_FILE)
 #$(PKG)_DEPS     := gcc cairo curl freetype glib jpeg lcms libpng qt tiff zlib
-$(PKG)_DEPS     := gcc cairo curl freetype glib jpeg lcms libpng  libwebp openjpeg qtbase tiff zlib
+$(PKG)_DEPS     :=  cc cairo curl freetype glib jpeg lcms libpng  libwebp openjpeg qtbase tiff zlib
 
 define $(PKG)_UPDATE
     $(WGET) -q -O- 'https://poppler.freedesktop.org/' | \
