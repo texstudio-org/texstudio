@@ -19,7 +19,7 @@ endef
 
 define $(PKG)_BUILD
     mkdir -p '$(1)/build'
-    cd '$(1)/build' && '$(TARGET)-cmake' .. -DENABLE_UNSTABLE_API_ABI_HEADERS=ON -DENABLE_TESTS=OFF -DENABLE_UTILS=OFF
+    cd '$(1)/build' && '$(TARGET)-cmake' .. -DENABLE_UNSTABLE_API_ABI_HEADERS=ON -DENABLE_TESTS=OFF -DENABLE_UTILS=OFF -DENABLE_LIBOPENJPEG='none'
     $(MAKE) -C '$(1)/build' -j 1 $(MXE_DISABLE_CRUFT) HTML_DIR=
     $(MAKE) -C '$(1)/build' -j 1 install $(MXE_DISABLE_CRUFT) HTML_DIR=
 
