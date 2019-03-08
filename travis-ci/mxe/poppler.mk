@@ -9,7 +9,7 @@ $(PKG)_SUBDIR   := poppler-$($(PKG)_VERSION)
 $(PKG)_FILE     := poppler-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://poppler.freedesktop.org/$($(PKG)_FILE)
 #$(PKG)_DEPS     := gcc cairo curl freetype glib jpeg lcms libpng qt tiff zlib
-$(PKG)_DEPS     := gcc cairo curl freetype glib jpeg lcms libpng qt qtbase tiff zlib
+$(PKG)_DEPS     := gcc cairo curl freetype glib jpeg lcms libpng  libwebp openjpeg qtbase tiff zlib
 
 define $(PKG)_UPDATE
     $(WGET) -q -O- 'https://poppler.freedesktop.org/' | \
@@ -19,7 +19,7 @@ endef
 
 define $(PKG)_BUILD
     mkdir -p '$(1)/build'
-    cd '$(1)/build' && '$(TARGET)-cmake' .. -DENABLE_XPDF_HEADERS=ON -DENABLE_LIBOPENJPEG='none' -DENABLE_UTILS=OFF -DBUILD_GTK_TESTS=OFF -DBUILD_QT4_TESTS=OFF -DBUILD_QT5_TESTS=OFF -DBUILD_CPP_TESTS=OFF
+    cd '$(1)/build' && '$(TARGET)-cmake' .. -DENABLE_UNSTABLE_API_ABI_HEADERS=ON -DENABLE_TESTS=OFF -DENABLE_UTILS=OFF
     $(MAKE) -C '$(1)/build' -j 1 $(MXE_DISABLE_CRUFT) HTML_DIR=
     $(MAKE) -C '$(1)/build' -j 1 install $(MXE_DISABLE_CRUFT) HTML_DIR=
 
