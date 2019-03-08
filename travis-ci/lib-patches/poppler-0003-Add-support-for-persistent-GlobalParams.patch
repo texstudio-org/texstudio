@@ -1,135 +1,73 @@
-From 7cf56cb33691563a81c6e5a43afef9541741542d Mon Sep 17 00:00:00 2001
+From 88809a21299ea1129aef4aa016e057077a0636f2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
 Date: Fri, 12 Feb 2016 08:00:59 -0500
 Subject: [PATCH 3/3] Add support for persistent GlobalParams
 
 ---
- qt4/src/poppler-document.cc |  1 +
- qt4/src/poppler-private.cc  | 17 +++++++++++++----
- qt4/src/poppler-private.h   |  1 +
  qt5/src/poppler-document.cc |  1 +
  qt5/src/poppler-private.cc  | 17 +++++++++++++----
  qt5/src/poppler-private.h   |  1 +
- 6 files changed, 30 insertions(+), 8 deletions(-)
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/qt4/src/poppler-document.cc b/qt4/src/poppler-document.cc
-index d6e2fbf7..ae0717d6 100644
---- a/qt4/src/poppler-document.cc
-+++ b/qt4/src/poppler-document.cc
-@@ -58,6 +58,7 @@
- namespace Poppler {
- 
-   int DocumentData::count = 0;
-+  GBool DocumentData::ownGlobalParams = gFalse;
- 
-   Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
- 			   const QByteArray &userPassword)
-diff --git a/qt4/src/poppler-private.cc b/qt4/src/poppler-private.cc
-index 1338a185..42bcb2fd 100644
---- a/qt4/src/poppler-private.cc
-+++ b/qt4/src/poppler-private.cc
-@@ -237,8 +237,13 @@ namespace Debug {
-         count --;
-         if ( count == 0 )
-         {
--            utf8Map = 0;
--            delete globalParams;
-+            if ( ownGlobalParams )
-+            {
-+                utf8Map = 0;
-+                delete globalParams;
-+                globalParams = NULL;
-+                ownGlobalParams = gFalse;
-+            }
-         }
-       }
-     
-@@ -252,8 +257,12 @@ namespace Debug {
-       
-         if ( count == 0 )
-         {
--            utf8Map = 0;
--            globalParams = new GlobalParams();
-+            if ( !globalParams )
-+            {
-+                utf8Map = 0;
-+                globalParams = new GlobalParams();
-+                ownGlobalParams = gTrue;
-+            }
-             setErrorCallback(qt4ErrorFunction, NULL);
-         }
-         count ++;
-diff --git a/qt4/src/poppler-private.h b/qt4/src/poppler-private.h
-index a5ad3f3e..9fea0a66 100644
---- a/qt4/src/poppler-private.h
-+++ b/qt4/src/poppler-private.h
-@@ -148,6 +148,7 @@ namespace Poppler {
- 	QColor paperColor;
- 	int m_hints;
- 	static int count;
-+	static GBool ownGlobalParams;
-     };
- 
-     class FontInfoData
 diff --git a/qt5/src/poppler-document.cc b/qt5/src/poppler-document.cc
-index 03077f99..62623a40 100644
+index 0aa5bed4..bf3b9b99 100644
 --- a/qt5/src/poppler-document.cc
 +++ b/qt5/src/poppler-document.cc
-@@ -58,6 +58,7 @@
- namespace Poppler {
+@@ -58,6 +58,7 @@ namespace Poppler {
  
    int DocumentData::count = 0;
-+  GBool DocumentData::ownGlobalParams = gFalse;
+   QMutex DocumentData::mutex;
++  bool DocumentData::ownGlobalParams = false;
  
    Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
  			   const QByteArray &userPassword)
 diff --git a/qt5/src/poppler-private.cc b/qt5/src/poppler-private.cc
-index 23fb8466..13f890c0 100644
+index 0c178a54..6623b42c 100644
 --- a/qt5/src/poppler-private.cc
 +++ b/qt5/src/poppler-private.cc
-@@ -236,8 +236,13 @@ namespace Debug {
+@@ -258,8 +258,13 @@ namespace Debug {
          count --;
          if ( count == 0 )
          {
--            utf8Map = 0;
+-            utf8Map = nullptr;
 -            delete globalParams;
 +            if ( ownGlobalParams )
 +            {
-+                utf8Map = 0;
++                utf8Map = nullptr;
 +                delete globalParams;
-+                globalParams = NULL;
-+                ownGlobalParams = gFalse;
++                globalParams = nullptr;
++                ownGlobalParams = false;
 +            }
          }
        }
      
-@@ -250,8 +255,12 @@ namespace Debug {
-       
+@@ -274,8 +279,12 @@ namespace Debug {
+ 
          if ( count == 0 )
          {
--            utf8Map = 0;
+-            utf8Map = nullptr;
 -            globalParams = new GlobalParams();
 +            if ( !globalParams )
 +            {
-+                utf8Map = 0;
++                utf8Map = nullptr;
 +                globalParams = new GlobalParams();
-+                ownGlobalParams = gTrue;
++                ownGlobalParams = true;
 +            }
-             setErrorCallback(qt5ErrorFunction, NULL);
+             setErrorCallback(qt5ErrorFunction, nullptr);
          }
          count ++;
 diff --git a/qt5/src/poppler-private.h b/qt5/src/poppler-private.h
-index 6d0d1943..3e56dd9c 100644
+index f3980513..610e1dea 100644
 --- a/qt5/src/poppler-private.h
 +++ b/qt5/src/poppler-private.h
-@@ -146,6 +146,7 @@ namespace Poppler {
- 	QColor paperColor;
+@@ -155,6 +155,7 @@ namespace Poppler {
  	int m_hints;
  	static int count;
-+	static GBool ownGlobalParams;
+ 	static QMutex mutex;
++	static bool ownGlobalParams;
      };
  
      class FontInfoData
 -- 
-2.14.1
+2.17.1
 
