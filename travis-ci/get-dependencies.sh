@@ -46,7 +46,7 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 		cd travis-ci/mxe
 
 		print_info "Building poppler (using ${JOBS} jobs)"
-		env PATH="${MXEDIR}/usr/bin:${MXEDIR}/usr/${MXETARGET}/qt5/bin:$PATH" PREFIX="${MXEDIR}/usr" TARGET="${MXETARGET}" JOBS="$JOBS" MXE_CONFIGURE_OPTS="--host='${MXETARGET}' --build='`${MXEDIR}/ext/config.guess`' --prefix='${MXEDIR}/usr/${MXETARGET}' --enable-static --disable-shared ac_cv_prog_HAVE_DOXYGEN='false' --disable-doxygen --enable-poppler-qt5 --disable-poppler-qt4" TEST_FILE="poppler-test.cxx" make -f build-poppler-mxe.mk
+		env PATH="${MXEDIR}/usr/bin:${MXEDIR}/usr/${MXETARGET}/qt5/bin:$PATH" PREFIX="${MXEDIR}/usr" TARGET="${MXETARGET}" JOBS="$JOBS" MXE_CONFIGURE_OPTS="--host='${MXETARGET}' --build='`${MXEDIR}/ext/config.guess`' --prefix='${MXEDIR}/usr/${MXETARGET}' --enable-static --disable-shared ac_cv_prog_HAVE_DOXYGEN='false' " TEST_FILE="poppler-test.cxx" make -f build-poppler-mxe.mk
 	else
 		print_info "Updating apt cache"
 		sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
