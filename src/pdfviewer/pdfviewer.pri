@@ -67,6 +67,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
 		message("Using MXE")
 		PKGCONFIG += lcms2
 		PKGCONFIG += libtiff-4
+		PKGCONFIG += libopenjp2
 	}
 
         greaterThan(QT_MAJOR_VERSION,4){
