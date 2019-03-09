@@ -42,6 +42,7 @@ public:
     bool isEmpty() const;
 
     void setShortcut(const QString &sc);
+    void setTrigger(const QString &newTrigger);
 
 	QString typedTag() const;
     void setTypedTag(const QString &m_tag);

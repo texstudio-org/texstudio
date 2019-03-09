@@ -175,6 +175,11 @@ void Macro::setShortcut(const QString &sc)
     m_shortcut=sc;
 }
 
+void Macro::setTrigger(const QString &newTrigger)
+{
+    init(name,type,tag,abbrev,newTrigger);
+}
+
 QString Macro::typedTag() const
 {
 	switch(type) {

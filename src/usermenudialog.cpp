@@ -526,7 +526,7 @@ void UserMenuDialog::triggerChanged()
     QVariant v=item->data(0,Qt::UserRole);
     if(v.isValid()){
         Macro m=v.value<Macro>();
-        m.trigger=ui.triggerEdit->text();
+        m.setTrigger(ui.triggerEdit->text());
         item->setData(0,Qt::UserRole,QVariant::fromValue(m));
     }
 }
