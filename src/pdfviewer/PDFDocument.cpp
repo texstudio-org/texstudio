@@ -1717,7 +1717,8 @@ int PDFWidget::gridCols() const
 
 int PDFWidget::gridRowHeight() const
 {
-	return maxPageSizeF().height() * scaleFactor * dpi / 72.0 + GridBorder;
+    double result=maxPageSizeF().height() * scaleFactor * dpi / 72.0 + GridBorder;
+    return qRound(result)>0 ? qRound(result) : 10; // avoid crashes
 }
 
 int PDFWidget::gridBorder() const
