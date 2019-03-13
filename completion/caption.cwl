@@ -22,15 +22,15 @@
 \ContinuedFloat
 \ContinuedFloat*
 
-\DeclareCaptionFormat{name}{code using #1, #2 and #3}
-\DeclareCaptionLabelFormat{name}{code using #1, #2 and #3}
+\DeclareCaptionFormat{name}{code}
+\DeclareCaptionLabelFormat{name}{code}
 \bothIfFirst{first arg}{second arg}
 \bothIfSecond{first arg}{second arg}
-\DeclareCaptionTextFormat{name}{code using}
+\DeclareCaptionTextFormat{name}{code}
 \DeclareCaptionLabelSeparator{name}{code}
 \DeclareCaptionJustification{name}{code}
 \DeclareCaptionFont{name}{code}
 \DeclareCaptionStyle{name}[ad options]{options}
-\DeclareCaptionListFormat{name}{code using #1 and #2}
+\DeclareCaptionListFormat{name}{code}
 \DeclareCaptionType[options]{type}[name][list name]
 \DeclareCaptionType{type}
