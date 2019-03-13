@@ -249,7 +249,7 @@ static QString strippedActionText(QString s) {
  */
 void addShortcutToToolTip(QAction *action)
 {
-	if (!action->shortcut().isEmpty()) {
+	if (!action->shortcut().isEmpty() and !action->property("hasShortcutToolTip").toBool()) {
 		QString tooltip = action->property("tooltipBackup").toString();
 		if (tooltip.isEmpty()) {
 			tooltip = action->toolTip();
@@ -267,6 +267,7 @@ void addShortcutToToolTip(QAction *action)
 		}
 		action->setToolTip(QString("<p style='white-space:pre'>%1&nbsp;&nbsp;<code style='color:%2; font-size:small'>%3</code></p>")
 		                   .arg(tooltip, shortCutTextColorName, action->shortcut().toString(QKeySequence::NativeText)));
+		action->setProperty("hasShortcutToolTip", true);
 	}
 }
 
@@ -280,6 +281,7 @@ void removeShortcutFromToolTip(QAction *action)
 {
 	action->setToolTip(action->property("tooltipBackup").toString());
 	action->setProperty("tooltipBackup", QVariant());
+	action->setProperty("hasShortcutToolTip", false);
 }
 
 /*!
