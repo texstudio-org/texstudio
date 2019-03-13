@@ -72,7 +72,7 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	splitter->addWidget(log);
 
 	infoLabel = new QLabel(tr("No log file available"), this);
-	infoLabel->setStyleSheet("background: #FFFBBF;");
+	infoLabel->setStyleSheet("color: black; background: #FFFBBF;");
 	infoLabel->setMargin(2);
 
 	QVBoxLayout *vLayout = new QVBoxLayout(); //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)

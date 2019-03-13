@@ -1008,7 +1008,8 @@ MessageFrame::MessageFrame(QWidget *parent) : QFrame(parent), label(nullptr)
 	layout->addWidget(label);
 	layout->setContentsMargins(2, 2, 2, 2);
 
-	setStyleSheet("background: #FFFBBF;");
+	setStyleSheet("MessageFrame {background: #FFFBBF}\n"
+				  "QLabel {color: black}");  // only style the frame and the labels. Buttons remain unstyled.
 	setVisible(false);
 }
 
