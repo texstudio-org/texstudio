@@ -274,7 +274,7 @@
 \newcount
 \newdimen
 \newhelp#*
-\newif{cmd}#*d
+\newif{cmd}#*
 \newlinechar#*
 \newmuskip#*
 \newread#*

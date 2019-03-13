@@ -897,6 +897,23 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				continue;
 			}
+			//// newif ////
+			if (cmd == "\\newif") {
+				// \newif\ifmycondition also defines \myconditiontrue and \myconditionfalse
+				completerNeedsUpdate = true;
+				QStringList lst;
+				lst << firstArg
+					<< "\\" + firstArg.mid(3) + "false"
+					<< "\\" + firstArg.mid(3) + "true";
+				foreach (const QString &elem, lst) {
+					mUserCommandList.insert(line(i).handle(), elem);
+					ltxCommands.possibleCommands["user"].insert(elem);
+					if (!removedUserCommands.removeAll(elem)) {
+						addedUserCommands << elem;
+					}
+				}
+				continue;
+			}
 			/// specialDefinition ///
 			/// e.g. definecolor
 			if (ltxCommands.specialDefCommands.contains(cmd)) {
