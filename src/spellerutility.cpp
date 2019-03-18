@@ -128,6 +128,12 @@ void SpellerUtility::addToIgnoreList(QString toIgnore)
 		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(), ignoredWordList.end(), word, localeAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 	saveIgnoreList();
+    checkCache.remove(word);
+    QString zw=word; //remove upper letter start as well
+    if(!zw.isEmpty()){
+        zw[0]=zw[0].toUpper();
+        checkCache.remove(zw);
+    }
 	emit ignoredWordAdded(word);
 }
 

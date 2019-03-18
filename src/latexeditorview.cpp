@@ -2203,12 +2203,16 @@ void LatexEditorView::spellRemoveMarkers(const QString &newIgnoredWord)
 	REQUIRE(editor);
 	QDocument* doc = editor->document();
 	if (!doc) return;
+    QString newUpperIgnoredWord=newIgnoredWord; //remove upper letter start as well
+    if(!newUpperIgnoredWord.isEmpty()){
+        newUpperIgnoredWord[0]=newUpperIgnoredWord[0].toUpper();
+    }
 	//documentContentChanged(editor->cursor().lineNumber(),1);
 	for (int i = 0; i < doc->lines(); i++) {
 		QList<QFormatRange> li = doc->line(i).getOverlays(SpellerUtility::spellcheckErrorFormat);
 		QString curLineText = doc->line(i).text();
 		for (int j = 0; j < li.size(); j++)
-			if (latexToPlainWord(curLineText.mid(li[j].offset, li[j].length)) == newIgnoredWord) {
+            if (latexToPlainWord(curLineText.mid(li[j].offset, li[j].length)) == newIgnoredWord || latexToPlainWord(curLineText.mid(li[j].offset, li[j].length)) == newUpperIgnoredWord) {
 				doc->line(i).removeOverlay(li[j]);
 				doc->line(i).setFlag(QDocumentLine::LayoutDirty, true);
 			}
