@@ -36,12 +36,12 @@ void CommandDescriptionHash::unite(const CommandDescriptionHash &other){
                 this->insert(elem, other.value(elem));
             } else {
                 // when same number of args (>0), general arg is considered inferior
-                if ( (cd_neu.args == cd.args) && (cd.args > 0)) {
+                if ( cd_neu.args == cd.args )  {
                     if (cd_neu.optionalArgs > cd.optionalArgs) {
                         // same number of arguments but more optional arguments
                         this->insert(elem, other.value(elem));
                     } else {
-                        if (cd_neu.optionalArgs == cd.optionalArgs) {
+                        if (cd_neu.optionalArgs == cd.optionalArgs && cd.args>0) {
                             bool override = true;
                             for (int i = 0; i < cd.args; i++) {
                                 if (cd_neu.argTypes.at(i) == Token::generalArg)
