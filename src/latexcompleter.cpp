@@ -1816,7 +1816,7 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 		if (cnt == 0) {
 			topic = tr("label missing!");
 		} else if (cnt > 1) {
-			topic = tr("label multiple times defined!");
+			topic = tr("label defined multiple times!");
 		} else {
 			QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(value);
 			QDocumentLineHandle *mLine = result.keys().first();

@@ -2370,7 +2370,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			if (cnt == 0) {
 				mText = tr("label missing!");
 			} else if (cnt > 1) {
-				mText = tr("label multiple times defined!");
+				mText = tr("label defined multiple times!");
 			} else {
 				QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(value);
 				QDocumentLineHandle *mLine = result.keys().first();
@@ -2388,7 +2388,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 		if (tk.type == Token::label) {
 			handled = true;
 			if (document->countLabels(value) > 1) {
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tr("label multiple times defined!"));
+				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tr("label defined multiple times!"));
 			} else {
 				int cnt = document->countRefs(value);
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tr("%n reference(s) to this label", "", cnt));
