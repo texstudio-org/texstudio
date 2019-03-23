@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="br">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="br" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -914,7 +912,7 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
         <location filename="../src/configdialog.ui" line="508"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Termeniñ a ra an doareoù hizivadur a vo resevet ganeoc&apos;h:
 - Stummoù stabil: Dibabit an dra-se ma &apos;z eo ar stabilded an dra bouezusañ evidoc&apos;h.
@@ -1134,7 +1132,7 @@ An argemmoù a vez skrivet e: $MYVAR. Kizidig e vezont d&apos;al lizherennoù br
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1088"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2656,8 +2654,8 @@ anezho amañ.</translation>
         <location filename="../src/configdialog.ui" line="4330"/>
         <location filename="../src/configdialog.ui" line="4385"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Ar c&apos;heflusker rentañ implijet gant levraoueg PDF poppler.
 &apos;Splash&apos; a zo an dalvoudegezh dre-ziouer hag e tere ouzh darn vrasañ ar plegoù.
@@ -4328,7 +4326,7 @@ Ha sur oc&apos;h ho peus c&apos;hoant da zizober an holl cheñchamantoù?</trans
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Lec&apos;hiadur karetañ evit al lun:
@@ -4442,15 +4440,11 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1819"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>label multiple times defined!</source>
-        <translation type="vanished">label termenet meur a wech!</translation>
+        <translation>label termenet meur a wech!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1828"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Anv-restr: %1&lt;/b&gt;
 </translation>
@@ -4628,19 +4622,15 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
         <translation>mankout a ra ul label!</translation>
     </message>
     <message>
-        <source>label multiple times defined!</source>
-        <translation type="vanished"> label termenet meur a wech!</translation>
-    </message>
-    <message>
         <location filename="../src/latexeditorview.cpp" line="2373"/>
         <location filename="../src/latexeditorview.cpp" line="2391"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"></translation>
+        <translation>label termenet meur a wech!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2381"/>
         <location filename="../src/latexeditorview.cpp" line="2453"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Anv-restr: %1&lt;/b&gt;
 </translation>
@@ -4648,10 +4638,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2394"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n daveenn d&apos;al label</numerusform>
-            <numerusform>%n daveenn d&apos;al label</numerusform>
-        </translation>
+        <translation><numerusform>%n daveenn d&apos;al label</numerusform><numerusform>%n daveenn d&apos;al label</numerusform><numerusform>%n daveenn(où) d&apos;al label</numerusform><numerusform>%n daveenn(où) d&apos;al label</numerusform><numerusform>%n daveenn(où) d&apos;al label</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2399"/>
@@ -6317,7 +6304,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1107"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Ar restr orin war an disk a zo bet distrujet e-pad an argerzh enrollañ.
 Gellout a rit kavout un eilenn el lec&apos;h-mañ
@@ -10855,7 +10842,7 @@ ar restr all-mañ a-raok na c&apos;hallfec&apos;h he flastrañ.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5611"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>N&apos;haller ket diguzhañ an anv-restr.
 Bez ho peus da enrollañ an teuliad a-raok gellet e gempunañ.</translation>
