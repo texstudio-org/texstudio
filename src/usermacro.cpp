@@ -248,6 +248,7 @@ bool Macro::save(const QString &fileName) const {
 
 #if QT_VERSION >= 0x050000
     QJsonObject dd;
+    dd.insert("formatVersion",1);
     dd.insert("name",name);
     QString tag= typedTag();
     dd.insert("tag",QJsonArray::fromStringList(tag.split("\n")));
@@ -314,22 +315,30 @@ bool Macro::loadFromText(const QString &text)
 #if QT_VERSION >= 0x050000
     QJsonDocument jsonDoc=QJsonDocument::fromJson(text.toUtf8());
     QJsonObject dd=jsonDoc.object();
-    for(const QString& key : dd.keys()){
-        if(dd[key].isString()){
-            rawData.insert(key,dd[key].toString());
-        }
-        if(dd[key].isArray()){
-            QJsonArray array=dd[key].toArray();
-            QString text;
-            for(QJsonArray::const_iterator it=array.constBegin();it!=array.constEnd();it++){
-                if(it->isString()){
-                    if(!text.isEmpty()){
-                        text.append('\n');
-                    }
-                    text.append(it->toString());
-                }
+    if(dd.contains("formatVersion")){
+        for(const QString& key : dd.keys()){
+            if(dd[key].isString()){
+                rawData.insert(key,dd[key].toString());
             }
-            rawData.insert(key,text);
+            if(dd[key].isArray()){
+                QJsonArray array=dd[key].toArray();
+                QString text;
+                for(QJsonArray::const_iterator it=array.constBegin();it!=array.constEnd();it++){
+                    if(it->isString()){
+                        if(!text.isEmpty()){
+                            text.append('\n');
+                        }
+                        text.append(it->toString());
+                    }
+                }
+                rawData.insert(key,text);
+            }
+        }
+    }else{
+        // read old format
+        bool success=minimalJsonParse(text, rawData);
+        if(!success){
+            return false;
         }
     }
 #else
