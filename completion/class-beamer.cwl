@@ -69,7 +69,7 @@
 \begin{frame}[options]
 \begin{frame}[options]{title}
 \begin{frame}[options]{title}{subtitle}
-\begin{frame}{title}#L7
+\begin{frame}{title}
 \end{frame}
 \begin{thebibliography}{longest label text}
 \end{thebibliography}
