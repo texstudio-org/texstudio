@@ -245,8 +245,24 @@ bool Macro::save(const QString &fileName) const {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
+
+#if QT_VERSION >= 0x050000
+    QJsonObject dd;
+    dd.insert("name",name);
+    QString tag= typedTag();
+    dd.insert("tag",QJsonArray::fromStringList(tag.split("\n")));
+    dd.insert("description",QJsonArray::fromStringList(description.split("\n")));
+    dd.insert("abbrev",abbrev);
+    dd.insert("trigger",trigger);
+    dd.insert("menu",menu);
+    dd.insert("shortcut",m_shortcut);
+    QJsonDocument jsonDoc(dd);
+    file.write(jsonDoc.toJson());
+    return true;
+#else
     QTextStream out(&file);
     out.setCodec("UTF-8");
+
     QString tag= typedTag();
 
     out << "{\n" ;
@@ -279,6 +295,7 @@ bool Macro::save(const QString &fileName) const {
     out << "\"shortcut\" : \"" <<m_shortcut << "\"\n";
     out << "}\n" ;
     return true; // successfully finished
+#endif
 }
 
 bool Macro::load(const QString &fileName){
@@ -294,10 +311,33 @@ bool Macro::load(const QString &fileName){
 bool Macro::loadFromText(const QString &text)
 {
     QHash<QString,QString>rawData;
+#if QT_VERSION >= 0x050000
+    QJsonDocument jsonDoc=QJsonDocument::fromJson(text.toUtf8());
+    QJsonObject dd=jsonDoc.object();
+    for(const QString& key : dd.keys()){
+        if(dd[key].isString()){
+            rawData.insert(key,dd[key].toString());
+        }
+        if(dd[key].isArray()){
+            QJsonArray array=dd[key].toArray();
+            QString text;
+            for(QJsonArray::const_iterator it=array.constBegin();it!=array.constEnd();it++){
+                if(it->isString()){
+                    if(!text.isEmpty()){
+                        text.append('\n');
+                    }
+                    text.append(it->toString());
+                }
+            }
+            rawData.insert(key,text);
+        }
+    }
+#else
     bool success=minimalJsonParse(text, rawData);
     if(!success){
         return false;
     }
+#endif
     // distrbute data on internal structure
     Macro::Type typ;
     QString typedTag=parseTypedTag(rawData.value("tag"),typ);

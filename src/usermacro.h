@@ -3,6 +3,11 @@
 
 #include "mostQtHeaders.h"
 
+#if QT_VERSION >= 0x050000
+#include <QJsonDocument>
+#include <QJsonArray>
+#endif
+
 class QLanguageDefinition;
 class QLanguageFactory;
 class LatexDocument;
