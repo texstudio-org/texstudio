@@ -1941,9 +1941,16 @@ void BuildManager::setAllCommands(const CommandMapping &cmds, const QStringList 
 QString BuildManager::guessCompilerFromProgramMagicComment(const QString &program)
 {
 	if (program == "latex") return BuildManager::CMD_LATEX;
-	else if (program == "pdflatex") return BuildManager::CMD_PDFLATEX;
-	else if (program == "xelatex") return BuildManager::CMD_XELATEX;
-	else if (program == "luatex" || program == "lualatex") return BuildManager::CMD_LUALATEX;
+    if (program == "pdflatex") return BuildManager::CMD_PDFLATEX;
+    if (program == "xelatex") return BuildManager::CMD_XELATEX;
+    if (program == "luatex" || program == "lualatex") return BuildManager::CMD_LUALATEX;
+    if (program.startsWith("user")){
+        bool user;
+        QString cmd=getCommandLine(program,&user);
+        if(user){
+            return cmd;
+        }
+    }
 	return QString();
 
 }
