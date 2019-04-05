@@ -677,6 +677,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		int column;
 		if (backward) column=m_regexp.lastIndexIn(s,m_cursor.columnNumber()-coloffset);
 		else column=m_regexp.indexIn(s, m_cursor.columnNumber());
+
+        if(backward && hasOption(RegExp) && m_string.endsWith('$') && s.length()<l.length()){
+            column=-1; // force miss as regexp $ is only valid on unchanged line
+        }
         /*
 		qDebug("searching %s in %s from %i => %i",
 				qPrintable(m_regexp.pattern()),
