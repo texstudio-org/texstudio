@@ -423,7 +423,7 @@ void LatexCompleterTest::keyval_data(){
     QTest::newRow("cite2") << ">>{a}<<" << "" <<  0 << 4 << 32
                             << "" << ""
                             << (QStringList()
-                                << "#:>>{abcq}<<"
+                                << "#:>>{a}<<"
                                 );
     QTest::newRow("cite2") << ">>{ag,}<<" << "" <<  0 << 6 << 32
                             << "" << ""
