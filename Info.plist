@@ -39,13 +39,13 @@
 	<key>CFBundleExecutable</key>
 	<string>texstudio</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright (c) 2003-2007, Pascal Brachet, 2008-2018 Benito van der Zander</string>
+	<string>Copyright (c) 2003-2007, Pascal Brachet, 2008-2019 Benito van der Zander</string>
 	<key>CFBundleIdentifier</key>
 	<string>texstudio</string>
 	<key>CFBundleName</key>
 	<string>TeXstudio</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.12.14</string>
+	<string>2.12.16</string>
 	<key>AppleMagnifiedMode</key>
 	<false/>
 </dict>
