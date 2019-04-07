@@ -1490,6 +1490,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 	Q_ASSERT(list);
 	Q_ASSERT(listModel);
 	Q_ASSERT(completerInputBinding);
+
+    bool alreadyActive=completerInputBinding->isActive(); // called with already open completer
+
 	forcedRef = flags & CF_FORCE_REF;
 	forcedGraphic = flags & CF_FORCE_GRAPHIC;
 	forcedCite = flags & CF_FORCE_CITE;
@@ -1677,7 +1680,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 
 	completerInputBinding->autoOverridenText = (flags & CF_OVERRIDEN_BACKSLASH) ? "\\" : "";
 
-	if (config && config->completeCommonPrefix) completerInputBinding->completeCommonPrefix();
+    if (config && config->completeCommonPrefix && alreadyActive) completerInputBinding->completeCommonPrefix(); // only complete common prefix if the completer was visible when called
 }
 
 void LatexCompleter::directoryLoaded(QString , QSet<QString> content)
