@@ -1,3 +1,7 @@
+TeXstudio 2.12.16
+----------------
+- bug fixes
+
 TeXstudio 2.12.14
 ----------------
 - fix bug that not all available GUI languages are shown
