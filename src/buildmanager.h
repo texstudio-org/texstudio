@@ -26,8 +26,10 @@ Q_DECLARE_METATYPE(LatexCompileResult)
 enum RunCommandFlag {
 	RCF_SHOW_STDOUT = 1,    //bibliography command (=> show stdout)
 	RCF_COMPILES_TEX = 4, //latex command, show the log
-	RCF_RERUNNABLE = 8,   //rerun if there are errors (usually RCF_RERUNNABLE is set iff RCF_COMPILES_TEX is set, except for latexmk)
-	RCF_RERUN = 16,
+	RCF_RERUNNABLE = 8, 	// set if the command provides output information that
+				// tells you when it must be rerun. Usually RCF_RERUNNABLE
+				// is set iff RCF_COMPILES_TEX is set, except for latexmk.
+	RCF_RERUN = 16,         // User has allowed program rerun through the command settings
 	RCF_CHANGE_PDF = 32,    //pdflatex (=> lock pdf)
 	RCF_SINGLE_INSTANCE = 64,//viewer (=> start only once)
 	RCF_WAITFORFINISHED = 128
