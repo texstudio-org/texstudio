@@ -1061,7 +1061,7 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
 	int result = 0;
 	if (similarCommandInList(subcmd, latexCommands)) result |= RCF_COMPILES_TEX;
 	if (similarCommandInList(subcmd, pdfCommands)) result |= RCF_CHANGE_PDF;
-	if (rerunnableCommands.contains(subcmd)) result |= RCF_RERUNNABLE;
+	if (similarCommandInList(subcmd, rerunnableCommands)) result |= RCF_RERUNNABLE;
 	if (stdoutCommands.contains(subcmd)) result |= RCF_SHOW_STDOUT;
 	bool isAcrobat = false;
 #ifdef Q_OS_WIN
