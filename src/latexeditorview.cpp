@@ -2245,7 +2245,12 @@ bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command
 {
     QStringList envAliases = document->lp.environmentAliases.values(environment);
 	if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]" || command == "$") {
-		while (!cursor.atLineStart() && cursor.nextChar() != '\\') {
+		while (!cursor.atLineStart()) {
+			QChar nc = cursor.nextChar();
+
+			if (nc == '\\' || nc == '$') {
+				break;
+			}
 			cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
 		}
 		QString text = parenthizedTextSelection(cursor).selectedText();
