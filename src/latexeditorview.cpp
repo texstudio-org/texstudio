@@ -1229,6 +1229,7 @@ void LatexEditorView::foldEverything(bool unFold)
 {
 	QDocument *doc = editor->document();
 	QLanguageDefinition *ld = doc->languageDefinition();
+	if (!ld) return;
 	QFoldedLineIterator fli = ld->foldedLineIterator(doc, 0);
 	for (int i = 0; i < doc->lines(); i++, ++fli)
 		if (fli.open) {
@@ -1242,6 +1243,7 @@ void LatexEditorView::foldLevel(bool unFold, int level)
 {
 	QDocument *doc = editor->document();
 	QLanguageDefinition *ld = doc->languageDefinition();
+	if (!ld) return;
 	for (QFoldedLineIterator fli = ld->foldedLineIterator(doc);
 	        fli.line.isValid(); ++fli) {
 		if (fli.openParentheses.size() == level && fli.open) {
