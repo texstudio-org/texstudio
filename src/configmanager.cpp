@@ -2664,6 +2664,7 @@ void ConfigManager::setInterfaceStyle()
 	//default values are read from systemPalette and defaultStyleName
 
 	QString newStyle = interfaceStyle != "" ? interfaceStyle : defaultStyleName;
+	if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
 #if QT_VERSION >= 0x040500
 	if (modernStyle) {
 		ManhattanStyle *style = new ManhattanStyle(newStyle);
