@@ -1,6 +1,7 @@
 TeXstudio 2.12.16
 ----------------
 - bug fixes
+- somes fixes for tool-tip preview by MeanSquaredError
 
 TeXstudio 2.12.14
 ----------------
