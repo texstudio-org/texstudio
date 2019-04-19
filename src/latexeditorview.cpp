@@ -2243,28 +2243,44 @@ QString LatexEditorView::extractMath(QDocumentCursor cursor)
 	return parenthizedTextSelection(cursor).selectedText();
 }
 
+bool LatexEditorView::moveToCommandStart (QDocumentCursor &cursor, QString commandPrefix)
+{
+	QString line = cursor.line().text();
+	int lastOffset = cursor.columnNumber();
+	if (lastOffset >= line.length()) {
+		lastOffset = -1;
+	}
+	int foundOffset = line.lastIndexOf(commandPrefix, lastOffset);
+	if (foundOffset == -1) {
+		return false;
+	}
+	cursor.moveTo(cursor.lineNumber(), foundOffset);
+	return true;
+}
+
 bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos)
 {
-    QStringList envAliases = document->lp.environmentAliases.values(environment);
-	if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]" || command == "$") {
-		while (!cursor.atLineStart()) {
-			QChar nc = cursor.nextChar();
-
-			if (nc == '\\' || nc == '$') {
-				break;
-			}
-			cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
-		}
-		QString text = parenthizedTextSelection(cursor).selectedText();
-		if (!text.isEmpty()) {
-			m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
-			emit showPreview(text);
-			return true;
-		}
+	QStringList envAliases = document->lp.environmentAliases.values(environment);
+	bool found;
+	if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]") {
+		found = moveToCommandStart(cursor, "\\");
+	} else if (command == "$" || command == "$$") {
+		found = moveToCommandStart(cursor, command);
 	} else {
-		QToolTip::hideText();
+		found = false;
 	}
-	return false;
+	if (!found) {
+		QToolTip::hideText();
+		return false;
+	}
+	QString text = parenthizedTextSelection(cursor).selectedText();
+	if (text.isEmpty()) {
+		QToolTip::hideText();
+		return false;
+	}
+	m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
+	emit showPreview(text);
+	return true;
 }
 
 void LatexEditorView::mouseHovered(QPoint pos)
