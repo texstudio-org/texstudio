@@ -272,6 +272,7 @@ private:
 	void removeLinkOverlay();
 	bool isNonTextFormat(int format);
 	QString extractMath(QDocumentCursor cursor);
+	bool moveToCommandStart (QDocumentCursor &cursor, QString commandPrefix);
 	bool showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos);
 
 public slots:
