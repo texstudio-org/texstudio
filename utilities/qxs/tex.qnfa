@@ -109,9 +109,9 @@ environments in smallUsefulFunctions.cpp)
 	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
 	
 	<context id="mathmode$$" format="numbers" transparency="true">
-		<start parenthesis="math:open$$" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</start>
-		<stop parenthesis="math:close$$" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</stop>
-		<stop parenthesis="math:close$$" parenthesisWeight="0" fold="1" format="math-delimiter" >^\n</stop>
+		<start parenthesis="math$$:open" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</start>
+		<stop parenthesis="math$$:close" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</stop>
+		<stop parenthesis="math$$:close" parenthesisWeight="0" fold="1" format="math-delimiter" >^\n</stop>
 
 		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
 		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
