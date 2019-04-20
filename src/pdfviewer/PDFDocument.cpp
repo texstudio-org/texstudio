@@ -618,7 +618,12 @@ void PDFWidget::delayedUpdate() {
         doc->renderManager->renderToImage(pageNr, nullptr, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale,
             0, 0, newRect.width() * overScale, newRect.height() * overScale, true, true);
 
-    update();
+    QTimer *timer = new QTimer(this);
+    timer->setSingleShot(true);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(250);
+
+    // update();
 }
 
 void PDFWidget::setPDFDocument(PDFDocument *docu)
@@ -1752,7 +1757,7 @@ void PDFWidget::setSinglePageStep(bool step)
 		return;
 	singlePageStep = step;
 	getScrollArea()->goToPage(realPageIndex);
-    delayedUpdate();
+    update();
 }
 
 void PDFWidget::goFirst()
@@ -1919,7 +1924,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
 			reloadPage(sync);
-            delayedUpdate();
+            // update();
 		}
 	}
 }
@@ -3294,7 +3299,7 @@ void PDFDocument::setGrid()
 		globalConfig->gridy = gs.mid(p + 1).toInt();
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy);
 	}
-	pdfWidget->windowResized();
+    pdfWidget->windowResized();
 }
 
 void PDFDocument::jumpToPage()
@@ -3728,7 +3733,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	path.setFillRule(Qt::WindingFill);
 	if (path.isEmpty()) scrollArea->goToPage(pdfPoint.page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 	pdfWidget->setHighlightPath(pdfPoint.page - 1, path);
-	pdfWidget->update();
+    pdfWidget->delayedUpdate();
 	updateDisplayState(displayFlags);
 	syncToSourceBlocked = false;
 	//pdfWidget->repaint();
