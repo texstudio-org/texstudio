@@ -608,22 +608,34 @@ void PDFWidget::delayedUpdate() {
         int overScale = isRetinaMac() ? 2 : 1;
     #endif
 
+    qreal newDpi = dpi * scaleFactor;
     QRect newRect = rect();
     PDFDocument *doc = getPDFDocument();
     if (!doc || !doc->renderManager)
         return;
 
-    // Fill cache first before updating
-    foreach (int pageNr, pages)
-        doc->renderManager->renderToImage(pageNr, nullptr, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale,
-            0, 0, newRect.width() * overScale, newRect.height() * overScale, true, true);
+    if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+        if (gridx <= 1 && gridy <= 1)
+            doc->renderManager->renderToImage(pages.first(), this, "setImage",
+                                              dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
+                                              newRect.width() * overScale, newRect.height() * overScale,
+                                              true, true);
+        else {
+            QRect visRect = visibleRegion().boundingRect();
 
-    QTimer *timer = new QTimer(this);
-    timer->setSingleShot(true);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(250);
+            foreach (int pageNr, pages) {
+                QRect drawGrid = pageRect(pageNr);
+                if (!drawGrid.intersects(visRect)) continue;
 
-    // update();
+                doc->renderManager->renderToImage(pageNr, this, "setImage",
+                                                  dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
+                                                  drawGrid.width() * overScale, drawGrid.height() * overScale,
+                                                  true, true);
+            }
+        }
+    }
+
+    update();
 }
 
 void PDFWidget::setPDFDocument(PDFDocument *docu)
@@ -1757,7 +1769,7 @@ void PDFWidget::setSinglePageStep(bool step)
 		return;
 	singlePageStep = step;
 	getScrollArea()->goToPage(realPageIndex);
-    update();
+    delayedUpdate();
 }
 
 void PDFWidget::goFirst()
@@ -1924,7 +1936,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
 			reloadPage(sync);
-            // update();
+            delayedUpdate();
 		}
 	}
 }
