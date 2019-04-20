@@ -2448,6 +2448,7 @@ void ProcessX::onFinished(int error)
 		readFromStandardError();
 	}
 	ended = true;
+	emit finishedProcess();
 }
 
 #ifdef PROFILE_PROCESSES
