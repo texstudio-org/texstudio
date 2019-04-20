@@ -226,6 +226,7 @@ public slots:
 	void syncCurrentPage(bool activate);
 	void fixedScale(qreal scale = 1.0);
 	void setImage(QPixmap img, int pageNr);
+    void delayedUpdate();
 
 signals:
 	void changedPage(int, bool);

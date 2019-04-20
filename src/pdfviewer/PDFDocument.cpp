@@ -601,6 +601,26 @@ PDFWidget::~PDFWidget()
 {
 }
 
+void PDFWidget::delayedUpdate() {
+    #if QT_VERSION >= 0x050000
+        int overScale = devicePixelRatio();
+    #else
+        int overScale = isRetinaMac() ? 2 : 1;
+    #endif
+
+    QRect newRect = rect();
+    PDFDocument *doc = getPDFDocument();
+    if (!doc || !doc->renderManager)
+        return;
+
+    // Fill cache first before updating
+    foreach (int pageNr, pages)
+        image = doc->renderManager->renderToImage(pageNr, nullptr, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale,
+            0, 0, newRect.width() * overScale, newRect.height() * overScale, true, true);
+
+    update();
+}
+
 void PDFWidget::setPDFDocument(PDFDocument *docu)
 {
 	pdfdocument = docu;
@@ -643,7 +663,7 @@ void PDFWidget::windowResized()
 		fitWindow(true);
 		break;
 	}
-	update();
+    delayedUpdate();
 }
 
 void fillRectBorder(QPainter &painter, const QRect &inner, const QRect &outer)
@@ -1602,7 +1622,7 @@ void PDFWidget::reloadPage(bool sync)
 	}
 
 	adjustSize();
-	update();
+    delayedUpdate();
 	updateStatusBar();
 
 	if (0 <= pageHistoryIndex && pageHistoryIndex < pageHistory.size() && pageHistory[pageHistoryIndex].page == realPageIndex ) ;
@@ -1732,7 +1752,7 @@ void PDFWidget::setSinglePageStep(bool step)
 		return;
 	singlePageStep = step;
 	getScrollArea()->goToPage(realPageIndex);
-	update();
+    delayedUpdate();
 }
 
 void PDFWidget::goFirst()
@@ -1899,7 +1919,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
 			reloadPage(sync);
-			update();
+            delayedUpdate();
 		}
 	}
 }
@@ -1910,7 +1930,7 @@ void PDFWidget::fixedScale(qreal scale)
 	if (scaleFactor != scale) {
 		scaleFactor = scale;
 		adjustSize();
-		update();
+        delayedUpdate();
 		updateStatusBar();
 		emit changedZoom(scaleFactor);
 	}
@@ -1931,7 +1951,7 @@ void PDFWidget::fitWidth(bool checked)
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
-			update();
+            delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
 		}
@@ -1962,7 +1982,7 @@ void PDFWidget::fitTextWidth(bool checked)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
 			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
-			update();
+            delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
 		}
@@ -1988,7 +2008,7 @@ void PDFWidget::fitWindow(bool checked)
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
-			update();
+            delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
 		}
