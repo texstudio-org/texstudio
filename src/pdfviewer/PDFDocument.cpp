@@ -293,7 +293,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect &visibleRect)
 
 			}
 		}
-	}
+    }
 	update();
 }
 
@@ -537,6 +537,8 @@ PDFWidget::PDFWidget(bool embedded)
 	dpi = globalConfig->dpi;
 	if (dpi <= 0) dpi = 72; //it crashes if dpi=0
 
+    delayDuration = 10;
+
 	setBackgroundRole(QPalette::Base);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
@@ -635,7 +637,10 @@ void PDFWidget::delayedUpdate() {
         }
     }
 
-    update();
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->setSingleShot(true);
+    timer->start(delayDuration);
 }
 
 void PDFWidget::setPDFDocument(PDFDocument *docu)
@@ -661,8 +666,10 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 		movie = 0;
 	}
 #endif
-	reloadPage();
+    delayDuration = 250;
+    reloadPage();
 	windowResized();
+    delayDuration = 10;
 }
 
 void PDFWidget::windowResized()

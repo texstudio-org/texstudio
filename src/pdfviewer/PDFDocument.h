@@ -157,7 +157,7 @@ public:
 	Q_INVOKABLE void goToDestination(const QString &destName);
 	Q_INVOKABLE void goToPageRelativePosition(int page, float xinpage, float yinpage);
 	Q_INVOKABLE int getPageIndex();
-	Q_INVOKABLE void reloadPage(bool sync = true);
+    Q_INVOKABLE void reloadPage(bool sync = true);
 	void updateStatusBar();
 	void setGridSize(int gx, int gy, bool setAsDefault = false);
 	Q_INVOKABLE int visiblePages() const;
@@ -302,6 +302,7 @@ private:
 	QRect	imageRect;
 	qreal	imageDpi;
 	int	imagePage;
+    int delayDuration;
 
 	PDFMagnifier	*magnifier;
 #ifdef PHONON
