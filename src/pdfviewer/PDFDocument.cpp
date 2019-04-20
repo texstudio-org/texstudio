@@ -615,7 +615,7 @@ void PDFWidget::delayedUpdate() {
 
     // Fill cache first before updating
     foreach (int pageNr, pages)
-        image = doc->renderManager->renderToImage(pageNr, nullptr, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale,
+        doc->renderManager->renderToImage(pageNr, nullptr, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale,
             0, 0, newRect.width() * overScale, newRect.height() * overScale, true, true);
 
     update();
