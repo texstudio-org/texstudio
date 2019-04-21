@@ -227,7 +227,7 @@ void PDFInfoDock::fillInfo()
 		const int id = keys.indexOf(date);
 		if (id != -1) {
 			list->addItem(date + ":");
-			list->addItem(doc->date(date).toString(Qt::SystemLocaleDate));
+			list->addItem(doc->date(date).toLocalTime().toString(Qt::SystemLocaleDate));
 			++i;
 			keys.removeAt(id);
 		}
