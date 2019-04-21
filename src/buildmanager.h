@@ -294,6 +294,7 @@ signals:
 	void processNotification(const QString &message);
 	void standardOutputRead(const QString &data);
 	void standardErrorRead(const QString &data);
+    void finishedProcess();
 private slots:
 	void onStarted();
 	void onError(QProcess::ProcessError error);

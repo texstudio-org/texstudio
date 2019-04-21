@@ -1645,19 +1645,9 @@ bool BuildManager::waitForProcess(ProcessX *p)
 	REQUIRE_RET(!processWaitedFor, false);
 	processWaitedFor = p;
 	m_stopBuildAction->setEnabled(true);
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	QTime time;
-	time.start();
-	while (p && p->isRunning()) {
-		if (time.elapsed() > 2000)
-			qApp->instance()->processEvents(QEventLoop::AllEvents);
-		else
-			qApp->instance()->processEvents(QEventLoop::ExcludeUserInputEvents);
-		// workaround for high CPU consumption when waiting
-		// TODO: replace this loop by notification mechansim
-		ThreadBreaker::msleep(1);
-	}
-	QApplication::restoreOverrideCursor();
+    QEventLoop loop; //This approach avoids spinlock and high CPU usage, and allows user interaction and UI responsivness while compiling.
+    connect(p, SIGNAL(finishedProcess()), &loop, SLOT(quit()));
+    loop.exec(); //exec will delay execution until the signal has arrived
 	bool result = processWaitedFor;
     processWaitedFor = nullptr;
 	m_stopBuildAction->setEnabled(false);
@@ -2458,6 +2448,7 @@ void ProcessX::onFinished(int error)
 		readFromStandardError();
 	}
 	ended = true;
+    emit finishedProcess();
 }
 
 #ifdef PROFILE_PROCESSES
