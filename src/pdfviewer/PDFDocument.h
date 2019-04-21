@@ -302,7 +302,6 @@ private:
 	QRect	imageRect;
 	qreal	imageDpi;
 	int	imagePage;
-    int delayDuration;
 
 	PDFMagnifier	*magnifier;
 #ifdef PHONON

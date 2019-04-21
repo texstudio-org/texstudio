@@ -537,8 +537,6 @@ PDFWidget::PDFWidget(bool embedded)
 	dpi = globalConfig->dpi;
 	if (dpi <= 0) dpi = 72; //it crashes if dpi=0
 
-    delayDuration = 10;
-
 	setBackgroundRole(QPalette::Base);
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
@@ -603,6 +601,17 @@ PDFWidget::~PDFWidget()
 {
 }
 
+/*
+ * The difference between this and the usual update() is that the usual update() will
+ * first render a blank page or scaled up/down version of the current page and then
+ * redraw later. This is because of how the renderer works: it returns an empty page
+ * if the request page is not in cache, and then call setImage once the page is actually
+ * rendered.
+ *
+ * delayedUpdate(), on the other hand, does not request a repaint by itelf. It just tells
+ * the renderer to render the page. The renderer will then call setImage to render whenever
+ * it is ready.
+ */
 void PDFWidget::delayedUpdate() {
     #if QT_VERSION >= 0x050000
         int overScale = devicePixelRatio();
@@ -616,6 +625,7 @@ void PDFWidget::delayedUpdate() {
     if (!doc || !doc->renderManager)
         return;
 
+    // No need to actually call update later since it'll be called by renderManager.
     if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
         if (gridx <= 1 && gridy <= 1)
             doc->renderManager->renderToImage(pages.first(), this, "setImage",
@@ -636,11 +646,6 @@ void PDFWidget::delayedUpdate() {
             }
         }
     }
-
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->setSingleShot(true);
-    timer->start(delayDuration);
 }
 
 void PDFWidget::setPDFDocument(PDFDocument *docu)
@@ -666,10 +671,10 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 		movie = 0;
 	}
 #endif
-    delayDuration = 250;
+    //delayDuration = 250;
     reloadPage();
 	windowResized();
-    delayDuration = 10;
+    //delayDuration = 10;
 }
 
 void PDFWidget::windowResized()
@@ -813,10 +818,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	imageRect = newRect;
 }
 
-void PDFWidget::setImage(QPixmap, int)
+void PDFWidget::setImage(QPixmap, int pageNr)
 {
 	forceUpdate = true;
-    update();
+    update(pageRect(pageNr));
 }
 
 void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
