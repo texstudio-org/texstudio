@@ -647,10 +647,8 @@ void PDFWidget::delayedUpdate() {
         }
     }
 
-    QTimer *timer = new QTimer(this);
-    timer->setSingleShot(true);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(1000); // Update eventually if loading takes too long.
+    // Update eventually if loading takes too long.
+    QTimer::singleShot(1000, this, SLOT(update()));
 }
 
 void PDFWidget::setPDFDocument(PDFDocument *docu)
