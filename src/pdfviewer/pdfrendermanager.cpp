@@ -244,7 +244,7 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	return document;
 }
 
-QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *rec, double xres, double yres, int x, int y, int w, int h, bool cache, bool priority, bool delayMode, Poppler::Page::Rotation rotate)
+QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *rec, double xres, double yres, int x, int y, int w, int h, bool cache, bool priority, int delayTimeout, Poppler::Page::Rotation rotate)
 {
 	if (document.isNull()) return QPixmap();
 	if (pageNr < 0 || pageNr >= cachedNumPages) return QPixmap();
@@ -285,8 +285,18 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 		img = *renderedPages[pageNr];
 	}
 
-    if (!img.isNull() && delayMode)
-        QMetaObject::invokeMethod(info.obj, info.slot, Q_ARG(QPixmap, img), Q_ARG(int, pageNr));
+    // delayTimeout = -1 means it's NOT been called by delayedUpdate
+    // delayTimeout >= 0 means it's been called called by delayedUpdate and delayedUpdate wants to force an update after delayTimeout
+    // Note that when delayTimeout >= 0 is used, and there's no cache, the slot can be called with null img.
+    if (delayTimeout >= 0) {
+        if (!img.isNull())
+            QMetaObject::invokeMethod(info.obj, info.slot, Q_ARG(QPixmap, img), Q_ARG(int, pageNr));
+#if QT_VERSION >= 0x050000
+        else {
+            QTimer::singleShot(delayTimeout, obj, [=]() {QMetaObject::invokeMethod(info.obj, info.slot, Q_ARG(QPixmap, img), Q_ARG(int, pageNr));});
+        }
+#endif
+    }
 
 	//if(img.isNull()) // not cached, thumbnail present ? (fix crash?)
 	//	img=QPixmap::fromImage(page->thumbnail());
