@@ -244,7 +244,7 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	return document;
 }
 
-QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *rec, double xres, double yres, int x, int y, int w, int h, bool cache, bool priority, Poppler::Page::Rotation rotate)
+QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *rec, double xres, double yres, int x, int y, int w, int h, bool cache, bool priority, bool delayMode, Poppler::Page::Rotation rotate)
 {
 	if (document.isNull()) return QPixmap();
 	if (pageNr < 0 || pageNr >= cachedNumPages) return QPixmap();
@@ -284,6 +284,10 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 	if (img.isNull() && renderedPages.contains(pageNr)) { // try cache first
 		img = *renderedPages[pageNr];
 	}
+
+    if (!img.isNull() && delayMode)
+        QMetaObject::invokeMethod(info.obj, info.slot, Q_ARG(QPixmap, img), Q_ARG(int, pageNr));
+
 	//if(img.isNull()) // not cached, thumbnail present ? (fix crash?)
 	//	img=QPixmap::fromImage(page->thumbnail());
 	if (!img.isNull() && !partialImage) { // if a image was found, scale it apropriately

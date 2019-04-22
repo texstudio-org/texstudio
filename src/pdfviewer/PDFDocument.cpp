@@ -631,7 +631,7 @@ void PDFWidget::delayedUpdate() {
             doc->renderManager->renderToImage(pages.first(), this, "setImage",
                                               dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
                                               newRect.width() * overScale, newRect.height() * overScale,
-                                              true, true);
+                                              true, true, true);
         else {
             QRect visRect = visibleRegion().boundingRect();
 
@@ -642,10 +642,15 @@ void PDFWidget::delayedUpdate() {
                 doc->renderManager->renderToImage(pageNr, this, "setImage",
                                                   dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
                                                   drawGrid.width() * overScale, drawGrid.height() * overScale,
-                                                  true, true);
+                                                  true, true, true);
             }
         }
     }
+
+    QTimer *timer = new QTimer(this);
+    timer->setSingleShot(true);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(1000); // Update eventually if loading takes too long.
 }
 
 void PDFWidget::setPDFDocument(PDFDocument *docu)
