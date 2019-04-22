@@ -31,7 +31,7 @@ SetImageForwarder::SetImageForwarder(QObject *parent, QObject *obj, const char *
 }
 
 void SetImageForwarder::setImage() {
-    QMetaObject::invokeMethod(obj, rec, Q_ARG(QPixmap, img), Q_ARG(int, pageNr + 100));
+    QMetaObject::invokeMethod(obj, rec, Q_ARG(QPixmap, img), Q_ARG(int, pageNr));
     deleteLater();
 }
 
