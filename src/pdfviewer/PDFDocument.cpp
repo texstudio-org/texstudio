@@ -646,12 +646,6 @@ void PDFWidget::delayedUpdate() {
             }
         }
     }
-
-    // Update eventually if loading takes too long. For Qt5 and above, lambda expression for SLOT has been used to handle
-    // this within renderToImage itself.
-    #if (QT_VERSION < 0x050000)
-        QTimer::singleShot(1000, this, SLOT(update()));
-    #endif
 }
 
 void PDFWidget::setPDFDocument(PDFDocument *docu)
@@ -677,10 +671,8 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 		movie = 0;
 	}
 #endif
-    //delayDuration = 250;
     reloadPage();
 	windowResized();
-    //delayDuration = 10;
 }
 
 void PDFWidget::windowResized()

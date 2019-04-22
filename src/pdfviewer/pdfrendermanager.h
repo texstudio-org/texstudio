@@ -80,6 +80,22 @@ private:
 #endif
 };
 
+class SetImageForwarder : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit SetImageForwarder(QObject *parent, QObject *obj, const char *rec, QPixmap img, int pageNr);
+    QObject *obj;
+    const char *rec;
+    QPixmap img;
+    int pageNr;
+
+    void forward(int delay);
+
+public slots:
+    void setImage();
+};
 
 class PDFRenderManager : public QObject
 {

@@ -25,6 +25,20 @@ const int kMaxPageZoom = 1000000;
 const qreal kMaxDpiForFullPage = 1000.0;
 
 
+SetImageForwarder::SetImageForwarder(QObject *parent, QObject *obj, const char *rec, QPixmap img, int pageNr):
+    QObject(parent), obj(obj), rec(rec), img(img), pageNr(pageNr)
+{
+}
+
+void SetImageForwarder::setImage() {
+    QMetaObject::invokeMethod(obj, rec, Q_ARG(QPixmap, img), Q_ARG(int, pageNr + 100));
+    deleteLater();
+}
+
+void SetImageForwarder::forward(int delay) {
+    QTimer::singleShot(delay, this, SLOT(setImage()));
+}
+
 PDFQueue::PDFQueue(QObject *parent): QObject(parent), stopped(true), num_renderQueues(1)
 {
 #if QT_VERSION < 0x040400
@@ -291,11 +305,8 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
     if (delayTimeout >= 0) {
         if (!img.isNull())
             QMetaObject::invokeMethod(info.obj, info.slot, Q_ARG(QPixmap, img), Q_ARG(int, pageNr));
-#if QT_VERSION >= 0x050000
-        else {
-            QTimer::singleShot(delayTimeout, obj, [=]() {QMetaObject::invokeMethod(info.obj, info.slot, Q_ARG(QPixmap, img), Q_ARG(int, pageNr));});
-        }
-#endif
+        else
+            (new SetImageForwarder(this, obj, rec, img, pageNr))->forward(delayTimeout);
     }
 
 	//if(img.isNull()) // not cached, thumbnail present ? (fix crash?)
