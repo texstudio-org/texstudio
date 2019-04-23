@@ -293,7 +293,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect &visibleRect)
 
 			}
 		}
-	}
+    }
 	update();
 }
 
@@ -601,6 +601,53 @@ PDFWidget::~PDFWidget()
 {
 }
 
+/*
+ * The difference between this and the usual update() is that the usual update() will
+ * first render a blank page or scaled up/down version of the current page and then
+ * redraw later. This is because of how the renderer works: it returns an empty page
+ * if the request page is not in cache, and then call setImage once the page is actually
+ * rendered.
+ *
+ * delayedUpdate(), on the other hand, does not request a repaint by itelf. It just tells
+ * the renderer to render the page. The renderer will then call setImage to render whenever
+ * it is ready.
+ */
+void PDFWidget::delayedUpdate() {
+    #if QT_VERSION >= 0x050000
+        int overScale = devicePixelRatio();
+    #else
+        int overScale = isRetinaMac() ? 2 : 1;
+    #endif
+
+    qreal newDpi = dpi * scaleFactor;
+    QRect newRect = rect();
+    PDFDocument *doc = getPDFDocument();
+    if (!doc || !doc->renderManager)
+        return;
+
+    // No need to actually call update later since it'll be called by renderManager.
+    if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+        if (gridx <= 1 && gridy <= 1)
+            doc->renderManager->renderToImage(pages.first(), this, "setImage",
+                                              dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
+                                              newRect.width() * overScale, newRect.height() * overScale,
+                                              true, true, 1000);
+        else {
+            QRect visRect = visibleRegion().boundingRect();
+
+            foreach (int pageNr, pages) {
+                QRect drawGrid = pageRect(pageNr);
+                if (!drawGrid.intersects(visRect)) continue;
+
+                doc->renderManager->renderToImage(pageNr, this, "setImage",
+                                                  dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
+                                                  drawGrid.width() * overScale, drawGrid.height() * overScale,
+                                                  true, true, 1000);
+            }
+        }
+    }
+}
+
 void PDFWidget::setPDFDocument(PDFDocument *docu)
 {
 	pdfdocument = docu;
@@ -624,7 +671,7 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 		movie = 0;
 	}
 #endif
-	reloadPage();
+    reloadPage();
 	windowResized();
 }
 
@@ -643,7 +690,7 @@ void PDFWidget::windowResized()
 		fitWindow(true);
 		break;
 	}
-	update();
+    delayedUpdate();
 }
 
 void fillRectBorder(QPainter &painter, const QRect &inner, const QRect &outer)
@@ -769,10 +816,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	imageRect = newRect;
 }
 
-void PDFWidget::setImage(QPixmap, int)
+void PDFWidget::setImage(QPixmap, int pageNr)
 {
 	forceUpdate = true;
-    update();
+    update(pageRect(pageNr));
 }
 
 void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
@@ -1602,7 +1649,7 @@ void PDFWidget::reloadPage(bool sync)
 	}
 
 	adjustSize();
-	update();
+    delayedUpdate();
 	updateStatusBar();
 
 	if (0 <= pageHistoryIndex && pageHistoryIndex < pageHistory.size() && pageHistory[pageHistoryIndex].page == realPageIndex ) ;
@@ -1732,7 +1779,7 @@ void PDFWidget::setSinglePageStep(bool step)
 		return;
 	singlePageStep = step;
 	getScrollArea()->goToPage(realPageIndex);
-	update();
+    delayedUpdate();
 }
 
 void PDFWidget::goFirst()
@@ -1899,7 +1946,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
 			reloadPage(sync);
-			update();
+            delayedUpdate();
 		}
 	}
 }
@@ -1910,7 +1957,7 @@ void PDFWidget::fixedScale(qreal scale)
 	if (scaleFactor != scale) {
 		scaleFactor = scale;
 		adjustSize();
-		update();
+        delayedUpdate();
 		updateStatusBar();
 		emit changedZoom(scaleFactor);
 	}
@@ -1931,7 +1978,7 @@ void PDFWidget::fitWidth(bool checked)
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
-			update();
+            delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
 		}
@@ -1962,7 +2009,7 @@ void PDFWidget::fitTextWidth(bool checked)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
 			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
-			update();
+            delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
 		}
@@ -1988,7 +2035,7 @@ void PDFWidget::fitWindow(bool checked)
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
-			update();
+            delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
 		}
@@ -3274,7 +3321,7 @@ void PDFDocument::setGrid()
 		globalConfig->gridy = gs.mid(p + 1).toInt();
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy);
 	}
-	pdfWidget->windowResized();
+    pdfWidget->windowResized();
 }
 
 void PDFDocument::jumpToPage()
@@ -3708,7 +3755,7 @@ int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int colum
 	path.setFillRule(Qt::WindingFill);
 	if (path.isEmpty()) scrollArea->goToPage(pdfPoint.page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 	pdfWidget->setHighlightPath(pdfPoint.page - 1, path);
-	pdfWidget->update();
+    pdfWidget->delayedUpdate();
 	updateDisplayState(displayFlags);
 	syncToSourceBlocked = false;
 	//pdfWidget->repaint();
