@@ -80,6 +80,22 @@ private:
 #endif
 };
 
+class SetImageForwarder : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit SetImageForwarder(QObject *parent, QObject *obj, const char *rec, QPixmap img, int pageNr);
+    QObject *obj;
+    const char *rec;
+    QPixmap img;
+    int pageNr;
+
+    void forward(int delay);
+
+public slots:
+    void setImage();
+};
 
 class PDFRenderManager : public QObject
 {
@@ -94,7 +110,7 @@ public:
 	static const int HybridLoad = 2;
 	enum Error {NoError, FileOpenFailed, PopplerError, PopplerErrorBadAlloc, PopplerErrorException, FileLocked, FileIncomplete };
 
-	QPixmap renderToImage(int pageNr, QObject *obj, const char *rec, double xres = 72.0, double yres = 72.0, int x = -1, int y = -1, int w = -1, int h = -1, bool cache = true, bool priority = false, Poppler::Page::Rotation rotate = Poppler::Page::Rotate0);
+    QPixmap renderToImage(int pageNr, QObject *obj, const char *rec, double xres = 72.0, double yres = 72.0, int x = -1, int y = -1, int w = -1, int h = -1, bool cache = true, bool priority = false, int delayTimeout = -1, Poppler::Page::Rotation rotate = Poppler::Page::Rotate0);
 	QSharedPointer<Poppler::Document> loadDocument(const QString &fileName, Error &error, const QString &userPasswordStr,  bool foreceLoad = false);
 	void stopRendering();
 	void setCacheSize(int megabyte);
