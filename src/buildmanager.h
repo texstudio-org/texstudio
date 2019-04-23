@@ -187,6 +187,8 @@ public:
 	enum SaveFilesBeforeCompiling {SFBC_ALWAYS, SFBC_ONLY_CURRENT_OR_NAMED, SFBC_ONLY_NAMED};
 	SaveFilesBeforeCompiling saveFilesBeforeCompiling;
 	bool previewRemoveBeamer, previewPrecompilePreamble;
+    QAction *m_buildAction;
+    QAction *m_compileAction;
 private slots:
 	void singleInstanceCompleted(int status);
 	void preamblePrecompileCompleted(int status);
