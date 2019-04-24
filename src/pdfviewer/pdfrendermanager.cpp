@@ -163,10 +163,13 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 				return QSharedPointer<Poppler::Document>();
 			}
 			// create document
-			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000))
+			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000)) {
+				if (queueAdministration->documentData.size() < 1024)
+					queueAdministration->documentData.append(QByteArray(1024 - queueAdministration->documentData.size(), (char) 0));
 				docPtr = Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword);
-			else
+			} else {
 				docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
+			}
 		}
 	} catch (std::bad_alloc) {
 		error = PopplerErrorBadAlloc;
