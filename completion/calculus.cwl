@@ -3,80 +3,80 @@
 #
 # Created by @ppizarror
 # https://github.com/ppizarror/calculator-cwl
-# date: Sat 27 Apr
+# date: Sun 28 Apr
 
 # --------------------------------------------
 # 1. Predefined functions
 # --------------------------------------------
-\ZEROfunction
-\IDENTITYfunction
-\SQUAREfunction
-\SQRTfunction
-\EXPfunction
-\COSfunction
-\TANfunction
-\COSHfunction
-\TANHfunction
-\HEAVISIDEfunction
-\ONEfunction
-\RECIPROCALfunction
-\CUBEfunction
-\LOGfunction
-\SINfunction
-\COTfunction
-\SINHfunction
-\COTHfunction
-\ARCCOSfunction
-\ARCTANfunction
-\ARCOSHfunction
-\ARTANHfunction
-\ARCSINfunction
-\ARCCOTfunction
-\ARSINHfunction
-\ARCOTHfunction
+\ZEROfunction#n
+\IDENTITYfunction#n
+\SQUAREfunction#n
+\SQRTfunction#n
+\EXPfunction#n
+\COSfunction#n
+\TANfunction#n
+\COSHfunction#n
+\TANHfunction#n
+\HEAVISIDEfunction#n
+\ONEfunction#n
+\RECIPROCALfunction#n
+\CUBEfunction#n
+\LOGfunction#n
+\SINfunction#n
+\COTfunction#n
+\SINHfunction#n
+\COTHfunction#n
+\ARCCOSfunction#n
+\ARCTANfunction#n
+\ARCOSHfunction#n
+\ARTANHfunction#n
+\ARCSINfunction#n
+\ARCCOTfunction#n
+\ARSINHfunction#n
+\ARCOTHfunction#n
 
 # --------------------------------------------
 # 2. Operations with functions
 # --------------------------------------------
-\CONSTANTfunction{num}{Function}
-\SUMfunction{function1}{function2}{Function}
-\SUBTRACTfunction{function1}{function2}{Function}
-\PRODUCTfunction{function1}{function2}{Function}
-\QUOTIENTfunction{function1}{function2}{Function}
-\COMPOSITIONfunction{function1}{function2}{Function}
-\SCALEfunction{num}{function}{Function}
-\SCALEVARIABLEfunction{num}{function}{Function}
-\POWERfunction{function}{num}{Function}
-\LINEARCOMBINATIONfunction{num1}{function1}{num2}{function2}{Function}
+\CONSTANTfunction{num}{Function}#d
+\SUMfunction{function1}{function2}{Function}#d
+\SUBTRACTfunction{function1}{function2}{Function}#d
+\PRODUCTfunction{function1}{function2}{Function}#d
+\QUOTIENTfunction{function1}{function2}{Function}#d
+\COMPOSITIONfunction{function1}{function2}{Function}#d
+\SCALEfunction{num}{function}{Function}#d
+\SCALEVARIABLEfunction{num}{function}{Function}#d
+\POWERfunction{function}{num}{Function}#d
+\LINEARCOMBINATIONfunction{num1}{function1}{num2}{function2}{Function}#d
 
 # --------------------------------------------
 # 3. Polynomial functions
 # --------------------------------------------
-\newlpoly{Function}{a}{b}
-\newqpoly{Function}{a}{b}{c}
-\newcpoly{Function}{a}{b}{c}{d}
+\newlpoly{Function}{a}{b}#d
+\newqpoly{Function}{a}{b}{c}#d
+\newcpoly{Function}{a}{b}{c}{d}#d
 
-\renewlpoly
-\renewqpoly
-\renewcpoly
+\renewlpoly#n
+\renewqpoly#n
+\renewcpoly#n
 
-\ensurelpoly
-\ensureqpoly
-\ensurecpoly
+\ensurelpoly#n
+\ensureqpoly#n
+\ensurecpoly#n
 
-\forcelpoly
-\forceqpoly
-\forcecpoly
+\forcelpoly#n
+\forceqpoly#n
+\forcecpoly#n
 
 # --------------------------------------------
 # 4. Vector-valued functions
 # --------------------------------------------
-\PARAMETRICfunction{Xfunction}{Yfunction}{myvectorfunction}
-\VECTORfunction{Xfunction}{Yfunction}{myvectorfunction}
-\newvectorfunction{Function}{instructions to compute x,D,y,Dy from t}
+\PARAMETRICfunction{Xfunction}{Yfunction}{myvectorfunction}#d
+\VECTORfunction{Xfunction}{Yfunction}{myvectorfunction}#d
+\newvectorfunction{Function}{instructions to compute x,D,y,Dy from t}#d
 
 # --------------------------------------------
 # 5. Vector-valued functions in polar coordinates
 # --------------------------------------------
-\POLARfunction{rfunction}{Polarfunction}
-\newpolarfunction{Function}{instructions to compute r,Dr from t}
+\POLARfunction{rfunction}{Polarfunction}#d
+\newpolarfunction{Function}{instructions to compute r,Dr from t}#d
