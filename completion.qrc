@@ -27,6 +27,8 @@
 <file>completion/booktabs.cwl</file>
 <file>completion/braket.cwl</file>
 <file>completion/calc.cwl</file>
+<file>completion/calculator.cwl</file>
+<file>completion/calculus.cwl</file>
 <file>completion/cancel.cwl</file>
 <file>completion/caption.cwl</file>
 <file>completion/cases.cwl</file>
