@@ -33,6 +33,8 @@
 \newrefsegment
 \DeclareBibliographyCategory{category}
 \addtocategory{category}{bibid}
+\defbibenvironment{name}{begincode%text}{endcode%text}{itemcode%text}
+\defbibheading{name}[title%text]{code}
 \defbibheading{name}{code}
 \defbibnote{name}{text}
 \defbibfilter{name}{code}
