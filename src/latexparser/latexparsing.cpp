@@ -274,7 +274,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }
             if (command == "\\verb" || command == "\\verb*") {
                 // special treament for verb
-                if (i + 1 < tl.length() && tl.at(i + 1).type == Token::symbol && tl.at(i + 1).start == tk.start + tk.length) {
+                if (i + 1 < tl.length()
+                        // While LaTeX allows any character as \verb delimiter following immediately after the
+                        // \verb command, we currently only support single characters that are parsed into a
+                        // separate token; e.g. symbols and punctuation.
+                        // Note that \verb highlighting is done via QNFA, which only highlights a smaller subset
+                        // of the above.
+                        && (tl.at(i + 1).length == 1)
+                        && tl.at(i + 1).start == tk.start + tk.length) {
                     // well formed \verb
                     verbatimSymbol = line.mid(tl.at(i + 1).start, 1);
                     i++;
