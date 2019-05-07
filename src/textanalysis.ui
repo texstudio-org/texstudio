@@ -276,7 +276,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
       <item row="4" column="0" colspan="2">
        <widget class="QLabel" name="label_9">
         <property name="text">
-         <string>Minimum occurence count:</string>
+         <string>Minimum occurrence count:</string>
         </property>
        </widget>
       </item>

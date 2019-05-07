@@ -328,7 +328,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cFind->setToolTip(tr("Text or pattern to search for"));
     bNext->setToolTip(tr("Find next"));
     bPrevious->setToolTip(tr("Find previous"));
-    bCount->setToolTip(tr("Count occurences"));
+    bCount->setToolTip(tr("Count occurrences"));
     cReplace->setToolTip(tr("Replacement text"));
     bReplaceNext->setToolTip(tr("Replace and find next"));
     bReplacePrevious->setToolTip(tr("Replace and find previous"));

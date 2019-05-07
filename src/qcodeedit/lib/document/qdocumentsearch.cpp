@@ -514,7 +514,7 @@ void QDocumentSearch::setScope(const QDocumentCursor& c)
 	\param backward whether to go backward or forward
 	\param all if true, the whole document will be searched first, all matches recorded and available for further navigation
 	\param again if a search match is selected it will be replaced, than a normal search (no replace) will be performed
-	\return The number of found occurences
+    \return The number of found occurrences
 
 	\note The search will start at the first character left/right from the selected text
 */
@@ -733,7 +733,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 											QMessageBox::Yes);
 						rep=ret==QMessageBox::Yes;
 						if (ret==QMessageBox::Cancel) {
-							QMessageBox::information(m_editor,tr("Replacing Canceled"),tr("%1 (of %2 found so far) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
+                            QMessageBox::information(m_editor,tr("Replacing Canceled"),tr("%1 (of %2 found so far) occurrences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
 							return foundCount;
 						}
 					}
@@ -804,7 +804,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				ret=QMessageBox::question(
 								m_editor,
 								tr("Replacing Finished"),
-								tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount)+"\n\n"+
+                                tr("%1 (of %2) occurrences have been replaced").arg(replaceCount).arg(foundCount)+"\n\n"+
 								tr("Do you want to continue replacing from the beginning?"),
 								QMessageBox::Yes
 								| QMessageBox::No,
@@ -825,7 +825,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				return result;
 			}
 		} else if ( !hasOption(Silent) )
-			QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 (of %2) occurences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
+            QMessageBox::information(m_editor,tr("Replacing Finished"),tr("%1 (of %2) occurrences have been replaced").arg(replaceCount).arg(foundCount),QMessageBox::Ok);
 	}
 	
 	

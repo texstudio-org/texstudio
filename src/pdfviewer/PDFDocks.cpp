@@ -495,8 +495,8 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument *doc): QDockWidget(doc), docume
 
 	// set texts
 	leFind->setToolTip(tr("Text or pattern to search for"));
-	bNext->setToolTip(tr("Find next occurence"));
-	bPrevious->setToolTip(tr("Find previous occurence"));
+    bNext->setToolTip(tr("Find next occurrence"));
+    bPrevious->setToolTip(tr("Find previous occurrence"));
 
 	label->setText(tr(" Find :"));
 	label->setMinimumWidth(label->sizeHint().width());

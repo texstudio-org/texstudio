@@ -588,7 +588,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
  * \param s
  * \param stdOut output parameter
  * \param stdErr output parameter
- * \return a copy of s truncated to the first occurence of an output redirection
+ * \return a copy of s truncated to the first occurrence of an output redirection
  */
 QString BuildManager::extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr)
 {
