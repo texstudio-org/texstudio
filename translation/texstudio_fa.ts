@@ -551,12 +551,12 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="349"/>
         <source>Internal Precompile</source>
-        <translation type="unfinished"/>
+        <translation>پیش‌پردازش داخلی</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="350"/>
         <source>Recompile Bibliography</source>
-        <translation type="unfinished"/>
+        <translation>بازپردازش فهرست مراجع</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="383"/>
@@ -11699,12 +11699,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="482"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F2</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="492"/>
