@@ -782,5 +782,9 @@ CommandDescription extractCommandDefKeyVal(QString line, QString &key)
 		cd.args = 1;
 		cd.argTypes << Token::width;
 	}
+    if (vals == "#l") {
+        cd.args = 1;
+        cd.argTypes << Token::label;
+    }
 	return cd;
 }
