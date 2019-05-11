@@ -1562,10 +1562,12 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 				if (cw.word == "#L") {
 					// complete with length
 					forcedLength = true;
-					forcedKeyval = false;
-					handled = false;
-					break;
-				}
+                    forcedKeyval = false;
+                    handled = false;
+                    break;
+                }
+                handled=true;
+                break;
 			}
 			if (cw.word.startsWith('%')) {
 				QString specialList = cw.word;
