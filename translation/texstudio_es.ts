@@ -5131,12 +5131,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="498"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Encontrar siguiente repetición</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="499"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Encontrar repetición anterior</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="501"/>
@@ -6013,7 +6013,7 @@ Por favor ingrese la contraseña:</translation>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="736"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 (de %2 encontrados) repeticiones han sido sustituidas</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
@@ -6044,7 +6044,7 @@ Empezar de nuevo desde el principio? </translation>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="807"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="828"/>
         <source>%1 (of %2) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 (de %2) repeticiones han sido sustituidas</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="808"/>
@@ -7378,7 +7378,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="331"/>
         <source>Count occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Contar apariciones</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
@@ -9422,7 +9422,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="816"/>
         <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar todas las &amp;apariciones</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="817"/>
@@ -11478,7 +11478,7 @@ Sí &quot;ignorar completamente&quot; es seleccionada, las palabras cortas son i
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation type="unfinished"/>
+        <translation>Conteo mínimo de ocurrencia:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>
