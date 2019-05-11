@@ -1445,7 +1445,9 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>#keyvals:&lt;command&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphicx.cwl in source code. To specify possible values for keys, add them after #  e.g. <code>mode=#text,math</code><br>
   Instead of single keys/values, complete special lists can be given, e.g. <code>color=#%color</code>, see also tikz.cwl.<br>
   <code>command</code> can consist of two parts, e.g. \documentclass/thesis which is only valid when the command \documentclass uses thesis as argument.<br>
-  If #c is added, the keyvals are only used for completion, not for syntax checking
+  If #c is added, the keyvals are only used for completion, not for syntax checking<br>
+  If ##L is added to a key, a length is expected as argument.<br>
+  If ##l is added to a key, the argument is defining a label. (see listings.cwl)<br>
   </li>
   <li><code>#endkeyvals</code> (at start of line): end definition of keyvals, see graphicx.cwl in source code</li>
   <li><code>#ifOption:&lt;option&gt;</code> (at start of line): the following block is only loaded if &lt;option&gt; was used in the usepackage command, e.g. \usepackage[svgnames]{color} -> option=svgnames</li>
