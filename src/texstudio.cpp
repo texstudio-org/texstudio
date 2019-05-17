@@ -401,7 +401,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     enlargedViewer=false;
 
 	//setup autosave timer
-	connect(&autosaveTimer, SIGNAL(timeout()), this, SLOT(fileSaveAll()));
+    connect(&autosaveTimer, SIGNAL(timeout()), this, SLOT(fileSaveAllFromTimer()));
 	if (configManager.autosaveEveryMinutes > 0) {
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
@@ -2650,6 +2650,16 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 void Texstudio::fileSaveAll()
 {
 	fileSaveAll(true, true);
+}
+/*!
+ * \brief save all files
+ *
+ * This functions is called from timer (auto save).
+ * It does *not* save unnamed files.
+ */
+void Texstudio::fileSaveAllFromTimer()
+{
+    fileSaveAll(false, false);
 }
 /*!
  * \brief save all files

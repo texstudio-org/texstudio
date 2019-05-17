@@ -223,6 +223,7 @@ protected slots:
 	void fileRestoreSession(bool showProgress = true, bool warnMissing = true);
 	void fileSave(const bool saveSilently = false);
 	void fileSaveAll();
+    void fileSaveAllFromTimer();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
 	void fileSaveAs(const QString &fileName = "") { fileSaveAs(fileName, false); }
 private slots:
