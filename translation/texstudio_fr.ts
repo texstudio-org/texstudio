@@ -8263,13 +8263,13 @@ Faites-vous confiance à ce script ?</translation>
     <message>
         <location filename="../src/structuretreeview.cpp" line="80"/>
         <source>Insert Label</source>
-        <translation>Insérer un label</translation>
+        <translation>Insérer le label</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="84"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation>Insérer %1 de label</translation>
+        <translation>Insérer %1 du label</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="88"/>
@@ -8977,7 +8977,7 @@ n&apos;a pas pu être supprimé.</translation>
         <location filename="../src/additionaltranslations.cpp" line="244"/>
         <location filename="../src/texstudio.cpp" line="268"/>
         <source>Central</source>
-        <translation>Central</translation>
+        <translation>Centrale</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="245"/>
