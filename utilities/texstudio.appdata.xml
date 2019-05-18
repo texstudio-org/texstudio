@@ -48,7 +48,8 @@
   <url type="bugtracker">https://github.com/texstudio-org/texstudio/issues</url>
   <url type="faq">https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions</url>
   
-  <developer_name>Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann</developer_name>
+  <developer_name>Benito van der Zander</developer_name>
+  <content_rating type="oars-1.1" />
   
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   
