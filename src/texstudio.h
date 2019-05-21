@@ -86,9 +86,9 @@ public slots:
 	void hideSplash(); ///< hide splash screen
 	void startupCompleted();
 	void onOtherInstanceMessage(const QString &);  ///< For messages for the single instance
-
 	void fuzzCursorHistory();
 	void fuzzBackForward();
+    void setBuildButtonsDisabled(bool c);
 
 
 protected:

@@ -139,10 +139,6 @@ public:
 
 	void checkLatexConfiguration(bool &noWarnAgain);
 
-	QAction *stopBuildAction()
-	{
-		return m_stopBuildAction;
-	}
 
 public slots:
     bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
@@ -213,6 +209,7 @@ signals:
 	void beginRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags);
 	void endRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags);
 	void endRunningCommands(const QString &commandMain, bool latex, bool pdf, bool asyncPdf);
+    void buildRunning(bool c);
 private:
 
 	void initDefaultCommandNames();
@@ -246,7 +243,6 @@ public:
 	}
 
 private:
-	QAction *m_stopBuildAction;
 	QStringList previewFileNames;
 	QMap<QString, PreviewSource> previewFileNameToSource;
 	QHash<QString, QString> preambleHash;
@@ -294,7 +290,7 @@ signals:
 	void processNotification(const QString &message);
 	void standardOutputRead(const QString &data);
 	void standardErrorRead(const QString &data);
-    void finishedProcess();
+    void processFinished();
 private slots:
 	void onStarted();
 	void onError(QProcess::ProcessError error);

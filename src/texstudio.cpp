@@ -963,10 +963,12 @@ void Texstudio::setupMenus()
 
 	menu = newManagedMenu("main/tools", tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-	newManagedAction(menu, "quickbuild", tr("&Build && View"), SLOT(commandFromAction()), (QList<QKeySequence>() << Qt::Key_F5 << Qt::Key_F1), "build")->setData(BuildManager::CMD_QUICK);
-	newManagedAction(menu, "compile", tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6, "compile")->setData(BuildManager::CMD_COMPILE);
-	newManagedAction(menu, "stopcompile", buildManager.stopBuildAction())->setText(buildManager.tr("Stop Compile")); // resetting text necessary for language updates
-	buildManager.stopBuildAction()->setParent(menu);  // actions need to be a child of the menu in order to be configurable in toolbars
+    newManagedAction(menu, "quickbuild", tr("&Build && View"), SLOT(commandFromAction()), (QList<QKeySequence>() << Qt::Key_F5 << Qt::Key_F1), "build")->setData(BuildManager::CMD_QUICK);
+    newManagedAction(menu, "compile", tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6, "compile")->setData(BuildManager::CMD_COMPILE);
+    QAction *stopAction = new QAction(getRealIcon("stop"), tr("Stop Compile"), menu);
+    connect(stopAction, SIGNAL(triggered()), &buildManager, SLOT(killCurrentProcess()));
+    newManagedAction(menu, "stopcompile", stopAction)->setEnabled(false);
+    connect(&buildManager,SIGNAL(buildRunning(bool)),this,SLOT(setBuildButtonsDisabled(bool)));
 	newManagedAction(menu, "view", tr("&View"), SLOT(commandFromAction()), Qt::Key_F7, "viewer")->setData(BuildManager::CMD_VIEW);
 	newManagedAction(menu, "bibtex", tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F8)->setData(BuildManager::CMD_BIBLIOGRAPHY);
 	newManagedAction(menu, "glossary", tr("&Glossary"), SLOT(commandFromAction()), Qt::Key_F9)->setData(BuildManager::CMD_GLOSSARY);
@@ -6901,10 +6903,10 @@ void Texstudio::viewCloseElement()
 	if (completer && completer->isVisible() && completer->close()) {
 		return;
 	}
-	if (buildManager.stopBuildAction()->isEnabled()) {
-		buildManager.stopBuildAction()->trigger();
-		return;
-	}
+    if (getManagedAction("main/tools/stopcompile")->isEnabled()) {
+        getManagedAction("main/tools/stopcompile")->trigger();
+        return;
+    }
 
 #ifndef NO_POPPLER_PREVIEW
 	// close element in focussed viewer
@@ -7751,6 +7753,13 @@ void Texstudio::fuzzBackForward()
 	rep = random() % (1 + cursorHistory->count());
 	for (int j = 0; j < rep; j++) goForward();
 #endif
+}
+
+void Texstudio::setBuildButtonsDisabled(bool c)
+{
+    getManagedAction("main/tools/stopcompile")->setEnabled(c);
+    getManagedAction("main/tools/quickbuild")->setEnabled(!c);
+    getManagedAction("main/tools/compile")->setEnabled(!c);
 }
 
 void Texstudio::fuzzCursorHistory()

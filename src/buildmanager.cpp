@@ -269,11 +269,7 @@ BuildManager::BuildManager(): processWaitedFor(nullptr)
 #endif
 {
 	initDefaultCommandNames();
-	connect(this, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequestedDefault(QString, QString *, bool *)));
-
-	m_stopBuildAction = new QAction(getRealIcon("stop"), tr("Stop Compile"), this);
-	connect(m_stopBuildAction, SIGNAL(triggered()), this, SLOT(killCurrentProcess()));
-	m_stopBuildAction->setEnabled(false);
+    connect(this, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequestedDefault(QString, QString *, bool *)));
 }
 
 BuildManager::~BuildManager()
@@ -1644,13 +1640,13 @@ bool BuildManager::waitForProcess(ProcessX *p)
 {
 	REQUIRE_RET(!processWaitedFor, false);
 	processWaitedFor = p;
-	m_stopBuildAction->setEnabled(true);
     QEventLoop loop; //This approach avoids spinlock and high CPU usage, and allows user interaction and UI responsivness while compiling.
-    connect(p, SIGNAL(finishedProcess()), &loop, SLOT(quit()));
-    loop.exec(); //exec will delay execution until the signal has arrived
+    connect(p, SIGNAL(processFinished()), &loop, SLOT(quit()));
+    emit buildRunning(true);
+    loop.exec(); //exec will delay execution until the signal has arrived    
+    emit buildRunning(false);
 	bool result = processWaitedFor;
     processWaitedFor = nullptr;
-	m_stopBuildAction->setEnabled(false);
 	return result;
 }
 
@@ -2448,7 +2444,7 @@ void ProcessX::onFinished(int error)
 		readFromStandardError();
 	}
 	ended = true;
-    emit finishedProcess();
+    emit processFinished();
 }
 
 #ifdef PROFILE_PROCESSES
