@@ -5011,9 +5011,6 @@ void Texstudio::quickTabular()
 	QStringList borderlist, alignlist;
 	borderlist << QString("|") << QString("||") << QString("") << QString("@{}");
 	alignlist << QString("c") << QString("l") << QString("r") << QString("p{3cm}") << QString(">{\\raggedright\\arraybackslash}p{3cm}") << QString(">{\\centering\\arraybackslash}p{%<3cm%>}") << QString(">{\\raggedleft\\arraybackslash}p{3cm}");
-	QString al = "";
-	QString vs = "";
-	QString el = "";
 	QString tag;
 	TabDialog *quickDlg = new TabDialog(this, "Tabular");
     QTableWidgetItem *item=nullptr;
@@ -5031,12 +5028,12 @@ void Texstudio::quickTabular()
 			if (quickDlg->liDataList.at(i).topborder) tag += QString("\\hline \n");
 			if (quickDlg->ui.checkBoxMargin->isChecked()) tag += "\\rule[-1ex]{0pt}{2.5ex} ";
 			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto > quickDlg->liDataList.at(i).mergefrom)) {
-				el = "";
+				QString el = "";
 				for ( int j = 0; j < x; j++) {
 					item = quickDlg->ui.tableWidget->item(i, j);
-
+					QString itemText = (item) ? textToLatex(item->text()) : "";
 					if (j == quickDlg->liDataList.at(i).mergefrom - 1) {
-						if (item) el += item->text();
+						el += itemText;
 						tag += QString("\\multicolumn{");
 						tag += QString::number(quickDlg->liDataList.at(i).mergeto - quickDlg->liDataList.at(i).mergefrom + 1);
 						tag += QString("}{");
@@ -5047,18 +5044,18 @@ void Texstudio::quickTabular()
 						else tag += borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
 						tag += QString("}{");
 					} else if (j == quickDlg->liDataList.at(i).mergeto - 1) {
-						if (item) el += item->text();
+						el += itemText;
 						if (el.isEmpty()) el = placeholder;
 						tag += el + QString("}");
 						if (j < x - 1) tag += " & ";
 						else tag += QString(" \\\\ \n");
 					} else if ((j > quickDlg->liDataList.at(i).mergefrom - 1) && (j < quickDlg->liDataList.at(i).mergeto - 1)) {
-						if (item) el += item->text();
+						el += itemText;
 					} else {
-						if (item) {
-							if (item->text().isEmpty()) tag += placeholder;
-							else tag += item->text();
-						} else tag += placeholder;
+						if (itemText.isEmpty()) {
+							itemText = placeholder;
+						}
+						tag += itemText;
 						if (j < x - 1) tag += " & ";
 						else tag += QString(" \\\\ \n");
 					}
@@ -5067,16 +5064,18 @@ void Texstudio::quickTabular()
 			} else {
 				for ( int j = 0; j < x - 1; j++) {
 					item = quickDlg->ui.tableWidget->item(i, j);
-					if (item) {
-						if (item->text().isEmpty()) tag += placeholder + QString(" & ");
-						else tag += item->text() + QString(" & ");
-					} else tag += placeholder + QString(" & ");
+					QString itemText = (item) ? textToLatex(item->text()) : "";
+					if (itemText.isEmpty()) {
+						itemText = placeholder;
+					}
+					tag += itemText + QString(" & ");
 				}
 				item = quickDlg->ui.tableWidget->item(i, x - 1);
-				if (item) {
-					if (item->text().isEmpty()) tag += placeholder + QString(" \\\\ \n");
-					else tag += item->text() + QString(" \\\\ \n");
-				} else tag += placeholder + QString(" \\\\ \n");
+				QString itemText = (item) ? textToLatex(item->text()) : "";
+				if (itemText.isEmpty()) {
+					itemText = placeholder;
+				}
+				tag += itemText + QString(" \\\\ \n");
 			}
 		}
 		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag += QString("\\hline \n\\end{tabular} ");
