@@ -1666,7 +1666,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="2239"/>
         <source>Line Wrapping:</source>
-        <translation>Retours à la ligne automatiques :</translation>
+        <translation>Retour à la ligne automatique :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2246"/>
@@ -1756,22 +1756,22 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="2372"/>
         <source>No Line Wrap</source>
-        <translation>Pas de coupure de ligne</translation>
+        <translation>Désactivé</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2377"/>
         <source>Soft Line Wrap at Window Edge</source>
-        <translation>Coupure de ligne douce en bord de fenêtre</translation>
+        <translation>Fictif en bord de fenêtre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2382"/>
         <source>Soft Line Wrap after max. Characters</source>
-        <translation>Coupure de ligne douce après un maximum de caractères</translation>
+        <translation>Fictif au delà d&apos;un nb maximal de caractères</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2387"/>
         <source>Hard Line Wrap after max. Characters</source>
-        <translation>Coupure de ligne brutale après un maximum de caractères</translation>
+        <translation>Effectif au delà d&apos;un nb maximal de caractères</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2395"/>
@@ -2885,7 +2885,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="510"/>
         <source>Adv. Editor</source>
-        <translation>Édit. avancé</translation>
+        <translation>Éditeur avancé</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="511"/>
@@ -6164,7 +6164,7 @@ Reprendre depuis le début ?</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
         <source>Dynamic line wrapping</source>
-        <translation>Enrouler les lignes dynamiquement</translation>
+        <translation>Retour à la ligne automatique dynamique</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="694"/>
@@ -10785,7 +10785,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3624"/>
         <source>Join lines before wrapping</source>
-        <translation>Joindre les lignes avant d&apos;enrouler</translation>
+        <translation>Joindre les lignes avant les retours à la ligne automatique</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3638"/>
