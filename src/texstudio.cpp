@@ -5008,24 +5008,24 @@ void Texstudio::quickTabular()
 {
 	if ( !currentEditorView() )	return;
 	QString placeholder;//(0x2022);
-	QStringList borderlist, alignlist;
-	borderlist << QString("|") << QString("||") << QString("") << QString("@{}");
-	alignlist << QString("c") << QString("l") << QString("r") << QString("p{3cm}") << QString(">{\\raggedright\\arraybackslash}p{3cm}") << QString(">{\\centering\\arraybackslash}p{%<3cm%>}") << QString(">{\\raggedleft\\arraybackslash}p{3cm}");
-	QString tag;
+	QStringList borderlist;
+	borderlist << "|" << "||" << "" << "@{}";
+	QStringList alignlist;
+	alignlist << "c" << "l" << "r" << "p{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}p{%<3cm%>}" << ">{\\raggedleft\\arraybackslash}p{3cm}";
 	TabDialog *quickDlg = new TabDialog(this, "Tabular");
     QTableWidgetItem *item=nullptr;
 	if ( quickDlg->exec() ) {
 		int y = quickDlg->ui.spinBoxRows->value();
 		int x = quickDlg->ui.spinBoxColumns->value();
-		tag = QString("\\begin{tabular}{");
+		QString tag = "\\begin{tabular}{";
 		for ( int j = 0; j < x; j++) {
 			tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
 			tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
 		}
 		tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-		tag += QString("}\n");
+		tag += "}\n";
 		for ( int i = 0; i < y; i++) {
-			if (quickDlg->liDataList.at(i).topborder) tag += QString("\\hline \n");
+			if (quickDlg->liDataList.at(i).topborder) tag += "\\hline\n";
 			if (quickDlg->ui.checkBoxMargin->isChecked()) tag += "\\rule[-1ex]{0pt}{2.5ex} ";
 			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto > quickDlg->liDataList.at(i).mergefrom)) {
 				QString el = "";
@@ -5034,21 +5034,21 @@ void Texstudio::quickTabular()
 					QString itemText = (item) ? textToLatex(item->text()) : "";
 					if (j == quickDlg->liDataList.at(i).mergefrom - 1) {
 						el += itemText;
-						tag += QString("\\multicolumn{");
+						tag += "\\multicolumn{";
 						tag += QString::number(quickDlg->liDataList.at(i).mergeto - quickDlg->liDataList.at(i).mergefrom + 1);
-						tag += QString("}{");
+						tag += "}{";
 						if ((j == 0) && (quickDlg->colDataList.at(j).leftborder < 2)) tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
 						if (quickDlg->colDataList.at(j).alignment < 3) tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
-						else tag += QString("c");
+						else tag += "c";
 						if (quickDlg->liDataList.at(i).mergeto == x) tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
 						else tag += borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
-						tag += QString("}{");
+						tag += "}{";
 					} else if (j == quickDlg->liDataList.at(i).mergeto - 1) {
 						el += itemText;
 						if (el.isEmpty()) el = placeholder;
-						tag += el + QString("}");
+						tag += el + "}";
 						if (j < x - 1) tag += " & ";
-						else tag += QString(" \\\\ \n");
+						else tag += " \\\\\n";
 					} else if ((j > quickDlg->liDataList.at(i).mergefrom - 1) && (j < quickDlg->liDataList.at(i).mergeto - 1)) {
 						el += itemText;
 					} else {
@@ -5057,7 +5057,7 @@ void Texstudio::quickTabular()
 						}
 						tag += itemText;
 						if (j < x - 1) tag += " & ";
-						else tag += QString(" \\\\ \n");
+						else tag += " \\\\\n";
 					}
 
 				}
@@ -5068,18 +5068,18 @@ void Texstudio::quickTabular()
 					if (itemText.isEmpty()) {
 						itemText = placeholder;
 					}
-					tag += itemText + QString(" & ");
+					tag += itemText + " & ";
 				}
 				item = quickDlg->ui.tableWidget->item(i, x - 1);
 				QString itemText = (item) ? textToLatex(item->text()) : "";
 				if (itemText.isEmpty()) {
 					itemText = placeholder;
 				}
-				tag += itemText + QString(" \\\\ \n");
+				tag += itemText + " \\\\\n";
 			}
 		}
-		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag += QString("\\hline \n\\end{tabular} ");
-		else tag += QString("\\end{tabular} ");
+		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag += "\\hline\n\\end{tabular}";
+		else tag += "\\end{tabular}";
 		if (tag.contains("arraybackslash")) tag = "% \\usepackage{array} is required\n" + tag;
 		insertTag(tag, 0, 0);
 	}
