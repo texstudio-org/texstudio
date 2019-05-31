@@ -37,5 +37,12 @@ bool startTerminalEmulator(const QString &workingDir)
 	QStringList args;
 	args = command.split(' ');
 	command = args.takeFirst();
+#ifdef Q_OS_MAC
+	// for Terminal.app to open in a specific path it is not sufficent that the
+	// workingDir is set. We have to pass it explicitly as argument.
+	args << workingDir;
 	return QProcess::startDetached(command, args, workingDir);
+#else
+	return QProcess::startDetached(command, args, workingDir);
+#endif
 }
