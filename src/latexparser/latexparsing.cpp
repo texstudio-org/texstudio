@@ -37,7 +37,7 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
 	present.dlh = dlh;
 	present.argLevel = 0;
 	QChar verbatimSymbol;
-	const QString specialChars = "{([})]";
+    const QString specialChars = "{([<})]>";
 	int i = 0;
 	for (; i < s.length(); i++) {
 		QChar c = s.at(i);
@@ -114,15 +114,15 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
 		}
 
 		int l = specialChars.indexOf(c);
-		if (l > -1 && l < 3) {
+        if (l > -1 && l < 4) {
 			present.type = Token::TokenType(int(Token::openBrace) + l);
 			present.length = 1;
 			lexed.append(present);
 			present.type = Token::none;
 			continue;
 		}
-		if (l > 2) {
-			present.type = Token::TokenType(int(Token::closeBrace) + (l - 3));
+        if (l > 3) {
+            present.type = Token::TokenType(int(Token::closeBrace) + (l - 4));
 			present.length = 1;
 			lexed.append(present);
 			present.type = Token::none;
@@ -407,6 +407,15 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         continue;
                     }
                 }
+                if (tk.type == Token::less) {
+                    if (cd.overlayArgs > 0) {
+                        cd.overlayArgs--;
+                        tk.subtype = cd.overlayTypes.takeFirst();
+                    } else {
+                        lexed << tk;
+                        continue;
+                    }
+                }
 
                 tk.level = level; // push old level on stack in order to restore that level later and to distinguish between arguments and arbitrary braces
                 tk.argLevel = ConfigManager::RUNAWAYLIMIT; // run-away prevention
@@ -430,11 +439,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
         }
 	    if (Token::tkClose().contains(tk.type)) {
 		// special treament for brackets as they don't have any syntaxtical meaning except with some commands
-            if (tk.type == Token::closeBracket ) {
+            if (tk.type == Token::closeBracket || tk.type == Token::greater ) {
                 if (stack.isEmpty())
                     continue;
                 if (stack.top().type != Token::opposite(tk.type))
-                    continue; //closing bracket is ignored if no correct open is present
+                    continue; //closing bracket/> is ignored if no correct open is present
             }
             if (!stack.isEmpty() && stack.top().type == Token::opposite(tk.type)) {
                 Token tk1 = stack.pop();

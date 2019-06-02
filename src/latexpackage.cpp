@@ -225,7 +225,10 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					CommandDescription cd_old = package.commandDescriptions.value(cmd);
 					if (cd_old.args == cd.args && cd_old.optionalArgs > cd.optionalArgs ) {
 						cd = cd_old;
-					}
+                    }
+                    if (cd_old.args == cd.args && cd_old.optionalArgs == cd.optionalArgs && cd_old.overlayArgs > cd.overlayArgs ) {
+                        cd = cd_old;
+                    }
 					if (cd_old.args < cd.args && cd_old.args > 0) {
 						cd = cd_old;
 #ifndef QT_NO_DEBUG
@@ -672,6 +675,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if ((arg == "label" || arg == "%<label%>") && definition.contains('r')) return Token::labelRef;  // reference with keyword label
 	if ((arg == "label" || arg == "%<label%>") && definition.contains('l')) return Token::label;
 	if (arg == "labellist") return Token::labelRefList;
+    if (arg.contains("overlay specification")) return Token::overlay;
 	return Token::generalArg;
 }
 
@@ -710,6 +714,7 @@ argument name | description
 \em keys,\em keyvals or \em \%<options\%>|key/value list
 \em envname|environment name for \\newtheorem, e.g. \\newtheorem{envname}#N (classification N needs to be present !)
 \em ends with %plain|ignore a special meaning of the key
+\em contains "overlay specification" | beamer overlay specification, usually within <>
 
  * \param line command definition until '#'
  * \param definition context information right of '#'
@@ -721,8 +726,8 @@ CommandDescription extractCommandDef(QString line, QString definition)
 	int i = rxCom.indexIn(line);
 	QString command = rxCom.cap();
 	line = line.mid(command.length());
-	const QString specialChars = "{[(";
-	const QString specialChars2 = "}])";
+    const QString specialChars = "{[(<";
+    const QString specialChars2 = "}])>";
 	CommandDescription cd;
 	if (line.isEmpty())
 		return cd;
@@ -755,6 +760,10 @@ CommandDescription extractCommandDef(QString line, QString definition)
 				cd.bracketArgs = cd.bracketArgs + 1;
 				cd.bracketTypes.append(type);
 				break;
+            case 3:
+                cd.overlayArgs = cd.overlayArgs + 1;
+                cd.overlayTypes.append(type);
+                break;
 			default:
 				break;
 			}

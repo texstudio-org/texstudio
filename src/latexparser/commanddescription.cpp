@@ -1,6 +1,6 @@
 #include "commanddescription.h"
 
-CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), args(0), level(0),bracketCommand(false)
+CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), overlayArgs(0), args(0), level(0),bracketCommand(false)
 {
 
 }
@@ -42,17 +42,28 @@ void CommandDescriptionHash::unite(const CommandDescriptionHash &other){
                         this->insert(elem, other.value(elem));
                     } else {
                         if (cd_neu.optionalArgs == cd.optionalArgs && cd.args>0) {
-                            bool override = true;
-                            for (int i = 0; i < cd.args; i++) {
-                                if (cd_neu.argTypes.at(i) == Token::generalArg)
-                                    override = false;
-                            }
-                            for (int i = 0; i < cd.optionalArgs; i++) {
-                                if (cd_neu.optTypes.at(i) == Token::generalArg)
-                                    override = false;
-                            }
-                            if (override)
+                            if(cd_neu.overlayArgs>cd.overlayArgs){
+                                // same number of arguments but more overlay arguments
                                 this->insert(elem, other.value(elem));
+                            }else{
+                                bool override = true;
+
+                                if(cd_neu.overlayArgs<cd.overlayArgs){
+                                    override=false; // don't overwrite if overlayArgs less
+                                }
+
+                                for (int i = 0; i < cd.args; i++) {
+                                    if (cd_neu.argTypes.at(i) == Token::generalArg)
+                                        override = false;
+                                }
+                                for (int i = 0; i < cd.optionalArgs; i++) {
+                                    if (cd_neu.optTypes.at(i) == Token::generalArg)
+                                        override = false;
+                                }
+
+                                if (override)
+                                    this->insert(elem, other.value(elem));
+                            }
                         }
                     }
                 }

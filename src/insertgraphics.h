@@ -25,7 +25,7 @@ class PlacementValidator : public QRegExpValidator
 	Q_OBJECT
 
 public:
-	explicit PlacementValidator(QObject *parent = 0);
+    explicit PlacementValidator(QObject *parent = nullptr);
 	void fixup (QString &input) const;
 	State validate(QString &input, int &pos) const;
 };
@@ -36,7 +36,7 @@ class InsertGraphics : public QDialog
 	Q_OBJECT
 
 public:
-	InsertGraphics(QWidget *parent = 0, InsertGraphicsConfig *conf = 0);
+    InsertGraphics(QWidget *parent = nullptr, InsertGraphicsConfig *conf = nullptr);
 	Q_INVOKABLE QString graphicsFile() const;
 	QString getCode() const;
 	static QStringList imageFormats();

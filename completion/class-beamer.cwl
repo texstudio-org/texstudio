@@ -440,6 +440,7 @@
 \setjobnamebeamerversion{filename without extension}
 \includeslide[options]{label name}
 \includeslide{label name}
+\includegraphics<overlay specification>[keyvals]{imagefile}
 \mode<mode specification>{text}
 \mode{text}
 \mode<mode specification>
