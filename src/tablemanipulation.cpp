@@ -907,6 +907,7 @@ LatexTableModel::LatexTableModel(QObject *parent) : QAbstractTableModel(parent),
 	ConfigManagerInterface *cfg = ConfigManager::getInstance();
 	if (cfg) {
 		metaLineCommands = cfg->getOption("TableAutoformat/Special Commands").toString().split(',');
+		metaLineCommands.removeAll("");  // make sure there are no empty commands due to double or trailing comma
 		metaLineCommandPos = cfg->getOption("TableAutoformat/Special Command Position").toInt();
 	}
 }
