@@ -14,6 +14,7 @@ public:
 	bool autoindent, weakindent;
 	bool replaceIndentTabs;
 	bool replaceTextTabs;
+	bool removeTrailingWsOnSave;
 	bool showWhitespace;
 	int tabStop;
 	int showlinemultiples;
