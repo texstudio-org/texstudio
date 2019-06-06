@@ -1555,6 +1555,49 @@ Then you can select a new shortcut by one of the following ways:
           <string>Editor</string>
          </property>
          <layout class="QGridLayout">
+          <item row="12" column="0">
+           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Inline Checking:</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
+            <property name="text">
+             <string>Check non tex files</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxScanInstalledLatexPackages">
+            <property name="text">
+             <string>Scan LaTeX distribution for installed packages</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1" colspan="4">
+           <widget class="QCheckBox" name="checkBoxFolding">
+            <property name="text">
+             <string>Folding</string>
+            </property>
+           </widget>
+          </item>
           <item row="8" column="3" colspan="2">
            <widget class="QCheckBox" name="checkBoxReplaceIndentTabByWhitespace">
             <property name="text">
@@ -1569,26 +1612,10 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="11" column="0">
            <widget class="QLabel" name="label_39">
             <property name="text">
              <string>Replace Double Quotes:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0">
-           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Inline Checking:</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1605,47 +1632,10 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="14" column="0" colspan="3">
-           <widget class="QCheckBox" name="checkBoxAutoLoad">
-            <property name="text">
-             <string>Automatically load included files</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
           <item row="8" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Indentation Mode:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1" colspan="4">
-           <widget class="QCheckBox" name="checkBoxFolding">
-            <property name="text">
-             <string>Folding</string>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="2" colspan="3">
-           <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
-            <property name="text">
-             <string>Hide grammar errors in non-text environments</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
-            <property name="text">
-             <string>Hide spelling errors in non-text environments</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1729,7 +1719,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="10" column="1" colspan="4">
+          <item row="11" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
@@ -1812,17 +1802,7 @@ Then you can select a new shortcut by one of the following ways:
             </item>
            </widget>
           </item>
-          <item row="13" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
-            <property name="text">
-             <string>Check non tex files</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="1" colspan="4">
+          <item row="12" column="1" colspan="4">
            <widget class="QGroupBox" name="groupBoxInlineChecking">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -1879,20 +1859,47 @@ Then you can select a new shortcut by one of the following ways:
             </layout>
            </widget>
           </item>
-          <item row="15" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxScanInstalledLatexPackages">
+          <item row="9" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxReplaceTextTabByWhitespace">
             <property name="text">
-             <string>Scan LaTeX distribution for installed packages</string>
+             <string>Replace Tab in Text by Spaces</string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="0" colspan="3">
+           <widget class="QCheckBox" name="checkBoxAutoLoad">
+            <property name="text">
+             <string>Automatically load included files</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="9" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxReplaceTextTabByWhitespace">
+          <item row="13" column="2" colspan="3">
+           <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
             <property name="text">
-             <string>Replace Tab in Text by Spaces</string>
+             <string>Hide grammar errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
+            <property name="text">
+             <string>Hide spelling errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkboxRemoveTrailingWsOnSave">
+            <property name="text">
+             <string>Remove Trailing Whitespace on Save</string>
             </property>
            </widget>
           </item>
