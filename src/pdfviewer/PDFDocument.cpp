@@ -2705,8 +2705,12 @@ void PDFDocument::init(bool embedded)
     comboZoom = nullptr;
 
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
 
     int sz = qRound(qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt())*scale);
 
@@ -4318,8 +4322,12 @@ void PDFDocument::showToolbarsDelayed()
 void PDFDocument::setToolbarIconSize(int sz)
 {
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
 
     toolBar->setIconSize(QSize(qRound(sz*scale), qRound(sz*scale)));
 	// statusbar

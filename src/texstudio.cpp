@@ -196,8 +196,12 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     // dpi aware icon scaling
     // screen dpi is read and the icon are scaled up in reference to 96 dpi
     // this should be helpful on X11 (Xresouces) and possibly windows
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
 
 	setWindowIcon(QIcon(":/images/logo128.png"));
 
@@ -557,8 +561,12 @@ void Texstudio::setupDockWidgets()
 	//to allow retranslate this function must be able to be called multiple times
 
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
 
 	if (!sidePanel) {
 		sidePanel = new SidePanel(this);
@@ -1401,8 +1409,12 @@ void Texstudio::updateAvailableLanguages()
 void Texstudio::updateLanguageToolStatus()
 {
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
     int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
 
 	QIcon icon = getRealIconCached("languagetool");
@@ -1435,8 +1447,12 @@ void Texstudio::createStatusBar()
 	status->setVisible(configManager.getOption("View/ShowStatusbar").toBool());
 
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
     int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
 
     QSize iconSize = QSize(iconWidth, iconWidth);
@@ -10037,8 +10053,10 @@ void Texstudio::checkLatexInstall()
 
 	QString result;
     // check dpi
+#if QT_VERSION > 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     result+=QString("dpi: %1\n").arg(dpi);
+#endif
 	// run pdflatex
 	setStatusMessageProcess(QString("check pdflatex"));
 	QString buffer;
@@ -10458,8 +10476,12 @@ void Texstudio::showExtendedSearch()
 void Texstudio::changeIconSize(int value)
 {
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
     int iconWidth=qRound(value*scale);
 
     setIconSize(QSize(iconWidth, iconWidth));
@@ -10479,8 +10501,12 @@ void Texstudio::changeIconSize(int value)
 void Texstudio::changeSecondaryIconSize(int value)
 {
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
     int iconWidth=qRound(value*scale);
 
     centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
@@ -10510,8 +10536,12 @@ void Texstudio::changeSecondaryIconSize(int value)
 void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 {
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
     int iconWidth=qRound(value*scale);
 
 	if (changePanel) {
@@ -10526,8 +10556,12 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 
 void Texstudio::LTErrorMessage(QString message){
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
     int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
 
     QIcon icon = getRealIconCached("languagetool");

@@ -387,8 +387,12 @@ int ConfigDialog::lastUsedPage = 0;
 ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPDFViewer(nullptr), riddled(false), oldToolbarIndex(-1), mBuildManager(nullptr)
 {
     // adapt icon size to dpi
+#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+#else
+    double scale=1;
+#endif
 
 	setModal(true);
 	ui.setupUi(this);
