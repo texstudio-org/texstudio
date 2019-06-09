@@ -386,6 +386,10 @@ int ConfigDialog::lastUsedPage = 0;
 
 ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPDFViewer(nullptr), riddled(false), oldToolbarIndex(-1), mBuildManager(nullptr)
 {
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
 	setModal(true);
 	ui.setupUi(this);
 
@@ -413,7 +417,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 
     ui.checkBoxShowCommentedElementsInStructure->setVisible(false); // hide non-functional option, maybe it can be fixed in future
 
-	ui.contentsWidget->setIconSize(QSize(32, 32));
+    ui.contentsWidget->setIconSize(QSize(qRound(32*scale), qRound(32*scale)));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
 	//ui.contentsWidget->setMovement(QListView::Static);
 
@@ -525,7 +529,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 
 	// custom toolbars
 	connect(ui.comboBoxToolbars, SIGNAL(currentIndexChanged(int)), SLOT(toolbarChanged(int)));
-	ui.listCustomToolBar->setIconSize(QSize(22, 22));
+    ui.listCustomToolBar->setIconSize(QSize(qRound(22*scale), qRound(22*scale)));
 	ui.listCustomToolBar->setViewMode(QListView::ListMode);
 	ui.listCustomToolBar->setMovement(QListView::Snap);
 	ui.listCustomToolBar->setDragDropMode(QAbstractItemView::InternalMove);

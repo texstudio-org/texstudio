@@ -69,6 +69,8 @@
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
 
+#include <QScreen>
+
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
 #endif
@@ -191,9 +193,15 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
         }
 	}
 
+    // dpi aware icon scaling
+    // screen dpi is read and the icon are scaled up in reference to 96 dpi
+    // this should be helpful on X11 (Xresouces) and possibly windows
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
 	setWindowIcon(QIcon(":/images/logo128.png"));
 
-	int iconSize = qMax(16, configManager.guiToolbarIconSize);
+    int iconSize = qRound(qMax(16, configManager.guiToolbarIconSize)*scale);
 	setIconSize(QSize(iconSize, iconSize));
 
 	leftPanel = nullptr;
@@ -264,13 +272,15 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralFrame->setFrameShape(QFrame::NoFrame);
 	centralFrame->setFrameShadow(QFrame::Plain);
 
+
+
 	//edit
 	centralToolBar = new QToolBar(tr("Central"), this);
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
-	iconSize = qMax(16, configManager.guiSecondaryToolbarIconSize);
-	centralToolBar->setIconSize(QSize(iconSize, iconSize));
+    iconSize = qRound(qMax(16, configManager.guiSecondaryToolbarIconSize)*scale);
+    centralToolBar->setIconSize(QSize(iconSize, iconSize));
 
 	editors = new Editors(centralFrame);
 	editors->setFocus();
@@ -546,6 +556,10 @@ void Texstudio::setupDockWidgets()
 {
 	//to allow retranslate this function must be able to be called multiple times
 
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
 	if (!sidePanel) {
 		sidePanel = new SidePanel(this);
 		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
@@ -599,7 +613,7 @@ void Texstudio::setupDockWidgets()
 
 	if (!leftPanel->widget("symbols")) {
 		symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
-		symbolWidget->setSymbolSize(configManager.guiSymbolGridIconSize);
+        symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
 		connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
 		leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
 	} else leftPanel->setWidgetText("bookmarks", tr("Symbols"));
@@ -1386,8 +1400,13 @@ void Texstudio::updateAvailableLanguages()
 
 void Texstudio::updateLanguageToolStatus()
 {
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+    int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+
 	QIcon icon = getRealIconCached("languagetool");
-	QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
+    QSize iconSize = QSize(iconWidth, iconWidth);
 	switch (grammarCheck->languageToolStatus()) {
 		case GrammarCheck::LTS_Working:
 			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize));
@@ -1415,7 +1434,12 @@ void Texstudio::createStatusBar()
 	status->setContextMenuPolicy(Qt::PreventContextMenu);
 	status->setVisible(configManager.getOption("View/ShowStatusbar").toBool());
 
-	QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+    int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+
+    QSize iconSize = QSize(iconWidth, iconWidth);
 	QAction *act;
 	QToolButton *tb;
 	act = getManagedAction("main/view/show/structureview");
@@ -10012,6 +10036,9 @@ void Texstudio::checkLatexInstall()
 {
 
 	QString result;
+    // check dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    result+=QString("dpi: %1\n").arg(dpi);
 	// run pdflatex
 	setStatusMessageProcess(QString("check pdflatex"));
 	QString buffer;
@@ -10024,10 +10051,10 @@ void Texstudio::checkLatexInstall()
 	// where is pdflatex located
 #ifdef Q_OS_WIN
 	runCommand("where " + cmd, &buffer);
-	result = "where pdflatex: " + buffer + "\n\n";
+    result += "where pdflatex: " + buffer + "\n\n";
 #else
 	runCommand("which " + cmd, &buffer);
-	result = "which pdflatex: " + buffer + "\n\n";
+    result += "which pdflatex: " + buffer + "\n\n";
 #endif
 	buffer.clear();
 	cmd += " -version";
@@ -10430,10 +10457,15 @@ void Texstudio::showExtendedSearch()
  */
 void Texstudio::changeIconSize(int value)
 {
-	setIconSize(QSize(value, value));
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+    int iconWidth=qRound(value*scale);
+
+    setIconSize(QSize(iconWidth, iconWidth));
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
-		if (!pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(value);
+        if (!pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
 	}
 #endif
 }
@@ -10446,19 +10478,24 @@ void Texstudio::changeIconSize(int value)
  */
 void Texstudio::changeSecondaryIconSize(int value)
 {
-	centralToolBar->setIconSize(QSize(value, value));
-	leftPanel->setToolbarIconSize(value);
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+    int iconWidth=qRound(value*scale);
+
+    centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
+    leftPanel->setToolbarIconSize(iconWidth);
 
 	foreach (QObject *c, statusBar()->children()) {
 		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
 		if (bt) {
-			bt->setIconSize(QSize(value, value));
+            bt->setIconSize(QSize(iconWidth, iconWidth));
 		}
 	}
 
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
-		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(value);
+        if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
 	}
 #endif
 }
@@ -10472,10 +10509,15 @@ void Texstudio::changeSecondaryIconSize(int value)
  */
 void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 {
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+    int iconWidth=qRound(value*scale);
+
 	if (changePanel) {
 		leftPanel->setCurrentWidget(leftPanel->widget("symbols"));
 	}
-	symbolWidget->setSymbolSize(value);
+    symbolWidget->setSymbolSize(iconWidth);
 }
 /*!
  * \brief displays error messages from network replies which are used to communicate with LT
@@ -10483,8 +10525,13 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
  */
 
 void Texstudio::LTErrorMessage(QString message){
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+    int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+
     QIcon icon = getRealIconCached("languagetool");
-    QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
+    QSize iconSize = QSize(iconWidth, iconWidth);
     statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
     statusLabelLanguageTool->setToolTip(QString(tr("Error when communicating with LT: %1")).arg(message));
 }

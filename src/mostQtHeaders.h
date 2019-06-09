@@ -92,6 +92,7 @@
 #include <QPushButton>
 #include <QRegExp>
 #include <QResizeEvent>
+#include <QScreen>
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QSet>

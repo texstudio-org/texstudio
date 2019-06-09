@@ -2704,7 +2704,12 @@ void PDFDocument::init(bool embedded)
 
     comboZoom = nullptr;
 
-	int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
+    int sz = qRound(qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt())*scale);
+
 	toolBar->setIconSize(QSize(sz, sz));
 	QWidget *spacer = new QWidget(toolBar);
 	spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -4312,12 +4317,16 @@ void PDFDocument::showToolbarsDelayed()
 
 void PDFDocument::setToolbarIconSize(int sz)
 {
-	toolBar->setIconSize(QSize(sz, sz));
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
+    toolBar->setIconSize(QSize(qRound(sz*scale), qRound(sz*scale)));
 	// statusbar
 	foreach (QObject *c, statusbar->children()) {
 		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
 		if (bt) {
-			bt->setIconSize(QSize(sz, sz));
+            bt->setIconSize(QSize(qRound(sz*scale), qRound(sz*scale)));
 		}
 	}
 }

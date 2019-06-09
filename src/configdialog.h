@@ -19,13 +19,15 @@
 #include "qformat.h"
 #include "buildmanager.h"
 
+
+
 //TODO: perhaps move each class in its own file?
 class ShortcutComboBox: public QComboBox
 {
 	Q_OBJECT
 
 public:
-	ShortcutComboBox(QWidget *parent = 0);
+    ShortcutComboBox(QWidget *parent = nullptr);
 protected:
 	virtual void keyPressEvent(QKeyEvent *e);
 	virtual void focusInEvent(QFocusEvent *e);
@@ -36,7 +38,7 @@ class ShortcutDelegate : public QItemDelegate
 	Q_OBJECT
 
 public:
-	ShortcutDelegate(QObject *parent = 0);
+    ShortcutDelegate(QObject *parent = nullptr);
 
 	QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option,
 	                      const QModelIndex &index) const;
@@ -63,7 +65,7 @@ public slots:
 class ComboBoxDelegate : public QItemDelegate
 {
 public:
-	ComboBoxDelegate(QObject *parent = 0);
+    ComboBoxDelegate(QObject *parent = nullptr);
 
 	QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option,
 	                      const QModelIndex &index) const;
@@ -85,7 +87,7 @@ class ConfigDialog : public QDialog
 	Q_OBJECT
 
 public:
-	ConfigDialog(QWidget *parent = 0);
+    ConfigDialog(QWidget *parent = nullptr);
 	~ConfigDialog();
 	Ui::ConfigDialog ui;
 	QRadioButton *checkboxInternalPDFViewer;

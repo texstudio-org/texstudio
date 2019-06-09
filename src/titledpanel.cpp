@@ -264,11 +264,18 @@ void TitledPanel::updateTopbar()
 	// on toolbar->clear() or reparenting
 	// so we create a new toolbar
 	// alternatively do not use a toolbar, but a widget styled like one, as QtCreator does
+
+    // dpi aware icon scaling
+    // screen dpi is read and the icon are scaled up in reference to 96 dpi
+    // this should be helpful on X11 (Xresouces) and possibly windows
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
 	topbar = new QToolBar(this);
 	topbar->setOrientation(Qt::Horizontal);
 	topbar->setFloatable(false);
 	topbar->setMovable(false);
-	topbar->setIconSize(QSize(16, 16));
+    topbar->setIconSize(QSize(qRound(16*scale), qRound(16*scale)));
 	topbar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
 
 	QList<QAction *> acts = pageSelectActions->actions();

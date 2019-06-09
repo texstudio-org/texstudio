@@ -285,6 +285,7 @@ CustomWidgetList::CustomWidgetList(QWidget *parent):
 	toolbar->setFloatable(false);
 	toolbar->setOrientation(Qt::Vertical);
 	toolbar->setMovable(false);
+
 	hlayout->addWidget(toolbar);
 
 	stack = new QStackedWidget(this);
@@ -370,7 +371,11 @@ void CustomWidgetList::customContextMenuRequested(const QPoint &localPosition)
 
 void CustomWidgetList::showWidgets()
 {
-	setToolbarIconSize(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
+    setToolbarIconSize(qRound(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt()*scale));
 
 	// TODO: is this still needed when there is no need to switch between old and new style
 	for (int i = 0; i < widgets.count(); i++) {
