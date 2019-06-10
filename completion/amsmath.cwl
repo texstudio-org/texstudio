@@ -104,6 +104,8 @@
 \negthinspace
 \nobreakdash
 \notag#m
+\numberwithin{env}{counter}
+\numberwithin[format]{env}{counter}
 \operatorname{name}
 \operatornamewithlimits{name}
 \overleftrightarrow{argument}#m
