@@ -4,7 +4,7 @@
 <!-- Wed Mar  4 15:06:21 2015 -->
 <svg height='13.88pt' version='1.1' viewBox='38.8543 53.7983 9.74346 13.88' width='9.74346pt' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 <title>\cyrzhdsc</title>
-<desc Packages="[koi8-r,T2A,,ukrainian]{inputenc,fontenc,mathtext,babel}" />
+<desc Packages="[T2A,ukrainian]{fontenc,babel}" />
 <additionalInfo CommandUnicode="U+1175," UnicodePackages="[utf8]{inputenc}"  />
 <defs>
 <font horiz-adv-x='0' id='larm1200'>

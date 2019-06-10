@@ -4,7 +4,7 @@
 <!-- Wed Mar  4 15:06:14 2015 -->
 <svg height='11.9552pt' version='1.1' viewBox='38.8543 53.7983 6.30037 11.9552' width='6.30037pt' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 <title>\cyrk</title>
-<desc Packages="[koi8-r,T2C,,russian]{inputenc,fontenc,mathtext,babel}" />
+<desc Packages="[T2C,russian]{fontenc,babel}" />
 <additionalInfo CommandUnicode="U+1082," UnicodePackages="[utf8]{inputenc}"  />
 <defs>
 <font horiz-adv-x='0' id='lcrm1200'>

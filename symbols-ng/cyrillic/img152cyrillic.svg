@@ -4,7 +4,7 @@
 <!-- Wed Mar  4 15:06:26 2015 -->
 <svg height='14.3821pt' version='1.1' viewBox='38.4359 53.7983 2.84533 14.3821' width='2.84533pt' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 <title>\cyrje</title>
-<desc Packages="[koi8-r,T2C,,russian]{inputenc,fontenc,mathtext,babel}" />
+<desc Packages="[T2C,russian]{fontenc,babel}" />
 <additionalInfo CommandUnicode="U+1112," UnicodePackages="[utf8]{inputenc}"  />
 <defs>
 <font horiz-adv-x='0' id='lcrm1200'>

@@ -68,15 +68,8 @@
    <latexCommand>\CYRZH</latexCommand>
    <unicodeCommand>Ж</unicodeCommand>
    <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
-   <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
-   </package>
-   <package>
-      <name>mathtext</name>
    </package>
    <package>
       <name>babel</name>
@@ -166,15 +159,8 @@
    <latexCommand>\fb[10pt]{\CYRZH}</latexCommand>
    <unicodeCommand>Ж</unicodeCommand>
    <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
-   <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
-   </package>
-   <package>
-      <name>mathtext</name>
    </package>
    <package>
       <name>babel</name>

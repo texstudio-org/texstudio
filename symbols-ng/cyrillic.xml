@@ -3,7 +3,7 @@
 <!DOCTYPE KileSymbolSources>
 <symbols>
 
-   <formatVersion major="0" minor ="22" />
+   <formatVersion major="0" minor="22"/>
 
    <symbolGroupName>user</symbolGroupName>
 
@@ -17,10 +17,7 @@
    </preamble>
 
    <unicodeCommandPackages>
-      <package>
-         <name>inputenc</name>
-         <arguments>utf8</arguments>
-      </package>
+      
    </unicodeCommandPackages>
 
    <!-- insert stuff here    -->
@@ -51,17 +48,12 @@
 <commandDefinition>
    <latexCommand>\CYRA</latexCommand>
    <unicodeCommand>А</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -73,17 +65,12 @@
 <commandDefinition>
    <latexCommand>\CYRB</latexCommand>
    <unicodeCommand>Б</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -95,17 +82,12 @@
 <commandDefinition>
    <latexCommand>\CYRV</latexCommand>
    <unicodeCommand>В</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -117,17 +99,12 @@
 <commandDefinition>
    <latexCommand>\CYRG</latexCommand>
    <unicodeCommand>Г</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -139,17 +116,12 @@
 <commandDefinition>
    <latexCommand>\CYRD</latexCommand>
    <unicodeCommand>Д</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -161,17 +133,12 @@
 <commandDefinition>
    <latexCommand>\CYRE</latexCommand>
    <unicodeCommand>Е</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -183,17 +150,12 @@
 <commandDefinition>
    <latexCommand>\CYRYO</latexCommand>
    <unicodeCommand>Ё</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -205,17 +167,12 @@
 <commandDefinition>
    <latexCommand>\CYRZH</latexCommand>
    <unicodeCommand>Ж</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -227,17 +184,12 @@
 <commandDefinition>
    <latexCommand>\CYRZ</latexCommand>
    <unicodeCommand>З</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -249,17 +201,12 @@
 <commandDefinition>
    <latexCommand>\CYRI</latexCommand>
    <unicodeCommand>И</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -271,17 +218,12 @@
 <commandDefinition>
    <latexCommand>\CYRISHRT</latexCommand>
    <unicodeCommand>Й</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -293,17 +235,12 @@
 <commandDefinition>
    <latexCommand>\CYRK</latexCommand>
    <unicodeCommand>К</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -315,17 +252,12 @@
 <commandDefinition>
    <latexCommand>\CYRL</latexCommand>
    <unicodeCommand>Л</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -337,17 +269,12 @@
 <commandDefinition>
    <latexCommand>\CYRM</latexCommand>
    <unicodeCommand>М</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -359,17 +286,12 @@
 <commandDefinition>
    <latexCommand>\CYRN</latexCommand>
    <unicodeCommand>Н</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -381,17 +303,12 @@
 <commandDefinition>
    <latexCommand>\CYRO</latexCommand>
    <unicodeCommand>О</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -403,17 +320,12 @@
 <commandDefinition>
    <latexCommand>\CYRP</latexCommand>
    <unicodeCommand>П</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -425,17 +337,12 @@
 <commandDefinition>
    <latexCommand>\CYRR</latexCommand>
    <unicodeCommand>Р</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -447,17 +354,12 @@
 <commandDefinition>
    <latexCommand>\CYRS</latexCommand>
    <unicodeCommand>С</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -469,17 +371,12 @@
 <commandDefinition>
    <latexCommand>\CYRT</latexCommand>
    <unicodeCommand>Т</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -491,17 +388,12 @@
 <commandDefinition>
    <latexCommand>\CYRU</latexCommand>
    <unicodeCommand>У</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -513,17 +405,12 @@
 <commandDefinition>
    <latexCommand>\CYRF</latexCommand>
    <unicodeCommand>Ф</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -535,17 +422,12 @@
 <commandDefinition>
    <latexCommand>\CYRH</latexCommand>
    <unicodeCommand>Х</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -557,17 +439,12 @@
 <commandDefinition>
    <latexCommand>\CYRC</latexCommand>
    <unicodeCommand>Ц</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -579,17 +456,12 @@
 <commandDefinition>
    <latexCommand>\CYRCH</latexCommand>
    <unicodeCommand>Ч</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -601,17 +473,12 @@
 <commandDefinition>
    <latexCommand>\CYRSH</latexCommand>
    <unicodeCommand>Ш</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -623,17 +490,12 @@
 <commandDefinition>
    <latexCommand>\CYRSHCH</latexCommand>
    <unicodeCommand>Щ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -645,17 +507,12 @@
 <commandDefinition>
    <latexCommand>\CYRHRDSN</latexCommand>
    <unicodeCommand>Ъ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -667,17 +524,12 @@
 <commandDefinition>
    <latexCommand>\CYRERY</latexCommand>
    <unicodeCommand>Ы</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -689,17 +541,12 @@
 <commandDefinition>
    <latexCommand>\CYRSFTSN</latexCommand>
    <unicodeCommand>Ь</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -711,17 +558,12 @@
 <commandDefinition>
    <latexCommand>\CYREREV</latexCommand>
    <unicodeCommand>Э</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -733,17 +575,12 @@
 <commandDefinition>
    <latexCommand>\CYRYU</latexCommand>
    <unicodeCommand>Ю</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -755,17 +592,12 @@
 <commandDefinition>
    <latexCommand>\CYRYA</latexCommand>
    <unicodeCommand>Я</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -778,17 +610,12 @@
 <commandDefinition>
    <latexCommand>\cyra</latexCommand>
    <unicodeCommand>а</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -800,17 +627,12 @@
 <commandDefinition>
    <latexCommand>\cyrb</latexCommand>
    <unicodeCommand>б</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -822,17 +644,12 @@
 <commandDefinition>
    <latexCommand>\cyrv</latexCommand>
    <unicodeCommand>в</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -844,17 +661,12 @@
 <commandDefinition>
    <latexCommand>\cyrg</latexCommand>
    <unicodeCommand>г</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -866,17 +678,12 @@
 <commandDefinition>
    <latexCommand>\cyrd</latexCommand>
    <unicodeCommand>д</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -888,17 +695,12 @@
 <commandDefinition>
    <latexCommand>\cyre</latexCommand>
    <unicodeCommand>е</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -910,17 +712,12 @@
 <commandDefinition>
    <latexCommand>\cyryo</latexCommand>
    <unicodeCommand>ё</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -932,17 +729,12 @@
 <commandDefinition>
    <latexCommand>\cyrzh</latexCommand>
    <unicodeCommand>ж</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -954,17 +746,12 @@
 <commandDefinition>
    <latexCommand>\cyrz</latexCommand>
    <unicodeCommand>з</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -976,17 +763,12 @@
 <commandDefinition>
    <latexCommand>\cyri</latexCommand>
    <unicodeCommand>и</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -998,17 +780,12 @@
 <commandDefinition>
    <latexCommand>\cyrishrt</latexCommand>
    <unicodeCommand>й</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1020,17 +797,12 @@
 <commandDefinition>
    <latexCommand>\cyrk</latexCommand>
    <unicodeCommand>к</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1042,17 +814,12 @@
 <commandDefinition>
    <latexCommand>\cyrl</latexCommand>
    <unicodeCommand>л</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1064,17 +831,12 @@
 <commandDefinition>
    <latexCommand>\cyrm</latexCommand>
    <unicodeCommand>м</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1086,17 +848,12 @@
 <commandDefinition>
    <latexCommand>\cyrn</latexCommand>
    <unicodeCommand>н</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1108,17 +865,12 @@
 <commandDefinition>
    <latexCommand>\cyro</latexCommand>
    <unicodeCommand>о</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1130,17 +882,12 @@
 <commandDefinition>
    <latexCommand>\cyrp</latexCommand>
    <unicodeCommand>п</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1152,17 +899,12 @@
 <commandDefinition>
    <latexCommand>\cyrr</latexCommand>
    <unicodeCommand>р</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1174,17 +916,12 @@
 <commandDefinition>
    <latexCommand>\cyrs</latexCommand>
    <unicodeCommand>с</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1196,17 +933,12 @@
 <commandDefinition>
    <latexCommand>\cyrt</latexCommand>
    <unicodeCommand>т</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1218,17 +950,12 @@
 <commandDefinition>
    <latexCommand>\cyru</latexCommand>
    <unicodeCommand>у</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1240,17 +967,12 @@
 <commandDefinition>
    <latexCommand>\cyrf</latexCommand>
    <unicodeCommand>ф</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1262,17 +984,12 @@
 <commandDefinition>
    <latexCommand>\cyrh</latexCommand>
    <unicodeCommand>х</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1284,17 +1001,12 @@
 <commandDefinition>
    <latexCommand>\cyrc</latexCommand>
    <unicodeCommand>ц</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1306,17 +1018,12 @@
 <commandDefinition>
    <latexCommand>\cyrch</latexCommand>
    <unicodeCommand>ч</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1328,17 +1035,12 @@
 <commandDefinition>
    <latexCommand>\cyrsh</latexCommand>
    <unicodeCommand>ш</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1350,17 +1052,12 @@
 <commandDefinition>
    <latexCommand>\cyrshch</latexCommand>
    <unicodeCommand>щ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1372,17 +1069,12 @@
 <commandDefinition>
    <latexCommand>\cyrhrdsn</latexCommand>
    <unicodeCommand>ъ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1394,17 +1086,12 @@
 <commandDefinition>
    <latexCommand>\cyrery</latexCommand>
    <unicodeCommand>ы</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1416,17 +1103,12 @@
 <commandDefinition>
    <latexCommand>\cyrsftsn</latexCommand>
    <unicodeCommand>ь</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1438,17 +1120,12 @@
 <commandDefinition>
    <latexCommand>\cyrerev</latexCommand>
    <unicodeCommand>э</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1460,17 +1137,12 @@
 <commandDefinition>
    <latexCommand>\cyryu</latexCommand>
    <unicodeCommand>ю</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1482,17 +1154,12 @@
 <commandDefinition>
    <latexCommand>\cyrya</latexCommand>
    <unicodeCommand>я</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1505,17 +1172,12 @@
 <commandDefinition>
    <latexCommand>\CYRABHCH</latexCommand>
    <unicodeCommand>Ҽ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1527,17 +1189,12 @@
 <commandDefinition>
    <latexCommand>\CYRABHCHDSC</latexCommand>
    <unicodeCommand>Ҿ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1553,17 +1210,12 @@
    <latexCommand>\CYRZHDSC</latexCommand>
    <unicodeCommand>Җ</unicodeCommand>
    <forcePNG>true</forcePNG>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -1578,17 +1230,12 @@
 <commandDefinition>
    <latexCommand>\CYRABHDZE</latexCommand>
    <unicodeCommand>Ӡ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1602,17 +1249,12 @@
 <commandDefinition>
    <latexCommand>\CYRZDSC</latexCommand>
    <unicodeCommand>Ҙ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -1628,17 +1270,12 @@
 <commandDefinition>
    <latexCommand>\CYRKHK</latexCommand>
    <unicodeCommand>Ӄ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -1648,17 +1285,12 @@
 <commandDefinition>
    <latexCommand>\CYRKHCRS</latexCommand>
    <unicodeCommand>Ҟ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1670,17 +1302,12 @@
 <commandDefinition>
    <latexCommand>\CYRKDSC</latexCommand>
    <unicodeCommand>Қ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1694,17 +1321,12 @@
 <commandDefinition>
    <latexCommand>\CYRKVCRS</latexCommand>
    <unicodeCommand>Ҝ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -1716,17 +1338,12 @@
 <commandDefinition>
    <latexCommand>\CYRLJE</latexCommand>
    <unicodeCommand>Љ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -1742,17 +1359,12 @@
 <commandDefinition>
    <latexCommand>\CYRLDSC</latexCommand>
    <unicodeCommand>Ӆ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -1762,17 +1374,12 @@
 <commandDefinition>
    <latexCommand>\CYRMDSC</latexCommand>
    <unicodeCommand>Ӎ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1784,17 +1391,12 @@
 <commandDefinition>
    <latexCommand>\CYRNDSC</latexCommand>
    <unicodeCommand>Ң</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1808,17 +1410,12 @@
 <commandDefinition>
    <latexCommand>\CYRNG</latexCommand>
    <unicodeCommand>Ҥ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -1830,17 +1427,12 @@
 <commandDefinition>
    <latexCommand>\CYRNJE</latexCommand>
    <unicodeCommand>Њ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -1856,17 +1448,12 @@
 <commandDefinition>
    <latexCommand>\CYRNHK</latexCommand>
    <unicodeCommand>Ӈ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -1877,17 +1464,12 @@
 <commandDefinition>
    <latexCommand>\CYROTLD</latexCommand>
    <unicodeCommand>Ө</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1899,17 +1481,12 @@
 <commandDefinition>
    <latexCommand>\CYRPHK</latexCommand>
    <unicodeCommand>Ҧ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1921,17 +1498,12 @@
 <commandDefinition>
    <latexCommand>\CYRRTICK</latexCommand>
    <unicodeCommand>Ҏ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1946,17 +1518,12 @@
 <commandDefinition>
    <latexCommand>\CYRSDSC</latexCommand>
    <unicodeCommand>Ҫ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -1970,17 +1537,12 @@
 <commandDefinition>
    <latexCommand>\CYRTDSC</latexCommand>
    <unicodeCommand>Ҭ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -1994,17 +1556,12 @@
 <commandDefinition>
    <latexCommand>\CYRTSHE</latexCommand>
    <unicodeCommand>Ћ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2016,17 +1573,12 @@
 <commandDefinition>
    <latexCommand>\CYRDJE</latexCommand>
    <unicodeCommand>Ђ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2038,17 +1590,12 @@
 <commandDefinition>
    <latexCommand>\CYRUSHRT</latexCommand>
    <unicodeCommand>Ў</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2062,17 +1609,12 @@
 <commandDefinition>
    <latexCommand>\CYRSHHA</latexCommand>
    <unicodeCommand>Һ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2084,17 +1626,12 @@
 <commandDefinition>
    <latexCommand>\CYRGHK</latexCommand>
    <unicodeCommand>Ҕ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2108,17 +1645,12 @@
 <commandDefinition>
    <latexCommand>\CYRGUP</latexCommand>
    <unicodeCommand>Ґ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2130,17 +1662,12 @@
 <commandDefinition>
    <latexCommand>\CYRGHCRS</latexCommand>
    <unicodeCommand>Ғ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2155,17 +1682,12 @@
 <commandDefinition>
    <latexCommand>\CYRHDSC</latexCommand>
    <unicodeCommand>Ҳ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2177,17 +1699,12 @@
 <commandDefinition>
    <latexCommand>\CYRDZHE</latexCommand>
    <unicodeCommand>Џ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2199,17 +1716,12 @@
 <commandDefinition>
    <latexCommand>\CYRDZE</latexCommand>
    <unicodeCommand>Ѕ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2221,17 +1733,12 @@
 <commandDefinition>
    <latexCommand>\CYRTETSE</latexCommand>
    <unicodeCommand>Ҵ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2246,17 +1753,12 @@
 <commandDefinition>
    <latexCommand>\CYRCHLDSC</latexCommand>
    <unicodeCommand>Ӌ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -2268,17 +1770,12 @@
 <commandDefinition>
    <latexCommand>\CYRCHVCRS</latexCommand>
    <unicodeCommand>Ҹ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2292,17 +1789,12 @@
 <commandDefinition>
    <latexCommand>\CYRCHRDSC</latexCommand>
    <unicodeCommand>Ҷ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2314,17 +1806,12 @@
 <commandDefinition>
    <latexCommand>\CYRSEMISFTSN</latexCommand>
    <unicodeCommand>Ҍ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2338,17 +1825,12 @@
 <commandDefinition>
    <latexCommand>\CYRIE</latexCommand>
    <unicodeCommand>Є</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2363,17 +1845,12 @@
 <commandDefinition>
    <latexCommand>\CYRSCHWA</latexCommand>
    <unicodeCommand>Ә</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2385,17 +1862,12 @@
 <commandDefinition>
    <latexCommand>\CYRII</latexCommand>
    <unicodeCommand>І</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2407,17 +1879,12 @@
 <commandDefinition>
    <latexCommand>\CYRJE</latexCommand>
    <unicodeCommand>Ј</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2432,17 +1899,12 @@
 <commandDefinition>
    <latexCommand>\CYRYI</latexCommand>
    <unicodeCommand>Ї</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2454,17 +1916,12 @@
 <commandDefinition>
    <latexCommand>\CYRY</latexCommand>
    <unicodeCommand>Ү</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2476,17 +1933,12 @@
 <commandDefinition>
    <latexCommand>\CYRYHCRS</latexCommand>
    <unicodeCommand>Ұ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2498,17 +1950,12 @@
 <commandDefinition>
    <latexCommand>\CYRAE</latexCommand>
    <unicodeCommand>Ӕ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2523,17 +1970,12 @@
 <commandDefinition>
    <latexCommand>\CYRABHHA</latexCommand>
    <unicodeCommand>Ҩ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2545,17 +1987,12 @@
 <commandDefinition>
    <latexCommand>\CYRpalochka</latexCommand>
    <unicodeCommand>Ӏ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2567,17 +2004,12 @@
 <commandDefinition>
    <latexCommand>\cyrabhch</latexCommand>
    <unicodeCommand>ҽ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2589,17 +2021,12 @@
 <commandDefinition>
    <latexCommand>\cyrabhchdsc</latexCommand>
    <unicodeCommand>ҿ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2614,17 +2041,12 @@
 <commandDefinition>
    <latexCommand>\cyrzhdsc</latexCommand>
    <unicodeCommand>җ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2638,17 +2060,12 @@
 <commandDefinition>
    <latexCommand>\cyrabhdze</latexCommand>
    <unicodeCommand>ӡ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2662,17 +2079,12 @@
 <commandDefinition>
    <latexCommand>\cyrzdsc</latexCommand>
    <unicodeCommand>ҙ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2688,17 +2100,12 @@
 <commandDefinition>
    <latexCommand>\cyrkhk</latexCommand>
    <unicodeCommand>ӄ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -2708,17 +2115,12 @@
 <commandDefinition>
    <latexCommand>\cyrkhcrs</latexCommand>
    <unicodeCommand>ҟ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2730,17 +2132,12 @@
 <commandDefinition>
    <latexCommand>\cyrkdsc</latexCommand>
    <unicodeCommand>қ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2754,17 +2151,12 @@
 <commandDefinition>
    <latexCommand>\cyrkvcrs</latexCommand>
    <unicodeCommand>ҝ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2776,17 +2168,12 @@
 <commandDefinition>
    <latexCommand>\cyrlje</latexCommand>
    <unicodeCommand>љ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2802,17 +2189,12 @@
 <commandDefinition>
    <latexCommand>\cyrldsc</latexCommand>
    <unicodeCommand>ӆ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -2822,17 +2204,12 @@
 <commandDefinition>
    <latexCommand>\cyrmdsc</latexCommand>
    <unicodeCommand>ӎ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2844,17 +2221,12 @@
 <commandDefinition>
    <latexCommand>\cyrndsc</latexCommand>
    <unicodeCommand>ӊ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2868,17 +2240,12 @@
 <commandDefinition>
    <latexCommand>\cyrng</latexCommand>
    <unicodeCommand>ҥ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2890,17 +2257,12 @@
 <commandDefinition>
    <latexCommand>\cyrnje</latexCommand>
    <unicodeCommand>њ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -2916,17 +2278,12 @@
 <commandDefinition>
    <latexCommand>\cyrnhk</latexCommand>
    <unicodeCommand>ӈ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -2937,17 +2294,12 @@
 <commandDefinition>
    <latexCommand>\cyrotld</latexCommand>
    <unicodeCommand>ө</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2959,17 +2311,12 @@
 <commandDefinition>
    <latexCommand>\cyrphk</latexCommand>
    <unicodeCommand>ҧ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -2982,17 +2329,12 @@
 <commandDefinition>
    <latexCommand>\cyrrtick</latexCommand>
    <unicodeCommand>ҏ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3007,17 +2349,12 @@
 <commandDefinition>
    <latexCommand>\cyrsdsc</latexCommand>
    <unicodeCommand>ҫ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3031,17 +2368,12 @@
 <commandDefinition>
    <latexCommand>\cyrtdsc</latexCommand>
    <unicodeCommand>ҭ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3055,17 +2387,12 @@
 <commandDefinition>
    <latexCommand>\cyrtshe</latexCommand>
    <unicodeCommand>ћ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3077,17 +2404,12 @@
 <commandDefinition>
    <latexCommand>\cyrdje</latexCommand>
    <unicodeCommand>ђ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3099,17 +2421,12 @@
 <commandDefinition>
    <latexCommand>\cyrushrt</latexCommand>
    <unicodeCommand>ў</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3123,17 +2440,12 @@
 <commandDefinition>
    <latexCommand>\cyrshha</latexCommand>
    <unicodeCommand>һ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3145,17 +2457,12 @@
 <commandDefinition>
    <latexCommand>\cyrghk</latexCommand>
    <unicodeCommand>ҕ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3169,17 +2476,12 @@
 <commandDefinition>
    <latexCommand>\cyrgup</latexCommand>
    <unicodeCommand>ґ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3192,17 +2494,12 @@
 <commandDefinition>
    <latexCommand>\cyrghcrs</latexCommand>
    <unicodeCommand>ғ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3217,17 +2514,12 @@
 <commandDefinition>
    <latexCommand>\cyrhdsc</latexCommand>
    <unicodeCommand>ҳ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3239,17 +2531,12 @@
 <commandDefinition>
    <latexCommand>\cyrdzhe</latexCommand>
    <unicodeCommand>џ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3261,17 +2548,12 @@
 <commandDefinition>
    <latexCommand>\cyrdze</latexCommand>
    <unicodeCommand>ѕ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3283,17 +2565,12 @@
 <commandDefinition>
    <latexCommand>\cyrtetse</latexCommand>
    <unicodeCommand>ҵ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3308,17 +2585,12 @@
 <commandDefinition>
    <latexCommand>\cyrchldsc</latexCommand>
    <unicodeCommand>ӌ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2B</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
 </commandDefinition>
 
 <!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
@@ -3330,17 +2602,12 @@
 <commandDefinition>
    <latexCommand>\cyrchvcrs</latexCommand>
    <unicodeCommand>ҹ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3355,17 +2622,12 @@
 <commandDefinition>
    <latexCommand>\cyrchrdsc</latexCommand>
    <unicodeCommand>ҷ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3377,17 +2639,12 @@
 <commandDefinition>
    <latexCommand>\cyrsemisftsn</latexCommand>
    <unicodeCommand>ҍ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3402,17 +2659,12 @@
 <commandDefinition>
    <latexCommand>\cyrie</latexCommand>
    <unicodeCommand>є</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3427,17 +2679,12 @@
 <commandDefinition>
    <latexCommand>\cyrschwa</latexCommand>
    <unicodeCommand>ә</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3449,17 +2696,12 @@
 <commandDefinition>
    <latexCommand>\cyrii</latexCommand>
    <unicodeCommand>і</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3471,17 +2713,12 @@
 <commandDefinition>
    <latexCommand>\cyrje</latexCommand>
    <unicodeCommand>ј</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3496,17 +2733,12 @@
 <commandDefinition>
    <latexCommand>\cyryi</latexCommand>
    <unicodeCommand>ї</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3518,17 +2750,12 @@
 <commandDefinition>
    <latexCommand>\cyry</latexCommand>
    <unicodeCommand>ү</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3540,17 +2767,12 @@
 <commandDefinition>
    <latexCommand>\cyryhcrs</latexCommand>
    <unicodeCommand>ұ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3562,17 +2784,12 @@
 <commandDefinition>
    <latexCommand>\cyrae</latexCommand>
    <unicodeCommand>ӕ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2A</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>ukrainian</arguments>
@@ -3586,17 +2803,12 @@
 <commandDefinition>
    <latexCommand>\cyrabhha</latexCommand>
    <unicodeCommand>ҩ</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>koi8-r</arguments>
-   </package>
+   
    <package>
       <name>fontenc</name>
       <arguments>T2C</arguments>
    </package>
-   <package>
-      <name>mathtext</name>
-   </package>
+   
    <package>
       <name>babel</name>
       <arguments>russian</arguments>
@@ -3606,3 +2818,4 @@
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
 </symbols>
+

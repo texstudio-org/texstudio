@@ -4,7 +4,7 @@
 <!-- Wed Mar  4 15:06:21 2015 -->
 <svg height='14.3821pt' version='1.1' viewBox='38.8543 53.7983 6.03736 14.3821' width='6.03736pt' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 <title>\cyrkhk</title>
-<desc Packages="[koi8-r,T2B,]{inputenc,fontenc,mathtext}" />
+<desc Packages="[T2B]{fontenc}" />
 <additionalInfo CommandUnicode="U+1220," UnicodePackages="[utf8]{inputenc}"  />
 <defs>
 <font horiz-adv-x='0' id='lbrm1200'>
