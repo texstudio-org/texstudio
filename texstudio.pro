@@ -255,6 +255,7 @@ unix {
         utilities/manual/doc8.png \
         utilities/manual/doc9.png \
         utilities/manual/configure_completion.png \
+	utilities/manual/configure_commands.png \
         utilities/manual/configure_customizeMenu.png \
         utilities/manual/configure_customToolbar.png \
         utilities/manual/configure_editor.png \
