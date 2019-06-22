@@ -268,7 +268,9 @@ unix {
         utilities/manual/thesaurus.png \
         utilities/manual/wizard_figure.png \
         utilities/manual/block_selection.png \
-        utilities/manual/spellcheck_menu.png
+        utilities/manual/spellcheck_menu.png \
+        utilities/manual/spellcheck_options.png \
+        utilities/manual/format_example.png
     INSTALLS += target \
         manual \
         utilities
