@@ -138,7 +138,7 @@ unix {
         translation/texstudio_fa.qm \
         translation/texstudio_fr.qm \
         translation/texstudio_hu.qm \
-	translation/texstudio_id_ID.qm \
+        translation/texstudio_id_ID.qm \
         translation/texstudio_it.qm \
         translation/texstudio_ja.qm \
         translation/texstudio_ko.qm \
@@ -255,7 +255,7 @@ unix {
         utilities/manual/doc8.png \
         utilities/manual/doc9.png \
         utilities/manual/configure_completion.png \
-	utilities/manual/configure_commands.png \
+        utilities/manual/configure_commands.png \
         utilities/manual/configure_customizeMenu.png \
         utilities/manual/configure_customToolbar.png \
         utilities/manual/configure_editor.png \
@@ -337,7 +337,7 @@ CONFIG(debug, debug|release) {
         src/tests/structureview_t.cpp \
         src/tests/syntaxcheck_t.cpp \
         src/tests/tablemanipulation_t.cpp \
-	src/tests/usermacro_t.cpp \
+        src/tests/usermacro_t.cpp \
         src/tests/testmanager.cpp \
         src/tests/testutil.cpp
     HEADERS += \
