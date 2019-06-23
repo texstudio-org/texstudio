@@ -2168,7 +2168,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="../src/configdialog.ui" line="3162"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Nejasné</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3167"/>
@@ -4411,7 +4411,7 @@ Průvodce nepodporuje příkaz </translation>
         <location filename="../src/latexcompleter.cpp" line="1313"/>
         <location filename="../src/latexcompleter.cpp" line="1323"/>
         <source>fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Nejasné</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1314"/>
@@ -4438,7 +4438,7 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1822"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>Štítek vymezen několikrát!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1831"/>
@@ -4622,7 +4622,7 @@ Průvodce nepodporuje příkaz </translation>
         <location filename="../src/latexeditorview.cpp" line="2396"/>
         <location filename="../src/latexeditorview.cpp" line="2414"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>Štítek vymezen několikrát!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2404"/>
@@ -5128,12 +5128,12 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="498"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Najít další výskyt</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="499"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Najít předchozí výskyt</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="501"/>
@@ -6010,7 +6010,7 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="736"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 (z %2 dosud nalezených) výskytů bylo nahrazeno</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
@@ -6041,7 +6041,7 @@ Má se dále hledat od začátku?</translation>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="807"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="828"/>
         <source>%1 (of %2) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 (z %2) výskytů bylo nahrazeno</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="808"/>
@@ -7380,7 +7380,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="331"/>
         <source>Count occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Počítat výskyty</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
@@ -7641,7 +7641,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="121"/>
         <source>Babel</source>
-        <translation type="unfinished"/>
+        <translation>Babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
@@ -9422,7 +9422,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="816"/>
         <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat všechny &amp;výskyty</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="817"/>
@@ -11460,7 +11460,7 @@ Při &quot;Nevšímat si kratších slov:&quot;, budou kratší slova úplně p�
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation type="unfinished"/>
+        <translation>Nejmenší počet výskytů:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>

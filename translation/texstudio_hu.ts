@@ -4434,7 +4434,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1822"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>címke többszörösen definiálva!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1831"/>
@@ -4619,7 +4619,7 @@ A varázsló nem támogatja a parancsot</translation>
         <location filename="../src/latexeditorview.cpp" line="2396"/>
         <location filename="../src/latexeditorview.cpp" line="2414"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>címke többszörösen definiálva!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2404"/>
@@ -5125,12 +5125,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="498"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Következő előfordulás</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="499"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Előző előfordulás</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="501"/>
@@ -6007,7 +6007,7 @@ Most megadhatja a jelszót:</translation>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="736"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2 találva) cserélve eddig</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
@@ -6038,7 +6038,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="807"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="828"/>
         <source>%1 (of %2) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 (a %2-ból/ből) cserélve</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="808"/>
@@ -7371,7 +7371,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="331"/>
         <source>Count occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Előfordulások száma</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="332"/>
@@ -9411,7 +9411,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="816"/>
         <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Összes &amp;Occurrences kijelölése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="817"/>
@@ -11461,7 +11461,7 @@ Ha a &quot;teljes mellőzés&quot; van kiválasztva, minden rövidebb szó mell�
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation type="unfinished"/>
+        <translation>Minimum előfordulás-szám:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>

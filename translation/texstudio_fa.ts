@@ -6656,7 +6656,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="160"/>
         <source>magicComment</source>
-        <translation type="unfinished"/>
+        <translation>توضیح جادویی</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
@@ -6666,7 +6666,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>comment</source>
-        <translation>توضیح</translation>
+        <translation>تبدیل به توضیح</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="163"/>
@@ -9998,7 +9998,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1042"/>
         <source>Add magic comments ...</source>
-        <translation type="unfinished"/>
+        <translation>توضیحات جادویی اضافه کن ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1043"/>
