@@ -1260,18 +1260,16 @@ void QEditor::fileChanged(const QString& file)
 		{
 			watcher()->removeWatch(QString(), this); //no duplicated questions
 			
-			int ret = QMessageBox::warning(this,
-			                               tr("File changed"),
-			                               tr(
-			                                 "%1\nhas been modified by another application.\n\n"
-			                                 "Undo/Redo stack would be discarded by the auto-reload.\n"
-			                                 "Do you wish to keep up to date by reloading the file?\n\n"
-			                                 "(Note: You can permanently enable silent reloading in the options.)"
-			                                 ).arg(fileName()),
-			                               QMessageBox::Yes
-			                               |
-			                               QMessageBox::No
-			                               );
+			int ret = QMessageBox::warning(
+			              this, tr("File changed"),
+			              tr("%1\n"
+			                 "was changed outside of TeXstudio. Reload from disk?\n\n"
+			                 "Notes:\n"
+			                 "- Reloading overwrites the editor content with the file from disk. This cannot be undone.\n"
+			                 "- You can permanently enable silent reloading in the options."
+			              ).arg(fileName()),
+			                QMessageBox::Yes | QMessageBox::No
+			              );
 
 			if ( ret == QMessageBox::No )
 				autoReload = false;
