@@ -1,5 +1,6 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
+# muzimuzhi/2019-07-08
 # commands with big Letters and others
 \AtBeginDocument{code}#*
 \AtEndDocument{code}#*
@@ -8,9 +9,14 @@
 \CheckCommand{cmd}[args][default]{def}#*
 \CheckCommand{cmd}[args]{def}#*
 \CheckCommand{cmd}{def}#*
-\ClassError{class}{text}#*
-\ClassInfo{class}{text}#*
-\ClassWarning{class}{text}#*
+\CheckCommand*{cmd}[args][default]{def}#*
+\CheckCommand*{cmd}[args]{def}#*
+\CheckCommand*{cmd}{def}#*
+\ClassError{class name}{error text}{help text}#*
+\ClassInfo{class name}{info text}#*
+\ClassInfoNoLine{class name}{info text}
+\ClassWarning{class name}{warning text}#*
+\ClassWarningNoLine{class name}{warning text}#*
 \CurrentOption#*
 \DeclareFixedFont{cmd}{encoding}{family}{series}{shape}{size}#*
 \DeclareFontEncoding{encoding}{text-settings}{math-settings}#*
@@ -28,8 +34,11 @@
 \DeclareOption*{code}#*
 \DeclareOption{option}{code}#*
 \DeclareRobustCommand{cmd}[args][default]{def}#*d
-\DeclareRobustCommand{cmd}[args]{def}#*
-\DeclareRobustCommand{cmd}{def}#*
+\DeclareRobustCommand{cmd}[args]{def}#*d
+\DeclareRobustCommand{cmd}{def}#*d
+\DeclareRobustCommand*{cmd}[args][default]{def}#*d
+\DeclareRobustCommand*{cmd}[args]{def}#*d
+\DeclareRobustCommand*{cmd}{def}#*d
 \DeclareSizeFunction{name}{code}#*
 \DeclareSymbolFont{sym-font}{encoding}{family}{series}{shape}#*
 \DeclareSymbolFontAlphabet{math-alph}{sym-font}#*
@@ -43,18 +52,20 @@
 \IfFileExists{file}{then}{else}#*
 \InputIfFileExists{file}{then}{else}#*
 \LastDeclaredEncoding#*
-\LoadClass[optionlist]{class}#*
-\LoadClass[optionlist]{class}[release]#*
+\LoadClass[optionlist]{class}#u*
+\LoadClass[optionlist]{class}[release]#u*
 \LoadClass{class}#u*
-\LoadClass{class}[release]#*
+\LoadClass{class}[release]#u*
 \LoadClassWithOptions{class}#u*
+\LoadClassWithOptions{class}[release]#u*
 \NeedsTeXFormat{format}#*
 \NeedsTeXFormat{format}[release]#*
 \OptionNotUsed#*
-\PackageError{text}#*
-\PackageInfo{text}#*
-\PackageWarning{text}#*
-\PackageWarningNoLine{text}#*
+\PackageError{package name}{error text}{help text}#*
+\PackageInfo{package name}{info text}#*
+\PackageInfoNoLine{package name}{info text}#*
+\PackageWarning{package name}{warning text}#*
+\PackageWarningNoLine{package name}{warning text}#*
 \PassOptionsToClass{optionlist}{class}#*
 \PassOptionsToPackage{optionlist}{package}#*
 \ProcessOptions#*
@@ -66,11 +77,12 @@
 \ProvidesPackage{name}#*
 \ProvidesPackage{name}[release info]#*
 \ProvideTextCommand{cmd}{encoding}[num][default]{definition}#*
-\RequirePackage[optionlist]{package}#*
-\RequirePackage[optionlist]{package}[release]#*
+\RequirePackage[optionlist]{package}#u*
+\RequirePackage[optionlist]{package}[release]#u*
 \RequirePackage{package}#u
-\RequirePackage{package}[release]#*
+\RequirePackage{package}[release]#u*
 \RequirePackageWithOptions{package}#u*
+\RequirePackageWithOptions{package}[release]#u*
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
 \setlanguage{language}#*
