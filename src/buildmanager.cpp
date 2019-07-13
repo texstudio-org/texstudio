@@ -2141,9 +2141,13 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
             }
         }
 	}
-	if (mostRecent && mr != nullptr)
-        return mr->absoluteFilePath();
-	return "";
+	if (mostRecent && mr != nullptr) {
+        QString result = mr->absoluteFilePath();
+        delete mr;
+        return result;
+    } else {
+        return "";
+    }
 }
 
 void BuildManager::removePreviewFiles(QString elem)
