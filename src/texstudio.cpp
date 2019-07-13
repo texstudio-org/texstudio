@@ -5787,7 +5787,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 	QString pdfDefFile = BuildManager::parseExtendedCommandLine(pdfFile, master).first();
 	QStringList searchPaths = splitPaths(BuildManager::resolvePaths(buildManager.additionalPdfPaths));
 	searchPaths.insert(0, master.absolutePath());
-	pdfFile = buildManager.findFile(pdfDefFile, searchPaths);
+	pdfFile = buildManager.findFile(pdfDefFile, searchPaths, true);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
 	int ln = 0;
 	int col = 0;
