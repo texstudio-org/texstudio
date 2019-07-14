@@ -2107,8 +2107,8 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 			return defaultName;
 	}
 
-	QFileInfo fi;
 	foreach (QString p, searchPaths) {
+        QFileInfo fi;
 		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && (p[2] == '\\' || p[2] == '/'))) {
 			fi = QFileInfo(QDir(p), base.fileName());
 		} else {
