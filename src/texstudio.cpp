@@ -5787,7 +5787,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 	QString pdfDefFile = BuildManager::parseExtendedCommandLine(pdfFile, master).first();
 	QStringList searchPaths = splitPaths(BuildManager::resolvePaths(buildManager.additionalPdfPaths));
 	searchPaths.insert(0, master.absolutePath());
-	pdfFile = buildManager.findFile(pdfDefFile, searchPaths);
+	pdfFile = buildManager.findFile(pdfDefFile, searchPaths, true);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
 	int ln = 0;
 	int col = 0;
@@ -6146,7 +6146,7 @@ bool Texstudio::logExists()
 	QString finame = documents.getTemporaryCompileFileName();
 	if (finame == "")
 		return false;
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)));
+	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)), true);
 	QFileInfo fic(logFileName);
 	if (fic.exists() && fic.isReadable()) return true;
 	else return false;
@@ -6161,7 +6161,7 @@ bool Texstudio::loadLog()
 		QMessageBox::warning(this, tr("Error"), tr("File must be saved and compiling before you can view the log"));
 		return false;
 	}
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)));
+	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)), true);
 	QTextCodec * codec = QTextCodec::codecForName(configManager.logFileEncoding.toLatin1());
 	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName, codec ? codec : documents.getCurrentDocument()->codec() );
 }
