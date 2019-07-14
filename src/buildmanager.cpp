@@ -2107,19 +2107,10 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 			return defaultName;
 	}
 
+	QFileInfo fi;
 	foreach (QString p, searchPaths) {
 		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && (p[2] == '\\' || p[2] == '/'))) {
-			QFileInfo fi(QDir(p), base.fileName());
-			if (fi.exists()) {
-				if (mostRecent) {
-					if (mr == nullptr || mr->lastModified() < fi.lastModified()) {
-						if (mr != nullptr)
-							delete mr;
-						mr = new QFileInfo(fi);
-					}
-				} else
-					return fi.absoluteFilePath();
-			}
+			fi = QFileInfo(QDir(p), base.fileName());
 		} else {
 			// ?? seems a bit weird: if p is not an absolute path, then interpret p as directory
 			// e.g. default = /my/filename.tex
@@ -2128,18 +2119,18 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 			// TODO: do we want/use this anywere or can it be removed?
 			QString absPath = base.absolutePath() + "/";
 			QString baseName = "/" + base.fileName();
-			QFileInfo fi(absPath + p + baseName);
-			if (fi.exists()) {
-				if (mostRecent) {
-					if (mr == nullptr || mr->lastModified() < fi.lastModified()) {
-						if (mr != nullptr)
-							delete mr;
-						mr = new QFileInfo(fi);
-					}
-				} else
-					return fi.absoluteFilePath();
-			}
-		}
+			fi = QFileInfo(absPath + p + baseName);
+        }
+        if (fi.exists()) {
+            if (mostRecent) {
+                if (mr == nullptr || mr->lastModified() < fi.lastModified()) {
+                    if (mr != nullptr)
+                        delete mr;
+                    mr = new QFileInfo(fi);
+                }
+            } else
+                return fi.absoluteFilePath();
+        }
 	}
 	if (mostRecent && mr != nullptr) {
 		QString result = mr->absoluteFilePath();
