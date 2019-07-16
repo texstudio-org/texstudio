@@ -116,6 +116,7 @@
 <file>completion/ltxtable.cwl</file>
 <file>completion/luatex.cwl</file>
 <file>completion/luatodonotes.cwl</file>
+<file>completion/makecell.cwl</file>
 <file>completion/manyfoot.cwl</file>
 <file>completion/marvosym.cwl</file>
 <file>completion/mathtools.cwl</file>
