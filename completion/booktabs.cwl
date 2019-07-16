@@ -1,5 +1,6 @@
 # mode: booktabs.sty
 # dani/2006-02-18
+# muzimuzhi/2019-07-17
 \addlinespace
 \addlinespace[space]
 \bottomrule
@@ -10,6 +11,6 @@
 \midrule
 \midrule[width]
 \morecmidrules
-\specialrule[width]{abovespace}{belowspace}
+\specialrule{width}{abovespace}{belowspace}
 \toprule
 \toprule[width]
