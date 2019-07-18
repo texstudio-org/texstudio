@@ -1911,7 +1911,7 @@ void PDFWidget::pageDownOrNext()
 	if (scrollBar->value() < scrollBar->maximum())
 		scrollBar->triggerAction(QAbstractSlider::SliderPageStepAdd);
 	else {
-		if (realPageIndex < realNumPages() - 1) {
+        if (!getScrollArea()->getContinuous() && realPageIndex < realNumPages() - 1) {
 			goNext();
 			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
