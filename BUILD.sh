@@ -43,6 +43,7 @@ if (uname -s | grep Darwin); then SYSTEM=2; else SYSTEM=1; fi
 for PATHNAME in                                 \
   /bin/qmake                                    \
   /usr/bin/qmake                                \
+  /usr/bin/qmake-qt5                            \
   /usr/local/bin/qmake                          \
   /usr/lib/qt5/bin/qmake                        \
   /usr/lib/qt4/bin/qmake                        \
