@@ -2,20 +2,6 @@
 echo "TeXstudio compilation :"
 echo "----------------------------------------"
 
-#autodetection
-if (uname -s | grep Darwin); then SYSTEM=2; else SYSTEM=1; fi
-if [ -f /bin/qmake ]; then QTDIR=; 
-elif [ -f /usr/bin/qmake ]; then QTDIR=/usr; 
-elif [ -f /usr/local/bin/qmake ]; then QTDIR=/usr/local; 
-elif [ -f /usr/lib/qt5/bin/qmake ]; then QTDIR=/usr/lib/qt5
-elif [ -f /usr/lib/qt4/bin/qmake ]; then QTDIR=/usr/lib/qt4
-elif [ -f /usr/local/Trolltech/Qt-4.7.2/bin/qmake ]; then QTDIR=/usr/local/Trolltech/Qt-4.7.2 
-elif [ -f /usr/local/Trolltech/Qt-4.7.3/bin/qmake ]; then QTDIR=/usr/local/Trolltech/Qt-4.7.3
-elif [ -f /usr/local/Trolltech/Qt-4.8.0/bin/qmake ]; then QTDIR=/usr/local/Trolltech/Qt-4.8.0
-fi
-
-
-
 #helper functions
 readvalue() {
   echo -n $1
@@ -30,7 +16,7 @@ readswitchy() {
   for option in $2; do
     if [ "$NEWVALUE" = "$option" ]; then OK=1; fi
   done
-  if [ "$OK" = 0 ]; then 
+  if [ "$OK" = 0 ]; then
   echo "invalid input, must be a value in \"$2\""
   readswitchy "$1" "$2" "$3"
   fi
@@ -40,6 +26,42 @@ readoption() {
 readswitchy "$1 (yes/no)" "yes no" $2;
 }
 
+check_qt_pathname() {
+  if [ ! -x "$1" ]; then
+    return 1
+  fi
+  QMAKE="$(basename -- "$1")"
+  QTDIR="$(dirname -- "$1")"
+  QTDIR="$(dirname -- "$QTDIR")"
+  return 0
+}
+
+# Autodetect operating system
+if (uname -s | grep Darwin); then SYSTEM=2; else SYSTEM=1; fi
+
+# Autodetect QTDIR and QTDIR using a fixed list of locations
+for PATHNAME in                                 \
+  /bin/qmake                                    \
+  /usr/bin/qmake                                \
+  /usr/bin/qmake-qt5                            \
+  /usr/local/bin/qmake                          \
+  /usr/lib/qt5/bin/qmake                        \
+  /usr/lib/qt4/bin/qmake                        \
+  /usr/local/Trolltech/Qt-4.7.2/bin/qmake       \
+  /usr/local/Trolltech/Qt-4.7.3/bin/qmake       \
+  /usr/local/Trolltech/Qt-4.8.0/bin/qmake;      \
+do
+  if check_qt_pathname "$PATHNAME"; then
+    break
+  fi
+done
+
+# If autodtection of QTDIR and QTDIR failed, then assume default values
+if [ "$QMAKE" = "" ]; then
+  QTDIR=""
+  QMAKE="qmake"
+fi
+
 #ask
 readvalue "Enter SYSTEM (1: UNIX ; 2: MACOSX)" $SYSTEM;
 SYSTEM=$NEWVALUE
@@ -48,8 +70,11 @@ if [ "$SYSTEM" = 1 ]; then
   readvalue "Enter PREFIX (/usr , /usr/local or /opt)" /usr/local;
   PREFIX=$NEWVALUE
 fi
-readvalue "Enter path to QT4/5 (e.g. /usr/lib/qt4, you can leave it empty if qmake is in PATH)" $QTDIR;
+readvalue "Enter path to QT4/5 base directory (e.g. /usr/lib/qt4, you can leave it empty if qmake is in PATH)" $QTDIR;
 QTDIR=$NEWVALUE
+readvalue "Enter path to QT4/5 executable file (e.g. qmake or qmake-qt5)" $QMAKE;
+QMAKE=$NEWVALUE
+
 readoption "Do you want to use the internal pdf viewer (requires the Poppler library)?" yes;
 OPTION_PDFVIEWER=$NEWVALUE
 if [ "$OPTION_PDFVIEWER" = yes ]; then
@@ -58,19 +83,16 @@ OPTION_PHONON=$NEWVALUE
 else
 OPTION_PHONON=no
 fi
-readswitchy "Do you want to build a debug or release version?" "debug release d r deb rel" debug; 
+readswitchy "Do you want to build a debug or release version?" "debug release d r deb rel" debug;
 OPTION_DEBUG=$NEWVALUE
 case "$OPTION_DEBUG" in
   d|deb|debug) readoption "Do you want to include tests in the debug build?" yes; OPTION_TESTS=$NEWVALUE;;
   *) OPTION_TESTS=yes;;
 esac
 
-if [ ! -f $QTDIR/bin/qmake ]; then 
+if [ ! -x "$QTDIR/bin/$QMAKE" ]; then
 echo "Warning, QT path may be invalid"
 fi
-
-QMAKE=qmake
-
 
 #compile
 #pass parameters to qmake
@@ -85,7 +107,7 @@ LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
 DYLD_LIBRARY_PATH=$QTDIR/lib:$DYLD_LIBRARY_PATH
 export QTDIR PATH LD_LIBRARY_PATH DYLD_LIBRARY_PATH
 
-if [ "$SYSTEM" = 1 ] 
+if [ "$SYSTEM" = 1 ]
 then
   echo "Starting compilation"
   $QMAKE PREFIX=$PREFIX $TXSCOMPILEOPTIONS texstudio.pro
@@ -98,7 +120,7 @@ then
   exit 0
 fi
 
-if [ "$SYSTEM" = 2 ] 
+if [ "$SYSTEM" = 2 ]
 then
   echo "Starting compilation"
   $QMAKE -spec macx-clang $TXSCOMPILEOPTIONS texstudio.pro
