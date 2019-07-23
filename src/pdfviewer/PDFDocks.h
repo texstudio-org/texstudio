@@ -75,6 +75,8 @@ public slots:
 protected:
 	virtual void fillInfo() = 0;
 	virtual QString getTitle() = 0;
+	void addAction(const QString& caption, const char* slot);
+	using QDockWidget::addAction;
 
 	PDFDocument *document;
 	bool filled;

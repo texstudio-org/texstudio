@@ -36,6 +36,7 @@
 
 #include "PDFDocks.h"
 #include "PDFDocument.h"
+#include "universalinputdialog.h"
 
 /*!
  * \brief constructor
@@ -68,6 +69,13 @@ void PDFDock::documentClosed()
 void PDFDock::pageChanged(int page)
 {
 	Q_UNUSED(page)
+}
+
+void PDFDock::addAction(const QString& caption, const char* slot)
+{
+	QAction *act = new QAction(caption, this);
+	connect(act, SIGNAL(triggered()), slot);
+	addAction(act);
 }
 
 void PDFDock::myVisibilityChanged(bool visible)
@@ -905,12 +913,8 @@ PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent)
 	timer->start(2000);
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
-	QAction *act = new QAction(tr("Set Interval..."), this);
-	connect(act, SIGNAL(triggered()), SLOT(setInterval()));
-	addAction(act);
-	act = new QAction(tr("Restart"), this);
-	connect(act, SIGNAL(triggered()), SLOT(restart()));
-	addAction(act);
+	addAction(tr("Set Interval..."),  SLOT(setInterval()));
+	addAction(tr("Restart"), SLOT(restart()));
 }
 
 PDFClockDock::~PDFClockDock()
@@ -945,9 +949,18 @@ void PDFClockDock::restart()
 void PDFClockDock::setInterval()
 {
 	bool ok;
-    int interval = QInputDialog::getInt(nullptr, "TeXstudio", tr("New clock interval (in minutes)"), 60, 1, 9999, 5, &ok);
-	if (!ok) return;
-	setInterval(interval);
+	int i = (start.secsTo(end) + 30) / 60;
+	QString s = start.time().toString();
+	UniversalInputDialog d;
+	d.addVariable(&s, tr("Start time"));
+	QSpinBox* sb = d.addVariable(&i, tr("New clock interval (in minutes)"));
+	sb->setMinimum(1);
+	sb->setMaximum(9999);
+
+	if (!d.exec()) return;
+	start = QDateTime::currentDateTime();
+	start.setTime( QTime::fromString(s) );
+	end = start.addSecs(i * 60);
 }
 
 void PDFClockDock::setInterval(int interval)
@@ -977,12 +990,15 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 	p.fillRect(r, backgroundBrush);
 
 	// text
+	qint64 pendingSeconds = start.secsTo(QDateTime::currentDateTime());
 	qint64 remainingSeconds = QDateTime::currentDateTime().secsTo(end);
 	QString text;
-	if (remainingSeconds <= 60)
-		text = tr("%1 sec").arg(qMax(qint64(0), remainingSeconds));
+	if (pendingSeconds < 0)
+		text = tr("wait");
+	else if (remainingSeconds <= 90)
+		text = tr("%1 sec").arg(qMax<qint64>(0, remainingSeconds));
 	else
-		text = tr("%1 min").arg(remainingSeconds / 60);
+		text = tr("%1 min").arg((remainingSeconds + 30) / 60);
 	QFont f = p.font();
 	f.setPixelSize(r.height());
 	p.setFont(f);
@@ -994,7 +1010,7 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 
 	// progress bar
 	r.adjust(labelWidth, 0, 0, 0);
-	p.fillRect(r.x(), 0, r.width() * start.secsTo(QDateTime::currentDateTime()) / qMax(qint64(start.secsTo(end)), qint64(1)), r.height() * 3 / 4, timeBarColor);
+	p.fillRect(r.x(), 0, qMax<int>(0, r.width() * pendingSeconds / qMax(qint64(start.secsTo(end)), qint64(1))), r.height() * 3 / 4, timeBarColor);
 	p.fillRect(r.x(), r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages() - 1),  r.height() / 4, pagesBarColor);
 }
 
