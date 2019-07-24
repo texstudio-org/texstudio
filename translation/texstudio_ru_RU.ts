@@ -2288,7 +2288,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3455"/>
         <source>Min Length of Words with Long Repetition:</source>
-        <translation>Мин. число слов с далёкими повторами:</translation>
+        <translation>Мин. длина слова-далёкого повтора:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3465"/>
