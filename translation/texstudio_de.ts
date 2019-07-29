@@ -6204,7 +6204,7 @@ Press &quot;Ignore&quot; to ignore this warning.
 </source>
         <translation>%1
 wurde von einer anderen Anwendung verändert.
-&quot;Spechern&quot;, um die Datei zu überschreiben
+&quot;Speichern&quot;, um die Datei zu überschreiben
 &quot;Reset&quot; um die Datei vom Speicher zu laden.
 &quot;Diff&quot; um Unterschiede anzuzeigen.
 &quot;Ignorieren&quot; um die Warnung zu ignorieren.
