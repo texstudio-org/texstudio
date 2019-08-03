@@ -343,7 +343,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         commandStack.pop();
                     }
                 }
-                if (lp.commandDefs.contains(command)) {
+                if (lp.commandDefs.contains(command) && tk.subtype != Token::definition) {
                     CommandDescription cd = lp.commandDefs.value(command);
                     cd.level = level;
                     if(cd.bracketCommand){
