@@ -300,6 +300,7 @@
 \omit#*
 \openin#*
 \openout#*
+\or#*
 \outer#*
 \output#*
 \outputpenalty#*
