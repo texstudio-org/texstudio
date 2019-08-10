@@ -26,6 +26,7 @@
 <file>completion/beamerthemeFhG.cwl</file>
 <file>completion/biblatex.cwl</file>
 <file>completion/bidi.cwl</file>
+<file>completion/blindtext.cwl</file>
 <file>completion/bm.cwl</file>
 <file>completion/booktabs.cwl</file>
 <file>completion/braket.cwl</file>
