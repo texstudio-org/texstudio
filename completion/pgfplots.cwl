@@ -1,5 +1,10 @@
 # mode: pgfplots.sty
 # denisbitouze, 26.03.2017
+# muzimuzhi, 09.08.2019
+
+#include:graphicx
+#include:tikz
+
 \begin{tikzpicture}% function%\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\addplot {%|};%\\end{axis}%\\end{tikzpicture}#n
 \begin{tikzpicture}% table%\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\addplot table[x=%<column header%>,y=%<column header%>] {%<file%>};%\\end{axis}%\\end{tikzpicture}#n
 \begin{tikzpicture}% coordinates%\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\addplot coordinates {%|};%\\end{axis}%\\end{tikzpicture}#n
