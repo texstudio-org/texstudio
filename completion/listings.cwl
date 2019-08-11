@@ -13,7 +13,7 @@ floatplacement=
 aboveskip=##L
 belowskip=##L
 linesskip=##L
-boxpos#b,c,t
+boxpos=#b,c,t
 print#true,false
 firstline=
 lastline=
@@ -55,7 +55,7 @@ tab=
 showspaces#true,false
 showstringspaces#true,false
 formfeed=
-numbers#none,left,right
+numbers=#none,left,right
 stepnumber=
 numberfirstline#true,false
 numberstyle=

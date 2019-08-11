@@ -26,6 +26,7 @@
 <file>completion/beamerthemeFhG.cwl</file>
 <file>completion/biblatex.cwl</file>
 <file>completion/bidi.cwl</file>
+<file>completion/blindtext.cwl</file>
 <file>completion/bm.cwl</file>
 <file>completion/booktabs.cwl</file>
 <file>completion/braket.cwl</file>
@@ -99,6 +100,7 @@
 <file>completion/import.cwl</file>
 <file>completion/jurabib.cwl</file>
 <file>completion/kantlipsum.cwl</file>
+<file>completion/keyval.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
@@ -133,6 +135,7 @@
 <file>completion/multido.cwl</file>
 <file>completion/multimedia.cwl</file>
 <file>completion/multirow.cwl</file>
+<file>completion/mwe.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>
 <file>completion/needspace.cwl</file>
