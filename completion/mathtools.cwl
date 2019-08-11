@@ -7,11 +7,11 @@
 #include:graphicx
 \mathtoolsset{%<options%>}
 #keyvals:\mathtoolsset
-showonlyrefs#true,false
-showmanualtags#true,false
-original-intertext#true,false
-original-shortintertext#true,false
-mathic#true,false
+showonlyrefs=#true,false
+showmanualtags=#true,false
+original-intertext=#true,false
+original-shortintertext=#true,false
+mathic=#true,false
 above-intertext-sep=
 below-intertext-sep=
 above-shortintertext-sep=
@@ -22,7 +22,7 @@ firstline-afterskip=
 lastline-preskip=
 multlined-width=
 multlined-pos=
-centercolon#true,false
+centercolon=#true,false
 prescript-sup-format=
 prescript-sub-format=
 prescript-arg-format=
