@@ -55,7 +55,7 @@ lastfoot
 \DTLinttype#*
 \DTLloaddb[keyvals]{db}{filename}#s#%db
 #keyvals:\DTLloaddb
-noheader=#true,false
+noheader#true,false
 keys={%|}
 headers={%|}
 omitlines=

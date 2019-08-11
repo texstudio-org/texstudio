@@ -48,7 +48,7 @@ mainlanguage=#french,english
 secnumdepth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
 space=#single,onehalf,double
 chap-style=#Sonny,Lenny,Glenn,Conny,Rejne,Bjarne,PetersLenny,Bjornstrup,none
-nofrontcover=#true,false
+nofrontcover#true,false
 sepcorpaffilfrench=
 sepcorpaffilenglish=
 version=#inprogress,inprogress*,submitted,submitted*,final,draft

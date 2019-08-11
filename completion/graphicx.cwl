@@ -28,7 +28,7 @@ bburx=
 bbury=
 natwidth=
 natheight=
-hiresbb=#true,false
+hiresbb#true,false
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
 viewport=
 trim=
@@ -37,17 +37,17 @@ origin=
 width=##L
 height=##L
 totalheight=##L
-keepaspectratio=#true,false
+keepaspectratio#true,false
 scale=
-clip=#true,false
-draft=#true,false
+clip#true,false
+draft#true,false
 type=
 ext=
 read=
 command=
 quiet
 page=
-interpolate=#true,false
+interpolate#true,false
 #endkeyvals
 
 #keyvals:\rotatebox
