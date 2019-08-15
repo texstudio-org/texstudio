@@ -156,12 +156,12 @@
     <message>
         <location filename="../src/bibtexdialog.ui" line="50"/>
         <source>Fields:</source>
-        <translation type="unfinished"/>
+        <translation>Isian-isian:</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.ui" line="67"/>
         <source>Field</source>
-        <translation type="unfinished"/>
+        <translation>Proyek ( Berkas utama dan berkas-berkas lainnya ).</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.ui" line="72"/>
@@ -835,7 +835,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="347"/>
         <source>MRU Document Chooser</source>
-        <translation type="unfinished"/>
+        <translation>Pemilihan Dokumen MRU</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="360"/>
@@ -890,7 +890,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="486"/>
         <source>Check LaTeX Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Periksa konfigurasi LaTeX</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="496"/>
@@ -938,7 +938,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="593"/>
         <source>Automatically check every</source>
-        <translation type="unfinished"/>
+        <translation>Cek secara otomatis setiap</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="600"/>
@@ -1000,7 +1000,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="../src/configdialog.ui" line="817"/>
         <source>Check and update bibliography before compiling</source>
-        <translation type="unfinished"/>
+        <translation>Periksa dan perbaharui bibliography sebelum dibangun</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="824"/>
@@ -1212,12 +1212,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1282"/>
         <source>This adds an action to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Menambah aksi pada toolbar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1296"/>
         <source>This removes an action from the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Hilangkan aksi pada toolbar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1325"/>
@@ -1326,12 +1326,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1635"/>
         <source>Hide grammar errors in non-text environments</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan kesalahan grammar pada lingkungan non-teks</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1645"/>
         <source>Hide spelling errors in non-text environments</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan kesalahan pengejaan pada lingkungan non-teks</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1655"/>
@@ -1538,7 +1538,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2095"/>
         <source>Close search and replace panel together</source>
-        <translation type="unfinished"/>
+        <translation>Tutup panel &quot;cari dan ganti&quot; secara bersamaan</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2105"/>
@@ -1844,7 +1844,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2553"/>
         <source>One Line Per Cell</source>
-        <translation type="unfinished"/>
+        <translation>Satu baris per sel</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2561"/>
@@ -2285,7 +2285,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3536"/>
         <source>Server URL: </source>
-        <translation type="unfinished"/>
+        <translation>URL Peladen:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3543"/>
@@ -2593,7 +2593,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4307"/>
         <source>Direct</source>
-        <translation type="unfinished"/>
+        <translation>Langsung</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4312"/>
@@ -2647,7 +2647,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4440"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>Warna Kertas</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4450"/>
@@ -2697,7 +2697,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.cpp" line="197"/>
         <source>The shortcut you entered is invalid.</source>
-        <translation type="unfinished"/>
+        <translation>Shortcut yang anda masukkan tidak valid</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="203"/>
@@ -2820,7 +2820,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="504"/>
         <source>Build</source>
-        <translation type="unfinished"/>
+        <translation>Bangun</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="507"/>
@@ -2890,7 +2890,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="719"/>
         <source>Search Path for Logs</source>
-        <translation type="unfinished"/>
+        <translation>Cari Path untuk log</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="724"/>
@@ -2900,17 +2900,17 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="729"/>
         <source>Search Path for Images</source>
-        <translation type="unfinished"/>
+        <translation>Cari Path untuk gambar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="734"/>
         <source>Search Path for PDFs</source>
-        <translation type="unfinished"/>
+        <translation>Cari Path untuk PDFs</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="739"/>
         <source>Search Path for Commands</source>
-        <translation type="unfinished"/>
+        <translation>Cari Path untuk perintah</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="785"/>

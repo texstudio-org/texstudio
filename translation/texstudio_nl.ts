@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/aboutdialog.ui" line="14"/>
         <source>About TeXstudio</source>
-        <translation>Over TexStudio</translation>
+        <translation>Over TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="81"/>
@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="22"/>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
-        <translation>Maakt gebruik van Qt Version %1, gecompileerd met Qt %2 %3</translation>
+        <translation>Maakt gebruik van Qt Versie %1, gecompileerd met Qt %2 %3</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="27"/>
@@ -614,7 +614,9 @@ Wens je dat TeXstudio alle commandopaden aanpast van  /usr/texbin/ naar
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Opdracht %1 zou enkelvoudig moeten zijn. Echter is deze op dit ogenblik gedineerd als een opdracht reeks met %2 opdrachten. Dit gaat voorbij aan de specificatie en kan onverwachte effecten hebben.
+
+Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&gt; Configureer TeXstudio -&gt; Bouw&apos; en niet in &apos;Options -&gt; Configureer TexStudio -&gt; Opdrachten&apos;.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1026"/>
