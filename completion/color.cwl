@@ -11,6 +11,15 @@
 \colorbox{color}{text}
 \fcolorbox[model]{border-color}{fill-color}{text}
 \fcolorbox{border-color}{fill-color}{text}
+# colors
+red#B
+blue#B
+green#B
+yellow#B
+gray#B
+black#B
+white#B
+cyan#B
 ## dvipsnames colors
 #ifOption:dvipsnames
 Apricot#B
