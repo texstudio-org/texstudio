@@ -136,14 +136,17 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 			if (!keyvals.isEmpty()) {
 				// read keyval (name stored in "keyvals")
-				package.possibleCommands["key%" + keyvals] << line;
-				QString key;
-				CommandDescription cd = extractCommandDefKeyVal(line, key);
-				if (cd.args > 0) {
-					if (key.endsWith("="))
-						key.chop(1);
-					package.commandDescriptions.insert(keyvals + "/" + key, cd);
-				}
+                QStringList l_cmds=keyvals.split(',');
+                QString key;
+                CommandDescription cd = extractCommandDefKeyVal(line, key);
+                for(const QString &elem:l_cmds){
+                    package.possibleCommands["key%" + elem] << line;
+                    if (cd.args > 0) {
+                        if (key.endsWith("="))
+                            key.chop(1);
+                        package.commandDescriptions.insert(elem + "/" + key, cd);
+                    }
+                }
 				continue;
 			}
 			if (line.startsWith("#repl:")) {

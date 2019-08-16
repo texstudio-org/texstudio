@@ -1442,7 +1442,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <ul>
   <li><code>#include:&lt;packagename&gt;</code> (at start of line): also load packagename.cwl. This should be used to indicate that a package depends on other packages.</li>
   <li><code>#repl:&lt;search&gt; &lt;replacement&gt;</code> (at start of line): define a letter replacement, e.g. "a -> ä for German. Only used for letter replacement in spell checking (babel)</li>
-  <li><code>#keyvals:&lt;command&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphicx.cwl in source code. To specify possible values for keys, add them after #  e.g. <code>mode=#text,math</code><br>
+  <li><code>#keyvals:&lt;command[,command,...]&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphicx.cwl in source code. To specify possible values for keys, add them after #  e.g. <code>mode=#text,math</code><br>
   Instead of single keys/values, complete special lists can be given, e.g. <code>color=#%color</code>, see also tikz.cwl.<br>
   <code>command</code> can consist of two parts, e.g. \documentclass/thesis which is only valid when the command \documentclass uses thesis as argument.<br>
   If #c is added, the keyvals are only used for completion, not for syntax checking<br>
