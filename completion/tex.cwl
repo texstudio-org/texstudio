@@ -271,7 +271,9 @@
 \muskipdef#*
 \negthinspace#*
 \newbox
+\newbox{cmd}#dS
 \newcount
+\newcount{cmd}#dS
 \newdimen
 \newhelp#*
 \newif{cmd}#*
