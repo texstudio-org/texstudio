@@ -216,6 +216,21 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
     flowLayout->addWidget(cbSelection);
 
+    cbFilter = new QComboBox(this);
+    cbFilter->setToolTip(tr("Only searches in the selected text."));
+    cbFilter->setObjectName(("cbFilter"));
+    cbFilter->setMinimumSize(buttonSize);
+    cbFilter->setMaximumSize(buttonSize);
+    cbFilter->setEditable(false);
+    cbFilter->addItem("all");
+    cbFilter->addItem("math");
+    cbFilter->addItem("verbatim");
+    cbFilter->addItem("comment");
+    cbFilter->addItem("keyword");
+    //cbFilter->setIcon(getRealIconCached("selection"));
+    cbFilter->setIconSize(buttonSize);
+    flowLayout->addWidget(cbFilter);
+
     bExtend  = new QToolButton(this);
     bExtend->setToolTip(tr("Extended Search"));
     bExtend->setObjectName(("bExtend"));
@@ -898,7 +913,27 @@ void QSearchReplacePanel::on_cbPrompt_toggled(bool on){
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::Prompt, on);
 	if ( cFind->isVisible() )
-		cFind->setFocus();
+        cFind->setFocus();
+}
+
+void QSearchReplacePanel::on_cbFilter_currentIndexChanged(QString text)
+{
+    QDocument *doc=editor()->document();
+    if(text=="all") {
+        m_search->setFilteredFormat(-1);
+    }
+    if(text=="math") {
+        m_search->setFilteredFormat(doc->getFormatId("numbers"));
+    }
+    if(text=="verbatim") {
+        m_search->setFilteredFormat(doc->getFormatId("verbatim"));
+    }
+    if(text=="comment") {
+        m_search->setFilteredFormat(doc->getFormatId("comment"));
+    }
+    if(text=="keyword") {
+        m_search->setFilteredFormat(doc->getFormatId("keyword"));
+    }
 }
 
 void QSearchReplacePanel::on_cbWords_toggled(bool on)

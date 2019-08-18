@@ -100,11 +100,11 @@ struct PlaceHolder
 	};
 	
 	PlaceHolder() : 
-	       length(0), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(0) {}
+           length(0), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(nullptr) {}
 	PlaceHolder(const PlaceHolder& ph) : 
 	       length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride), autoRemoveIfLeft(ph.autoRemoveIfLeft), affector(ph.affector), cursor(ph.cursor), mirrors(ph.mirrors){}
 	PlaceHolder(int len, const QDocumentCursor &cur): 
-	       length(len), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(0), cursor(cur) {}
+           length(len), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(nullptr), cursor(cur) {}
 	
 	int length;
 	bool autoRemove, autoOverride, autoRemoveIfLeft;
@@ -177,7 +177,7 @@ class QCE_EXPORT QDocument : public QObject
 
 		Q_DECLARE_FLAGS(WorkAroundMode, WorkAroundFlag)
 
-		explicit QDocument(QObject *p = 0);
+        explicit QDocument(QObject *p = nullptr);
 		virtual ~QDocument();
 		
 		Q_INVOKABLE QString text(int mode) const;
@@ -227,7 +227,7 @@ class QCE_EXPORT QDocument : public QObject
 		int textLineNumber(int visualLineNumber) const;
 		
 		int y(int line) const;
-		int lineNumber(int ypos, int *wrap = 0) const;
+        int lineNumber(int ypos, int *wrap = nullptr) const;
 		
 		QRect lineRect(int line) const;
 		

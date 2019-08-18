@@ -403,7 +403,7 @@ QVector<int> QDocumentLine::getFormats(){
     return m_handle->getFormats();
 }
 
-int QDocumentLine::getFormatAt(int pos){
+int QDocumentLine::getFormatAt(int pos) const{
 	if( !m_handle ) return -1;
 	if (pos < 0 ) return -1;
 	const QVector<int>& formats = m_handle->getFormats();

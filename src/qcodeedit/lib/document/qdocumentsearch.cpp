@@ -40,7 +40,7 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_option(opt), m_string(f), m_replace(r), m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
+ : m_option(opt), m_string(f), m_replace(r), m_editor(e), m_replaced(0), m_replaceDeltaLength(0),m_filteredId(-1)
 {
 	connectToEditor();
 }
@@ -170,11 +170,17 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 			if (!m_regexp.matchedLength())
 				hc.setColumnNumber(column+1); //empty (e.g. a* regexp)
 			else {
-				hc.setColumnNumber(column);
-				hc.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
-											
-				hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
-				m_highlights.insert(l.handle());
+                // filter by format if desired
+                int fmt=l.getFormatAt(column);
+
+                hc.setColumnNumber(column);
+                hc.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
+
+                if(m_filteredId<=0 || fmt==m_filteredId){
+                    // add filtered or all
+                    hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
+                    m_highlights.insert(l.handle());
+                }
 			}
 		} else hc.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::ThroughFolding);
 	}
@@ -374,7 +380,23 @@ void QDocumentSearch::setOption(Option opt, bool on)
 
 void QDocumentSearch::setOptions(Options options){
 	for (int i=0;i<8;i++)
-		setOption((Option)(1<<i), options & (1<<i));
+        setOption(static_cast<Option>(1<<i), options & (1<<i));
+}
+
+void QDocumentSearch::setFilteredFormat(int id)
+{
+     m_filteredId=id;
+     // update search
+     if (m_option & QDocumentSearch::HighlightAll){
+         // matches may have become invalid : update them
+         searchMatches();
+         visibleLinesChanged();
+     }
+}
+
+int QDocumentSearch::getFilteredFormat() const
+{
+    return m_filteredId;
 }
 
 
@@ -416,7 +438,7 @@ static QString escapeCpp(const QString& s)
 				es += '\r';
 			//else if ( c == '0' )
 			//	es += '\0';
-			else es += '\\', es += c;
+            else es += '\\' + c;
 
 		} else {
 			es += s.at(i);
@@ -681,6 +703,17 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
         if(backward && hasOption(RegExp) && m_string.endsWith('$') && s.length()<l.length()){
             column=-1; // force miss as regexp $ is only valid on unchanged line
         }
+        // filter out matches that don't fulfill fomarting i.e. math-env
+        bool filtered=false;
+        if(column != -1 && (backward || column >= m_cursor.columnNumber() ) ){
+            int fmt=l.getFormatAt(column);
+            if(m_filteredId>0 && fmt!=m_filteredId){
+                // filter non-math
+                m_cursor.setColumnNumber(column+1);
+                column=-1;
+                filtered=true;
+            }
+        }
         /*
 		qDebug("searching %s in %s from %i => %i",
 				qPrintable(m_regexp.pattern()),
@@ -749,8 +782,10 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				if ( !all )
 					break;
 			}
-		} else 
-			m_cursor.movePosition(1, move, QDocumentCursor::ThroughFolding);
+        } else {
+            if(!filtered)
+                m_cursor.movePosition(1, move, QDocumentCursor::ThroughFolding);
+        }
 	}
 	if ( all && replaceCount )
 		updateReplacementOverlays();

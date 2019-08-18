@@ -50,10 +50,11 @@ class QCE_EXPORT QDocumentSearch: public QObject
 			Silent			= 32,
 			HighlightAll	= 64,
 			EscapeSeq		= 128,
+            filterByFormat  = 256,
 			HighlightReplacements	= 64
 		};
 		
-		Q_DECLARE_FLAGS(Options, Option);
+        Q_DECLARE_FLAGS(Options, Option)
 		
 		QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r = QString());
 		~QDocumentSearch();
@@ -65,6 +66,9 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		bool hasOption(Option opt) const;
 		void setOption(Option opt, bool on);
 		void setOptions(Options options);
+
+        void setFilteredFormat(int id);
+        int getFilteredFormat() const;
 		
 		QString replaceText() const;
 		void setReplaceText(const QString& r);
@@ -107,6 +111,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		QSet<QDocumentLineHandle*> m_highlights, m_highlightedReplacements;
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
+
+        int m_filteredId;
 	private slots:
 		void documentContentChanged(int line, int n);
 		void visibleLinesChanged();

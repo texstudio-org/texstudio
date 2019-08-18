@@ -183,7 +183,7 @@ class QCE_EXPORT QDocumentLine
 		void setFormats(const QVector<int>& formats);
 		QVector<int> compose();
 		QVector<int> getFormats();
-		int getFormatAt(int pos);
+        int getFormatAt(int pos) const;
 		
 		const QVector<QParenthesis>& parentheses() const;
 		void setParentheses(const QVector<QParenthesis>& parentheses);

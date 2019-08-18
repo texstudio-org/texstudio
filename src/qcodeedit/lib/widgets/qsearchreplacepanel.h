@@ -40,7 +40,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 	public:
 		Q_PANEL(QSearchReplacePanel, "Search Replace Panel")
 		
-		QSearchReplacePanel(QWidget *p = 0);
+        QSearchReplacePanel(QWidget *p = nullptr);
 		virtual ~QSearchReplacePanel();
 		
 		virtual QString type() const;
@@ -97,6 +97,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void on_cbSelection_toggled(bool on);
 		void on_cbEscapeSeq_toggled(bool on);
 		void on_cbPrompt_toggled(bool on);
+
+        void on_cbFilter_currentIndexChanged(QString text);
 		
 
 		void on_bNext_clicked();
@@ -137,6 +139,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
         QToolButton *cbHighlight;
         QToolButton *cbCursor;
         QToolButton *cbSelection;
+        QComboBox *cbFilter;
         QToolButton *bExtend;
 		// replace
 		QWidget *replaceWidget;
