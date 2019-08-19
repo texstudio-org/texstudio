@@ -1,5 +1,7 @@
-# tex/latex mode: Tex commands
+# tex/latex mode: TeX commands
 # dani/8.1.2004
+# muzimuzhi/2019-08-20
+
 \above#*
 \abovedisplayshortskip#*
 \abovedisplayskip#*
@@ -275,14 +277,28 @@
 \newcount
 \newcount{cmd}#dS
 \newdimen
+\newdimen{cmd}#dS
+\newfam#*
+\newfam{cmd}#dS
 \newhelp#*
-\newif{cmd}#*
+\newhelp{cmd}{help text}#dS
+\newif#*
+\newif{cmd}#dS
+\newinsert#*
+\newinsert{cmd}#dS
+\newlanguage#*
+\newlanguage{cmd}#dS
 \newlinechar#*
 \newmuskip#*
+\newmuskip{cmd}#dS
 \newread#*
+\newread{cmd}#dS
 \newskip#*
+\newskip{cmd}#dS
 \newtoks#*
+\newtoks{cmd}#dS
 \newwrite#*
+\newwrite{cmd}#dS
 \noalign
 \nobreak#*
 \noexpand#*
