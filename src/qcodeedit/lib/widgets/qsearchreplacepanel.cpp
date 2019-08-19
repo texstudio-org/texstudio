@@ -228,6 +228,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     menu->addAction(getRealIcon("comment"),"comment",this,SLOT(filterChanged()));
     menu->addAction(getRealIcon("command"),"keyword",this,SLOT(filterChanged()));
     cbFilter->setMenu(menu);
+    cbFilter->setPopupMode(QToolButton::InstantPopup);
     cbFilter->setIcon(getRealIconCached("all"));
     cbFilter->setIconSize(buttonSize);
     flowLayout->addWidget(cbFilter);
