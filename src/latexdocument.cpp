@@ -834,7 +834,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				continue;
 			}
-
+            /* obsolete
 			// special treatment \newcount
 			if (cmd == "\\newcount") {
 				QString remainder = curLine.mid(cmdStart + cmd.length());
@@ -850,6 +850,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				continue;
 			}
+            */
 
 			//// newenvironment ////
 			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
