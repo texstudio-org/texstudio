@@ -98,8 +98,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void on_cbEscapeSeq_toggled(bool on);
 		void on_cbPrompt_toggled(bool on);
 
-        void on_cbFilter_currentIndexChanged(QString text);
-		
+        void filterChanged();
 
 		void on_bNext_clicked();
 		void on_bPrevious_clicked();
@@ -139,7 +138,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
         QToolButton *cbHighlight;
         QToolButton *cbCursor;
         QToolButton *cbSelection;
-        QComboBox *cbFilter;
+        QToolButton *cbFilter;
         QToolButton *bExtend;
 		// replace
 		QWidget *replaceWidget;

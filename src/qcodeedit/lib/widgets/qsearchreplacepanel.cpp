@@ -216,18 +216,20 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
     flowLayout->addWidget(cbSelection);
 
-    cbFilter = new QComboBox(this);
-    cbFilter->setToolTip(tr("Only searches in the selected text."));
+    cbFilter = new QToolButton(this);
+    cbFilter->setToolTip(tr("Only searches in selected text type (math, commands, etc.)"));
     cbFilter->setObjectName(("cbFilter"));
     cbFilter->setMinimumSize(buttonSize);
     cbFilter->setMaximumSize(buttonSize);
-    cbFilter->setEditable(false);
-    cbFilter->addItem("all");
-    cbFilter->addItem("math");
-    cbFilter->addItem("verbatim");
-    cbFilter->addItem("comment");
-    cbFilter->addItem("keyword");
-    //cbFilter->setIcon(getRealIconCached("selection"));
+    QMenu *menu=new QMenu();
+    menu->addAction(getRealIcon("all"),"all",this,SLOT(filterChanged()));
+    menu->addAction(getRealIcon("math"),"math",this,SLOT(filterChanged()));
+    menu->addAction(getRealIcon("verbatim"),"verbatim",this,SLOT(filterChanged()));
+    menu->addAction(getRealIcon("comment"),"comment",this,SLOT(filterChanged()));
+    menu->addAction(getRealIcon("command"),"keyword",this,SLOT(filterChanged()));
+    cbFilter->setMenu(menu);
+    cbFilter->setPopupMode(QToolButton::InstantPopup);
+    cbFilter->setIcon(getRealIconCached("all"));
     cbFilter->setIconSize(buttonSize);
     flowLayout->addWidget(cbFilter);
 
@@ -916,23 +918,32 @@ void QSearchReplacePanel::on_cbPrompt_toggled(bool on){
         cFind->setFocus();
 }
 
-void QSearchReplacePanel::on_cbFilter_currentIndexChanged(QString text)
+void QSearchReplacePanel::filterChanged()
 {
+    QAction *act=qobject_cast<QAction*>(sender());
+    if(act==nullptr)
+        return;
+    QString text=act->text();
     QDocument *doc=editor()->document();
     if(text=="all") {
         m_search->setFilteredFormat(-1);
+        cbFilter->setIcon(getRealIconCached("all"));
     }
     if(text=="math") {
         m_search->setFilteredFormat(doc->getFormatId("numbers"));
+        cbFilter->setIcon(getRealIconCached("math"));
     }
     if(text=="verbatim") {
         m_search->setFilteredFormat(doc->getFormatId("verbatim"));
+        cbFilter->setIcon(getRealIconCached("verbatim"));
     }
     if(text=="comment") {
         m_search->setFilteredFormat(doc->getFormatId("comment"));
+        cbFilter->setIcon(getRealIconCached("comment"));
     }
     if(text=="keyword") {
         m_search->setFilteredFormat(doc->getFormatId("keyword"));
+        cbFilter->setIcon(getRealIconCached("command"));
     }
 }
 
