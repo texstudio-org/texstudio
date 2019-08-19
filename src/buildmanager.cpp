@@ -1638,16 +1638,24 @@ ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &
 
 bool BuildManager::waitForProcess(ProcessX *p)
 {
+	REQUIRE_RET(p, false);
 	REQUIRE_RET(!processWaitedFor, false);
-	processWaitedFor = p;
-    QEventLoop loop; //This approach avoids spinlock and high CPU usage, and allows user interaction and UI responsivness while compiling.
-    connect(p, SIGNAL(processFinished()), &loop, SLOT(quit()));
-    emit buildRunning(true);
-    loop.exec(); //exec will delay execution until the signal has arrived    
-    emit buildRunning(false);
-	bool result = processWaitedFor;
-    processWaitedFor = nullptr;
-	return result;
+	// Waiting on a Qt event loop avoids spinlock and high CPU usage, and allows user interaction
+	// and UI responsiveness while compiling.
+	// We have to check the process running state before we start waiting for processFinished
+	// because it is possible that the process has already ended and we would wait forever.
+	// We have to start listening for processFinished before we check the running state in
+	// order to avoid a race condition.
+	QEventLoop loop;
+	connect(p, SIGNAL(processFinished()), &loop, SLOT(quit()));
+	if (p->isRunning()) {
+		processWaitedFor = p;
+		emit buildRunning(true);
+		loop.exec(); //exec will delay execution until the signal has arrived
+		emit buildRunning(false);
+		processWaitedFor = nullptr;
+	}
+	return true;
 }
 
 bool BuildManager::waitingForProcess() const
