@@ -1640,13 +1640,13 @@ bool BuildManager::waitForProcess(ProcessX *p)
 {
 	REQUIRE_RET(!processWaitedFor, false);
 	processWaitedFor = p;
-    QEventLoop loop; //This approach avoids spinlock and high CPU usage, and allows user interaction and UI responsivness while compiling.
-    connect(p, SIGNAL(processFinished()), &loop, SLOT(quit()));
-    emit buildRunning(true);
-    loop.exec(); //exec will delay execution until the signal has arrived    
-    emit buildRunning(false);
+	QEventLoop loop; //This approach avoids spinlock and high CPU usage, and allows user interaction and UI responsivness while compiling.
+	connect(p, SIGNAL(processFinished()), &loop, SLOT(quit()));
+	emit buildRunning(true);
+	loop.exec(); //exec will delay execution until the signal has arrived
+	emit buildRunning(false);
 	bool result = processWaitedFor;
-    processWaitedFor = nullptr;
+	processWaitedFor = nullptr;
 	return result;
 }
 
