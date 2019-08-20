@@ -1839,7 +1839,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="1902"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Remover espaços em branco no final da linha ao salvar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2487"/>
@@ -5169,7 +5169,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>Tempo inicial</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="956"/>
@@ -5179,7 +5179,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="997"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>espere</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="999"/>
@@ -6358,7 +6358,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+foi alterado fora do TeXstudio. Recarregar do disco?
+
+Notas:
+- Recarregar sobrescreverá o conteúdo do editor pelo arquivo do disco. Isso não poderá ser desfeito.
+- Você pode ativar o recarregamento silencioso permanentemente nas opções.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>
@@ -7348,7 +7353,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="220"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"/>
+        <translation>Buscar somente no tipo selecionado de texto (matemática, comandos, etc.)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="237"/>
@@ -11477,7 +11482,7 @@ Se &quot;ignorar palavras menores que&quot; estiver selecionado as palavras meno
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation type="unfinished"/>
+        <translation>Mínima contagem de ocorrência:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>

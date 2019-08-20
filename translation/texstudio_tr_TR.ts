@@ -1842,7 +1842,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="1902"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Kaydederken Sondaki Boşlukları Kaldır</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2487"/>
@@ -5172,7 +5172,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>Başlangıç zamanı</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="956"/>
@@ -5182,7 +5182,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="997"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>bekleyin</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="999"/>
@@ -6360,7 +6360,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+TeXstudio dışında değiştirilmiş. Diskten yeniden yüklemek ister misiniz?
+
+Notlar:
+- Yeniden yükleme yapıldığında düzenleyici içeriği diskten yüklenen içerik ile değiştirilir. Bu işlem geri alınamaz.
+- Sessiz yeniden yükleme özelliğini ayarlar bölümünden kalıcı olarak etkinleştirebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>
@@ -7350,7 +7355,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="220"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"/>
+        <translation>Yalnız seçilmiş metin türünde arar (formül, komutlar gibi)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="237"/>

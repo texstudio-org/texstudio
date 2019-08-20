@@ -1842,7 +1842,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="1902"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Видалити завершальні пробіли при збереженні</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2487"/>
@@ -5173,7 +5173,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>Час початку:</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="956"/>
@@ -5183,7 +5183,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="997"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>очікування</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="999"/>
@@ -6363,7 +6363,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+ змінений зовні TeXstudio. Оновити його з диска?
+
+Примітки:
+- Оновлення перепише вміст редактора файлом з диска. Цю дію не можна повернути.
+- Ви можете увімкнути постійне тихе оновлення у параметрах.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>
@@ -7353,7 +7358,7 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="220"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"/>
+        <translation>Шукати лише у вибраному типі тексту (математика, команди, тощо)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="237"/>
