@@ -3192,6 +3192,12 @@ QVector<int> QDocumentLineHandle::getFormats() const
 	return m_formats;
 }
 
+QVector<int> QDocumentLineHandle::getCachedFormats() const
+{
+    QReadLocker locker(&mLock);
+    return m_cache;
+}
+
 bool QDocumentLineHandle::isRTLByLayout() const{
 	if (!m_layout) return false;
 	else {

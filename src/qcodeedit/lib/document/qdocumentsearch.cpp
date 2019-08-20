@@ -40,7 +40,7 @@
 */
 
 QDocumentSearch::QDocumentSearch(QEditor *e, const QString& f, Options opt, const QString& r)
- : m_option(opt), m_string(f), m_replace(r), m_editor(e), m_replaced(0), m_replaceDeltaLength(0),m_filteredId(-1)
+ : m_option(opt), m_string(f), m_replace(r), m_editor(e), m_replaced(0), m_replaceDeltaLength(0)
 {
 	connectToEditor();
 }
@@ -171,12 +171,12 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 				hc.setColumnNumber(column+1); //empty (e.g. a* regexp)
 			else {
                 // filter by format if desired
-                int fmt=l.getFormatAt(column);
+                int fmt=l.getCachedFormatAt(column);
 
                 hc.setColumnNumber(column);
                 hc.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
 
-                if(m_filteredId<=0 || fmt==m_filteredId){
+                if(m_filteredIds.isEmpty() || m_filteredIds.contains(fmt&255)|| m_filteredIds.contains((fmt>>8)&255)|| m_filteredIds.contains((fmt>>16)&255)){
                     // add filtered or all
                     hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
                     m_highlights.insert(l.handle());
@@ -382,21 +382,23 @@ void QDocumentSearch::setOptions(Options options){
 	for (int i=0;i<8;i++)
         setOption(static_cast<Option>(1<<i), options & (1<<i));
 }
-
+void QDocumentSearch::setFilteredFormats(QList<int> ids){
+    m_filteredIds=ids;
+    // update search
+    if (m_option & QDocumentSearch::HighlightAll){
+        // matches may have become invalid : update them
+        searchMatches();
+        visibleLinesChanged();
+    }
+}
 void QDocumentSearch::setFilteredFormat(int id)
 {
-     m_filteredId=id;
-     // update search
-     if (m_option & QDocumentSearch::HighlightAll){
-         // matches may have become invalid : update them
-         searchMatches();
-         visibleLinesChanged();
-     }
+    setFilteredFormats({id});
 }
 
-int QDocumentSearch::getFilteredFormat() const
+QList<int> QDocumentSearch::getFilteredFormats() const
 {
-    return m_filteredId;
+    return m_filteredIds;
 }
 
 
@@ -706,8 +708,8 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
         // filter out matches that don't fulfill fomarting i.e. math-env
         bool filtered=false;
         if(column != -1 && (backward || column >= m_cursor.columnNumber() ) ){
-            int fmt=l.getFormatAt(column);
-            if(m_filteredId>0 && fmt!=m_filteredId){
+            int fmt=l.getCachedFormatAt(column);
+            if(!m_filteredIds.isEmpty() && !m_filteredIds.contains(fmt&255) && !m_filteredIds.contains((fmt>>8)&255) && !m_filteredIds.contains((fmt>>16)&255)){
                 // filter non-math
                 m_cursor.setColumnNumber(column+1);
                 column=-1;

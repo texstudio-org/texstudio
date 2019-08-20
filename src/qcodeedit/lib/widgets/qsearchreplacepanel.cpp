@@ -227,6 +227,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     menu->addAction(getRealIcon("verbatim"),"verbatim",this,SLOT(filterChanged()));
     menu->addAction(getRealIcon("comment"),"comment",this,SLOT(filterChanged()));
     menu->addAction(getRealIcon("command"),"keyword",this,SLOT(filterChanged()));
+    menu->addAction(getRealIcon("label"),"label",this,SLOT(filterChanged()));
+    menu->addAction(getRealIcon("cite"),"citation",this,SLOT(filterChanged()));
     cbFilter->setMenu(menu);
     cbFilter->setPopupMode(QToolButton::InstantPopup);
     cbFilter->setIcon(getRealIconCached("all"));
@@ -926,7 +928,7 @@ void QSearchReplacePanel::filterChanged()
     QString text=act->text();
     QDocument *doc=editor()->document();
     if(text=="all") {
-        m_search->setFilteredFormat(-1);
+        m_search->setFilteredFormats(QList<int>());
         cbFilter->setIcon(getRealIconCached("all"));
     }
     if(text=="math") {
@@ -944,6 +946,14 @@ void QSearchReplacePanel::filterChanged()
     if(text=="keyword") {
         m_search->setFilteredFormat(doc->getFormatId("keyword"));
         cbFilter->setIcon(getRealIconCached("command"));
+    }
+    if(text=="label") {
+        m_search->setFilteredFormats({doc->getFormatId("referencePresent"),doc->getFormatId("referenceMissing"),doc->getFormatId("referenceMultiple")});
+        cbFilter->setIcon(getRealIconCached("label"));
+    }
+    if(text=="citation") {
+        m_search->setFilteredFormats({doc->getFormatId("citationPresent"),doc->getFormatId("citationMissing")});
+        cbFilter->setIcon(getRealIconCached("cite"));
     }
 }
 

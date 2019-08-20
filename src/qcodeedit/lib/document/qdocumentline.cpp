@@ -411,6 +411,14 @@ int QDocumentLine::getFormatAt(int pos) const{
 	return formats.at(pos);
 }
 
+int QDocumentLine::getCachedFormatAt(int pos) const{
+    if( !m_handle ) return -1;
+    if (pos < 0 ) return -1;
+    const QVector<int>& formats = m_handle->getCachedFormats();
+    if( pos >= formats.size() ) return -1;
+    return formats.at(pos);
+}
+
 QVariant QDocumentLine::getCookie(int type){
     if(!m_handle) return QVariant();
     m_handle->lockForRead();

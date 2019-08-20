@@ -210,5 +210,7 @@
         <file>images-ng/command.svg</file>
         <file>images-ng/all.svg</file>
         <file>images-ng/verbatim.svg</file>
+        <file>images-ng/cite.svg</file>
+        <file>images-ng/label.svg</file>
     </qresource>
 </RCC>

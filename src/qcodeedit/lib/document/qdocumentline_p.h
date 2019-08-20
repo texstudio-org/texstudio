@@ -143,6 +143,7 @@ public:
 
         QVector<int> compose() const;
 		QVector<int> getFormats() const;
+        QVector<int> getCachedFormats() const;
 
 		void lockForRead() const {
 		    mLock.lockForRead();
