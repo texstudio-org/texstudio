@@ -1843,7 +1843,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="1902"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Supprimer les espaces finaux lors de l&apos;enregistrement</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2487"/>
@@ -5170,7 +5170,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>Heure de début</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="956"/>
@@ -5180,7 +5180,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="997"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>attendre</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="999"/>
@@ -6358,7 +6358,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+ a été modifié en dehors de TeXstudio. Souhaitez-vous le recharger à partir du disque ? 
+
+Remarques :
+- Le rechargement remplace le contenu de l&apos;éditeur par celui du fichier rechargé à partir du disque. Cela ne peut pas être annulé.
+- Vous pouvez activer de manière permanente le rechargement silencieux dans les options.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>
@@ -7348,7 +7353,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="220"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"/>
+        <translation>Recherche seulement parmi le type de texte sélectionné (maths, commandes, etc.)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="237"/>
