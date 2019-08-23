@@ -88,7 +88,7 @@ macx {
     # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
     manual.path = Contents/Resources/
-    utilities.path = Contents/Resources/ 
+    utilities.path = Contents/Resources/
     QMAKE_BUNDLE_DATA += utilities manual
     ICON = texstudio.icns
     QMAKE_INFO_PLIST = Info.plist
@@ -117,7 +117,7 @@ unix:!macx {
         appdata.files = utilities/texstudio.appdata.xml
         INSTALLS += appdata
     }
-    INSTALLS += applicationmenu 
+    INSTALLS += applicationmenu
     INSTALLS += icon
     include(src/xkb/xkb.pri)
 }
