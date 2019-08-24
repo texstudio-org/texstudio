@@ -88,7 +88,7 @@ macx {
     # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
     manual.path = Contents/Resources/
-    utilities.path = Contents/Resources/ 
+    utilities.path = Contents/Resources/
     QMAKE_BUNDLE_DATA += utilities manual
     ICON = texstudio.icns
     QMAKE_INFO_PLIST = Info.plist
@@ -117,7 +117,7 @@ unix:!macx {
         appdata.files = utilities/texstudio.appdata.xml
         INSTALLS += appdata
     }
-    INSTALLS += applicationmenu 
+    INSTALLS += applicationmenu
     INSTALLS += icon
     include(src/xkb/xkb.pri)
 }
@@ -417,7 +417,8 @@ exists(./.git)  {
 }
 
 !win32-msvc*: {
-  QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline
+  QMAKE_CXXFLAGS_DEBUG -= -O -O1 -O2 -O3
+  QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline -O0
   QMAKE_CXXFLAGS += -std=c++0x
   !win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
   else {
