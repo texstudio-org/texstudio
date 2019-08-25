@@ -320,7 +320,9 @@ QModelIndex LatexDocumentsModel::index ( int row, int column, const QModelIndex 
 			return QModelIndex(); //should never happen
 		}
 		if (row >= entry->children.size()) {
-			return QModelIndex(); //shouldn't happen in a correct view
+			// QAbstractItemView::rowsAboutToBeRemoved can call us with row == entry->children.size()
+			// if there are no visible and enabled rows after the last removed row
+			return QModelIndex();
 		}
 		return createIndex(row, column, entry->children.at(row));
 	} else {
