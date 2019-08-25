@@ -1,41 +1,97 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
+# muzimuzhi/2019-Aug-30 for tcolorbox v4.20
+#     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
+
 #include:environ
 #include:etoolbox
 #include:pgf
 #include:verbatim
 
 # << Package options (load libraries) >>
-#ifOption:skins
-#include:tikz
+#ifOption:external
+#include:pdftexcmds
+#include:shellesc
+#include:incgraph
 #endif
+
 #ifOption:listings
 #include:listings
+#include:pdftexcmds
+#include:shellesc
 #endif
+
 #ifOption:listingsutf8
+## loads option listings
 #include:listings
 #include:listingsutf8
+#include:pdftexcmds
+#include:shellesc
 #endif
+
 #ifOption:minted
 #include:minted
 #endif
+
+#ifOption:skins
+#include:tikz
+#endif
+
+#ifOption:theorems
+#include:amsmath
+#endif
+
 #ifOption:xparse
 #include:xparse
 #endif
-#ifOption:many
+
+#ifOption:documentation
+## loads options listings, skins, and xparse
+#include:hyperref
+#include:listings
+#include:makeidx
+#include:marginnote
+#include:marvosym
+#include:pdftexcmds
+#include:pifont
+#include:refcount
+#include:shellesc
 #include:tikz
 #include:xparse
 #endif
-#ifOption:most
+
+#ifOption:many
+## loads options skins, theorems, and xparse
+#include:amsmath
 #include:tikz
+#include:xparse
+#endif
+
+#ifOption:most
+## loads all options except minted and documentation
+#include:amsmath
+#include:incgraph
 #include:listings
 #include:listingsutf8
+#include:pdftexcmds
+#include:pdftexcmds
+#include:shellesc
+#include:shellesc
+#include:tikz
 #include:xparse
 #endif
+
 #ifOption:all
-#include:tikz
+## loads all options except documentation
+#include:amsmath
+#include:incgraph
 #include:listings
 #include:listingsutf8
 #include:minted
+#include:pdftexcmds
+#include:pdftexcmds
+#include:shellesc
+#include:shellesc
+#include:tikz
 #include:xparse
 #endif
 
