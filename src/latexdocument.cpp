@@ -527,8 +527,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			int i = elem.indexOf("{");
 			if (i >= 0) elem = elem.left(i);
 			ltxCommands.possibleCommands["user"].remove(elem);
-            if(cs.type==CodeSnippet::userConstruct)
-                continue;
+			if(cs.type==CodeSnippet::userConstruct)
+				continue;
 			removedUserCommands << elem;
 			//updateSyntaxCheck=true;
 		}
@@ -638,7 +638,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 		if (line(i).handle() == mAppendixLine && curLine != "\\appendix") {
 			oldLine = mAppendixLine;
-            mAppendixLine = nullptr;
+			mAppendixLine = nullptr;
 		}
 		/// \end{document} keyword
 		/// don't add section in structure view after passing \end{document} , this command must not contains spaces nor any additions in the same line
@@ -649,7 +649,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 		if (line(i).handle() == mBeyondEnd && curLine != "\\end{document}") {
 			oldLineBeyond = mBeyondEnd;
-            mBeyondEnd = nullptr;
+			mBeyondEnd = nullptr;
 		}
 
 		for (int j = 0; j < tl.length(); j++) {
@@ -736,9 +736,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			Token tkCmd;
 			TokenList args;
 			QString cmd;
-            int cmdStart = Parsing::findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
+			int cmdStart = Parsing::findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
 			if (cmdStart < 0) break;
-            cmdStart=tkCmd.start; // from here, cmdStart is line column position of command
+			cmdStart=tkCmd.start; // from here, cmdStart is line column position of command
 			cmd = curLine.mid(tkCmd.start, tkCmd.length);
 
 			QString firstArg = Parsing::getArg(args, dlh, 0, ArgumentList::Mandatory);
@@ -748,7 +748,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				completerNeedsUpdate = true;
 				//Tokens cmdName;
 				QString cmdName = Parsing::getArg(args, Token::def);
-                cmdName.replace("@","@@"); // special treatment for commandnames containing @
+				cmdName.replace("@","@@"); // special treatment for commandnames containing @
 				bool isDefWidth = true;
 				if (cmdName.isEmpty())
 					cmdName = Parsing::getArg(args, Token::defWidth);
@@ -764,33 +764,33 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				if (!removedUserCommands.removeAll(cmdName)) {
 					addedUserCommands << cmdName;
 				}
-                QString cmdNameWithoutOptional=cmdName;
+				QString cmdNameWithoutOptional=cmdName;
 				for (int j = 0; j < optionCount; j++) {
 					if (j == 0) {
-                        if (!def){
+						if (!def){
 							cmdName.append("{%<arg1%|%>}");
-                            cmdNameWithoutOptional.append("{%<arg1%|%>}");
-                        } else
+							cmdNameWithoutOptional.append("{%<arg1%|%>}");
+						} else
 							cmdName.append("[%<opt. arg1%|%>]");
-                    } else {
-						cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
-                        cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
-                    }
+						} else {
+							cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
+							cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
+						}
 				}
 				CodeSnippet cs(cmdName);
-                cs.index = qHash(cmdName);
-                cs.snippetLength = cmdName.length();
+				cs.index = qHash(cmdName);
+				cs.snippetLength = cmdName.length();
 				if (isDefWidth)
 					cs.type = CodeSnippet::length;
 				mUserCommandList.insert(line(i).handle(), cs);
-                if(def){ // optional argument, add version without that argument as well
-                    CodeSnippet cs(cmdNameWithoutOptional);
-                    cs.index = qHash(cmdNameWithoutOptional);
-                    cs.snippetLength = cmdNameWithoutOptional.length();
-                    if (isDefWidth)
-                        cs.type = CodeSnippet::length;
-                    mUserCommandList.insert(line(i).handle(), cs);
-                }
+				if(def){ // optional argument, add version without that argument as well
+					CodeSnippet cs(cmdNameWithoutOptional);
+					cs.index = qHash(cmdNameWithoutOptional);
+					cs.snippetLength = cmdNameWithoutOptional.length();
+					if (isDefWidth)
+						cs.type = CodeSnippet::length;
+					mUserCommandList.insert(line(i).handle(), cs);
+				}
 				// remove obsolete Overlays (maybe this can be refined
 				//updateSyntaxCheck=true;
 				continue;
@@ -816,7 +816,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 						} else {
 							QStringList args = optionStr.split('#'); //#1;#2#3:#4 => ["",1;,2,3:,4]
 							bool hadSeparator = true;
-                            for (int i = 1; i < args.length(); i++) {
+							for (int i = 1; i < args.length(); i++) {
 								if (args[i].length() == 0) continue; //invalid
 								bool hasSeparator = (args[i].length() != 1); //only single digit variables allowed. last arg also needs a sep
 								if (!hadSeparator || !hasSeparator)
@@ -1095,65 +1095,65 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (cmd.endsWith("*"))
 				cmd = cmd.left(cmd.length() - 1);
 			int level = lp.structureCommandLevel(cmd);
-            if(level<0 && cmd=="\\begin"){
-                // special treatment for \begin{frame}{title}
-                level=lp.structureCommandLevel(cmd+"{"+firstArg+"}");
-            }
+			if(level<0 && cmd=="\\begin"){
+				// special treatment for \begin{frame}{title}
+				level=lp.structureCommandLevel(cmd+"{"+firstArg+"}");
+			}
 			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
 				StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
 				if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
 				if (mBeyondEnd && indexOf(mBeyondEnd) < i) newSection->setContext(StructureEntry::BeyondEnd);
-                //QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
-                QString firstOptArg = Parsing::getArg(args, Token::shorttitle);
+				//QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
+				QString firstOptArg = Parsing::getArg(args, Token::shorttitle);
 				if (!firstOptArg.isEmpty() && firstOptArg != "[]") // workaround, actually getArg should return "" for "[]"
 					firstArg = firstOptArg;
-                if(cmd=="\\begin"){
-                    // special treatment for \begin{frame}{title}
-                    firstArg = Parsing::getArg(args, dlh, 1, ArgumentList::MandatoryWithBraces,false);
-                    if(firstArg.isEmpty()){
-                        // empty frame title, maybe \frametitle is used ?
-                        delete newSection;
-                        continue;
-                    }
-                }
+				if(cmd=="\\begin"){
+					// special treatment for \begin{frame}{title}
+					firstArg = Parsing::getArg(args, dlh, 1, ArgumentList::MandatoryWithBraces,false);
+					if(firstArg.isEmpty()){
+						// empty frame title, maybe \frametitle is used ?
+						delete newSection;
+						continue;
+					}
+				}
 				newSection->title = latexToText(firstArg).trimmed();
 				newSection->level = level;
 				newSection->setLine(line(i).handle(), i);
 				newSection->columnNumber = cmdStart;
 				flatStructure << newSection;
-                                continue;
-            }
-            /// auto user command for \symbol_...
-            if(j+2<tl.length()){
-                Token tk2=tl.at(j+1);
-                if(tk2.getText()=="_"){
-                    QString txt=cmd+"_";
-                    tk2=tl.at(j+2);
-                    txt.append(tk2.getText());
-                    if(tk2.type==Token::command && j+3<tl.length()){
-                        Token tk3=tl.at(j+3);
-                        if(tk3.level==tk2.level && tk.subtype!=Token::none)
-                            txt.append(tk3.getText());
-                    }
-                    CodeSnippet cs(txt);
-                    cs.type=CodeSnippet::userConstruct;
-                    mUserCommandList.insert(line(i).handle(), cs);
-                }
-            }
-            /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
-            if(j+2<tl.length() && !firstArg.isEmpty() && lp.possibleCommands["math"].contains(cmd) ){
-                if (lp.commandDefs.contains(cmd)) {
-                    CommandDescription cd = lp.commandDefs.value(cmd);
-                    if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
-                        QString txt=cmd+"{"+firstArg+"}";
-                        CodeSnippet cs(txt);
-                        cs.type=CodeSnippet::userConstruct;
-                        mUserCommandList.insert(line(i).handle(), cs);
-                    }
-                }
-            }
+				continue;
+			}
+			/// auto user command for \symbol_...
+			if(j+2<tl.length()){
+				Token tk2=tl.at(j+1);
+				if(tk2.getText()=="_"){
+					QString txt=cmd+"_";
+					tk2=tl.at(j+2);
+					txt.append(tk2.getText());
+					if(tk2.type==Token::command && j+3<tl.length()){
+						Token tk3=tl.at(j+3);
+						if(tk3.level==tk2.level && tk.subtype!=Token::none)
+							txt.append(tk3.getText());
+					}
+					CodeSnippet cs(txt);
+					cs.type=CodeSnippet::userConstruct;
+					mUserCommandList.insert(line(i).handle(), cs);
+				}
+			}
+			/// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
+			if(j+2<tl.length() && !firstArg.isEmpty() && lp.possibleCommands["math"].contains(cmd) ){
+				if (lp.commandDefs.contains(cmd)) {
+					CommandDescription cd = lp.commandDefs.value(cmd);
+					if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
+						QString txt=cmd+"{"+firstArg+"}";
+						CodeSnippet cs(txt);
+						cs.type=CodeSnippet::userConstruct;
+						mUserCommandList.insert(line(i).handle(), cs);
+					}
+				}
+			}
 
-        } // while(findCommandWithArgs())
+		} // while(findCommandWithArgs())
 
 		if (!oldBibs.isEmpty())
 			bibTeXFilesNeedsUpdate = true; //file name removed
@@ -1165,7 +1165,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (syntaxChecking && languageIsLatexLike()) {
 			StackEnvironment env;
 			getEnv(i, env);
-            QDocumentLineHandle *lastHandle = nullptr;
+			QDocumentLineHandle *lastHandle = nullptr;
 			TokenStack oldRemainder;
 			if (i > 0) {
 				lastHandle = line(i - 1).handle();
@@ -1185,7 +1185,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 		for (int i = categories.size() - 1; i >= 0; i--) {
 			StructureEntry *cat = categories[i];
-            if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
+			if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
 			if (cat->children.isEmpty()) removeElementWithSignal(cat);
 			else insertElementWithSignal(baseStructure, 0, cat);
 		}
@@ -1200,7 +1200,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 
 		// rehighlight current cursor position
-        StructureEntry *newSection = nullptr;
+		StructureEntry *newSection = nullptr;
 		if (edView) {
 			int i = edView->editor->cursor().lineNumber();
 			if (i >= 0) {
@@ -1208,8 +1208,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 		}
 
-        emit structureUpdated(this, newSection);
-        //emit setHighlightedEntry(newSection);
+		emit structureUpdated(this, newSection);
+		//emit setHighlightedEntry(newSection);
 	}
 	StructureEntry *se;
 	foreach (se, MapOfTodo.values())
