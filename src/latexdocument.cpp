@@ -2539,7 +2539,7 @@ void LatexDocuments::updateStructure()
 		model->updateElement(doc->baseStructure);
 	}
 	if (model->getSingleDocMode()) {
-        model->structureUpdated(currentDocument, nullptr);
+		model->structureUpdated(currentDocument, nullptr);
 	}
 }
 
