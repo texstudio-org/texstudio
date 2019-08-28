@@ -41,8 +41,8 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 	mBibItem.clear();
 	mUserCommandList.clear();
 	mMentionedBibTeXFiles.clear();
-    masterDocument = nullptr;
-    this->parent = nullptr;
+	masterDocument = nullptr;
+	this->parent = nullptr;
 
 	unclosedEnv.id = -1;
 	syntaxChecking = true;
@@ -80,11 +80,11 @@ void LatexDocument::setFileName(const QString &fileName)
 	//clear all references to old editor
 	if (this->edView) {
 		StructureEntryIterator iter(baseStructure);
-        while (iter.hasNext()) iter.next()->setLine(nullptr);
+		while (iter.hasNext()) iter.next()->setLine(nullptr);
 	}
 
 	this->setFileNameInternal(fileName);
-    this->edView = nullptr;
+	this->edView = nullptr;
 }
 
 void LatexDocument::setEditorView(LatexEditorView *edView)
@@ -191,8 +191,9 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry *section)
 class LatexStructureMerger{
 public:
 	LatexStructureMerger (LatexDocument* document, int maxDepth):
-		document(document), parent_level(maxDepth){
-    }
+		document(document), parent_level(maxDepth)
+	{
+	}
 
 protected:
 	LatexDocument* document;
@@ -205,8 +206,9 @@ protected:
 class LatexStructureMergerMerge: public LatexStructureMerger{
 public:
 	LatexStructureMergerMerge (LatexDocument* document, int maxDepth, int linenr, int count):
-        LatexStructureMerger(document, maxDepth), linenr(linenr), count(count),flatStructure(nullptr) {
-    }
+		LatexStructureMerger(document, maxDepth), linenr(linenr), count(count), flatStructure(nullptr)
+	{
+	}
 	void operator ()(QList<StructureEntry *> &flatStructure){
 		this->flatStructure = &flatStructure;
 		parent_level.fill(document->baseStructure);
@@ -233,11 +235,11 @@ void LatexDocument::initClearStructure()
 	mRefItem.clear();
 	mMentionedBibTeXFiles.clear();
 
-    mAppendixLine = nullptr;
-    mBeyondEnd = nullptr;
+	mAppendixLine = nullptr;
+	mBeyondEnd = nullptr;
 
 
-    emit structureUpdated(this, nullptr);
+	emit structureUpdated(this, nullptr);
 
 	const int CATCOUNT = 5;
 	StructureEntry *categories[CATCOUNT] = {magicCommentList, labelList, todoList, bibTeXList, blockList};
@@ -313,8 +315,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 	mUsepackageList.remove(dlh);
 
 	if (dlh == mAppendixLine) {
-        updateContext(mAppendixLine, nullptr, StructureEntry::InAppendix);
-        mAppendixLine = nullptr;
+		updateContext(mAppendixLine, nullptr, StructureEntry::InAppendix);
+		mAppendixLine = nullptr;
 	}
 
 	int linenr = indexOf(dlh);
@@ -350,7 +352,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 	LatexStructureMergerMerge(this, LatexParser::getInstance().structureDepth(), linenr, 1)(tmp);
 
 	// rehighlight current cursor position
-    StructureEntry *newSection = nullptr;
+	StructureEntry *newSection = nullptr;
 	if (edView) {
 		int i = edView->editor->cursor().lineNumber();
 		if (i >= 0) {
@@ -358,8 +360,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 		}
 	}
 
-    emit structureUpdated(this, newSection);
-    //emit setHighlightedEntry(newSection);
+	emit structureUpdated(this, newSection);
+	//emit setHighlightedEntry(newSection);
 
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
@@ -1449,22 +1451,22 @@ void LatexDocument::replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair
 		cur->beginEditBlock();
 	}
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
-    int oldLineNr=-1;
-    int offset=0;
+	int oldLineNr=-1;
+	int offset=0;
 	for (it = items.constBegin(); it != items.constEnd(); ++it) {
 		QDocumentLineHandle *dlh = it.key();
 		ReferencePair rp = it.value();
 		int lineNo = indexOf(dlh);
-        if(oldLineNr!=lineNo){
-            offset=0;
-        }
+		if(oldLineNr!=lineNo){
+			offset=0;
+		}
 		if (lineNo >= 0) {
 			cur->setLineNumber(lineNo);
-            cur->setColumnNumber(rp.start+offset);
+			cur->setColumnNumber(rp.start+offset);
 			cur->movePosition(rp.name.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 			cur->replaceSelectedText(newName);
-            offset+=newName.length()-rp.name.length();
-            oldLineNr=lineNo;
+			offset+=newName.length()-rp.name.length();
+			oldLineNr=lineNo;
 		}
 	}
 	if (!cursor) {
@@ -1699,7 +1701,7 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
 	connect(document, SIGNAL(structureLost(LatexDocument *)), model, SLOT(structureLost(LatexDocument *)));
 	connect(document, SIGNAL(structureUpdated(LatexDocument *, StructureEntry *)), model, SLOT(structureUpdated(LatexDocument *, StructureEntry *)));
-    //connect(document, SIGNAL(setHighlightedEntry(StructureEntry *)), model, SLOT(setHighlightedEntry(StructureEntry *)));
+	//connect(document, SIGNAL(setHighlightedEntry(StructureEntry *)), model, SLOT(setHighlightedEntry(StructureEntry *)));
 	connect(document, SIGNAL(toBeChanged()), model, SIGNAL(layoutAboutToBeChanged()));
 	connect(document, SIGNAL(removeElement(StructureEntry *, int)), model, SLOT(removeElement(StructureEntry *, int)));
 	connect(document, SIGNAL(removeElementFinished()), model, SLOT(removeElementFinished()));
@@ -1715,7 +1717,7 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 		}
 	}
 	if (!hidden)
-        model->structureUpdated(document, nullptr);
+		model->structureUpdated(document, nullptr);
 }
 
 void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool purge)
@@ -1744,7 +1746,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 					if (elem->isHidden())
 						deleteDocument(elem, true, true);
 					else
-                        elem->setMasterDocument(nullptr);
+						elem->setMasterDocument(nullptr);
 				}
 			}
 			delete document;
@@ -1824,7 +1826,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 			hideDocInEditor(document->getEditorView());
 			return;
 		}
-        delete view;
+		delete view;
 		delete document;
 	} else {
 		if (hidden) {
@@ -1834,9 +1836,9 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		document->setFileName(document->getFileName());
 		model->resetAll();
 		document->clearAppendix();
-        delete view;
+		delete view;
 		if (document == currentDocument)
-            currentDocument = nullptr;
+			currentDocument = nullptr;
 	}
 }
 
@@ -1850,17 +1852,17 @@ void LatexDocuments::requestedClose()
 void LatexDocuments::setMasterDocument(LatexDocument *document)
 {
 	if (document == masterDocument) return;
-    if (masterDocument != nullptr && masterDocument->getEditorView() == nullptr) {
+	if (masterDocument != nullptr && masterDocument->getEditorView() == nullptr) {
 		QString fn = masterDocument->getFileName();
 		addDocToLoad(fn);
 		LatexDocument *doc = masterDocument;
-        masterDocument = nullptr;
+		masterDocument = nullptr;
 		deleteDocument(doc);
 		//documents.removeAll(masterDocument);
 		//delete masterDocument;
 	}
 	masterDocument = document;
-    if (masterDocument != nullptr) {
+	if (masterDocument != nullptr) {
 		documents.removeAll(masterDocument);
 		documents.prepend(masterDocument);
 		// repaint doc
@@ -2072,7 +2074,7 @@ void LatexDocuments::updateBibFiles(bool updateFiles)
 			bibTex.loadIfModified(fileName);
 
 			/*if (bibTex.loadIfModified(fileName))
-			  changed = true;*/
+				changed = true;*/
 			if (bibTex.ids.empty() && !bibTex.linksTo.isEmpty())
 				//handle obscure bib tex feature, a just line containing "link fileName"
 				mentionedBibTeXFiles.append(bibTex.linksTo);
@@ -2080,16 +2082,16 @@ void LatexDocuments::updateBibFiles(bool updateFiles)
 	}
 	/*
 	if (changed || (newBibItems!=bibItems)) {
-	  allBibTeXIds.clear();
-	  bibItems=newBibItems;
-	  for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
-	    foreach (const QString& s, it.value().ids)
-	      allBibTeXIds << s;
-	  allBibTeXIds.unite(bibItems);
-	  for (int i=0;i<documents.size();i++)
-	    if (documents[i]->getEditorView())
-	      documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);
-	  bibTeXFilesModified=true;
+		allBibTeXIds.clear();
+		bibItems=newBibItems;
+		for (QMap<QString, BibTeXFileInfo>::const_iterator it=bibTeXFiles.constBegin(); it!=bibTeXFiles.constEnd();++it)
+			foreach (const QString& s, it.value().ids)
+		allBibTeXIds << s;
+		allBibTeXIds.unite(bibItems);
+		for (int i=0;i<documents.size();i++)
+			if (documents[i]->getEditorView())
+				documents[i]->getEditorView()->setBibTeXIds(&allBibTeXIds);
+		bibTeXFilesModified=true;
 	}*/
 }
 
@@ -2106,7 +2108,7 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
 		}
 		if (dc && dc->isHidden()) {
 			QStringList toremove = dc->includedFiles();
-            dc->setMasterDocument(nullptr);
+			dc->setMasterDocument(nullptr);
 			hiddenDocuments.removeAll(dc);
 			//qDebug()<<fname;
 			delete dc->getEditorView();
@@ -2244,7 +2246,7 @@ void LatexDocument::removeElementWithSignal(StructureEntry *se)
 	REQUIRE(parentRow >= 0);
 	emit removeElement(se, parentRow);
 	se->parent->children.removeAt(parentRow);
-    se->parent = nullptr;
+	se->parent = nullptr;
 	emit removeElementFinished();
 }
 
@@ -2297,7 +2299,7 @@ public:
 void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se)
 {
 	REQUIRE(se);
-    StructureEntry *newParent = parent_level.value(se->level, nullptr);
+	StructureEntry *newParent = parent_level.value(se->level, nullptr);
 	if (!newParent) {
 		qDebug("structure update failed!");
 		return;
@@ -2550,7 +2552,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 {
 	//update Master/Child relations
 	//remove old settings ...
-    doc->setMasterDocument(nullptr, false);
+	doc->setMasterDocument(nullptr, false);
 	QList<LatexDocument *> docs = getDocuments();
 	foreach (LatexDocument *elem, docs) {
 		if (elem->getMasterDocument() == doc) {
@@ -2673,8 +2675,8 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	//recheck syntax of ALL documents ...
 	LatexPackage pck;
 	pck.commandDescriptions = latexParser.commandDefs;
-    pck.specialDefCommands = latexParser.specialDefCommands;
-    QStringList loadedFiles;
+	pck.specialDefCommands = latexParser.specialDefCommands;
+	QStringList loadedFiles;
 	for (int i = 0; i < files.count(); i++) {
 		if (!files.at(i).endsWith(".cwl"))
 			files[i] = files[i] + ".cwl";
@@ -2843,7 +2845,7 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
 	QString seName;
 	QString val;
 
-    if (!magicCommentList) return nullptr;
+	if (!magicCommentList) return nullptr;
 
 	StructureEntryIterator iter(magicCommentList);
 	while (iter.hasNext()) {
@@ -2851,7 +2853,7 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
 		splitMagicComment(se->title, seName, val);
 		if (seName == name) return se;
 	}
-    return nullptr;
+	return nullptr;
 }
 
 /*!
