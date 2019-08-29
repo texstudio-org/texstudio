@@ -479,24 +479,25 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		newCount = linenr + count - lineNrStart;
 	}
 
-	QMultiHash<QDocumentLineHandle *, StructureEntry *> MapOfMagicComments;
-	QMutableListIterator<StructureEntry *> iter_magicComment(magicCommentList->children);
-	findStructureEntryBefore(iter_magicComment, MapOfMagicComments, lineNrStart, newCount);
+	// Note: We cannot re-use the structure elements in the updated area because if there are multiple same-type elements on the same line
+	// and the user has changed their order, re-using these elements would not update their order and this would break updates of any
+	// QPersistentModelIndex'es that point to these elements in the structure tree view. That is why we remove all the structure elements
+	// within the updated area and then just add anew any structure elements that we find in the updated area.
 
-	QMultiHash<QDocumentLineHandle *, StructureEntry *> MapOfLabels;
-	QMutableListIterator<StructureEntry *> iter_label(labelList->children);
-	findStructureEntryBefore(iter_label, MapOfLabels, lineNrStart, newCount);
+	QList<StructureEntry *> removedMagicComments;
+	int posMagicComment = findStructureParentPos(magicCommentList->children, removedMagicComments, lineNrStart, newCount);
 
-	QMultiHash<QDocumentLineHandle *, StructureEntry *> MapOfTodo;
-	QMutableListIterator<StructureEntry *> iter_todo(todoList->children);
-	findStructureEntryBefore(iter_todo, MapOfTodo, lineNrStart, newCount);
+	QList<StructureEntry *> removedLabels;
+	int posLabel = findStructureParentPos(labelList->children, removedLabels, lineNrStart, newCount);
 
-	QMultiHash<QDocumentLineHandle *, StructureEntry *> MapOfBlock;
-	QMutableListIterator<StructureEntry *> iter_block(blockList->children);
-	findStructureEntryBefore(iter_block, MapOfBlock, lineNrStart, newCount);
-	QMultiHash<QDocumentLineHandle *, StructureEntry *> MapOfBibtex;
-	QMutableListIterator<StructureEntry *> iter_bibTeX(bibTeXList->children);
-	findStructureEntryBefore(iter_bibTeX, MapOfBibtex, lineNrStart, newCount);
+	QList<StructureEntry *> removedTodo;
+	int posTodo = findStructureParentPos(todoList->children, removedTodo, lineNrStart, newCount);
+
+	QList<StructureEntry *> removedBlock;
+	int posBlock = findStructureParentPos(blockList->children, removedBlock, lineNrStart, newCount);
+
+	QList<StructureEntry *> removedBibTeX;
+	int posBibTeX = findStructureParentPos(bibTeXList->children, removedBibTeX, lineNrStart, newCount);
 
 	bool isLatexLike = languageIsLatexLike();
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
@@ -571,22 +572,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
 			QRegExp rx(regularExpression);
 			if (rx.indexIn(text)==0) {  // other todos like \todo are handled by the tokenizer below.
-				bool reuse = false;
-				StructureEntry *newTodo;
-				if (MapOfTodo.contains(dlh)) {
-					newTodo = MapOfTodo.value(dlh);
-					//parent->add(newTodo);
-					newTodo->type = StructureEntry::SE_TODO;
-					MapOfTodo.remove(dlh, newTodo);
-					reuse = true;
-				} else {
-					newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
-				}
+				StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
 				newTodo->title = text.mid(1).trimmed();
 				newTodo->setLine(line(i).handle(), i);
-				newTodo->parent = todoList;
-				if (!reuse) emit addElement(todoList, todoList->children.size()); //todo: why here but not in label?
-				iter_todo.insert(newTodo);
+				insertElementWithSignal(todoList, posTodo++, newTodo);
 			}
 		}
 
@@ -600,14 +589,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					end = curLine.indexOf('"', end + 1);
 					if (end >= 0) {
 						end += 1;  // include closing quotation mark
-						addMagicComment(curLine.mid(start, end - start), i, MapOfMagicComments, iter_magicComment);
+						addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
 					}
 				} else {
 					end = curLine.indexOf(' ', end + 1);
 					if (end >= 0) {
-						addMagicComment(curLine.mid(start, end - start), i, MapOfMagicComments, iter_magicComment);
+						addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
 					} else {
-						addMagicComment(curLine.mid(start), i, MapOfMagicComments, iter_magicComment);
+						addMagicComment(curLine.mid(start), i, posMagicComment++);
 					}
 				}
 			}
@@ -618,7 +607,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (col >= 0) {
 			QString text = curLine.mid(col);
 			if (rxMagicTexComment.indexIn(text) == 0) {
-				addMagicComment(text.mid(rxMagicTexComment.matchedLength()).trimmed(), i, MapOfMagicComments, iter_magicComment);
+				addMagicComment(text.mid(rxMagicTexComment.matchedLength()).trimmed(), i, posMagicComment++);
 			} else if (rxMagicBibComment.indexIn(text) == 0) {
 				// workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
 				text = text.mid(rxMagicBibComment.matchedLength()).trimmed();
@@ -626,7 +615,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				QString val;
 				splitMagicComment(text, name, val);
 				if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex")) {
-					addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, MapOfMagicComments, iter_magicComment);
+					addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, posMagicComment++);
 				}
 			}
 		}
@@ -676,18 +665,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				elem.start = tk.start;
 				mLabelItem.insert(line(i).handle(), elem);
 				completerNeedsUpdate = true;
-				StructureEntry *newLabel;
-				if (MapOfLabels.contains(dlh)) {
-					newLabel = MapOfLabels.value(dlh);
-					newLabel->type = StructureEntry::SE_LABEL;
-					MapOfLabels.remove(dlh, newLabel);
-				} else {
-					newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
-				}
+				StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
 				newLabel->title = elem.name;
 				newLabel->setLine(line(i).handle(), i);
-				newLabel->parent = labelList;
-				iter_label.insert(newLabel);
+				insertElementWithSignal(labelList, posLabel++, newLabel);
 			}
 			//// newtheorem ////
 			if (tk.type == Token::newTheorem && tk.length > 0) {
@@ -715,21 +696,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 			/// todo ///
 			if (tk.subtype == Token::todo && (tk.type == Token::braces || tk.type == Token::openBrace)) {
-				bool reuse = false;
-				StructureEntry *newTodo;
-				if (MapOfTodo.contains(dlh)) {
-					newTodo = MapOfTodo.value(dlh);
-					newTodo->type = StructureEntry::SE_TODO;
-					MapOfTodo.remove(dlh, newTodo);
-					reuse = true;
-				} else {
-					newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
-				}
+				StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
 				newTodo->title = tk.getInnerText();
 				newTodo->setLine(line(i).handle(), i);
-				newTodo->parent = todoList;
-				if (!reuse) emit addElement(todoList, todoList->children.size()); //todo: why here but not in label?
-				iter_todo.insert(newTodo);
+				insertElementWithSignal(todoList, posTodo++, newTodo);
 			}
 
 			// work on general commands
@@ -1006,18 +976,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				//write bib tex in tree
 				foreach (const QString &bibFile, bibs) {
-					StructureEntry *newFile;
-					if (MapOfBibtex.contains(dlh)) {
-						newFile = MapOfBibtex.value(dlh);
-						newFile->type = StructureEntry::SE_BIBTEX;
-						MapOfBibtex.remove(dlh, newFile);
-					} else {
-						newFile = new StructureEntry(this, StructureEntry::SE_BIBTEX);
-					}
+					StructureEntry *newFile = new StructureEntry(this, StructureEntry::SE_BIBTEX);
 					newFile->title = bibFile;
 					newFile->setLine(line(i).handle(), i);
-					newFile->parent = bibTeXList;
-					iter_bibTeX.insert(newFile);
+					insertElementWithSignal(bibTeXList, posBibTeX++, newFile);
 				}
 				continue;
 			}
@@ -1025,18 +987,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			//// beamer blocks ////
 
 			if (cmd == "\\begin" && firstArg == "block") {
-				StructureEntry *newBlock;
-				if (MapOfBlock.contains(dlh)) {
-					newBlock = MapOfBlock.value(dlh);
-					newBlock->type = StructureEntry::SE_BLOCK;
-					MapOfBlock.remove(dlh, newBlock);
-				} else {
-					newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
-				}
+				StructureEntry *newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
 				newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory);
 				newBlock->setLine(line(i).handle(), i);
-				newBlock->parent = blockList;
-				iter_block.insert(newBlock);
+				insertElementWithSignal(blockList, posBlock++, newBlock);
 				continue;
 			}
 
@@ -1180,23 +1134,23 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 	}//for each line handle
 	StructureEntry *se;
-	foreach (se, MapOfTodo.values()) {
+	foreach (se, removedTodo) {
 		removeElementWithSignal(se);
 		delete se;
 	}
-	foreach (se, MapOfBibtex.values()) {
+	foreach (se, removedBibTeX) {
 		removeElementWithSignal(se);
 		delete se;
 	}
-	foreach (se, MapOfBlock.values()) {
+	foreach (se, removedBlock) {
 		removeElementWithSignal(se);
 		delete se;
 	}
-	foreach (se, MapOfLabels.values()) {
+	foreach (se, removedLabels) {
 		removeElementWithSignal(se);
 		delete se;
 	}
-	foreach (se, MapOfMagicComments.values()) {
+	foreach (se, removedMagicComments) {
 		removeElementWithSignal(se);
 		delete se;
 	}
@@ -2135,24 +2089,24 @@ void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
 	emit docToHide(edView);
 }
 
-void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry *> &iter, QMultiHash<QDocumentLineHandle *, StructureEntry *> &MapOfElements, int linenr, int count)
+int LatexDocument::findStructureParentPos(const QList<StructureEntry *> &children, QList<StructureEntry *> &removedElements, int linenr, int count)
 {
-	bool goBack = false;
+	QListIterator<StructureEntry *> iter(children);
+	int parentPos = 0;
 	while (iter.hasNext()) {
 		StructureEntry *se = iter.next();
 		int realline = se->getRealLineNumber();
 		Q_ASSERT(realline >= 0);
-		if (realline >= linenr && (realline < linenr + count) ) {
-			MapOfElements.insert(se->getLineHandle(), se);
-		}
 		if (realline >= linenr + count) {
-			goBack = true;
 			break;
 		}
+		if (realline >= linenr) {
+			removedElements.append(se);
+		}
+		++parentPos;
 	}
-	if (goBack && iter.hasPrevious()) iter.previous();
+	return parentPos;
 }
-
 
 void LatexStructureMergerMerge::mergeStructure(StructureEntry *se)
 {
@@ -2362,22 +2316,12 @@ bool LatexDocument::splitMagicComment(const QString &comment, QString &name, QSt
 
 \a text is the comment without the leading "! TeX" declaration. e.g. "spellcheck = DE-de"
 \a lineNr - line number of the magic comment
-\a MapOfMagicComments - MutliHashTable of all magic comments
-\a iter_magicComment - iterator over all magic comments placed at the last entry before line
+\a posMagicComment - Zero-based position of magic comment in the structure list tree view.
   */
-void LatexDocument::addMagicComment(const QString &text, int lineNr, QMultiHash<QDocumentLineHandle *, StructureEntry *> &MapOfMagicComments, QMutableListIterator<StructureEntry *> &iter_magicComment)
+void LatexDocument::addMagicComment(const QString &text, int lineNr, int posMagicComment)
 {
-	bool reuse = false;
-	StructureEntry *newMagicComment;
+	StructureEntry *newMagicComment = new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
 	QDocumentLineHandle *dlh = line(lineNr).handle();
-	if (MapOfMagicComments.contains(dlh)) {
-		newMagicComment = MapOfMagicComments.value(dlh);
-		newMagicComment->type = StructureEntry::SE_MAGICCOMMENT;
-		MapOfMagicComments.remove(dlh, newMagicComment);
-		reuse = true;
-	} else {
-		newMagicComment = new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
-	}
 	QString name;
 	QString val;
 	splitMagicComment(text, name, val);
@@ -2385,9 +2329,7 @@ void LatexDocument::addMagicComment(const QString &text, int lineNr, QMultiHash<
 	parseMagicComment(name, val, newMagicComment);
 	newMagicComment->title = text;
 	newMagicComment->setLine(dlh, lineNr);
-	newMagicComment->parent = magicCommentList;
-	if (!reuse) emit addElement(magicCommentList, magicCommentList->children.size()); //todo: why here but not in label?
-	iter_magicComment.insert(newMagicComment);
+	insertElementWithSignal(magicCommentList, posMagicComment, newMagicComment);
 }
 
 /*!
