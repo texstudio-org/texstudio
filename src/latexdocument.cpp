@@ -2194,30 +2194,57 @@ void LatexStructureMergerMerge::mergeChildren(StructureEntry *se, int start){
 		mergeStructure(oldChildren[i]);
 }
 
+bool LatexDocument::IsInTree (StructureEntry *se)
+{
+	Q_ASSERT(se);
+	while (se) {
+		if (se->type == StructureEntry::SE_DOCUMENT_ROOT) {
+			return true;
+		}
+		se = se->parent;
+	}
+	return false;
+}
+
 void LatexDocument::removeElementWithSignal(StructureEntry *se)
 {
+	int sendSignal = IsInTree(se);
 	int parentRow = se->getRealParentRow();
 	REQUIRE(parentRow >= 0);
-	emit removeElement(se, parentRow);
+	if (sendSignal) {
+		emit removeElement(se, parentRow);
+	}
 	se->parent->children.removeAt(parentRow);
 	se->parent = nullptr;
-	emit removeElementFinished();
+	if (sendSignal) {
+		emit removeElementFinished();
+	}
 }
 
 void LatexDocument::addElementWithSignal(StructureEntry *parent, StructureEntry *se)
 {
-	emit addElement(parent, parent->children.size());
+	int sendSignal = IsInTree(parent);
+	if (sendSignal) {
+		emit addElement(parent, parent->children.size());
+	}
 	parent->children.append(se);
 	se->parent = parent;
-	emit addElementFinished();
+	if (sendSignal) {
+		emit addElementFinished();
+	}
 }
 
 void LatexDocument::insertElementWithSignal(StructureEntry *parent, int pos, StructureEntry *se)
 {
-	emit addElement(parent, pos);
+	int sendSignal = IsInTree(parent);
+	if (sendSignal) {
+		emit addElement(parent, pos);
+	}
 	parent->children.insert(pos, se);
 	se->parent = parent;
-	emit addElementFinished();
+	if (sendSignal) {
+		emit addElementFinished();
+	}
 }
 
 void LatexDocument::moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos)

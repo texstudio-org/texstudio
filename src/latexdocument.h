@@ -228,6 +228,7 @@ private:
 
 	int findStructureParentPos(const QList<StructureEntry *> &children, QList<StructureEntry *> &removedElements, int linenr, int count);
 
+	bool IsInTree (StructureEntry *se);
 	void updateElementWithSignal(StructureEntry *se){ emit updateElement(se); }
 	void removeElementWithSignal(StructureEntry *se);
 	void addElementWithSignal(StructureEntry *parent, StructureEntry *se);
