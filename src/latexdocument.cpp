@@ -1179,6 +1179,28 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			SynChecker.putLine(line(i).handle(), env, oldRemainder, true);
 		}
 	}//for each line handle
+	StructureEntry *se;
+	foreach (se, MapOfTodo.values()) {
+		removeElementWithSignal(se);
+		delete se;
+	}
+	foreach (se, MapOfBibtex.values()) {
+		removeElementWithSignal(se);
+		delete se;
+	}
+	foreach (se, MapOfBlock.values()) {
+		removeElementWithSignal(se);
+		delete se;
+	}
+	foreach (se, MapOfLabels.values()) {
+		removeElementWithSignal(se);
+		delete se;
+	}
+	foreach (se, MapOfMagicComments.values()) {
+		removeElementWithSignal(se);
+		delete se;
+	}
+	StructureEntry *newSection = nullptr;
 	if (!isHidden()) {
 		LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
 
@@ -1202,7 +1224,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 
 		// rehighlight current cursor position
-		StructureEntry *newSection = nullptr;
 		if (edView) {
 			int i = edView->editor->cursor().lineNumber();
 			if (i >= 0) {
@@ -1210,24 +1231,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 		}
 
-		emit structureUpdated(this, newSection);
 		//emit setHighlightedEntry(newSection);
 	}
-	StructureEntry *se;
-	foreach (se, MapOfTodo.values())
-		delete se;
-
-	foreach (se, MapOfBibtex.values())
-		delete se;
-
-	foreach (se, MapOfBlock.values())
-		delete se;
-
-	foreach (se, MapOfLabels.values())
-		delete se;
-
-	foreach (se, MapOfMagicComments.values())
-		delete se;
+	emit structureUpdated(this, newSection);
 	bool updateLtxCommands = false;
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {
 		bool forceUpdate = !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
@@ -2132,23 +2138,17 @@ void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
 void LatexDocument::findStructureEntryBefore(QMutableListIterator<StructureEntry *> &iter, QMultiHash<QDocumentLineHandle *, StructureEntry *> &MapOfElements, int linenr, int count)
 {
 	bool goBack = false;
-	int l = 0;
 	while (iter.hasNext()) {
 		StructureEntry *se = iter.next();
 		int realline = se->getRealLineNumber();
 		Q_ASSERT(realline >= 0);
 		if (realline >= linenr && (realline < linenr + count) ) {
-			emit removeElement(se, l);
-			iter.remove();
-			emit removeElementFinished();
 			MapOfElements.insert(se->getLineHandle(), se);
-			l--;
 		}
 		if (realline >= linenr + count) {
 			goBack = true;
 			break;
 		}
-		l++;
 	}
 	if (goBack && iter.hasPrevious()) iter.previous();
 }
