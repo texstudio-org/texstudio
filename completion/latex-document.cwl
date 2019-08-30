@@ -507,9 +507,15 @@
 \providecommand{cmd}[args][default]{def}#*d
 \providecommand{cmd}[args]{def}#*d
 \providecommand{cmd}{def}#*d
+\providecommand*{cmd}[args][default]{def}#*d
+\providecommand*{cmd}[args]{def}#*d
+\providecommand*{cmd}{def}#*d
 \newenvironment{name}[args][default]{begdef}{enddef}
 \newenvironment{name}[args]{begdef}{enddef}
 \newenvironment{name}{begdef}{enddef}
+\newenvironment*{name}[args][default]{begdef}{enddef}
+\newenvironment*{name}[args]{begdef}{enddef}
+\newenvironment*{name}{begdef}{enddef}
 \renewcommand{cmd}[args][default]{def}#d
 \renewcommand{cmd}[args]{def}#d
 \renewcommand{cmd}{def}#d
@@ -519,6 +525,9 @@
 \renewenvironment{name}[args][default]{begdef}{enddef}
 \renewenvironment{name}[args]{begdef}{enddef}
 \renewenvironment{name}{begdef}{enddef}
+\renewenvironment*{name}[args][default]{begdef}{enddef}
+\renewenvironment*{name}[args]{begdef}{enddef}
+\renewenvironment*{name}{begdef}{enddef}
 \left#mK
 \left(#m
 \left(%|\right)#mM
