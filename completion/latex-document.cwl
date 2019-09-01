@@ -52,6 +52,8 @@
 \begin{lrbox}
 \begin{math}#\math
 \begin{matrix}#m\array
+\begin{minipage}[position][height][inner pos]{width}
+\begin{minipage}[position][height]{width}
 \begin{minipage}[position]{width}
 \begin{minipage}{width}
 \begin{normalsize}
@@ -311,10 +313,9 @@
 \newlength{newlength}
 \newline
 \newpage
-\newtheorem{envname}[numberedlike]{caption}#N
+\newtheorem{envname}[numbered like]{caption}#N
 \newtheorem{envname}{caption}#N
 \newtheorem{envname}{caption}[within]#N
-\newtheorem*{envname}{caption}#N
 \nocite{keylist}#c
 \nocorr#*
 \nocorrlist{charlist}#*
