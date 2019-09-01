@@ -1,6 +1,6 @@
 # fontspec package
-# nja 17 July 2007, fontspec v1.14
-# muzimuzhi/2019-Aug-30, fontspec v2.7c
+# nja/17 July 2007 for fontspec v1.14
+# muzimuzhi/30 Aug 2019 for fontspec v2.7c
 # url: http://www.ctan.org/tex-archive/help/Catalogue/entries/fontspec.html
 
 ## Sec. I.4 Interaction with LaTeX2e and other pacakges

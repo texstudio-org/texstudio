@@ -1,6 +1,6 @@
 # menukeys package
 # sdm
-# muzimuzhi/2019-08-28, menukeys v1.5
+# muzimuzhi/28 Aug 2019 for menukeys v1.5
 
 #include:adjustbox
 #include:catoptions
@@ -12,7 +12,7 @@
 #include:xparse
 #include:xstring
 
-## basic 
+# basic 
 \menu{text}
 \menu[separator]{text}
 \directory{path}
@@ -20,15 +20,14 @@
 \keys{keys}
 \keys[separator]{keys}
 
-## menukeys styles
-# (new|renew|provide)menustylesimple
+# menukeys styles
 \newmenustylesimple{name}[pre]{style}[sep][post]{theme}#*
 \newmenustylesimple*{name}[pre]{style}[sep][post]{theme}#*
 \renewmenustylesimple{name}[pre]{style%keyvals}[sep][post]{theme}#*
 \renewmenustylesimple*{name}[pre]{style%keyvals}[sep][post]{theme}#*
 \providemenustylesimple{name}[pre]{style}[sep][post]{theme}#*
 \providemenustylesimple*{name}[pre]{style}[sep][post]{theme}#*
-# (new|renew|provide)menustyle
+
 \newmenustyle{name}[pre]{first}[sep]{mid}{last}{single}[post]{theme}#*
 \newmenustyle*{name}[pre]{first}[sep]{mid}{last}{single}[post]{theme}#*
 \renewmenustyle{name}[pre]{first}[sep]{mid}{last}{single%keyvals}[post]{theme}#*
@@ -40,6 +39,7 @@
 \drawtikzfolder#*
 \drawtikzfolder[front fill color%color]#*
 \drawtikzfolder[front fill color%color][draw color%color]#*
+
 # config existing styles
 \copymenustyle{copy}{original}#*
 \changemenuelement{name}{element%keyvals}{definition}#*
@@ -56,7 +56,7 @@ set
 single
 #endkeyvals
 
-## color themes
+# color themes
 \newmenucolortheme{name}{model}{bg}{br}{txt}[a][b][c]#*
 \copymenucolortheme{copy}{original}#*
 \changemenucolor{name}{element%keyvals}{model}{color definition}#*
@@ -67,7 +67,7 @@ br
 txt
 #endkeyvals
 
-## menu macros
+# menu macros
 \newmenumacro{macro}[input sep]{style%keyvals}#*
 \renewmenumacro{macro}[input sep]{style%keyvals}#*
 \providemenumacro{macro}[input sep]{style%keyvals}#*
@@ -104,7 +104,7 @@ v
 <
 #endkeyvals
 
-## predefined menukeys styles
+# predefined menukeys styles
 #keyvals:\renewmenustylesimple,\renewmenustyle,\newmenumacro,\renewmenumacro,\providemenumacro
 menus
 roundedmenus
@@ -123,4 +123,4 @@ hyphenatepathswithblackfolder
 #endkeyvals
 
 ## predefined color themes ("gray" and "blackwhite") are not listed
-## since txs supports only one "%keyvals" in single cwl line
+## since txs supports only one "%keyvals" for each cwl line

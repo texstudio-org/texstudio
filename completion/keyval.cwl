@@ -1,5 +1,5 @@
 # keyval package
-# muzimuzhi 2019-08-10 for keyval v1.15 (2014-10-28)
+# muzimuzhi/10 Aug 2019 for keyval v1.15
 
 \define@key{family}{key}{code}
 \define@key{family}{key}[default]{code}

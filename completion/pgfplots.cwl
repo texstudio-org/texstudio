@@ -1,6 +1,6 @@
 # mode: pgfplots.sty
 # denisbitouze, 26.03.2017
-# muzimuzhi, 09.08.2019
+# muzimuzhi/9 Aug 2019
 
 #include:graphicx
 #include:tikz

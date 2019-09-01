@@ -1,6 +1,6 @@
 # doncherry/2013-04-25 for lipsum v1.2
 # thatlittleboy/2018-11-30 for lipsum v2.0
-# muzimuzhi/2019-08-11 for lipsum v2.2
+# muzimuzhi/11 Aug 2019 for lipsum v2.2
 
 #include:expl3
 #include:xparse
