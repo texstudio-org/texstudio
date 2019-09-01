@@ -5169,7 +5169,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>Tiempo de inicio</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="956"/>
@@ -6356,7 +6356,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+tuvo modificaciones fuera de TeXstudio. ¿Volver a abrir?
+
+Notas:
+- Al volver a abrir se sobrescribe el contenido del editor en el archivo del disco. Esto no puede deshacerse. 
+- Puede habilitar volver a abrir el archivo silenciosamente permanentemente en las opciones.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>

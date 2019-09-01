@@ -6803,12 +6803,12 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>extra-keyword</source>
-        <translation>экстра-ключевоеСлово</translation>
+        <translation>экстраКлючевоеСлово</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>math-keyword</source>
-        <translation>мат.-ключевоеСлово</translation>
+        <translation>матемКлючевоеСлово</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="166"/>
@@ -6818,7 +6818,7 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>align-ampersand</source>
-        <translation>разделяющий&amp;&amp;</translation>
+        <translation>разделительТабуляции&amp;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
@@ -6903,7 +6903,7 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>wordRepetitionLongRange</source>
-        <translation>повторСловаВБольшомДиапазоне</translation>
+        <translation>повторСловаВБольшомДиапаз</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="185"/>
