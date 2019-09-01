@@ -311,11 +311,19 @@ int LatexDocumentsModel::columnCount ( const QModelIndex &parent ) const
 QModelIndex LatexDocumentsModel::index ( int row, int column, const QModelIndex &parent ) const
 {
 	if (column != 0) return QModelIndex(); //one column
-	if (row < 0) return QModelIndex(); //shouldn't happen
+	if (row < 0) {
+		return QModelIndex(); //shouldn't happen
+	}
 	if (parent.isValid()) {
-        const StructureEntry *entry = static_cast<StructureEntry *>(parent.internalPointer());
-		if (!entry) return QModelIndex(); //should never happen
-		if (row >= entry->children.size()) return QModelIndex(); //shouldn't happen in a correct view
+		const StructureEntry *entry = static_cast<StructureEntry *>(parent.internalPointer());
+		if (!entry) {
+			return QModelIndex(); //should never happen
+		}
+		if (row >= entry->children.size()) {
+			// QAbstractItemView::rowsAboutToBeRemoved can call us with row == entry->children.size()
+			// if there are no visible and enabled rows after the last removed row
+			return QModelIndex();
+		}
 		return createIndex(row, column, entry->children.at(row));
 	} else {
 		if (row >= documents.documents.size()) return QModelIndex();
@@ -332,19 +340,25 @@ QModelIndex LatexDocumentsModel::index ( int row, int column, const QModelIndex 
 
 QModelIndex LatexDocumentsModel::index ( StructureEntry *entry ) const
 {
-	if (!entry) return QModelIndex();
-    if (entry->parent == nullptr && entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+	if (!entry) {
+		return QModelIndex();
+	}
+	if (entry->parent == nullptr && entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
 		int row = documents.documents.indexOf(entry->document);
 		if (m_singleMode) {
 			row = 0;
 		}
 		if (row < 0) return QModelIndex();
 		return createIndex(row, 0, entry);
-    } else if (entry->parent != nullptr && entry->type != StructureEntry::SE_DOCUMENT_ROOT) {
+	} else if (entry->parent != nullptr && entry->type != StructureEntry::SE_DOCUMENT_ROOT) {
 		int row = entry->getRealParentRow();
-		if (row < 0) return QModelIndex(); //shouldn't happen
+		if (row < 0) {
+			return QModelIndex(); //shouldn't happen
+		}
 		return createIndex(row, 0, entry);
-	} else return QModelIndex(); //shouldn't happen
+	} else {
+		return QModelIndex(); //shouldn't happen
+	}
 }
 
 QModelIndex LatexDocumentsModel::parent ( const QModelIndex &index ) const
