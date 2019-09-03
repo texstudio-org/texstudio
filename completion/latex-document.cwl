@@ -52,6 +52,8 @@
 \begin{lrbox}
 \begin{math}#\math
 \begin{matrix}#m\array
+\begin{minipage}[position][height][inner pos]{width}
+\begin{minipage}[position][height]{width}
 \begin{minipage}[position]{width}
 \begin{minipage}{width}
 \begin{normalsize}
@@ -311,10 +313,9 @@
 \newlength{newlength}
 \newline
 \newpage
-\newtheorem{envname}[numberedlike]{caption}#N
+\newtheorem{envname}[numbered like]{caption}#N
 \newtheorem{envname}{caption}#N
 \newtheorem{envname}{caption}[within]#N
-\newtheorem*{envname}{caption}#N
 \nocite{keylist}#c
 \nocorr#*
 \nocorrlist{charlist}#*
@@ -507,9 +508,15 @@
 \providecommand{cmd}[args][default]{def}#*d
 \providecommand{cmd}[args]{def}#*d
 \providecommand{cmd}{def}#*d
+\providecommand*{cmd}[args][default]{def}#*d
+\providecommand*{cmd}[args]{def}#*d
+\providecommand*{cmd}{def}#*d
 \newenvironment{name}[args][default]{begdef}{enddef}
 \newenvironment{name}[args]{begdef}{enddef}
 \newenvironment{name}{begdef}{enddef}
+\newenvironment*{name}[args][default]{begdef}{enddef}
+\newenvironment*{name}[args]{begdef}{enddef}
+\newenvironment*{name}{begdef}{enddef}
 \renewcommand{cmd}[args][default]{def}#d
 \renewcommand{cmd}[args]{def}#d
 \renewcommand{cmd}{def}#d
@@ -519,6 +526,9 @@
 \renewenvironment{name}[args][default]{begdef}{enddef}
 \renewenvironment{name}[args]{begdef}{enddef}
 \renewenvironment{name}{begdef}{enddef}
+\renewenvironment*{name}[args][default]{begdef}{enddef}
+\renewenvironment*{name}[args]{begdef}{enddef}
+\renewenvironment*{name}{begdef}{enddef}
 \left#mK
 \left(#m
 \left(%|\right)#mM

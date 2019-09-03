@@ -1,5 +1,5 @@
 # blindtext package
-# muzimuzhi 2019-08-11 for blindtext v2.0 (2012-01-06)
+# muzimuzhi/11 Aug 2019 for blindtext v2.0
 
 #include:xspace
 

@@ -1,6 +1,6 @@
 # graphicx package
 # mario 09/06/2007
-# muzimuzhi 2019/08/10 for graphicx v1.1a (2017/06/01)
+# muzimuzhi/10 Aug 2019 for graphicx v1.1a
 # URL: http://tug.ctan.org/tex-archive/macros/latex/required/graphics/
 
 #include:keyval

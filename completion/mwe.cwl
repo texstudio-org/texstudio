@@ -1,5 +1,5 @@
 # mwe package
-# muzimuzhi 2019-08-11 for mwe v0.5 (2018-03-30)
+# muzimuzhi/11 Aug 2019 for mwe v0.5
 
 #include:graphicx
 #include:lipsum

@@ -1,6 +1,6 @@
 # tex/latex mode: TeX commands
 # dani/8.1.2004
-# muzimuzhi/2019-08-20
+# muzimuzhi/20 Aug 2019
 
 \above#*
 \abovedisplayshortskip#*

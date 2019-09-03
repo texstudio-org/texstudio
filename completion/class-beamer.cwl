@@ -427,12 +427,6 @@
 \structure{text}
 \alert<overlay specification>{highlighted text}
 \alert{highlighted text}
-\newtheorem*{environment name}[numbered same as]{head text}[number within]#N
-\newtheorem*{environment name}{head text}[number within]#N
-\newtheorem*{environment name}{head text}#N
-\newtheorem{environment name}[numbered same as]{head text}[number within]#N
-\newtheorem{environment name}{head text}[number within]#N
-\newtheorem{environment name}{head text}#N
 \footnote<overlay specification>[options]{text}
 \footnote<overlay specification>{text}
 \footnote[options]{text}

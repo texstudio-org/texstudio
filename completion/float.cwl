@@ -1,6 +1,6 @@
-# float, ctan
+# float package
 # tbraun 4.11.2008
-# muzimuzhi 2019-08-11
+# muzimuzhi/11 Aug 2019 for float v1.3d
 
 \newfloat{float type}{placement}{ext}[within]
 \floatstyle{default style%keyvals}

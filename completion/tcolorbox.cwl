@@ -1,5 +1,6 @@
+# tcolorbox package
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
-# muzimuzhi/2019-Aug-30 for tcolorbox v4.20
+# muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
 
 #include:environ
