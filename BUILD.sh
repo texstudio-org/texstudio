@@ -90,6 +90,9 @@ case "$OPTION_DEBUG" in
   *) OPTION_TESTS=yes;;
 esac
 
+readoption "Do you want to install TexStudio after building it?" yes;
+DO_INSTALL=$NEWVALUE
+
 if [ ! -x "$QTDIR/bin/$QMAKE" ]; then
 echo "Warning, QT path may be invalid"
 fi
@@ -120,9 +123,11 @@ then
   $QMAKE PREFIX=$PREFIX $TXSCOMPILEOPTIONS texstudio.pro
   make -j 4
   echo "Compilation done"
-  make install
-  echo "Compilation and installation done"
-  echo "Icons and desktop file can be found in the $PREFIX/share/texstudio directory"
+  if [ "$DO_INSTALL" = yes ]; then
+    make install
+    echo "Installation done"
+    echo "Icons and desktop file can be found in the $PREFIX/share/texstudio directory"
+  fi
   # set the -spec option, if necessary. Ex : qmake -spec linux-g++ PREFIX=$PREFIX texstudio.pro
   exit 0
 fi
@@ -132,8 +137,11 @@ then
   echo "Starting compilation"
   $QMAKE -spec macx-clang $TXSCOMPILEOPTIONS texstudio.pro
   make
-  make install
-  echo "Compilation and installation done"
+  echo "Compilation done"
+  if [ "$DO_INSTALL" = yes ]; then
+    make install
+    echo "Installation done"
+  fi
   exit 0
 fi
 
