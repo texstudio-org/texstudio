@@ -181,7 +181,7 @@ void LatexStyleParser::addFile(QString filename)
 /*!
  * \return "{arg1}..{argN}" where N=count. If with optional, return "[opt]{arg1}..{argN}"
  */
-QString LatexStyleParser::makeArgString(int count, bool withOptional) const
+QString LatexStyleParser::makeArgString(int count, bool withOptional)
 {
 	QString args;
 	if (withOptional) {
