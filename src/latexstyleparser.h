@@ -25,6 +25,19 @@ protected:
 
 	static QString makeArgString(int count, bool withOptional=false);
 	QStringList parseLine(const QString &line, bool &inRequirePackage, QStringList &parsedPackages, const QString &fileName) const;
+	static inline bool parseLineRequirePackage(QStringList &results, const QString &line, bool &inRequirePackage);
+	static inline bool parseLineDef(QStringList &results, const QString &line);
+	static inline bool parseLineLet(QStringList &results, const QString &line);
+	static inline bool parseLineCom(QStringList &results, const QString &line);
+	static inline bool parseLineComNoBrace(QStringList &results, const QString &line);
+	static inline bool parseLineEnv(QStringList &results, const QString &line);
+	inline bool parseLineInput(QStringList &results, const QString &line, QStringList &parsedPackages, const QString &fileName) const;
+	static inline bool parseLineNewLength(QStringList &results, const QString &line);
+	static inline bool parseLineNewCounter(QStringList &results, const QString &line);
+	static inline bool parseLineDecMathSym(QStringList &results, const QString &line);
+	static inline bool parseLineRequire(QStringList &results, const QString &line);
+	static inline bool parseLineRequireStart(QStringList &results, const QString &line, bool &inRequirePackage);
+	inline bool parseLineLoadClass(QStringList &results, const QString &line) const;
 	QStringList readPackage(QString fileName, QStringList &parsedPackages) const;
 	QStringList readPackageTexDef(QString fn) const;
 	QStringList readPackageTracing(QString fn) const;
