@@ -129,6 +129,8 @@
 <file>completion/metrix.cwl</file>
 <file>completion/mhchem.cwl</file>
 <file>completion/microtype.cwl</file>
+<file>completion/MinionPro-FontDef.cwl</file>
+<file>completion/MinionPro.cwl</file>
 <file>completion/minted.cwl</file>
 <file>completion/minutes.cwl</file>
 <file>completion/multicol.cwl</file>
