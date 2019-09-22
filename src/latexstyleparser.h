@@ -28,8 +28,7 @@ protected:
 	static inline bool parseLineRequirePackage(QStringList &results, const QString &line, bool &inRequirePackage);
 	static inline bool parseLineDef(QStringList &results, const QString &line);
 	static inline bool parseLineLet(QStringList &results, const QString &line);
-	static inline bool parseLineCom(QStringList &results, const QString &line);
-	static inline bool parseLineComNoBrace(QStringList &results, const QString &line);
+	static inline bool parseLineCommand(QStringList &results, const QString &line);
 	static inline bool parseLineEnv(QStringList &results, const QString &line);
 	inline bool parseLineInput(QStringList &results, const QString &line, QStringList &parsedPackages, const QString &fileName) const;
 	static inline bool parseLineNewLength(QStringList &results, const QString &line);

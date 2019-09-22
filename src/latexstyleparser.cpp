@@ -215,10 +215,7 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 	if (parseLineLet(results, line)) {
 		return results;
 	}
-	if (parseLineCom(results, line)) {
-		return results;
-	}
-	if (parseLineComNoBrace(results, line)) {
+	if (parseLineCommand(results, line)) {
 		return results;
 	}
 	if (parseLineEnv(results, line)) {
@@ -316,46 +313,25 @@ bool LatexStyleParser::parseLineLet(QStringList &results, const QString &line)
 	return true;
 }
 
-bool LatexStyleParser::parseLineCom(QStringList &results, const QString &line)
+bool LatexStyleParser::parseLineCommand(QStringList &results, const QString &line)
 {
-	static const QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
-
-	if (rxCom.indexIn(line) == -1) {
-		return false;
-	}
-	QString name = rxCom.cap(2);
-	if (name.contains("@")) {
-		return true;
-	}
-	int optionCount = rxCom.cap(3).toInt(); //returns 0 if conversion fails
-	QString optionalArg = rxCom.cap(4);
-	if (!optionalArg.isEmpty()) {
-		optionCount--;
-		QString nameWithOpt = name + makeArgString(optionCount, true) + "#S";
-		if (!results.contains(nameWithOpt)) {
-			results << nameWithOpt;
-		}
-	}
-	name += makeArgString(optionCount) + "#S";
-	if (!results.contains(name)) {
-		results << name;
-	}
-	return true;
-}
-
-bool LatexStyleParser::parseLineComNoBrace(QStringList &results, const QString &line)
-{
+	static const QRegExp rxComBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
 	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
+	const QRegExp *pRx;
 
-	if (rxComNoBrace.indexIn(line) == -1) {
+	if (rxComBrace.indexIn(line) != -1) {
+		pRx = &rxComBrace;
+	} else if (rxComNoBrace.indexIn(line) != -1) {
+		pRx = &rxComNoBrace;
+	} else {
 		return false;
 	}
-	QString name = rxComNoBrace.cap(2);
+	QString name = pRx->cap(2);
 	if (name.contains("@")) {
 		return true;
 	}
-	int optionCount = rxComNoBrace.cap(3).toInt(); //returns 0 if conversion fails
-	QString optionalArg = rxComNoBrace.cap(4);
+	int optionCount = pRx->cap(3).toInt(); //returns 0 if conversion fails
+	QString optionalArg = pRx->cap(4);
 	if (!optionalArg.isEmpty()) {
 		optionCount--;
 		QString nameWithOpt = name + makeArgString(optionCount, true) + "#S";
