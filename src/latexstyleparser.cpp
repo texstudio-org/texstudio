@@ -242,6 +242,12 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 	if (parseLineLoadClass(results, line)) {
 		return results;
 	}
+	if (parseLineXparseCommand(results, line)) {
+		return results;
+	}
+	if (parseLineXparseEnv(results, line)) {
+		return results;
+	}
 	return results;
 }
 
@@ -494,6 +500,192 @@ bool LatexStyleParser::parseLineLoadClass(QStringList &results, const QString &l
 		}
 	}
 	return true;
+}
+
+bool LatexStyleParser::parseLineXparseCommand(QStringList &results, const QString &line)
+{
+	static const QRegExp rxComBrace("\\\\(?:New|Provide|Declare)(?:Expandable)?DocumentCommand\\s*\\{(\\\\\\w+)\\}\\s*");
+	static const QRegExp rxComNoBrace("\\\\(?:New|Provide|Declare)(?:Expandable)?DocumentCommand\\s*(\\\\\\w+)\\s*");
+	const QRegExp *pRx;
+	int pos;
+
+	if ((pos = rxComBrace.indexIn(line)) != -1) {
+		pRx = &rxComBrace;
+	} else if ((pos = rxComNoBrace.indexIn(line)) != -1) {
+		pRx = &rxComNoBrace;
+	} else {
+		return false;
+	}
+	QString name = pRx->cap(1);
+	if (name.contains("@")) {
+		return true;
+	}
+	XpArgList xpArgs;
+	if (parseLineXparseArgs(xpArgs, line, pos + pRx->matchedLength()) == false) {
+		return false;
+	}
+	parseLineXparseOutputCwl(results, name, xpArgs.begin(), xpArgs.end(), 1);
+	return true;
+}
+
+bool LatexStyleParser::parseLineXparseEnv(QStringList &results, const QString &line)
+{
+	static const QRegExp rxComEnv("\\\\(?:New|Provide|Declare)DocumentEnvironment\\s*\\{(\\\\\\w+)\\}\\s*");
+	int pos;
+
+	if ((pos = rxComEnv.indexIn(line)) == -1) {
+		return false;
+	}
+	QString name = rxComEnv.cap(1);
+	if (name.contains("@")) {
+		return true;
+	}
+	XpArgList xpArgs;
+	if (parseLineXparseArgs(xpArgs, line, pos + rxComEnv.matchedLength()) == false) {
+		return false;
+	}
+	parseLineXparseOutputCwl(results, "\\begin{" + name + "}", xpArgs.begin(), xpArgs.end(), 1);
+	QString zw = "\\end{" + name + "}#S";
+	if (!results.contains(zw)) {
+		results << zw;
+	}
+	return true;
+}
+
+bool LatexStyleParser::parseLineXparseArgs(XpArgList &xpArgs, const QString &line, int lineOffset)
+{
+	QString group;
+
+	if (parseLineGetGroup(group, line, lineOffset) == false) {
+		return false;
+	}
+	xpArgs.clear();
+	int groupOffset = 0;
+	for (;;) {
+		static const QRegExp rxProc("^\\s*>\\s*\\{[^}]*\\}\\s*");
+		static const QRegExp rxArgDef("^\\s*(\\w+)\\s*");
+
+		if (rxProc.indexIn(group, groupOffset, QRegExp::CaretAtOffset) != -1) {
+			groupOffset += rxProc.matchedLength();
+		} else if (rxArgDef.indexIn(group, groupOffset, QRegExp::CaretAtOffset) != -1) {
+			XpArg oneXpArg;
+
+			if (parseLineXparseOneArg(oneXpArg, rxArgDef.cap(1))) {
+				xpArgs.push_back(oneXpArg);
+			}
+			groupOffset += rxArgDef.matchedLength();
+		} else {
+			// Reached end of group or trailing whitespace
+			break;
+		}
+	}
+	return true;
+}
+
+bool LatexStyleParser::parseLineGetGroup(QString &group, const QString &line, int groupStart)
+{
+	int len, groupEnd, depth;
+
+	len = line.length();
+	if (len - groupStart < 2) {
+		return false;
+	}
+	if (line [groupStart] != '{') {
+		return false;
+	}
+	++groupStart;
+	depth = 1;
+	for (groupEnd = groupStart; groupEnd < len; ++groupEnd) {
+		QChar oneChar = line.at (groupEnd);
+		if (oneChar == '{') {
+			++depth;
+		} else if (oneChar == '}') {
+			if (--depth == 0) {
+				group = line.mid(groupStart, groupEnd - groupStart);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool LatexStyleParser::parseLineXparseOneArg(XpArg &xpArg, const QString &argDef)
+{
+	static const QRegExp rxArg(
+		"^"
+		"(?:!|\\+)*"
+		"("
+			"([moOs])|"
+			"([rRdD]..)|"
+			"(t.)"
+		")"
+	);
+
+	if (rxArg.indexIn(argDef) == -1) {
+		return false;
+	}
+	QString match = rxArg.cap(1);
+	QChar type = match.at (0);
+	if (type == 'm') {
+		xpArg.optional = false;
+		xpArg.delimLeft = '{';
+		xpArg.delimRight = '}';
+		xpArg.fixedChar = 0;
+	} else if ((type == 'o') || (type == 'O')) {
+		xpArg.optional = true;
+		xpArg.delimLeft = '[';
+		xpArg.delimRight = ']';
+		xpArg.fixedChar = 0;
+	} else if (type == 's') {
+		xpArg.optional = true;
+		xpArg.delimLeft = 0;
+		xpArg.delimRight = 0;
+		xpArg.fixedChar = '*';
+	} else if ((type == 'r') || (type == 'r')) {
+		xpArg.optional = false;
+		xpArg.delimLeft = match.at(1);
+		xpArg.delimRight = match.at(2);
+		xpArg.fixedChar = 0;
+	} else if ((type == 'd') || (type == 'D')) {
+		xpArg.optional = true;
+		xpArg.delimLeft = match.at(1);
+		xpArg.delimRight = match.at(2);
+		xpArg.fixedChar = 0;
+	} else if (type == 't') {
+		xpArg.optional = true;
+		xpArg.delimLeft = 0;
+		xpArg.delimRight = 0;
+		xpArg.fixedChar = match.at(1);
+	} else {
+		// Should never happen
+		return false;
+	}
+	return true;
+}
+
+void LatexStyleParser::parseLineXparseOutputCwl(QStringList &results, const QString &prefix, XpArgList::const_iterator itPos, XpArgList::const_iterator itEnd, int argIndex)
+{
+	if (itPos == itEnd) {
+		QString cwlLine = prefix + "#S";
+		if (!results.contains(cwlLine)) {
+			results << cwlLine;
+		}
+		return;
+	}
+	const XpArg &xpOneArg = *itPos++;
+	QString cwlOneArg =
+		(xpOneArg.fixedChar != 0) ?
+		QString(xpOneArg.fixedChar) :
+		(
+			QString(xpOneArg.delimLeft) +
+			(xpOneArg.optional ? "optarg" : "arg") +
+			QString::number(argIndex) +
+			xpOneArg.delimRight
+		);
+	parseLineXparseOutputCwl(results, prefix + cwlOneArg, itPos, itEnd, argIndex+1);
+	if (xpOneArg.optional) {
+		parseLineXparseOutputCwl(results, prefix, itPos, itEnd, argIndex);
+	}
 }
 
 QStringList LatexStyleParser::readPackage(QString fileName, QStringList &parsedPackages) const

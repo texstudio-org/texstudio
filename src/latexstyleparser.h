@@ -23,6 +23,16 @@ public:
 protected:
 	void run();
 
+private:
+	struct XpArg
+	{
+		bool optional;
+		QChar delimLeft;
+		QChar delimRight;
+		QChar fixedChar;
+	};
+	typedef QList<XpArg> XpArgList;
+
 	static QString makeArgString(int count, bool withOptional=false);
 	QStringList parseLine(const QString &line, bool &inRequirePackage, QStringList &parsedPackages, const QString &fileName) const;
 	static inline bool parseLineRequirePackage(QStringList &results, const QString &line, bool &inRequirePackage);
@@ -37,6 +47,13 @@ protected:
 	static inline bool parseLineRequire(QStringList &results, const QString &line);
 	static inline bool parseLineRequireStart(QStringList &results, const QString &line, bool &inRequirePackage);
 	inline bool parseLineLoadClass(QStringList &results, const QString &line) const;
+	static inline bool parseLineXparseCommand(QStringList &results, const QString &line);
+	static inline bool parseLineXparseEnv(QStringList &results, const QString &line);
+	static bool parseLineXparseArgs(XpArgList &xpArgs, const QString &line, int lineOffset);
+	static bool parseLineGetGroup(QString &group, const QString &line, int groupStart);
+	static bool parseLineXparseOneArg(XpArg &xpArg, const QString &argDef);
+	static void parseLineXparseOutputCwl(QStringList &results, const QString &prefix, const XpArgList &xpArgs, int index);
+	static void parseLineXparseOutputCwl(QStringList &results, const QString &prefix, XpArgList::const_iterator itPos, XpArgList::const_iterator itEnd, int argIndex);
 	QStringList readPackage(QString fileName, QStringList &parsedPackages) const;
 	QStringList readPackageTexDef(QString fn) const;
 	QStringList readPackageTracing(QString fn) const;
