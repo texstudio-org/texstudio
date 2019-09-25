@@ -641,7 +641,7 @@ bool LatexStyleParser::parseLineXparseOneArg(XpArg &xpArg, const QString &argDef
 		xpArg.delimLeft = 0;
 		xpArg.delimRight = 0;
 		xpArg.fixedChar = '*';
-	} else if ((type == 'r') || (type == 'r')) {
+	} else if ((type == 'r') || (type == 'R')) {
 		xpArg.optional = false;
 		xpArg.delimLeft = match.at(1);
 		xpArg.delimRight = match.at(2);
