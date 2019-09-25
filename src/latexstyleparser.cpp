@@ -530,7 +530,7 @@ bool LatexStyleParser::parseLineXparseCommand(QStringList &results, const QStrin
 
 bool LatexStyleParser::parseLineXparseEnv(QStringList &results, const QString &line)
 {
-	static const QRegExp rxComEnv("\\\\(?:New|Provide|Declare)DocumentEnvironment\\s*\\{(\\\\\\w+)\\}\\s*");
+	static const QRegExp rxComEnv("\\\\(?:New|Provide|Declare)DocumentEnvironment\\s*\\{\\s*(\\w+)\\s*\\}\\s*");
 	int pos;
 
 	if ((pos = rxComEnv.indexIn(line)) == -1) {
@@ -563,7 +563,7 @@ bool LatexStyleParser::parseLineXparseArgs(XpArgList &xpArgs, const QString &lin
 	int groupOffset = 0;
 	for (;;) {
 		static const QRegExp rxProc("^\\s*>\\s*\\{[^}]*\\}\\s*");
-		static const QRegExp rxArgDef("^\\s*(\\w+)\\s*");
+		static const QRegExp rxArgDef("^\\s*([!+]*\\w+(?:\\{[^}]*\\})*)\\s*");
 
 		if (rxProc.indexIn(group, groupOffset, QRegExp::CaretAtOffset) != -1) {
 			groupOffset += rxProc.matchedLength();
