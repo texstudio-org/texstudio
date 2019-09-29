@@ -5916,12 +5916,14 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 
 	QList<LatexDocument *> docs = rootDoc->getListOfDocs();
 	QSet<QString> bibFiles;
-	foreach (const LatexDocument *doc, docs)
-		foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles())
+	foreach (const LatexDocument *doc, docs) {
+		foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles()) {
 			bibFiles.insert(bf.absolute);
-    if(bibFiles.isEmpty()){
-        return; // don't try to compile bibtex files if there none
-    }
+		}
+	}
+	if(bibFiles.isEmpty()) {
+		return; // don't try to compile bibtex files if there none
+	}
 	if (bibFiles == rootDoc->lastCompiledBibTeXFiles) {
 		QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
 		if (bbl.exists()) {
@@ -5936,7 +5938,7 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 				}
 			}
 			if (!bibFilesChanged) return;
-        }
+		}
 	} else rootDoc->lastCompiledBibTeXFiles = bibFiles;
 
 	runBibliographyIfNecessaryEntered = true;
