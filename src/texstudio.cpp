@@ -5548,7 +5548,7 @@ void Texstudio::macroDialogAccepted()
 		configManager.completerConfig->userMacros << documents.documents[i]->localMacros;
 	updateUserMacros();
 	completer->updateAbbreviations();
-    addMacrosAsTagList();
+	addMacrosAsTagList();
 	userMacroDialog->deleteLater();
 	userMacroDialog = nullptr;
 }
@@ -8448,7 +8448,7 @@ void Texstudio::cursorPositionChanged()
 void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 {
 #ifndef NO_POPPLER_PREVIEW
-	if (PDFDocument::documentList().isEmpty() && inForeground) {
+        if (inForeground) {
 		// open new viewer, if none exists
 		QAction *viewAct = getManagedAction("main/tools/view");
 		if (viewAct) viewAct->trigger();
