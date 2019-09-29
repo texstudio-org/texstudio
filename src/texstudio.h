@@ -106,6 +106,7 @@ protected:
     Q_INVOKABLE QAction *insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "");
 
 	void addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile);
+    void addMacrosAsTagList();
 
 private slots:
 	void updateToolBarMenu(const QString &menuName);
@@ -367,6 +368,7 @@ protected slots:
 	void insertXmlTagFromToolButtonAction();
 	void callToolButtonAction();
 	void insertFromAction();
+    void insertFromTagList(QListWidgetItem *item);
 	void insertBib();
 	void closeEnvironment();
 

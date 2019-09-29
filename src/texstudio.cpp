@@ -554,6 +554,39 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 		//(*list)->setProperty("mType",2);
 	} else leftPanel->setWidgetText(list, text);
 }
+
+/*!
+ * \brief add all macros as TagList to side panel
+ *
+ * add Macros as Taglist to side panel as an alternative way to call them.
+ * This may be helpful if the number of macros becomes large and overcrowd the menu or are too many for generic keyboard shortcuts
+ *
+ */
+void Texstudio::addMacrosAsTagList()
+{
+    bool addToPanel=true;
+    QListWidget *list = qobject_cast<QListWidget *>(leftPanel->widget("txs-macros"));
+    if (!list) {
+        list = new QListWidget(this);
+        list->setObjectName("tags/txs-macros");
+    }else{
+        list->clear();
+        addToPanel=false;
+    }
+    // add elements
+    for(const auto &m:configManager.completerConfig->userMacros) {
+        if (m.name == "TMX:Replace Quote Open" || m.name == "TMX:Replace Quote Close" || m.document)
+            continue;
+        QListWidgetItem* item=new QListWidgetItem(m.name);
+        item->setData(Qt::UserRole, m.typedTag());
+        list->addItem(item);
+    }
+    UtilsUi::enableTouchScrolling(list);
+    connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertFromTagList(QListWidgetItem *)));
+    if(addToPanel)
+        leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
+}
+
 /*! set-up side- and bottom-panel
  */
 void Texstudio::setupDockWidgets()
@@ -633,6 +666,8 @@ void Texstudio::setupDockWidgets()
 	addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
 	addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
 	addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
+
+    addMacrosAsTagList();
 
 	leftPanel->showWidgets();
 
@@ -5030,6 +5065,18 @@ void Texstudio::insertFromAction()
 	}
 }
 
+void Texstudio::insertFromTagList(QListWidgetItem *item)
+{
+    LatexEditorView *edView = currentEditorView();
+    if (!edView)	return;
+    if (item)	{
+        if (completer->isVisible())
+            completer->close();
+        execMacro(Macro::fromTypedTag(item->data(Qt::UserRole).toString()), MacroExecContext(), true);
+        generateMirror();
+    }
+}
+
 void Texstudio::insertBib()
 {
 	if (!currentEditorView())	return;
@@ -5501,6 +5548,7 @@ void Texstudio::macroDialogAccepted()
 		configManager.completerConfig->userMacros << documents.documents[i]->localMacros;
 	updateUserMacros();
 	completer->updateAbbreviations();
+    addMacrosAsTagList();
 	userMacroDialog->deleteLater();
 	userMacroDialog = nullptr;
 }

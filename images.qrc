@@ -212,5 +212,6 @@
         <file>images-ng/verbatim.svg</file>
         <file>images-ng/cite.svg</file>
         <file>images-ng/label.svg</file>
+        <file>images-ng/executeMacro.svg</file>
     </qresource>
 </RCC>
