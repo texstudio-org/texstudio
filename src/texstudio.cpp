@@ -5833,7 +5833,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 
 	if (pdfFile.isNull()) pdfFile = "?am.pdf";  // no file was explicitly specified in the command
 	QString pdfDefFile = BuildManager::parseExtendedCommandLine(pdfFile, master).first();
-	pdfFile = findInPdfPaths(master.absolutePath(), pdfDefFile);
+	QStringList searchPaths = splitPaths(BuildManager::resolvePaths(buildManager.additionalPdfPaths));
+	searchPaths.insert(0, master.absolutePath());
+	pdfFile = buildManager.findFile(pdfDefFile, searchPaths, true);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
 	int ln = 0;
 	int col = 0;
@@ -5945,7 +5947,7 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 QDateTime Texstudio::GetBblLastModified(void)
 {
 	QFileInfo compileFile (documents.getTemporaryCompileFileName());
-	QString bblPathname = findInPdfPaths(
+	QString bblPathname = findInLogPaths(
 		compileFile.absolutePath(),
 		compileFile.completeBaseName() + ".bbl"
 	);
@@ -5955,11 +5957,11 @@ QDateTime Texstudio::GetBblLastModified(void)
 	return QFileInfo(bblPathname).lastModified();
 }
 
-QString Texstudio::findInPdfPaths(const QString &primaryPath, const QString &fileName)
+QString Texstudio::findInLogPaths(const QString &primaryPath, const QString &fileName)
 {
 	QStringList searchPaths;
 	searchPaths << primaryPath;
-	searchPaths << splitPaths(BuildManager::resolvePaths(buildManager.additionalPdfPaths));
+	searchPaths << splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths));
 	return buildManager.findFile(fileName, searchPaths, true);
 }
 
