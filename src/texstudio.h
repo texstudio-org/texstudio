@@ -414,7 +414,6 @@ protected slots:
 	void runInternalPdfViewer(const QFileInfo &master, const QString &options);
 	void runBibliographyIfNecessary(const QFileInfo &cmd);
 	QDateTime GetBblLastModified(void);
-	QString findInLogPaths(const QString &primaryPath, const QString &fileName);
 
 	void showExtendedSearch();
 

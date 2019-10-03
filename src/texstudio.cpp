@@ -5947,22 +5947,14 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 QDateTime Texstudio::GetBblLastModified(void)
 {
 	QFileInfo compileFile (documents.getTemporaryCompileFileName());
-	QString bblPathname = findInLogPaths(
-		compileFile.absolutePath(),
-		compileFile.completeBaseName() + ".bbl"
-	);
+	QStringList searchPaths;
+	searchPaths << compileFile.absolutePath();
+	searchPaths << splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths));
+	QString bblPathname = buildManager.findFile(compileFile.completeBaseName() + ".bbl", searchPaths, true);
 	if (bblPathname == "") {
 		return QDateTime();
 	}
 	return QFileInfo(bblPathname).lastModified();
-}
-
-QString Texstudio::findInLogPaths(const QString &primaryPath, const QString &fileName)
-{
-	QStringList searchPaths;
-	searchPaths << primaryPath;
-	searchPaths << splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths));
-	return buildManager.findFile(fileName, searchPaths, true);
 }
 
 void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile, const QString &options)
