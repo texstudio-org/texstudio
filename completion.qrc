@@ -220,6 +220,7 @@
 <file>completion/xy.cwl</file>
 <file>completion/yathesis.cwl</file>
 <file>completion/yfonts.cwl</file>
+<file>completion/zhlipsum.cwl</file>
 <file>completion/cwlAliases.dat</file>
 </qresource>
 </RCC>
