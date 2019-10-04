@@ -5916,32 +5916,45 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 
 	QList<LatexDocument *> docs = rootDoc->getListOfDocs();
 	QSet<QString> bibFiles;
-	foreach (const LatexDocument *doc, docs)
-		foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles())
+	foreach (const LatexDocument *doc, docs) {
+		foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles()) {
 			bibFiles.insert(bf.absolute);
-    if(bibFiles.isEmpty()){
-        return; // don't try to compile bibtex files if there none
-    }
+		}
+	}
+	if(bibFiles.isEmpty()) {
+		return; // don't try to compile bibtex files if there none
+	}
 	if (bibFiles == rootDoc->lastCompiledBibTeXFiles) {
-		QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
-		if (bbl.exists()) {
+		QDateTime bblLastModified = GetBblLastModified();
+		if (bblLastModified.isValid()) {
 			bool bibFilesChanged = false;
-			QDateTime bblChanged = bbl.lastModified();
 			foreach (const QString &bf, bibFiles) {
-				//qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblChanged;
-
-				if (QFileInfo(bf).exists() && QFileInfo(bf).lastModified() > bblChanged) {
+				//qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblLastModified;
+				if (QFileInfo(bf).exists() && QFileInfo(bf).lastModified() > bblLastModified) {
 					bibFilesChanged = true;
 					break;
 				}
 			}
 			if (!bibFilesChanged) return;
-        }
+		}
 	} else rootDoc->lastCompiledBibTeXFiles = bibFiles;
 
 	runBibliographyIfNecessaryEntered = true;
 	buildManager.runCommand(BuildManager::CMD_RECOMPILE_BIBLIOGRAPHY, mainFile);
 	runBibliographyIfNecessaryEntered = false;
+}
+
+QDateTime Texstudio::GetBblLastModified(void)
+{
+	QFileInfo compileFile (documents.getTemporaryCompileFileName());
+	QStringList searchPaths;
+	searchPaths << compileFile.absolutePath();
+	searchPaths << splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths));
+	QString bblPathname = buildManager.findFile(compileFile.completeBaseName() + ".bbl", searchPaths, true);
+	if (bblPathname == "") {
+		return QDateTime();
+	}
+	return QFileInfo(bblPathname).lastModified();
 }
 
 void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile, const QString &options)
