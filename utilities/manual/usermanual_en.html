@@ -1463,34 +1463,34 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <p>There are a few argument names that have special meaning:</p>
 <ul>
   <li><code>text</code> or ends with <code>%text</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked).</li>
-  <li><code>title</code>,<code>short title</code> or ends with <code>%title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section)</li>
+  <li><code>title</code>, <code>short title</code> or ends with <code>%title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section)</li>
   <li><code>bibid</code> and <code>keylists</code>: If used in a command classified as "C". See the classifier description below.</li>
   <li><code>cmd</code> and <code>command</code> or ends with <code>%cmd</code>: definition for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
   <li><code>def</code> and <code>definition</code>: actual definition for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
   <li><code>args</code>: number of arguments for command, e.g. \newcommand{cmd}[args]{definition}.</li>
-  <li><code>package</code>:package name, e.g. \usepackage{package}</li>
-  <li><code>citekey</code>:definition of new citation key name, e.g. \bibitem{citekey}</li>
-  <li><code>title</code> and <code>short title</code>:section name, e.g. \section[short title]{title}</li>
-  <li><code>color</code>:color name, e.g. \textcolor{color}</li>
-  <li><code>width</code>,<code>length</code>,<code>height</code> or ends with <code>%l</code>:width or length option e.g. \abc{size%l}</li>
-  <li><code>cols</code> and <code>preamble</code>:columns definition in tabular,etc. , e.g. \begin{tabular}{cols}</li>
-  <li><code>file</code>:file name</li>
-  <li><code>URL</code>:URL</li>
-  <li><code>options</code>:package options, e.g. \usepackage[options]</li>
-  <li><code>imagefile</code>:file name of an image</li>
+  <li><code>package</code>: package name, e.g. \usepackage{package}</li>
+  <li><code>citekey</code>: definition of new citation key name, e.g. \bibitem{citekey}</li>
+  <li><code>title</code> and <code>short title</code>: section name, e.g. \section[short title]{title}</li>
+  <li><code>color</code>: color name, e.g. \textcolor{color}</li>
+  <li><code>width</code>, <code>length</code>, <code>height</code> or ends with <code>%l</code>: width or length option e.g. \abc{size%l}</li>
+  <li><code>cols</code> and <code>preamble</code>: columns definition in tabular, etc., e.g. \begin{tabular}{cols}</li>
+  <li><code>file</code>: file name</li>
+  <li><code>URL</code>: URL</li>
+  <li><code>options</code>: package options, e.g. \usepackage[options]</li>
+  <li><code>imagefile</code>: file name of an image</li>
   <li>ends with <code>%todo</code>: The argument is highlighted as todo. Note: To add the element to the todo list in the structure panel, you have to additionally add the classifier <code>D</code>. See todonotes.cwl for an example.</li>
-  <li><code>key</code>:label/ref key</li>
-  <li><code>label</code> with option <code>#r</code> or key ending with <code>%ref</code>:ref key</li>
-  <li><code>label</code> with option <code>#l</code> or key ending with <code>%labeldef</code>:defines a label</li>
+  <li><code>key</code>, <code>key1</code>, and <code>key2</code>: label/ref key</li>
+  <li><code>label</code> with option <code>#r</code> or key ending with <code>%ref</code>: ref key</li>
+  <li><code>label</code> with option <code>#l</code> or key ending with <code>%labeldef</code>: defines a label</li>
 
-  <li><code>labellist</code>:list of labels as employed by cleveref</li>
-  <li><code>bib file</code> and <code>bib files</code>:bibliography file</li>
-  <li><code>class</code>:document class</li>
-  <li><code>placement</code> and <code>position</code>:position of env</li>
+  <li><code>labellist</code>: list of labels as employed by cleveref</li>
+  <li><code>bib file</code> and <code>bib files</code>: bibliography file</li>
+  <li><code>class</code>: document class</li>
+  <li><code>placement</code> and <code>position</code>: position of env</li>
   <li><code>%plain</code>: options ending with <code>%plain</code> are interpreted to have no special meaning. This way, you can e.g. define <code>label%plain</code> to have a placeholder named <code>label</code> without the semantics that it defines a label.</li>
-  <li><code>beamertheme</code>:beamer theme, e.g. \usebeamertheme{beamertheme}</li>
-  <li><code>keys</code>,<code>keyvals</code>,<code>%&lt;options%&gt;</code> or ends with <code>%keyvals</code>:key/value list</li>
-  <li><code>envname</code>:environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
+  <li><code>beamertheme</code>: beamer theme, e.g. \usebeamertheme{beamertheme}</li>
+  <li><code>keys</code>, <code>keyvals</code>, <code>%&lt;options%&gt;</code> or ends with <code>%keyvals</code>: key/value list</li>
+  <li><code>envname</code> and <code>environment name</code>: environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
 <h3>4.13.3 Classification format</h3>
