@@ -185,6 +185,8 @@
 \contentsname{name}
 \dag#*
 \ddag#*
+\dashbox{dashlength}(width,height)[position]{text}#*/picture
+\dashbox{dashlength}(width,height){text}#*/picture
 \date{text}
 \depth#*
 \descriptionlabel{code}#*
@@ -278,6 +280,8 @@
 \listtablename{name}
 \makeatletter#*
 \makeatother#*
+\makebox(width,height)[position]{text}#*/picture
+\makebox(width,height){text}#*/picture
 \makeglossary
 \makeindex
 \makelabel
@@ -369,7 +373,7 @@
 \quad
 \r{letter}
 \ref{label}#r
-\refname{name}
+\refname
 \righthyphenmin
 \rightmargin
 \rightmark
@@ -377,8 +381,8 @@
 \rmfamily
 \Roman{counter}
 \roman{counter}
-\rule[lift]{width}{thickness}
-\rule{width}{thickness}
+\rule[raise%l]{width}{thickness%l}
+\rule{width}{thickness%l}
 \samepage
 \sbox{cmd}[text]
 \sc#*

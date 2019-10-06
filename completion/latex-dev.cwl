@@ -130,20 +130,16 @@
 \thesubsubsection#*
 \thetable#*
 # boxes
-\savebox{cmd}[width][pos]{text}#*
-\savebox{cmd}[width]{text}#*
-\savebox{cmd}{text}#*
-\dashbox{dashlength}(width,height)[position]{text}#*
-\dashbox{dashlength}(width,height){text}#*
-\makebox(width,height)[position]{text}#*
-\makebox(width,height){text}#*
+\savebox{box}[width][position]{text}#*
+\savebox{box}[width]{text}#*
+\savebox{box}{text}#*
 \makebox[width][position]{text}#*
 \makebox[width]{text}#*
-\usebox{\box}#*
-\raisebox{distance}[extendabove][extendbelow]{text}#*
-\raisebox{distance}[extendabove]{text}#*
-\raisebox{distance}{text}#*
-\newsavebox{\box}#*d
+\usebox{box}#*
+\raisebox{raise%l}[height][depth]{text}#*
+\raisebox{raise%l}[height]{text}#*
+\raisebox{raise%l}{text}#*
+\newsavebox{box%cmd}#*d
 # variables
 \belowcaptionskip#*
 \binoppenalty#*

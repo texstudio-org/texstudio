@@ -54,6 +54,7 @@
 \copyright#*
 \count#*
 \countdef#*
+\cr#*
 \crcr#*
 \csname#*
 \danger#*
@@ -80,6 +81,7 @@
 \dotfill#*
 \dots
 \doublehyphendemerits#*
+\dp#*
 \edef#*
 \egroup#*
 \eject#*
@@ -141,6 +143,7 @@
 \hrulefill
 \hsize
 \hskip
+\ht#*
 \hyphenchar#*
 \hyphenpenalty#*
 \if#*
@@ -236,7 +239,7 @@
 \magnification#*
 \magstep#*
 \margin#*
-\mark#*
+\mark{mark text}#*
 \mathaccent#*
 \mathbin#*
 \mathchar#*
@@ -460,6 +463,7 @@
 \vsplit#*
 \vss#*
 \vtop#*
+\wd#*
 \widowpenalty#*
 \write#*
 \xdef#*
