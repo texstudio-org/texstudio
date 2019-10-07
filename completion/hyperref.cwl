@@ -88,11 +88,12 @@ pdfviewarea=
 pdfviewclip=
 pdfwindowui#true,false
 plainpages#true,false
+psdextra#true,false
 raiselinks#true,false
 runbordercolor=
 runcolor=
 setpagesize#true,false
-unicode
+unicode#true,false
 urlbordercolor=
 urlcolor=
 verbose#true,false

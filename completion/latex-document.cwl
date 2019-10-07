@@ -4,7 +4,7 @@
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
 #include:latex-dev
-\abstractname{name}#*
+\abstractname#*
 \addcontentsline{file}{secunit}{entry}#*
 \Alph{counter}#*
 \alph{counter}#*
@@ -172,7 +172,7 @@
 \chapter*{title}#L1
 \chapter[short title]{title}#L1
 \chaptermark{code}#*
-\chaptername{name}#*
+\chaptername#*
 \cite{keylist}#c
 \cite[add. text]{keylist}
 \circle{diameter}#*
@@ -182,9 +182,11 @@
 \cline{i-j}#t
 \columnwidth#L
 \contentsline{type}{text}{page}
-\contentsname{name}
+\contentsname
 \dag#*
 \ddag#*
+\dashbox{dashlength}(width,height)[position]{text}#*/picture
+\dashbox{dashlength}(width,height){text}#*/picture
 \date{text}
 \depth#*
 \descriptionlabel{code}#*
@@ -196,7 +198,7 @@
 \enlargethispage{size}
 \family
 \fbox{text}
-\figurename{name}
+\figurename
 \flq
 \flqq
 \flushbottom
@@ -245,7 +247,7 @@
 \include{file}#i
 \input{file}#i
 \includeonly{filelist}
-\indexname{name}
+\indexname
 \indexspace
 \index{entry}
 \inputlineno#*
@@ -270,14 +272,16 @@
 \linebreak[number]
 \linethickness{dimension}
 \linewidth#L
-\listfigurename{name}
+\listfigurename
 \listfiles
 \listoffigures
 \listoftables
 \listparindent#*
-\listtablename{name}
+\listtablename
 \makeatletter#*
 \makeatother#*
+\makebox(width,height)[position]{text}#*/picture
+\makebox(width,height){text}#*/picture
 \makeglossary
 \makeindex
 \makelabel
@@ -356,7 +360,7 @@
 \parbox{width}{text}
 \part*{title}#L0
 \part[short title]{title}#L0
-\partname{name}
+\partname
 \part{title}#L0
 \pdfinfo{info}
 \plus
@@ -369,7 +373,7 @@
 \quad
 \r{letter}
 \ref{label}#r
-\refname{name}
+\refname
 \righthyphenmin
 \rightmargin
 \rightmark
@@ -377,8 +381,8 @@
 \rmfamily
 \Roman{counter}
 \roman{counter}
-\rule[lift]{width}{thickness}
-\rule{width}{thickness}
+\rule[raise%l]{width}{thickness%l}
+\rule{width}{thickness%l}
 \samepage
 \sbox{cmd}[text]
 \sc#*
@@ -421,7 +425,7 @@
 \suppressfloats
 \suppressfloats[placement]
 \symbol{n}
-\tablename{name}
+\tablename
 \tableofcontents
 \textasciicircum
 \textasciitilde
@@ -511,24 +515,24 @@
 \providecommand*{cmd}[args][default]{def}#*d
 \providecommand*{cmd}[args]{def}#*d
 \providecommand*{cmd}{def}#*d
-\newenvironment{name}[args][default]{begdef}{enddef}
-\newenvironment{name}[args]{begdef}{enddef}
-\newenvironment{name}{begdef}{enddef}
-\newenvironment*{name}[args][default]{begdef}{enddef}
-\newenvironment*{name}[args]{begdef}{enddef}
-\newenvironment*{name}{begdef}{enddef}
+\newenvironment{envname}[args][default]{begdef}{enddef}#N
+\newenvironment{envname}[args]{begdef}{enddef}#N
+\newenvironment{envname}{begdef}{enddef}#N
+\newenvironment*{envname}[args][default]{begdef}{enddef}#N
+\newenvironment*{envname}[args]{begdef}{enddef}#N
+\newenvironment*{envname}{begdef}{enddef}#N
 \renewcommand{cmd}[args][default]{def}#d
 \renewcommand{cmd}[args]{def}#d
 \renewcommand{cmd}{def}#d
 \renewcommand*{cmd}[args][default]{def}#d
 \renewcommand*{cmd}[args]{def}#d
 \renewcommand*{cmd}{def}#d
-\renewenvironment{name}[args][default]{begdef}{enddef}
-\renewenvironment{name}[args]{begdef}{enddef}
-\renewenvironment{name}{begdef}{enddef}
-\renewenvironment*{name}[args][default]{begdef}{enddef}
-\renewenvironment*{name}[args]{begdef}{enddef}
-\renewenvironment*{name}{begdef}{enddef}
+\renewenvironment{envname}[args][default]{begdef}{enddef}#N
+\renewenvironment{envname}[args]{begdef}{enddef}#N
+\renewenvironment{envname}{begdef}{enddef}#N
+\renewenvironment*{envname}[args][default]{begdef}{enddef}#N
+\renewenvironment*{envname}[args]{begdef}{enddef}#N
+\renewenvironment*{envname}{begdef}{enddef}#N
 \left#mK
 \left(#m
 \left(%|\right)#mM
