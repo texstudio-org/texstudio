@@ -17,7 +17,7 @@ class LatexDocument;
 class Environment
 {
 public:
-    Environment(): id(-1), excessCol(0), dlh(0), ticket(0), level(0) {} ///< constructor
+    Environment(): id(-1), excessCol(0), dlh(nullptr), ticket(0), level(0) {} ///< constructor
 
 	QString name; ///< name of environment, partially an alias is used, e.g. math instead of '$'
     QString origName; ///< original name of environment if alias is used, otherwise empty
@@ -89,7 +89,7 @@ public:
 
 	typedef QList<Error > Ranges;
 
-	explicit SyntaxCheck(QObject *parent = 0);
+    explicit SyntaxCheck(QObject *parent = nullptr);
 
 	void putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay = false);
 	void stop();
