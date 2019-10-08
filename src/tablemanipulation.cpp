@@ -310,7 +310,7 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 							}
 						}
 					}
-					if (keep.length() == 1) keep.clear();;
+                    if (keep.length() == 1) keep.clear();
 				}
 				cur.removeSelectedText();
 				if (column > 0) {

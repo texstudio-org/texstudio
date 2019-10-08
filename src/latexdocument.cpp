@@ -205,8 +205,8 @@ protected:
 
 class LatexStructureMergerMerge: public LatexStructureMerger{
 public:
-	LatexStructureMergerMerge (LatexDocument* document, int maxDepth, int linenr, int count):
-		LatexStructureMerger(document, maxDepth), linenr(linenr), count(count), flatStructure(nullptr)
+        LatexStructureMergerMerge (LatexDocument* doc, int maxDepth, int linenr, int count):
+	        LatexStructureMerger(doc, maxDepth), linenr(linenr), count(count), flatStructure(nullptr)
 	{
 	}
 	void operator ()(QList<StructureEntry *> &flatStructure){
@@ -297,9 +297,18 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 	QList<CodeSnippet> commands = mUserCommandList.values(dlh);
 	foreach (CodeSnippet elem, commands) {
 		QString word = elem.word;
-		int i = word.indexOf("{");
-		if (i >= 0) word = word.left(i);
-		ltxCommands.possibleCommands["user"].remove(word);
+		if(word.length()==1){
+		    for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
+			if(i.left(1)==word){
+			    ltxCommands.possibleCommands["%columntypes"].remove(i);
+			    break;
+			}
+		    }
+		}else{
+		    int i = word.indexOf("{");
+		    if (i >= 0) word = word.left(i);
+		    ltxCommands.possibleCommands["user"].remove(word);
+		}
 		updateSyntaxCheck = true;
 	}
 	mUserCommandList.remove(dlh);
@@ -527,9 +536,18 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		QList<CodeSnippet> commands = mUserCommandList.values(dlh);
 		foreach (CodeSnippet cs, commands) {
 			QString elem = cs.word;
-			int i = elem.indexOf("{");
-			if (i >= 0) elem = elem.left(i);
-			ltxCommands.possibleCommands["user"].remove(elem);
+			if(elem.length()==1){
+			    for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
+				if(i.left(1)==elem){
+				    ltxCommands.possibleCommands["%columntypes"].remove(i);
+				    break;
+				}
+			    }
+			}else{
+			    int i = elem.indexOf("{");
+			    if (i >= 0) elem = elem.left(i);
+			    ltxCommands.possibleCommands["user"].remove(elem);
+			}
 			if(cs.type==CodeSnippet::userConstruct)
 				continue;
 			removedUserCommands << elem;
@@ -806,6 +824,17 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				continue;
 			}
+            if (cmd == "\\newcolumntype") {
+                if(firstArg.length()==1){ // only single letter definitions are allowed/handled
+                    QString secondArg = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory);
+                    ltxCommands.possibleCommands["%columntypes"].insert(firstArg+secondArg);
+                    if (!removedUserCommands.removeAll(firstArg)) {
+                        addedUserCommands << firstArg;
+                    }
+		    mUserCommandList.insert(line(i).handle(), firstArg);
+                    continue;
+                }
+            }
             /* obsolete
 			// special treatment \newcount
 			if (cmd == "\\newcount") {
@@ -1210,7 +1239,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		emit updateCompleter();
 
 	if ((!recheck && updateSyntaxCheck) || updateLtxCommands) {
-        this->updateLtxCommands(true);
+	    this->updateLtxCommands(true);
 	}
 	//update view
 	if (edView)
@@ -1365,7 +1394,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getBibItems(const QString 
 			}
 		}
 	}
-	return result;
+	return std::move(result);
 }
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &name)
@@ -1380,7 +1409,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
 			}
 		}
 	}
-	return result;
+	return std::move(result);
 }
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &name)
@@ -1395,7 +1424,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &nam
 			}
 		}
 	}
-	return result;
+	return std::move(result);
 }
 
 /*!
@@ -2665,6 +2694,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	//mCompleterWords=pck.completionWords.toSet();
 	mCWLFiles = loadedFiles.toSet();
 	QSet<QString> userCommandsForSyntaxCheck = ltxCommands.possibleCommands["user"];
+	QSet<QString> columntypeForSyntaxCheck = ltxCommands.possibleCommands["%columntypes"];
 	ltxCommands.optionCommands = pck.optionCommands;
 	ltxCommands.specialTreatmentCommands = pck.specialTreatmentCommands;
 	ltxCommands.specialDefCommands = pck.specialDefCommands;
@@ -2673,6 +2703,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	ltxCommands.commandDefs = pck.commandDescriptions;
 	QSet<QString> pckSet = pck.possibleCommands["user"];
 	ltxCommands.possibleCommands["user"] = userCommandsForSyntaxCheck.unite(pckSet);
+	ltxCommands.possibleCommands["%columntypes"] = columntypeForSyntaxCheck;
 
 	// user commands
 	QList<CodeSnippet> commands = mUserCommandList.values();

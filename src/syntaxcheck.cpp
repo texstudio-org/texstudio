@@ -866,8 +866,22 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                         }
                     }
 				}
+                QSet<QString> translationMap=ltxCommands->possibleCommands.value("%columntypes");
 				QStringList res = LatexTables::splitColDef(option);
-				cols = res.count();
+                QStringList res2;
+                for(auto &elem: res){
+                    bool add=true;
+                    for(auto i:translationMap){
+                        if(i.left(1)==elem && add){
+                            res2 << LatexTables::splitColDef(i.mid(1));
+                            add=false;
+                        }
+                    }
+                    if(add){
+                        res2<<elem;
+                    }
+                }
+                cols = res2.count();
 				tp.id = cols;
 			}
 			activeEnv.push(tp);

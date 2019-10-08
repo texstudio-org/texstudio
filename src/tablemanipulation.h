@@ -24,7 +24,7 @@ public:
     static int getNumOfColsInMultiColumn(const QString &str, QString *outAlignment = nullptr, QString *outText = nullptr);
 	static int incNumOfColsInMultiColumn(const QString &str, int add);
 	static void addHLine(QDocumentCursor &c, const int numberOfLines = -1, const bool remove = false);
-	static QStringList splitColDef(QString def);
+    static QStringList splitColDef(QString def);
 	static void simplifyColDefs(QStringList &colDefs);
 	static void executeScript(QString script, LatexEditorView *edView);
 	static void generateTableFromTemplate(LatexEditorView *edView, QString templateFileName, QString def, QList<QStringList> table, QString env, QString width);
