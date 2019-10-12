@@ -592,7 +592,7 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		return;
 	}
 
-	updateSearchOptions(replace,replaceAll);;
+    updateSearchOptions(replace,replaceAll);
 	m_lastDirection=backward;
 
 	if (!countOnly)  m_search->next(backward, replaceAll, !cbPrompt->isChecked(), true);

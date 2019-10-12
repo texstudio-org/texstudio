@@ -118,7 +118,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 				hscope = QDocumentCursor(hss, m_searchedScope.selectionStart());
 				m_searchedScope.setAnchorLineNumber(hss.lineNumber());
 				m_searchedScope.setAnchorColumnNumber(hss.columnNumber());
-			} else m_searchedScope = QDocumentCursor(hss, hse);;
+            } else m_searchedScope = QDocumentCursor(hss, hse);
 		} else if (!startInOld || !endInOld){
 			if (startInOld) {
 				m_searchedScope.setLineNumber(hse.lineNumber());
@@ -126,7 +126,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 			} else if (endInOld) {
 				m_searchedScope.setAnchorLineNumber(hss.lineNumber());
 				m_searchedScope.setAnchorColumnNumber(hss.columnNumber());
-			} else m_searchedScope = QDocumentCursor(hss, hse);;
+            } else m_searchedScope = QDocumentCursor(hss, hse);
 		}
 	} else m_searchedScope = QDocumentCursor(hscope.selectionStart(), hscope.selectionEnd());
 
@@ -292,6 +292,7 @@ void QDocumentSearch::recreateRegExp(){
 	} else {
 		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
 	}
+    m_regexp.setMinimal( !(m_option & QDocumentSearch::Greedy)); // use non-greedy capture
 }
 
 
