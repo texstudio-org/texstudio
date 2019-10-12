@@ -6065,7 +6065,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="843"/>
         <source>Do you want to continue replacing from the beginning?</source>
-        <translation>Хотите продолжить замену сначала?</translation>
+        <translation>Хотите продолжить замену с начала?</translation>
     </message>
 </context>
 <context>
