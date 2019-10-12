@@ -162,7 +162,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
         int length = m_match.capturedLength();
 #else
 		int column=m_regexp.indexIn(s, hc.columnNumber());
-        int length=m_regexp.capturedLength();
+        int length=m_regexp.matchedLength();
 #endif
 
 		/*
