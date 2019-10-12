@@ -51,7 +51,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 			HighlightAll	= 64,
 			EscapeSeq		= 128,
             filterByFormat  = 256,
-            Greedy = 512,
+            NonGreedy = 512,
             HighlightReplacements	= 64
 		};
 		

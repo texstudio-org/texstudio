@@ -292,7 +292,7 @@ void QDocumentSearch::recreateRegExp(){
 	} else {
 		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
 	}
-    m_regexp.setMinimal( !(m_option & QDocumentSearch::Greedy)); // use non-greedy capture
+    m_regexp.setMinimal( m_option & QDocumentSearch::NonGreedy); // allow greedy or non-greedy capture
 }
 
 
