@@ -60,7 +60,7 @@ void QDocumentSearchTest::next_sameText_data(){
 	}
 	QTest::newRow("forward-backward-case sensitive")
 		<< "aaAaaAaaA\naAaAa\naaaaaaaa" 
-		<< "aa" << (int)QDocumentSearch::CaseSensitive
+        << "aa" << static_cast<int>(QDocumentSearch::CaseSensitive)
 		<< 0 << 2
 		<< (QList<CM>() 
 			<< SN(0, 3, 5) << SN(0, 6, 8) << SN(2, 0, 2) << SP(0, 8, 6)
@@ -69,31 +69,31 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SP(0, 5, 3) << SP(0, 2, 0) << SP(2, 8, 6));
 	QTest::newRow("forward-backward-case whole words")
 		<< "aaAaaAaaA\naA aAa\naaa aa aaa\n" 
-		<< "aA" << (int)QDocumentSearch::WholeWords
+        << "aA" << static_cast<int>(QDocumentSearch::WholeWords)
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(1,0,2));
 	QTest::newRow("forward-backward-case whole words case sensitive ")
 		<< "aa Aaa Aaa A\naA aAa\naa  aA aa a\n" 
-		<< "aA" << (int)(QDocumentSearch::WholeWords | QDocumentSearch::CaseSensitive)
+        << "aA" << static_cast<int>(QDocumentSearch::WholeWords | QDocumentSearch::CaseSensitive)
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(1, 0, 2) << SN(2, 4, 6) << SP(1, 2, 0) << SN (2, 4, 6) << SN(1,0,2));
 	QTest::newRow("forward reg exp")
 		<< "Hello42World" 
-		<< "[0-9]+" << (int)QDocumentSearch::RegExp
+        << "[0-9]+" << static_cast<int>(QDocumentSearch::RegExp)
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 5, 7) << SN(0,5,7));
 	QTest::newRow("reg exp with 0 match")
 		<< "Hello423World" 
-		<< "[0-9]*" << (int)QDocumentSearch::RegExp
+        << "[0-9]*" << static_cast<int>(QDocumentSearch::RegExp)
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 5, 8) << SN(0, 5, 8) << SN(0, 5, 8) << SN(0, 5, 8) );
 	QTest::newRow("replace forward")
 		<< "Hello42World17XXXX2358YYY" 
-		<< "[0-9]+" << (int)QDocumentSearch::RegExp
+        << "[0-9]+" << static_cast<int>(QDocumentSearch::RegExp)
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 5, 7) 
@@ -102,7 +102,7 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SN(-1, -1, -1, "house!","HellomouseWorldmouseXXXXhouse!YYY"));
 	QTest::newRow("replace forward-backward")
 		<< "aa aa aa\naa aaa XXXX aa\naa YYYY aa aa YYYY" 
-		<< "aa" << (int)QDocumentSearch::WholeWords
+        << "aa" << static_cast<int>(QDocumentSearch::WholeWords)
 		<< 2 << 0
 		<< (QList<CM>() 
 			<< SN(2, 0, 2, "***","aa aa aa\naa aaa XXXX aa\naa YYYY aa aa YYYY") 
@@ -119,7 +119,7 @@ void QDocumentSearchTest::next_sameText_data(){
 			//<< SP(-1,-1,-1));
 	QTest::newRow("replace regexp backreferences")
 		<< "\\begin{abc} \n content \n ... \n \\end{abc}"
-		<< "\\\\(begin|end)\\{([a-zA-Z]*)\\}" << (int)QDocumentSearch::RegExp
+        << "\\\\(begin|end)\\{([a-zA-Z]*)\\}" << static_cast<int>(QDocumentSearch::RegExp)
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 0, 11, "\\\\1{left-\\2-right}","\\begin{abc} \n content \n ... \n \\end{abc}") 
@@ -127,7 +127,7 @@ void QDocumentSearchTest::next_sameText_data(){
 			<< SN(-1, -1, -1, "\\\\1{left-\\2-right}","\\begin{left-abc-right} \n content \n ... \n \\end{left-abc-right}")); 
 	QTest::newRow("replace escape seq")
 		<< "hello world! hello!"
-		<< "l" << (int)QDocumentSearch::EscapeSeq
+        << "l" << static_cast<int>(QDocumentSearch::EscapeSeq)
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 2, 3, "????", "hello world! hello!") 
@@ -215,11 +215,11 @@ void QDocumentSearchTest::next_sameText(){
 			ds->setSearchText(searchText);
 			if (loop) 
 				options|=QDocumentSearch::HighlightAll; //highlighting shouldn't change anything
-			ds->setOptions((QDocumentSearch::Options)options);
+            ds->setOptions(static_cast<QDocumentSearch::Options>(options));
 		} else if (loop==2)//creating a new search shouldn't change anything
-			ds=new QDocumentSearch(ed,searchText,(QDocumentSearch::Options)options); 
+            ds=new QDocumentSearch(ed,searchText,static_cast<QDocumentSearch::Options>(options));
 		else
-			ds=new QDocumentSearch(ed,searchText,(QDocumentSearch::Options)options|QDocumentSearch::HighlightAll); 
+            ds=new QDocumentSearch(ed,searchText,static_cast<QDocumentSearch::Options>(options|QDocumentSearch::HighlightAll));
 		ds->setCursor(ed->document()->cursor(sy,sx));
 		for (int i=0;i< cms.size();i++){
 			QString sel;
@@ -233,9 +233,9 @@ void QDocumentSearchTest::next_sameText(){
 				else sel =sel.mid(cms[i].cx,cms[i].ax-cms[i].cx);
 			}
 			if (!cms[i].rep)
-				ds->setOptions((QDocumentSearch::Options)options & (~QDocumentSearch::Replace));
+                ds->setOptions(static_cast<QDocumentSearch::Options>(options & (~QDocumentSearch::Replace)));
 			else {
-				ds->setOptions((QDocumentSearch::Options)options | QDocumentSearch::Replace);
+                ds->setOptions(static_cast<QDocumentSearch::Options>(options | QDocumentSearch::Replace));
 				ds->setReplaceText(cms[i].rt);
 			}
 			int foundCount = ds->next(cms[i].dir,false,cms[i].rep);
@@ -298,7 +298,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
 		<< "uvxyz"
-		<< (int)QDocumentSearch::WholeWords << true << false
+        << static_cast<int>(QDocumentSearch::WholeWords) << true << false
 		<< 0 << 5
 		<< 5 << 3
 		<< 5 << 0
@@ -308,7 +308,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
 		<< "uvxyz"
-		<< (int)QDocumentSearch::WholeWords << true << true
+        << static_cast<int>(QDocumentSearch::WholeWords) << true << true
 		<< 0 << 5
 		<< 5 << 3
 		<< 5 << 0
@@ -318,7 +318,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc abc \nabc abc abc \nabc abcabcabcabc \nabc\nabc abc abc\nabc"
 		<< "abc"
 		<< "uvxyz"
-		<< (int)QDocumentSearch::WholeWords << true << true
+        << static_cast<int>(QDocumentSearch::WholeWords) << true << true
 		<< 0 << 5
 		<< 5 << 0
 		<< 5 << 0
@@ -384,7 +384,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc a12b34c abc"
 		<< "[0-9]*"
 		<< "x"
-		<< (int)QDocumentSearch::RegExp << false << true
+        << static_cast<int>(QDocumentSearch::RegExp) << false << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 0
@@ -395,7 +395,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc a12b34c abc"
 		<< "[0-9]*"
 		<< "!"
-		<< (int)QDocumentSearch::RegExp << true << true
+        << static_cast<int>(QDocumentSearch::RegExp) << true << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
@@ -405,7 +405,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
 		<< "!"
-		<< (int)QDocumentSearch::RegExp << true << true
+        << static_cast<int>(QDocumentSearch::RegExp) << true << true
 		<< 0 << 0
 		<< 0 << 8
 		<< 0 << 8
@@ -415,7 +415,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
 		<< "!"
-		<< (int)QDocumentSearch::RegExp << true << true
+        << static_cast<int>(QDocumentSearch::RegExp) << true << true
 		<< 0 << 0
 		<< 0 << 8
 		<< 0 << 16
@@ -425,7 +425,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
 		<< "!"
-		<< (int)QDocumentSearch::RegExp << true << true
+        << static_cast<int>(QDocumentSearch::RegExp) << true << true
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
@@ -499,7 +499,7 @@ void QDocumentSearchTest::replaceAll(){
 		ds->setReplaceText(replaceText);
 		if (loop) 
 			options|=QDocumentSearch::HighlightAll; //highlighting shouldn't change anything
-		ds->setOptions((QDocumentSearch::Options)options);
+        ds->setOptions(static_cast<QDocumentSearch::Options>(options));
 		ds->setCursor(ed->document()->cursor(sy,sx));
 		ds->setScope(ed->document()->cursor(scopey,scopex,scopey2,scopex2));
 		int count=ds->next(dir, true, false, wrapAround);
@@ -558,7 +558,7 @@ void QDocumentSearchTest::searchAndFolding_data(){
 			<< (QList<int>() << 2 << 3 << 4 << 5)
 			<< 0
 			<< "abc"
-			<< (int)QDocumentSearch::Silent
+            << static_cast<int>(QDocumentSearch::Silent)
 			<< SN(3,0,3)
 			<< (QList<int>() << 2 << 3 << 4 << 5);
 	QTest::newRow("triple fold, only outer")
@@ -605,7 +605,7 @@ void QDocumentSearchTest::searchAndFolding_data(){
 			<< (QList<int>() << 2 << 3 << 4 << 5)
 			<< 6
 			<< "abc"
-			<< (int)QDocumentSearch::Silent
+            << static_cast<int>(QDocumentSearch::Silent)
 			<< SP(3,3,0)
 			<< (QList<int>() << 2 << 3 << 4 << 5);
 	QTest::newRow("triple fold, only outer (backward)")
@@ -645,7 +645,7 @@ void QDocumentSearchTest::searchAndFolding(){
 		for (int i=0;i<ed->document()->lines();i++)
 			QVERIFY(ed->document()->line(i).isHidden()==hiddenLines.contains(i));
 		ds->setCursor(ed->document()->cursor(searchFrom));
-		ds->setOptions((QDocumentSearch::Options)(options|(loop?QDocumentSearch::HighlightAll:0))); //highlighting shouldn't change anything
+        ds->setOptions(static_cast<QDocumentSearch::Options>(options|(loop?QDocumentSearch::HighlightAll:0))); //highlighting shouldn't change anything
 		ds->setSearchText(searchText);
 		int foundCount=ds->next(movement.dir);
 
