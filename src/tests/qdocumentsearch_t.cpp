@@ -391,7 +391,7 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< "abc axbxc abc"
 		<< 2;
 
-	QTest::newRow("replaces all matching regexp backward") //correct? no greedy replace with backward search
+    QTest::newRow("replaces all matching regexp backward") //also greedy replace with backward search
 		<< "abc a12b34c abc"
 		<< "[0-9]*"
 		<< "!"
@@ -409,8 +409,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 0
 		<< 0 << 8
 		<< 0 << 8
-		<< "abc a!!b34c abc"
-		<< 2;
+        << "abc a!b34c abc"
+        << 1;
 	QTest::newRow("replaces number matching regexp backward, out scope")
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
@@ -419,8 +419,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< 0 << 0
 		<< 0 << 8
 		<< 0 << 16
-		<< "abc a!!b34c abc"
-		<< 2;
+        << "abc a!b34c abc"
+        << 1;
 	QTest::newRow("replaces number matching regexp backward, all/wrap around")
 		<< "abc a12b34c abc"
 		<< "[0-9]+"
@@ -429,8 +429,8 @@ void QDocumentSearchTest::replaceAll_data(){
 		<< -1 << -1
 		<< -1 << -1
 		<< 0 << 8
-		<< "abc a!!b!!c abc"
-		<< 4;
+        << "abc a!b!c abc"
+        << 2;
 
 	QTest::newRow("replaces all wrap around")
 		<< "abc\nabc\nabc\nabc"

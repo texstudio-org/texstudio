@@ -25,6 +25,9 @@
 
 #include <QString>
 #include <QRegExp>
+#if QT_VERSION >= 0x050000
+#include <QRegularExpression>
+#endif
 #include <QPointer>
 #include <QAbstractScrollArea>
 #include <QWidget>
@@ -106,7 +109,14 @@ class QCE_EXPORT QDocumentSearch: public QObject
 //		int m_index;
 		Options m_option;
 		QString m_string;
-		QRegExp m_regexp;
+#if QT_VERSION >= 0x050500
+        QRegularExpression m_regularExpression;
+        QRegularExpressionMatch m_match;
+#else
+        QRegExp m_regexp;
+#endif
+
+
 		QString m_replace;
 		QPointer<QEditor> m_editor;
 		QDocumentCursor m_cursor, m_scope, m_highlightedScope, m_searchedScope, m_lastReplacedPosition;
