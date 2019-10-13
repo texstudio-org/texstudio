@@ -90,6 +90,7 @@
 <file>completion/graphicx.cwl</file>
 <file>completion/harvard.cwl</file>
 <file>completion/hyperref.cwl</file>
+<file>completion/IEEEtrantools.cwl</file>
 <file>completion/ifluatex.cwl</file>
 <file>completion/ifpdf.cwl</file>
 <file>completion/ifplatform.cwl</file>
