@@ -73,7 +73,7 @@ void LatexCompleterTest::simple_data(){
 					    << "a:>>\\a<<"
 					    << "b:>>\\ab<<"
 					    << "s:>>\\abs<<"
-					    << "*:>>\\abstractname{*}<<");
+                        << "*:>>\\abstractname*<<");
 
 		QTest::newRow("simple no eow comp") << ">><<" << false << false << 0 << 2
 					<< "" << ""
