@@ -85,6 +85,18 @@ void QDocumentSearchTest::next_sameText_data(){
 		<< 0 << 0
 		<< (QList<CM>() 
 			<< SN(0, 5, 7) << SN(0,5,7));
+    QTest::newRow("forward reg exp greedy")
+        << "(42) (14)"
+        << "\\(.+\\)" << static_cast<int>(QDocumentSearch::RegExp)
+        << 0 << 0
+        << (QList<CM>()
+            << SN(0, 0, 9) << SN(0,0,9));
+    QTest::newRow("forward reg exp lazy")
+        << "(42) (13)"
+        << "\\(.+?\\)" << static_cast<int>(QDocumentSearch::RegExp)
+        << 0 << 0
+        << (QList<CM>()
+            << SN(0, 0,4) << SN(0,5,9));
 	QTest::newRow("reg exp with 0 match")
 		<< "Hello423World" 
         << "[0-9]*" << static_cast<int>(QDocumentSearch::RegExp)

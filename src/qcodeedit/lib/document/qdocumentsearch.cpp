@@ -619,7 +619,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	if (hasOption(Replace) && again && !all) {
 		bool replaceSelectedText = false;
 #if QT_VERSION > 0x050500
-        if (m_match.captured()==m_cursor.selectedText())  {
+        if (m_match.hasMatch() && m_match.captured()==m_cursor.selectedText())  {
             replaceSelectedText = true;
         } else if (m_regularExpression.pattern().contains("(?=") || m_regularExpression.pattern().contains("(?!")) {
             // special handling for lookahead: The selected text is not enough to match the regexp
