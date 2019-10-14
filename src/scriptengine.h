@@ -2,8 +2,11 @@
 #define SCRIPTENGINE_H
 
 #include "mostQtHeaders.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-function-type"
 #include <QtScript>
 #include <QScriptEngine>
+#pragma GCC diagnostic pop
 
 #include "qeditor.h"
 class BuildManager;
