@@ -194,6 +194,7 @@ class QNFAMatchNotifier
 		typedef QList<Command> CommandList;
 
 	public:
+		// Define the copy constructor explicitly to avoid -Wdeprecated-copy by gcc9
 		inline QNFAMatchNotifier(const QNFAMatchNotifier&) = default;
 
 		inline QNFAMatchNotifier(QNFAMatchHandler *h)
