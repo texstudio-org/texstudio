@@ -194,6 +194,8 @@ class QNFAMatchNotifier
 		typedef QList<Command> CommandList;
 
 	public:
+		inline QNFAMatchNotifier(const QNFAMatchNotifier&) = default;
+
 		inline QNFAMatchNotifier(QNFAMatchHandler *h)
 		 : handler(h) {}
 
