@@ -2,11 +2,15 @@
 #define SCRIPTENGINE_H
 
 #include "mostQtHeaders.h"
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && !defined(__clang__) && (__GNUC__ >= 8)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-function-type"
+#endif
 #include <QtScript>
 #include <QScriptEngine>
+#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && !defined(__clang__) && (__GNUC__ >= 8)
 #pragma GCC diagnostic pop
+#endif
 
 #include "qeditor.h"
 class BuildManager;
