@@ -429,3 +429,7 @@ exists(./.git)  {
 } else {
   DEFINES += _CRT_SECURE_NO_WARNINGS
 }
+
+*-g++:equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 13) {
+  QMAKE_CXXFLAGS += -Wno-deprecated-copy
+}
