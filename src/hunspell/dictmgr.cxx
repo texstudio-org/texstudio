@@ -100,7 +100,8 @@ int  DictMgr::parse_file(const char * dictpath, const char * etype)
                     case 3:
                        free(pdict->region);
                        pdict->region=NULL;
-                    case 2: //deliberate fallthrough
+		       // Intentional fallthrough
+                    case 2:
                        free(pdict->lang);
                        pdict->lang=NULL;
                     default:
