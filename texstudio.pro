@@ -418,7 +418,7 @@ exists(./.git)  {
 
 !win32-msvc*: {
   QMAKE_CXXFLAGS_DEBUG -= -O -O1 -O2 -O3
-  QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline -O0
+  QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Wmissing-include-dirs -Wunknown-pragmas -Wundef -Wpointer-arith -Winline -O0
   QMAKE_CXXFLAGS += -std=c++0x
   !win32:!haiku: QMAKE_LFLAGS += -rdynamic # option not supported by mingw and haiku
   else {
