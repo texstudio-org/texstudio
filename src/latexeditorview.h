@@ -49,7 +49,7 @@ struct LinkOverlay {
 
 	LinkOverlay() : type(Invalid) {}
 	LinkOverlay(const LinkOverlay &o);
-	LinkOverlay(const QDocumentCursor &cur, LinkOverlayType ltype);
+	LinkOverlay(const Token &token, LinkOverlayType ltype);
 
 	bool isValid() const
 	{

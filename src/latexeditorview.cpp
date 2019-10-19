@@ -885,17 +885,17 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 		Token tk = Parsing::getTokenAtCol(dlh, cursor.columnNumber());
 
 		if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::RefOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::RefOverlay));
 		} else if (tk.type == Token::file) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::FileOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::FileOverlay));
 		} else if (tk.type == Token::url) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UrlOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::UrlOverlay));
 		} else if (tk.type == Token::package) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UsepackageOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::UsepackageOverlay));
 		} else if (tk.type == Token::bibfile) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::BibFileOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::BibFileOverlay));
 		} else if (tk.type == Token::bibItem) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::CiteOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CiteOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
 		}
@@ -3035,36 +3035,19 @@ LinkOverlay::LinkOverlay(const LinkOverlay &o)
 	}
 }
 
-LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LinkOverlay::LinkOverlayType ltype) :
+LinkOverlay::LinkOverlay(const Token &token, LinkOverlay::LinkOverlayType ltype) :
 	type(ltype)
 {
 	if (type == Invalid) return;
 
-	int from, to;
-
-	if (type == UsepackageOverlay || type == BibFileOverlay || type == CiteOverlay) {
-		// link one of the colon separated options
-		QDocumentCursor c(cur);
-		LatexEditorView::selectOptionInLatexArg(c);
-		from = c.anchorColumnNumber();
-		to = c.columnNumber() - 1;
-		if (from < 0 || to < 0 || to <= from)
-			return;
-	} else {
-		// link everything between {}
-		QString text = cur.line().text();
-		int col = cur.columnNumber();
-		from = findOpeningBracket(text, col);
-		to = findClosingBracket(text, col);
-		if (from < 0 || to < 0)
-			return;
-		from += 1;
-		to -= 1; // leave out brackets
-	}
+	int from = token.start;
+	int to = from + token.length - 1;
+	if (from < 0 || to < 0 || to <= from)
+		return;
 
 	REQUIRE(QDocument::defaultFormatScheme());
 	formatRange = QFormatRange(from, to - from + 1, QDocument::defaultFormatScheme()->id("link"));
-	docLine = cur.line();
+	docLine = QDocumentLine(token.dlh);
 }
 
 QString LinkOverlay::text() const
