@@ -315,6 +315,12 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 			case LinkOverlay::CiteOverlay:
 				emit edView->gotoDefinition(cursor);
 				return true;
+			case LinkOverlay::CommandOverlay:
+				emit edView->gotoDefinition(cursor);
+				return true;
+			case LinkOverlay::EnvOverlay:
+				emit edView->gotoDefinition(cursor);
+				return true;
 			case LinkOverlay::Invalid:
 				break;
 			}
@@ -896,6 +902,10 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 			setLinkOverlay(LinkOverlay(tk, LinkOverlay::BibFileOverlay));
 		} else if (tk.type == Token::bibItem) {
 			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CiteOverlay));
+		} else if (tk.type == Token::beginEnv || tk.type == Token::env) {
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::EnvOverlay));
+		} else if (tk.type == Token::commandUnknown || tk.type == Token::command) {
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CommandOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
 		}

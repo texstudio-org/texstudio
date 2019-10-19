@@ -41,7 +41,7 @@ class MacroExecContext;
  *
  */
 struct LinkOverlay {
-	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UrlOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay};
+	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UrlOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay, CommandOverlay, EnvOverlay};
 	// for simpler access everything is public - only access for reading
 	LinkOverlayType type;
 	QDocumentLine docLine;

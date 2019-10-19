@@ -3698,7 +3698,17 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		gotoLine(line, col, edView);
 		break;
 	}
-	default:; //TODO: Jump to command definition
+	case Token::command:
+	case Token::commandUnknown: {
+		//TODO: Jump to command definition
+		break;
+	}
+	case Token::beginEnv:
+	case Token::env: {
+		//TODO: Jump to environment definition
+		break;
+	}
+	default:;
 	}
 }
 
