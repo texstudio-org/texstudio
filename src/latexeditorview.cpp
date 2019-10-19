@@ -1276,6 +1276,13 @@ bool LatexEditorView::gotoToCommandDefinition(const QString &command)
 	return gotoLineHandleAndSearchString(result.keys().first(), command);
 }
 
+bool LatexEditorView::gotoToUsePackage(const QString &package)
+{
+	QSet<QDocumentLineHandle*> result = document->getUsePackages(package);
+	if (result.isEmpty()) return false;
+	return gotoLineHandleAndSearchString(*result.begin(), package);
+}
+
 //collapse/expand every possible line
 void LatexEditorView::foldEverything(bool unFold)
 {

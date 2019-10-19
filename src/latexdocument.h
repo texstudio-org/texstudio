@@ -101,7 +101,8 @@ public:
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getCommandDefinitions(const QString &name); ///< get line/column of definition from command name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
-    Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);
+	Q_INVOKABLE QSet<QDocumentLineHandle *> getUsePackages(const QString &name); ///< get line of \usepackage from package name
+	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);
     Q_INVOKABLE void replaceLabel(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
     Q_INVOKABLE void replaceRefs(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
 	Q_INVOKABLE void replaceLabelsAndRefs(const QString &name, const QString &newName);

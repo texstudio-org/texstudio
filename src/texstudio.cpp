@@ -1904,6 +1904,17 @@ LatexEditorView *Texstudio::editorViewForCommandDefinition(LatexDocument *doc, c
 	return qobject_cast<LatexEditorView *>(targetDoc->getEditorView());
 }
 
+LatexEditorView *Texstudio::editorViewForUsePackage(LatexDocument *doc, const QString &package)
+{
+	REQUIRE_RET(doc, nullptr);
+	QSet<QDocumentLineHandle *> result = doc->getUsePackages(package);
+	if (result.count() <= 0) return nullptr;
+	QDocumentLine line(*result.begin());
+	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(line.document());
+	REQUIRE_RET(targetDoc, nullptr);
+	return qobject_cast<LatexEditorView *>(targetDoc->getEditorView());
+}
+
 void guessLanguageFromContent(QLanguageFactory *m_languages, QEditor *e)
 {
 	QDocument *doc = e->document();
@@ -3673,7 +3684,7 @@ void Texstudio::editEraseWordCmdEnv()
 
 void Texstudio::editGotoDefinition(QDocumentCursor c)
 {
-	if (!currentEditorView())	return;
+	if (!currentEditorView()) return;
 	if (!c.isValid()) c = currentEditor()->cursor();
 	saveCurrentCursorToHistory();
 	Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
@@ -3710,16 +3721,44 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		gotoLine(line, col, edView);
 		break;
 	}
-	case Token::commandUnknown:
-	case Token::command:
-	case Token::beginEnv:
-	case Token::env: {
+	case Token::commandUnknown: {
 		LatexEditorView *edView = editorViewForCommandDefinition(qobject_cast<LatexDocument *>(c.document()), tk.getText());
 		if (!edView) return;
 		if (edView != currentEditorView()) {
 			editors->setCurrentEditor(edView);
 		}
 		edView->gotoToCommandDefinition(tk.getText());
+		break;
+	}
+	case Token::command:
+	case Token::beginEnv:
+	case Token::env: {
+		LatexDocument *doc = qobject_cast<LatexDocument *>(c.document());
+		LatexEditorView *edView = editorViewForCommandDefinition(doc, tk.getText());
+		if (edView) {
+			// command is user-defined, jump to definition
+			if (edView != currentEditorView()) {
+				editors->setCurrentEditor(edView);
+			}
+			edView->gotoToCommandDefinition(tk.getText());
+		} else {
+			// command might be defined by a package, jump to \usepackage (if possible)
+			QString command = tk.getText();
+			if (tk.type == Token::beginEnv || tk.type == Token::env) {
+				command = "\\begin{" + command + "}";
+			}
+			QString package = doc->parent->findPackageByCommand(command);
+			package.chop(4);
+			// skip builtin packages (we cannot goto the \usepackage in this case)
+			if (package == "tex" || package == "latex-document" || package == "latex-mathsymbols")
+				return;
+			LatexEditorView *edView = editorViewForUsePackage(doc, package);
+			if (!edView) return;
+			if (edView != currentEditorView()) {
+				editors->setCurrentEditor(edView);
+			}
+			edView->gotoToUsePackage(package);
+		}
 		break;
 	}
 	default:;

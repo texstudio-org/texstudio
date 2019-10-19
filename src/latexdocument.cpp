@@ -1455,6 +1455,20 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getCommandDefinitions(cons
 	return result;
 }
 
+QSet<QDocumentLineHandle *> LatexDocument::getUsePackages(const QString &name)
+{
+	QSet<QDocumentLineHandle *> result;
+	foreach (const LatexDocument *elem, getListOfDocs()) {
+		QMultiHash<QDocumentLineHandle *, QString>::const_iterator it;
+		for (it = elem->mUsepackageList.constBegin(); it != elem->mUsepackageList.constEnd(); ++it) {
+			if (LatexPackage::keyToPackageName(it.value()) == name && elem->indexOf(it.key()) >= 0) {
+				result.insert(it.key());
+			}
+		}
+	}
+	return result;
+}
+
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &name)
 {
 	QHash<QDocumentLineHandle *, int> result;

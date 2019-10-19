@@ -636,6 +636,7 @@ protected:
 
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 	LatexEditorView *editorViewForCommandDefinition(LatexDocument *doc, const QString &command);
+	LatexEditorView *editorViewForUsePackage(LatexDocument *doc, const QString &package);
 
 	QSet<QString> latexPackageList, currentPackageList;
 

@@ -101,6 +101,7 @@ public:
 	Q_INVOKABLE bool gotoToLabel(const QString &label);
 	Q_INVOKABLE bool gotoToBibItem(const QString &bibId);
 	Q_INVOKABLE bool gotoToCommandDefinition(const QString &command);
+	Q_INVOKABLE bool gotoToUsePackage(const QString &package);
 
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
