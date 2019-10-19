@@ -97,8 +97,10 @@ public:
 
     Q_INVOKABLE void complete(int flags); ///< complete text
 	bool gotoLineHandleAndSearchCommand(const QDocumentLineHandle *dlh, const QSet<QString> &searchFor, const QString &id);
+	bool gotoLineHandleAndSearchString(const QDocumentLineHandle *dlh, const QString &str);
 	Q_INVOKABLE bool gotoToLabel(const QString &label);
 	Q_INVOKABLE bool gotoToBibItem(const QString &bibId);
+	Q_INVOKABLE bool gotoToCommandDefinition(const QString &command);
 
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);

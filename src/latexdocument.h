@@ -98,6 +98,7 @@ public:
 	Q_INVOKABLE bool isBibItem(const QString &name);
 	Q_INVOKABLE QString findFileFromBibId(const QString &name); ///< find bib-file from bibid
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name); ///< get line/column from label name
+	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getCommandDefinitions(const QString &name); ///< get line/column of definition from command name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
     Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);

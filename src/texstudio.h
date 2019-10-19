@@ -635,6 +635,7 @@ protected:
     bool rememberFollowFromScroll,enlargedViewer;
 
 	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
+	LatexEditorView *editorViewForCommandDefinition(LatexDocument *doc, const QString &command);
 
 	QSet<QString> latexPackageList, currentPackageList;
 

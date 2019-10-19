@@ -1883,8 +1883,20 @@ bool Texstudio::activateEditorForFile(QString f, bool checkTemporaryNames, bool 
 LatexEditorView *Texstudio::editorViewForLabel(LatexDocument *doc, const QString &label)
 {
 	// doc can be any document, in which the label is valid
-        REQUIRE_RET(doc, nullptr);
+	REQUIRE_RET(doc, nullptr);
 	QMultiHash<QDocumentLineHandle *, int> result = doc->getLabels(label);
+	if (result.count() <= 0) return nullptr;
+	QDocumentLine line(result.keys().first());
+	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(line.document());
+	REQUIRE_RET(targetDoc, nullptr);
+	return qobject_cast<LatexEditorView *>(targetDoc->getEditorView());
+}
+
+LatexEditorView *Texstudio::editorViewForCommandDefinition(LatexDocument *doc, const QString &command)
+{
+	// doc can be any document, in which the command is valid
+	REQUIRE_RET(doc, nullptr);
+	QMultiHash<QDocumentLineHandle *, int> result = doc->getCommandDefinitions(command);
 	if (result.count() <= 0) return nullptr;
 	QDocumentLine line(result.keys().first());
 	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(line.document());
@@ -3698,14 +3710,16 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		gotoLine(line, col, edView);
 		break;
 	}
+	case Token::commandUnknown:
 	case Token::command:
-	case Token::commandUnknown: {
-		//TODO: Jump to command definition
-		break;
-	}
 	case Token::beginEnv:
 	case Token::env: {
-		//TODO: Jump to environment definition
+		LatexEditorView *edView = editorViewForCommandDefinition(qobject_cast<LatexDocument *>(c.document()), tk.getText());
+		if (!edView) return;
+		if (edView != currentEditorView()) {
+			editors->setCurrentEditor(edView);
+		}
+		edView->gotoToCommandDefinition(tk.getText());
 		break;
 	}
 	default:;

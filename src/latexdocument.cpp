@@ -1440,6 +1440,21 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
 	return std::move(result);
 }
 
+QMultiHash<QDocumentLineHandle *, int> LatexDocument::getCommandDefinitions(const QString &name)
+{
+	QHash<QDocumentLineHandle *, int> result;
+	foreach (const LatexDocument *elem, getListOfDocs()) {
+		QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
+		for (it = elem->mUserCommandGoto.constBegin(); it != elem->mUserCommandGoto.constEnd(); ++it) {
+			ReferencePair rp = it.value();
+			if (rp.name == name && elem->indexOf(it.key()) >= 0) {
+				result.insert(it.key(), rp.start);
+			}
+		}
+	}
+	return result;
+}
+
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &name)
 {
 	QHash<QDocumentLineHandle *, int> result;

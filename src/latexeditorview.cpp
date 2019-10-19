@@ -1217,6 +1217,25 @@ bool LatexEditorView::gotoLineHandleAndSearchCommand(const QDocumentLineHandle *
 	return true;
 }
 
+bool LatexEditorView::gotoLineHandleAndSearchString(const QDocumentLineHandle *dlh, const QString &str)
+{
+	if (!dlh) return false;
+	int ln = dlh->document()->indexOf(dlh);
+	if (ln < 0) return false;
+	QString lineText = dlh->document()->line(ln).text();
+	int col = lineText.indexOf(str);
+	bool colFound = (col >= 0);
+	if (col < 0) col = 0;
+	editor->setCursorPosition(ln, col, false);
+	editor->ensureCursorVisible(QEditor::Navigation);
+	if (colFound) {
+		QDocumentCursor highlightCursor(editor->cursor());
+		highlightCursor.movePosition(str.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+		temporaryHighlight(highlightCursor);
+	}
+	return true;
+}
+
 bool LatexEditorView::gotoToLabel(const QString &label)
 {
 	int cnt = document->countLabels(label);
@@ -1232,6 +1251,13 @@ bool LatexEditorView::gotoToBibItem(const QString &bibId)
 	QMultiHash<QDocumentLineHandle *, int> result = document->getBibItems(bibId);
 	if (result.isEmpty()) return false;
 	return gotoLineHandleAndSearchCommand(result.keys().first(), LatexParser::getInstance().possibleCommands["%bibitem"], bibId);
+}
+
+bool LatexEditorView::gotoToCommandDefinition(const QString &command)
+{
+	QMultiHash<QDocumentLineHandle *, int> result = document->getCommandDefinitions(command);
+	if (result.isEmpty()) return false;
+	return gotoLineHandleAndSearchString(result.keys().first(), command);
 }
 
 //collapse/expand every possible line
