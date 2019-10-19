@@ -904,7 +904,10 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CiteOverlay));
 		} else if (tk.type == Token::beginEnv || tk.type == Token::env) {
 			setLinkOverlay(LinkOverlay(tk, LinkOverlay::EnvOverlay));
-		} else if (tk.type == Token::commandUnknown || tk.type == Token::command) {
+		} else if (tk.type == Token::commandUnknown) {
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CommandOverlay));
+		} else if (tk.type == Token::command && tk.getText() != "\\begin" && tk.getText() != "\\end") {
+			// avoid link overlays on \begin and \end; instead, the user can click the environment name
 			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CommandOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
