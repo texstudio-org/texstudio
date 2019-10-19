@@ -463,14 +463,14 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		if (i >= 0)
 			tk = tl.at(i);
 
-		if ( tk.type == Token::file) {
+		if (tk.type == Token::file) {
 			QAction *act = new QAction(LatexEditorView::tr("Open %1").arg(tk.getText()), contextMenu);
 			act->setData(tk.getText());
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
 		// bibliography command
-		if ( tk.type == Token::bibfile) {
+		if (tk.type == Token::bibfile) {
 			QAction *act = new QAction(LatexEditorView::tr("Open Bibliography"), contextMenu);
 			QString bibFile;
 			bibFile = tk.getText() + ".bib";
@@ -479,7 +479,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		//package help
-        if ( tk.type == Token::package || tk.type == Token::documentclass) {
+		if (tk.type == Token::package || tk.type == Token::documentclass) {
 			QAction *act = new QAction(LatexEditorView::tr("Open package documentation"), contextMenu);
 			QString packageName = tk.getText();
 			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
@@ -488,11 +488,24 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		// help for any "known" command
-		if ( tk.type == Token::command) {
+		if (tk.type == Token::command) {
 			ctxCommand = tk.getText();
 			QString command = ctxCommand;
 			if (ctxCommand == "\\begin" || ctxCommand == "\\end")
 				command = ctxCommand + "{" + Parsing::getArg(tl.mid(i + 1), dlh, 0, ArgumentList::Mandatory) + "}";
+			QString package = edView->document->parent->findPackageByCommand(command);
+			package.chop(4);
+			if (!package.isEmpty()) {
+				QAction *act = new QAction(LatexEditorView::tr("Open package documentation"), contextMenu);
+				act->setText(act->text().append(QString(" (%1)").arg(package)));
+				act->setData(package + "#" + command);
+				edView->connect(act, SIGNAL(triggered()), edView, SLOT(openPackageDocumentation()));
+				contextMenu->addAction(act);
+			}
+		}
+		// help for "known" environments
+		if (tk.type == Token::beginEnv || tk.type == Token::env) {
+			QString command = "\\begin{" + tk.getText() + "}";
 			QString package = edView->document->parent->findPackageByCommand(command);
 			package.chop(4);
 			if (!package.isEmpty()) {
