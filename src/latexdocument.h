@@ -209,6 +209,7 @@ private:
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mRefItem;
 	QMultiHash<QDocumentLineHandle *, FileNamePair> mMentionedBibTeXFiles;
 	QMultiHash<QDocumentLineHandle *, CodeSnippet> mUserCommandList;
+	QMultiHash<QDocumentLineHandle *, ReferencePair> mUserCommandGoto;
 	QMultiHash<QDocumentLineHandle *, QString> mUsepackageList;
 	QMultiHash<QDocumentLineHandle *, QString> mIncludedFilesList;
 
@@ -239,6 +240,8 @@ private:
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
 
 	void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);
+
+	void addUserCommandDefinition(const QDocumentLine line, const QString &name, int start);
 
 	SyntaxCheck SynChecker;
 	Environment unclosedEnv;

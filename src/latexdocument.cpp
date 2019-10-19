@@ -40,6 +40,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 	mLabelItem.clear();
 	mBibItem.clear();
 	mUserCommandList.clear();
+	mUserCommandGoto.clear();
 	mMentionedBibTeXFiles.clear();
 	masterDocument = nullptr;
 	this->parent = nullptr;
@@ -230,6 +231,7 @@ private:
 void LatexDocument::initClearStructure()
 {
 	mUserCommandList.clear();
+	mUserCommandGoto.clear();
 	mLabelItem.clear();
 	mBibItem.clear();
 	mRefItem.clear();
@@ -312,6 +314,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 		updateSyntaxCheck = true;
 	}
 	mUserCommandList.remove(dlh);
+	mUserCommandGoto.remove(dlh);
 
 	QStringList removeIncludes = mIncludedFilesList.values(dlh);
 	if (mIncludedFilesList.remove(dlh) > 0) {
@@ -395,6 +398,20 @@ inline bool isDefinitionArgument(const QString &arg)
 	// equivalent to checking the regexp #[0-9], but faster:
 	int pos = arg.indexOf("#");
 	return (pos >= 0 && pos < arg.length() - 1 && arg[pos + 1].isDigit());
+}
+
+/*!
+ * Helper for patchStructure, stores location and name of user-defined commands
+ * \param line line of the definition
+ * \param name name of the command (or environment)
+ * \param start column at which the definition begins
+ */
+void LatexDocument::addUserCommandDefinition(const QDocumentLine line, const QString &name, int start) {
+	if (name.isEmpty()) return;
+	ReferencePair rp;
+	rp.name = name;
+	rp.start = start;
+	mUserCommandGoto.insert(line.handle(), rp);
 }
 
 /*!
@@ -564,6 +581,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		QStringList removedIncludes = mIncludedFilesList.values(dlh);
 		mIncludedFilesList.remove(dlh);
 
+		mUserCommandGoto.remove(dlh);
 		if (mUserCommandList.remove(dlh) > 0) completerNeedsUpdate = true;
 		if (mBibItem.remove(dlh))
 			bibTeXFilesNeedsUpdate = true;
@@ -701,6 +719,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 						addedUserCommands << elem;
 					}
 				}
+				addUserCommandDefinition(line(i), firstArg, tk.start); // theorem name
+				addUserCommandDefinition(line(i), "\\" + firstArg, tk.start); // \theorem command
+				addUserCommandDefinition(line(i), "\\end" + firstArg, tk.start); // \endtheorem command
 				continue;
 			}
 			/// bibitem ///
@@ -750,6 +771,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				bool def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
 
 				ltxCommands.possibleCommands["user"].insert(cmdName);
+				addUserCommandDefinition(line(i), cmdName, tk.start);
 
 				if (!removedUserCommands.removeAll(cmdName)) {
 					addedUserCommands << cmdName;
@@ -795,6 +817,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					QString optionStr = rx.cap(2);
 					//qDebug()<< name << ":"<< optionStr;
 					ltxCommands.possibleCommands["user"].insert(name);
+					addUserCommandDefinition(line(i), name, tk.start);
 					if (!removedUserCommands.removeAll(name)) addedUserCommands << name;
 					optionStr = optionStr.trimmed();
 					if (optionStr.length()) {
@@ -824,18 +847,18 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				continue;
 			}
-            if (cmd == "\\newcolumntype") {
-                if(firstArg.length()==1){ // only single letter definitions are allowed/handled
-                    QString secondArg = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory);
-                    ltxCommands.possibleCommands["%columntypes"].insert(firstArg+secondArg);
-                    if (!removedUserCommands.removeAll(firstArg)) {
-                        addedUserCommands << firstArg;
-                    }
-		    mUserCommandList.insert(line(i).handle(), firstArg);
-                    continue;
-                }
-            }
-            /* obsolete
+			if (cmd == "\\newcolumntype") {
+				if(firstArg.length()==1){ // only single letter definitions are allowed/handled
+					QString secondArg = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory);
+					ltxCommands.possibleCommands["%columntypes"].insert(firstArg+secondArg);
+					if (!removedUserCommands.removeAll(firstArg)) {
+						addedUserCommands << firstArg;
+					}
+					mUserCommandList.insert(line(i).handle(), firstArg);
+					continue;
+				}
+			}
+			/* obsolete
 			// special treatment \newcount
 			if (cmd == "\\newcount") {
 				QString remainder = curLine.mid(cmdStart + cmd.length());
@@ -851,15 +874,15 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				continue;
 			}
-            */
+			*/
 
 			//// newenvironment ////
 			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
 			if (envTokens.contains(cmd)) {
 				completerNeedsUpdate = true;
 				TokenList argsButFirst = args;
-                                if(argsButFirst.isEmpty())
-                                    continue; // no arguments present
+				if(argsButFirst.isEmpty())
+					continue; // no arguments present
 				argsButFirst.removeFirst();
 				int optionCount = Parsing::getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
@@ -883,6 +906,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				if (hasDefaultArg) {
 					mUserCommandList.insert(line(i).handle(), "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString);
 				}
+				addUserCommandDefinition(line(i), firstArg, tk.start); // environment name
+				addUserCommandDefinition(line(i), "\\" + firstArg, tk.start); // \env command
+				addUserCommandDefinition(line(i), "\\end" + firstArg, tk.start); // \endenv command
 				continue;
 			}
 			//// newcounter ////
@@ -893,6 +919,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				foreach (const QString &elem, lst) {
 					mUserCommandList.insert(line(i).handle(), elem);
 					ltxCommands.possibleCommands["user"].insert(elem);
+					addUserCommandDefinition(line(i), elem, tk.start);
 					if (!removedUserCommands.removeAll(elem)) {
 						addedUserCommands << elem;
 					}
@@ -909,6 +936,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					<< "\\" + firstArg.mid(3) + "true";
 				foreach (const QString &elem, lst) {
 					mUserCommandList.insert(line(i).handle(), elem);
+					addUserCommandDefinition(line(i), elem, tk.start);
 					ltxCommands.possibleCommands["user"].insert(elem);
 					if (!removedUserCommands.removeAll(elem)) {
 						addedUserCommands << elem;
