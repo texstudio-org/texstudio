@@ -243,7 +243,7 @@ private:
 
 	void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);
 
-	void addUserCommandDefinition(const QDocumentLine line, const QString &name, int start);
+	void addUserCommandDefinition(QDocumentLineHandle *dlh, const QString &name, int start);
 
 	SyntaxCheck SynChecker;
 	Environment unclosedEnv;
