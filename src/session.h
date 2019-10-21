@@ -23,6 +23,7 @@ class Session
 public:
 	Session(): m_pdfEmbedded(false) {}
 	Session(const Session &s);
+	Session & operator=(const Session &) = default;	// Avoid GCC9 -Wdeprecated-copy warning
 
 	bool load(const QString &file);
 	bool save(const QString &file, bool relPaths=true) const;

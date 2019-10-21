@@ -55,6 +55,7 @@ struct LinkOverlay {
 	{
 		return type != Invalid;
 	}
+	LinkOverlay & operator= (const LinkOverlay &) = default;	// Avoid GCC9 -Wdeprecated-copy warning
 	bool operator ==(const LinkOverlay &o) const
 	{
 		return (docLine == o.docLine) && (formatRange == o.formatRange);

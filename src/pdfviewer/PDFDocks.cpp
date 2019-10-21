@@ -948,7 +948,6 @@ void PDFClockDock::restart()
 
 void PDFClockDock::setInterval()
 {
-	bool ok;
 	int i = (start.secsTo(end) + 30) / 60;
 	QString s = start.time().toString();
 	UniversalInputDialog d;
