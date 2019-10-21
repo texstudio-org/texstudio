@@ -16,6 +16,7 @@
 
 //FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 FileNamePair::FileNamePair(const QString &rel, const QString &abs): relative(rel), absolute(abs) {}
+UserCommandPair::UserCommandPair(const QString &name, const CodeSnippet &snippet): name(name), snippet(snippet) {}
 
 // languages for LaTeX syntax checking (exact name from qnfa file)
 const QSet<QString> LatexDocument::LATEX_LIKE_LANGUAGES = QSet<QString>() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file";
@@ -40,7 +41,6 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 	mLabelItem.clear();
 	mBibItem.clear();
 	mUserCommandList.clear();
-	mUserCommandGoto.clear();
 	mMentionedBibTeXFiles.clear();
 	masterDocument = nullptr;
 	this->parent = nullptr;
@@ -231,7 +231,6 @@ private:
 void LatexDocument::initClearStructure()
 {
 	mUserCommandList.clear();
-	mUserCommandGoto.clear();
 	mLabelItem.clear();
 	mBibItem.clear();
 	mRefItem.clear();
@@ -296,9 +295,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 		bibTeXFilesNeedsUpdate = true;
 	}
 
-	QList<CodeSnippet> commands = mUserCommandList.values(dlh);
-	foreach (CodeSnippet elem, commands) {
-		QString word = elem.word;
+	QList<UserCommandPair> commands = mUserCommandList.values(dlh);
+	foreach (UserCommandPair elem, commands) {
+		QString word = elem.snippet.word;
 		if(word.length()==1){
 		    for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
 			if(i.left(1)==word){
@@ -314,7 +313,6 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 		updateSyntaxCheck = true;
 	}
 	mUserCommandList.remove(dlh);
-	mUserCommandGoto.remove(dlh);
 
 	QStringList removeIncludes = mIncludedFilesList.values(dlh);
 	if (mIncludedFilesList.remove(dlh) > 0) {
@@ -398,20 +396,6 @@ inline bool isDefinitionArgument(const QString &arg)
 	// equivalent to checking the regexp #[0-9], but faster:
 	int pos = arg.indexOf("#");
 	return (pos >= 0 && pos < arg.length() - 1 && arg[pos + 1].isDigit());
-}
-
-/*!
- * Helper for patchStructure, stores location and name of user-defined commands
- * \param line line of the definition
- * \param name name of the command (or environment)
- * \param start column at which the definition begins
- */
-void LatexDocument::addUserCommandDefinition(QDocumentLineHandle *dlh, const QString &name, int start) {
-	if (name.isEmpty()) return;
-	ReferencePair rp;
-	rp.name = name;
-	rp.start = start;
-	mUserCommandGoto.insert(dlh, rp);
 }
 
 /*!
@@ -550,9 +534,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}*/
 
 		// remove command,bibtex,labels at from this line
-		QList<CodeSnippet> commands = mUserCommandList.values(dlh);
-		foreach (CodeSnippet cs, commands) {
-			QString elem = cs.word;
+		QList<UserCommandPair> commands = mUserCommandList.values(dlh);
+		foreach (UserCommandPair cmd, commands) {
+			QString elem = cmd.snippet.word;
 			if(elem.length()==1){
 			    for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
 				if(i.left(1)==elem){
@@ -565,7 +549,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			    if (i >= 0) elem = elem.left(i);
 			    ltxCommands.possibleCommands["user"].remove(elem);
 			}
-			if(cs.type==CodeSnippet::userConstruct)
+			if(cmd.snippet.type==CodeSnippet::userConstruct)
 				continue;
 			removedUserCommands << elem;
 			//updateSyntaxCheck=true;
@@ -581,7 +565,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		QStringList removedIncludes = mIncludedFilesList.values(dlh);
 		mIncludedFilesList.remove(dlh);
 
-		mUserCommandGoto.remove(dlh);
 		if (mUserCommandList.remove(dlh) > 0) completerNeedsUpdate = true;
 		if (mBibItem.remove(dlh))
 			bibTeXFilesNeedsUpdate = true;
@@ -713,15 +696,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				QString firstArg = tk.getText();
 				lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
 				foreach (const QString &elem, lst) {
-					mUserCommandList.insert(line(i).handle(), elem);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, elem));
 					ltxCommands.possibleCommands["user"].insert(elem);
 					if (!removedUserCommands.removeAll(elem)) {
 						addedUserCommands << elem;
 					}
 				}
-				addUserCommandDefinition(line(i).handle(), firstArg, tk.start); // theorem name
-				addUserCommandDefinition(line(i).handle(), "\\" + firstArg, tk.start); // \theorem command
-				addUserCommandDefinition(line(i).handle(), "\\end" + firstArg, tk.start); // \endtheorem command
 				continue;
 			}
 			/// bibitem ///
@@ -771,12 +751,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				bool def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
 
 				ltxCommands.possibleCommands["user"].insert(cmdName);
-				addUserCommandDefinition(line(i).handle(), cmdName, tk.start);
 
 				if (!removedUserCommands.removeAll(cmdName)) {
 					addedUserCommands << cmdName;
 				}
-				QString cmdNameWithoutOptional=cmdName;
+				QString cmdNameWithoutArgs = cmdName;
+				QString cmdNameWithoutOptional = cmdName;
 				for (int j = 0; j < optionCount; j++) {
 					if (j == 0) {
 						if (!def){
@@ -794,14 +774,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				cs.snippetLength = cmdName.length();
 				if (isDefWidth)
 					cs.type = CodeSnippet::length;
-				mUserCommandList.insert(line(i).handle(), cs);
+				mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
 				if(def){ // optional argument, add version without that argument as well
 					CodeSnippet cs(cmdNameWithoutOptional);
 					cs.index = qHash(cmdNameWithoutOptional);
 					cs.snippetLength = cmdNameWithoutOptional.length();
 					if (isDefWidth)
 						cs.type = CodeSnippet::length;
-					mUserCommandList.insert(line(i).handle(), cs);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
 				}
 				// remove obsolete Overlays (maybe this can be refined
 				//updateSyntaxCheck=true;
@@ -814,10 +794,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				QRegExp rx("(\\\\\\w+)\\s*([^{%]*)");
 				if (rx.indexIn(remainder) > -1) {
 					QString name = rx.cap(1);
+					QString nameWithoutArgs = name;
 					QString optionStr = rx.cap(2);
 					//qDebug()<< name << ":"<< optionStr;
 					ltxCommands.possibleCommands["user"].insert(name);
-					addUserCommandDefinition(line(i).handle(), name, tk.start);
 					if (!removedUserCommands.removeAll(name)) addedUserCommands << name;
 					optionStr = optionStr.trimmed();
 					if (optionStr.length()) {
@@ -841,7 +821,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 							name.append(args.join(""));
 						}
 					}
-					mUserCommandList.insert(line(i).handle(), name);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(nameWithoutArgs, name));
 					// remove obsolete Overlays (maybe this can be refined
 					//updateSyntaxCheck=true;
 				}
@@ -854,7 +834,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					if (!removedUserCommands.removeAll(firstArg)) {
 						addedUserCommands << firstArg;
 					}
-					mUserCommandList.insert(line(i).handle(), firstArg);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), firstArg));
 					continue;
 				}
 			}
@@ -886,7 +866,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				argsButFirst.removeFirst();
 				int optionCount = Parsing::getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-				mUserCommandList.insert(line(i).handle(), "\\end{" + firstArg + "}");
+				mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, "\\end{" + firstArg + "}"));
 				QStringList lst;
 				lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
 				foreach (const QString &elem, lst) {
@@ -902,13 +882,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					if (j == 0) mandatoryArgString.append("{%<1%>}");
 					else mandatoryArgString.append(QString("{%<%1%>}").arg(j + 1));
 				}
-				mUserCommandList.insert(line(i).handle(), "\\begin{" + firstArg + "}" + mandatoryArgString);
+				mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + mandatoryArgString));
 				if (hasDefaultArg) {
-					mUserCommandList.insert(line(i).handle(), "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString));
 				}
-				addUserCommandDefinition(line(i).handle(), firstArg, tk.start); // environment name
-				addUserCommandDefinition(line(i).handle(), "\\" + firstArg, tk.start); // \env command
-				addUserCommandDefinition(line(i).handle(), "\\end" + firstArg, tk.start); // \endenv command
 				continue;
 			}
 			//// newcounter ////
@@ -917,9 +894,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				QStringList lst;
 				lst << "\\the" + firstArg ;
 				foreach (const QString &elem, lst) {
-					mUserCommandList.insert(line(i).handle(), elem);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(elem, elem));
 					ltxCommands.possibleCommands["user"].insert(elem);
-					addUserCommandDefinition(line(i).handle(), elem, tk.start);
 					if (!removedUserCommands.removeAll(elem)) {
 						addedUserCommands << elem;
 					}
@@ -935,8 +911,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					<< "\\" + firstArg.mid(3) + "false"
 					<< "\\" + firstArg.mid(3) + "true";
 				foreach (const QString &elem, lst) {
-					mUserCommandList.insert(line(i).handle(), elem);
-					addUserCommandDefinition(line(i).handle(), elem, tk.start);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(elem, elem));
 					ltxCommands.possibleCommands["user"].insert(elem);
 					if (!removedUserCommands.removeAll(elem)) {
 						addedUserCommands << elem;
@@ -967,7 +942,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 							continue;
 						QString elem = mTk.getText();
 						elem = elem.mid(1, elem.length() - 2); // strip braces
-						mUserCommandList.insert(line(i).handle(), definition + "%" + elem);
+						mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), definition + "%" + elem));
 						if (!removedUserCommands.removeAll(elem)) {
 							addedUserCommands << elem;
 						}
@@ -1150,7 +1125,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					}
 					CodeSnippet cs(txt);
 					cs.type=CodeSnippet::userConstruct;
-					mUserCommandList.insert(line(i).handle(), cs);
+					mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), cs));
 				}
 			}
 			/// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
@@ -1161,7 +1136,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 						QString txt=cmd+"{"+firstArg+"}";
 						CodeSnippet cs(txt);
 						cs.type=CodeSnippet::userConstruct;
-						mUserCommandList.insert(line(i).handle(), cs);
+						mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), cs));
 					}
 				}
 			}
@@ -1422,7 +1397,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getBibItems(const QString 
 			}
 		}
 	}
-	return std::move(result);
+	return result;
 }
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &name)
@@ -1437,36 +1412,35 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
 			}
 		}
 	}
-	return std::move(result);
-}
-
-QMultiHash<QDocumentLineHandle *, int> LatexDocument::getCommandDefinitions(const QString &name)
-{
-	QHash<QDocumentLineHandle *, int> result;
-	foreach (const LatexDocument *elem, getListOfDocs()) {
-		QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
-		for (it = elem->mUserCommandGoto.constBegin(); it != elem->mUserCommandGoto.constEnd(); ++it) {
-			ReferencePair rp = it.value();
-			if (rp.name == name && elem->indexOf(it.key()) >= 0) {
-				result.insert(it.key(), rp.start);
-			}
-		}
-	}
 	return result;
 }
 
-QSet<QDocumentLineHandle *> LatexDocument::getUsePackages(const QString &name)
+QDocumentLineHandle *LatexDocument::findCommandDefinition(const QString &name)
 {
-	QSet<QDocumentLineHandle *> result;
+	QList<QDocumentLineHandle *> result;
+	foreach (const LatexDocument *elem, getListOfDocs()) {
+		QMultiHash<QDocumentLineHandle *, UserCommandPair>::const_iterator it;
+		for (it = elem->mUserCommandList.constBegin(); it != elem->mUserCommandList.constEnd(); ++it) {
+			if (it.value().name == name && elem->indexOf(it.key()) >= 0) {
+				return it.key();
+			}
+		}
+	}
+	return nullptr;
+}
+
+QDocumentLineHandle *LatexDocument::findUsePackage(const QString &name)
+{
+	QList<QDocumentLineHandle *> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
 		QMultiHash<QDocumentLineHandle *, QString>::const_iterator it;
 		for (it = elem->mUsepackageList.constBegin(); it != elem->mUsepackageList.constEnd(); ++it) {
 			if (LatexPackage::keyToPackageName(it.value()) == name && elem->indexOf(it.key()) >= 0) {
-				result.insert(it.key());
+				return it.key();
 			}
 		}
 	}
-	return result;
+	return nullptr;
 }
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &name)
@@ -1481,7 +1455,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &nam
 			}
 		}
 	}
-	return std::move(result);
+	return result;
 }
 
 /*!
@@ -1684,6 +1658,17 @@ QStringList LatexDocument::bibItems() const
 {
 	return someItems(mBibItem);
 }
+
+QList<CodeSnippet> LatexDocument::userCommandList() const
+{
+	QList<CodeSnippet> csl;
+	foreach (UserCommandPair cmd, mUserCommandList.values()) {
+		csl.append(cmd.snippet);
+	}
+	qSort(csl);
+	return csl;
+}
+
 
 void LatexDocument::updateRefsLabels(const QString &ref)
 {
@@ -2763,9 +2748,9 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	ltxCommands.possibleCommands["%columntypes"] = columntypeForSyntaxCheck;
 
 	// user commands
-	QList<CodeSnippet> commands = mUserCommandList.values();
-	foreach (CodeSnippet cs, commands) {
-		QString elem = cs.word;
+	QList<UserCommandPair> commands = mUserCommandList.values();
+	foreach (UserCommandPair cmd, commands) {
+		QString elem = cmd.snippet.word;
 		if (elem.startsWith("%")) { // insert specialArgs
 			int i = elem.indexOf('%', 1);
 			QString category = elem.left(i);

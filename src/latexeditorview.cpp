@@ -1252,35 +1252,14 @@ bool LatexEditorView::gotoLineHandleAndSearchString(const QDocumentLineHandle *d
 	return true;
 }
 
-bool LatexEditorView::gotoToLabel(const QString &label)
+bool LatexEditorView::gotoLineHandleAndSearchLabel(const QDocumentLineHandle *dlh, const QString &label)
 {
-	int cnt = document->countLabels(label);
-	if (cnt == 0) return false;
-	QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(label);
-	if (result.isEmpty()) return false;
-	return gotoLineHandleAndSearchCommand(result.keys().first(), LatexParser::getInstance().possibleCommands["%label"], label);
+	return gotoLineHandleAndSearchCommand(dlh, LatexParser::getInstance().possibleCommands["%label"], label);
 }
 
-bool LatexEditorView::gotoToBibItem(const QString &bibId)
+bool LatexEditorView::gotoLineHandleAndSearchBibItem(const QDocumentLineHandle *dlh, const QString &bibId)
 {
-	// only supports local bibitems. BibTeX has to be handled on a higher level
-	QMultiHash<QDocumentLineHandle *, int> result = document->getBibItems(bibId);
-	if (result.isEmpty()) return false;
-	return gotoLineHandleAndSearchCommand(result.keys().first(), LatexParser::getInstance().possibleCommands["%bibitem"], bibId);
-}
-
-bool LatexEditorView::gotoToCommandDefinition(const QString &command)
-{
-	QMultiHash<QDocumentLineHandle *, int> result = document->getCommandDefinitions(command);
-	if (result.isEmpty()) return false;
-	return gotoLineHandleAndSearchString(result.keys().first(), command);
-}
-
-bool LatexEditorView::gotoToUsePackage(const QString &package)
-{
-	QSet<QDocumentLineHandle*> result = document->getUsePackages(package);
-	if (result.isEmpty()) return false;
-	return gotoLineHandleAndSearchString(*result.begin(), package);
+	return gotoLineHandleAndSearchCommand(dlh, LatexParser::getInstance().possibleCommands["%bibitem"], bibId);
 }
 
 //collapse/expand every possible line
