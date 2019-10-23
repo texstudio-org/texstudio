@@ -535,6 +535,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 				else if (command == "m") command = selectedFile.completeBaseName();
 				else if (command == "e") command = selectedFile.suffix();
 				else if (command.isEmpty() && !commandRem.isEmpty()); //empty search
+				else if (command == "p") command = findPdfFile(QString(), mainFile);
 				else continue; //invalid command
 
 				command.append(commandRem);
@@ -2148,6 +2149,22 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 	} else {
 		return "";
 	}
+}
+
+QString BuildManager::findPdfFile(const QString &pdfFile, const QFileInfo &mainFile)
+{
+	QStringList searchPaths;
+	QString searchFilename, foundPathname;
+
+	searchPaths << mainFile.absolutePath();
+	searchPaths << splitPaths(resolvePaths(additionalPdfPaths));
+	searchFilename = pdfFile.isNull() ? mainFile.completeBaseName() + ".pdf" : pdfFile;
+	foundPathname = findFile(searchFilename, searchPaths, true);
+	if (foundPathname == "") {
+		// Fallback to searched filename, so PDF viewer shows a reasonable error message
+		foundPathname = searchFilename;
+	}
+	return (foundPathname);
 }
 
 void BuildManager::removePreviewFiles(QString elem)
