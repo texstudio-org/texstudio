@@ -1394,7 +1394,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getBibItems(const QString 
 			}
 		}
 	}
-	return std::move(result);
+	return result;
 }
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &name)
@@ -1409,7 +1409,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
 			}
 		}
 	}
-	return std::move(result);
+	return result;
 }
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &name)
@@ -1424,7 +1424,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &nam
 			}
 		}
 	}
-	return std::move(result);
+	return result;
 }
 
 /*!
