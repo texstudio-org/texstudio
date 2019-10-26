@@ -386,10 +386,6 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 
 //this tests how the search panel reacts to an already existing selection
 void QSearchReplacePanelTest::findSpecialCase2(){
-	if (!allTests){
-		qDebug("skipped failing test on travis-ci");
-		return;
-	}
 	ed->setText("sela\nseli\nselo\nSSSSSSSSSSNAKE\nsnape", false);
 	for (int useCursor=1; useCursor<2; useCursor++) {
 		widget->cbCursor->setChecked(useCursor!=0); //doesn't depend on cursor (old, now it does depend, TODO: think about it)
@@ -427,6 +423,15 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		}
 	}
 
+	/*
+	 * This test relies on QSearchReplacePanel::on_cbSelection_toggled calling QSearchReplacePanel::cFind->setFocus().
+	 * In turn QWidget::setFocus requires the widget or one of its ascendants to be activated.
+	 * That is why we activate the QSearchReplacePanel panel which is a parent of QSearchReplacePanel::cFind
+	 * After that we process the system events in order to let the QWindowSystemInterfacePrivate::ActivatedWindow
+	 * event set QApplicationPrivate::active_window
+	 */
+	panel->activateWindow();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
 
 	//test if the current selection is used as search scope
 	for (int oldSel=0;oldSel<2;oldSel++){
