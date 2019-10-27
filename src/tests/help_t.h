@@ -29,19 +29,20 @@ private slots:
 			qDebug("skip");
 			return;
 		}
-		QStringList lst=fileWithoutPath.split(";");
-		QString file = Help::packageDocFile(package, true);
+		QStringList checkList=fileWithoutPath.split(";");
+		QString texdocPathname = Help::packageDocFile(package, true);
+		QString texdocFilename = QFileInfo(texdocPathname).fileName();
 		bool found=false;
-		for(int i=(lst.count()-1);i>0;i--) {
-			QString fileName=lst.at(i);
-			if(fileName==QFileInfo(file).fileName()) {
-				QEQUAL(QFileInfo(file).fileName(), fileName);
+		for(int i=(checkList.count()-1);i>0;i--) {
+			QString checkFilename=checkList.at(i);
+			if(checkFilename==texdocFilename) {
+				QEQUAL(texdocFilename, checkFilename);
 				found=true;
 				break;
 			}
 		}
 		if(!found) {
-			QEQUAL(QFileInfo(file).fileName(), lst.value(0,""));
+			QEQUAL(texdocFilename, checkList.value(0,""));
 		}
 	}
 
