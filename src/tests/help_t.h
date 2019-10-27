@@ -31,6 +31,9 @@ private slots:
 		}
 		QStringList checkList=fileWithoutPath.split(";");
 		QString texdocPathname = Help::packageDocFile(package, true);
+		if (texdocPathname == "") {
+			QVERIFY2(false, QString("texdoc command was not found in the search path or package \"%1\" is not installed").arg(package).toLatin1().constData());
+		}
 		QString texdocFilename = QFileInfo(texdocPathname).fileName();
 		bool found=false;
 		for(int i=(checkList.count()-1);i>0;i--) {
@@ -40,9 +43,7 @@ private slots:
 				break;
 			}
 		}
-		if(!found) {
-			QEQUAL(texdocFilename, checkList.value(0,""));
-		}
+		QVERIFY2(found, QString("Could not find documentation file for package \"%1\"").arg(package).toLatin1().constData());
 	}
 
 private:
