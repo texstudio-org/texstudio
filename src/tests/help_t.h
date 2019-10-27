@@ -36,7 +36,6 @@ private slots:
 		for(int i=(checkList.count()-1);i>0;i--) {
 			QString checkFilename=checkList.at(i);
 			if(checkFilename==texdocFilename) {
-				QEQUAL(texdocFilename, checkFilename);
 				found=true;
 				break;
 			}
