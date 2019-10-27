@@ -36,7 +36,7 @@ private slots:
 		}
 		QString texdocFilename = QFileInfo(texdocPathname).fileName();
 		bool found=false;
-		for(int i=(checkList.count()-1);i>0;i--) {
+		for(int i=0, n=checkList.count(); i<n; ++i) {
 			QString checkFilename=checkList.at(i);
 			if(checkFilename==texdocFilename) {
 				found=true;
