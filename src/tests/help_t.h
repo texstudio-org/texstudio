@@ -25,20 +25,24 @@ private slots:
 	void packageDocFile() {
 		QFETCH(QString, package);
 		QFETCH(QString, fileWithoutPath);
-		if (!globalExecuteAllTests) { qDebug("skip"); return; }
-        QStringList lst=fileWithoutPath.split(";");
+		if (!globalExecuteAllTests) {
+			qDebug("skip");
+			return;
+		}
+		QStringList lst=fileWithoutPath.split(";");
 		QString file = Help::packageDocFile(package, true);
-        bool found=false;
-        for(int i=(lst.count()-1);i>0;i--){
-            QString fileName=lst.at(i);
-            if(fileName==QFileInfo(file).fileName()){
-                QEQUAL(QFileInfo(file).fileName(), fileName);
-                found=true;
-                break;
-            }
-        }
-        if(!found)
-            QEQUAL(QFileInfo(file).fileName(), lst.value(0,""));
+		bool found=false;
+		for(int i=(lst.count()-1);i>0;i--) {
+			QString fileName=lst.at(i);
+			if(fileName==QFileInfo(file).fileName()) {
+				QEQUAL(QFileInfo(file).fileName(), fileName);
+				found=true;
+				break;
+			}
+		}
+		if(!found) {
+			QEQUAL(QFileInfo(file).fileName(), lst.value(0,""));
+		}
 	}
 
 private:
