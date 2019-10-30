@@ -12,6 +12,7 @@
 StructureViewTest::StructureViewTest(LatexEditorView* editor,LatexDocument *doc, bool all): edView(editor),document(doc), all(all){}
 
 void StructureViewTest::script_data(){
+	const QString trLabels = LatexDocument::tr("LABELS");
 	QTest::addColumn<QString>("script");
 	QTest::addColumn<QString>("expectedStructure");
 
@@ -20,67 +21,67 @@ void StructureViewTest::script_data(){
 		<< "editor.setText(\"Hallo\")"
 		<<"Root: LVL:0 IND:0" ;
 
-	
+
 	QTest::newRow("add Label")
 		<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\"\\n \\\\label{test}\\n\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2"
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2"
 		;
 
 	QTest::newRow("add Label2")
 		<< "cursor.insertText(\" \\\\label{test2}\\n\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2" ;
 
 	QTest::newRow("add Label3")
 		<< "cursor.insertText(\" \\\\label{test3}\\n\");cursor.insertText(\" \\\\label{test4}\\n\");cursor.insertText(\" \\\\label{test5}\\n\");cursor.insertText(\" \\\\label{test6}\\n\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:test3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:test6 LVL:0 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:test3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:test6 LVL:0 IND:2" ;
 
 	QTest::newRow("change Label")
 		<< "cursor.movePosition(1,cursorEnums.Up);cursor.movePosition(9,cursorEnums.Right);cursor.insertText(\"a\");cursor.insertText(\"b\");cursor.insertText(\"c\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:test3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:test3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
 
 	QTest::newRow("change Label2")
 		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(3,cursorEnums.Up);cursor.movePosition(9,cursorEnums.Right);cursor.insertText(\"a\");cursor.insertText(\"b\");cursor.insertText(\"c\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:tabcest3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2";
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:tabcest3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2";
 
 
 	QTest::newRow("change Label3")
 		<< "cursor.deleteChar()"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:tabcst3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:tabcst3 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
 
 	QTest::newRow("remove line")
 		<< "cursor.eraseLine()"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test2 LVL:0 IND:2##Label:test4 LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
 
 	QTest::newRow("remove lines2")
 		<< "cursor.movePosition(1,cursorEnums.EndOfLine);cursor.movePosition(1,cursorEnums.StartOfLine,cursorEnums.KeepAnchor);cursor.movePosition(1,cursorEnums.Up,cursorEnums.KeepAnchor);cursor.removeSelectedText()"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2" ;
 
 	QTest::newRow("add section")
 		<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\" \\\\section{sec:test}\\n\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1" ;
 
 	QTest::newRow("add section2")
 		<< "cursor.movePosition(1,cursorEnums.End);cursor.insertText(\" \\\\section{sec:test}\\n\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sec:test LVL:2 IND:1" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sec:test LVL:2 IND:1" ;
 
 	QTest::newRow("change section")
 		<< "cursor.movePosition(1,cursorEnums.Up);cursor.movePosition(11,cursorEnums.Right);cursor.insertText(\"a\");cursor.insertText(\"b\");cursor.insertText(\"c\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:2 IND:1" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:2 IND:1" ;
 
 	QTest::newRow("change section2")
 		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.insertText(\"sub\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:3 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:3 IND:2" ;
 
 	QTest::newRow("change section3")
 		<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.insertText(\"sub\")"
-		<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:4 IND:2" ;
+		<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:4 IND:2" ;
 
 	if (!globalExecuteAllTests)
 		qDebug("skipped some tests");
 	else {
 		QTest::newRow("change section4")
 			<< "cursor.movePosition(1,cursorEnums.StartOfLine);cursor.movePosition(2,cursorEnums.Right);cursor.movePosition(6,cursorEnums.Right,cursorEnums.KeepAnchor);cursor.removeSelectedText()"
-			<< "Root: LVL:0 IND:0##Overview:LABELS LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:2 IND:1" ;
+			<< "Root: LVL:0 IND:0##Overview:" + trLabels + " LVL:0 IND:1##Label:test LVL:0 IND:2##Label:test5 LVL:0 IND:2##Label:tabcest6 LVL:0 IND:2##Section:sec:test LVL:2 IND:1##Section:sabcec:test LVL:2 IND:1" ;
 
 		QTest::newRow("set sequence of headings")
 				<< "editor.setText(\"\\\\section{a}\\n\\\\section{b}\\n\\\\section{c}\\n\")"
@@ -257,7 +258,7 @@ QStringList StructureViewTest::unrollStructure(StructureEntry *baseStructure){
 }
 
 void StructureViewTest::benchmark_data(){
-#if QT_VERSION >= 0x040500	
+#if QT_VERSION >= 0x040500
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("start");
 	QTest::addColumn<int>("count");
@@ -295,7 +296,7 @@ void StructureViewTest::benchmark_data(){
 }
 
 void StructureViewTest::benchmark(){
-#if QT_VERSION >= 0x040500	
+#if QT_VERSION >= 0x040500
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
@@ -304,7 +305,7 @@ void StructureViewTest::benchmark(){
 		qDebug() << "skipped benchmark";
 		return;
 	}
-	
+
 	edView->editor->setText(text, false);
 	QBENCHMARK {
 		document->patchStructure(start,count);
