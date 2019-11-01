@@ -1417,7 +1417,6 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
 
 QDocumentLineHandle *LatexDocument::findCommandDefinition(const QString &name)
 {
-	QList<QDocumentLineHandle *> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
 		QMultiHash<QDocumentLineHandle *, UserCommandPair>::const_iterator it;
 		for (it = elem->mUserCommandList.constBegin(); it != elem->mUserCommandList.constEnd(); ++it) {
@@ -1431,7 +1430,6 @@ QDocumentLineHandle *LatexDocument::findCommandDefinition(const QString &name)
 
 QDocumentLineHandle *LatexDocument::findUsePackage(const QString &name)
 {
-	QList<QDocumentLineHandle *> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
 		QMultiHash<QDocumentLineHandle *, QString>::const_iterator it;
 		for (it = elem->mUsepackageList.constBegin(); it != elem->mUsepackageList.constEnd(); ++it) {
