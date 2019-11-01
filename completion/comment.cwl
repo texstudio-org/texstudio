@@ -1,5 +1,5 @@
 # comment package
-# muzimuzhi, 1 Nov 2019 for comment v3.8
+# muzimuzhi/1 Nov 2019 for comment v3.8
 
 \begin{comment}#V
 \end{comment}
