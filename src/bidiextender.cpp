@@ -33,7 +33,7 @@ HKL getCurrentLanguage()
 	try {
 		kb::XKeyboard xkb;
 		return xkb.get_group() + 1;
-	} catch (X11Exception) {
+	} catch (X11Exception &) {
 		return 0;
 	}
 
@@ -67,7 +67,7 @@ bool isProbablyLTRLanguageCode(HKL id)
 		id --;
         if (id >= 0 && id < static_cast<HKL>(installedLangSymbols.size()))
 			return isProbablyLTRLanguageRaw(installedLangSymbols[id]);
-	} catch (X11Exception) { }
+	} catch (X11Exception &) { }
 	return false;
 #else
 	return false;
@@ -120,7 +120,7 @@ void initializeLanguages()
 			} else if (!languageIdRTL) languageIdRTL = i + 1;
 		}
 		if (!languageIdLTR) languageIdLTR = bestLTR + 1;
-	} catch (X11Exception) {}
+	} catch (X11Exception &) {}
 #endif // WS_X11
 	languagesInitialized = true;
 }
@@ -136,7 +136,7 @@ void setInputLanguage(HKL code)
 	try{
 		kb::XKeyboard xkb;
 		xkb.set_group(code - 1);
-	} catch (X11Exception) {}
+	} catch (X11Exception &) {}
 #endif
 }
 

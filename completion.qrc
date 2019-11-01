@@ -204,6 +204,7 @@
 <file>completion/todonotes.cwl</file>
 <file>completion/ulem.cwl</file>
 <file>completion/units.cwl</file>
+<file>completion/unravel.cwl</file>
 <file>completion/upgreek.cwl</file>
 <file>completion/url.cwl</file>
 <file>completion/varioref.cwl</file>

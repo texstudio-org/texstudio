@@ -561,6 +561,7 @@ bool HunspellImpl::spell(const std::string& word, int* info, std::string* root) 
           break;
       }
     }
+    /* FALLTHROUGH */
     case INITCAP: {
 
       *info += SPELL_ORIGCAP;
@@ -898,6 +899,7 @@ std::vector<std::string> HunspellImpl::suggest(const std::string& word) {
     }
     case HUHINITCAP:
       capwords = 1;
+      // Intentional fallthrough
     case HUHCAP: {
       pSMgr->suggest(slst, scw.c_str(), &onlycmpdsug);
       // something.The -> something. The
@@ -1010,6 +1012,7 @@ std::vector<std::string> HunspellImpl::suggest(const std::string& word) {
       }
       case HUHINITCAP:
         capwords = 1;
+        // Intentional fallthrough
       case HUHCAP: {
         std::string wspace(scw);
         mkallsmall2(wspace, sunicw);

@@ -70,7 +70,7 @@ void getHighlightedSelectionIntern(QEditor* ed, int &minLine, int& minCol, int& 
 		QEQUAL2(overlays[0].offset,0,"selection highlighting start not at offset 0: "+message);
 		QEQUAL2(overlays[0].length, ed->document()->line(i).length(),"selection highlighting hasn't line length "+message);
 	}
-	
+
 }
 QDocumentCursor getHighlightedSelectionIntern(QEditor* ed, const QString& str){
 	int minLine, minCol, maxLine, maxCol;
@@ -105,7 +105,7 @@ void QSearchReplacePanelTest::initTestCase(){
 }
 
 void QSearchReplacePanelTest::incrementalsearch_data(){
-	//movement-form: "search text", "cursorLine|cursorColumn|searchText" or , "cursorLine|cursorColumn|searchText|foundText" 
+	//movement-form: "search text", "cursorLine|cursorColumn|searchText" or , "cursorLine|cursorColumn|searchText|foundText"
 	QTest::addColumn<QString >("editorText");
 	QTest::addColumn<int>("options");
 	QTest::addColumn<bool>("cursor");
@@ -163,17 +163,17 @@ void QSearchReplacePanelTest::incrementalsearch(){
 	QFETCH(QString, editorText);
 	QFETCH(int, options);
 	QFETCH(bool, cursor);
-	
+
 	QFETCH(int, sy);
 	QFETCH(int, sx);
-	
+
 	QFETCH(QStringList, moves);
 
 	QFETCH(int, scopey1);
 	QFETCH(int, scopex1);
 	QFETCH(int, scopey2);
 	QFETCH(int, scopex2);
-	
+
 
 	for (int loop=0; loop<2; loop++) {
 		panel->display(1,loop==1);
@@ -190,7 +190,7 @@ void QSearchReplacePanelTest::incrementalsearch(){
 		}
 		panel->setOptions((QDocumentSearch::Options)options, cursor, scopey1!=-1);
 		ed->setCursorPosition(sy,sx);
-		
+
 		int cx=-1;
 		int cy=-1;
 		foreach (const QString& s, moves){
@@ -201,18 +201,18 @@ void QSearchReplacePanelTest::incrementalsearch(){
 				cy=sl[0].toInt();
 				cx=sl[1].toInt();
 				search=sl[2];
-			} 
+			}
 			QString res=search;
 			if (sl.count()==4) res=sl[3];
-			
+
 			//it doesn't react to setText
 			if (search.isEmpty()) {
 				widget->cFind->setEditText("a");
-				widget->cFind->lineEdit()->cursorForward(false);	
+				widget->cFind->lineEdit()->cursorForward(false);
 				QTest::keyClick(widget->cFind->lineEdit(),Qt::Key_Backspace);
 			} else {
 				widget->cFind->setEditText(search.left(search.length()-1));
-				widget->cFind->lineEdit()->cursorForward(false,search.length());	
+				widget->cFind->lineEdit()->cursorForward(false,search.length());
 				QTest::keyClick(widget->cFind->lineEdit(),search[search.length()-1].toLatin1());
 			}
 			QDocumentCursor c=ed->cursor().selectionStart();
@@ -220,7 +220,7 @@ void QSearchReplacePanelTest::incrementalsearch(){
 			QEQUAL2(c.columnNumber(), cx, search+" "+ed->cursor().selectedText());
 			QEQUAL2(ed->cursor().selectedText(), res, search+" "+ed->cursor().selectedText());
 			//searching shouldn't change highlighted selection
-			QCEMULTIEQUAL(getHighlightedSelection(ed), panel->getSearchScope(), ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));			
+			QCEMULTIEQUAL(getHighlightedSelection(ed), panel->getSearchScope(), ed->document()->cursor(scopey1,scopex1,scopey2,scopex2));
 		}
 	}
 }
@@ -231,8 +231,8 @@ void QSearchReplacePanelTest::findNext_data(){
 	QTest::addColumn<int>("sx");
 	QTest::addColumn<QString >("search");
 	QTest::addColumn<QStringList>("positions"); //y|x
-	
-	QTest::newRow("simple") 
+
+	QTest::newRow("simple")
 		<< "Hello World\nHello!!heLlO!!\nHello World!"
 		<< 0 << 0 << 0
 		<< "hello"
@@ -245,7 +245,7 @@ void QSearchReplacePanelTest::findNext(){
 	QFETCH(int, sx);
 	QFETCH(QString, search);
 	QFETCH(QStringList, positions);
-	
+
 	for (int highlightRun=0; highlightRun<2; highlightRun++) {
 		ed->setText(editorText, false);
 		panel->setOptions(options,true,false);
@@ -255,13 +255,13 @@ void QSearchReplacePanelTest::findNext(){
 		panel->display(0,false);
 		for (int i=0;i<positions.size();i++){
 			QStringList pos=positions[i].split('|');
-			QEQUAL(pos.size(),3);			
+			QEQUAL(pos.size(),3);
 			QCEEQUAL2(ed->cursor(),ed->document()->cursor(pos[0].toInt(),pos[1].toInt(),pos[0].toInt(),pos[1].toInt()+pos[2].length()),QString("%1: %2 highlight-run: %3").arg(i).arg(positions[i]).arg(highlightRun));
 			//QMessageBox::information(0,"abc","def",0);
 			//QEQUAL2(ed->cursor().selectionStart().lineNumber(),pos[0].toInt(),QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
 			//QEQUAL2(ed->cursor().selectionStart().columnNumber(),pos[1].toInt(),.arg(highlightRun));
 			QEQUAL2(ed->cursor().selectedText(),pos[2],QString("%1 highlight-run: %2").arg(positions[i]).arg(highlightRun));
-			if (i!=positions.size()-1) 
+			if (i!=positions.size()-1)
 				panel->findNext();
 		}
 	}
@@ -272,7 +272,7 @@ void QSearchReplacePanelTest::findReplace_data(){
 	QTest::addColumn<int>("sy");
 	QTest::addColumn<int>("sx");
 	QTest::addColumn<QStringList>("movements"); //search|y|x or search|y|x|replace|new text
-	
+
 	QTest::newRow("simple find")
 		<< "hello\nhello\nhello!!!"
 		<< 0
@@ -286,9 +286,9 @@ void QSearchReplacePanelTest::findReplace_data(){
 		<< "hello\nhello\nhello!!!"
 		<< 0
 		<< 0 << 0
-		<< (QStringList() 
+		<< (QStringList()
 			<< "hello|0|0"
-			<< "hello|1|0|mouse|mouse\nhello\nhello!!!" 
+			<< "hello|1|0|mouse|mouse\nhello\nhello!!!"
 			<< "hello|2|0|mouse|mouse\nmouse\nhello!!!");
 
 	QTest::newRow("replace new occurences")
@@ -315,7 +315,7 @@ void QSearchReplacePanelTest::findReplace_data(){
 			<< "abc|3|0"
 			<< "abc|3|4"
 			<< "abc|6|0");
-	
+
 }
 void QSearchReplacePanelTest::findReplace(){
 	QFETCH(QString, editorText);
@@ -330,7 +330,7 @@ void QSearchReplacePanelTest::findReplace(){
 		ed->setText(editorText, false);
 		panel->setOptions(options | (highlightRun?QDocumentSearch::HighlightAll:0), true, false);
 		ed->setCursorPosition(sy,sx);
-		
+
 		for (int i=0;i<movements.size();i++){
 			QStringList move=movements[i].split('|');
 			QVERIFY(move.size()>=3);
@@ -351,11 +351,11 @@ void QSearchReplacePanelTest::findReplace(){
 			}
 			//QApplication::processEvents();
 			//Sleep(1000);
-			QEQUAL2(ed->cursor().selectionStart().lineNumber(),move[1].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));			
+			QEQUAL2(ed->cursor().selectionStart().lineNumber(),move[1].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 			QEQUAL2(ed->cursor().selectionStart().columnNumber(),move[2].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 			QEQUAL2(ed->cursor().selectedText(),move[0],QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 		}
-	}	
+	}
 }
 void QSearchReplacePanelTest::findReplaceSpecialCase(){
 	//test for a strange special case
@@ -363,13 +363,13 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 	widget->cFind->setEditText("abc");
 	ed->setCursorPosition(0,0);
 	panel->setOptions(QDocumentSearch::HighlightAll, true, false);
-	
+
 	widget->bNext->click();
 	QEQUAL2(ed->cursor().lineNumber(),0,"a"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
-	
+
 	widget->bNext->click();
 	QEQUAL2(ed->cursor().lineNumber(),3,"b"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
-	
+
 	widget->cReplace->setEditText("abc abc");
 	widget->bReplaceNext->click();
 	QEQUAL2(ed->cursor().lineNumber(),6,"c"); QEQUAL(ed->cursor().selectionStart().columnNumber(),0);
@@ -386,10 +386,6 @@ void QSearchReplacePanelTest::findReplaceSpecialCase(){
 
 //this tests how the search panel reacts to an already existing selection
 void QSearchReplacePanelTest::findSpecialCase2(){
-    if (!allTests){
-        qDebug("skipped failing test on travis-ci");
-        return;
-    }
 	ed->setText("sela\nseli\nselo\nSSSSSSSSSSNAKE\nsnape", false);
 	for (int useCursor=1; useCursor<2; useCursor++) {
 		widget->cbCursor->setChecked(useCursor!=0); //doesn't depend on cursor (old, now it does depend, TODO: think about it)
@@ -401,9 +397,9 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 			ed->setCursor(ed->document()->cursor(0,1,0,3)); //select searched text
 			panel->find("el", false, highlightRun!=0, false, false, false);
 			QCEEQUAL2(ed->cursor(), ed->document()->cursor(1,1,1,3), highlightRun);
-			
+
 			//find first match if it is not selected, but touched
-			ed->setCursor(ed->document()->cursor(0,1)); 
+			ed->setCursor(ed->document()->cursor(0,1));
 			panel->find("el", false, highlightRun!=0, false, false, false);
 			QCEEQUAL(ed->cursor(), ed->document()->cursor(0,1,0,3));
 
@@ -412,7 +408,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 			QCEEQUAL(ed->cursor(), ed->document()->cursor(1,1,1,3));
 
 			//find second match if first is selected
-			ed->setCursor(ed->document()->cursor(0,1,0,3)); 
+			ed->setCursor(ed->document()->cursor(0,1,0,3));
 			panel->find("el", false, highlightRun!=0, false, false, false);
 			QCEEQUAL(ed->cursor(), ed->document()->cursor(1,1,1,3));
 
@@ -421,12 +417,21 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 			QCEEQUAL(ed->cursor(), ed->document()->cursor(0,3,0,1));
 
 			//find first if backward searching and second is selected
-			ed->setCursor(ed->document()->cursor(1,1,1,3)); 
+			ed->setCursor(ed->document()->cursor(1,1,1,3));
 			panel->find("el", true, highlightRun!=0, false, false, false);
 			QCEEQUAL(ed->cursor(), ed->document()->cursor(0,3,0,1));
 		}
 	}
-	
+
+	/*
+	 * This test relies on QSearchReplacePanel::on_cbSelection_toggled calling QSearchReplacePanel::cFind->setFocus().
+	 * In turn QWidget::setFocus requires the widget or one of its ascendants to be activated.
+	 * That is why we activate the QSearchReplacePanel panel which is a parent of QSearchReplacePanel::cFind
+	 * After that we process the system events in order to let the QWindowSystemInterfacePrivate::ActivatedWindow
+	 * event set QApplicationPrivate::active_window
+	 */
+	panel->activateWindow();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
 
 	//test if the current selection is used as search scope
 	for (int oldSel=0;oldSel<2;oldSel++){
@@ -436,9 +441,9 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		QDocumentCursor sel=ed->document()->cursor(0,2,2,3);
 		ed->setCursor(sel);
 		panel->display(1,false);
-        QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
-        QEQUAL(widget->cbSelection->isChecked(),true);
-		
+		QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
+		QEQUAL(widget->cbSelection->isChecked(),true);
+
 		//single line
 		panel->setUseLineForSearch(false);
 		widget->cbSelection->setChecked(oldSel);
@@ -456,7 +461,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		ed->setCursor(sel);
 		panel->display(1,false);
 		QEQUAL(widget->cFind->currentText(),"l");
-        QEQUAL(widget->cbSelection->isChecked(),false); // is automatically set to false for convinience
+		QEQUAL(widget->cbSelection->isChecked(),false); // is automatically set to false for convinience
 
 	}
 
@@ -469,7 +474,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 	panel->findReplace(false);
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
 	QCEEQUAL(ed->cursor(),ed->document()->cursor(0,1,0,3));
-	
+
 	//test if first match is selected if text is searched from above the current scope
 	ed->setCursorPosition(0,0);
 	panel->findReplace(false);
@@ -494,7 +499,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 }
 
 
-//test if the panel use the correct highlighting of the current selection 
+//test if the panel use the correct highlighting of the current selection
 void QSearchReplacePanelTest::selectionHighlighting(){
 	ed->setText("hallo welt\nhello world\nsalve mundus\nbounjoure ???\n", false);
 	panel->display(1, false);
@@ -515,8 +520,8 @@ void QSearchReplacePanelTest::selectionHighlighting(){
 
 //test how selection reacts to document modifications
 	panel->display(1, false);
-    widget->cbSelection->setChecked(true); // was deactivated automatically because of previous single line selection
-	sel=ed->document()->cursor(0,5,2,10);	
+	widget->cbSelection->setChecked(true); // was deactivated automatically because of previous single line selection
+	sel=ed->document()->cursor(0,5,2,10);
 	ed->setCursor(sel);
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
 
@@ -529,12 +534,12 @@ void QSearchReplacePanelTest::selectionHighlighting(){
 	c.movePosition(1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	c.insertText(" doomination!!!! panically!");
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
-	
+
 	//modify last line, after selection
 	c=ed->document()->cursor(2,11);
 	c.insertText("holla!holla!holla!");
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
-	
+
 	//modify first line, before selection, keeping length
 	c=ed->document()->cursor(0,1);
 	c.deletePreviousChar();
@@ -547,7 +552,7 @@ void QSearchReplacePanelTest::selectionHighlighting(){
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
 	c.insertText("okay!dokay!decay!");
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
-	
+
 	//modify last line, in selection
 	c=ed->document()->cursor(2,1);
 	c.insertText("holla!");
@@ -561,12 +566,12 @@ void QSearchReplacePanelTest::selectionHighlighting(){
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,13,2,15));
 	c.deletePreviousChar();
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,12,2,15));
-	
+
 	//removing line in selection
 	c=ed->document()->cursor(1,1);
 	c.eraseLine();
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), ed->document()->cursor(0,12,1,15));
-	
+
 	//adding new lines
 	c=ed->document()->cursor(0,15);
 	c.insertText("abc\ndef\n");
@@ -594,4 +599,3 @@ void QSearchReplacePanelTest::cleanupTestCase(){
 	widget->cbSelection->setChecked(false); //this gets annoying later
 }
 #endif
-

@@ -462,7 +462,7 @@ int QDocumentLine::leftCursorPosition(int oldPos) const{
 		QReadLocker locker(&m_handle->mLock); //no idea if this is needed
 		try {
 			return m_handle->m_layout->leftCursorPosition(oldPos);
-		} catch (std::bad_alloc){
+		} catch (std::bad_alloc &){
 
 		}
 	}
@@ -476,7 +476,7 @@ int QDocumentLine::rightCursorPosition(int oldPos) const{
 		QReadLocker locker(&m_handle->mLock); //no idea if this is needed
 		try {
 			return m_handle->m_layout->rightCursorPosition(oldPos);
-		} catch (std::bad_alloc){ //this is sometimes thrown on qt4.8.7 with 7*hex:(d8ba d8b1) 2478 5e32 2409
+		} catch (std::bad_alloc &){ //this is sometimes thrown on qt4.8.7 with 7*hex:(d8ba d8b1) 2478 5e32 2409
 
 		}
 	}
