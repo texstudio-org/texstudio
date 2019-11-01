@@ -1,5 +1,10 @@
 # mode: amsmath.sty
 # dani/2006-02-19
+# muzimuzhi/1 Nov 2019
+
+#include:amsbsy
+#include:amsopn
+
 \allowdisplaybreaks
 \AmS
 \AmSfont
@@ -110,6 +115,7 @@
 \operatornamewithlimits{name}
 \overleftrightarrow{argument}#m
 \overset{superscript}{argument}#m
+\overunderset{superscript}{subscript}{argument}#m
 \pmod#m
 \pod#m
 \raisetag{dimen}
