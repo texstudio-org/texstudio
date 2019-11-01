@@ -1,6 +1,7 @@
 # subcaption package
 # Axel Sommerfeldt 04/16/2013
 # muzimuzhi/1 Sep 2019, subcaption v1.2
+# muzimuzhi/1 Nov 2019, subcaption v1.3
 # URL: https://ctan.org/pkg/subcaption
 
 #include:caption
@@ -32,3 +33,7 @@
 \thesubtable
 
 \phantomsubcaption
+
+\subfloat[list entry][sub-caption]{body}
+\subfloat[sub-caption]{body}
+\subfloat{body}
