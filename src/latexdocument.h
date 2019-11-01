@@ -29,6 +29,16 @@ struct ReferencePair {
 };
 
 
+struct UserCommandPair {
+	// name of command ("\command") or environment ("environment"),
+	// null string for other user definitions (e.g. newcolumntype, definecolor)
+	QString name;
+	// information for code completion
+	CodeSnippet snippet;
+	UserCommandPair(const QString &name, const CodeSnippet &snippet);
+};
+
+
 /*! \brief extended QDocument
  *
  * Extended document for handling latex documents
@@ -83,12 +93,7 @@ public:
 	Q_INVOKABLE QStringList labelItems() const; ///< all labels in this document
 	Q_INVOKABLE QStringList refItems() const; ///< all references in this document
 	Q_INVOKABLE QStringList bibItems() const; ///< all bibitem defined in this document
-    Q_INVOKABLE QList<CodeSnippet> userCommandList() const ///< all user commands defined in this document
-	{
-		QList<CodeSnippet> csl = mUserCommandList.values();
-		qSort(csl);
-		return csl;
-	}
+	Q_INVOKABLE QList<CodeSnippet> userCommandList() const; ///< all user commands defined in this document, sorted
 	Q_INVOKABLE CodeSnippetList additionalCommandsList();
 	void updateRefsLabels(const QString &ref);
 	void recheckRefsLabels();
@@ -100,7 +105,9 @@ public:
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name); ///< get line/column from label name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
-    Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);
+	Q_INVOKABLE QDocumentLineHandle *findCommandDefinition(const QString &name); ///< get line of definition from command name (may return nullptr)
+	Q_INVOKABLE QDocumentLineHandle *findUsePackage(const QString &name); ///< get line of \usepackage from package name (may return nullptr)
+	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);
     Q_INVOKABLE void replaceLabel(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
     Q_INVOKABLE void replaceRefs(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
 	Q_INVOKABLE void replaceLabelsAndRefs(const QString &name, const QString &newName);
@@ -208,7 +215,7 @@ private:
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mBibItem;
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mRefItem;
 	QMultiHash<QDocumentLineHandle *, FileNamePair> mMentionedBibTeXFiles;
-	QMultiHash<QDocumentLineHandle *, CodeSnippet> mUserCommandList;
+	QMultiHash<QDocumentLineHandle *, UserCommandPair> mUserCommandList;
 	QMultiHash<QDocumentLineHandle *, QString> mUsepackageList;
 	QMultiHash<QDocumentLineHandle *, QString> mIncludedFilesList;
 

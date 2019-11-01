@@ -315,6 +315,12 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 			case LinkOverlay::CiteOverlay:
 				emit edView->gotoDefinition(cursor);
 				return true;
+			case LinkOverlay::CommandOverlay:
+				emit edView->gotoDefinition(cursor);
+				return true;
+			case LinkOverlay::EnvOverlay:
+				emit edView->gotoDefinition(cursor);
+				return true;
 			case LinkOverlay::Invalid:
 				break;
 			}
@@ -457,14 +463,14 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		if (i >= 0)
 			tk = tl.at(i);
 
-		if ( tk.type == Token::file) {
+		if (tk.type == Token::file) {
 			QAction *act = new QAction(LatexEditorView::tr("Open %1").arg(tk.getText()), contextMenu);
 			act->setData(tk.getText());
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
 		// bibliography command
-		if ( tk.type == Token::bibfile) {
+		if (tk.type == Token::bibfile) {
 			QAction *act = new QAction(LatexEditorView::tr("Open Bibliography"), contextMenu);
 			QString bibFile;
 			bibFile = tk.getText() + ".bib";
@@ -473,7 +479,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		//package help
-        if ( tk.type == Token::package || tk.type == Token::documentclass) {
+		if (tk.type == Token::package || tk.type == Token::documentclass) {
 			QAction *act = new QAction(LatexEditorView::tr("Open package documentation"), contextMenu);
 			QString packageName = tk.getText();
 			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
@@ -482,11 +488,24 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		// help for any "known" command
-		if ( tk.type == Token::command) {
+		if (tk.type == Token::command) {
 			ctxCommand = tk.getText();
 			QString command = ctxCommand;
 			if (ctxCommand == "\\begin" || ctxCommand == "\\end")
 				command = ctxCommand + "{" + Parsing::getArg(tl.mid(i + 1), dlh, 0, ArgumentList::Mandatory) + "}";
+			QString package = edView->document->parent->findPackageByCommand(command);
+			package.chop(4);
+			if (!package.isEmpty()) {
+				QAction *act = new QAction(LatexEditorView::tr("Open package documentation"), contextMenu);
+				act->setText(act->text().append(QString(" (%1)").arg(package)));
+				act->setData(package + "#" + command);
+				edView->connect(act, SIGNAL(triggered()), edView, SLOT(openPackageDocumentation()));
+				contextMenu->addAction(act);
+			}
+		}
+		// help for "known" environments
+		if (tk.type == Token::beginEnv || tk.type == Token::env) {
+			QString command = "\\begin{" + tk.getText() + "}";
 			QString package = edView->document->parent->findPackageByCommand(command);
 			package.chop(4);
 			if (!package.isEmpty()) {
@@ -885,17 +904,24 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 		Token tk = Parsing::getTokenAtCol(dlh, cursor.columnNumber());
 
 		if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::RefOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::RefOverlay));
 		} else if (tk.type == Token::file) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::FileOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::FileOverlay));
 		} else if (tk.type == Token::url) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UrlOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::UrlOverlay));
 		} else if (tk.type == Token::package) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UsepackageOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::UsepackageOverlay));
 		} else if (tk.type == Token::bibfile) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::BibFileOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::BibFileOverlay));
 		} else if (tk.type == Token::bibItem) {
-			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::CiteOverlay));
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CiteOverlay));
+		} else if (tk.type == Token::beginEnv || tk.type == Token::env) {
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::EnvOverlay));
+		} else if (tk.type == Token::commandUnknown) {
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CommandOverlay));
+		} else if (tk.type == Token::command && tk.getText() != "\\begin" && tk.getText() != "\\end") {
+			// avoid link overlays on \begin and \end; instead, the user can click the environment name
+			setLinkOverlay(LinkOverlay(tk, LinkOverlay::CommandOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
 		}
@@ -1207,21 +1233,33 @@ bool LatexEditorView::gotoLineHandleAndSearchCommand(const QDocumentLineHandle *
 	return true;
 }
 
-bool LatexEditorView::gotoToLabel(const QString &label)
+bool LatexEditorView::gotoLineHandleAndSearchString(const QDocumentLineHandle *dlh, const QString &str)
 {
-	int cnt = document->countLabels(label);
-	if (cnt == 0) return false;
-	QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(label);
-	if (result.isEmpty()) return false;
-	return gotoLineHandleAndSearchCommand(result.keys().first(), LatexParser::getInstance().possibleCommands["%label"], label);
+	if (!dlh) return false;
+	int ln = dlh->document()->indexOf(dlh);
+	if (ln < 0) return false;
+	QString lineText = dlh->document()->line(ln).text();
+	int col = lineText.indexOf(str);
+	bool colFound = (col >= 0);
+	if (col < 0) col = 0;
+	editor->setCursorPosition(ln, col, false);
+	editor->ensureCursorVisible(QEditor::Navigation);
+	if (colFound) {
+		QDocumentCursor highlightCursor(editor->cursor());
+		highlightCursor.movePosition(str.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+		temporaryHighlight(highlightCursor);
+	}
+	return true;
 }
 
-bool LatexEditorView::gotoToBibItem(const QString &bibId)
+bool LatexEditorView::gotoLineHandleAndSearchLabel(const QDocumentLineHandle *dlh, const QString &label)
 {
-	// only supports local bibitems. BibTeX has to be handled on a higher level
-	QMultiHash<QDocumentLineHandle *, int> result = document->getBibItems(bibId);
-	if (result.isEmpty()) return false;
-	return gotoLineHandleAndSearchCommand(result.keys().first(), LatexParser::getInstance().possibleCommands["%bibitem"], bibId);
+	return gotoLineHandleAndSearchCommand(dlh, LatexParser::getInstance().possibleCommands["%label"], label);
+}
+
+bool LatexEditorView::gotoLineHandleAndSearchBibItem(const QDocumentLineHandle *dlh, const QString &bibId)
+{
+	return gotoLineHandleAndSearchCommand(dlh, LatexParser::getInstance().possibleCommands["%bibitem"], bibId);
 }
 
 //collapse/expand every possible line
@@ -3035,36 +3073,19 @@ LinkOverlay::LinkOverlay(const LinkOverlay &o)
 	}
 }
 
-LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LinkOverlay::LinkOverlayType ltype) :
+LinkOverlay::LinkOverlay(const Token &token, LinkOverlay::LinkOverlayType ltype) :
 	type(ltype)
 {
 	if (type == Invalid) return;
 
-	int from, to;
-
-	if (type == UsepackageOverlay || type == BibFileOverlay || type == CiteOverlay) {
-		// link one of the colon separated options
-		QDocumentCursor c(cur);
-		LatexEditorView::selectOptionInLatexArg(c);
-		from = c.anchorColumnNumber();
-		to = c.columnNumber() - 1;
-		if (from < 0 || to < 0 || to <= from)
-			return;
-	} else {
-		// link everything between {}
-		QString text = cur.line().text();
-		int col = cur.columnNumber();
-		from = findOpeningBracket(text, col);
-		to = findClosingBracket(text, col);
-		if (from < 0 || to < 0)
-			return;
-		from += 1;
-		to -= 1; // leave out brackets
-	}
+	int from = token.start;
+	int to = from + token.length - 1;
+	if (from < 0 || to < 0 || to <= from)
+		return;
 
 	REQUIRE(QDocument::defaultFormatScheme());
 	formatRange = QFormatRange(from, to - from + 1, QDocument::defaultFormatScheme()->id("link"));
-	docLine = cur.line();
+	docLine = QDocumentLine(token.dlh);
 }
 
 QString LinkOverlay::text() const

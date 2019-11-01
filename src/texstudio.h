@@ -202,6 +202,7 @@ private:
 	void configureNewEditorView(LatexEditorView *edit);
 	void configureNewEditorViewEnd(LatexEditorView *edit, bool asMaster = false, bool hidden = false);
 	LatexEditorView *getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames = false);
+	LatexEditorView *getEditorViewFromHandle(const QDocumentLineHandle *dlh);
 
 	QAction *fullscreenModeAction;
 
@@ -633,8 +634,6 @@ protected:
 	bool recheckLabels;
 
     bool rememberFollowFromScroll,enlargedViewer;
-
-	LatexEditorView *editorViewForLabel(LatexDocument *doc, const QString &label);
 
 	QSet<QString> latexPackageList, currentPackageList;
 

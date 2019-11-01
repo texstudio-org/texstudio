@@ -1847,6 +1847,20 @@ LatexEditorView *Texstudio::getEditorViewFromFileName(const QString &fileName, b
 	if (!document) return nullptr;
 	return document->getEditorView();
 }
+
+/*!
+ * \brief get the editor referenced by a given line handle
+ * \param dlh the line handle
+ * \return the editor view, null if the handle is null
+ */
+LatexEditorView *Texstudio::getEditorViewFromHandle(const QDocumentLineHandle *dlh)
+{
+	if (!dlh) return nullptr;
+	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(dlh->document());
+	REQUIRE_RET(targetDoc, nullptr);
+	return qobject_cast<LatexEditorView *>(targetDoc->getEditorView());
+}
+
 /*!
  * \brief get filename of current editor
  *
@@ -1879,18 +1893,6 @@ bool Texstudio::activateEditorForFile(QString f, bool checkTemporaryNames, bool 
 }
 
 ///////////////////FILE//////////////////////////////////////
-
-LatexEditorView *Texstudio::editorViewForLabel(LatexDocument *doc, const QString &label)
-{
-	// doc can be any document, in which the label is valid
-        REQUIRE_RET(doc, nullptr);
-	QMultiHash<QDocumentLineHandle *, int> result = doc->getLabels(label);
-	if (result.count() <= 0) return nullptr;
-	QDocumentLine line(result.keys().first());
-	LatexDocument *targetDoc = qobject_cast<LatexDocument *>(line.document());
-	REQUIRE_RET(targetDoc, nullptr);
-	return qobject_cast<LatexEditorView *>(targetDoc->getEditorView());
-}
 
 void guessLanguageFromContent(QLanguageFactory *m_languages, QEditor *e)
 {
@@ -3661,26 +3663,36 @@ void Texstudio::editEraseWordCmdEnv()
 
 void Texstudio::editGotoDefinition(QDocumentCursor c)
 {
-	if (!currentEditorView())	return;
+	if (!currentEditorView()) return;
 	if (!c.isValid()) c = currentEditor()->cursor();
 	saveCurrentCursorToHistory();
+
+	LatexDocument *doc = qobject_cast<LatexDocument *>(c.document());
 	Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
+
 	switch (tk.type) {
 	case Token::labelRef:
 	case Token::labelRefList: {
-		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), tk.getText());
+		QMultiHash<QDocumentLineHandle *, int> defs = doc->getLabels(tk.getText());
+		if (defs.isEmpty()) return;
+		QDocumentLineHandle *target = defs.keys().first();
+		LatexEditorView *edView = getEditorViewFromHandle(target);
 		if (!edView) return;
 		if (edView != currentEditorView()) {
 			editors->setCurrentEditor(edView);
 		}
-		edView->gotoToLabel(tk.getText());
+		edView->gotoLineHandleAndSearchLabel(target, tk.getText());
 		break;
 	}
 	case Token::bibItem: {
 		QString bibID = trimLeft(tk.getText());
 		// try local \bibitems
-		bool found = currentEditorView()->gotoToBibItem(bibID);
-		if (found) break;
+		QMultiHash<QDocumentLineHandle *, int> defs = doc->getBibItems(bibID);
+		if (!defs.isEmpty()) {
+			QDocumentLineHandle *target = defs.keys().first();
+			bool found = currentEditorView()->gotoLineHandleAndSearchBibItem(target, bibID);
+			if (found) break;
+		}
 		// try bib files
 		QString bibFile = currentEditorView()->document->findFileFromBibId(bibID);
 		LatexEditorView *edView = getEditorViewFromFileName(bibFile);
@@ -3698,7 +3710,43 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		gotoLine(line, col, edView);
 		break;
 	}
-	default:; //TODO: Jump to command definition
+	case Token::commandUnknown:
+	case Token::command:
+	case Token::beginEnv:
+	case Token::env: {
+		QDocumentLineHandle *target = doc->findCommandDefinition(tk.getText());
+		if (target) {
+			// command is user-defined, jump to definition
+			LatexEditorView *edView = getEditorViewFromHandle(target);
+			if (edView) {
+				if (edView != currentEditorView()) {
+					editors->setCurrentEditor(edView);
+				}
+				edView->gotoLineHandleAndSearchString(target, tk.getText());
+				break;
+			}
+		}
+		// command might be defined by a package, jump to \usepackage (if possible)
+		QString command = tk.getText();
+		if (tk.type == Token::beginEnv || tk.type == Token::env) {
+			command = "\\begin{" + command + "}";
+		}
+		QString package = doc->parent->findPackageByCommand(command);
+		package.chop(4);
+		// skip builtin packages (we cannot goto the \usepackage in this case)
+		if (package == "tex" || package == "latex-document" || package == "latex-mathsymbols")
+			return;
+		target = doc->findUsePackage(package);
+		if (!target) return;
+		LatexEditorView *edView = getEditorViewFromHandle(target);
+		if (!edView) return;
+		if (edView != currentEditorView()) {
+			editors->setCurrentEditor(edView);
+		}
+		edView->gotoLineHandleAndSearchString(target, tk.getText());
+		break;
+	}
+	default:;
 	}
 }
 

@@ -41,7 +41,7 @@ class MacroExecContext;
  *
  */
 struct LinkOverlay {
-	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UrlOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay};
+	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UrlOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay, CommandOverlay, EnvOverlay};
 	// for simpler access everything is public - only access for reading
 	LinkOverlayType type;
 	QDocumentLine docLine;
@@ -49,7 +49,7 @@ struct LinkOverlay {
 
 	LinkOverlay() : type(Invalid) {}
 	LinkOverlay(const LinkOverlay &o);
-	LinkOverlay(const QDocumentCursor &cur, LinkOverlayType ltype);
+	LinkOverlay(const Token &token, LinkOverlayType ltype);
 
 	bool isValid() const
 	{
@@ -98,8 +98,9 @@ public:
 
     Q_INVOKABLE void complete(int flags); ///< complete text
 	bool gotoLineHandleAndSearchCommand(const QDocumentLineHandle *dlh, const QSet<QString> &searchFor, const QString &id);
-	Q_INVOKABLE bool gotoToLabel(const QString &label);
-	Q_INVOKABLE bool gotoToBibItem(const QString &bibId);
+	bool gotoLineHandleAndSearchString(const QDocumentLineHandle *dlh, const QString &str);
+	bool gotoLineHandleAndSearchLabel(const QDocumentLineHandle *dlh, const QString &label);
+	bool gotoLineHandleAndSearchBibItem(const QDocumentLineHandle *dlh, const QString &bibId);
 
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
