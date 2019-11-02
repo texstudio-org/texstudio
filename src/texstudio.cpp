@@ -5879,7 +5879,10 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		oldPDFs << doc;
 	}
 
-	pdfFile = buildManager.findPdfFile(pdfFile, master);
+	if (pdfFile.isNull()) {
+		pdfFile = master.completeBaseName() + ".pdf";
+	}
+	pdfFile = buildManager.findCompiledFile(pdfFile, master);
 	int ln = 0;
 	int col = 0;
 	if (currentEditorView()) {

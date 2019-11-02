@@ -509,9 +509,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 					(*createCommand) += str.at(i);
 					i++;
 				}
-				bool useCurrentFile = command.startsWith("c:");
-				const QFileInfo &selectedFile = (useCurrentFile && !currentFile.fileName().isEmpty()) ? currentFile : mainFile;
-				if (useCurrentFile) command = command.mid(2);
+				QFileInfo selectedFile = parseExtendedSelectFile(command, mainFile, currentFile);
 				bool absPath = command.startsWith('a');
 				//check only sane commands
 				if (command == "ame")
@@ -535,7 +533,6 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 				else if (command == "m") command = selectedFile.completeBaseName();
 				else if (command == "e") command = selectedFile.suffix();
 				else if (command.isEmpty() && !commandRem.isEmpty()); //empty search
-				else if (command == "p") command = findPdfFile(QString(), mainFile);
 				else continue; //invalid command
 
 				command.append(commandRem);
@@ -578,6 +575,25 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 	//  QMessageBox::information(0,"",str+"->"+result,0);
 	for (int i = 0; i < result.size(); i++) result[i] = result[i].trimmed(); //remove useless characters
 	return result;
+}
+
+QFileInfo BuildManager::parseExtendedSelectFile(QString &command, const QFileInfo &mainFile, const QFileInfo &currentFile)
+{
+	QFileInfo selectedFile;
+	QRegExp rxPdf("^p\\{([^{}]+)\\}:");
+
+	if (command.startsWith("c:")) {
+		selectedFile = currentFile.fileName().isEmpty() ? mainFile : currentFile;
+		command = command.mid(2);
+	} else if (rxPdf.indexIn(command) != -1) {
+		QString compiledFilename = mainFile.completeBaseName() + '.' + rxPdf.cap(1);
+		QString compiledFound = findCompiledFile(compiledFilename, mainFile);
+		selectedFile = QFileInfo(compiledFound);
+		command = command.mid(rxPdf.matchedLength());
+	} else {
+		selectedFile = mainFile;
+	}
+	return selectedFile;
 }
 
 /*!
@@ -2151,18 +2167,17 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 	}
 }
 
-QString BuildManager::findPdfFile(const QString &pdfFile, const QFileInfo &mainFile)
+QString BuildManager::findCompiledFile(const QString &compiledFilename, const QFileInfo &mainFile)
 {
 	QStringList searchPaths;
-	QString searchFilename, foundPathname;
+	QString foundPathname;
 
 	searchPaths << mainFile.absolutePath();
 	searchPaths << splitPaths(resolvePaths(additionalPdfPaths));
-	searchFilename = pdfFile.isNull() ? mainFile.completeBaseName() + ".pdf" : pdfFile;
-	foundPathname = findFile(searchFilename, searchPaths, true);
+	foundPathname = findFile(compiledFilename, searchPaths, true);
 	if (foundPathname == "") {
 		// Fallback to searched filename, so PDF viewer shows a reasonable error message
-		foundPathname = searchFilename;
+		foundPathname = compiledFilename;
 	}
 	return (foundPathname);
 }
