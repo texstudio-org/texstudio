@@ -92,6 +92,7 @@ private:
 
 	QPoint lastMousePressLeft;
 	bool isDoubleClick;  // event sequence of a double click: press, release, double click, release - this is true on the second release
+    Qt::KeyboardModifiers modifiersWhenPressed;
 };
 
 static const QString LRMStr = QChar(LRM);
@@ -266,6 +267,7 @@ bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor)
 		edView = qobject_cast<LatexEditorView *>(editor->parentWidget());
 		emit edView->cursorChangeByMouse();
 		lastMousePressLeft = event->pos();
+        modifiersWhenPressed = event->modifiers();
 		return false;
 	default:
 		return false;
@@ -282,7 +284,7 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 	}
 	isDoubleClick = false;
 
-	if (event->modifiers() == Qt::ControlModifier && event->button() == Qt::LeftButton) {
+    if (event->modifiers() == Qt::ControlModifier && modifiersWhenPressed == event->modifiers() && event->button() == Qt::LeftButton) {
 		// Ctrl+LeftClick
 		int distanceSqr = (event->pos().x() - lastMousePressLeft.x()) * (event->pos().x() - lastMousePressLeft.x()) + (event->pos().y() - lastMousePressLeft.y()) * (event->pos().y() - lastMousePressLeft.y());
 		if (distanceSqr > 4) // allow the user to accidentially move the mouse a bit
@@ -627,7 +629,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 	lineMarkPanel = new QLineMarkPanel;
 	lineMarkPanelAction = codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
 	lineNumberPanel = new QLineNumberPanel;
-	lineNumberPanelAction = codeeditor->addPanel(lineNumberPanel, QCodeEdit::West, false);;
+    lineNumberPanelAction = codeeditor->addPanel(lineNumberPanel, QCodeEdit::West, false);
 	QFoldPanel *foldPanel = new QFoldPanel;
 	lineFoldPanelAction = codeeditor->addPanel(foldPanel, QCodeEdit::West, false);
 	lineChangePanelAction = codeeditor->addPanel(new QLineChangePanel, QCodeEdit::West, false);
@@ -2409,7 +2411,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			if (cd.args > 0)
 				value = Parsing::getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
 			if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
-				; // action is already performed as a side effect
+                // action is already performed as a side effect
 			} else if (config->toolTipHelp && completer->getLatexReference()) {
 				QString topic = completer->getLatexReference()->getTextForTooltip(command);
 				if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
@@ -2419,7 +2421,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 		if (tk.type == Token::env || tk.type == Token::beginEnv) {
 			handled = true;
 			if (config->toolTipPreview && showMathEnvPreview(cursor, "\\begin", value, pos)) {
-				; // action is already performed as a side effect
+                // action is already performed as a side effect
 			} else if (config->toolTipHelp && completer->getLatexReference()) {
 				QString topic = completer->getLatexReference()->getTextForTooltip("\\begin{" + value);
 				if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
