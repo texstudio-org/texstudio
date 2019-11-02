@@ -69,6 +69,10 @@ private slots:
 				<< "main.mfile-current.cfile-cfile-mfile+main.tex+current.tex";
 		QTest::newRow("absolute current file") << "?ame)?c:ame)?c:a)?c:am.tex?c:a" << ":/somewhere/mainfile.m" << ":/elsewhere/include/current.c" << 0
 				<< QString(":/somewhere/mainfile.m:/elsewhere/include/current.c:/elsewhere/include/:/elsewhere/include/current.tex:/elsewhere/include/").replace("/",QDir::separator());;
+
+		QTest::newRow("search for non-existent output files") << "?p{dvi}:ame ?p{abc}:me ?p{def}:a" << "/somewhere/mainfile.m" << "/elsewhere/include/current.c" << 0
+				<< QString("/somewhere/mainfile.dvi mainfile.abc /somewhere/").replace("/",QDir::separator());
+		// TODO: Add search for existing output files
 	}
 	void parseExtendedCommandLine(){
 		QFETCH(QString, str);
