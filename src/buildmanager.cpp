@@ -2176,8 +2176,9 @@ QString BuildManager::findCompiledFile(const QString &compiledFilename, const QF
 	searchPaths << splitPaths(resolvePaths(additionalPdfPaths));
 	foundPathname = findFile(compiledFilename, searchPaths, true);
 	if (foundPathname == "") {
-		// Fallback to searched filename, so PDF viewer shows a reasonable error message
-		foundPathname = compiledFilename;
+		// If searched filename is relative prepend the mainFile directory
+		// so PDF viewer shows a reasonable error message
+		foundPathname = QFileInfo(mainFile.absoluteDir(), compiledFilename).absoluteFilePath();
 	}
 	return (foundPathname);
 }
