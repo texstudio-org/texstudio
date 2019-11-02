@@ -577,6 +577,29 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 	return result;
 }
 
+/*
+ * Select a file which provides the pathname parts used by the "ame" expansions. Currently we can select
+ * one of the following files:
+ *
+ * - Master (root) .tex file (default).
+ * - Current .tex file. Selected by the c: prefix.
+ * - A file with the same complete basename as the master file and a chosen extension. The search for this
+ *   file is done in the master file directory and then the extra PDF directories. Selected by the p{ext}:
+ *   prefix.
+ *
+ * TODO: If selector ?p{ext}: is not flexible enough then maybe we should implement another selector:
+ * ?f{regexp_with_basename}:
+ *
+ * It will be processed like this:
+ *
+ * 1. regexp_with_basename undergoes %-token replacement
+ *    %m is replaced by the complete basename of the master file.
+ *    %% is replaced by %
+ * 2. The expression from 1 is used to search the master file directory, the current file
+ *    directory and the extra PDF directories.
+ * 3. If step 2 finds a matching file it is used as a selected file. If step 2 does not
+ *    find a file, then some reasonable default is used.
+ */
 QFileInfo BuildManager::parseExtendedSelectFile(QString &command, const QFileInfo &mainFile, const QFileInfo &currentFile)
 {
 	QFileInfo selectedFile;
