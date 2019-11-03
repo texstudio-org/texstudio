@@ -154,7 +154,6 @@
 \defaultscriptratio#*
 \defaultscriptscriptratio#*
 \doublerulesep#*
-\emergencystretch#*
 \footnotesep#*
 \footskip#*
 \intextsep#*
@@ -230,3 +229,9 @@
 \pdfthreadmargin#*
 \pdfminorversion#*
 \numberline#* 
+
+# miscellany
+\allocationnumber
+\fill
+\tracingfonts
+\unitlength

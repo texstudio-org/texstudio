@@ -9,10 +9,6 @@
 \Alph{counter}#*
 \alph{counter}#*
 \and#*
-\AA
-\aa
-\AE
-\ae
 \appendix
 \appendixname#*
 \arabic{counter}#*
@@ -140,20 +136,11 @@
 \end{vmatrix}
 \ensuremath{formula}
 \bezier{n}(x1,y1)(x2,y2)(x3,y3)#*/picture
-\bf#*
 \bfseries
 \bibitem{citekey}
 \bibitem[label]{citekey}
 \bibliographystyle{style}
 \bibliography{bib file}
-\Big#mK
-\Big(%|\Big)#mM
-\Big[%|\Big]#mM
-\Big|%|\Big|#mM
-\big#mK
-\big(%|\big)#mM
-\big[%|\big]#mM
-\big|%|\big|#mM
 \Bigg#mK
 \Bigg(%|\Bigg)#mM
 \Bigg[%|\Bigg]#mM
@@ -162,10 +149,8 @@
 \bigg(%|\bigg)#mM
 \bigg[%|\bigg]#mM
 \bigg|%|\bigg|#mM
-\bigskip
 \boldmath
 \botfigrule#*
-\cal
 \caption{text}
 \caption[short text%text]{text}
 \chapter{title}#L1
@@ -183,8 +168,6 @@
 \columnwidth#L
 \contentsline{type}{text}{page}
 \contentsname
-\dag#*
-\ddag#*
 \dashbox{dashlength}(width,height)[position]{text}#*/picture
 \dashbox{dashlength}(width,height){text}#*/picture
 \date{text}
@@ -232,17 +215,13 @@
 \glqq
 \grq
 \grqq
-\hfill
 \hline#t
 \hlinefill
 \hrule
-\hrulefill
 \hspace*{length}
 \hspace{length}
-\hss
 \huge
 \Huge
-\hyphenation{words}
 \i
 \include{file}#i
 \input{file}#i
@@ -250,7 +229,6 @@
 \indexname
 \indexspace
 \index{entry}
-\inputlineno#*
 \it#*
 \item %|
 \item[%<label%>] %<description%>
@@ -300,8 +278,9 @@
 \mathgroup#m
 \mathit{text}#m
 \mathnormal{text}#m
+\mathring{o}#m
 \mathrm{text}#m
-\mathscr#m
+\mathscr{text}#m
 \mathsf{text}#m
 \mathsterling#m
 \mathtt{text}#m
@@ -309,12 +288,11 @@
 \mathversion#*
 \mbox{text}
 \mdseries#*
-\medskip
 \multicolumn{cols}{pos}{text}
 \multiput(xcoord,ycoord)(xdelta,ydelta){copies}{object}#*/picture
 \newblock#*
 \newlabel
-\newlength{newlength}
+\newlength{newlength%cmd}#d
 \newline
 \newpage
 \newtheorem{envname}[numbered like]{caption}#N
@@ -334,7 +312,6 @@
 \normalmarginpar#*
 \normalsize
 \nouppercase#*
-\null#*
 \obeycr#*
 \oddsidemargin#*
 \oe
@@ -343,15 +320,12 @@
 \onecolumn
 \oval(width,height)#*/picture
 \oval(width,height)[portion]#*/picture
-\overleftarrow{text}
-\overrightarrow{text}
 \pagebreak
 \pagebreak[number]
 \pagename
 \pagenumbering{numstyle}
 \pageref{label}#r
 \pagestyle{option}
-\pagetotal
 \paragraph*{title}#L5
 \paragraph[short title]{title}#L5
 \paragraphmark
@@ -367,14 +341,13 @@
 \poptabs#T
 \pounds
 \printindex#n
+\protect
 \pushtabs#T
 \put(xcoord,ycoord){text}#*/picture
-\qquad
-\quad
+\raggedleft
 \r{letter}
 \ref{label}#r
 \refname
-\righthyphenmin
 \rightmargin
 \rightmark
 \rm#*
@@ -401,10 +374,7 @@
 \sl#*
 \slshape
 \small
-\smash
-\space
 \sqrt[root]{arg}#m
-\sqrt{arg}#m
 \stackrel{above}{under}
 \stepcounter{counter}
 \stop
@@ -490,7 +460,6 @@
 \typein{msg}#*
 \typeout{msg}#*
 \unboldmath
-\underline{text}
 \upshape
 \usepackage[options]{package}
 \usepackage{package}
@@ -535,10 +504,7 @@
 \renewenvironment*{envname}{begdef}{enddef}#N
 \left#mK
 \left(#m
-\left(%|\right)#mM
-\left[%|\right]#mM
 \left\lbrace#mM
-\left|%|\right|#mM
 \left\|#mM
 \left/#m
 \left\backslash#mM
