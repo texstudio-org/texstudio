@@ -89,6 +89,7 @@
 <file>completion/glosstex.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/harvard.cwl</file>
+<file>completion/hlist.cwl</file>
 <file>completion/hyperref.cwl</file>
 <file>completion/IEEEtrantools.cwl</file>
 <file>completion/ifluatex.cwl</file>
@@ -190,6 +191,7 @@
 <file>completion/tabu.cwl</file>
 <file>completion/tabularx.cwl</file>
 <file>completion/tabulary.cwl</file>
+<file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
 <file>completion/tex.cwl</file>
 <file>completion/textcomp.cwl</file>
