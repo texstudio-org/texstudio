@@ -388,7 +388,7 @@
 \Arrowvert#m
 \ast#m
 \asymp#m
-\b{char}#n
+\b{o}#n
 \backslash#m
 \bar{a}#m
 \bigennsection#*
