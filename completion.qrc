@@ -107,7 +107,6 @@
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
 <file>completion/latex-l2tabu.cwl</file>
-<file>completion/latex-mathsymbols.cwl</file>
 <file>completion/layout.cwl</file>
 <file>completion/letltxmacro.cwl</file>
 <file>completion/libertine.cwl</file>

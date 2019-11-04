@@ -2,9 +2,6 @@
 # denisbitouze, 30.10.2016
 #
 #include:class-book
-#include:latex-document
-#include:latex-mathsymbols
-#include:tex
 #include:pgfopts
 #include:etoolbox
 #include:xpatch

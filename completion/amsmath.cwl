@@ -42,7 +42,6 @@
 \begin{xalignat*}#*
 \begin{xxalignat}#*
 \binom{above}{below}#m
-\bmod#m
 \boldsymbol{argument}#m
 \boxed{argument}
 \cfrac[align]{%<num%:translatable%>}{%<den%:translatable%>}#m
@@ -116,7 +115,6 @@
 \overleftrightarrow{argument}#m
 \overset{superscript}{argument}#m
 \overunderset{superscript}{subscript}{argument}#m
-\pmod#m
 \pod#m
 \raisetag{dimen}
 \rvert#m
@@ -128,10 +126,8 @@
 \tag{label}#m
 \tag*{label}#m
 \tbinom{above}{below}#m
-\text{word or phrase}
 \tfrac{%<num%:translatabe%>}{%<den%:translatable%>}#m
 \thickspace
-\thinspace
 \underleftarrow{argument}#m
 \underleftrightarrow{argument}#m
 \underrightarrow{argument}#m

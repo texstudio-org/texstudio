@@ -3734,7 +3734,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		QString package = doc->parent->findPackageByCommand(command);
 		package.chop(4);
 		// skip builtin packages (we cannot goto the \usepackage in this case)
-		if (package == "tex" || package == "latex-document" || package == "latex-mathsymbols")
+		if (package == "tex" || package == "latex-document")
 			return;
 		target = doc->findUsePackage(package);
 		if (!target) return;
@@ -6456,7 +6456,6 @@ void Texstudio::texdocHelp()
 		packages.removeAll("latex-dev");
 		packages.removeAll("latex-l2tabu");
 		packages.removeAll("latex-document");
-		packages.removeAll("latex-mathsymbols");
 		packages.removeAll("tex");
 	}
 
