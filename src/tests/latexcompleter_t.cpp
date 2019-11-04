@@ -193,35 +193,35 @@ void LatexCompleterTest::simple_data(){
 					);
 	} else qDebug("skipped some tests");
 
-	QTest::newRow("smbll cmd") << ">><<" << false << false << 0 << 2
+	QTest::newRow("smill cmd") << ">><<" << false << false << 0 << 2
 				<< "" << ""
 				<< (QStringList()
 				    << "\\:>>\\<<"
-				    << "b:>>\\b<<"
-				    << "{:>>\\b{<<"
+				    << "i:>>\\i<<"
+				    << "{:>>\\i{<<"
 				    );
-	QTest::newRow("smbll cmd +pc") << ">><<" << false << true << 0 << 2
+	QTest::newRow("smill cmd +pc") << ">><<" << false << true << 0 << 2
 			<< "" << ""
 				<< (QStringList()
 				<< "\\:>>\\<<"
-				<< "b:>>\\b<<"
-				<< "{:>>\\b{}<<"
-				<< "-:>>\\b{-}<<"
+				<< "i:>>\\i<<"
+				<< "{:>>\\i{}<<"
+				<< "-:>>\\i{-}<<"
 				);
-	QTest::newRow("smbll cmd +ec") << ">><<" << true << false << 0 << 2
+	QTest::newRow("smill cmd +ec") << ">><<" << true << false << 0 << 2
 			<< "" << ""
 			<< (QStringList()
 				    << "\\:>>\\<<"
-				    << "b:>>\\b<<"
-				    << "{:>>\\b{<<"
+				    << "i:>>\\i<<"
+				    << "{:>>\\i{<<"
 				    );
-	QTest::newRow("smbll cmd +ec+pc") << ">><<" << true << true << 0 << 2
+	QTest::newRow("smill cmd +ec+pc") << ">><<" << true << true << 0 << 2
 			<< "" << ""
 				<< (QStringList()
 				<< "\\:>>\\<<"
-				<< "b:>>\\b<<"
-				<< "{:>>\\b{}<<"
-				<< "-:>>\\b{-}<<"
+				<< "i:>>\\i<<"
+				<< "{:>>\\i{}<<"
+				<< "-:>>\\i{-}<<"
 				);
 
 	QTest::newRow("nearest eow +ec") << ">><<" << true << false << 0 << 2
