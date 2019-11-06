@@ -5879,12 +5879,10 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		oldPDFs << doc;
 	}
 
-	if (pdfFile.isNull()) pdfFile = "?am.pdf";  // no file was explicitly specified in the command
-	QString pdfDefFile = BuildManager::parseExtendedCommandLine(pdfFile, master).first();
-	QStringList searchPaths = splitPaths(BuildManager::resolvePaths(buildManager.additionalPdfPaths));
-	searchPaths.insert(0, master.absolutePath());
-	pdfFile = buildManager.findFile(pdfDefFile, searchPaths, true);
-	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
+	if (pdfFile.isNull()) {
+		pdfFile = master.completeBaseName() + ".pdf";
+	}
+	pdfFile = buildManager.findCompiledFile(pdfFile, master);
 	int ln = 0;
 	int col = 0;
 	if (currentEditorView()) {

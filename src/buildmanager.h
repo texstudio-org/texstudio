@@ -128,6 +128,7 @@ public:
 	static QString replaceEnvironmentVariables(const QString &s, const QHash<QString, QString> &variables, bool compareNamesToUpper);
 	static QString resolvePaths(QString paths);
 	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0);
+	static QFileInfo parseExtendedSelectFile(QString &command, const QFileInfo &mainFile, const QFileInfo &currentFile);
 	static QString extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr);
 	ExpandedCommands expandCommandLine(const QString &str, ExpandingOptions &expandingOptions);
 	RunCommandFlags getSingleCommandFlags(const QString &command) const;
@@ -235,7 +236,8 @@ public:
 	static QString autoRerunCommands;
 	static QString additionalSearchPaths, additionalLogPaths, additionalPdfPaths;
 
-	QString findFile(const QString &baseName, const QStringList &searchPaths, bool mostRecent = false);
+	static QString findFile(const QString &baseName, const QStringList &searchPaths, bool mostRecent = false);
+	static QString findCompiledFile(const QString &compiledFilename, const QFileInfo &mainFile);
 	void addPreviewFileName(QString fn)
 	{
 		if (!previewFileNames.contains(fn))
