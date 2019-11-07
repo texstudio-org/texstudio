@@ -61,17 +61,18 @@
 	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
 	<li><a href="#SECTION32a">4.2 Syntax Check</a></li>
 	<li><a href="#SECTION32">4.3 Bibliography</a></li>
-	<li><a href="#SECTION33a">4.4 SVN Support</a></li>
-	<li><a href="#SECTION33">4.5 Personal macros</a></li>
-	<li><a href="#SECTION34">4.6 Pstricks support</a></li>
-	<li><a href="#SECTION35">4.7 Metapost support</a></li>
-	<li><a href="#SECTION36">4.8 The "Convert to Html" command</a></li>
-	<li><a href="#SECTION37">4.9 "Forward/Inverse search" with TeXstudio</a></li>
-	<li><a href="#TEXCOM">4.10 Advanced header usage</a></li>
-	<li><a href="#TEXSTUDIO-CMD">4.11 Synopsis of the TeXstudio command</a></li>
-	<li><a href="#SHORTCUTS">4.12 Keyboard shortcuts</a></li>
-	<li><a href="#CWLDESCRIPTION">4.13 Description of the cwl format</a></li>
-	<li><a href="#TABLETEMPLATE">4.14 Using table templates</a></li>
+	<li><a href="#SECTION33a">4.4 External Commands</h2>
+	<li><a href="#SECTION33b">4.5 SVN Support</a></li>
+	<li><a href="#SECTION33">4.6 Personal macros</a></li>
+	<li><a href="#SECTION34">4.7 Pstricks support</a></li>
+	<li><a href="#SECTION35">4.8 Metapost support</a></li>
+	<li><a href="#SECTION36">4.9 The "Convert to Html" command</a></li>
+	<li><a href="#SECTION37">4.10 "Forward/Inverse search" with TeXstudio</a></li>
+	<li><a href="#TEXCOM">4.11 Advanced header usage</a></li>
+	<li><a href="#TEXSTUDIO-CMD">4.12 Synopsis of the TeXstudio command</a></li>
+	<li><a href="#SHORTCUTS">4.13 Keyboard shortcuts</a></li>
+	<li><a href="#CWLDESCRIPTION">4.14 Description of the cwl format</a></li>
+	<li><a href="#TABLETEMPLATE">4.15 Using table templates</a></li>
 	</ul>
 </li>
 <li><a href="#TENTATIVE-FEATURES">5. Experimental Features</a>
@@ -334,7 +335,7 @@ Thus the user does not need to look up the necessary commands to set up a reposi
 <p>
 With "User SVN revisions to undo before last save" TeXstudio will perform undo as usually, but if there are no further undoable commands in the internal storage, the document will be changed to the previous version in SVN history.
 Further undo commands allows one to back further to older revisions, whereas a redo goes forward to more recent versions.
-This is a more interactive approach than choosing SVN revisions directly via a menu command, see <a href="#SECTION33a">section 4.4</a>.
+This is a more interactive approach than choosing SVN revisions directly via a menu command, see <a href="#SECTION33b">section 4.5</a>.
 </p>
 <p><IMG src="configure_svn.png" border="1" alt="Configure SVN"></p>
 <h1 id="SECTION1">2. Editing a TeX document</h1>
@@ -537,7 +538,69 @@ The number of columns is analyzed and checked in the subsequent rows. If more or
 <h2 id="SECTION32">4.3 Bibliography</h2>
 <p>For the "bib" files , the "Bibliography" menu enables you to directly insert the entries corresponding to the standard types of document.<br>Note: the optional fields can be automatically deleted with the "Clean" command of the "Bibliography" menu.</p>
 <p><IMG src="doc16.png" border="1" alt="Bibliography Menu"></p>
-<h2 id="SECTION33a">4.4 SVN Support</h2>
+
+<h2 id="SECTION33a">4.4 External Commands</h2>
+<p>
+TeXstudio implements some of its features as external commands which can be set up in the config dialog ("Options/Configure TeXstudio" -> "Commands").
+</p>
+<p>
+Before an external command is executed the command line undergoes expansion where the following tokens are recognized and replaced by TeXstudio:
+</p>
+<ul>
+<li><b>%</b> is replaced by the absolute pathname of the root (master) document up to but excluding the file extension.</li>
+<li><b>%%</b> is replaced by the % symbol.</li>
+<li><b>@</b> is replaced by the current line number at the moment when the corresponding external command was run.</li>
+<li><b>@@</b> is replaced by the @ symbol.</li>
+<li>
+	<b>?[selector][pathname parts][terminating char]</b> is replaced by a formatted filename where:
+	<ul>
+		<li>
+			<b>[selector]</b> selects the pathname that is used by <b>[pathname parts]</b>. It can be one of the following:
+			<ul>
+				<li><b>No selector</b> used at all. In this case the root (master) document is selected.</li>
+				<li><b>c:</b> selects the current document which can be different from the root document.</li>
+				<li><b>p{ext}</b> searches for a file with same basename as the root document and extension <b>ext</b>. The search is done in
+				the dictory containing the root (master) document and in the additional PDF search paths. If a matching file is found then it
+				selected for further processing by [pathname parts]. If no matching file is found then TeXstudio selects a default pathname
+				which is the master file with its extension replaced by <b>ext</b>.</li>
+			</ul>
+		</li>
+		<li>
+			<b>[pathname parts]</b> selects which parts of the selected pathname are placed in the expanded command line. It can be one or more of
+			the following characters:
+			<ul>
+				<li><b>a</b> expands to the absolute path of the selected pathname. This absolute path is up to but excluding the filename of the selected pathname.</li>
+				<li><b>r</b> expands to the relative path of the selected pathname. This relative path is up to but excluding the filename of the selected pathname.</li>
+				<li><b>m</b> expands to the complete basename of the selected pathname. The complete basename is the filename part up to but excluding the last dot in the filename.</li>
+				<li><b>e</b> expands to the extension of the selected pathname.</li>
+			</ul>
+		</li>
+		<li>
+			<b>[terminating char]</b> specifies the prefix and/or suffix characters that enclose the expanded <b>[pathname parts]</b>. It can be one of the following:
+			<ul>
+				<li><b>)</b> Do not add characters before or after the expanded <b>[pathname parts]</b>. Used to mark the end of the expansion token.</li>
+				<li><b>&quot;</b> to enclose the expanded <b>[pathname parts]</b> in double quotes.</li>
+				<li><b>.</b> to add a dot after the expanded <b>[pathname parts]</b>.</li>
+				<li><b>(space)</b> to add a space after the expanded <b>[pathname parts]</b>.</li>
+
+			</ul>
+		</li>
+	</ul>
+</li>
+<li><b>?*.ext</b> causes the external command to be expanded once for each .ext file.</li>
+<li><b>??</b> is replaced by the ? symbol.</li>
+</ul>
+<p>Examples:</p>
+<ul>
+	<li><b>?ame"</b> expands to the absolute pathname of the root document enclosed in double-quotes (e.g. /some/directory/mydocument.tex).</li>
+	<li><b>?e)</b> expands to the extension of the root document without leading dot (e.g. tex).</li>
+	<li><b>?m</b> expands to the double-quoted complete basename of the root document (identical to <b>%</b>).</li>
+	<li><b>?me</b> expands to the filename of the root document (e.g. example.tex).</li>
+	<li><b>?{pdf}ame</b> expands to the absolute pathname of the output PDF file (e.g. /some/directory/mydocument.pdf).</li>
+	<li>?*.aux expands once for each .aux file in the current directory.</li>
+</ul>
+
+<h2 id="SECTION33b">4.5 SVN Support</h2>
 <p>
 Apart from the supported SVN features already describes in section 1.8, TeXstudio supports two more commands.
 </p>
@@ -549,7 +612,7 @@ Apart from the supported SVN features already describes in section 1.8, TeXstudi
 You can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version.
 If you start editing that document directly, the dialog is closed and the present text will be your new most recent version though yet unsaved.
 </p>
-<h2 id="SECTION33">4.5 Personal macros</h2>
+<h2 id="SECTION33">4.6 Personal macros</h2>
 <p>TeXstudio allows you to insert your own macros. These macros are defined with the "Macros - Edit Macros" menu.
 Macros can consist of simple text which is directly placed into txs. It can also be an "environment" which are automatically extended by begin/end or it can be a java script.
 The needed functionality can be selected by checkbox.<br>
@@ -562,7 +625,7 @@ The "run script" button directly executes a script in the editor for testing.<br
 <br>
 <p><IMG src="doc17.png" border="1" alt="doc17"></p>
 
-<h3 id="sec_textmacros">4.5.1 Text macros</h3>
+<h3 id="sec_textmacros">4.6.1 Text macros</h3>
 <p>
 Apart from normal text, some special codes are recognized and replaced on insertion.<br>
 <ul>
@@ -582,14 +645,14 @@ For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)",
 </ul>
 </p>
 
-<h3 id="SECTION33b">4.5.2 Environment macros</h3>
+<h3 id="SECTION33c">4.6.2 Environment macros</h3>
 <p>The text will be used as environment-name, thus "%environment" will be inserted as:<br>
 \begin{environment }<br>
 <br>
 \end{environment }<br>
 <br>
 Note: texstudio needs that the env-name starts with "%", though that character is not placed on insertion.</p>
-<h3 id="JAVASCRIPT-MACROS">4.5.3 Script Macros</h3>
+<h3 id="JAVASCRIPT-MACROS">4.6.3 Script Macros</h3>
 <p>Instead of using code snippets, you can also make use of scripting with QtScript. QtScript is an application scripting language based on <a href="http://doc.qt.io/qt-5/ecmascript.html">ECMAScript</a>. Since QtScript and JavaScript are both an implementation of ECMAScript, you'll pick up QtScript easily if you are familiar with JavaScript.</p>
 
 <p>Put "%SCRIPT" in the first line to declare a macro as a script. Here are the objects that provide the interface to the TeXstudio internals:</p>
@@ -1068,8 +1131,8 @@ ui.show();                                           //show dialog
 </pre> The dialog is described in an ui file which can be created with the Qt Designer. </li>
 </ul>
 <p>More examples can be found in the <a href='https://github.com/texstudio-org/texstudio/wiki/Scripts'>Wiki</a>.
-<h3 id="sectionTriggers">4.5.4 Triggers</h3>
-<h4>4.5.4.1 Regular Expressions</h4>
+<h3 id="sectionTriggers">4.6.4 Triggers</h3>
+<h4>4.6.4.1 Regular Expressions</h4>
 <p>In its simplest form, the trigger is simply a text, which is replaced by the macro.
 E.g. trigger="eg" macro="example given", "eg" in "the leg" is replaced on pressing "g" by "example given"<br>
 As the trigger is a regular expression, more elaborate triggers can be created. TXS makes use of look-behind searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.</p>
@@ -1084,7 +1147,7 @@ triggerMatches[1] == 'a'
 </pre>
 <p>Note: Triggers are inactive while the completer is active. For example you cannot trigger on <code>\\sec</code> if the completer is open suggesting to complete <code>\section</code>.</p>
 
-<h4>4.5.4.2 Limitation of Scope</h4>
+<h4>4.6.4.2 Limitation of Scope</h4>
 <p>To the scope in which a macro will be active, you can prepend an expression of the pattern <code>(?[scope-type]:...)</code>.</p>
 <table>
 <tr><th>Scope Limiting Expression</th><th>Meaning</th></tr>
@@ -1098,7 +1161,7 @@ triggerMatches[1] == 'a'
 <code>(?language:latex)(?highlighted-as:comment,commentTodo)FIXME</code>. This trigger responds to typing "FIXME", but only in comments and todo-notes of latex documents.
 </p>
 
-<h4>4.5.4.3 Event Triggers</h4>
+<h4>4.6.4.3 Event Triggers</h4>
 <p>Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
 <table>
 <tr><th>Special Trigger</th><th>Executed on Event</th></tr>
@@ -1116,11 +1179,11 @@ triggerMatches[1] == 'a'
 <p>Multiple of these special triggers can be combined by | symbols.
 
 <!-- Deprecated:? <p>You can also launch your own commands (shortcuts : Alt+Shift+F1...Alt+Shift+F5). These commands are defined with the "User - User Commands" menu.</p>-->
-<h2 id="SECTION34">4.6 Pstricks support</h2>
+<h2 id="SECTION34">4.7 Pstricks support</h2>
 <p>The main pstricks commands can be inserted with the "Pstricks" panel in the "Structure View".</p>
-<h2 id="SECTION35">4.7 Metapost support</h2>
+<h2 id="SECTION35">4.8 Metapost support</h2>
 <p>The metapost keywords can be inserted with the "Metapost" panel in the "Structure View" and the "mpost" command can be launched via the "Tools" menu.</p>
-<h2 id="SECTION36">4.8 The "Convert to Html" command</h2>
+<h2 id="SECTION36">4.9 The "Convert to Html" command</h2>
 <p>This command (from the "Tools" menu ) produces a set of html pages from a LaTeX source file with one image for each html page. Each page in the slide presentation corresponds to one of the postscript pages you would obtain running LaTeX.<br>
 The command also produces an index page corresponding to the table of contents you would obtain with LaTeX. Each item of the index page includes a link to the corresponding html page.</p>
 <p>You can create links in the html pages by using the \ttwplink{}{} command in the tex file.<br>
@@ -1133,7 +1196,7 @@ Synopsis :<br>
 <p><IMG src="doc19.png" border="1" alt="doc19"></p>
 
 
-<h2 id="SECTION37">4.9 "Forward/Inverse search" with TeXstudio</h2>
+<h2 id="SECTION37">4.10 "Forward/Inverse search" with TeXstudio</h2>
 <h3>Integrated pdf-viewer</h3>
 <p>
 TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
@@ -1147,7 +1210,7 @@ Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pd
 <p>
 Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
 To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TeXstudio" -> "Commands").
-When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file.<br><br>
+When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file. If your PDF file is not in the same directory as your .tex file  you can use the <b>?p{pdf}ame</b> placeholder. For details see <a href="#SECTION33a">External Commands</a>.<br><br>
 On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde:///service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde:///programpath:service/control/[commands...]</span> to start the program if necessary.
 <br><br>
 Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
@@ -1235,7 +1298,7 @@ Launch qpdfview from TeXstudio: <span class="command">qpdfview --unique ?am.pdf#
 Launch TeXstudio from qpdfview: <span class="command">texstudio "%1" -line %2</span>
 </p>
 
-<h2 id="TEXCOM">4.10 Advanced header usage</h2>
+<h2 id="TEXCOM">4.11 Advanced header usage</h2>
 <p>So called "magic comments" are a way to adapt the options of the editor on a per-document level. The concept was <a href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a> and has been adopted in a number of editors since. TeXstudio supports the following magic comments:</p>
 <ul class="magiccomments">
 <li>
@@ -1276,7 +1339,7 @@ Changes during an edit session will only take effect when you reopen the file.
 <p>The special <code>% !BIB program</code> command is understood for compatibility with TeXShop and TeXWorks (also in the variant <code>% !BIB TS-program</code>). This is equivalent to <code>% !TeX TXS-program:bibliography = txs:///biber</code></p>
 </li>
 </ul>
-<h2 id="TEXSTUDIO-CMD">4.11 Synopsis of the TeXstudio command</h2>
+<h2 id="TEXSTUDIO-CMD">4.12 Synopsis of the TeXstudio command</h2>
 <p>
 <code>texstudio file [--config DIR] [--root] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy] [--no-session]</code><br><br>
 <table>
@@ -1301,7 +1364,7 @@ Changes during an edit session will only take effect when you reopen the file.
 Note: The most common tests are run automatically, if there were changes to the executable (i.e. TXS has been compiled since the last run). Furthermore all tests are run once a week.
 </p>
 
-<h2 id="SHORTCUTS">4.12 Keyboard shortcuts</h2>
+<h2 id="SHORTCUTS">4.13 Keyboard shortcuts</h2>
 <p>
 The keyboard shortcuts can be modified at Options -> Shortcuts.
 <p>
@@ -1427,14 +1490,14 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	</ul>
 </li>
 </ul>
-<h2 id="CWLDESCRIPTION">4.13 Description of the cwl format</h2>
+<h2 id="CWLDESCRIPTION">4.14 Description of the cwl format</h2>
 <p>cwl stands for completion word list and is a file format originally used in Kile to define the commands listed in the completer. TeXstudio uses an extended format of cwls to include additional semantic information and allow for cursor and placeholder placement. It uses them for the following purposes:</p>
 <ul>
 <li>Populating the autocompletion</li>
 <li>Knowledge on the valid commands in the current document (depending on \usepackage statements)</li>
 <li>Semantic information that provide additional context in the editor; e.g. a \ref-like command will check for the existence of the referenced label</li>
 </ul>
-<h3>4.13.1 cwl file format</h3>
+<h3>4.14.1 cwl file format</h3>
 <p>
 Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
 <p><code>&lt;command&gt;[#classification]</code><br></p>
@@ -1456,7 +1519,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
 </ul>
 <p>cwl files should be encoded as UTF-8.</p>
-<h3>4.13.2 Command format</h3>
+<h3>4.14.2 Command format</h3>
 <p>In its simplest form the command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>). New lines can be included in a command by <code>%\</code>.</p>
 <h4>Argument Names</h4>
 <p>The argument names are visible in the completer window and after completion as placeholders in the editor. In general, you are free to name the arguments as you like. We encurage to provide meaningful names e.g. <code>\parbox[position]{width}{text}</code> instead of <code>\parbox[arg1]{arg2}{arg3}</code>.</p>
@@ -1493,7 +1556,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>envname</code> and <code>environment name</code>: environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
-<h3>4.13.3 Classification format</h3>
+<h3>4.14.3 Classification format</h3>
 <p>The following classifications are known to TXS:</p>
 <table>
 <tr><th>Classifier</th><th>Meaning</th></tr>
@@ -1539,7 +1602,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 	<tr><td><code>\myplot{file}{customname%labeldef}</code></td><td>defines the second argument as label, but you are free to choose the name <code>customname</code> which will be used as a placeholder in the completer.</td></tr>
 	<tr><td><code>\myplot{file}{label1%labeldef}{label2%labeldef}</code></td><td>defines the second and third arguments as labels.</td></tr>
 </table>
-<h3>4.13.4 cwl guidelines</h3>
+<h3>4.14.4 cwl guidelines</h3>
 <p>Though TeXstudio can automatically create cwls from packages, these autogenerated cwls do not contain meaningful argument names and no classification of commands. Therefore we ship hand-tuned cwls for many packages. We encourage users  to contribute new cwl files. These should have the following attributes:</p>
 <ul>
   <li><b>package-based:</b> Each cwl should correspond to a package. The exception are some cwls containing fundamental (La)TeX commands, but we've already written them so you should not have to bother. The cwl should be named like the package so that automatic loading works. If you <code>\usepackage{mypackage}</code> TeXstudio will load mypackage.cwl if available.</li>
@@ -1548,7 +1611,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><b>priorized:</b> Some packages may specify very many commands. Mark the unusual ones by the *-classifier to prevent the completer from overcrowding with rarely used commands.</li>
 </ul>
 
-<h3>4.13.5 cwl file placement</h3>
+<h3>4.14.5 cwl file placement</h3>
 <p>cwl files can be provided from three locations. If present, the user provided cwl is taken, if not built-in versions are taken. As a last resort, txs automatically generates cwls from latex styles, though these only serve to provide syntax information. Context information for arguments are not available and no completion hints are given.</p>
 <ul>
 <li><b>%appdata%\texstudio\completion\user or .config/texstudio/completion/user</b> user generated cwls</li>
@@ -1557,7 +1620,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 </ul>
 
 
-<h2 id="TABLETEMPLATE">4.14 Using table templates</h2>
+<h2 id="TABLETEMPLATE">4.15 Using table templates</h2>
 <p>Texstudio offers the possibility to reformat an existing latex table after a table template.<br>
 For example, you have entered following table into txs:
 <pre>
@@ -1586,7 +1649,7 @@ c&amp;d\\ \hline
 \end{tabular}
 </pre>
 <p>These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.<p>
-<h3>4.14.1 Creating table templates</h3>
+<h3>4.15.1 Creating table templates</h3>
 
 <p>The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.</p>
 <p>Meta data is used to provide additional information for the template. It can be stored in a <code>metaData</code> object in the source code. The code <code>var metaData = {</code> has to start on the first line of the file. Currently only string values are accepted. It is possible to use html tags for formatting. Example:</p>
