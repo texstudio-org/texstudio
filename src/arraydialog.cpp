@@ -23,23 +23,23 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 	ui.tableWidget->setColumnCount(2);
 
 	ui.spinBoxRows->setValue(2);
-	ui.spinBoxRows->setRange(1,99);
-	connect(ui.spinBoxRows, SIGNAL(valueChanged(int)),this, SLOT(newRows(int)));
+	ui.spinBoxRows->setRange(1, 99);
+	connect(ui.spinBoxRows, SIGNAL(valueChanged(int)), this, SLOT(newRows(int)));
 
 	ui.spinBoxColumns->setValue(2);
 	ui.spinBoxColumns->setRange(1,99);
-	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)),this, SLOT(newColumns(int)));
+	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)), this, SLOT(newColumns(int)));
 
-	ui.comboAlignment->insertItem(0,tr("Center"));
-	ui.comboAlignment->insertItem(1,tr("Left"));
-	ui.comboAlignment->insertItem(2,tr("Right"));
+	ui.comboAlignment->insertItem(0, tr("Center"), 'c');
+	ui.comboAlignment->insertItem(1, tr("Left"), 'l');
+	ui.comboAlignment->insertItem(2, tr("Right"), 'r');
 
-	ui.comboEnvironment->insertItem(0,"array");
-	ui.comboEnvironment->insertItem(1,"matrix");
-	ui.comboEnvironment->insertItem(2,"pmatrix");
-	ui.comboEnvironment->insertItem(3,"bmatrix");
-	ui.comboEnvironment->insertItem(4,"vmatrix");
-	ui.comboEnvironment->insertItem(5,"Vmatrix");
+	ui.comboEnvironment->insertItem(0, "array");
+	ui.comboEnvironment->insertItem(1, "matrix");
+	ui.comboEnvironment->insertItem(2, "pmatrix");
+	ui.comboEnvironment->insertItem(3, "bmatrix");
+	ui.comboEnvironment->insertItem(4, "vmatrix");
+	ui.comboEnvironment->insertItem(5, "Vmatrix");
 	setWindowTitle(tr("Quick Array"));
 }
 
@@ -53,35 +53,32 @@ QString ArrayDialog::getLatexText()
 	QString env = ui.comboEnvironment->currentText();
 	QString text = QString("\\begin{") + env + "}";
 	if (env == "array") {
-		text += "{";
-		QString al;
-		if ((ui.comboAlignment->currentIndex()) == 0) al = QString("c");
-		if ((ui.comboAlignment->currentIndex()) == 1) al = QString("l");
-		if ((ui.comboAlignment->currentIndex()) == 2) al = QString("r");
-		for (int j = 0; j < ncols; j++) {
-			text += al;
-		}
-		text += "}";
+		QChar alignChar = ui.comboAlignment->itemData(ui.comboAlignment->currentIndex()).toChar();
+		text += "{" + QString(ncols, alignChar) + "}";
 	}
 	text += QString("\n");
 	for (int i = 0; i < nrows - 1; i++) {
 		for (int j = 0; j < ncols - 1; j++) {
 			QTableWidgetItem *item = ui.tableWidget->item(i, j);
-			if (item) text += item->text() + QString(" & ");
-			else text += QString(" & ");
+			if (item)
+				text += item->text();
+			text += QString(" & ");
 		}
 		QTableWidgetItem *item = ui.tableWidget->item(i, ncols - 1);
-		if (item) text += item->text() + QString(" \\\\ \n");
-		else text += QString(" \\\\ \n");
+		if (item)
+			text += item->text();
+		text += QString(" \\\\\n");
 	}
 	for (int j = 0; j < ncols - 1; j++) {
 		QTableWidgetItem *item = ui.tableWidget->item(nrows - 1, j);
-		if (item) text += item->text() + QString(" & ");
-		else text += QString(" & ");
+		if (item)
+			text += item->text();
+		text += QString(" & ");
 	}
 	QTableWidgetItem *item = ui.tableWidget->item(nrows - 1, ncols - 1);
-	if (item) text += item->text() + QString("\n\\end{") + env + "} ";
-	else text += QString("\n\\end{") + env + "} ";
+	if (item)
+		text += item->text();
+	text += QString("\n\\end{") + env + "}\n";
 	return text;
 }
 
@@ -92,4 +89,3 @@ void ArrayDialog::newRows(int num) {
 void ArrayDialog::newColumns(int num) {
 	ui.tableWidget->setColumnCount(num);
 }
-
