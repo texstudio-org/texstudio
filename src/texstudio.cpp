@@ -5146,7 +5146,10 @@ void Texstudio::quickTabular()
 	QStringList borderlist;
 	borderlist << "|" << "||" << "" << "@{}";
 	QStringList alignlist;
-	alignlist << "c" << "l" << "r" << "p{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}p{3cm}" << ">{\\raggedleft\\arraybackslash}p{3cm}";
+	alignlist << "c" << "l" << "r"
+			  << QString("<SEP>")  << "p{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}p{3cm}" << ">{\\raggedleft\\arraybackslash}p{3cm}"
+			  << QString("<SEP>")  << "m{3cm}" << ">{\\raggedright\\arraybackslash}m{3cm}" << ">{\\centering\\arraybackslash}m{3cm}" << ">{\\raggedleft\\arraybackslash}m{3cm}"
+			  << QString("<SEP>")  << "b{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}b{3cm}" << ">{\\raggedleft\\arraybackslash}b{3cm}";
 	TabDialog *quickDlg = new TabDialog(this, "Tabular");
     QTableWidgetItem *item=nullptr;
 	if ( quickDlg->exec() ) {
