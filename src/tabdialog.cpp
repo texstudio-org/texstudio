@@ -57,11 +57,23 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.comboBoxColAl->insertItem(0, tr("Center", "tabular alignment"));
 	ui.comboBoxColAl->insertItem(1, tr("Left", "tabular alignment"));
 	ui.comboBoxColAl->insertItem(2, tr("Right", "tabular alignment"));
-	ui.comboBoxColAl->insertItem(3, tr("p{} (fixed width - justified)", "tabular alignment"));
-	ui.comboBoxColAl->insertItem(4, tr("p{} (fixed width - left)", "tabular alignment"));
-	ui.comboBoxColAl->insertItem(5, tr("p{} (fixed width - center)", "tabular alignment"));
-	ui.comboBoxColAl->insertItem(6, tr("p{} (fixed width - right)", "tabular alignment"));
+	ui.comboBoxColAl->insertSeparator(3);
+	ui.comboBoxColAl->insertItem(4, tr("p{} (fixed width - top / justified)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(5, tr("p{} (fixed width - top / left)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(6, tr("p{} (fixed width - top / center)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(7, tr("p{} (fixed width - top / right)", "tabular alignment"));
+	ui.comboBoxColAl->insertSeparator(8);
+	ui.comboBoxColAl->insertItem(9, tr("m{} (fixed width - center / justified)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(10, tr("m{} (fixed width - center / left)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(11, tr("m{} (fixed width - center / center)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(12, tr("m{} (fixed width - center / right)", "tabular alignment"));
+	ui.comboBoxColAl->insertSeparator(13);
+	ui.comboBoxColAl->insertItem(14, tr("b{} (fixed width - bottom / justified)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(15, tr("b{} (fixed width - bottom / left)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(16, tr("b{} (fixed width - bottom / center)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(17, tr("b{} (fixed width - bottom / right)", "tabular alignment"));
 	ui.comboBoxColAl->setCurrentIndex(0);
+	ui.comboBoxColAl->setMaxVisibleItems(18);
 
 	ui.comboLeftBorder->insertItem(0, "|");
 	ui.comboLeftBorder->insertItem(1, "||");
@@ -246,7 +258,10 @@ void TabDialog::updateTableWidget()
 {
 	QStringList borderlist, alignlist;
 	borderlist<< QString("|") << QString("||") << QString("") << QString("@{}");
-	alignlist << QString("c") << QString("l") << QString("r") << QString("j p{}") << QString("l p{}") << QString("c p{}") << QString("r p{}");
+	alignlist << QString("c") << QString("l") << QString("r")
+			  << QString("<SEP>") << QString("j p{}") << QString("l p{}") << QString("c p{}") << QString("r p{}")
+			  << QString("<SEP>")  << QString("j m{}") << QString("l m{}") << QString("c m{}") << QString("r m{}")
+			  << QString("<SEP>")  << QString("j b{}") << QString("l b{}") << QString("c b{}") << QString("r b{}");
 	int y = ui.spinBoxRows->value();
 	int x = ui.spinBoxColumns->value();
 	QStringList headerList;
