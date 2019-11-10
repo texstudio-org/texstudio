@@ -192,7 +192,7 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 		else searchFiles << s + "/";
 #if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
 	searchFiles << PREFIX"/share/texstudio/"; //X_11
-    searchFiles << QCoreApplication::applicationDirPath() + "../share/texstudio/"; // relative path for appimage
+    searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio/"; // relative path for appimage
 	if (fileName.endsWith(".html")) searchFiles << PREFIX"/share/doc/texstudio/html/"; //for Debian package
 #endif
 #ifdef Q_OS_MAC
