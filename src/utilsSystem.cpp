@@ -136,6 +136,7 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 	if (!dn.startsWith('/') && !dn.startsWith(QDir::separator())) dn = "/" + dn; //add / at beginning
 	searchFiles << ":" + dn; //resource fall back
 	searchFiles.append(additionalPreferredPaths);
+    searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio"; //appimage relative path
 	searchFiles << QCoreApplication::applicationDirPath() + dn; //windows new
     searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
     searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
