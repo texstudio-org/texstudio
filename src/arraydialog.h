@@ -23,6 +23,7 @@ public:
 	ArrayDialog(QWidget *parent = 0, const char *name = 0);
 	~ArrayDialog();
 	Ui::ArrayDialog ui;
+	QString getLatexText();
 
 protected slots:
 	void newRows(int num);

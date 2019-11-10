@@ -38,7 +38,7 @@ class InsertGraphics : public QDialog
 public:
     InsertGraphics(QWidget *parent = nullptr, InsertGraphicsConfig *conf = nullptr);
 	Q_INVOKABLE QString graphicsFile() const;
-	QString getCode() const;
+	QString getLatexText() const;
 	static QStringList imageFormats();
 
 private:

@@ -45,9 +45,50 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 
 ArrayDialog::~ArrayDialog() {
 }
+
+QString ArrayDialog::getLatexText()
+{
+	int y = ui.spinBoxRows->value();
+	int x = ui.spinBoxColumns->value();
+	QString env = ui.comboEnvironment->currentText();
+	QString tag = QString("\\begin{") + env + "}";
+	if (env == "array") {
+		tag += "{";
+		QString al;
+		if ((ui.comboAlignment->currentIndex()) == 0) al = QString("c");
+		if ((ui.comboAlignment->currentIndex()) == 1) al = QString("l");
+		if ((ui.comboAlignment->currentIndex()) == 2) al = QString("r");
+		for (int j = 0; j < x; j++) {
+			tag += al;
+		}
+		tag += "}";
+	}
+	tag += QString("\n");
+	for (int i = 0; i < y - 1; i++) {
+		for (int j = 0; j < x - 1; j++) {
+			QTableWidgetItem *item = ui.tableWidget->item(i, j);
+			if (item) tag += item->text() + QString(" & ");
+			else tag += QString(" & ");
+		}
+		QTableWidgetItem *item = ui.tableWidget->item(i, x - 1);
+		if (item) tag += item->text() + QString(" \\\\ \n");
+		else tag += QString(" \\\\ \n");
+	}
+	for (int j = 0; j < x - 1; j++) {
+		QTableWidgetItem *item = ui.tableWidget->item(y - 1, j);
+		if (item) tag += item->text() + QString(" & ");
+		else tag += QString(" & ");
+	}
+	QTableWidgetItem *item = ui.tableWidget->item(y - 1, x - 1);
+	if (item) tag += item->text() + QString("\n\\end{") + env + "} ";
+	else tag += QString("\n\\end{") + env + "} ";
+	return tag;
+}
+
 void ArrayDialog::newRows(int num) {
 	ui.tableWidget->setRowCount(num);
 }
+
 void ArrayDialog::newColumns(int num) {
 	ui.tableWidget->setColumnCount(num);
 }

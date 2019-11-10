@@ -5144,53 +5144,16 @@ void Texstudio::quickTabular()
 	if ( !currentEditorView() )	return;
 	TabDialog *quickDlg = new TabDialog(this, "Tabular");
 	if ( quickDlg->exec() ) {
-		QString tag = quickDlg->getLatexText();
-		insertTag(tag, 0, 0);
+		insertTag(quickDlg->getLatexText(), 0, 0);
 	}
-
 }
 
 void Texstudio::quickArray()
 {
 	if (!currentEditorView())	return;
-	//TODO: move this in arraydialog class
-	QString al;
 	ArrayDialog *arrayDlg = new ArrayDialog(this, "Array");
 	if (arrayDlg->exec()) {
-		int y = arrayDlg->ui.spinBoxRows->value();
-		int x = arrayDlg->ui.spinBoxColumns->value();
-		QString env = arrayDlg->ui.comboEnvironment->currentText();
-		QString tag = QString("\\begin{") + env + "}";
-		if (env == "array") {
-			tag += "{";
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 0) al = QString("c");
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 1) al = QString("l");
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 2) al = QString("r");
-			for (int j = 0; j < x; j++) {
-				tag += al;
-			}
-			tag += "}";
-		}
-		tag += QString("\n");
-		for (int i = 0; i < y - 1; i++) {
-			for (int j = 0; j < x - 1; j++) {
-				QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, j);
-				if (item) tag += item->text() + QString(" & ");
-				else tag += QString(" & ");
-			}
-			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, x - 1);
-			if (item) tag += item->text() + QString(" \\\\ \n");
-			else tag += QString(" \\\\ \n");
-		}
-		for (int j = 0; j < x - 1; j++) {
-			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, j);
-			if (item) tag += item->text() + QString(" & ");
-			else tag += QString(" & ");
-		}
-		QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, x - 1);
-		if (item) tag += item->text() + QString("\n\\end{") + env + "} ";
-		else tag += QString("\n\\end{") + env + "} ";
-		insertTag(tag, 0, 0);
+		insertTag(arrayDlg->getLatexText(), 0, 0);
 	}
 }
 
@@ -5274,7 +5237,7 @@ void Texstudio::quickGraphics(const QString &graphicsFile)
 	if (!graphicsFile.isNull()) graphicsDlg->setGraphicsFile(graphicsFile);
 
 	if (graphicsDlg->exec()) {
-		editor->insertText(cur, graphicsDlg->getCode());
+		editor->insertText(cur, graphicsDlg->getLatexText());
 	} else {
 		editor->setCursor(origCur);
 	}
