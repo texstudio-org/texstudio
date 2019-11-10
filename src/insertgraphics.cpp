@@ -370,7 +370,7 @@ QString InsertGraphics::getCaptionLabelString(const InsertGraphicsConfig &conf) 
 	return s;
 }
 
-QString InsertGraphics::getCode() const
+QString InsertGraphics::getLatexText() const
 {
 	QString insert;
 	InsertGraphicsConfig conf = getConfig();

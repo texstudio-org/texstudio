@@ -48,41 +48,41 @@ ArrayDialog::~ArrayDialog() {
 
 QString ArrayDialog::getLatexText()
 {
-	int y = ui.spinBoxRows->value();
-	int x = ui.spinBoxColumns->value();
+	int nrows = ui.spinBoxRows->value();
+	int ncols = ui.spinBoxColumns->value();
 	QString env = ui.comboEnvironment->currentText();
-	QString tag = QString("\\begin{") + env + "}";
+	QString text = QString("\\begin{") + env + "}";
 	if (env == "array") {
-		tag += "{";
+		text += "{";
 		QString al;
 		if ((ui.comboAlignment->currentIndex()) == 0) al = QString("c");
 		if ((ui.comboAlignment->currentIndex()) == 1) al = QString("l");
 		if ((ui.comboAlignment->currentIndex()) == 2) al = QString("r");
-		for (int j = 0; j < x; j++) {
-			tag += al;
+		for (int j = 0; j < ncols; j++) {
+			text += al;
 		}
-		tag += "}";
+		text += "}";
 	}
-	tag += QString("\n");
-	for (int i = 0; i < y - 1; i++) {
-		for (int j = 0; j < x - 1; j++) {
+	text += QString("\n");
+	for (int i = 0; i < nrows - 1; i++) {
+		for (int j = 0; j < ncols - 1; j++) {
 			QTableWidgetItem *item = ui.tableWidget->item(i, j);
-			if (item) tag += item->text() + QString(" & ");
-			else tag += QString(" & ");
+			if (item) text += item->text() + QString(" & ");
+			else text += QString(" & ");
 		}
-		QTableWidgetItem *item = ui.tableWidget->item(i, x - 1);
-		if (item) tag += item->text() + QString(" \\\\ \n");
-		else tag += QString(" \\\\ \n");
+		QTableWidgetItem *item = ui.tableWidget->item(i, ncols - 1);
+		if (item) text += item->text() + QString(" \\\\ \n");
+		else text += QString(" \\\\ \n");
 	}
-	for (int j = 0; j < x - 1; j++) {
-		QTableWidgetItem *item = ui.tableWidget->item(y - 1, j);
-		if (item) tag += item->text() + QString(" & ");
-		else tag += QString(" & ");
+	for (int j = 0; j < ncols - 1; j++) {
+		QTableWidgetItem *item = ui.tableWidget->item(nrows - 1, j);
+		if (item) text += item->text() + QString(" & ");
+		else text += QString(" & ");
 	}
-	QTableWidgetItem *item = ui.tableWidget->item(y - 1, x - 1);
-	if (item) tag += item->text() + QString("\n\\end{") + env + "} ";
-	else tag += QString("\n\\end{") + env + "} ";
-	return tag;
+	QTableWidgetItem *item = ui.tableWidget->item(nrows - 1, ncols - 1);
+	if (item) text += item->text() + QString("\n\\end{") + env + "} ";
+	else text += QString("\n\\end{") + env + "} ";
+	return text;
 }
 
 void ArrayDialog::newRows(int num) {

@@ -150,74 +150,77 @@ QString TabDialog::getLatexText()
 {
 	QString placeholder;//(0x2022);
 
-	int y = ui.spinBoxRows->value();
-	int x = ui.spinBoxColumns->value();
-	QString tag = "\\begin{tabular}{";
-	for ( int j = 0; j < x; j++) {
-		tag += borderlist.at(colDataList.at(j).leftborder);
-		tag += alignlist.at(colDataList.at(j).alignment);
+	int nrows = ui.spinBoxRows->value();
+	int ncols = ui.spinBoxColumns->value();
+	QString text = "\\begin{tabular}{";
+	for ( int j = 0; j < ncols; j++) {
+		text += borderlist.at(colDataList.at(j).leftborder);
+		text += alignlist.at(colDataList.at(j).alignment);
 	}
-	tag += borderlist.at(ui.comboBoxEndBorder->currentIndex());
-	tag += "}\n";
-	QTableWidgetItem *item=nullptr;
-	for ( int i = 0; i < y; i++) {
-		if (liDataList.at(i).topborder) tag += "\\hline\n";
-		if (ui.checkBoxMargin->isChecked()) tag += "\\rule[-1ex]{0pt}{2.5ex} ";
+	text += borderlist.at(ui.comboBoxEndBorder->currentIndex());
+	text += "}\n";
+	QTableWidgetItem *item = nullptr;
+	for ( int i = 0; i < nrows; i++) {
+		if (liDataList.at(i).topborder) text += "\\hline\n";
+		if (ui.checkBoxMargin->isChecked()) text += "\\rule[-1ex]{0pt}{2.5ex} ";
 		if (liDataList.at(i).merge && (liDataList.at(i).mergeto > liDataList.at(i).mergefrom)) {
 			QString el = "";
-			for ( int j = 0; j < x; j++) {
+			for ( int j = 0; j < ncols; j++) {
 				item = ui.tableWidget->item(i, j);
 				QString itemText = (item) ? textToLatex(item->text()) : "";
 				if (j == liDataList.at(i).mergefrom - 1) {
 					el += itemText;
-					tag += "\\multicolumn{";
-					tag += QString::number(liDataList.at(i).mergeto - liDataList.at(i).mergefrom + 1);
-					tag += "}{";
-					if ((j == 0) && (colDataList.at(j).leftborder < 2)) tag += borderlist.at(colDataList.at(j).leftborder);
-					if (colDataList.at(j).alignment < 3) tag += alignlist.at(colDataList.at(j).alignment);
-					else tag += "c";
-					if (liDataList.at(i).mergeto == x) tag += borderlist.at(ui.comboBoxEndBorder->currentIndex());
-					else tag += borderlist.at(colDataList.at(liDataList.at(i).mergeto).leftborder);
-					tag += "}{";
+					text += "\\multicolumn{";
+					text += QString::number(liDataList.at(i).mergeto - liDataList.at(i).mergefrom + 1);
+					text += "}{";
+					if ((j == 0) && (colDataList.at(j).leftborder < 2)) text += borderlist.at(colDataList.at(j).leftborder);
+					if (colDataList.at(j).alignment < 3) text += alignlist.at(colDataList.at(j).alignment);
+					else text += "c";
+					if (liDataList.at(i).mergeto == ncols) text += borderlist.at(ui.comboBoxEndBorder->currentIndex());
+					else text += borderlist.at(colDataList.at(liDataList.at(i).mergeto).leftborder);
+					text += "}{";
 				} else if (j == liDataList.at(i).mergeto - 1) {
 					el += itemText;
 					if (el.isEmpty()) el = placeholder;
-					tag += el + "}";
-					if (j < x - 1) tag += " & ";
-					else tag += " \\\\\n";
+					text += el + "}";
+					if (j < ncols - 1) text += " & ";
+					else text += " \\\\\n";
 				} else if ((j > liDataList.at(i).mergefrom - 1) && (j < liDataList.at(i).mergeto - 1)) {
 					el += itemText;
 				} else {
 					if (itemText.isEmpty()) {
 						itemText = placeholder;
 					}
-					tag += itemText;
-					if (j < x - 1) tag += " & ";
-					else tag += " \\\\\n";
+					text += itemText;
+					if (j < ncols - 1) text += " & ";
+					else text += " \\\\\n";
 				}
 
 			}
 		} else {
-			for ( int j = 0; j < x - 1; j++) {
+			for ( int j = 0; j < ncols - 1; j++) {
 				item = ui.tableWidget->item(i, j);
 				QString itemText = (item) ? textToLatex(item->text()) : "";
 				if (itemText.isEmpty()) {
 					itemText = placeholder;
 				}
-				tag += itemText + " & ";
+				text += itemText + " & ";
 			}
-			item = ui.tableWidget->item(i, x - 1);
+			item = ui.tableWidget->item(i, ncols - 1);
 			QString itemText = (item) ? textToLatex(item->text()) : "";
 			if (itemText.isEmpty()) {
 				itemText = placeholder;
 			}
-			tag += itemText + " \\\\\n";
+			text += itemText + " \\\\\n";
 		}
 	}
-	if (ui.checkBoxBorderBottom->isChecked()) tag += "\\hline\n\\end{tabular}";
-	else tag += "\\end{tabular}";
-	if (tag.contains("arraybackslash")) tag = "% \\usepackage{array} is required\n" + tag;
-	return tag;
+	if (ui.checkBoxBorderBottom->isChecked())
+		text += "\\hline\n\\end{tabular}";
+	else
+		text += "\\end{tabular}";
+	if (text.contains("arraybackslash"))
+		text = "% \\usepackage{array} is required\n" + text;
+	return text;
 }
 
 void TabDialog::NewRows(int num)
@@ -350,15 +353,15 @@ void TabDialog::showColRowSettings(int row,int column)
 
 void TabDialog::updateTableWidget()
 {
-	int y = ui.spinBoxRows->value();
-	int x = ui.spinBoxColumns->value();
+	int nrows = ui.spinBoxRows->value();
+	int ncols = ui.spinBoxColumns->value();
 	QStringList headerList;
 	QString tag="";
-	for ( int j=0;j<x;j++)
+	for ( int j=0;j<ncols;j++)
 	{
 		tag=borderlist.at(colDataList.at(j).leftborder);
 		tag+=alignlistLabels.at(colDataList.at(j).alignment);
-		if (j<x-1) headerList.append(tag);
+		if (j<ncols-1) headerList.append(tag);
 	}
 	tag+=borderlist.at(ui.comboBoxEndBorder->currentIndex());
 	headerList.append(tag);
@@ -368,9 +371,9 @@ QColor spancolor = selBlendColor.dark( 140 );
 spancolor.setAlphaF( 0.2 );*/
 	QTableWidgetItem *item, *new_item;
 	QString content;
-	for ( int i=0;i<y;i++)
+	for ( int i=0;i<nrows;i++)
 	{
-		for ( int j=0;j<x;j++)
+		for ( int j=0;j<ncols;j++)
 		{
 			item=ui.tableWidget->item(i,j);
 			if (item)
