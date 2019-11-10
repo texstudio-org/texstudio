@@ -9284,7 +9284,7 @@ void Texstudio::findNextWordRepetion()
 void Texstudio::importPackage(QString name)
 {
 	if (!latexStyleParser) {
-        QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).getProgramNameUnquoted();
+		QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).getProgramNameUnquoted();
 		QString baseDir;
 		if (!QFileInfo(cmd_latex).isRelative())
 			baseDir = QFileInfo(cmd_latex).absolutePath() + "/";
@@ -9348,7 +9348,7 @@ void Texstudio::readinAllPackageNames()
 		}
 		if (configManager.scanInstalledLatexPackages) {
 			// start reading actually installed packages
-            QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).getProgramNameUnquoted();
+			QString cmd_latex = buildManager.getCommandInfo(BuildManager::CMD_LATEX).getProgramNameUnquoted();
 			QString baseDir;
 			if (!QFileInfo(cmd_latex).isRelative())
 				baseDir = QFileInfo(cmd_latex).absolutePath() + "/";
@@ -9368,8 +9368,8 @@ void Texstudio::readinAllPackageNames()
 			else
 				packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this); // TeXlive on windows uses kpsewhich
 #else
-            QString addPaths=BuildManager::resolvePaths(BuildManager::additionalSearchPaths);
-            packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this,addPaths);
+			QString addPaths=BuildManager::resolvePaths(BuildManager::additionalSearchPaths);
+			packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this,addPaths);
 #endif
 			connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
 			packageListReader->start();
@@ -9481,15 +9481,15 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 
 	if (editors) {
 		documents.enablePatch(false);
-        foreach (LatexDocument *doc, documents.getDocuments()) {
-            LatexEditorView *edView=doc->getEditorView();
-            if(edView){
-                QEditor *ed = edView->editor;
-                if (ed->languageDefinition() == oldLangDef) {
-                    ed->setLanguageDefinition(newLangDef);
-                    ed->highlight();
-                }
-            }
+		foreach (LatexDocument *doc, documents.getDocuments()) {
+		LatexEditorView *edView=doc->getEditorView();
+		if(edView) {
+			QEditor *ed = edView->editor;
+			if (ed->languageDefinition() == oldLangDef) {
+				ed->setLanguageDefinition(newLangDef);
+				ed->highlight();
+			}
+		}
 		}
 		documents.enablePatch(true);
 	}
@@ -9851,16 +9851,16 @@ bool Texstudio::checkSVNConflicted(bool substituteContents)
 		SVN::Status status = svn.status(fn);
 		if (status == SVN::InConflict) {
 			int ret = QMessageBox::warning(this,
-			                               tr("SVN Conflict!"),
-			                               tr(
-			                                   "%1is conflicted with repository.\n"
-			                                   "Press \"OK\" to show differences instead of the generated source by subversion\n"
-			                                   "Press \"Cancel\"to do nothing.\n"
-			                               ).arg(doc->getFileName()),
-			                               QMessageBox::Ok
-			                               |
-			                               QMessageBox::Cancel
-			                              );
+				tr("SVN Conflict!"),
+				tr(
+					"%1is conflicted with repository.\n"
+					"Press \"OK\" to show differences instead of the generated source by subversion\n"
+					"Press \"Cancel\"to do nothing.\n"
+				).arg(doc->getFileName()),
+				QMessageBox::Ok
+				|
+				QMessageBox::Cancel
+			);
 			if (ret == QMessageBox::Ok) {
 				QString path = qf.absolutePath();
 				QDir dir(path);
@@ -10071,27 +10071,27 @@ void Texstudio::checkLatexInstall()
 {
 
 	QString result;
-    // check dpi
+	// check dpi
 #if QT_VERSION > 0x050000
-    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    result+=QString("dpi: %1\n").arg(dpi);
+	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+	result+=QString("dpi: %1\n").arg(dpi);
 #endif
 	// run pdflatex
 	setStatusMessageProcess(QString("check pdflatex"));
 	QString buffer;
-    // create result editor here in order to avoid empty editor
-    fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
-    m_languages->setLanguageFromName(currentEditor(), "Plain text");
+	// create result editor here in order to avoid empty editor
+	fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
+	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 
 	CommandInfo cmdInfo = buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
-    QString cmd = cmdInfo.getProgramName();
+	QString cmd = cmdInfo.getProgramName();
 	// where is pdflatex located
 #ifdef Q_OS_WIN
 	runCommand("where " + cmd, &buffer);
-    result += "where pdflatex: " + buffer + "\n\n";
+	result += "where pdflatex: " + buffer + "\n\n";
 #else
 	runCommand("which " + cmd, &buffer);
-    result += "which pdflatex: " + buffer + "\n\n";
+	result += "which pdflatex: " + buffer + "\n\n";
 #endif
 	buffer.clear();
 	cmd += " -version";
@@ -10130,8 +10130,8 @@ void Texstudio::checkLatexInstall()
 	result += "    Log: " + buildManager.additionalLogPaths + "\n";
 	result += "    Pdf: " + buildManager.additionalPdfPaths + "\n";
 
-    //fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
-    //m_languages->setLanguageFromName(currentEditor(), "Plain text");
+	//fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
+	//m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(result, false);
 }
 /*!
@@ -10424,12 +10424,12 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 		return;
 	sidePanelSplitter->hide();
 	configManager.viewerEnlarged = true;
-    PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
-    if(!enlargedViewer){
-        rememberFollowFromScroll=pdfConfig->followFromScroll;
-    }
-    enlargedViewer=true;
-    pdfConfig->followFromScroll=false;
+	PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
+	if(!enlargedViewer){
+		rememberFollowFromScroll=pdfConfig->followFromScroll;
+	}
+	enlargedViewer=true;
+	pdfConfig->followFromScroll=false;
 	viewer->setStateEnlarged(true);
 #endif
 }
@@ -10449,11 +10449,11 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 	PDFDocument *viewer = oldPDFs.first();
 	if (!viewer->embeddedMode)
 		return;
-    if(enlargedViewer){
-        PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
-        pdfConfig->followFromScroll=rememberFollowFromScroll;
-        enlargedViewer=false;
-    }
+	if(enlargedViewer){
+		PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
+		pdfConfig->followFromScroll=rememberFollowFromScroll;
+		enlargedViewer=false;
+	}
 	viewer->setStateEnlarged(false);
 #endif
 }
@@ -10494,19 +10494,19 @@ void Texstudio::showExtendedSearch()
  */
 void Texstudio::changeIconSize(int value)
 {
-    // adapt icon size to dpi
+	// adapt icon size to dpi
 #if QT_VERSION> 0x050000
-    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    double scale=dpi/96;
+	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+	double scale=dpi/96;
 #else
-    double scale=1;
+	double scale=1;
 #endif
-    int iconWidth=qRound(value*scale);
+	int iconWidth=qRound(value*scale);
 
-    setIconSize(QSize(iconWidth, iconWidth));
+	setIconSize(QSize(iconWidth, iconWidth));
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
-        if (!pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
+		if (!pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
 	}
 #endif
 }
@@ -10519,28 +10519,28 @@ void Texstudio::changeIconSize(int value)
  */
 void Texstudio::changeSecondaryIconSize(int value)
 {
-    // adapt icon size to dpi
+	// adapt icon size to dpi
 #if QT_VERSION> 0x050000
-    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    double scale=dpi/96;
+	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+	double scale=dpi/96;
 #else
-    double scale=1;
+	double scale=1;
 #endif
-    int iconWidth=qRound(value*scale);
+	int iconWidth=qRound(value*scale);
 
-    centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
-    leftPanel->setToolbarIconSize(iconWidth);
+	centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
+	leftPanel->setToolbarIconSize(iconWidth);
 
 	foreach (QObject *c, statusBar()->children()) {
 		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
 		if (bt) {
-            bt->setIconSize(QSize(iconWidth, iconWidth));
+			bt->setIconSize(QSize(iconWidth, iconWidth));
 		}
 	}
 
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
-        if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
+		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
 	}
 #endif
 }
@@ -10554,19 +10554,19 @@ void Texstudio::changeSecondaryIconSize(int value)
  */
 void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 {
-    // adapt icon size to dpi
+	// adapt icon size to dpi
 #if QT_VERSION> 0x050000
-    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    double scale=dpi/96;
+	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+	double scale=dpi/96;
 #else
-    double scale=1;
+	double scale=1;
 #endif
-    int iconWidth=qRound(value*scale);
+	int iconWidth=qRound(value*scale);
 
 	if (changePanel) {
 		leftPanel->setCurrentWidget(leftPanel->widget("symbols"));
 	}
-    symbolWidget->setSymbolSize(iconWidth);
+	symbolWidget->setSymbolSize(iconWidth);
 }
 /*!
  * \brief displays error messages from network replies which are used to communicate with LT
@@ -10574,19 +10574,19 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
  */
 
 void Texstudio::LTErrorMessage(QString message){
-    // adapt icon size to dpi
+	// adapt icon size to dpi
 #if QT_VERSION> 0x050000
-    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    double scale=dpi/96;
+	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+	double scale=dpi/96;
 #else
-    double scale=1;
+	double scale=1;
 #endif
-    int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
+	int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
 
-    QIcon icon = getRealIconCached("languagetool");
-    QSize iconSize = QSize(iconWidth, iconWidth);
-    statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
-    statusLabelLanguageTool->setToolTip(QString(tr("Error when communicating with LT: %1")).arg(message));
+	QIcon icon = getRealIconCached("languagetool");
+	QSize iconSize = QSize(iconWidth, iconWidth);
+	statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
+	statusLabelLanguageTool->setToolTip(QString(tr("Error when communicating with LT: %1")).arg(message));
 }
 
 /*! @} */
