@@ -61,6 +61,8 @@ HEADERS += \
     $$PWD/mostQtHeaders.h \
     $$PWD/pdfsplittool.h \
     $$PWD/qmetautils.h \
+    $$PWD/debugloggermain.h \
+    $$PWD/debugloggerqt.h \
     $$PWD/quickbeamerdialog.h \
     $$PWD/quickdocumentdialog.h \
     $$PWD/randomtextgenerator.h \
@@ -162,6 +164,8 @@ SOURCES += \
     $$PWD/minisplitter.cpp \
     $$PWD/pdfsplittool.cpp \
     $$PWD/qmetautils.cpp \
+    $$PWD/debugloggermain.cpp \
+    $$PWD/debugloggerqt.cpp \
     $$PWD/quickbeamerdialog.cpp \
     $$PWD/quickdocumentdialog.cpp \
     $$PWD/randomtextgenerator.cpp \

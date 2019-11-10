@@ -397,6 +397,10 @@ freebsd-* {
     DEFINES += NO_TESTS
     message("tests disabled as you wish.")
 }
+!isEmpty(DEBUG_LOGGER) {
+    DEFINES += DEBUG_LOGGER
+    message("Enabling debug logger.")
+}
 
 # add git revision
 exists(./.git)  {

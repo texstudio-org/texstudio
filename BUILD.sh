@@ -83,12 +83,20 @@ if [ "$OPTION_PDFVIEWER" = yes ]; then
 else
 	OPTION_PHONON=no
 fi
+
 readswitchy "Do you want to build a debug or release version?" "debug release d r deb rel" debug;
-OPTION_DEBUG=$NEWVALUE
-case "$OPTION_DEBUG" in
-	d|deb|debug) readoption "Do you want to include tests in the debug build?" yes; OPTION_TESTS=$NEWVALUE;;
-	*) OPTION_TESTS=yes;;
+case "$NEWVALUE" in
+	d|deb|debug) OPTION_DEBUG_BUILD=yes;;
+	r|rel|release) OPTION_DEBUG_BUILD=no;;
 esac
+if [ "$OPTION_DEBUG_BUILD" = yes ]; then
+	readoption "Do you want to include tests in the debug build?" yes
+	OPTION_TESTS=$NEWVALUE
+else
+	OPTION_TESTS=yes
+fi
+readoption "Do you want to enable the debug logger?" no
+OPTION_DEBUG_LOGGER=$NEWVALUE
 
 readoption "Do you want to install TexStudio after building it?" yes;
 DO_INSTALL=$NEWVALUE
@@ -103,14 +111,12 @@ TXSCOMPILEOPTIONS=$*
 if [ "$OPTION_PDFVIEWER" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_POPPLER_PREVIEW=true"; fi
 if [ "$OPTION_PHONON" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS PHONON=true"; fi
 if [ "$OPTION_TESTS" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_TESTS=true"; fi
-case "$OPTION_DEBUG" in
-r|rel|release)
-	TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS CONFIG-=debug CONFIG-=debug_and_release CONFIG+=release"
-	;;
-*)
+if [ "$OPTION_DEBUG_BUILD" = yes ]; then
 	TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS CONFIG+=debug CONFIG-=debug_and_release CONFIG-=release"
-	;;
-esac
+else
+	TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS CONFIG-=debug CONFIG-=debug_and_release CONFIG+=release"
+fi
+if [ "$OPTION_DEBUG_LOGGER" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS DEBUG_LOGGER=true"; fi
 
 PATH=$QTDIR/bin:$PATH
 LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH

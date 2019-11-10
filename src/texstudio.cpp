@@ -20,6 +20,7 @@
 #include "cleandialog.h"
 
 #include "debughelper.h"
+#include "debugloggermain.h"
 
 #include "dblclickmenubar.h"
 #include "filechooser.h"
@@ -6587,6 +6588,9 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 #ifndef NO_POPPLER_PREVIEW
 		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
 		if (args[i] == "--page") page = args[++i].toInt() - 1;
+#endif
+#ifdef DEBUG_LOGGER
+		if (args[i] == "--debug-logfile") debugLoggerStart(args[++i]);
 #endif
 	}
 
