@@ -845,7 +845,8 @@ QSettings *ConfigManager::readSettings(bool reread)
 #define PREFIX
 #endif
 			fallBackPaths << PREFIX"/share/hunspell" << PREFIX"/share/myspell"
-			              << "/usr/share/hunspell" << "/usr/share/myspell" ;
+                          << "/usr/share/hunspell" << "/usr/share/myspell"
+                          << parseDir("[txs-app-dir]/../share/texstudio") ;
 #endif
 #ifdef Q_OS_MAC
 			fallBackPaths << parseDir("[txs-app-dir]/Contents/Resources") << "/Applications/texstudio.app/Contents/Resources";
@@ -884,7 +885,8 @@ QSettings *ConfigManager::readSettings(bool reread)
 		QStringList preferredPaths = QStringList() << parseDir("[txs-settings-dir]/dictionaries");
 		QStringList fallBackPaths;
 #ifdef Q_OS_LINUX
-		fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes" ;
+        fallBackPaths << PREFIX"/share/mythes" << "/usr/share/mythes"
+                      << parseDir("[txs-app-dir]/../share/texstudio") ;
 #endif
 		thesaurus_database = findResourceFile("th_" + QString(QLocale::system().name()) + "_v2.dat", true, preferredPaths, fallBackPaths);
 		if (thesaurus_database == "") thesaurus_database = findResourceFile("th_en_US_v2.dat", true, preferredPaths, fallBackPaths);
