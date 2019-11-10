@@ -13,6 +13,8 @@
 #include "utilsUI.h"
 //#include <QDebug>
 
+#include "smallUsefulFunctions.h"
+
 
 TabDialog::TabDialog(QWidget *parent, const char *name)
 	:QDialog( parent)
@@ -75,6 +77,17 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.comboBoxColAl->setCurrentIndex(0);
 	ui.comboBoxColAl->setMaxVisibleItems(18);
 
+	// alignList must match the entires in ui.comboBoxColAl
+	alignlist << "c" << "l" << "r"
+			  << QString("<SEP>")  << "p{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}p{3cm}" << ">{\\raggedleft\\arraybackslash}p{3cm}"
+			  << QString("<SEP>")  << "m{3cm}" << ">{\\raggedright\\arraybackslash}m{3cm}" << ">{\\centering\\arraybackslash}m{3cm}" << ">{\\raggedleft\\arraybackslash}m{3cm}"
+			  << QString("<SEP>")  << "b{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}b{3cm}" << ">{\\raggedleft\\arraybackslash}b{3cm}";
+
+	alignlistLabels << QString("c") << QString("l") << QString("r")
+			  << QString("<SEP>") << QString("j p{}") << QString("l p{}") << QString("c p{}") << QString("r p{}")
+			  << QString("<SEP>")  << QString("j m{}") << QString("l m{}") << QString("c m{}") << QString("r m{}")
+			  << QString("<SEP>")  << QString("j b{}") << QString("l b{}") << QString("c b{}") << QString("r b{}");
+
 	ui.comboLeftBorder->insertItem(0, "|");
 	ui.comboLeftBorder->insertItem(1, "||");
 	ui.comboLeftBorder->insertItem(2, tr("None", "tabular left border"));
@@ -86,6 +99,9 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.comboBoxEndBorder->insertItem(2, tr("None", "tabular right border"));
 	ui.comboBoxEndBorder->insertItem(3, tr("@{text}", "tabular right border"));
 	ui.comboLeftBorder->setCurrentIndex(0);
+
+	// borderlist must match the entires in ui.comboLeftBorder and ui.comboBoxEndBorder
+	borderlist << QString("|") << QString("||") << QString("") << QString("@{}");
 
 	ui.spinBoxNumCol->setValue(1);
 	ui.spinBoxNumLi->setValue(1);
@@ -126,6 +142,84 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 
 TabDialog::~TabDialog(){
 }
+
+/*!
+ * Return the LaTeX formatted text describing the table.
+ */
+QString TabDialog::getLatexText()
+{
+	QString placeholder;//(0x2022);
+
+	int y = ui.spinBoxRows->value();
+	int x = ui.spinBoxColumns->value();
+	QString tag = "\\begin{tabular}{";
+	for ( int j = 0; j < x; j++) {
+		tag += borderlist.at(colDataList.at(j).leftborder);
+		tag += alignlist.at(colDataList.at(j).alignment);
+	}
+	tag += borderlist.at(ui.comboBoxEndBorder->currentIndex());
+	tag += "}\n";
+	QTableWidgetItem *item=nullptr;
+	for ( int i = 0; i < y; i++) {
+		if (liDataList.at(i).topborder) tag += "\\hline\n";
+		if (ui.checkBoxMargin->isChecked()) tag += "\\rule[-1ex]{0pt}{2.5ex} ";
+		if (liDataList.at(i).merge && (liDataList.at(i).mergeto > liDataList.at(i).mergefrom)) {
+			QString el = "";
+			for ( int j = 0; j < x; j++) {
+				item = ui.tableWidget->item(i, j);
+				QString itemText = (item) ? textToLatex(item->text()) : "";
+				if (j == liDataList.at(i).mergefrom - 1) {
+					el += itemText;
+					tag += "\\multicolumn{";
+					tag += QString::number(liDataList.at(i).mergeto - liDataList.at(i).mergefrom + 1);
+					tag += "}{";
+					if ((j == 0) && (colDataList.at(j).leftborder < 2)) tag += borderlist.at(colDataList.at(j).leftborder);
+					if (colDataList.at(j).alignment < 3) tag += alignlist.at(colDataList.at(j).alignment);
+					else tag += "c";
+					if (liDataList.at(i).mergeto == x) tag += borderlist.at(ui.comboBoxEndBorder->currentIndex());
+					else tag += borderlist.at(colDataList.at(liDataList.at(i).mergeto).leftborder);
+					tag += "}{";
+				} else if (j == liDataList.at(i).mergeto - 1) {
+					el += itemText;
+					if (el.isEmpty()) el = placeholder;
+					tag += el + "}";
+					if (j < x - 1) tag += " & ";
+					else tag += " \\\\\n";
+				} else if ((j > liDataList.at(i).mergefrom - 1) && (j < liDataList.at(i).mergeto - 1)) {
+					el += itemText;
+				} else {
+					if (itemText.isEmpty()) {
+						itemText = placeholder;
+					}
+					tag += itemText;
+					if (j < x - 1) tag += " & ";
+					else tag += " \\\\\n";
+				}
+
+			}
+		} else {
+			for ( int j = 0; j < x - 1; j++) {
+				item = ui.tableWidget->item(i, j);
+				QString itemText = (item) ? textToLatex(item->text()) : "";
+				if (itemText.isEmpty()) {
+					itemText = placeholder;
+				}
+				tag += itemText + " & ";
+			}
+			item = ui.tableWidget->item(i, x - 1);
+			QString itemText = (item) ? textToLatex(item->text()) : "";
+			if (itemText.isEmpty()) {
+				itemText = placeholder;
+			}
+			tag += itemText + " \\\\\n";
+		}
+	}
+	if (ui.checkBoxBorderBottom->isChecked()) tag += "\\hline\n\\end{tabular}";
+	else tag += "\\end{tabular}";
+	if (tag.contains("arraybackslash")) tag = "% \\usepackage{array} is required\n" + tag;
+	return tag;
+}
+
 void TabDialog::NewRows(int num)
 {
 	ui.tableWidget->setRowCount( num );
@@ -256,12 +350,6 @@ void TabDialog::showColRowSettings(int row,int column)
 
 void TabDialog::updateTableWidget()
 {
-	QStringList borderlist, alignlist;
-	borderlist<< QString("|") << QString("||") << QString("") << QString("@{}");
-	alignlist << QString("c") << QString("l") << QString("r")
-			  << QString("<SEP>") << QString("j p{}") << QString("l p{}") << QString("c p{}") << QString("r p{}")
-			  << QString("<SEP>")  << QString("j m{}") << QString("l m{}") << QString("c m{}") << QString("r m{}")
-			  << QString("<SEP>")  << QString("j b{}") << QString("l b{}") << QString("c b{}") << QString("r b{}");
 	int y = ui.spinBoxRows->value();
 	int x = ui.spinBoxColumns->value();
 	QStringList headerList;
@@ -269,7 +357,7 @@ void TabDialog::updateTableWidget()
 	for ( int j=0;j<x;j++)
 	{
 		tag=borderlist.at(colDataList.at(j).leftborder);
-		tag+=alignlist.at(colDataList.at(j).alignment);
+		tag+=alignlistLabels.at(colDataList.at(j).alignment);
 		if (j<x-1) headerList.append(tag);
 	}
 	tag+=borderlist.at(ui.comboBoxEndBorder->currentIndex());

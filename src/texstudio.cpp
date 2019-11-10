@@ -5142,83 +5142,9 @@ void Texstudio::insertBib()
 void Texstudio::quickTabular()
 {
 	if ( !currentEditorView() )	return;
-	QString placeholder;//(0x2022);
-	QStringList borderlist;
-	borderlist << "|" << "||" << "" << "@{}";
-	QStringList alignlist;
-	alignlist << "c" << "l" << "r"
-			  << QString("<SEP>")  << "p{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}p{3cm}" << ">{\\raggedleft\\arraybackslash}p{3cm}"
-			  << QString("<SEP>")  << "m{3cm}" << ">{\\raggedright\\arraybackslash}m{3cm}" << ">{\\centering\\arraybackslash}m{3cm}" << ">{\\raggedleft\\arraybackslash}m{3cm}"
-			  << QString("<SEP>")  << "b{3cm}" << ">{\\raggedright\\arraybackslash}p{3cm}" << ">{\\centering\\arraybackslash}b{3cm}" << ">{\\raggedleft\\arraybackslash}b{3cm}";
 	TabDialog *quickDlg = new TabDialog(this, "Tabular");
-    QTableWidgetItem *item=nullptr;
 	if ( quickDlg->exec() ) {
-		int y = quickDlg->ui.spinBoxRows->value();
-		int x = quickDlg->ui.spinBoxColumns->value();
-		QString tag = "\\begin{tabular}{";
-		for ( int j = 0; j < x; j++) {
-			tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
-			tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
-		}
-		tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-		tag += "}\n";
-		for ( int i = 0; i < y; i++) {
-			if (quickDlg->liDataList.at(i).topborder) tag += "\\hline\n";
-			if (quickDlg->ui.checkBoxMargin->isChecked()) tag += "\\rule[-1ex]{0pt}{2.5ex} ";
-			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto > quickDlg->liDataList.at(i).mergefrom)) {
-				QString el = "";
-				for ( int j = 0; j < x; j++) {
-					item = quickDlg->ui.tableWidget->item(i, j);
-					QString itemText = (item) ? textToLatex(item->text()) : "";
-					if (j == quickDlg->liDataList.at(i).mergefrom - 1) {
-						el += itemText;
-						tag += "\\multicolumn{";
-						tag += QString::number(quickDlg->liDataList.at(i).mergeto - quickDlg->liDataList.at(i).mergefrom + 1);
-						tag += "}{";
-						if ((j == 0) && (quickDlg->colDataList.at(j).leftborder < 2)) tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
-						if (quickDlg->colDataList.at(j).alignment < 3) tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
-						else tag += "c";
-						if (quickDlg->liDataList.at(i).mergeto == x) tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-						else tag += borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
-						tag += "}{";
-					} else if (j == quickDlg->liDataList.at(i).mergeto - 1) {
-						el += itemText;
-						if (el.isEmpty()) el = placeholder;
-						tag += el + "}";
-						if (j < x - 1) tag += " & ";
-						else tag += " \\\\\n";
-					} else if ((j > quickDlg->liDataList.at(i).mergefrom - 1) && (j < quickDlg->liDataList.at(i).mergeto - 1)) {
-						el += itemText;
-					} else {
-						if (itemText.isEmpty()) {
-							itemText = placeholder;
-						}
-						tag += itemText;
-						if (j < x - 1) tag += " & ";
-						else tag += " \\\\\n";
-					}
-
-				}
-			} else {
-				for ( int j = 0; j < x - 1; j++) {
-					item = quickDlg->ui.tableWidget->item(i, j);
-					QString itemText = (item) ? textToLatex(item->text()) : "";
-					if (itemText.isEmpty()) {
-						itemText = placeholder;
-					}
-					tag += itemText + " & ";
-				}
-				item = quickDlg->ui.tableWidget->item(i, x - 1);
-				QString itemText = (item) ? textToLatex(item->text()) : "";
-				if (itemText.isEmpty()) {
-					itemText = placeholder;
-				}
-				tag += itemText + " \\\\\n";
-			}
-		}
-		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag += "\\hline\n\\end{tabular}";
-		else tag += "\\end{tabular}";
-		if (tag.contains("arraybackslash")) tag = "% \\usepackage{array} is required\n" + tag;
+		QString tag = quickDlg->getLatexText();
 		insertTag(tag, 0, 0);
 	}
 

@@ -21,6 +21,7 @@ struct colData
     int alignment;
     int leftborder;
     };
+
 struct liData
     {
     bool topborder;
@@ -28,12 +29,14 @@ struct liData
     int mergefrom;
     int mergeto;
     };
+
 class TabDialog : public QDialog  {
-   Q_OBJECT
+	Q_OBJECT
 public:
-    TabDialog(QWidget *parent=nullptr, const char *name=nullptr);
+	TabDialog(QWidget *parent=nullptr, const char *name=nullptr);
 	~TabDialog();
 	Ui::TabDialog ui;
+	QString getLatexText();
 QList<colData> colDataList;
 QList<liData> liDataList;
 private slots:
@@ -48,6 +51,10 @@ private slots:
   void showRowSettings(int row);
   void showColRowSettings(int row,int column);
   void updateTableWidget();
+private:
+  QStringList alignlist;
+  QStringList alignlistLabels;
+  QStringList borderlist;
 };
 
 
