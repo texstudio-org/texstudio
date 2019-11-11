@@ -24,7 +24,7 @@ void PreviewLabel::setScaledPixmap(const QPixmap &pm)
 
 void PreviewLabel::resizeEvent(QResizeEvent *event)
 {
-	Q_UNUSED(event);
+	Q_UNUSED(event)
 	setPixmapWithResizing(currentPixmap);
 }
 
@@ -166,7 +166,7 @@ void TemplateSelector::checkTargetPath()
 
 void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *previousItem)
 {
-	Q_UNUSED(previousItem);
+	Q_UNUSED(previousItem)
 
 	QPushButton *pbOk = ui.buttonBox->button(QDialogButtonBox::Ok);
 	Q_ASSERT(pbOk);

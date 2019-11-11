@@ -244,7 +244,7 @@ QTreeWidgetItem *UserMenuDialog::findCreateFolder(QTreeWidgetItem *parent, QStri
 
 void UserMenuDialog::change(QTreeWidgetItem *current,QTreeWidgetItem *previous)
 {
-    Q_UNUSED(previous);
+    Q_UNUSED(previous)
     if (current==nullptr) return;
     QVariant v=current->data(0,Qt::UserRole);
     if(v.isValid()){

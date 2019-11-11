@@ -286,7 +286,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 
 QVariant LatexDocumentsModel::headerData ( int section, Qt::Orientation orientation, int role ) const
 {
-	Q_UNUSED(orientation);
+	Q_UNUSED(orientation)
 	if (section != 0) return QVariant();
 	if (role != Qt::DisplayRole) return QVariant();
 	return QVariant("Structure");
@@ -304,7 +304,7 @@ int LatexDocumentsModel::rowCount ( const QModelIndex &parent ) const
 
 int LatexDocumentsModel::columnCount ( const QModelIndex &parent ) const
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(parent)
 	return 1;
 }
 
@@ -481,7 +481,7 @@ void LatexDocumentsModel::resetHighlight()
 
 void LatexDocumentsModel::structureUpdated(LatexDocument *document, StructureEntry *highlight)
 {
-	Q_UNUSED(document);
+	Q_UNUSED(document)
     if (highlight) {
         mHighlightIndex = index(highlight);
     } else {
@@ -491,7 +491,7 @@ void LatexDocumentsModel::structureUpdated(LatexDocument *document, StructureEnt
 }
 void LatexDocumentsModel::structureLost(LatexDocument *document)
 {
-	Q_UNUSED(document);
+	Q_UNUSED(document)
 	resetAll();
 }
 

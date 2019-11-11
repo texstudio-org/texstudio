@@ -36,8 +36,8 @@ public:
 	virtual bool mousePressEvent(QMouseEvent *mouse, QEditor *editor)
 	{
 		// remove unused argument warnings
-		Q_UNUSED(mouse);
-		Q_UNUSED(editor);
+		Q_UNUSED(mouse)
+		Q_UNUSED(editor)
 		simpleRestoreAutoOverride();
 		resetBinding();
 		return false;
@@ -785,7 +785,7 @@ public:
 LatexCompleterConfig *CompletionListModel::config = nullptr;
 int CompletionListModel::rowCount(const QModelIndex &parent) const
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(parent)
 	return words.count();
 }
 
@@ -808,9 +808,9 @@ QVariant CompletionListModel::data(const QModelIndex &index, int role)const
 QVariant CompletionListModel::headerData(int section, Qt::Orientation orientation,
         int role) const
 {
-	Q_UNUSED(role);
-	Q_UNUSED(orientation);
-	Q_UNUSED(section);
+	Q_UNUSED(role)
+	Q_UNUSED(orientation)
+	Q_UNUSED(section)
 
 	return QVariant();
 }
@@ -1352,7 +1352,7 @@ void LatexCompleter::changeView(int pos)
 void LatexCompleter::listClicked(QModelIndex index)
 {
 
-	Q_UNUSED(index);
+	Q_UNUSED(index)
 	if (!completerInputBinding->insertCompletedWord()) {
 		editor->insertText("\n");
 	}

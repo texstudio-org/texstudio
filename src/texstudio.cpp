@@ -1672,7 +1672,7 @@ void Texstudio::editorTabMoved(int from, int to)
 
 void Texstudio::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo)
 {
-	Q_UNUSED(edTo);
+	Q_UNUSED(edTo)
 	saveEditorCursorToHistory(edFrom);
 }
 
@@ -3083,7 +3083,7 @@ void Texstudio::viewDocumentListHidden()
 
 void Texstudio::fileDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
 {
-	Q_UNUSED(duplicate);
+	Q_UNUSED(duplicate)
 	if (!QFile::exists(doc)) {
 		if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(doc))) {
 			if (configManager.recentFilesList.removeAll(doc) + configManager.recentProjectList.removeAll(doc) > 0)
@@ -6019,7 +6019,7 @@ void Texstudio::endRunningSubCommand(ProcessX *p, const QString &commandMain, co
 void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
 {
 	Q_UNUSED(commandMain)
-	Q_UNUSED(async);
+	Q_UNUSED(async)
 	if (pdf) {
 		runningPDFCommands--;
 #ifndef NO_POPPLER_PREVIEW
@@ -7156,7 +7156,7 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
 
 void Texstudio::masterDocumentChanged(LatexDocument *doc)
 {
-	Q_UNUSED(doc);
+	Q_UNUSED(doc)
 	Q_ASSERT(documents.singleMode() == !documents.masterDocument);
 	if (documents.singleMode()) {
 		outputView->resetMessagesAndLog();
@@ -8120,7 +8120,7 @@ void Texstudio::showImgPreview(const QString &fname)
 void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
 {
 	if (!currentEditorView()) return;
-	Q_UNUSED(page);
+	Q_UNUSED(page)
 	QPoint p;
 	//if(previewEquation)
 	p = currentEditorView()->getHoverPosistion();

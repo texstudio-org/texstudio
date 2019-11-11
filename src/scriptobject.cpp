@@ -72,7 +72,7 @@ void ScriptObject::crash_sigfpe()
 {
 	if (!confirmWarning("Do you want to let txs crash with a SIGFPE?")) return;
 	int x = 1 / global0;
-	Q_UNUSED(x);
+	Q_UNUSED(x)
 }
 
 void ScriptObject::crash_stack()
@@ -80,7 +80,7 @@ void ScriptObject::crash_stack()
 	if (!confirmWarning("Do you want to let txs crash with a stack overflow?")) return;
 	int temp = global0;
 	crash_stack();
-	Q_UNUSED(temp);
+	Q_UNUSED(temp)
 }
 
 void ScriptObject::crash_loop()

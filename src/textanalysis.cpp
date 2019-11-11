@@ -67,7 +67,7 @@ QVariant TextAnalysisModel::headerData(int section, Qt::Orientation orientation,
 
 int TextAnalysisModel::columnCount(const QModelIndex &parent) const
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(parent)
 
 	return 3;
 }

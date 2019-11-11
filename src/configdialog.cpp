@@ -90,20 +90,20 @@ void ShortcutComboBox::keyPressEvent(QKeyEvent *e)
 
 void ShortcutComboBox::focusInEvent(QFocusEvent *e)
 {
-	Q_UNUSED(e);
+	Q_UNUSED(e)
 	this->lineEdit()->selectAll();
 }
 
 
 ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(nullptr)
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(parent)
 }
 QWidget *ShortcutDelegate::createEditor(QWidget *parent,
                                         const QStyleOptionViewItem &option ,
                                         const QModelIndex &index) const
 {
-	Q_UNUSED(option);
+	Q_UNUSED(option)
 
     if (!index.isValid()) return nullptr;
 	const QAbstractItemModel *model = index.model();

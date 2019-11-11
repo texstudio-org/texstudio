@@ -339,8 +339,8 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 
 bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *editor)
 {
-	Q_UNUSED(event);
-	Q_UNUSED(editor);
+	Q_UNUSED(event)
+	Q_UNUSED(editor)
 	isDoubleClick = true;
 	return false;
 }
@@ -3034,7 +3034,7 @@ void LatexEditorView::lineMarkContextMenuRequested(int lineNumber, QPoint global
 
 void LatexEditorView::foldContextMenuRequested(int lineNumber, QPoint globalPos)
 {
-	Q_UNUSED(lineNumber);
+	Q_UNUSED(lineNumber)
 
 	QMenu menu;
 	QAction *act = new QAction(tr("Collapse All"), &menu);

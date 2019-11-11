@@ -1463,8 +1463,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	QSize sz = twi->sizeHint(0);
 	twi->setSizeHint(0, QSize(sz.width(), ht));
 #else
-	Q_UNUSED(twi);
-	Q_UNUSED(ht);
+	Q_UNUSED(twi)
+	Q_UNUSED(ht)
 #endif
 
 	ShortcutDelegate delegate;

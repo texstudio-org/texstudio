@@ -102,12 +102,12 @@ QString QLanguageDefinition::defaultLineMark() const
 }
 
 int QLanguageDefinition::parenthesisWeight(int id) const{
-	Q_UNUSED(id);
+	Q_UNUSED(id)
 	return 0;
 }
 
 bool QLanguageDefinition::possibleEndingOfOpeningParenthesis(const QString& text) const{
-	Q_UNUSED(text);
+	Q_UNUSED(text)
 	return false;
 }
 /*!
@@ -167,7 +167,7 @@ void QLanguageDefinition::collapse(QDocument *d, int line)
 }
 
 bool QLanguageDefinition::correctFolding(QDocument *d){
-	Q_UNUSED(d);
+	Q_UNUSED(d)
 
 	return false;
 }

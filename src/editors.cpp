@@ -425,7 +425,7 @@ void Editors::tabBarContextMenu(const QPoint &point)
 
 void Editors::onEditorChangeByTabClick(LatexEditorView *from, LatexEditorView *to)
 {
-	Q_UNUSED(from);
+	Q_UNUSED(from)
 	// the original event comes from a tab widget. from is the previously selected tab in that widget
 	// which has not been the current one one if the tab widget has not been the current
 	emit editorAboutToChangeByTabClick(currentEditor(), to);

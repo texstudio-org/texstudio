@@ -2038,8 +2038,8 @@ bool QDocument::linesPartiallyFolded(int fromInc, int toInc){
     (useful if the blocks have changed)
 */
 void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
-	Q_UNUSED(fromInc);
-	Q_UNUSED(toInc);
+	Q_UNUSED(fromInc)
+	Q_UNUSED(toInc)
 	//TODO: Optimize it, use fromInc/toInc to handle it locally (problem: behaviour of closing brackets depends on open brackets
 	//      earlier in the document), merge the redunant folding correction in removeLines to this (problem: if all folded
 	//      lines are removed, the hidden flags which are checked by ld->correctFolding are already all correct, but the m_hidden

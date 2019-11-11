@@ -137,7 +137,7 @@ QDocumentCursor CursorHistory::back(const QDocumentCursor &currentCursor)
 
 QDocumentCursor CursorHistory::forward(const QDocumentCursor &currentCursor)
 {
-	Q_UNUSED(currentCursor);
+	Q_UNUSED(currentCursor)
 	CursorPosList::iterator next = nextValidEntry(currentEntry);
 	if (currentEntry == history.end() || next == history.end()) {
 		updateNavActions();

@@ -2003,7 +2003,7 @@ QString BuildManager::guessViewerFromProgramMagicComment(const QString &program)
 
 void BuildManager::singleInstanceCompleted(int status)
 {
-	Q_UNUSED(status);
+	Q_UNUSED(status)
 	QObject *s = sender();
 	REQUIRE(s);
 	for (QMap<QString, ProcessX *>::iterator it = runningCommands.begin(), end = runningCommands.end(); it != end;)
@@ -2014,7 +2014,7 @@ void BuildManager::singleInstanceCompleted(int status)
 
 void BuildManager::preamblePrecompileCompleted(int status)
 {
-	Q_UNUSED(status);
+	Q_UNUSED(status)
 	QProcess *p = qobject_cast<QProcess *>(sender());
 	REQUIRE(p);
 	if (p->exitCode() != 0 || p->exitStatus() != QProcess::NormalExit) {
@@ -2027,7 +2027,7 @@ void BuildManager::preamblePrecompileCompleted(int status)
 //now either dvips or dvipng is necessary if not already running
 void BuildManager::latexPreviewCompleted(int status)
 {
-	Q_UNUSED(status);
+	Q_UNUSED(status)
 	if (dvi2pngMode == DPM_DVIPNG) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
@@ -2069,7 +2069,7 @@ void BuildManager::latexPreviewCompleted(int status)
 //dvi to ps conversion is finished, call ghostscript to make a useable png from it
 void BuildManager::dvi2psPreviewCompleted(int status)
 {
-	Q_UNUSED(status);
+	Q_UNUSED(status)
 	ProcessX *p2 = qobject_cast<ProcessX *> (sender());
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
@@ -2091,7 +2091,7 @@ void BuildManager::PreviewLatexCompleted(int status){
 
 void BuildManager::conversionPreviewCompleted(int status)
 {
-	Q_UNUSED(status);
+	Q_UNUSED(status)
 	ProcessX *p2 = qobject_cast<ProcessX *> (sender());
 	if (!p2) return;
 	// put image in preview

@@ -957,7 +957,7 @@ bool recoverMainThreadFromOutside()
 
 bool changeContextToUndoRecoving(HANDLE thread, CONTEXT *c)
 {
-	Q_UNUSED(c);
+	Q_UNUSED(c)
 	return SetThreadContext(thread, &lastRecoveredContext);
 }
 
@@ -1275,7 +1275,7 @@ void registerCrashHandler(int mode)
 	Q_UNUSED(mode)
 }QString getLastCrashInformation(bool &wasLoop)
 {
-	Q_UNUSED(wasLoop);
+	Q_UNUSED(wasLoop)
 	return "";
 }
 
@@ -1356,7 +1356,7 @@ void initCrashHandler(int mode)
 	registerCrashHandler(mode);
 	if (mode >= 0) std::set_terminate(&catchUnhandledException);
 #else
-	Q_UNUSED(mode);
+	Q_UNUSED(mode)
 #endif
 }
 

@@ -3205,7 +3205,7 @@ static int min(const QList<QDocumentCursor>& l)
 
 bool QEditor::protectedCursor(const QDocumentCursor& c) const
 {
-        Q_UNUSED(c);
+        Q_UNUSED(c)
 	/*if ( c.hasSelection() )
 	{
 		int line = qMin(c.lineNumber(), c.anchorLineNumber()), end = qMax(c.lineNumber(), c.anchorLineNumber());

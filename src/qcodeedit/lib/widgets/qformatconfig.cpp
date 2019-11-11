@@ -607,7 +607,7 @@ void QFormatConfig::hideEvent(QHideEvent *e)
 }
 
 void QFormatConfig::showEvent(QShowEvent *e){
-	Q_UNUSED(e);
+	Q_UNUSED(e)
 	if (m_currentScheme || m_schemes.isEmpty()) 
 		return;
 

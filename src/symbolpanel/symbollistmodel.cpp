@@ -152,7 +152,7 @@ QStringList SymbolListModel::favorites() const
 
 int SymbolListModel::rowCount(const QModelIndex &parent) const
 {
-	Q_UNUSED(parent);
+	Q_UNUSED(parent)
 	return symbols.count();
 }
 

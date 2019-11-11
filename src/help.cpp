@@ -186,7 +186,7 @@ void Help::texdocAvailableRequest(const QString &package)
 
 void Help::texdocAvailableRequestFinished(int exitCode)
 {
-	Q_UNUSED(exitCode);
+	Q_UNUSED(exitCode)
 	QProcess *proc = qobject_cast<QProcess *>(sender());
 	if (!proc) return;
 	QString package = proc->property("package").toString();

@@ -462,7 +462,7 @@ void TitledPanel::setActivePageFromTabBar(int index)
 
 void TitledPanel::togglePageVisibleFromAction(bool on)
 {
-	Q_UNUSED(on);
+	Q_UNUSED(on)
 	auto *act = qobject_cast<QAction *>(sender());
 	if (!act || act->data().toString() == "") return;
 

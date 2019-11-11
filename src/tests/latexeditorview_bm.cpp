@@ -182,8 +182,8 @@ void LatexEditorViewBenchmark::linePaint(){
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
-	Q_UNUSED(start);
-	Q_UNUSED(count);
+	Q_UNUSED(start)
+	Q_UNUSED(count)
 
 	if (!all) {
 		qDebug() << "skipped benchmark";
@@ -268,8 +268,8 @@ void LatexEditorViewBenchmark::paintEvent(){
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
-	Q_UNUSED(start);
-	Q_UNUSED(count);
+	Q_UNUSED(start)
+	Q_UNUSED(count)
 
 	if (!all) {
 		qDebug() << "skipped benchmark";
