@@ -317,7 +317,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 	if (action) {
 		Q_ASSERT(type == PT_BOOL);
 		Q_ASSERT(action->isCheckable());
-		READ_FROM_OBJECT(bool, action->isChecked());
+		READ_FROM_OBJECT(bool, action->isChecked())
 	}
 
 	const QTextEdit *textEdit = qobject_cast<const QTextEdit *>(w);

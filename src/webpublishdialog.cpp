@@ -91,7 +91,7 @@ void WebPublishDialog::convert(const QString &fileName)
 		config->lastdir = workdir;
 		base = fi.completeBaseName();
 		if (workdir.endsWith("/")) 	htmldir = workdir + base + "_html";
-		else htmldir = workdir + "/" + base + "_html";;
+		else htmldir = workdir + "/" + base + "_html";
 		QDir HDir(htmldir);
 		if (HDir.exists()) {
 			QFileInfoList files = HDir.entryInfoList();

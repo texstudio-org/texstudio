@@ -1696,7 +1696,7 @@ void LatexCompleter::directoryLoaded(QString , QSet<QString> content)
 
 bool LatexCompleter::acceptTriggerString(const QString &trigger)
 {
-	return trigger == "\\" && (!config || config->enabled);;
+	return trigger == "\\" && (!config || config->enabled);
 }
 
 void LatexCompleter::setConfig(LatexCompleterConfig *config)

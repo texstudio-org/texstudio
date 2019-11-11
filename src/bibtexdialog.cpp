@@ -387,7 +387,7 @@ QString BibTeXDialog::textToInsert(const BibTeXType &entry, bool keepOptionalFie
 	foreach (const QString &s, entry.mandatoryFields) {
 		if (!s.contains("/")) {
 			result += s + " = {" + remainingFields.value(s, "%<" + s + "%>") + "},\n";
-			remainingFields.remove(s);;
+			remainingFields.remove(s);
 		} else {
 			//split alternative values and use first set value, if non is set use all prepended with ALT like in texmaker
 			QStringList sl = s.split("/");

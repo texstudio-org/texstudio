@@ -281,7 +281,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 				return false;
 			}
 		} else if (lr.word == "\\end") {
-			;
+			// nothing to do
 		} else if (lr.word == "\\caption") {
 			if (args.at(0).at(0) == '[') {
 				conf.shortCaption = LatexParser::removeOptionBrackets((args.at(0)));
@@ -418,7 +418,7 @@ void InsertGraphics::chooseFile()
 	QStringList exts;
 	foreach (const QString &fmt, m_imageFormats) {
 		exts.append("*." + fmt);
-	};
+	}
 	QString filter = tr("Images") + " (" + exts.join(" ") + ")";
 	filter += QString(";;PGF/TikZ (*.pgf *.tex)");
 	fn = FileDialog::getOpenFileName(this, tr("Select a File", "Wizard"), texFile.absolutePath(), filter);

@@ -1013,7 +1013,7 @@ short LatexOutputFilter::parseLine(const QString &strLine, short dwCookie)
 		} else {
 			dwCookie = Start; // reset and treat currently independently
 		}
-	// fall-through - no break
+		[[gnu::fallthrough]];
 	case Start :
 		if (detectBadBox(strLine, dwCookie))
 			break;

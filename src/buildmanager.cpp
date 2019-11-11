@@ -669,7 +669,7 @@ QString W32_FileAssociation(QString ext)
 			result = QString::fromLatin1(buf);
 			result.replace("%1", "?am" + ext);
 			//QMessageBox::information(0,result,result,0);
-		};
+		}
 	}
 	FreeLibrary(mod);
 	return result;

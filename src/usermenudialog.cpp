@@ -63,7 +63,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	//Q_UNUSED(lineMarkPanelAction)
 	QLineNumberPanel *lineNumberPanel = new QLineNumberPanel;
 	lineNumberPanel->setVerboseMode(true);
-	QAction *lineNumberPanelAction = codeedit->addPanel(lineNumberPanel, QCodeEdit::West, false);;
+	QAction *lineNumberPanelAction = codeedit->addPanel(lineNumberPanel, QCodeEdit::West, false);
 	Q_UNUSED(lineNumberPanelAction)
 	QAction *lineFoldPanelAction = codeedit->addPanel(new QFoldPanel, QCodeEdit::West, false);
 	Q_UNUSED(lineFoldPanelAction)

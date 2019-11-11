@@ -215,7 +215,7 @@ void GrammarCheck::process(int reqId)
 					}
 				}
 				continue;
-			};
+			}
 
 			if (type == LatexReader::NW_COMMENT) break;
 			if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) {
@@ -326,7 +326,7 @@ void GrammarCheck::process(int reqId)
             joined.reserve(expectedLength + words.length());
             for (int i = 0;;) {
                 joined += words[i];
-                CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words);
+                CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words)
                 joined += " ";
 			}
 			backend->check(crTicket, b, crLanguage, joined);
@@ -441,7 +441,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	while (err < backendErrors.size()) {
 		if (backendErrors[err].offset >= curOffset + words[curWord].length()) {
 			curOffset += words[curWord].length();
-			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(curWord, words);
+			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(curWord, words)
 			curOffset++; //space
 		} else { //if (backendErrors[err].offset >= curOffset) {
 			int trueIndex = tb.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
@@ -457,7 +457,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 					}
 					break;
 				}
-				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(w, words);
+				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(w, words)
 				tempOffset++; //space
 			}
 			if (trueLength == -1)

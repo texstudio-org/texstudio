@@ -28,8 +28,8 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 	freeBytes = freeBytesToCaller.QuadPart;
 	return true;
 #else
-	Q_UNUSED(path);
-	Q_UNUSED(freeBytes);
+	Q_UNUSED(path)
+	Q_UNUSED(freeBytes)
 	return false;
 #endif
 }
@@ -80,6 +80,7 @@ QKeySequence filterLocaleShortcut(QKeySequence ks)
 		} else if (ks.matches(QKeySequence("Ctrl+Alt+L"))) {
 			return QKeySequence("Ctrl+Alt+Shift+L");
 		}
+		break;
 	case QLocale::Croatian:
 		if (ks.matches(QKeySequence("Ctrl+Alt+F"))) {
 			return QKeySequence("Ctrl+Alt+Shift+F");
@@ -354,9 +355,9 @@ QString joinPath(const QString &dirname, const QString &dirname2, const QString 
 /// Does nothing on Windows.
 QFileInfo getNonSymbolicFileInfo(const QFileInfo& info)
 {
-	const size_t MAX_DIR_DEPTH=32; //< Do not seek for symbolic links deeper than MAX_DIR_DEPTH.
-									// For performance issues and if the root directory was not catched (infinite loop).
 #ifdef Q_OS_UNIX
+	const size_t MAX_DIR_DEPTH=32; //< Do not seek for symbolic links deeper than MAX_DIR_DEPTH.
+	                               // For performance issues and if the root directory was not catched (infinite loop).
 	// Static array might be also used to prevent heap allocation for a small amont of data. QFileInfo is shared, so the size of the array is size_of(void*)*MAX_DIR_DEPTH
 	//QFileInfo stack[MAX_DIR_DEPTH];
 	QStack<QFileInfo> stack;
@@ -693,7 +694,7 @@ QString execCommand(const QString &cmd, QString additionalPaths)
 	return result.trimmed();
 }
 
-void ThreadBreaker::sleep(int s)
+void ThreadBreaker::sleep(unsigned long s)
 {
 	QThread::sleep(s);
 }

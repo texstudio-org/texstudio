@@ -837,7 +837,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 
 	case CE_ToolBar: {
 		QString key;
-		key.sprintf("mh_toolbar %d %d %d", option->rect.width(), option->rect.height(), StyleHelper::baseColor().rgb());;
+		key.sprintf("mh_toolbar %d %d %d", option->rect.width(), option->rect.height(), StyleHelper::baseColor().rgb());
 
 		QPixmap pixmap;
 		QPainter *p = painter;

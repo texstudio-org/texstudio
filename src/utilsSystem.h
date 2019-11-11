@@ -82,9 +82,9 @@ QString execCommand(const QString &cmd,QString additionalPaths="");
 class ThreadBreaker : public QThread
 {
 public:
-	static void sleep(int s);
+	static void sleep(unsigned long s);
 	static void msleep(unsigned long ms);
-	static void forceTerminate(QThread *t = 0);
+	static void forceTerminate(QThread *t = nullptr);
 };
 
 

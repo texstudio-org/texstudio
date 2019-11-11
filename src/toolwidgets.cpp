@@ -74,7 +74,7 @@ void PreviewWidget::fitImage(bool fit)
 		} else {
 			h = m_size.height();
 			w = qRound(m_size.height() / ratio);
-			pvscaleFactor = 1.0 * h / preViewer->pixmap()->size().height();;
+			pvscaleFactor = 1.0 * h / preViewer->pixmap()->size().height();
 		}
 		preViewer->resize(w, h);
 		//setWidgetResizable(true);
