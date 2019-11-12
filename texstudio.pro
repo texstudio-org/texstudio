@@ -380,8 +380,7 @@ CONFIG(debug, debug|release) {
 macx:LIBS += -framework CoreFoundation
 
 unix {
-    LIBS += -L/usr/lib \
-    -lz
+    LIBS += -lz
 }
 
 freebsd-* {
