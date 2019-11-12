@@ -1,15 +1,16 @@
 # tex/latex mode: tex primitives and plain tex macros
 # dani/8.1.2004
-# muzimuzhi/20 Aug 2019
-# muzimuzhi/4 Nov 2019, overall update
+# muzimuzhi/20 Aug 2019, 4 Nov 2019, 13 Nov 2019
 
 ##
 ## References
 ##
 
-#  - _texbook_: _The TeXbook_, Appx. B
-#  - _impatient_: _TeX for the Impatient_, Chap. 13
-#                 (https://www.gnu.org/software/teximpatient/)
+#  - _texbook_:      _The TeXbook_, Appx. B
+#  - _teximpatient_: _TeX for the Impatient_, Chap. 13
+#                    (https://www.gnu.org/software/teximpatient/)
+#  - _etex_:         _The eTeX manual_ and _The e-TeX Short Reference Manual_
+#                    (https://ctan.org/pkg/etex)
 
 
 ##
@@ -17,7 +18,7 @@
 ##
 
 #  - The order of control sequences in this file is consistent with that
-#    in _impatient_.
+#    in _teximpatient_.
 #  - Taking the conventions in _texbook_, use "o" as placeholder of text
 #    accent (e.g., "\c{o}#n"), and use "a" as placeholder of math accent, #    (e.g., "\dot{a}#m").
 
@@ -970,3 +971,75 @@
 \root %<arg1%> \of %<arg2%>#*m
 \settabs %<number%> \columns#*
 \settabs \+ %<sample line%> \cr#*
+
+
+##
+## PART 5. etex primitives
+##
+
+\beginL
+\beginR
+\botmarks
+\detokenize
+\endL
+\endR
+\eTeXrevision
+\eTeXversion
+\everyeof
+\firstmarks
+\fontcharht
+\fontcharwd
+\fontchardp
+\fontcharic
+\currentgrouplevel
+\currentgrouptype
+\currentiflevel
+\currentiftype
+\currentifbranch
+\ifcsname
+\ifdefined
+\interactionmode
+\lastlinefit
+\lastnodetype
+\marks
+\middle
+\numexpr
+\parshapedimen
+\parshapeindent
+\parshapelength
+\predisplaydirection
+\protected
+\readline%<number%> to %<control sequence%>
+\scantokens
+\showgroups
+\showtokens
+\splitfirstmarks
+\splitbotmarks
+\TeXXeTstate
+\topmarks
+\tracingassigns
+\tracinggroups
+\tracingifs
+\tracingscantokens
+\unexpanded
+\unless
+\dimexpr
+\glueexpr
+\muexpr
+\gluestretch
+\glueshrink
+\gluestretchorder
+\glueshrinkorder
+\gluetomu
+\mutoglue
+\interlinepenalties
+\clubpenalties
+\widowpenalties
+\displaywidowpenalties
+\tracingnesting
+\savingvdiscards
+\savinghyphcodes
+\showifs
+\pagediscards
+\splitdiscards
+\iffontchar
