@@ -84,13 +84,14 @@ void QEditorTest::loadSave(){
 	//Load
 	editor->setFileCodec(QTextCodec::codecForName("iso-8859-5"));
 	editor->load(tfn,autodetect?nullptr:outCodec);
-	editor->document()->setLineEnding(editor->document()->originalLineEnding()); //TODO: find out why this line is only needed iff the editor passed by the testmanager is used and not if a new QEditor(0) is created
-	QEQUAL2(editor->document()->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromLatin1(editor->getFileCodec()->name()):"<null>"));
+	QDocument *doc = editor->document();
+	doc->setLineEnding(doc->originalLineEnding()); //TODO: find out why this line is only needed iff the editor passed by the testmanager is used and not if a new QEditor(0) is created
+	QEQUAL2(doc->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromLatin1(editor->getFileCodec()->name()):"<null>"));
 	QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromLatin1(editor->getFileCodec()->name())).arg(QString::fromLatin1(outCodec->name())).arg(autodetect)));
-	QEQUAL(editor->document()->lineEndingString(),outLineEnding);
+	QEQUAL(doc->lineEndingString(),outLineEnding);
 
 	//Save
-	editor->setText(editor->document()->text()+"Save test", false);
+	editor->setText(doc->text()+"Save test", false);
 	editor->save();
 	QFile tf2(tfn);
 	QString writtenText;
@@ -103,7 +104,7 @@ void QEditorTest::loadSave(){
 	QVERIFY2(writtenText.contains(outLineEnding), qPrintable("file don't contain right line ending, file"+tfn));
 
 	editor->setFileName(""); //reset filename so it won't get panically if the file is deleted
-	editor->document()->setLineEndingDirect(QDocument::Unix,true); //reset line ending so we won't screw up the other tests
+	doc->setLineEndingDirect(QDocument::Unix,true); //reset line ending so we won't screw up the other tests
 }
 
 void compareLists(const QList<int> actual, const QList<int> exp){
@@ -240,24 +241,25 @@ void QEditorTest::foldedText(){
 	QFETCH(QString, newEditorText);
 	QFETCH(QList<int>, newHiddenLines);
 
+	QDocument *doc = editor->document();
 	editor->setText(editorText, false);
 	foreach(const int &i, foldAt)
-		editor->document()->collapse(i);
-	for (int i=0;i<editor->document()->lines();i++)
-		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
-	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines);
-	editor->setCursor(editor->document()->cursor(froml,fromc,tol,toc));
+		doc->collapse(i);
+	for (int i=0;i<doc->lines();i++)
+		QVERIFY2(doc->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
+	compareLists(doc->impl()->testGetHiddenLines(), hiddenLines);
+	editor->setCursor(doc->cursor(froml,fromc,tol,toc));
 	if (operation=="indent") editor->indentSelection();
 	else if (operation=="unindent") editor->unindentSelection();
 	else if (operation=="comment") editor->commentSelection();
 	else if (operation=="uncomment") editor->uncommentSelection();
 	else if (operation=="togglecomment") editor->toggleCommentSelection();
 	else qFatal("invalid operation");
-	editor->document()->setLineEndingDirect(QDocument::Unix,true);
-	QEQUAL(editor->document()->text(), newEditorText);
-	for (int i=0;i<editor->document()->lines();i++)
-		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
-	compareLists(editor->document()->impl()->testGetHiddenLines(), newHiddenLines);
+	doc->setLineEndingDirect(QDocument::Unix,true);
+	QEQUAL(doc->text(), newEditorText);
+	for (int i=0;i<doc->lines();i++)
+		QVERIFY2(doc->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
+	compareLists(doc->impl()->testGetHiddenLines(), newHiddenLines);
 }
 
 
@@ -343,29 +345,30 @@ void QEditorTest::passiveFolding(){
 	QFETCH(QList<int>, foldAtAgain);
 	QFETCH(QList<int>, hiddenLines3);
 
+	QDocument *doc = editor->document();
 	editor->setText(editorText, false);
 
 	foreach(const int &i, foldAt)
-		editor->document()->collapse(i);
+		doc->collapse(i);
 
-	for (int i=0;i<editor->document()->lines();i++)
-		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines1.contains(i),qPrintable(QString::number(i)));
+	for (int i=0;i<doc->lines();i++)
+		QVERIFY2(doc->line(i).isHidden() == hiddenLines1.contains(i),qPrintable(QString::number(i)));
 
-	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines1);
+	compareLists(doc->impl()->testGetHiddenLines(), hiddenLines1);
 
 	foreach(const int &i, unFoldAt)
-		editor->document()->expand(i);
-	for (int i=0;i<editor->document()->lines();i++)
-		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines2.contains(i),qPrintable(QString::number(i)));
+		doc->expand(i);
+	for (int i=0;i<doc->lines();i++)
+		QVERIFY2(doc->line(i).isHidden() == hiddenLines2.contains(i),qPrintable(QString::number(i)));
 
-	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines2);
+	compareLists(doc->impl()->testGetHiddenLines(), hiddenLines2);
 
 	foreach(const int &i, foldAtAgain)
-		editor->document()->collapse(i);
-	for (int i=0;i<editor->document()->lines();i++)
-		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines3.contains(i),qPrintable(QString::number(i)));
+		doc->collapse(i);
+	for (int i=0;i<doc->lines();i++)
+		QVERIFY2(doc->line(i).isHidden() == hiddenLines3.contains(i),qPrintable(QString::number(i)));
 
-	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines3);
+	compareLists(doc->impl()->testGetHiddenLines(), hiddenLines3);
 }
 
 
@@ -486,23 +489,24 @@ void QEditorTest::activeFolding(){
 	QFETCH(QString, newEditorText);
 	QFETCH(QList<int>, newHiddenLines);
 
+	QDocument *doc = editor->document();
 	editor->setText(editorText, false);
 
 	foreach(const int &i, foldAt)
-		editor->document()->collapse(i);
-	for (int i=0;i<editor->document()->lines();i++)
-		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
-	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines);
+		doc->collapse(i);
+	for (int i=0;i<doc->lines();i++)
+		QVERIFY2(doc->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
+	compareLists(doc->impl()->testGetHiddenLines(), hiddenLines);
 
-	QDocumentCursor editCursor = editor->document()->cursor(cursorAL,cursorAC,cursorL,cursorC);
+	QDocumentCursor editCursor = doc->cursor(cursorAL,cursorAC,cursorL,cursorC);
 	editCursor.insertText(textToInsert);
 
-	editor->document()->setLineEndingDirect(QDocument::Unix,true);
-	QEQUAL(editor->document()->text(), newEditorText);
-	for (int i=0;i<editor->document()->lines();i++)
-		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
+	doc->setLineEndingDirect(QDocument::Unix,true);
+	QEQUAL(doc->text(), newEditorText);
+	for (int i=0;i<doc->lines();i++)
+		QVERIFY2(doc->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
 
-	compareLists(editor->document()->impl()->testGetHiddenLines(), newHiddenLines);
+	compareLists(doc->impl()->testGetHiddenLines(), newHiddenLines);
 }
 
 void QEditorTest::insertTab_data() {
@@ -780,17 +784,17 @@ void QEditorTest::indentation(){
 	QFETCH(QString, insert);
 	QFETCH(QString,	result);
 
+	QDocument *doc = editor->document();
 	editor->setFlag(QEditor::WeakIndent, weak);
-
 	editor->setText(baseText, false);
-	QDocumentCursor c=editor->document()->cursor(line,col,anchorLine,anchorCol);
+	QDocumentCursor c=doc->cursor(line,col,anchorLine,anchorCol);
 	editor->insertText(c, insert);
 
 	//QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
 	//QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
 	//QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
-	editor->document()->setLineEndingDirect(QDocument::Unix,true);
-	QEQUAL(editor->document()->text(), result);
+	doc->setLineEndingDirect(QDocument::Unix,true);
+	QEQUAL(doc->text(), result);
 }
 
 void QEditorTest::autoClosing_data(){
@@ -839,12 +843,13 @@ void QEditorTest::autoClosing(){
 
 	QEXPECT_FAIL("insert-match-to-close-mixed-with-same2", "currently not properly supported", Continue);
 
+	QDocument *doc = editor->document();
 	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
 	editor->setText(baseText, false);
-	QDocumentCursor c=editor->document()->cursor(line,col);
+	QDocumentCursor c=doc->cursor(line,col);
 	editor->insertText(c, insert);
-	editor->document()->setLineEndingDirect(QDocument::Unix,true);
-	QEQUAL(editor->document()->text(), result);
+	doc->setLineEndingDirect(QDocument::Unix,true);
+	QEQUAL(doc->text(), result);
 }
 
 #endif
