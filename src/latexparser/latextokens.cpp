@@ -4,16 +4,16 @@
 const int MAKE_HASH_VA_GUARDIAN = 0xAFE235FA;
 
 template<typename K, typename T> QHash<K,T> makeQHash(int paircount, ...){
-    va_list ap;
-    va_start(ap, paircount);
-    QHash<K,T> tmp;
-    for (int i=0;i<paircount;i++) {
-        K k = (K)(va_arg(ap, int));
-        tmp.insert(k, (T)(va_arg(ap, int)));
-    }
-    Q_ASSERT(va_arg(ap, int) == MAKE_HASH_VA_GUARDIAN);
-    va_end(ap);
-    return tmp;
+	va_list ap;
+	va_start(ap, paircount);
+	QHash<K,T> tmp;
+	for (int i=0;i<paircount;i++) {
+		K k = (K)(va_arg(ap, int));
+		tmp.insert(k, (T)(va_arg(ap, int)));
+	}
+	Q_ASSERT(va_arg(ap, int) == MAKE_HASH_VA_GUARDIAN);
+	va_end(ap);
+	return tmp;
 }
 
 
@@ -84,9 +84,11 @@ QString Token::tokenTypeName(TokenType t) {
 	LITERAL_ENUM(openBrace)
 	LITERAL_ENUM(openBracket)
 	LITERAL_ENUM(openSquare)
+	LITERAL_ENUM(less)
 	LITERAL_ENUM(closeBrace)
 	LITERAL_ENUM(closeBracket)
 	LITERAL_ENUM(closeSquareBracket)
+	LITERAL_ENUM(greater)
 	LITERAL_ENUM(math)
 	LITERAL_ENUM(comment)
 	LITERAL_ENUM(commandUnknown)
@@ -109,6 +111,7 @@ QString Token::tokenTypeName(TokenType t) {
 	LITERAL_ENUM(placement)
 	LITERAL_ENUM(colDef)
 	LITERAL_ENUM(title)
+	LITERAL_ENUM(shorttitle)
 	LITERAL_ENUM(todo)
 	LITERAL_ENUM(url)
 	LITERAL_ENUM(documentclass)
@@ -130,10 +133,9 @@ QString Token::tokenTypeName(TokenType t) {
 	LITERAL_ENUM(specialArg)
 	LITERAL_ENUM(newTheorem)
 	LITERAL_ENUM(newBibItem)
-    LITERAL_ENUM(overlay)
-    LITERAL_ENUM(less)
-    LITERAL_ENUM(greater)
-    LITERAL_ENUM(overlayRegion)
+	LITERAL_ENUM(formula)
+	LITERAL_ENUM(overlay)
+	LITERAL_ENUM(overlayRegion)
 	LITERAL_ENUM(_end)
 	default: return "UnknownTokenType";
 	}
@@ -174,7 +176,7 @@ QSet<Token::TokenType> Token::tkBraces()
 	result.insert(braces);
 	result.insert(bracket);
 	result.insert(squareBracket);
-    result.insert(overlayRegion);
+	result.insert(overlayRegion);
 	return result;
 }
 
@@ -188,7 +190,7 @@ QSet<Token::TokenType> Token::tkOpen()
 	result.insert(openBrace);
 	result.insert(openBracket);
 	result.insert(openSquare);
-    result.insert(less);
+	result.insert(less);
 	return result;
 }
 
@@ -202,7 +204,7 @@ QSet<Token::TokenType> Token::tkClose()
 	result.insert(closeBrace);
 	result.insert(closeBracket);
 	result.insert(closeSquareBracket);
-    result.insert(greater);
+	result.insert(greater);
 	return result;
 }
 
@@ -238,7 +240,7 @@ QSet<Token::TokenType> Token::tkSingleArg()
 	result.insert(documentclass);
 	result.insert(beamertheme);
 	result.insert(def);
-    result.insert(overlay);
+	result.insert(overlay);
 	return result;
 }
 
@@ -260,10 +262,10 @@ Token::TokenType Token::opposite(TokenType type)
 		return closeBracket;
 	case openSquare:
 		return closeSquareBracket;
-    case less:
-        return greater;
-    case greater:
-        return less;
+	case less:
+		return greater;
+	case greater:
+		return less;
 	default:
 		return none;
 	}
@@ -282,20 +284,19 @@ Token::TokenType Token::closed(TokenType type)
 		return bracket;
 	case closeSquareBracket:
 		return squareBracket;
-    case greater:
-        return overlayRegion;
+	case greater:
+		return overlayRegion;
 	case openBrace:
 		return braces;
 	case openBracket:
 		return bracket;
 	case openSquare:
 		return squareBracket;
-    case less:
-        return overlayRegion;
+	case less:
+		return overlayRegion;
 	default:
 		return none;
 	}
-
 }
 
 
