@@ -10,7 +10,7 @@
 QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
 {
 	editor=ed;
-    if (editor->getFileCodec()!=nullptr) defaultCodec = editor->getFileCodec();
+	if (editor->getFileCodec()!=nullptr) defaultCodec = editor->getFileCodec();
 	else defaultCodec = QTextCodec::codecForName("latin1");
 	ed->setFlag(QEditor::HardLineWrap, false);
 	ed->setFlag(QEditor::AutoCloseChars, true);
@@ -43,20 +43,20 @@ void QEditorTest::loadSave_data(){
 	QTest::addColumn<QString>("outCodecName");
 	QTest::addColumn<QString>("outLineEnding");
 	QTest::addColumn<bool>("autodetect");
-	
+
 	QStringList codings = QStringList() << "latin1" << "utf-8" << "utf-16le" << "utf-16be" << "latin2"; //latin1 is not used
 	QStringList endings = QStringList() << "\n" << "\r" << "\r\n";
 	for (int i=0;i<codings.size();i++)
 		for (int j=0;j<endings.size();j++){
 			if (i!=codings.size()-1) //auto detect all except last one
 				QTest::newRow(qPrintable(QString("load with encoding %1 endings %2").arg(codings[i]).arg(j)))
-						<< codings[i]
-						<< endings[j]
-						<< true;
-			QTest::newRow(qPrintable(QString("load with encoding %1 endings %2").arg(codings[i]).arg(j)))
 					<< codings[i]
 					<< endings[j]
-					<< false;
+					<< true;
+			QTest::newRow(qPrintable(QString("load with encoding %1 endings %2").arg(codings[i]).arg(j)))
+				<< codings[i]
+				<< endings[j]
+				<< false;
 		}
 }
 //checks if load/saving preserves encoding and line endings
@@ -83,27 +83,27 @@ void QEditorTest::loadSave(){
 
 	//Load
 	editor->setFileCodec(QTextCodec::codecForName("iso-8859-5"));
-    editor->load(tfn,autodetect?nullptr:outCodec);
+	editor->load(tfn,autodetect?nullptr:outCodec);
 	editor->document()->setLineEnding(editor->document()->originalLineEnding()); //TODO: find out why this line is only needed iff the editor passed by the testmanager is used and not if a new QEditor(0) is created
-    QEQUAL2(editor->document()->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromLatin1(editor->getFileCodec()->name()):"<null>"));
-    QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromLatin1(editor->getFileCodec()->name())).arg(QString::fromLatin1(outCodec->name())).arg(autodetect)));
+	QEQUAL2(editor->document()->text(),testTextWithLineEndings,QString("File: %1  Got file codec: %2 ").arg(tfn).arg(editor->getFileCodec()?QString::fromLatin1(editor->getFileCodec()->name()):"<null>"));
+	QVERIFY2(editor->getFileCodec()==outCodec,qPrintable(QString("wrong encoding: got %1 wanted %2 by the sheriff %3").arg(QString::fromLatin1(editor->getFileCodec()->name())).arg(QString::fromLatin1(outCodec->name())).arg(autodetect)));
 	QEQUAL(editor->document()->lineEndingString(),outLineEnding);
 
 	//Save
 	editor->setText(editor->document()->text()+"Save test", false);
 	editor->save();
-    QFile tf2(tfn);
-    QString writtenText;
-    if(tf2.open(QIODevice::ReadOnly)){
-        writtenText=outCodec->toUnicode( tf2.readAll());
-        tf2.close();
-    }
+	QFile tf2(tfn);
+	QString writtenText;
+	if(tf2.open(QIODevice::ReadOnly)){
+		writtenText=outCodec->toUnicode( tf2.readAll());
+		tf2.close();
+	}
 
 	QEQUAL2(writtenText, testTextWithLineEndings+"Save test", "file text check, file:"+tfn);
 	QVERIFY2(writtenText.contains(outLineEnding), qPrintable("file don't contain right line ending, file"+tfn));
-	
+
 	editor->setFileName(""); //reset filename so it won't get panically if the file is deleted
-    editor->document()->setLineEndingDirect(QDocument::Unix,true); //reset line ending so we won't screw up the other tests
+	editor->document()->setLineEndingDirect(QDocument::Unix,true); //reset line ending so we won't screw up the other tests
 }
 
 void compareLists(const QList<int> actual, const QList<int> exp){
@@ -113,7 +113,7 @@ void compareLists(const QList<int> actual, const QList<int> exp){
 	}
 	for (int i=0;i<actual.length();i++)
 		QEQUAL(actual[i],exp[i]);
-} 
+}
 
 
 void QEditorTest::foldedText_data(){
@@ -253,7 +253,7 @@ void QEditorTest::foldedText(){
 	else if (operation=="uncomment") editor->uncommentSelection();
 	else if (operation=="togglecomment") editor->toggleCommentSelection();
 	else qFatal("invalid operation");
-    editor->document()->setLineEndingDirect(QDocument::Unix,true);
+	editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), newEditorText);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
@@ -347,12 +347,12 @@ void QEditorTest::passiveFolding(){
 
 	foreach(const int &i, foldAt)
 		editor->document()->collapse(i);
-	
+
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == hiddenLines1.contains(i),qPrintable(QString::number(i)));
 
 	compareLists(editor->document()->impl()->testGetHiddenLines(), hiddenLines1);
-	
+
 	foreach(const int &i, unFoldAt)
 		editor->document()->expand(i);
 	for (int i=0;i<editor->document()->lines();i++)
@@ -452,26 +452,26 @@ void QEditorTest::activeFolding_data(){
 		<< "$"
 		<< "0\n1$\n2{\n3\n4$\n5}\n6\n"
 		<< (QList<int> () << 3);
-	
-	QTest::newRow("multi line deletion")
-	              << "0\n1{\n2abc\n3}\n4\n"
-	              << (QList<int>() << 1)
-	              << (QList<int>() << 2 << 3)
-	              << 1 << 0 << 4 << 0
-	              << "x"
-	              << "0\nx4\n"
-	              << (QList<int>());
 
-	
-	QTest::newRow("latex test") 
-	       << "\\begin{document}\n\n\\subsection{Bilder}\n\n\\subsection{end}\n\n\\end{document}"
-	       << (QList<int>() << 2)
-	       << (QList<int>() << 3)
-	       << 1 << 0 << 5 << 0
-	       << "x"
-	       << "\\begin{document}\nx\n\\end{document}"
-	       << (QList<int>());
-		
+	QTest::newRow("multi line deletion")
+		<< "0\n1{\n2abc\n3}\n4\n"
+		<< (QList<int>() << 1)
+		<< (QList<int>() << 2 << 3)
+		<< 1 << 0 << 4 << 0
+		<< "x"
+		<< "0\nx4\n"
+		<< (QList<int>());
+
+
+	QTest::newRow("latex test")
+		<< "\\begin{document}\n\n\\subsection{Bilder}\n\n\\subsection{end}\n\n\\end{document}"
+		<< (QList<int>() << 2)
+		<< (QList<int>() << 3)
+		<< 1 << 0 << 5 << 0
+		<< "x"
+		<< "\\begin{document}\nx\n\\end{document}"
+		<< (QList<int>());
+
 }
 //tests if folded text can be edited
 void QEditorTest::activeFolding(){
@@ -497,7 +497,7 @@ void QEditorTest::activeFolding(){
 	QDocumentCursor editCursor = editor->document()->cursor(cursorAL,cursorAC,cursorL,cursorC);
 	editCursor.insertText(textToInsert);
 
-    editor->document()->setLineEndingDirect(QDocument::Unix,true);
+	editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), newEditorText);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
@@ -511,7 +511,7 @@ void QEditorTest::insertTab_data() {
 	QTest::addColumn<QString>("line");
 	QTest::addColumn<int>("cursorCol");
 	QTest::addColumn<QString>("resultLine");
-	
+
 	QTest::newRow("no replace")  << false << 4 << "fooobar"     << 4 << "fooo\tbar";
 	QTest::newRow("4 char tab 1") << true << 4 << "fooobar"     << 4 << "fooo    bar";
 	QTest::newRow("4 char tab 2") << true << 4 << "fooo1bar"    << 5 << "fooo1   bar";
@@ -525,7 +525,7 @@ void QEditorTest::insertTab()
 {
 	bool savedReplaceTextTabs = editor->flag(QEditor::ReplaceTextTabs);
 	int savedTabWidth = QDocument::tabStop();
-	
+
 	QFETCH(bool, replaceTextTabs);
 	QFETCH(int, tabWidth);
 	QFETCH(QString, line);
@@ -533,13 +533,13 @@ void QEditorTest::insertTab()
 	QFETCH(QString, resultLine);
 	editor->setFlag(QEditor::ReplaceTextTabs, replaceTextTabs);
 	QDocument::setTabStop(tabWidth);
-	
+
 	editor->setText(line);
 	editor->setCursorPosition(0, cursorCol);
 	editor->insertTab();
-    editor->document()->setLineEndingDirect(QDocument::Unix,true);
+	editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->text(), resultLine);
-	
+
 	editor->setFlag(QEditor::ReplaceTextTabs, savedReplaceTextTabs);
 	QDocument::setTabStop(savedTabWidth);
 }
@@ -623,17 +623,17 @@ void QEditorTest::indentation_data(){
 		<< "  \\begin{abc}\n    abcdef\n  \\end{abc}"
 		<< "   hel  \\begin{abc}\n       abcdef\n     \\end{abc}lo\nworld\n";
 
-    QTest::newRow("block indentation multiline")
-        << "   hello\nworld\n"
-        << false << 0 << 6 << -1 << -1
-        << "\\begin{abc}\n    abcdef\n sdfsdf\n \\end{abc}"
-        << "   hel\\begin{abc}\n   \tabcdef\n   \tsdfsdf\n   \\end{abc}lo\nworld\n";
+	QTest::newRow("block indentation multiline")
+		<< "   hello\nworld\n"
+		<< false << 0 << 6 << -1 << -1
+		<< "\\begin{abc}\n    abcdef\n sdfsdf\n \\end{abc}"
+		<< "   hel\\begin{abc}\n   \tabcdef\n   \tsdfsdf\n   \\end{abc}lo\nworld\n";
 
-    QTest::newRow("block indentation nested")
-        << "   \n"
-        << false << 0 << 3 << -1 << -1
-        << "{\n{\nabcdef\nsdfsdf\n}\n}"
-        << "   {\n   \t{\n   \t\tabcdef\n   \t\tsdfsdf\n   \t}\n   }\n";
+	QTest::newRow("block indentation nested")
+		<< "   \n"
+		<< false << 0 << 3 << -1 << -1
+		<< "{\n{\nabcdef\nsdfsdf\n}\n}"
+		<< "   {\n   \t{\n   \t\tabcdef\n   \t\tsdfsdf\n   \t}\n   }\n";
 
 	QTest::newRow("block indentation + 3 space")
 		<< "   hello\nworld\n"
@@ -669,7 +669,7 @@ void QEditorTest::indentation_data(){
 		<< " hello\n world\n"
 		<< false << 0 << 6 << -1 << -1
 		<< "{{\na\nxx}}\nabc"
-		<< " hello{{\n \t\ta\n \t\txx}}\n abc\n world\n"; 
+		<< " hello{{\n \t\ta\n \t\txx}}\n abc\n world\n";
 
 	QTest::newRow("no immediate unindent with closing bracket after text")
 		<< "\t\thello\n\t\tworld\n"
@@ -688,12 +688,12 @@ void QEditorTest::indentation_data(){
 		<< false << 1 << 0 << -1 << -1
 		<< "{{{\nTEXT\n}}}\n"
 		<< "A\n{{{\n\t\t\tTEXT\n}}}\nB";
-	
+
 	QTest::newRow("multiple closings with unindent on a line")
 		<< "A\nB"
 		<< false << 1 << 0 << -1 << -1
 		<< "\\cmd{\\begin{env}\nTEXT\n\\end{env}}\nMORE\n"
-        << "A\n\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
+		<< "A\n\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
 
 	QTest::newRow("pasting non-indented text with newline at end weak")
 		<< "\tfoo\n\tbar\n"
@@ -720,48 +720,48 @@ void QEditorTest::indentation_data(){
 		<< "\tfoo\n\tbaz\n\tbar\n";
 
 	QTest::newRow("selection block self replacement (line start) weak")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< true << 2 << 0 << 1 << 0
-			<< "\tBB\n"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< true << 2 << 0 << 1 << 0
+		<< "\tBB\n"
+		<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("selection block self replacement (line start)")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< false << 2 << 0 << 1 << 0
-			<< "\tBB\n"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< false << 2 << 0 << 1 << 0
+		<< "\tBB\n"
+		<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("reversed selection block self replacement (line start) weak")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< true << 1 << 0 << 2 << 0
-			<< "\tBB\n"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< true << 1 << 0 << 2 << 0
+		<< "\tBB\n"
+		<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("reversed selection block self replacement (line start)")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< false << 1 << 0 << 2 << 0
-			<< "\tBB\n"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< false << 1 << 0 << 2 << 0
+		<< "\tBB\n"
+		<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("selection block self replacement (text start) weak")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< true << 2 << 1 << 1 << 1
-			<< "BB\n\t"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< true << 2 << 1 << 1 << 1
+		<< "BB\n\t"
+		<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("selection block self replacement (text start)")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< false << 2 << 1 << 1 << 1
-			<< "BB\n\t"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< false << 2 << 1 << 1 << 1
+		<< "BB\n\t"
+		<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("reversed selection block self replacement (text start) weak")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< true << 1 << 1 << 2 << 1
-			<< "BB\n\t"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< true << 1 << 1 << 2 << 1
+		<< "BB\n\t"
+		<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("reversed selection block self replacement (text start)")
-			<< "\tAA\n\tBB\n\tCC\n"
-			<< false << 1 << 1 << 2 << 1
-			<< "BB\n\t"
-			<< "\tAA\n\tBB\n\tCC\n";
+		<< "\tAA\n\tBB\n\tCC\n"
+		<< false << 1 << 1 << 2 << 1
+		<< "BB\n\t"
+		<< "\tAA\n\tBB\n\tCC\n";
 
-	/*
-  this is broken:
+/*
+	this is broken:
 	QTest::newRow("trivial 2")
 		<< "hello\nworld\n"
 		<< false << 0 << 5
@@ -786,10 +786,10 @@ void QEditorTest::indentation(){
 	QDocumentCursor c=editor->document()->cursor(line,col,anchorLine,anchorCol);
 	editor->insertText(c, insert);
 
-    //QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
-    //QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
-    //QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
-    editor->document()->setLineEndingDirect(QDocument::Unix,true);
+	//QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
+	//QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
+	//QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
+	editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), result);
 }
 
@@ -815,12 +815,12 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("counting 1") << ">())<" << 0 << 1 << "(" << ">(())<";
 	QTest::newRow("counting 2") << ">((())))<" << 0 << 1 << "(" << ">(((())))<";
 	QTest::newRow("counting 3") << ">((()()))())<" << 0 << 1 << "(" << ">(((()()))())<";
-    QTest::newRow("counting 4") << ">(())<" << 0 << 4 << "(" << ">(()())<";
-    QTest::newRow("multi line search") << ">\n\n)<" << 0 << 1 << "(" << ">(\n\n)<";
+	QTest::newRow("counting 4") << ">(())<" << 0 << 4 << "(" << ">(()())<";
+	QTest::newRow("multi line search") << ">\n\n)<" << 0 << 1 << "(" << ">(\n\n)<";
 	QTest::newRow("insert-match-to-close-mixed") << ">[{}])<" << 0 << 1 << "(" << ">([{}])<";
 	QTest::newRow("insert-match-to-close-mixed-with-same") << ">([{}]))<" << 0 << 1 << "(" << ">(([{}]))<";
 	QTest::newRow("insert-match-to-close-mixed-with-same2") << ">([{}]))<" << 0 << 2 << "(" << ">(([{}]))<";
-    QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "(()((((())))))"; // previous expected outcome was unlogical, why not autocomlete if all parentehsis prior already match ?
+	QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "(()((((())))))"; // previous expected outcome was unlogical, why not autocomlete if all parentehsis prior already match ?
 	QTest::newRow("following") << " ()" << 0 << 0 << "(" << "() ()";
 	QTest::newRow("following2") << " \\(\\)" << 0 << 0 << "\\(" << "\\(\\) \\(\\)";
 	QTest::newRow("following2withExistingMismatch") << " {\\(\\)" << 0 << 0 << "\\(" << "\\(\\) {\\(\\)";
@@ -838,14 +838,13 @@ void QEditorTest::autoClosing(){
 	QFETCH(QString, result);
 
 	QEXPECT_FAIL("insert-match-to-close-mixed-with-same2", "currently not properly supported", Continue);
-	
+
 	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
 	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col);
 	editor->insertText(c, insert);
-    editor->document()->setLineEndingDirect(QDocument::Unix,true);
+	editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), result);
 }
 
 #endif
-
