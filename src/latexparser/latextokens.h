@@ -46,14 +46,14 @@ public:
 		closeBrace, closeBracket, closeSquareBracket, greater, math,
 		comment, commandUnknown, label, bibItem, file,
 		imagefile, bibfile, keyValArg, keyVal_key, keyVal_val,
-		list, text, env, beginEnv, def, labelRef,
-		package, width, placement, colDef, title,
-		shorttitle, todo, url, documentclass, beamertheme,
-		packageoption, color, verbatimStart, verbatimStop, verbatim,
-		symbol, punctuation, number, generalArg, defArgNumber,
-		optionalArgDefinition, definition, defWidth, labelRefList, specialArg,
-		newTheorem,newBibItem,formula,overlay,overlayRegion,
-		_end = 255
+		list, text, env, beginEnv, def,
+		labelRef, package, width, placement, colDef,
+		title, shorttitle, todo, url, documentclass,
+		beamertheme, packageoption, color, verbatimStart, verbatimStop,
+		verbatim, symbol, punctuation, number, generalArg,
+		defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
+		specialArg, newTheorem, newBibItem, formula, overlay,
+		overlayRegion, _end = 255
 	};
 	static QString tokenTypeName(TokenType t);
 
