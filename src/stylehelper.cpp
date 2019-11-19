@@ -131,7 +131,7 @@ void StyleHelper::verticalGradient(QPainter *painter, const QRect &spanRect, con
 {
     QString key;
     key.sprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
-                                             clipRect.height(), StyleHelper::baseColor().rgb());;
+                                             clipRect.height(), StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;
@@ -211,7 +211,7 @@ void StyleHelper::menuGradient(QPainter *painter, const QRect &spanRect, const Q
 {
     QString key;
     key.sprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
-                                             clipRect.height(), StyleHelper::baseColor().rgb());;
+                                             clipRect.height(), StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;

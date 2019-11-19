@@ -1735,12 +1735,12 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		buildManager->setAllCommands(tempCommands, userOrder);
 		/*TODO for (BuildManager::LatexCommand cmd=BuildManager::CMD_LATEX; cmd < BuildManager::CMD_USER_QUICK; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
-			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
+			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());
 		}
 
 		for (BuildManager::LatexCommand cmd=BuildManager::CMD_SVN; cmd <= BuildManager::CMD_SVNADMIN; ++cmd){
 			if (!commandsToEdits.value(cmd)) continue;
-			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());;
+			buildManager->setLatexCommand(cmd,commandsToEdits.value(cmd)->text());
 		}*/
 
 		/*Q_ASSERT(confDlg->checkboxInternalPDFViewer);

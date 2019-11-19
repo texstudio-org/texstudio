@@ -3912,7 +3912,7 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
 	if (actionSynchronize_multiple_views->isChecked() && sync)
-		emit syncView(curFile, masterFile, widget()->getPageIndex());;
+		emit syncView(curFile, masterFile, widget()->getPageIndex());
 }
 
 void PDFDocument::enableZoomActions(qreal scaleFactor)
