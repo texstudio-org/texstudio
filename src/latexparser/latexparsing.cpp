@@ -166,7 +166,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	CommandStack oldCommandStack = dlh->getCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
 	QString line = dlh->text();
 	bool verbatimMode = false;
-    bool verbatimAfterOptionalArg=false;
 	int level = 0;
 	if (!stack.isEmpty()) {
 	    if (stack.top().type == Token::verbatim) {
@@ -496,7 +495,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                 if (lp.possibleCommands["%verbatimEnv"].contains(env)) {
                                     if(cd.args==1 && cd.optionalArgs==1){
                                         // special treatment for \begin{abc}[...]
-                                        verbatimAfterOptionalArg=true;
+                                        cd.verbatimAfterOptionalArg=true;
                                         cd.args--;
                                         cd.argTypes.takeFirst();
                                         cd.optionalCommandName="\\begin{" + env + "}";
@@ -548,8 +547,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     if (cd.args <= 0 && cd.bracketArgs <= 0) {
                         // all args handled, stop handling this command
                         commandStack.pop();
-                        if(verbatimAfterOptionalArg){ // delayed verbatim start to handle optional argument
-                            verbatimAfterOptionalArg=false;
+                        if(cd.verbatimAfterOptionalArg){ // delayed verbatim start to handle optional argument
                             verbatimMode = true;
                             Token tk3;
                             tk3.dlh = dlh;
@@ -751,12 +749,15 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }
         }
     }
-    if(verbatimAfterOptionalArg){ //optional arg not found
-        Token tk3;
-        tk3.dlh = dlh;
-        tk3.level = level - 1;
-        tk3.type = Token::verbatim;
-        stack.push(tk3);
+    if (!commandStack.isEmpty() && commandStack.top().level == level) {
+        CommandDescription &cd = commandStack.top();
+        if(cd.verbatimAfterOptionalArg){ //optional arg not found
+            Token tk3;
+            tk3.dlh = dlh;
+            tk3.level = level - 1;
+            tk3.type = Token::verbatim;
+            stack.push(tk3);
+        }
     }
 
     dlh->setCookie(QDocumentLine::LEXER_COOKIE, QVariant::fromValue<TokenList>(lexed));
