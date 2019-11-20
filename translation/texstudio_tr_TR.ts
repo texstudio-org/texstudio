@@ -967,12 +967,12 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/configdialog.ui" line="669"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: uzantı olmadan dosya adı; &lt;b&gt;@&lt;/b&gt;: satır numarası; &lt;b&gt;?[seçici][yol adı bölümü][sonlandırıcı karakter]&lt;/b&gt;: biçimlendirilmiş dosya adı</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Dosya seçici (İsteğe bağlı. Varsa sona erdiren iki nokta üst üste katılır):&lt;/i&gt; Seçici yoksa ana dosya seçilir. &lt;b&gt;c:&lt;/b&gt;Geçerli dosyayı seçer, &lt;b&gt;p{ext}:&lt;/b&gt; Ana dosya ile aynı temel dosya adına ve &lt;b&gt;ext&lt;/b&gt; uzantısına sahip bir dosyayı bulur. &lt;br /&gt;&lt;i&gt;Yol adı bölümleri&lt;/i&gt; &lt;b&gt;a&lt;/b&gt;: Mutlak yol, &lt;b&gt;m&lt;/b&gt;: Uzantı olmadan temel dosya adı, &lt;b&gt;e:&lt;/b&gt; Uzantı ve &lt;b&gt;r&lt;/b&gt;: Ana dosyaya göre yol değerlerinden oluşur, &lt;b&gt;*&lt;/b&gt;: Modele uyan tüm dosyalar&lt;br/&gt;&lt;i&gt;Sonlandırma karakterleri: &lt;b&gt;)&lt;/b&gt;: Seçiciyi sonlandırır. Şu karakterler seçiciyi sonlandırır ve şu anlamlara gelir&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;:  Çift tırnak arasına alır, &lt;b&gt;.&lt;/b&gt;: (dot) Sona bir nokta ekler, (space): Sona bir boşluk ekler&lt;br/&gt;&lt;i&gt;Örnekler:&lt;/i&gt;&lt;b&gt; ?osya&amp;quot;&lt;/b&gt;: Mutlak dosya adını çift tırnak arasında tamamlar, &lt;b&gt;?e)&lt;/b&gt; Önünde nokta olmadan uzantıyı tamamlar (tex gibi), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; Uzantısı olmadan çift tırnak içinde dosya adı (&lt;b&gt;%&lt;/b&gt; ile aynı), &lt;b&gt;?me&lt;/b&gt; Uzantı ile dosya adı (ornek.tex gibi), &lt;b&gt;?*.aux&lt;/b&gt;: Geçerli klasördeki tüm .aux dosyaları</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="695"/>
@@ -8651,73 +8651,73 @@ Bu betiğe güvenilsin mi?</translation>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (sabit genişlik - üstte / iki kenara hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (sabit genişlik - üstte / sola hizalı</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (sabit genişlik - üstte / ortaya hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (sabit genişlik - üstte / sağa hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (sabit genişlik - ortada / iki kenara hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (sabit genişlik - ortada / sola hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (sabit genişlik - ortada / ortaya hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (sabit genişlik - ortada / sağa hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (sabit genişlik - altta / iki kenara hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (sabit genişlik - altta / sola hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (sabit genişlik - altta / ortaya hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (sabit genişlik - altta / sağa hizalı)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -9173,7 +9173,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="587"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Makrolar</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="607"/>

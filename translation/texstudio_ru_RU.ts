@@ -967,12 +967,12 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="669"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: имя файла без расширения; &lt;b&gt;@&lt;/b&gt;: номер строки; &lt;b&gt;?[селектор][части пути][завершающий символ]&lt;/b&gt;: форматированное имя файла</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Селектор файла (опционально; если задаёте, то поставьте двоеточие на конце):&lt;/i&gt; Если нет селектора, то будет выбран мастер-файл. &lt;b&gt;c:&lt;/b&gt; выбрать текущую строку, &lt;b&gt;p{ext}:&lt;/b&gt; Найти файл с таким же базовым именем, как у мастер-файла, и расширением &lt;b&gt;ext&lt;/b&gt;. Поиск проводидится в директории с мастер-файлом и дополнительных директориях PDF. &lt;br /&gt;&lt;i&gt;Части пути:&lt;/i&gt; комбинация из &lt;b&gt;a&lt;/b&gt;: абсолютного пути, &lt;b&gt;m&lt;/b&gt;: базового имени без расширения,&lt;b&gt;e&lt;/b&gt;: расширения, &lt;b&gt;r&lt;/b&gt;: относительного пути от мастер-файла, &lt;b&gt;*&lt;/b&gt;: всех файлов, удовлетворяющих маске &lt;br/&gt;&lt;i&gt;Завершающие символы:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: завершает селектор. Следующие знаки завершают селектор и имеют дополнительное значение: &lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: взять в двойные кавычки, &lt;b&gt;.&lt;/b&gt; (точка) добавить точку на конце, (пробел): добавить пробел в конце&lt;br/&gt;&lt;i&gt;Примеры:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt; — полный абсолютный путь и имя файла, взятые в двойные кавычки; &lt;b&gt;?e)&lt;/b&gt; — только расширение без точки в начале (пример: tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; — имя файла без расширения в двойных кавычках (идентично &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; — имя файла с расширением (пример: example.tex), &lt;b&gt;?*.aux&lt;/b&gt; — все .aux-файлы в текущей директории</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="695"/>
@@ -8655,73 +8655,73 @@ Do you trust this script?</source>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — сверху / по ширине)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — сверху / слева)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — сверху / по центру)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — сверху / справа)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — посередине / по ширине)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — посередине / слева)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — посередине / по центру)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — посередине / справа)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — снизу / по ширине)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — снизу / слева)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — снизу / по центру)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фикс. ширина — снизу / справа)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -9176,7 +9176,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="587"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Макросы</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="607"/>

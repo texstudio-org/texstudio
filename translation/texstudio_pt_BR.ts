@@ -965,7 +965,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/configdialog.ui" line="669"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: nome do arquivo sem  extensão; &lt;b&gt;@&lt;/b&gt;: número da linha; &lt;b&gt;?[seletor][pathname parts][terminating char]&lt;/b&gt;: nome do arquivo formatado</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
@@ -9171,7 +9171,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="587"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Macros</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="607"/>

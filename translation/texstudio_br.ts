@@ -957,7 +957,7 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
     <message>
         <location filename="../src/configdialog.ui" line="655"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
-        <translation>Urzhiad (%: anv ar restr hep astenn ebet - @: niver al linenn -?: dibarzhioù ar restr astennet)</translation>
+        <translation>Urzhiad (%: anv-restr hep astenn ebet - @: niver al linenn -?: dibarzhioù ar restr astennet)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="662"/>
@@ -967,12 +967,12 @@ Cheñchit mar plij ho kefluniadur ha termenit ho listenn-urzhiadoù hepken da &a
     <message>
         <location filename="../src/configdialog.ui" line="669"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: anv-restr hep astenn; &lt;b&gt;@&lt;/b&gt;: niver al linenn; &lt;b&gt;?[diuzer][lodennoù anv-hent][arouezenn fin]&lt;/b&gt;: anv-restr furmadet</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Diuzer restr (Diret. M&apos;emañ amañ enklozañ ivez ar golonenn fin):&lt;/i&gt; Ma n&apos;eus diuzer ebet diuzañ a-benn neuze ur restr mestr. &lt;b&gt;c:&lt;/b&gt; diuzañ ar restr red, &lt;b&gt;p{ext}:&lt;/b&gt; Kavout ur restr gant ar memes diaz-anv hag ar restr mestr hag an astenn &lt;b&gt;ext&lt;/b&gt;. Graet eo bet an enklask er c&apos;havlec&apos;h restroù-mestr hag er c&apos;havlec&apos;hioù PDFoù ouzhpenn.&lt;br /&gt;&lt;i&gt;Lodennoù anv-hent:&lt;/i&gt; ur c&apos;henaozadur gant &lt;b&gt;a&lt;/b&gt;: hentoù absolut, &lt;b&gt;m&lt;/b&gt;: restr-diaz hep astenn ebet,&lt;b&gt;e&lt;/b&gt;: astenn, &lt;b&gt;r&lt;/b&gt;: hent reoliet d&apos;ar mestr, &lt;b&gt;*&lt;/b&gt;: an holl restroù o kenglotañ gant ar patrom da-heul&lt;br/&gt;&lt;i&gt;Arouezioù fin:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: finioù an diuzer. An arouezioù  da-heul a zo e fin an diuzer o deus talvoudegezhioù disheñvel&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enklozañ en doubl-arroudennoù, &lt;b&gt;.&lt;/b&gt; (poentoù) ouzhpennit ur poent er fin, (esaouenn): ouzhpennit un esaouenn er fin&lt;br/&gt;&lt;i&gt;Skouerioù:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: klokaat a ra anvioù-restr absolud enklozet e-barzh doubl-arroudennoù, &lt;b&gt;?e)&lt;/b&gt; an astenn hep ar poent pennañ hepken (d.sk. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; anv-restr doubl-arroudennet hep an astenn (heñvel ouzh &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; anv-restr gant an astenn (d.sk. skouer.tex), &lt;b&gt;?*.aux&lt;/b&gt;: an holl restroù .aux e-barzh ar c&apos;havlec&apos;h red</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="695"/>
@@ -8270,7 +8270,7 @@ Ha fiziañs ho peus e-barzh ar skript-mañ?</translation>
         <location filename="../src/structuretreeview.cpp" line="84"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
-        <translation type="unfinished"/>
+        <translation>Enlakaat %1 d&apos;al Label</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="88"/>
@@ -8645,73 +8645,73 @@ Ha fiziañs ho peus e-barzh ar skript-mañ?</translation>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - laez / justaet)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - laez / kleiz)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - laez / kreiz)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - laez / dehou)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - kreiz / justaet)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - kreiz / kleiz)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - kreiz / kreiz)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - kreiz / dehou)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - traoñ / justaet)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - traoñ / kleiz)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - traoñ / kreiz)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (ledanded stabilaet - traoñ / dehou)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -9168,7 +9168,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="587"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Makroioù</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="607"/>
@@ -9326,7 +9326,7 @@ c&apos;hwitet.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="830"/>
         <source>Copy filename to &amp;clipboard</source>
-        <translation>Eilañ an anv-restr d&apos;ar &amp;golver</translation>
+        <translation>Eilañ an anv-restr er &amp;golver</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="831"/>
