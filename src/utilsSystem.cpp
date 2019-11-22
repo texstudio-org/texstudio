@@ -676,24 +676,6 @@ QStringList envKeys(const QProcessEnvironment &env)
 #endif
 }
 
-// run the command in a separate process, wait and return the result
-// use for internal queries that should be silent. Not to be mixed up with BuildManager::runCommand
-QString execCommand(const QString &cmd, QString additionalPaths)
-{
-	if (cmd.isEmpty()) return QString();
-    QProcess myProc(nullptr);
-    if(!additionalPaths.isEmpty()){
-        updatePathSettings(&myProc,additionalPaths);
-    }
-	myProc.start(cmd);
-	myProc.waitForFinished();
-	QString result;
-	if (myProc.exitCode() == 0) {
-		result = myProc.readAllStandardOutput();
-	}
-	return result.trimmed();
-}
-
 void ThreadBreaker::sleep(unsigned long s)
 {
 	QThread::sleep(s);

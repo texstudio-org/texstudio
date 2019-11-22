@@ -25,6 +25,7 @@ HEADERS += \
     $$PWD/editors.h \
     $$PWD/encoding.h \
     $$PWD/encodingdialog.h \
+    $$PWD/execprogram.h \
     $$PWD/filechooser.h \
     $$PWD/fileselector.h \
     $$PWD/flowlayout.h \
@@ -131,6 +132,7 @@ SOURCES += \
     $$PWD/editors.cpp \
     $$PWD/encoding.cpp \
     $$PWD/encodingdialog.cpp \
+    $$PWD/execprogram.cpp \
     $$PWD/filechooser.cpp \
     $$PWD/fileselector.cpp \
     $$PWD/flowlayout.cpp \

@@ -68,6 +68,7 @@
 #include "structuretreeview.h"
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
+#include "execprogram.h"
 
 #include <QScreen>
 
@@ -9340,8 +9341,19 @@ void Texstudio::readinAllPackageNames()
 			if (!QFileInfo(cmd_latex).isRelative())
 				baseDir = QFileInfo(cmd_latex).absolutePath() + "/";
 #ifdef Q_OS_WIN
-			bool isMiktex = baseDir.contains("miktex", Qt::CaseInsensitive)
-			                || (!baseDir.contains("texlive", Qt::CaseInsensitive) && execCommand(baseDir + "latex.exe --version").contains("miktex", Qt::CaseInsensitive));
+			bool isMiktex = false;
+			if (baseDir.contains("miktex", Qt::CaseInsensitive)) {
+				isMiktex = true;
+			} else if (!baseDir.contains("texlive", Qt::CaseInsensitive)) {
+				ExecProgram execProgram;
+
+				execProgram.program = baseDir + "latex.exe";
+				execProgram.arguments << "--version";
+				execProgram.execAndWait();
+				if (execProgram.normalRun && execProgram.standardOutput.contains("miktex", Qt::CaseInsensitive)) {
+					isMiktex = true;
+				}
+			}
 			if (isMiktex)
 				packageListReader = new MiktexPackageScanner(quotePath(baseDir + "mpm.exe"), configManager.configBaseDir, this);
 			else
