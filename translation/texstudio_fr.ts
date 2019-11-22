@@ -975,7 +975,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Sélecteur de fichiers (optionnel. Si présent, inclut le « : » final) :&lt;/i&gt; En l&apos;absence de sélecteur, sélectionner le fichier maître. &lt;b&gt;c:&lt;/b&gt; sélectionne le fichier en cours, &lt;b&gt;p{ext}:&lt;/b&gt; Trouve une fichier avec le même nom que le fichier maître et l&apos;extension &lt;b&gt;ext&lt;/b&gt;. La recherche est faite dans le dossier du fichier maître et les dossiers PDF additionnels.&lt;br /&gt;&lt;i&gt;Parties de chemin du nom :&lt;/i&gt; une cominaison de &lt;b&gt;a&lt;/b&gt;: chemin absolu, &lt;b&gt;m&lt;/b&gt;: nom sans extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: chemin relatif au fichier maître, &lt;b&gt;*&lt;/b&gt;: tous les fichiers correspondant au motif suivant&lt;br/&gt;&lt;i&gt;Caractères terminaux :&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: sélecteurs finaux. Les caractères suivants terminent le sélecteur et ont des significations supplémentaires&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: insère entre guillemets — dactylographiques : &quot;...&quot;, &lt;b&gt;.&lt;/b&gt; (point) ajoute un point à la fin, (espace): ajoute un espace à la fin&lt;br/&gt;&lt;i&gt;Exemples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: chemin absolu complet inséré entre guillemets, &lt;b&gt;?e)&lt;/b&gt; juste l&apos;extension sans le point précédent (p. ex. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; nom de fichier inséré entre guillemets sans extension (identique à &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nom de fichier avec extension (p. ex. exemple.tex), &lt;b&gt;?*.aux&lt;/b&gt;: tous les fichiers .aux files dans le dossier en cours</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="695"/>
@@ -8649,73 +8649,73 @@ Faites-vous confiance à ce script ?</translation>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (largeur fixée — haut/justifié)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (largeur fixée — haut/à gauche)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (largeur fixée — haut/centré)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (largeur fixée — haut/droite) </translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (largeur fixée — centré/justifié)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (largeur fixée — centré/gauche)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (largeur fixée — centré/centré)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (largeur fixée — centré/droite)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (largeur fixée — bas/justifié)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (largeur fixée — bas/gauche)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (largeur fixée — bas/centré)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (largeur fixée — bas/droite)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -9172,7 +9172,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="587"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Macros</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="607"/>

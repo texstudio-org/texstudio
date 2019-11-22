@@ -969,12 +969,12 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     <message>
         <location filename="../src/configdialog.ui" line="669"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: fájlnév kiterjesztés nélkül &lt;b&gt;@&lt;/b&gt;: sor száma; &lt;b&gt;?[választó][útvonalnév részek][lezáró karakter]&lt;/b&gt;: formázott fájlnév</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Fájlválasztó (Nem kötelező. Ha jelen van, akkor a záró kettőspontot is tartalmazza):&lt;/i&gt; Ha nincs választó, akkor a mesterfájlt választja ki. &lt;b&gt;c:&lt;/b&gt; jelenlegi fájl kiválasztása, &lt;b&gt;p{ext}:&lt;/b&gt; A mesterfájllal egyező alapnevű és &lt;b&gt;ext&lt;/b&gt; kiterjesztésű fájl. A keresés a mesterfájl könyvtárában és a további PDF könyvtárakban történik.&lt;br /&gt;&lt;i&gt;Útvonal részek:&lt;/i&gt; a következők kombinációja, &lt;b&gt;a&lt;/b&gt;: abszolút útvonal, &lt;b&gt;m&lt;/b&gt;: alap fájlnév kiterjesztés nélkül,&lt;b&gt;e&lt;/b&gt;: kiterjesztés, &lt;b&gt;r&lt;/b&gt;: relatív útvonal a mesterfájlhoz, &lt;b&gt;*&lt;/b&gt;: a következő mintával egyező összes fájl&lt;br/&gt;&lt;i&gt;Záró karakterek:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: lezárja a választót. A következő karakterek és lezárják a választót, és további jelentéssel bírnak&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: körbezárás dupla idézőjellel, &lt;b&gt;.&lt;/b&gt; (pont) egy pont hozzáfűzése a végéhez, (szóköz): egy szóköz hozzáfűzése a végéhez&lt;br&gt;&lt;i&gt;Példák:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: a teljes abszolút fájlnév dupla idézőjelek között, &lt;b&gt;?e)&lt;/b&gt; csak a kiterjesztés, kezdő ponttal (például .tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; fájlnév dupla idézőjelek között, kiterjesztés nélkül (egyenértékű ezzel: &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; fájlnév kiterjesztéssel (például example.tex), &lt;b&gt;?*.aux&lt;/b&gt; az összes .aux fájl a jelenlegi könyvtárban</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="695"/>
@@ -1499,7 +1499,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1896"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Követő szóközök eltávolítása mentéskor</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1957"/>
@@ -5153,7 +5153,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>Kezdési idő</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
@@ -5163,7 +5163,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="996"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>várakozás</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="998"/>
@@ -6336,7 +6336,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>A(z) %1
+a TeXstudión kívül változott meg. Újratölti a lemezről?
+
+Megjegyzések:
+- Az újratöltés felülírja a szerkesztő tartalmát a lemezen lévő fájllal. Ez nem vonható vissza.
+- A beállításokban véglegesen engedélyezheti a csendes újratöltést.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>
@@ -7328,7 +7333,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="220"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"/>
+        <translation>Csak a kiválasztott szövegtípusban keres (matematika, parancsok, stb.)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="239"/>
@@ -8632,73 +8637,73 @@ Megbízik a parancsfájlban?</translation>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – felülre / sorkizárt)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – felülre / balra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – felülre / középre)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – felülre / jobbra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – középre / sorkizárt)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – középre / balra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – középre / középre)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – középre / jobbra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – alulra / sorkizárt)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – alulra / balra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – alulra / középre)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (fix szélességű – alulra / jobbra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -9154,7 +9159,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="587"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Makrók</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="607"/>
