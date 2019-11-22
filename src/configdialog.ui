@@ -1549,7 +1549,7 @@ Then you can select a new shortcut by one of the following ways:
           <string>Editor</string>
          </property>
          <layout class="QGridLayout">
-          <item row="12" column="0">
+          <item row="13" column="0">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1565,7 +1565,36 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="14" column="0" colspan="2">
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_33">
+            <property name="text">
+             <string>Show Line Numbers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1">
+           <widget class="QComboBox" name="comboboxLineNumbers">
+            <property stdset="0">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>No Line Numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>All Line Numbers</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Only Important Line Numbers</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="15" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
             <property name="text">
              <string>Check non tex files</string>
@@ -1575,7 +1604,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="16" column="0" colspan="2">
+          <item row="17" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxScanInstalledLatexPackages">
             <property name="text">
              <string>Scan LaTeX distribution for installed packages</string>
@@ -1796,7 +1825,7 @@ Then you can select a new shortcut by one of the following ways:
             </item>
            </widget>
           </item>
-          <item row="12" column="1" colspan="4">
+          <item row="13" column="1" colspan="4">
            <widget class="QGroupBox" name="groupBoxInlineChecking">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -1860,7 +1889,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="15" column="0" colspan="3">
+          <item row="16" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxAutoLoad">
             <property name="text">
              <string>Automatically load included files</string>
@@ -1870,7 +1899,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="13" column="2" colspan="3">
+          <item row="14" column="2" colspan="3">
            <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
             <property name="text">
              <string>Hide grammar errors in non-text environments</string>
@@ -1880,7 +1909,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="13" column="0" colspan="2">
+          <item row="14" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
             <property name="text">
              <string>Hide spelling errors in non-text environments</string>
@@ -1951,35 +1980,6 @@ Then you can select a new shortcut by one of the following ways:
              <layout class="QGridLayout" name="gridLayout_6">
               <item row="2" column="0">
                <layout class="QHBoxLayout" name="horizontalLayout_6">
-                <item>
-                 <widget class="QLabel" name="label_33">
-                  <property name="text">
-                   <string>Show Line Numbers:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QComboBox" name="comboboxLineNumbers">
-                  <property name="advancedOption" stdset="0">
-                   <bool>true</bool>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string>No Line Numbers</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>All Line Numbers</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Only Important Line Numbers</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
                 <item>
                  <spacer name="horizontalSpacer_6">
                   <property name="orientation">
