@@ -1,7 +1,7 @@
 #include "execprogram.h"
 #include "utilsSystem.h"
 
-void ExecProgram::execAndWait (void)
+bool ExecProgram::execAndWait (void)
 {
 	QProcess proc;
 
@@ -13,6 +13,7 @@ void ExecProgram::execAndWait (void)
 	exitCode = proc.exitCode();
 	standardOutput = proc.readAllStandardOutput();
 	standardError = proc.readAllStandardError();
+	return normalRun && (exitCode == 0);
 }
 
 void ExecProgram::execAndNoWait (QProcess &proc) const

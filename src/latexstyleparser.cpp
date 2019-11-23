@@ -15,8 +15,7 @@ LatexStyleParser::LatexStyleParser(QObject *parent, QString baseDirName, QString
 	ExecProgram execProgram;
 	execProgram.program = texdefDir + "pdflatex";
 	execProgram.arguments << "--version";
-	execProgram.execAndWait();
-	texdefMode = execProgram.normalRun && (execProgram.exitCode == 0);
+	texdefMode = execProgram.execAndWait();
 	if (texdefMode) {
 		QString output = execProgram.standardOutput.split("\n").first().trimmed();
 		if (output.contains("MiKTeX")) {
@@ -719,8 +718,7 @@ QString LatexStyleParser::kpsewhich(QString name, QString dirName) const
 			execProgram.arguments << "-path=" + dirName;
 		}
 		execProgram.arguments << fn;
-		execProgram.execAndWait();
-		if (execProgram.normalRun && (execProgram.exitCode == 0)) {
+		if (execProgram.execAndWait()) {
 			fn = execProgram.standardOutput.split('\n').first().trimmed(); // in case more than one results are present
 		} else
 			fn.clear();
@@ -740,8 +738,7 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn) const
 	if (!texdefDir.isEmpty()) {
 		execProgram.additionalSearchPaths = texdefDir;
 	}
-	execProgram.execAndWait ();
-	if (!execProgram.normalRun || (execProgram.exitCode != 0)) {
+	if (!execProgram.execAndWait()) {
 		return QStringList();
 	}
 	QStringList lines = execProgram.standardOutput.split('\n');
@@ -818,8 +815,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 	}
 	execProgram.arguments << "-draftmode" << "-interaction=nonstopmode" << "--disable-installer" << tf->fileName();
 	execProgram.workingDirectory = QFileInfo(tf->fileName()).absoluteDir().absolutePath();
-	execProgram.execAndWait();
-	if (!execProgram.normalRun || (execProgram.exitCode != 0)) {
+	if (!execProgram.execAndWait()) {
 		return QStringList();
 	}
 	QStringList lines = execProgram.standardOutput.split('\n');

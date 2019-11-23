@@ -18,7 +18,7 @@ public:
 	QString standardOutput;
 	QString standardError;
 
-	void execAndWait (void);
+	bool execAndWait (void);
 	void execAndNoWait (QProcess &proc) const;
 };
 

@@ -15,8 +15,8 @@ QString getTerminalCommand()
 	// gnome
 	execProgram.program = "gsettings";
 	execProgram.arguments << "get" << "org.gnome.desktop.default-applications.terminal" << "exec";
-	execProgram.execAndWait();
-	if (execProgram.normalRun) {
+	if (execProgram.execAndWait()) {
+		// "gsettings" terminates with exit code 0 if settings were fetched successfully
 		return execProgram.standardOutput.replace('\'', "");
 	}
 
@@ -26,8 +26,8 @@ QString getTerminalCommand()
 	foreach (const QString &fallback, fallbacks) {
 		execProgram.arguments.clear ();
 		execProgram.arguments << fallback;
-		execProgram.execAndWait();
-		if (execProgram.normalRun) {
+		if (execProgram.execAndWait()) {
+			// "which" terminates with exit code 0 if settings were fetched successfully
 			return execProgram.standardOutput;
 		}
 	}
