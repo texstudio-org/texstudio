@@ -1,28 +1,30 @@
 #include "execprogram.h"
 #include "utilsSystem.h"
 
-ExecProgram::ExecProgram(void)
+ExecProgram::ExecProgram(void) :
+	m_normalRun(false),
+	m_exitCode(-1)
 {
-	m_exitCode = 0;
 }
 
-ExecProgram::ExecProgram(const QString &progNameAndArguments, const QString &additionalSearchPaths, const QString &workingDirectory)
+ExecProgram::ExecProgram(const QString &progNameAndArguments, const QString &additionalSearchPaths, const QString &workingDirectory) :
+	m_program(progNameAndArguments),
+	m_additionalSearchPaths(additionalSearchPaths),
+	m_workingDirectory(workingDirectory),
+	m_normalRun(false),
+	m_exitCode(-1)
 {
-	m_program = progNameAndArguments;
-	m_additionalSearchPaths = additionalSearchPaths;
-	m_workingDirectory = workingDirectory;
-	m_exitCode = 0;
 }
 
-ExecProgram::ExecProgram(const QString &progName, const QStringList &arguments, const QString &additionalSearchPaths, const QString &workingDirectory)
+ExecProgram::ExecProgram(const QString &progName, const QStringList &arguments, const QString &additionalSearchPaths, const QString &workingDirectory) :
+	m_program(progName),
+	m_arguments(arguments),
+	m_additionalSearchPaths(additionalSearchPaths),
+	m_workingDirectory(workingDirectory),
+	m_normalRun(false),
+	m_exitCode(-1)
 {
-	m_program = progName;
-	m_arguments = arguments;
-	m_additionalSearchPaths = additionalSearchPaths;
-	m_workingDirectory = workingDirectory;
-	m_exitCode = 0;
 }
-
 
 bool ExecProgram::execAndWait(void)
 {
