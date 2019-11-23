@@ -1,7 +1,7 @@
 #include "execprogram.h"
 #include "utilsSystem.h"
 
-bool ExecProgram::execAndWait (void)
+bool ExecProgram::execAndWait(void)
 {
 	QProcess proc;
 
@@ -16,7 +16,7 @@ bool ExecProgram::execAndWait (void)
 	return normalRun && (exitCode == 0);
 }
 
-void ExecProgram::execAndNoWait (QProcess &proc) const
+void ExecProgram::execAndNoWait(QProcess &proc) const
 {
 	if (!workingDirectory.isEmpty()) {
 		proc.setWorkingDirectory(workingDirectory);

@@ -18,8 +18,8 @@ public:
 	QString standardOutput;
 	QString standardError;
 
-	bool execAndWait (void);
-	void execAndNoWait (QProcess &proc) const;
+	bool execAndWait(void);
+	void execAndNoWait(QProcess &proc) const;
 };
 
 #endif // EXECPROGRAM_H
