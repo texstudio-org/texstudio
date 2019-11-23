@@ -10,25 +10,21 @@ QString getTerminalCommand()
 	return command;
 #else // Linux
 	// Linux does not have a uniform way to determine the default terminal application
-	ExecProgram execProgram;
 
 	// gnome
-	execProgram.program = "gsettings";
-	execProgram.arguments << "get" << "org.gnome.desktop.default-applications.terminal" << "exec";
-	if (execProgram.execAndWait()) {
+	ExecProgram execGsettings("gsettings get org.gnome.desktop.default-applications.terminal exec", "");
+	if (execGsettings.execAndWait()) {
 		// "gsettings" terminates with exit code 0 if settings were fetched successfully
-		return execProgram.standardOutput.replace('\'', "");
+		return execGsettings.m_standardOutput.replace('\'', "");
 	}
 
 	// fallback
 	QStringList fallbacks = QStringList() << "konsole" << "xterm";
-	execProgram.program = "which";
 	foreach (const QString &fallback, fallbacks) {
-		execProgram.arguments.clear ();
-		execProgram.arguments << fallback;
-		if (execProgram.execAndWait()) {
+		ExecProgram execWhich("which " + fallback, "");
+		if (execWhich.execAndWait()) {
 			// "which" terminates with exit code 0 if settings were fetched successfully
-			return execProgram.standardOutput;
+			return execWhich.m_standardOutput;
 		}
 	}
 	return QString();

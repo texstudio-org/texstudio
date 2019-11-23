@@ -2381,9 +2381,7 @@ void ProcessX::startCommand()
 	if (stderrEnabled)
 		connect(this, SIGNAL(readyReadStandardError()), this, SLOT(readFromStandardError()));
 
-	ExecProgram execProgram;
-	execProgram.program = cmd;
-	execProgram.additionalSearchPaths = BuildManager::resolvePaths(BuildManager::additionalSearchPaths);
+	ExecProgram execProgram(cmd, BuildManager::resolvePaths(BuildManager::additionalSearchPaths));
 	execProgram.execAndNoWait(*this);
 
 	if (error() == FailedToStart || error() == Crashed)

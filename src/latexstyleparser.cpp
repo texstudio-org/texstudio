@@ -12,12 +12,10 @@ LatexStyleParser::LatexStyleParser(QObject *parent, QString baseDirName, QString
 	mFiles.clear();
 	//check if pdflatex is present
 	texdefDir = kpsecmd.left(kpsecmd.length() - 9);
-	ExecProgram execProgram;
-	execProgram.program = texdefDir + "pdflatex";
-	execProgram.arguments << "--version";
+	ExecProgram execProgram(texdefDir + "pdflatex --version", "");
 	texdefMode = execProgram.execAndWait();
 	if (texdefMode) {
-		QString output = execProgram.standardOutput.split("\n").first().trimmed();
+		QString output = execProgram.m_standardOutput.split("\n").first().trimmed();
 		if (output.contains("MiKTeX")) {
 			kpseWhichCmd.chop(9);
 			kpseWhichCmd.append("findtexmf");
@@ -712,14 +710,13 @@ QString LatexStyleParser::kpsewhich(QString name, QString dirName) const
 		return "";  // don't check .sty/.cls
 	QString fn = name;
 	if (!kpseWhichCmd.isEmpty()) {
-		ExecProgram execProgram;
-		execProgram.program = kpseWhichCmd;
+		ExecProgram execProgram(kpseWhichCmd, QStringList());
 		if (!dirName.isEmpty()) {
-			execProgram.arguments << "-path=" + dirName;
+			execProgram.m_arguments << "-path=" + dirName;
 		}
-		execProgram.arguments << fn;
+		execProgram.m_arguments << fn;
 		if (execProgram.execAndWait()) {
-			fn = execProgram.standardOutput.split('\n').first().trimmed(); // in case more than one results are present
+			fn = execProgram.m_standardOutput.split('\n').first().trimmed(); // in case more than one results are present
 		} else
 			fn.clear();
 	}
@@ -732,16 +729,12 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn) const
 		return QStringList();
 
 	QString fname = fn.left(fn.length() - 4);
-	ExecProgram execProgram;
-	execProgram.program = texdefDir + "texdef";
-	execProgram.arguments << "-t" << "latex" << "-l" << "-p" << fname;
-	if (!texdefDir.isEmpty()) {
-		execProgram.additionalSearchPaths = texdefDir;
-	}
+	ExecProgram execProgram(texdefDir + "texdef", QStringList(), texdefDir);
+	execProgram.m_arguments << "-t" << "latex" << "-l" << "-p" << fname;
 	if (!execProgram.execAndWait()) {
 		return QStringList();
 	}
-	QStringList lines = execProgram.standardOutput.split('\n');
+	QStringList lines = execProgram.m_standardOutput.split('\n');
 	QStringList args;
 	bool incl = false;
 	for (int i = 0; i < lines.length(); i++) {
@@ -808,17 +801,12 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 	out << "\\end{document}";
 	tf->close();
 
-	ExecProgram execProgram;
-	execProgram.program = texdefDir + "pdflatex";
-	if (!texdefDir.isEmpty()) {
-		execProgram.additionalSearchPaths = texdefDir;
-	}
-	execProgram.arguments << "-draftmode" << "-interaction=nonstopmode" << "--disable-installer" << tf->fileName();
-	execProgram.workingDirectory = QFileInfo(tf->fileName()).absoluteDir().absolutePath();
+	ExecProgram execProgram(texdefDir + "pdflatex", QStringList(), texdefDir, QFileInfo(tf->fileName()).absoluteDir().absolutePath());
+	execProgram.m_arguments << "-draftmode" << "-interaction=nonstopmode" << "--disable-installer" << tf->fileName();
 	if (!execProgram.execAndWait()) {
 		return QStringList();
 	}
-	QStringList lines = execProgram.standardOutput.split('\n');
+	QStringList lines = execProgram.m_standardOutput.split('\n');
 	QStringList args;
 	QStack<QString> stack;
 	foreach (const QString elem, lines) {

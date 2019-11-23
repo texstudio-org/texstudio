@@ -74,12 +74,9 @@ void KpathSeaParser::run()
 
 QString KpathSeaParser::kpsewhich(const QString &arg)
 {
-	ExecProgram execProgram;
-
-	execProgram.program = kpseWhichCmd + " " + arg;
-	execProgram.additionalSearchPaths = m_additionalPaths;
+	ExecProgram execProgram(kpseWhichCmd + " " + arg, m_additionalPaths);
 	execProgram.execAndWait();
-	return execProgram.standardOutput;
+	return execProgram.m_standardOutput;
 }
 
 
@@ -92,11 +89,9 @@ MiktexPackageScanner::MiktexPackageScanner(QString mpmcmd, QString settingsDir, 
 
 QString MiktexPackageScanner::mpm(const QString &arg)
 {
-	ExecProgram execProgram;
-
-	execProgram.program = mpmCmd + " " + arg;
+	ExecProgram execProgram(mpmCmd + " " + arg, "");
 	execProgram.execAndWait();
-	return execProgram.standardOutput;
+	return execProgram.m_standardOutput;
 }
 
 void MiktexPackageScanner::savePackageMap(const QHash<QString, QStringList> &map)

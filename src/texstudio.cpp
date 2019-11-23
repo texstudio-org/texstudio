@@ -9345,12 +9345,9 @@ void Texstudio::readinAllPackageNames()
 			if (baseDir.contains("miktex", Qt::CaseInsensitive)) {
 				isMiktex = true;
 			} else if (!baseDir.contains("texlive", Qt::CaseInsensitive)) {
-				ExecProgram execProgram;
-
-				execProgram.program = baseDir + "latex.exe";
-				execProgram.arguments << "--version";
+				ExecProgram execProgram(baseDir + "latex.exe --version", "");
 				execProgram.execAndWait();
-				if (execProgram.normalRun && execProgram.standardOutput.contains("miktex", Qt::CaseInsensitive)) {
+				if (execProgram.m_normalRun && execProgram.m_standardOutput.contains("miktex", Qt::CaseInsensitive)) {
 					isMiktex = true;
 				}
 			}
