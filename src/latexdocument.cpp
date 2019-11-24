@@ -2956,18 +2956,28 @@ void LatexDocument::updateMagicCommentScripts()
 	}
 }
 
+/*!
+ * Return whether the use of package \a name is declared in this document.
+ */
+bool LatexDocument::containsPackage(const QString &name)
+{
+	return containedPackages().contains(name);
+}
+
+/*!
+ * Return all package names of packages that are declared in this document.
+ */
 QStringList LatexDocument::containedPackages()
 {
-	QStringList helper = mUsepackageList.values();
-	for (int l = 0; l < helper.size(); ++l) {
-		QString elem = helper.value(l);
-		if (elem.contains('#')) {
-			int i = elem.indexOf('#');
-			helper[l] = elem.mid(i + 1);
+	QStringList packages;
+	foreach(QString elem, mUsepackageList.values()) {
+		int i = elem.indexOf('#');
+		if (i >= 0) {
+			elem = elem.mid(i + 1);
 		}
+		packages << elem;
 	}
-
-	return helper;
+	return packages;
 }
 
 /*!
@@ -2981,12 +2991,6 @@ QSet<QString> LatexDocument::usedPackages()
 		packages.unite(doc->containedPackages().toSet());
 	}
 	return packages;
-}
-
-bool LatexDocument::containsPackage(const QString &name)
-{
-	QStringList helper = containedPackages();
-	return helper.contains(name);
 }
 
 LatexDocument *LatexDocuments::getRootDocumentForDoc(LatexDocument *doc) const   // doc==0 means current document
