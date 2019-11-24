@@ -5143,9 +5143,14 @@ void Texstudio::insertBib()
 void Texstudio::quickTabular()
 {
 	if ( !currentEditorView() )	return;
-	TabDialog *quickDlg = new TabDialog(this, "Tabular");
-	if ( quickDlg->exec() ) {
-		insertTag(quickDlg->getLatexText(), 0, 0);
+	TabDialog *tabDialog = new TabDialog(this, "Tabular");
+	if ( tabDialog->exec() ) {
+		QString latexText = tabDialog->getLatexText();
+		QStringList requiredPackages = TabDialog::getRequiredPackages(latexText);
+		foreach (const QString &package, requiredPackages) {
+			latexText.prepend("% \\usepackage{" + package + "} required\n");
+		}
+		insertTag(latexText, 0, 0);
 	}
 }
 

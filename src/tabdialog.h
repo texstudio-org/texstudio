@@ -37,6 +37,7 @@ public:
 	~TabDialog();
 	Ui::TabDialog ui;
 	QString getLatexText();
+	static QStringList getRequiredPackages(const QString &text);
 QList<colData> colDataList;
 QList<liData> liDataList;
 private slots:

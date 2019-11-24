@@ -218,9 +218,19 @@ QString TabDialog::getLatexText()
 		text += "\\hline\n\\end{tabular}";
 	else
 		text += "\\end{tabular}";
-	if (text.contains("arraybackslash"))
-		text = "% \\usepackage{array} is required\n" + text;
 	return text;
+}
+
+/*!
+ * Return a list of packages the given latex table code depends upon.
+ */
+QStringList TabDialog::getRequiredPackages(const QString &text)
+{
+	QStringList requiredPackages;
+	if (text.contains("arraybackslash")) {
+		requiredPackages << "array";
+	}
+	return requiredPackages;
 }
 
 void TabDialog::NewRows(int num)
