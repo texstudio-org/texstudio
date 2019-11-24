@@ -154,6 +154,7 @@ public:
 
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
+	Q_INVOKABLE QSet<QString> usedPackages();
 	bool updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate = false, bool delayUpdate = false);
 	const QSet<QString> &getCWLFiles() const;
 

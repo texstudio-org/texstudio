@@ -2970,6 +2970,19 @@ QStringList LatexDocument::containedPackages()
 	return helper;
 }
 
+/*!
+ * Return a list of packages that are available in the document.
+ * This includes all packages declared in all project files.
+ */
+QSet<QString> LatexDocument::usedPackages()
+{
+	QSet<QString> packages;
+	foreach (LatexDocument *doc, getListOfDocs()) {
+		packages.unite(doc->containedPackages().toSet());
+	}
+	return packages;
+}
+
 bool LatexDocument::containsPackage(const QString &name)
 {
 	QStringList helper = containedPackages();

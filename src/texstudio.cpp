@@ -5146,9 +5146,11 @@ void Texstudio::quickTabular()
 	TabDialog *tabDialog = new TabDialog(this, "Tabular");
 	if ( tabDialog->exec() ) {
 		QString latexText = tabDialog->getLatexText();
-		QStringList requiredPackages = TabDialog::getRequiredPackages(latexText);
-		foreach (const QString &package, requiredPackages) {
-			latexText.prepend("% \\usepackage{" + package + "} required\n");
+		QSet<QString> usedPackages = currentEditorView()->document->usedPackages();
+		foreach (const QString &package, TabDialog::getRequiredPackages(latexText)) {
+			if (!usedPackages.contains(package)) {
+				latexText.prepend("% \\usepackage{" + package + "} required\n");
+			}
 		}
 		insertTag(latexText, 0, 0);
 	}
