@@ -5149,7 +5149,7 @@ void Texstudio::quickTabular()
 		QSet<QString> usedPackages = currentEditorView()->document->usedPackages();
 		foreach (const QString &package, TabDialog::getRequiredPackages(latexText)) {
 			if (!usedPackages.contains(package)) {
-				latexText.prepend("% \\usepackage{" + package + "} required\n");
+				latexText.prepend("% TODO: \\usepackage{" + package + "} required\n");
 			}
 		}
 		insertTag(latexText, 0, 0);
@@ -5248,7 +5248,7 @@ void Texstudio::quickGraphics(const QString &graphicsFile)
 		QString latexText = graphicsDlg->getLatexText();
 		if (!currentEditorView()->document->usedPackages().contains("graphicx")) {
 			// simplified static version. See quickTabular() for a more generic version.
-			latexText.prepend("% \\usepackage{graphicx} required\n");
+			latexText.prepend("% TODO: \\usepackage{graphicx} required\n");
 		}
 		editor->insertText(cur, latexText);
 	} else {
