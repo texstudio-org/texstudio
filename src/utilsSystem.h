@@ -76,8 +76,6 @@ bool connectUnique(const QObject *sender, const char *signal, const QObject *rec
 
 QStringList envKeys(const QProcessEnvironment &env);
 
-QString execCommand(const QString &cmd,QString additionalPaths="");
-
 
 class ThreadBreaker : public QThread
 {

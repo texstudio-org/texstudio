@@ -1,5 +1,5 @@
 #include "kpathseaParser.h"
-#include "utilsSystem.h"
+#include "execprogram.h"
 
 PackageScanner::PackageScanner(QObject *parent) :
 	SafeThread(parent)
@@ -74,7 +74,9 @@ void KpathSeaParser::run()
 
 QString KpathSeaParser::kpsewhich(const QString &arg)
 {
-    return execCommand(kpseWhichCmd + " " + arg,m_additionalPaths);
+	ExecProgram execProgram(kpseWhichCmd + " " + arg, m_additionalPaths);
+	execProgram.execAndWait();
+	return execProgram.m_standardOutput;
 }
 
 
@@ -87,7 +89,9 @@ MiktexPackageScanner::MiktexPackageScanner(QString mpmcmd, QString settingsDir, 
 
 QString MiktexPackageScanner::mpm(const QString &arg)
 {
-	return execCommand(mpmCmd + " " + arg);
+	ExecProgram execProgram(mpmCmd + " " + arg, "");
+	execProgram.execAndWait();
+	return execProgram.m_standardOutput;
 }
 
 void MiktexPackageScanner::savePackageMap(const QHash<QString, QStringList> &map)

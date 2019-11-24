@@ -1,6 +1,7 @@
 #include "latexstyleparser.h"
 #include "latexparser/latexparser.h"
 #include "smallUsefulFunctions.h"
+#include "execprogram.h"
 
 LatexStyleParser::LatexStyleParser(QObject *parent, QString baseDirName, QString kpsecmd) :
 	SafeThread(parent)
@@ -11,14 +12,10 @@ LatexStyleParser::LatexStyleParser(QObject *parent, QString baseDirName, QString
 	mFiles.clear();
 	//check if pdflatex is present
 	texdefDir = kpsecmd.left(kpsecmd.length() - 9);
-    QProcess myProc(nullptr);
-	//myProc.start(texdefDir+"texdef");
-	myProc.start(texdefDir + "pdflatex --version");
-	myProc.waitForFinished();
-	texdefMode = (myProc.exitCode() == 0);
+	ExecProgram execProgram(texdefDir + "pdflatex --version", "");
+	texdefMode = execProgram.execAndWait();
 	if (texdefMode) {
-		QString output = myProc.readAllStandardOutput();
-		output = output.split("\n").first().trimmed();
+		QString output = execProgram.m_standardOutput.split("\n").first().trimmed();
 		if (output.contains("MiKTeX")) {
 			kpseWhichCmd.chop(9);
 			kpseWhichCmd.append("findtexmf");
@@ -108,12 +105,12 @@ void LatexStyleParser::run()
 							QChar c = result.at(td.length());
 							switch (c.toLatin1()) {
 							case '#':
-                                [[clang::fallthrough]];
-                            case '{':
-                                [[clang::fallthrough]];
+								[[clang::fallthrough]];
+							case '{':
+								[[clang::fallthrough]];
 							case '[':
 								addCommand = false;
-                                break;
+								break;
 							default:
 								break;
 							}
@@ -713,17 +710,13 @@ QString LatexStyleParser::kpsewhich(QString name, QString dirName) const
 		return "";  // don't check .sty/.cls
 	QString fn = name;
 	if (!kpseWhichCmd.isEmpty()) {
-        QProcess myProc(nullptr);
-		QStringList options;
+		ExecProgram execProgram(kpseWhichCmd, QStringList());
 		if (!dirName.isEmpty()) {
-			options << "-path=" + dirName;
+			execProgram.m_arguments << "-path=" + dirName;
 		}
-		options << fn;
-		myProc.start(kpseWhichCmd, options);
-		myProc.waitForFinished();
-		if (myProc.exitCode() == 0) {
-			fn = myProc.readAllStandardOutput();
-			fn = fn.split('\n').first().trimmed(); // in case more than one results are present
+		execProgram.m_arguments << fn;
+		if (execProgram.execAndWait()) {
+			fn = execProgram.m_standardOutput.split('\n').first().trimmed(); // in case more than one results are present
 		} else
 			fn.clear();
 	}
@@ -736,28 +729,13 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn) const
 		return QStringList();
 
 	QString fname = fn.left(fn.length() - 4);
-    QProcess myProc(nullptr);
-
-	//add exec search path
-	if (!texdefDir.isEmpty()) {
-		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-		if (env.value("SHELL") == "/bin/bash") {
-			env.insert("PATH", env.value("PATH") + ":" + texdefDir);
-			myProc.setProcessEnvironment(env);
-		}
-	}
-	QStringList args;
-	QString result;
-	args << "-t" << "latex" << "-l" << "-p" << fname;
-	myProc.start(texdefDir + "texdef", args);
-	args.clear();
-	myProc.waitForFinished();
-	if (myProc.exitCode() != 0)
+	ExecProgram execProgram(texdefDir + "texdef", QStringList(), texdefDir);
+	execProgram.m_arguments << "-t" << "latex" << "-l" << "-p" << fname;
+	if (!execProgram.execAndWait()) {
 		return QStringList();
-
-	result = myProc.readAllStandardOutput();
-	QStringList lines = result.split('\n');
-
+	}
+	QStringList lines = execProgram.m_standardOutput.split('\n');
+	QStringList args;
 	bool incl = false;
 	for (int i = 0; i < lines.length(); i++) {
 		if (lines.at(i).startsWith("Defined")) {
@@ -823,29 +801,13 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 	out << "\\end{document}";
 	tf->close();
 
-
-    QProcess myProc(nullptr);
-	//add exec search path
-	if (!texdefDir.isEmpty()) {
-		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-		if (env.value("SHELL") == "/bin/bash") {
-			env.insert("PATH", env.value("PATH") + ":" + texdefDir);
-			myProc.setProcessEnvironment(env);
-		}
-	}
-	QStringList args;
-	QString result;
-	args << "-draftmode" << "-interaction=nonstopmode" << "--disable-installer" << tf->fileName();
-	myProc.setWorkingDirectory(QFileInfo(tf->fileName()).absoluteDir().absolutePath());
-	myProc.start(texdefDir + "pdflatex", args);
-	args.clear();
-	myProc.waitForFinished();
-	if (myProc.exitCode() != 0)
+	ExecProgram execProgram(texdefDir + "pdflatex", QStringList(), texdefDir, QFileInfo(tf->fileName()).absoluteDir().absolutePath());
+	execProgram.m_arguments << "-draftmode" << "-interaction=nonstopmode" << "--disable-installer" << tf->fileName();
+	if (!execProgram.execAndWait()) {
 		return QStringList();
-
-	result = myProc.readAllStandardOutput();
-	QStringList lines = result.split('\n');
-
+	}
+	QStringList lines = execProgram.m_standardOutput.split('\n');
+	QStringList args;
 	QStack<QString> stack;
 	foreach (const QString elem, lines) {
 		if (elem.startsWith("entering file")) {

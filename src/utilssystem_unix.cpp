@@ -1,5 +1,6 @@
 #include "utilsSystem.h"
 #include "utilsUI.h"
+#include "execprogram.h"
 
 
 QString getTerminalCommand()
@@ -9,18 +10,21 @@ QString getTerminalCommand()
 	return command;
 #else // Linux
 	// Linux does not have a uniform way to determine the default terminal application
+
 	// gnome
-	QString command = execCommand("gsettings get org.gnome.desktop.default-applications.terminal exec");
-	command = command.replace('\'', "");
-	if (!command.isEmpty()) {
-		return command;
+	ExecProgram execGsettings("gsettings get org.gnome.desktop.default-applications.terminal exec", "");
+	if (execGsettings.execAndWait()) {
+		// "gsettings" terminates with exit code 0 if settings were fetched successfully
+		return execGsettings.m_standardOutput.replace('\'', "");
 	}
+
 	// fallback
 	QStringList fallbacks = QStringList() << "konsole" << "xterm";
 	foreach (const QString &fallback, fallbacks) {
-		QString command = execCommand("which " + fallback);
-		if (!command.isEmpty()) {
-			return command;
+		ExecProgram execWhich("which " + fallback, "");
+		if (execWhich.execAndWait()) {
+			// "which" terminates with exit code 0 if settings were fetched successfully
+			return execWhich.m_standardOutput;
 		}
 	}
 	return QString();

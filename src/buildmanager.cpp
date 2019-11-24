@@ -3,6 +3,7 @@
 #include "smallUsefulFunctions.h"
 #include "configmanagerinterface.h"
 #include "utilsSystem.h"
+#include "execprogram.h"
 
 #include "userquickdialog.h"
 
@@ -2380,18 +2381,8 @@ void ProcessX::startCommand()
 	if (stderrEnabled)
 		connect(this, SIGNAL(readyReadStandardError()), this, SLOT(readFromStandardError()));
 
-	//qDebug() << workingDirectory();
-	//qDebug() << cmd;
-	QByteArray path = qgetenv("PATH");
-#ifdef Q_OS_OSX
-	QString basePath = getEnvironmentPath();
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvePaths(BuildManager::additionalSearchPaths).toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
-	// needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
-#else
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvePaths(BuildManager::additionalSearchPaths).toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
-#endif
-	QProcess::start(cmd);
-	qputenv("PATH", path); // restore
+	ExecProgram execProgram(cmd, BuildManager::resolvePaths(BuildManager::additionalSearchPaths));
+	execProgram.execAndNoWait(*this);
 
 	if (error() == FailedToStart || error() == Crashed)
 		isStarted = ended = true; //prevent call of waitForStarted, if it failed to start (see QTBUG-33021)
