@@ -5245,7 +5245,12 @@ void Texstudio::quickGraphics(const QString &graphicsFile)
 	if (!graphicsFile.isNull()) graphicsDlg->setGraphicsFile(graphicsFile);
 
 	if (graphicsDlg->exec()) {
-		editor->insertText(cur, graphicsDlg->getLatexText());
+		QString latexText = graphicsDlg->getLatexText();
+		if (!currentEditorView()->document->usedPackages().contains("graphicx")) {
+			// simplified static version. See quickTabular() for a more generic version.
+			latexText.prepend("% \\usepackage{graphicx} required\n");
+		}
+		editor->insertText(cur, latexText);
 	} else {
 		editor->setCursor(origCur);
 	}
