@@ -2,6 +2,7 @@
 #include "qeditor_t.h"
 #include "qeditor.h"
 #include "qdocumentline.h"
+#include "qlanguagedefinition.h"
 #include "testutil.h"
 #include "smallUsefulFunctions.h"
 #include "qdocument_p.h"
@@ -16,6 +17,15 @@ QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllT
 	ed->setFlag(QEditor::AutoCloseChars, true);
 }
 QEditorTest::~QEditorTest(){
+}
+
+// Check if the given line number is foldable and open
+// If not foldable then most likely the LaTeX .cwl has not been loaded
+// Attempt to fold a non-foldable line will cause an assertion failure in QNFADefinition::fold
+bool QEditorTest::checkIsOpen(QDocument *doc, int lineIndex)
+{
+	QFoldedLineIterator fli = doc->languageDefinition()->foldedLineIterator(doc, lineIndex);
+	return(fli.open && !fli.collapsedBlockStart);
 }
 
 void QEditorTest::setText_data(){
@@ -115,7 +125,6 @@ void compareLists(const QList<int> actual, const QList<int> exp){
 	for (int i=0;i<actual.length();i++)
 		QEQUAL(actual[i],exp[i]);
 }
-
 
 void QEditorTest::foldedText_data(){
 	QTest::addColumn<QString>("editorText");
@@ -243,8 +252,10 @@ void QEditorTest::foldedText(){
 
 	QDocument *doc = editor->document();
 	editor->setText(editorText, false);
-	foreach(const int &i, foldAt)
+	foreach(const int &i, foldAt) {
+		QVERIFY2(checkIsOpen(doc, i), qPrintable(QString::number(i)));
 		doc->collapse(i);
+	}
 	for (int i=0;i<doc->lines();i++)
 		QVERIFY2(doc->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
 	compareLists(doc->impl()->testGetHiddenLines(), hiddenLines);
@@ -261,7 +272,6 @@ void QEditorTest::foldedText(){
 		QVERIFY2(doc->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
 	compareLists(doc->impl()->testGetHiddenLines(), newHiddenLines);
 }
-
 
 void QEditorTest::passiveFolding_data(){
 	QTest::addColumn<QString>("editorText");
@@ -348,8 +358,10 @@ void QEditorTest::passiveFolding(){
 	QDocument *doc = editor->document();
 	editor->setText(editorText, false);
 
-	foreach(const int &i, foldAt)
+	foreach(const int &i, foldAt) {
+		QVERIFY2(checkIsOpen(doc, i), qPrintable(QString::number(i)));
 		doc->collapse(i);
+	}
 
 	for (int i=0;i<doc->lines();i++)
 		QVERIFY2(doc->line(i).isHidden() == hiddenLines1.contains(i),qPrintable(QString::number(i)));
@@ -492,8 +504,10 @@ void QEditorTest::activeFolding(){
 	QDocument *doc = editor->document();
 	editor->setText(editorText, false);
 
-	foreach(const int &i, foldAt)
+	foreach(const int &i, foldAt) {
+		QVERIFY2(checkIsOpen(doc, i), qPrintable(QString::number(i)));
 		doc->collapse(i);
+	}
 	for (int i=0;i<doc->lines();i++)
 		QVERIFY2(doc->line(i).isHidden() == hiddenLines.contains(i),qPrintable(QString::number(i)));
 	compareLists(doc->impl()->testGetHiddenLines(), hiddenLines);
