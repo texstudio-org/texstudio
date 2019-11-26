@@ -3,6 +3,7 @@
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"
+#include "qdocument.h"
 
 class QEditor;
 class QEditorTest : public QObject
@@ -12,6 +13,8 @@ public:
 	QEditorTest(QEditor* ed, bool executeAllTests);
 	~QEditorTest();
 private:
+	bool checkIsOpen(QDocument *doc, int lineNr);
+
 	bool allTests;
 	QEditor* editor;
 	QTextCodec* defaultCodec;
