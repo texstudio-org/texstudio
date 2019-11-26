@@ -79,7 +79,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="39"/>
         <source>Project home site:</source>
-        <translation>Site do projeto:</translation>
+        <translation>Site do projecto:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="40"/>
@@ -182,7 +182,7 @@
         <location filename="../src/bibtexdialog.cpp" line="23"/>
         <location filename="../src/bibtexdialog.cpp" line="270"/>
         <source>Article in Conference &amp;Proceedings</source>
-        <translation>Artigo em conferências &amp;procedimentos</translation>
+        <translation>Artigo em &amp;procedimentos de conferências</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="26"/>
@@ -493,7 +493,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="324"/>
         <source>Internal PDF Viewer (Embedded)</source>
-        <translation>Visualizador PDF interno</translation>
+        <translation>Visualizador PDF interno (embebido)</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="324"/>
@@ -611,7 +611,7 @@ para /Library/TeX/texbin/?</translation>
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
         <translation>Espera-se que o comando %1 seja atómico. Contudo, está actualmente definido como cadeia de comandos contendo %2 comandos. Isto ultrapassa a especificação e pode levar a efeitos colaterais surpreendentes.
 
-Por favor, altere a sua configuração e defina listas de comandos só em &quot;Opções -&gt; Configurar o TeXstudio -&gt; Compilar&quot; não em &quot;Opções -&gt; Configurar o TeXstudio -&gt; Comandos&quot;.</translation>
+Por favor, altere a sua configuração e defina listas de comandos só em &quot;Opções -&gt; Configurar o TeXstudio -&gt; Compilar&quot;, não em &quot;Opções -&gt; Configurar o TeXstudio -&gt; Comandos&quot;.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1062"/>
@@ -667,7 +667,7 @@ Por favor, altere a sua configuração e defina listas de comandos só em &quot;
     <message>
         <location filename="../src/buildmanager.cpp" line="1549"/>
         <source>Error: One command expansion invalid.</source>
-        <translation>Erro:uma expansão de comando inválida.</translation>
+        <translation>Erro: uma expansão de comando inválida.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1550"/>
@@ -1036,7 +1036,7 @@ Por favor, altere a sua configuração e defina listas de comandos só em &quot;
     <message>
         <location filename="../src/configdialog.ui" line="868"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
-        <translation>Sempre (se não redirecionado &gt; /dev/null)</translation>
+        <translation>Sempre (se não redireccionado &gt; /dev/null)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="876"/>
@@ -2182,7 +2182,7 @@ them here.</source>
 pacotes se encontrar o comando \usepackage{}. Estes ficheiros não são
 mostrados aqui. Não é necessário verificar pacotes adicionais aqui. Mas
 se a detecção automática falhar ou desejar incluir ficheiros de conclusão
-específicos, pode forção o seu uso activando-os aqui.</translation>
+específicos, pode forçar o seu uso activando-os aqui.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3212"/>
@@ -2647,7 +2647,7 @@ Note: Changing this setting will only affect documents that are opened afterward
         <translation>O motor de desenho usado pelo poppler da biblioteca PDF.
 &quot;Splash&quot; é a predefinição e adequa-se à maioria dos casos.
 Se houver problemas de desenho, pode tentar o motor alternativo &quot;Arthur&quot;.
-Nota: a definição só tem efeito em documentos abertos após a alteeração.</translation>
+Nota: a definição só tem efeito em documentos abertos após a alteração.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4354"/>
@@ -2687,7 +2687,7 @@ Nota: a definição só tem efeito em documentos abertos após a alteeração.</
     <message>
         <location filename="../src/configdialog.ui" line="4451"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation>Cor de fundo predefinida. Especifique como valor hexadecimal. Nota: só afecta PDFs carragados após a alteração da definição. Os PDFs já abertos não sofrem alterações.</translation>
+        <translation>Cor de fundo predefinida. Especifique como valor hexadecimal. Nota: só afecta PDFs carregados após a alteração da definição. Os PDFs já abertos não sofrem alterações.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4503"/>
@@ -3745,7 +3745,7 @@ novo para ver só as definições mais comuns.</translation>
         <location filename="../src/configmanager.cpp" line="1619"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation>Activou a substitução automática de aspas. Contudo, há macros com cadeia de activação (?language:latex)(?&lt;=\s|^) ou (?language:latex)(?&lt;=\S) que se sobrepõe nova à substituição de aspas.
+        <translation>Activou a substitução automática de aspas. Contudo, há macros com cadeia de activação (?language:latex)(?&lt;=\s|^) ou (?language:latex)(?&lt;=\S) que se sobrepõe à nova substituição de aspas.
 Deseja removê-las?</translation>
     </message>
     <message>
@@ -3996,7 +3996,7 @@ Deseja removê-las?</translation>
         <location filename="../src/encodingdialog.ui" line="98"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation>Os nomes de codec como o pacote inputenc os espera. Os nomes são só para referência.
+        <translation>Os nomes de codec como esperados pelo pacote inputenc. Os nomes são só para referência.
 Certifique-se de que a codificação do ficheiro e o valor passado ao pacote inputenc correspondem.</translation>
     </message>
     <message>
@@ -4334,7 +4334,7 @@ Nota: as primeiras 4 preferências de colocação são só sugestões. Se a disp
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
         <translation>Impossível analisar código de inclusão da imagem:
-número de argumentos isuficiente para </translation>
+número de argumentos insuficiente para </translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="280"/>
@@ -4669,7 +4669,7 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2501"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation>ID BibTeX terminada com espaço. os espaços finais não são ignorados pelo BibTeX.</translation>
+        <translation>ID BibTeX terminada com espaço. Os espaços finais não são ignorados pelo BibTeX.</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2865"/>
@@ -4788,7 +4788,7 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="74"/>
         <source>No log file available</source>
-        <translation>Sem ficheiro de diário</translation>
+        <translation>Nenhum ficheiro de diário</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="85"/>
@@ -5955,7 +5955,7 @@ Pode agora inserir a senha:</translation>
     <message>
         <location filename="../src/buildmanager.cpp" line="2513"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Certifique-se de que instalou uma distribuição (La)TeX&lt;/b&gt; e.g. MiKTeX ou TeX Live e definiu os caminhos correctos para essa distribuição na página de configuração de comandos.&lt;br&gt;Um editor (La)TeX como oTeXstudio não funciona sem os comandos (La)TeX fornecidos por tal distribuição.</translation>
+        <translation>&lt;b&gt;Certifique-se de que instalou uma distribuição (La)TeX&lt;/b&gt; e.g. MiKTeX ou TeX Live e definiu os caminhos correctos para essa distribuição na página de configuração de comandos.&lt;br&gt;Um editor (La)TeX como o TeXstudio não funciona sem os comandos (La)TeX fornecidos por tal distribuição.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2517"/>
@@ -6303,8 +6303,7 @@ resultar em perda de dados.
 %1
 failed.</source>
         <translation>Falha ao escrever o documento no ficheiro
-%1.
-</translation>
+%1.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1107"/>
@@ -6327,7 +6326,8 @@ Encontrará uma cópia em
 Should I save the document as it is to restore the file?
 </source>
         <translation>O ficheiro %1 foi eliminado do disco.
-Deseja gravar o documento como está para restaurar o ficheiro?</translation>
+Deseja gravar o documento como está para restaurar o ficheiro?
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1238"/>
@@ -6421,22 +6421,22 @@ Notas:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4605"/>
         <source>Move cursor left (1 character)</source>
-        <translation>Mover cursor 1 carácter à esquerda</translation>
+        <translation>Mover cursor à esquerda (1 carácter)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4606"/>
         <source>Move cursor right (1 character)</source>
-        <translation>Mover cursor 1 carácter à direita</translation>
+        <translation>Mover cursor à direita (1 carácter)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4607"/>
         <source>Move cursor left (1 word)</source>
-        <translation>Mover cursor 1 palavra à esquerda</translation>
+        <translation>Mover cursor à esquerda (1 palavra)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4608"/>
         <source>Move cursor right (1 word)</source>
-        <translation>Mover cursor 1 palavra à direita</translation>
+        <translation>Mover cursor à direita (1 palavra)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4609"/>
@@ -6481,22 +6481,22 @@ Notas:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4621"/>
         <source>Select left (1 character)</source>
-        <translation>Seleccionar 1 carácter à esquerda</translation>
+        <translation>Seleccionar à esquerda (1 carácter)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4622"/>
         <source>Select right (1 character)</source>
-        <translation>Seleccionar 1 carácter à direita</translation>
+        <translation>Seleccionar à direita (1 carácter)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4623"/>
         <source>Select left (1 word)</source>
-        <translation>Seleccionar 1 palavra à esquerda</translation>
+        <translation>Seleccionar à esquerda ( 1 palavra )</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4624"/>
         <source>Select right (1 word)</source>
-        <translation>Seleccionar 1 palavra à direita</translation>
+        <translation>Seleccionar à direita ( 1 palavra )</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4625"/>
@@ -7193,7 +7193,7 @@ Notas:
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
         <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
-        <translation>Cor das linhas (usado em todas as linahs, sublinhado, linha superior, etc.)</translation>
+        <translation>Cor das linhas (usado em todas as linhas, sublinhado, linha superior, etc.)</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="78"/>
@@ -7881,7 +7881,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="109"/>
         <source>You didn&apos;t select an order!</source>
-        <translation>Não seleccionaou uma ordem!</translation>
+        <translation>Não seleccionou uma ordem!</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="112"/>
@@ -8794,7 +8794,7 @@ If not, they will not be available via the Make Template dialog.</source>
 A partir de agora, os modelos do utilizador passam a estar em
 %1
 Deve o TeXstudio mover os modelos existentes para aí?
-Se não, não estarão disponíveis no diálogo &quot;Fazer modelo&quot;.</translation>
+Se não, não estarão disponíveis no diálogo &quot;Criar modelo&quot;.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="79"/>
@@ -9296,7 +9296,7 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="819"/>
         <source>&amp;Make Template...</source>
-        <translation>Fa&amp;zer modelo...</translation>
+        <translation>Cr&amp;iar modelo...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="822"/>
@@ -9341,7 +9341,7 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="833"/>
         <source>S&amp;VN...</source>
-        <translation>S&amp;VN...</translation>
+        <translation>&amp;SVN...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="834"/>
@@ -10664,7 +10664,7 @@ Deseja restaurá-lo?</translation>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
-        <translation>%1 foi compilado com Qt %2, mas está em execuºção com Qt %3.
+        <translation>%1 foi compilado com Qt %2, mas está em execução com Qt %3.
 Por favor, obtenha a biblioteca dinâmica correcta (e.g. .ficheiros dll ou .so).
 Senão, poderão surgir erros aleatórios e rebentamentos.</translation>
     </message>
@@ -10937,7 +10937,7 @@ Deseja permitir e executar o novo comando sobreposto?
 
 (a) Sim, permitir o novo comando só para este documento (só se confia no documento)
 (b) Sim, permitir o novo comando para todos os documentos (só se confia no documento para gerir documentos arbitrários)
-(c) Não, não usao o comando &quot;%3&quot; e executar o comando predefinido &quot;%2&quot;</translation>
+(c) Não, não usar o comando &quot;%3&quot; e executar o comando predefinido &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5830"/>
@@ -11236,32 +11236,37 @@ Deseja manter o TeXstudio em execução? Pode levar à corrupção de dados.</tr
         <location filename="../src/texstudio.cpp" line="10225"/>
         <source>process failed to start
 </source>
-        <translation>falha ao iniciar o processo</translation>
+        <translation>falha ao iniciar o processo
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10228"/>
         <source>process crashed
 </source>
-        <translation>o processo rebentou</translation>
+        <translation>o processo rebentou
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10238"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation>A verificação em tempo real está activa.</translation>
+        <translation>A verificação em tempo real está activa.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10240"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation>A verificação em tempo real está inactiva!!!</translation>
+        <translation>A verificação em tempo real está inactiva!!!
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10243"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation>A verificação gramatical está activa.</translation>
+        <translation>A verificação gramatical está activa.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10245"/>
@@ -11277,14 +11282,18 @@ Deseja manter o TeXstudio em execução? Pode levar à corrupção de dados.</tr
         <source>Tries to start automatically.
 
 </source>
-        <translation>Tenta iniciar automaticamente.</translation>
+        <translation>Tenta iniciar automaticamente.
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10250"/>
         <source>Autostart disabled.
 
 </source>
-        <translation>Início automático inactivo.</translation>
+        <translation>Início automático inactivo.
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10255"/>
@@ -11475,9 +11484,9 @@ Deseja manter o TeXstudio em execução? Pode levar à corrupção de dados.</tr
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
         <translation>Opções possíveis:
 &quot;Mostrar todas as frases&quot;:todas as frases são mostradas.
-&quot;Tamanho mínimo da frase&quot;: a frase só é mostrada se tiver pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 8 caracteres)
-&quot;Tamanho mínimo da palavra (um)&quot;: a frase só é mostrada se tiver uma palavra com pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 5 caracteres)
-&quot;Tamanho mínimo da palavra (todas)&quot;: a frase só é mostrada se todas as palavras tiverem pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 2 caracteres)
+&quot;Tamanho mínimo da frase&quot;: a frase só é mostrada se tiver pelo menos este número de caracteres (e.g. &quot;o item&quot; tem 6 caracteres)
+&quot;Tamanho mínimo da palavra (um)&quot;: a frase só é mostrada se tiver uma palavra com pelo menos este número de caracteres (e.g. &quot;o item&quot; tem 4 caracteres)
+&quot;Tamanho mínimo da palavra (todas)&quot;: a frase só é mostrada se todas as palavras tiverem pelo menos este número de caracteres (e.g. &quot;o item&quot; tem 1 carácter)
 &quot;Ignorar completamente&quot;: palavras mais curtas são ignoradas
 (e.g. com tamanho 3, a frase &quot;isto é um teste&quot; é igual a &quot;isto teste&quot;, enquanto as outras opções separá-la-iam em &quot;isto é&quot;, &quot;é um&quot;, &quot;um teste&quot;, mesmo que nenhuma destas frases fosse mostrada)</translation>
     </message>
@@ -11515,9 +11524,9 @@ If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if 
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
         <translation>Se &quot;Mostrar todas as frases&quot; estiver seleccionada, todas as frases são mostradas.
-Se &quot;Tamanho mínimo da frase&quot; estiver seleccionada, a frase só é mostrada se tiver pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 8 caracteres)
-Se &quot;Tamanho mínimo da palavra (um)&quot; estiver seleccionada, a frase só é mostrada se tiver uma palavra com pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 5 caracteres)
-Se &quot;Tamanho mínimo da palavra (todas)&quot; estiver seleccionada, a frase só é mostrada se todas as palavras tiverem pelo menos este número de caracteres (e.g. &quot;um teste&quot; tem 2 caracteres)
+Se &quot;Tamanho mínimo da frase&quot; estiver seleccionada, a frase só é mostrada se tiver pelo menos este número de caracteres (e.g. &quot;o item&quot; tem 6 caracteres)
+Se &quot;Tamanho mínimo da palavra (um)&quot; estiver seleccionada, a frase só é mostrada se tiver uma palavra com pelo menos este número de caracteres (e.g. &quot;o item&quot; tem 4 caracteres)
+Se &quot;Tamanho mínimo da palavra (todas)&quot; estiver seleccionada, a frase só é mostrada se todas as palavras tiverem pelo menos este número de caracteres (e.g. &quot;o item&quot; tem 1 carácter)
 Se &quot;Ignorar completamente&quot; estiver seleccionada, palavras mais curtas são ignoradas
 (e.g. com tamanho 3, a frase &quot;isto é um teste&quot; é igual a &quot;isto teste&quot;, enquanto as outras opções separá-la-iam em &quot;isto é&quot;, &quot;é um&quot;, &quot;um teste&quot;, mesmo que nenhuma destas frases fosse mostrada)</translation>
     </message>
@@ -11748,7 +11757,8 @@ documento incluído em %1</translation>
         <location filename="../src/updatechecker.cpp" line="62"/>
         <source>Update check failed with error:
 </source>
-        <translation>Falha ao procurar actualizações: </translation>
+        <translation>Falha ao procurar actualizações: 
+</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="182"/>
@@ -11889,7 +11899,7 @@ Se o gatilho começa com (?&lt;=algo), isto só acontece
 se algo for escrito antes da parte restante do gatilho.
 
 Dado que o gatilho não é uma cadeia simples, mas sim uma expressão regular, 
-(?&lt;=\S) pode ser usado para marcar substituições que só devem ocorrer apos uma 
+(?&lt;=\S) pode ser usado para marcar substituições que só devem ocorrer após uma 
 palavra, e (?&lt;=\s|^) para marcar substituições que só devem ocorrer antes de uma 
 palavra.
 

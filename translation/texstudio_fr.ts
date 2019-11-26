@@ -1514,7 +1514,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="1973"/>
         <source>All Line Numbers</source>
-        <translation>Tous les numéro de ligne</translation>
+        <translation>Tous les numéros de ligne</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1978"/>
@@ -3199,7 +3199,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="46"/>
         <source>\begin{&lt;environment&gt;}</source>
-        <translation>G&amp;énérique - \begin{〈environnement〉}</translation>
+        <translation>G&amp;énérique - \begin{&lt;environment&gt;}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="47"/>
@@ -3439,12 +3439,12 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="94"/>
         <source>\includegraphics{file}</source>
-        <translation>\include&amp;graphics{〈fichier〉}</translation>
+        <translation>\include&amp;graphics{⟨fichier⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="95"/>
         <source>\include{file}</source>
-        <translation>\in&amp;clude{〈fichier〉}</translation>
+        <translation>\in&amp;clude{⟨fichier⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
@@ -3454,27 +3454,27 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
         <source>\input{file}</source>
-        <translation>\in&amp;put{〈fichier〉}</translation>
+        <translation>\in&amp;put{⟨fichier⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="98"/>
         <source>label</source>
-        <translation>\&amp;label{〈clé〉}</translation>
+        <translation>\&amp;label{⟨clé⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="99"/>
         <source>index</source>
-        <translation>\&amp;index{〈entrée〉}</translation>
+        <translation>\&amp;index{⟨entrée⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="100"/>
         <source>cite</source>
-        <translation>\&amp;cite{〈clé〉}</translation>
+        <translation>\&amp;cite{⟨clé⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="101"/>
         <source>footnote</source>
-        <translation>\&amp;footnote{〈texte〉}</translation>
+        <translation>\&amp;footnote{⟨texte⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="102"/>
@@ -3659,17 +3659,17 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>ref</source>
-        <translation>\&amp;ref{〈clé〉}</translation>
+        <translation>\&amp;ref{⟨clé⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>eqref</source>
-        <translation>\&amp;eqref{〈clé〉}</translation>
+        <translation>\&amp;eqref{⟨identifiant⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>pageref</source>
-        <translation>\&amp;pageref{〈clé〉}</translation>
+        <translation>\&amp;pageref{⟨identifiant⟩}</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1027"/>
@@ -4149,7 +4149,7 @@ Continuer tout de même ?</translation>
         <location filename="../src/insertgraphics.ui" line="94"/>
         <location filename="../src/insertgraphics.ui" line="160"/>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Définit les options pour \includegraphics[〈options〉]{〈fichier〉}.</translation>
+        <translation>Définit les options pour \includegraphics[⟨options⟩]{⟨fichier⟩}.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="97"/>
@@ -8727,7 +8727,7 @@ Faites-vous confiance à ce script ?</translation>
         <location filename="../src/tabdialog.cpp" line="94"/>
         <source>@{text}</source>
         <comment>tabular left border</comment>
-        <translation>@{〈texte〉}</translation>
+        <translation>@{⟨texte⟩}</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="99"/>
@@ -8739,7 +8739,7 @@ Faites-vous confiance à ce script ?</translation>
         <location filename="../src/tabdialog.cpp" line="100"/>
         <source>@{text}</source>
         <comment>tabular right border</comment>
-        <translation>@{〈texte〉}</translation>
+        <translation>@{⟨texte⟩}</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="139"/>
