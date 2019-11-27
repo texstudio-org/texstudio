@@ -64,7 +64,7 @@ void LatexPackage::unite(LatexPackage &add, bool forCompletion)
 	environmentAliases.unite(add.environmentAliases);
 	specialTreatmentCommands.unite(add.specialTreatmentCommands);
 	specialDefCommands.unite(add.specialDefCommands);
-    commandDescriptions.unite(add.commandDescriptions); // overloaded unit, which does not overwrite well defined CDs with poorly defined ones
+	commandDescriptions.unite(add.commandDescriptions); // overloaded unit, which does not overwrite well defined CDs with poorly defined ones
 
 	//possibleCommands.unite(add.possibleCommands);
 	foreach (const QString &elem, add.possibleCommands.keys()) { //expensive
@@ -136,17 +136,17 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 			if (!keyvals.isEmpty()) {
 				// read keyval (name stored in "keyvals")
-                QStringList l_cmds=keyvals.split(',');
-                QString key;
-                CommandDescription cd = extractCommandDefKeyVal(line, key);
-                for(const QString &elem:l_cmds){
-                    package.possibleCommands["key%" + elem] << line;
-                    if (cd.args > 0) {
-                        if (key.endsWith("="))
-                            key.chop(1);
-                        package.commandDescriptions.insert(elem + "/" + key, cd);
-                    }
-                }
+				QStringList l_cmds=keyvals.split(',');
+				QString key;
+				CommandDescription cd = extractCommandDefKeyVal(line, key);
+				for(const QString &elem:l_cmds){
+					package.possibleCommands["key%" + elem] << line;
+					if (cd.args > 0) {
+						if (key.endsWith("="))
+							key.chop(1);
+						package.commandDescriptions.insert(elem + "/" + key, cd);
+					}
+				}
 				continue;
 			}
 			if (line.startsWith("#repl:")) {
@@ -208,11 +208,11 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 				// get commandDefinition
 				CommandDescription cd = extractCommandDef(line, valid);
-                if(valid.contains('K')){
-                    // bracket command like \left etc
-                    cd.bracketCommand=true;
-                    valid.remove("K");
-                }
+				if(valid.contains('K')){
+					// bracket command like \left etc
+					cd.bracketCommand=true;
+					valid.remove("K");
+				}
 				QString cmd = rxCom3.cap(1);
 				if (cmd == "\\begin") {
 					if (!package.commandDescriptions.contains(cmd)) {
@@ -228,10 +228,10 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					CommandDescription cd_old = package.commandDescriptions.value(cmd);
 					if (cd_old.args == cd.args && cd_old.optionalArgs > cd.optionalArgs ) {
 						cd = cd_old;
-                    }
-                    if (cd_old.args == cd.args && cd_old.optionalArgs == cd.optionalArgs && cd_old.overlayArgs > cd.overlayArgs ) {
-                        cd = cd_old;
-                    }
+					}
+					if (cd_old.args == cd.args && cd_old.optionalArgs == cd.optionalArgs && cd_old.overlayArgs > cd.overlayArgs ) {
+						cd = cd_old;
+					}
 					if (cd_old.args < cd.args && cd_old.args > 0) {
 						cd = cd_old;
 #ifndef QT_NO_DEBUG
@@ -255,12 +255,12 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					}
 
 				}
-                if(!valid.contains('M')){
-                    package.commandDescriptions.insert(cmd, cd);
-                }else{
-                    // don't use line for command description
-                    valid.remove('M');
-                }
+				if(!valid.contains('M')){
+					package.commandDescriptions.insert(cmd, cd);
+				}else{
+					// don't use line for command description
+					valid.remove('M');
+				}
 
 
 				valid.remove('N'); // remove newtheorem declaration
@@ -649,8 +649,8 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	}
 	// type from name
 	if (arg == "text") return Token::text;
-    if (arg == "title") return Token::title;
-    if (arg == "short title" ) return Token::shorttitle;
+	if (arg == "title") return Token::title;
+	if (arg == "short title" ) return Token::shorttitle;
 	if (arg == "package") return Token::package;
 	if (arg == "cols" || arg == "preamble") return Token::colDef;
 	if (arg == "color") return Token::color;
@@ -668,7 +668,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if (arg.contains("keys") || arg == "keyvals" || arg == "%<options%>") return Token::keyValArg;
 	if (arg == "options") return Token::packageoption;
 	if (arg == "class") return Token::documentclass;
-    if (arg == "formula") return Token::formula;
+	if (arg == "formula") return Token::formula;
 	if (arg == "beamertheme") return Token::beamertheme;
 	if (arg == "keylist" || arg == "bibid") return Token::bibItem;
 	if (arg == "placement" || arg == "position") return Token::placement;
@@ -678,7 +678,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if ((arg == "label" || arg == "%<label%>") && definition.contains('r')) return Token::labelRef;  // reference with keyword label
 	if ((arg == "label" || arg == "%<label%>") && definition.contains('l')) return Token::label;
 	if (arg == "labellist") return Token::labelRefList;
-    if (arg.contains("overlay specification")) return Token::overlay;
+	if (arg.contains("overlay specification")) return Token::overlay;
 	return Token::generalArg;
 }
 
@@ -729,8 +729,8 @@ CommandDescription extractCommandDef(QString line, QString definition)
 	int i = rxCom.indexIn(line);
 	QString command = rxCom.cap();
 	line = line.mid(command.length());
-    const QString specialChars = "{[(<";
-    const QString specialChars2 = "}])>";
+	const QString specialChars = "{[(<";
+	const QString specialChars2 = "}])>";
 	CommandDescription cd;
 	if (line.isEmpty())
 		return cd;
@@ -763,10 +763,10 @@ CommandDescription extractCommandDef(QString line, QString definition)
 				cd.bracketArgs = cd.bracketArgs + 1;
 				cd.bracketTypes.append(type);
 				break;
-            case 3:
-                cd.overlayArgs = cd.overlayArgs + 1;
-                cd.overlayTypes.append(type);
-                break;
+			case 3:
+				cd.overlayArgs = cd.overlayArgs + 1;
+				cd.overlayTypes.append(type);
+				break;
 			default:
 				break;
 			}
@@ -794,9 +794,9 @@ CommandDescription extractCommandDefKeyVal(QString line, QString &key)
 		cd.args = 1;
 		cd.argTypes << Token::width;
 	}
-    if (vals == "#l") {
-        cd.args = 1;
-        cd.argTypes << Token::label;
-    }
+	if (vals == "#l") {
+		cd.args = 1;
+		cd.argTypes << Token::label;
+	}
 	return cd;
 }
