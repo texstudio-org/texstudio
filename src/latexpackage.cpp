@@ -627,10 +627,12 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 		if (suffix == "%plain") return Token::generalArg;
 		if (suffix == "%text") return Token::text;
 		if (suffix == "%title") return Token::title;
+		if (suffix == "%short title") return Token::shorttitle;
 		if (suffix == "%todo") return Token::todo;
 		if (suffix == "%l") return Token::width;
 		if (suffix == "%cmd") return Token::def;
 		if (suffix == "%keyvals") return Token::keyValArg;
+		if ((suffix == "%envname") && definition.contains('N')) return Token::newTheorem;
 		if (suffix == "%ref") return Token::labelRef;
 		if (suffix == "%labeldef") return Token::label;
 		if (suffix == "%special") {
