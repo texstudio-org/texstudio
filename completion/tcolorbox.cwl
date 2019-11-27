@@ -485,7 +485,7 @@ all
 # ---------------------------------------
 # << Option Keys >> - Standard + External + Doc
 # ---------------------------------------
-#keyvals:\tcbset
+#keyvals:\tcbset#c
 title=
 notitle
 adjusted title=
