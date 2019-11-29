@@ -18,7 +18,6 @@ HEADERS += \
     $$PWD/cursorhistory.h \
     $$PWD/cursorposition.h \
     $$PWD/dblclickmenubar.h \
-    $$PWD/debughelper.h \
     $$PWD/diff/diff_match_patch.h \
     $$PWD/diffoperations.h \
     $$PWD/directoryreader.h \
@@ -61,8 +60,6 @@ HEADERS += \
     $$PWD/mostQtHeaders.h \
     $$PWD/pdfsplittool.h \
     $$PWD/qmetautils.h \
-    $$PWD/debugloggermain.h \
-    $$PWD/debugloggerqt.h \
     $$PWD/quickbeamerdialog.h \
     $$PWD/quickdocumentdialog.h \
     $$PWD/randomtextgenerator.h \
@@ -127,7 +124,6 @@ SOURCES += \
     $$PWD/cursorhistory.cpp \
     $$PWD/cursorposition.cpp \
     $$PWD/dblclickmenubar.cpp \
-    $$PWD/debughelper.cpp \
     $$PWD/diff/diff_match_patch.cpp \
     $$PWD/diffoperations.cpp \
     $$PWD/directoryreader.cpp \
@@ -164,8 +160,6 @@ SOURCES += \
     $$PWD/minisplitter.cpp \
     $$PWD/pdfsplittool.cpp \
     $$PWD/qmetautils.cpp \
-    $$PWD/debugloggermain.cpp \
-    $$PWD/debugloggerqt.cpp \
     $$PWD/quickbeamerdialog.cpp \
     $$PWD/quickdocumentdialog.cpp \
     $$PWD/randomtextgenerator.cpp \
