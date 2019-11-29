@@ -3,13 +3,13 @@
 
 TeXstudio is a fully featured LaTeX editor. Our goal is to make writing LaTeX documents as easy and comfortable as possible. Some of the outstanding features of TeXstudio are an integrated pdf viewer with (almost) word-level synchronization, live inline preview, advanced syntax-highlighting, live checking of references, citations, latex commands, spelling and grammar. Find out more at our website.
 
-## Features 
+## Features
 
 
 ### Comfortable Editing
- 
 
-* Multi-Cursors  
+
+* Multi-Cursors
 
 
 Edit multiple positions at the same time. Vertical blocks can even be copied and pasted.
@@ -17,7 +17,7 @@ Edit multiple positions at the same time. Vertical blocks can even be copied and
 <p align="center">
 <img alt="Multi-Cursors" src="https://texstudio.org/images/block-cursor.png"> </p>
 
-* Auto completion 
+* Auto completion
 
 
 Suggests possible LaTeX commands as you type. There is a tooltip help explaining the command.
@@ -27,23 +27,23 @@ Completion works also for references and bibliography entries.
 <p align="center">
 <img alt="Auto completion" src="https://texstudio.org/images/autocompletion-help.png"> </p>
 
-* More than 1000 mathematical symbols 
+* More than 1000 mathematical symbols
 
 
 Quick access to more than 1000 mathematical symbols.
 
 <p align="center"><img alt="Symbols" src="https://texstudio.org/images/symbols.png"> </p>
 
-* Bookmarks 
+* Bookmarks
 
 
-Use bookmarks too keep references to important places in your text and to navigate there quickly.
+Use bookmarks to keep references to important places in your text and to navigate there quickly.
 
 Tooltips show a preview of the code position.
 
 <p align="center"><img alt="Bookmarks" src="https://texstudio.org/images/bookmarks.png"> </p>
 
-* Link overlays 
+* Link overlays
 
 
 Filenames, references and citations turn into links when moving the mouse over them while holding <Ctrl>.
@@ -52,20 +52,20 @@ Also here, tooltips show a preview of the code position.
 
 <p align="center"><img alt="Link overlays" src="https://texstudio.org/images/link-overlay.png"> </p>
 
-* Assistants for images, tables, formulas, ... 
+* Assistants for images, tables, formulas, ...
 
 
 Generate blocks of code using assistants without the need for detailed LaTeX knowledge.
 
 <p align="center"><img alt="assistants" src="https://texstudio.org/images/assistants.png"> </p>
 
-* Drag & drop support for images 
+* Drag & drop support for images
 
 When you drag an image on the editor the image assistant opens. From there it's just one more click to have the code for the image inclusion. Of course, we try to make the paths relative. This also works with multiple images.
 
 <p align="center"><img alt="drag & drop" src="https://texstudio.org/images/dragdropimages.png"> </p>
 
-* Table-formatting 
+* Table-formatting
 
 
 You can copy / paste / insert new table columns with a single click.
@@ -118,7 +118,7 @@ The table-autoformatter aligns the table code.
 As an open source project TeXstudio strongly benefits from an active community.
 
 ### Use and spread the word
- 
+
 The easiest way to help on the development with TeXstudio is to use it! Furthermore, if you like TeXstudio, tell all your friends and colleagues about it.
 
 In particular we are looking for people who want to try the most recent features before they are officially released. If you are interested download and subscribe to [release candidates and development snapshots](https://texstudio.org/#snapshots).
@@ -127,8 +127,8 @@ In particular we are looking for people who want to try the most recent features
 
 User feedback is highly welcome. Depending on the type of feedback you may use different channels to communicate.
 
-*  Feature requests,bug reports and questions can be placed in the [issue tracker](https://github.com/texstudio-org/texstudio/issues). 
-Please set a label whether this is a feature request/enhancement, a question or a bug report. 
+*  Feature requests,bug reports and questions can be placed in the [issue tracker](https://github.com/texstudio-org/texstudio/issues).
+Please set a label whether this is a feature request/enhancement, a question or a bug report.
 In case of a bug report, please state version and operation system and a description which allows to reproduce the issue on another computer.
 
 ### Contribute
@@ -142,7 +142,7 @@ You do not necessarily have to be a programmer to help and make TeXstudio even b
 * Update or extend the [user manual](http://texstudio.sourceforge.net/manual/current/usermanual_en.html) or [the wiki](https://github.com/texstudio-org/texstudio/wiki).
 * Write tutorials or create screencasts.
 * Package TeXstudio for your favorite distribution or platform.
-* TeXstudio is written in C++/Qt. Programmers are welcome to implement new features or fix bugs. Code development take place on github. Pull-requests, direct patches or changed files are welcome.
+* TeXstudio is written in C++/Qt. Programmers are welcome to implement new features or fix bugs. Code development takes place on github. Pull-requests, direct patches or changed files are welcome.
 
 It is a good idea to announce your plans on the texstudio issue list. So everybody knows what's going on around TeXstudio and there is no duplicate work. For questions how you can contribute contact one of the developers.
 
