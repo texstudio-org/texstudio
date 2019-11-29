@@ -1526,7 +1526,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <p>There are a few argument names that have special meaning:</p>
 <ul>
   <li><code>text</code> or ends with <code>%text</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked).</li>
-  <li><code>title</code>, <code>short title</code> or ends with <code>%title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section)</li>
+  <li><code>title</code>, ends with <code>%title</code>, <code>short title</code> or ends with <code>%short title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section).</li>
   <li><code>bibid</code> and <code>keylists</code>: If used in a command classified as "C". See the classifier description below.</li>
   <li><code>cmd</code> and <code>command</code> or ends with <code>%cmd</code>: definition for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
   <li><code>def</code> and <code>definition</code>: actual definition for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
@@ -1553,7 +1553,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>%plain</code>: options ending with <code>%plain</code> are interpreted to have no special meaning. This way, you can e.g. define <code>label%plain</code> to have a placeholder named <code>label</code> without the semantics that it defines a label.</li>
   <li><code>beamertheme</code>: beamer theme, e.g. \usebeamertheme{beamertheme}</li>
   <li><code>keys</code>, <code>keyvals</code>, <code>%&lt;options%&gt;</code> or ends with <code>%keyvals</code>: key/value list</li>
-  <li><code>envname</code> and <code>environment name</code>: environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
+  <li><code>envname</code>, <code>environment name</code> or ends with <code>%envname</code>: environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
 <h3>4.14.3 Classification format</h3>
