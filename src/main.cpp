@@ -21,6 +21,7 @@
 #include "texstudio.h"
 #include "smallUsefulFunctions.h"
 #include "debughelper.h"
+#include "debugloggermain.h"
 #include "utilsVersion.h"
 #include <qtsingleapplication.h>
 #include <QSplashScreen>
@@ -58,13 +59,13 @@ protected:
 
 TexstudioApp::TexstudioApp(int &argc, char **argv) : QtSingleApplication(argc, argv)
 {
-    mw = nullptr;
+	mw = nullptr;
 	initialized = false;
 }
 
 TexstudioApp::TexstudioApp(QString &id, int &argc, char **argv) : QtSingleApplication(id, argc, argv)
 {
-    mw = nullptr;
+	mw = nullptr;
 	initialized = false;
 }
 
@@ -75,7 +76,7 @@ void TexstudioApp::init(QStringList &cmdLine)
 	splash->show();
 	processEvents();
 
-    mw = new Texstudio(nullptr, nullptr, splash);
+	mw = new Texstudio(nullptr, nullptr, splash);
 	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
 	splash->finish(mw);
 	delete splash;
@@ -84,9 +85,9 @@ void TexstudioApp::init(QStringList &cmdLine)
 
 	if (!delayedFileLoad.isEmpty()) cmdLine << delayedFileLoad;
 	mw->executeCommandLine(cmdLine, true);
-    if(!cmdLine.contains("--auto-tests")){
-        mw->startupCompleted();
-    }
+	if(!cmdLine.contains("--auto-tests")){
+		mw->startupCompleted();
+	}
 }
 
 TexstudioApp::~TexstudioApp()
@@ -142,6 +143,10 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 				ConfigManager::configDirOverride = args[i];
 			else if (cmdArgument.startsWith("-"))
 				cmdLine << cmdArgument;
+#ifdef DEBUG_LOGGER
+			else if ((cmdArgument == "-debug-logfile" || cmdArgument == "--debug-logfile") && (++i < args.count()))
+				cmdLine << "--debug-logfile" << args[i];
+#endif
 		} else
 			cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
 	}
@@ -154,15 +159,19 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 		QTextStream(stdout) << "Usage: texstudio [options] [file]\n"
 							<< "\n"
 							<< "Options:\n"
-							<< "  --config DIR            use the specified settings directory\n"
-							<< "  --master                define the document as explicit root document\n"
-							<< "  --line LINE[:COL]       position the cursor at line LINE and column COL\n"
-							<< "  --insert-cite CITATION  inserts the given citation\n"
-							<< "  --start-always          start a new instance, even if TXS is already running\n"
-							<< "  --pdf-viewer-only       run as a standalone pdf viewer without an editor\n"
-							<< "  --page PAGENUM          display a certain page in the pdf viewer\n"
-                            << "  --no-session            do not load/save the session at startup/close\n"
-                            << "  --version               show version number\n";
+							<< "  --config DIR              use the specified settings directory\n"
+							<< "  --master                  define the document as explicit root document\n"
+							<< "  --line LINE[:COL]         position the cursor at line LINE and column COL\n"
+							<< "  --insert-cite CITATION    inserts the given citation\n"
+							<< "  --start-always            start a new instance, even if TXS is already running\n"
+							<< "  --pdf-viewer-only         run as a standalone pdf viewer without an editor\n"
+							<< "  --page PAGENUM            display a certain page in the pdf viewer\n"
+                            << "  --no-session              do not load/save the session at startup/close\n"
+                            << "  --version                 show version number\n"
+#ifdef DEBUG_LOGGER
+							<< "  --debug-logfile pathname  write debug messages to pathname\n"
+#endif
+							;
 		return true;
 	}
 
@@ -207,7 +216,13 @@ int main(int argc, char **argv)
 	                 a.mw, SLOT(onOtherInstanceMessage(const QString &)));
 
 	try {
-		return a.exec();
+		int execResult = a.exec();
+#ifdef DEBUG_LOGGER
+		if (debugLoggerIsLogging()) {
+			debugLoggerStop();
+		}
+#endif
+		return execResult;
 	} catch (...) {
 #ifndef NO_CRASH_HANDLER
 		catchUnhandledException();

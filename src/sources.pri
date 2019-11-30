@@ -18,7 +18,6 @@ HEADERS += \
     $$PWD/cursorhistory.h \
     $$PWD/cursorposition.h \
     $$PWD/dblclickmenubar.h \
-    $$PWD/debughelper.h \
     $$PWD/diff/diff_match_patch.h \
     $$PWD/diffoperations.h \
     $$PWD/directoryreader.h \
@@ -125,7 +124,6 @@ SOURCES += \
     $$PWD/cursorhistory.cpp \
     $$PWD/cursorposition.cpp \
     $$PWD/dblclickmenubar.cpp \
-    $$PWD/debughelper.cpp \
     $$PWD/diff/diff_match_patch.cpp \
     $$PWD/diffoperations.cpp \
     $$PWD/directoryreader.cpp \

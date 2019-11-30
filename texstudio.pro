@@ -41,6 +41,7 @@ else:include(src/qtsingleapplication/qtsingleapplication.pri)
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
 # principal sources
 include(src/sources.pri)
+include(src/debug/debug.pri)
 
 RESOURCES += texstudio.qrc \
     symbols.qrc \
@@ -396,6 +397,10 @@ freebsd-* {
 !isEmpty(NO_TESTS) {
     DEFINES += NO_TESTS
     message("tests disabled as you wish.")
+}
+!isEmpty(DEBUG_LOGGER) {
+    DEFINES += DEBUG_LOGGER
+    message("Enabling debug logger.")
 }
 
 # add git revision
