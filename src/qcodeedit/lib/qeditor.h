@@ -230,10 +230,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			QList<QDocumentCursor> mirrors;
 		};
 		*/
-		QEditor(QWidget *p = 0);
-		QEditor(bool actions, QWidget *p = 0, QDocument *doc=0);
-		QEditor(const QString& s, QWidget *p = 0);
-		QEditor(const QString& s, bool actions, QWidget *p = 0);
+        QEditor(QWidget *p = nullptr);
+        QEditor(bool actions, QWidget *p = nullptr, QDocument *doc=nullptr);
+        QEditor(const QString& s, QWidget *p = nullptr);
+        QEditor(const QString& s, bool actions, QWidget *p = nullptr);
 		virtual ~QEditor();
 		
 		bool flag(EditFlag) const;

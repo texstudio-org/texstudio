@@ -34,6 +34,12 @@ QT += \
     }
     DEFINES += PHONON
 }
+!isEmpty(QJS){
+    DEFINES += QJS
+    QT += qml
+    message(Use experimental JS engine)
+}
+
 contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(src/qtsingleapplication/qtsingleapplication.pri)
 

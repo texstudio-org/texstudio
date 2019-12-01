@@ -15,7 +15,7 @@ QStringList LatexTables::mathTables = QStringList() << "align" << "align*" << "a
                                       << "gather" << "gather*" << "flalign" << "flalign*" << "alignat" << "alignat*"
                                       << "cases" << "aligned" << "gathered" << "alignedat";
 
-QSet<QString> environmentsRequiringTrailingLineBreak = QSet<QString>() << "supertabular";
+static QSet<QString> environmentsRequiringTrailingLineBreak = QSet<QString>() << "supertabular";
 // Note: Apparently some environments always require a line break "\\". These should be specified here.
 // Some don't want one, e.g. align, blockarray, ...
 // And some can cope with both cases, e.g. tabular
