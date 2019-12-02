@@ -153,12 +153,12 @@ turtle
 views
 #endkeyvals
 
-#keyvals:\path,\begin{tikzpicture},\tikz#c
+#keyvals:\path#c,\begin{tikzpicture}#c,\tikz#c
 line
 dashed
 #endkeyvals
 
-#keyvals:\draw,\path,\begin{tikzpicture},\tikz#c
+#keyvals:\draw#c,\path#c,\begin{tikzpicture}#c,\tikz#c
 ->
 <-
 thick
@@ -169,7 +169,7 @@ sharp corners
 rounded corners=
 #endkeyvals
 
-#keyvals:\node,\draw,\path,\begin{tikzpicture},\tikz#c
+#keyvals:\node#c,\draw#c,\path#c,\begin{tikzpicture}#c,\tikz#c
 inner sep=
 inner xsep=
 inner ysep=
@@ -184,10 +184,10 @@ text=%color
 node font=
 font=
 text width=
-align=left,flush left,right,flush right,center,flush center,justify
+align=#left,flush left,right,flush right,center,flush center,justify
 text height=
 text depth=
-anchor=north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text
+anchor=#north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text
 above=
 below=
 right=
