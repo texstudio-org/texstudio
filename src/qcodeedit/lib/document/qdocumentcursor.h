@@ -96,10 +96,10 @@ class QCE_EXPORT QDocumentCursor : public QObject
 			ParenthesesOuter
 		};
 		
-		explicit QDocumentCursor(QDocument *doc);
-		QDocumentCursor(const QDocumentCursor& cursor);
+        Q_INVOKABLE explicit QDocumentCursor(QDocument *doc);
+        Q_INVOKABLE QDocumentCursor(const QDocumentCursor& cursor);
 		QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag);
-		QDocumentCursor(QDocument *doc, int line, int column = 0, int lineTo = -1, int columnTo = -1);
+        Q_INVOKABLE QDocumentCursor(QDocument *doc, int line, int column = 0, int lineTo = -1, int columnTo = -1);
 		//QDocumentCursor(const QDocumentLine& line, int column = 0);
         QDocumentCursor(QDocumentCursorHandle* handle = nullptr);
 		QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to);
