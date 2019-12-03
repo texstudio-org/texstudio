@@ -4250,7 +4250,7 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
 	#if QT_VERSION >= 0x040400
 	m_ref(0),
 	#endif
-	m_begOffset(0), m_endOffset(0), m_max(0), m_begLine(line), m_endLine(-1)
+	m_begOffset(0), m_endOffset(0), m_savedX(0), m_begLine(line), m_endLine(-1)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(0);
@@ -4266,7 +4266,7 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column,
 	#if QT_VERSION >= 0x040400
 	m_ref(0),
 	#endif
-	m_max(0)
+	m_savedX(0)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(0);
@@ -4302,7 +4302,7 @@ void QDocumentCursorHandle::copy(const QDocumentCursorHandle *c)
 	m_endLine = c->m_endLine;
 	m_endOffset = c->m_endOffset;
 	m_flags = c->m_flags & ~AutoUpdated; //copy isn't automatically autoupdated
-	m_max = c->m_max;
+	m_savedX = c->m_savedX;
 }
 
 QDocument* QDocumentCursorHandle::document() const
@@ -4684,9 +4684,9 @@ void QDocumentCursorHandle::shift(int offset)
 
 void QDocumentCursorHandle::refreshColumnMemory()
 {
-	//m_max = m_doc->line(line).cursorToX(offset);
-	if(!m_doc) return;
-	m_max = hasFlag(ColumnMemory) ? m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset).x() : 0;
+	if (m_doc && hasFlag(ColumnMemory)) {
+		m_savedX = m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset).x();
+	}
 }
 
 bool QDocumentCursorHandle::hasColumnMemory() const
@@ -4725,12 +4725,10 @@ void QDocumentCursorHandle::setPosition(int pos, int m)
 		m_endLine = QDocumentLine();
 		m_endOffset = 0;
 
-		m_max = m_begLine.cursorToX(m_begOffset);
+		m_savedX = m_begLine.cursorToX(m_begOffset);
 	} else {
 		m_endLine = m_doc->findLine(pos);
 		m_endOffset = (m_begLine.isValid() ? pos : 0);
-
-		//m_max = 0;
 	}
 	*/
 }
@@ -4927,9 +4925,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			{
 				QPoint p = documentPosition();
 
-				if ( hasColumnMemory() )
-					p.rx() = qMax(p.x(), m_max);
-
+				if (hasColumnMemory()) {
+					p.rx() = m_savedX;
+				}
 				p.ry() -= QDocumentPrivate::m_lineSpacing * count;
 
 				while (p.y() >= 0) {
@@ -4959,24 +4957,16 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			}
 
-			//*line = QDocumentLine(*it);
-			//*offset = line->xToCursor(qMin(line->cursorToX(*offset), m_max), 0);
 			l = m_doc->line(line);
 
 			if ( count )
 				offset = 0;
 			else if ( m == QDocumentCursor::MoveAnchor )
 				offset = l.xToCursor(
-						qMax(
-							l.cursorToX(
-								qMin(
-									offset,
-									l.length()
-								)
-							),
-							m_max
-						)
-					);
+					hasColumnMemory() ?
+					m_savedX :
+					l.cursorToX(qMin(offset, l.length()))
+				);
 			else
 				offset = qMin(l.length(), offset);
 
@@ -4992,8 +4982,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			{
 				QPoint p = documentPosition();
 
-				if ( hasColumnMemory() )
-					p.rx() = qMax(p.x(), m_max);
+				if (hasColumnMemory()) {
+					p.rx() = m_savedX;
+				}
 
 				p.ry() += QDocumentPrivate::m_lineSpacing * count;
 
@@ -5029,16 +5020,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				offset = l.length();
 			else if ( m == QDocumentCursor::MoveAnchor )
 				offset = l.xToCursor(
-						qMax(
-							l.cursorToX(
-								qMin(
-									offset,
-									l.length()
-								)
-							),
-							m_max
-						)
-					);
+					hasColumnMemory() ?
+					m_savedX :
+					l.cursorToX(qMin(offset, l.length()))
+				);
 			else
 				offset = qMin(l.length(), offset);
 
@@ -5049,8 +5034,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( atStart() )
 				return false;
 
-			m_max = offset = 0;
-			line = 0; //m_doc->line(0);
+			m_savedX = offset = 0;
+			line = 0;
 			break;
 
 		case QDocumentCursor::End :
@@ -5084,11 +5069,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				p.rx() = 0;
 
 				m_doc->cursorForDocumentPosition(p, line, offset);
-				m_max = 0;//w.line start, avoiding 0 bug
+				m_savedX = 0;//w.line start, avoiding 0 bug
 				return true;
 			}
 
-			m_max = offset = 0;
+			m_savedX = offset = 0;
 			break;
 
 		case QDocumentCursor::EndOfBlock :
@@ -5133,7 +5118,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 				//one left in the w. line before
 				offset--;
-				m_max = m_doc->line(line).cursorToDocumentOffset(offset).x();
+				m_savedX = m_doc->line(line).cursorToDocumentOffset(offset).x();
 				if ((curline != line)||(m_doc->height()==p.ry())) line=curline; //jumped to far, work around for wrapped last line
 				else if (offset>0) return true;
 			}

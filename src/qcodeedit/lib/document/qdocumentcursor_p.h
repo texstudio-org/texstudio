@@ -196,7 +196,7 @@ class QCE_EXPORT QDocumentCursorHandle
 #else
 		QAtomicInt m_ref;
 #endif
-		int m_begOffset, m_endOffset, m_max, m_begLine, m_endLine; //beg: cursor position, end: anchor position
+		int m_begOffset, m_endOffset, m_savedX, m_begLine, m_endLine; //beg: cursor position, end: anchor position
 		QStack<QDocumentCommandBlock*> m_blocks;
 };
 
