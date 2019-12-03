@@ -74,9 +74,9 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("Search/Replace Test 2")
 		<< "editor.replace(\"ll\", \"tt\", editor.document().cursor(1,0,1,6)); "
 		<< "Hbllo1\nHatto2\nHallo3";
-    QTest::newRow("Search/Replace Test 2a")
-        << "var c2=new QDocumentCursor(editor.document(),1,0,1,6); editor.replace(\"ll\", \"tt\", c2); "
-        << "Hbllo1\nHatto2\nHallo3";
+    //QTest::newRow("Search/Replace Test 2a")
+    //    << "var c2=new QDocumentCursor(editor.document(),1,0,1,6); editor.replace(\"ll\", \"tt\", c2); "
+    //   << "Hbllo1\nHatto2\nHallo3";
 	QTest::newRow("Search/Replace Test 3")
 		<< "editor.replace(/b..o/, function(c){return editor.search(c.selectedText());}); "
 		<< "H11\nHatto2\nHallo3";
