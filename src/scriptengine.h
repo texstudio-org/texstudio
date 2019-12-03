@@ -77,16 +77,16 @@ class UniversalInputDialogScript: public UniversalInputDialog
     Q_OBJECT
 
 public:
-    Q_INVOKABLE UniversalInputDialogScript(QJSEngine *engine, QWidget *parent = nullptr);
+    Q_INVOKABLE UniversalInputDialogScript(QWidget *parent = nullptr);
     ~UniversalInputDialogScript();
 
 public slots:
-    QJSValue add(const QJSValue &def, const QJSValue &description, const QJSValue &id = QJSValue());
+    QWidget* add(const QJSValue &def, const QJSValue &description, const QJSValue &id = QJSValue());
 
     QJSValue execDialog();
 
     QJSValue getAll();
-    QJSValue get(const QJSValue &id);
+    QVariant get(const QJSValue &id);
 
 private:
     QJSEngine *engine;

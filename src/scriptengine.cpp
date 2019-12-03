@@ -167,6 +167,15 @@ void qScriptValueToStringPtr(const QJSValue &value, QString *&str)
     }
     str = s;
 }
+/* porting will be stopped for.
+ *
+ * documentation on how to port and how to use qjsengine for API scripting is lacking
+ * current implementation is okay for most text manipulation tasks
+ * editor.document().cursor(...) fails, cursor can be created directly however
+ * interaction between c++ and qjsengine is difficult (more difficult than qtscript, at least)
+ * Since there is no benefit in colpleting qjs use now and I am not sure that Qt6 will use qjs as is, no further effort is invested
+ * However this may be a good starting point for Qt6
+ */
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
 {
@@ -499,7 +508,7 @@ QJSValue scriptengine::replaceFunction(QJSValue searchFor,QJSValue arg1,QJSValue
     return searchReplaceFunction(searchFor,arg1,arg2,arg3, true);
 }
 
-UniversalInputDialogScript::UniversalInputDialogScript(QJSEngine *engine, QWidget *parent): UniversalInputDialog(parent), engine(engine)
+UniversalInputDialogScript::UniversalInputDialogScript(QWidget *parent): UniversalInputDialog(parent)
 {
 }
 
@@ -508,7 +517,7 @@ UniversalInputDialogScript::~UniversalInputDialogScript()
     for (int i = 0; i < properties.size(); i++) properties[i].deallocate();
 }
 
-QJSValue UniversalInputDialogScript::add(const QJSValue &def, const QJSValue &description, const QJSValue &id)
+QWidget* UniversalInputDialogScript::add(const QJSValue &def, const QJSValue &description, const QJSValue &id)
 {
     QWidget *w = nullptr;
     if (def.isArray()) {
@@ -517,7 +526,7 @@ QJSValue UniversalInputDialogScript::add(const QJSValue &def, const QJSValue &de
         while (it.hasNext()) {
             it.next();
             if (it.value().isString() || it.value().isNumber()) options << it.value().toString();
-            else engine->throwError("Invalid default value in array (must be string or number): " + it.value().toString());
+            //else engine->throwError("Invalid default value in array (must be string or number): " + it.value().toString());
         }
         w = addComboBox(ManagedProperty::fromValue(options), description.toString());
     } else if (def.isBool()) {
@@ -528,11 +537,11 @@ QJSValue UniversalInputDialogScript::add(const QJSValue &def, const QJSValue &de
         w = addLineEdit(ManagedProperty::fromValue(def.toString()), description.toString());
     } else {
 
-        engine->throwError(tr("Invalid default value: %1").arg(def.toString()));
-        return QJSValue();
+        //engine->throwError(tr("Invalid default value: %1").arg(def.toString()));
+        return nullptr;
     }
     if (!id.isUndefined()) properties.last().name = id.toString();
-    return engine->newQObject(w);
+    return w;
 }
 
 
@@ -554,22 +563,22 @@ QJSValue UniversalInputDialogScript::getAll()
     return res;
 }
 
-QJSValue UniversalInputDialogScript::get(const QJSValue &id)
+QVariant UniversalInputDialogScript::get(const QJSValue &id)
 {
     if (id.isNumber()) {
         int i = id.toInt();
-        if (i < 0 || i > properties.size()) return QJSValue();
-        return engine->toScriptValue(properties[i].valueToQVariant());
+        if (i < 0 || i > properties.size()) return QVariant();
+        return properties[i].valueToQVariant();
     }
     if (id.isString()) {
         QString sid = id.toString();
         foreach (const ManagedProperty &mp, properties)
             if (mp.name == sid)
-                return engine->toScriptValue(mp.valueToQVariant());
-        return QJSValue();
+                return mp.valueToQVariant();
+        return QVariant();
     }
-    engine->throwError(tr("Unknown variable %1").arg(id.toString()));
-    return QJSValue();
+    //engine->throwError(tr("Unknown variable %1").arg(id.toString()));
+    return QVariant();
 }
 #else
 //copied from trolltech mailing list
