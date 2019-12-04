@@ -4,6 +4,7 @@
 #include:pgfcore
 
 \begin{scope}
+\begin{scope}[options%keyvals]
 \end{scope}
 \tikzset{options%keyvals}#*
 \tikzoption{arg1}#*
@@ -153,53 +154,57 @@ turtle
 views
 #endkeyvals
 
-#keyvals:\path,\begin{tikzpicture},\tikz#c
-line
+#keyvals:\node#c,\draw#c,\path#c,\begin{scope}#c,\begin{tikzpicture}#c,\tikz#c
+## line
+dash pattern=%<dash pattern%>
+dash phase=%<dash phase%>
+dash=%<dash pattern%> phase %<dash phase%>
+solid
+dotted
 dashed
-#endkeyvals
-
-#keyvals:\draw,\path,\begin{tikzpicture},\tikz#c
-->
-<-
-thick
-name path=
+dash dot
+line width=##L
 very thin
-color=#%color
-sharp corners
-rounded corners=
-#endkeyvals
-
-#keyvals:\node,\draw,\path,\begin{tikzpicture},\tikz#c
-inner sep=
-inner xsep=
-inner ysep=
-outer sep=
-outer xsep=
-outer ysep=
-minimum height=
-minimum width=
-minimum size=
+thin
+semithick
+thick
+very thick
+line cap=#round,rect,butt
+line join=#round,bevel,miter
+miter limit=%<factor%>
+help lines
+## node: shape, text, and position
+inner sep=##L
+inner xsep=##L
+inner ysep=##L
+outer sep=##L
+outer xsep=##L
+outer ysep=##L
+minimum height=##L
+minimum width=##L
+minimum size=##L
 shape aspect=
 text=%color
 node font=
 font=
-text width=
-align=left,flush left,right,flush right,center,flush center,justify
-text height=
-text depth=
-anchor=north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text
+text width=##L
+align=#left,flush left,right,flush right,center,flush center,justify
+text height=##L
+text depth=##L
+anchor=#north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text
 above=
 below=
 right=
 left=
-above=of #%node
-below=of #%node
-right=of #%node
-left=of #%node
+above=of %<node%>
+below=of %<node%>
+right=of %<node%>
+left=of %<node%>
 above left
 above right
 below left
 below right
+centered
 pos=
 midway
 near start
@@ -209,7 +214,24 @@ very near end
 at start
 at end
 label=%<angle%>:%<text%>
-centered
+## transformation
+shift=%<coordinate%>
+xshift=##L
+yshift=##L
+scale=%<scale%>
+xscale=%<scale%>
+yscale=%<scale%>
+xslant=%<factor%>
+yslant=%<factor%>
+rotate=%<degree%>
+rotate around={%<degree%>:coordinate}
+## others
+->
+<-
+name path=
+color=#%color
+sharp corners
+rounded corners=
 outline
 %tikzstyle
 %color

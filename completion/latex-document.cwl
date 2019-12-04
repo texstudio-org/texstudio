@@ -185,8 +185,6 @@
 \flq
 \flqq
 \flushbottom
-\flushleft
-\flushright
 \fnsymbol{counter}#*
 \fontencoding{enc}
 \fontfamily{family}
@@ -245,9 +243,10 @@
 \ldots
 \lefteqn
 \lefthyphenmin#*
-\line(xslope,yslope){length}#*
+\line(xslope,yslope){length}#*/picture
 \linebreak
 \linebreak[number]
+\linespread{factor}
 \linethickness{dimension}
 \linewidth#L
 \listfigurename
@@ -262,7 +261,7 @@
 \makebox(width,height){text}#*/picture
 \makeglossary
 \makeindex
-\makelabel
+\makelabel#*
 \makelabels{number}
 \MakeLowercase{text}#*
 \maketitle

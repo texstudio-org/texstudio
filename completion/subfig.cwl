@@ -10,5 +10,5 @@
 \subfloat{body}
 \subfloat[listentry][subcaption]{body}
 \subfloat[subcaption]{body}
-\subref{label}
-\subref*{label}
+\subref{label}#r
+\subref*{label}#r
