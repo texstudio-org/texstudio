@@ -226,6 +226,8 @@ unix {
         utilities/dictionaries/fr_FR.dic \
         utilities/dictionaries/hu_HU.aff \
         utilities/dictionaries/hu_HU.dic \
+        utilities/dictionaries/it_IT.aff \
+        utilities/dictionaries/it_IT.dic \
         utilities/dictionaries/pt_BR.aff \
         utilities/dictionaries/pt_BR.dic \
         utilities/dictionaries/de_DE.badWords \
@@ -236,6 +238,7 @@ unix {
         utilities/dictionaries/fr_FR.stopWords \
         utilities/dictionaries/th_en_US_v2.dat \
         utilities/dictionaries/th_fr_FR_v2.dat \
+        utilities/dictionaries/th_it_IT_v2.dat \
         utilities/dictionaries/th_de_DE_v2.dat \
         utilities/AUTHORS \
         utilities/COPYING \
