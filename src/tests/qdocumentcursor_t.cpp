@@ -1,15 +1,16 @@
-
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include "qdocumentcursor_t.h"
 #include "qdocumentcursor.h"
 #include "qdocumentcursor_p.h"
 #include "qdocument.h"
+#include "qdocument_p.h"
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
 #include "testutil.h"
 #include "qcetestutil.h"
 #include <QtTest/QtTest>
+
 void QDocumentCursorTest::initTestCase(){
 	doc=new QDocument();
 	doc->setText("test: line 1\n"
@@ -17,12 +18,13 @@ void QDocumentCursorTest::initTestCase(){
 				 "test: line 3\n", false);
 	doc->setLineEnding(QDocument::Unix);
 }
+
 QDocumentCursor QDocumentCursorTest::str2cur(const QString &s){
 	QStringList sl=s.split("|");
 	if (sl.size()==2) return doc->cursor(sl[0].toInt(),sl[1].toInt());
 	else if (sl.size()==4) return doc->cursor(sl[0].toInt(),sl[1].toInt(),sl[2].toInt(),sl[3].toInt());
 	else return QDocumentCursor();
-	
+
 }
 void QDocumentCursorTest::constMethods_data(){
 	QTest::addColumn<QString>("cursor");
@@ -41,9 +43,9 @@ void QDocumentCursorTest::constMethods_data(){
 	QTest::addColumn<QString>("selectedText");
 	QTest::addColumn<char>("previousChar");
 	QTest::addColumn<char>("nextChar");
-	
+
 	//-------------cursor without selection--------------
-	QTest::newRow("simple cursor mid in a line") 
+	QTest::newRow("simple cursor mid in a line")
 		<< "1|12"
 		<< false << false << false << false
 		<< 13+12
@@ -51,7 +53,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|12" << "1|12" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		<< '2' << ',';
-	QTest::newRow("simple cursor at line start") 
+	QTest::newRow("simple cursor at line start")
 		<< "1|0"
 		<< false << false << true << false
 		<< 13+0
@@ -59,7 +61,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|0" << "1|0" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		<< '\n' << 't';
-	QTest::newRow("simple cursor at line end") 
+	QTest::newRow("simple cursor at line end")
 		<< "1|64"
 		<< false << false << false << true
 		<< 13+64
@@ -67,7 +69,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|64" << "1|64" //TODO: qce documentation says << "" << ""
 		<< false << ""
 		<< 'Z' << '\n';
-	QTest::newRow("simple cursor at doc start") 
+	QTest::newRow("simple cursor at doc start")
 		<< "0|0"
 		<< true << false << true << false
 		<< 0
@@ -84,9 +86,9 @@ void QDocumentCursorTest::constMethods_data(){
 		<< false << ""
 		<< '\n' << '\0';
 		//<< '3' << '\n';
-	
+
 	//--------------cursor with selection-------------
-	QTest::newRow("selection mid in a line") 
+	QTest::newRow("selection mid in a line")
 		<< "1|12|1|18"
 		<< false << false << false << false
 		<< 13+18
@@ -94,7 +96,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|12" << "1|18"
 		<< true << ", hell"
 		<< 'l' << 'o';
-	QTest::newRow("selection mid in a line reverted") 
+	QTest::newRow("selection mid in a line reverted")
 		<< "1|18|1|12"
 		<< false << false << false << false
 		<< 13+12
@@ -102,7 +104,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|12" << "1|18"
 		<< true << ", hell"
 		<< '2' << ',';
-	QTest::newRow("selection from line start to mid") 
+	QTest::newRow("selection from line start to mid")
 		<< "1|0|1|18"
 		<< false << false << false << false
 		<< 13+18
@@ -110,7 +112,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|0" << "1|18"
 		<< true << "test: line 2, hell"
 		<< 'l' << 'o';
-	QTest::newRow("selection from line start to mid reverted") 
+	QTest::newRow("selection from line start to mid reverted")
 		<< "1|18|1|0"
 		<< false << false << true << false
 		<< 13+0
@@ -118,7 +120,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|0" << "1|18"
 		<< true << "test: line 2, hell"
 		<< '\n' << 't';
-	QTest::newRow("selection from line mid to end") 
+	QTest::newRow("selection from line mid to end")
 		<< "1|4|1|64"
 		<< false << false << false << true
 		<< 13+64
@@ -126,7 +128,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|4" << "1|64"
 		<< true << ": line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
 		<< 'Z' << '\n';
-	QTest::newRow("selection from line mid to end reversed") 
+	QTest::newRow("selection from line mid to end reversed")
 		<< "1|64|1|4"
 		<< false << false << false << false
 		<< 13+4
@@ -134,7 +136,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|4" << "1|64"
 		<< true << ": line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
 		<< 't' << ':';
-	QTest::newRow("selection from document start to line mid") 
+	QTest::newRow("selection from document start to line mid")
 		<< "0|0|0|4"
 		<< false << false << false << false
 		<< 4
@@ -142,7 +144,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "0|0" << "0|4"
 		<< true << "test"
 		<< 't' << ':';
-	QTest::newRow("selection from document start to line mid reversed") 
+	QTest::newRow("selection from document start to line mid reversed")
 		<< "0|4|0|0"
 		<< true << false << true << false
 		<< 0
@@ -166,7 +168,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "2|6" << "2|12"
 		<< true << "line 3"
 		<< ' ' << 'l';
-	QTest::newRow("selection from line start to line end") 
+	QTest::newRow("selection from line start to line end")
 		<< "1|0|1|64"
 		<< false << false << false << true
 		<< 13+64
@@ -174,7 +176,7 @@ void QDocumentCursorTest::constMethods_data(){
 		<< "1|0" << "1|64"
 		<< true << "test: line 2, hello world! abcdefghijklmnopqrstuvwxyzABCDE...XYZ"
 		<< 'Z' << '\n';
-	QTest::newRow("selection from line start to line end reversed") 
+	QTest::newRow("selection from line start to line end reversed")
 		<< "1|64|1|0"
 		<< false << false << true << false
 		<< 13+0
@@ -251,8 +253,8 @@ void QDocumentCursorTest::constMethods(){
 	QFETCH(char, previousChar);
 	QFETCH(char, nextChar);
 
-    Q_UNUSED(position)
-	
+	Q_UNUSED(position)
+
 	QDocumentCursor c=str2cur(cursor);
 	QVERIFY(c.isValid()); QVERIFY(!c.isNull());
 	QVERIFY(c==c); QVERIFY(!(c!=c));
@@ -290,34 +292,34 @@ void QDocumentCursorTest::const2Methods_data(){
 	QTest::addColumn<bool>("gteq");
 	QTest::addColumn<bool>("c1withinc2"); //c1.isWithInSelection(c2) === is c2 within c1
 	QTest::addColumn<QString>("intersection");
-	
+
 	//----------------identical cursor------------------
-	QTest::newRow("identical cursors single line") 
+	QTest::newRow("identical cursors single line")
 		<< "1|4|1|10" << "1|4|1|10"
 		<< true << false
 		<< false << false
 		<< true << true
 		<< true
 		<< "1|4|1|10";
-	QTest::newRow("identical cursors multi lines") 
+	QTest::newRow("identical cursors multi lines")
 		<< "0|4|2|7" << "0|4|2|7"
 		<< true << false
 		<< false << false
 		<< true << true
 		<< true
 		<< "0|4|2|7";
-		
-		
+
+
 	//---------------identical right side-----------------
 	//if the right side is identical the cursor are considered to be identical
-	QTest::newRow("identical right side, c1 before c2 on same line, single line") 
+	QTest::newRow("identical right side, c1 before c2 on same line, single line")
 		<< "1|4|1|17" << "1|10|1|17"
 		<< true << false//<< false << true
 		<< false << false // << true << false
 		<< true << true//<< true << false
 		<< true
 		<< "1|10|1|17";
-	QTest::newRow("identical right side, c1 before c2 on same line, multi line") 
+	QTest::newRow("identical right side, c1 before c2 on same line, multi line")
 		<< "1|4|2|7" << "1|10|2|7"
 		<< true << false //<< false << true
 		<< false << false  //<< true << false
@@ -325,47 +327,47 @@ void QDocumentCursorTest::const2Methods_data(){
 		<< true
 		<< "1|10|2|7";
 
-	QTest::newRow("identical right side, c1 after c2 on same line, single line") 
+	QTest::newRow("identical right side, c1 after c2 on same line, single line")
 		<< "1|8|1|17" << "1|3|1|17"
 		<< true << false //<< false << true
 		<< false << false  //<< false << true
 		<< true << true//<< false << true
 		<< true //false
 		<< "1|8|1|17";
-	QTest::newRow("identical right side, c1 after c2 on same line, multi line") 
-		<< "1|9|2|7" << "1|3|2|7"		
+	QTest::newRow("identical right side, c1 after c2 on same line, multi line")
+		<< "1|9|2|7" << "1|3|2|7"
 		<< true << false//<< false << true
 		<< false << false  //<< false << true
 		<< true << true//<< false << true
 		<< true //false
 		<< "1|9|2|7";
 
-		
-	QTest::newRow("identical right side, c1 before c2 on different lines") 
+
+	QTest::newRow("identical right side, c1 before c2 on different lines")
 		<< "0|8|2|7" << "1|4|2|7"
 		<< true << false //<< false << true
 		<< false << false  //<< true << false
 		<< true << true //<< true << false
 		<< true
 		<< "1|4|2|7";
-	QTest::newRow("identical right side, c1 after c2 on different lines") 
-		<< "1|0|2|7" << "0|3|2|7"		
+	QTest::newRow("identical right side, c1 after c2 on different lines")
+		<< "1|0|2|7" << "0|3|2|7"
 		<< true << false//<< false << true
 		<< false << false  //<< false << true
 		<< true << true//<< false << true
 		<< true //false
 		<< "1|0|2|7";
-		
-		
+
+
 	//----------------identical left side-------------------
-	QTest::newRow("identical left side, c1 before c2 on same line, single line") 
+	QTest::newRow("identical left side, c1 before c2 on same line, single line")
 		<< "1|4|1|10" << "1|4|1|17"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "1|4|1|10";
-	QTest::newRow("identical left side, c1 before c2 on same line, multi line") 
+	QTest::newRow("identical left side, c1 before c2 on same line, multi line")
 		<< "0|7|2|4" << "0|7|2|7"
 		<< false << true
 		<< true << false
@@ -373,104 +375,104 @@ void QDocumentCursorTest::const2Methods_data(){
 		<< false
 		<< "0|7|2|4";
 
-	QTest::newRow("identical left side, c1 after c2 on same line, single line") 
+	QTest::newRow("identical left side, c1 after c2 on same line, single line")
 		<< "1|3|1|17" << "1|3|1|7"
 		<< false << true
 		<< false << true
 		<< false << true
 		<< true
 		<< "1|3|1|7";
-	QTest::newRow("identical left side, c1 after c2 on same line, multi line") 
-		<< "1|3|2|7" << "1|3|2|3"		
+	QTest::newRow("identical left side, c1 after c2 on same line, multi line")
+		<< "1|3|2|7" << "1|3|2|3"
 		<< false << true
 		<< false << true
 		<< false << true
 		<< true //false
 		<< "1|3|2|3";
 
-	QTest::newRow("identical left side, c1 before c2 on different lines") 
+	QTest::newRow("identical left side, c1 before c2 on different lines")
 		<< "0|5|1|10" << "0|5|2|7"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "0|5|1|10";
-	QTest::newRow("identical left side, c1 after c2 on different lines") 
-		<< "1|0|2|7" << "1|0|1|3"		
+	QTest::newRow("identical left side, c1 after c2 on different lines")
+		<< "1|0|2|7" << "1|0|1|3"
 		<< false << true
 		<< false << true
 		<< false << true
-		<< true 
+		<< true
 		<< "1|0|1|3";
-	
-	
+
+
 	//-------------c1 left side before c2--------------
-	QTest::newRow("c1 left side before c2, no intersection, start on same line") 
-		<< "0|1|0|5" << "0|7|2|10"		
+	QTest::newRow("c1 left side before c2, no intersection, start on same line")
+		<< "0|1|0|5" << "0|7|2|10"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "";
 
-	QTest::newRow("c1 left side before c2, no intersection, start on different lines") 
-		<< "0|1|1|5" << "1|7|2|10"		
+	QTest::newRow("c1 left side before c2, no intersection, start on different lines")
+		<< "0|1|1|5" << "1|7|2|10"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "";
 
-	QTest::newRow("c1 left side before c2, no intersection, start on same line, c1 inverted") 
-		<< "0|5|0|1" << "0|7|2|10"		
+	QTest::newRow("c1 left side before c2, no intersection, start on same line, c1 inverted")
+		<< "0|5|0|1" << "0|7|2|10"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "";
 
-	QTest::newRow("c1 left side before c2, no intersection, start on different lines, c1 inverted") 
-		<< "1|5|0|5" << "1|7|2|10"		
+	QTest::newRow("c1 left side before c2, no intersection, start on different lines, c1 inverted")
+		<< "1|5|0|5" << "1|7|2|10"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "";
 
-		
-	QTest::newRow("c1 left side before c2, touching ends, start on same line") 
-		<< "0|1|0|7" << "0|7|2|10"		
+
+	QTest::newRow("c1 left side before c2, touching ends, start on same line")
+		<< "0|1|0|7" << "0|7|2|10"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "0|7";
 
-	QTest::newRow("c1 left side before c2, touching ends, start on same line, inverted") 
-		<< "0|1|0|7" << "2|10|0|7"	
+	QTest::newRow("c1 left side before c2, touching ends, start on same line, inverted")
+		<< "0|1|0|7" << "2|10|0|7"
 		<< true << false
 		<< false << false
 		<< true << true
 		<< true
 		<< "0|7";
 
-	QTest::newRow("c1 left side before c2, touching ends on next line") 
-		<< "0|0|1|0" << "1|0|2|10"		
+	QTest::newRow("c1 left side before c2, touching ends on next line")
+		<< "0|0|1|0" << "1|0|2|10"
 		<< false << true
 		<< true << false
 		<< true << false
 		<< false
 		<< "1|0";
 
-	QTest::newRow("c1 left side before c2, touching ends on next line, inverted") 
-		<< "0|1|1|0" << "2|10|1|0"	
+	QTest::newRow("c1 left side before c2, touching ends on next line, inverted")
+		<< "0|1|1|0" << "2|10|1|0"
 		<< true << false
 		<< false << false
 		<< true << true
 		<< true
 		<< "1|0";
 	//...
-	
+
 	//-------------c1 left side after c2--------------
 	//...
 }
@@ -485,7 +487,7 @@ void QDocumentCursorTest::const2Methods(){
 	QFETCH(bool,gteq);
 	QFETCH(bool,c1withinc2);
 	QFETCH(QString,intersection);
-	
+
 	QDocumentCursor c1=str2cur(tc1);
 	QDocumentCursor c2=str2cur(tc2);
 
@@ -494,17 +496,17 @@ void QDocumentCursorTest::const2Methods(){
 	QVERIFY(c1==c1); QVERIFY(c2==c2);
 	QVERIFY(c1<=c1); QVERIFY(c2<=c2);
 	QVERIFY(c1>=c1); QVERIFY(c2>=c2);
-	
+
 	QEQUAL(c1==c2, eq);
 	QEQUAL(c1!=c2, neq);
 	QEQUAL(c1<c2, lt);
 	QEQUAL(c1>c2, gt);
 	QEQUAL(c1<=c2, lteq);
 	QEQUAL(c1>=c2, gteq);
-	
+
 	QEQUAL(c1.isWithinSelection(c2), c1withinc2);
 	QCEEQUAL(c1.intersect(c2),str2cur(intersection));
-	
+
 }
 void QDocumentCursorTest::subtractBoundaries_data(){
 	QTest::addColumn<QString>("cursor");
@@ -515,7 +517,7 @@ void QDocumentCursorTest::subtractBoundaries_data(){
 	QTest::newRow("cutting left, one char") << "0|4|0|9" << "0|4|0|5" << "0|4|0|8";
 	QTest::newRow("cutting left, multiple chars") << "0|4|0|9" << "0|4|0|7" << "0|4|0|6";
 	QTest::newRow("cutting left, whole selection") << "0|4|0|9" << "0|4|0|9" << "0|4|0|4";
-	
+
 	QTest::newRow("beyond left, one intersecting char") << "0|4|0|9" << "0|2|0|5" << "0|2|0|6";
 	QTest::newRow("beyond left, multiple char") << "0|4|0|9" << "0|2|0|6" << "0|2|0|5";
 	QTest::newRow("beyond left, whole selection") << "0|4|0|9" << "0|2|0|9" << "0|2|0|2";
@@ -524,10 +526,10 @@ void QDocumentCursorTest::subtractBoundaries_data(){
 	QTest::newRow("cutting mid, chars") << "0|4|0|9" << "0|5|0|8" << "0|4|0|6";
 	QTest::newRow("cutting mid, remaining") << "0|4|0|9" << "0|5|0|9" << "0|4|0|5";
 	QTest::newRow("cutting mid, more than selection") << "0|4|0|9" << "0|5|0|12" << "0|4|0|5";
-	
+
 /*aaaaXXXXXX
 ZZZZZZZZZZbbbbbbbbbbbb*/
-	
+
 	QTest::newRow("cutting left, one char") << "0|4|1|10" << "0|4|0|5" << "0|4|1|10";
 	QTest::newRow("cutting left, multiple char") << "0|4|1|10" << "0|4|0|10" << "0|4|1|10";
 	QTest::newRow("cutting left, whole line") << "0|4|1|10" << "0|4|1|0" << "0|4|0|14";
@@ -541,7 +543,7 @@ ZZZZZZZZZZbbbbbbbbbbbb*/
 	QTest::newRow("cutting mid, remaining") << "0|4|1|10" << "0|6|1|10" << "0|4|0|6";
 	QTest::newRow("cutting mid, more than selection") << "0|4|1|10" << "0|6|1|12" << "0|4|0|6";
 	QTest::newRow("cutting mid, in second line") << "0|4|1|10" << "1|3|1|5" << "0|4|1|8";
-	
+
 /*aaaaXXXXXX
 YYYYYYYYYY
 ZZZZZZZZbbbbbbbbbbbb*/
@@ -558,14 +560,14 @@ ZZZZZZZZbbbbbbbbbbbb*/
 	QTest::newRow("beyond left, removing complete previous line") << "1|0|2|10" << "0|0|1|0" << "0|0|1|10"; //line moves up
 	QTest::newRow("beyond left, removing partly previous line") << "1|0|2|10" << "0|5|1|0" << "0|5|1|10"; //line moves up, column moves left
 
-	QTest::newRow("cutting mid, chars in first line") << "0|4|2|10" << "0|6|0|10" << "0|4|2|10"; 
-	QTest::newRow("cutting mid, chars in second line") << "0|4|2|10" << "1|6|1|10" << "0|4|2|10"; 
-	QTest::newRow("cutting mid, chars in third line") << "0|4|2|10" << "2|4|2|6" << "0|4|2|8"; 
-	QTest::newRow("cutting mid, whole second line") << "0|4|2|10" << "1|0|2|0" << "0|4|1|10"; 
-	QTest::newRow("cutting mid, second line + chars in third") << "0|4|2|10" << "1|0|2|4" << "0|4|1|6"; 
-	QTest::newRow("cutting mid, remaining") << "0|4|2|10" << "1|0|2|10" << "0|4|1|0"; 
-	QTest::newRow("cutting mid, more than selection") << "0|4|2|10" << "1|0|2|15" << "0|4|1|0"; 
-	
+	QTest::newRow("cutting mid, chars in first line") << "0|4|2|10" << "0|6|0|10" << "0|4|2|10";
+	QTest::newRow("cutting mid, chars in second line") << "0|4|2|10" << "1|6|1|10" << "0|4|2|10";
+	QTest::newRow("cutting mid, chars in third line") << "0|4|2|10" << "2|4|2|6" << "0|4|2|8";
+	QTest::newRow("cutting mid, whole second line") << "0|4|2|10" << "1|0|2|0" << "0|4|1|10";
+	QTest::newRow("cutting mid, second line + chars in third") << "0|4|2|10" << "1|0|2|4" << "0|4|1|6";
+	QTest::newRow("cutting mid, remaining") << "0|4|2|10" << "1|0|2|10" << "0|4|1|0";
+	QTest::newRow("cutting mid, more than selection") << "0|4|2|10" << "1|0|2|15" << "0|4|1|0";
+
 }
 void QDocumentCursorTest::subtractBoundaries(){
 	QFETCH(QString, cursor);
@@ -578,7 +580,7 @@ void QDocumentCursorTest::subtractBoundaries(){
 	s.boundaries(bl,bc,el,ec);
 	c.handle()->substractBoundaries(bl,bc,el,ec);
 	QCEEQUAL(c,r);
-	
+
 	//check swapped cursor
 	c = str2cur(cursor);
 	c = doc->cursor(c.lineNumber(),c.columnNumber(),c.anchorLineNumber(),c.anchorColumnNumber());
@@ -658,7 +660,7 @@ void QDocumentCursorTest::bidiMoving_data(){
 	const int L = (int)QDocumentCursor::Left;
 	const int R = (int)QDocumentCursor::Right;
 
-    QString withMarkers = QString::fromUtf8("\n" "ه‎\\glqq{}‎‎" "\n"); //rendered as \glqq{}o
+	QString withMarkers = QString::fromUtf8("\n" "ه‎\\glqq{}‎‎" "\n"); //rendered as \glqq{}o
 	QTest::newRow("with all markers 1")  << withMarkers << 1<<0  << 1 << R << 2<<0;
 	QTest::newRow("with all markers 2")  << withMarkers << 1<<0  << 1 << L << 1<<11; //????? that is not the same position as if run manually (there it skips 11 and goes to 10)
 	QTest::newRow("with all markers 2b") << withMarkers << 1<<11 << 1 << L << 1<<10;
@@ -710,10 +712,10 @@ void QDocumentCursorTest::bidiMoving(){
 	QFETCH(int, newLine);
 	QFETCH(int, newColumn);
 
-    if (m_autoTests){
-        qDebug("skipped bidi tests");
-        return;
-    }
+	if (m_autoTests){
+		qDebug("skipped bidi tests");
+		return;
+	}
 
 #if QT_VERSION >= 0x040800
 
@@ -726,7 +728,7 @@ void QDocumentCursorTest::bidiMoving(){
 	QEQUAL2(c.lineNumber(), newLine, "line" );
 	QEQUAL2(c.columnNumber(), newColumn, "column" );
 #endif
-	
+
 }
 
 void QDocumentCursorTest::isForwardSelection_data()
@@ -757,8 +759,58 @@ void QDocumentCursorTest::isForwardSelection()
 	QEQUAL(c.isForwardSelection(), expectedResult);
 }
 
+void QDocumentCursorTest::columnMemory_data()
+{
+	// Enable soft line breaks
+	doc->impl()->setHardLineWrap(false);
+	doc->impl()->setLineWidthConstraint(true);
+	// The code that calculates wrap width is taken from QEditor::setWrapAfterNumChars
+	int wrapAfterNumChars = 50;
+	int wrapWidth=QFontMetrics(QDocument::font()).averageCharWidth()*(wrapAfterNumChars+0.5) + 5; // +5 fixed width on left side, 0.5: 1/2 a char margin on right side
+	doc->setWidthConstraint(wrapWidth);
+	doc->setText(
+		(
+			"abcdefghij\n"
+			"\t\tabcdef ghijabcde fghijab cdefghi jabcdef ghij abcdef ghij abcd efghija\n"
+			"qqqqqqqqqqqqqq"
+		),
+		false
+	);
+
+	QTest::addColumn<int>("column");
+	QTest::addColumn<bool>("downwards");
+	QTest::addColumn<int>("numOps");
+
+	QTest::newRow("at column 0, downwards") << 0 << true << 3;
+	QTest::newRow("at column 0, upwards") << 0 << false << 3;
+	QTest::newRow("at column 1, downwards") << 1 << true << 3;
+	QTest::newRow("at column 1, upwards") << 1 << false << 3;
+}
+
+void QDocumentCursorTest::columnMemory()
+{
+	QFETCH(int, column);
+	QFETCH(bool, downwards);
+	QFETCH(int, numOps);
+	int lastLineNumber, i;
+
+	lastLineNumber = doc->lines() - 1;
+	QDocumentCursor cursor(doc, downwards ? 0 : lastLineNumber, column);
+	cursor.setColumnMemory(true);
+	for (i = 0; i < numOps; ++i) {
+		qDebug() << QString("Before move. Index %1, line %2, column %3").arg(i).arg(cursor.lineNumber()).arg(cursor.columnNumber());
+		cursor.movePosition(
+			1,
+			static_cast<QDocumentCursor::MoveOperation> (downwards ? QDocumentCursor::Down : QDocumentCursor::Up),
+			QDocumentCursor::ThroughWrap
+		);
+		qDebug() << QString("After move. Index %1, line %2, column %3").arg(i).arg(cursor.lineNumber()).arg(cursor.columnNumber());
+	}
+	QEQUAL(cursor.lineNumber(), downwards ? lastLineNumber : 0);
+	QEQUAL(cursor.columnNumber(), column);
+}
+
 void QDocumentCursorTest::cleanupTestCase(){
 	delete doc;
 }
 #endif
-

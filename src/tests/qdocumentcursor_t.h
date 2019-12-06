@@ -13,7 +13,7 @@ public:
         QDocumentCursorTest(bool autoTests):doc(NULL),m_autoTests(autoTests){}
 	private:
 		QDocument *doc;
-        bool m_autoTests;
+		bool m_autoTests;
 		QDocumentCursor str2cur(const QString &s);
 	private slots:
 		void initTestCase();
@@ -29,6 +29,8 @@ public:
 		void bidiMoving();
 		void isForwardSelection_data();
 		void isForwardSelection();
+		void columnMemory_data();
+		void columnMemory();
 		void cleanupTestCase();
 };
 

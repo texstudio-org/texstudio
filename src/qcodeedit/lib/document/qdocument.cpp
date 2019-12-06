@@ -118,9 +118,9 @@ struct RenderRange
 	int wrap;
 };
 
-template<typename T> struct CacheMeta { 
-	static inline bool exists(const T&); 
-	static inline void clearArray(T*, int size); 
+template<typename T> struct CacheMeta {
+	static inline bool exists(const T&);
+	static inline void clearArray(T*, int size);
 };
 
 template<> bool CacheMeta<int>::exists(const int& v) { return v >= 0; }
@@ -137,7 +137,7 @@ FastCache<T>::FastCache(){
 template<typename T>
 T* FastCache<T>::insert(const int c, const T& width){
 	if (c > 0 && c < 512) {fastMap[c] = width; return &fastMap[c]; }
-	else { typename QMap<int, T>::iterator it = slowMap.insert(c, width); return &(*it);} 
+	else { typename QMap<int, T>::iterator it = slowMap.insert(c, width); return &(*it);}
 }
 
 template<typename T>
@@ -193,15 +193,15 @@ static int PICTURE_BORDER = 4;
  */
 inline static bool isWord(QChar c)
 {
-    QString extraChars="\\";
-    return c.isLetterOrNumber() || extraChars.contains(c);
+	QString extraChars="\\";
+	return c.isLetterOrNumber() || extraChars.contains(c);
 } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
 
 /*! check if character c is a delimiter ( "(){}$+-*,/;." )
  */
 inline static bool isDelimiter(QChar c)
 {
-    QString delimiters="(){}$+-/*,;.";
+	QString delimiters="(){}$+-/*,;.";
 	return delimiters.contains(c);
 }
 
@@ -244,72 +244,72 @@ void QDocument::setForceLineWrapCalculation(bool v){
 	if (m_impl) m_impl->setForceLineWrapCalculation(v);
 }
 bool QDocument::linesMerged(QDocumentLineHandle* dlh,int bo,QDocumentLineHandle* fromLineHandle){
-    QDocumentLine ln(dlh);
-    bool hasBookmark=false;
-    int rmid=-1;
-    int i=-1;
-    for(i=-1;i<10;i++){
-        rmid=bookMarkId(i);
-        hasBookmark=ln.hasMark(rmid);
-        if(hasBookmark)
-            break;
-    }
-    if(hasBookmark && bo==0){
-        // line has been removed completely, remove bookmark
-        ln.removeMark(rmid);
-        emit bookmarkRemoved(dlh);
-        hasBookmark=false;
-    }
-    if(hasBookmark)
-        return false; //don't overwrite existing bookmark
-    QDocumentLine fromLine(fromLineHandle);
-    for(i=-1;i<10;i++){
-        rmid=bookMarkId(i);
-        hasBookmark=fromLine.hasMark(rmid);
-        if(hasBookmark)
-            break;
-    }
-    if(hasBookmark){
-        fromLine.removeMark(rmid);
-        emit bookmarkRemoved(fromLineHandle);
-        ln.addMark(rmid);
-        emit bookmarkAdded(dlh,i);
-    }
-    return hasBookmark;
+	QDocumentLine ln(dlh);
+	bool hasBookmark=false;
+	int rmid=-1;
+	int i=-1;
+	for(i=-1;i<10;i++){
+		rmid=bookMarkId(i);
+		hasBookmark=ln.hasMark(rmid);
+		if(hasBookmark)
+			break;
+	}
+	if(hasBookmark && bo==0){
+		// line has been removed completely, remove bookmark
+		ln.removeMark(rmid);
+		emit bookmarkRemoved(dlh);
+		hasBookmark=false;
+	}
+	if(hasBookmark)
+		return false; //don't overwrite existing bookmark
+	QDocumentLine fromLine(fromLineHandle);
+	for(i=-1;i<10;i++){
+		rmid=bookMarkId(i);
+		hasBookmark=fromLine.hasMark(rmid);
+		if(hasBookmark)
+			break;
+	}
+	if(hasBookmark){
+		fromLine.removeMark(rmid);
+		emit bookmarkRemoved(fromLineHandle);
+		ln.addMark(rmid);
+		emit bookmarkAdded(dlh,i);
+	}
+	return hasBookmark;
 }
 
 void QDocument::linesUnMerged(QDocumentLineHandle *dlh,QDocumentLineHandle *fromLineHandle){
-    QDocumentLine ln(dlh);
-    bool hasBookmark=false;
-    int rmid=-1;
-    int i=-1;
-    for(i=-1;i<10;i++){
-        rmid=bookMarkId(i);
-        hasBookmark=ln.hasMark(rmid);
-        if(hasBookmark)
-            break;
-    }
-    if(hasBookmark){
-        QDocumentLine fromLine(fromLineHandle);
-        ln.removeMark(rmid);
-        emit bookmarkRemoved(dlh);
-        fromLine.addMark(rmid);
-        emit bookmarkAdded(fromLineHandle,i);
-    }
+	QDocumentLine ln(dlh);
+	bool hasBookmark=false;
+	int rmid=-1;
+	int i=-1;
+	for(i=-1;i<10;i++){
+		rmid=bookMarkId(i);
+		hasBookmark=ln.hasMark(rmid);
+		if(hasBookmark)
+			break;
+	}
+	if(hasBookmark){
+		QDocumentLine fromLine(fromLineHandle);
+		ln.removeMark(rmid);
+		emit bookmarkRemoved(dlh);
+		fromLine.addMark(rmid);
+		emit bookmarkAdded(fromLineHandle,i);
+	}
 }
 
 int QDocument::bookMarkId(int bookmarkNumber) {
-    if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
-    else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
+	if (bookmarkNumber==-1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
+	else return QLineMarksInfoCenter::instance()->markTypeId("bookmark"+QString::number(bookmarkNumber));
 }
 
 void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles){
 	if (in_handles.isEmpty()) return;
 
 	QList<QDocumentLineHandle*> handles = in_handles;
-	
+
 	QDocumentCursor cur(this);
-	cur.beginEditBlock();		
+	cur.beginEditBlock();
 	while (!handles.isEmpty()) {
 		QList<QDocumentLineHandle*> newhandles;
 		foreach ( QDocumentLineHandle* dlh,handles )
@@ -319,7 +319,7 @@ void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles)
 
 			QList<int> lineBreaks = dlh->getBreaks();
 			if (lineBreaks.isEmpty()) continue;
-			
+
 			QString line=dlh->text();
 			QString indent = line.left(qMax(0, dlh->nextNonSpaceChar(0)));
 			if (indent.size() >= lineBreaks.first()) indent = "";
@@ -332,13 +332,13 @@ void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles)
 				temp = temp.mid(commentStart+1);
 				commentStarts << commentStart + (commentStarts.isEmpty()?0:commentStarts.last());
 			}
-			
-			
+
+
 			while(!lineBreaks.isEmpty()){
 				int last = lineBreaks.takeLast();
 				cur.moveTo(lineNr, last);
 				cur.insertText("\n" + indent);
-				while (!commentStarts.isEmpty() && last <= commentStarts.last()) 
+				while (!commentStarts.isEmpty() && last <= commentStarts.last())
 					commentStarts.removeLast();
 				if(!commentStarts.isEmpty()) {
 					cur.insertText(QString(commentStarts.size(), '%'));
@@ -426,7 +426,7 @@ QDocument::QDocument(QObject *p)
 	if ( !QDocumentPrivate::m_font )
 	{
 		// must not happen if config dialog plugged in...
-        setBaseFont(QFont("Monospace", 10));
+		setBaseFont(QFont("Monospace", 10));
 	}
 
 
@@ -527,22 +527,22 @@ void QDocument::clearUndo()
 QString QDocument::debugUndoStack(int limit) const{
 	if (!m_impl) return QString();
 	const QUndoStack& commands = m_impl->m_commands;
-	
+
 	QStringList result;
-	
+
 	result << QString("Current: %1/%2").arg(commands.index()).arg(commands.count());
 
 	int from = commands.index() - limit, to = commands.index() + limit;
 	if (from < 0) from = 0;
 	if (to >= commands.count()) to = commands.count() - 1;
-	
+
 	for (int i=from; i<=to; i++)
 		result << QString("%1: ").arg(i) << dynamic_cast<const QDocumentCommand*>(commands.command(i))->debugRepresentation();
-	
+
 	QString res = result.join("\n");
-	
+
 	qDebug() << res;
-	
+
 	return res;
 }
 
@@ -652,7 +652,7 @@ void QDocument::setText(const QString& s, bool allowUndo)
 		temp.replaceSelectedText(s);
 		return;
 	}
-	
+
 	int last = 0, idx = 0;
 
 	m_impl->m_deleting = true;
@@ -664,7 +664,7 @@ void QDocument::setText(const QString& s, bool allowUndo)
 	{
 //		emit lineRemoved(h);
 //		emit lineDeleted(h);
-        h->m_doc = nullptr;
+		h->m_doc = nullptr;
 		h->deref();
 	}
 
@@ -730,26 +730,26 @@ void QDocument::setText(const QString& s, bool allowUndo)
 	//qDebug("[one go] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
 
 	m_impl->m_lastModified = QDateTime::currentDateTime();
-	
+
 	if ( lineEnding() == Conservative )
 		setLineEndingDirect(Conservative);
 
-    //m_impl->setWidth(); // will be performed in emitContentsChange
+	//m_impl->setWidth(); // will be performed in emitContentsChange
 	m_impl->setHeight();
 
 	emit lineCountChanged(lineCount());
-	
+
 	m_impl->emitContentsChange(0, m_impl->m_lines.count());
 }
 
 QTextCodec* guessEncoding(const QByteArray& data){
-    QTextCodec* guess = nullptr;
+	QTextCodec* guess = nullptr;
 	int sure = 1;
 	guess = Encoding::guessEncodingBasic(data, &sure);
 	if (!guessEncodingCallbacks.empty())
 		foreach (const GuessEncodingCallback& callback, guessEncodingCallbacks)
 			callback(data, guess, sure);
-    if (guess!=nullptr) return guess;
+	if (guess!=nullptr) return guess;
 	else return QTextCodec::codecForName("UTF-8"); //default
 }
 
@@ -769,17 +769,17 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		return;
 	}
 
-    const qint64 size = f.size();
+	const qint64 size = f.size();
 	//const int size = m_lastFileState.size = f.size();
 
 	bool slow = (size > 30 * 1024);
 	if (slow) emit slowOperationStarted();
-	
+
 	if ( size < 500000 )
 	{
 		// instant load for files smaller than 500kb
 		QByteArray d = f.readAll();
-        if (codec == nullptr)
+		if (codec == nullptr)
 			codec=guessEncoding(d);
 
 		setText(codec->toUnicode(d), false);
@@ -794,7 +794,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		//m_lastFileState.checksum = 0;
 
 		ba = f.read(100000);
-        if (codec == nullptr)
+		if (codec == nullptr)
 			codec=guessEncoding(ba);
 
 		QTextDecoder *dec = codec->makeDecoder();
@@ -808,9 +808,9 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		delete dec;
 		stopChunkLoading();
 	}
-	
+
 	if (slow) emit slowOperationEnded();
-	
+
 	setCodecDirect(codec);
 	setLastModified(QFileInfo(file).lastModified());
 }
@@ -847,7 +847,7 @@ void QDocument::startChunkLoading()
 	{
 //		emit lineRemoved(h);
 //		emit lineDeleted(h);
-        h->m_doc = nullptr;
+		h->m_doc = nullptr;
 		h->deref();
  	}
 
@@ -898,7 +898,7 @@ void QDocument::stopChunkLoading()
 	//qDebug("[chunk] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
 
 	m_impl->m_lastModified = QDateTime::currentDateTime();
-	
+
 	if ( lineEnding() == Conservative )
 		setLineEndingDirect(Conservative);
 
@@ -906,7 +906,7 @@ void QDocument::stopChunkLoading()
 	m_impl->setHeight();
 
 	emit lineCountChanged(lineCount());
-	
+
 	emit m_impl->emitContentsChange(0, m_impl->m_lines.count());
 }
 
@@ -915,7 +915,7 @@ void QDocument::stopChunkLoading()
 */
 QFormatScheme* QDocument::formatScheme() const
 {
-    return m_impl ? m_impl->m_formatScheme : nullptr;
+	return m_impl ? m_impl->m_formatScheme : nullptr;
 }
 
 /*!
@@ -950,7 +950,7 @@ QColor QDocument::getForeground() const{
 */
 QLanguageDefinition* QDocument::languageDefinition() const
 {
-    return m_impl ? m_impl->m_language : nullptr;
+	return m_impl ? m_impl->m_language : nullptr;
 }
 
 /*!
@@ -992,9 +992,9 @@ void QDocument::addChunk(const QString& txt)
 			if (idx >= m_leftOver.length())
 				break; //there might be a \n in the next chunk
 			m_impl->m_lines << new QDocumentLineHandle(
-							    m_leftOver.mid(last, idx - last - 1),
-							    this
-							    );
+				m_leftOver.mid(last, idx - last - 1),
+				this
+			);
 			if (m_leftOver.at(idx) == '\n') {
 				++(m_impl->_dos);
 				++idx;
@@ -1002,11 +1002,10 @@ void QDocument::addChunk(const QString& txt)
 			last = idx;
 		} else if ( m_leftOver.at(idx) == '\n') {
 			++(m_impl->_nix);
-
 			m_impl->m_lines << new QDocumentLineHandle(
-							    m_leftOver.mid(last, idx - last),
-							    this
-							    );
+				m_leftOver.mid(last, idx - last),
+				this
+			);
 			last = ++idx;
 		} else {
 			++idx;
@@ -1048,7 +1047,7 @@ void QDocument::print(QPrinter *pr)
 
 	if ( pr->printRange() == QPrinter::Selection )
 	{
-        qWarning()<<"printing selection not implemented yet";
+		qWarning()<<"printing selection not implemented yet";
 		return;
 	}
 
@@ -1056,7 +1055,7 @@ void QDocument::print(QPrinter *pr)
 	{
 		// TODO: got to temporarily wrap text to fit page size
 
-        qWarning()<<"temporary wrapping not implementated yet";
+		qWarning()<<"temporary wrapping not implementated yet";
 	}
 
 	const int lineCount = lines();
@@ -1127,11 +1126,11 @@ QDocument::LineEnding QDocument::lineEnding() const
 */
 QDocument::LineEnding QDocument::originalLineEnding() const
 {
-    if (!m_impl) return Local;
-    if (m_impl->_dos > m_impl->_nix  && m_impl->_dos > m_impl->_mac) return Windows;
-    if (m_impl->_nix > m_impl->_dos  && m_impl->_nix > m_impl->_mac) return Unix;
-    if (m_impl->_mac > m_impl->_dos  && m_impl->_mac > m_impl->_nix) return Mac;
-	return Local;
+	if (!m_impl) return Local;
+	if (m_impl->_dos > m_impl->_nix  && m_impl->_dos > m_impl->_mac) return Windows;
+	if (m_impl->_nix > m_impl->_dos  && m_impl->_nix > m_impl->_mac) return Unix;
+	if (m_impl->_mac > m_impl->_dos  && m_impl->_mac > m_impl->_nix) return Mac;
+		return Local;
 }
 
 QString QDocument::lineEndingString() const{
@@ -1143,7 +1142,7 @@ QString QDocument::lineEndingString() const{
 */
 void QDocument::setLineEnding(LineEnding le){
 	if (!m_impl) return;
-	execute(new QDocumentChangeMetaDataCommand(this, le));	
+	execute(new QDocumentChangeMetaDataCommand(this, le));
 }
 
 /*!
@@ -1162,9 +1161,9 @@ void QDocument::setLineEndingDirect(LineEnding le,bool dontSendEmit)
 		case Conservative :
 
 			switch (originalLineEnding()) {
-				case Windows: les = "\r\n"; break;
-			    case Mac: les = "\r"; break;
-			    default: les = "\n";
+			case Windows: les = "\r\n"; break;
+			case Mac: les = "\r"; break;
+			default: les = "\n";
 			}
 
 			break;
@@ -1196,9 +1195,9 @@ void QDocument::setLineEndingDirect(LineEnding le,bool dontSendEmit)
 			break;
 	}
 
-    if(!dontSendEmit){
-        emit lineEndingChanged(le);
-    }
+	if(!dontSendEmit){
+		emit lineEndingChanged(le);
+	}
 }
 
 QTextCodec* QDocument::codec() const{
@@ -1243,12 +1242,12 @@ QFont QDocument::font()
 
 QFont QDocument::baseFont()
 {
-    return *(QDocumentPrivate::m_baseFont);
+	return *(QDocumentPrivate::m_baseFont);
 }
 
 int QDocument::fontSizeModifier()
 {
-    return QDocumentPrivate::m_fontSizeModifier;
+	return QDocumentPrivate::m_fontSizeModifier;
 }
 
 /*!
@@ -1260,18 +1259,18 @@ int QDocument::fontSizeModifier()
 void QDocument::setBaseFont(const QFont& f, bool forceUpdate)
 {
 	QDocumentPrivate::setBaseFont(f, forceUpdate);
-    //emit contentsChanged();
+	//emit contentsChanged();
 }
 
 /*!
-    \brief A constant to modify the pointSize of the current font. This value is used for zooming.
+	\brief A constant to modify the pointSize of the current font. This value is used for zooming.
 
-    It holds font.pointSize = baseFont.pointSize + fontSizeModifier
- * \param n
+	It holds font.pointSize = baseFont.pointSize + fontSizeModifier
+	\param n
  */
 void QDocument::setFontSizeModifier(int m, bool forceUpdate)
 {
-    QDocumentPrivate::setFontSizeModifier(m, forceUpdate);
+	QDocumentPrivate::setFontSizeModifier(m, forceUpdate);
 }
 
 /*!
@@ -1299,15 +1298,15 @@ int QDocument::getLineSpacing()
 
 void QDocument::setLineSpacingFactor(double scale)
 {
-    if(qFuzzyCompare(scale,QDocumentPrivate::m_lineSpacingFactor)){
-        return; // don't set fonts when spacing is not changed !
-    }
+	if(qFuzzyCompare(scale,QDocumentPrivate::m_lineSpacingFactor)){
+		return; // don't set fonts when spacing is not changed !
+	}
 	QDocumentPrivate::m_lineSpacingFactor = (scale<1.0)?1.0:scale;
 
 	if ( !QDocumentPrivate::m_font ) return;
 
 	// update m_leading and m_lineSpacing
-    QDocumentPrivate::setFont(*QDocumentPrivate::m_font, true);
+	QDocumentPrivate::setFont(*QDocumentPrivate::m_font, true);
 	// It's a bit more costly than necessary, because we do not change any width.
 	// If performance needs improvement, one could extract the height calculation
 	// to a separate method and call it here and in setFont.
@@ -1377,7 +1376,7 @@ void QDocument::setShowSpaces(WhiteSpaceMode m)
 */
 QDocumentCursor* QDocument::editCursor() const
 {
-    return m_impl ? m_impl->m_editCursor : nullptr;
+	return m_impl ? m_impl->m_editCursor : nullptr;
 }
 
 /*!
@@ -1427,7 +1426,7 @@ int QDocument::widthConstraint() const
 
 	The number of visual lines may differ from that of text
 	lines as soon as line wrapping and/or folding are enabled.
-	
+
 	\deprecated Use lineCount() instead
 */
 int QDocument::lines() const
@@ -1437,7 +1436,7 @@ int QDocument::lines() const
 
 /*!
 	\return the number of text lines in the document
-	
+
 	The number of visual lines may differ from that of text
 	lines as soon as line wrapping and/or folding are enabled.
 */
@@ -1505,8 +1504,8 @@ void QDocument::setWidthConstraint(int width)
 }
 
 void QDocument::markFormatCacheDirty(){
-    if ( m_impl )
-	    m_impl->markFormatCacheDirty();
+	if ( m_impl )
+		m_impl->markFormatCacheDirty();
 }
 
 /*!
@@ -1515,7 +1514,7 @@ void QDocument::markFormatCacheDirty(){
 */
 QDocumentLine QDocument::line(int line) const
 {
-    return QDocumentLine(m_impl ? m_impl->at(line) : nullptr);
+	return QDocumentLine(m_impl ? m_impl->at(line) : nullptr);
 }
 
 /*!
@@ -1596,12 +1595,12 @@ int QDocument::findLineContaining(const QString &searchText,  const int& startLi
 
 int QDocument::findLineRegExp(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs, const bool wholeWord, const bool useRegExp) const{
 
-    QRegExp m_regexp=generateRegExp(searchText,cs==Qt::CaseSensitive,wholeWord,useRegExp);
+	QRegExp m_regexp=generateRegExp(searchText,cs==Qt::CaseSensitive,wholeWord,useRegExp);
 
-    for (int i=startLine;i<lines();i++){
-        if(m_regexp.indexIn(line(i).text(),0)>-1)
-            return i;
-    }
+	for (int i=startLine;i<lines();i++){
+		if(m_regexp.indexIn(line(i).text(),0)>-1)
+			return i;
+	}
 
 	return -1;
 }
@@ -1951,7 +1950,7 @@ void QDocument::flushMatches(int gid)
 }
 
 
-void QDocument::clearLanguageMatches() 
+void QDocument::clearLanguageMatches()
 {
 	if (languageDefinition()) languageDefinition()->clearMatches(this);
 }
@@ -2018,8 +2017,8 @@ void QDocument::foldBlockAt(bool unFold, int l) {
 }
 
 /*!
-   (Internal method), returns if one of the lines between from and to (inclusive) belong to
-   a folded block (they can still be all visible if one of them starts/ends a hidden block)
+	(Internal method), returns if one of the lines between from and to (inclusive) belong to
+	a folded block (they can still be all visible if one of them starts/ends a hidden block)
 */
 bool QDocument::linesPartiallyFolded(int fromInc, int toInc){
 	while ( fromInc <= toInc )
@@ -2033,9 +2032,9 @@ bool QDocument::linesPartiallyFolded(int fromInc, int toInc){
 }
 
 /*!
-   Correct the folding
-    i.e., it ensures that no line is hidden which is not in an collapsable block
-    (useful if the blocks have changed)
+	Correct the folding
+	i.e., it ensures that no line is hidden which is not in an collapsable block
+	(useful if the blocks have changed)
 */
 void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 	Q_UNUSED(fromInc)
@@ -2054,11 +2053,9 @@ void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 		return;
 
 	//recalculate the map of hidden lines (=cache) from the hidden flag of the lines
-	m_impl->m_hidden.clear();	
+	m_impl->m_hidden.clear();
 	QList<QPair<int,int> > blockStartList;
-	for (QFoldedLineIterator fli = ld->foldedLineIterator(this);
-	     fli.line.isValid();
-	     ++fli){
+	for (QFoldedLineIterator fli = ld->foldedLineIterator(this); fli.line.isValid(); ++fli){
 		if (fli.collapsedBlockEnd){
 			Q_ASSERT(!blockStartList.empty());
 			int c=fli.close;
@@ -2214,24 +2211,24 @@ int QDocument::findPreviousMark(int id, int from, int until) const
 }
 
 void QDocument::removeMarks(int id){
-    if (m_impl) m_impl->removeMarks(id);
+	if (m_impl) m_impl->removeMarks(id);
 }
 
 QList<int> QDocument::marks(QDocumentLineHandle *dlh) const
 {
-    //return QList<int>() << 1; //testcase
+	//return QList<int>() << 1; //testcase
 
-    return m_impl ? m_impl->marks(dlh) : QList<int>();
+	return m_impl ? m_impl->marks(dlh) : QList<int>();
 }
 
 void QDocument::removeMark(QDocumentLineHandle *dlh, int mid){
-    if(m_impl)
-        m_impl->removeMark(dlh,mid);
+	if(m_impl)
+		m_impl->removeMark(dlh,mid);
 }
 
 /*!
 	\return the date/time of the last modification of the document
-	
+
 	If the document has not been modified since its load the date/time
 	of last modification (as reported by QFileInfo) will be returned.
 */
@@ -2242,7 +2239,7 @@ QDateTime QDocument::lastModified() const
 
 /*!
 	\brief set the date/time of the last modification of the document
-	
+
 	You should not need to use that EVER. It is only provided for use
 	in QEditor (and possibly in some panels).
 */
@@ -2255,7 +2252,7 @@ void QDocument::setLastModified(const QDateTime& d)
 void QDocument::setOverwriteMode(bool overwrite)
 {
 	if(m_impl)
-	    m_impl->setOverwriteMode(overwrite);
+		m_impl->setOverwriteMode(overwrite);
 }
 
 /////////////////////////
@@ -2310,9 +2307,9 @@ QDocumentLineHandle::QDocumentLineHandle(const QString& s, QDocument *d)
 QDocumentLineHandle::~QDocumentLineHandle()
 {
 #if QT_VERSION>=0x050000
-    Q_ASSERT(!m_ref.load());
+	Q_ASSERT(!m_ref.load());
 #else
-    Q_ASSERT(!m_ref);
+	Q_ASSERT(!m_ref);
 #endif
 
 	if ( m_doc && m_doc->impl() )
@@ -2415,13 +2412,13 @@ void QDocumentLineHandle::setFlag(int s, bool y) const
 }
 
 QList<int> QDocumentLineHandle::getBreaks(){
-    QReadLocker locker(&mLock);
-    QList<int> res;
-    QPair<int, int> elem;
-    foreach(elem,m_frontiers){
-	res << elem.first;
-    }
-    return res;
+	QReadLocker locker(&mLock);
+	QList<int> res;
+	QPair<int, int> elem;
+	foreach(elem,m_frontiers){
+		res << elem.first;
+	}
+	return res;
 }
 
 void QDocumentLineHandle::updateWrap(int lineNr) const
@@ -2524,7 +2521,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 				lastBreak = idx;
 				lastX = rx;
 				continue;
-			}			
+			}
 
 			while ( idx < r.position + r.length )
 			{
@@ -2547,18 +2544,19 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 					ushort uc = c.unicode();
 					// CJK char detection for wrapping
 					// first check if its part of the unicode BMP
-                    bool isCJK = (!(c.isLowSurrogate()||c.isHighSurrogate()) && // compatibility with qt4
-					              ((0x4E00 <= uc && uc <= 0x9FFF) ||   // CJK Unified Ideographs
-					               (0x3000 <= uc && uc <= 0x4DBF) ||   // CJK Punctuation, ..., Unified Ideographs Extension
-					               (0xF900 <= uc && uc <= 0xFAFF))     // CJK Compatibility Ideographs
-					             );                                  // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
+					bool isCJK = (
+						!(c.isLowSurrogate()||c.isHighSurrogate()) && // compatibility with qt4
+						((0x4E00 <= uc && uc <= 0x9FFF) ||   // CJK Unified Ideographs
+						(0x3000 <= uc && uc <= 0x4DBF) ||   // CJK Punctuation, ..., Unified Ideographs Extension
+						(0xF900 <= uc && uc <= 0xFAFF))     // CJK Compatibility Ideographs
+					);                                  // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
 					// additionally check if its a surrogate
 					if (!isCJK && c.isHighSurrogate() && idx+1 < m_text.count()) {
 						QChar cLow = m_text.at(idx+1);
 						if (cLow.isLowSurrogate()) {
 							uint uic = joinUnicodeSurrogate(c, cLow);
 							isCJK = ((0x20000 <= uic && uic <= 0x2B81F) || // CJK Unified Ideographs Extension B-D)
-                                     (0x2F800 <= uic && uic <= 0x2FA1F));    // CJK Compatibility Ideographs Supplement
+							(0x2F800 <= uic && uic <= 0x2FA1F));    // CJK Compatibility Ideographs Supplement
 						}
 					}
 
@@ -2577,14 +2575,14 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 						   it would introduce a newline into the word which changes its meaning.
 						*/
 
-                        if (!d->m_hardLineWrap || isCJK) {
+						if (!d->m_hardLineWrap || isCJK) {
 							// agressive wrap inside the word
 							m_frontiers << qMakePair(idx, rx);
 							lastActualBreak = idx;
 							lastBreak = idx;
 							lastX = rx;
 							x = minx;
-                        }
+						}
 					} else {
 						Q_ASSERT(lastBreak <= idx);
 						Q_ASSERT(lastBreak > 0);
@@ -2620,7 +2618,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 }
 
 void QDocumentLineHandle::updateWrapAndNotifyDocument(int line) const{
-    if ( !m_doc ) return;
+	if ( !m_doc ) return;
 	int oldLW = m_frontiers.count();
 	updateWrap(line);
 	int lw = m_frontiers.count();
@@ -2686,7 +2684,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	if ( (composited.count() < cpos) || fonts.isEmpty() ){
 		int result=QFontMetrics(*QDocumentPrivate::m_font).width(m_text.left(cpos));
 		return result;
-	    }
+	}
 
 	int idx = 0, column = 0, cwidth;
 	int screenx = m_doc->impl()->leftMarginAndPadding();
@@ -2731,7 +2729,6 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 			if ( m_frontiers.at(i).second >= xpos )
 			{
 				line = i;
-
 				break;
 			}
 		}
@@ -2752,18 +2749,11 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 	if ( QDocumentPrivate::m_fixedPitch )
 	{
-		int screenPos =
-					(screenx - QDocumentPrivate::m_leftPadding / 2)
-				/
-					QDocumentPrivate::m_spaceWidth
-				;
-
+		int screenPos = (screenx - QDocumentPrivate::m_leftPadding / 2) / QDocumentPrivate::m_spaceWidth;
 		if ( tabStop == 1 ){
 			return screenPos;
-		    }
-
+		}
 		int idx = 0, column = 0;
-
 		while ( (column < screenPos) && (idx < m_text.length()) )
 		{
 			QChar c = m_text.at(idx);
@@ -2807,11 +2797,10 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			if ( screenx <= mid ){
 				return idx;
-			    }
+			}
 			else if ( screenx <= (x + cwidth) ){
 				return idx + 1;
-			    }
-
+			}
 			x += cwidth;
 			++idx;
 		}
@@ -2892,11 +2881,11 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 
 	if ( x <= 0 ){
 		return cpos;
-	    }
+	}
 
 	int rx = 0, column = 0;
 	QList<RenderRange> ranges;
-    splitAtFormatChanges(&ranges, nullptr, cpos, max);
+	splitAtFormatChanges(&ranges, nullptr, cpos, max);
 
 	int lastCharacterWidth = QDocumentPrivate::m_spaceWidth;
 
@@ -2999,7 +2988,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 			x += m_indent;
 
 		QList<RenderRange> ranges;
-        splitAtFormatChanges(&ranges, nullptr, idx, qMin(text().length(), cpos));
+		splitAtFormatChanges(&ranges, nullptr, idx, qMin(text().length(), cpos));
 
 		int column=0;
 		foreach (const RenderRange& r, ranges) {
@@ -3031,31 +3020,29 @@ void QDocumentLineHandle::clearOverlays()
 
 void QDocumentLineHandle::clearOverlays(int format){
 	QWriteLocker locker(&mLock);
-    bool changed=false;
+	bool changed=false;
 	for ( int i = m_overlays.size()-1; i>=0; i-- )
-        if ( m_overlays[i].format == format ){
-			m_overlays.removeAt(i);
-            changed=true;
-        }
-
-    if (changed){
+	if ( m_overlays[i].format == format ){
+		m_overlays.removeAt(i);
+		changed=true;
+	}
+	if (changed){
 		setFlag(QDocumentLine::FormatsApplied, false);
 	}
-
 }
 
 void QDocumentLineHandle::clearOverlays(QList<int> formats){
-    QWriteLocker locker(&mLock);
-    bool changed=false;
-    for ( int i = m_overlays.size()-1; i>=0; i-- )
-        if ( formats.contains(m_overlays[i].format) ){
-            m_overlays.removeAt(i);
-            changed=true;
-        }
+	QWriteLocker locker(&mLock);
+	bool changed=false;
+	for ( int i = m_overlays.size()-1; i>=0; i-- )
+		if ( formats.contains(m_overlays[i].format) ){
+			m_overlays.removeAt(i);
+			changed=true;
+		}
 
-    if (changed){
-        setFlag(QDocumentLine::FormatsApplied, false);
-    }
+	if (changed){
+		setFlag(QDocumentLine::FormatsApplied, false);
+	}
 
 }
 
@@ -3082,20 +3069,20 @@ void QDocumentLineHandle::removeOverlay(const QFormatRange& over)
 }
 
 bool QDocumentLineHandle::hasOverlay(int id){
-    QReadLocker locker(&mLock);
-    for (int i =0; i<m_overlays.size();i++){
-	if (m_overlays[i].format==id) {
-	    return true;
+	QReadLocker locker(&mLock);
+	for (int i =0; i<m_overlays.size();i++){
+		if (m_overlays[i].format==id) {
+			return true;
+		}
 	}
-    }
-    return false;
+	return false;
 }
 
 QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat) const {
 	QReadLocker locker(&mLock);
 	QList<QFormatRange> result;
 	if (preferredFormat==-1) {
-	    return m_overlays;
+		return m_overlays;
 	}
 
 	for (int i=0;i<m_overlays.size();i++)
@@ -3105,34 +3092,34 @@ QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat) const 
 }
 
 QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat) const {
-    QReadLocker locker(&mLock);
+	QReadLocker locker(&mLock);
 
-    QFormatRange best;
-    foreach (QFormatRange fr, m_overlays)
-        if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1)))
-            if (best.length<fr.length) best=fr;
+	QFormatRange best;
+	foreach (QFormatRange fr, m_overlays)
+		if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1)))
+			if (best.length<fr.length) best=fr;
 
-    return best;
+	return best;
 }
 
 QFormatRange QDocumentLineHandle::getFirstOverlay(int start, int end, int preferredFormat) const {
-    QReadLocker locker(&mLock);
+	QReadLocker locker(&mLock);
 
-    QFormatRange best;
-    foreach (QFormatRange fr, m_overlays)
-        if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
-            if (fr.offset<best.offset || best.length==0) best=fr;
+	QFormatRange best;
+	foreach (QFormatRange fr, m_overlays)
+		if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
+			if (fr.offset<best.offset || best.length==0) best=fr;
 
-    return best;
+	return best;
 }
 QFormatRange QDocumentLineHandle::getLastOverlay(int start, int end, int preferredFormat) const {
-    QReadLocker locker(&mLock);
-    QFormatRange best;
-    foreach (QFormatRange fr, m_overlays)
-        if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
-            if (fr.offset>best.offset|| best.length==0) best=fr;
+	QReadLocker locker(&mLock);
+	QFormatRange best;
+	foreach (QFormatRange fr, m_overlays)
+		if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
+			if (fr.offset>best.offset|| best.length==0) best=fr;
 
-    return best;
+	return best;
 }
 
 void QDocumentLineHandle::shiftOverlays(int position, int offset)
@@ -3194,8 +3181,8 @@ QVector<int> QDocumentLineHandle::getFormats() const
 
 QVector<int> QDocumentLineHandle::getCachedFormats() const
 {
-    QReadLocker locker(&mLock);
-    return m_cache;
+	QReadLocker locker(&mLock);
+	return m_cache;
 }
 
 bool QDocumentLineHandle::isRTLByLayout() const{
@@ -3235,7 +3222,7 @@ QVector<int> QDocumentLineHandle::compose() const
 	// don't do locking here as it is mainly called by draw !!!!
 	if ( hasFlag(QDocumentLine::FormatsApplied) ){
 		return m_cache;
-	    }
+	}
 
 	m_cache.resize(m_text.length());
 
@@ -3245,8 +3232,8 @@ QVector<int> QDocumentLineHandle::compose() const
 	for ( int i = m_formats.count(); i < m_text.length(); ++i )
 		m_cache[i] = 0;
 
-	// compositing formats and overlays	
-        //QDocumentPrivate * d = document()->impl();
+	// compositing formats and overlays
+	//QDocumentPrivate * d = document()->impl();
 	foreach ( const QFormatRange& r, m_overlays )
 	{
 		int beg = qMax(0, r.offset);
@@ -3255,7 +3242,7 @@ QVector<int> QDocumentLineHandle::compose() const
 		for ( int i = beg; i < end; ++i )
 			QFormatScheme::mergeFormats(m_cache[i], r.format);
 	}
-//qDebug("\n");
+	//qDebug("\n");
 	setFlag(QDocumentLine::FormatsApplied, true);
 	setFlag(QDocumentLine::LayoutDirty, true);
 
@@ -3290,14 +3277,14 @@ QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 
 		if ( i >= m_cache.count() )
 			break;
-	
+
 		int fid = m_cache[i];
 
 		int fmts[FORMAT_MAX_COUNT];
 		QFormat formats[FORMAT_MAX_COUNT];
 		int newFont;
 		m_doc->impl()->m_formatScheme->extractFormats(fid, fmts, formats, newFont);
-		
+
 		r.start = i;
 		r.format = m_doc->formatScheme()->format(newFont).toTextCharFormat();
 		if (formats[0].foreground.isValid()) { if (newFont != 0) { r.format.setForeground(formats[0].foreground); } }
@@ -3384,12 +3371,12 @@ void QDocumentLineHandle::layout(int lineNr) const
 		// by itself. If this ever change in Qt, the next code block could be removed.
 		if ( m_text.isRightToLeft() )
 			opt.setTextDirection(Qt::RightToLeft);
-		
+
 		m_layout->setTextOption(opt);
-		
+
 		// Syntax highlighting, inbuilt and arbitrary
-        m_layout->setAdditionalFormats(decorations());
-        setFlag(QDocumentLine::FormatsApplied, true);
+		m_layout->setAdditionalFormats(decorations());
+		setFlag(QDocumentLine::FormatsApplied, true);
 
 		// Begin layouting
 		m_layout->beginLayout();
@@ -3424,18 +3411,18 @@ void QDocumentLineHandle::layout(int lineNr) const
 				line.setPosition(QPoint(qRound(qreal(m_doc->widthConstraint() - 2 * QDocumentPrivate::m_leftPadding) - line.naturalTextWidth()), height));
 			} else {
 				line.setPosition(QPoint(minwidth, height));
-				
+
 				if ( !i && m_doc->impl()->m_constrained )
 				{
 					m_indent = minwidth = cursorToXNoLock(nextNonSpaceCharNoLock(0)) - QDocumentPrivate::m_leftPadding;
-					
+
 					if ( minwidth < 0 || minwidth >= m_doc->widthConstraint() )
 						minwidth = 0;
 				}
 			}
 
 			m_frontiers << qMakePair(line.textStart() + line.textLength(), rx);
-			
+
 			++i;
 
 			height += QDocumentPrivate::m_lineSpacing;
@@ -3453,9 +3440,9 @@ void QDocumentLineHandle::layout(int lineNr) const
 			m_doc->impl()->m_height += (lw-oldLW)*m_doc->impl()->m_lineSpacing;
 		}
 	} else {
-        delete m_layout;
+		delete m_layout;
 
-        m_layout = nullptr;
+		m_layout = nullptr;
 
 		// fix https://sourceforge.net/p/texstudio/bugs/2255/
 		if (hasFlag(QDocumentLine::LayoutedByQTextLayout)) {
@@ -3475,7 +3462,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 
 	if (from == until){
 		return;
-	    }
+	}
 
 	QVector<int> m_composited = compose();
 
@@ -3491,9 +3478,9 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 			merged[i] = m_composited.at(i);
 
 		// separate spaces to ease rendering loop
-        if ( m_text.at(i).isSpace() )
-            merged[i] |= FORMAT_SPACE;
-	}
+		if ( m_text.at(i).isSpace() )
+			merged[i] |= FORMAT_SPACE;
+		}
 
 	if (sel) {
 		for ( int i = 0; i < sel->count(); i += 2 )
@@ -3586,7 +3573,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 		RenderRange r;
 		r.position = 0;
 		r.length = m_text.length();
-        r.format = (lineHasSelection==fullSel) ? FORMAT_SELECTION : 0;
+		r.format = (lineHasSelection==fullSel) ? FORMAT_SELECTION : 0;
 
 		*ranges << r;
 	}
@@ -3610,7 +3597,7 @@ void QDocumentLineHandle::drawBorders(QPainter *p, int yStart, int yEnd) const
 {
 	QDocumentPrivate *d = m_doc->impl();
 	if (d->hardLineWrap() || d->lineWidthConstraint()) {
-        QColor linescolor = QDocumentPrivate::m_formatScheme->format("background").linescolor;
+		QColor linescolor = QDocumentPrivate::m_formatScheme->format("background").linescolor;
 		if (!linescolor.isValid()) {
 			return;
 		}
@@ -3634,13 +3621,13 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 {
 	QReadLocker locker(&mLock);
 	if ( hasFlag(QDocumentLine::LayoutDirty) ||
-     ( m_layout && !hasFlag(QDocumentLine::FormatsApplied) ) ) // formats need to added before splitting lines, as they could change the linewidthes ...
+	( m_layout && !hasFlag(QDocumentLine::FormatsApplied) ) ) // formats need to added before splitting lines, as they could change the linewidthes ...
 		layout(lineNr);
 
 	if ( m_layout )
 	{
-    //if (!hasFlag(QDocumentLine::FormatsApplied))
-      //m_layout->setAdditionalFormats(decorations()); (this causes a crash on qt>5.3)
+		//if (!hasFlag(QDocumentLine::FormatsApplied))
+		//m_layout->setAdditionalFormats(decorations()); (this causes a crash on qt>5.3)
 
 		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		//	applyOverlays();
@@ -3693,7 +3680,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		//m_layout->clearAdditionalFormats();
 	} else if ( m_text.isEmpty() ) {
 		// enforce selection drawing on empty lines
-        if ( selectionBoundaries.count() == 1 ){
+		if ( selectionBoundaries.count() == 1 ){
 			p->fillRect(
 						qMax(xOffset, QDocumentPrivate::m_leftPadding),
 						0,
@@ -3701,16 +3688,17 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						QDocumentPrivate::m_lineSpacing,
 						pal.highlight()
 						);
-        }else{ if(!fullSel){
-                //QDocumentPrivate *d = m_doc->impl();
-                foreach(QFormatRange overlay,m_overlays){
-                    QFormat format=QDocumentPrivate::m_formatScheme->format(overlay.format);
-                    if(format.wrapAround){
-                        p->fillRect(qMax(xOffset, QDocumentPrivate::m_leftPadding),0,vWidth,QDocumentPrivate::m_lineSpacing,format.background);
-                    }
-                }
-            }
-        }
+		}else{
+			if(!fullSel){
+				//QDocumentPrivate *d = m_doc->impl();
+				foreach(QFormatRange overlay,m_overlays){
+					QFormat format=QDocumentPrivate::m_formatScheme->format(overlay.format);
+					if(format.wrapAround){
+						p->fillRect(qMax(xOffset, QDocumentPrivate::m_leftPadding),0,vWidth,QDocumentPrivate::m_lineSpacing,format.background);
+					}
+				}
+			}
+		}
 
 	} else {
 		QList<RenderRange> ranges;
@@ -3730,35 +3718,35 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		const int maxWidth = xOffset + vWidth;
 		const int maxDocWidth = xOffset + m_doc->width();
 		const bool hasUnboundedSelection = selectionBoundaries.count() & 1;
-        // check if wraparound format is active
-        int wrapAroundHighlight = 0;
-        int length=m_text.length();
-        QList<int> foundFormats;
-        if(!fullSel){
-            foreach(QFormatRange fng,m_overlays){
-                if(fng.offset+fng.length==length){
-                    QFormat format=QDocumentPrivate::m_formatScheme->format(fng.format);
-                    if(format.wrapAround){
-                        foundFormats<<fng.format;
-                    }
-                }
-            }
-            if(!foundFormats.isEmpty()){
-                int lineNr=d->indexOf(this)+1;
-                QDocumentLineHandle *nextHandle=d->at(lineNr);
-                int priority=-100;
-                if(nextHandle){
-                    foreach(QFormatRange fng,nextHandle->m_overlays){
-                        if(fng.offset==0){
-                            QFormat format=QDocumentPrivate::m_formatScheme->format(fng.format);
-                            if(format.wrapAround && foundFormats.contains(fng.format) && format.priority>=priority){
-                                wrapAroundHighlight=fng.format;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+		// check if wraparound format is active
+		int wrapAroundHighlight = 0;
+		int length=m_text.length();
+		QList<int> foundFormats;
+		if(!fullSel){
+			foreach(QFormatRange fng,m_overlays){
+				if(fng.offset+fng.length==length){
+					QFormat format=QDocumentPrivate::m_formatScheme->format(fng.format);
+					if(format.wrapAround){
+						foundFormats<<fng.format;
+					}
+				}
+			}
+			if(!foundFormats.isEmpty()){
+				int lineNr=d->indexOf(this)+1;
+				QDocumentLineHandle *nextHandle=d->at(lineNr);
+				int priority=-100;
+				if(nextHandle){
+					foreach(QFormatRange fng,nextHandle->m_overlays){
+						if(fng.offset==0){
+							QFormat format=QDocumentPrivate::m_formatScheme->format(fng.format);
+							if(format.wrapAround && foundFormats.contains(fng.format) && format.priority>=priority){
+								wrapAroundHighlight=fng.format;
+							}
+						}
+					}
+				}
+			}
+		}
 		const QColor highlightedTextColor = pal.highlightedText().color();
 
 		const bool showTabs = QDocument::showSpaces() & QDocument::ShowTabs,
@@ -3777,21 +3765,21 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		int wrap = 0, xpos = QDocumentPrivate::m_leftPadding, ypos = 0;
 		bool leading = ranges.first().format & FORMAT_SPACE;
 
-        int mergeXpos=-1,mergeFormat=-1;
-        QString mergeText;
+		int mergeXpos=-1,mergeFormat=-1;
+		QString mergeText;
 		foreach ( const RenderRange& r, ranges )
 		{
 			++rngIdx;
 
 			if ( wrap != r.wrap )
 			{
-                //flush mergedRange
-                if(mergeXpos>=0){
-                    p->restore();
-                    p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
-                    mergeXpos=-1;
-                    mergeText.clear();
-                }
+				//flush mergedRange
+				if(mergeXpos>=0){
+					p->restore();
+					p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+					mergeXpos=-1;
+					mergeText.clear();
+				}
 
 #ifndef Q_OS_WIN
 				continuingWave = false;
@@ -3800,10 +3788,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				{
 					// finish selection
 					p->fillRect(
-									xpos, ypos,
-									maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing,
-									pal.highlight()
-								);
+						xpos, ypos,
+						maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing,
+						pal.highlight()
+					);
 
 				}
 
@@ -3811,7 +3799,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				column = 0;
 				ypos += QDocumentPrivate::m_lineSpacing;
 				if(ypos>yEnd) {
-                    break;
+					break;
 				}
 				xpos = indent;
 
@@ -3819,10 +3807,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				{
 					// finish selection
 					p->fillRect(
-									QDocumentPrivate::m_leftPadding, ypos,
-									xpos, QDocumentPrivate::m_lineSpacing,
-									pal.highlight()
-								);
+						QDocumentPrivate::m_leftPadding, ypos,
+						xpos, QDocumentPrivate::m_lineSpacing,
+						pal.highlight()
+					);
 
 				}
 			}
@@ -3836,20 +3824,20 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 			// TODO : clip more accurately (i.e inside ranges)
 			if ( xpos > maxWidth ){
-                if( d->hardLineWrap()||d->lineWidthConstraint() ) continue;
-                else if (m_frontiers.isEmpty()) break;
+				if( d->hardLineWrap()||d->lineWidthConstraint() ) continue;
+				else if (m_frontiers.isEmpty()) break;
 				//else break;
 			}
 
 			fmt = r.format;
 
-            if(mergeXpos>=0 && (fmt&(~FORMAT_SPACE)) != (mergeFormat&(~FORMAT_SPACE))){
-                // flush
-                p->restore();
-                p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
-                mergeXpos=-1;
-                mergeText.clear();
-            }
+			if(mergeXpos>=0 && (fmt&(~FORMAT_SPACE)) != (mergeFormat&(~FORMAT_SPACE))){
+				// flush
+				p->restore();
+				p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+				mergeXpos=-1;
+				mergeText.clear();
+			}
 
 			int fmts[FORMAT_MAX_COUNT];
 			QFormat formats[FORMAT_MAX_COUNT];
@@ -3857,7 +3845,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			d->m_formatScheme->extractFormats(fmt, fmts, formats, newFont);
 
 			if (newFont != lastFont) {
-                d->tunePainter(p, newFont);
+				d->tunePainter(p, newFont);
 				lastFont = newFont;
 			}
 
@@ -3896,41 +3884,44 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			}
 
 			int xspos = xpos;
-            //const QPen oldpen = p->pen();
-            const int baseline = ypos + QDocumentPrivate::m_ascent;
+			//const QPen oldpen = p->pen();
+			const int baseline = ypos + QDocumentPrivate::m_ascent;
 
 
 			const bool currentSelected = (fullSel || (fmt & FORMAT_SELECTION));
 			if ( currentSelected )
 			{
-                p->setPen(highlightedTextColor);
-
-                p->fillRect(xpos, ypos,
-                            rwidth, QDocumentPrivate::m_lineSpacing,
-                            pal.highlight());
-
+				p->setPen(highlightedTextColor);
+				p->fillRect(xpos, ypos,
+					rwidth, QDocumentPrivate::m_lineSpacing,
+					pal.highlight()
+				);
 			} else {
 				if ( formats[0].foreground.isValid() ) p->setPen(formats[0].foreground);
 				else if ( formats[1].foreground.isValid() ) p->setPen(formats[1].foreground);
 				else if ( formats[2].foreground.isValid() ) p->setPen(formats[2].foreground);
 				else p->setPen(pal.text().color());
 
-                if ( formats[0].background.isValid() )
-				{
-					p->fillRect(xpos, ypos,
-								rwidth, QDocumentPrivate::m_lineSpacing,
-								formats[0].background);
-				} else if ( formats[1].background.isValid() )
-				{
-					p->fillRect(xpos, ypos,
-								rwidth, QDocumentPrivate::m_lineSpacing,
-								formats[1].background);
-				} else if ( formats[2].background.isValid() )
-				{
-					p->fillRect(xpos, ypos,
-								rwidth, QDocumentPrivate::m_lineSpacing,
-								formats[2].background);
-                }
+				if ( formats[0].background.isValid() ) {
+					p->fillRect(
+						xpos, ypos,
+						rwidth,
+						QDocumentPrivate::m_lineSpacing,
+						formats[0].background
+					);
+				} else if ( formats[1].background.isValid() ) {
+					p->fillRect(
+						xpos, ypos,
+						rwidth, QDocumentPrivate::m_lineSpacing,
+						formats[1].background
+					);
+				} else if ( formats[2].background.isValid() ) {
+					p->fillRect(
+						xpos, ypos,
+						rwidth, QDocumentPrivate::m_lineSpacing,
+						formats[2].background
+					);
+				}
 			}
 
 			if ( r.format & FORMAT_SPACE )
@@ -3955,7 +3946,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						column += toff;
 						int xoff = toff * currentSpaceWidth;
 
-						
+
 						if ( showTabs )
 						{
 							// draw tab marker
@@ -3970,9 +3961,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						}
 
 						xpos += xoff;
-                        if(mergeXpos>=0){
-                            mergeText+=QString(toff,' ');
-                        }
+						if(mergeXpos>=0){
+							mergeText+=QString(toff,' ');
+						}
 					} else {
 						++column;
 
@@ -3993,20 +3984,20 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							// draw space marker
 							p->save();
 							p->setPen(Qt::lightGray);
-                            // old: manually drawn dot
-                            //use old solution as qt5 is sh***y when finding font substitution
+							// old: manually drawn dot
+							//use old solution as qt5 is sh***y when finding font substitution
 #if (QT_VERSION >= 0x050000) && defined(Q_OS_MAC) && (QT_VERSION < 0x050200)
-                            p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
+							p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
 #else
-                            p->drawText(QPoint(xpos, baseline), QString(static_cast<ushort>(0xb7)));
+							p->drawText(QPoint(xpos, baseline), QString(static_cast<ushort>(0xb7)));
 #endif
 							p->restore();
 						}
 
 						xpos += currentSpaceWidth;
-                        if(mergeXpos>=0){
-                            mergeText+=" ";
-                        }
+						if(mergeXpos>=0){
+							mergeText+=" ";
+						}
 					}
 				}
 
@@ -4015,21 +4006,21 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing ) {
 					QColor color;
 					if (currentSelected) color = highlightedTextColor;
-                    // TODO: somehow this breaks extra highlighting of environment names such as "foo" in \begin{foo}
-                    else if (newFont == fmts[0]) color = formats[0].foreground;
+					// TODO: somehow this breaks extra highlighting of environment names such as "foo" in \begin{foo}
+					else if (newFont == fmts[0]) color = formats[0].foreground;
 					else if (newFont == fmts[1]) color = formats[1].foreground;
 					else if (newFont == fmts[2]) color = formats[2].foreground;
 					if (!color.isValid()) color = pal.text().color();
 					d->drawText(*p, newFont, color, currentSelected, xpos, ypos, rng); //ypos instead of baseline
 				} else {
-                    //merge ranges if possible
-                    mergeText+=rng;
-                    if(mergeXpos<0){
-                        mergeXpos=xpos;
-                        mergeFormat=fmt;
-                        p->save();
-                    }
-                    xpos += rwidth;
+					//merge ranges if possible
+					mergeText+=rng;
+					if(mergeXpos<0){
+						mergeXpos=xpos;
+						mergeFormat=fmt;
+						p->save();
+					}
+					xpos += rwidth;
 				}
 			}
 
@@ -4079,11 +4070,11 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 				// gotta center things
 				//const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
-									/*
-									qMin(
-										ypos + (QDocumentPrivate::m_ascent + QDocumentPrivate::m_lineSpacing) / 2,
-										ypos + QDocumentPrivate::m_lineSpacing - 3
-									);*/
+				/*
+				qMin(
+					ypos + (QDocumentPrivate::m_ascent + QDocumentPrivate::m_lineSpacing) / 2,
+					ypos + QDocumentPrivate::m_lineSpacing - 3
+				);*/
 
 				//if (format.waveUnderlineForeground.isValid())
 				//	p->setPen(format.waveUnderlineForeground);
@@ -4119,76 +4110,75 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				*/
 			}
 #else
-                const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
+			const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
 
-				int cp = 0;
-				brokenWave = false;
-                QVector<QPoint> lstOfPoints;
-                lstOfPoints<<QPoint(xspos,ycenter);
+			int cp = 0;
+			brokenWave = false;
+			QVector<QPoint> lstOfPoints;
+			lstOfPoints<<QPoint(xspos,ycenter);
 
-				while ( cp < rwidth )
- 				{
-					if ( !cp && !continuingWave )
-					{
-						dir = 0;
-                        //p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
-                        lstOfPoints<<QPoint(xspos+1,ycenter+1);
-						++cp;
-					} else if ( !cp && brokenWave ) {
-                        if ( !dir ){
-                            //p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
-                            lstOfPoints<<QPoint(xspos+1,ycenter+1);
-                        }else{
-                            //p->drawLine(xspos, ycenter, xspos + 1, ycenter - 1);
-                            lstOfPoints<<QPoint(xspos+1,ycenter-1);
-                        }
-
-					} else {
-						if ( cp + 2 > rwidth)
-						{
-							if ( !dir )
-						  lstOfPoints<<QPoint(xspos+cp+1,ycenter);
-                                //p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
-							else
-						  lstOfPoints<<QPoint(xspos+cp+1,ycenter);
-                                //p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
-
-							// trick to keep current direction
-							dir ^= 1;
-
-							brokenWave = true;
-							++cp;
-						} else {
-							if ( !dir )
-                                lstOfPoints<<QPoint(xspos+cp+2,ycenter+1);
-                                //p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 2, ycenter + 1);
-							else
-                                lstOfPoints<<QPoint(xspos+cp+2,ycenter-1);
-                                //p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 2, ycenter - 1);
-
-							cp += 2;
-						}
+			while ( cp < rwidth )
+			{
+				if ( !cp && !continuingWave )
+				{
+					dir = 0;
+					//p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
+					lstOfPoints<<QPoint(xspos+1,ycenter+1);
+					++cp;
+				} else if ( !cp && brokenWave ) {
+					if ( !dir ){
+						//p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
+						lstOfPoints<<QPoint(xspos+1,ycenter+1);
+					}else{
+						//p->drawLine(xspos, ycenter, xspos + 1, ycenter - 1);
+						lstOfPoints<<QPoint(xspos+1,ycenter-1);
 					}
 
-					dir ^= 1;
-                }
-                p->drawPolyline(lstOfPoints.data(),lstOfPoints.count());
+				} else {
+					if ( cp + 2 > rwidth)
+					{
+						if ( !dir )
+							lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+							//p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
+						else
+							lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+							//p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
 
-				continuingWave = true;
- 			} else {
-				continuingWave = false;
-				dir = 0;
+						// trick to keep current direction
+						dir ^= 1;
 
-            }
+						brokenWave = true;
+						++cp;
+					} else {
+						if ( !dir )
+							lstOfPoints<<QPoint(xspos+cp+2,ycenter+1);
+							//p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 2, ycenter + 1);
+						else
+							lstOfPoints<<QPoint(xspos+cp+2,ycenter-1);
+							//p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 2, ycenter - 1);
+						cp += 2;
+					}
+				}
+
+				dir ^= 1;
+			}
+			p->drawPolyline(lstOfPoints.data(),lstOfPoints.count());
+
+			continuingWave = true;
+		} else {
+			continuingWave = false;
+			dir = 0;
+
+		}
 #endif
 
-            //p->setPen(oldpen);
+			//p->setPen(oldpen);
 		}
-        if(mergeXpos>=0){
-            //final flush
-            p->restore();
-            p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
-        }
+		if(mergeXpos>=0){
+			//final flush
+			p->restore();
+			p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+		}
 
 		if (hasUnboundedSelection || wrapAroundHighlight) {
 			// fill the rest of the line because the selection or highlight continues
@@ -4206,11 +4196,11 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset, int maxLineWidth, int maxWrap) const{
 	QReadLocker locker(&mLock);
 	if ( !document()->formatScheme() ) {
-	    return text();
+		return text();
 	}
 	if (toOffset == -1) toOffset = m_text.length();
 	QList<RenderRange> ranges;
-    splitAtFormatChanges(&ranges,nullptr);
+	splitAtFormatChanges(&ranges,nullptr);
 	QString result = "<pre>";
 	int col = 0;
 	int wrapCount = 0;
@@ -4260,7 +4250,7 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
 	#if QT_VERSION >= 0x040400
 	m_ref(0),
 	#endif
-	m_begOffset(0), m_endOffset(0), m_max(0), m_begLine(line), m_endLine(-1)
+	m_begOffset(0), m_endOffset(0), m_savedX(0), m_begLine(line), m_endLine(-1)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(0);
@@ -4276,12 +4266,12 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column,
 	#if QT_VERSION >= 0x040400
 	m_ref(0),
 	#endif
-	m_max(0)
+	m_savedX(0)
 {
 	#if QT_VERSION < 0x040400
 	m_ref.init(0);
 	#endif
-	
+
 	select(line, column, lineTo, columnTo);
 }
 
@@ -4290,9 +4280,9 @@ QDocumentCursorHandle::~QDocumentCursorHandle()
 {
 	//qDebug("Cursor handle deleted : 0x%x", this);
 #if QT_VERSION>=0x050000
-    Q_ASSERT(!m_ref.load());
+	Q_ASSERT(!m_ref.load());
 #else
-    Q_ASSERT(!m_ref);
+	Q_ASSERT(!m_ref);
 #endif
 
 	if (isAutoUpdated())
@@ -4312,7 +4302,7 @@ void QDocumentCursorHandle::copy(const QDocumentCursorHandle *c)
 	m_endLine = c->m_endLine;
 	m_endOffset = c->m_endOffset;
 	m_flags = c->m_flags & ~AutoUpdated; //copy isn't automatically autoupdated
-	m_max = c->m_max;
+	m_savedX = c->m_savedX;
 }
 
 QDocument* QDocumentCursorHandle::document() const
@@ -4540,9 +4530,9 @@ void QDocumentCursorHandle::setLineNumber(int l, int m)
 	QDocumentLine /*l1 = m_doc->line(m_begLine), */l2 = m_doc->line(m_endLine);
 	QDocumentLine ln = m_doc->line(l);
 
-	if (ln.isNull()) 
+	if (ln.isNull())
 		return;
-	
+
 	if ( m & QDocumentCursor::KeepAnchor )
 	{
 		if ( l2.isNull() )
@@ -4694,9 +4684,9 @@ void QDocumentCursorHandle::shift(int offset)
 
 void QDocumentCursorHandle::refreshColumnMemory()
 {
-	//m_max = m_doc->line(line).cursorToX(offset);
-    if(!m_doc) return;
-	m_max = hasFlag(ColumnMemory) ? m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset).x() : 0;
+	if (m_doc && hasFlag(ColumnMemory)) {
+		m_savedX = m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset).x();
+	}
 }
 
 bool QDocumentCursorHandle::hasColumnMemory() const
@@ -4735,12 +4725,10 @@ void QDocumentCursorHandle::setPosition(int pos, int m)
 		m_endLine = QDocumentLine();
 		m_endOffset = 0;
 
-		m_max = m_begLine.cursorToX(m_begOffset);
+		m_savedX = m_begLine.cursorToX(m_begOffset);
 	} else {
 		m_endLine = m_doc->findLine(pos);
 		m_endOffset = (m_begLine.isValid() ? pos : 0);
-
-		//m_max = 0;
 	}
 	*/
 }
@@ -4776,7 +4764,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 	int beg = 0, end = m_doc->lines();
 
 #if QT_VERSION >= 0x040800
-    if (l1.isRTLByLayout()) {
+	if (l1.isRTLByLayout()) {
 		int tempOffset = m_begOffset;
 		switch (op) {
 		case QDocumentCursor::Left:
@@ -4850,9 +4838,12 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 					const QString& textline = m_doc->line(line).text();
 					if (offset < textline.length())
-						while ( offset > 0 && ((textline.at(offset).category() == QChar::Mark_NonSpacing) ||
-									  (textline.at(offset).isLowSurrogate() && textline.at(offset-1).isHighSurrogate())) )
+						while (
+							offset > 0 && ((textline.at(offset).category() == QChar::Mark_NonSpacing) ||
+							(textline.at(offset).isLowSurrogate() && textline.at(offset-1).isHighSurrogate()))
+						) {
 							offset--;
+						}
 
 					break;
 				} else if ( line == beg ) {  // not enough way to move: undo (no partial operation)
@@ -4893,10 +4884,12 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 					const QString& textline = m_doc->line(line).text();
 					if (offset > 0)
-						while ( offset < textline.length() && ((textline.at(offset).category() == QChar::Mark_NonSpacing) ||
-											    (textline.at(offset).isLowSurrogate() && textline.at(offset-1).isHighSurrogate())) )
+						while (
+							offset < textline.length() && ((textline.at(offset).category() == QChar::Mark_NonSpacing) ||
+							(textline.at(offset).isLowSurrogate() && textline.at(offset-1).isHighSurrogate()))
+						) {
 							offset++;
-
+						}
 					break;
 				} else if ( (line + 1) == end ) {  // not enough way to move: undo (no partial operation)
 					line = origLine;
@@ -4932,9 +4925,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			{
 				QPoint p = documentPosition();
 
-				if ( hasColumnMemory() )
-					p.rx() = qMax(p.x(), m_max);
-
+				if (hasColumnMemory()) {
+					p.rx() = m_savedX;
+				}
 				p.ry() -= QDocumentPrivate::m_lineSpacing * count;
 
 				while (p.y() >= 0) {
@@ -4964,24 +4957,16 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			}
 
-			//*line = QDocumentLine(*it);
-			//*offset = line->xToCursor(qMin(line->cursorToX(*offset), m_max), 0);
 			l = m_doc->line(line);
 
 			if ( count )
 				offset = 0;
 			else if ( m == QDocumentCursor::MoveAnchor )
 				offset = l.xToCursor(
-						qMax(
-							l.cursorToX(
-								qMin(
-									offset,
-									l.length()
-								)
-							),
-							m_max
-						)
-					);
+					hasColumnMemory() ?
+					m_savedX :
+					l.cursorToX(qMin(offset, l.length()))
+				);
 			else
 				offset = qMin(l.length(), offset);
 
@@ -4997,8 +4982,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			{
 				QPoint p = documentPosition();
 
-				if ( hasColumnMemory() )
-					p.rx() = qMax(p.x(), m_max);
+				if (hasColumnMemory()) {
+					p.rx() = m_savedX;
+				}
 
 				p.ry() += QDocumentPrivate::m_lineSpacing * count;
 
@@ -5034,16 +5020,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				offset = l.length();
 			else if ( m == QDocumentCursor::MoveAnchor )
 				offset = l.xToCursor(
-						qMax(
-							l.cursorToX(
-								qMin(
-									offset,
-									l.length()
-								)
-							),
-							m_max
-						)
-					);
+					hasColumnMemory() ?
+					m_savedX :
+					l.cursorToX(qMin(offset, l.length()))
+				);
 			else
 				offset = qMin(l.length(), offset);
 
@@ -5054,8 +5034,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( atStart() )
 				return false;
 
-			m_max = offset = 0;
-			line = 0; //m_doc->line(0);
+			m_savedX = offset = 0;
+			line = 0;
 			break;
 
 		case QDocumentCursor::End :
@@ -5089,11 +5069,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				p.rx() = 0;
 
 				m_doc->cursorForDocumentPosition(p, line, offset);
-				m_max = 0;//w.line start, avoiding 0 bug
+				m_savedX = 0;//w.line start, avoiding 0 bug
 				return true;
 			}
 
-			m_max = offset = 0;
+			m_savedX = offset = 0;
 			break;
 
 		case QDocumentCursor::EndOfBlock :
@@ -5120,25 +5100,25 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				return false;
 
 			if ( m & QDocumentCursor::ThroughWrap &&
-			 m_doc->line(line).cursorToDocumentOffset(offset+1).y()==m_doc->line(line).cursorToDocumentOffset(offset).y())//not at w. line end
-                //m_doc->line(line).cursorToDocumentOffset(offset).y()/QDocumentPrivate::m_lineSpacing+1<m_doc->line(line).lineSpan()) //not in the last
+				m_doc->line(line).cursorToDocumentOffset(offset+1).y()==m_doc->line(line).cursorToDocumentOffset(offset).y())//not at w. line end
+				//m_doc->line(line).cursorToDocumentOffset(offset).y()/QDocumentPrivate::m_lineSpacing+1<m_doc->line(line).lineSpan()) //not in the last
 			{
 				int curline=line;
-			    //goto next line start
-                if (m_doc->line(line).cursorToDocumentOffset(offset+1).y()!=m_doc->line(line).cursorToDocumentOffset(offset-1).y()){
-                    offset++; //can this ever happen?
-                }
+				//goto next line start
+				if (m_doc->line(line).cursorToDocumentOffset(offset+1).y()!=m_doc->line(line).cursorToDocumentOffset(offset-1).y()){
+					offset++; //can this ever happen?
+				}
 				QPoint p = documentPosition();
 				p.rx() = -1;
 				p.ry() += QDocumentPrivate::m_lineSpacing;
 				//if (wlinestart) //must move down to solve problem with documentPosition() at w. line start
-                  //  p.ry() += QDocumentPrivate::m_lineSpacing;
+				//  p.ry() += QDocumentPrivate::m_lineSpacing;
 
 				m_doc->cursorForDocumentPosition(p, line, offset);
 
 				//one left in the w. line before
 				offset--;
-				m_max = m_doc->line(line).cursorToDocumentOffset(offset).x();
+				m_savedX = m_doc->line(line).cursorToDocumentOffset(offset).x();
 				if ((curline != line)||(m_doc->height()==p.ry())) line=curline; //jumped to far, work around for wrapped last line
 				else if (offset>0) return true;
 			}
@@ -5422,7 +5402,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 		case QDocumentCursor::StartOfWordOrCommand :
 		{
 			int x = wordOrCommandStart.indexIn(m_doc->line(line).text().left(offset+1));  // offset+1 because we would not match if we would cut-off at the cursor if it is directly behind a slash like this: \|command
-	
+
 			if ( x != -1 )
 			{
 				offset = x;
@@ -5430,15 +5410,15 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				//qDebug("failed to find SOWC : %i + %i != %i", x, wordOrCommandStart.matchedLength(), offset);
 				return false;
 			}
-	
+
 			refreshColumnMemory();
-	
+
 			break;
 		}
-		
+
 		case QDocumentCursor::EndOfWordOrCommand :
 		{
-			
+
 			int x = wordOrCommandEnd.indexIn(m_doc->line(line).text(), offset, QRegExp::CaretAtOffset);
 
 			if ( x == offset )
@@ -5448,54 +5428,54 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				//qDebug("failed to find EOWC");
 				return false;
 			}
-	
+
 			refreshColumnMemory();
-	
+
 			break;
 		}
-		
-	case QDocumentCursor::StartOfParenthesis :
-	{
-		QStringList possibleOpeningParentheses = QStringList() << "{" << "(" << "[";
-		QStringList possibleClosingParentheses = QStringList() << "}" << ")" << "]";
 
-		QString text = m_doc->line(line).text();
-		QStringList closingParenthesesStack;
-		bool found = false;
-		for (int i = offset; i >= 0; i--) {
-			foreach(const QString &closing, possibleClosingParentheses) {
-                if (text.mid(i).startsWith(closing) && (i+closing.length() < offset)) {
-					closingParenthesesStack.prepend(closing);
-					break;
-				}
-			}
-			foreach(const QString &opening, possibleOpeningParentheses) {
-                if (text.mid(i).startsWith(opening)) {
-					if (closingParenthesesStack.isEmpty()) {
-						offset = i;
-						found = true;
+		case QDocumentCursor::StartOfParenthesis :
+		{
+			QStringList possibleOpeningParentheses = QStringList() << "{" << "(" << "[";
+			QStringList possibleClosingParentheses = QStringList() << "}" << ")" << "]";
+
+			QString text = m_doc->line(line).text();
+			QStringList closingParenthesesStack;
+			bool found = false;
+			for (int i = offset; i >= 0; i--) {
+				foreach(const QString &closing, possibleClosingParentheses) {
+					if (text.mid(i).startsWith(closing) && (i+closing.length() < offset)) {
+						closingParenthesesStack.prepend(closing);
 						break;
-					} else {
-						QString matchingClosingForOpening = possibleClosingParentheses.at(possibleOpeningParentheses.indexOf(opening));
-						if (closingParenthesesStack.first() == matchingClosingForOpening) {
-							closingParenthesesStack.removeFirst();
+					}
+				}
+				foreach(const QString &opening, possibleOpeningParentheses) {
+					if (text.mid(i).startsWith(opening)) {
+						if (closingParenthesesStack.isEmpty()) {
+							offset = i;
+							found = true;
+							break;
 						} else {
-							return false;  // unmatched inner parentheses
+							QString matchingClosingForOpening = possibleClosingParentheses.at(possibleOpeningParentheses.indexOf(opening));
+							if (closingParenthesesStack.first() == matchingClosingForOpening) {
+								closingParenthesesStack.removeFirst();
+							} else {
+								return false;  // unmatched inner parentheses
+							}
 						}
 					}
 				}
+				if (found) break;
 			}
-			if (found) break;
+			if (!found) return false;  // not within parentheses
+
+			refreshColumnMemory();
+
+			break;
 		}
-		if (!found) return false;  // not within parentheses
 
-		refreshColumnMemory();
-
-		break;
-	}
-		
 		default:
-            qWarning()<<"Unhandled move operation...";
+			qWarning()<<"Unhandled move operation...";
 			return false;
 	};
 
@@ -5508,14 +5488,14 @@ void QDocumentCursorHandle::moveTo(const QDocumentCursor &c, const QDocumentCurs
 		return;
 
 	if(!(m&QDocumentCursor::KeepAnchor)){
-	    m_begLine = c.handle()->m_begLine;
-	    m_begOffset = c.handle()->m_begOffset;
+		m_begLine = c.handle()->m_begLine;
+		m_begOffset = c.handle()->m_begOffset;
 
-	    m_endLine = -1;
-	    m_endOffset = 0;
+		m_endLine = -1;
+		m_endOffset = 0;
 	}else{
-	    m_endLine = c.handle()->m_begLine;
-	    m_endOffset = c.handle()->m_begOffset;
+		m_endLine = c.handle()->m_begLine;
+		m_endOffset = c.handle()->m_begOffset;
 	}
 
 	refreshColumnMemory();
@@ -5526,7 +5506,7 @@ void QDocumentCursorHandle::moveTo(int line, int column, const QDocumentCursor::
 	if(!(m&QDocumentCursor::KeepAnchor)){
 		m_begLine = line;
 		m_begOffset = column;
-		
+
 		m_endLine = -1;
 		m_endOffset = 0;
 	}else{
@@ -5557,7 +5537,7 @@ void QDocumentCursorHandle::insertText(const QString& s, bool keepAnchor)
 										s,
 										m_doc
 									);
-	
+
 	command->setKeepAnchor(keepAnchor);
 	command->setTargetCursor(this);
 	execute(command);
@@ -5571,11 +5551,11 @@ void QDocumentCursorHandle::eraseLine()
 	if ( !m_doc )
 		return;
 
-    QDocumentCommand *command = nullptr;
+	QDocumentCommand *command = nullptr;
 
 	if((m_begLine>m_doc->lineCount())||(m_begLine<0)) return; // return if cursor is out of range
 	if((m_endLine>m_doc->lineCount())) m_endLine=m_doc->lineCount()-1;
-	
+
 	int cursorLine = m_begLine;
 	int anchorLine = m_endLine < 0 ? m_begLine : m_endLine;
 	int startLine = qMin(cursorLine, anchorLine);
@@ -5584,24 +5564,24 @@ void QDocumentCursorHandle::eraseLine()
 	if (endLine < m_doc->lineCount()-1)
 	{
 		command = new QDocumentEraseCommand(
-										startLine,
-										0,
-										endLine + 1,
-										0,
-										m_doc
-									);
+			startLine,
+			0,
+			endLine + 1,
+			0,
+			m_doc
+		);
 	} else if (startLine > 0) {
 		// special handling to remove a selection including the last line
 		// QDocumentEraseCommand leaves an empty line if the end (==endLine+1)
 		// is beyond the last line. As a workaround, we change the selection
 		// range and include the newline before the selection in the erase action
 		command = new QDocumentEraseCommand(
-										startLine-1,
-										m_doc->line(startLine-1).length(),
-										endLine,
-										m_doc->line(endLine).length(),
-										m_doc
-									);
+			startLine-1,
+			m_doc->line(startLine-1).length(),
+			endLine,
+			m_doc->line(endLine).length(),
+			m_doc
+		);
 	} else {
 		return;
 	}
@@ -5645,7 +5625,7 @@ void QDocumentCursorHandle::deleteChar()
 	if ( l.isNull() || atEnd() )
 		return;
 
-    QDocumentCommand *command = nullptr;
+	QDocumentCommand *command = nullptr;
 
 	if ( !atLineEnd() )
 	{
@@ -5654,22 +5634,22 @@ void QDocumentCursorHandle::deleteChar()
 			charCount = 2;
 
 		command = new QDocumentEraseCommand(
-											m_begLine,
-											m_begOffset,
-											m_begLine,
-											m_begOffset + charCount,
-											m_doc
-										);
+			m_begLine,
+			m_begOffset,
+			m_begLine,
+			m_begOffset + charCount,
+			m_doc
+		);
 
 	} else {
 		// merge two blocks...
 		command = new QDocumentEraseCommand(
-											m_begLine,
-											m_begOffset,
-											m_begLine + 1,
-											0,
-											m_doc
-										);
+			m_begLine,
+			m_begOffset,
+			m_begLine + 1,
+			0,
+			m_doc
+		);
 
 	}
 
@@ -5688,7 +5668,7 @@ void QDocumentCursorHandle::deletePreviousChar()
 	if ( l.isNull() || atStart() )
 		return;
 
-    QDocumentCommand *command = nullptr;
+	QDocumentCommand *command = nullptr;
 
 	if ( !atLineStart() )
 	{
@@ -5697,24 +5677,24 @@ void QDocumentCursorHandle::deletePreviousChar()
 			charCount = 2;
 
 		command = new QDocumentEraseCommand(
-											m_begLine,
-											m_begOffset - charCount,
-											m_begLine,
-											m_begOffset,
-											m_doc
-										);
+			m_begLine,
+			m_begOffset - charCount,
+			m_begLine,
+			m_begOffset,
+			m_doc
+		);
 
 	} else {
 		// merge two blocks...
 		QDocumentLine prev = m_doc->line(m_begLine - 1);
 
 		command = new QDocumentEraseCommand(
-											m_begLine - 1,
-											prev.length(),
-											m_begLine,
-											m_begOffset,
-											m_doc
-										);
+			m_begLine - 1,
+			prev.length(),
+			m_begLine,
+			m_begOffset,
+			m_doc
+		);
 
 	}
 
@@ -5731,7 +5711,7 @@ void QDocumentCursorHandle::execute(QDocumentCommand *c)
 
 	if ( isSilent() && !c->isSilent() )
 		c->setSilent(isSilent());
-	
+
 	if ( m_blocks.count() )
 	{
 		c->redo();
@@ -5919,17 +5899,17 @@ void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 {
 	int begline, begcol;
 	beginBoundary(begline, begcol);
-	
+
 	bool atStart = (begline == m_begLine && begcol == m_begOffset);
-	
+
 	if ( text.isEmpty() )
 	{
 		removeSelectedText();
 	} else {
 		insertText(text, true);
-		
+
 		/*
-			Adjust selection around the new text 
+			Adjust selection around the new text
 		*/
 		if ( atStart )
 		{
@@ -5942,7 +5922,7 @@ void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 			m_endOffset = begcol;
 		}
 	}
-	
+
 	//qDebug("[%i, %i] => ( (%i, %i), (%i, %i) )", begline, begcol, m_begLine, m_begOffset, m_endLine, m_endOffset);
 }
 
@@ -5995,7 +5975,7 @@ void QDocumentCursorHandle::select(QDocumentCursor::SelectionType t)
 void QDocumentCursorHandle::expandSelect(QDocumentCursor::SelectionType t) {
 	if ( !m_doc || !m_doc->line(m_begLine).isValid() )
 		return;
-	
+
 	bool isReverse = !isForwardSelection();
 
 	if ( t == QDocumentCursor::LineUnderCursor )
@@ -6058,7 +6038,7 @@ void QDocumentCursorHandle::select(int line, int column, int lineTo, int columnT
 	else {
 		m_endLine = line;
 		m_endOffset = column;
-		
+
 		if (lineTo < m_doc->lineCount()) {
 			m_begLine = lineTo;
 			if (columnTo != -1) m_begOffset = columnTo;
@@ -6067,7 +6047,7 @@ void QDocumentCursorHandle::select(int line, int column, int lineTo, int columnT
 			m_begLine = m_doc->lineCount()-1;
 			m_begOffset = m_doc->line(m_begLine).length();
 		}
-		
+
 		refreshColumnMemory();
 	}
 }
@@ -6171,7 +6151,7 @@ void QDocumentCursorHandle::boundaries(int& begline, int& begcol, int& endline, 
 {
 	beginBoundary(begline, begcol);
 	endBoundary(endline, endcol);
-	
+
 	/*
 	if ( m_begLine == m_endLine )
 	{
@@ -6209,7 +6189,7 @@ void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, in
 	int &rtcbeg = begFirst?m_begOffset:m_endOffset;
 	int &rtlend = begFirst?m_endLine:m_begLine;
 	int &rtcend = begFirst?m_endOffset:m_begOffset;
-	
+
 	int numLines = lend - lbeg;
 	bool beyondBeg = (tlmin > lbeg || (tlmin == lbeg && tcmin >= cbeg));
 	bool beyondEnd = (tlmax < lend || (tlmax == lend && tcmax <= cend));
@@ -6226,7 +6206,7 @@ void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, in
 		rtcend = cbeg;
 	} else if ( beyondBeg ) {
 		//qDebug("beyond beg");
-		
+
 		rtlbeg = lbeg;  //selection is moved upwards
 		rtcbeg = cbeg;//to the begin of the removed part
 		rtlend -= numLines; //end line moved upwards by the count of removed lines
@@ -6242,9 +6222,9 @@ void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, in
 }
 
 /*!
-  Sets the selection given by lbeg/cbeg/lend/cend to the largest selection which is contained in
-  the selection of this cursor and the passed boundaries
-  (it sets all to -1 if such a selection doesn't exists)
+	Sets the selection given by lbeg/cbeg/lend/cend to the largest selection which is contained in
+	the selection of this cursor and the passed boundaries
+	(it sets all to -1 if such a selection doesn't exists)
 */
 void QDocumentCursorHandle::intersectBoundaries(int& lbeg, int& cbeg, int& lend, int& cend) const
 {
@@ -6327,9 +6307,9 @@ void QDocumentCursorHandle::intersectBoundaries(QDocumentCursorHandle *h, int& l
 
 
 /*!
-  Creates a new cursor whose selection is the largest region which is contained in the selection of both
-  (returns c if c has no selection but is within the selection of c and returns an invalid cursor if
-  this has no selection)
+	Creates a new cursor whose selection is the largest region which is contained in the selection of both
+	(returns c if c has no selection but is within the selection of c and returns an invalid cursor if
+	this has no selection)
 */
 QDocumentCursor QDocumentCursorHandle::intersect(const QDocumentCursor& c) const
 {
@@ -6381,9 +6361,9 @@ bool QDocumentCursorHandle::equalBoundaries(const QDocumentCursorHandle* c){
 bool QDocumentCursorHandle::equal(const QDocumentCursorHandle* c){
 	REQUIRE_RET(c,false);
 	if (lineNumber() != c->lineNumber()) return false;
-	if (columnNumber() != c->columnNumber()) return false;	
+	if (columnNumber() != c->columnNumber()) return false;
 	if (anchorLineNumber() != c->anchorLineNumber()) return false;
-	if (anchorColumnNumber() != c->anchorColumnNumber()) return false;	
+	if (anchorColumnNumber() != c->anchorColumnNumber()) return false;
 	return true;
 }
 
@@ -6410,9 +6390,11 @@ void QDocumentCursorHandle::getMatchingPair(QDocumentCursor& from, QDocumentCurs
 			cd = matches[i][0].line().length() - matches[i][0].columnNumber() + matches[i][1].columnNumber();
 		else
 			cd = matches[i][1].line().length() - matches[i][1].columnNumber() + matches[i][0].columnNumber();
-		if (selMa == -1 ||
-		    (maximal && (selMaLD < ld || (selMaLD == ld && selMaCD < cd))) ||
-		    (!maximal && (selMaLD > ld || (selMaLD == ld && selMaCD > cd)))){
+		if (
+			selMa == -1 ||
+			(maximal && (selMaLD < ld || (selMaLD == ld && selMaCD < cd))) ||
+			(!maximal && (selMaLD > ld || (selMaLD == ld && selMaCD > cd)))
+		){
 			selMa = i;
 			selMaLD = ld;
 			selMaCD = cd;
@@ -6448,7 +6430,7 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										m_endOffset,
 										m_doc
 									);
-		
+
 	} else if ( m_begLine > m_endLine ) {
 		c = new QDocumentEraseCommand(
 										m_endLine,
@@ -6457,10 +6439,10 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										m_begOffset,
 										m_doc
 									);
-		
+
 		//m_begLine = m_endLine;
 		//m_begOffset = m_endOffset;
-		
+
 	} else {
 		c = new QDocumentEraseCommand(
 										m_begLine,
@@ -6469,7 +6451,7 @@ void QDocumentCursorHandle::removeSelectedText(bool keepAnchor)
 										qMax(m_begOffset, m_endOffset),
 										m_doc
 									);
-		
+
 		//m_begOffset = qMin(m_begOffset, m_endOffset);
 		//m_endLine = -1;
 		//m_endOffset = -1;
@@ -6523,7 +6505,7 @@ QDocument::LineEnding QDocumentPrivate::m_defaultLineEnding = QDocument::Conserv
 
 QDocumentPrivate::QDocumentPrivate(QDocument *d)
  : 	m_doc(d),
-    m_editCursor(nullptr),
+	m_editCursor(nullptr),
 	m_drawCursorBold(true),
 	m_deleting(false),
 	m_delayedUpdateBlocks(0),
@@ -6535,7 +6517,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	m_width(0),
 	m_height(0),
 	m_tabStop(m_defaultTabStop),
-    m_language(nullptr),
+	m_language(nullptr),
 	m_maxMarksPerLine(0),
 	_nix(0),
 	_dos(0),
@@ -6579,7 +6561,7 @@ int QDocumentPrivate::findNextMark(int id, int from, int until)
 		from += m_lines.count();
 		if (from < 0) from=m_lines.count()-1;
 	} else if (from >= m_lines.count())
-        from=m_lines.count()-1;
+	from=m_lines.count()-1;
 
 	QHash<QDocumentLineHandle*, QList<int> >::const_iterator e = m_marks.constEnd();
 
@@ -6624,7 +6606,7 @@ int QDocumentPrivate::findPreviousMark(int id, int from, int until)
 		from += m_lines.count();
 		if (from < 0) from = m_lines.count() - 1;
 	} else if (from >= m_lines.count())
-        from = m_lines.count()-1;
+	from = m_lines.count()-1;
 
 	if ( until < 0 )
 	{
@@ -6669,26 +6651,26 @@ int QDocumentPrivate::findPreviousMark(int id, int from, int until)
 }
 
 void QDocumentPrivate::removeMarks(int id){
-    QList<QDocumentLineHandle*> changed;
+	QList<QDocumentLineHandle*> changed;
 
-    QHash<QDocumentLineHandle*, QList<int> >::iterator
-        it = m_marks.begin(),
-        end = m_marks.end();
-    //change all silently
-    m_maxMarksPerLine = 0;
-    while (it!=end) {
-        int n = it->removeAll(id);
-        if (n) changed << it.key();
-        if ( it->isEmpty() ) it=m_marks.erase(it);
-        else {
-            if (it->count() > m_maxMarksPerLine) m_maxMarksPerLine = it->count();
-            ++it;
-        }
-    }
+	QHash<QDocumentLineHandle*, QList<int> >::iterator
+	it = m_marks.begin(),
+	end = m_marks.end();
+	//change all silently
+	m_maxMarksPerLine = 0;
+	while (it!=end) {
+		int n = it->removeAll(id);
+		if (n) changed << it.key();
+		if ( it->isEmpty() ) it=m_marks.erase(it);
+		else {
+			if (it->count() > m_maxMarksPerLine) m_maxMarksPerLine = it->count();
+			++it;
+		}
+	}
 
 	//then notify
 	for (int i=0; i<changed.size();i++){
-        emitMarkChanged(changed[i], id, false);
+	emitMarkChanged(changed[i], id, false);
 		changed[i]->setFlag(QDocumentLine::LayoutDirty,true);
 	}
 }
@@ -6697,9 +6679,9 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 {
 	if ( !cmd || m_readOnly)
 		return;
-	
+
 	m_lastModified = QDateTime::currentDateTime();
-	
+
 	if ( m_macros.count() )
 	{
 		cmd->redo();
@@ -6711,8 +6693,8 @@ void QDocumentPrivate::execute(QDocumentCommand *cmd)
 
 void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 {
-    //QTime t;
-    //t.start();
+	//QTime t;
+	//t.start();
 
 	p->setFont(*m_font);
 	updateStaticCaches(p->device());
@@ -6972,10 +6954,12 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 
 	bool imageCache = (m_workArounds & QDocument::QImageCache);
 
-	if(   useLineCache
-	   && !dlh->hasFlag(QDocumentLine::LayoutDirty)
-	   &&  dlh->hasFlag(QDocumentLine::FormatsApplied)
-	   &&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))) {
+	if(
+		useLineCache
+		&& !dlh->hasFlag(QDocumentLine::LayoutDirty)
+		&&  dlh->hasFlag(QDocumentLine::FormatsApplied)
+		&&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))
+	) {
 		// cache is activated, available, and up-to-date: simply draw the cached object
 		if (imageCache) {
 			p->drawImage(m_lineCacheXOffset, 0, *m_LineCacheAlternative.object(dlh));
@@ -6984,9 +6968,9 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		}
 	} else {
 		int ht = m_lineSpacing*(wrap+1 - pseudoWrap);
-        QImage *image = nullptr;
-        QPixmap *pixmap = nullptr;
-        QPainter *pr = nullptr;
+		QImage *image = nullptr;
+		QPixmap *pixmap = nullptr;
+		QPainter *pr = nullptr;
 		if (useLineCache) {
 			if (imageCache) {
 #if QT_VERSION >= 0x050000
@@ -7030,7 +7014,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			pr->fillRect(0, 0, m_leftPadding, ht, background);
 		} else if (fullSelection) {
 			pr->fillRect(0, 0, m_leftPadding, ht, background);
-            pr->fillRect(m_leftPadding, 0, m_width - m_leftPadding, ht, selectionBackground);
+			pr->fillRect(m_leftPadding, 0, m_width - m_leftPadding, ht, selectionBackground);
 		} else
 			pr->fillRect(0, 0, m_width, ht, background);
 
@@ -7095,9 +7079,11 @@ void QDocumentPrivate::drawPlaceholders(QPainter *p, QDocument::PaintContext &cx
 	p->save();
 
 	//mark placeholder which will probably be removed
-	if (cxt.lastPlaceHolder >=0
-	    && cxt.lastPlaceHolder < cxt.placeHolders.count()
-	    && cxt.lastPlaceHolder != cxt.curPlaceHolder){
+	if (
+		cxt.lastPlaceHolder >=0
+		&& cxt.lastPlaceHolder < cxt.placeHolders.count()
+		&& cxt.lastPlaceHolder != cxt.curPlaceHolder
+	){
 		const PlaceHolder& ph = cxt.placeHolders.at(cxt.lastPlaceHolder);
 		if (!ph.autoRemove) cxt.lastPlaceHolder = -1;
 		else if (!ph.cursor.line().isHidden()) {
@@ -7207,7 +7193,7 @@ QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includ
 	}
 	line = sel.endLine;
 	while (line > sel.startLine && m_lines[line]->length()==0) line--;
-    if (line > sel.startLine) {
+	if (line > sel.startLine) {
 		sel.endLine = line;
 		sel.end = -1;
 	}
@@ -7237,7 +7223,7 @@ int QDocumentPrivate::position(const QDocumentLineHandle *l) const
 		pos += m_lines.at(i)->length();
 
 	pos += m_lineEndingString.length()*idx;
-		
+
 	return pos;
 }
 
@@ -7249,12 +7235,12 @@ QDocumentLineHandle* QDocumentPrivate::lineForPosition(int& position) const
 		pos += m_lines.at(idx++)->length();
 
 
-    return nullptr;
+	return nullptr;
 }
 
 void QDocumentPrivate::setHardLineWrap(bool wrap)
 {
-    m_hardLineWrap=wrap;
+	m_hardLineWrap=wrap;
 }
 void QDocumentPrivate::setLineWidthConstraint(bool wrap)
 {
@@ -7269,11 +7255,11 @@ void QDocumentPrivate::setCursorBold(bool bold)
 
 void QDocumentPrivate::setWidth(int width)
 {
-    if(m_width==width){
-        return; // no change if width is not changed
-    }
+	if(m_width==width){
+		return; // no change if width is not changed
+	}
 
-    bool oldConstraint = m_constrained;
+	bool oldConstraint = m_constrained;
 	m_constrained = width > 0 ;
 
 	if ( m_constrained || m_forceLineWrapCalculation )
@@ -7290,7 +7276,7 @@ void QDocumentPrivate::setWidth(int width)
 
 			while ( it != m_wrapped.end() )
 			{
-                QDocumentLineHandle *h = it.key() < m_lines.count() ? m_lines.at(it.key()) : nullptr;
+				QDocumentLineHandle *h = it.key() < m_lines.count() ? m_lines.at(it.key()) : nullptr;
 
 				if ( h )
 					h->updateWrap(it.key());
@@ -7332,7 +7318,7 @@ void QDocumentPrivate::setWidth(int width)
 }
 
 void QDocumentPrivate::removeWrap(int i){
-    m_wrapped.remove(i);
+	m_wrapped.remove(i);
 }
 
 QList<int> QDocumentPrivate::testGetHiddenLines(){
@@ -7375,7 +7361,7 @@ void QDocumentPrivate::setWidth()
 				m_wrapped.remove(i);
 			}
 
-            if ( first == -1 )
+			if ( first == -1 )
 				first = i;
 		}
 
@@ -7478,45 +7464,45 @@ void QDocumentPrivate::setHeight()
 	m_height = last * m_lineSpacing;
 
 	if ( oldHeight != m_height )
-        emitHeightChanged();
+		emitHeightChanged();
 }
 
 void QDocumentPrivate::setBaseFont(const QFont &f, bool forceUpdate)
 {
-    m_baseFont = new QFont(f);
-    QFont fMod = f;
-    if (m_fontSizeModifier + m_baseFont->pointSize() < 1) {
-        // prevent actual font sizes to be <= 0
-        m_fontSizeModifier = - m_baseFont->pointSize() + 1;
-    }
-    fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
-    setFont(fMod, forceUpdate);
+	m_baseFont = new QFont(f);
+	QFont fMod = f;
+	if (m_fontSizeModifier + m_baseFont->pointSize() < 1) {
+		// prevent actual font sizes to be <= 0
+		m_fontSizeModifier = - m_baseFont->pointSize() + 1;
+	}
+	fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
+	setFont(fMod, forceUpdate);
 }
 
 void QDocumentPrivate::setFontSizeModifier(int m, bool forceUpdate)
 {
-    if (m + m_baseFont->pointSize() < 1) {
-        // prevent actual font sizes to be <= 0
-        m = - m_baseFont->pointSize() + 1;
-    }
-    m_fontSizeModifier = m;
-    QFont fMod = QFont(*m_baseFont);
-    fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
-    setFont(fMod, forceUpdate);
+	if (m + m_baseFont->pointSize() < 1) {
+		// prevent actual font sizes to be <= 0
+		m = - m_baseFont->pointSize() + 1;
+	}
+	m_fontSizeModifier = m;
+	QFont fMod = QFont(*m_baseFont);
+	fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
+	setFont(fMod, forceUpdate);
 }
 
 void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 {
 	m_fmtCharacterCache[0].clear();
 	m_fmtCharacterCache[1].clear();
-	m_fmtWidthCache.clear(); 
+	m_fmtWidthCache.clear();
 
 	if ( !m_font )
 	{
 		m_font = new QFont;
 	}
 
-	
+
 	QFont modifiedF = f;
 	// set the styling so that if the font is not found Courier one will be used
 #if QT_VERSION >= 0x040700
@@ -7524,21 +7510,21 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 #else
 	const QFont::StyleStrategy ForceIntegerMetrics = (QFont::StyleStrategy)0x0400;
 	modifiedF.setStyleHint(QFont::Courier, (hasAtLeastQt(4,7) ? ForceIntegerMetrics : QFont::PreferQuality));
-	
+
 #endif
 	//disable kerning because words are drawn at once, but their width is calculated character
 	//by character (in functions which calculate the cursor position)
 	modifiedF.setKerning(false);
-	
+
 	if ( *m_font  == modifiedF && !forceUpdate )
 		return;
-	
+
 
 	*m_font = modifiedF;
 
 
 	QFontMetrics fm(*m_font);
-    updateStaticCaches(nullptr);
+	updateStaticCaches(nullptr);
 
 	foreach ( QDocumentPrivate *d, m_documents )
 	{
@@ -7606,7 +7592,7 @@ void QDocumentPrivate::setFormatScheme(QFormatScheme *f)
 {
 	bool updateFont = m_formatScheme != f && f;
 	m_formatScheme = f;
-	if (updateFont) 
+	if (updateFont)
 		setFont(*m_font, true);
 }
 
@@ -7626,9 +7612,9 @@ void QDocumentPrivate::tunePainter(QPainter *p, int fid)
 int QDocumentPrivate::textWidth(int fid, const QString& text){
 	if ( fid < 0 || fid >= m_fonts.size() || text.isEmpty()) return 0;
 
-	if (m_workArounds & QDocument::ForceSingleCharacterDrawing ) 
+	if (m_workArounds & QDocument::ForceSingleCharacterDrawing )
 		return textWidthSingleLetterFallback(fid, text);
-	
+
 	/*
 	  There are three different ways to calculate the width:
 	  1. String length * Character Width           if fixedPitch && no surrogates && no asian characters
@@ -7640,16 +7626,16 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 		bool containsAsianChars = false;
 		foreach (const QChar& c, text){
 			const QChar::Category cat = c.category();
-            if (cat == QChar::Letter_Other || cat == QChar::Punctuation_Other)
+			if (cat == QChar::Letter_Other || cat == QChar::Punctuation_Other)
 				containsAsianChars = true; //character which can have a different width even in fixed pitch fonts
 			else if (cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining)
 				containsSurrogates = true; //strange characters (e.g.  0xbcd, 0x1d164)
-			else if (c < 0x20) 
+			else if (c < 0x20)
 				containsAsianChars = true;
 		}
 		if (!containsAsianChars && !containsSurrogates)
-            // TODO: we've blacklisted certain characters from which we know they may have non-standard text width
-            // so they are not treated here. However it would be more safe to whilelist standard characters
+			// TODO: we've blacklisted certain characters from which we know they may have non-standard text width
+			// so they are not treated here. However it would be more safe to whilelist standard characters
 			return text.length() * QDocumentPrivate::m_spaceWidth;
 	} else {
 		//only check for the strange characters
@@ -7693,15 +7679,15 @@ int QDocumentPrivate::textWidthSingleLetterFallback(int fid, const QString& text
 	int rwidth = 0;
 	foreach (const QChar& c, text){
 		const QChar::Category cat = c.category();
-        int char_id;
+		int char_id;
 		if (cat == QChar::Other_Surrogate) {
 			if (c.isHighSurrogate()) {
 				lastSurrogate = c;
 				continue;
-			} else 
+			} else
 				char_id = QChar::surrogateToUcs4(lastSurrogate, c);
 		} else char_id = c.unicode();
-		
+
 		const int *cwidth;
 		if (!cache->valueIfThere(char_id, cwidth)) {
 			int nwidth;
@@ -7718,7 +7704,7 @@ int QDocumentPrivate::textWidthSingleLetterFallback(int fid, const QString& text
 void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, bool selected, int& xpos, int ypos, const QString& text){
 	FastCache<QPixmap> *cache = m_fmtCharacterCache[selected?1:0].getCache(fid);
 	p.setBackgroundMode(Qt::OpaqueMode);
-	
+
 	QChar lastSurrogate;
 	foreach (const QChar& c, text){
 		const QChar::Category cat = c.category();
@@ -7727,7 +7713,7 @@ void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, b
 			if (c.isHighSurrogate()) {
 				lastSurrogate = c;
 				continue;
-			} else 
+			} else
 				char_id = QChar::surrogateToUcs4(lastSurrogate, c);
 		} else char_id = c.unicode();
 		const QPixmap* px;
@@ -7777,7 +7763,7 @@ void QDocumentPrivate::updateFormatCache(const QPaintDevice *pd)
 		Q_ASSERT(!f.kerning());
 		f.setWeight(fmt.weight);
 		f.setItalic(fmt.italic);
-        if ( !fmt.fontFamily.isEmpty() && !(fmt.fontFamily=="<default>")){
+		if ( !fmt.fontFamily.isEmpty() && !(fmt.fontFamily=="<default>")){
 			f.setFamily(fmt.fontFamily);
 			m_fixedPitch = false;
 		}
@@ -7881,10 +7867,10 @@ void QDocumentPrivate::removeLines(int after, int n)
 	//remove/resize the m_hidden cache if the removed lines are within a hidden block
 	//buggy (test {\n}\ndeleted\n{\n}) and not needed if the qdocumentcommand corrects
 	//the folding of modified lines
-	
-	
+
+
 	//Turned out: it is important, if a whole folded block is deleted. TODO: Try to fix it???
-	
+
 	/*{	QMap<int, int>::iterator it = m_hidden.begin();
 	while ( it != m_hidden.end() )
 	{
@@ -7939,7 +7925,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 		}
 	}
 }*/
-	
+
 	QMap<int, int>::iterator it = m_wrapped.begin();
 
 	while ( it != m_wrapped.end() )
@@ -7968,13 +7954,12 @@ void QDocumentPrivate::removeLines(int after, int n)
 
 QDocumentLineHandle* QDocumentPrivate::at(int line) const
 {
-    return ((line >= 0) && (line < m_lines.count())) ? m_lines.at(line) : nullptr;
+	return ((line >= 0) && (line < m_lines.count())) ? m_lines.at(line) : nullptr;
 }
 template <typename T> inline int hintedIndexOf (const QVector<T>& list, const T& elem, int hint) {
 	if (hint < 2) return list.indexOf(elem);
 	int backward = hint, forward = hint + 1;
-	for (;backward >= 0 && forward < list.size();
-	     backward--, forward++) {
+	for (;backward >= 0 && forward < list.size(); backward--, forward++) {
 		if (list[backward] == elem) return backward;
 		if (list[forward] == elem) return forward;
 	}
@@ -8012,30 +7997,30 @@ QDocumentConstIterator QDocumentPrivate::index(const QDocumentLineHandle *l) con
 
 QDocumentLineHandle* QDocumentPrivate::next(const QDocumentLineHandle *l) const
 {
-    if ( !l ) {
-        return m_lines.count() ? m_lines.first() : nullptr;
-    }
+	if ( !l ) {
+		return m_lines.count() ? m_lines.first() : nullptr;
+	}
 
 	int idx = m_lines.indexOf(const_cast<QDocumentLineHandle*>(l));
 
-    return ((idx != -1) && ((idx + 1) < m_lines.count())) ? m_lines.at(idx + 1) : nullptr;
+	return ((idx != -1) && ((idx + 1) < m_lines.count())) ? m_lines.at(idx + 1) : nullptr;
 }
 
 QDocumentLineHandle* QDocumentPrivate::previous(const QDocumentLineHandle *l) const
 {
-    if ( !l ) {
-        return m_lines.count() ? m_lines.last() : nullptr;
-    }
+	if ( !l ) {
+		return m_lines.count() ? m_lines.last() : nullptr;
+	}
 
 	int idx = m_lines.indexOf(const_cast<QDocumentLineHandle*>(l));
 
-    return (idx > 0) ? m_lines.at(idx - 1) : nullptr;
+	return (idx > 0) ? m_lines.at(idx - 1) : nullptr;
 }
 
 void QDocumentPrivate::beginChangeBlock()
 {
 	QDocumentCommandBlock *b = new QDocumentCommandBlock(m_doc);
-	
+
 	m_macros.push(b);
 }
 
@@ -8043,10 +8028,10 @@ void QDocumentPrivate::endChangeBlock()
 {
 	if ( !m_macros.count() )
 		return;
-	
+
 	QDocumentCommandBlock *b = m_macros.pop();
 	b->setWeakLock(true);
-	
+
 	execute(b);
 }
 
@@ -8185,7 +8170,7 @@ void QDocumentPrivate::flushMatches(int groupId)
 
 		it = areas.insert(m.line, n);
 
-        if ( it != areas.end() && it != areas.begin() )
+		if ( it != areas.end() && it != areas.begin() )
 		{
 			tmp = it - 1;
 			int off = tmp.key() + *tmp - l;
@@ -8217,7 +8202,7 @@ void QDocumentPrivate::flushMatches(int groupId)
 		matches.removeAt(matches.removeStart);
 		--matches.removeLength;
 	}
-	
+
 	// send update messages
 	QMap<int, int>::const_iterator it = areas.constBegin();
 
@@ -8252,14 +8237,14 @@ void QDocumentPrivate::addMark(QDocumentLineHandle *h, int mid)
 
 	if (l.empty()) l << mid;
 	else {
-        int p=QLineMarksInfoCenter::instance()->priority(mid);
-        int i;
-        for (i=0;i<l.size();i++)
-            if (QLineMarksInfoCenter::instance()->priority(l[i])>=p) {
-                l.insert(i,mid);
-                break;
-            }
-        if (i==l.size()) l << mid;
+		int p=QLineMarksInfoCenter::instance()->priority(mid);
+		int i;
+		for (i=0;i<l.size();i++)
+		if (QLineMarksInfoCenter::instance()->priority(l[i])>=p) {
+			l.insert(i,mid);
+			break;
+		}
+		if (i==l.size()) l << mid;
 	}
 
 	m_maxMarksPerLine = qMax(l.count(), m_maxMarksPerLine);
@@ -8602,8 +8587,10 @@ void QDocumentPrivate::emitFormatsChange(int line, int lines)
 void QDocumentPrivate::emitContentsChange(int line, int lines)
 {
 	if (m_delayedUpdateBlocks > 0){
-		if (m_delayedUpdates.isEmpty()
-		    || m_delayedUpdates.last().first + m_delayedUpdates.last().second < line)
+		if (
+			m_delayedUpdates.isEmpty()
+			|| m_delayedUpdates.last().first + m_delayedUpdates.last().second < line
+		)
 			m_delayedUpdates << QPair<int,int>(line,lines); //after
 		else if (m_delayedUpdates.last().first <= line) //intersect
 			m_delayedUpdates.last().second = qMax(m_delayedUpdates.last().second, line + lines - m_delayedUpdates.last().first);
@@ -8667,17 +8654,17 @@ void QDocumentPrivate::removeAutoUpdatedCursor(QDocumentCursorHandle* c){
 void QDocumentPrivate::discardAutoUpdatedCursors(bool documentDeleted){
 	foreach (QDocumentCursorHandle* h, m_autoUpdatedCursorList){
 		h->clearFlag(QDocumentCursorHandle::AutoUpdated);
-        if (documentDeleted) h->m_doc = nullptr;
+		if (documentDeleted) h->m_doc = nullptr;
 	}
 	m_autoUpdatedCursorList.clear();
 }
 
 void QDocumentPrivate::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
-    if (m_workArounds.testFlag(workAround)  == newValue) return;
-	if (newValue) m_workArounds |= workAround;
-	else m_workArounds &= ~workAround;
-	if (workAround == QDocument::DisableFixedPitchMode)
-		updateFormatCache(QApplication::activeWindow());
+	if (m_workArounds.testFlag(workAround)  == newValue) return;
+		if (newValue) m_workArounds |= workAround;
+		else m_workArounds &= ~workAround;
+		if (workAround == QDocument::DisableFixedPitchMode)
+			updateFormatCache(QApplication::activeWindow());
 
 }
 
