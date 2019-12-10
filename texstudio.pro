@@ -29,6 +29,7 @@ QT += \
 !isEmpty(PHONON){
     greaterThan(QT_MAJOR_VERSION, 4) { #Qt5
         QT += phonon4qt5
+        LIBS += -lphonon4qt5
     } else { #Qt4
         QT += phonon
     }
