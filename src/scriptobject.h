@@ -84,8 +84,8 @@ public slots:
 	QVariant getPersistent(const QString &name);
 
 	void registerAsBackgroundScript(const QString &name = "");
-	QWidget *createUI(const QString &path, QWidget *parent = 0);
-	QWidget *createUIFromString(const QString &path, QWidget *parent = 0);
+    QWidget *createUI(const QString &path, QWidget *parent = nullptr);
+    QWidget *createUIFromString(const QString &path, QWidget *parent = nullptr);
 
 public:
 	bool needReadPrivileges(const QString &fn, const QString &param);
@@ -93,13 +93,15 @@ public:
 
 	BuildManager *buildManager;
 
+    Texstudio *getApp();
+
 private:
 	const QString &script;
 	Texstudio *app;
 	QByteArray scriptHash;
 	SubScriptObject subScriptObject;
 	SubScriptObject *getScript();
-	Texstudio *getApp();
+
 };
 
 #endif // SCRIPTOBJECT_H

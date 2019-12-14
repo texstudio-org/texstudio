@@ -982,15 +982,16 @@ QScriptValue setTimeout(QScriptContext *context, QScriptEngine *engine)
 
 void TimeoutWrapper::run()
 {
-	scriptengine *eng = qobject_cast<scriptengine *>(fun.engine());
-	QScriptEngine *engine = fun.engine();
-	engine->globalObject().setProperty("documentManager", engine->newQObject(&eng->app->documents));
-	engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, eng->app->documents.documents));
+    QScriptEngine *engine = fun.engine();
+    ScriptObject *sc = qobject_cast<ScriptObject *>(engine->globalObject().toQObject());
+    Texstudio* app=sc->getApp();
+    engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
+    engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, app->documents.documents));
 #ifndef NO_POPPLER_PREVIEW
-	engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
+    engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
 #endif
-	fun.call();
-	deleteLater();
+    fun.call();
+    deleteLater();
 }
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
