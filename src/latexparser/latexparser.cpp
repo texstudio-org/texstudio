@@ -65,7 +65,8 @@ void LatexParser::init()
 	possibleCommands["%ref"] = QSet<QString>();  // will all be populated via cwl
 	possibleCommands["%include"] << "\\include" << "\\input";
 	possibleCommands["%import"] << "\\import" << "\\inputfrom" << "\\subimport" << "\\subinputfrom"
-								<< "\\import*" << "\\inputfrom*" << "\\subimport*" << "\\subinputfrom*";
+                                << "\\import*" << "\\inputfrom*" << "\\subimport*" << "\\subinputfrom*"
+                                << "\\includefrom" << "\\includefrom*" << "\\subincludefrom" << "\\subincludefrom*";
 	commandDefs.clear();
 }
 
