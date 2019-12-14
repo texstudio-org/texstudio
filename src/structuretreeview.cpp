@@ -201,7 +201,9 @@ void StructureTreeView::openExternalFileFromAction()
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
 	StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
-	emit requestOpenExternalFile(entry->title);
+    QString name=entry->title;
+    name.replace("\\string~",QDir::homePath());
+    emit requestOpenExternalFile(name);
 }
 
 void StructureTreeView::moveDocumentToFront()

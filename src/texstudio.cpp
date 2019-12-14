@@ -4419,7 +4419,9 @@ void Texstudio::clickedOnStructureEntry(const QModelIndex &index)
 	case StructureEntry::SE_BIBTEX: {
 		saveCurrentCursorToHistory();
 		QString defaultExt = entry->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
-		openExternalFile(entry->title, defaultExt, entry->document);
+        QString name=entry->title;
+        name.replace("\\string~",QDir::homePath());
+        openExternalFile(name, defaultExt, entry->document);
 		break;
 	}
 	}

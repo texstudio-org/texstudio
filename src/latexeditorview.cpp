@@ -1662,6 +1662,7 @@ void LatexEditorView::openExternalFile()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	QString name = act->data().toString();
+    name.replace("\\string~",QDir::homePath());
 	if (!name.isEmpty())
 		emit openFile(name);
 }

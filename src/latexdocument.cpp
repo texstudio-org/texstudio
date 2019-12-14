@@ -1032,7 +1032,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
 				firstArg = removeQuote(firstArg);
 				newInclude->title = firstArg;
-				QString fname = findFileName(firstArg);
+                QString name=firstArg;
+                name.replace("\\string~",QDir::homePath());
+                QString fname = findFileName(name);
 				removedIncludes.removeAll(fname);
 				mIncludedFilesList.insert(line(i).handle(), fname);
 				LatexDocument *dc = parent->findDocumentFromName(fname);
