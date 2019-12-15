@@ -1,3 +1,10 @@
+TeXstudio 2.12.18
+----------------
+- bug fixes
+- some cwl added
+- correct handling of \string~ in filenames in \include
+- search can handle more regexp (greedy/lazy) since it has been changed to QRegularExpression on QT5 (no change on QT4)
+
 TeXstudio 2.12.16
 ----------------
 - bug fixes
