@@ -990,7 +990,14 @@ void TimeoutWrapper::run()
 #ifndef NO_POPPLER_PREVIEW
     engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
 #endif
-    fun.call();
+    QScriptValue result = fun.call();
+    if(result.isError()){
+        int ln=result.property("lineNumber").toInt32();
+        QString msg=result.toString();
+        QString error=QString("script error in line: %1\nMessage: %2").arg(ln).arg(msg);
+        qDebug() << error;
+        QMessageBox::critical(nullptr, tr("Script-Error"), error);
+    }
     deleteLater();
 }
 
