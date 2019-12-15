@@ -994,7 +994,7 @@ void TimeoutWrapper::run()
     if(result.isError()){
         int ln=result.property("lineNumber").toInt32();
         QString msg=result.toString();
-        QString error=QString("script error in line: %1\nMessage: %2").arg(ln).arg(msg);
+        QString error=QString("Script error in line: %1\n\n%2").arg(ln).arg(msg);
         qDebug() << error;
         QMessageBox::critical(nullptr, tr("Script-Error"), error);
     }
