@@ -8324,7 +8324,18 @@ void Texstudio::updateEmphasizedRegion(QDocumentCursor c, int sid)
 			// remove overlay if sid <0 (removes -sid)
 			doc->line(i).clearOverlays(-sid);
 		}
-	}
+    }
+}
+/*!
+ * \brief Texstudio::completerIsVisible
+ * \return true if completer is visible
+ */
+bool Texstudio::completerIsVisible()
+{
+    if(completer && completer->isVisible()){
+        return true;
+    }
+    return false;
 }
 
 void Texstudio::showPreviewQueue()

@@ -154,6 +154,8 @@ private:
 	LatexParser latexParser;
 public:
 	LatexDocuments documents;
+
+    Q_INVOKABLE bool completerIsVisible();
 private:
 	OutputViewWidget *outputView; ///< contains output widgets (over OutputLayout)
 
