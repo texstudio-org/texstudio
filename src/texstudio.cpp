@@ -659,7 +659,7 @@ void Texstudio::setupDockWidgets()
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
 		connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
 		leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
-	} else leftPanel->setWidgetText("bookmarks", tr("Symbols"));
+    } else leftPanel->setWidgetText("symbols", tr("Symbols"));
 
 	addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
 	addTagList("pstricks", getRealIconFile("pstricks"), tr("Pstricks Commands"), "pstricks_tags.xml");
