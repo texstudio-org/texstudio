@@ -1048,6 +1048,7 @@ Note: texstudio needs that the env-name starts with "%", though that character i
   <tr><td>app.getAbsoluteFilePath(rel, ext = "")</td><td>Converts a relative filename to an absolute one</td></tr>
   <tr><td>app.load(file)</td><td>Loads an file </td></tr>
   <tr><td>app.fileOpen/Save/Close/.../editUndo/.../QuickBuild/... </td><td>All menu commands (i.e. all slots in the texmaker.h file). You can view a list of all currently existing slots on the "menu" page of the config dialog.</td></tr>
+  <tr><td>app.completerIsVisible()</td><td>check if completer is visible.</td></tr>
   <tr><td>app.newManagedMenu([parent menu,] id, caption)</td> <td>Creates a new menu and returns it</td></tr>
   <tr><td>app.getManagedMenu(id)</td> <td>Returns a <a href="http://developer.qt.nokia.com/doc/qt-4.8/QMenu.html">QMenu</a> with a certain id</td></tr>
   <tr><td>app.newManagedAction(menu, id, caption)<!--, [slot, [shortCut, [icon]]])--></td> <td>Creates a new action and returns it<br>
