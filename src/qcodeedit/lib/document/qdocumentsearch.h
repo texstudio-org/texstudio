@@ -103,6 +103,8 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		void searchMatches(const QDocumentCursor& subHighlightScope=QDocumentCursor(), bool clearAll=true, bool clearSubScope=true);
 		void clearMatches();
 		void clearReplacements();
+
+		bool isAcceptedFormat(int formatIds) const;
 		
 		void recreateRegExp();
 		

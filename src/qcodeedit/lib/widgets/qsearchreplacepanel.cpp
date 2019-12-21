@@ -920,41 +920,30 @@ void QSearchReplacePanel::on_cbPrompt_toggled(bool on){
 		cFind->setFocus();
 }
 
+void QSearchReplacePanel::setFilteredIconAndFormats(const char* icon, const std::initializer_list<const char*>& formats){
+	QDocument *doc=editor()->document();
+	REQUIRE(doc);
+	cbFilter->setIcon(getRealIconCached(icon));
+	QList<int> ids;
+	for (const char * fmt : formats)
+		ids << doc->getFormatId(fmt);
+	m_search->setFilteredFormats(ids);
+}
+
+
 void QSearchReplacePanel::filterChanged()
 {
 	QAction *act=qobject_cast<QAction*>(sender());
 	if(act==nullptr)
 		return;
 	QString text=act->text();
-	QDocument *doc=editor()->document();
-	if(text=="all") {
-		m_search->setFilteredFormats(QList<int>());
-		cbFilter->setIcon(getRealIconCached("all"));
-	}
-	if(text=="math") {
-		m_search->setFilteredFormat(doc->getFormatId("numbers"));
-		cbFilter->setIcon(getRealIconCached("math"));
-	}
-	if(text=="verbatim") {
-		m_search->setFilteredFormat(doc->getFormatId("verbatim"));
-		cbFilter->setIcon(getRealIconCached("verbatim"));
-	}
-	if(text=="comment") {
-		m_search->setFilteredFormat(doc->getFormatId("comment"));
-		cbFilter->setIcon(getRealIconCached("comment"));
-	}
-	if(text=="keyword") {
-		m_search->setFilteredFormat(doc->getFormatId("keyword"));
-		cbFilter->setIcon(getRealIconCached("command"));
-	}
-	if(text=="label") {
-		m_search->setFilteredFormats({doc->getFormatId("referencePresent"),doc->getFormatId("referenceMissing"),doc->getFormatId("referenceMultiple")});
-		cbFilter->setIcon(getRealIconCached("label"));
-	}
-	if(text=="citation") {
-		m_search->setFilteredFormats({doc->getFormatId("citationPresent"),doc->getFormatId("citationMissing")});
-		cbFilter->setIcon(getRealIconCached("cite"));
-	}
+	if(text=="all") setFilteredIconAndFormats("all", {});
+	else if(text=="math") setFilteredIconAndFormats("math", {"numbers"});
+	else if(text=="verbatim") setFilteredIconAndFormats("verbatim", {"verbatim"});
+	else if(text=="comment") setFilteredIconAndFormats("comment", {"comment"});
+	else if(text=="keyword") setFilteredIconAndFormats("command", {"keyword"});
+	else if(text=="label") setFilteredIconAndFormats("label", {"referencePresent","referenceMissing","referenceMultiple"});
+	else if(text=="citation") setFilteredIconAndFormats("cite", {"citationPresent","citationMissing"});
 }
 
 void QSearchReplacePanel::on_cbWords_toggled(bool on)

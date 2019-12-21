@@ -177,13 +177,10 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 			if (length==0)
 				hc.setColumnNumber(column+1); //empty (e.g. a* regexp)
 			else {
-				// filter by format if desired
-				int fmt=l.getCachedFormatAt(column);
-
 				hc.setColumnNumber(column);
 				hc.setColumnNumber(column + length, QDocumentCursor::KeepAnchor);
 
-				if(m_filteredIds.isEmpty() || m_filteredIds.contains(fmt&255)|| m_filteredIds.contains((fmt>>8)&255)|| m_filteredIds.contains((fmt>>16)&255)){
+				if (isAcceptedFormat(l.getCachedFormatAt(column))){
 					// add filtered or all
 					hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
 					m_highlights.insert(l.handle());
@@ -430,6 +427,10 @@ void QDocumentSearch::setFilteredFormat(int id)
 QList<int> QDocumentSearch::getFilteredFormats() const
 {
 	return m_filteredIds;
+}
+
+bool QDocumentSearch::isAcceptedFormat(int formatIds) const {
+	return m_filteredIds.isEmpty() || m_filteredIds.contains(formatIds&255)|| m_filteredIds.contains((formatIds>>8)&255)|| m_filteredIds.contains((formatIds>>16)&255);
 }
 
 
@@ -785,8 +786,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		// filter out matches that don't fulfill fomarting i.e. math-env
 		bool filtered=false;
 		if(column != -1 && (backward || column >= m_cursor.columnNumber() ) ){
-			int fmt=l.getCachedFormatAt(column);
-			if(!m_filteredIds.isEmpty() && !m_filteredIds.contains(fmt&255) && !m_filteredIds.contains((fmt>>8)&255) && !m_filteredIds.contains((fmt>>16)&255)){
+			if(!isAcceptedFormat(l.getCachedFormatAt(column))){
 				// filter non-math
 				m_cursor.setColumnNumber(column+1);
 				column=-1;

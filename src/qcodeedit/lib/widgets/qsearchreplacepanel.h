@@ -98,7 +98,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void on_cbEscapeSeq_toggled(bool on);
 		void on_cbPrompt_toggled(bool on);
 
-        void filterChanged();
+		void filterChanged();
 
 		void on_bNext_clicked();
 		void on_bPrevious_clicked();
@@ -116,7 +116,9 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void updateSearchOptions(bool replace, bool replaceAll);
 		void on_cFind_returnPressed(bool backward);
 		void on_cReplace_returnPressed(bool backward);
-        void updateButtonSizes();
+		void updateButtonSizes();
+		//void setFilteredIconAndFormats(const char* icon, const char* format);
+		void setFilteredIconAndFormats(const char* icon, const std::initializer_list<const char*>& formats);
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
 		int minimum_width;
