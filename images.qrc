@@ -207,6 +207,7 @@
         <file>images-ng/modern/zoom-out.svgz</file>
         <file>images-ng/math.svg</file>
         <file>images-ng/comment.svg</file>
+        <file>images-ng/non-comment.svg</file>
         <file>images-ng/command.svg</file>
         <file>images-ng/all.svg</file>
         <file>images-ng/verbatim.svg</file>

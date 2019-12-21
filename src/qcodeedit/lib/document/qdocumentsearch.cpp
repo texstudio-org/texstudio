@@ -410,18 +410,15 @@ void QDocumentSearch::setOptions(Options options){
 	for (int i=0;i<8;i++)
 		setOption(static_cast<Option>(1<<i), options & (1<<i));
 }
-void QDocumentSearch::setFilteredFormats(QList<int> ids){
+void QDocumentSearch::setFilteredFormats(QList<int> ids, bool inverted){
 	m_filteredIds=ids;
+	m_filteredIdsInverted = inverted;
 	// update search
 	if (m_option & QDocumentSearch::HighlightAll){
 		// matches may have become invalid : update them
 		searchMatches();
 		visibleLinesChanged();
 	}
-}
-void QDocumentSearch::setFilteredFormat(int id)
-{
-	setFilteredFormats({id});
 }
 
 QList<int> QDocumentSearch::getFilteredFormats() const
@@ -430,7 +427,9 @@ QList<int> QDocumentSearch::getFilteredFormats() const
 }
 
 bool QDocumentSearch::isAcceptedFormat(int formatIds) const {
-	return m_filteredIds.isEmpty() || m_filteredIds.contains(formatIds&255)|| m_filteredIds.contains((formatIds>>8)&255)|| m_filteredIds.contains((formatIds>>16)&255);
+	if (m_filteredIds.isEmpty()) return true;
+	bool contained =  m_filteredIds.contains(formatIds&255)|| m_filteredIds.contains((formatIds>>8)&255)|| m_filteredIds.contains((formatIds>>16)&255);
+	return contained != m_filteredIdsInverted;
 }
 
 

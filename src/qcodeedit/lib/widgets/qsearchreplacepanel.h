@@ -117,8 +117,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void on_cFind_returnPressed(bool backward);
 		void on_cReplace_returnPressed(bool backward);
 		void updateButtonSizes();
-		//void setFilteredIconAndFormats(const char* icon, const char* format);
-		void setFilteredIconAndFormats(const char* icon, const std::initializer_list<const char*>& formats);
+		void setFilteredIconAndFormats(const char* icon, const std::initializer_list<const char*>& formats, bool inverted = false);
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
 		int minimum_width;

@@ -226,6 +226,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	menu->addAction(getRealIcon("math"),"math",this,SLOT(filterChanged()));
 	menu->addAction(getRealIcon("verbatim"),"verbatim",this,SLOT(filterChanged()));
 	menu->addAction(getRealIcon("comment"),"comment",this,SLOT(filterChanged()));
+	menu->addAction(getRealIcon("non-comment"),"non-comment",this,SLOT(filterChanged()));
 	menu->addAction(getRealIcon("command"),"keyword",this,SLOT(filterChanged()));
 	menu->addAction(getRealIcon("label"),"label",this,SLOT(filterChanged()));
 	menu->addAction(getRealIcon("cite"),"citation",this,SLOT(filterChanged()));
@@ -920,14 +921,14 @@ void QSearchReplacePanel::on_cbPrompt_toggled(bool on){
 		cFind->setFocus();
 }
 
-void QSearchReplacePanel::setFilteredIconAndFormats(const char* icon, const std::initializer_list<const char*>& formats){
+void QSearchReplacePanel::setFilteredIconAndFormats(const char* icon, const std::initializer_list<const char*>& formats, bool inverted){
 	QDocument *doc=editor()->document();
 	REQUIRE(doc);
 	cbFilter->setIcon(getRealIconCached(icon));
 	QList<int> ids;
 	for (const char * fmt : formats)
 		ids << doc->getFormatId(fmt);
-	m_search->setFilteredFormats(ids);
+	m_search->setFilteredFormats(ids, inverted);
 }
 
 
@@ -938,10 +939,11 @@ void QSearchReplacePanel::filterChanged()
 		return;
 	QString text=act->text();
 	if(text=="all") setFilteredIconAndFormats("all", {});
-	else if(text=="math") setFilteredIconAndFormats("math", {"numbers"});
+	else if(text=="math") setFilteredIconAndFormats("math", {"numbers", "math-keyword", "math-delimiter"});
 	else if(text=="verbatim") setFilteredIconAndFormats("verbatim", {"verbatim"});
 	else if(text=="comment") setFilteredIconAndFormats("comment", {"comment"});
-	else if(text=="keyword") setFilteredIconAndFormats("command", {"keyword"});
+	else if(text=="non-comment") setFilteredIconAndFormats("non-comment", {"comment"}, true);
+	else if(text=="keyword") setFilteredIconAndFormats("command", {"keyword", "extra-keyword", "math-keyword"});
 	else if(text=="label") setFilteredIconAndFormats("label", {"referencePresent","referenceMissing","referenceMultiple"});
 	else if(text=="citation") setFilteredIconAndFormats("cite", {"citationPresent","citationMissing"});
 }
