@@ -780,17 +780,19 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		length=m_regexp.matchedLength();
 #endif
 
+		QDocumentCursor::MoveOperation nextMove = move;
+
+		bool matches = column != -1 && (backward || column >= m_cursor.columnNumber() );
+
 		if(backward && hasOption(RegExp) && m_string.endsWith('$') && s.length()<l.length()){
-			column=-1; // force miss as regexp $ is only valid on unchanged line
+			matches = false; // force miss as regexp $ is only valid on unchanged line
 		}
-		// filter out matches that don't fulfill fomarting i.e. math-env
-		bool filtered=false;
-		if(column != -1 && (backward || column >= m_cursor.columnNumber() ) ){
+
+		if(matches){
 			if(!isAcceptedFormat(l.getCachedFormatAt(column))){
-				// filter non-math
-				m_cursor.setColumnNumber(column+1);
-				column=-1;
-				filtered=true;
+				//filter out matches that don't fulfill formatting e.g. math-env
+				nextMove = backward ? QDocumentCursor::PreviousCharacter : QDocumentCursor::NextCharacter;
+				matches = false;
 			}
 		}
 		/*
@@ -800,7 +802,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				column);
 		//*/
 
-		if ( column != -1 && (backward || column >= m_cursor.columnNumber() ) )
+		if ( matches )
 		{
 			if (!length){
 				//empty (e.g. a* regexp)
@@ -862,8 +864,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 					break;
 			}
 		} else {
-			if(!filtered)
-				m_cursor.movePosition(1, move, QDocumentCursor::ThroughFolding);
+			m_cursor.movePosition(1, nextMove, QDocumentCursor::ThroughFolding);
 		}
 	}
 	if ( all && replaceCount )
