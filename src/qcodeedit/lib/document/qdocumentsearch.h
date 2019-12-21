@@ -71,10 +71,10 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		void setOption(Option opt, bool on);
 		void setOptions(Options options);
 
-        void setFilteredFormat(int id);
-        void setFilteredFormats(QList<int> ids);
-        QList<int> getFilteredFormats() const;
-		
+		void setFilteredFormat(int id);
+		void setFilteredFormats(QList<int> ids);
+		QList<int> getFilteredFormats() const;
+
 		QString replaceText() const;
 		void setReplaceText(const QString& r);
 		QString replaceTextExpanded() const;
@@ -124,7 +124,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 
 		int m_replaced,m_replaceDeltaLength,m_replaceDeltaLines;
 
-        QList<int> m_filteredIds;
+		QList<int> m_filteredIds;
 	private slots:
 		void documentContentChanged(int line, int n);
 		void visibleLinesChanged();
