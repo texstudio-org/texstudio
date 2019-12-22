@@ -59,7 +59,7 @@ elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 #	brew install qt5
 #	brew uninstall poppler
     brew uninstall --ignore-dependencies poppler
-	brew install "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb" --with-qt
+	brew install "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
 else
 	print_error "Unsupported host/target combination '${TRAVIS_OS_NAME}'"
 	exit 1
