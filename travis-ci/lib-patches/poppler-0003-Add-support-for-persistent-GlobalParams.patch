@@ -1,4 +1,4 @@
-From 88809a21299ea1129aef4aa016e057077a0636f2 Mon Sep 17 00:00:00 2001
+From b578db7298998b9b540aa047709289d411236dea Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
 Date: Fri, 12 Feb 2016 08:00:59 -0500
 Subject: [PATCH 3/3] Add support for persistent GlobalParams
@@ -10,10 +10,10 @@ Subject: [PATCH 3/3] Add support for persistent GlobalParams
  3 files changed, 15 insertions(+), 4 deletions(-)
 
 diff --git a/qt5/src/poppler-document.cc b/qt5/src/poppler-document.cc
-index 0aa5bed4..bf3b9b99 100644
+index 81db4eaf..8125e73f 100644
 --- a/qt5/src/poppler-document.cc
 +++ b/qt5/src/poppler-document.cc
-@@ -58,6 +58,7 @@ namespace Poppler {
+@@ -59,6 +59,7 @@ namespace Poppler {
  
    int DocumentData::count = 0;
    QMutex DocumentData::mutex;
@@ -22,10 +22,10 @@ index 0aa5bed4..bf3b9b99 100644
    Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
  			   const QByteArray &userPassword)
 diff --git a/qt5/src/poppler-private.cc b/qt5/src/poppler-private.cc
-index 0c178a54..6623b42c 100644
+index a3fbec36..619632dd 100644
 --- a/qt5/src/poppler-private.cc
 +++ b/qt5/src/poppler-private.cc
-@@ -258,8 +258,13 @@ namespace Debug {
+@@ -248,8 +248,13 @@ namespace Debug {
          count --;
          if ( count == 0 )
          {
@@ -41,7 +41,7 @@ index 0c178a54..6623b42c 100644
          }
        }
      
-@@ -274,8 +279,12 @@ namespace Debug {
+@@ -264,8 +269,12 @@ namespace Debug {
  
          if ( count == 0 )
          {
@@ -57,10 +57,10 @@ index 0c178a54..6623b42c 100644
          }
          count ++;
 diff --git a/qt5/src/poppler-private.h b/qt5/src/poppler-private.h
-index f3980513..610e1dea 100644
+index de5ec041..54ccc418 100644
 --- a/qt5/src/poppler-private.h
 +++ b/qt5/src/poppler-private.h
-@@ -155,6 +155,7 @@ namespace Poppler {
+@@ -158,6 +158,7 @@ namespace Poppler {
  	int m_hints;
  	static int count;
  	static QMutex mutex;
@@ -69,5 +69,5 @@ index f3980513..610e1dea 100644
  
      class FontInfoData
 -- 
-2.17.1
+2.20.1
 
