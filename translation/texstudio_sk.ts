@@ -1149,7 +1149,7 @@ Potom môžete vybrať novú klávesovú skratku jedným z nasledujúcich spôso
     <message>
         <location filename="../src/configdialog.ui" line="1122"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"/>
+        <translation>Zatvárací Prvok sa týka fixného zoznamu GUI prvkov (nie všetky sú tu ukázané). Prvý viditeľný prvok bude zatvorený. Týmto nastavením môžete vyjmuť niektoré prvky aby sa zavreli.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1125"/>
@@ -1794,12 +1794,12 @@ Keďže Unicode nie je natívne podporovaný LaTeXom, musíte do svojho dokument
     <message>
         <location filename="../src/configdialog.ui" line="2438"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Externé programy (ako Zotero) môžu pretlačiť citácie do TexStudia pomocou zavolania: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citácia&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Ak už nie je kurzor v rámci príkazu citácie, &amp;quot;príkaz&amp;quot; tu zadaný je použitý ako \cite-príkaz.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2441"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation>Latex Príkaz pre pretlačené citácie:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2454"/>
@@ -2686,7 +2686,7 @@ Poznámka: Zmena tohto nastavenia ovplyvní len následne otvorené dokumenty.</
     <message>
         <location filename="../src/configdialog.ui" line="4451"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>Predvolená farba pozadia. Definuj ako hexadecimálnu RGB hodnotu. Poznámka: Toto ovplyvní len PDF súbory načítané po tejto zmene. Farba papiera už otvorených PDF súborov nebude modifikovaná.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4503"/>
@@ -6345,7 +6345,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+bol zmenený mimo TeXstudia. Znova načítať z disku?
+
+Poznámky:
+- Načítanie prepíše obsah editora so súborom z disku. Toto sa nedá vrátiť.
+- V možnostiach môžete povoliť permanentné tiché načítavanie.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>
