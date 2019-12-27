@@ -2,10 +2,9 @@
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexreader.h"
 #include "QThread"
-#if QT_VERSION >= 0x050000
 #include <QJsonDocument>
 #include <QJsonArray>
-#endif
+
 GrammarError::GrammarError(): offset(0), length(0), error(GET_UNKNOWN) {}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error, const QString &message): offset(offset), length(length), error(error), message(message) {}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error, const QString &message, const QStringList &corrections): offset(offset), length(length), error(error), message(message), corrections(corrections) {}
@@ -36,14 +35,12 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 	this->config = config;
 
     if (!backend) {
-#if QT_VERSION >= 0x050000
-            backend = new GrammarCheckLanguageToolJSON(this);
-#else
-            backend = new GrammarCheckLanguageToolSOAP(this);
-#endif
-            connect(backend, SIGNAL(checked(uint, int, QList<GrammarError>)), this, SLOT(backendChecked(uint, int, QList<GrammarError>)));
-            connect(backend, SIGNAL(errorMessage(QString)),this,SIGNAL(errorMessage(QString)));
-            connect(backend, SIGNAL(languageToolStatusChanged()),this,SLOT(updateLTStatus()));
+
+        backend = new GrammarCheckLanguageToolJSON(this);
+
+        connect(backend, SIGNAL(checked(uint, int, QList<GrammarError>)), this, SLOT(backendChecked(uint, int, QList<GrammarError>)));
+        connect(backend, SIGNAL(errorMessage(QString)),this,SIGNAL(errorMessage(QString)));
+        connect(backend, SIGNAL(languageToolStatusChanged()),this,SLOT(updateLTStatus()));
     }
 	backend->init(config);
 
@@ -99,7 +96,7 @@ struct CheckRequest {
 	int firstLineNr;
 	uint ticket;
 	int handledBlocks;
-	CheckRequest(const QString &language, const void *doc, const QList<LineInfo> inlines, const int firstLineNr, const int ticket):
+    CheckRequest(const QString &language, const void *doc, const QList<LineInfo> inlines, const int firstLineNr, const uint ticket):
 		pending(true), language(language), doc(const_cast<void *>(doc)), inlines(inlines), firstLineNr(firstLineNr), ticket(ticket), handledBlocks(0) {}
 
 	QList<int> linesToSkip;
@@ -312,7 +309,7 @@ void GrammarCheck::process(int reqId)
 	}
 
 	QList<TokenizedBlock> crBlocks = cr.blocks; //cr itself might become invalid during the following loop
-	int crTicket = cr.ticket;
+    uint crTicket = cr.ticket;
 	QString crLanguage = cr.language;
 
 	for (int b = 0; b < crBlocks.size(); b++) {
@@ -518,285 +515,26 @@ GrammarCheckBackend::GrammarCheckBackend(QObject *parent): QObject(parent) {}
 #include "QtNetwork/QNetworkRequest"
 
 struct CheckRequestBackend {
-	int ticket;
-	int subticket;
+    uint ticket;
+    uint subticket;
 	QString language;
 	QString text;
-	CheckRequestBackend(int ti, int st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
+    CheckRequestBackend(uint ti, uint st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
 };
-
-GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): GrammarCheckBackend(parent), nam(nullptr), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
-{
-
-}
-
-GrammarCheckLanguageToolSOAP::~GrammarCheckLanguageToolSOAP()
-{
-	delete nam;
-}
-/*!
- * \brief GrammarCheckLanguageToolSOAP::init
- * Initialize LanguageTool as grammar backend
- * \param config reference to config
- */
-void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
-{
-
-	server = config.languageToolURL;
-	ltPath = config.languageToolAutorun ? config.languageToolPath : "";
-	if (!ltPath.endsWith("jar")) {
-		QStringList jars;
-		jars << "/LanguageTool.jar" << "/languagetool-server.jar" << "/languagetool-standalone.jar";
-		foreach (const QString &j, jars)
-			if (QFile::exists(ltPath + j)) {
-				ltPath = ltPath + j;
-				break;
-			}
-	}
-	ltArguments = config.languageToolArguments;
-	javaPath = config.languageToolJavaPath;
-
-	ignoredRules.clear();
-	foreach (const QString &r, config.languageToolIgnoredRules.split(","))
-		ignoredRules << r.trimmed();
-	connectionAvailability = Unknown;
-	if (config.languageToolURL.isEmpty()) connectionAvailability = Broken;
-	triedToStart = false;
-	firstRequest = true;
-
-
-	specialRules.clear();
-	QList<const QString *> sr = QList<const QString *>() << &config.specialIds1 << &config.specialIds2 << &config.specialIds3 << &config.specialIds4;
-	foreach (const QString *s, sr) {
-		QSet<QString> temp;
-		foreach (const QString &r, s->split(","))
-			temp << r.trimmed();
-		specialRules << temp;
-	}
-}
-/*!
- * \brief GrammarCheckLanguageToolSOAP::isAvailable
- * \return LanguageTool is available (or possibly so)
- */
-bool GrammarCheckLanguageToolSOAP::isAvailable()
-{
-	return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
-}
-
-/*!
- * \brief GrammarCheckLanguageToolSOAP::isWorking
- * \return LanguageTool is known to work
- */
-bool GrammarCheckLanguageToolSOAP::isWorking()
-{
-    return connectionAvailability == WorkedAtLeastOnce;
-}
-
-QString GrammarCheckLanguageToolSOAP::url()
-{
-#if QT_VERSION < 0x050000
-    return server.toString();
-#else
-	return server.toDisplayString();
-#endif
-}
 
 QString quoteSpaces(const QString &s)
 {
 	if (!s.contains(' ')) return s;
 	return '"' + s + '"';
 }
-/*!
- * \brief GrammarCheckLanguageToolSOAP::tryToStart
- * try to start LanguageTool-Server on local machine
- */
-void GrammarCheckLanguageToolSOAP::tryToStart()
-{
-	if (triedToStart) {
-		if (QDateTime::currentDateTime().toTime_t() - startTime < 60 * 1000 ) {
-			connectionAvailability = Unknown;
-			ThreadBreaker::sleep(1);
-		}
-		return;
-	}
-	triedToStart = true;
-	startTime = 0;
-	if (ltPath == "" || !QFileInfo(ltPath).exists()) return;
-	javaProcess = new QProcess();
-	connect(javaProcess, SIGNAL(finished(int)), javaProcess, SLOT(deleteLater()));
-	connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-	javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
-	javaProcess->waitForStarted();
 
-	connectionAvailability = Unknown;
-	startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
-}
+const QNetworkRequest::Attribute AttributeTicket = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User);
+const QNetworkRequest::Attribute AttributeLanguage = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User + 2);
+const QNetworkRequest::Attribute AttributeText = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User + 3);
+const QNetworkRequest::Attribute AttributeSubTicket = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User + 4);
 
-const QNetworkRequest::Attribute AttributeTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User);
-const QNetworkRequest::Attribute AttributeLanguage = (QNetworkRequest::Attribute)(QNetworkRequest::User + 2);
-const QNetworkRequest::Attribute AttributeText = (QNetworkRequest::Attribute)(QNetworkRequest::User + 3);
-const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User + 4);
-/*!
- * \brief GrammarCheckLanguageToolSOAP::check
- * Place data to be checked on LT-Server
- * \param ticket
- * \param subticket
- * \param language
- * \param text
- */
-void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString &language, const QString &text)
-{
-    if (!nam) {
-		nam = new QNetworkAccessManager();
-		connect(nam, SIGNAL(finished(QNetworkReply *)), SLOT(finished(QNetworkReply *)));
-	}
 
-	REQUIRE(nam);
-
-	QString lang = language;
-	if (languagesCodesFail.contains(lang) && lang.contains('-'))
-		lang = lang.left(lang.indexOf('-'));
-
-	if (connectionAvailability == Unknown) {
-		if (firstRequest) firstRequest = false;
-		else {
-			delayedRequests << CheckRequestBackend(ticket, subticket, lang, text);
-			return;
-		}
-	}
-
-	QNetworkRequest req(server);
-    req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=UTF-8");
-    req.setRawHeader("User-Agent", QString("texstudio %1").arg(TXSVERSION).toUtf8());
-	QByteArray post;
-	post.reserve(text.length() + 50);
-	post.append("language=" + lang + "&text=");
-	post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
-	post.append("\n");
-
-	//qDebug() << text;
-
-	req.setAttribute(AttributeTicket, ticket);
-	req.setAttribute(AttributeLanguage, lang);
-	req.setAttribute(AttributeText, text);
-	req.setAttribute(AttributeSubTicket, subticket);
-
-	nam->post(req, post);
-}
-/*!
- * \brief GrammarCheckLanguageToolSOAP::shutdown
- * shutdown LT-Server
- */
-void GrammarCheckLanguageToolSOAP::shutdown()
-{
-	if (javaProcess) {
-		javaProcess->terminate();
-		javaProcess->deleteLater();
-	}
-	connectionAvailability = Terminated;
-	if (nam) {
-		nam->deleteLater();
-        nam = nullptr;
-	}
-}
-/*!
- * \brief GrammarCheckLanguageToolSOAP::finished
- * Slot for postprocessing LT data
- * \param nreply
- */
-void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
-{
-	if (connectionAvailability == Terminated) return;  // shutting down
-	if (connectionAvailability == Broken) return;  // don't continue if failed before
-	if (nam != sender()) return; //safety check, in case nam was deleted and recreated
-
-	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
-	int subticket = nreply->request().attribute(AttributeSubTicket).toInt();
-	QString text = nreply->request().attribute(AttributeText).toString();
-	int status = nreply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-
-	//qDebug() << status << ": " << reply;
-
-	if (status == 0) {
-		//no response
-		connectionAvailability = Broken; //assume no backend
-		tryToStart();
-		if (connectionAvailability == Broken) {
-			if (delayedRequests.size()) delayedRequests.clear();
-			nam->deleteLater(); // shutdown unnecessary network manager (Bug 1717/1738)
-            nam = nullptr;
-			return; //confirmed: no backend
-		}
-		//there might be a backend now, but we still don't have the results
-		firstRequest = true; //send this request directly, queue later ones
-		check(ticket, subticket, nreply->request().attribute(AttributeLanguage).toString(), text);
-		nreply->deleteLater();
-		return;
-	}
-
-	QByteArray reply = nreply->readAll();
-
-	if (status == 500 && reply.contains("language code") && reply.contains("IllegalArgumentException")) {
-		QString lang = nreply->request().attribute(AttributeLanguage).toString();
-		if (lang.contains('-')) {
-			languagesCodesFail.insert(lang);
-			check(ticket, subticket, lang, text);
-		}
-		return;
-	}
-
-	connectionAvailability = WorkedAtLeastOnce;
-
-	QDomDocument dd;
-	dd.setContent(reply);
-	QList<GrammarError> results;
-	QDomNode n = dd.documentElement();
-	QDomNodeList lterrors = n.childNodes();
-	for (int i = 0; i < lterrors.size(); i++) {
-		if (lterrors.at(i).nodeType() != QDomNode::ElementNode) continue;
-		if (lterrors.at(i).nodeName() != "error") continue;
-		QDomNamedNodeMap atts = lterrors.at(i).attributes();
-		QString id = atts.namedItem("ruleId").nodeValue();
-		if (ignoredRules.contains(id)) continue;
-		QString context = atts.namedItem("context").nodeValue();
-		int contextoffset = atts.namedItem("contextoffset").nodeValue().toInt();
-		if (context.endsWith("..")) context.chop(3);
-		if (context.startsWith("..")) context = context.mid(3), contextoffset -= 3;
-		int from = atts.namedItem("fromx").nodeValue().toInt();
-		int realfrom = text.indexOf(context, qMax(from - 5 - context.length(), 0)); //don't trust from
-		//qDebug() << realfrom << context;
-		if (realfrom == -1) {
-			realfrom = from;
-		} // qDebug() << "discard => " << from; }
-		else  realfrom += contextoffset;
-		int len = atts.namedItem("errorlength").nodeValue().toInt();
-		QStringList cors = atts.namedItem("replacements").nodeValue().split("#");
-		if (cors.size() == 1 && cors.first() == "") cors.clear();
-
-		int type = GET_BACKEND;
-		for (int j = 0; j < specialRules.size(); j++)
-			if (specialRules[j].contains(id)) {
-				type += j + 1;
-				break;
-			}
-		results << GrammarError(realfrom, len, (GrammarErrorType)type, atts.namedItem("msg").nodeValue() + " (" + id + ")", cors);
-		//qDebug() << realfrom << len;
-	}
-
-	emit checked(ticket, subticket, results);
-
-	nreply->deleteLater();
-
-	if (delayedRequests.size()) {
-		QList<CheckRequestBackend> delayedRequestsCopy = delayedRequests;
-		delayedRequests.clear();
-		foreach (const CheckRequestBackend &cr, delayedRequestsCopy)
-			check(cr.ticket, cr.subticket, cr.language, cr.text);
-	}
-}
-
-#if QT_VERSION >= 0x050000
 GrammarCheckLanguageToolJSON::GrammarCheckLanguageToolJSON(QObject *parent): GrammarCheckBackend(parent), nam(nullptr), connectionAvailability(Unknown), triedToStart(false), firstRequest(true),startTime(0)
 {
 
@@ -876,11 +614,7 @@ bool GrammarCheckLanguageToolJSON::isWorking()
 
 QString GrammarCheckLanguageToolJSON::url()
 {
-#if QT_VERSION < 0x050000
-    return server.toString();
-#else
     return server.toDisplayString();
-#endif
 }
 
 /*!
@@ -918,7 +652,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
  * \param language
  * \param text
  */
-void GrammarCheckLanguageToolJSON::check(uint ticket, int subticket, const QString &language, const QString &text)
+void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QString &language, const QString &text)
 {
     if (!nam) {
         nam = new QNetworkAccessManager();
@@ -1091,7 +825,7 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
         if (description.length() > 0 && description != title)
             message << description;
         message << ("(" + id + ")");
-        results << GrammarError(realfrom, len, (GrammarErrorType)type, message.join("<br>"), cors);
+        results << GrammarError(realfrom, len, static_cast<GrammarErrorType>(type), message.join("<br>"), cors);
         //qDebug() << realfrom << len;
     }
 
@@ -1106,4 +840,3 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
             check(cr.ticket, cr.subticket, cr.language, cr.text);
     }
 }
-#endif

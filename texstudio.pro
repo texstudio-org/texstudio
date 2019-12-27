@@ -8,9 +8,8 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     !win32: CONFIG -= precompile_header # precompiling does not work with Qt5 and mingw
     win32: CONFIG -= precompile_header
 } else {
-    message(Building with Qt4)
-    CONFIG += qt uitools
-    CONFIG -= precompile_header
+    message(Qt4 support has been removed.)
+
 }
 
 # allow loading extra config by file for automatic compilations (OBS)
@@ -21,18 +20,14 @@ QT += network \
     script \
     printsupport \
     concurrent
-greaterThan(QT_MAJOR_VERSION, 4) {
+
 QT += \
     widgets \
     uitools
-}
+
 !isEmpty(PHONON){
-    greaterThan(QT_MAJOR_VERSION, 4) { #Qt5
-        QT += phonon4qt5
-        LIBS += -lphonon4qt5
-    } else { #Qt4
-        QT += phonon
-    }
+    QT += phonon4qt5
+    LIBS += -lphonon4qt5
     DEFINES += PHONON
 }
 !isEmpty(QJS){
@@ -41,8 +36,7 @@ QT += \
     message(Use experimental JS engine)
 }
 
-contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
-else:include(src/qtsingleapplication/qtsingleapplication.pri)
+include(src/qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
@@ -310,17 +304,12 @@ isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC
   include(src/quazip/quazip/quazip.pri)
 } else {
-  greaterThan(QT_MAJOR_VERSION, 4) { #Qt5
     message(System quazip5)
     isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
     isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
-  } else { #Qt4
-    message(System quazip)
-    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
-    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
-  }
-  INCLUDEPATH += $${QUAZIP_INCLUDE}
-  LIBS += $${QUAZIP_LIB}
+
+    INCLUDEPATH += $${QUAZIP_INCLUDE}
+    LIBS += $${QUAZIP_LIB}
 }
 
 include(src/pdfviewer/pdfviewer.pri)
