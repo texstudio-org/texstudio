@@ -17,11 +17,7 @@ private:
 	DebugLoggerQt(void);
 
 #ifndef QT_NO_DEBUG
-#if QT_VERSION < 0x050000
-	static void messageHandlerQt4(QtMsgType msgType, const char *message);
-#else
 	static void messageHandlerQt5(QtMsgType msgType, const QMessageLogContext &context, const QString &message);
-#endif
 #endif // QT_NO_DEBUG
 
 	static LogCallback m_callback;
