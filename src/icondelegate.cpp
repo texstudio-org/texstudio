@@ -43,13 +43,12 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	// do layout
 	value = model->data(index, Qt::DecorationRole);
 	QPixmap pixmap = decoration(opt, value);
-	/*#if QT_VERSION >= 0x050000
+    /*
 	 * pixmap size is fixed and it is determined at start-up
 	 * so, it can't handle change of devicePixelratio during run time when changing to normal res screen
 	    int overScale= painter->device()->devicePixelRatio();
-	#else*/
+    */
 	int overScale = isRetinaMac() ? 2 : 1;
-//#endif
 
 	QSize pixmapSize = pixmap.size() / overScale;
 	QRect pixmapRect(QPoint(0, 0), pixmapSize);
@@ -58,20 +57,14 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	QFontMetrics fontMetrics(opt.font);
 	QString text = model->data(index, Qt::DisplayRole).toString();
 	QRect textRect(0, 0, 0, 0);
-	//QRect textRect(0, 0, fontMetrics.width(text), fontMetrics.lineSpacing());
 
 	value = model->data(index, Qt::CheckStateRole);
 	QRect checkRect = check(opt, opt.rect, value);
-	// Qt::CheckState checkState = static_cast<Qt::CheckState>(value.toInt());
 
 	doLayout(opt, &checkRect, &pixmapRect, &textRect, false);
 
 	// draw the background color
 	if (option.showDecorationSelected && (option.state & QStyle::State_Selected)) {
-		/* QPalette::ColorGroup cg = option.state & QStyle::State_Enabled
-		                          ? QPalette::Normal : QPalette::Disabled; */
-		//painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
-//painter->fillRect(option.rect,QColor("#78A9dc"));
 		painter->fillRect(option.rect, QColor("#cdd2d8"));
 	} else {
 		value = model->data(index, Qt::BackgroundColorRole);
@@ -80,10 +73,8 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	}
 
 	// draw the item
-//    drawCheck(painter, opt, checkRect, checkState);
+
 	drawDecoration(painter, opt, pixmapRect, pixmap);
-//    drawDisplay(painter, opt, textRect, text);
-//    drawFocus(painter, opt, textRect);
 }
 
 QSize IconDelegate::sizeHint(const QStyleOptionViewItem &option,
