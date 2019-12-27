@@ -207,43 +207,8 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 	for (int i = 0; i < queueAdministration->num_renderQueues; i++) {
 
-#ifdef HAS_POPPLER_24
-		// poppler claims to be thread safe ...
 		queueAdministration->renderQueues[i]->setDocument(document);
-#else
-		Poppler::Document *doc;
-		try {
-			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000)) {
-				// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
-				doc = Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword);
-			} else {
-				// Workaround: loadFromData crashes if called with large data for the second time (i==1).
-				// See also bug report https://sourceforge.net/p/texstudio/bugs/710/?page=2
-				// I used a 200 MB file in the tests. Also 150 MB and 66 MB was reported to crash.
-				// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
-				doc = Poppler::Document::load(fileName, ownerPassword, userPassword);
-			}
-			QSharedPointer<Poppler::Document> spDoc(doc);
-			queueAdministration->renderQueues[i]->setDocument(spDoc);
-		} catch (std::bad_alloc) {
-			Q_ASSERT(false);
-			error = PopplerErrorBadAlloc;
-			return QSharedPointer<Poppler::Document>();
-		} catch (...) {
-			Q_ASSERT(false);
-			error = PopplerErrorException;
-			return QSharedPointer<Poppler::Document>();
-		}
 
-		if (!doc) {
-			Q_ASSERT(false);
-			error = FileIncomplete;
-			return QSharedPointer<Poppler::Document>();
-		}
-		doc->setRenderBackend(Poppler::Document::SplashBackend);
-		doc->setRenderHint(Poppler::Document::Antialiasing);
-		doc->setRenderHint(Poppler::Document::TextAntialiasing);
-#endif
 
 		if (!queueAdministration->renderQueues[i]->isRunning())
 			queueAdministration->renderQueues[i]->start();
