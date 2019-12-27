@@ -14,7 +14,6 @@
 LatexEditorViewBenchmark::LatexEditorViewBenchmark(LatexEditorView* view, bool all): edView(view), all(all){}
 
 void LatexEditorViewBenchmark::documentChange_data(){
-#if QT_VERSION >= 0x040500	
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("start");
 	QTest::addColumn<int>("count");
@@ -47,10 +46,8 @@ void LatexEditorViewBenchmark::documentChange_data(){
 	QTest::newRow("spellcheck in command")
 			<< "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
-#endif
 }
 void LatexEditorViewBenchmark::documentChange(){
-#if QT_VERSION >= 0x040500	
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
@@ -64,11 +61,9 @@ void LatexEditorViewBenchmark::documentChange(){
 	QBENCHMARK {
 		edView->documentContentChanged(start,count);
 	}
-#endif
 }
 
 void LatexEditorViewBenchmark::patch_data(){
-#if QT_VERSION >= 0x040500
     QTest::addColumn<QString>("text");
     QTest::addColumn<int>("start");
     QTest::addColumn<int>("count");
@@ -121,10 +116,8 @@ void LatexEditorViewBenchmark::patch_data(){
                +QString("\\begin{equation}\nerdf\n\\end{equation}\n\n\\textmu m\n\n$\\mu\\quad\\theta$\n\n\\begin{verbatim}\ndas dassdf asdasdf asdf \nasdfasdfa asdf asdf asdf  fad txssdsdsd\n\\end{verbatim}\n\n\\begin{tabular}	{l|*{3}{c}}\n\\hline 1 & 2 & 3 & 4 \\\\ \n")
                +QString("\\hline a & b & c & d \\\\\n\\hline\n\\end{tabular}\n\n\\end{document}\n\n%\\section{dfgdfg}\n\n")
         << 0 << 111;
-#endif
 }
 void LatexEditorViewBenchmark::patch(){
-#if QT_VERSION >= 0x040500
     QFETCH(QString, text);
     QFETCH(int, start);
     QFETCH(int, count);
@@ -138,11 +131,9 @@ void LatexEditorViewBenchmark::patch(){
     QBENCHMARK {
         edView->document->patchStructure(start,count);
     }
-#endif
 }
 
 void LatexEditorViewBenchmark::linePaint_data(){
-#if QT_VERSION >= 0x040500
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("start");
 	QTest::addColumn<int>("count");
@@ -175,10 +166,8 @@ void LatexEditorViewBenchmark::linePaint_data(){
 	QTest::newRow("spellcheck in command")
 			<< "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
-#endif
 }
 void LatexEditorViewBenchmark::linePaint(){
-#if QT_VERSION >= 0x040500
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
@@ -223,12 +212,10 @@ void LatexEditorViewBenchmark::linePaint(){
 	}
 	pnt.end();
 	delete px;
-#endif
 }
 
 
 void LatexEditorViewBenchmark::paintEvent_data(){
-#if QT_VERSION >= 0x040500
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("start");
 	QTest::addColumn<int>("count");
@@ -261,10 +248,8 @@ void LatexEditorViewBenchmark::paintEvent_data(){
 	QTest::newRow("spellcheck in command")
 			<< "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
 		<< 0 << 1;
-#endif
 }
 void LatexEditorViewBenchmark::paintEvent(){
-#if QT_VERSION >= 0x040500
 	QFETCH(QString, text);
 	QFETCH(int, start);
 	QFETCH(int, count);
@@ -281,7 +266,6 @@ void LatexEditorViewBenchmark::paintEvent(){
 	QBENCHMARK {
 		edView->editor->repaint(edView->rect());
 	}
-#endif
 }
 #endif
 
