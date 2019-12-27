@@ -2,6 +2,7 @@
 #include "ui_maketemplatedialog.h"
 #include "smallUsefulFunctions.h"
 #include "utilsUI.h"
+#include <QJsonDocument>
 
 MakeTemplateDialog::MakeTemplateDialog(QString templateDir, QString editorFilename, QWidget *parent) :
 	QDialog(parent),
@@ -51,13 +52,15 @@ void MakeTemplateDialog::tryAccept()
 
 QString MakeTemplateDialog::generateMetaData()
 {
-	QString s = "{\n";
-	s += formatJsonStringParam("Name", ui->leName->text(), 13) + ",\n";
-	s += formatJsonStringParam("Author", ui->leAuthor->text(), 13) + ",\n";
-	s += formatJsonStringParam("Date", QDate::currentDate().toString(Qt::ISODate), 13) + ",\n";
-	s += formatJsonStringParam("Version", ui->leVersion->text(), 13) + ",\n";
-	s += formatJsonStringParam("Description", ui->leDescription->toPlainText(), 13) + ",\n";
-	s += formatJsonStringParam("License", ui->cbLicense->currentText(), 13) + "\n"; // last entry does not have colon
-	s += "}";
-	return s;
+    QJsonObject json;
+
+    json["Name"]= ui->leName->text();
+    json["Author"]= ui->leAuthor->text();
+    json["Date"]= QDate::currentDate().toString(Qt::ISODate);
+    json["Version"]= ui->leVersion->text();
+    json["Description"]= ui->leDescription->toPlainText();
+    json["License"]= ui->cbLicense->currentText(); // last entry does not have colon
+
+    QJsonDocument jsonDoc(json);
+    return QString(jsonDoc.toJson());
 }

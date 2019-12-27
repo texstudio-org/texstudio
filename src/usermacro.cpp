@@ -296,11 +296,9 @@ bool Macro::loadFromText(const QString &text)
             }
         }
     }else{
-        // read old format
-        bool success=minimalJsonParse(text, rawData);
-        if(!success){
-            return false;
-        }
+        //old format
+        qDebug()<<"support for old macro format was removed!";
+        return false;
     }
 
     // distrbute data on internal structure

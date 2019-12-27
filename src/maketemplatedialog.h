@@ -13,7 +13,7 @@ class MakeTemplateDialog : public QDialog
 	Q_OBJECT
 
 public:
-	explicit MakeTemplateDialog(QString templateDir, QString editorFilename, QWidget *parent = 0);
+    explicit MakeTemplateDialog(QString templateDir, QString editorFilename, QWidget *parent = nullptr);
 	~MakeTemplateDialog();
 
 	QString generateMetaData();

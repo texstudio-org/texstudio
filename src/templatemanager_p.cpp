@@ -1,6 +1,7 @@
 #include "templatemanager_p.h"
 #include "JlCompress.h"
 #include "smallUsefulFunctions.h"
+#include <QJsonDocument>
 
 /*** TemplateHandle **********************************************************/
 
@@ -64,7 +65,6 @@ bool Template::createInFolder(const QString &path)
 		bool success = !JlCompress::extractDir(file(), dir.absolutePath()).isEmpty();
 		return success;
 	}
-	return false;
 }
 
 /*** LocalFileTemplate *******************************************************/
@@ -121,7 +121,14 @@ bool LocalLatexTemplate::readMetaData()
 	}
 	QTextStream in(&f);
 	in.setCodec("UTF-8");
-	return minimalJsonParse(in.readAll(), metaData);
+    QJsonDocument jsonDoc=QJsonDocument::fromJson(in.readAll().toUtf8());
+    QJsonObject dd=jsonDoc.object();
+    for(const QString& key : dd.keys()){
+        if(dd[key].isString()){
+            metaData.insert(key,dd[key].toString());
+        }
+    }
+    return true;
 }
 
 bool LocalLatexTemplate::saveMetaData()
@@ -130,19 +137,12 @@ bool LocalLatexTemplate::saveMetaData()
 	if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
 		return false;
 
-	QTextStream out(&f);
-	out.setCodec("UTF-8");
-	out << "{\n";
-	bool first = true;
+    QJsonObject json;
+    QJsonDocument jsonDoc(json);
 	foreach (const QString &key, metaData.keys()) {
-		if (first) {
-			first = false;
-		} else {
-			out << ",\n";
-		}
-		out << formatJsonStringParam(key, metaData[key], 13);
+        json[key]=metaData[key];
 	}
-	out << "\n}";
+    f.write(jsonDoc.toJson());
 	return true;
 }
 
@@ -166,7 +166,15 @@ bool LocalTableTemplate::readMetaData()
 	// should check when switching to a real JSON parser. However with this it is
 	// easy to extract var metaData = {}
 
-	return minimalJsonParse(jsonData, metaData);
+    QJsonDocument jsonDoc=QJsonDocument::fromJson(jsonData.toUtf8());
+    QJsonObject dd=jsonDoc.object();
+    for(const QString& key : dd.keys()){
+        if(dd[key].isString()){
+            metaData.insert(key,dd[key].toString());
+        }
+    }
+
+    return true;
 }
 
 

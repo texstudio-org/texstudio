@@ -27,8 +27,6 @@ private slots:
 	void test_tokenizeCommandLine();
 	void test_extractOutputRedirection_data();
 	void test_extractOutputRedirection();
-	void test_minimalJsonParse_data();
-	void test_minimalJsonParse();
 	void test_enquoteDequoteString_data();
 	void test_enquoteDequoteString();
 	void test_joinUnicodeSurrogate_data();

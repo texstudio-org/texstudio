@@ -100,9 +100,6 @@ void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QSt
 QString intListToStr(const QList<int> &ints);
 QList<int> strToIntList(const QString &s);
 
-bool minimalJsonParse(const QString &text, QHash<QString, QString> &map);
-/// generates a string in the format "id"  : "val", where the colon is at least a position minIdWidth+2 (filling with spaces)
-QString formatJsonStringParam(const QString &id, const QString &val, int minIdWidth = 0);
 QString enquoteStr(const QString &s);
 QString dequoteStr(const QString &s);
 
