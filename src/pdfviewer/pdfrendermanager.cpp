@@ -41,11 +41,7 @@ void SetImageForwarder::forward(int delay) {
 
 PDFQueue::PDFQueue(QObject *parent): QObject(parent), stopped(true), num_renderQueues(1)
 {
-#if QT_VERSION < 0x040400
-	m_ref.init(1);
-#else
 	m_ref = 1;
-#endif
 }
 
 void PDFQueue::deref()
@@ -424,17 +420,6 @@ void PDFRenderManager::addToCache(QImage img, int pageNr, int ticket)
 				if (info.x > -1 && info.y > -1 && info.w > -1 && info.h > -1 && !(info.xres > kMaxDpiForFullPage))
 					img = img.copy(info.x, info.y, info.w, info.h);
 
-#if (QT_VERSION < 0x050000)
-				// workaround for TXS bug 3557369: http://sourceforge.net/tracker/?func=detail&aid=3557369&group_id=250595&atid=1126426
-				// based on QTBUG-26451: https://bugreports.qt-project.org/browse/QTBUG-26451
-				// preventing QPixmap::fromImage(img) to crash in low memory situations
-				QImage *testImage = new QImage( img.size(), QImage::Format_RGB32 );
-				if ( testImage->isNull() ) {
-					qDebug() << "PDF render manager: Not enough memory to allocate image. Reducing cache filling. Current cost:" << renderedPages.totalCost() << "of" << renderedPages.maxCost();
-					reduceCacheFilling(0.5);
-				}
-				delete testImage;
-#endif
 				QMetaObject::invokeMethod(info.obj, info.slot, Q_ARG(QPixmap, QPixmap::fromImage(img)), Q_ARG(int, pageNr));
 			}
 		}

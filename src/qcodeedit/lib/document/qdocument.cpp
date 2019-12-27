@@ -2270,18 +2270,14 @@ void QDocument::setOverwriteMode(bool overwrite)
 */
 QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
  : m_doc(d)
-#if QT_VERSION >= 0x040400
  , m_ref(1)
-#endif
  , m_indent(0)
  , m_state(QDocumentLine::LayoutDirty)
  , m_layout(nullptr)
  , lineHasSelection(QDocumentLineHandle::noSel)
  , mTicket(0)
 {
-	#if QT_VERSION < 0x040400
-	m_ref.init(1);
-	#endif
+
 }
 
 /*!
@@ -2290,27 +2286,19 @@ QDocumentLineHandle::QDocumentLineHandle(QDocument *d)
 QDocumentLineHandle::QDocumentLineHandle(const QString& s, QDocument *d)
  : m_text(s)
  , m_doc(d)
-#if QT_VERSION >= 0x040400
  , m_ref(1)
-#endif
  , m_indent(0)
  , m_state(QDocumentLine::LayoutDirty)
  , m_layout(nullptr)
  , lineHasSelection(QDocumentLineHandle::noSel)
  , mTicket(0)
 {
-	#if QT_VERSION < 0x040400
-	m_ref.init(1);
-	#endif
+
 }
 
 QDocumentLineHandle::~QDocumentLineHandle()
 {
-#if QT_VERSION>=0x050000
 	Q_ASSERT(!m_ref.load());
-#else
-	Q_ASSERT(!m_ref);
-#endif
 
 	if ( m_doc && m_doc->impl() )
 		m_doc->impl()->emitLineDeleted(this);
@@ -3986,11 +3974,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							p->setPen(Qt::lightGray);
 							// old: manually drawn dot
 							//use old solution as qt5 is sh***y when finding font substitution
-#if (QT_VERSION >= 0x050000) && defined(Q_OS_MAC) && (QT_VERSION < 0x050200)
-							p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
-#else
+
 							p->drawText(QPoint(xpos, baseline), QString(static_cast<ushort>(0xb7)));
-#endif
 							p->restore();
 						}
 
@@ -4247,31 +4232,18 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset, int maxL
 QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
  :	m_flags(0), //no columnmemory, can be slow and is usually not needed
 	m_doc(d),
-	#if QT_VERSION >= 0x040400
 	m_ref(0),
-	#endif
 	m_begOffset(0), m_endOffset(0), m_savedX(0), m_begLine(line), m_endLine(-1)
 {
-	#if QT_VERSION < 0x040400
-	m_ref.init(0);
-	#endif
 
-	//m_blocks.push(0);
-	//qDebug("Cursor handle created : 0x%x", this);
 }
 
 QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column, int lineTo, int columnTo)
 :	m_flags(0),  //no columnmemory, can be slow and is usually not needed
 	m_doc(d),
-	#if QT_VERSION >= 0x040400
 	m_ref(0),
-	#endif
 	m_savedX(0)
 {
-	#if QT_VERSION < 0x040400
-	m_ref.init(0);
-	#endif
-
 	select(line, column, lineTo, columnTo);
 }
 
@@ -4279,11 +4251,7 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column,
 QDocumentCursorHandle::~QDocumentCursorHandle()
 {
 	//qDebug("Cursor handle deleted : 0x%x", this);
-#if QT_VERSION>=0x050000
 	Q_ASSERT(!m_ref.load());
-#else
-	Q_ASSERT(!m_ref);
-#endif
 
 	if (isAutoUpdated())
 		setAutoUpdated(false);
@@ -4763,7 +4731,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 	int beg = 0, end = m_doc->lines();
 
-#if QT_VERSION >= 0x040800
 	if (l1.isRTLByLayout()) {
 		int tempOffset = m_begOffset;
 		switch (op) {
@@ -4819,7 +4786,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 		}
 	}
-#endif
 
 
 	switch ( op )
@@ -6973,12 +6939,10 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		QPainter *pr = nullptr;
 		if (useLineCache) {
 			if (imageCache) {
-#if QT_VERSION >= 0x050000
-				int pixelRatio = p->device()->devicePixelRatio();
+
+                int pixelRatio = p->device()->devicePixelRatio();
 				image = new QImage(pixelRatio * m_lineCacheWidth, pixelRatio * ht, QImage::Format_RGB888);
-#else
-				image = new QImage(m_lineCacheWidth, ht, QImage::Format_RGB888);
-#endif
+
 				if (fullSelection) {
 					image->fill(selectionBackground.color().rgb());
 				}else{
@@ -6986,15 +6950,13 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 				}
 				pr = new QPainter(image);
 			} else {
-#if QT_VERSION >= 0x050000
+
 				int pixelRatio = p->device()->devicePixelRatio();
 				pixmap = new QPixmap(pixelRatio * m_lineCacheWidth, pixelRatio * ht);
 				pixmap->setDevicePixelRatio(pixelRatio);
 				// TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
 				// correct drawing on secondary screens with different scaling factors.
-#else
-				pixmap = new QPixmap(m_lineCacheWidth, ht);
-#endif
+
 				if (fullSelection) {
 					pixmap->fill(selectionBackground.color());
 				} else {
@@ -7505,13 +7467,8 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 
 	QFont modifiedF = f;
 	// set the styling so that if the font is not found Courier one will be used
-#if QT_VERSION >= 0x040700
 	modifiedF.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
-#else
-	const QFont::StyleStrategy ForceIntegerMetrics = (QFont::StyleStrategy)0x0400;
-	modifiedF.setStyleHint(QFont::Courier, (hasAtLeastQt(4,7) ? ForceIntegerMetrics : QFont::PreferQuality));
 
-#endif
 	//disable kerning because words are drawn at once, but their width is calculated character
 	//by character (in functions which calculate the cursor position)
 	modifiedF.setKerning(false);

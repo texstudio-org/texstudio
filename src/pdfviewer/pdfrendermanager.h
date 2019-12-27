@@ -73,11 +73,7 @@ public:
 	QByteArray documentData;
 
 private:
-#if QT_VERSION < 0x040400
-	QBasicAtomic m_ref;
-#else
 	QAtomicInt m_ref;
-#endif
 };
 
 class SetImageForwarder : public QObject

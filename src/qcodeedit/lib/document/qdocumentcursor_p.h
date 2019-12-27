@@ -27,11 +27,7 @@
 
 #include <QStack>
 
-#if QT_VERSION < 0x040400
-#include <QAtomic>
-#else
 #include <QAtomicInt>
-#endif
 
 class QPoint;
 class QPolygon;
@@ -191,12 +187,10 @@ class QCE_EXPORT QDocumentCursorHandle
 	private:
 		int m_flags;
 		QDocument *m_doc;
-#if QT_VERSION < 0x040400
-		QBasicAtomic m_ref;
-#else
+
 		QAtomicInt m_ref;
-#endif
-		int m_begOffset, m_endOffset, m_savedX, m_begLine, m_endLine; //beg: cursor position, end: anchor position
+
+        int m_begOffset, m_endOffset, m_savedX, m_begLine, m_endLine; //beg: cursor position, end: anchor position
 		QStack<QDocumentCommandBlock*> m_blocks;
 };
 

@@ -120,12 +120,6 @@ private:
 	synctex_iterator_p iter;
 };
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-// Qt4 specific stuff
-// backport of Q_NULLPTR
-#define Q_NULLPTR NULL
-#endif
-
 class Scanner : public QObject
 {
 	Q_OBJECT

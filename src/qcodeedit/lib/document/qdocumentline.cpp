@@ -457,7 +457,6 @@ QTextLayout* QDocumentLine::getLayout() const{
 
 int QDocumentLine::leftCursorPosition(int oldPos) const{
 	if (!m_handle) return 0;
-#if QT_VERSION >= 0x040800
 	if (m_handle->m_layout) {
 		QReadLocker locker(&m_handle->mLock); //no idea if this is needed
 		try {
@@ -466,12 +465,10 @@ int QDocumentLine::leftCursorPosition(int oldPos) const{
 
 		}
 	}
-#endif
 	return qBound(0, oldPos - 1, length());
 }
 int QDocumentLine::rightCursorPosition(int oldPos) const{
 	if (!m_handle) return 0;
-#if QT_VERSION >= 0x040800
 	if (m_handle->m_layout) {
 		QReadLocker locker(&m_handle->mLock); //no idea if this is needed
 		try {
@@ -480,7 +477,6 @@ int QDocumentLine::rightCursorPosition(int oldPos) const{
 
 		}
 	}
-#endif
 	return qBound(0, oldPos + 1, length());
 }
 

@@ -38,12 +38,7 @@
 
 #include <QReadWriteLock>
 
-#if QT_VERSION < 0x040400
-#include <QAtomic>
-#else
 #include <QAtomicInt>
-#endif
-
 
 class QPoint;
 
@@ -187,7 +182,7 @@ public:
 		void drawBorders(QPainter *p, int yStart, int yEnd) const;
 
 		void applyOverlays() const;
-		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
+        void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = nullptr, int from = 0, int until = -1) const;
 		
 		int getPictureCookieHeight() const;
 
@@ -195,12 +190,10 @@ public:
 		
 		QString m_text;
 		QDocument *m_doc;
-#if QT_VERSION < 0x040400
-		QBasicAtomic m_ref;
-#else
+
 		QAtomicInt m_ref;
-#endif
-		mutable int m_indent;
+
+        mutable int m_indent;
 		mutable quint16 m_state;
 		mutable QTextLayout *m_layout;
 		mutable QVector<int> m_cache;
