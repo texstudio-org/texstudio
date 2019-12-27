@@ -102,10 +102,10 @@ void SyntaxCheck::run()
 		// do syntax check
 		newLine.dlh->lockForRead();
 		QString line = newLine.dlh->text();
-		if (newLine.dlh->hasCookie(3)) {
+		if (newLine.dlh->hasCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE)) {
 			newLine.dlh->unlock();
 			newLine.dlh->lockForWrite();
-			newLine.dlh->removeCookie(3); //remove possible errors from unclosed envs
+			newLine.dlh->removeCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE); //remove possible errors from unclosed envs
 		}
 		TokenList tl = newLine.dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		newLine.dlh->unlock();
