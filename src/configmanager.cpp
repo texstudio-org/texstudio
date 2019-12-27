@@ -2712,13 +2712,6 @@ void ConfigManager::setInterfaceStyle()
             pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
             pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
         } else {
-            /*pal.setColor(QPalette::Active, QPalette::Window, QColor("#fbf8f1"));
-            pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#fbf8f1"));
-            pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#fbf8f1"));
-
-            pal.setColor(QPalette::Active, QPalette::Button, QColor("#fbf8f1"));
-            pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#fbf8f1"));
-            pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#fbf8f1"));*/
             pal.setColor( QPalette::Active, QPalette::Window, QColor("#f6f3eb") );
             pal.setColor( QPalette::Inactive, QPalette::Window, QColor("#f6f3eb") );
             pal.setColor( QPalette::Disabled, QPalette::Window, QColor("#f6f3eb") );
