@@ -1,25 +1,24 @@
 #include "syntaxcheck.h"
 #include "latexdocument.h"
 #include "tablemanipulation.h"
-#include "latexparser/latexreader.h"
 #include "latexparser/latexparsing.h"
 
 /*! \class SyntaxCheck
- *
- * asynchrnous thread which checks latex syntax of the text lines
- * It gets the linehandle via a queue, together with a ticket number.
- * The ticket number is increased with every change of the text of a line, thus it can be determined of the processed handle is still unchanged and can be discarded otherwise.
- * Syntaxinformation are stated via markers on the text.
- * Furthermore environment information, especially tabular information are stored in "cookies" as they are needed in subsequent lines.
- *
- */
+*
+* asynchrnous thread which checks latex syntax of the text lines
+* It gets the linehandle via a queue, together with a ticket number.
+* The ticket number is increased with every change of the text of a line, thus it can be determined of the processed handle is still unchanged and can be discarded otherwise.
+* Syntaxinformation are stated via markers on the text.
+* Furthermore environment information, especially tabular information are stored in "cookies" as they are needed in subsequent lines.
+*
+*/
 
 /*!
- * \brief contructor
- * \param parent
- */
+* \brief contructor
+* \param parent
+*/
 SyntaxCheck::SyntaxCheck(QObject *parent) :
-    SafeThread(parent), syntaxErrorFormat(-1), ltxCommands(nullptr), newLtxCommandsAvailable(false)
+	SafeThread(parent), syntaxErrorFormat(-1), ltxCommands(nullptr), newLtxCommandsAvailable(false)
 {
 	mLinesLock.lock();
 	stopped = false;
@@ -30,21 +29,21 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 }
 
 /*!
- * \brief set the errorformat for syntax errors
- * \param errFormat
- */
+* \brief set the errorformat for syntax errors
+* \param errFormat
+*/
 void SyntaxCheck::setErrFormat(int errFormat)
 {
 	syntaxErrorFormat = errFormat;
 }
 
 /*!
- * \brief add line to queue
- * \param dlh linehandle
- * \param previous linehandle of previous line
- * \param stack tokenstack at line start (for handling open arguments of previous commands)
- * \param clearOverlay clear syntaxcheck overlay
- */
+* \brief add line to queue
+* \param dlh linehandle
+* \param previous linehandle of previous line
+* \param stack tokenstack at line start (for handling open arguments of previous commands)
+* \param clearOverlay clear syntaxcheck overlay
+*/
 void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay)
 {
 	REQUIRE(dlh);
@@ -66,8 +65,8 @@ void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, T
 }
 
 /*!
- * \brief stop processing syntax checks
- */
+* \brief stop processing syntax checks
+*/
 void SyntaxCheck::stop()
 {
 	stopped = true;
@@ -75,8 +74,8 @@ void SyntaxCheck::stop()
 }
 
 /*!
- * \brief actual thread loop
- */
+* \brief actual thread loop
+*/
 void SyntaxCheck::run()
 {
 	ltxCommands = new LatexParser();
@@ -102,10 +101,10 @@ void SyntaxCheck::run()
 		// do syntax check
 		newLine.dlh->lockForRead();
 		QString line = newLine.dlh->text();
-		if (newLine.dlh->hasCookie(3)) {
+		if (newLine.dlh->hasCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE)) {
 			newLine.dlh->unlock();
 			newLine.dlh->lockForWrite();
-			newLine.dlh->removeCookie(3); //remove possible errors from unclosed envs
+			newLine.dlh->removeCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE); //remove possible errors from unclosed envs
 		}
 		TokenList tl = newLine.dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		newLine.dlh->unlock();
@@ -144,323 +143,17 @@ void SyntaxCheck::run()
 	}
 
 	delete ltxCommands;
-    ltxCommands = nullptr;
+	ltxCommands = nullptr;
 }
 
 /*!
- * \brief check one line
- *
- * Checks one line. Context information needs to be given by newRanges,activeEnv,dlh and ticket.
- * This method is obsolete as the new system relies on tokens.
- * \warning obsolete method
- * \param line text of line as string
- * \param newRanges will return the result as ranges
- * \param activeEnv environmwent context
- * \param dlh linehandle
- * \param ticket ticket number for current processed line
- */
-void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, int ticket)
-{
-	// do syntax check on that line
-	int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
-	LatexReader lr(*ltxCommands, line);
-	int status;
-	// check command-words
-	while ((status = lr.nextWord(true))) {
-		const QString &word = lr.word;
-		const int &wordstart = lr.wordStartIndex;
-		if (status == LatexReader::NW_COMMAND) {
-			if (word == "\\begin" || word == "\\end") {
-				QStringList options;
-				QList<int> starts;
-				ltxCommands->resolveCommandOptions(line, wordstart, options, &starts);
-				if (options.size() > 0) {
-					// adapt env stack
-					QString env = options.first();
-					if (env.startsWith("{"))
-						env = env.remove(0, 1);
-					if (env.endsWith("}"))
-						env.chop(1);
-					if (word == "\\begin") {
-						Environment tp;
-						tp.name = env;
-						tp.id = 1; //needs correction
-						tp.excessCol = 0;
-						tp.dlh = dlh;
-						tp.ticket = ticket;
-						if (env == "tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")) {
-							// tabular env opened
-							// get cols !!!!
-							if (((env == "tabu") || (env == "longtabu")) && options.size() == 1) { // special treatment as the env is rather not latex standard
-								QString helper = line.mid(starts.first() + options.first().length());
-								helper = helper.trimmed();
-								if (helper.startsWith("to ") || helper.startsWith("spread ")) {
-									int i = helper.indexOf("{");
-									if (i > -1) {
-										QStringList options_zw;
-										ltxCommands->resolveCommandOptions(helper, i, options_zw);
-										if (!options_zw.isEmpty()) {
-											options << options_zw.first();
-										}
-									}
-								}
-							}
-							cols = LatexTables::getNumberOfColumns(options);
-							tp.id = cols;
-						}
-						activeEnv.push(tp);
-					} else {
-						if (!activeEnv.isEmpty()) {
-							Environment tp = activeEnv.top();
-							if (tp.name == env) {
-								activeEnv.pop();
-								if (tp.name == "tabular" || ltxCommands->environmentAliases.values(tp.name).contains("tabular")) {
-									// correct length of col error if it exists
-									if (!newRanges.isEmpty()) {
-										Error &elem = newRanges.last();
-										if (elem.type == ERR_tooManyCols && elem.range.first + elem.range.second > wordstart) {
-											elem.range.second = wordstart - elem.range.first;
-										}
-									}
-									// get new cols
-									cols = containsEnv(*ltxCommands, "tabular", activeEnv);
-								}
-							} else {
-								Error elem;
-								elem.range = QPair<int, int>(wordstart, word.length());
-								elem.type = ERR_closingUnopendEnv;
-								newRanges.append(elem);
-							}
-						} else {
-							Error elem;
-							elem.range = QPair<int, int>(wordstart, word.length());
-							elem.type = ERR_closingUnopendEnv;
-							newRanges.append(elem);
-						}
-					}
-					// add env-name for syntax checking to "word"
-					lr.word += options.first();
-				}
-			}
-			if (ltxCommands->possibleCommands["%definition"].contains(word)) { // don't check in command definition
-				QStringList options;
-				QList<int> starts;
-				ltxCommands->resolveCommandOptions(line, wordstart, options, &starts);
-				for (int i = 1; i < options.count() && i < 4; i++) {
-					QString option = options.at(i);
-					if (option.startsWith("[")) {
-						continue;
-					}
-					lr.index = starts.at(i) + option.length();
-					break;
-				}
-			}
-			if ( ltxCommands->possibleCommands["%ref"].contains(word) ||
-			        ltxCommands->possibleCommands["%label"].contains(word) ||
-			        ltxCommands->possibleCommands["%file"].contains(word) ||
-			        ltxCommands->possibleCommands["%cite"].contains(word) ||
-			        ltxCommands->possibleCommands["%bibitem"].contains(word) ||
-			        ltxCommands->possibleCommands["%url"].contains(word)
-			   ) { //don't check syntax in reference, label or include
-				QStringList options;
-				QList<int> starts;
-				bool complete = ltxCommands->resolveCommandOptions(line, wordstart, options, &starts);
-				while (options.size() > 0) {
-					QString option = options.takeFirst();
-					int start = starts.takeFirst();
-					lr.index = start + option.length();
-					if (!option.startsWith("[")) {  // handling of includegraphics should be improved !!! This impedes keyval checking
-						break;
-					}
-				}
-				if (!complete) {
-					lr.index = line.length();  // last option continues beyond end of line: stop all further checking for this line
-					break;
-				}
-			}
-			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
-				Environment env;
-				env.name = "math";
-                env.origName=word;
-				env.id = 1; // to be changed
-				env.dlh = dlh;
-				env.ticket = ticket;
-				activeEnv.push(env);
-				continue;
-			}
-			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
-                int i=ltxCommands->mathStopCommands.indexOf(word);
-                QString txt=ltxCommands->mathStartCommands.value(i);
-                if(activeEnv.top().origName==txt){
-                    activeEnv.pop();
-                }// ignore mismatching mathstop commands
-				continue;
-			}
-
-			//tabular checking
-			if (topEnv("tabular", activeEnv) != 0) {
-				if (word == "&") {
-					activeEnv.top().excessCol++;
-					if (activeEnv.top().excessCol >= activeEnv.top().id) {
-						Error elem;
-						elem.range = QPair<int, int>(wordstart, word.length());
-						elem.type = ERR_tooManyCols;
-						newRanges.append(elem);
-					}
-					continue;
-				}
-				if ((word == "\\\\") || (word == "\\tabularnewline")) {
-					if (activeEnv.top().excessCol < (activeEnv.top().id - 1)) {
-						Error elem;
-						elem.range = QPair<int, int>(wordstart, word.length());
-						elem.type = ERR_tooLittleCols;
-						newRanges.append(elem);
-					}
-					if (activeEnv.top().excessCol >= (activeEnv.top().id)) {
-						Error elem;
-						elem.range = QPair<int, int>(wordstart, word.length());
-						elem.type = ERR_tooManyCols;
-						newRanges.append(elem);
-					}
-					activeEnv.top().excessCol = 0;
-					continue;
-				}
-				if (word == "\\multicolumn") {
-					QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
-					rxMultiColumn.setMinimal(true);
-					int res = rxMultiColumn.indexIn(line, wordstart);
-					if (res > -1) {
-						// multicoulmn before &
-						bool ok;
-						int c = rxMultiColumn.cap(1).toInt(&ok);
-						if (ok) {
-							activeEnv.top().excessCol += c - 1;
-						}
-					}
-					if (activeEnv.top().excessCol >= activeEnv.top().id) {
-						Error elem;
-						elem.range = QPair<int, int>(wordstart, word.length());
-						elem.type = ERR_tooManyCols;
-						newRanges.append(elem);
-					}
-					continue;
-				}
-
-			}
-			// ignore commands containing @
-			if (word.contains('@'))
-				continue;
-
-            // don't highlight custom commands
-            if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
-                continue;
-
-			if (!checkCommand(word, activeEnv)) {
-				Error elem;
-				elem.range = QPair<int, int>(wordstart, word.length());
-				elem.type = ERR_unrecognizedCommand;
-
-				if (ltxCommands->possibleCommands["math"].contains(word))
-					elem.type = ERR_MathCommandOutsideMath;
-				if (ltxCommands->possibleCommands["tabular"].contains(word))
-					elem.type = ERR_TabularCommandOutsideTab;
-				if (ltxCommands->possibleCommands["tabbing"].contains(word))
-					elem.type = ERR_TabbingCommandOutside;
-				newRanges.append(elem);
-			}
-		}
-		if (status != LatexReader::NW_COMMAND) {
-			// special treatment for key val checking
-			QString command, value;
-			LatexParser::ContextType ctx = ltxCommands->findContext(line, lr.wordStartIndex, command, value);
-			if (ctx == LatexParser::Keyval) {
-				// search stored keyvals
-				QString elem = "key%" + command;
-				if (elem.endsWith("#c"))
-					elem.clear();
-				if (!elem.isEmpty()) {
-					// check whether keys is valid
-					QStringList lst = ltxCommands->possibleCommands[elem].values();
-					QStringList::iterator iterator;
-					for (iterator = lst.begin(); iterator != lst.end(); ++iterator) {
-						int i = iterator->indexOf("#");
-						if (i > -1)
-							*iterator = iterator->left(i);
-
-						if (iterator->endsWith("=")) {
-							iterator->chop(1);
-						}
-					}
-					if (!lst.contains(word)) {
-						Error elem;
-						elem.range = QPair<int, int>(wordstart, word.length());
-						elem.type = ERR_unrecognizedKey;
-						newRanges.append(elem);
-					}
-
-				}
-
-			}
-			if (ctx == LatexParser::KeyvalValue && word.simplified() != "," && !command.endsWith("#c")) {
-				//figure out keyval
-				int i = lr.wordStartIndex;
-				while (i > 0 && line.at(i - 1).isLetter())
-					i--;
-				if (i > 0 && line.at(i - 1) == QChar('=')) {
-					int j = --i;
-					while (i > 0 && line.at(i - 1).isLetter())
-						i--;
-					QString key = line.mid(i, j - i);
-
-					QString elem;
-					foreach (elem, ltxCommands->possibleCommands.keys()) {
-						if (elem.startsWith("key%") && elem.mid(4) == command)
-							break;
-						elem.clear();
-					}
-					if (!elem.isEmpty()) {
-						// check whether keys is valid
-						QStringList lst = ltxCommands->possibleCommands[elem].values();
-						QStringList::iterator iterator;
-						QString options;
-						for (iterator = lst.begin(); iterator != lst.end(); ++iterator) {
-							int i = iterator->indexOf("#");
-							options.clear();
-							if (i > -1) {
-								options = iterator->mid(i + 1);
-								*iterator = iterator->left(i);
-							}
-
-							if (iterator->endsWith("=")) {
-								iterator->chop(1);
-							}
-							if (*iterator == key)
-								break;
-						}
-						if (iterator != lst.end() && !options.isEmpty()) {
-							QStringList l = options.split(",");
-							if (!l.contains(word)) {
-								Error elem;
-								elem.range = QPair<int, int>(wordstart, word.length());
-								elem.type = ERR_unrecognizedKeyValues;
-								newRanges.append(elem);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-/*!
- * \brief get error description for syntax error in line 'dlh' at column 'pos'
- * \param dlh linehandle
- * \param pos column
- * \param previous environment stack at start of line
- * \param stack tokenstack at start of line
- * \return error description
- */
+* \brief get error description for syntax error in line 'dlh' at column 'pos'
+* \param dlh linehandle
+* \param pos column
+* \param previous environment stack at start of line
+* \param stack tokenstack at start of line
+* \return error description
+*/
 QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack)
 {
 	// do syntax check
@@ -495,29 +188,29 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 
 	QStringList messages;  // indices have to match ErrorType
 	messages << tr("no error")
-	         << tr("unrecognized environment")
-	         << tr("unrecognized command")
-	         << tr("unrecognized math command")
-	         << tr("unrecognized tabular command")
-	         << tr("tabular command outside tabular env")
-	         << tr("math command outside math env")
-	         << tr("tabbing command outside tabbing env")
-	         << tr("more cols in tabular than specified")
-	         << tr("cols in tabular missing")
-	         << tr("\\\\ missing")
-	         << tr("closing environment which has not been opened")
-	         << tr("environment not closed")
-	         << tr("unrecognized key in key option")
-	         << tr("unrecognized value in key option")
-	         << tr("command outside suitable env");
+			<< tr("unrecognized environment")
+			<< tr("unrecognized command")
+			<< tr("unrecognized math command")
+			<< tr("unrecognized tabular command")
+			<< tr("tabular command outside tabular env")
+			<< tr("math command outside math env")
+			<< tr("tabbing command outside tabbing env")
+			<< tr("more cols in tabular than specified")
+			<< tr("cols in tabular missing")
+			<< tr("\\\\ missing")
+			<< tr("closing environment which has not been opened")
+			<< tr("environment not closed")
+			<< tr("unrecognized key in key option")
+			<< tr("unrecognized value in key option")
+			<< tr("command outside suitable env");
 	Q_ASSERT(messages.length() == ERR_MAX);
 	return messages.value(int(result), tr("unknown"));
 }
 
 /*!
- * \brief set latex commands which are referenced for syntax checking
- * \param cmds
- */
+* \brief set latex commands which are referenced for syntax checking
+* \param cmds
+*/
 void SyntaxCheck::setLtxCommands(const LatexParser &cmds)
 {
 	if (stopped) return;
@@ -528,8 +221,8 @@ void SyntaxCheck::setLtxCommands(const LatexParser &cmds)
 }
 
 /*!
- * \brief wait for queue to be empty. Used for self-test only.
- */
+* \brief wait for queue to be empty. Used for self-test only.
+*/
 void SyntaxCheck::waitForQueueProcess()
 {
 	while (!crashed && mLinesAvailable.available() > 0) {
@@ -538,21 +231,21 @@ void SyntaxCheck::waitForQueueProcess()
 }
 
 /*!
- * \brief check if queue is empty. Used for self-test only.
- * \return queue is not empty
- */
+* \brief check if queue is empty. Used for self-test only.
+* \return queue is not empty
+*/
 bool SyntaxCheck::queuedLines()
 {
 	return mLinesAvailable.available() > 0;
 }
 
 /*!
- * \brief check if top-most environment in 'envs' is `name`
- * \param name environment name which is checked
- * \param envs stack of environments
- * \param id check for `id` of the environment, <0 means check is disabled
- * \return environment id or 0
- */
+* \brief check if top-most environment in 'envs' is `name`
+* \param name environment name which is checked
+* \param envs stack of environments
+* \param id check for `id` of the environment, <0 means check is disabled
+* \return environment id or 0
+*/
 int SyntaxCheck::topEnv(const QString &name, const StackEnvironment &envs, const int id)
 {
 	if (envs.isEmpty())
@@ -574,13 +267,13 @@ int SyntaxCheck::topEnv(const QString &name, const StackEnvironment &envs, const
 }
 
 /*!
- * \brief check if the environment stack contains a environment with name `name`
- * \param parser reference to LatexParser. It is used to access environment aliases, e.g. equation is also a math environment
- * \param name name of the checked environment
- * \param envs stack of environements
- * \param id if >=0 check if the env has the given id.
- * \return environment id of  found env otherwise 0
- */
+* \brief check if the environment stack contains a environment with name `name`
+* \param parser reference to LatexParser. It is used to access environment aliases, e.g. equation is also a math environment
+* \param name name of the checked environment
+* \param envs stack of environements
+* \param id if >=0 check if the env has the given id.
+* \return environment id of  found env otherwise 0
+*/
 int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id)
 {
 	for (int i = envs.size() - 1; i > -1; --i) {
@@ -601,11 +294,11 @@ int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, con
 }
 
 /*!
- * \brief check if the command is valid in the environment stack
- * \param cmd name of command
- * \param envs environment stack
- * \return is valid
- */
+* \brief check if the command is valid in the environment stack
+* \param cmd name of command
+* \param envs environment stack
+* \return is valid
+*/
 bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 {
 	for (int i = 0; i < envs.size(); ++i) {
@@ -624,11 +317,11 @@ bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 }
 
 /*!
- * \brief compare two environment stacks
- * \param env1
- * \param env2
- * \return are equal
- */
+* \brief compare two environment stacks
+* \param env1
+* \param env2
+* \return are equal
+*/
 bool SyntaxCheck::equalEnvStack(StackEnvironment env1, StackEnvironment env2)
 {
 	if (env1.isEmpty() || env2.isEmpty())
@@ -643,11 +336,11 @@ bool SyntaxCheck::equalEnvStack(StackEnvironment env1, StackEnvironment env2)
 }
 
 /*!
- * \brief mark environment start
- *
- * This function is used to mark unclosed environment,i.e. environments which are unclosed at the end of the text
- * \param env used environment
- */
+* \brief mark environment start
+*
+* This function is used to mark unclosed environment,i.e. environments which are unclosed at the end of the text
+* \param env used environment
+*/
 void SyntaxCheck::markUnclosedEnv(Environment env)
 {
 	QDocumentLineHandle *dlh = env.dlh;
@@ -675,10 +368,10 @@ void SyntaxCheck::markUnclosedEnv(Environment env)
 }
 
 /*!
- * \brief check if the tokenstack contains a definition-token
- * \param stack tokenstack
- * \return contains a definition
- */
+* \brief check if the tokenstack contains a definition-token
+* \param stack tokenstack
+* \return contains a definition
+*/
 bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 {
 	for (int i = 0; i < stack.size(); i++) {
@@ -689,18 +382,18 @@ bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 }
 
 /*!
- * \brief check one line
- *
- * Checks one line. Context information needs to be given by newRanges,activeEnv,dlh and ticket.
- * This method is obsolete as the new system relies on tokens.
- * \param line text of line as string
- * \param newRanges will return the result as ranges
- * \param activeEnv environment context
- * \param dlh linehandle
- * \param tl tokenlist of line
- * \param stack token stack at start of line
- * \param ticket ticket number for current processed line
- */
+* \brief check one line
+*
+* Checks one line. Context information needs to be given by newRanges,activeEnv,dlh and ticket.
+* This method is obsolete as the new system relies on tokens.
+* \param line text of line as string
+* \param newRanges will return the result as ranges
+* \param activeEnv environment context
+* \param dlh linehandle
+* \param tl tokenlist of line
+* \param stack token stack at start of line
+* \param ticket ticket number for current processed line
+*/
 void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket)
 {
 	// do syntax check on that line
@@ -724,23 +417,23 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					stack.pop();
 			}
 		}
-        if (tk.subtype == Token::definition ) { // don't check command definitions
-            if(tk.type == Token::braces || tk.type == Token::openBrace){
-                stack.push(tk);
-            }
+		if (tk.subtype == Token::definition ) { // don't check command definitions
+			if(tk.type == Token::braces || tk.type == Token::openBrace){
+				stack.push(tk);
+			}
 			continue;
 		}
-        if (tk.type == Token::punctuation || tk.type == Token::symbol) {
-            QString word = line.mid(tk.start, tk.length);
-            QStringList forbiddenSymbols;
-            forbiddenSymbols<<"^"<<"_";
-            if(forbiddenSymbols.contains(word) && !containsEnv(*ltxCommands, "math", activeEnv)){
-                Error elem;
-                elem.range = QPair<int, int>(tk.start, tk.length);
-                elem.type = ERR_MathCommandOutsideMath;
-                newRanges.append(elem);
-            }
-        }
+		if (tk.type == Token::punctuation || tk.type == Token::symbol) {
+			QString word = line.mid(tk.start, tk.length);
+			QStringList forbiddenSymbols;
+			forbiddenSymbols<<"^"<<"_";
+			if(forbiddenSymbols.contains(word) && !containsEnv(*ltxCommands, "math", activeEnv)){
+				Error elem;
+				elem.range = QPair<int, int>(tk.start, tk.length);
+				elem.type = ERR_MathCommandOutsideMath;
+				newRanges.append(elem);
+			}
+		}
 		if (tk.type == Token::commandUnknown) {
 			QString word = line.mid(tk.start, tk.length);
 			if (word.contains('@')) {
@@ -749,23 +442,23 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
 				env.name = "math";
-                env.origName=word;
+				env.origName=word;
 				env.id = 1; // to be changed
 				env.dlh = dlh;
 				env.ticket = ticket;
-                env.level = tk.level;
+				env.level = tk.level;
 				activeEnv.push(env);
 				continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
-                int i=ltxCommands->mathStopCommands.indexOf(word);
-                QString txt=ltxCommands->mathStartCommands.value(i);
-                if(activeEnv.top().origName==txt){
-                    activeEnv.pop();
-                }// ignore mismatching mathstop commands
+				int i=ltxCommands->mathStopCommands.indexOf(word);
+				QString txt=ltxCommands->mathStartCommands.value(i);
+				if(activeEnv.top().origName==txt){
+					activeEnv.pop();
+				}// ignore mismatching mathstop commands
 				continue;
 			}
-            if (word == "\\\\" && topEnv("tabular", activeEnv) != 0 && tk.level == activeEnv.top().level) {
+			if (word == "\\\\" && topEnv("tabular", activeEnv) != 0 && tk.level == activeEnv.top().level) {
 				if (activeEnv.top().excessCol < (activeEnv.top().id - 1)) {
 					Error elem;
 					elem.range = QPair<int, int>(tk.start, tk.length);
@@ -781,8 +474,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				activeEnv.top().excessCol = 0;
 				continue;
 			}
-            if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
-                continue;
+			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
+				continue;
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
 				elem.range = QPair<int, int>(tk.start, tk.length);
@@ -832,7 +525,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			tp.excessCol = 0;
 			tp.dlh = dlh;
 			tp.ticket = ticket;
-            tp.level = tk.level-1; // tk is the argument, not the command, hence -1
+			tp.level = tk.level-1; // tk is the argument, not the command, hence -1
 			if (env == "tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")) {
 				// tabular env opened
 				// get cols !!!!
@@ -840,48 +533,48 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				if ((env == "tabu") || (env == "longtabu")) { // special treatment as the env is rather not latex standard
 					for (int k = i + 1; k < tl.length(); k++) {
 						Token elem = tl.at(k);
-                        if (elem.level < tk.level-1)
+						if (elem.level < tk.level-1)
 							break;
-                        if (elem.level > tk.level)
+						if (elem.level > tk.level)
 							continue;
 						if (elem.type == Token::braces) { // take the first mandatory argument at the correct level -> TODO: put colDef also for tabu correctly in lexer
 							option = line.mid(elem.start + 1, elem.length - 2); // strip {}
-                            break; // first argument only !
+							break; // first argument only !
 						}
 					}
 				} else {
-                    if(env=="tikztimingtable"){
-                        option="ll"; // is always 2 columns
-                    }else{
-                        for (int k = i + 1; k < tl.length(); k++) {
-                            Token elem = tl.at(k);
-                            if (elem.level < tk.level)
-                                break;
-                            if (elem.level > tk.level)
-                                continue;
-                            if (elem.subtype == Token::colDef) {
-                                option = line.mid(elem.start + 1, elem.length - 2); // strip {}
-                                break;
-                            }
-                        }
-                    }
+					if(env=="tikztimingtable"){
+						option="ll"; // is always 2 columns
+					}else{
+						for (int k = i + 1; k < tl.length(); k++) {
+							Token elem = tl.at(k);
+							if (elem.level < tk.level)
+								break;
+							if (elem.level > tk.level)
+								continue;
+							if (elem.subtype == Token::colDef) {
+								option = line.mid(elem.start + 1, elem.length - 2); // strip {}
+								break;
+							}
+						}
+					}
 				}
-                QSet<QString> translationMap=ltxCommands->possibleCommands.value("%columntypes");
+				QSet<QString> translationMap=ltxCommands->possibleCommands.value("%columntypes");
 				QStringList res = LatexTables::splitColDef(option);
-                QStringList res2;
-                for(auto &elem: res){
-                    bool add=true;
-                    for(auto i:translationMap){
-                        if(i.left(1)==elem && add){
-                            res2 << LatexTables::splitColDef(i.mid(1));
-                            add=false;
-                        }
-                    }
-                    if(add){
-                        res2<<elem;
-                    }
-                }
-                cols = res2.count();
+				QStringList res2;
+				for(auto &elem: res){
+					bool add=true;
+					for(auto i:translationMap){
+						if(i.left(1)==elem && add){
+							res2 << LatexTables::splitColDef(i.mid(1));
+							add=false;
+						}
+					}
+					if(add){
+						res2<<elem;
+					}
+				}
+				cols = res2.count();
 				tp.id = cols;
 			}
 			activeEnv.push(tp);
@@ -890,9 +583,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 		if (tk.type == Token::command) {
 			QString word = line.mid(tk.start, tk.length);
-            if(!tk.optionalCommandName.isEmpty()){
-                word=tk.optionalCommandName;
-            }
+			if(!tk.optionalCommandName.isEmpty()){
+				word=tk.optionalCommandName;
+			}
 			Token tkEnvName;
 
 			if (word == "\\begin" || word == "\\end") {
@@ -906,20 +599,20 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
 				env.name = "math";
-                env.origName=word;
+				env.origName=word;
 				env.id = 1; // to be changed
 				env.dlh = dlh;
 				env.ticket = ticket;
-                env.level = tk.level;
+				env.level = tk.level;
 				activeEnv.push(env);
 				continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
-                int i=ltxCommands->mathStopCommands.indexOf(word);
-                QString txt=ltxCommands->mathStartCommands.value(i);
-                if(activeEnv.top().origName==txt){
-                    activeEnv.pop();
-                }// ignore mismatching mathstop commands
+				int i=ltxCommands->mathStopCommands.indexOf(word);
+				QString txt=ltxCommands->mathStartCommands.value(i);
+				if(activeEnv.top().origName==txt){
+					activeEnv.pop();
+				}// ignore mismatching mathstop commands
 				continue;
 			}
 
@@ -975,8 +668,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 			}
 
-            if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
-                continue;
+			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
+				continue;
 
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
@@ -996,26 +689,26 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					elem.type = ERR_TabularCommandOutsideTab;
 				if (ltxCommands->possibleCommands["tabbing"].contains(word))
 					elem.type = ERR_TabbingCommandOutside;
-                if(elem.type== ERR_unrecognizedEnvironment){
-                    // try to find command in unspecified envs
-                    QStringList keys=ltxCommands->possibleCommands.keys();
-                    keys.removeAll("math");
-                    keys.removeAll("tabular");
-                    keys.removeAll("tabbing");
-                    keys.removeAll("normal");
-                    foreach (QString key, keys) {
-                        if(key.contains("%"))
-                            continue;
-                        if(ltxCommands->possibleCommands[key].contains(word)){
-                            elem.type = ERR_commandOutsideEnv;
-                            break;
-                        }
-                    }
-                }
+				if(elem.type== ERR_unrecognizedEnvironment){
+					// try to find command in unspecified envs
+					QStringList keys=ltxCommands->possibleCommands.keys();
+					keys.removeAll("math");
+					keys.removeAll("tabular");
+					keys.removeAll("tabbing");
+					keys.removeAll("normal");
+					foreach (QString key, keys) {
+						if(key.contains("%"))
+							continue;
+						if(ltxCommands->possibleCommands[key].contains(word)){
+							elem.type = ERR_commandOutsideEnv;
+							break;
+						}
+					}
+				}
 				newRanges.append(elem);
 			}
 		}
-        if (tk.type == Token::specialArg) {
+		if (tk.type == Token::specialArg) {
 			QString value = line.mid(tk.start, tk.length);
 			QString special = ltxCommands->mapSpecialArgs.value(int(tk.type - Token::specialArg));
 			if (!ltxCommands->possibleCommands[special].contains(value)) {
@@ -1024,7 +717,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				elem.type = ERR_unrecognizedKey;
 				newRanges.append(elem);
 			}
-        }
+		}
 		if (tk.type == Token::keyVal_key) {
 			// special treatment for key val checking
 			QString command = tk.optionalCommandName;
@@ -1041,9 +734,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					QString subcommand;
 					for (int k = i + 1; k < tl.length(); k++) {
 						Token tk_elem = tl.at(k);
-                        if (tk_elem.level > tk.level)
+						if (tk_elem.level > tk.level)
 							continue;
-                        if (tk_elem.level < tk.level)
+						if (tk_elem.level < tk.level)
 							break;
 						if (tk_elem.type == Token::braces) {
 							subcommand = line.mid(tk_elem.start + 1, tk_elem.length - 2);
@@ -1155,9 +848,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						break;
 				}
 				if (iterator != lst.end() && !options.isEmpty()) {
-                    if(options.startsWith("#")){
-                        continue; // ignore type keys, like width#L
-                    }
+					if(options.startsWith("#")){
+						continue; // ignore type keys, like width#L
+					}
 					QStringList l = options.split(",");
 					if (!l.contains(word)) {
 						Error elem;
