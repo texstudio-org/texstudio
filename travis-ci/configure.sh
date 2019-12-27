@@ -15,8 +15,6 @@ if [ "${QT}" = "qt5" ]; then
 	##sleep 3
 elif [ $QT = qt5NoPoppler ]; then
 	qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1
-elif [ $QT = qt4 ]; then
-	qmake texstudio.pro CONFIG+=debug
 elif [ $QT = qt5Release ]; then
 	qmake texstudio.pro CONFIG-=debug
 elif [ $QT = qt5win ]; then
