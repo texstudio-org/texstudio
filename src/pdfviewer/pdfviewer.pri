@@ -35,20 +35,11 @@ FORMS += \
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
     win32:isEmpty(MXE) {
-        !greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
-            INCLUDEPATH  += ./src/pdfviewer/include_win32
-            win32-msvc*: {
-                LIBS += ./zlib.lib ./libpoppler-qt4.lib
-            } else {
-                LIBS += ./zlib1.dll ./libpoppler-qt4.dll
-            }
-        } else { # Qt5
-            INCLUDEPATH  += ./src/pdfviewer/include_win32_qt5
-            win32-msvc*: {
-                LIBS += ./zlib.lib ./libpoppler-qt5.lib
-            } else {
-                LIBS += ./zlib1.dll ./libpoppler-qt5.dll
-            }
+        INCLUDEPATH  += ./src/pdfviewer/include_win32_qt5
+        win32-msvc*: {
+            LIBS += ./zlib.lib ./libpoppler-qt5.lib
+        } else {
+            LIBS += ./zlib1.dll ./libpoppler-qt5.dll
         }
         DEFINES += HAS_POPPLER_24
         DEFINES += HAS_POPPLER_31
@@ -70,14 +61,11 @@ isEmpty(NO_POPPLER_PREVIEW) {
 		PKGCONFIG += libopenjp2
 	}
 
-        greaterThan(QT_MAJOR_VERSION,4){
-            PKG_CONFIG_EXE = $$pkgConfigExecutable()
-            isEmpty(PKG_CONFIG_EXE) {
-                error("pkg-config not found. This tool is required if building with poppler. Please install it.")
-            }
-        }else{
-            PKG_CONFIG_EXE = "pkg-config"
+        PKG_CONFIG_EXE = $$pkgConfigExecutable()
+        isEmpty(PKG_CONFIG_EXE) {
+            error("pkg-config not found. This tool is required if building with poppler. Please install it.")
         }
+
 	# work-around for travis osx build
 	LIBS += -L/usr/local/Cellar/poppler/0.61.0-texworks/lib
 
