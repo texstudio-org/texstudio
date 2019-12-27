@@ -175,14 +175,7 @@
 #include <QDomElement>
 #include <QDomNode>
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-// Qt5 specific stuff
 #include <QScroller>
-#else
-// Qt4 specific stuff
-// backport of Q_NULLPTR
-#define Q_NULLPTR NULL
-#endif
 
 #endif
 

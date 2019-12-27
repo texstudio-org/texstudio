@@ -7,11 +7,7 @@
 
 #ifndef NO_CRASH_HANDLER
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 #define ASSERT_THROW Q_DECL_NOTHROW
-#else
-#define ASSERT_THROW
-#endif
 
 
 #ifndef QT_NO_DEBUG

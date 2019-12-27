@@ -2881,13 +2881,9 @@ void LatexEditorViewConfig::settingsChanged()
 	if (lastFontFamily == fontFamily && lastFontSize == fontSize) return;
 
 	QFont f(fontFamily, fontSize);
-#if QT_VERSION >= 0x040700
-	f.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
-#else
-	const QFont::StyleStrategy ForceIntegerMetrics = (QFont::StyleStrategy)0x0400;
-	f.setStyleHint(QFont::Courier, (hasAtLeastQt(4, 7) ? ForceIntegerMetrics : QFont::PreferQuality));
 
-#endif
+	f.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+
 	f.setKerning(false);
 
 	QList<QFontMetrics> fms;
@@ -3157,7 +3153,6 @@ bool LatexEditorView::isInMathHighlighting(const QDocumentCursor &cursor )
 void LatexEditorView::checkRTLLTRLanguageSwitching()
 {
 #if defined( Q_OS_WIN ) || defined( Q_OS_LINUX ) || ( defined( Q_OS_UNIX ) && !defined( Q_OS_MAC ) )
-#if QT_VERSION >= 0x040800
 	QDocumentCursor cursor = editor->cursor();
 	QDocumentLine line = cursor.line();
 	InputLanguage language = IL_UNCERTAIN;
@@ -3185,6 +3180,5 @@ void LatexEditorView::checkRTLLTRLanguageSwitching()
 		}
 	}
 	setInputLanguage(language);
-#endif
 #endif
 }

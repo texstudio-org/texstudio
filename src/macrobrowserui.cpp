@@ -1,10 +1,9 @@
 #include "macrobrowserui.h"
 #include <QNetworkReply>
 #include <QNetworkProxyFactory>
-#if QT_VERSION >= 0x050000
 #include <QJsonDocument>
 #include <QJsonArray>
-#endif
+
 
 MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
 {
@@ -32,10 +31,8 @@ MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
 
     buttonBox=new QDialogButtonBox();
     buttonBox->setStandardButtons(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
-#if QT_VERSION>= 0x050000
     connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
-#endif
     auto *layout=new QVBoxLayout();
     layout->addLayout(gridLay);
     layout->addWidget(buttonBox);
@@ -157,7 +154,6 @@ void MacroBrowserUI::onRequestCompleted()
 
     QByteArray ba = reply->readAll();
 
-#if QT_VERSION >= 0x050000
     if(reply->request().attribute(AttributeDirectURL).toBool()){
         // download requested
         QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
@@ -220,7 +216,6 @@ void MacroBrowserUI::onRequestCompleted()
         tableWidget->setCurrentCell(0,0);
         itemCache.insert(currentPath,listOfItems);
     }
-#endif
 }
 
 

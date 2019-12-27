@@ -251,11 +251,9 @@ PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect &visibleRect)
 {
 	page = pageNr;
-#if QT_VERSION >= 0x050000
+
 	overScale = this->devicePixelRatio();
-#else
-	overScale = isRetinaMac() ? 2 : 1;
-#endif
+
 	scaleFactor = scale * kMagFactor;
 	if (page < 0) {
 		imagePage = -1;
@@ -613,11 +611,8 @@ PDFWidget::~PDFWidget()
  * it is ready.
  */
 void PDFWidget::delayedUpdate() {
-    #if QT_VERSION >= 0x050000
-        int overScale = devicePixelRatio();
-    #else
-        int overScale = isRetinaMac() ? 2 : 1;
-    #endif
+
+    int overScale = devicePixelRatio();
 
     qreal newDpi = dpi * scaleFactor;
     QRect newRect = rect();
@@ -708,11 +703,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	drawFrame(&painter);
 
 	qreal newDpi = dpi * scaleFactor;
-#if QT_VERSION >= 0x050000
 	int overScale = painter.device()->devicePixelRatio();
-#else
-	int overScale = isRetinaMac() ? 2 : 1;
-#endif
 
 	QRect newRect = rect();
 	PDFDocument *doc = getPDFDocument();
@@ -2705,12 +2696,9 @@ void PDFDocument::init(bool embedded)
     comboZoom = nullptr;
 
     // adapt icon size to dpi
-#if QT_VERSION> 0x050000
+
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
 
     int sz = qRound(qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt())*scale);
 
@@ -3572,7 +3560,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 			if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchFlags)) {
 			        lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
 #else
-#if QT_VERSION >= 0x050000
+
 			double rectLeft, rectTop, rectRight, rectBottom;
 			rectLeft = lastSearchResult.selRect.left();
 			rectTop = lastSearchResult.selRect.top();
@@ -3580,9 +3568,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 			rectBottom = lastSearchResult.selRect.bottom();
 			if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchMode)) {
 			        lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
-#else
-			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
-#endif
+
 
 #endif
 				lastSearchResult.doc = this;
@@ -4322,12 +4308,8 @@ void PDFDocument::showToolbarsDelayed()
 void PDFDocument::setToolbarIconSize(int sz)
 {
     // adapt icon size to dpi
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
 
     toolBar->setIconSize(QSize(qRound(sz*scale), qRound(sz*scale)));
 	// statusbar
