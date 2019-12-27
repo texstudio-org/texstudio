@@ -29,9 +29,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
     searchAgainButton = new QPushButton(tr("Update Search"));
 	connect(searchAgainButton, SIGNAL(clicked()), this, SLOT(updateSearch()));
 	replaceTextEdit = new QLineEdit;
-#if QT_VERSION >= 0x050200
 	replaceTextEdit->setClearButtonEnabled(true);
-#endif
 	replaceButton = new QPushButton(tr("Replace all"));
 
 	hLayout->addWidget(searchScopeBox);
@@ -179,11 +177,8 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	// draw checkbox
 	QSize size;
 	if (index.data(Qt::CheckStateRole).isValid()) {
-#if QT_VERSION >= 0x050200  /* QItemDelegate::check is an internal function which has been renamed (maybe already in Qt5.2?) */
 		size = doCheck(option, option.rect, Qt::Checked).size();
-#else
-		size = check(option, option.rect, Qt::Checked).size();
-#endif
+
 		QRect checkboxRect(option.rect.x(), option.rect.y(), size.width(), size.height());
 		QItemDelegate::drawCheck(painter, option, checkboxRect, (Qt::CheckState) index.data(Qt::CheckStateRole).toInt());
 	}

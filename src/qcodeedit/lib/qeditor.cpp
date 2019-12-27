@@ -43,13 +43,9 @@
 
 #include "libqmarkedscrollbar/src/markedscrollbar.h"
 
-#if QT_VERSION >= 0x040600
 #include <QPropertyAnimation>
-#endif
 
-#if QT_VERSION >= 0x050100
 #include <QSaveFile>
-#endif
 
 #ifdef Q_OS_MAC
 #include <QSysInfo>
@@ -1000,7 +996,6 @@ bool QEditor::saveCopy(const QString& filename){
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
-#if QT_VERSION >= 0x050100
 	if (m_useQSaveFile) {
 		QSaveFile file(filename);
 		if (file.open(QIODevice::WriteOnly)) {
@@ -1022,9 +1017,6 @@ bool QEditor::saveCopy(const QString& filename){
 	} else {
 		return writeToFile(filename, data);
 	}
-#else
-	return writeToFile(filename, data);
-#endif
 }
 
 /*!
@@ -3376,11 +3368,9 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if (op == NoOperation) {
 			QString text = e->text();
 
-#if QT_VERSION >= 0x050000
 #if defined(Q_OS_MAC) || defined(Q_OS_LINUX)
             if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier))
                 break;
-#endif
 #endif
             if ( text.isEmpty())
 				break;
@@ -3558,10 +3548,6 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
         }
 
 		m_cursor.insertText(e->commitString());
-#if (QT_VERSION < 0x040700) && (defined(Q_OS_MAC))
-		if(!m_disableAccentHack)
-			m_blockKey=true;
-#endif
 
 		m_cursor.endEditBlock();
 	}
@@ -5488,7 +5474,6 @@ void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflag
         ytarget-=surrounding;
         if(ytarget<0)
             ytarget=0;
-#if QT_VERSION >= 0x040600
 		int absDeltaY = qAbs(ytarget - verticalScrollBar()->value());
 		if (flag(QEditor::SmoothScrolling) && mflags&Animated) {
 			if (!m_scrollAnimation) {
@@ -5512,9 +5497,6 @@ void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflag
 		} else {
 			verticalScrollBar()->setValue(ytarget);
 		}
-#else
-		verticalScrollBar()->setValue(ytarget);
-#endif
     }
 
 	int xval = horizontalOffset(),

@@ -104,9 +104,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cFind = new QComboBox(this);
 	cFind->setEditable(true);
-#if QT_VERSION >= 0x050200
 	cFind->lineEdit()->setClearButtonEnabled(true);
-#endif
 	cFind->completer()->setCompletionMode(QCompleter::PopupCompletion);
 	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cFind->setObjectName(("cFind"));

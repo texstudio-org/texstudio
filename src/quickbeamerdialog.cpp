@@ -38,14 +38,12 @@ QuickBeamerDialog::QuickBeamerDialog(QWidget *parent, const QString &name)
 	labelImage->setMaximumSize(imgWidth, imgHeight);
 	ui.scrollArea->setMinimumWidth(imgWidth + scrollbarWidth + margin);
 	ui.scrollArea->setMaximumWidth(imgWidth + scrollbarWidth + margin);
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 	if (qApp->devicePixelRatio() == 2) {
 		labelImage->setMinimumSize(imgWidth / 2, imgHeight / 2);
 		labelImage->setMaximumSize(imgWidth / 2, imgHeight / 2);
 		ui.scrollArea->setMinimumWidth(imgWidth / 2 + scrollbarWidth + margin);
 		ui.scrollArea->setMaximumWidth(imgWidth / 2 + scrollbarWidth + margin);
 	}
-#endif
 	ui.scrollArea->setBackgroundRole(QPalette::Dark);
 	ui.scrollArea->setWidget(labelImage);
 }
@@ -139,9 +137,7 @@ void QuickBeamerDialog::Init()
 void QuickBeamerDialog::updatePreview(const QString &theme)
 {
 	QPixmap pixmap(":/images/beamer/" + theme + ".png");
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 	if (qApp->devicePixelRatio() == 2) pixmap.setDevicePixelRatio(qApp->devicePixelRatio());
-#endif
 	labelImage->setPixmap(pixmap);
 }
 

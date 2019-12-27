@@ -187,7 +187,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 	QPen linePen(QColor(128,0,128));
 	int lineWidth = m_width / 5;
 
-#if defined(__MINGW32__) && (QT_VERSION >= 0x050000)
+#if defined(__MINGW32__)
 	// workaround for https://bugreports.qt-project.org/browse/QTBUG-32387
 	// odd line width does not work correctly: when set to 3, the actual width varies between 2 and 4.
 	if (lineWidth % 2 == 1) {

@@ -11,15 +11,11 @@
 
 Q_DECLARE_METATYPE(QDocument *)
 Q_DECLARE_METATYPE(LatexDocuments *)
-//Q_DECLARE_METATYPE(LatexEditorView *)
 Q_DECLARE_METATYPE(BuildManager *)
 Q_DECLARE_METATYPE(RunCommandFlags)
-//Q_DECLARE_METATYPE(ProcessX *)
 Q_DECLARE_METATYPE(QAction *)
 Q_DECLARE_METATYPE(QMenu *)
-#if QT_VERSION < 0x050000
-Q_DECLARE_METATYPE(QFileInfo)
-#endif
+
 Q_DECLARE_METATYPE(SubScriptObject *)
 Q_DECLARE_METATYPE(QEditor *)
 Q_DECLARE_METATYPE(QList<LatexDocument *>)
@@ -729,11 +725,8 @@ void qScriptValueToStringPtr(const QScriptValue &value, QString *&str)
 
 #define SCRIPT_REQUIRE(cond, message) if (!(cond)) { context->throwError(scriptengine::tr(message)); return engine->undefinedValue(); }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(4, 5, 0))
 #define SCRIPT_TO_BOOLEAN toBool
-#else
-#define SCRIPT_TO_BOOLEAN toBoolean
-#endif
+
 
 QScriptValue insertSnippet(QScriptContext *context, QScriptEngine *engine)
 {
@@ -1201,19 +1194,12 @@ QScriptValue UniversalInputDialogScript::add(const QScriptValue &def, const QScr
 	return engine->newQObject(w);
 }
 
-#if QT_VERSION < 0x050000
-QScriptValue UniversalInputDialogScript::exec()
-{
-	if (!UniversalInputDialog::exec()) return QScriptValue();
-	return getAll();
-}
-#else
+
 QScriptValue UniversalInputDialogScript::execDialog()
 {
 	if (!UniversalInputDialog::exec()) return QScriptValue();
 	return getAll();
 }
-#endif
 
 QScriptValue UniversalInputDialogScript::getAll()
 {

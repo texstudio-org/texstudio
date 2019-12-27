@@ -32,7 +32,6 @@
 #include <QPixmapCache>
 #include <QWidget>
 
-#if QT_VERSION >= 0x040500
 // Clamps float color values within (0, 255)
 static int clamp(float x)
 {
@@ -234,4 +233,3 @@ void StyleHelper::menuGradient(QPainter *painter, const QRect &spanRect, const Q
         QPixmapCache::insert(key, pixmap);
     }
 }
-#endif

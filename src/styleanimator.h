@@ -44,7 +44,6 @@
  *
  */
  
-#if QT_VERSION >= 0x040500
 class Animation
 {
 public :
@@ -84,10 +83,10 @@ public :
 
 class StyleAnimator : public QObject
 {
-    Q_OBJECT;
+    Q_OBJECT
 
 public:
-    StyleAnimator(QObject *parent = 0) : QObject(parent) {}
+    StyleAnimator(QObject *parent = nullptr) : QObject(parent) {}
 
     void timerEvent(QTimerEvent *);
     void startAnimation(Animation *);
@@ -98,5 +97,4 @@ private:
     QBasicTimer animationTimer;
     QList <Animation*> animations;
 };
-#endif
 #endif // ANIMATION_H

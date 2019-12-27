@@ -66,22 +66,17 @@ SearchResultModel::~SearchResultModel()
 
 void SearchResultModel::addSearch(const SearchInfo &search)
 {
-#if QT_VERSION<0x050000
-#else
 	beginResetModel();
-#endif
-	m_searches.append(search);
+
+    m_searches.append(search);
 	int lineNumber = 0;
 	m_searches.last().lineNumberHints.clear();
 	for (int i = 0; i < search.lines.size(); i++) {
 		lineNumber = search.doc->indexOf(search.lines[i], lineNumber);
 		m_searches.last().lineNumberHints << lineNumber;
 	}
-#if QT_VERSION<0x050000
-	reset();
-#else
+
 	endResetModel();
-#endif
 }
 
 QList<SearchInfo> SearchResultModel::getSearches()
@@ -91,20 +86,13 @@ QList<SearchInfo> SearchResultModel::getSearches()
 
 void SearchResultModel::clear()
 {
-#if QT_VERSION<0x050000
-#else
 	beginResetModel();
-#endif
 
 	m_searches.clear();
 	mExpression.clear();
 	mAllowPartialSelection = true;
 
-#if QT_VERSION<0x050000
-	reset();
-#else
 	endResetModel();
-#endif
 }
 
 void SearchResultModel::removeSearch(const QDocument *doc)

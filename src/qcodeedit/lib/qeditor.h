@@ -38,10 +38,7 @@ class QMimeData;
 class QTextCodec;
 class QActionGroup;
 
-#if QT_VERSION >= 0x040600
 class QPropertyAnimation;
-#endif
-
 
 class QReliableFileWatch;
 
@@ -305,7 +302,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		inline int horizontalOffset() const
         {
-#if QT_VERSION >= 0x050000 && defined Q_OS_MAC
+#if defined Q_OS_MAC
             return horizontalScrollBar()->value();
 #else
             return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0;
@@ -313,7 +310,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
         }
 		inline int verticalOffset() const
         {
-#if QT_VERSION >= 0x050000 && defined Q_OS_MAC
+#if defined Q_OS_MAC
             return verticalScrollBar()->value() * m_doc->getLineSpacing();  // does this work always ?
 #else
             return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->getLineSpacing() : 0;
@@ -733,9 +730,7 @@ public slots:
 		int m_LineWidth;
 		int m_wrapAfterNumChars;
 
-#if QT_VERSION >= 0x040600
 		QPropertyAnimation *m_scrollAnimation;
-#endif
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QEditor::State)

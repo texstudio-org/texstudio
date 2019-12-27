@@ -38,7 +38,6 @@
 #include <QColor>
 
 // Helper class holding all custom color values
-#if QT_VERSION >= 0x040500
 
 class StyleHelper
 {
@@ -70,5 +69,4 @@ public:
 private:
     static QColor m_baseColor;
 };
-#endif
 #endif // STYLEHELPER_H

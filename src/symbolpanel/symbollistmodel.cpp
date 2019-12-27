@@ -191,11 +191,9 @@ void SymbolListModel::incrementUsage(const QString &id)
 	usageCount.insert(id, usageCount.value(id, 0) + 1);
 	for (int i=0; i<symbols.count(); i++) {
 		if (symbols[i].id == id) {
-#if QT_VERSION > 0x050000
+
 			emit dataChanged(index(i, 0), index(i, 0), (QVector<int>() << UsageCountRole));
-#else
-			emit dataChanged(index(i, 0), index(i, 0));
-#endif
+
 			break;
 		}
 	}
@@ -207,11 +205,8 @@ void SymbolListModel::addFavorite(const QString &id)
 		favoriteIds.append(id);
 		for (int i=0; i<symbols.count(); i++) {
 			if (symbols[i].id == id) {
-#if QT_VERSION > 0x050000
 				emit dataChanged(index(i, 0), index(i, 0), (QVector<int>() << FavoriteRole));
-#else
-				emit dataChanged(index(i, 0), index(i, 0));
-#endif
+
 				emit favoritesChanged();
 				break;
 			}
@@ -224,11 +219,8 @@ void SymbolListModel::removeFavorite(const QString &id)
 	if (favoriteIds.removeOne(id)) {
 		for (int i=0; i<symbols.count(); i++) {
 			if (symbols[i].id == id) {
-#if QT_VERSION > 0x050000
 				emit dataChanged(index(i, 0), index(i, 0), (QVector<int>() << FavoriteRole));
-#else
-				emit dataChanged(index(i, 0), index(i, 0));
-#endif
+
 				emit favoritesChanged();
 				break;
 			}
@@ -238,7 +230,7 @@ void SymbolListModel::removeFavorite(const QString &id)
 
 QIcon SymbolListModel::getIcon(const SymbolItem &item) const
 {
-#if defined( Q_OS_MAC ) && (QT_VERSION >= 0x050500)
+#if defined( Q_OS_MAC )
 	// work-around for another QT/OSX bug
 	if(item.iconFile.endsWith(".svg")){
 		const int sz = iconSizeHint + 4;

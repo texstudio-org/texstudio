@@ -102,11 +102,7 @@ public:
 
 public slots:
 	QScriptValue add(const QScriptValue &def, const QScriptValue &description, const QScriptValue &id = QScriptValue());
-#if QT_VERSION >= 0x050000
 	QScriptValue execDialog();
-#else
-	QScriptValue exec();
-#endif
 	QScriptValue getAll();
 	QScriptValue get(const QScriptValue &id);
 

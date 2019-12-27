@@ -134,7 +134,7 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	#ifndef WIN32
 	static const QChar wrappingArrow(0x2937);
     const QFontMetrics specialSfm(sfm);
-#if QT_VERSION >= 0x050000 && defined Q_OS_MAC && (QT_VERSION < 0x050200)
+#if defined Q_OS_MAC
     if(!specialSfm.inFont(wrappingArrow)){
         specialFontUsage=true;
         specialFont.setFamily("Gothic Regular");

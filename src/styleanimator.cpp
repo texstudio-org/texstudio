@@ -31,7 +31,6 @@
 
 #include <QStyleOption>
 
-#if QT_VERSION >= 0x040500
 Animation * StyleAnimator::widgetAnimation(const QWidget *widget) const
 {
     if (!widget)
@@ -153,4 +152,3 @@ void StyleAnimator::startAnimation(Animation *t)
         animationTimer.start(35, this);
     }
 }
-#endif
