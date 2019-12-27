@@ -31,24 +31,16 @@
 #define MANHATTANSTYLE_H
 #include <QStyle>
 
-#if QT_VERSION < 0x040600
-#include <QWindowsStyle>
-#else
 #include <QProxyStyle>
-#endif
 
-#if QT_VERSION >= 0x040500
 QT_BEGIN_NAMESPACE
 class QLinearGradient;
 class QBrush;
 QT_END_NAMESPACE
 
 class ManhattanStylePrivate;
-#if QT_VERSION < 0x040600
-class ManhattanStyle : public QWindowsStyle
-#else
+
 class ManhattanStyle : public QProxyStyle
-#endif
 {
 	Q_OBJECT
 
@@ -59,21 +51,21 @@ public:
 
 	bool isValid();
 
-	void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = 0) const;
-	void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = 0) const;
-	void drawComplexControl(ComplexControl control, const QStyleOptionComplex *option, QPainter *painter, const QWidget *widget = 0) const;
+    void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
+    void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
+    void drawComplexControl(ComplexControl control, const QStyleOptionComplex *option, QPainter *painter, const QWidget *widget = nullptr) const;
 
 	QSize sizeFromContents(ContentsType type, const QStyleOption *option, const QSize &size, const QWidget *widget) const;
 	QRect subElementRect(SubElement element, const QStyleOption *option, const QWidget *widget) const;
 	QRect subControlRect(ComplexControl cc, const QStyleOptionComplex *opt, SubControl sc, const QWidget *widget) const;
 
-	SubControl hitTestComplexControl(ComplexControl control, const QStyleOptionComplex *option, const QPoint &pos, const QWidget *widget = 0) const;
-	QPixmap standardPixmap(StandardPixmap standardPixmap, const QStyleOption *opt, const QWidget *widget = 0) const;
-	int styleHint(StyleHint hint, const QStyleOption *option = 0, const QWidget *widget = 0, QStyleHintReturn *returnData = 0) const;
+    SubControl hitTestComplexControl(ComplexControl control, const QStyleOptionComplex *option, const QPoint &pos, const QWidget *widget = nullptr) const;
+    QPixmap standardPixmap(StandardPixmap standardPixmap, const QStyleOption *opt, const QWidget *widget = nullptr) const;
+    int styleHint(StyleHint hint, const QStyleOption *option = nullptr, const QWidget *widget = nullptr, QStyleHintReturn *returnData = nullptr) const;
 	QRect itemRect(QPainter *p, const QRect &r, int flags, bool enabled, const QPixmap *pixmap, const QString &text, int len = -1) const;
 	QPixmap generatedIconPixmap(QIcon::Mode iconMode, const QPixmap &pixmap, const QStyleOption *opt) const;
 
-	int pixelMetric(PixelMetric metric, const QStyleOption *option = 0, const QWidget *widget = 0) const;
+    int pixelMetric(PixelMetric metric, const QStyleOption *option = nullptr, const QWidget *widget = nullptr) const;
 
 	QPalette standardPalette() const;
 
@@ -92,12 +84,11 @@ protected Q_SLOTS:
 	int layoutSpacingImplementation(QSizePolicy::ControlType control1,
 	                                QSizePolicy::ControlType control2,
 	                                Qt::Orientation orientation,
-	                                const QStyleOption *option = 0,
-	                                const QWidget *widget = 0) const;
+                                    const QStyleOption *option = nullptr,
+                                    const QWidget *widget = nullptr) const;
 
 private:
 	ManhattanStylePrivate *d;
 	Q_DISABLE_COPY(ManhattanStyle)
 };
-#endif
 #endif // MANHATTANSTYLE_H

@@ -56,7 +56,6 @@
 #include <QToolButton>
 #include "utilsSystem.h"
 
-#if QT_VERSION >= 0x040500
 
 
 // We define a currently unused state for indicating animations
@@ -126,11 +125,7 @@ public:
 };
 
 ManhattanStyle::ManhattanStyle(const QString &baseStyleName)
-#if QT_VERSION<0x040600
-	: QWindowsStyle(), d(new ManhattanStylePrivate(baseStyleName))
-#else
 	: QProxyStyle(), d(new ManhattanStylePrivate(baseStyleName))
-#endif
 {
 	setProperty("manhattanstyle", true);
 }
@@ -1081,4 +1076,3 @@ bool ManhattanStyle::event(QEvent *e)
 	Q_ASSERT(d->style);
 	return d->style->event(e);
 }
-#endif
