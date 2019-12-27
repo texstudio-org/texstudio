@@ -35,11 +35,7 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 }
 
 QLocale::Language getKeyboardLanguage() {
-#if QT_VERSION < 0x050000
-	return QApplication::keyboardInputLocale().language();
-#else
 	return QGuiApplication::inputMethod()->locale().language();
-#endif
 }
 
 /*!
@@ -262,14 +258,12 @@ QIcon getRealIcon(const QString &icon)
 {
 	if (icon.isEmpty()) return QIcon();
 	if (icon.startsWith(":/")) return QIcon(icon);
-#if QT_VERSION >= 0x040600
 	if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
-#endif
 	//return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
 	QString name = getRealIconFile(icon);
 	QIcon ic = QIcon(name);
 	//if(ic.isNull()){
-#if (QT_VERSION >= 0x050000)&&(defined(Q_OS_OSX))
+#if (defined(Q_OS_OSX))
 	QPixmap pm(32, 32);
 	pm.load(name);
 	ic = QIcon(pm);
@@ -289,14 +283,12 @@ QIcon getRealIconCached(const QString &icon)
 		iconCache.insert(icon, icn);
 		return *icn;
 	}
-#if QT_VERSION >= 0x040600
 	if (useSystemTheme && QIcon::hasThemeIcon(icon)) {
 		QIcon *icn = new QIcon(QIcon::fromTheme(icon));
 		iconCache.insert(icon, icn);
 		return *icn;
 	}
 
-#endif
 	//return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
 	QIcon *icn = new QIcon(getRealIconFile(icon));
 	iconCache.insert(icon, icn);
@@ -306,14 +298,8 @@ QIcon getRealIconCached(const QString &icon)
 bool isFileRealWritable(const QString &filename)
 {
 #ifdef Q_OS_WIN32
-#if QT_VERSION >= 0x040700
-	//bug in 4.7 still present in 4.8.0
-	return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
-	       (!QFileInfo(filename).exists() && QFileInfo(QFileInfo(filename).absolutePath()).isWritable());
-#else
 	//thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
 	return QFileInfo(filename).isWritable();
-#endif
 #else
 	QFile fi(filename);
 	bool result = false;
@@ -513,7 +499,6 @@ QString getEnvironmentPath()
 	static QString path;
 	if (path.isNull()) {
 #ifdef Q_OS_MAC
-#if (QT_VERSION >= 0x040600)
 		QProcess *myProcess = new QProcess();
 		myProcess->start("bash -l -c \"echo -n $PATH\"");  // -n ensures there is no newline at the end
 		myProcess->waitForFinished(3000);
@@ -524,7 +509,6 @@ QString getEnvironmentPath()
 			path = "";
 		}
 		delete myProcess;
-#endif
 #else
 		path = QProcessEnvironment::systemEnvironment().value("PATH");
 #endif
@@ -654,26 +638,13 @@ bool hasAtLeastQt(int major, int minor)
 // convenience function for unique connections independent of the Qt version
 bool connectUnique(const QObject *sender, const char *signal, const QObject *receiver, const char *method)
 {
-#if QT_VERSION >= 0x040600
 	return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
-#else
-	disconnect(sender, signal, receiver, method);
-	return connect(sender, signal, receiver, method);
-#endif
 }
 
 // compatibility function for missing QProcessEnvironment::keys() in Qt < 4.8
 QStringList envKeys(const QProcessEnvironment &env)
 {
-#if QT_VERSION >= 0x040800
 	return env.keys();
-#else
-	QStringList keys;
-	foreach (const QString &s, env.toStringList()) {
-		keys.append(s.left(s.indexOf('=')));
-	}
-	return keys;
-#endif
 }
 
 void ThreadBreaker::sleep(unsigned long s)

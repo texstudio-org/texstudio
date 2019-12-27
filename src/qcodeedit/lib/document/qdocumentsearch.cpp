@@ -497,11 +497,7 @@ QString QDocumentSearch::replaceTextExpanded() const
 			replacement.replace(QString("\\") + QString::number(i),
 			                    m_match.captured(i));
 #else
-#if QT_VERSION<0x040600
-		for ( int i = m_regexp.numCaptures(); i >= 0; --i )
-#else
 		for ( int i = m_regexp.captureCount(); i >= 0; --i )
-#endif
 			replacement.replace(QString("\\") + QString::number(i),
 			                    m_regexp.cap(i));
 #endif

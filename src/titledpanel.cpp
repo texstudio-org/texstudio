@@ -268,12 +268,8 @@ void TitledPanel::updateTopbar()
     // dpi aware icon scaling
     // screen dpi is read and the icon are scaled up in reference to 96 dpi
     // this should be helpful on X11 (Xresouces) and possibly windows
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
 
 	topbar = new QToolBar(this);
 	topbar->setOrientation(Qt::Horizontal);

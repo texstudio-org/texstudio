@@ -2,11 +2,9 @@
 #include "smallUsefulFunctions.h"
 #include "universalinputdialog.h"
 #include <QMutex>
-#if QT_VERSION >= 0x040400
 #include <QFuture>
 
 #include <QtConcurrentRun>
-#endif
 
 //==============================Database=============================
 class ThesaurusDatabaseType
@@ -121,9 +119,7 @@ QString ThesaurusDatabaseType::TinyStringRef::toStringWithBuffer(const QString *
 
 static ThesaurusDatabaseType globalThesaurus;
 static QMutex thesaurusLock;
-#if QT_VERSION >= 0x040500
 static QFuture<void> thesaurusFuture;
-#endif
 static QString globalThesaurusNeededFileName;
 QString ThesaurusDialog::userPath;
 
@@ -205,24 +201,17 @@ void ThesaurusDialog::prepareDatabase(const QString &filename)
 {
 	if (filename == globalThesaurusNeededFileName) return;
 	if (!QFile(filename).exists()) {
-#if QT_VERSION >= 0x040500
 		thesaurusLock.lock();
 		globalThesaurusNeededFileName = "";
 		globalThesaurus.clear();
 		thesaurusLock.unlock();
-#else
-		globalThesaurusNeededFileName = "";
-#endif
+
 		return;
 	}
-#if QT_VERSION >= 0x040500
 	thesaurusLock.lock();
 	globalThesaurusNeededFileName = filename;
 	thesaurusFuture = QtConcurrent::run(&ThesaurusDialog::loadDatabase, globalThesaurusNeededFileName);
 	thesaurusLock.unlock();
-#else
-	globalThesaurusNeededFileName = filename;
-#endif
 }
 
 void ThesaurusDialog::setUserPath(const QString &userDir)
@@ -433,14 +422,9 @@ void ThesaurusDialog::loadDatabase(const QString &fileName )
 ThesaurusDatabaseType *ThesaurusDialog::retrieveDatabase()
 {
     if (globalThesaurusNeededFileName  == "") return nullptr;
-#if QT_VERSION >= 0x040500
 	if (thesaurusFuture.isRunning())
 		thesaurusFuture.waitForFinished();
-#else
-	if (globalThesaurus.fileName != globalThesaurusNeededFileName) {
-		loadDatabase(globalThesaurusNeededFileName);
-	}
-#endif
+
     if (globalThesaurus.fileName != globalThesaurusNeededFileName) return nullptr;
 	return &globalThesaurus;
 }

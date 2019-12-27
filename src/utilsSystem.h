@@ -7,11 +7,7 @@
 #define REQUIRE(x)  do { Q_ASSERT((x)); if (!(x)) return; } while (0)
 #define REQUIRE_RET(x,e) do { Q_ASSERT((x)); if (!(x)) return (e); } while (0)
 
-#if QT_VERSION >= 0x040700
 #define LIST_RESERVE(list, count) list.reserve(count)
-#else
-#define LIST_RESERVE(list, count)
-#endif
 
 extern const char *TEXSTUDIO_GIT_REVISION;
 

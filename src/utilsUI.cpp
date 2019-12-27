@@ -301,7 +301,7 @@ void updateToolTipWithShortcut(QAction *action, bool showShortcut) {
  * \note ItemViews will be switched to ScrollPerPixel scrollMode.
  */
 void enableTouchScrolling(QWidget *widget, bool enable) {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)  && !defined(Q_OS_MAC)
+#if !defined(Q_OS_MAC)
 	if (enable) {
 		QAbstractItemView *view = qobject_cast<QAbstractItemView *>(widget);
 		if (view) {

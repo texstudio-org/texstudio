@@ -159,7 +159,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	readSettings();
 
-#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
+#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	QCoreApplication::instance()->installEventFilter(this);
 #endif
 #ifdef Q_OS_WIN
@@ -198,12 +198,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     // dpi aware icon scaling
     // screen dpi is read and the icon are scaled up in reference to 96 dpi
     // this should be helpful on X11 (Xresouces) and possibly windows
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
 
 	setWindowIcon(QIcon(":/images/logo128.png"));
 
@@ -596,12 +592,8 @@ void Texstudio::setupDockWidgets()
 	//to allow retranslate this function must be able to be called multiple times
 
     // adapt icon size to dpi
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
 
 	if (!sidePanel) {
 		sidePanel = new SidePanel(this);
@@ -1237,11 +1229,8 @@ void Texstudio::setupMenus()
 	newManagedEditorAction(submenu, "zoomOut", tr("Zoom Out"), "zoomOut", Qt::CTRL + Qt::Key_Minus);
 	newManagedEditorAction(submenu, "resetZoom", tr("Reset Zoom"), "resetZoom", Qt::CTRL + Qt::Key_0);
 
-#if QT_VERSION>=0x050000
 	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Full &Screen"), nullptr, QKeySequence::FullScreen);
-#else
-	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Full &Screen"), 0, MAC_OTHER(Qt::CTRL + Qt::META + Qt::Key_F, Qt::Key_F11));
-#endif
+
 	fullscreenModeAction->setCheckable(true);
 	connectUnique(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
 	connectUnique(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
@@ -1446,12 +1435,9 @@ void Texstudio::updateAvailableLanguages()
 void Texstudio::updateLanguageToolStatus()
 {
     // adapt icon size to dpi
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
+
     int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
 
 	QIcon icon = getRealIconCached("languagetool");
@@ -1484,12 +1470,9 @@ void Texstudio::createStatusBar()
 	status->setVisible(configManager.getOption("View/ShowStatusbar").toBool());
 
     // adapt icon size to dpi
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
+
     int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
 
     QSize iconSize = QSize(iconWidth, iconWidth);
@@ -2169,7 +2152,6 @@ void Texstudio::linkToEditorSlot(QAction *act, const char *methodName, const QLi
 	if (!args.isEmpty())
 		act->setProperty("args", QVariant::fromValue<QList<QVariant> >(args));
 	for (int i = 0; i < LatexEditorView::staticMetaObject.methodCount(); i++)
-#if QT_VERSION>=0x050000
 		if (signature == LatexEditorView::staticMetaObject.method(i).methodSignature()) {
 			act->setProperty("editorViewSlot", methodName);
 			return;
@@ -2179,17 +2161,6 @@ void Texstudio::linkToEditorSlot(QAction *act, const char *methodName, const QLi
 			act->setProperty("editorSlot", methodName);
 			return;
 		}
-#else
-		if (signature == LatexEditorView::staticMetaObject.method(i).signature()) {
-			act->setProperty("editorViewSlot", methodName);
-			return;
-		} //else qDebug() << LatexEditorView::staticMetaObject.method(i).signature();
-	for (int i = 0; i < QEditor::staticMetaObject.methodCount(); i++)
-		if (signature == QEditor::staticMetaObject.method(i).signature()) {
-			act->setProperty("editorSlot", methodName);
-			return;
-		}
-#endif
 
 	qDebug() << methodName << signature;
 	Q_ASSERT(false);
@@ -5816,7 +5787,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 
 		if (preserveDuplicates) break;
 	}
-#if QT_VERSION>=0x050000 && defined Q_OS_MAC
+#if defined Q_OS_MAC
 	if (embedded)
 		setMenuBar(configManager.menuParentsBar);
 #endif
@@ -6409,21 +6380,12 @@ void Texstudio::generalOptions()
 #endif
 
 
-#if QT_VERSION<0x050000
-	if (configManager.possibleMenuSlots.isEmpty()) {
-		for (int i = 0; i < staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append(staticMetaObject.method(i).signature());
-		for (int i = 0; i < QEditor::staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append("editor:" + QString(QEditor::staticMetaObject.method(i).signature()));
-		for (int i = 0; i < LatexEditorView::staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append("editorView:" + QString(LatexEditorView::staticMetaObject.method(i).signature()));
-		configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegExp("^[^*]+$"));
-	}
-#else
 	if (configManager.possibleMenuSlots.isEmpty()) {
 		for (int i = 0; i < staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append(staticMetaObject.method(i).methodSignature());
 		for (int i = 0; i < QEditor::staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append("editor:" + QString(QEditor::staticMetaObject.method(i).methodSignature()));
 		for (int i = 0; i < LatexEditorView::staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append("editorView:" + QString(LatexEditorView::staticMetaObject.method(i).methodSignature()));
 		configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegExp("^[^*]+$"));
 	}
-#endif
 	// GUI scaling
 	connect(&configManager, SIGNAL(iconSizeChanged(int)), this, SLOT(changeIconSize(int)));
 	connect(&configManager, SIGNAL(secondaryIconSizeChanged(int)), this, SLOT(changeSecondaryIconSize(int)));
@@ -7040,14 +7002,8 @@ void Texstudio::setFullScreenMode()
             showNormal();
         }
 		restoreState(windowstate, 0);
-#if QT_VERSION < 0x040701
-		setUnifiedTitleAndToolBarOnMac(true);
-#endif
 	} else {
 		windowstate = saveState(0);
-#if QT_VERSION < 0x040701
-		setUnifiedTitleAndToolBarOnMac(false); //prevent crash, see https://bugreports.qt-project.org/browse/QTBUG-16274?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
-#endif
         tobemaximized=isMaximized();
 		showFullScreen();
 		restoreState(stateFullScreen, 1);
@@ -7117,18 +7073,9 @@ void Texstudio::pdfClosed()
 
 		}
 	}
-	//QTimer::singleShot(100, this, SLOT(restoreMacMenuBar()));
 #endif
 }
 
-void Texstudio::restoreMacMenuBar()
-{
-#if QT_VERSION<0x050000 && defined Q_OS_MAC
-	//workaround to restore mac menubar
-	menuBar()->setNativeMenuBar(false);
-	menuBar()->setNativeMenuBar(true);
-#endif
-}
 
 QObject *Texstudio::newPdfPreviewer(bool embedded)
 {
@@ -7277,7 +7224,7 @@ bool Texstudio::eventFilter(QObject *, QEvent *event)
 }
 #endif
 
-#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
+#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 // workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
 bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 {
@@ -7919,9 +7866,9 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 {
 	QPixmap pixmap;
 	int devPixelRatio = 1;
-#if QT_VERSION >= 0x050000
-	devPixelRatio = devicePixelRatio();
-#endif
+
+    devPixelRatio = devicePixelRatio();
+
 	double scale = configManager.segmentPreviewScalePercent / 100.;
 	double min = 0.2;
 	double max = 100;
@@ -7970,11 +7917,10 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
             }
         }
 	}
-#if QT_VERSION >= 0x050000
+
 	if (devPixelRatio != 1) {
 		pixmap.setDevicePixelRatio(devPixelRatio);
 	}
-#endif
 
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_PANEL ||
@@ -8000,14 +7946,9 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		        QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w / devPixelRatio), nullptr);
 		} else {
 			QString text;
-#if QT_VERSION >= 0x040700
+
 			text = getImageAsText(pixmap, w);
-#else
-			QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
-			pixmap.save(tempPath + "txs_preview.png", "PNG");
-			buildManager.addPreviewFileName(tempPath + "txs_preview.png");
-			text = QString("<img src=\"" + tempPath + "txs_preview.png\" width=%1 />").arg(w);
-#endif
+
 			if (completerPreview) {
 				completerPreview = false;
 				completer->showTooltip(text);
@@ -8154,14 +8095,8 @@ void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
 	int w = pm.width();
 	if (w > screen.width()) w = screen.width() - 2;
 	QString text;
-#if QT_VERSION >= 0x040700
 	text = getImageAsText(pm, w);
-#else
-	QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
-	pm.save(tempPath + "txs_preview.png", "PNG");
-	buildManager.addPreviewFileName(tempPath + "txs_preview.png");
-	text = QString("<img src=\"" + tempPath + "txs_preview.png\" width=%1 />").arg(w);
-#endif
+
 	if (completerPreview) {
 		emit imgPreview(text);
 	} else {
@@ -10094,10 +10029,8 @@ void Texstudio::checkLatexInstall()
 
 	QString result;
 	// check dpi
-#if QT_VERSION > 0x050000
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
 	result+=QString("dpi: %1\n").arg(dpi);
-#endif
 	// run pdflatex
 	setStatusMessageProcess(QString("check pdflatex"));
 	QString buffer;
@@ -10517,12 +10450,9 @@ void Texstudio::showExtendedSearch()
 void Texstudio::changeIconSize(int value)
 {
 	// adapt icon size to dpi
-#if QT_VERSION> 0x050000
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
 	double scale=dpi/96;
-#else
-	double scale=1;
-#endif
+
 	int iconWidth=qRound(value*scale);
 
 	setIconSize(QSize(iconWidth, iconWidth));
@@ -10542,12 +10472,9 @@ void Texstudio::changeIconSize(int value)
 void Texstudio::changeSecondaryIconSize(int value)
 {
 	// adapt icon size to dpi
-#if QT_VERSION> 0x050000
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
 	double scale=dpi/96;
-#else
-	double scale=1;
-#endif
+
 	int iconWidth=qRound(value*scale);
 
 	centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
@@ -10577,12 +10504,9 @@ void Texstudio::changeSecondaryIconSize(int value)
 void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 {
 	// adapt icon size to dpi
-#if QT_VERSION> 0x050000
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
 	double scale=dpi/96;
-#else
-	double scale=1;
-#endif
+
 	int iconWidth=qRound(value*scale);
 
 	if (changePanel) {
@@ -10597,12 +10521,9 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 
 void Texstudio::LTErrorMessage(QString message){
 	// adapt icon size to dpi
-#if QT_VERSION> 0x050000
 	double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
 	double scale=dpi/96;
-#else
-	double scale=1;
-#endif
+
 	int iconWidth=qRound(configManager.guiSecondaryToolbarIconSize*scale);
 
 	QIcon icon = getRealIconCached("languagetool");

@@ -260,9 +260,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	cReplace = new QComboBox(this);
 	cReplace->setEditable(true);
-#if QT_VERSION >= 0x050200
 	cReplace->lineEdit()->setClearButtonEnabled(true);
-#endif
 	cReplace->completer()->setCompletionMode(QCompleter::PopupCompletion);
 	cReplace->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cReplace->setObjectName(("cReplace"));

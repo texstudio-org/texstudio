@@ -717,7 +717,6 @@ void QDocumentCursorTest::bidiMoving(){
 		return;
 	}
 
-#if QT_VERSION >= 0x040800
 
 	doc->setText(text,false);
 	for (int i=0;i<doc->lineCount();i++)
@@ -727,7 +726,6 @@ void QDocumentCursorTest::bidiMoving(){
 	c.movePosition(movement, (QDocumentCursor::MoveOperation)dir);
 	QEQUAL2(c.lineNumber(), newLine, "line" );
 	QEQUAL2(c.columnNumber(), newColumn, "column" );
-#endif
 
 }
 

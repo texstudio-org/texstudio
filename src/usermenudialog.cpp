@@ -106,19 +106,11 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(codeedit->editor()->document(), SIGNAL(contentsChanged()), SLOT(textChanged()));
 	connect(ui.itemEdit, SIGNAL(textEdited(QString)), SLOT(nameChanged()));
     connect(ui.teDescription, SIGNAL(textChanged()), SLOT(descriptionChanged()));
-#if QT_VERSION >= 0x050000
     connect(ui.cbShortcut, SIGNAL(currentTextChanged(QString)), SLOT(shortcutChanged()));
-#else
-    connect(ui.cbShortcut, SIGNAL(editTextChanged(QString)), SLOT(shortcutChanged()));
-#endif
+
 	connect(ui.abbrevEdit, SIGNAL(textEdited(QString)), SLOT(abbrevChanged()));
 	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
 	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
-
-#if QT_VERSION < 0x050000
-    // no macro browsing with <qt5
-    ui.pbBrowse->hide();
-#endif
 
 }
 
@@ -257,11 +249,7 @@ void UserMenuDialog::change(QTreeWidgetItem *current,QTreeWidgetItem *previous)
             ui.triggerEdit->setText(m.trigger);
 
         if (m.shortcut() != ui.cbShortcut->currentText()){
-#if QT_VERSION >= 0x050000
             ui.cbShortcut->setCurrentText(m.shortcut());
-#else
-            ui.cbShortcut->setEditText(m.shortcut());
-#endif
         }
         if (m.description != ui.teDescription->toPlainText())
             ui.teDescription->setPlainText(m.description);

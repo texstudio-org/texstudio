@@ -372,12 +372,8 @@ void CustomWidgetList::customContextMenuRequested(const QPoint &localPosition)
 void CustomWidgetList::showWidgets()
 {
     // adapt icon size to dpi
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
 
     setToolbarIconSize(qRound(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt()*scale));
 

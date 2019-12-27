@@ -496,7 +496,6 @@ protected slots:
 
 	QObject *newPdfPreviewer(bool embedded = false);
 	void pdfClosed();
-	void restoreMacMenuBar();
 
 	void masterDocumentChanged(LatexDocument *doc);
 	void aboutToDeleteDocument(LatexDocument *doc);
@@ -588,7 +587,7 @@ protected:
 #ifdef Q_OS_WIN
     bool eventFilter(QObject *obj, QEvent *event);
 #endif
-#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
+#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	bool eventFilter(QObject *obj, QEvent *event);
 #endif
 
