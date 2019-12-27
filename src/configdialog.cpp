@@ -387,12 +387,8 @@ int ConfigDialog::lastUsedPage = 0;
 ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPDFViewer(nullptr), riddled(false), oldToolbarIndex(-1), mBuildManager(nullptr)
 {
     // adapt icon size to dpi
-#if QT_VERSION> 0x050000
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
-#else
-    double scale=1;
-#endif
 
 	setModal(true);
 	ui.setupUi(this);
@@ -547,24 +543,9 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxActions, SIGNAL(currentIndexChanged(int)), SLOT(actionsChanged(int)));
 	connect(ui.treePossibleToolbarActions, SIGNAL(doubleClicked(QModelIndex)), SLOT(toToolbarClicked()));
 
-#if QT_VERSION >= 0x040400
 	ui.treePossibleToolbarActions->setHeaderHidden(true);
-#endif
-	//	ui.listCustomToolBar->setSelectionMode(QAbstractItemView::ExtendedSelection);
-	//	ui.treePossibleToolbarActions->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-#if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11)&&!defined(Q_OS_UNIX))
-	ui.checkBoxUseSystemTheme->setVisible(false);
-#endif
-
-#if QT_VERSION < 0x040800
-	ui.checkBoxVisualColumnMode->setChecked(false);
-	ui.checkBoxVisualColumnMode->setEnabled(false);
-#endif
-
-#if QT_VERSION >= 0x040603
 	ui.lineEditMetaFilter->setPlaceholderText(tr("(option filter)"));
-#endif
 	connect(ui.lineEditMetaFilter, SIGNAL(textChanged(QString)), SLOT(metaFilterChanged(QString)));
 
 	// poppler preview

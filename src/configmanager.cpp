@@ -2668,70 +2668,68 @@ void ConfigManager::setInterfaceStyle()
 
 	QString newStyle = interfaceStyle != "" ? interfaceStyle : defaultStyleName;
 	if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
-#if QT_VERSION >= 0x040500
 	if (modernStyle) {
 		ManhattanStyle *style = new ManhattanStyle(newStyle);
 		if (style->isValid()) QApplication::setStyle(style);
 	} else
-#endif
-		QApplication::setStyle(newStyle);
-	QPalette pal = systemPalette;
-	if (useTexmakerPalette) { //modify palette like texmaker does it
-		pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
-		pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
-		pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
+        QApplication::setStyle(newStyle);
+    QPalette pal = systemPalette;
+    if (useTexmakerPalette) { //modify palette like texmaker does it
+        pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
+        pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
+        pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
 
-		pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#ffffff"));
-		pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
-		pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
+        pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#ffffff"));
+        pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
+        pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
 
-		pal.setColor(QPalette::Active, QPalette::Base, QColor("#ffffff"));
-		pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#ffffff"));
-		pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#ffffff"));
+        pal.setColor(QPalette::Active, QPalette::Base, QColor("#ffffff"));
+        pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#ffffff"));
+        pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#ffffff"));
 
-		pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#000000"));
-		pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#000000"));
-		pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#000000"));
+        pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#000000"));
+        pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#000000"));
+        pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#000000"));
 
-		pal.setColor( QPalette::Active, QPalette::Text, QColor("#000000") );
-		pal.setColor( QPalette::Inactive, QPalette::Text, QColor("#000000") );
-		pal.setColor( QPalette::Disabled, QPalette::Text, QColor("#000000") );
+        pal.setColor( QPalette::Active, QPalette::Text, QColor("#000000") );
+        pal.setColor( QPalette::Inactive, QPalette::Text, QColor("#000000") );
+        pal.setColor( QPalette::Disabled, QPalette::Text, QColor("#000000") );
 
-		pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
-		pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
-		pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
+        pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
+        pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
+        pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
 
-		pal.setColor( QPalette::ToolTipText, QColor("#000000") );
+        pal.setColor( QPalette::ToolTipText, QColor("#000000") );
 
-		pal.setColor( QPalette::ToolTipBase, QColor("#FFFFDC") );
+        pal.setColor( QPalette::ToolTipBase, QColor("#FFFFDC") );
 
-		if (x11desktop_env() == 4) {
-			pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
-			pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#eae9e9"));
-			pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#eae9e9"));
+        if (x11desktop_env() == 4) {
+            pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
+            pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#eae9e9"));
+            pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#eae9e9"));
 
-			pal.setColor(QPalette::Active, QPalette::Button, QColor("#eae9e9"));
-			pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
-			pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
-		} else {
-			/*pal.setColor(QPalette::Active, QPalette::Window, QColor("#fbf8f1"));
-			pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#fbf8f1"));
-			pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#fbf8f1"));
+            pal.setColor(QPalette::Active, QPalette::Button, QColor("#eae9e9"));
+            pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
+            pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
+        } else {
+            /*pal.setColor(QPalette::Active, QPalette::Window, QColor("#fbf8f1"));
+            pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#fbf8f1"));
+            pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#fbf8f1"));
 
-			pal.setColor(QPalette::Active, QPalette::Button, QColor("#fbf8f1"));
-			pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#fbf8f1"));
-			pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#fbf8f1"));*/
-			pal.setColor( QPalette::Active, QPalette::Window, QColor("#f6f3eb") );
-			pal.setColor( QPalette::Inactive, QPalette::Window, QColor("#f6f3eb") );
-			pal.setColor( QPalette::Disabled, QPalette::Window, QColor("#f6f3eb") );
+            pal.setColor(QPalette::Active, QPalette::Button, QColor("#fbf8f1"));
+            pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#fbf8f1"));
+            pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#fbf8f1"));*/
+            pal.setColor( QPalette::Active, QPalette::Window, QColor("#f6f3eb") );
+            pal.setColor( QPalette::Inactive, QPalette::Window, QColor("#f6f3eb") );
+            pal.setColor( QPalette::Disabled, QPalette::Window, QColor("#f6f3eb") );
 
-			pal.setColor( QPalette::Active, QPalette::Button, QColor("#f6f3eb") );
-			pal.setColor( QPalette::Inactive, QPalette::Button, QColor("#f6f3eb") );
-			pal.setColor( QPalette::Disabled, QPalette::Button, QColor("#f6f3eb") );
+            pal.setColor( QPalette::Active, QPalette::Button, QColor("#f6f3eb") );
+            pal.setColor( QPalette::Inactive, QPalette::Button, QColor("#f6f3eb") );
+            pal.setColor( QPalette::Disabled, QPalette::Button, QColor("#f6f3eb") );
 
-		}
-	}
-	QApplication::setPalette(pal);
+        }
+    }
+    QApplication::setPalette(pal);
 }
 
 /*! GridLayout::rowCount() apparently never decreases. Instead there may be empty rows at the end
