@@ -4,8 +4,6 @@ matrix:
   - env: QT=qt5osx
     os: osx
     osx_image: xcode11.2
-  - env: QT=qt4
-    os: linux
   - env: QT=qt5
     os: linux
     services: xvfb
