@@ -72,6 +72,7 @@
 <file>completion/eurosym.cwl</file>
 <file>completion/fancybox.cwl</file>
 <file>completion/fancyhdr.cwl</file>
+<file>completion/fancyref.cwl</file>
 <file>completion/fancyunits-base.cwl</file>
 <file>completion/fancyunits_big-fractions.cwl</file>
 <file>completion/fancyunits_medium-fractions.cwl</file>
