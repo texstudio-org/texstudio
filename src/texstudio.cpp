@@ -1808,7 +1808,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
 	connect(edit, SIGNAL(thesaurus(int, int)), this, SLOT(editThesaurus(int, int)));
 	connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
 	connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
-	edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
+    edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
 	if (!hidden) {
 		int index = reloadFromDoc ? documents.documents.indexOf(edit->document, 0) : -1; // index: we still assume here that the order of documents and editors is synchronized
@@ -1978,9 +1978,8 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 		doc->setEditorView(edit); //update file name (if document didn't exist)
 
 		configureNewEditorViewEnd(edit, !hidden, hidden);
-		//edit->document->initStructure();
-		//updateStructure(true);
-		if (!hidden) {
+
+        if (!hidden) {
 			showStructure();
 			bookmarks->restoreBookmarks(edit);
 		}
@@ -2021,29 +2020,25 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	else if (edit->editor->fileInfo().suffix().toLower() != "tex")
 		m_languages->setLanguage(edit->editor, f_real);
 
-	//QTime time;
-	//time.start();
 	edit->editor->load(f_real, QDocument::defaultCodec());
 
 	if (!edit->editor->languageDefinition())
 		guessLanguageFromContent(m_languages, edit->editor);
 
-
-	//qDebug() << "Load time: " << time.elapsed();
 	edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
 
-	edit->document->setEditorView(edit); //update file name (if document didn't exist)
+    edit->document->setEditorView(edit); //update file name (if document didn't exist)
 
-	configureNewEditorViewEnd(edit, asProject, hidden);
+    configureNewEditorViewEnd(edit, asProject, hidden);
 
-	//check for svn conflict
+    //check for svn conflict
 	if (!hidden) {
 		checkSVNConflicted();
 
 		MarkCurrentFileAsRecent();
 	}
 
-	documents.updateMasterSlaveRelations(doc, recheck);
+    documents.updateMasterSlaveRelations(doc, recheck);
 
     if (recheck || hidden) {
 		doc->updateLtxCommands();
@@ -2070,7 +2065,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 		showStructure();
 	bookmarks->restoreBookmarks(edit);
 
-	if (asProject) documents.setMasterDocument(edit->document);
+    if (asProject) documents.setMasterDocument(edit->document);
 
 	if (outputView->getLogWidget()->logPresent()) {
 		updateLogEntriesInEditors();
@@ -2098,10 +2093,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 			edit->editor->setFocus();
 		}
 	}
-	//raise();
-	//#ifdef Q_OS_WIN32
-	//        if (IsIconic (this->winId())) ShowWindow(this->winId(), SW_RESTORE);
-	//#endif
 #endif
 
 	runScriptsInList(Macro::ST_LOAD_THIS_FILE, doc->localMacros);
@@ -3204,76 +3195,81 @@ void Texstudio::fileSaveSession()
  */
 void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMissing)
 {
-	fileCloseAll();
+    fileCloseAll();
 
-	cursorHistory->setInsertionEnabled(false);
-	QProgressDialog progress(this);
-	if (showProgress) {
-		progress.setMaximum(s.files().size());
-		progress.setCancelButton(nullptr);
-		progress.setMinimumDuration(3000);
-		progress.setLabel(new QLabel());
-	}
-	recheckLabels = false; // impede label rechecking on hidden docs
+    cursorHistory->setInsertionEnabled(false);
+    QProgressDialog progress(this);
+    if (showProgress) {
+        progress.setMaximum(s.files().size());
+        progress.setCancelButton(nullptr);
+        progress.setMinimumDuration(3000);
+        progress.setLabel(new QLabel());
+    }
+    recheckLabels = false; // impede label rechecking on hidden docs
 
-	bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
+    bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
+    /*QTime tm;
+        tm.start();
+        qDebug()<<"start";*/
+    QStringList missingFiles;
+    for (int i = 0; i < s.files().size(); i++) {
+        FileInSession f = s.files().at(i);
 
-	QStringList missingFiles;
-	for (int i = 0; i < s.files().size(); i++) {
-		FileInSession f = s.files().at(i);
+        if (showProgress) {
+            progress.setValue(i);
+            progress.setLabelText(QFileInfo(f.fileName).fileName());
+        }
+        LatexEditorView *edView = load(f.fileName, f.fileName == s.masterFile(), false, false, true);
+        if (edView) {
+            int line = f.cursorLine;
+            int col = f.cursorCol;
+            if (line >= edView->document->lineCount()) {
+                line = 0;
+                col = 0;
+            } else {
+                if (edView->document->line(line).length() < col) {
+                    col = 0;
+                }
+            }
+            edView->editor->setCursorPosition(line, col);
+            edView->editor->scrollToFirstLine(f.firstLine);
+            edView->document->foldLines(f.foldedLines);
+            editors->moveToTabGroup(edView, f.editorGroup, -1);
+        } else {
+            missingFiles.append(f.fileName);
+        }
+    }
+    //qDebug()<<"loaded:"<<tm.elapsed();
+    // update ref/labels in one go;
+    QList<LatexDocument *> completedDocs;
+    foreach (LatexDocument *doc, documents.getDocuments()) {
+        doc->recheckRefsLabels();
+        if (completedDocs.contains(doc))
+            continue;
 
-		if (showProgress) {
-			progress.setValue(i);
-			progress.setLabelText(QFileInfo(f.fileName).fileName());
-		}
-		LatexEditorView *edView = load(f.fileName, f.fileName == s.masterFile(), false, false, true);
-		if (edView) {
-			int line = f.cursorLine;
-			int col = f.cursorCol;
-			if (line >= edView->document->lineCount()) {
-				line = 0;
-				col = 0;
-			} else {
-				if (edView->document->line(line).length() < col) {
-					col = 0;
-				}
-			}
-			edView->editor->setCursorPosition(line, col);
-			edView->editor->scrollToFirstLine(f.firstLine);
-			edView->document->foldLines(f.foldedLines);
-			editors->moveToTabGroup(edView, f.editorGroup, -1);
-		} else {
-			missingFiles.append(f.fileName);
-		}
-	}
-	// update ref/labels in one go;
-	QList<LatexDocument *> completedDocs;
-	foreach (LatexDocument *doc, documents.getDocuments()) {
-		doc->recheckRefsLabels();
-		if (completedDocs.contains(doc))
-			continue;
+        doc->updateLtxCommands(true);
+        completedDocs << doc->getListOfDocs();
+    }
+    recheckLabels = true;
+    //qDebug()<<"labels:"<<tm.elapsed();
 
-		doc->updateLtxCommands(true);
-		completedDocs << doc->getListOfDocs();
-	}
-	recheckLabels = true;
+    if (showProgress) {
+        progress.setValue(progress.maximum());
+    }
+    activateEditorForFile(s.currentFile());
+    cursorHistory->setInsertionEnabled(true);
 
-	if (showProgress) {
-		progress.setValue(progress.maximum());
-	}
-	activateEditorForFile(s.currentFile());
-	cursorHistory->setInsertionEnabled(true);
+    if (!s.PDFFile().isEmpty()) {
+        runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded() ? "--embedded" : "--windowed");
+    }
+    // update completer
+    if (currentEditorView())
+        updateCompleter(currentEditorView());
 
-	if (!s.PDFFile().isEmpty()) {
-		runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded() ? "--embedded" : "--windowed");
-	}
-	// update completer
-	if (currentEditorView())
-		updateCompleter(currentEditorView());
-
-	if (warnMissing && !missingFiles.isEmpty()) {
-		UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
-	}
+    if (warnMissing && !missingFiles.isEmpty()) {
+        UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
+    }
+    //qDebug()<<"finished:"<<tm.elapsed();
 }
 
 Session Texstudio::getCurrentSession()
@@ -4307,11 +4303,7 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	if (!doc)
 		doc = currentEditorView()->document;
 	if (initial) {
-		//int len=doc->lineCount();
 		doc->patchStructure(0, -1);
-		// doc->patchStructure(0,-1,true); // do a second run, if packages are loaded (which might define new commands)
-		// admitedly this solution is expensive (though working)
-		//TODO: does not working when entering \usepackage in text ... !
 
         bool previouslyEmpty=doc->localMacros.isEmpty();
 		doc->updateMagicCommentScripts();
@@ -7291,7 +7283,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             QList<CodeSnippet> userList=doc->userCommandList();
             if(config){
                 CodeSnippetList::iterator it;
-		for(it=userList.begin();it!=userList.end();++it){
+                for(it=userList.begin();it!=userList.end();++it){
                     QList<QPair<int, int> >res = config->usage.values(it->index);
                     foreach (const PairIntInt &elem, res) {
                         if (elem.first == it->snippetLength) {
@@ -7310,15 +7302,15 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
 	// collect user commands and references
 	QSet<QString> collected_labels;
-	foreach (const LatexDocument *doc, docs) {
+    foreach (const LatexDocument *doc, docs) {
 		collected_labels.unite(doc->labelItems().toSet());
 		foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
 			QString temp = refCommand + "{%1}";
 			foreach (const QString &l, doc->labelItems())
 				words.insert(temp.arg(l));
 		}
-	}
-	if (configManager.parseBibTeX) {
+    }
+    if (configManager.parseBibTeX) {
 		QSet<QString> bibIds;
 
 		QStringList collected_mentionedBibTeXFiles;
@@ -7392,7 +7384,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 
-	updateHighlighting();
+    updateHighlighting();
 
 	mCompleterNeedsUpdate = false;
 }
@@ -9386,9 +9378,9 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 void Texstudio::updateTexQNFA()
 {
 	updateTexLikeQNFA("(La)TeX", "tex.qnfa");
-	updateTexLikeQNFA("Sweave", "sweave.qnfa");
-	updateTexLikeQNFA("Pweave", "pweave.qnfa");
-	updateUserMacros(false); //update macro triggers for languages
+    updateTexLikeQNFA("Sweave", "sweave.qnfa");
+    updateTexLikeQNFA("Pweave", "pweave.qnfa");
+    updateUserMacros(false); //update macro triggers for languages
 }
 
 /*!

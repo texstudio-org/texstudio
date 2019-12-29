@@ -907,7 +907,7 @@ void QDocument::stopChunkLoading()
 
 	emit lineCountChanged(lineCount());
 
-	emit m_impl->emitContentsChange(0, m_impl->m_lines.count());
+    //emit m_impl->emitContentsChange(0, m_impl->m_lines.count()); //will be called explicitely later by txs itself. Avoid calling twice. Is it really save to not call it ?
 }
 
 /*!
@@ -2343,10 +2343,10 @@ int QDocumentLineHandle::nextNonSpaceChar(uint pos) const
 
 int QDocumentLineHandle::nextNonSpaceCharNoLock(uint pos) const
 {
-	const int len = m_text.length();
+    const int len = m_text.length();
 	const QChar *unicode = m_text.unicode();
 
-	for ( int i = pos; i < len; ++i )
+    for ( int i = pos; i < len; ++i )
 	{
 		if ( !unicode[i].isSpace() )
 			return i;
@@ -8555,8 +8555,6 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 			m_delayedUpdates << QPair<int,int>(line,lines); //shouldn't happen (but can easily happen if the api is misused)
 		return;
 	}
-	//for ( int i = line; i < (line + lines); i++ )
-	//	m_lines.at(i)->cache();
 
 	int n = lines;
 

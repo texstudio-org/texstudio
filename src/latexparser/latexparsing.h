@@ -16,9 +16,9 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh); ///< first pass lexing o
 bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const LatexParser &lp); ///< second pass lexing of text line, uses tokens from first pass
 int findCommandWithArgsFromTL(const TokenList &tl, Token &cmd, TokenList &args, int offset, bool parseComment = false);
 
-QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type, bool enableMultiLineSearch = true);
+QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type, bool enableMultiLineSearch = true,int hint=-1);
 QString getArg(const TokenList &tl, Token::TokenType type);
-QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count = 10); ///< internal
+QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int hint=-1, int count = 10); ///< internal
 
 Token getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first = false);
 int getTokenAtCol(TokenList &tl, int pos, bool first = false);

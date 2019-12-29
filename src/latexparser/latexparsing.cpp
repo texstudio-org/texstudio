@@ -839,7 +839,7 @@ QString getArg(const TokenList &tl, Token::TokenType type)
                 result = line.mid(1, line.length() - 2);
             }
             if (Token::tkOpen().contains(tk.type)) {
-                result = line.mid( 1) + findRestArg(tk.dlh, Token::opposite(tk.type), ConfigManager::RUNAWAYLIMIT);
+                result = line.mid( 1) + findRestArg(tk.dlh, Token::opposite(tk.type), -1,ConfigManager::RUNAWAYLIMIT);
             }
             if (Token::tkClose().contains(tk.type)) {
                 result = line.left(line.length()-1);
@@ -854,11 +854,11 @@ QString getArg(const TokenList &tl, Token::TokenType type)
 }
 
 
-QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type,bool enableMultiLineSearch)
+QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type,bool enableMultiLineSearch,int hint)
 {
 	// argNumber 0 -> first argument
     QDocument *doc=dlh->document();
-    int lineNr=doc->indexOf(dlh);
+    int lineNr=-1;
 
 	// do only create the relevant token sets once and keep them around for later use for speedup.
 	static const QSet<Token::TokenType> tokensForMandatoryArg = QSet<Token::TokenType>()
@@ -890,7 +890,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
     if(!tl.isEmpty()){
         level=tl.first().level;
     }
-    while( (lineNr)<doc->lineCount() && cnt<ConfigManager::RUNAWAYLIMIT){
+    while( cnt<ConfigManager::RUNAWAYLIMIT){
         QString line = dlh ? dlh->text() : "";
         foreach (Token tk,tl) {
             if(tk.level>level)
@@ -919,7 +919,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
                             // line break acts as space in latex
                             result=line.mid(tk.innerStart(), tk.innerLength())+" ";
                         }
-                        result.append(findRestArg(dlh, Token::opposite(tk.type), ConfigManager::RUNAWAYLIMIT));
+                        result.append(findRestArg(dlh, Token::opposite(tk.type), lineNr<0 ? hint : lineNr ,ConfigManager::RUNAWAYLIMIT));
                     }else{
                         result = line.mid(tk.innerStart(), tk.innerLength());
                     }
@@ -947,7 +947,13 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
         }
         if(!enableMultiLineSearch)
             break;
+        if(lineNr<0){
+            lineNr=doc->indexOf(dlh,hint); // perform lineNr search only when really needed
+        }
         lineNr++;
+        if(lineNr>=doc->lineCount()){
+            break;
+        }
         dlh=doc->line(lineNr).handle();
         if(dlh)
             tl= dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
@@ -958,13 +964,13 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 }
 
 
-QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count)
+QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int hint, int count)
 {
 	// dlh is current line, next line will be checked here!!!
     if (count <= 0)
 		return QString(); // limit search depth
 	QDocument *document = dlh->document();
-	int index = document->indexOf(dlh);
+    int index = document->indexOf(dlh,hint);
 	if (index + 1 >= document->lines())
 		return QString(); // last line reached
 	dlh = document->line(index + 1).handle();
@@ -996,7 +1002,7 @@ QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count)
 			return result.left(tk.start + 1);
 		}
 	}
-	return result + findRestArg(dlh, type, count - 1);
+    return result + findRestArg(dlh, type, index+1, count - 1);
 }
 
 

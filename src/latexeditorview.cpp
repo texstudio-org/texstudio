@@ -1905,7 +1905,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 	bool latexLikeChecking = ldoc && ldoc->languageIsLatexLike();
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
 
-	if (config->inlineGrammarChecking) {
+    if (config->inlineGrammarChecking) {
 		QList<LineInfo> changedLines;
 		int lookBehind = 0;
 		for (; linenr - lookBehind >= 0; lookBehind++)
@@ -1951,20 +1951,16 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 		if (!changedLines.isEmpty())
 			emit linesChanged(speller->name(), document, changedLines, truefirst);
 
-	}
+    }
 
 	Q_ASSERT(speller);
-	for (int i = linenr; i < linenr + count; i++) {
-		QDocumentLine line = editor->document()->line(i);
-		if (!line.isValid()) continue;
 
-		//remove all overlays used for latex things, in descending frequency
-		line.clearOverlays(formatsList); //faster as it avoids multiple lock/unlock operations
-	}
-
-	for (int i = linenr; i < linenr + count; i++) {
+    for (int i = linenr; i < linenr + count; i++) {
 		QDocumentLine line = editor->document()->line(i);
-		if (!line.isValid()) continue;
+        if (!line.isValid()) continue;
+
+        //remove all overlays used for latex things, in descending frequency
+        line.clearOverlays(formatsList); //faster as it avoids multiple lock/unlock operations
 
 		bool addedOverlaySpellCheckError = false;
 		bool addedOverlayReference = false;
@@ -2069,8 +2065,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 						dlh->addOverlay(QFormatRange(tk.start, tk.length, referenceMultipleFormat));
 					} else dlh->addOverlay(QFormatRange(tk.start, tk.length, referencePresentFormat));
 					// look for corresponding reeferences and adapt format respectively
-					//containedLabels->updateByKeys(QStringList(ref),containedReferences);
-					document->updateRefsLabels(ref);
 					addedOverlayReference = true;
 				}
 				if (tk.type == Token::bibItem && config->inlineCitationChecking) {
@@ -2115,7 +2109,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
 				if (config->hideNonTextSpellingErrors && (isNonTextFormat(line.getFormatAt(tk.start)) || isNonTextFormat(line.getFormatAt(tk.start + tk.length - 1)) )) // TODO:needs to be adapted
 					continue;
-				if (!speller->check(word) ) {
+                if (!speller->check(word) ) {
 					if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
 						continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
                     if(word.endsWith('.')){
@@ -2123,7 +2117,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                     }
                     line.addOverlay(QFormatRange(tk.start, tkLength, SpellerUtility::spellcheckErrorFormat));
 					addedOverlaySpellCheckError = true;
-				}
+                }
 			}
 		} // for Tokenslist
 

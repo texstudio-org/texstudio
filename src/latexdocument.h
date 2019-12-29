@@ -28,6 +28,12 @@ struct ReferencePair {
 	int start;
 };
 
+struct ReferencePairEx {
+    QDocumentLineHandle *dlh;
+    QVector<int> starts,lengths,formats;
+    QList<int> formatList;
+};
+
 
 struct UserCommandPair {
 	// name of command ("\command") or environment ("environment"),
@@ -97,6 +103,7 @@ public:
 	Q_INVOKABLE CodeSnippetList additionalCommandsList();
 	void updateRefsLabels(const QString &ref);
 	void recheckRefsLabels();
+    static void updateRefHighlight(ReferencePairEx p);
 	Q_INVOKABLE int countLabels(const QString &name);
 	Q_INVOKABLE int countRefs(const QString &name);
 	Q_INVOKABLE bool bibIdValid(const QString &name);
@@ -155,7 +162,7 @@ public:
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
 	Q_INVOKABLE QSet<QString> usedPackages();
-	bool updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate = false, bool delayUpdate = false);
+    bool updateCompletionFiles(const bool forceUpdate,const bool forceLabelUpdate = false,const bool delayUpdate = false, const bool dontPatch = false );
 	const QSet<QString> &getCWLFiles() const;
 
 	Q_INVOKABLE QString spellingDictName() const
@@ -267,7 +274,7 @@ public slots:
 	void updateLtxCommands(bool updateAll = false);
 	void setLtxCommands(const LatexParser &cmds);
 	void updateSettings();
-	void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket);
+    void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint=-1);
 
 signals:
 	void hasBeenIncluded(const LatexDocument &newMasterDocument);

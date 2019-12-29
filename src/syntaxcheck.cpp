@@ -44,7 +44,7 @@ void SyntaxCheck::setErrFormat(int errFormat)
 * \param stack tokenstack at line start (for handling open arguments of previous commands)
 * \param clearOverlay clear syntaxcheck overlay
 */
-void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay)
+void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay, int hint)
 {
 	REQUIRE(dlh);
 	SyntaxLine newLine;
@@ -56,6 +56,7 @@ void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, T
 	newLine.dlh = dlh;
 	newLine.prevEnv = previous;
 	newLine.clearOverlay = clearOverlay;
+    newLine.hint=hint;
 	mLinesLock.lock();
 	mLines.enqueue(newLine);
 	mLinesLock.unlock();
@@ -134,7 +135,7 @@ void SyntaxCheck::run()
 				newLine.dlh->setCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE, env);
 				newLine.dlh->ref(); // avoid being deleted while in queue
 				//qDebug() << newLine.dlh->text() << ":" << activeEnv.size();
-				emit checkNextLine(newLine.dlh, true, newLine.ticket);
+                emit checkNextLine(newLine.dlh, true, newLine.ticket, newLine.hint);
 			}
 		}
 		newLine.dlh->unlock();

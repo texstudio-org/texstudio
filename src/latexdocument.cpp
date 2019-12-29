@@ -12,6 +12,7 @@
 #include "configmanagerinterface.h"
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexparsing.h"
+#include <QtConcurrent>
 
 
 //FileNamePair::FileNamePair(const QString& rel):relative(rel){};
@@ -55,7 +56,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 	SynChecker.setErrFormat(syntaxErrorFormat);
 	SynChecker.start();
 
-	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle *, bool, int)), SLOT(checkNextLine(QDocumentLineHandle *, bool, int)), Qt::QueuedConnection);
+    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle *, bool, int, int)), SLOT(checkNextLine(QDocumentLineHandle *, bool, int, int)), Qt::QueuedConnection);
 }
 
 LatexDocument::~LatexDocument()
@@ -417,6 +418,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	 * e.g. definition of specialDef command, but packages are load at the end of this method.
 	 */
 	//qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
+    QTime tm;
+    tm.start();
 	if (!parent->patchEnabled())
 		return false;
 
@@ -463,24 +466,31 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	QStringList removedUserCommands, addedUserCommands;
 	QStringList lstFilesToLoad;
 	//first pass: lex
-	TokenStack oldRemainder;
-	CommandStack oldCommandStack;
+    TokenStack oldRemainder;
+    CommandStack oldCommandStack;
 	if (!recheck) {
 		QList<QDocumentLineHandle *> l_dlh;
 //#pragma omp parallel for shared(l_dlh)
 		for (int i = linenr; i < linenr + count; i++) {
 			l_dlh << line(i).handle();
-			Parsing::simpleLexLatexLine(line(i).handle());
+            //Parsing::simpleLexLatexLine(line(i).handle());
 		}
-		//QtConcurrent::blockingMap(l_dlh,Parsing::simpleLexLatexLine);
+        QtConcurrent::blockingMap(l_dlh,Parsing::simpleLexLatexLine);
 	}
 	QDocumentLineHandle *lastHandle = line(linenr - 1).handle();
 	if (lastHandle) {
 		oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
 		oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
 	}
-	for (int i = linenr; i < lineCount() && i < linenr + count; i++) {
-		bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
+    int stoppedAtLine=-1;
+    for (int i = linenr; i < lineCount() && i < linenr + count; i++) {
+        if (line(i).text() == "\\begin{document}"){
+            if(linenr==0 && count==lineCount() && !recheck) {
+                stoppedAtLine=i;
+                break; // do recheck quickly as usepackages probably need to be loaded
+            }
+        }
+        bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
 		if (remainderChanged && i + 1 == linenr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
 			count++; // check also next line ...
 		}
@@ -488,7 +498,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	if (linenr >= lineNrStart) {
 		newCount = linenr + count - lineNrStart;
 	}
-
 	// Note: We cannot re-use the structure elements in the updated area because if there are multiple same-type elements on the same line
 	// and the user has changed their order, re-using these elements would not update their order and this would break updates of any
 	// QPersistentModelIndex'es that point to these elements in the structure tree view. That is why we remove all the structure elements
@@ -524,14 +533,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		QDocumentLineHandle *dlh = line(i).handle();
 		if (!dlh)
 			continue; //non-existing line ...
-		TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
-		QLineFormatAnalyzer lineFormatAnaylzer(line(i).getFormats());
 
-		/*for(int j=0;j<curLine.length() && j < fmts.size();j++){
-			if(fmts[j]==verbatimFormat || (fmts[j]==commentFormat && !parent->showCommentedElementsInStructure) ){
-				curLine[j]=QChar(' ');
-			}
-		}*/
+		QLineFormatAnalyzer lineFormatAnaylzer(line(i).getFormats());
 
 		// remove command,bibtex,labels at from this line
 		QList<UserCommandPair> commands = mUserCommandList.values(dlh);
@@ -650,17 +653,34 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			oldLine = mAppendixLine;
 			mAppendixLine = nullptr;
 		}
+        /// \begin{document}
+        /// break patchStructure at begin{document} since added usepackages need to be loaded and then the text needs to be checked
+        /// only useful when loading a complete new text.
+        if (curLine == "\\begin{document}"){
+            if(linenr==0 && count==lineCount() && !recheck) {
+                if(!addedUsepackages.isEmpty()){
+                    break; // do recheck quickly as usepackages probably need to be loaded
+                }else{
+                    // oops, complete tokenlist needed !
+                    // redo on time
+                    for (int i = stoppedAtLine; i < lineCount(); i++) {
+                        Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
+                    }
+                }
+            }
+        }
 		/// \end{document} keyword
 		/// don't add section in structure view after passing \end{document} , this command must not contains spaces nor any additions in the same line
 		if (curLine == "\\end{document}") {
 			oldLineBeyond = mBeyondEnd;
 			mBeyondEnd = line(i).handle();
-
 		}
 		if (line(i).handle() == mBeyondEnd && curLine != "\\end{document}") {
 			oldLineBeyond = mBeyondEnd;
 			mBeyondEnd = nullptr;
 		}
+
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
 		for (int j = 0; j < tl.length(); j++) {
 			Token tk = tl.at(j);
@@ -732,7 +752,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			cmdStart=tkCmd.start; // from here, cmdStart is line column position of command
 			cmd = curLine.mid(tkCmd.start, tkCmd.length);
 
-			QString firstArg = Parsing::getArg(args, dlh, 0, ArgumentList::Mandatory);
+            QString firstArg = Parsing::getArg(args, dlh, 0, ArgumentList::Mandatory,true,i);
 
 			//// newcommand ////
 			if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
@@ -838,23 +858,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					continue;
 				}
 			}
-			/* obsolete
-			// special treatment \newcount
-			if (cmd == "\\newcount") {
-				QString remainder = curLine.mid(cmdStart + cmd.length());
-				completerNeedsUpdate = true;
-				QRegExp rx("^\\s*(\\\\[A-Za-z]+)");
-				if (rx.indexIn(remainder) > -1) {
-					QString name = rx.cap(1);
-					ltxCommands.possibleCommands["user"].insert(name);
-					if (!removedUserCommands.removeAll(name)) addedUserCommands << name;
-					mUserCommandList.insert(line(i).handle(), name);
-					// remove obsolete Overlays (maybe this can be refined
-					//updateSyntaxCheck=true;
-				}
-				continue;
-			}
-			*/
 
 			//// newenvironment ////
 			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
@@ -1020,7 +1023,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 			if (cmd == "\\begin" && firstArg == "block") {
 				StructureEntry *newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
-				newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory);
+                newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,i);
 				newBlock->setLine(line(i).handle(), i);
 				insertElementWithSignal(blockList, posBlock++, newBlock);
 				continue;
@@ -1058,7 +1061,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
 				QDir dir(firstArg);
-				QFileInfo fi(dir, Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory));
+                QFileInfo fi(dir, Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,i));
 				QString file = fi.filePath();
 				newInclude->title = file;
 				QString fname = findFileName(file);
@@ -1099,7 +1102,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					firstArg = firstOptArg;
 				if(cmd=="\\begin"){
 					// special treatment for \begin{frame}{title}
-					firstArg = Parsing::getArg(args, dlh, 1, ArgumentList::MandatoryWithBraces,false);
+                    firstArg = Parsing::getArg(args, dlh, 1, ArgumentList::MandatoryWithBraces,false,i);
 					if(firstArg.isEmpty()){
 						// empty frame title, maybe \frametitle is used ?
 						delete newSection;
@@ -1219,18 +1222,17 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 		}
 
-		//emit setHighlightedEntry(newSection);
 	}
 	emit structureUpdated(this, newSection);
 	bool updateLtxCommands = false;
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {
 		bool forceUpdate = !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
-		updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
 		reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());
+        // don't patch single lines if the whole text needs to be rechecked anyways
+        updateLtxCommands = updateCompletionFiles(forceUpdate, false, true, reRunSuggested);
 	}
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
-
 	// force update on citation overlays
 	if (bibItemsChanged || bibTeXFilesNeedsUpdate) {
 		parent->updateBibFiles(bibTeXFilesNeedsUpdate);
@@ -1242,14 +1244,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	}
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
-
 	if ((!recheck && updateSyntaxCheck) || updateLtxCommands) {
 	    this->updateLtxCommands(true);
 	}
-	//update view
-	if (edView)
+    //update view (unless patchStructure is run again anyway)
+    if (edView && !reRunSuggested)
 		edView->documentContentChanged(linenr, count);
-
 #ifndef QT_NO_DEBUG
 	if (!isHidden())
 		checkForLeak();
@@ -1258,8 +1258,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		parent->addDocToLoad(fname);
 	}
 	//qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
-	if (reRunSuggested && !recheck)
+    if (reRunSuggested && !recheck)
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
+
 	return reRunSuggested;
 }
 
@@ -1389,7 +1390,7 @@ QString LatexDocument::findFileFromBibId(const QString &bibId)
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getBibItems(const QString &name)
 {
-	QHash<QDocumentLineHandle *, int> result;
+    QMultiHash<QDocumentLineHandle *, int> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
 		QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
 		for (it = elem->mBibItem.constBegin(); it != elem->mBibItem.constEnd(); ++it) {
@@ -1404,7 +1405,7 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getBibItems(const QString 
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &name)
 {
-	QHash<QDocumentLineHandle *, int> result;
+    QMultiHash<QDocumentLineHandle *, int> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
 		QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
 		for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it) {
@@ -1445,7 +1446,7 @@ QDocumentLineHandle *LatexDocument::findUsePackage(const QString &name)
 
 QMultiHash<QDocumentLineHandle *, int> LatexDocument::getRefs(const QString &name)
 {
-	QHash<QDocumentLineHandle *, int> result;
+    QMultiHash<QDocumentLineHandle *, int> result;
 	foreach (const LatexDocument *elem, getListOfDocs()) {
 		QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
 		for (it = elem->mRefItem.constBegin(); it != elem->mRefItem.constEnd(); ++it) {
@@ -1595,6 +1596,12 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visite
 		delete visitedDocs;
 	return listOfDocs;
 }
+void LatexDocument::updateRefHighlight(ReferencePairEx p){
+    p.dlh->clearOverlays(p.formatList);
+    for(int i=0;i<p.starts.size();++i) {
+        p.dlh->addOverlay(QFormatRange(p.starts[i], p.lengths[i], p.formats[i]));
+    }
+}
 
 void LatexDocument::recheckRefsLabels()
 {
@@ -1602,34 +1609,51 @@ void LatexDocument::recheckRefsLabels()
 	int referenceMultipleFormat = getFormatId("referenceMultiple");
 	int referencePresentFormat = getFormatId("referencePresent");
 	int referenceMissingFormat = getFormatId("referenceMissing");
+    const QList<int> formatList{referenceMissingFormat,referencePresentFormat,referenceMultipleFormat};
+    QList<ReferencePairEx> results;
+
+    QStringList items;
+    foreach (const LatexDocument *elem, getListOfDocs()) {
+        items << elem->labelItems();
+    }
 
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
+    QSet<QDocumentLineHandle*> dlhs;
 	for (it = mLabelItem.constBegin(); it != mLabelItem.constEnd(); ++it) {
-		QDocumentLineHandle *dlh = it.key();
-		foreach (const ReferencePair &rp, mLabelItem.values(dlh)) {
-			int cnt = countLabels(rp.name);
-			dlh->removeOverlay(QFormatRange(rp.start, rp.name.length(), referenceMultipleFormat));
-			dlh->removeOverlay(QFormatRange(rp.start, rp.name.length(), referencePresentFormat));
-			dlh->removeOverlay(QFormatRange(rp.start, rp.name.length(), referenceMissingFormat));
-			if (cnt > 1) {
-				dlh->addOverlay(QFormatRange(rp.start, rp.name.length(), referenceMultipleFormat));
-			} else if (cnt == 1) dlh->addOverlay(QFormatRange(rp.start, rp.name.length(), referencePresentFormat));
-			else dlh->addOverlay(QFormatRange(rp.start, rp.name.length(), referenceMissingFormat));
+        dlhs.insert(it.key());
+    }
+    for (it = mRefItem.constBegin(); it != mRefItem.constEnd(); ++it) {
+        dlhs.insert(it.key());
+    }
+
+    for(QDocumentLineHandle *dlh : dlhs){
+        ReferencePairEx p;
+        p.formatList=formatList;
+        p.dlh=dlh;
+        for(const ReferencePair &rp : mLabelItem.values(dlh)) {
+            int cnt = items.count(rp.name);
+            int format= referenceMissingFormat;
+            if (cnt > 1) {
+                format=referenceMultipleFormat;
+            } else if (cnt == 1) format=referencePresentFormat;
+            p.starts<<rp.start;
+            p.lengths<<rp.name.length();
+            p.formats<<format;
 		}
+        for(const ReferencePair &rp :  mRefItem.values(dlh)) {
+            int cnt = items.count(rp.name);
+            int format= referenceMissingFormat;
+            if (cnt > 1) {
+                format=referenceMultipleFormat;
+            } else if (cnt == 1) format=referencePresentFormat;
+            p.starts<<rp.start;
+            p.lengths<<rp.name.length();
+            p.formats<<format;
+        }
+        results<<p;
 	}
-	for (it = mRefItem.constBegin(); it != mRefItem.constEnd(); ++it) {
-		QDocumentLineHandle *dlh = it.key();
-		foreach (const ReferencePair &rp, mRefItem.values(dlh)) {
-			int cnt = countLabels(rp.name);
-			dlh->removeOverlay(QFormatRange(rp.start, rp.name.length(), referenceMultipleFormat));
-			dlh->removeOverlay(QFormatRange(rp.start, rp.name.length(), referencePresentFormat));
-			dlh->removeOverlay(QFormatRange(rp.start, rp.name.length(), referenceMissingFormat));
-			if (cnt > 1) {
-				dlh->addOverlay(QFormatRange(rp.start, rp.name.length(), referenceMultipleFormat));
-			} else if (cnt == 1) dlh->addOverlay(QFormatRange(rp.start, rp.name.length(), referencePresentFormat));
-			else dlh->addOverlay(QFormatRange(rp.start, rp.name.length(), referenceMissingFormat));
-		}
-	}
+
+    QtConcurrent::blockingMap(results,LatexDocument::updateRefHighlight);
 }
 
 QStringList LatexDocument::someItems(const QMultiHash<QDocumentLineHandle *, ReferencePair> &list)
@@ -1676,6 +1700,7 @@ void LatexDocument::updateRefsLabels(const QString &ref)
 	int referenceMultipleFormat = getFormatId("referenceMultiple");
 	int referencePresentFormat = getFormatId("referencePresent");
 	int referenceMissingFormat = getFormatId("referenceMissing");
+    const QList<int> formatList{referenceMissingFormat,referencePresentFormat,referenceMultipleFormat};
 
 	int cnt = countLabels(ref);
 	QMultiHash<QDocumentLineHandle *, int> occurences = getLabels(ref);
@@ -1683,10 +1708,8 @@ void LatexDocument::updateRefsLabels(const QString &ref)
 	QMultiHash<QDocumentLineHandle *, int>::const_iterator it;
 	for (it = occurences.constBegin(); it != occurences.constEnd(); ++it) {
 		QDocumentLineHandle *dlh = it.key();
-		foreach (const int pos, occurences.values(dlh)) {
-			dlh->removeOverlay(QFormatRange(pos, ref.length(), referenceMultipleFormat));
-			dlh->removeOverlay(QFormatRange(pos, ref.length(), referencePresentFormat));
-			dlh->removeOverlay(QFormatRange(pos, ref.length(), referenceMissingFormat));
+        dlh->clearOverlays(formatList);
+        for(const int pos : occurences.values(dlh)) {
 			if (cnt > 1) {
 				dlh->addOverlay(QFormatRange(pos, ref.length(), referenceMultipleFormat));
 			} else if (cnt == 1) dlh->addOverlay(QFormatRange(pos, ref.length(), referencePresentFormat));
@@ -2703,7 +2726,7 @@ CodeSnippetList LatexDocument::additionalCommandsList()
 	return pck.completionWords;
 }
 
-bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate, bool delayUpdate)
+bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool forceLabelUpdate, const bool delayUpdate, const bool dontPatch)
 {
 
 	QStringList files = mUsepackageList.values();
@@ -2719,19 +2742,9 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 		if (!files.at(i).endsWith(".cwl"))
 			files[i] = files[i] + ".cwl";
 	}
-	//files.append(completerConfig->getLoadedFiles());
 	gatherCompletionFiles(files, loadedFiles, pck);
 	update = true;
 
-	/*
-	// special treatment for special defs
-	QHash<QString,QSet<QString> > possibleCommands;
-	foreach(const QString elem,ltxCommands.specialDefCommands.values()){
-	    possibleCommands.insert(elem,ltxCommands.possibleCommands[elem]);
-	}*/
-
-	//completerConfig->words=pck.completionWords;
-	//mCompleterWords=pck.completionWords.toSet();
 	mCWLFiles = loadedFiles.toSet();
 	QSet<QString> userCommandsForSyntaxCheck = ltxCommands.possibleCommands["user"];
 	QSet<QString> columntypeForSyntaxCheck = ltxCommands.possibleCommands["%columntypes"];
@@ -2762,13 +2775,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 			if (i >= 0) elem = elem.left(i);
 			//if(j>=0 && j<i) elem=elem.left(j);
 		}
-		//ltxCommands.possibleCommands["user"].insert(elem);
 	}
-	/*
-	// special treatment for special defs
-	foreach(const QString elem,ltxCommands.specialDefCommands.values()){
-	    ltxCommands.possibleCommands.insert(elem,ltxCommands.possibleCommands[elem].unite(possibleCommands[elem]));
-	}*/
 
 	//patch lines for new commands (ref,def, etc)
 
@@ -2793,8 +2800,8 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 			if (update) {
 				latexParser.possibleCommands[elem] << cmd;
 				//only update QNFA for added commands. When the default commands are not in ltxCommands.possibleCommands[elem], ltxCommands.possibleCommands[elem] and latexParser.possibleCommands[elem] will always differ and regenerate the QNFA needlessly after every key press
-				needQNFAupdate = true;
-			}
+                needQNFAupdate = false; //unclear what the intention was. updateQNFA does not affect structure commands ... hence this update does not make any sense and it is expensive.
+            }
 			if (update || forceLabelUpdate)
 				newCmds << cmd;
 		}
@@ -2803,9 +2810,9 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 		parent->requestQNFAupdate();
 
 
-	if (!newCmds.isEmpty()) {
+    if (!dontPatch && !newCmds.isEmpty()) {
 		patchLinesContaining(newCmds);
-	}
+    }
 
 	if (delayUpdate)
 		return update;
@@ -3140,7 +3147,7 @@ void LatexDocument::updateSettings()
 	SynChecker.setErrFormat(syntaxErrorFormat);
 }
 
-void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket)
+void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint)
 {
     Q_ASSERT_X(dlh != nullptr, "checkNextLine", "empty dlh used in checkNextLine");
 	if (dlh->getRef() > 1 && dlh->getCurrentTicket() == ticket) {
@@ -3148,7 +3155,7 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, i
 		QVariant envVar = dlh->getCookieLocked(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 		if (envVar.isValid())
 			env = envVar.value<StackEnvironment>();
-		int index = indexOf(dlh);
+        int index = indexOf(dlh,hint);
 		if (index == -1) return; //deleted
 		REQUIRE(dlh->document() == this);
 		if (index + 1 >= lines()) {
@@ -3182,7 +3189,7 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, i
 			return;
 		}
 		TokenStack remainder = dlh->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-		SynChecker.putLine(line(index + 1).handle(), env, remainder, clearOverlay);
+        SynChecker.putLine(line(index + 1).handle(), env, remainder, clearOverlay,index+1);
 	}
 	dlh->deref();
 }

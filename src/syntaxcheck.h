@@ -77,6 +77,7 @@ public:
 		int ticket; ///< ticket number
 		bool clearOverlay; ///< clear syntax overlay, sometimes not necessary as it was done somewhere else
 		QDocumentLineHandle *dlh; ///< linehandle
+        int hint; ///< hint on lineNumber for faster look-up
 	};
 
     /*!
@@ -91,7 +92,7 @@ public:
 
     explicit SyntaxCheck(QObject *parent = nullptr);
 
-	void putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay = false);
+    void putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay = false,int hint=-1);
 	void stop();
 	void setErrFormat(int errFormat);
 	QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
@@ -106,7 +107,7 @@ public:
 	void markUnclosedEnv(Environment env);
 
 signals:
-	void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket); ///< enqueue next line for syntax checking as context has changed
+    void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint); ///< enqueue next line for syntax checking as context has changed
 
 protected:
 	void run();
