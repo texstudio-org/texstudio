@@ -209,7 +209,8 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 			<< tr("environment not closed")
 			<< tr("unrecognized key in key option")
 			<< tr("unrecognized value in key option")
-			<< tr("command outside suitable env");
+            << tr("command outside suitable env")
+            << tr("spelling");
 	Q_ASSERT(messages.length() == ERR_MAX);
 	return messages.value(int(result), tr("unknown"));
 }
