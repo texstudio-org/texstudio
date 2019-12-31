@@ -150,6 +150,7 @@
 <file>completion/ngerman.cwl</file>
 <file>completion/nicefrac.cwl</file>
 <file>completion/nomencl.cwl</file>
+<file>completion/overpic.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/parskip.cwl</file>
 <file>completion/pdfpages.cwl</file>
