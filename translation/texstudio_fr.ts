@@ -334,7 +334,7 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="340"/>
         <source>&lt;New File&gt;</source>
-        <translation>&lt;Nouveau fichier&gt;</translation>
+        <translation>&lt;New File&gt;</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="364"/>
@@ -377,7 +377,7 @@
         <location filename="../src/buildmanager.cpp" line="101"/>
         <location filename="../src/buildmanager.cpp" line="1948"/>
         <source>&lt;unknown&gt;</source>
-        <translation>&lt;introuvable&gt;</translation>
+        <translation>&lt;unknown&gt;</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="294"/>
@@ -521,12 +521,12 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="328"/>
         <source>Default Bibliography Tool</source>
-        <translation>Outil de bibliographie par défaut</translation>
+        <translation>Moteur de bibliographie par défaut</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="331"/>
         <source>Default Index Tool</source>
-        <translation>Outil d&apos;index par défaut</translation>
+        <translation>Moteur d&apos;index par défaut</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="333"/>
@@ -536,7 +536,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="334"/>
         <source>Default Glossary Tool</source>
-        <translation>Outil de glossaire par défaut</translation>
+        <translation>Moteur de glossaire par défaut</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="344"/>
@@ -576,7 +576,7 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
         <translation>OSX 10.11 ne permet plus aux applications d&apos;écrire ici. Vous pourriez avoir
-besoin de passer ) la version 2015 de la distribution MacTeX.
+besoin de passer à la version 2015 de la distribution MacTeX.
 
 Ensuite, les programmes MacTeX se trouveront dans le dossier /Library/TeX/texbin/.
 
@@ -596,7 +596,7 @@ Voulez-vous que TeXstudio remplace tous les chemins des commandes de
     <message>
         <location filename="../src/buildmanager.cpp" line="968"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation>Vous avez utilisé l&apos;un des modificateurs txs:///command[... ou txs:///command{..., mais ne sont supportés que ceux de la forme txs:///command/[... ou txs:///command/{... avec un slash en suffixe pour garder la syntaxeplus pure.</translation>
+        <translation>Vous avez utilisé l&apos;un des modificateurs txs:///command[... ou txs:///command{..., mais ne sont supportés que ceux de la forme txs:///command/[... ou txs:///command/{... avec un slash en suffixe pour garder la syntaxe plus pure.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="979"/>
@@ -609,9 +609,9 @@ Voulez-vous que TeXstudio remplace tous les chemins des commandes de
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation>La commande %1 devrait être atomique. Cependant, elle est actuellement défini comme une chaîne de commande contenant des commandes %2. Cela va au-delà de la spécification et peut mener à des effets secondaires surprenants.
+        <translation>La commande %1 devrait être atomique. Cependant, elle est actuellement définie comme une chaîne de commande contenant des commandes %2. Cela va au-delà de la spécification et peut mener à des effets secondaires surprenants.
 
-Veuillez modifier votre configuration et définir les listes de commandes uniquement dans&apos;Options -&gt; Configurer TeXstudio -&gt; Construire&apos; et non dans&apos;Options -&gt; Configurer TeXstudio -&gt; Commandes&apos;.</translation>
+Veuillez modifier votre configuration et définir les listes de commandes uniquement dans Options → Configurer TeXstudio → Construire et non dans Options → Configurer TeXstudio → Commandes.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1062"/>
@@ -621,12 +621,12 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/buildmanager.cpp" line="1480"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation>Aucune distribution LaTeX n&apos;a éré trouvée sur votre système. Par conséquent, les commandes correspondantes ne sont pas configurées. Cela signifie que vous ne pouvez pas compiler vos documents pour obtenir le format de sortie désiré (p.ex. pdf).</translation>
+        <translation>Aucune distribution TeX n&apos;a été trouvée sur votre système. Par conséquent, les commandes correspondantes ne sont pas configurées. Cela signifie que vous ne pouvez pas compiler vos documents pour obtenir le format de sortie désiré (p. ex. pdf).</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
-        <translation>Les distributions LaTeX populaires sous Windows sont %1 et %2.</translation>
+        <translation>Les distributions TeX populaires sous Windows sont %1 et %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1486"/>
@@ -636,7 +636,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/buildmanager.cpp" line="1489"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
-        <translation>Une distribution LaTeX populaire sous OSX est %1.</translation>
+        <translation>Une distribution TeX populaire sous OSX est %1.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1491"/>
@@ -646,7 +646,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/buildmanager.cpp" line="1494"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
-        <translation>Si vous avez l&apos;intention de travailler avec LaTeX, vous voudrez certainement installer une distribution LaTeX.</translation>
+        <translation>Si vous avez l&apos;intention de travailler avec LaTeX, vous voudrez certainement installer une distribution TeX.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1507"/>
@@ -662,7 +662,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
         <location filename="../src/buildmanager.cpp" line="1540"/>
         <location filename="../src/buildmanager.cpp" line="1553"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Assurez-vous d&apos;avoir installé une distribution (La)TeX&lt;/b&gt; par exemple MiKTeX ou TeX Live, et d&apos;avoir correctement configuré les chemins vers cette distribution sur la page de configuration des commandes de TeXstudio.&lt;br&gt; Un éditeur (La)TeX tel que TeXstudio ne peut fonctionner sans les commandes LaTeX fournies par une telle distribution.</translation>
+        <translation>&lt;b&gt;Assurez-vous d&apos;avoir installé une distribution TeX&lt;/b&gt; par exemple MiKTeX ou TeX Live, et d&apos;avoir correctement configuré les chemins vers cette distribution sur la page de configuration des commandes de TeXstudio.&lt;br&gt; Un éditeur (La)TeX tel que TeXstudio ne peut fonctionner sans les commandes LaTeX fournies par une telle distribution.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1549"/>
@@ -871,7 +871,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="441"/>
         <source>Use system file dialogs</source>
-        <translation>Utiliser les fenêtres du système</translation>
+        <translation>Utiliser les boîtes de dialogue du système</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="451"/>
@@ -1106,7 +1106,7 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location filename="../src/configdialog.ui" line="1038"/>
         <source>Interpret command definition in magic comments</source>
-        <translation>Interpréter la définition de la commande dans les commentaires &quot;magiques&quot;</translation>
+        <translation>Interpréter la définition de la commande dans les commentaires « magiques »</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1075"/>
@@ -1156,7 +1156,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="1125"/>
         <source>Close Element (Esc)</source>
-        <translation>Fermer l&apos;élément (Echap)</translation>
+        <translation>Fermer l&apos;élément (Échap)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1131"/>
@@ -1419,7 +1419,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="1760"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation>Citations polonaises : ,, &apos;&apos;</translation>
+        <translation>Guillemets polonais : ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1765"/>
@@ -1724,7 +1724,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="2345"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation>Ceci n&apos;a d&apos;effet que si la largeur du document est limitée par une enveloppe souple ou rigide.</translation>
+        <translation>Ceci n&apos;a d&apos;effet que si la largeur du document est limitée par un retour à la ligne automatique effectif ou fictif.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2348"/>
@@ -1796,7 +1796,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2438"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Des programmes externes (comme Zotero) peuvent envoyer des citations dans TeXstudio en appelant: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Si le curseur n&apos;est pas encore dans une commande de citation, la &amp;quot;command&amp;quot; donnée ici est utilisée comme \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Des programmes externes (tels que Zotero) peuvent envoyer des citations dans TeXstudio en appelant: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Si le curseur n&apos;est pas encore dans une commande de citation, la &amp;quot;command&amp;quot; donnée ici est utilisée tant que \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2441"/>
@@ -1826,7 +1826,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2481"/>
         <source>Regular expression for TODO comment: </source>
-        <translation>Expression régulière pour le commentaire TODO</translation>
+        <translation>Expression régulière pour le commentaire TODO :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2494"/>
@@ -2168,7 +2168,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="3194"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation>Insertion automatique des délimiteurs mathématiques si nécessaire</translation>
+        <translation>Insertion automatique des délimiteurs mathématiques là où nécessaire</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3204"/>
@@ -2689,8 +2689,7 @@ Remarque : modifier ce paramètre n&apos;affectera que les documents ouverts ens
     <message>
         <location filename="../src/configdialog.ui" line="4451"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation>Couleur de fond par défaut. Spécifié une valeur RVB hexadécimal.
- Note : Cela n’affectera que les fichiers PDF chargés après le changement de cette option. La couleur du papier des fichiers PDF déjà ouverts ne sera pas modifié.</translation>
+        <translation>Couleur de fond par défaut. À spécifier par une valeur RVB hexadécimale. Note : cela n’affectera que les fichiers PDF chargés après le changement de cette option. La couleur du papier des fichiers PDF déjà ouverts ne sera pas modifiée.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4503"/>
@@ -3119,7 +3118,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Input/Include &amp;Files</source>
-        <translation>Entrée/Inclure des &amp;Fichiers</translation>
+        <translation>Importer/Inclure des &amp;fichiers</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="31"/>
@@ -3449,7 +3448,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{file(s)}</source>
-        <translation>\includeonly{fichier(s)}</translation>
+        <translation>\includeonly{⟨liste de fichier(s)⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -4321,14 +4320,14 @@ Continuer tout de même ?</translation>
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Préférences de placement pour la figure
 
-[t] Top (Haut): En haut de la page
-[b] Bottom (Bas): En bas de la page
-[p] Page: Sur une page dédiée aux figures
-[h] Here (Ici): À cette position dans le texte
-[H] Here (Ici): Strictement à cette position dans le texte (nécessite le paquet float) 
-[!]: Remplace les paramètres internes que LaTeX utilise pour détérminer les `bonnes&apos; positions flottantes.
+[t] Top (haut) : en haut de la page
+[b] Bottom (bas) : en bas de la page
+[p] Page : sur une page dédiée aux figures
+[h] Here (ici) : à cette position dans le texte
+[H] Here (ici) : strictement à cette position dans le texte (nécessite le package float) 
+[!] : remplace les paramètres internes que LaTeX utilise pour déterminer les « bonnes » positions flottantes.
 
-Note: Les 4 premières options de placement ne sont que des suggestions, si elles résultaient en une mauvaise organisation de la page, LaTeX pourrait les ignorer.</translation>
+Note : les 4 premières options de placement ne sont que des suggestions. Si il en résultaient en une mauvaise organisation de la page, LaTeX pourrait les ignorer.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="263"/>
@@ -5863,7 +5862,7 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1124"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation>L&apos;ouverture de fichiers externes n&apos;est supporté que pour les fichiers PDF actuellement</translation>
+        <translation>L&apos;ouverture de fichiers externes n&apos;est actuellement supportée que pour les fichiers PDF.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1143"/>
@@ -6218,10 +6217,11 @@ Press &quot;Ignore&quot; to ignore this warning.
 </source>
         <translation>%1
 a été modifié par une autre application.
-Cliquez sur &quot;Sauvegarder&quot; pour écraser le fichier.
-Cliquez sur &quot;Réinitialisation&quot; pour recharger le fichier.
-Cliquez sur &quot;Différences&quot; pour voir les différences dans l&apos;éditeur.
-Cliquez sur &quot;Ignorer&quot; pour ignorer cet avertissement.</translation>
+Cliquez sur « Sauvegarder » pour écraser le fichier.
+Cliquez sur « Réinitialisation » pour recharger le fichier.
+Cliquez sur « Différences » pour voir les différences dans l&apos;éditeur.
+Cliquez sur « Ignorer » pour ignorer cet avertissement.
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="930"/>
@@ -8467,7 +8467,7 @@ Faites-vous confiance à ce script ?</translation>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="498"/>
         <source>unrecognized environment</source>
-        <translation>environnement inconnue</translation>
+        <translation>environnement inconnu</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="499"/>
@@ -10564,7 +10564,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1472"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation>La vérification de la grammaire a été désactiver par l&apos;utilisateur !</translation>
+        <translation>La vérification grammaticale a été désactivée par l&apos;utilisateur !</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1536"/>
@@ -10961,7 +10961,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location filename="../src/texstudio.cpp" line="5942"/>
         <source>%!TeX program used: %1</source>
-        <translation>Programme %!TeX utilisé: %1</translation>
+        <translation>Programme %!TeX utilisé : %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5945"/>
@@ -11316,13 +11316,13 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <location filename="../src/texstudio.cpp" line="10267"/>
         <source>LT-URL: %1
 </source>
-        <translation>LT-URL: %1
+        <translation>LT-URL : %1
 </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10568"/>
         <source>Error when communicating with LT: %1</source>
-        <translation>Erreur lors de la communication avec LT: %1</translation>
+        <translation>Erreur lors de la communication avec LT : %1</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="559"/>
@@ -11547,11 +11547,9 @@ Si « Ignorer complètement les mots plus courts » est sélectionné, les mots 
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation>Les paramètres de cette ligne déterminent combien de mots consécutifs constituent une même phrase.
-Si « Minimum &amp; maximum de mots par phrase ». est sélectionné, le nombre exact de mots est considéré
-    (par ex. avec 2 pour la phrase précédente : « Les paramètres », « paramètres de », ...)
-Si seul « Maximum de mots par phrase » est sélectionné, les mots initiaux sont aussi inclus
-    (par ex. : « Les », « Les paramètres », « paramètres de », ...)</translation>
+        <translation>Les paramètres de cette ligne déterminent combien de mots consécutifs sont traités comme une phrase unique.
+Si « Minimum &amp; maximum de mots par phrase » est sélectionné, le nombre exact de mots est considéré (p. ex. avec 2 pour la phrase précédente : « Les paramètres », « paramètres de », ...)
+Si seul « Maximum de mots par phrase » est sélectionné, les mots initiaux sont aussi inclus (p. ex. : « Les », « Les paramètres », « paramètres de », ...)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="332"/>
@@ -11778,7 +11776,7 @@ document inclus dans %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Une nouvelle version Release Candidate de TeXstudio est disponible.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Version actuelle :&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Dernière version stable :&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Vous pouvez la télécharger sur le  &lt;a href=&apos;%7&apos;&gt;site web de TeXstudio&lt;/a&gt;.</translation>
+        <translation>Une nouvelle version « Release Candidate » de TeXstudio est disponible.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Version actuelle :&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Dernière version stable :&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Vous pouvez la télécharger sur le  &lt;a href=&apos;%7&apos;&gt;site web de TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
@@ -11788,7 +11786,7 @@ document inclus dans %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="211"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Une nouvelle version de développement de TexStudio est disponible. &lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt; Version actuelle : &lt;/td&gt;&lt;td&gt; %1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; Dernière version stable : &lt;/td&gt;&lt;td&gt; %3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; Dernière version de développement : &lt;/td&gt;&lt;td&gt;%5(beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt; Vous pouvez la télécharger depuis le &lt;a href=&apos;%7&apos;&gt; site TexStudio&lt;/a&gt;.</translation>
+        <translation>Une nouvelle version de développement de TexStudio est disponible. &lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt; Version actuelle : &lt;/td&gt;&lt;td&gt; %1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; Dernière version stable : &lt;/td&gt;&lt;td&gt; %3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; Dernière version de développement : &lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt; Vous pouvez la télécharger depuis le &lt;a href=&apos;%7&apos;&gt; site TexStudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>

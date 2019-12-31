@@ -770,7 +770,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     <message>
         <location filename="../src/configdialog.ui" line="14"/>
         <source>Configure TeXstudio</source>
-        <translation>A TeXstudio beállításai</translation>
+        <translation>TeXstudio beállításai</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="99"/>
@@ -3337,7 +3337,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>Slanted - \textsl</source>
-        <translation>Dőlt - \textsl</translation>
+        <translation>Döntött - \textsl</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="76"/>
@@ -4182,7 +4182,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="219"/>
         <source>Place in Figure Environment</source>
-        <translation>Elhelyezés az ábra környezetben</translation>
+        <translation>Elhelyezés figure környezetben</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="228"/>
@@ -8948,7 +8948,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texdocdialog.ui" line="14"/>
         <source>Packages Help (Texdoc)</source>
-        <translation>Súgó csomagok (Texdoc)</translation>
+        <translation>Csomagleírások (Texdoc)</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="45"/>
@@ -10506,17 +10506,17 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1299"/>
         <source>Packages Help...</source>
-        <translation>Súgó csomagok...</translation>
+        <translation>Csomagleírások...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1302"/>
         <source>Check LaTeX Installation</source>
-        <translation>A LaTeX-telepítés ellenőrzése</translation>
+        <translation>LaTeX-telepítés ellenőrzése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1303"/>
         <source>Check Active Completion Files</source>
-        <translation>q</translation>
+        <translation>Aktív kiegészítő fájlok ellenőrzése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1304"/>
