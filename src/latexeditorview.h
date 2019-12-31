@@ -241,6 +241,7 @@ public slots:
 
     void mayNeedToOpenCompleter(bool fromSingleChar=false);
 	void documentContentChanged(int linenr, int count);
+    void reCheckSyntax(int linenr, int count=-1);
 
 private slots:
 	void lineDeleted(QDocumentLineHandle *l);

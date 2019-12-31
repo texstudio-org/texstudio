@@ -705,7 +705,7 @@ void LatexEditorView::updateReplamentList(const LatexParser &cmds, bool forceUpd
 	if (differenceExists || replacementList.count() != mReplacementList.count() || forceUpdate) {
 		mReplacementList = replacementList;
         document->setReplacementList(mReplacementList);
-		documentContentChanged(0, editor->document()->lines()); //force complete spellcheck
+        reCheckSyntax(0); //force complete spellcheck
 	}
 }
 
@@ -2093,45 +2093,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					addedOverlayCitation = true;
 				}
 			}// if latexLineCheking
-            /*int tkLength=tk.length;
-            if (tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
-				QString word = tk.getText();
-                if(tkNr+1 < tl.length()){
-                    //check if next token is . or -
-                    Token tk1 = tl.at(tkNr+1);
-                    if(tk1.type==Token::punctuation && tk1.start==(tk.start+tk.length) && !word.endsWith("\"")){
-                        QString add=tk1.getText();
-                        if(add=="."||add=="-"){
-                            word+=add;
-                            tkNr++;
-                            tkLength+=tk1.length;
-                        }
-                        if(add=="'"){
-                            if(tkNr+2 < tl.length()){
-                                Token tk2 = tl.at(tkNr+2);
-                                if(tk2.type==Token::word && tk2.start==(tk1.start+tk1.length)){
-                                    add+=tk2.getText();
-                                    word+=add;
-                                    tkNr+=2;
-                                    tkLength+=tk1.length+tk2.length;
-                                }
-                            }
-                        }
-                    }
-                }
-				word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-				if (config->hideNonTextSpellingErrors && (isNonTextFormat(line.getFormatAt(tk.start)) || isNonTextFormat(line.getFormatAt(tk.start + tk.length - 1)) )) // TODO:needs to be adapted
-					continue;
-                if (!speller->check(word) ) {
-					if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
-						continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
-                    if(word.endsWith('.')){
-                        tkLength--; // don't take point into misspelled word
-                    }
-                    line.addOverlay(QFormatRange(tk.start, tkLength, SpellerUtility::spellcheckErrorFormat));
-					addedOverlaySpellCheckError = true;
-                }
-            }*/
 		} // for Tokenslist
 
 		//update wrapping if the an overlay changed the width of the text
@@ -2152,7 +2113,16 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 		}
 	}
-	editor->document()->markViewDirty();
+    editor->document()->markViewDirty();
+}
+/*!
+ * \brief Force rechecking of syntax/spelling
+ * \param linenr Starting line
+ * \param count Number of lines, -1 -> until end
+ */
+void LatexEditorView::reCheckSyntax(int linenr, int count)
+{
+    document->reCheckSyntax(linenr,count);
 }
 
 void LatexEditorView::lineDeleted(QDocumentLineHandle *l)

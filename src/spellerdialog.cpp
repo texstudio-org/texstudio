@@ -112,7 +112,7 @@ void SpellerDialog::closeEvent(QCloseEvent *ce)
 {
 	if (editorView && ignoreListChanged) {
 		ignoreListChanged = false;
-		editorView->documentContentChanged(0, editor->document()->lines());
+        editorView->reCheckSyntax(0);
 	}
 	if (editor) editor->setCursorPosition(startLine, startIndex);
 	ce->accept();
@@ -122,7 +122,7 @@ void SpellerDialog::accept()
 {
 	if (editorView && ignoreListChanged) {
 		ignoreListChanged = false;
-		editorView->documentContentChanged(0, editor->document()->lines());
+        editorView->reCheckSyntax(0);
 	}
 	if (editor) editor->setCursorPosition(startLine, startIndex);
 	QDialog::accept();
