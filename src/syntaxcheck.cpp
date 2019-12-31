@@ -240,7 +240,10 @@ void SyntaxCheck::setSpeller(SpellerUtility *su)
     newSpeller=su;
     mLtxCommandLock.unlock();
 }
-
+/*!
+ * \brief set character/text replacementList for spell checking
+ * \param replacementList Map for characater/text replacement prior to spellchecking words. E.g. "u -> ü when german is activated
+ */
 void SyntaxCheck::setReplacementList(QMap<QString, QString> replacementList)
 {
     if (stopped) return;

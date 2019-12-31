@@ -7,37 +7,61 @@
 extern void hideSplash();
 
 namespace UtilsUi {
-
+/*!
+ * \brief show confirmation message box
+ * \param message
+ * \return yes=true
+ */
 bool txsConfirm(const QString &message)
 {
 	hideSplash();
 	return QMessageBox::question(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
 }
-
+/*!
+ * \brief show confirmation with warning message box
+ * \param message
+ * \return yes=true
+ */
 bool txsConfirmWarning(const QString &message)
 {
 	hideSplash();
 	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
 }
-
+/*!
+ * \brief show confirmation with warning message box
+ * Here the available buttons can be set.
+ * \param message
+ * \param buttons
+ * \return pressed button
+ */
 QMessageBox::StandardButton txsConfirmWarning(const QString &message, QMessageBox::StandardButtons buttons)
 {
 	hideSplash();
 	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, buttons, QMessageBox::Yes);
 }
-
+/*!
+ * \brief show information message pop-up
+ * \param message
+ */
 void txsInformation(const QString &message)
 {
 	hideSplash();
 	QMessageBox::information(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
-
+/*!
+ * \brief show warning message pop-up
+ * \param message
+ */
 void txsWarning(const QString &message)
 {
 	hideSplash();
 	QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
-
+/*!
+ * \brief show warning message pop-up
+ * \param message
+ * \param noWarnAgain
+ */
 void txsWarning(const QString &message, bool &noWarnAgain)
 {
 	hideSplash();
@@ -49,7 +73,10 @@ void txsWarning(const QString &message, bool &noWarnAgain)
 	msgBox.exec();
 	noWarnAgain = cbNoWarnAgain.isChecked();
 }
-
+/*!
+ * \brief show critical-error message box
+ * \param message
+ */
 void txsCritical(const QString &message)
 {
 	hideSplash();
