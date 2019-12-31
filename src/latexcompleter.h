@@ -18,7 +18,7 @@
 
 #include "qcodeedit.h"
 #include "qeditor.h"
-#include "latexeditorview.h"
+//#include "latexeditorview.h"
 #include "directoryreader.h"
 #include "bibtexreader.h"
 
@@ -28,6 +28,7 @@
 class CompletionListModel;
 class LatexCompleterConfig;
 class LatexReference;
+class LatexParser;
 //class Reference;
 
 /*!

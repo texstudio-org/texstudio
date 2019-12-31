@@ -12,6 +12,7 @@
 #include "qdocumentline_p.h"
 
 #include "latexdocument.h"
+#include "latexeditorview.h"
 #include "qdocument.h"
 
 #include <algorithm>

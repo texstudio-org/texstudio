@@ -704,6 +704,7 @@ void LatexEditorView::updateReplamentList(const LatexParser &cmds, bool forceUpd
 	}
 	if (differenceExists || replacementList.count() != mReplacementList.count() || forceUpdate) {
 		mReplacementList = replacementList;
+        document->setReplacementList(mReplacementList);
 		documentContentChanged(0, editor->document()->lines()); //force complete spellcheck
 	}
 }
@@ -1369,7 +1370,13 @@ void LatexEditorView::setSpellerManager(SpellerManager *manager)
 	spellerManager = manager;
 	connect(spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(reloadSpeller()));
 }
-
+/*!
+ * \brief Set new spelling language
+ * No change if old and new are identical
+ * The speller engine is forwarded to the syntax checker where the actual online checking is done.
+ * \param name of the desired language
+ * \return success of operation
+ */
 bool LatexEditorView::setSpeller(const QString &name)
 {
 	if (!spellerManager) return false;
@@ -1392,6 +1399,11 @@ bool LatexEditorView::setSpeller(const QString &name)
 		disconnect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
 	}
 	speller = su;
+    if(document){
+        SpellerUtility::inlineSpellChecking=config->inlineSpellChecking;
+        SpellerUtility::hideNonTextSpellingErrors=config->hideNonTextSpellingErrors;
+        document->setSpeller(speller);
+    }
 	connect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
 	connect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
 	emit spellerChanged(name);
@@ -1401,10 +1413,12 @@ bool LatexEditorView::setSpeller(const QString &name)
 	}
 
 	// force new highlighting
-	documentContentChanged(0, editor->document()->lines());
+    //documentContentChanged(0, editor->document()->lines());
 	return true;
 }
-
+/*!
+ * \brief reload speller engine with new engine (sender())
+ */
 void LatexEditorView::reloadSpeller()
 {
 	if (useDefaultSpeller) {
@@ -1645,7 +1659,7 @@ void LatexEditorView::updateFormatSettings()
 		grammarFormats << wordRepetitionFormat << wordRepetitionLongRangeFormat << badWordFormat << grammarMistakeFormat << grammarMistakeSpecial1Format << grammarMistakeSpecial2Format << grammarMistakeSpecial3Format << grammarMistakeSpecial4Format; //don't change the order, it corresponds to GrammarErrorType
 		grammarFormatsDisabled.resize(9);
 		grammarFormatsDisabled.fill(false);
-		formatsList << SpellerUtility::spellcheckErrorFormat << referencePresentFormat << citationPresentFormat << referenceMissingFormat;
+        formatsList << referencePresentFormat << citationPresentFormat << referenceMissingFormat;
 		formatsList << referenceMultipleFormat << citationMissingFormat << packageMissingFormat << packagePresentFormat << packageUndefinedFormat << environmentFormat;
 		formatsList << wordRepetitionFormat << structureFormat << todoFormat << insertFormat << deleteFormat << replaceFormat;
 		LatexDocument::syntaxErrorFormat = syntaxErrorFormat;
@@ -1953,8 +1967,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
     }
 
-	Q_ASSERT(speller);
-
     for (int i = linenr; i < linenr + count; i++) {
 		QDocumentLine line = editor->document()->line(i);
         if (!line.isValid()) continue;
@@ -2081,7 +2093,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					addedOverlayCitation = true;
 				}
 			}// if latexLineCheking
-            int tkLength=tk.length;
+            /*int tkLength=tk.length;
             if (tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
 				QString word = tk.getText();
                 if(tkNr+1 < tl.length()){
@@ -2119,7 +2131,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                     line.addOverlay(QFormatRange(tk.start, tkLength, SpellerUtility::spellcheckErrorFormat));
 					addedOverlaySpellCheckError = true;
                 }
-			}
+            }*/
 		} // for Tokenslist
 
 		//update wrapping if the an overlay changed the width of the text

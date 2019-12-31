@@ -11,6 +11,7 @@
 
 #ifndef LATEXEDITORVIEW_H
 #define LATEXEDITORVIEW_H
+
 #include "mostQtHeaders.h"
 #include "qdocument.h"
 #include "syntaxcheck.h"
@@ -85,8 +86,8 @@ public:
 		return editor;
 	}
 	LatexDocument *getDocument() const { return document; }
-	Q_PROPERTY(QEditor *editor READ getEditor);
-	Q_PROPERTY(LatexDocument *document READ getDocument);     //<- semicolon necessary due to qt bug 22992
+    Q_PROPERTY(QEditor *editor READ getEditor);
+    Q_PROPERTY(LatexDocument *document READ getDocument);    //<- semicolon necessary due to qt bug 22992
 
 	LatexEditorViewConfig *getConfig() { return config; }
 

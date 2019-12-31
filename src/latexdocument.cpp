@@ -3143,7 +3143,17 @@ void LatexDocument::setLtxCommands(const LatexParser &cmds)
 	LatexEditorView *view = getEditorView();
 	if (view) {
 		view->updateReplamentList(cmds, false);
-	}
+    }
+}
+
+void LatexDocument::setSpeller(SpellerUtility *speller)
+{
+    SynChecker.setSpeller(speller);
+}
+
+void LatexDocument::setReplacementList(QMap<QString, QString> replacementList)
+{
+    SynChecker.setReplacementList(replacementList);
 }
 
 void LatexDocument::updateSettings()

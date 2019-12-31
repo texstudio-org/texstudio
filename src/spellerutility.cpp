@@ -14,6 +14,8 @@
 #include "JlCompress.h"
 
 int SpellerUtility::spellcheckErrorFormat = -1;
+bool SpellerUtility::inlineSpellChecking = true;
+bool SpellerUtility::hideNonTextSpellingErrors = true;
 
 SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(nullptr), spellCodec(nullptr)
 {

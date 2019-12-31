@@ -11,6 +11,7 @@
 #include <QQueue>
 
 class LatexDocument;
+class SpellerUtility;
 /*!
  * \brief store information on open environments
  */
@@ -66,6 +67,7 @@ public:
 		ERR_unrecognizedKey, ///< in key/value argument, an unknown key is used
 		ERR_unrecognizedKeyValues, ///< in key/value argument, an unknown value is used for a key
 		ERR_commandOutsideEnv, ///< command used outside of designated environment (similar math command outside math)
+        ERR_spelling, ///< syntax error of text word (spell checker)
 		ERR_MAX  // always last
 	};
     /*!
@@ -95,7 +97,7 @@ public:
     void putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay = false,int hint=-1);
 	void stop();
 	void setErrFormat(int errFormat);
-	QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
+    QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
 	int verbatimFormat; ///< format number for verbatim text (LaTeX)
 	void waitForQueueProcess();
 	static int containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id = -1);
@@ -103,7 +105,11 @@ public:
 	bool checkCommand(const QString &cmd, const StackEnvironment &envs);
 	static bool equalEnvStack(StackEnvironment env1, StackEnvironment env2);
 	bool queuedLines();
+
 	void setLtxCommands(const LatexParser &cmds);
+    void setSpeller(SpellerUtility *su);
+    void setReplacementList(QMap<QString, QString> replacementList);
+
 	void markUnclosedEnv(Environment env);
 
 signals:
@@ -118,13 +124,18 @@ private:
 	QSemaphore mLinesAvailable;
 	QMutex mLinesLock;
 	bool stopped;
-	int syntaxErrorFormat;
+    int syntaxErrorFormat;
 	LatexParser *ltxCommands;
 
 	LatexParser newLtxCommands;
 	bool newLtxCommandsAvailable;
 	QMutex mLtxCommandLock;
 	bool stackContainsDefinition(const TokenStack &stack) const;
+
+    SpellerUtility *speller,*newSpeller;
+
+    QMap<QString,QString> newReplacementList,mReplacementList;
+
 };
 
 #endif // SYNTAXCHECK_H

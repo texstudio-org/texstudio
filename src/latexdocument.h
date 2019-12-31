@@ -189,7 +189,7 @@ public:
 
 	void emitUpdateCompleter();
 
-	static int syntaxErrorFormat;
+    static int syntaxErrorFormat,spellErrorFormat;
 
 	bool languageIsLatexLike() const;
 	void reCheckSyntax(int linenr = 0, int count = -1);
@@ -273,6 +273,8 @@ public slots:
 	void initClearStructure();
 	void updateLtxCommands(bool updateAll = false);
 	void setLtxCommands(const LatexParser &cmds);
+    void setSpeller(SpellerUtility *speller);
+    void setReplacementList(QMap<QString,QString> replacementList);
 	void updateSettings();
     void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint=-1);
 

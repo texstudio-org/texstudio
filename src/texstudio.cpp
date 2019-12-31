@@ -1780,9 +1780,6 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(editorSpellerChanged(QString)));
 	connect(edit->editor, SIGNAL(focusReceived()), edit, SIGNAL(focusReceived()));
-	edit->setSpellerManager(&spellerManager);
-	edit->setSpeller("<default>");
-
 }
 
 /*!
@@ -1794,6 +1791,9 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFromDoc, bool hidden)
 {
 	REQUIRE(edit->document);
+    // set speller here as document is needed
+    edit->setSpellerManager(&spellerManager);
+    edit->setSpeller("<default>");
 	//patch Structure
 	//disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int))); // force order of contentsChange update
 	connect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
@@ -3209,8 +3209,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
     /*QTime tm;
-        tm.start();
-        qDebug()<<"start";*/
+    tm.start();
+    qDebug()<<"start";*/
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);

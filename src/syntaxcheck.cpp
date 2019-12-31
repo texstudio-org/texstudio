@@ -1,5 +1,7 @@
 #include "syntaxcheck.h"
 #include "latexdocument.h"
+#include "latexeditorview_config.h"
+#include "spellerutility.h"
 #include "tablemanipulation.h"
 #include "latexparser/latexparsing.h"
 
@@ -18,7 +20,7 @@
 * \param parent
 */
 SyntaxCheck::SyntaxCheck(QObject *parent) :
-	SafeThread(parent), syntaxErrorFormat(-1), ltxCommands(nullptr), newLtxCommandsAvailable(false)
+    SafeThread(parent), syntaxErrorFormat(-1), ltxCommands(nullptr), newLtxCommandsAvailable(false), speller(nullptr), newSpeller(nullptr)
 {
 	mLinesLock.lock();
 	stopped = false;
@@ -91,6 +93,8 @@ void SyntaxCheck::run()
 			if (newLtxCommandsAvailable) {
 				newLtxCommandsAvailable = false;
 				*ltxCommands = newLtxCommands;
+                speller=newSpeller;
+                mReplacementList=newReplacementList;
 			}
 			mLtxCommandLock.unlock();
 		}
@@ -115,13 +119,15 @@ void SyntaxCheck::run()
 
 		checkLine(line, newRanges, activeEnv, newLine.dlh, tl, newLine.stack, newLine.ticket);
 		// place results
-		if (newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
+        if (newLine.clearOverlay){
+            newLine.dlh->clearOverlays({syntaxErrorFormat,SpellerUtility::spellcheckErrorFormat});
+        }
 		//if(newRanges.isEmpty()) continue;
 		newLine.dlh->lockForWrite();
 		if (newLine.ticket == newLine.dlh->getCurrentTicket()) { // discard results if text has been changed meanwhile
-			foreach (const Error &elem, newRanges)
-				newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, syntaxErrorFormat));
-
+            foreach (const Error &elem, newRanges){
+                newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, elem.type==ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat));
+            }
 			// active envs
 			QVariant oldEnvVar = newLine.dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 			StackEnvironment oldEnv;
@@ -218,7 +224,29 @@ void SyntaxCheck::setLtxCommands(const LatexParser &cmds)
 	mLtxCommandLock.lock();
 	newLtxCommandsAvailable = true;
 	newLtxCommands = cmds;
-	mLtxCommandLock.unlock();
+    mLtxCommandLock.unlock();
+}
+
+/*!
+* \brief set new spellchecker engine (language)
+* \param su new spell checker
+*/
+void SyntaxCheck::setSpeller(SpellerUtility *su)
+{
+    if (stopped) return;
+    mLtxCommandLock.lock();
+    newLtxCommandsAvailable = true;
+    newSpeller=su;
+    mLtxCommandLock.unlock();
+}
+
+void SyntaxCheck::setReplacementList(QMap<QString, QString> replacementList)
+{
+    if (stopped) return;
+    mLtxCommandLock.lock();
+    newLtxCommandsAvailable = true;
+    newReplacementList=replacementList;
+    mLtxCommandLock.unlock();
 }
 
 /*!
@@ -357,7 +385,7 @@ void SyntaxCheck::markUnclosedEnv(Environment env)
 			Error elem;
 			elem.range = QPair<int, int>(index, cmd.length());
 			elem.type = ERR_EnvNotClosed;
-			dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, syntaxErrorFormat));
+            dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, elem.type==ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat));
 			QVariant var_env;
 			StackEnvironment activeEnv;
 			activeEnv.append(env);
@@ -435,6 +463,49 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				newRanges.append(elem);
 			}
 		}
+        // spell checking
+        if (speller->inlineSpellChecking && tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && tk.length >= 3 && speller) {
+            int tkLength=tk.length;
+            QString word = tk.getText();
+            if(i+1 < tl.length()){
+                //check if next token is . or -
+                Token tk1 = tl.at(i+1);
+                if(tk1.type==Token::punctuation && tk1.start==(tk.start+tk.length) && !word.endsWith("\"")){
+                    QString add=tk1.getText();
+                    if(add=="."||add=="-"){
+                        word+=add;
+                        i++;
+                        tkLength+=tk1.length;
+                    }
+                    if(add=="'"){
+                        if(i+2 < tl.length()){
+                            Token tk2 = tl.at(i+2);
+                            if(tk2.type==Token::word && tk2.start==(tk1.start+tk1.length)){
+                                add+=tk2.getText();
+                                word+=add;
+                                i+=2;
+                                tkLength+=tk1.length+tk2.length;
+                            }
+                        }
+                    }
+                }
+            }
+            word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
+            if (speller->hideNonTextSpellingErrors && containsEnv(*ltxCommands, "math", activeEnv)){
+                word.clear();
+            }
+            if (!word.isEmpty() && !speller->check(word) ) {
+                if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
+                    continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
+                if(word.endsWith('.')){
+                    tkLength--; // don't take point into misspelled word
+                }
+                Error elem;
+                elem.range = QPair<int, int>(tk.start, tk.length);
+                elem.type = ERR_spelling;
+                newRanges.append(elem);
+            }
+        }
 		if (tk.type == Token::commandUnknown) {
 			QString word = line.mid(tk.start, tk.length);
 			if (word.contains('@')) {

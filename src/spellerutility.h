@@ -35,6 +35,7 @@ public:
 	QString getCurrentDic() {return currentDic;}
 
 	static int spellcheckErrorFormat;
+    static bool inlineSpellChecking,hideNonTextSpellingErrors;
 
 signals:
 	void aboutToDelete();
