@@ -1992,22 +1992,23 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 			}
 		}
+
+        QDocumentLineHandle *dlh = line.handle();
         // handle % TODO
-        QLineFormatAnalyzer lineFormatAnaylzer(line.getFormats());
-        int col = lineFormatAnaylzer.firstCol(commentFormat);
-        if(col>=0){
+        QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
+        if(commentStart.second==Token::todoComment){
+            int col=commentStart.first;
             QString curLine=line.text();
-            QString text = curLine.mid(col, lineFormatAnaylzer.formatLength(col));
+            QString text = curLine.mid(col);
             QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
             QRegExp rx(regularExpression);
             if (rx.indexIn(text)==0) {
-                line.addOverlay(QFormatRange(col, lineFormatAnaylzer.formatLength(col), todoFormat));
+                line.addOverlay(QFormatRange(col, text.length(), todoFormat));
                 addedOverlayTodo = true;
             }
         }
 
 		// alternative context detection
-		QDocumentLineHandle *dlh = line.handle();
 		TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		for (int tkNr = 0; tkNr < tl.length(); tkNr++) {
 			Token tk = tl.at(tkNr);

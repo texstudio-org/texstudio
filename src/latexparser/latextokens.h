@@ -55,6 +55,10 @@ public:
 		specialArg, newTheorem, newBibItem, formula, overlay,
 		overlayRegion, _end = 255
 	};
+    enum CommentType {
+        unknownComment = 0, todoComment , magicComment
+    };
+
 	static QString tokenTypeName(TokenType t);
 
 	TokenType type;

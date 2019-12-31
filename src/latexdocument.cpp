@@ -534,8 +534,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (!dlh)
 			continue; //non-existing line ...
 
-		QLineFormatAnalyzer lineFormatAnaylzer(line(i).getFormats());
-
 		// remove command,bibtex,labels at from this line
 		QList<UserCommandPair> commands = mUserCommandList.values(dlh);
 		foreach (UserCommandPair cmd, commands) {
@@ -586,11 +584,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			mMentionedBibTeXFiles.erase(it);
 		}
 
-		int col;
-		//// TODO marker
-		col = lineFormatAnaylzer.firstCol(getFormatId("comment"));
+        // handle special comments (TODO, MAGIC comments)
+        // comment detection moved to lexer as formats are not yet generated here (e.g. on first load)
+        QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
+        int col = commentStart.first;
 		if (col >= 0) {
-			QString text = curLine.mid(col, lineFormatAnaylzer.formatLength(col));
+            // all
+            //// TODO marker
+            QString text = curLine.mid(col);
 			QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
 			QRegExp rx(regularExpression);
 			if (rx.indexIn(text)==0) {  // other todos like \todo are handled by the tokenizer below.
@@ -598,48 +599,51 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newTodo->title = text.mid(1).trimmed();
 				newTodo->setLine(line(i).handle(), i);
 				insertElementWithSignal(todoList, posTodo++, newTodo);
+                // save comment type into cookie
+                commentStart.second=Token::todoComment;
+                dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
 			}
-		}
-
-		//// parameter comment
-		if (curLine.startsWith("%&")) {
-			int start = curLine.indexOf("-job-name=");
-			if (start >= 0) {
-				int end = start + 10; // += "-job-name=".length;
-				if (end < curLine.length() && curLine[end] == '"') {
-					// quoted filename
-					end = curLine.indexOf('"', end + 1);
-					if (end >= 0) {
-						end += 1;  // include closing quotation mark
-						addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
-					}
-				} else {
-					end = curLine.indexOf(' ', end + 1);
-					if (end >= 0) {
-						addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
-					} else {
-						addMagicComment(curLine.mid(start), i, posMagicComment++);
-					}
-				}
-			}
-		}
-
-		//// magic comment
-		col = lineFormatAnaylzer.firstCol(getFormatId("magicComment"));
-		if (col >= 0) {
-			QString text = curLine.mid(col);
-			if (rxMagicTexComment.indexIn(text) == 0) {
-				addMagicComment(text.mid(rxMagicTexComment.matchedLength()).trimmed(), i, posMagicComment++);
-			} else if (rxMagicBibComment.indexIn(text) == 0) {
-				// workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
-				text = text.mid(rxMagicBibComment.matchedLength()).trimmed();
-				QString name;
-				QString val;
-				splitMagicComment(text, name, val);
-				if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex")) {
-					addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, posMagicComment++);
-				}
-			}
+            //// parameter comment
+            if (curLine.startsWith("%&")) {
+                int start = curLine.indexOf("-job-name=");
+                if (start >= 0) {
+                    int end = start + 10; // += "-job-name=".length;
+                    if (end < curLine.length() && curLine[end] == '"') {
+                        // quoted filename
+                        end = curLine.indexOf('"', end + 1);
+                        if (end >= 0) {
+                            end += 1;  // include closing quotation mark
+                            addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
+                        }
+                    } else {
+                        end = curLine.indexOf(' ', end + 1);
+                        if (end >= 0) {
+                            addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
+                        } else {
+                            addMagicComment(curLine.mid(start), i, posMagicComment++);
+                        }
+                    }
+                }
+                commentStart.second=Token::magicComment;
+                dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
+            }
+            //// magic comment
+            if (rxMagicTexComment.indexIn(text) == 0) {
+                addMagicComment(text.mid(rxMagicTexComment.matchedLength()).trimmed(), i, posMagicComment++);
+                commentStart.second=Token::magicComment;
+                dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
+            } else if (rxMagicBibComment.indexIn(text) == 0) {
+                // workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
+                text = text.mid(rxMagicBibComment.matchedLength()).trimmed();
+                QString name;
+                QString val;
+                splitMagicComment(text, name, val);
+                if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex")) {
+                    addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, posMagicComment++);
+                    commentStart.second=Token::magicComment;
+                    dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
+                }
+            }
 		}
 
 		// check also in command argument, als references might be put there as well...
