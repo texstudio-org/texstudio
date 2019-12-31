@@ -927,13 +927,22 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					if(options.startsWith("#")){
 						continue; // ignore type keys, like width#L
 					}
-					QStringList l = options.split(",");
-					if (!l.contains(word)) {
-						Error elem;
-						elem.range = QPair<int, int>(tk.start, tk.length);
-						elem.type = ERR_unrecognizedKeyValues;
-						newRanges.append(elem);
-					}
+                    if(options.startsWith("%")){
+                        if (!ltxCommands->possibleCommands[options].contains(word)) {
+                            Error elem;
+                            elem.range = QPair<int, int>(tk.start, tk.length);
+                            elem.type = ERR_unrecognizedKeyValues;
+                            newRanges.append(elem);
+                        }
+                    }else{
+                        QStringList l = options.split(",");
+                        if (!l.contains(word)) {
+                            Error elem;
+                            elem.range = QPair<int, int>(tk.start, tk.length);
+                            elem.type = ERR_unrecognizedKeyValues;
+                            newRanges.append(elem);
+                        }
+                    }
 				}
 			}
 		}

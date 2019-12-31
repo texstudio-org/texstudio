@@ -7,9 +7,9 @@
 
 \hypersetup{keyvals}
 #keyvals:\hypersetup
-allbordercolors=
-allcolors=
-anchorcolor=
+allbordercolors=#%color
+allcolors=#%color
+anchorcolor=#%color
 backref#section,slide,page,none,false
 baseurl=
 bookmarks#true,false
@@ -18,8 +18,8 @@ bookmarksopen#true,false
 bookmarksopenlevel=
 bookmarkstype=
 breaklinks#true,false
-citebordercolor=
-citecolor=
+citebordercolor=#%color
+citecolor=#%color
 colorlinks#true,false
 debug#true,false
 destlabel#true,false
@@ -27,8 +27,8 @@ draft#true,false
 driverfallback=
 encap=
 extension=
-filebordercolor=
-filecolor=
+filebordercolor=#%color
+filecolor=#%color
 final#true,false
 frenchlinks#true,false
 hidelinks
@@ -39,12 +39,12 @@ hypertex
 hypertexname#true,false
 implicit#true,false
 latex2html
-linkbordercolor=
-linkcolor=
+linkbordercolor=#%color
+linkcolor=#%color
 linktoc=#section,page,all,none
 linktocpage#true,false
-menubordercolor=
-menucolor=
+menubordercolor=#%color
+menucolor=#%color
 naturalnames#true,false
 nesting#true,false
 pageanchor#true,false
@@ -91,12 +91,12 @@ pdfwindowui#true,false
 plainpages#true,false
 psdextra#true,false
 raiselinks#true,false
-runbordercolor=
-runcolor=
+runbordercolor=#%color
+runcolor=#%color
 setpagesize#true,false
 unicode#true,false
-urlbordercolor=
-urlcolor=
+urlbordercolor=#%color
+urlcolor=#%color
 verbose#true,false
 #endkeyvals
 
