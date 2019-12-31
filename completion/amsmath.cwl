@@ -126,6 +126,7 @@
 \tag{label}#m
 \tag*{label}#m
 \tbinom{above}{below}#m
+\text{text}#m
 \tfrac{%<num%:translatabe%>}{%<den%:translatable%>}#m
 \thickspace
 \underleftarrow{argument}#m
