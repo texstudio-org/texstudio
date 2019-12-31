@@ -2578,12 +2578,6 @@ void Texstudio::fileSave(const bool saveSilently)
 		removeDiffMarkers();// clean document from diff markers first
 		fileSaveAs(currentEditor()->fileName(), saveSilently);
 	} else {
-		/*QFile file( *filenames.find( currentEditorView() ) );
-		if ( !file.open( QIODevice::WriteOnly ) )
-		{
-		QMessageBox::warning( this,tr("Error"),tr("The file could not be saved. Please check if you have write permission."));
-		return;
-		}*/
 		removeDiffMarkers();// clean document from diff markers first
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
@@ -2592,7 +2586,6 @@ void Texstudio::fileSave(const bool saveSilently)
 		emit infoFileSaved(currentEditor()->fileName(), checkIn);
 	}
 	updateCaption();
-	//updateStructure(); (not needed anymore for autoupdate)
 }
 /*!
  * \brief save current editor content to new filename
@@ -2620,9 +2613,6 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 		}
 	} else {
 		currentDir = fileName;
-		/*QFileInfo currentFile(fileName);
-		if (currentFile.absoluteDir().exists())
-		currentDir = fileName;*/
 	}
 
 	// get a file name
@@ -3208,9 +3198,11 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     recheckLabels = false; // impede label rechecking on hidden docs
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
-    /*QTime tm;
+#ifndef QT_NO_DEBUG
+    QTime tm;
     tm.start();
-    qDebug()<<"start";*/
+    qDebug()<<"start";
+#endif
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3269,7 +3261,9 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
     }
-    //qDebug()<<"finished:"<<tm.elapsed();
+#ifndef QT_NO_DEBUG
+    qDebug()<<"finished:"<<tm.elapsed();
+#endif
 }
 
 Session Texstudio::getCurrentSession()
