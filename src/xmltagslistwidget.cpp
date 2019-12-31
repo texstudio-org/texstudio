@@ -19,13 +19,22 @@
 #include <QFile>
 #include <QApplication>
 #include <QDebug>
-
+/*!
+ * \brief Creates an XML tag widget
+ * This widget was copied from texmaker. It generates a text based sidebar which offers an overview of available commands.
+ * The commands are stored in tags/ *.xml (file)
+ * \param parent
+ * \param file
+ */
 XmlTagsListWidget::XmlTagsListWidget(QWidget *parent, QString file): QListWidget(parent)
 {
 	mFile = file;
 	mLoaded = false;
 }
-
+/*!
+ * \brief populate the widget
+ * population of the widget is deferred for faster start-up.
+ */
 void XmlTagsListWidget::populate()
 {
 	if (!mLoaded) {
@@ -44,18 +53,27 @@ void XmlTagsListWidget::populate()
 		mLoaded = true;
 	}
 }
-
+/*!
+ * \brief showEvent is used as trigger to populate the widget (if that has not yet happened)
+ */
 void XmlTagsListWidget::showEvent(QShowEvent *)
 {
 	if (!mLoaded)
 		populate();
 }
-
+/*!
+ * \brief check if population has already taken place.
+ * \return true if populated
+ */
 bool XmlTagsListWidget::isPopulated()
 {
 	return mLoaded;
 }
-
+/*!
+ * \brief return all entries from a given category
+ * \param category
+ * \return list of entries
+ */
 QStringList XmlTagsListWidget::tagsTxtFromCategory(const QString &category)
 {
 	foreach  (const xmlTagList &tags, xmlSections.children)
@@ -67,7 +85,13 @@ QStringList XmlTagsListWidget::tagsTxtFromCategory(const QString &category)
 		}
 	return QStringList();
 }
-
+/*!
+ * \internal
+ * \brief helper for parsing xml
+ * \param tagList
+ * \param tagTxt
+ * \return
+ */
 QString tagsFromTagTxtRec(const xmlTagList &tagList, const QString &tagTxt)
 {
 	foreach (const xmlTag &tag, tagList.tags)
@@ -80,12 +104,21 @@ QString tagsFromTagTxtRec(const xmlTagList &tagList, const QString &tagTxt)
 	}
 	return result;
 }
-
+/*!
+ * \brief translate tag/gui text to actual tag/code
+ * \param tagTxt
+ * \return
+ */
 QString XmlTagsListWidget::tagsFromTagTxt(const QString &tagTxt)
 {
 	return tagsFromTagTxtRec(xmlSections, tagTxt);
 }
-
+/*!
+ * \internal
+ * \brief parse xml
+ * \param element
+ * \return
+ */
 xmlTagList XmlTagsListWidget::getTags(const QDomElement &element)
 {
 	xmlTag item;
@@ -120,7 +153,11 @@ xmlTagList XmlTagsListWidget::getTags(const QDomElement &element)
 	}
 	return tagList;
 }
-
+/*!
+ * \internal
+ * \brief set-up the widget items
+ * \param tagList
+ */
 void XmlTagsListWidget::addListWidgetItems(const xmlTagList &tagList)
 {
 	QFont titleFont = qApp->font();
