@@ -3205,7 +3205,7 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, i
 		TokenStack remainder = dlh->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
         SynChecker.putLine(line(index + 1).handle(), env, remainder, clearOverlay,index+1);
 	}
-	dlh->deref();
+    dlh->deref();
 }
 
 bool LatexDocument::languageIsLatexLike() const

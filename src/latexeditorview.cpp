@@ -1413,7 +1413,7 @@ bool LatexEditorView::setSpeller(const QString &name)
 	}
 
 	// force new highlighting
-    //documentContentChanged(0, editor->document()->lines());
+    document->reCheckSyntax(0, document->lineCount());
 	return true;
 }
 /*!
