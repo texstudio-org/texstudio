@@ -133,14 +133,14 @@ void XmlTagsListWidget::addListWidgetItems(const xmlTagList &tagList)
 	QColor titleBg("#447BCD");
 	QColor titleFg("#ffffff");
 	QListWidgetItem *item = new QListWidgetItem(this);
-	QString itemText = tagList.title;
+    QString itemText = tr(qPrintable(tagList.title));
 	item->setText(itemText);
 	item->setBackgroundColor(titleBg);
 	item->setTextColor(titleFg);
 	item->setFont(titleFont);
 	for (int i = 0; i < tagList.tags.size(); ++i) {
 		QListWidgetItem *item = new QListWidgetItem(this);
-		QString itemText = tagList.tags.at(i).txt;
+        QString itemText = tr(qPrintable(tagList.tags.at(i).txt));
 		item->setText(itemText);
 		item->setData(Qt::UserRole, tagList.tags.at(i).tag);
 		if (tagList.tags.at(i).type == 0) item->setFont(commandFont);
