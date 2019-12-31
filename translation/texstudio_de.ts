@@ -3431,17 +3431,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
         <source>\includegraphics{file}</source>
-        <translation>\includegraphics{file}</translation>
+        <translation>\includegraphics{Datei}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="95"/>
         <source>\include{file}</source>
-        <translation>\include{file}</translation>
+        <translation>\include{Datei}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="94"/>
         <source>\input{file}</source>
-        <translation>\input{file}</translation>
+        <translation>\input{Datei}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="98"/>
