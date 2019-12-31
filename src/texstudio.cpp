@@ -2193,7 +2193,7 @@ void Texstudio::runScripts(int trigger)
 void Texstudio::runScriptsInList(int trigger, const QList<Macro> &scripts)
 {
 	foreach (const Macro &macro, scripts) {
-		if (macro.type == Macro::Script && macro.isActiveForTrigger((Macro::SpecialTrigger) trigger))
+        if (macro.type == Macro::Script && macro.isActiveForTrigger(static_cast<Macro::SpecialTrigger>(trigger) ))
 			runScript(macro.script(), MacroExecContext(trigger));
 	}
 }
@@ -3208,9 +3208,9 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     recheckLabels = false; // impede label rechecking on hidden docs
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
-    /*QTime tm;
+    QTime tm;
     tm.start();
-    qDebug()<<"start";*/
+    qDebug()<<"start";
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3269,7 +3269,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
     }
-    //qDebug()<<"finished:"<<tm.elapsed();
+    qDebug()<<"finished:"<<tm.elapsed();
 }
 
 Session Texstudio::getCurrentSession()
@@ -4190,8 +4190,8 @@ void Texstudio::saveSettings(const QString &configName)
 		QFile file(configManager.configBaseDir + "wordCount.usage");
 		if (file.open(QIODevice::WriteOnly)) {
 			QDataStream out(&file);
-			out << (quint32)0xA0B0C0D0;  //magic number
-			out << (qint32)1; //version
+            out << static_cast<quint32>(0xA0B0C0D0);  //magic number
+            out << static_cast<qint32>(1); //version
 			out.setVersion(QDataStream::Qt_4_0);
 			QMap<uint, QPair<int, int> >::const_iterator i = conf->usage.constBegin();
 			while (i != conf->usage.constEnd()) {
@@ -6278,10 +6278,10 @@ bool Texstudio::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage)
 		loadLog();
 	}
 	if (outputView->getLogWidget()->logPresent()) {
-		if (outputView->getLogWidget()->getLogModel()->found((LogType) lt)) {
+        if (outputView->getLogWidget()->getLogModel()->found(static_cast<LogType>(lt) )) {
 			showLog();
 			setLogMarksVisible(true);
-			return gotoMark(backward, outputView->getLogWidget()->getLogModel()->markID((LogType) lt));
+            return gotoMark(backward, outputView->getLogWidget()->getLogModel()->markID(static_cast<LogType>(lt) ));
 		} else {
 			UtilsUi::txsInformation(notFoundMessage);
 		}
