@@ -83,8 +83,8 @@
 <file>completion/fhgtechdoku_additional.cwl</file>
 <file>completion/fixme.cwl</file>
 <file>completion/float.cwl</file>
-<file>completion/fontawesome.cwl</file>
 <file>completion/fontawesome5.cwl</file>
+<file>completion/fontawesome.cwl</file>
 <file>completion/fontspec.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
@@ -103,6 +103,7 @@
 <file>completion/ifvtex.cwl</file>
 <file>completion/ifxetex.cwl</file>
 <file>completion/import.cwl</file>
+<file>completion/inputenc.cwl</file>
 <file>completion/jurabib.cwl</file>
 <file>completion/kantlipsum.cwl</file>
 <file>completion/keyval.cwl</file>
