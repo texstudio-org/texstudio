@@ -10,7 +10,7 @@
 allbordercolors=
 allcolors=
 anchorcolor=
-backref#true,false
+backref#section,slide,page,none,false
 baseurl=
 bookmarks#true,false
 bookmarksnumbered#true,false
@@ -41,6 +41,7 @@ implicit#true,false
 latex2html
 linkbordercolor=
 linkcolor=
+linktoc=#section,page,all,none
 linktocpage#true,false
 menubordercolor=
 menucolor=
