@@ -377,7 +377,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="80"/>
         <location filename="../src/buildmanager.cpp" line="102"/>
-        <location filename="../src/buildmanager.cpp" line="1949"/>
+        <location filename="../src/buildmanager.cpp" line="1946"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unknown&gt;</translation>
     </message>
@@ -556,7 +556,7 @@
         <translation>Kaynakçayı Yeniden Derle</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="380"/>
+        <location filename="../src/buildmanager.cpp" line="377"/>
         <source>OSX 10.11 does not allow applications to write there anymore. Therefore,
 recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
@@ -569,7 +569,7 @@ Tüm TeXstudio komut yollarının /usr/texbin/adresinden
 % 1 adresine değiştirilmesini ister misiniz? </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="391"/>
+        <location filename="../src/buildmanager.cpp" line="388"/>
         <source>OSX 10.11 does not allow applications to write there anymore. You may
 need to update MacTeX to version 2015.
 
@@ -586,28 +586,28 @@ TÜm TeXstudio komut yollarının /usr/texbin/adresinden
 % 1 adresine değiştirilmesini ister misiniz? </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="402"/>
+        <location filename="../src/buildmanager.cpp" line="399"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
         <translation>Bazı komutlarınız /usr/texbin/ klasöründeki konumlara yönleniyor</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="916"/>
+        <location filename="../src/buildmanager.cpp" line="913"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>Komut %1 düzeyine genişletilmiş. &quot;%2&quot; düzeyine genişletmeye devam etmek istiyor musunuz? </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="969"/>
+        <location filename="../src/buildmanager.cpp" line="966"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation>txs:///komut[... ya da txs:///komut{... değiştiricilerini kullandınız ancak yalnızca txs:///komut/[... veya txs:///komut/{... biçimindeki bölü son ekiyle birlikte söz dizimini daha sadeleştiren değiştiriciler destekleniyor.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="980"/>
-        <location filename="../src/buildmanager.cpp" line="981"/>
+        <location filename="../src/buildmanager.cpp" line="977"/>
+        <location filename="../src/buildmanager.cpp" line="978"/>
         <source>Command %1 not defined</source>
         <translation>%1 komutu tanımlanmamış</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1029"/>
+        <location filename="../src/buildmanager.cpp" line="1026"/>
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
@@ -616,78 +616,78 @@ Please change your configuration and define command lists only at &apos;Options 
 Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&gt; TeXstudio Ayarları -&gt; Komutlar&apos; bölümünden değil yalnız &apos;Ayarlar -&gt; TeXstudio Ayarları -&gt; Oluştur&apos; bölümünden tanımlayın .</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1063"/>
+        <location filename="../src/buildmanager.cpp" line="1060"/>
         <source>Failed to understand command %1</source>
         <translation>%1 komutu anlaşılamadı</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1481"/>
+        <location filename="../src/buildmanager.cpp" line="1478"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
         <translation>Sisteminizde herhangi bir LaTeX dağıtımı bulunamadı. Bunun sonucunda ilgili komutlar yapılandırılamadı. Bu nedenle belgelerinizi istediğiniz çıktı biçiminde (pdf gibi) derleyemeyeceksiniz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1485"/>
+        <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
         <translation>%1 ve %2 beğenilen Windows LaTeX dağıtımlarıdır.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1487"/>
+        <location filename="../src/buildmanager.cpp" line="1484"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
         <translation>LaTeX ile çalışmak istiyorsanız, bunlardan birini yüklemelisiniz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1490"/>
+        <location filename="../src/buildmanager.cpp" line="1487"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
         <translation>%1 beğenilen OSX LaTeX dağıtımlarından biridir.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1492"/>
+        <location filename="../src/buildmanager.cpp" line="1489"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
         <translation>LaTeX ile çalışmak istiyorsanız, bunu yüklemelisiniz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1495"/>
+        <location filename="../src/buildmanager.cpp" line="1492"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
         <translation>LaTeX ile çalışmak istiyorsanız, son LaTeX sürümünü yüklemelisiniz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1508"/>
+        <location filename="../src/buildmanager.cpp" line="1505"/>
         <source>Error: No command given</source>
         <translation>Hata : Herhangi bir komut verilmemiş</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1539"/>
+        <location filename="../src/buildmanager.cpp" line="1536"/>
         <source>Error: No command expanded</source>
         <translation>Hata : Herhangi bir komut genişletilmemiş</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1541"/>
-        <location filename="../src/buildmanager.cpp" line="1554"/>
+        <location filename="../src/buildmanager.cpp" line="1538"/>
+        <location filename="../src/buildmanager.cpp" line="1551"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>MiKTeX ya da TeX Live gibi &lt;b&gt;bir (La)TeX dağıtımı yüklediğinize&lt;/b&gt; ve komut yapılandırma bölümünden bu dağıtıma ait yolları doğru ayarladığınıza emin olun.&lt;br&gt;TeXstudio gibi bir (La)TeX düzenleyicisi böyle bir dağıtımın sağladığı (La)TeX komutları olmadan çalışamaz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1550"/>
+        <location filename="../src/buildmanager.cpp" line="1547"/>
         <source>Error: One command expansion invalid.</source>
         <translation>Hata : Bir komut genişletilmesi geçersiz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1551"/>
+        <location filename="../src/buildmanager.cpp" line="1548"/>
         <source>Parent Command</source>
         <translation>Üst Komut</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1552"/>
+        <location filename="../src/buildmanager.cpp" line="1549"/>
         <source>Primary Command</source>
         <translation>Birincil Komut</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1918"/>
+        <location filename="../src/buildmanager.cpp" line="1915"/>
         <source>Internal Pdf Viewer</source>
         <translation>İç Pdf Görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2229"/>
+        <location filename="../src/buildmanager.cpp" line="2226"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>dde:// komutunu kaldırılmış olan iki bölü karakteriyle kullandınız. Lütfen komuta başka bir bölü karakteri daha ekleyerek üçlü bölü kullanılan dde:/// komutuyla değiştirin.</translation>
     </message>
@@ -753,14 +753,14 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="106"/>
-        <location filename="../src/additionaltranslations.cpp" line="108"/>
+        <location filename="../src/additionaltranslations.cpp" line="107"/>
+        <location filename="../src/additionaltranslations.cpp" line="109"/>
         <source>num</source>
         <translation>num</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="107"/>
-        <location filename="../src/additionaltranslations.cpp" line="109"/>
+        <location filename="../src/additionaltranslations.cpp" line="108"/>
+        <location filename="../src/additionaltranslations.cpp" line="110"/>
         <source>den</source>
         <translation>den</translation>
     </message>
@@ -1111,7 +1111,7 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harfe duyarlıdır.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1075"/>
-        <location filename="../src/configdialog.cpp" line="513"/>
+        <location filename="../src/configdialog.cpp" line="509"/>
         <source>Shortcuts</source>
         <translation>Kısayollar</translation>
     </message>
@@ -1181,7 +1181,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1178"/>
-        <location filename="../src/configdialog.cpp" line="514"/>
+        <location filename="../src/configdialog.cpp" line="510"/>
         <source>Menus</source>
         <translation>Menüler</translation>
     </message>
@@ -1197,7 +1197,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1203"/>
-        <location filename="../src/configdialog.cpp" line="506"/>
+        <location filename="../src/configdialog.cpp" line="502"/>
         <source>Command</source>
         <translation>Komut</translation>
     </message>
@@ -1295,7 +1295,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1549"/>
-        <location filename="../src/configdialog.cpp" line="517"/>
+        <location filename="../src/configdialog.cpp" line="513"/>
         <location filename="../src/configmanager.cpp" line="1422"/>
         <source>Editor</source>
         <translation>Düzenleyici</translation>
@@ -2038,7 +2038,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2995"/>
-        <location filename="../src/configdialog.cpp" line="521"/>
+        <location filename="../src/configdialog.cpp" line="517"/>
         <source>Completion</source>
         <translation>Tamamlama</translation>
     </message>
@@ -2506,7 +2506,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4080"/>
-        <location filename="../src/configdialog.cpp" line="524"/>
+        <location filename="../src/configdialog.cpp" line="520"/>
         <source>Internal PDF Viewer</source>
         <translation>İç PDF Görüntüleyici</translation>
     </message>
@@ -2762,238 +2762,238 @@ ayarlamak istiyor musunuz?</translation>
         <translation>Bu satırı gerçekten silmek istiyor musunuz?</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="467"/>
+        <location filename="../src/configdialog.cpp" line="463"/>
         <source>Download additional dictionaries from %1 or %2</source>
         <translation>%1 ya da %2 &apos;üzerinden ek sözlükler indirilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="484"/>
+        <location filename="../src/configdialog.cpp" line="480"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
         <translation>Çeşitli komutlar, ortamlar ve seçimler için söz dizimi vurgulamaları buradan değiştirilebilir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="485"/>
+        <location filename="../src/configdialog.cpp" line="481"/>
         <source>Basic highlighting</source>
         <translation>Temel vurgulama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="486"/>
+        <location filename="../src/configdialog.cpp" line="482"/>
         <source>LaTeX checking</source>
         <translation>LaTeX denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="487"/>
+        <location filename="../src/configdialog.cpp" line="483"/>
         <source>Language checking</source>
         <translation>Dil denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="488"/>
+        <location filename="../src/configdialog.cpp" line="484"/>
         <source>Line highlighting</source>
         <translation>Satır vurgulama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="489"/>
+        <location filename="../src/configdialog.cpp" line="485"/>
         <source>Search</source>
         <translation>Arama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="490"/>
+        <location filename="../src/configdialog.cpp" line="486"/>
         <source>Diff</source>
         <translation>Fark</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="491"/>
-        <location filename="../src/configdialog.cpp" line="523"/>
+        <location filename="../src/configdialog.cpp" line="487"/>
+        <location filename="../src/configdialog.cpp" line="519"/>
         <source>Preview</source>
         <translation>Ön İzleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="492"/>
+        <location filename="../src/configdialog.cpp" line="488"/>
         <source>DTX files</source>
         <translation>DTX dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="493"/>
+        <location filename="../src/configdialog.cpp" line="489"/>
         <source>Sweave / Pweave</source>
         <translation>Sweave / Pweave</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="494"/>
+        <location filename="../src/configdialog.cpp" line="490"/>
         <source>Asymptote</source>
         <translation>Asimptot</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="495"/>
+        <location filename="../src/configdialog.cpp" line="491"/>
         <source>Lua</source>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="496"/>
+        <location filename="../src/configdialog.cpp" line="492"/>
         <source>QtScript</source>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="506"/>
+        <location filename="../src/configdialog.cpp" line="502"/>
         <source>Default Shortcut</source>
         <translation>Varsayılan Kısayol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="506"/>
+        <location filename="../src/configdialog.cpp" line="502"/>
         <source>Current Shortcut</source>
         <translation>Geçerli Kısayol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="506"/>
+        <location filename="../src/configdialog.cpp" line="502"/>
         <source>Additional Shortcut</source>
         <translation>Ek Kısayol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="510"/>
+        <location filename="../src/configdialog.cpp" line="506"/>
         <source>General</source>
         <translation>Genel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="511"/>
+        <location filename="../src/configdialog.cpp" line="507"/>
         <source>Commands</source>
         <translation>Komutlar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="512"/>
+        <location filename="../src/configdialog.cpp" line="508"/>
         <source>Build</source>
         <translation>Oluştur</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="515"/>
+        <location filename="../src/configdialog.cpp" line="511"/>
         <source>Toolbars</source>
         <translation>Araç Çubukları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="516"/>
+        <location filename="../src/configdialog.cpp" line="512"/>
         <source>GUI Scaling</source>
         <translation>GUI Ölçekleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="518"/>
+        <location filename="../src/configdialog.cpp" line="514"/>
         <source>Adv. Editor</source>
         <translation>Gelişmiş Düzenleyici</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="519"/>
+        <location filename="../src/configdialog.cpp" line="515"/>
         <source>Syntax Highlighting</source>
         <translation>Söz Dizimi Vurgulama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="520"/>
+        <location filename="../src/configdialog.cpp" line="516"/>
         <source>Custom Highlighting</source>
         <translation>Özel Vurgulama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="522"/>
+        <location filename="../src/configdialog.cpp" line="518"/>
         <source>Language Checking</source>
         <translation>Dil Denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="525"/>
+        <location filename="../src/configdialog.cpp" line="521"/>
         <source>SVN</source>
         <translation>SVN</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="566"/>
+        <location filename="../src/configdialog.cpp" line="548"/>
         <source>(option filter)</source>
         <translation>(seçenek süzgeci)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="694"/>
+        <location filename="../src/configdialog.cpp" line="675"/>
         <source>Select thesaurus database</source>
         <translation>Eş anlamlılar sözlüğü veritabanını seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="699"/>
+        <location filename="../src/configdialog.cpp" line="680"/>
         <source>Select the grammar word lists dir</source>
         <translation>Dil bilgisi sözcük listeleri klasörünü seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="704"/>
+        <location filename="../src/configdialog.cpp" line="685"/>
         <source>Select the LanguageTool jar</source>
         <translation>LanguageTool jar dosyasını seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="709"/>
+        <location filename="../src/configdialog.cpp" line="690"/>
         <source>Select java</source>
         <translation>Java uygulamasını seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="722"/>
+        <location filename="../src/configdialog.cpp" line="703"/>
         <source>Select dictionary directory</source>
         <translation>Sözlük klasörünü seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="727"/>
+        <location filename="../src/configdialog.cpp" line="708"/>
         <source>Search Path for Logs</source>
         <translation>Günlüklerin Aranacağı Yol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="732"/>
+        <location filename="../src/configdialog.cpp" line="713"/>
         <source>Search Path .bib Files</source>
         <translation>.bib Dosyalarının Aranacağı Yol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="737"/>
+        <location filename="../src/configdialog.cpp" line="718"/>
         <source>Search Path for Images</source>
         <translation>Görsellerin Aranacağı Yol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="742"/>
+        <location filename="../src/configdialog.cpp" line="723"/>
         <source>Search Path for PDFs</source>
         <translation>PDF Dosyalarının Aranacağı Yol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="747"/>
+        <location filename="../src/configdialog.cpp" line="728"/>
         <source>Search Path for Commands</source>
         <translation>Komutların Aranacağı Yol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="793"/>
+        <location filename="../src/configdialog.cpp" line="774"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;bilinmiyor&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1044"/>
+        <location filename="../src/configdialog.cpp" line="1025"/>
         <source>Load Other Icon</source>
         <translation>Diğer Simgeyi Yükle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1045"/>
+        <location filename="../src/configdialog.cpp" line="1026"/>
         <source>Insert Separator</source>
         <translation>Ayraç Ekle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1053"/>
+        <location filename="../src/configdialog.cpp" line="1034"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
         <translation>Bu öge için bir simge yüklemeden önce araç çubuğuna (sağ taraftaki işlemler listesinden) bir işlem eklemeniz gerekir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1056"/>
+        <location filename="../src/configdialog.cpp" line="1037"/>
         <source>Select a File</source>
         <translation>Dosya Seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1056"/>
+        <location filename="../src/configdialog.cpp" line="1037"/>
         <source>Images</source>
         <translation>Görseller</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1114"/>
+        <location filename="../src/configdialog.cpp" line="1095"/>
         <source>Import Dictionary</source>
         <translation>Sözlüğü İçe Aktar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1114"/>
+        <location filename="../src/configdialog.cpp" line="1095"/>
         <source>OpenOffice Dictionary</source>
         <translation>OpenOffıce Sözlüğü</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1125"/>
+        <location filename="../src/configdialog.cpp" line="1106"/>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
@@ -3002,7 +3002,7 @@ However this path is not contained in the dictionary path list. Do you want to a
 Ancak bu yol sözlük yolları listesinde yer almıyor. Eklemek ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1234"/>
+        <location filename="../src/configdialog.cpp" line="1215"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
@@ -3069,57 +3069,57 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <translation>Uluslararası &amp;Vurgular</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="20"/>
+        <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Cross References</source>
         <translation>Çapraz Başvurular</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="21"/>
+        <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Bibliography</source>
         <translation>Kaynakça</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="22"/>
+        <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>&amp;Math</source>
         <translation>&amp;Matematik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="23"/>
+        <location filename="../src/additionaltranslations.cpp" line="24"/>
         <source>Math Equations</source>
         <translation>Matematik Denklemleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="24"/>
+        <location filename="../src/additionaltranslations.cpp" line="25"/>
         <source>Math &amp;Functions</source>
         <translation>Matematik İş&amp;levleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="25"/>
+        <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math Font St&amp;yles</source>
         <translation>Matematik &amp;Yazı Biçemleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="26"/>
+        <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math Stacking symbols</source>
         <translation>Matematik Yığın Simgeleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="27"/>
+        <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math &amp;Accents</source>
         <translation>Matematik &amp;Vurguları</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="28"/>
+        <location filename="../src/additionaltranslations.cpp" line="29"/>
         <source>Math S&amp;paces</source>
         <translation>Matematik B&amp;oşlukları</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="29"/>
+        <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>AMS packages</source>
         <translation>AMS paketleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="30"/>
+        <location filename="../src/additionaltranslations.cpp" line="20"/>
         <source>Input/Include &amp;Files</source>
         <translation>&amp;Dosyaları Gir/Kat</translation>
     </message>
@@ -3439,7 +3439,12 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <translation>Yeni satır - \\</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="94"/>
+        <location filename="../src/additionaltranslations.cpp" line="96"/>
+        <source>\includeonly{filelist}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="97"/>
         <source>\includegraphics{file}</source>
         <translation>\includegraphics{file}</translation>
     </message>
@@ -3449,12 +3454,11 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <translation>\include{file}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{file(s)}</source>
-        <translation>\includeonly{file(s)}</translation>
+        <translation type="vanished">\includeonly{file(s)}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="97"/>
+        <location filename="../src/additionaltranslations.cpp" line="94"/>
         <source>\input{file}</source>
         <translation>\input{file}</translation>
     </message>
@@ -3485,191 +3489,196 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
+        <source>LaTeX inline math mode \(...\)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="104"/>
         <source>Display math mode \[...\]</source>
         <translation>Matematik kipini görüntüle \[...\]</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="104"/>
+        <location filename="../src/additionaltranslations.cpp" line="105"/>
         <source>Subscript - _{}</source>
         <translation>Alt Simge - _{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="105"/>
+        <location filename="../src/additionaltranslations.cpp" line="106"/>
         <source>Superscript - ^{}</source>
         <translation>Üst Simge - ^{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="110"/>
+        <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>\begin{array}</source>
         <translation>\begin{array}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="111"/>
+        <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>env equation</source>
         <translation>env denklemi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="112"/>
+        <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>env equation* (amsmath)</source>
         <translation>env denklemi* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="113"/>
+        <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>env align (amsmath)</source>
         <translation>env hizası (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="114"/>
+        <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env align* (amsmath)</source>
         <translation>env hizası* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="115"/>
+        <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env alignat (amsmath)</source>
         <translation>env alignat (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="116"/>
+        <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>env alignat* (amsmath)</source>
         <translation>env alignat* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="117"/>
+        <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env flalign (amsmath)</source>
         <translation>env flalign (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="118"/>
+        <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env flalign* (amsmath)</source>
         <translation>env flalign* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="119"/>
+        <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env gather (amsmath)</source>
         <translation>env gather (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="120"/>
+        <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env gather* (amsmath)</source>
         <translation>env gather* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="121"/>
+        <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>env multline (amsmath)</source>
         <translation>env multline (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="122"/>
+        <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>env multline* (amsmath)</source>
         <translation>env multline* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="123"/>
+        <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env cases (amsmath)</source>
         <translation>env cases (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="124"/>
+        <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>env split (amsmath)</source>
         <translation>env split (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="125"/>
+        <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>Roman - \mathrm{}</source>
         <translation>Romen - \mathrm{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="126"/>
+        <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>Italic - \mathit{}</source>
         <translation>Yatık - \mathit{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="127"/>
+        <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>Bold - \mathbf{}</source>
         <translation>Koyu - \mathbf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="128"/>
+        <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>Sans Serif - \mathsf{}</source>
         <translation>Sans Serif - \mathsf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="129"/>
+        <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>Typewriter - \mathtt{}</source>
         <translation>Daktilo - \mathtt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="130"/>
+        <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>Calligraphic - \mathcal{}</source>
         <translation>Kaligrafik - \mathcal{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="131"/>
+        <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
         <translation>Karatahta Koyu - \mathbb{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="132"/>
+        <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
         <translation>Fraktür - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="133"/>
+        <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>\overset (amsmath)</source>
         <translation>\overset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="134"/>
+        <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>\underset (amsmath)</source>
         <translation>\underset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="135"/>
+        <location filename="../src/additionaltranslations.cpp" line="136"/>
         <source>Negative - \!</source>
         <translation>Negatif - \!</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="136"/>
+        <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>Thin - \,</source>
         <translation>İnce - \,</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="137"/>
+        <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>Medium - \:</source>
         <translation>Orta - \:</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="138"/>
+        <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>Thick - \;</source>
         <translation>Kalın - \;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="139"/>
+        <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>Interword - \ </source>
         <translation>Sözcük Arası - \ </translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="140"/>
+        <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>One quad - \quad</source>
         <translation>Bir quad - \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="141"/>
+        <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Two quads - \qquad</source>
         <translation>İki quad - \qquad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="142"/>
+        <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>ref</source>
         <translation>ref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="143"/>
+        <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>eqref</source>
         <translation>denklemref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="144"/>
+        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>pageref</source>
         <translation>sayfaref</translation>
     </message>
@@ -3792,32 +3801,32 @@ Bunları kaldırmak ister misiniz?</translation>
         <translation>&lt;varsayılan&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2802"/>
+        <location filename="../src/configmanager.cpp" line="2793"/>
         <source>Configure</source>
         <translation>Yapılandırma</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2809"/>
+        <location filename="../src/configmanager.cpp" line="2800"/>
         <source>Select Program</source>
         <translation>Program Seçin</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2816"/>
+        <location filename="../src/configmanager.cpp" line="2807"/>
         <source>Restore Default</source>
         <translation>Varsayılanları Geri Yükle</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2863"/>
+        <location filename="../src/configmanager.cpp" line="2854"/>
         <source>Repeat contained compilation commands</source>
         <translation>Katılan derleme komutlarını yinele</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2911"/>
+        <location filename="../src/configmanager.cpp" line="2902"/>
         <source>Add</source>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2974"/>
+        <location filename="../src/configmanager.cpp" line="2965"/>
         <source>Browse program</source>
         <translation>Programa gözat</translation>
     </message>
@@ -4099,23 +4108,23 @@ Tüm değişiklikleri geri almak istediğinize emin misiniz?</translation>
 <context>
     <name>GrammarCheck</name>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="409"/>
+        <location filename="../src/grammarcheck.cpp" line="406"/>
         <source>Word repetition</source>
         <translation>Sözcük yinelenmesi</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="419"/>
+        <location filename="../src/grammarcheck.cpp" line="416"/>
         <source>Word repetition. Distance %1</source>
         <translation>Sözcük yinelenmesi. Aralık %1</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="421"/>
+        <location filename="../src/grammarcheck.cpp" line="418"/>
         <source>Long range word repetition. Distance %1</source>
         <translation>Uzun aralıklı sözcük yinelenmesi. Aralık %1</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="430"/>
-        <location filename="../src/grammarcheck.cpp" line="432"/>
+        <location filename="../src/grammarcheck.cpp" line="427"/>
+        <location filename="../src/grammarcheck.cpp" line="429"/>
         <source>Bad word</source>
         <translation>Kötü sözcük</translation>
     </message>
@@ -4390,52 +4399,52 @@ Yardımcı komutu desteklemiyor</translation>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1311"/>
-        <location filename="../src/latexcompleter.cpp" line="1321"/>
+        <location filename="../src/latexcompleter.cpp" line="1308"/>
+        <location filename="../src/latexcompleter.cpp" line="1318"/>
         <source>typical</source>
         <translation>tipik</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1312"/>
-        <location filename="../src/latexcompleter.cpp" line="1322"/>
+        <location filename="../src/latexcompleter.cpp" line="1309"/>
+        <location filename="../src/latexcompleter.cpp" line="1319"/>
         <source>most used</source>
         <translation>en çok kullanılan</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1313"/>
-        <location filename="../src/latexcompleter.cpp" line="1323"/>
+        <location filename="../src/latexcompleter.cpp" line="1310"/>
+        <location filename="../src/latexcompleter.cpp" line="1320"/>
         <source>fuzzy</source>
         <translation>karmaşık</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1314"/>
-        <location filename="../src/latexcompleter.cpp" line="1324"/>
+        <location filename="../src/latexcompleter.cpp" line="1311"/>
+        <location filename="../src/latexcompleter.cpp" line="1321"/>
         <source>all</source>
         <translation>tümü</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1315"/>
-        <location filename="../src/latexcompleter.cpp" line="1325"/>
+        <location filename="../src/latexcompleter.cpp" line="1312"/>
+        <location filename="../src/latexcompleter.cpp" line="1322"/>
         <source>press shift+space to change view</source>
         <translation>görünümü değiştirmek için shift+boşluk tuşlarına basın</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1482"/>
+        <location filename="../src/latexcompleter.cpp" line="1479"/>
         <source> (Usertag)</source>
         <translation>(Kullanıcı etiketi)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1822"/>
+        <location filename="../src/latexcompleter.cpp" line="1819"/>
         <source>label missing!</source>
         <translation>etiket eksik!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1824"/>
+        <location filename="../src/latexcompleter.cpp" line="1821"/>
         <source>label defined multiple times!</source>
         <translation>etiket birden çok kez tanımlanmış!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1833"/>
+        <location filename="../src/latexcompleter.cpp" line="1830"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya Adı: %1&lt;/b&gt;
@@ -4450,43 +4459,43 @@ Yardımcı komutu desteklemiyor</translation>
         <translation>Bilinmeyen hata. Potansiyel çökme. TeXstudio uygulamasını yeniden başlatmanız önerilir</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="36"/>
+        <location filename="../src/latexdocument.cpp" line="37"/>
         <source>MAGIC_COMMENTS</source>
         <translation>SİHİRLİ_AÇIKLAMALAR</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="37"/>
+        <location filename="../src/latexdocument.cpp" line="38"/>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
         <translation>ETİKETLER</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="38"/>
+        <location filename="../src/latexdocument.cpp" line="39"/>
         <source>TODO</source>
         <translation>YAPILACAK İŞLER</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="39"/>
+        <location filename="../src/latexdocument.cpp" line="40"/>
         <source>BIBLIOGRAPHY</source>
         <translation>KAYNAKÇA</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="40"/>
+        <location filename="../src/latexdocument.cpp" line="41"/>
         <source>BLOCKS</source>
         <translation>BLOKLAR</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2457"/>
+        <location filename="../src/latexdocument.cpp" line="2486"/>
         <source>Invalid codec</source>
         <translation>Geçersiz kodlayıcı/çözücü</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2471"/>
+        <location filename="../src/latexdocument.cpp" line="2500"/>
         <source>Missing value for -job-name</source>
         <translation>-job-name için değer eksik</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2474"/>
+        <location filename="../src/latexdocument.cpp" line="2503"/>
         <source>Unknown magic comment</source>
         <translation>Bilinmeyen sihirli açıklama</translation>
     </message>
@@ -4500,33 +4509,33 @@ Yardımcı komutu desteklemiyor</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="175"/>
-        <location filename="../src/latexstructure.cpp" line="238"/>
+        <location filename="../src/latexstructure.cpp" line="234"/>
         <source> (Line %1)</source>
         <translation>(%1. Satır)</translation>
     </message>
     <message>
-        <location filename="../src/latexstructure.cpp" line="196"/>
-        <location filename="../src/latexstructure.cpp" line="221"/>
+        <location filename="../src/latexstructure.cpp" line="194"/>
+        <location filename="../src/latexstructure.cpp" line="217"/>
         <source>Line</source>
         <translation>Satır</translation>
     </message>
     <message>
-        <location filename="../src/latexstructure.cpp" line="199"/>
+        <location filename="../src/latexstructure.cpp" line="197"/>
         <source>Label</source>
         <translation>Etiket</translation>
     </message>
     <message>
-        <location filename="../src/latexstructure.cpp" line="201"/>
+        <location filename="../src/latexstructure.cpp" line="199"/>
         <source>Beyond end of document.</source>
         <translation>Belge sonunun ötesinde.</translation>
     </message>
     <message>
-        <location filename="../src/latexstructure.cpp" line="203"/>
+        <location filename="../src/latexstructure.cpp" line="201"/>
         <source>In Appendix.</source>
         <translation>Ekte.</translation>
     </message>
     <message>
-        <location filename="../src/latexstructure.cpp" line="223"/>
+        <location filename="../src/latexstructure.cpp" line="219"/>
         <source>File not found.</source>
         <translation>Dosya bulunamadı.</translation>
     </message>
@@ -4596,128 +4605,128 @@ Yardımcı komutu desteklemiyor</translation>
         <translation>PDF Dosyasına Git</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="1073"/>
+        <location filename="../src/latexeditorview.cpp" line="1074"/>
         <source>untitled</source>
         <translation>başlıksız</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2198"/>
+        <location filename="../src/latexeditorview.cpp" line="2176"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2231"/>
+        <location filename="../src/latexeditorview.cpp" line="2209"/>
         <source>Add to Dictionary</source>
         <translation>Sözlüğe Ekle</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2435"/>
+        <location filename="../src/latexeditorview.cpp" line="2413"/>
         <source>label missing!</source>
         <translation>etiket eksik!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2437"/>
-        <location filename="../src/latexeditorview.cpp" line="2455"/>
+        <location filename="../src/latexeditorview.cpp" line="2415"/>
+        <location filename="../src/latexeditorview.cpp" line="2433"/>
         <source>label defined multiple times!</source>
         <translation>etiket birden çok kez tanımlanmış!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2445"/>
-        <location filename="../src/latexeditorview.cpp" line="2517"/>
+        <location filename="../src/latexeditorview.cpp" line="2423"/>
+        <location filename="../src/latexeditorview.cpp" line="2495"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya Adı: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2458"/>
+        <location filename="../src/latexeditorview.cpp" line="2436"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>bu etikete %n başvuru</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2463"/>
+        <location filename="../src/latexeditorview.cpp" line="2441"/>
         <source>Class</source>
         <translation>Sınıf</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2463"/>
+        <location filename="../src/latexeditorview.cpp" line="2441"/>
         <source>Package</source>
         <translation>Paket</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2467"/>
+        <location filename="../src/latexeditorview.cpp" line="2445"/>
         <source>Beamer Theme</source>
         <translation>Beamer Teması</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2476"/>
+        <location filename="../src/latexeditorview.cpp" line="2454"/>
         <source>not found</source>
         <translation>bulunamadı</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2492"/>
+        <location filename="../src/latexeditorview.cpp" line="2470"/>
         <source>Citation correct (reading ...)</source>
         <translation>Doğru alıntı (okuma ...)</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2498"/>
+        <location filename="../src/latexeditorview.cpp" line="2476"/>
         <source>Citation missing</source>
         <translation>Alıntı eksik</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2501"/>
+        <location filename="../src/latexeditorview.cpp" line="2479"/>
         <source>Warning:</source>
         <translation>Uyarı:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2501"/>
+        <location filename="../src/latexeditorview.cpp" line="2479"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>BibTeX kodu boşlukla bitiyor. Sondaki boşluklar BibTeX tarafından yok sayılmaz.</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2865"/>
+        <location filename="../src/latexeditorview.cpp" line="2843"/>
         <source>Save Preview Image</source>
         <translation>Ön İzleme Görüntüsünü Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2865"/>
+        <location filename="../src/latexeditorview.cpp" line="2843"/>
         <source>Images</source>
         <translation>Görseller</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3000"/>
+        <location filename="../src/latexeditorview.cpp" line="2974"/>
         <source>Remove Bookmark</source>
         <translation>Yer İmini Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3008"/>
+        <location filename="../src/latexeditorview.cpp" line="2982"/>
         <source>Unnamed Bookmark</source>
         <translation>Adsız Yer İmi</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3013"/>
+        <location filename="../src/latexeditorview.cpp" line="2987"/>
         <source>Bookmark</source>
         <translation>Yer İmi</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3040"/>
+        <location filename="../src/latexeditorview.cpp" line="3014"/>
         <source>Collapse All</source>
         <translation>Tümünü Daralt</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3044"/>
+        <location filename="../src/latexeditorview.cpp" line="3018"/>
         <source>Collapse Level %1</source>
         <translation>%1. Düzeye Daralt</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3049"/>
+        <location filename="../src/latexeditorview.cpp" line="3023"/>
         <source>Expand All</source>
         <translation>Tümünü Genişlet</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3053"/>
+        <location filename="../src/latexeditorview.cpp" line="3027"/>
         <source>Expand Level %1</source>
         <translation>%1. Düzeye Genişlet</translation>
     </message>
@@ -4878,27 +4887,27 @@ Yardımcı komutu desteklemiyor</translation>
 <context>
     <name>MacroBrowserUI</name>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="15"/>
+        <location filename="../src/macrobrowserui.cpp" line="14"/>
         <source>Name</source>
         <translation>Ad</translation>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="17"/>
+        <location filename="../src/macrobrowserui.cpp" line="16"/>
         <source>Description</source>
         <translation>Açıklama</translation>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="43"/>
+        <location filename="../src/macrobrowserui.cpp" line="40"/>
         <source>Browse macros from repository</source>
         <translation>Depodaki makrolara gözat</translation>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="145"/>
+        <location filename="../src/macrobrowserui.cpp" line="142"/>
         <source>Browse macro repository</source>
         <translation>Makro deposuna gözat</translation>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="146"/>
+        <location filename="../src/macrobrowserui.cpp" line="143"/>
         <source>Repository not found. Network error:%1</source>
         <translation>Depo bulunamadı. Ağ sorunu:%1</translation>
     </message>
@@ -4951,7 +4960,7 @@ Yardımcı komutu desteklemiyor</translation>
         <translation>LaTeX Projesi Kamu Lisansı (LPPL)</translation>
     </message>
     <message>
-        <location filename="../src/maketemplatedialog.cpp" line="45"/>
+        <location filename="../src/maketemplatedialog.cpp" line="46"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
         <translation>Verilen adı taşıyan bir kalıp zaten var.
@@ -5116,32 +5125,32 @@ Do you want to overwrite it?</source>
         <translation>Arama</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="494"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="492"/>
         <source>Enables case sensitive search.</source>
         <translation>BÜYÜK/küçük harfe duyarlı aramayı etkinleştirir.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="505"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="503"/>
         <source>Text or pattern to search for</source>
         <translation>Aranacak metin ya da örüntü</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="506"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="504"/>
         <source>Find next occurrence</source>
         <translation>Sonraki eşleşmeyi bul</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="507"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="505"/>
         <source>Find previous occurrence</source>
         <translation>Önceki eşleşmeyi bul</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="509"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="507"/>
         <source> Find :</source>
         <translation>Aranacak:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="511"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="509"/>
         <source>Case</source>
         <translation>Harf Boyutu</translation>
     </message>
@@ -5149,42 +5158,42 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFClockDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="916"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="914"/>
         <source>Set Interval...</source>
         <translation>Aralığı Ayarla...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="917"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="915"/>
         <source>Restart</source>
         <translation>Yeniden Başlat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="932"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="930"/>
         <source>Clock</source>
         <translation>Saat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
         <source>Start time</source>
         <translation>Başlangıç zamanı</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
         <source>New clock interval (in minutes)</source>
         <translation>Yeni saat aralığı (dakika)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="996"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="994"/>
         <source>wait</source>
         <translation>bekleyin</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="998"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="996"/>
         <source>%1 sec</source>
         <translation>%1 saniye</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1000"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="998"/>
         <source>%1 min</source>
         <translation>%1 dakika</translation>
     </message>
@@ -5192,440 +5201,440 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2430"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2421"/>
         <source>Toolbar</source>
         <translation>Araç Çubuğu</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2481"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2472"/>
         <source>&amp;File</source>
         <translation>&amp;Dosya</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2482"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2473"/>
         <source>&amp;Edit</source>
         <translation>Düz&amp;enle</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2483"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2474"/>
         <source>&amp;View</source>
         <translation>&amp;Görünüm</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2484"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2475"/>
         <source>Grid</source>
         <translation>Tablo</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2485"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2476"/>
         <source>&amp;Window</source>
         <translation>&amp;Pencere</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2486"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2477"/>
         <source>&amp;Configure</source>
         <translation>Ya&amp;pılandırma</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2487"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2478"/>
         <source>&amp;Help</source>
         <translation>&amp;Yardım</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2493"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2484"/>
         <source>User &amp;Manual...</source>
         <translation>Kullanım &amp;Rehberi...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2496"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2487"/>
         <source>About</source>
         <translation>Hakkında</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2497"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2488"/>
         <source>&amp;Open...</source>
         <translation>&amp;Aç...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2498"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2489"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation>Böl ve Birleştir...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2499"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2490"/>
         <source>&amp;Close</source>
         <translation>&amp;Kapat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2501"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2492"/>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Uygulamadan Çık</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2502"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2493"/>
         <source>&amp;Configure TeXstudio</source>
         <translation>TeXstudio &amp;Yapılandırması</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2504"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2495"/>
         <source>Scrolling follows cursor</source>
         <translation>Kaydırma imleci izlesin</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2506"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2497"/>
         <source>Cursor follows scrolling</source>
         <translation>İmleç kaydırmayı izlesin</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2508"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2499"/>
         <source>Synchronize multiple views</source>
         <translation>Birden çok görünümü eşitle</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2510"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2501"/>
         <source>Ignore for synchronization</source>
         <translation>Eşitlemede yok sayılsın</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2513"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2504"/>
         <source>Invert Colors</source>
         <translation>Renkleri Tersine Çevir</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2515"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2506"/>
         <source>Grayscale</source>
         <translation>Gri Tonlamalı</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2518"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2509"/>
         <source>&amp;Magnify</source>
         <translation>&amp;Büyüt</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2519"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2510"/>
         <source>&amp;Scroll</source>
         <translation>&amp;Kaydır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2521"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2512"/>
         <source>&amp;First Page</source>
         <translation>İ&amp;lk Sayfa</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2522"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2513"/>
         <source>Back</source>
         <translation>Geri</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2523"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2514"/>
         <source>&amp;Previous Page</source>
         <translation>Ö&amp;nceki Sayfa</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2524"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2515"/>
         <source>&amp;Next Page</source>
         <translation>&amp;Sonraki Sayfa</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2525"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2516"/>
         <source>Forward</source>
         <translation>İleri</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2526"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2517"/>
         <source>&amp;Last Page</source>
         <translation>S&amp;on Sayfa</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2528"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2519"/>
         <source>&amp;Go to Page...</source>
         <translation>Sayfaya &amp;Git...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2530"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2521"/>
         <source>Zoom &amp;In</source>
         <translation>&amp;Yakınlaştır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2531"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2522"/>
         <source>Zoom &amp;Out</source>
         <translation>&amp;Uzaklaştır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2532"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2523"/>
         <source>&amp;Actual Size</source>
         <translation>&amp;Gerçek Boyut</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2533"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2524"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Ge&amp;nişliğe Sığdır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2535"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2526"/>
         <source>Fit to &amp;Text Width</source>
         <translation>&amp;Metin Genişliğine Sığdır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2537"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2528"/>
         <source>Fit to &amp;Window</source>
         <translation>&amp;Pencereye Sığdır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2539"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2530"/>
         <source>&amp;Continuous</source>
         <translation>&amp;Sürekli</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2544"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2535"/>
         <source>Full &amp;Screen</source>
         <translation>Tam &amp;Ekran</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2545"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2536"/>
         <source>Presentation</source>
         <translation>Sunum</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2546"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2537"/>
         <source>External Viewer</source>
         <translation>Dış Görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2547"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2538"/>
         <source>Enlarge Viewer</source>
         <translation>Görüntüleyiciyi Genişlet</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2548"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2539"/>
         <source>Shrink Viewer</source>
         <translation>Görüntüleyiciyi Daralt</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2549"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2540"/>
         <source>Windowed/Embedded</source>
         <translation>Pencere/Gömülü</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2550"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2541"/>
         <source>Auto-hide Toolbar</source>
         <translation>Araç Çubuğu Otomatik Gizlensin</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2568"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2559"/>
         <source>Custom...</source>
         <translation>Özel...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2571"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2562"/>
         <source>Single Page Step</source>
         <translation>Tek Sayfa Adımı</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2574"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2576"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2565"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2567"/>
         <source>&amp;Close something</source>
         <translation>Birşeyleri &amp;Kapat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2579"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2570"/>
         <source>Stac&amp;k</source>
         <translation>Yığı&amp;n</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2580"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2571"/>
         <source>&amp;Tile</source>
         <translation>&amp;Döşe</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2581"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2572"/>
         <source>&amp;Side by Side</source>
         <translation>&amp;Yan Yana</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2583"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2574"/>
         <source>&amp;Go to Source</source>
         <translation>Kaynağa &amp;Git</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2584"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2575"/>
         <source>Focus Editor</source>
         <translation>Düzenleyiciye Odaklan</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2586"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2577"/>
         <source>New Window</source>
         <translation>Yeni Pencere</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2587"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2578"/>
         <source>&amp;Find</source>
         <translation>&amp;Bul</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2588"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2579"/>
         <source>Find &amp;again</source>
         <translation>&amp;Yeniden Bul</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2590"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2581"/>
         <source>Quick Build</source>
         <translation>Hızlı Oluştur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2619"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2610"/>
         <source>Show</source>
         <translation>Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2675"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2666"/>
         <source>Windowed Viewer</source>
         <translation>Pencerede Görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2678"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2669"/>
         <source>Embedded Viewer</source>
         <translation>Gömülü Görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2740"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2728"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation> / </translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2763"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2751"/>
         <source>Scale</source>
         <translation>Ölçek</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2781"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2769"/>
         <source>Zoom Out</source>
         <translation>Uzaklaştır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2791"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2779"/>
         <source>Zoom</source>
         <translation>Yakınlaştırma</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2800"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2788"/>
         <source>Zoom In</source>
         <translation>Yakınlaştır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2828"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2831"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2816"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2819"/>
         <source>Annotations</source>
         <translation>Açıklamalar</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2990"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
         <source>Page Down</source>
         <translation>Sayfa Aşağı</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2994"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
         <source>Page Up</source>
         <translation>Sayfa Yukarı</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3175"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3163"/>
         <source>Retry</source>
         <translation>Yeniden Dene</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3178"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4344"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3166"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4326"/>
         <source>Close</source>
         <translation>Kapat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3181"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3169"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
 geçerli bir PDF dosyası gibi görünmüyor. Dosya bozuk ya da yeni oluşturuluyor olabilir. İki saniyede bir yeniden deneniyor.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3195"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3183"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>&quot;%1&quot; dosyası bulunamadı. Dosya silinmiş olabilir.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3198"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3186"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>&quot;%1&quot; dosyası yüklenemedi. Dosya geçerli bir PDF belgesi olmayabilir.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3201"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3189"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>Hatalı yerleşim nedeniyle &quot;%1&quot; dosyası yüklenemedi. Dosya geçerli bir PDF belgesi olmayabilir.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3204"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3192"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>Bir hata nedeniyle &quot;%1&quot; dosyası yüklenemedi. Dosya geçerli bir PDF belgesi olmayabilir.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3207"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3195"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>&quot;%1&quot; PDF dosyası parola korumalı.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3209"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3197"/>
         <source>PDF password</source>
         <translation>PDF parolası</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3209"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3197"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>&quot;%1&quot; PDF dosyası parola korumalı.
 Şimdi parolayı yazabilirsiniz:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3558"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3546"/>
         <source>Searching for</source>
         <translation>Şu aranıyor</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3686"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3672"/>
         <source>No SyncTeX data available</source>
         <translation>Kullanılabilecek bir SyncTeX verisi bulunamadı</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3688"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3674"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3779"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3765"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3857"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3843"/>
         <source>Page %1 of %2</source>
         <translation>Sayfa %1 / %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3858"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3844"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>Sayfa %1 - %2 / %3</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3883"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3869"/>
         <source>Open PDF</source>
         <translation>PDF Aç</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4163"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4149"/>
         <source>Print</source>
         <translation>Yazdır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4345"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4327"/>
         <source>Close Message</source>
         <translation>İletiyi Kapat</translation>
     </message>
@@ -5673,7 +5682,7 @@ You can now enter the password:</source>
         <translation>[gömülü]</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="205"/>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="201"/>
         <source>Fonts</source>
         <translation>Yazı Tipleri</translation>
     </message>
@@ -5681,7 +5690,7 @@ You can now enter the password:</source>
 <context>
     <name>PDFInfoDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="147"/>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="143"/>
         <source>PDF Info</source>
         <translation>PDF Bilgileri</translation>
     </message>
@@ -5689,42 +5698,42 @@ You can now enter the password:</source>
 <context>
     <name>PDFMovie</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="423"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="421"/>
         <source>File %1 does not exists</source>
         <translation>%1 dosyası bulunamadı</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="429"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="427"/>
         <source>&amp;Play</source>
         <translation>&amp;Oynat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="430"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="428"/>
         <source>P&amp;ause</source>
         <translation>D&amp;uraklat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="431"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="429"/>
         <source>&amp;Stop</source>
         <translation>&amp;Durdur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="433"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="431"/>
         <source>S&amp;eek</source>
         <translation>A&amp;tla</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="434"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="432"/>
         <source>Set &amp;volume</source>
         <translation>&amp;Sesi ayarla</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="477"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="475"/>
         <source>Volume:</source>
         <translation>Ses:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="486"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="484"/>
         <source>Time:</source>
         <translation>Süre:</translation>
     </message>
@@ -5737,7 +5746,7 @@ You can now enter the password:</source>
         <translation>İçindekiler tablosu yok</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="107"/>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="103"/>
         <source>Contents</source>
         <translation>İçindekiler</translation>
     </message>
@@ -5745,7 +5754,7 @@ You can now enter the password:</source>
 <context>
     <name>PDFOverviewDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="328"/>
+        <location filename="../src/pdfviewer/PDFDocks.h" line="324"/>
         <source>Overview</source>
         <translation>Özet</translation>
     </message>
@@ -5753,22 +5762,22 @@ You can now enter the password:</source>
 <context>
     <name>PDFSearchDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="611"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="609"/>
         <source>Words</source>
         <translation>Sözcük</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="612"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="610"/>
         <source>Only searches for whole words.</source>
         <translation>Yalnız tam sözcükleri arar.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="618"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="616"/>
         <source>Sync</source>
         <translation>Eşitleme</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="619"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="617"/>
         <source>Synchronize editor when jumping to search results.</source>
         <translation>Arama sonuçlarına atlandığında düzenleyici eşitlenir.</translation>
     </message>
@@ -5842,67 +5851,67 @@ You can now enter the password:</source>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="572"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="570"/>
         <source>Zoom In</source>
         <translation>Yakınlaştır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="574"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="572"/>
         <source>Zoom Out</source>
         <translation>Uzaklaştır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="577"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="575"/>
         <source>Actual Size</source>
         <translation>Gerçek Boyut</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="580"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="578"/>
         <source>Fit to Width</source>
         <translation>Genişliğe Sığdır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="583"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="581"/>
         <source>Fit to Window</source>
         <translation>Pencereye Sığdır</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1124"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1115"/>
         <source>Opening external files is currently only supported for PDFs.</source>
         <translation>Şu anda dış dosya olarak yalnız PDF belgeleri destekleniyor.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1143"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1134"/>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1143"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1134"/>
         <source>Could not open link:</source>
         <translation>Şu bağlantı açılamadı:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1254"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1245"/>
         <source>Go to Source</source>
         <translation>Kaynağa Git</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1927"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1918"/>
         <source>Go to Page</source>
         <translation>Sayfaya Git</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1928"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1919"/>
         <source>Page number:</source>
         <translation>Sayfa numarası:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2263"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2254"/>
         <source>Calculating text width</source>
         <translation>Metin genişliği hesaplanıyor</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2263"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2254"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
@@ -5938,42 +5947,42 @@ You can now enter the password:</source>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2327"/>
+        <location filename="../src/buildmanager.cpp" line="2324"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>Belirtilen stdout yönlendirmesi desteklenmiyor: &quot;%1&quot;. Ayrıntılar için rehbere bakın.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2336"/>
+        <location filename="../src/buildmanager.cpp" line="2333"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>Belirtilen stderr yönlendirmesi desteklenmiyor: &quot;%1&quot;. Ayrıntılar için rehbere bakın.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2495"/>
+        <location filename="../src/buildmanager.cpp" line="2492"/>
         <source>Process started: %1</source>
         <translation>İşlem başlatıldı: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2501"/>
+        <location filename="../src/buildmanager.cpp" line="2498"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Hata: %1 komutu başlatılamadı</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2504"/>
+        <location filename="../src/buildmanager.cpp" line="2501"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Bir (La)TeX dağıtımı kurduğunuzdan&lt;/b&gt; Örnek: MiKTeX ya da TeX Live, ve komut yapılandırma sayfasında bu dağıtıma uygun yolları ayarladığınızdan emin olun.&lt;br&gt;TeXstudio gibi bir (La)TeX düzenleyicisi böyle bir dağıtım tarafından sağlanan (La)TeX komutları olmadan çalışamaz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2508"/>
+        <location filename="../src/buildmanager.cpp" line="2505"/>
         <source>Error: Command crashed: %1</source>
         <translation>Hata: Komut çöktü: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2515"/>
+        <location filename="../src/buildmanager.cpp" line="2512"/>
         <source>Process exited with error(s)</source>
         <translation>İşlemden hata(lar) ile çıkıldı</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2518"/>
+        <location filename="../src/buildmanager.cpp" line="2515"/>
         <source>Process exited normally</source>
         <translation>İşlemden normal çıkıldı</translation>
     </message>
@@ -6003,58 +6012,58 @@ You can now enter the password:</source>
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="842"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="839"/>
         <source>Replacement prompt</source>
         <translation>Değiştirme istemi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="843"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="840"/>
         <source>Shall it be replaced?</source>
         <translation>Değiştirilecek mi?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="848"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="845"/>
         <source>Replacing Canceled</source>
         <translation>Değiştirme İptal Edildi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="848"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="845"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
         <translation>%1 (bulunan toplam %2) eşleşme değiştirildi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="888"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="884"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
         <translation>Herhangi bir eşleşme olmadan aralığın başlangıcına ulaşıldı.
 Sondan yeniden başlanmasını ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="893"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="889"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
         <translation>Herhangi bir eşleşme olmadan aralığın sonuna ulaşıldı.
 Baştan yeniden başlanmasını ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="900"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="896"/>
         <source>Failure</source>
         <translation>Hata</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="920"/>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="942"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="916"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="938"/>
         <source>Replacing Finished</source>
         <translation>Değiştirme Tamamlandı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="921"/>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="942"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="917"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="938"/>
         <source>%1 (of %2) occurrences have been replaced</source>
         <translation>%1 (/%2) eşleşme değiştirildi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="922"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="918"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Değiştirmeye baştan başlayarak devam edilmesini istiyor musunuz?</translation>
     </message>
@@ -6072,149 +6081,149 @@ Baştan yeniden başlanmasını ister misiniz?</translation>
         <translation>&amp;Görünüm</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="199"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="701"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1467"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="195"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="697"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1459"/>
         <source>Default</source>
         <translation>Varsayılan</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="521"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1440"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="517"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1432"/>
         <source>&amp;Undo</source>
         <translation>&amp;Geri Al</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="532"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1441"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="528"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1433"/>
         <source>&amp;Redo</source>
         <translation>&amp;Yinele</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1443"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="543"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1435"/>
         <source>Cu&amp;t</source>
         <translation>Ke&amp;s</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="554"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1436"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="569"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1445"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="565"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1437"/>
         <source>&amp;Paste</source>
         <translation>&amp;Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="585"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1447"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="581"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1439"/>
         <source>&amp;Indent</source>
         <translation>&amp;Girintiyi Arttır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1448"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="589"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1440"/>
         <source>&amp;Unindent</source>
         <translation>Gi&amp;rintiyi Azalt</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="601"/>
         <source>Toggle &amp;Comment</source>
         <translation>Açıkla&amp;mayı Aç/Kapat</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1449"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="606"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1441"/>
         <source>Co&amp;mment</source>
         <translation>Yo&amp;rum Simgesi Ekle</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="614"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
         <source>Unc&amp;omment</source>
         <translation>Y&amp;orum Simgesini Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1452"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="626"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
         <source>&amp;Select all</source>
         <translation>&amp;Tümünü seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="642"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1454"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="638"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1446"/>
         <source>&amp;Find</source>
         <translation>&amp;Bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="650"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1455"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="646"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1447"/>
         <source>Fin&amp;d next</source>
         <translation>Sonrakini Bu&amp;l</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="658"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1456"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="654"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1448"/>
         <source>&amp;Replace</source>
         <translation>&amp;Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="670"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1458"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="666"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
         <source>&amp;Goto line...</source>
         <translation>Satıra &amp;git...</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="678"/>
         <source>Dynamic line wrapping</source>
         <translation>Devingen satır kaydırma</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="694"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1464"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="690"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1456"/>
         <source>Input binding</source>
         <translation>Giriş bağlantısı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="719"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="715"/>
         <source>Line endings</source>
         <translation>Satır sonları</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="726"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="722"/>
         <source>Conservative</source>
         <translation>Geleneksel</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="727"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="723"/>
         <source>Local</source>
         <translation>Yerel</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="728"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="724"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="729"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="725"/>
         <source>Dos/Windows</source>
         <translation>Dos/Windows</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="726"/>
         <source>Old Mac</source>
         <translation>Eski Mac</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="917"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="913"/>
         <source>Conflict!</source>
         <translation>Çakışma!</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="918"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="914"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -6231,21 +6240,21 @@ Bu uyarıyı yok saymak için &quot;Yok Say&quot; üzerine tıklayın.
 </translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="930"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="926"/>
         <source>Diff</source>
         <translation>Farklar</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1010"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1020"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1052"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1089"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1111"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1005"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1015"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1044"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1081"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
         <source>Saving failed</source>
         <translation>Kaydedilemedi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1011"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1006"/>
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
@@ -6254,8 +6263,8 @@ yazılamadı. Hata (%2): %3.
 Dosya disk üzerinde zaten varsa, bu işlem tarafından değiştirilmedi.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1020"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1089"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1015"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1081"/>
         <source>Could not get write permissions on file
 %1.
 
@@ -6266,7 +6275,7 @@ Perhaps it is read-only or opened in another program?</source>
 Dosya salt okunur ya da başka bir programda açık olabilir mi?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1053"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1045"/>
         <source>There seems to be not enough space to save the file at
 %1
 
@@ -6293,17 +6302,17 @@ durum veri kaybına neden olur.
 </translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1070"/>
         <source>Warning</source>
         <translation>Uyarı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1079"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1071"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
         <translation>Dosya yedeklenirken sorun çıktı. Kaydetmeye devam edebilirsiniz. Bununla birlikte kayıt yapılamaz ise özgün dosyadaki verileri kaybedebilirsiniz. Devam etmek istiyor musunuz?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>Writing the document to file
 %1
 failed.</source>
@@ -6312,7 +6321,7 @@ failed.</source>
 dosyasına yazılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1107"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1099"/>
         <source>The original file on disk was destroyed during the save operation.
 You&apos;ll find a copy at
 %1</source>
@@ -6321,13 +6330,13 @@ Dosyanın kopyasını şu konumda bulabilirsiniz
 %1</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1234"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1238"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1226"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1230"/>
         <source>File deleted</source>
         <translation>Dosya silindi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1234"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1226"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
@@ -6335,19 +6344,19 @@ Should I save the document as it is to restore the file?
 Dosyayı geri yüklemek için belge kaydedilsin mi?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1238"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1230"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
         <translation>Bu durum oldukça garip. %1 dosyası silinmemiş gibi görünüyor.
 Başka biri geri yüklemiş olabilir ve bu nedenle diskteki (büyük olasılıkla değiştirilmiş) sürümün üzerine yazılmayacak.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1264"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1256"/>
         <source>File changed</source>
         <translation>Dosya değiştirildi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1265"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1257"/>
         <source>%1
 was changed outside of TeXstudio. Reload from disk?
 
@@ -6362,324 +6371,324 @@ Notlar:
 - Sessiz yeniden yükleme özelliğini ayarlar bölümünden kalıcı olarak etkinleştirebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1339"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1331"/>
         <source>Print Source Code</source>
         <translation>Kaynak Kodu Yazdır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1470"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1462"/>
         <source>&amp;Edit</source>
         <translation>Düz&amp;enle</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1471"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1463"/>
         <source>&amp;Search</source>
         <translation>&amp;Arama</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1473"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1465"/>
         <source>Edit</source>
         <translation>Düzenle</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1474"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1466"/>
         <source>Search</source>
         <translation>Arama</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1596"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1588"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1598"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1590"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4598"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4584"/>
         <source>None</source>
         <translation>Yok</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4599"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4585"/>
         <source>Invalid</source>
         <translation>Geçersiz</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4601"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4617"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4633"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4587"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4603"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4619"/>
         <source>Internal</source>
         <translation>İç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4603"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4589"/>
         <source>Move cursor up</source>
         <translation>İmleci yukarı taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4604"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4590"/>
         <source>Move cursor down</source>
         <translation>İmleci aşağı taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4605"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4591"/>
         <source>Move cursor left (1 character)</source>
         <translation>İmleci sola taşı (1 karakter)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4606"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4592"/>
         <source>Move cursor right (1 character)</source>
         <translation>İmleci sağa taşı (1 karakter)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4607"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4593"/>
         <source>Move cursor left (1 word)</source>
         <translation>İmleci sola taşı (1 sözcük)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4608"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4594"/>
         <source>Move cursor right (1 word)</source>
         <translation>İmleci sağa taşı (1 sözcük)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4609"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4595"/>
         <source>Move cursor to line start</source>
         <translation>İmleci satır başına taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4610"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4596"/>
         <source>Move cursor to line end</source>
         <translation>İmleci satır sonuna taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4611"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4597"/>
         <source>Move cursor to document start</source>
         <translation>İmleci belgenin başına taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4612"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4598"/>
         <source>Move cursor to document end</source>
         <translation>İmleci belgenin sonuna taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4614"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4600"/>
         <source>Move cursor one page up</source>
         <translation>İmleci bir sayfa yukarı taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4615"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4601"/>
         <source>Move cursor one page down</source>
         <translation>İmleci bir sayfa aşağı taşı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4619"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4605"/>
         <source>Select up</source>
         <translation>Üsttekini seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4620"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4606"/>
         <source>Select down</source>
         <translation>Alttakini seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4621"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4607"/>
         <source>Select left (1 character)</source>
         <translation>Sola doğru seç (1 karakter)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4622"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4608"/>
         <source>Select right (1 character)</source>
         <translation>Sağa doğru seç (1 karakter)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4623"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4609"/>
         <source>Select left (1 word)</source>
         <translation>Sola doğru seç (1 sözcük)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4624"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4610"/>
         <source>Select right (1 word)</source>
         <translation>Sağa doğru seç (1 sözcük)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4625"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4611"/>
         <source>Select to line start</source>
         <translation>Satır başlangıcına kadar seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4626"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4612"/>
         <source>Select to line end</source>
         <translation>Satır sonuna kadar seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4627"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4613"/>
         <source>Select to document start</source>
         <translation>Belgenin başlangıcına kadar seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4628"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4614"/>
         <source>Select to document end</source>
         <translation>Belgenin sonuna kadar seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4630"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4616"/>
         <source>Select page up</source>
         <translation>Bir sayfa yukarı seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4631"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4617"/>
         <source>Select page down</source>
         <translation>Bir sayfa aşağı seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4635"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4621"/>
         <source>Delete left character</source>
         <translation>Soldaki karakteri sil</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4636"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4622"/>
         <source>Delete right character</source>
         <translation>Sağdaki karakteri sil</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4637"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4623"/>
         <source>Delete left word</source>
         <translation>Soldaki sözcüğü sil</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4638"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4624"/>
         <source>Delete right word</source>
         <translation>Sağdaki sözcüğü sil</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4639"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4625"/>
         <source>New line</source>
         <translation>Yeni satır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4641"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4627"/>
         <source>Change overwrite mode</source>
         <translation>Üzerine yazma kipini değiştir</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4642"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4628"/>
         <source>Undo</source>
         <translation>Geri Al</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4643"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4629"/>
         <source>Redo</source>
         <translation>Yinele</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4644"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4630"/>
         <source>Copy</source>
         <translation>Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4645"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4631"/>
         <source>Paste</source>
         <translation>Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4646"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4632"/>
         <source>Cut</source>
         <translation>Kes</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4647"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4633"/>
         <source>Print</source>
         <translation>Yazdır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4648"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4634"/>
         <source>Select all</source>
         <translation>Tümünü Seç</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4649"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4635"/>
         <source>Find</source>
         <translation>Bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4650"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4636"/>
         <source>Find next</source>
         <translation>Sonrakini Bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4651"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4637"/>
         <source>Find previous</source>
         <translation>Öncekini Bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4652"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4638"/>
         <source>Replace</source>
         <translation>Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4654"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4640"/>
         <source>Create cursor mirror up</source>
         <translation>Yukarı imleç yansısı oluştur</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4655"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4641"/>
         <source>Create cursor mirror down</source>
         <translation>Aşağı imleç yansısı oluştur</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4656"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4642"/>
         <source>Next placeholder</source>
         <translation>Sonraki yer belirteci</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4657"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4643"/>
         <source>Previous placeholder</source>
         <translation>Önceki yer belirteci</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4658"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4644"/>
         <source>Next placeholder or one word right</source>
         <translation>Sonraki yer belirteci ya da bir sözcük sağa</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4659"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4645"/>
         <source>Previous placeholder or one word left</source>
         <translation>Önceki yer belirteci ya da bir sözcük sola</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4660"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4646"/>
         <source>Next placeholder or character</source>
         <translation>Sonraki yer belirteci ya da karakter</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4661"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4647"/>
         <source>Previous placeholder or character</source>
         <translation>Önceki yer belirteci ya da karakter</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4662"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4648"/>
         <source>Tab or Indent selection</source>
         <translation>Sekme ya da Girinti seçimi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4663"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4649"/>
         <source>Insert tab</source>
         <translation>Sekme ekle</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4664"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4650"/>
         <source>Indent selection</source>
         <translation>Seçimin girintisini arttır</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4665"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4651"/>
         <source>Unindent selection</source>
         <translation>Seçimin girintisini azalt</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4668"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4654"/>
         <source>Unknown</source>
         <translation>Bilinmiyor</translation>
     </message>
@@ -6696,457 +6705,457 @@ Notlar:
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="145"/>
+        <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>background</source>
         <translation>arkaplan</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="146"/>
+        <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>line:error</source>
         <translation>satır:hata</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>line:warning</source>
         <translation>satır:uyarı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>line:badbox</source>
         <translation>satır:kötü kutu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>line:bookmark</source>
         <translation>satır:yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>line:bookmark0</source>
         <translation>satır:0. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>line:bookmark1</source>
         <translation>satır:1. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>line:bookmark2</source>
         <translation>satır:2. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>line:bookmark3</source>
         <translation>satır:3. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>line:bookmark4</source>
         <translation>satır:4. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>line:bookmark5</source>
         <translation>satır:5. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>line:bookmark6</source>
         <translation>satır:6. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="157"/>
+        <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>line:bookmark7</source>
         <translation>satır:7. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="158"/>
+        <location filename="../src/additionaltranslations.cpp" line="159"/>
         <source>line:bookmark8</source>
         <translation>satır:8. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="159"/>
+        <location filename="../src/additionaltranslations.cpp" line="160"/>
         <source>line:bookmark9</source>
         <translation>satır:9. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>magicComment</source>
         <translation>SihirliAçıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>commentTodo</source>
         <translation>AçıklamaYapılacakİş</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="162"/>
+        <location filename="../src/additionaltranslations.cpp" line="163"/>
         <source>comment</source>
         <translation>açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="163"/>
+        <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>keyword</source>
         <translation>anahtar sözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="164"/>
+        <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>extra-keyword</source>
         <translation>ek anahtar sözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="165"/>
+        <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>math-keyword</source>
         <translation>matematik anahtar sözcüğü</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="166"/>
+        <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>link</source>
         <translation>bağlantı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="167"/>
+        <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>align-ampersand</source>
         <translation>hizala-ve-isareti</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="168"/>
+        <location filename="../src/additionaltranslations.cpp" line="169"/>
         <source>verbatim</source>
         <translation>sözcüğü sözcüğüne</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="169"/>
+        <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>sweave-block</source>
         <translation>sweave-bloğu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="170"/>
+        <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>sweave-delimiter</source>
         <translation>sweave-ayıracı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="171"/>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>pweave-block</source>
         <translation>pweave-bloğu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>pweave-delimiter</source>
         <translation>pweave-ayıracı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="173"/>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>picture</source>
         <translation>görsel</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>picture-keyword</source>
         <translation>görsel-anahtar-sözcüğü</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="175"/>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>braceMatch</source>
         <translation>YaylıParantezEşleşen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>braceMismatch</source>
         <translation>YayılıParantezEşleşmeyen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="177"/>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>search</source>
         <translation>arama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>numbers</source>
         <translation>sayılar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="179"/>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>math-delimiter</source>
         <translation>matematik-sınırlayıcı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>text</source>
         <translation>metin</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="181"/>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>escapeseq</source>
         <translation>KaçışSıralaması</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>spellingMistake</source>
         <translation>YazımHatası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="183"/>
+        <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>wordRepetition</source>
         <translation>SözcükYinelenmesi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="184"/>
+        <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>wordRepetitionLongRange</source>
         <translation>UzunAralıklıSözcükYinelenmesi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="185"/>
+        <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>badWord</source>
         <translation>KötüSözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="186"/>
+        <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>grammarMistake</source>
         <translation>DilBilgisiHatası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="187"/>
+        <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>grammarMistakeSpecial1</source>
         <translation>DilBilgisiHatasıÖzel1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="188"/>
+        <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>grammarMistakeSpecial2</source>
         <translation>DilBilgisiHatasıÖzel2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="189"/>
+        <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>grammarMistakeSpecial3</source>
         <translation>DilBilgisiHatasıÖzel3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="190"/>
+        <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>grammarMistakeSpecial4</source>
         <translation>DilBilgisiHatasıÖzel4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="191"/>
+        <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>latexSyntaxMistake</source>
         <translation>LatexSözDizimiHatası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="192"/>
+        <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>temporaryCodeCompletion</source>
         <translation>GeçiciKodTamamlama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="193"/>
+        <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>environment</source>
         <translation>ortam</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="194"/>
+        <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>referencePresent</source>
         <translation>BaşvuruVar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="195"/>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>referenceMissing</source>
         <translation>BaşvuruEksik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>referenceMultiple</source>
         <translation>BaşvuruBirdenÇok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="197"/>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>citationPresent</source>
         <translation>AlıntıVar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>citationMissing</source>
         <translation>AlıntıEksik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="199"/>
+        <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>packagePresent</source>
         <translation>PaketVar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="200"/>
+        <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>packageMissing</source>
         <translation>PaketEksik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="201"/>
+        <location filename="../src/additionaltranslations.cpp" line="202"/>
         <source>structure</source>
         <translation>yapı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="202"/>
+        <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>current</source>
         <translation>geçerli</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="203"/>
+        <location filename="../src/additionaltranslations.cpp" line="204"/>
         <source>selection</source>
         <translation>seçim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="204"/>
+        <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>replacement</source>
         <translation>değişiklik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="205"/>
+        <location filename="../src/additionaltranslations.cpp" line="206"/>
         <source>diffDelete</source>
         <translation>FarkSil</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="206"/>
+        <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>diffAdd</source>
         <translation>FarkEkle</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="207"/>
+        <location filename="../src/additionaltranslations.cpp" line="208"/>
         <source>diffReplace</source>
         <translation>FarkDeğiştir</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="208"/>
+        <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>previewSelection</source>
         <translation>ÖnİzlemeSeçimi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="209"/>
+        <location filename="../src/additionaltranslations.cpp" line="210"/>
         <source>txs-test</source>
         <translation>txs-deneme</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="210"/>
+        <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>txs-test-summary</source>
         <translation>txs-deneme-özeti</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="211"/>
+        <location filename="../src/additionaltranslations.cpp" line="212"/>
         <source>txs-test-pass</source>
         <translation>txs-deneme-başarılı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="212"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>txs-test-fail</source>
         <translation>txs-deneme-başarısız</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
+        <location filename="../src/additionaltranslations.cpp" line="214"/>
         <source>txs-test-warn</source>
         <translation>txs-deneme-uyarı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="214"/>
+        <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>txs-test-qdebug</source>
         <translation>txs-deneme-hata-ayıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="215"/>
+        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>dtx:guard</source>
         <translation>dtx:koruma</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="216"/>
+        <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>dtx:macro</source>
         <translation>dtx:makro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="217"/>
+        <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>dtx:verbatim</source>
         <translation>dtx:sözcüksözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="218"/>
+        <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>dtx:specialchar</source>
         <translation>dtx:özelkarakter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="219"/>
+        <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>dtx:commands</source>
         <translation>dtx:komutlar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="220"/>
+        <location filename="../src/additionaltranslations.cpp" line="221"/>
         <source>lua:keyword</source>
         <translation>lua:anahtarsözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="221"/>
+        <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>lua:comment</source>
         <translation>lua:açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="222"/>
+        <location filename="../src/additionaltranslations.cpp" line="223"/>
         <source>asymptote:block</source>
         <translation>asymptote:blok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="223"/>
+        <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>asymptote:keyword</source>
         <translation>asymptote:anahtarsözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="224"/>
+        <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>asymptote:type</source>
         <translation>asymptote:tür</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="225"/>
+        <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>asymptote:numbers</source>
         <translation>asymptote:sayılar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="226"/>
+        <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>asymptote:string</source>
         <translation>asymptote:dizge</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="227"/>
+        <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>asymptote:comment</source>
         <translation>asymptote:açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="228"/>
+        <location filename="../src/additionaltranslations.cpp" line="229"/>
         <source>qtscript:comment</source>
         <translation>qtscript:açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="229"/>
+        <location filename="../src/additionaltranslations.cpp" line="230"/>
         <source>qtscript:string</source>
         <translation>qtscript:dizge</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="230"/>
+        <location filename="../src/additionaltranslations.cpp" line="231"/>
         <source>qtscript:number</source>
         <translation>qtscript:sayı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="231"/>
+        <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>qtscript:keyword</source>
         <translation>qtscript:anahtarsözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="232"/>
+        <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>qtscript:txs-variable</source>
         <translation>qtscript:txs-değişkeni</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="233"/>
+        <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>qtscript:txs-function</source>
         <translation>qtscript:txs-işlevi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="234"/>
+        <location filename="../src/additionaltranslations.cpp" line="235"/>
         <source>preedit</source>
         <translation>öndüzenleme</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="235"/>
+        <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
@@ -7311,17 +7320,17 @@ Bu değişiklikleri kaydetmek ister misiniz?</translation>
 <context>
     <name>QSearchReplacePanel</name>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="156"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="154"/>
         <source>Enables case sensitive search.</source>
         <translation>BÜYÜK/küçük harfe duyarlı aramayı etkinleştirir.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="166"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="164"/>
         <source>Only searches for whole words.</source>
         <translation>Yalnız tam sözcükleri arar.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="177"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="175"/>
         <source>This interprets the search text as a regular expression.
 Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
@@ -7334,110 +7343,110 @@ Sık kullanılan bazı kurallı ifadeler şu şekildedir:
 Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifadeler kullanılabilir.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="189"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="187"/>
         <source>Highlights search matches and replaced text.</source>
         <translation>Arama eşleşmelerini ve değiştirilen metni vurgular.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="199"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="197"/>
         <source>Starts the search from the current cursor position.</source>
         <translation>Aramayı geçerli imleç konumundan başlatır.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="210"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="208"/>
         <source>Only searches in the selected text.</source>
         <translation>Yalnız seçilmiş metin içinde aranır.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="220"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="218"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
         <translation>Yalnız seçilmiş metin türünde arar (formül, komutlar gibi)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="239"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="238"/>
         <source>Extended Search</source>
         <translation>Gelişmiş Arama</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="308"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="305"/>
         <source>Ask before any match is replaced.</source>
         <translation>Herhangi bir eşleşme değiştirilmeden sorulsun.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \</source>
         <translation>Şu kaçış karakterlerinin kullanılabilmesini sağlar:
  \n = yeni satır, \r = satır sonu (cr), \t = sekme, \\ = \</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <source>Close search/replace panel</source>
         <translation>Arama/değiştirme panosunu kapat</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="347"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <source>Text or pattern to search for</source>
         <translation>Aranacak metin ya da örüntü</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="348"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
         <source>Find next</source>
         <translation>Sonrakini Bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="349"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <source>Find previous</source>
         <translation>Öncekini Bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="350"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="347"/>
         <source>Count occurrences</source>
         <translation>Eşleşme sayısı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="351"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="348"/>
         <source>Replacement text</source>
         <translation>Değiştirilecek metin</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="352"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="349"/>
         <source>Replace and find next</source>
         <translation>Değiştir ve sonrakini bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="353"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="350"/>
         <source>Replace and find previous</source>
         <translation>Değiştir ve öncekini bul</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="354"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="351"/>
         <source>Replace all</source>
         <translation>Tümünü değiştir</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="356"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="353"/>
         <source>Find:</source>
         <translation>Bul:</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="357"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="354"/>
         <source>Replace:</source>
         <translation>Değiştir:</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="607"/>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="612"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="604"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="609"/>
         <source>Count result</source>
         <translation>Sonuç sayısı</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="607"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="604"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
         <translation>Arama metni imleç konumundan sonra %1 kez bulunuyor. Aralığın başından başlamak ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="612"/>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="609"/>
         <source>The search text occurs %1 times within the search scope.</source>
         <translation>Arama metni aralıkta %1 kez bulunuyor.</translation>
     </message>
@@ -7969,12 +7978,12 @@ Bu betiğe güvenilsin mi?</translation>
 <context>
     <name>SearchResultModel</name>
     <message>
-        <location filename="../src/searchresultmodel.cpp" line="218"/>
+        <location filename="../src/searchresultmodel.cpp" line="206"/>
         <source>File closed</source>
         <translation>Dosya kapatıldı</translation>
     </message>
     <message>
-        <location filename="../src/searchresultmodel.cpp" line="374"/>
+        <location filename="../src/searchresultmodel.cpp" line="362"/>
         <source>Results</source>
         <translation>Sonuçlar</translation>
     </message>
@@ -8002,27 +8011,27 @@ Bu betiğe güvenilsin mi?</translation>
         <translation>Aramayı Güncelle</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="35"/>
+        <location filename="../src/searchresultwidget.cpp" line="33"/>
         <source>Replace all</source>
         <translation>Tümünü değiştir</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="42"/>
+        <location filename="../src/searchresultwidget.cpp" line="40"/>
         <source>Replace by:</source>
         <translation>Şununla değiştir:</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="63"/>
+        <location filename="../src/searchresultwidget.cpp" line="61"/>
         <source>Expand All</source>
         <translation>Tümünü Genişlet</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="66"/>
+        <location filename="../src/searchresultwidget.cpp" line="64"/>
         <source>Collapse All</source>
         <translation>Tümünü Daralt</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="69"/>
+        <location filename="../src/searchresultwidget.cpp" line="67"/>
         <source>Clear</source>
         <translation>Temizle</translation>
     </message>
@@ -8161,12 +8170,12 @@ Bu betiğe güvenilsin mi?</translation>
 <context>
     <name>SpellerManager</name>
     <message>
-        <location filename="../src/spellerutility.cpp" line="249"/>
+        <location filename="../src/spellerutility.cpp" line="251"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
         <translation>Seçilmiş dosyada Hunspell sözlüğü eksik gibi görünüyor. İçeri aktarılmasını ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/spellerutility.cpp" line="257"/>
+        <location filename="../src/spellerutility.cpp" line="259"/>
         <source>Dictionary import failed: No files could be extracted.</source>
         <translation>Sözlük içe aktarılamadı: Herhangi bir dosya ayıklanamadı.</translation>
     </message>
@@ -8174,14 +8183,14 @@ Bu betiğe güvenilsin mi?</translation>
 <context>
     <name>SpellerUtility</name>
     <message>
-        <location filename="../src/spellerutility.cpp" line="32"/>
+        <location filename="../src/spellerutility.cpp" line="34"/>
         <source>Missing .aff file:
 %1</source>
         <translation>.aff dosyası eksik:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/spellerutility.cpp" line="34"/>
+        <location filename="../src/spellerutility.cpp" line="36"/>
         <source>Dictionary does not exist.</source>
         <translation>Sözlük bulunamadı.</translation>
     </message>
@@ -8332,22 +8341,22 @@ Bu betiğe güvenilsin mi?</translation>
 <context>
     <name>SymbolListModel</name>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="273"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="265"/>
         <source>Command: </source>
         <translation>Komut:</translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="286"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="278"/>
         <source>Package: </source>
         <translation>Paket:</translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="288"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="280"/>
         <source>Packages: </source>
         <translation>Paketler:</translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="299"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="291"/>
         <source>Unicode Character: </source>
         <translation>Unicode Karakteri:</translation>
     </message>
@@ -8448,17 +8457,17 @@ Bu betiğe güvenilsin mi?</translation>
         <translation>En Çok Kullanılan</translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="114"/>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="113"/>
         <source>Search</source>
         <translation>Arama</translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="119"/>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="117"/>
         <source>Category</source>
         <translation>Kategori</translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="130"/>
+        <location filename="../src/symbolpanel/symbolwidget.cpp" line="128"/>
         <source>All</source>
         <translation>Tümü</translation>
     </message>
@@ -8466,87 +8475,92 @@ Bu betiğe güvenilsin mi?</translation>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="497"/>
+        <location filename="../src/syntaxcheck.cpp" line="197"/>
         <source>no error</source>
         <translation>hata yok</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="498"/>
+        <location filename="../src/syntaxcheck.cpp" line="198"/>
         <source>unrecognized environment</source>
         <translation>ortam anlaşılamadı</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="499"/>
+        <location filename="../src/syntaxcheck.cpp" line="199"/>
         <source>unrecognized command</source>
         <translation>komut anlaşılamadı</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="500"/>
+        <location filename="../src/syntaxcheck.cpp" line="200"/>
         <source>unrecognized math command</source>
         <translation>matematik komutu anlaşılamadı</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="501"/>
+        <location filename="../src/syntaxcheck.cpp" line="201"/>
         <source>unrecognized tabular command</source>
         <translation>tablo komutu anlaşılamadı</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="502"/>
+        <location filename="../src/syntaxcheck.cpp" line="202"/>
         <source>tabular command outside tabular env</source>
         <translation>tablo komutu tablo sekme ortamının dışında</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="503"/>
+        <location filename="../src/syntaxcheck.cpp" line="203"/>
         <source>math command outside math env</source>
         <translation>matematik komutu matematik ortamının dışında</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="504"/>
+        <location filename="../src/syntaxcheck.cpp" line="204"/>
         <source>tabbing command outside tabbing env</source>
         <translation>sekme komutu sekme ortamının dışında</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="505"/>
+        <location filename="../src/syntaxcheck.cpp" line="205"/>
         <source>more cols in tabular than specified</source>
         <translation>tabloda belirtilenden fazla sütun var</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="506"/>
+        <location filename="../src/syntaxcheck.cpp" line="206"/>
         <source>cols in tabular missing</source>
         <translation>tabloda sütunlar eksik</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="507"/>
+        <location filename="../src/syntaxcheck.cpp" line="207"/>
         <source>\\ missing</source>
         <translation>\\ eksik</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="508"/>
+        <location filename="../src/syntaxcheck.cpp" line="208"/>
         <source>closing environment which has not been opened</source>
         <translation>açılmamış bir ortam kapatılıyor</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="509"/>
+        <location filename="../src/syntaxcheck.cpp" line="209"/>
         <source>environment not closed</source>
         <translation>ortam kapatılmadı</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="510"/>
+        <location filename="../src/syntaxcheck.cpp" line="210"/>
         <source>unrecognized key in key option</source>
         <translation>anahtar seçeneğindeki anahtar anlaşılamadı</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="511"/>
+        <location filename="../src/syntaxcheck.cpp" line="211"/>
         <source>unrecognized value in key option</source>
         <translation>anahtar seçeneğindeki değer anlaşılamadı</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="512"/>
+        <location filename="../src/syntaxcheck.cpp" line="212"/>
         <source>command outside suitable env</source>
         <translation>komut uygun ortamın dışında</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="514"/>
+        <location filename="../src/syntaxcheck.cpp" line="213"/>
+        <source>spelling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/syntaxcheck.cpp" line="215"/>
         <source>unknown</source>
         <translation>bilinmiyor</translation>
     </message>
@@ -8864,7 +8878,7 @@ dosyası silinemedi.</translation>
         <translation>Tablo Kalıbını Seçin</translation>
     </message>
     <message>
-        <location filename="../src/templatemanager_p.cpp" line="52"/>
+        <location filename="../src/templatemanager_p.cpp" line="53"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
         <translation>Hedef klasör boş değil. Yeni klasörler kullanılması önerilir. Yoksa var olan dosyaların üzerine yazılabilir. Gene de bu klasörü kullanmak ister misiniz?</translation>
     </message>
@@ -8992,131 +9006,131 @@ dosyası silinemedi.</translation>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="236"/>
+        <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>Custom</source>
         <translation>Özel</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="237"/>
+        <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>File</source>
         <translation>Dosya</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="238"/>
+        <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>Edit</source>
         <translation>Düzenle</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="239"/>
+        <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>Tools</source>
         <translation>Araçlar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="240"/>
+        <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>Math</source>
         <translation>Matematik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="241"/>
+        <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>Format</source>
         <translation>Biçim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="242"/>
+        <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>Table</source>
         <translation>Tablo</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="243"/>
+        <location filename="../src/additionaltranslations.cpp" line="244"/>
         <source>Diff</source>
         <translation>Fark</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="244"/>
-        <location filename="../src/texstudio.cpp" line="283"/>
+        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/texstudio.cpp" line="280"/>
         <source>Central</source>
         <translation>Merkez</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="246"/>
+        <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="247"/>
+        <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>İkili</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="248"/>
+        <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtx dosyası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="249"/>
+        <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Homespring</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="250"/>
+        <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="251"/>
+        <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="252"/>
+        <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="253"/>
+        <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Sweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="254"/>
+        <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="255"/>
+        <location filename="../src/additionaltranslations.cpp" line="256"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX Makrosu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="256"/>
+        <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXS Deneme Sonuçları</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="257"/>
+        <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>Düz metin</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="258"/>
+        <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
@@ -9127,1544 +9141,1543 @@ dosyası silinemedi.</translation>
         <translation>&amp;Makroları Düzenle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="357"/>
-        <location filename="../src/texstudio.cpp" line="6043"/>
+        <location filename="../src/texstudio.cpp" line="354"/>
+        <location filename="../src/texstudio.cpp" line="6014"/>
         <source>Ready</source>
         <translation>Hazır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="404"/>
+        <location filename="../src/texstudio.cpp" line="401"/>
         <source>TeX files</source>
         <translation>TeX dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="405"/>
+        <location filename="../src/texstudio.cpp" line="402"/>
         <source>LilyPond files</source>
         <translation>LilyPond dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="406"/>
+        <location filename="../src/texstudio.cpp" line="403"/>
         <source>Plaintext files</source>
         <translation>Düz metin dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="407"/>
+        <location filename="../src/texstudio.cpp" line="404"/>
         <source>Pweave files</source>
         <translation>Pweave dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="408"/>
+        <location filename="../src/texstudio.cpp" line="405"/>
         <source>Sweave files</source>
         <translation>Sweave dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="409"/>
+        <location filename="../src/texstudio.cpp" line="406"/>
         <source>Asymptote files</source>
         <translation>Asymptote dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="410"/>
+        <location filename="../src/texstudio.cpp" line="407"/>
         <source>PDF files</source>
         <translation>PDF dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="411"/>
-        <location filename="../src/texstudio.cpp" line="9032"/>
-        <location filename="../src/texstudio.cpp" line="9039"/>
+        <location filename="../src/texstudio.cpp" line="408"/>
+        <location filename="../src/texstudio.cpp" line="8981"/>
+        <location filename="../src/texstudio.cpp" line="8988"/>
         <source>All files</source>
         <translation>Tüm dosyalar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="588"/>
+        <location filename="../src/texstudio.cpp" line="585"/>
         <source>Macros</source>
         <translation>Makrolar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="608"/>
+        <location filename="../src/texstudio.cpp" line="601"/>
         <source>Side Panel</source>
         <translation>Yan Pano</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="647"/>
-        <location filename="../src/texstudio.cpp" line="648"/>
+        <location filename="../src/texstudio.cpp" line="640"/>
+        <location filename="../src/texstudio.cpp" line="641"/>
         <source>Structure</source>
         <translation>Yapı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="653"/>
-        <location filename="../src/texstudio.cpp" line="654"/>
+        <location filename="../src/texstudio.cpp" line="646"/>
+        <location filename="../src/texstudio.cpp" line="647"/>
         <source>Bookmarks</source>
         <translation>Yer İmleri</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="660"/>
-        <location filename="../src/texstudio.cpp" line="661"/>
+        <location filename="../src/texstudio.cpp" line="653"/>
+        <location filename="../src/texstudio.cpp" line="654"/>
         <source>Symbols</source>
         <translation>Simgeler</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="663"/>
+        <location filename="../src/texstudio.cpp" line="656"/>
         <source>Left/Right Brackets</source>
         <translation>Sol/Sağ Parantezler</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="664"/>
+        <location filename="../src/texstudio.cpp" line="657"/>
         <source>Pstricks Commands</source>
         <translation>Pstricks Komutları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="665"/>
+        <location filename="../src/texstudio.cpp" line="658"/>
         <source>MetaPost Commands</source>
         <translation>MetaPost Komutları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="666"/>
+        <location filename="../src/texstudio.cpp" line="659"/>
         <source>Tikz Commands</source>
         <translation>Tikz Komutları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="667"/>
+        <location filename="../src/texstudio.cpp" line="660"/>
         <source>Asymptote Commands</source>
         <translation>Asymptote Komutları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="668"/>
+        <location filename="../src/texstudio.cpp" line="661"/>
         <source>Beamer Commands</source>
         <translation>Beamer Komutları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="669"/>
+        <location filename="../src/texstudio.cpp" line="662"/>
         <source>XY Commands</source>
         <translation>XY Komutları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="797"/>
+        <location filename="../src/texstudio.cpp" line="790"/>
         <source>&amp;File</source>
         <translation>&amp;Dosya</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="799"/>
+        <location filename="../src/texstudio.cpp" line="792"/>
         <source>&amp;New</source>
         <translation>&amp;Yeni</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="800"/>
+        <location filename="../src/texstudio.cpp" line="793"/>
         <source>New From &amp;Template...</source>
         <translation>&amp;Kalıptan Yeni...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="801"/>
+        <location filename="../src/texstudio.cpp" line="794"/>
         <source>&amp;Open...</source>
         <translation>&amp;Aç...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="803"/>
+        <location filename="../src/texstudio.cpp" line="796"/>
         <source>Open &amp;Recent</source>
         <translation>&amp;Son Kullanılanlardan Aç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="805"/>
+        <location filename="../src/texstudio.cpp" line="798"/>
         <source>Session</source>
         <translation>Oturum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="806"/>
+        <location filename="../src/texstudio.cpp" line="799"/>
         <source>Load Session...</source>
         <translation>Oturum Yükle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="807"/>
+        <location filename="../src/texstudio.cpp" line="800"/>
         <source>Save Session...</source>
         <translation>Oturumu Kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="808"/>
+        <location filename="../src/texstudio.cpp" line="801"/>
         <source>Restore Previous Session</source>
         <translation>Önceki Oturumu Geri Yükle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="817"/>
+        <location filename="../src/texstudio.cpp" line="810"/>
         <source>&amp;Save</source>
         <translation>&amp;Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="818"/>
+        <location filename="../src/texstudio.cpp" line="811"/>
         <source>Save &amp;As...</source>
         <translation>&amp;Farklı kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="819"/>
+        <location filename="../src/texstudio.cpp" line="812"/>
         <source>Save A&amp;ll</source>
         <translation>Tümünü K&amp;aydet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="820"/>
+        <location filename="../src/texstudio.cpp" line="813"/>
         <source>&amp;Make Template...</source>
         <translation>Kalıp &amp;Oluştur...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="823"/>
+        <location filename="../src/texstudio.cpp" line="816"/>
         <source>Fifi&amp;x</source>
         <translation>Fifi&amp;x</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="824"/>
+        <location filename="../src/texstudio.cpp" line="817"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>Yeniden adlandırılan/&amp;taşınan dosyayı kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="825"/>
+        <location filename="../src/texstudio.cpp" line="818"/>
         <source>Save copied file...</source>
         <translation>Kopyalanan dosyayı kaydet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="826"/>
+        <location filename="../src/texstudio.cpp" line="819"/>
         <source>&amp;Delete file</source>
         <translation>&amp;Dosyayı sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="827"/>
+        <location filename="../src/texstudio.cpp" line="820"/>
         <source>Set &amp;permissions...</source>
         <translation>İ&amp;zinleri ayarla...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="829"/>
+        <location filename="../src/texstudio.cpp" line="822"/>
         <source>&amp;Revert to saved...</source>
         <translation>Kaydedilmişe &amp;geri dön...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="831"/>
+        <location filename="../src/texstudio.cpp" line="824"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>Dosya adını panoya kopyala</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="832"/>
+        <location filename="../src/texstudio.cpp" line="825"/>
         <source>Copy master filename to clipboard</source>
         <translation>Ana dosya adını panoya kopyala</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="834"/>
+        <location filename="../src/texstudio.cpp" line="827"/>
         <source>S&amp;VN...</source>
         <translation>S&amp;VN...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="835"/>
+        <location filename="../src/texstudio.cpp" line="828"/>
         <source>Check &amp;in...</source>
         <translation>&amp;Düzenlemeye Aç...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="836"/>
+        <location filename="../src/texstudio.cpp" line="829"/>
         <source>SVN &amp;update...</source>
         <translation>SVN &amp;güncelleme...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="837"/>
+        <location filename="../src/texstudio.cpp" line="830"/>
         <source>SVN update &amp;work directory</source>
         <translation>SVN güncelleme ve çalışma klasörü</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="838"/>
+        <location filename="../src/texstudio.cpp" line="831"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>&amp;Eski değişiklikler görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="839"/>
+        <location filename="../src/texstudio.cpp" line="832"/>
         <source>Lock &amp;PDF</source>
         <translation>&amp;PDF Dosyasını Kilitle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="840"/>
+        <location filename="../src/texstudio.cpp" line="833"/>
         <source>Check in P&amp;DF</source>
         <translation>P&amp;DF Dosyasını Düzenlemeye Aç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="841"/>
+        <location filename="../src/texstudio.cpp" line="834"/>
         <source>Show difference between two files</source>
         <translation>İki dosya arasındaki farklar görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="842"/>
+        <location filename="../src/texstudio.cpp" line="835"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>İki dosya arasındaki farklar temel dosyaya göre görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="843"/>
+        <location filename="../src/texstudio.cpp" line="836"/>
         <source>Check SVN Conflict</source>
         <translation>SVN Çakışmasını Denetle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="844"/>
+        <location filename="../src/texstudio.cpp" line="837"/>
         <source>Try to merge differences</source>
         <translation>Farkları birleştirmeyi dene</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="845"/>
+        <location filename="../src/texstudio.cpp" line="838"/>
         <source>Remove Difference-Markers</source>
         <translation>Fark İşaretlerini Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="846"/>
+        <location filename="../src/texstudio.cpp" line="839"/>
         <source>Declare Conflict Resolved</source>
         <translation>Çakışmayı Çözülmüş Olarak İşaretle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="847"/>
+        <location filename="../src/texstudio.cpp" line="840"/>
         <source>Jump to next difference</source>
         <translation>Sonraki farka geç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="848"/>
+        <location filename="../src/texstudio.cpp" line="841"/>
         <source>Jump to previous difference</source>
         <translation>Önceki farka geç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="851"/>
-        <location filename="../src/texstudio.cpp" line="9232"/>
+        <location filename="../src/texstudio.cpp" line="844"/>
+        <location filename="../src/texstudio.cpp" line="9181"/>
         <source>&amp;Close</source>
         <translation>&amp;Kapat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="852"/>
+        <location filename="../src/texstudio.cpp" line="845"/>
         <source>Clos&amp;e All</source>
         <translation>&amp;Tümünü Kapat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="855"/>
+        <location filename="../src/texstudio.cpp" line="848"/>
         <source>Print Source Code...</source>
         <translation>Kaynak Kodu Yazdır...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="858"/>
+        <location filename="../src/texstudio.cpp" line="851"/>
         <source>Exit</source>
         <translation>Çık</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="861"/>
+        <location filename="../src/texstudio.cpp" line="854"/>
         <source>&amp;Edit</source>
         <translation>Düz&amp;enle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="862"/>
+        <location filename="../src/texstudio.cpp" line="855"/>
         <source>&amp;Undo</source>
         <translation>&amp;Geri Al</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="863"/>
+        <location filename="../src/texstudio.cpp" line="856"/>
         <source>&amp;Redo</source>
         <translation>&amp;Yinele</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="865"/>
+        <location filename="../src/texstudio.cpp" line="858"/>
         <source>Debug undo stack</source>
         <translation>Geri alma yığınını incele</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="868"/>
+        <location filename="../src/texstudio.cpp" line="861"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="869"/>
+        <location filename="../src/texstudio.cpp" line="862"/>
         <source>C&amp;ut</source>
         <translation>K&amp;es</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="870"/>
+        <location filename="../src/texstudio.cpp" line="863"/>
         <source>&amp;Paste</source>
         <translation>&amp;Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="872"/>
+        <location filename="../src/texstudio.cpp" line="865"/>
         <source>&amp;Selection</source>
         <translation>&amp;Seçim</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="873"/>
+        <location filename="../src/texstudio.cpp" line="866"/>
         <source>Select &amp;All</source>
         <translation>&amp;Tümünü Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="874"/>
+        <location filename="../src/texstudio.cpp" line="867"/>
         <source>Select All &amp;Occurrences</source>
         <translation>Tüm &amp;Eşleşmeleri Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="875"/>
+        <location filename="../src/texstudio.cpp" line="868"/>
         <source>Expand Selection to Word</source>
         <translation>Seçimi Sözcüğe Genişlet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="876"/>
+        <location filename="../src/texstudio.cpp" line="869"/>
         <source>Expand Selection to Line</source>
         <translation>Seçimi Satıra Genişlet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="878"/>
+        <location filename="../src/texstudio.cpp" line="871"/>
         <source>&amp;Line Operations</source>
         <translation>&amp;Satır İşlemleri</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="879"/>
+        <location filename="../src/texstudio.cpp" line="872"/>
         <source>Delete &amp;Line</source>
         <translation>&amp;Satırı Sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="880"/>
+        <location filename="../src/texstudio.cpp" line="873"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>Satır Sonuna &amp;Kadar Sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="881"/>
+        <location filename="../src/texstudio.cpp" line="874"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>Satır &amp;Başından İtibaren Sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="882"/>
+        <location filename="../src/texstudio.cpp" line="875"/>
         <source>Move Line &amp;Up</source>
         <translation>Satırı &amp;Yukarı Taşı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="883"/>
+        <location filename="../src/texstudio.cpp" line="876"/>
         <source>Move Line &amp;Down</source>
         <translation>Satırı &amp;Aşağı Taşı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="884"/>
+        <location filename="../src/texstudio.cpp" line="877"/>
         <source>Du&amp;plicate Line</source>
         <translation>Satırı Ko&amp;pyala</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="885"/>
+        <location filename="../src/texstudio.cpp" line="878"/>
         <source>&amp;Align Cursors</source>
         <translation>İmleçleri &amp;Hizala</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="887"/>
+        <location filename="../src/texstudio.cpp" line="880"/>
         <source>&amp;Text Operations</source>
         <translation>&amp;Metin İşlemleri</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="888"/>
+        <location filename="../src/texstudio.cpp" line="881"/>
         <source>To Lowercase</source>
         <translation>Küçük Harfe Dönüştür</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="889"/>
+        <location filename="../src/texstudio.cpp" line="882"/>
         <source>To Uppercase</source>
         <translation>Büyük Harfe Dönüştür</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="890"/>
+        <location filename="../src/texstudio.cpp" line="883"/>
         <source>To Titlecase (strict)</source>
         <translation>Sözcüklerin İlk Harflerini Büyüt (kesin)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="891"/>
+        <location filename="../src/texstudio.cpp" line="884"/>
         <source>To Titlecase (smart)</source>
         <translation>Sözcüklerin İlk Harflerini Büyüt (akıllı)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="895"/>
+        <location filename="../src/texstudio.cpp" line="888"/>
         <source>&amp;Searching</source>
         <translation>&amp;Aranan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="896"/>
+        <location filename="../src/texstudio.cpp" line="889"/>
         <source>&amp;Find</source>
         <translation>&amp;Bul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="897"/>
+        <location filename="../src/texstudio.cpp" line="890"/>
         <source>Find &amp;Next</source>
         <translation>&amp;Sonrakini Bul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="898"/>
+        <location filename="../src/texstudio.cpp" line="891"/>
         <source>Find &amp;Prev</source>
         <translation>Ö&amp;ncekini Bul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="899"/>
+        <location filename="../src/texstudio.cpp" line="892"/>
         <source>Continue F&amp;ind</source>
         <translation>Aramaya &amp;Devam Et</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="900"/>
+        <location filename="../src/texstudio.cpp" line="893"/>
         <source>&amp;Count</source>
         <translation>&amp;Sayı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="901"/>
+        <location filename="../src/texstudio.cpp" line="894"/>
         <source>&amp;Select all matches...</source>
         <translation>&amp;Tüm eşleşmeleri seç...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="903"/>
+        <location filename="../src/texstudio.cpp" line="896"/>
         <source>&amp;Replace</source>
         <translation>&amp;Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="904"/>
+        <location filename="../src/texstudio.cpp" line="897"/>
         <source>Replace Next</source>
         <translation>Sonrakini Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="905"/>
+        <location filename="../src/texstudio.cpp" line="898"/>
         <source>Replace Prev</source>
         <translation>Öncekini Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="906"/>
+        <location filename="../src/texstudio.cpp" line="899"/>
         <source>Replace &amp;All</source>
         <translation>&amp;Tümünü Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="909"/>
+        <location filename="../src/texstudio.cpp" line="902"/>
         <source>Go to</source>
         <translation>Git</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="911"/>
+        <location filename="../src/texstudio.cpp" line="904"/>
         <source>Line</source>
         <translation>Satır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="912"/>
+        <location filename="../src/texstudio.cpp" line="905"/>
         <source>Previous Change</source>
         <translation>Önceki Değişiklik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="913"/>
+        <location filename="../src/texstudio.cpp" line="906"/>
         <source>Next Change</source>
         <translation>Sonraki Değişiklik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="915"/>
+        <location filename="../src/texstudio.cpp" line="908"/>
         <source>Previous mark</source>
         <translation>Önceki işaret</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="916"/>
+        <location filename="../src/texstudio.cpp" line="909"/>
         <source>Next mark</source>
         <translation>Sonraki işaret</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="919"/>
+        <location filename="../src/texstudio.cpp" line="912"/>
         <source>Go Back</source>
         <translation>Geri Git</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
+        <location filename="../src/texstudio.cpp" line="913"/>
         <source>Go Forward</source>
         <translation>İleri Git</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="923"/>
+        <location filename="../src/texstudio.cpp" line="916"/>
         <source>Goto Bookmark</source>
         <translation>Yer İmine Git</translation>
     </message>
     <message>
+        <location filename="../src/texstudio.cpp" line="922"/>
         <location filename="../src/texstudio.cpp" line="929"/>
-        <location filename="../src/texstudio.cpp" line="936"/>
         <source>Bookmark %1</source>
         <translation>%1. Yer İmi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="933"/>
+        <location filename="../src/texstudio.cpp" line="926"/>
         <source>Toggle Bookmark</source>
         <translation>Yer İmini Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="934"/>
+        <location filename="../src/texstudio.cpp" line="927"/>
         <source>Unnamed Bookmark</source>
         <translation>Adsız Yer İmi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="940"/>
+        <location filename="../src/texstudio.cpp" line="933"/>
         <source>Line Ending</source>
         <translation>Satır Sonu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="942"/>
+        <location filename="../src/texstudio.cpp" line="935"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/texstudio.cpp" line="939"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="950"/>
+        <location filename="../src/texstudio.cpp" line="943"/>
         <source>Old Mac (CR)</source>
         <translation>Eski Mac (CR)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="956"/>
+        <location filename="../src/texstudio.cpp" line="949"/>
         <source>Setup Encoding...</source>
         <translation>Kodlama Ayarı...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
+        <location filename="../src/texstudio.cpp" line="950"/>
         <source>Insert Unicode Character...</source>
         <translation>Unikod Karakter Ekle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="962"/>
+        <location filename="../src/texstudio.cpp" line="955"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idefix</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
+        <location filename="../src/texstudio.cpp" line="956"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Sözcük/Komut/&amp;Ortam Sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="966"/>
+        <location filename="../src/texstudio.cpp" line="959"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>La&amp;TeX Olarak Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="967"/>
+        <location filename="../src/texstudio.cpp" line="960"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>&amp;LaTeX Biçimine Dönüştür</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="968"/>
+        <location filename="../src/texstudio.cpp" line="961"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>Seçim/&amp;Parantez Ön İzlemesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="969"/>
+        <location filename="../src/texstudio.cpp" line="962"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>Satır Arası Ön İzlemeyi &amp;Temizle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="972"/>
+        <location filename="../src/texstudio.cpp" line="965"/>
         <source>Toggle &amp;Comment</source>
         <translation>Açıkla&amp;ma Durumunu Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
+        <location filename="../src/texstudio.cpp" line="966"/>
         <source>&amp;Comment</source>
         <translation>Açıkla&amp;ma yap</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="974"/>
+        <location filename="../src/texstudio.cpp" line="967"/>
         <source>&amp;Uncomment</source>
         <translation>Açıkla&amp;mayı sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="975"/>
+        <location filename="../src/texstudio.cpp" line="968"/>
         <source>&amp;Indent</source>
         <translation>&amp;Girintiyi Arttır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="976"/>
+        <location filename="../src/texstudio.cpp" line="969"/>
         <source>Unin&amp;dent</source>
         <translation>Gi&amp;rintiyi Azalt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="977"/>
+        <location filename="../src/texstudio.cpp" line="970"/>
         <source>Hard Line &amp;Break...</source>
         <translation>&amp;Katı Satır Sonu...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/texstudio.cpp" line="971"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>Katı Satır Sonunu Yin&amp;ele</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="981"/>
+        <location filename="../src/texstudio.cpp" line="974"/>
         <source>&amp;Go to</source>
         <translation>&amp;Git</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
+        <location filename="../src/texstudio.cpp" line="976"/>
         <source>Previous Error</source>
         <translation>Önceki Hata</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
-        <location filename="../src/texstudio.cpp" line="984"/>
+        <location filename="../src/texstudio.cpp" line="976"/>
+        <location filename="../src/texstudio.cpp" line="977"/>
         <source>No LaTeX errors detected !</source>
         <translation>Herhangi bir LaTeX hatası bulunamadı!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="984"/>
+        <location filename="../src/texstudio.cpp" line="977"/>
         <source>Next Error</source>
         <translation>Sonraki Hata</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="985"/>
+        <location filename="../src/texstudio.cpp" line="978"/>
         <source>Previous Warning</source>
         <translation>Önceki Uyarı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="985"/>
-        <location filename="../src/texstudio.cpp" line="986"/>
+        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/texstudio.cpp" line="979"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Herhangi bir LaTeX uyarısı bulunamadı!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="986"/>
+        <location filename="../src/texstudio.cpp" line="979"/>
         <source>Next Warning</source>
         <translation>Sonraki Uyarı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="987"/>
+        <location filename="../src/texstudio.cpp" line="980"/>
         <source>Previous Bad Box</source>
         <translation>Önceki Kötü Kutu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="987"/>
-        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/texstudio.cpp" line="980"/>
+        <location filename="../src/texstudio.cpp" line="981"/>
         <source>No bad boxes detected !</source>
         <translation>Herhangi bir kötü kutu bulunamadı!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/texstudio.cpp" line="981"/>
         <source>Next Bad Box</source>
         <translation>Sonraki Kötü Kutu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="990"/>
+        <location filename="../src/texstudio.cpp" line="983"/>
         <source>Definition</source>
         <translation>Tanım</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="993"/>
+        <location filename="../src/texstudio.cpp" line="986"/>
         <source>Re&amp;name Environment</source>
         <translation>&amp;Ortamı Yeniden Adlandır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="995"/>
+        <location filename="../src/texstudio.cpp" line="988"/>
         <source>Parenthesis</source>
         <translation>Parantez</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="996"/>
+        <location filename="../src/texstudio.cpp" line="989"/>
         <source>Jump to Match</source>
         <translation>Eşleşmeye Git</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
+        <location filename="../src/texstudio.cpp" line="990"/>
         <source>Select Inner</source>
         <translation>İçi Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="998"/>
+        <location filename="../src/texstudio.cpp" line="991"/>
         <source>Select Outer</source>
         <translation>Dışı Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="999"/>
+        <location filename="../src/texstudio.cpp" line="992"/>
         <source>Select Command</source>
         <translation>Komutu Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="993"/>
         <source>Select Line</source>
         <translation>Satır Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1001"/>
+        <location filename="../src/texstudio.cpp" line="994"/>
         <source>Select Inverting</source>
         <translation>Dönüşümü Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1004"/>
+        <location filename="../src/texstudio.cpp" line="997"/>
         <source>Find Mismatch</source>
         <translation>Uyumsuzluğu Seç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1006"/>
+        <location filename="../src/texstudio.cpp" line="999"/>
         <source>Complete</source>
         <translation>Tamamla</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/texstudio.cpp" line="1000"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1008"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ Tamamla</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1009"/>
+        <location filename="../src/texstudio.cpp" line="1002"/>
         <source>Normal Text</source>
         <translation>Normal Metin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
+        <location filename="../src/texstudio.cpp" line="1003"/>
         <source>Close latest open environment</source>
         <translation>Son açılmış ortamı kapat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1013"/>
+        <location filename="../src/texstudio.cpp" line="1006"/>
         <source>Refresh Structure</source>
         <translation>Yapıyı Yenile</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1014"/>
+        <location filename="../src/texstudio.cpp" line="1007"/>
         <source>Refresh Language Model</source>
         <translation>Dil Modelini Yenile</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1015"/>
+        <location filename="../src/texstudio.cpp" line="1008"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation>Vurgulama ve katlama için kullanılacak devingen dil modelini güncellemeye zorlar. Güncellemeler genellikle otomatik olarak yapıldığından bu işlemi yapmanıza gerek olmayabilir.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1016"/>
+        <location filename="../src/texstudio.cpp" line="1009"/>
         <source>Remove Placeholders</source>
         <translation>Yer Belirteçlerini Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1017"/>
+        <location filename="../src/texstudio.cpp" line="1010"/>
         <source>Remove Current Placeholder</source>
         <translation>Geçerli Yer Belirtecini Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1022"/>
+        <location filename="../src/texstudio.cpp" line="1015"/>
         <source>&amp;Tools</source>
         <translation>&amp;Araçlar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1024"/>
+        <location filename="../src/texstudio.cpp" line="1017"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Oluştur ve Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1025"/>
+        <location filename="../src/texstudio.cpp" line="1018"/>
         <source>&amp;Compile</source>
         <translation>&amp;Derle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1026"/>
+        <location filename="../src/texstudio.cpp" line="1019"/>
         <source>Stop Compile</source>
         <translation>Derlemeyi Durdur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1030"/>
-        <location filename="../src/texstudio.cpp" line="1182"/>
+        <location filename="../src/texstudio.cpp" line="1023"/>
+        <location filename="../src/texstudio.cpp" line="1175"/>
         <source>&amp;View</source>
         <translation>&amp;Görünüm</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1031"/>
-        <location filename="../src/texstudio.cpp" line="1129"/>
+        <location filename="../src/texstudio.cpp" line="1024"/>
+        <location filename="../src/texstudio.cpp" line="1122"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Kaynakça</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1032"/>
+        <location filename="../src/texstudio.cpp" line="1025"/>
         <source>&amp;Glossary</source>
         <translation>&amp;Terimler Sözlüğü</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1033"/>
+        <location filename="../src/texstudio.cpp" line="1026"/>
         <source>&amp;Index</source>
         <translation>&amp;Dizin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1036"/>
+        <location filename="../src/texstudio.cpp" line="1029"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>&amp;Komutlar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1037"/>
+        <location filename="../src/texstudio.cpp" line="1030"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1039"/>
-        <location filename="../src/texstudio.cpp" line="1087"/>
+        <location filename="../src/texstudio.cpp" line="1032"/>
+        <location filename="../src/texstudio.cpp" line="1080"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1040"/>
+        <location filename="../src/texstudio.cpp" line="1033"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1044"/>
+        <location filename="../src/texstudio.cpp" line="1037"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1045"/>
+        <location filename="../src/texstudio.cpp" line="1038"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1046"/>
+        <location filename="../src/texstudio.cpp" line="1039"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1048"/>
+        <location filename="../src/texstudio.cpp" line="1041"/>
         <source>View &amp;DVI</source>
         <translation>&amp;DVI Görünümü</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1049"/>
+        <location filename="../src/texstudio.cpp" line="1042"/>
         <source>Vie&amp;w PS</source>
         <translation>PS &amp;Görünümü</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1050"/>
+        <location filename="../src/texstudio.cpp" line="1043"/>
         <source>View PD&amp;F</source>
         <translation>PD&amp;F Görünümü</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1052"/>
+        <location filename="../src/texstudio.cpp" line="1045"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1053"/>
+        <location filename="../src/texstudio.cpp" line="1046"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1054"/>
+        <location filename="../src/texstudio.cpp" line="1047"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1056"/>
+        <location filename="../src/texstudio.cpp" line="1049"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1057"/>
+        <location filename="../src/texstudio.cpp" line="1050"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1058"/>
+        <location filename="../src/texstudio.cpp" line="1051"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1060"/>
+        <location filename="../src/texstudio.cpp" line="1053"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1061"/>
+        <location filename="../src/texstudio.cpp" line="1054"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1063"/>
+        <location filename="../src/texstudio.cpp" line="1056"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>K&amp;ullanıcı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1066"/>
+        <location filename="../src/texstudio.cpp" line="1059"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>Dış Dosy&amp;aları Temizle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1067"/>
+        <location filename="../src/texstudio.cpp" line="1060"/>
         <source>Open &amp;Terminal</source>
         <translation>&amp;Konsolu Aç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1069"/>
+        <location filename="../src/texstudio.cpp" line="1062"/>
         <source>View &amp;Log</source>
         <translation>&amp;Günlüğü Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1070"/>
+        <location filename="../src/texstudio.cpp" line="1063"/>
         <source>Show Log Markers</source>
         <translation>Günlük İşaretlerini Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1074"/>
+        <location filename="../src/texstudio.cpp" line="1067"/>
         <source>C&amp;onvert to Html...</source>
         <translation>&amp;HTML Biçimine Dönüştür...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1075"/>
+        <location filename="../src/texstudio.cpp" line="1068"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>Kaynağı &amp;HTML Biçimine Dönüştür...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1077"/>
+        <location filename="../src/texstudio.cpp" line="1070"/>
         <source>A&amp;nalyse Text...</source>
         <translation>Met&amp;ni İncele...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1078"/>
+        <location filename="../src/texstudio.cpp" line="1071"/>
         <source>Generate &amp;Random Text...</source>
         <translation>&amp;Rastgele Metin Üret...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1080"/>
+        <location filename="../src/texstudio.cpp" line="1073"/>
         <source>Check Spelling...</source>
         <translation>Yazım Denetimi...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1081"/>
+        <location filename="../src/texstudio.cpp" line="1074"/>
         <source>Thesaurus...</source>
         <translation>Eş Anlamlılar Sözlüğü...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1082"/>
+        <location filename="../src/texstudio.cpp" line="1075"/>
         <source>Find Word Repetitions...</source>
         <translation>Yinelenen Sözcükleri Bul...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1089"/>
+        <location filename="../src/texstudio.cpp" line="1082"/>
         <source>Insert \ref to Next Label</source>
         <translation>Sonraki Etikete \ref Ekle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1090"/>
+        <location filename="../src/texstudio.cpp" line="1083"/>
         <source>Insert \ref to Previous Label</source>
         <translation>Önceki Etikete \ref Ekle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1091"/>
+        <location filename="../src/texstudio.cpp" line="1084"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>Tabloları Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1092"/>
+        <location filename="../src/texstudio.cpp" line="1085"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>Satır Ekle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1093"/>
+        <location filename="../src/texstudio.cpp" line="1086"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>Sütun Ekle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1094"/>
+        <location filename="../src/texstudio.cpp" line="1087"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>Satırı Sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1095"/>
+        <location filename="../src/texstudio.cpp" line="1088"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>Sütunu Sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1096"/>
+        <location filename="../src/texstudio.cpp" line="1089"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>Sütunu Kes</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1097"/>
+        <location filename="../src/texstudio.cpp" line="1090"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Sütunu Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1098"/>
+        <location filename="../src/texstudio.cpp" line="1091"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>\hline Ekle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1099"/>
+        <location filename="../src/texstudio.cpp" line="1092"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>\hline Sil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1100"/>
+        <location filename="../src/texstudio.cpp" line="1093"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>Tabloyu Kalıbı Kullanarak Yeniden Modelle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1101"/>
+        <location filename="../src/texstudio.cpp" line="1094"/>
         <source>Align Columns</source>
         <translation>Sütunları Hizala</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1102"/>
+        <location filename="../src/texstudio.cpp" line="1095"/>
         <source>Add magic comments ...</source>
         <translation>Sihirli açıklamalar ekle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1103"/>
+        <location filename="../src/texstudio.cpp" line="1096"/>
         <source>Insert root document name as TeX comment</source>
         <translation>Kök belge adı TeX açıklaması olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1104"/>
-        <location filename="../src/texstudio.cpp" line="1433"/>
+        <location filename="../src/texstudio.cpp" line="1097"/>
+        <location filename="../src/texstudio.cpp" line="1423"/>
         <source>Insert language as TeX comment</source>
         <translation>Dil adı TeX açıklaması olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1105"/>
+        <location filename="../src/texstudio.cpp" line="1098"/>
         <source>Insert document coding as TeX comment</source>
         <translation>Belge kodlaması TeX açıklaması olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1106"/>
+        <location filename="../src/texstudio.cpp" line="1099"/>
         <source>Insert program as TeX comment</source>
         <translation>Program TeX açıklaması olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1107"/>
+        <location filename="../src/texstudio.cpp" line="1100"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation>Kaynakça aracı TeX açıklaması olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1109"/>
+        <location filename="../src/texstudio.cpp" line="1102"/>
         <source>&amp;Math</source>
         <translation>&amp;Matematik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1113"/>
+        <location filename="../src/texstudio.cpp" line="1106"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Yardımcılar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1114"/>
+        <location filename="../src/texstudio.cpp" line="1107"/>
         <source>Quick &amp;Start...</source>
         <translation>&amp;Hızlı Başlangıç...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1115"/>
+        <location filename="../src/texstudio.cpp" line="1108"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>Hızlı &amp;Beamer Sunumu...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1116"/>
+        <location filename="../src/texstudio.cpp" line="1109"/>
         <source>Quick &amp;Letter...</source>
         <translation>Hızlı &amp;Mektup...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1119"/>
+        <location filename="../src/texstudio.cpp" line="1112"/>
         <source>Quick &amp;Tabular...</source>
         <translation>Hızlı &amp;Tablo...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/texstudio.cpp" line="1113"/>
         <source>Quick T&amp;abbing...</source>
         <translation>Hızlı &amp;Sekmeleme...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1121"/>
+        <location filename="../src/texstudio.cpp" line="1114"/>
         <source>Quick &amp;Array...</source>
         <translation>Hızlı &amp;Dizi...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1122"/>
+        <location filename="../src/texstudio.cpp" line="1115"/>
         <source>Insert &amp;Graphic...</source>
         <translation>&amp;Grafik Ekle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1125"/>
+        <location filename="../src/texstudio.cpp" line="1118"/>
         <source>Math Assistant...</source>
         <translation>Matematik Yardımcısı...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1154"/>
+        <location filename="../src/texstudio.cpp" line="1147"/>
         <source>&amp;Clean</source>
         <translation>&amp;Temizle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1156"/>
+        <location filename="../src/texstudio.cpp" line="1149"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>Ka&amp;ynakça Kaydı Ekle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1158"/>
+        <location filename="../src/texstudio.cpp" line="1151"/>
         <source>Type</source>
         <translation>Tür</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1162"/>
-        <location filename="../src/texstudio.cpp" line="1172"/>
+        <location filename="../src/texstudio.cpp" line="1155"/>
+        <location filename="../src/texstudio.cpp" line="1165"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1167"/>
-        <location filename="../src/texstudio.cpp" line="1173"/>
+        <location filename="../src/texstudio.cpp" line="1160"/>
+        <location filename="../src/texstudio.cpp" line="1166"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/texstudio.cpp" line="1170"/>
         <source>Ma&amp;cros</source>
         <translation>Ma&amp;krolar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1183"/>
+        <location filename="../src/texstudio.cpp" line="1176"/>
         <source>Previous Document</source>
         <translation>Önceki Belge</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1184"/>
+        <location filename="../src/texstudio.cpp" line="1177"/>
         <source>Next Document</source>
         <translation>Sonraki Belge</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1185"/>
+        <location filename="../src/texstudio.cpp" line="1178"/>
         <source>Open Documents</source>
         <translation>Belgeleri Aç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1186"/>
+        <location filename="../src/texstudio.cpp" line="1179"/>
         <source>List Of Open Documents</source>
         <translation>Açık Belgelerin Listesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1187"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
         <source>List Of Hidden Documents</source>
         <translation>Gizli Belgelerin Listesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1189"/>
+        <location filename="../src/texstudio.cpp" line="1182"/>
         <source>Focus Editor</source>
         <translation>Düzenleyiciye Odaklan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1190"/>
+        <location filename="../src/texstudio.cpp" line="1183"/>
         <source>Focus Viewer</source>
         <translation>Görüntüleyiciye Odaklan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/texstudio.cpp" line="1186"/>
         <source>Show</source>
         <translation>Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1196"/>
+        <location filename="../src/texstudio.cpp" line="1189"/>
         <source>Statusbar</source>
         <translation>Durum Çubuğu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1200"/>
+        <location filename="../src/texstudio.cpp" line="1193"/>
         <source>Show embedded PDF large</source>
         <translation>Gömülü PDF büyük görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1201"/>
+        <location filename="../src/texstudio.cpp" line="1194"/>
         <source>Show embedded PDF small</source>
         <translation>Gömülü PDF küçük görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1203"/>
+        <location filename="../src/texstudio.cpp" line="1196"/>
         <source>Close Element</source>
         <translation>Bileşeni Kapat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
+        <location filename="../src/texstudio.cpp" line="1199"/>
         <source>Collapse</source>
         <translation>Daralt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1207"/>
-        <location filename="../src/texstudio.cpp" line="1212"/>
+        <location filename="../src/texstudio.cpp" line="1200"/>
+        <location filename="../src/texstudio.cpp" line="1205"/>
         <source>Everything</source>
         <translation>Herşeyi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1208"/>
-        <location filename="../src/texstudio.cpp" line="1213"/>
+        <location filename="../src/texstudio.cpp" line="1201"/>
+        <location filename="../src/texstudio.cpp" line="1206"/>
         <source>Nearest Block</source>
         <translation>En Yakın Blok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1210"/>
-        <location filename="../src/texstudio.cpp" line="1215"/>
+        <location filename="../src/texstudio.cpp" line="1203"/>
+        <location filename="../src/texstudio.cpp" line="1208"/>
         <source>Level %1</source>
         <translation>%1. Düzey</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1211"/>
+        <location filename="../src/texstudio.cpp" line="1204"/>
         <source>Expand</source>
         <translation>Genişlet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
+        <location filename="../src/texstudio.cpp" line="1210"/>
         <source>Grammar errors</source>
         <translation>Dil bilgisi hataları</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1220"/>
+        <location filename="../src/texstudio.cpp" line="1213"/>
         <source>Word Repetition</source>
         <translation>Sözcük Yinelenmesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1221"/>
+        <location filename="../src/texstudio.cpp" line="1214"/>
         <source>Long-range Word Repetition</source>
         <translation>Uzun Aralıklı Sözcük Yinelenmesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1222"/>
+        <location filename="../src/texstudio.cpp" line="1215"/>
         <source>Bad words</source>
         <translation>Kötü sözcükler</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1223"/>
+        <location filename="../src/texstudio.cpp" line="1216"/>
         <source>Grammar Mistake</source>
         <translation>Dil Bilgisi Yanlışı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1225"/>
+        <location filename="../src/texstudio.cpp" line="1218"/>
         <source>Grammar Mistake Special %1</source>
         <translation>%1. Özel Dil Bilgisi Yanlışı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1234"/>
+        <location filename="../src/texstudio.cpp" line="1227"/>
         <source>Editor Zoom</source>
         <translation>Düzenleyici Yakınlaştırması</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1235"/>
+        <location filename="../src/texstudio.cpp" line="1228"/>
         <source>Zoom In</source>
         <translation>Yakınlaştır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1236"/>
+        <location filename="../src/texstudio.cpp" line="1229"/>
         <source>Zoom Out</source>
         <translation>Uzaklaştır</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1230"/>
         <source>Reset Zoom</source>
         <translation>Yakınlaştırmayı Sıfırla</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
-        <location filename="../src/texstudio.cpp" line="1242"/>
+        <location filename="../src/texstudio.cpp" line="1232"/>
         <source>Full &amp;Screen</source>
         <translation>Tam &amp;Ekran</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1249"/>
+        <location filename="../src/texstudio.cpp" line="1239"/>
         <source>Highlighting</source>
         <translation>Vurgulama</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1273"/>
+        <location filename="../src/texstudio.cpp" line="1263"/>
         <source>&amp;Options</source>
         <translation>&amp;Ayarlar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1274"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;TeXstudio Yapılandırması...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1277"/>
+        <location filename="../src/texstudio.cpp" line="1267"/>
         <source>Load &amp;Profile...</source>
         <translation>&amp;Profil Yükle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1278"/>
+        <location filename="../src/texstudio.cpp" line="1268"/>
         <source>S&amp;ave Profile...</source>
         <translation>Profili K&amp;aydet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1279"/>
+        <location filename="../src/texstudio.cpp" line="1269"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>&amp;Geçerli Ayarları Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1280"/>
+        <location filename="../src/texstudio.cpp" line="1270"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>&amp;Varsayılan Ayarları Geri Yükle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1283"/>
+        <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>Kök Belge</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1286"/>
+        <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Detect &amp;Automatically</source>
         <translation>&amp;Otomatik Olarak Algıla</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1294"/>
+        <location filename="../src/texstudio.cpp" line="1284"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>Geçerli Belgeyi Açıkta Kök Olarak Ayarla</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1297"/>
+        <location filename="../src/texstudio.cpp" line="1287"/>
         <source>&amp;Help</source>
         <translation>&amp;Yardım</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1298"/>
+        <location filename="../src/texstudio.cpp" line="1288"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeX Başvurusu...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1299"/>
+        <location filename="../src/texstudio.cpp" line="1289"/>
         <source>User Manual...</source>
         <translation>Kullanım Rehberi...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1300"/>
+        <location filename="../src/texstudio.cpp" line="1290"/>
         <source>Packages Help...</source>
         <translation>Paket Yardımı...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1303"/>
+        <location filename="../src/texstudio.cpp" line="1293"/>
         <source>Check LaTeX Installation</source>
         <translation>LaTeX Kurulumu Denetimi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1304"/>
+        <location filename="../src/texstudio.cpp" line="1294"/>
         <source>Check Active Completion Files</source>
         <translation>Etkin Tamamlama Dosyaları Denetimi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1305"/>
+        <location filename="../src/texstudio.cpp" line="1295"/>
         <source>Check LanguageTool</source>
         <translation>LanguageTool Denetimi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1306"/>
+        <location filename="../src/texstudio.cpp" line="1296"/>
         <source>About TeXstudio...</source>
         <translation>TeXstudio Hakkında...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1424"/>
+        <location filename="../src/texstudio.cpp" line="1414"/>
         <source>Default</source>
         <translation>Varsayılan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1461"/>
+        <location filename="../src/texstudio.cpp" line="1448"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>%1 üzerindeki LanguageTool sunucusu ile bağlantı kuruldu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1465"/>
+        <location filename="../src/texstudio.cpp" line="1452"/>
         <source>No LanguageTool server found at %1</source>
         <translation>%1 üzerinde bir LanguageTool sunucusu bulunamadı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1469"/>
+        <location filename="../src/texstudio.cpp" line="1456"/>
         <source>LanguageTool status unknown</source>
         <translation>LanguageTool durumu bilinmiyor</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1473"/>
+        <location filename="../src/texstudio.cpp" line="1460"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation>Satır arası dil bilgisi denetimi kullanıcı tarafından devre dışı bırakılmış!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1537"/>
+        <location filename="../src/texstudio.cpp" line="1521"/>
         <source>Language</source>
         <translation>Dil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1549"/>
-        <location filename="../src/texstudio.cpp" line="1550"/>
-        <location filename="../src/texstudio.cpp" line="5620"/>
-        <location filename="../src/texstudio.cpp" line="5623"/>
-        <location filename="../src/texstudio.cpp" line="5624"/>
+        <location filename="../src/texstudio.cpp" line="1533"/>
+        <location filename="../src/texstudio.cpp" line="1534"/>
+        <location filename="../src/texstudio.cpp" line="5591"/>
+        <location filename="../src/texstudio.cpp" line="5594"/>
+        <location filename="../src/texstudio.cpp" line="5595"/>
         <source>Encoding</source>
         <translation>Kodlama</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1572"/>
+        <location filename="../src/texstudio.cpp" line="1556"/>
         <source>More Encodings...</source>
         <translation>Diğer Kodlamalar...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1580"/>
+        <location filename="../src/texstudio.cpp" line="1564"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Kodlama TeX açıklaması olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1594"/>
+        <location filename="../src/texstudio.cpp" line="1578"/>
         <source>Go to bookmark</source>
         <translation>Yer imine git</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1639"/>
+        <location filename="../src/texstudio.cpp" line="1623"/>
         <source>Automatic</source>
         <translation>Otomatik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1640"/>
+        <location filename="../src/texstudio.cpp" line="1624"/>
         <source>Automatic root document detection active</source>
         <translation>Otomatik kök belge algılaması etkin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1645"/>
+        <location filename="../src/texstudio.cpp" line="1629"/>
         <source>&amp;Explicit</source>
         <translation>&amp;Açıkta</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1646"/>
+        <location filename="../src/texstudio.cpp" line="1630"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Kök</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1647"/>
+        <location filename="../src/texstudio.cpp" line="1631"/>
         <source>Explict root document:
 %1</source>
         <translation>Açıkta kök belge:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1936"/>
+        <location filename="../src/texstudio.cpp" line="1920"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Bir SyncTeX&#xa0;dosyasının hatalarını ayıklamak istiyor musunuz?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2011"/>
-        <location filename="../src/texstudio.cpp" line="3791"/>
-        <location filename="../src/texstudio.cpp" line="5671"/>
-        <location filename="../src/texstudio.cpp" line="6173"/>
-        <location filename="../src/texstudio.cpp" line="6330"/>
-        <location filename="../src/texstudio.cpp" line="6332"/>
-        <location filename="../src/texstudio.cpp" line="6339"/>
-        <location filename="../src/texstudio.cpp" line="6341"/>
-        <location filename="../src/texstudio.cpp" line="9730"/>
+        <location filename="../src/texstudio.cpp" line="1994"/>
+        <location filename="../src/texstudio.cpp" line="3759"/>
+        <location filename="../src/texstudio.cpp" line="5642"/>
+        <location filename="../src/texstudio.cpp" line="6144"/>
+        <location filename="../src/texstudio.cpp" line="6301"/>
+        <location filename="../src/texstudio.cpp" line="6303"/>
+        <location filename="../src/texstudio.cpp" line="6310"/>
+        <location filename="../src/texstudio.cpp" line="6312"/>
+        <location filename="../src/texstudio.cpp" line="9679"/>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2011"/>
+        <location filename="../src/texstudio.cpp" line="1994"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>%1 dosyasını okuma izniniz yok.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2071"/>
+        <location filename="../src/texstudio.cpp" line="2050"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>&quot;%2&quot; için %1 üzerinde bir çökme kurtarma dosyası bulundu.
 Geri yüklemek ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2077"/>
+        <location filename="../src/texstudio.cpp" line="2056"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>&quot;%1&quot; kurtarma dosyası açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2220"/>
+        <location filename="../src/texstudio.cpp" line="2183"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -10673,45 +10686,45 @@ Lütfen doğru çalıştırma kitaplığını alın (.dll ya da .so dosyaları).
 Yoksa rastgele hatalar ve çökmeler oluşabilir.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2307"/>
+        <location filename="../src/texstudio.cpp" line="2270"/>
         <source>Could not write template data:</source>
         <translation>Kalıp verileri yazılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2333"/>
+        <location filename="../src/texstudio.cpp" line="2296"/>
         <source>Could not write template meta data:</source>
         <translation>Kalıp üst verileri yazılamadı:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2382"/>
-        <location filename="../src/texstudio.cpp" line="2444"/>
+        <location filename="../src/texstudio.cpp" line="2345"/>
+        <location filename="../src/texstudio.cpp" line="2407"/>
         <source>File not found:</source>
         <translation>Dosya bulunamadı:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2386"/>
-        <location filename="../src/texstudio.cpp" line="2448"/>
+        <location filename="../src/texstudio.cpp" line="2349"/>
+        <location filename="../src/texstudio.cpp" line="2411"/>
         <source>You do not have read permission to this file:</source>
         <translation>Şu dosyayı okuma izniniz yok:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2565"/>
-        <location filename="../src/texstudio.cpp" line="9560"/>
+        <location filename="../src/texstudio.cpp" line="2528"/>
+        <location filename="../src/texstudio.cpp" line="9509"/>
         <source>Open Files</source>
         <translation>Dosyaları Aç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2599"/>
+        <location filename="../src/texstudio.cpp" line="2562"/>
         <source>Loading of last session failed.</source>
         <translation>Son oturum yüklenemedi.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2668"/>
+        <location filename="../src/texstudio.cpp" line="2631"/>
         <source>Save As</source>
         <translation>Farklı Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2685"/>
+        <location filename="../src/texstudio.cpp" line="2648"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -10724,210 +10737,210 @@ sürümü TeXstudio üzerinde açık. Üzerine yazabilmek için bu diğer
 dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2703"/>
+        <location filename="../src/texstudio.cpp" line="2666"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Bir Farklı Kaydet işlemi nedeniyle kaynak dosyanın adı değiştirildiğinden PDF artık tex kaynağı ile eşitlenmiyor. Sonucu görüntülemek için adı değiştirilen dosyayı yeniden derlemelisiniz.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2796"/>
+        <location filename="../src/texstudio.cpp" line="2759"/>
         <source>Rename/Move</source>
         <translation>Yeniden Adlandır/Taşı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2796"/>
+        <location filename="../src/texstudio.cpp" line="2759"/>
         <source>Copy</source>
         <translation>Kopyala</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2811"/>
+        <location filename="../src/texstudio.cpp" line="2774"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>&quot;%1&quot; dosyasını silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2820"/>
+        <location filename="../src/texstudio.cpp" line="2783"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>&quot;%1&quot; dosyasını geri almak istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2847"/>
+        <location filename="../src/texstudio.cpp" line="2810"/>
         <source>Numeric permissions</source>
         <translation>Sayısal izinler</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2848"/>
+        <location filename="../src/texstudio.cpp" line="2811"/>
         <source>Verbose permissions</source>
         <translation>Ayrıntı izinleri</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2895"/>
-        <location filename="../src/texstudio.cpp" line="2958"/>
+        <location filename="../src/texstudio.cpp" line="2858"/>
+        <location filename="../src/texstudio.cpp" line="2921"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>&quot;%1&quot; belgesinde kaydedilmemiş değişiklikler var. Kapatmadan önce kaydetmek ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2897"/>
-        <location filename="../src/texstudio.cpp" line="2960"/>
+        <location filename="../src/texstudio.cpp" line="2860"/>
+        <location filename="../src/texstudio.cpp" line="2923"/>
         <source>Save and Close</source>
         <translation>Kaydedip Kapat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2897"/>
-        <location filename="../src/texstudio.cpp" line="2960"/>
+        <location filename="../src/texstudio.cpp" line="2860"/>
+        <location filename="../src/texstudio.cpp" line="2923"/>
         <source>Close without Saving</source>
         <translation>Kaydetmeden Kapat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2897"/>
-        <location filename="../src/texstudio.cpp" line="2960"/>
+        <location filename="../src/texstudio.cpp" line="2860"/>
+        <location filename="../src/texstudio.cpp" line="2923"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3039"/>
-        <location filename="../src/texstudio.cpp" line="3089"/>
-        <location filename="../src/texstudio.cpp" line="3169"/>
+        <location filename="../src/texstudio.cpp" line="3002"/>
+        <location filename="../src/texstudio.cpp" line="3052"/>
+        <location filename="../src/texstudio.cpp" line="3132"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>&quot;%1&quot; dosyası bulunamadı. Son kullanılan dosyalar listesinden kaldırmak ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3182"/>
+        <location filename="../src/texstudio.cpp" line="3145"/>
         <source>Loading of session failed.</source>
         <translation>Oturum yüklenemedi.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3199"/>
+        <location filename="../src/texstudio.cpp" line="3162"/>
         <source>Load Session</source>
         <translation>Oturumu Yükle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3199"/>
-        <location filename="../src/texstudio.cpp" line="3217"/>
+        <location filename="../src/texstudio.cpp" line="3162"/>
+        <location filename="../src/texstudio.cpp" line="3180"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudio Oturumu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3217"/>
+        <location filename="../src/texstudio.cpp" line="3180"/>
         <source>Save Session</source>
         <translation>Oturumu Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3220"/>
+        <location filename="../src/texstudio.cpp" line="3183"/>
         <source>Saving of session failed.</source>
         <translation>Oturum kaydedilemedi.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3303"/>
+        <location filename="../src/texstudio.cpp" line="3270"/>
         <source>The following files could not be loaded:</source>
         <translation>Şu dosyalar yüklenemedi:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3454"/>
+        <location filename="../src/texstudio.cpp" line="3422"/>
         <source>Image Formats (%1)</source>
         <translation>Görsel Biçimleri (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3456"/>
+        <location filename="../src/texstudio.cpp" line="3424"/>
         <source>Save Image</source>
         <translation>Görseli Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3461"/>
+        <location filename="../src/texstudio.cpp" line="3429"/>
         <source>Could not save the image file.</source>
         <translation>Görsel dosyası kaydedilemedi.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3758"/>
+        <location filename="../src/texstudio.cpp" line="3726"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Şu kadar karakter sonra katı satır sonu eklensin:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3759"/>
+        <location filename="../src/texstudio.cpp" line="3727"/>
         <source>Smart scope selecting</source>
         <translation>Akıllı aralık seçimi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3760"/>
+        <location filename="../src/texstudio.cpp" line="3728"/>
         <source>Join lines before wrapping</source>
         <translation>Satırlar kaydırılmadan önce birleştirilsin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3774"/>
+        <location filename="../src/texstudio.cpp" line="3742"/>
+        <location filename="../src/texstudio.cpp" line="6061"/>
         <location filename="../src/texstudio.cpp" line="6090"/>
-        <location filename="../src/texstudio.cpp" line="6119"/>
         <source>No document open</source>
         <translation>Herhangi bir açık belge yok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3780"/>
+        <location filename="../src/texstudio.cpp" line="3748"/>
         <source>No dictionary available.</source>
         <translation>Kullanılabilecek bir sözlük yok.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3791"/>
+        <location filename="../src/texstudio.cpp" line="3759"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Eş Anlamlılar Veritabanı yüklenemedi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4254"/>
+        <location filename="../src/texstudio.cpp" line="4225"/>
         <source>Unable to write to settings file %1</source>
         <translation>%1 ayarlar dosyasına yazılamadı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5336"/>
+        <location filename="../src/texstudio.cpp" line="5305"/>
         <source>Quick Start</source>
         <translation>Hızlı Başlangıç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5358"/>
+        <location filename="../src/texstudio.cpp" line="5327"/>
         <source>Quick Beamer Presentation</source>
         <translation>Hızlı Beamer Sunumu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5395"/>
+        <location filename="../src/texstudio.cpp" line="5364"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Geçerli Dosya&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5427"/>
+        <location filename="../src/texstudio.cpp" line="5396"/>
         <source>Type: %1</source>
         <translation>Tür: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5471"/>
+        <location filename="../src/texstudio.cpp" line="5442"/>
         <source>Edit User &amp;Tags</source>
         <translation>Kullanıcı E&amp;tiketlerini Düzenle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5529"/>
+        <location filename="../src/texstudio.cpp" line="5500"/>
         <source>Labels:</source>
         <translation>Etiketler:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5618"/>
+        <location filename="../src/texstudio.cpp" line="5589"/>
         <source>Encoding Aliases: </source>
         <translation>Kodlama Kısaltmaları:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5671"/>
+        <location filename="../src/texstudio.cpp" line="5642"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Dosya adı belirlenemedi.
 Bir belgeyi derlemeden önce bir kez kaydetmeniz gerekir.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5678"/>
+        <location filename="../src/texstudio.cpp" line="5649"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Dosya adı belirlenemedi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5817"/>
+        <location filename="../src/texstudio.cpp" line="5788"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>İç PDF görüntüleyiciyi açacak bir komut yürüttünüz.
 Ancak iç PDF olmadan derlenmiş bir TeXstudio sürümü kullanıyorsunuz.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5837"/>
+        <location filename="../src/texstudio.cpp" line="5808"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10944,202 +10957,202 @@ Yeni, değiştirilecek komutun kullanılmasına izin veriyor musunuz?
 (c) Hayır, &quot;%3&quot; komutu kullanılmasın ve varsayılan &quot;%2&quot; komutu kullanılmaya devam edilsin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5843"/>
+        <location filename="../src/texstudio.cpp" line="5814"/>
         <source>(a) allow for this document</source>
         <translation>(a) Bu belgede kullanılabilsin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5844"/>
+        <location filename="../src/texstudio.cpp" line="5815"/>
         <source>(b) allow for all documents</source>
         <translation>(b) Tüm belgelerde kullanılabilsin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5845"/>
+        <location filename="../src/texstudio.cpp" line="5816"/>
         <source>(c) use the default command</source>
         <translation>(c) Varsayılan komut kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5920"/>
+        <location filename="../src/texstudio.cpp" line="5891"/>
         <source>Unknown internal command: %1</source>
         <translation>İç komut bilinmiyor: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5955"/>
+        <location filename="../src/texstudio.cpp" line="5926"/>
         <source>%!TeX program used: %1</source>
         <translation>Kullanılan %!TeX programı: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5958"/>
+        <location filename="../src/texstudio.cpp" line="5929"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>%!TeX programı belirlenemedi! (%1). Varsayılan kullanılıyor.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6019"/>
+        <location filename="../src/texstudio.cpp" line="5990"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Yazılabilir olmayan bir klasördeki belgeyi derleyemezsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6021"/>
+        <location filename="../src/texstudio.cpp" line="5992"/>
         <source>Could not start %1.</source>
         <translation>%1 başlatılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6049"/>
+        <location filename="../src/texstudio.cpp" line="6020"/>
         <source>Error:</source>
         <translation>Hata:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6083"/>
+        <location filename="../src/texstudio.cpp" line="6054"/>
         <source>No open project or tex file to clean.</source>
         <translation>Temizlenecek açık bir proje ya da tex dosyası bulunamadı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6123"/>
+        <location filename="../src/texstudio.cpp" line="6094"/>
         <source>Text Analysis</source>
         <translation>Metin İncelemesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6144"/>
+        <location filename="../src/texstudio.cpp" line="6115"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Rastgele metin üreteci yeni metinleri var olan sözcüklerden oluşturduğundan bazı metin dosyaları açmalısınız</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6173"/>
+        <location filename="../src/texstudio.cpp" line="6144"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>
 Günlüğü görüntülemek için dosyanın kaydedilip derlenmesi gerekir</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6330"/>
-        <location filename="../src/texstudio.cpp" line="6339"/>
+        <location filename="../src/texstudio.cpp" line="6301"/>
+        <location filename="../src/texstudio.cpp" line="6310"/>
         <source>File not found</source>
         <translation>Dosya bulunamadı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6332"/>
-        <location filename="../src/texstudio.cpp" line="6341"/>
+        <location filename="../src/texstudio.cpp" line="6303"/>
+        <location filename="../src/texstudio.cpp" line="6312"/>
         <source>Could not open browser</source>
         <translation>Tarayıcı açılamadı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6824"/>
+        <location filename="../src/texstudio.cpp" line="6789"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Belgeyi kök belge olarak atamadan önce kaydetmelisiniz.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8448"/>
+        <location filename="../src/texstudio.cpp" line="8397"/>
         <source>commit comment:</source>
         <translation>açıklamayı onayla:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8450"/>
+        <location filename="../src/texstudio.cpp" line="8399"/>
         <source>check in whole directory ?</source>
         <translation>tüm klasör düzenlemeye açılsın mı?
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8727"/>
+        <location filename="../src/texstudio.cpp" line="8676"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Uyarı: Metin el ile düzenlenirse pencere otomatik olarak kapatılır!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9006"/>
+        <location filename="../src/texstudio.cpp" line="8955"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>&quot;%1&quot; dosyası açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9008"/>
+        <location filename="../src/texstudio.cpp" line="8957"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>&quot;%1&quot; dosyası bulunamadı.
 Oluşturulmasını ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9032"/>
+        <location filename="../src/texstudio.cpp" line="8981"/>
         <source>Save Profile</source>
         <translation>Profili Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9032"/>
-        <location filename="../src/texstudio.cpp" line="9039"/>
+        <location filename="../src/texstudio.cpp" line="8981"/>
+        <location filename="../src/texstudio.cpp" line="8988"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXS Profili</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9039"/>
+        <location filename="../src/texstudio.cpp" line="8988"/>
         <source>Load Profile</source>
         <translation>Profili Yükle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9091"/>
+        <location filename="../src/texstudio.cpp" line="9040"/>
         <source>Failed to read profile file %1.</source>
         <translation>%1 profil dosyası okunamadı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9214"/>
+        <location filename="../src/texstudio.cpp" line="9163"/>
         <source>Problem</source>
         <translation>Sorun</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9214"/>
+        <location filename="../src/texstudio.cpp" line="9163"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Sözcük yinelenmeleri yalnız çevrimiçi yazım denetimi etkinleştirilmiş ise çalışır!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9219"/>
+        <location filename="../src/texstudio.cpp" line="9168"/>
         <source>Find Word Repetitions</source>
         <translation>Sözcük Yinelenmelerini Bul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9228"/>
+        <location filename="../src/texstudio.cpp" line="9177"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Sonrakini Bul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9230"/>
+        <location filename="../src/texstudio.cpp" line="9179"/>
         <source>&amp;Find Previous</source>
         <translation>Ö&amp;ncekini Bul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9281"/>
+        <location filename="../src/texstudio.cpp" line="9230"/>
         <source>Reached beginning of text.</source>
         <translation>Metnin başına ulaşıldı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9281"/>
+        <location filename="../src/texstudio.cpp" line="9230"/>
         <source>Reached end of text.</source>
         <translation>Metnin sonuna ulaşıldı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9560"/>
-        <location filename="../src/texstudio.cpp" line="9770"/>
-        <location filename="../src/texstudio.cpp" line="9773"/>
+        <location filename="../src/texstudio.cpp" line="9509"/>
+        <location filename="../src/texstudio.cpp" line="9719"/>
+        <location filename="../src/texstudio.cpp" line="9722"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX Dosyaları (*.tex);;Tüm Dosyalar (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9730"/>
+        <location filename="../src/texstudio.cpp" line="9679"/>
         <source>You do not have read permission to this file.</source>
         <translation>Bu dosyayı okuma izniniz yok.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9770"/>
+        <location filename="../src/texstudio.cpp" line="9719"/>
         <source>Open Compare File</source>
         <translation>Karşılaştırma Dosyasını Aç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9773"/>
+        <location filename="../src/texstudio.cpp" line="9722"/>
         <source>Open Base File</source>
         <translation>Temel Dosyayı Aç</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9803"/>
         <source>SVN Conflict!</source>
         <translation>SVN Çakışması!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9855"/>
+        <location filename="../src/texstudio.cpp" line="9804"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11150,14 +11163,14 @@ Hiç bir şey yapılmaması için &quot;İptal&quot; üzerine tıklayın.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9952"/>
-        <location filename="../src/texstudio.cpp" line="10043"/>
-        <location filename="../src/texstudio.cpp" line="10049"/>
+        <location filename="../src/texstudio.cpp" line="9901"/>
+        <location filename="../src/texstudio.cpp" line="9992"/>
+        <location filename="../src/texstudio.cpp" line="9998"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio Acil Durum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9956"/>
+        <location filename="../src/texstudio.cpp" line="9905"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11168,7 +11181,7 @@ Please provide this file if you send a bug report.
 Lütfen bir hata bildirimi yapıyorsanız bu dosyayı da gönderin.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9959"/>
+        <location filename="../src/texstudio.cpp" line="9908"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11177,19 +11190,19 @@ Lütfen bir hata bildirimi yapıyorsanız bu dosyayı da gönderin.</translation
 %2TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden olabilir.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9960"/>
+        <location filename="../src/texstudio.cpp" line="9909"/>
         <source>Yes, try to recover</source>
         <translation>Evet, kurtarmaya çalış</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9961"/>
-        <location filename="../src/texstudio.cpp" line="9966"/>
-        <location filename="../src/texstudio.cpp" line="10045"/>
+        <location filename="../src/texstudio.cpp" line="9910"/>
+        <location filename="../src/texstudio.cpp" line="9915"/>
+        <location filename="../src/texstudio.cpp" line="9994"/>
         <source>No, kill the program</source>
         <translation>Hayır, uygulamayı kapanmaya zorla</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9963"/>
+        <location filename="../src/texstudio.cpp" line="9912"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -11198,17 +11211,17 @@ Lütfen bir hata bildirimi yapıyorsanız bu dosyayı da gönderin.</translation
 %1TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden olabilir.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9964"/>
+        <location filename="../src/texstudio.cpp" line="9913"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Evet, döngüyü durdur ve kurtarmayı dene</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9965"/>
+        <location filename="../src/texstudio.cpp" line="9914"/>
         <source>Yes, continue the loop</source>
         <translation>Evet, döngüyü sürdür</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10044"/>
+        <location filename="../src/texstudio.cpp" line="9993"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11217,65 +11230,65 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden olabilir.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10045"/>
+        <location filename="../src/texstudio.cpp" line="9994"/>
         <source>Yes</source>
         <translation>Evet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10049"/>
+        <location filename="../src/texstudio.cpp" line="9998"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Kapatmaya çalıştım ancak bir şey olmadı.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10083"/>
+        <location filename="../src/texstudio.cpp" line="10030"/>
         <source>System Report</source>
         <translation>Sistem Raporu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10219"/>
+        <location filename="../src/texstudio.cpp" line="10166"/>
         <source>LT Report</source>
         <translation>LT Raporu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10246"/>
+        <location filename="../src/texstudio.cpp" line="10193"/>
         <source>process failed to start
 </source>
         <translation>işlem başlatılamadı</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10249"/>
+        <location filename="../src/texstudio.cpp" line="10196"/>
         <source>process crashed
 </source>
         <translation>işlem çöktü</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10259"/>
+        <location filename="../src/texstudio.cpp" line="10206"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Gerçek zamanlı denetim etkin.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10261"/>
+        <location filename="../src/texstudio.cpp" line="10208"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Gerçek zamanlı denetim devre dışı!!!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10264"/>
+        <location filename="../src/texstudio.cpp" line="10211"/>
         <source>Grammar checking is enabled.
 
 </source>
         <translation>Dil bilgisi denetimi etkin.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10266"/>
+        <location filename="../src/texstudio.cpp" line="10213"/>
         <source>Grammar checking is disabled!!!
 
 </source>
         <translation>Dil bilgisi denetimi devre dışı!!!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10269"/>
+        <location filename="../src/texstudio.cpp" line="10216"/>
         <source>Tries to start automatically.
 
 </source>
@@ -11283,7 +11296,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10271"/>
+        <location filename="../src/texstudio.cpp" line="10218"/>
         <source>Autostart disabled.
 
 </source>
@@ -11291,59 +11304,59 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10276"/>
+        <location filename="../src/texstudio.cpp" line="10223"/>
         <source>LT current status: </source>
         <translation>Geçerli LT durumu:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10279"/>
+        <location filename="../src/texstudio.cpp" line="10226"/>
         <source>working</source>
         <translation>çalışıyor</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10282"/>
+        <location filename="../src/texstudio.cpp" line="10229"/>
         <source>error</source>
         <translation>hata</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10285"/>
+        <location filename="../src/texstudio.cpp" line="10232"/>
         <source>unknown</source>
         <translation>bilinmiyor</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10288"/>
+        <location filename="../src/texstudio.cpp" line="10235"/>
         <source>LT-URL: %1
 </source>
         <translation>LT Adresi: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10589"/>
+        <location filename="../src/texstudio.cpp" line="10524"/>
         <source>Error when communicating with LT: %1</source>
         <translation>LT ile iletişim kurulurken sorun çıktı: %1</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="559"/>
+        <location filename="../src/utilsSystem.cpp" line="543"/>
         <source>Launching Windows Explorer Failed</source>
         <translation>Windows Gezgini Başlatılamadı</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="561"/>
+        <location filename="../src/utilsSystem.cpp" line="545"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
         <translation>Windows Gezginini başlatmak için belirtilen yolda explorer.exe bulunamadı.</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="600"/>
+        <location filename="../src/utilsSystem.cpp" line="584"/>
         <source>Show in Explorer</source>
         <translation>Windows Gezgini ile Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="602"/>
+        <location filename="../src/utilsSystem.cpp" line="586"/>
         <source>Show in Finder</source>
         <translation>Finder ile Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="604"/>
+        <location filename="../src/utilsSystem.cpp" line="588"/>
         <source>Show Containing Folder</source>
         <translation>Bulunduğu Klasörü Görüntüle</translation>
     </message>
@@ -11649,66 +11662,74 @@ If not, end characters are ignored.</source>
 <context>
     <name>ThesaurusDialog</name>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="134"/>
+        <location filename="../src/thesaurusdialog.cpp" line="130"/>
         <source>Replace</source>
         <translation>Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="135"/>
+        <location filename="../src/thesaurusdialog.cpp" line="131"/>
         <source>Lookup</source>
         <translation>Tara</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="136"/>
+        <location filename="../src/thesaurusdialog.cpp" line="132"/>
         <source>Starts With ...</source>
         <translation>Şununla Başlayan...</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="137"/>
+        <location filename="../src/thesaurusdialog.cpp" line="133"/>
         <source>Contains ...</source>
         <translation>Şunu İçeren...</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="138"/>
+        <location filename="../src/thesaurusdialog.cpp" line="134"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="139"/>
+        <location filename="../src/thesaurusdialog.cpp" line="135"/>
         <source>Add Own Word</source>
         <translation>Kendi Sözcüğünüzü Ekleyin</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="140"/>
+        <location filename="../src/thesaurusdialog.cpp" line="136"/>
         <source>Remove Own Word</source>
         <translation>Kendi Sözcüğünüzü Silin</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="180"/>
+        <location filename="../src/thesaurusdialog.cpp" line="176"/>
         <source>Thesaurus</source>
         <translation>Eş Anlamlılar Sözlüğü</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="246"/>
+        <location filename="../src/thesaurusdialog.cpp" line="235"/>
         <source>&lt;all&gt;</source>
         <translation>&lt;all&gt;</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="358"/>
-        <location filename="../src/thesaurusdialog.cpp" line="394"/>
+        <location filename="../src/thesaurusdialog.cpp" line="347"/>
+        <location filename="../src/thesaurusdialog.cpp" line="383"/>
         <source>New Word:</source>
         <translation>Yeni Sözcük:</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="359"/>
-        <location filename="../src/thesaurusdialog.cpp" line="395"/>
+        <location filename="../src/thesaurusdialog.cpp" line="348"/>
+        <location filename="../src/thesaurusdialog.cpp" line="384"/>
         <source>Category:</source>
         <translation>Kategori:</translation>
     </message>
     <message>
-        <location filename="../src/thesaurusdialog.cpp" line="378"/>
+        <location filename="../src/thesaurusdialog.cpp" line="367"/>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
         <translation>&quot;%1&quot; ifadesini &quot;%2&quot; ya da &quot;%3&quot; ifadesinin eş anlamlısı olarak eklemek istiyor musunuz?</translation>
+    </message>
+</context>
+<context>
+    <name>TimeoutWrapper</name>
+    <message>
+        <location filename="../src/scriptengine.cpp" line="992"/>
+        <source>Script-Error</source>
+        <translation type="unfinished">Betik Hatası</translation>
     </message>
 </context>
 <context>
@@ -11732,12 +11753,12 @@ included document in %1</source>
 <context>
     <name>UniversalInputDialogScript</name>
     <message>
-        <location filename="../src/scriptengine.cpp" line="643"/>
+        <location filename="../src/scriptengine.cpp" line="1190"/>
         <source>Invalid default value: %1</source>
         <translation>Varsayılan değer geçersiz: %1</translation>
     </message>
     <message>
-        <location filename="../src/scriptengine.cpp" line="689"/>
+        <location filename="../src/scriptengine.cpp" line="1229"/>
         <source>Unknown variable %1</source>
         <translation>%1 değişkeni bilinmiyor</translation>
     </message>
@@ -12009,28 +12030,28 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
         <translation>Shift+F12</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="310"/>
+        <location filename="../src/usermenudialog.cpp" line="298"/>
         <source>Folder is not empty.</source>
         <translation>Klasör boş değil.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="315"/>
+        <location filename="../src/usermenudialog.cpp" line="303"/>
         <source>Do you really want to delete the current macro?</source>
         <translation>Geçerli makroyu silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="394"/>
+        <location filename="../src/usermenudialog.cpp" line="382"/>
         <source>Import macro</source>
         <translation>Makroyu içe aktar</translation>
     </message>
     <message>
+        <location filename="../src/usermenudialog.cpp" line="382"/>
         <location filename="../src/usermenudialog.cpp" line="394"/>
-        <location filename="../src/usermenudialog.cpp" line="406"/>
         <source>txs macro files (*.txsMacro)</source>
         <translation>txs makro dosyaları (*.txsMacro)</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="406"/>
+        <location filename="../src/usermenudialog.cpp" line="394"/>
         <source>Export macro</source>
         <translation>Makroyu dışa aktar</translation>
     </message>
@@ -12375,29 +12396,33 @@ HTML dosyalarını % 1 klasöründe bulabilirsiniz.</translation>
 <context>
     <name>scriptengine</name>
     <message>
-        <location filename="../src/scriptengine.cpp" line="87"/>
+        <location filename="../src/scriptengine.cpp" line="71"/>
+        <location filename="../src/scriptengine.cpp" line="629"/>
         <source>Expected cursor object</source>
         <translation>Beklenen imleç nesnesi</translation>
     </message>
     <message>
-        <location filename="../src/scriptengine.cpp" line="577"/>
+        <location filename="../src/scriptengine.cpp" line="286"/>
+        <location filename="../src/scriptengine.cpp" line="1124"/>
         <source>File Chooser</source>
         <translation>Dosya Seçici</translation>
     </message>
     <message>
-        <location filename="../src/scriptengine.cpp" line="594"/>
+        <location filename="../src/scriptengine.cpp" line="306"/>
+        <location filename="../src/scriptengine.cpp" line="1141"/>
         <source>Uncaught exception at line %1: %2
 </source>
         <translation>%1 satırında yakalanmamış sorun: %2
 </translation>
     </message>
     <message>
-        <location filename="../src/scriptengine.cpp" line="595"/>
+        <location filename="../src/scriptengine.cpp" line="1142"/>
         <source>Backtrace %1</source>
         <translation>İşlem kaydı %1</translation>
     </message>
     <message>
-        <location filename="../src/scriptengine.cpp" line="597"/>
+        <location filename="../src/scriptengine.cpp" line="308"/>
+        <location filename="../src/scriptengine.cpp" line="1144"/>
         <source>Script-Error</source>
         <translation>Betik Hatası</translation>
     </message>

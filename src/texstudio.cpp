@@ -6756,7 +6756,7 @@ void Texstudio::generateAddtionalTranslations()
 	translations << "\"\"};";
 	translations << "#endif\n\n";
 
-	QFile translationFile("additionaltranslations.cpp");
+        QFile translationFile("src/additionaltranslations.cpp");
 	if (translationFile.open(QIODevice::WriteOnly)) {
 		translationFile.write(translations.join("\n").toLatin1());
 		translationFile.close();
