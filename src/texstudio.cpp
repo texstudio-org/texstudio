@@ -3208,9 +3208,9 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     recheckLabels = false; // impede label rechecking on hidden docs
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
-    QTime tm;
+    /*QTime tm;
     tm.start();
-    qDebug()<<"start";
+    qDebug()<<"start";*/
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3269,7 +3269,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
     }
-    qDebug()<<"finished:"<<tm.elapsed();
+    //qDebug()<<"finished:"<<tm.elapsed();
 }
 
 Session Texstudio::getCurrentSession()
