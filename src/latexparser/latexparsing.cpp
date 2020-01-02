@@ -184,7 +184,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	     */
         if (!verbatimSymbol.isNull()) {
             // handle \verb+ ... +  etc.
-            if (tk.type == Token::symbol) {
+            if (tk.type == Token::symbol || tk.type == Token::punctuation) {
                 QString smb = line.mid(tk.start, 1);
                 if (smb == verbatimSymbol) {
                     // stop verbatimSymbol mode
@@ -264,7 +264,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 i++;
                 command.append("*");
             }
-            if (command == "\\verb" || command == "\\verb*") {
+            /*if (command == "\\verb" || command == "\\verb*") {
                 // special treament for verb
                 if (i + 1 < tl.length()
                         // While LaTeX allows any character as \verb delimiter following immediately after the
@@ -289,7 +289,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 lexed << tk;
 
                 continue;
-            } else {
+            } else */{
                 // special treatment for character changing commands like \"a (ä)
                 if(tk.length==2 && command[1].isPunct() && command[1]!=QChar('\\') && !QString("()[]{}").contains(command[1])){
                     if (i + 1 < tl.length()) {
@@ -715,6 +715,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 tk.level++; // needs tk level be increased
             }
             lexed << tk;
+            if(tk.subtype==Token::verbatimStart){
+                verbatimSymbol = line.mid(tk.start, 1);
+            }
         }
     }
     {

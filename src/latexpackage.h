@@ -39,7 +39,7 @@ public:
 	void unite(LatexPackage &add, bool forCompletion = false); ///< merge with LatexPackage \a add
 };
 
-LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config = 0, QStringList conditions = QStringList());
+LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config = nullptr, QStringList conditions = QStringList());
 
 
 #endif // LATEXPACKAGE_H

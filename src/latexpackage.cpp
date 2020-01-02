@@ -680,6 +680,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if ((arg == "label" || arg == "%<label%>") && definition.contains('r')) return Token::labelRef;  // reference with keyword label
 	if ((arg == "label" || arg == "%<label%>") && definition.contains('l')) return Token::label;
 	if (arg == "labellist") return Token::labelRefList;
+    if (arg == "verbatimSymbol") return Token::verbatimStart;
 	if (arg.contains("overlay specification")) return Token::overlay;
 	return Token::generalArg;
 }

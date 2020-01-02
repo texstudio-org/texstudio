@@ -71,6 +71,7 @@ numberbychapter#true,false
 \lstdefinestyle{style name}{kv-list}#*
 \lstinline|%<code%>|
 \lstinline[kv-list]|%<code%>|
+\lstinline[kv-list]{verbatimSymbol}#S
 \lstinputlisting{filename}
 \lstinputlisting[kv-list]{filename}
 \lstlistingname
