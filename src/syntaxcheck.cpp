@@ -138,14 +138,15 @@ void SyntaxCheck::run()
 				oldEnv = oldEnvVar.value<StackEnvironment>();
 			bool cookieChanged = !equalEnvStack(oldEnv, activeEnv);
 			//if excessCols has changed the subsequent lines need to be rechecked.
-			if (cookieChanged) {
+            // don't on initial check
+            if (cookieChanged) {
 				QVariant env;
 				env.setValue(activeEnv);
 				newLine.dlh->setCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE, env);
 				newLine.dlh->ref(); // avoid being deleted while in queue
 				//qDebug() << newLine.dlh->text() << ":" << activeEnv.size();
                 emit checkNextLine(newLine.dlh, true, newLine.ticket, newLine.hint);
-			}
+            }
 		}
 		newLine.dlh->unlock();
 
@@ -446,9 +447,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 {
 	// do syntax check on that line
 	int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
-    qDebug()<<"checkLine:"<<line;
 
-	// check command-words
+    // check command-words
 	for (int i = 0; i < tl.length(); i++) {
 		Token tk = tl.at(i);
 		// ignore commands in definition arguments e.g. \newcommand{cmd}{definition}

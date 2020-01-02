@@ -1394,10 +1394,14 @@ bool LatexEditorView::setSpeller(const QString &name)
 	}
 	if (su == speller) return true; // nothing to do
 
+    bool dontRecheck=false;
+
 	if (speller) {
 		disconnect(speller, SIGNAL(aboutToDelete()), this, SLOT(reloadSpeller()));
 		disconnect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
-	}
+    }else {
+        dontRecheck=true;
+    }
 	speller = su;
     if(document){
         SpellerUtility::inlineSpellChecking=config->inlineSpellChecking;
@@ -1413,7 +1417,8 @@ bool LatexEditorView::setSpeller(const QString &name)
 	}
 
 	// force new highlighting
-    document->reCheckSyntax(0, document->lineCount());
+    if(!dontRecheck)
+        document->reCheckSyntax(0, document->lineCount());
 	return true;
 }
 /*!

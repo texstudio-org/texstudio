@@ -82,6 +82,7 @@ public:
 		bool clearOverlay; ///< clear syntax overlay, sometimes not necessary as it was done somewhere else
 		QDocumentLineHandle *dlh; ///< linehandle
         int hint; ///< hint on lineNumber for faster look-up
+        bool initialRun;
 	};
 
     /*!

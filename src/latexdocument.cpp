@@ -1158,20 +1158,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			parent->removeDocs(removedIncludes);
 			parent->updateMasterSlaveRelations(this);
 		}
-		if (syntaxChecking && languageIsLatexLike()) {
-			StackEnvironment env;
-			getEnv(i, env);
-			QDocumentLineHandle *lastHandle = nullptr;
-			TokenStack oldRemainder;
-			if (i > 0) {
-				lastHandle = line(i - 1).handle();
-			}
-			if (lastHandle) {
-				oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-			}
-
-			SynChecker.putLine(line(i).handle(), env, oldRemainder, true);
-		}
 	}//for each line handle
 	StructureEntry *se;
 	foreach (se, removedTodo) {
@@ -1261,8 +1247,37 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		parent->addDocToLoad(fname);
 	}
 	//qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
-    if (reRunSuggested && !recheck)
+    if (reRunSuggested && !recheck){
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
+    }
+    if(!recheck){
+        // do syntax check after recheck !
+        if (syntaxChecking && languageIsLatexLike()) {
+            for(int i = lineNrStart; i < linenr + count; ++i){
+                StackEnvironment env;
+                getEnv(i, env);
+                QDocumentLineHandle *lastHandle = nullptr;
+                TokenStack oldRemainder;
+                if (i > 0) {
+                    lastHandle = line(i - 1).handle();
+                }else{
+                    // check whether syntax checker has ever run
+                    QDocumentLineHandle *dlh=line(0).handle();
+                    if(!dlh->hasCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE)){
+                        // initial run
+                        // it is sufficient to put first line
+                        SynChecker.putLine(dlh, env, oldRemainder, true);
+                        break;
+                    }
+                }
+                if (lastHandle) {
+                    oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+                }
+
+                SynChecker.putLine(line(i).handle(), env, oldRemainder, true);
+            }
+        }
+    }
 
 	return reRunSuggested;
 }
@@ -3100,8 +3115,10 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 
 	if (updateAll) {
 		foreach (LatexDocument *elem, listOfDocs) {
-			elem->setLtxCommands(lp);
-			elem->reCheckSyntax();
+            elem->setLtxCommands(lp);
+            if(elem!=this){
+                elem->reCheckSyntax();
+            }
 		}
 		// check if other document have this doc as child as well (reused doc...)
 		LatexDocuments *docs = parent;
@@ -3228,7 +3245,11 @@ void LatexDocument::reCheckSyntax(int linenr, int count)
 		return;
 
 	if (linenr < 0 || linenr >= lineCount()) linenr = 0;
-	//patchStructure(0,-1,true);
+
+    // check if document has ever been checked
+    if(line(0).isValid() && !line(0).handle()->hasCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE)){
+        return; // recheck deferred as initial check is iminent
+    }
 
 	QDocumentLine line = this->line(linenr);
 	QDocumentLine prev;
