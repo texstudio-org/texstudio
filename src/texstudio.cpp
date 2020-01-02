@@ -9407,7 +9407,7 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 
 void Texstudio::updateTexQNFA()
 {
-	updateTexLikeQNFA("(La)TeX", "tex.qnfa");
+    updateTexLikeQNFA("(La)TeX", "tex.qnfa");
     updateTexLikeQNFA("Sweave", "sweave.qnfa");
     updateTexLikeQNFA("Pweave", "pweave.qnfa");
     updateUserMacros(false); //update macro triggers for languages
@@ -9429,7 +9429,7 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 	}
 	QDomDocument doc;
 	doc.setContent(&f);
-
+    /*
 	for (QMap<QString, QVariant>::const_iterator i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i) {
 		QString mode = configManager.enviromentModes.value(i.value().toInt(), "verbatim");
 		addEnvironmentToDom(doc, i.key(), mode);
@@ -9443,7 +9443,7 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 			env.replace("*", "\\*");
 		}
 		addEnvironmentToDom(doc, env, envMode, envMode != "verbatim");
-	}
+    }*/
 	// structure commands
 	addStructureCommandsToDom(doc, latexParser.possibleCommands);
 

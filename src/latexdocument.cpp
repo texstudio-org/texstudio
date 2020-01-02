@@ -51,9 +51,8 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 
 	lp = LatexParser::getInstance();
 
-	SynChecker.verbatimFormat = getFormatId("verbatim");
 	SynChecker.setLtxCommands(LatexParser::getInstance());
-	SynChecker.setErrFormat(syntaxErrorFormat);
+    updateSettings();
 	SynChecker.start();
 
     connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle *, bool, int, int)), SLOT(checkNextLine(QDocumentLineHandle *, bool, int, int)), Qt::QueuedConnection);
@@ -3159,6 +3158,13 @@ void LatexDocument::setReplacementList(QMap<QString, QString> replacementList)
 void LatexDocument::updateSettings()
 {
 	SynChecker.setErrFormat(syntaxErrorFormat);
+    QMap<QString,int> fmtList;
+    QList<QPair<QString,QString> >formats;
+    formats<<QPair<QString,QString>("math","numbers")<<QPair<QString,QString>("verbatim","verbatim")<<QPair<QString,QString>("picture","picture")<<QPair<QString,QString>("#math","math-keyword")<<QPair<QString,QString>("#picture","picture-keyword")<<QPair<QString,QString>("&math","math-delimiter");
+    for(const auto &elem : formats){
+        fmtList.insert(elem.first,getFormatId(elem.second));
+    }
+    SynChecker.setFormats(fmtList);
 }
 
 void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint)

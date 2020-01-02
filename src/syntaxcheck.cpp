@@ -26,8 +26,6 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 	stopped = false;
 	mLines.clear();
 	mLinesLock.unlock();
-	verbatimFormat = 0;
-	//mLtxCommandLock.unlock();
 }
 
 /*!
@@ -95,6 +93,7 @@ void SyntaxCheck::run()
 				*ltxCommands = newLtxCommands;
                 speller=newSpeller;
                 mReplacementList=newReplacementList;
+                mFormatList=newFormatList;
 			}
 			mLtxCommandLock.unlock();
 		}
@@ -120,13 +119,17 @@ void SyntaxCheck::run()
 		checkLine(line, newRanges, activeEnv, newLine.dlh, tl, newLine.stack, newLine.ticket);
 		// place results
         if (newLine.clearOverlay){
-            newLine.dlh->clearOverlays({syntaxErrorFormat,SpellerUtility::spellcheckErrorFormat});
+            QList<int> fmtList={syntaxErrorFormat,SpellerUtility::spellcheckErrorFormat};
+            fmtList.append(mFormatList.values());
+            newLine.dlh->clearOverlays(fmtList);
         }
 		//if(newRanges.isEmpty()) continue;
 		newLine.dlh->lockForWrite();
 		if (newLine.ticket == newLine.dlh->getCurrentTicket()) { // discard results if text has been changed meanwhile
             foreach (const Error &elem, newRanges){
-                newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, elem.type==ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat));
+                int fmt= elem.type == ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat;
+                fmt= elem.type == ERR_highlight ? elem.format : fmt;
+                newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, fmt));
             }
 			// active envs
 			QVariant oldEnvVar = newLine.dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
@@ -210,7 +213,8 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 			<< tr("unrecognized key in key option")
 			<< tr("unrecognized value in key option")
             << tr("command outside suitable env")
-            << tr("spelling");
+            << tr("spelling")
+            << "highlight"; // mock message for arbitrary highlight. Will not be shown.
 	Q_ASSERT(messages.length() == ERR_MAX);
 	return messages.value(int(result), tr("unknown"));
 }
@@ -250,6 +254,15 @@ void SyntaxCheck::setReplacementList(QMap<QString, QString> replacementList)
     mLtxCommandLock.lock();
     newLtxCommandsAvailable = true;
     newReplacementList=replacementList;
+    mLtxCommandLock.unlock();
+}
+
+void SyntaxCheck::setFormats(QMap<QString, int> formatList)
+{
+    if (stopped) return;
+    mLtxCommandLock.lock();
+    newLtxCommandsAvailable = true;
+    newFormatList=formatList;
     mLtxCommandLock.unlock();
 }
 
@@ -389,7 +402,9 @@ void SyntaxCheck::markUnclosedEnv(Environment env)
 			Error elem;
 			elem.range = QPair<int, int>(index, cmd.length());
 			elem.type = ERR_EnvNotClosed;
-            dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, elem.type==ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat));
+            int fmt= elem.type == ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat;
+            fmt= elem.type == ERR_highlight ? elem.format : fmt;
+            dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, fmt));
 			QVariant var_env;
 			StackEnvironment activeEnv;
 			activeEnv.append(env);
@@ -456,6 +471,15 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			}
 			continue;
 		}
+        if (tk.type == Token::verbatim ) { // don't check command definitions
+            // highlight
+            Error elem;
+            elem.range = QPair<int, int>(tk.start, tk.length);
+            elem.type = ERR_highlight;
+            elem.format=mFormatList["verbatim"];
+            newRanges.append(elem);
+            continue;
+        }
 		if (tk.type == Token::punctuation || tk.type == Token::symbol) {
 			QString word = line.mid(tk.start, tk.length);
 			QStringList forbiddenSymbols;
@@ -566,7 +590,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			if (!activeEnv.isEmpty()) {
 				Environment tp = activeEnv.top();
 				if (tp.name == env) {
-					activeEnv.pop();
+                    Environment closingEnv=activeEnv.pop();
 					if (tp.name == "tabular" || ltxCommands->environmentAliases.values(tp.name).contains("tabular")) {
 						// correct length of col error if it exists
 						if (!newRanges.isEmpty()) {
@@ -578,6 +602,26 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						// get new cols
 						cols = containsEnv(*ltxCommands, "tabular", activeEnv);
 					}
+                    // handle higlighting
+                    QStringList altEnvs = ltxCommands->environmentAliases.values(env);
+                    altEnvs<<env;
+                    for(const QString &key: mFormatList.keys()){
+                        if(altEnvs.contains(key)){
+                            Error elem;
+                            int start= closingEnv.dlh==dlh ? closingEnv.startingColumn : 0;
+                            int end=tk.start-1;
+                            if(i>1){
+                                Token tk=tl.at(i-2);
+                                if(tk.type==Token::command && line.mid(tk.start, tk.length)=="\\end"){
+                                    end=tk.start;
+                                }
+                            }
+                            elem.range = QPair<int, int>(start, end);
+                            elem.type = ERR_highlight;
+                            elem.format=mFormatList.value(key);
+                            newRanges.append(elem);
+                        }
+                    }
 				} else {
 					Error elem;
 					elem.range = QPair<int, int>(tk.start, tk.length);
@@ -600,6 +644,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			tp.id = 1; //needs correction
 			tp.excessCol = 0;
 			tp.dlh = dlh;
+            tp.startingColumn=tk.start+tk.length+1; // after closing brace
 			tp.ticket = ticket;
 			tp.level = tk.level-1; // tk is the argument, not the command, hence -1
 			if (env == "tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")) {
@@ -680,14 +725,36 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				env.dlh = dlh;
 				env.ticket = ticket;
 				env.level = tk.level;
+                env.startingColumn=tk.start+tk.length;
 				activeEnv.push(env);
+                // highlight delimiter
+                Error elem;
+                elem.type = ERR_highlight;
+                elem.format=mFormatList["&math"];
+                elem.range = QPair<int, int>(tk.start, tk.length);
+                newRanges.append(elem);
 				continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
 				int i=ltxCommands->mathStopCommands.indexOf(word);
 				QString txt=ltxCommands->mathStartCommands.value(i);
 				if(activeEnv.top().origName==txt){
-					activeEnv.pop();
+                    Environment env=activeEnv.pop();
+                    Error elem;
+                    elem.type = ERR_highlight;
+                    elem.format=mFormatList["math"];
+                    if(dlh == env.dlh){
+                        //inside line
+                        elem.range = QPair<int, int>(env.startingColumn, tk.start-env.startingColumn);
+                    }else{
+                        elem.range = QPair<int, int>(0, tk.start);
+                    }
+                    newRanges.prepend(elem);
+                    // highlight delimiter
+                    elem.type = ERR_highlight;
+                    elem.format=mFormatList["&math"];
+                    elem.range = QPair<int, int>(tk.start, tk.length);
+                    newRanges.append(elem);
 				}// ignore mismatching mathstop commands
 				continue;
 			}
@@ -743,6 +810,27 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				}
 
 			}
+
+            // command highlighing
+            for(const Environment &env:activeEnv){
+                if(!env.dlh)
+                    continue; //ignore "normal" env
+                if(env.name=="document")
+                    continue; //ignore "document" env
+                for(const QString &key: mFormatList.keys()){
+                    if(key.at(0)=='#'){
+                        QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
+                        altEnvs<<env.name;
+                        if(altEnvs.contains(key.mid(1))){
+                            Error elem;
+                            elem.range = QPair<int, int>(tk.start, tk.length);
+                            elem.type = ERR_highlight;
+                            elem.format=mFormatList.value(key);
+                            newRanges.append(elem);
+                        }
+                    }
+                }
+            }
 
 			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
 				continue;
@@ -947,4 +1035,21 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			}
 		}
 	}
+    if(!activeEnv.isEmpty()){
+        //check active env for env highlighting (math,verbatim)
+        for(const Environment &env: activeEnv){
+            QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
+            altEnvs<<env.name;
+            for(const QString &key: mFormatList.keys()){
+                if(altEnvs.contains(key)){
+                    Error elem;
+                    int start= env.dlh==dlh ? env.startingColumn : 0;
+                    elem.range = QPair<int, int>(start, line.length());
+                    elem.type = ERR_highlight;
+                    elem.format=mFormatList.value(key);
+                    newRanges.prepend(elem);  // draw this first and then other on top (e.g. keyword highlighting) !
+                }
+            }
+        }
+    }
 }

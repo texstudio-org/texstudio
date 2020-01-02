@@ -25,6 +25,7 @@ public:
 	int id; ///< mostly unused, contains the number of columns for tabular-environments
 	int excessCol; ///< number of unused tabular-columns if columns are strechted over several text lines
 	QDocumentLineHandle *dlh; ///< linehandle of starting line
+    int startingColumn;
 	int ticket;
     int level; ///< command level (see tokens) in order to handle nested commands like \shortstack
 
@@ -68,6 +69,7 @@ public:
 		ERR_unrecognizedKeyValues, ///< in key/value argument, an unknown value is used for a key
 		ERR_commandOutsideEnv, ///< command used outside of designated environment (similar math command outside math)
         ERR_spelling, ///< syntax error of text word (spell checker)
+        ERR_highlight, ///< arbitraty format for highlighting (math,verbatim,picture)
 		ERR_MAX  // always last
 	};
     /*!
@@ -88,6 +90,7 @@ public:
 	struct Error {
 		QPair<int, int> range; ///<  start,stop of error marker
 		ErrorType type; ///< type of error
+        int format; ///< arbitrary format to used instead of error marker
 	};
 
 	typedef QList<Error > Ranges;
@@ -98,7 +101,6 @@ public:
 	void stop();
 	void setErrFormat(int errFormat);
     QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
-	int verbatimFormat; ///< format number for verbatim text (LaTeX)
 	void waitForQueueProcess();
 	static int containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id = -1);
 	int topEnv(const QString &name, const StackEnvironment &envs, const int id = -1);
@@ -109,6 +111,7 @@ public:
 	void setLtxCommands(const LatexParser &cmds);
     void setSpeller(SpellerUtility *su);
     void setReplacementList(QMap<QString, QString> replacementList);
+    void setFormats(QMap<QString, int> formatList);
 
 	void markUnclosedEnv(Environment env);
 
@@ -135,6 +138,7 @@ private:
     SpellerUtility *speller,*newSpeller;
 
     QMap<QString,QString> newReplacementList,mReplacementList;
+    QMap<QString,int> newFormatList,mFormatList;
 
 };
 

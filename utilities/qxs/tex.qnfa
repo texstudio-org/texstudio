@@ -25,18 +25,7 @@ environments in smallUsefulFunctions.cpp)
 	
 	<!-- ========================= VERBATIM ====================== -->
 	
-	<foreach loopVar="$v">
-		<e>verbatim</e> <e>verbatim\*</e> <e>lstlisting</e> <e>Verbatim</e> <e>BVerbatim</e> <e>Verbatim\*</e> <e>BVerbatim\*</e>
-		<body>
-			<context id="$v" format="verbatim">
-				<start parenthesis="$v:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{$v}</start>
-				<stop parenthesis="$v:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{$v}</stop>
-
-				<sequence parenthesis="curly:open" parenthesisWeight="10">\{</sequence>
-		 		<sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
-			</context>
-		</body>
-	</foreach>
+	
 
 	<!-- ========================= LUA ====================== -->
 
@@ -56,27 +45,7 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
 	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">\}</sequence>
 
-	<foreach loopVar="$i">
-		<e>$</e> <e>+</e> <e>-</e> <e>1</e> <e>!</e> <e>.</e> <e>@</e> <e>#</e> <e>|</e> <e>/</e> <e>\</e> <e>_</e> <e>=</e> <e>x</e>
-		<body>
-	  	<context id="verb$i" format="verbatim">
-			<start parenthesis="verb$i:open" parenthesisWeight="20" format="keyword">\\verb\$i</start>
-			<stop parenthesis="verb$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
-		</context>
-		<context id="verb*$i" format="verbatim">
-			<start parenthesis="verb*$i:open" parenthesisWeight="20" format="keyword">\\verb\*\$i</start>
-			<stop parenthesis="verb*$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
-		</context>
-		<context id="lstinline$i" format="verbatim">
-			<start parenthesis="lstinline$i:open" parenthesisWeight="20" format="keyword">\\lstinline\$i</start>
-			<stop parenthesis="lstinline$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
-		</context>
-		<context id="lstinlineOption$i" format="verbatim">
-			<start parenthesis="lstinlineOption$i:open" parenthesisWeight="20" format="keyword">\\lstinline\[[^\]]*\]\$i</start>
-			<stop parenthesis="lstinlineOption$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
-		</context>
-		</body>
-	</foreach>
+	
 
 	<!-- ========================= COMMAND ====================== -->
 
@@ -108,132 +77,7 @@ environments in smallUsefulFunctions.cpp)
 
 	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
 	
-	<context id="mathmode$$" format="numbers" transparency="true">
-		<start parenthesis="math$$:open" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</start>
-		<stop parenthesis="math$$:close" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</stop>
-		<stop parenthesis="math$$:close" parenthesisWeight="0" fold="1" format="math-delimiter" >^\n</stop>
-
-		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
-		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
-		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
-		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
-		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
-		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
-		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
-		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
-		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
-		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
-		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
-		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
-		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
-		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
-
-		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
-	</context>
-
-	<context id="mathmode$" format="numbers" transparency="true">
-		<start parenthesis="math:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</start>
-		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</stop>
-		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="magicComment" >%\$</stop><!-- can be used as a workaround for closing math at the end of the line, if highlighting misinterprets a $ sign, e.g. \path{$PATH} %$ -->
-		<stop parenthesis="math:close" parenthesisWeight="0" fold="1" format="math-delimiter" >^\n</stop>
-
-		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
-		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
-		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
-		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
-		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
-		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
-		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
-		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
-		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
-		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
-		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
-		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
-		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
-		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
-
-		<context id="sexpr" format="sweave-block" transparency="false">
-		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
-			<stop parenthesis="todo:close" parenthesisWeight="12" >}</stop>
-			<start parenthesis="todo:open" parenthesisWeight="12">\\Sexpr{</start>
-		</context>
-
-		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
-
-	</context>
-
-	<context id="mathmodeNormal" format="numbers" transparency="true">
-		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\(</start>
-		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\)</stop>
-
-		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
-		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
-		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
-		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
-		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
-		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
-		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
-		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
-		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
-		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
-		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
-		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
-		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
-		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
-
-		<context id="sexpr" format="sweave-block" transparency="false">
-		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
-			<stop parenthesis="todo:close" parenthesisWeight="12" >}</stop>
-			<start parenthesis="todo:open" parenthesisWeight="12">\\Sexpr{</start>
-		</context>
-		
-		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
-
-	</context>
 	
-	<context id="mathmodeDisplay" format="numbers" transparency="true">
-		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\[</start>
-		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\]</stop>
-
-		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
-		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
-		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
-		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
-		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
-		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
-		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
-		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
-		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
-		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
-		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
-		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
-		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
-		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
-		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
-		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
-		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
-		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
-
-		<context id="sexpr" format="sweave-block" transparency="false">
-		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
-			<stop parenthesis="todo:close" parenthesisWeight="12" >}</stop>
-			<start parenthesis="todo:open" parenthesisWeight="12">\\Sexpr{</start>
-		</context>
-
-		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
-	</context>
 
 	<context id="sexpr" format="sweave-block" transparency="false">
 		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
@@ -241,19 +85,6 @@ environments in smallUsefulFunctions.cpp)
 			<start parenthesis="todo:open" parenthesisWeight="12">\\Sexpr{</start>
 	</context>
 
-	<!-- ========================= PICTURES ====================== -->
-	<foreach loopVar="$env">
-		<e>tikzpicture</e> <e>pspicture</e> <e>pspicture\*</e> <e>picture</e> <e>picture\*</e>
-		<body>
-		<context id="$env" format="picture" transparency="true">	
-			<start parenthesis="$env:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{$env}</start>
-			<stop parenthesis="$env:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{$env}</stop>
-			<!-- transparency does not work for subsequent commands. Therefore keywords/single is not matched. Anyway, let's define a picture keyword. -->
-			<sequence id="$env/keyword" ambiguous="true" format="picture-keyword">\\[a-zA-Z@]+</sequence>
-		</context>        
-		</body>
-	</foreach>
-	
 	<!-- ========================= Asymptote ===================== -->
 
 	<context id="asy" format="asymptote:block" transparency="false">	
@@ -261,20 +92,13 @@ environments in smallUsefulFunctions.cpp)
 		<stop parenthesis="asy:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{asy}</stop>
 		<embed target="Asymptote" />
 	</context>
+	
 
 	<!-- ========================= GENERAL BLOCKS ====================== -->
 	
 	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
-<!--
-        <context id="env" format="normal" transparency="true">
-                <start parenthesis="env:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{[^}]*}</start>
-                <stop parenthesis="env:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{[^}]*}</stop>
 
-                <sequence parenthesis="curly:open" parenthesisWeight="10">\{</sequence>
-                <sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
-        </context>
--->
 
 	<!-- ========================= SECTIONS ====================== -->
 
