@@ -1283,7 +1283,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         }
         if(initialRun){
             // execute QCE highlting
+            parent->enablePatch(false);
             highlight();
+            parent->enablePatch(true);
         }
     }
 
