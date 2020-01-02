@@ -1,8 +1,8 @@
 # mode: pstricks.sty
 # dani/2006-02-22
 \arrows{arrows}
-\begin{pspicture}[par](x0,y0)(x1,y1)
-\begin{pspicture*}[par](x0,y0)(x1,y1)
+\begin{pspicture}[par](x0,y0)(x1,y1)#\picture
+\begin{pspicture*}[par](x0,y0)(x1,y1)#\picture
 \begin{pspicture}(x0,y0)(x1,y1)
 \begin{pspicture*}(x0,y0)(x1,y1)
 \clipbox[dim]{stuff}
