@@ -19,13 +19,11 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="texcurly:close" parenthesisWeight="00">\\}</sequence>
 	<sequence parenthesis="square:open" parenthesisWeight="00" fold="true">\[</sequence>
 	<sequence parenthesis="square:close" parenthesisWeight="00" fold="true">\]</sequence>
-	<sequence parenthesis="mathN1:open" parenthesisWeight="40" fold="1" >\\\[</sequence>
-	<sequence parenthesis="mathN1:close" parenthesisWeight="40" fold="1" >\\\]</sequence>
-	<sequence parenthesis="mathN2:open" parenthesisWeight="40" fold="1" >\\\(</sequence>
-	<sequence parenthesis="mathN2:close" parenthesisWeight="40" fold="1" >\\\)</sequence>
+	<sequence parenthesis="mathN1:open" parenthesisWeight="40"  >\\\[</sequence>
+	<sequence parenthesis="mathN1:close" parenthesisWeight="40" >\\\]</sequence>
+	<sequence parenthesis="mathN2:open" parenthesisWeight="40" >\\\(</sequence>
+	<sequence parenthesis="mathN2:close" parenthesisWeight="40" >\\\)</sequence>
 
-	<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\(</start>
-	<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\)</stop>
 
 	<sequence parenthesis="foldcomment:open" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
 	<sequence parenthesis="foldcomment:close" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*END_FOLD</sequence>
@@ -84,6 +82,12 @@ environments in smallUsefulFunctions.cpp)
 
 	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
 	
+	<context id="mathmode$" format="numbers" transparency="true">
+		<start parenthesis="math:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</start>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</stop>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="magicComment" >%\$</stop><!-- can be used as a workaround for closing math at the end of the line, if highlighting misinterprets a $ sign, e.g. \path{$PATH} %$ -->
+		<stop parenthesis="math:close" parenthesisWeight="0" fold="1" format="math-delimiter" >^\n</stop>
+	</context>
 	
 
 	<context id="sexpr" format="sweave-block" transparency="false">
