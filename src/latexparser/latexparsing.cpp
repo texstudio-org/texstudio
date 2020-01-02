@@ -36,20 +36,10 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
 	present.type = Token::none;
 	present.dlh = dlh;
 	present.argLevel = 0;
-	QChar verbatimSymbol;
     const QString specialChars = "{([<})]>";
 	int i = 0;
 	for (; i < s.length(); i++) {
 		QChar c = s.at(i);
-		if (!verbatimSymbol.isNull()) {
-			if (c == verbatimSymbol) {
-				present.length = 1;
-				lexed.append(present);
-				present.type = Token::none;
-				verbatimSymbol = QChar();
-				continue;
-			}
-		}
 		if (present.type == Token::command && c == '@') {
 			continue; // add @ as letter to command
 		}
