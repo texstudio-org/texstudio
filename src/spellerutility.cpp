@@ -161,6 +161,7 @@ bool SpellerUtility::check(QString word)
 	if (word.length() <= 1) return true;
 	if (ignoredWords.contains(word)) return true;
 	if (word.endsWith('.') && ignoredWords.contains(word.left(word.length() - 1))) return true;
+    QMutexLocker locker(&mSpellerMutex);
     QByteArray encodedString = spellCodec->fromUnicode(word);
 #if QT_VERSION >= 0x050400
     bool result = pChecker->spell(encodedString.toStdString());

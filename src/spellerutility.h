@@ -12,6 +12,7 @@
 #define SPELLERUTILITY_H
 
 #include "mostQtHeaders.h"
+#include <QMutex>
 
 #ifdef HUNSPELL_STATIC
 #include "hunspell/hunspell.hxx"
@@ -57,6 +58,7 @@ private:
 	QStringList ignoredWordList;
 	QSet<QString> ignoredWords;
 	QStringListModel ignoredWordsModel;
+    QMutex mSpellerMutex;
 };
 
 
