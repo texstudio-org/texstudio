@@ -446,6 +446,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 {
 	// do syntax check on that line
 	int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
+    qDebug()<<"checkLine:"<<line;
 
 	// check command-words
 	for (int i = 0; i < tl.length(); i++) {
@@ -614,6 +615,20 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                                 Token tk=tl.at(i-2);
                                 if(tk.type==Token::command && line.mid(tk.start, tk.length)=="\\end"){
                                     end=tk.start;
+                                }
+                            }
+                            // trick to avoid coloring of end
+                            if(!newRanges.isEmpty() && newRanges.last().type==ERR_highlight){
+                                if(i>1){
+                                    Token tk=tl.at(i-2); // skip over brace
+                                    if(tk.type==Token::command && line.mid(tk.start,tk.length)=="\\end"){
+                                        //previous token is end
+                                        // see whether it was colored with *-keyword i.e. #math or #picture
+                                        if(newRanges.last().range==QPair<int,int>(tk.start,tk.length)){
+                                            // yes, remove !
+                                            newRanges.removeLast();
+                                        }
+                                    }
                                 }
                             }
                             elem.range = QPair<int, int>(start, end);
@@ -812,6 +827,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			}
 
             // command highlighing
+            // this looks slow
+            // TODO: optimize !
             for(const Environment &env:activeEnv){
                 if(!env.dlh)
                     continue; //ignore "normal" env
