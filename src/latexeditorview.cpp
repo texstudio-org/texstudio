@@ -1417,8 +1417,10 @@ bool LatexEditorView::setSpeller(const QString &name)
 	}
 
 	// force new highlighting
-    if(!dontRecheck)
+    if(!dontRecheck){
         document->reCheckSyntax(0, document->lineCount());
+    }
+
 	return true;
 }
 /*!
@@ -3104,32 +3106,12 @@ bool LatexEditorView::isInMathHighlighting(const QDocumentCursor &cursor )
 {
 	const QDocumentLine &line = cursor.line();
 	if (!line.handle()) return false;
-	const QVector<int> &formats = line.handle()->getFormats();
 
-	int col = cursor.columnNumber();
+    int col = cursor.columnNumber();
 
-	bool atDelimiter = false;
+    const QFormatRange &format = line.handle()->getOverlayAt(col,numbersFormat);
 
-	if (col >= 0 && col < formats.size()) {
-		int f = formats[col];
-		if (f == numbersFormat || f == math_KeywordFormat) return true;
-		if (f == math_DelimiterFormat) atDelimiter = true;
-	}
-	if (col > 0 && col <= formats.size()) {
-		int f = formats[col - 1];
-		if (f == numbersFormat || f == math_KeywordFormat) return true;
-		if (f == math_DelimiterFormat) atDelimiter = true;
-	}
-
-	if (!atDelimiter) return false;
-
-	QDocumentCursor from, to;
-	cursor.getMatchingPair(from, to, false);
-	if (!from.isValid() || !to.isValid())
-		return col > 0 && col <= formats.size() && formats.at(col - 1) == math_DelimiterFormat;
-	if (cursor <= from.selectionStart()) return false;
-	if (cursor >= to.selectionEnd()) return false;
-	return true;
+    return format.isValid();
 }
 
 void LatexEditorView::checkRTLLTRLanguageSwitching()

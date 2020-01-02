@@ -548,14 +548,36 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				env.dlh = dlh;
 				env.ticket = ticket;
 				env.level = tk.level;
+                env.startingColumn=tk.start+tk.length;
 				activeEnv.push(env);
-				continue;
+                // highlight delimiter
+                Error elem;
+                elem.type = ERR_highlight;
+                elem.format=mFormatList["&math"];
+                elem.range = QPair<int, int>(tk.start, tk.length);
+                newRanges.append(elem);
+                continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
 				int i=ltxCommands->mathStopCommands.indexOf(word);
 				QString txt=ltxCommands->mathStartCommands.value(i);
 				if(activeEnv.top().origName==txt){
-					activeEnv.pop();
+                    Environment env=activeEnv.pop();
+                    Error elem;
+                    elem.type = ERR_highlight;
+                    elem.format=mFormatList["math"];
+                    if(dlh == env.dlh){
+                        //inside line
+                        elem.range = QPair<int, int>(env.startingColumn, tk.start-env.startingColumn);
+                    }else{
+                        elem.range = QPair<int, int>(0, tk.start);
+                    }
+                    newRanges.prepend(elem);
+                    // highlight delimiter
+                    elem.type = ERR_highlight;
+                    elem.format=mFormatList["&math"];
+                    elem.range = QPair<int, int>(tk.start, tk.length);
+                    newRanges.append(elem);
 				}// ignore mismatching mathstop commands
 				continue;
 			}

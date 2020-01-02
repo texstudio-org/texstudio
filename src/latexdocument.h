@@ -87,6 +87,7 @@ public:
 	QList<Macro> localMacros;
 
 	friend class SyntaxCheckTest;
+    friend class LatexEditorViewTest;
 	friend class LatexStructureMerger;
 	friend class LatexStructureMergerMerge;
 

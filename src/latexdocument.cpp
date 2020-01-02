@@ -1255,6 +1255,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         bool initialRun=false;
         if (syntaxChecking && languageIsLatexLike()) {
             for(int i = lineNrStart; i < linenr + count; ++i){
+                QDocumentLineHandle *dlh = line(i).handle();
+                if (!dlh)
+                    continue; //non-existing line ...
                 StackEnvironment env;
                 getEnv(i, env);
                 QDocumentLineHandle *lastHandle = nullptr;
@@ -1263,7 +1266,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     lastHandle = line(i - 1).handle();
                 }else{
                     // check whether syntax checker has ever run
-                    QDocumentLineHandle *dlh=line(0).handle();
                     if(!dlh->hasCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE)){
                         // initial run
                         // it is sufficient to put first line
@@ -1276,7 +1278,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
                 }
 
-                SynChecker.putLine(line(i).handle(), env, oldRemainder, true);
+                SynChecker.putLine(dlh, env, oldRemainder, true);
             }
         }
         if(initialRun){

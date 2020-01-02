@@ -3,6 +3,7 @@
 #include "mostQtHeaders.h"
 #include "latexeditorview_t.h"
 #include "latexeditorview.h"
+#include "latexdocument.h"
 #include "qdocumentcursor.h"
 #include "qdocument.h"
 #include "qeditor.h"
@@ -90,7 +91,7 @@ void LatexEditorViewTest::inMathEnvironment_data(){
 
 	QTest::newRow("closed")
 			<<  "a$bc$de\\[f\\]g"
-			<< "fftttfffttttff";
+            << "fftttffffttfff";
 
 	QTest::newRow("open")
 			<<  "xy$z"
@@ -100,6 +101,12 @@ void LatexEditorViewTest::inMathEnvironment(){
 	QFETCH(QString, text);
 	QFETCH(QString, inmath);
 	edView->editor->setText(text);
+
+    do{
+        edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+    }while(edView->document->SynChecker.queuedLines());
+
 	QDocumentCursor c = edView->editor->document()->cursor(0,0);
 	for (int i=0;i<inmath.size();i++) {
 		c.setColumnNumber(i);

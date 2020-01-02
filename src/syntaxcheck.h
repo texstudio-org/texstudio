@@ -10,7 +10,6 @@
 #include <QMutex>
 #include <QQueue>
 
-class LatexDocument;
 class SpellerUtility;
 /*!
  * \brief store information on open environments
