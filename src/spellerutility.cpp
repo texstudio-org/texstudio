@@ -19,7 +19,6 @@ bool SpellerUtility::hideNonTextSpellingErrors = true;
 
 SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(nullptr), spellCodec(nullptr)
 {
-	checkCache.reserve(1020);
 }
 
 bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
@@ -54,7 +53,6 @@ bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
 		return false;
 	}
 
-	checkCache.clear();
 	ignoredWords.clear();
 	ignoredWordList.clear();
 	ignoredWordsModel.setStringList(QStringList());
@@ -130,12 +128,6 @@ void SpellerUtility::addToIgnoreList(QString toIgnore)
 		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(), ignoredWordList.end(), word, localeAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 	saveIgnoreList();
-    checkCache.remove(word);
-    QString zw=word; //remove upper letter start as well
-    if(!zw.isEmpty()){
-        zw[0]=zw[0].toUpper();
-        checkCache.remove(zw);
-    }
 	emit ignoredWordAdded(word);
 }
 
@@ -169,16 +161,12 @@ bool SpellerUtility::check(QString word)
 	if (word.length() <= 1) return true;
 	if (ignoredWords.contains(word)) return true;
 	if (word.endsWith('.') && ignoredWords.contains(word.left(word.length() - 1))) return true;
-    if (checkCache.contains(word)) return checkCache.value(word);
     QByteArray encodedString = spellCodec->fromUnicode(word);
 #if QT_VERSION >= 0x050400
     bool result = pChecker->spell(encodedString.toStdString());
 #else
     bool result = pChecker->spell(QString(encodedString).toStdString());
 #endif
-	while (checkCacheInsertion.size() > 1000) checkCacheInsertion.removeFirst();
-	checkCache.insert(word, result);
-	checkCacheInsertion.append(word);
 	return result;
 }
 

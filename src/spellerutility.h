@@ -54,8 +54,6 @@ private:
 	QString currentDic, ignoreListFileName, spell_encoding;
 	Hunspell * pChecker;
 	QTextCodec *spellCodec;
-	QHash<QString, bool> checkCache;
-	QLinkedList<QString> checkCacheInsertion;
 	QStringList ignoredWordList;
 	QSet<QString> ignoredWords;
 	QStringListModel ignoredWordsModel;
