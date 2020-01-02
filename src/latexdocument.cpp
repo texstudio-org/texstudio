@@ -1252,6 +1252,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
     }
     if(!recheck){
         // do syntax check after recheck !
+        bool initialRun=false;
         if (syntaxChecking && languageIsLatexLike()) {
             for(int i = lineNrStart; i < linenr + count; ++i){
                 StackEnvironment env;
@@ -1267,6 +1268,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                         // initial run
                         // it is sufficient to put first line
                         SynChecker.putLine(dlh, env, oldRemainder, true);
+                        initialRun=true;
                         break;
                     }
                 }
@@ -1276,6 +1278,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
                 SynChecker.putLine(line(i).handle(), env, oldRemainder, true);
             }
+        }
+        if(initialRun){
+            // execute QCE highlting
+            highlight();
         }
     }
 
@@ -2818,7 +2824,7 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 			if (update) {
 				latexParser.possibleCommands[elem] << cmd;
 				//only update QNFA for added commands. When the default commands are not in ltxCommands.possibleCommands[elem], ltxCommands.possibleCommands[elem] and latexParser.possibleCommands[elem] will always differ and regenerate the QNFA needlessly after every key press
-                needQNFAupdate = false; //unclear what the intention was. updateQNFA does not affect structure commands ... hence this update does not make any sense and it is expensive.
+                needQNFAupdate = true;
             }
 			if (update || forceLabelUpdate)
 				newCmds << cmd;

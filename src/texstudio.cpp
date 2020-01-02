@@ -7414,8 +7414,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 
-    updateHighlighting();
-
 	mCompleterNeedsUpdate = false;
 }
 
@@ -9429,21 +9427,7 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 	}
 	QDomDocument doc;
 	doc.setContent(&f);
-    /*
-	for (QMap<QString, QVariant>::const_iterator i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i) {
-		QString mode = configManager.enviromentModes.value(i.value().toInt(), "verbatim");
-		addEnvironmentToDom(doc, i.key(), mode);
-	}
 
-	//detected math envs
-	for (QMap<QString, QString>::const_iterator i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i) {
-		QString envMode = i.value() == "verbatim" ? "verbatim" :  "numbers";
-		QString env = i.key();
-		if (env.contains('*')) {
-			env.replace("*", "\\*");
-		}
-		addEnvironmentToDom(doc, env, envMode, envMode != "verbatim");
-    }*/
 	// structure commands
 	addStructureCommandsToDom(doc, latexParser.possibleCommands);
 
@@ -9466,47 +9450,12 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 			QEditor *ed = edView->editor;
 			if (ed->languageDefinition() == oldLangDef) {
 				ed->setLanguageDefinition(newLangDef);
-				ed->highlight();
+                // ed->highlight(); is executed by caller !
 			}
 		}
 		}
 		documents.enablePatch(true);
 	}
-}
-
-/// Updates the highlighting of environments specified via environmentAliases
-void Texstudio::updateHighlighting()
-{
-
-	QStringList envList;
-	envList << "math" << "verbatim";
-	bool updateNecessary = false;
-	QMultiHash<QString, QString>::const_iterator it = latexParser.environmentAliases.constBegin();
-	while (it != latexParser.environmentAliases.constEnd()) {
-		if (envList.contains(it.value())) {
-			if (!detectedEnvironmentsForHighlighting.contains(it.key())) {
-				detectedEnvironmentsForHighlighting.insert(it.key(), it.value());
-				updateNecessary = true;
-			}
-		}
-		++it;
-	}
-	foreach (LatexDocument *doc, documents.getDocuments()) {
-		QMultiHash<QString, QString>::const_iterator it = doc->ltxCommands.environmentAliases.constBegin();
-		while (it != doc->ltxCommands.environmentAliases.constEnd()) {
-			if (envList.contains(it.value())) {
-				if (!detectedEnvironmentsForHighlighting.contains(it.key())) {
-					detectedEnvironmentsForHighlighting.insert(it.key(), it.value());
-					updateNecessary = true;
-				}
-			}
-			++it;
-		}
-	}
-	if (!updateNecessary)
-		return;
-
-	updateTexQNFA();
 }
 
 void Texstudio::toggleGrammar(int type)
