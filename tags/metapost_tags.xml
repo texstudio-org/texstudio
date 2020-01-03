@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<texmakertags title="Metapost">
-<section title="General (Metapost)">
+<texmakertags title="MetaPost">
+<section title="General (MetaPost)">
 <item txt="beginfig(); endfig;"  tag="beginfig();%n%|%nendfig;"/>
 <item txt="extra_beginfig(); extra_endfig;"  tag="extra_beginfig();%n%nextra_endfig;"/>
 <item txt="begingraph(); endgraph;"  tag="begingraph();%n%|%nendgraph;"/>
@@ -13,7 +13,7 @@
 <item tag="else :"/>
 <item tag="fi"/>
 </section>
-<section title="Alphabetical Commands (Metapost)">
+<section title="Alphabetical Commands (MetaPost)">
 <item tag="abs"/>
 <item tag="addto also"/>
 <item tag="addto contour"/>

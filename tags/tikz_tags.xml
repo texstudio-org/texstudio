@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<texmakertags title="Tikz">
-<section title="General (Tikz)">
+<texmakertags title="TikZ">
+<section title="General (TikZ)">
 <item txt="\\begin{tikzpicture}[options] \\end{tikzpicture}" tag="\\begin{tikzpicture}[%&lt;options%>]"/>
 <item txt="\\begin{scope}[options] \\end{scope}" tag="\\begin{scope}[%&lt;options%>]"/>
 <item tag="\\foreach  in {}"/>
 <item tag="\\ifnum"/>
 <item tag="\\matrix"/>
 </section>
-<section title="Draw  (Tikz)">
+<section title="Draw (TikZ)">
 <item tag="\\draw ;"/>
 <item tag="\\fill ;"/>
 <item tag="\\filldraw[fill=, draw=] ;"/>
@@ -24,7 +24,7 @@
 <item tag="circle ()"/>
 <item tag="plot [] function {}"/>
 </section>
-<section title="Arrows  (Tikz)">
+<section title="Arrows (TikZ)">
 <item tag="-&gt;"/>
 <item tag="-&gt;&gt;"/>
 <item tag="-&gt;|"/>

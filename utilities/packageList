@@ -774,7 +774,7 @@ eulervm: Euler virtual math fonts.
 euro: Provide Euro values for national currency amounts.
 euro-ce: Euro and CE sign font.
 europecv: Unofficial class for European curricula vitae.
-eurosym: MetaFont and macros for Euro sign.
+eurosym: Metafont and macros for Euro sign.
 euxm: (shortdesc missing)
 everyhook: Hooks for standard TeX token lists.
 everypage: Provide hooks to be run on every page of a document.
@@ -1414,20 +1414,20 @@ mentis: A basis for books to be published by Mentis publishers.
 menu: Typesetting menus.
 menukeys: Format menu sequences, paths and keystrokes from lists.
 metafont: A system for specifying fonts.
-metafont-beginners: An introductory tutorial for MetaFont.
+metafont-beginners: An introductory tutorial for Metafont.
 metago: MetaPost output of Go positions.
 metalogo: Extended TeX logo macros.
 metaobj: MetaPost package providing high-level objects.
-metaplot: Plot-manipulation macros for use in Metapost.
+metaplot: Plot-manipulation macros for use in MetaPost.
 metapost: A development of Metafont for creating graphics.
 metapost-examples: Example drawings using MetaPost.
-metatex: Incorporate MetaFont pictures in TeX source.
+metatex: Incorporate Metafont pictures in TeX source.
 metauml: MetaPost library for typesetting UML diagrams.
 method: Typeset method and variable declarations.
 metre: Support for the work of classicists
 mex: Polish formats for TeX.
 mf2pt1: Produce PostScript Type 1 fonts from Metafont source.
-mflogo: LaTeX support for MetaFont logo fonts.
+mflogo: LaTeX support for Metafont logo fonts.
 mfnfss: Packages to typeset oldgerman and pandora fonts in LaTeX.
 mfpic: Draw Metafont/post pictures from (La)TeX commands.
 mfpic4ode: Macros to draw direction fields and solutions of ODEs.
@@ -1668,7 +1668,7 @@ phaistos: Disk of Phaistos font.
 philex: Cross references for named and numbered environments.
 philokalia: A font to typeset the Philokalia Books.
 philosophersimprint: Typesetting articles for "Philosophers' Imprint".
-phonetic: MetaFont Phonetic fonts, based on Computer Modern.
+phonetic: Metafont Phonetic fonts, based on Computer Modern.
 photo: A float environment for photographs.
 physics: Macros supporting the Mathematics of Physics.
 physymb: Assorted macros for Physicists.
@@ -1937,7 +1937,7 @@ savesym: Redefine symbols where names conflict.
 savetrees: Pack as much as possible onto each page of a LaTeX document.
 scale: Scale document by sqrt(2) or magstep(2).
 scalebar: Create scalebars for maps, diagrams or photos.
-schemabloc: Draw block diagrams, using Tikz.
+schemabloc: Draw block diagrams, using TikZ.
 scheme-basic: basic scheme (plain and latex)
 scheme-context: ConTeXt scheme
 scheme-full: full scheme (everything)

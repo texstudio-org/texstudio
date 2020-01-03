@@ -305,7 +305,7 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
 	registerCommand("makeglossaries", "makeglossaries", "Makeglossaries", "%");
-	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
+	registerCommand("metapost",    "mpost",        "MetaPost",    "-interaction=nonstopmode ?me)", "Tools/MetaPost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",       "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
 	registerCommand("latexmk",     "latexmk",      "Latexmk",     "-pdf -silent -synctex=1 %");

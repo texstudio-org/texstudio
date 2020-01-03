@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<texmakertags title="Pstricks">
-<section title="General (Pstricks)">
+<texmakertags title="PSTricks">
+<section title="General (PSTricks)">
 <item tag="\\psset{xunit=%&lt;1cm%>,yunit=%&lt;1cm%>}"/>
 <item txt="\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}" tag="\\begin{pspicture}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
 <item tag="\\SpecialCoor"/>
 </section>
-<section title="Lines/Polygons  (Pstricks)">
+<section title="Lines/Polygons (PSTricks)">
 <item tag="\\psline[%&lt;options%>]{%&lt;arrows%>}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
 <item tag="\\pspolygon[%&lt;options%>](%&lt;x0%>,%&lt;y0%>)(%&lt;xn%>,%&lt;yn%>)"/>
 <item tag="\\psframe[%&lt;options%>](%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
 <item tag="linearc=[%&lt;0pt%>]" type="1"/>
 <item tag="framearc=[%&lt;0%>]" type="1"/>
 </section>
-<section title="Arcs/Circles/Ellipses  (Pstricks)">
+<section title="Arcs/Circles/Ellipses (PSTricks)">
 <item tag="\\pscircle[%&lt;options%>](%&lt;x0%>,%&lt;y0%>){%&lt;radius%>}"/>
 <item tag="\\pswedge[%&lt;options%>](%&lt;x0%>,%&lt;y0%>){%&lt;radius%>}{%&lt;angle1%>}{%&lt;angle2%>}"/>
 <item tag="\\psarc[%&lt;options%>]{arrows}(%&lt;x%>,%&lt;y%>){%&lt;radius%>}{%&lt;angleA%>}{%&lt;angleB%>}"/>
@@ -21,21 +21,21 @@
 <item tag="arcSepB=[%&lt;0pt%>]" type="1"/>
 <item tag="arcsep=[%&lt;0%>]" type="1"/>
 </section>
-<section title="Curves  (Pstricks)">
+<section title="Curves (PSTricks)">
 <item tag="\\psbezier[%&lt;options%>]{arrows}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)(%&lt;x2%>,%&lt;y2%>)(%&lt;x3%>,%&lt;y3%>)"/>
 <item tag="\\parabola[%&lt;options%>]{arrows}(%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)"/>
 <item tag="\\pscurve[%&lt;options%>]{arrows}(%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
 <item tag="\\psecurve[%&lt;options%>]{arrows}(%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
 <item tag="\\psccurve[%&lt;options%>]{arrows}(%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
 </section>
-<section title="Dots  (Pstricks)">
+<section title="Dots (PSTricks)">
 <item tag="\\psdot[%&lt;options%>](%&lt;x1%>,%&lt;y1%>)"/>
 <item tag="\\psdots[%&lt;options%>](%&lt;x1%>,%&lt;y1%>)(%&lt;xn%>,%&lt;yn%>)"/>
 <item tag="dotstyle=[%&lt;*/o/+/triangle(*)/square(*)/pentagon(*)/|%>]" type="1"/>
 <item tag="dotscale=[%&lt;1%>]" type="1"/>
 <item tag="dotangle=[%&lt;0%>]" type="1"/>
 </section>
-<section title="Grids  (Pstricks)">
+<section title="Grids (PSTricks)">
 <item tag="\\psgrid[%&lt;options%>](%&lt;x0%>,%&lt;y0%>)(%&lt;x1%>,%&lt;y1%>)(%&lt;x2%>,%&lt;y2%>)"/>
 <item tag="gridwidth=[%&lt;0.8pt%>]" type="1"/>
 <item tag="gridcolor=[%&lt;black%>]" type="1"/>
@@ -47,7 +47,7 @@
 <item tag="subgridcolor=[%&lt;gray%>]" type="1"/>
 <item tag="subgriddots=[%&lt;0%>]" type="1"/>
 </section>
-<section title="Placing/Rotating  (Pstricks)">
+<section title="Placing/Rotating (PSTricks)">
 <item tag="\\uput[%&lt;refangle%>](%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
 <item tag="\\uput[%&lt;refangle%>]{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
 <item tag="\\uput{labelsep}[%&lt;refangle%>]{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
@@ -56,7 +56,7 @@
 <item tag="\\rput{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
 <item tag="\\rput[%&lt;refpoint%>]{rotation}(%&lt;x%>,%&lt;y%>){%&lt;stuff%>}"/>
 </section>
-<section title="Arrows  (Pstricks)">
+<section title="Arrows (PSTricks)">
 <item tag="-"/>
 <item tag="&lt;-&gt;"/>
 <item tag="&gt;-&lt;"/>
@@ -82,7 +82,7 @@
 <item tag="dotsize=[%&lt;0.5pt%> %&lt;2.5%>]" type="1"/>
 <item tag="arrowscale=[%&lt;1%>]" type="1"/>
 </section>
-<section title="Line styles  (Pstricks)">
+<section title="Line styles (PSTricks)">
 <item tag="linestyle=[%&lt;solid/dashed/dotted%>]" type="1"/>
 <item tag="linewidth=[%&lt;0.8pt%>]" type="1"/>
 <item tag="linecolor=[%&lt;black%>]" type="1"/>
@@ -99,7 +99,7 @@
 <item tag="shadowangle=[%&lt;-45%>]" type="1"/>
 <item tag="shadowcolor=[%&lt;darkgray%>]" type="1"/>
 </section>
-<section title="Fill styles  (Pstricks)">
+<section title="Fill styles (PSTricks)">
 <item tag="fillstyle=[%&lt;none/solid/vlines(*)/hlines(*)/crosshatch(*)%>]" type="1"/>
 <item tag="fillcolor=[%&lt;white%>]" type="1"/>
 <item tag="hatchwidth=[%&lt;0.8pt%>]" type="1"/>
@@ -107,11 +107,11 @@
 <item tag="hatchcolor=[%&lt;black%>]" type="1"/>
 <item tag="hatchangle=[%&lt;45%>]" type="1"/>
 </section>
-<section title="Colors  (Pstricks)">
+<section title="Colors (PSTricks)">
 <item tag="\\newgray{%&lt;color%>}{%&lt;num%>}"/>
 <item tag="\\newrgbcolor{%&lt;color%>}{%&lt;num1%> %&lt;num2%> %&lt;num3%>}"/>
 </section>
-<section title="Plots (Pstricks/pst-plot)">
+<section title="Plots (PSTricks/pst-plot)">
 <item tag="\\psplot[%&lt;options%>]{%&lt;xmin%>}{%&lt;xmax%>}{%&lt;function%>}"/>
 <item tag="\\parametricplot[%&lt;options%>]{%&lt;tmin%>}{%&lt;tmax%>}{%&lt;function%>}"/>
 <item tag="\\dataplot[%&lt;options%>]{%&lt;commands%>}"/>

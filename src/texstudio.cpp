@@ -654,9 +654,9 @@ void Texstudio::setupDockWidgets()
     } else leftPanel->setWidgetText("symbols", tr("Symbols"));
 
 	addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
-	addTagList("pstricks", getRealIconFile("pstricks"), tr("Pstricks Commands"), "pstricks_tags.xml");
+	addTagList("pstricks", getRealIconFile("pstricks"), tr("PSTricks Commands"), "pstricks_tags.xml");
 	addTagList("metapost", getRealIconFile("metapost"), tr("MetaPost Commands"), "metapost_tags.xml");
-	addTagList("tikz", getRealIconFile("tikz"), tr("Tikz Commands"), "tikz_tags.xml");
+	addTagList("tikz", getRealIconFile("tikz"), tr("TikZ Commands"), "tikz_tags.xml");
 	addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
 	addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
 	addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
