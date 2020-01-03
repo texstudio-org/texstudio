@@ -272,6 +272,7 @@ void SyntaxCheck::setFormats(QMap<QString, int> formatList)
 */
 void SyntaxCheck::waitForQueueProcess()
 {
+    wait(1);
 	while (!crashed && mLinesAvailable.available() > 0) {
 		wait(1);
 	}
