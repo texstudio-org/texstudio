@@ -106,6 +106,7 @@ void SpellerUtility::saveIgnoreList()
 
 void SpellerUtility::unload()
 {
+    QMutexLocker locker(&mSpellerMutex);
 	saveIgnoreList();
 	currentDic = "";
 	ignoreListFileName = "";
@@ -122,6 +123,9 @@ void SpellerUtility::addToIgnoreList(QString toIgnore)
 	QString spell_encoding = QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	encodedString = codec->fromUnicode(word);
+    QMutexLocker locker(&mSpellerMutex);
+    if(!pChecker)
+        return;
 	pChecker->add(encodedString.data());
 	ignoredWords.insert(word);
 	if (!ignoredWordList.contains(word))
@@ -134,6 +138,9 @@ void SpellerUtility::addToIgnoreList(QString toIgnore)
 void SpellerUtility::removeFromIgnoreList(QString toIgnore)
 {
 	QByteArray encodedString;
+    QMutexLocker locker(&mSpellerMutex);
+    if(!pChecker)
+        return;
 	QString spell_encoding = QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	encodedString = codec->fromUnicode(toIgnore);
@@ -162,6 +169,8 @@ bool SpellerUtility::check(QString word)
 	if (ignoredWords.contains(word)) return true;
 	if (word.endsWith('.') && ignoredWords.contains(word.left(word.length() - 1))) return true;
     QMutexLocker locker(&mSpellerMutex);
+    if(!pChecker)
+        return true;
     QByteArray encodedString = spellCodec->fromUnicode(word);
 #if QT_VERSION >= 0x050400
     bool result = pChecker->spell(encodedString.toStdString());
@@ -177,15 +186,20 @@ QStringList SpellerUtility::suggest(QString word)
     if (currentDic == "" || pChecker == nullptr) return QStringList(); //no speller => everything is correct
     std::vector<std::string> wlst;
     QByteArray encodedString = spellCodec->fromUnicode(word);
+    QStringList suggestion;
+
+    QMutexLocker locker(&mSpellerMutex);
+    if(!pChecker)
+        return suggestion;
 #if QT_VERSION >= 0x050400
     wlst = pChecker->suggest(encodedString.toStdString());
 #else
     wlst = pChecker->suggest(QString(encodedString).toStdString());
 #endif
-	QStringList suggestion;
-    int ns=wlst.size();
+
+    unsigned long ns=wlst.size();
 	if (ns > 0) {
-		for (int i = 0; i < ns; i++) {
+        for (uint i = 0; i < ns; i++) {
 #if QT_VERSION >= 0x050400
             suggestion << spellCodec->toUnicode(QByteArray::fromStdString(wlst[i]));
 #else
