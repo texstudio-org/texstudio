@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="uk">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -907,7 +909,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/configdialog.ui" line="508"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Визначає тип одержуваних сповіщень про оновлення:
  — Стабільні версії: виберіть цей тип, якщо стабільність найважливіша для вас.
@@ -972,7 +974,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation>&lt;i&gt;Селектор файлів (Необов&apos;язково. Якщо наявний, то долучіть кінцеву двокрапку):&lt;/i&gt; Якщо нема селектора, то виберіть головний файл. &lt;b&gt;c:&lt;/b&gt; виберіть поточний файл, &lt;b&gt;p{ext}:&lt;/b&gt; Знайдіть файл з тою самою базовою назвою, як у головного файла та розширенням &lt;b&gt;ext&lt;/b&gt;. Пошук зроблено у каталозі головного файла та додаткових каталогах PDF.&lt;br /&gt;&lt;i&gt;Частини назви шляху:&lt;/i&gt; поєднання &lt;b&gt;a&lt;/b&gt;: абсолютного шляху, &lt;b&gt;m&lt;/b&gt;: назва базового файлу без розширення,&lt;b&gt;e&lt;/b&gt;: розширення, &lt;b&gt;r&lt;/b&gt;: відносний шлях до головного, &lt;b&gt;*&lt;/b&gt;: усі файли, що відповідають наступному шаблону&lt;br/&gt;&lt;i&gt;Кінцеві символи:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: закриває селектор. Наступні символи закривають селектор і мають додаткове значення&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: взяти у подвійні лапки, &lt;b&gt;.&lt;/b&gt;  (крапка) додає крапку в кінці, (пропуск): додає пропуск в кінці&lt;br/&gt;&lt;i&gt;Приклади:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: створює абсолютну назву файлу, взяту у подвійні лапкиs, &lt;b&gt;?e)&lt;/b&gt; просто розширення без передньої крапки (наприклад, tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; взята у подвійні лапки назва файлу без розширення (рівносильна &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; назва файлу з розширенням (наприклад, example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: усі файли .aux у поточному каталозі</translation>
+        <translation>&lt;i&gt;Селектор файлів (Необов&apos;язково. Якщо наявний, то долучіть кінцеву двокрапку):&lt;/i&gt; Якщо нема селектора, то виберіть головний файл. &lt;b&gt;c:&lt;/b&gt; виберіть поточний файл, &lt;b&gt;p{ext}:&lt;/b&gt; Знайдіть файл з тою самою базовою назвою, як у головного файла та розширенням &lt;b&gt;ext&lt;/b&gt;. Пошук зроблено у каталозі головного файла та додаткових каталогах PDF.&lt;br /&gt;&lt;i&gt;Частини назви шляху:&lt;/i&gt; поєднання &lt;b&gt;a&lt;/b&gt;: абсолютного шляху, &lt;b&gt;m&lt;/b&gt;: назва базового файлу без розширення,&lt;b&gt;e&lt;/b&gt;: розширення, &lt;b&gt;r&lt;/b&gt;: відносний шлях до головного, &lt;b&gt;*&lt;/b&gt;: усі файли, що відповідають наступному шаблону&lt;br/&gt;&lt;i&gt;Кінцеві символи:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: закриває селектор. Наступні символи закривають селектор і мають додаткове значення&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: взяти у подвійні лапки, &lt;b&gt;.&lt;/b&gt; &#xa0;(крапка) додає крапку в кінці, (пропуск): додає пропуск в кінці&lt;br/&gt;&lt;i&gt;Приклади:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: створює абсолютну назву файлу, взяту у подвійні лапкиs, &lt;b&gt;?e)&lt;/b&gt; просто розширення без передньої крапки (наприклад, tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; взята у подвійні лапки назва файлу без розширення (рівносильна &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; назва файлу з розширенням (наприклад, example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: усі файли .aux у поточному каталозі</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="695"/>
@@ -1115,7 +1117,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1082"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2642,8 +2644,8 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="4331"/>
         <location filename="../src/configdialog.ui" line="4386"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Обробник вимальовування зображення, що використовується PDF-бібліотекою poppler.
 &apos;Splash&apos; використовується типово і підходить в більшості випадків.
@@ -4322,7 +4324,7 @@ Are you sure you want to undo all changes?</source>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Пріоритет розташування малюнка:
@@ -4440,7 +4442,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4480,17 +4482,17 @@ The wizard does not support command </source>
         <translation>БЛОКИ</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2486"/>
+        <location filename="../src/latexdocument.cpp" line="2510"/>
         <source>Invalid codec</source>
         <translation>Недійсний кодек</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2500"/>
+        <location filename="../src/latexdocument.cpp" line="2524"/>
         <source>Missing value for -job-name</source>
         <translation>Пропущене значення для -job-name</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2503"/>
+        <location filename="../src/latexdocument.cpp" line="2527"/>
         <source>Unknown magic comment</source>
         <translation>Невідомий спецкоментар</translation>
     </message>
@@ -4605,121 +4607,125 @@ The wizard does not support command </source>
         <translation>без назви</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2176"/>
+        <location filename="../src/latexeditorview.cpp" line="2183"/>
         <source>Delete</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2209"/>
+        <location filename="../src/latexeditorview.cpp" line="2216"/>
         <source>Add to Dictionary</source>
         <translation>Додати до словника</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2413"/>
+        <location filename="../src/latexeditorview.cpp" line="2420"/>
         <source>label missing!</source>
         <translation>відсутня мітка!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2415"/>
-        <location filename="../src/latexeditorview.cpp" line="2433"/>
+        <location filename="../src/latexeditorview.cpp" line="2422"/>
+        <location filename="../src/latexeditorview.cpp" line="2440"/>
         <source>label defined multiple times!</source>
         <translation>мітка визначена декілька разів!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2423"/>
-        <location filename="../src/latexeditorview.cpp" line="2495"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <location filename="../src/latexeditorview.cpp" line="2430"/>
+        <location filename="../src/latexeditorview.cpp" line="2502"/>
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2436"/>
+        <location filename="../src/latexeditorview.cpp" line="2443"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform></translation>
+        <translation>
+            <numerusform>%n посилання на цю мітку</numerusform>
+            <numerusform>%n посилання на цю мітку</numerusform>
+            <numerusform>%n посилань на цю мітку</numerusform>
+        </translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2441"/>
+        <location filename="../src/latexeditorview.cpp" line="2448"/>
         <source>Class</source>
         <translation>Клас</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2441"/>
+        <location filename="../src/latexeditorview.cpp" line="2448"/>
         <source>Package</source>
         <translation>Пакет</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2445"/>
+        <location filename="../src/latexeditorview.cpp" line="2452"/>
         <source>Beamer Theme</source>
         <translation>Тема Beamer</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2454"/>
+        <location filename="../src/latexeditorview.cpp" line="2461"/>
         <source>not found</source>
         <translation>не знайдено</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2470"/>
+        <location filename="../src/latexeditorview.cpp" line="2477"/>
         <source>Citation correct (reading ...)</source>
         <translation>Правильна цитата (читання…)</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2476"/>
+        <location filename="../src/latexeditorview.cpp" line="2483"/>
         <source>Citation missing</source>
         <translation>Відсутня цитата</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2479"/>
+        <location filename="../src/latexeditorview.cpp" line="2486"/>
         <source>Warning:</source>
         <translation>Попередження:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2479"/>
+        <location filename="../src/latexeditorview.cpp" line="2486"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>ІД BibTeX закінчується пропуском. Кінцеві пропуски ігноруються BibTeX&apos;ом.</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2843"/>
+        <location filename="../src/latexeditorview.cpp" line="2850"/>
         <source>Save Preview Image</source>
         <translation>Зберегти перегляд зображення</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2843"/>
+        <location filename="../src/latexeditorview.cpp" line="2850"/>
         <source>Images</source>
         <translation>Зображення</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2974"/>
+        <location filename="../src/latexeditorview.cpp" line="2981"/>
         <source>Remove Bookmark</source>
         <translation>Вилучити закладку</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2982"/>
+        <location filename="../src/latexeditorview.cpp" line="2989"/>
         <source>Unnamed Bookmark</source>
         <translation>Безіменна закладка</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2987"/>
+        <location filename="../src/latexeditorview.cpp" line="2994"/>
         <source>Bookmark</source>
         <translation>Закладка</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3014"/>
+        <location filename="../src/latexeditorview.cpp" line="3021"/>
         <source>Collapse All</source>
         <translation>Згорнути усе</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3018"/>
+        <location filename="../src/latexeditorview.cpp" line="3025"/>
         <source>Collapse Level %1</source>
         <translation>Згорнути рівень %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3023"/>
+        <location filename="../src/latexeditorview.cpp" line="3030"/>
         <source>Expand All</source>
         <translation>Розкрити усе</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3027"/>
+        <location filename="../src/latexeditorview.cpp" line="3034"/>
         <source>Expand Level %1</source>
         <translation>Розкрити рівень %1</translation>
     </message>
@@ -5988,7 +5994,7 @@ You can now enter the password:</source>
         <translation>Вибрати файл</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="98"/>
+        <location filename="../src/utilsUI.cpp" line="125"/>
         <source>none</source>
         <translation>нема</translation>
     </message>
@@ -6317,7 +6323,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1099"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
         <translation>Оригінальний файл на диску був знищений під час збереження.
 Ви можете знайти копію у
@@ -8165,12 +8171,12 @@ Do you trust this script?</source>
 <context>
     <name>SpellerManager</name>
     <message>
-        <location filename="../src/spellerutility.cpp" line="251"/>
+        <location filename="../src/spellerutility.cpp" line="254"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
         <translation>Здається, обраний файл не містить словника Hunspell. Все одно імпортувати?</translation>
     </message>
     <message>
-        <location filename="../src/spellerutility.cpp" line="259"/>
+        <location filename="../src/spellerutility.cpp" line="262"/>
         <source>Dictionary import failed: No files could be extracted.</source>
         <translation>Невдалий імпорт словника: неможливо видобути жодний файл.</translation>
     </message>
@@ -8178,14 +8184,14 @@ Do you trust this script?</source>
 <context>
     <name>SpellerUtility</name>
     <message>
-        <location filename="../src/spellerutility.cpp" line="34"/>
+        <location filename="../src/spellerutility.cpp" line="33"/>
         <source>Missing .aff file:
 %1</source>
         <translation>Відсутній файл .aff:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/spellerutility.cpp" line="36"/>
+        <location filename="../src/spellerutility.cpp" line="35"/>
         <source>Dictionary does not exist.</source>
         <translation>Словник не існує.</translation>
     </message>
@@ -8470,92 +8476,92 @@ Do you trust this script?</source>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="197"/>
+        <location filename="../src/syntaxcheck.cpp" line="201"/>
         <source>no error</source>
         <translation>не має помилки</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="198"/>
+        <location filename="../src/syntaxcheck.cpp" line="202"/>
         <source>unrecognized environment</source>
         <translation>нерозпізнане середовище</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="199"/>
+        <location filename="../src/syntaxcheck.cpp" line="203"/>
         <source>unrecognized command</source>
         <translation>нерозпізнана команда</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="200"/>
+        <location filename="../src/syntaxcheck.cpp" line="204"/>
         <source>unrecognized math command</source>
         <translation>нерозпізнана математична команда</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="201"/>
+        <location filename="../src/syntaxcheck.cpp" line="205"/>
         <source>unrecognized tabular command</source>
         <translation>нерозпізнана команда для таблиць</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="202"/>
+        <location filename="../src/syntaxcheck.cpp" line="206"/>
         <source>tabular command outside tabular env</source>
         <translation>команда tabular зовні середовища tabular</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="203"/>
+        <location filename="../src/syntaxcheck.cpp" line="207"/>
         <source>math command outside math env</source>
         <translation>математична команда зовні математичного оточення</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="204"/>
+        <location filename="../src/syntaxcheck.cpp" line="208"/>
         <source>tabbing command outside tabbing env</source>
         <translation>команда tabbing зовні оточення tabbing</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="205"/>
+        <location filename="../src/syntaxcheck.cpp" line="209"/>
         <source>more cols in tabular than specified</source>
         <translation>у tabular більше стовпців, ніж оголошено</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="206"/>
+        <location filename="../src/syntaxcheck.cpp" line="210"/>
         <source>cols in tabular missing</source>
         <translation>відсутні стовпці у tabular</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="207"/>
+        <location filename="../src/syntaxcheck.cpp" line="211"/>
         <source>\\ missing</source>
         <translation>пропущено \\</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="208"/>
+        <location filename="../src/syntaxcheck.cpp" line="212"/>
         <source>closing environment which has not been opened</source>
         <translation>спроба закрити оточення, яке не було відкрите</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="209"/>
+        <location filename="../src/syntaxcheck.cpp" line="213"/>
         <source>environment not closed</source>
         <translation>оточення не закрите</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="210"/>
+        <location filename="../src/syntaxcheck.cpp" line="214"/>
         <source>unrecognized key in key option</source>
         <translation>нерозпізнаний ключ у параметрі key</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="211"/>
+        <location filename="../src/syntaxcheck.cpp" line="215"/>
         <source>unrecognized value in key option</source>
         <translation>нерозпізнане значення у параметрі key</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="212"/>
+        <location filename="../src/syntaxcheck.cpp" line="216"/>
         <source>command outside suitable env</source>
         <translation>команда зовні відповідного оточення</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="213"/>
+        <location filename="../src/syntaxcheck.cpp" line="217"/>
         <source>spelling</source>
         <translation>правопис</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="215"/>
+        <location filename="../src/syntaxcheck.cpp" line="220"/>
         <source>unknown</source>
         <translation>невідомо</translation>
     </message>
@@ -9137,7 +9143,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="354"/>
-        <location filename="../src/texstudio.cpp" line="6014"/>
+        <location filename="../src/texstudio.cpp" line="6008"/>
         <source>Ready</source>
         <translation>Готово</translation>
     </message>
@@ -9178,8 +9184,8 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="408"/>
-        <location filename="../src/texstudio.cpp" line="9017"/>
-        <location filename="../src/texstudio.cpp" line="9024"/>
+        <location filename="../src/texstudio.cpp" line="9009"/>
+        <location filename="../src/texstudio.cpp" line="9016"/>
         <source>All files</source>
         <translation>Усі файли</translation>
     </message>
@@ -9217,9 +9223,8 @@ failed.</source>
         <translation>Ліва/Права дужки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="657"/>
         <source>Pstricks Commands</source>
-        <translation>Команди Pstricks</translation>
+        <translation type="vanished">Команди Pstricks</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="658"/>
@@ -9227,9 +9232,18 @@ failed.</source>
         <translation>Команди MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="659"/>
         <source>Tikz Commands</source>
-        <translation>Команди Tikz</translation>
+        <translation type="vanished">Команди Tikz</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="657"/>
+        <source>PSTricks Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="659"/>
+        <source>TikZ Commands</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="660"/>
@@ -9428,7 +9442,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="844"/>
-        <location filename="../src/texstudio.cpp" line="9217"/>
+        <location filename="../src/texstudio.cpp" line="9209"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрити</translation>
     </message>
@@ -10587,9 +10601,9 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1533"/>
         <location filename="../src/texstudio.cpp" line="1534"/>
-        <location filename="../src/texstudio.cpp" line="5591"/>
-        <location filename="../src/texstudio.cpp" line="5594"/>
-        <location filename="../src/texstudio.cpp" line="5595"/>
+        <location filename="../src/texstudio.cpp" line="5585"/>
+        <location filename="../src/texstudio.cpp" line="5588"/>
+        <location filename="../src/texstudio.cpp" line="5589"/>
         <source>Encoding</source>
         <translation>Кодування</translation>
     </message>
@@ -10643,14 +10657,14 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1994"/>
-        <location filename="../src/texstudio.cpp" line="3759"/>
-        <location filename="../src/texstudio.cpp" line="5642"/>
-        <location filename="../src/texstudio.cpp" line="6144"/>
-        <location filename="../src/texstudio.cpp" line="6301"/>
-        <location filename="../src/texstudio.cpp" line="6303"/>
-        <location filename="../src/texstudio.cpp" line="6310"/>
-        <location filename="../src/texstudio.cpp" line="6312"/>
-        <location filename="../src/texstudio.cpp" line="9715"/>
+        <location filename="../src/texstudio.cpp" line="3753"/>
+        <location filename="../src/texstudio.cpp" line="5636"/>
+        <location filename="../src/texstudio.cpp" line="6138"/>
+        <location filename="../src/texstudio.cpp" line="6295"/>
+        <location filename="../src/texstudio.cpp" line="6297"/>
+        <location filename="../src/texstudio.cpp" line="6304"/>
+        <location filename="../src/texstudio.cpp" line="6306"/>
+        <location filename="../src/texstudio.cpp" line="9658"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -10706,7 +10720,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2528"/>
-        <location filename="../src/texstudio.cpp" line="9545"/>
+        <location filename="../src/texstudio.cpp" line="9488"/>
         <source>Open Files</source>
         <translation>Відкрити файли</translation>
     </message>
@@ -10716,12 +10730,12 @@ Otherwise there might be random errors and crashes.</source>
         <translation>Не вдалося завантажити останній сеанс.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2631"/>
+        <location filename="../src/texstudio.cpp" line="2621"/>
         <source>Save As</source>
         <translation>Зберегти як</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2648"/>
+        <location filename="../src/texstudio.cpp" line="2638"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -10734,210 +10748,210 @@ this other file before you can overwrite it.</source>
  цей другий файл перед тим, як зможете його переписати.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2666"/>
+        <location filename="../src/texstudio.cpp" line="2656"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Не вдається синхронізувати файл PDF з TeX-джерелом, бо джерельний файл був перейменований при використанні операції «Зберегти як». Слід перекомпілювати новий файл і переглянути результат.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2759"/>
+        <location filename="../src/texstudio.cpp" line="2749"/>
         <source>Rename/Move</source>
         <translation>Перейменувати/пересунути</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2759"/>
+        <location filename="../src/texstudio.cpp" line="2749"/>
         <source>Copy</source>
         <translation>Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2774"/>
+        <location filename="../src/texstudio.cpp" line="2764"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Справді вилучити файл &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2783"/>
+        <location filename="../src/texstudio.cpp" line="2773"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Справді повернути файл &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2810"/>
+        <location filename="../src/texstudio.cpp" line="2800"/>
         <source>Numeric permissions</source>
         <translation>Права доступу, чисельно</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2811"/>
+        <location filename="../src/texstudio.cpp" line="2801"/>
         <source>Verbose permissions</source>
         <translation>Права доступу, докладно</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2858"/>
-        <location filename="../src/texstudio.cpp" line="2921"/>
+        <location filename="../src/texstudio.cpp" line="2848"/>
+        <location filename="../src/texstudio.cpp" line="2911"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>Документ &quot;%1&quot; містить незбережені зміни. Зберегти їх перед закриттям?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2860"/>
-        <location filename="../src/texstudio.cpp" line="2923"/>
+        <location filename="../src/texstudio.cpp" line="2850"/>
+        <location filename="../src/texstudio.cpp" line="2913"/>
         <source>Save and Close</source>
         <translation>Зберегти і закрити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2860"/>
-        <location filename="../src/texstudio.cpp" line="2923"/>
+        <location filename="../src/texstudio.cpp" line="2850"/>
+        <location filename="../src/texstudio.cpp" line="2913"/>
         <source>Close without Saving</source>
         <translation>Закрити без збереження</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2860"/>
-        <location filename="../src/texstudio.cpp" line="2923"/>
+        <location filename="../src/texstudio.cpp" line="2850"/>
+        <location filename="../src/texstudio.cpp" line="2913"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3002"/>
-        <location filename="../src/texstudio.cpp" line="3052"/>
-        <location filename="../src/texstudio.cpp" line="3132"/>
+        <location filename="../src/texstudio.cpp" line="2992"/>
+        <location filename="../src/texstudio.cpp" line="3042"/>
+        <location filename="../src/texstudio.cpp" line="3122"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>Файл &quot;%1&quot; більше не існує. Вилучити його із списку недавніх файлів?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3145"/>
+        <location filename="../src/texstudio.cpp" line="3135"/>
         <source>Loading of session failed.</source>
         <translation>Не вдалося завантажити сеанс.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3162"/>
+        <location filename="../src/texstudio.cpp" line="3152"/>
         <source>Load Session</source>
         <translation>Завантажити сеанс</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3162"/>
-        <location filename="../src/texstudio.cpp" line="3180"/>
+        <location filename="../src/texstudio.cpp" line="3152"/>
+        <location filename="../src/texstudio.cpp" line="3170"/>
         <source>TeXstudio Session</source>
         <translation>Сеанс TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3180"/>
+        <location filename="../src/texstudio.cpp" line="3170"/>
         <source>Save Session</source>
         <translation>Зберегти сеанс</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3183"/>
+        <location filename="../src/texstudio.cpp" line="3173"/>
         <source>Saving of session failed.</source>
         <translation>Не вдалося зберегти сеанс.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3270"/>
+        <location filename="../src/texstudio.cpp" line="3262"/>
         <source>The following files could not be loaded:</source>
         <translation>Наступні файли не вдалося завантажити:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3422"/>
+        <location filename="../src/texstudio.cpp" line="3416"/>
         <source>Image Formats (%1)</source>
         <translation>Формати зображень (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3424"/>
+        <location filename="../src/texstudio.cpp" line="3418"/>
         <source>Save Image</source>
         <translation>Зберегти зображення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3429"/>
+        <location filename="../src/texstudio.cpp" line="3423"/>
         <source>Could not save the image file.</source>
         <translation>Неможливо зберегти файл зображення.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3726"/>
+        <location filename="../src/texstudio.cpp" line="3720"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Вставляти твердий розрив рядка після зазначеного числа символів:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3727"/>
+        <location filename="../src/texstudio.cpp" line="3721"/>
         <source>Smart scope selecting</source>
         <translation>Кмітливе виділення області пошуку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3728"/>
+        <location filename="../src/texstudio.cpp" line="3722"/>
         <source>Join lines before wrapping</source>
         <translation>Об&apos;єднувати рядки перед перенесенням слів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3742"/>
-        <location filename="../src/texstudio.cpp" line="6061"/>
-        <location filename="../src/texstudio.cpp" line="6090"/>
+        <location filename="../src/texstudio.cpp" line="3736"/>
+        <location filename="../src/texstudio.cpp" line="6055"/>
+        <location filename="../src/texstudio.cpp" line="6084"/>
         <source>No document open</source>
         <translation>Не має відкритого документа</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3748"/>
+        <location filename="../src/texstudio.cpp" line="3742"/>
         <source>No dictionary available.</source>
         <translation>Не має доступного словника.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3759"/>
+        <location filename="../src/texstudio.cpp" line="3753"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Не можна завантажити базу даних тезауруса</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4225"/>
+        <location filename="../src/texstudio.cpp" line="4219"/>
         <source>Unable to write to settings file %1</source>
         <translation>Не вдалося записати файл %1 у налаштування</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5305"/>
+        <location filename="../src/texstudio.cpp" line="5299"/>
         <source>Quick Start</source>
         <translation>Швидкий запуск</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5327"/>
+        <location filename="../src/texstudio.cpp" line="5321"/>
         <source>Quick Beamer Presentation</source>
         <translation>Швидка презентація Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5364"/>
+        <location filename="../src/texstudio.cpp" line="5358"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Поточний файл&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5396"/>
+        <location filename="../src/texstudio.cpp" line="5390"/>
         <source>Type: %1</source>
         <translation>Тип: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5442"/>
+        <location filename="../src/texstudio.cpp" line="5436"/>
         <source>Edit User &amp;Tags</source>
         <translation>Змінити &amp;теги користувача</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5500"/>
+        <location filename="../src/texstudio.cpp" line="5494"/>
         <source>Labels:</source>
         <translation>Мітки:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5589"/>
+        <location filename="../src/texstudio.cpp" line="5583"/>
         <source>Encoding Aliases: </source>
         <translation>Скорочення для кодувань:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5642"/>
-        <source>Can't detect the file name.
+        <location filename="../src/texstudio.cpp" line="5636"/>
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Не вдається виявити назву файлу.
  Ви повинні зберегти документ, перш ніж його компілювати.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5649"/>
+        <location filename="../src/texstudio.cpp" line="5643"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Не вдається виявити назву файлу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5788"/>
+        <location filename="../src/texstudio.cpp" line="5782"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Викликано команду для відкриття вбудованого переглядача PDF.
 Однак,  вами використовується версію TeXstudio, яка була скомпільована без вбудованого переглядача PDF.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5808"/>
+        <location filename="../src/texstudio.cpp" line="5802"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10952,200 +10966,200 @@ Do you want to allow and run the new, overriding command?
  (в) Ні, не використовувати команду &quot;%3&quot; і виконувати усталену команду &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5814"/>
+        <location filename="../src/texstudio.cpp" line="5808"/>
         <source>(a) allow for this document</source>
         <translation>(а) дозволити для цього документа</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5815"/>
+        <location filename="../src/texstudio.cpp" line="5809"/>
         <source>(b) allow for all documents</source>
         <translation>(б) дозволити для усіх документів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5816"/>
+        <location filename="../src/texstudio.cpp" line="5810"/>
         <source>(c) use the default command</source>
         <translation>(в) використовувати усталену команду</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5891"/>
+        <location filename="../src/texstudio.cpp" line="5885"/>
         <source>Unknown internal command: %1</source>
         <translation>Невідома внутрішня команда: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5926"/>
+        <location filename="../src/texstudio.cpp" line="5920"/>
         <source>%!TeX program used: %1</source>
         <translation>Програма %!TeX використала: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5929"/>
+        <location filename="../src/texstudio.cpp" line="5923"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>Не розпізнана програма %!TeX! (%1). Використовується типова.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5990"/>
+        <location filename="../src/texstudio.cpp" line="5984"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Ви не можете компілювати документ у каталозі, захищеному від запису.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5992"/>
+        <location filename="../src/texstudio.cpp" line="5986"/>
         <source>Could not start %1.</source>
         <translation>Неможливо запустити %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6020"/>
+        <location filename="../src/texstudio.cpp" line="6014"/>
         <source>Error:</source>
         <translation>Помилка: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6054"/>
+        <location filename="../src/texstudio.cpp" line="6048"/>
         <source>No open project or tex file to clean.</source>
         <translation>Не має відкритих файлів проекту або TeX для очищення.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6094"/>
+        <location filename="../src/texstudio.cpp" line="6088"/>
         <source>Text Analysis</source>
         <translation>Аналіз тексту</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6115"/>
+        <location filename="../src/texstudio.cpp" line="6109"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Генератор випадкових текстів створює новий текст з існуючих слів, тому ви повинні відкрити який-небудь текстовий файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6144"/>
+        <location filename="../src/texstudio.cpp" line="6138"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Файл має бути збережений і відкомпільований до того, як ви зможете переглянути журнал</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6301"/>
-        <location filename="../src/texstudio.cpp" line="6310"/>
+        <location filename="../src/texstudio.cpp" line="6295"/>
+        <location filename="../src/texstudio.cpp" line="6304"/>
         <source>File not found</source>
         <translation>Файл не знайдено</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6303"/>
-        <location filename="../src/texstudio.cpp" line="6312"/>
+        <location filename="../src/texstudio.cpp" line="6297"/>
+        <location filename="../src/texstudio.cpp" line="6306"/>
         <source>Could not open browser</source>
         <translation>Не вдається відкрити переглядач</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6825"/>
+        <location filename="../src/texstudio.cpp" line="6819"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Необхідно зберегти файл перед заданням його, як головного документа.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8433"/>
+        <location filename="../src/texstudio.cpp" line="8425"/>
         <source>commit comment:</source>
         <translation>надіслати коментар:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8435"/>
+        <location filename="../src/texstudio.cpp" line="8427"/>
         <source>check in whole directory ?</source>
         <translation>зареєструвати увесь каталог?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8712"/>
+        <location filename="../src/texstudio.cpp" line="8704"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Увага: діалог автоматично закриється при ручному редагуванні тексту!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8991"/>
+        <location filename="../src/texstudio.cpp" line="8983"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>Не вдалося відкрити файл &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8993"/>
+        <location filename="../src/texstudio.cpp" line="8985"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Файл &quot;%1&quot; не існує.
 Хочете його створити?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9017"/>
+        <location filename="../src/texstudio.cpp" line="9009"/>
         <source>Save Profile</source>
         <translation>Зберегти профіль</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9017"/>
-        <location filename="../src/texstudio.cpp" line="9024"/>
+        <location filename="../src/texstudio.cpp" line="9009"/>
+        <location filename="../src/texstudio.cpp" line="9016"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Профіль TXS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9024"/>
+        <location filename="../src/texstudio.cpp" line="9016"/>
         <source>Load Profile</source>
         <translation>Завантажити профіль</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9076"/>
+        <location filename="../src/texstudio.cpp" line="9068"/>
         <source>Failed to read profile file %1.</source>
         <translation>Не вдалося прочитати файл профілю %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9199"/>
+        <location filename="../src/texstudio.cpp" line="9191"/>
         <source>Problem</source>
         <translation>Проблема</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9199"/>
+        <location filename="../src/texstudio.cpp" line="9191"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Пошук повторення слів працює тільки при активованій мережній перевірці правопису!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9204"/>
+        <location filename="../src/texstudio.cpp" line="9196"/>
         <source>Find Word Repetitions</source>
         <translation>Знайти повторення слів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9213"/>
+        <location filename="../src/texstudio.cpp" line="9205"/>
         <source>&amp;Find Next</source>
         <translation>Знайти &amp;наступне</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9215"/>
+        <location filename="../src/texstudio.cpp" line="9207"/>
         <source>&amp;Find Previous</source>
         <translation>Знайти &amp;попереднє</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9266"/>
+        <location filename="../src/texstudio.cpp" line="9258"/>
         <source>Reached beginning of text.</source>
         <translation>Досягнуто початку тексту.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9266"/>
+        <location filename="../src/texstudio.cpp" line="9258"/>
         <source>Reached end of text.</source>
         <translation>Досягнуто кінця тексту.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9545"/>
-        <location filename="../src/texstudio.cpp" line="9755"/>
-        <location filename="../src/texstudio.cpp" line="9758"/>
+        <location filename="../src/texstudio.cpp" line="9488"/>
+        <location filename="../src/texstudio.cpp" line="9698"/>
+        <location filename="../src/texstudio.cpp" line="9701"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Файли LaTeX (*.tex);;Усі файли (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9715"/>
+        <location filename="../src/texstudio.cpp" line="9658"/>
         <source>You do not have read permission to this file.</source>
         <translation>Ви не володієте правами на читання цього файлу.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9755"/>
+        <location filename="../src/texstudio.cpp" line="9698"/>
         <source>Open Compare File</source>
         <translation>Відкрити порівнюваний файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9758"/>
+        <location filename="../src/texstudio.cpp" line="9701"/>
         <source>Open Base File</source>
         <translation>Відкрити основний файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9839"/>
+        <location filename="../src/texstudio.cpp" line="9782"/>
         <source>SVN Conflict!</source>
         <translation>Конфлікт SVN!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9840"/>
+        <location filename="../src/texstudio.cpp" line="9783"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11156,14 +11170,14 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9937"/>
-        <location filename="../src/texstudio.cpp" line="10028"/>
-        <location filename="../src/texstudio.cpp" line="10034"/>
+        <location filename="../src/texstudio.cpp" line="9880"/>
+        <location filename="../src/texstudio.cpp" line="9971"/>
+        <location filename="../src/texstudio.cpp" line="9977"/>
         <source>TeXstudio Emergency</source>
         <translation>Аварійна ситуація TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9941"/>
+        <location filename="../src/texstudio.cpp" line="9884"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11176,7 +11190,7 @@ Please provide this file if you send a bug report.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9944"/>
+        <location filename="../src/texstudio.cpp" line="9887"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11185,19 +11199,19 @@ Please provide this file if you send a bug report.
 %2 дозволити продовжити роботу TeXstudio? Це може призвести до псування даних.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9945"/>
+        <location filename="../src/texstudio.cpp" line="9888"/>
         <source>Yes, try to recover</source>
         <translation>Так, спробувати відновити роботу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9946"/>
-        <location filename="../src/texstudio.cpp" line="9951"/>
-        <location filename="../src/texstudio.cpp" line="10030"/>
+        <location filename="../src/texstudio.cpp" line="9889"/>
+        <location filename="../src/texstudio.cpp" line="9894"/>
+        <location filename="../src/texstudio.cpp" line="9973"/>
         <source>No, kill the program</source>
         <translation>Ні, вбити програму</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9948"/>
+        <location filename="../src/texstudio.cpp" line="9891"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -11206,17 +11220,17 @@ Please provide this file if you send a bug report.
  %1 Дозволити продовжити виконання програми? Це може призвести до псування даних.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9949"/>
+        <location filename="../src/texstudio.cpp" line="9892"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Так, завершити цикл і спробувати відновити роботу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9950"/>
+        <location filename="../src/texstudio.cpp" line="9893"/>
         <source>Yes, continue the loop</source>
         <translation>Так, продовжити цикл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10029"/>
+        <location filename="../src/texstudio.cpp" line="9972"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11224,55 +11238,55 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
  Потік зупинений. Дозволити продовжити роботу TeXstudio? Це може призвести до псування даних.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10030"/>
+        <location filename="../src/texstudio.cpp" line="9973"/>
         <source>Yes</source>
         <translation>Так</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10034"/>
+        <location filename="../src/texstudio.cpp" line="9977"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Я спробував померти, але нічого не вийшло.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10066"/>
+        <location filename="../src/texstudio.cpp" line="10009"/>
         <source>System Report</source>
         <translation>Системний звіт</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10202"/>
+        <location filename="../src/texstudio.cpp" line="10145"/>
         <source>LT Report</source>
         <translation>Звіт LT</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10229"/>
+        <location filename="../src/texstudio.cpp" line="10172"/>
         <source>process failed to start
 </source>
         <translation>не вдалося запустити процес
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10232"/>
+        <location filename="../src/texstudio.cpp" line="10175"/>
         <source>process crashed
 </source>
         <translation>процес зазнав краху
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10242"/>
+        <location filename="../src/texstudio.cpp" line="10185"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Увімкнено перевірку у реальному часі.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10244"/>
+        <location filename="../src/texstudio.cpp" line="10187"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Вимкнено перевірку у реальному часі!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10247"/>
+        <location filename="../src/texstudio.cpp" line="10190"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -11281,7 +11295,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10249"/>
+        <location filename="../src/texstudio.cpp" line="10192"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -11290,7 +11304,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10252"/>
+        <location filename="../src/texstudio.cpp" line="10195"/>
         <source>Tries to start automatically.
 
 </source>
@@ -11299,7 +11313,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10254"/>
+        <location filename="../src/texstudio.cpp" line="10197"/>
         <source>Autostart disabled.
 
 </source>
@@ -11308,34 +11322,34 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10259"/>
+        <location filename="../src/texstudio.cpp" line="10202"/>
         <source>LT current status: </source>
         <translation>Поточний стан LT: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10262"/>
+        <location filename="../src/texstudio.cpp" line="10205"/>
         <source>working</source>
         <translation>працює</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10265"/>
+        <location filename="../src/texstudio.cpp" line="10208"/>
         <source>error</source>
         <translation>помилка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10268"/>
+        <location filename="../src/texstudio.cpp" line="10211"/>
         <source>unknown</source>
         <translation>невідомо</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10271"/>
+        <location filename="../src/texstudio.cpp" line="10214"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10560"/>
+        <location filename="../src/texstudio.cpp" line="10503"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Помилка при взаємодії із LT: %1</translation>
     </message>
@@ -11365,7 +11379,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Показати вміщувальну теку</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="45"/>
+        <location filename="../src/utilsUI.cpp" line="69"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
         <translation>Не попереджати знову.</translation>
@@ -12513,14 +12527,12 @@ The html files are located in the %1 directory.</source>
         <translation>\\right\\| </translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (Metapost)</source>
-        <translation>Загальне (Metapost)</translation>
+        <translation type="vanished">Загальне (Metapost)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>Alphabetical Commands (Metapost)</source>
-        <translation>Алфавітні команди (Metapost)</translation>
+        <translation type="vanished">Алфавітні команди (Metapost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="271"/>
@@ -12543,64 +12555,52 @@ The html files are located in the %1 directory.</source>
         <translation>begingroup(); endgroup;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (Pstricks)</source>
-        <translation>Загальне (Pstricks)</translation>
+        <translation type="vanished">Загальне (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>Lines/Polygons  (Pstricks)</source>
-        <translation>Прямі/Багатокутники  (Pstricks)</translation>
+        <translation type="vanished">Прямі/Багатокутники  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses  (Pstricks)</source>
-        <translation>Дуги/Кола/Еліпси  (Pstricks)</translation>
+        <translation type="vanished">Дуги/Кола/Еліпси  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves  (Pstricks)</source>
-        <translation>Криві  (Pstricks)</translation>
+        <translation type="vanished">Криві  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>Dots  (Pstricks)</source>
-        <translation>Крапки  (Pstricks)</translation>
+        <translation type="vanished">Крапки  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>Grids  (Pstricks)</source>
-        <translation>Сітки  (Pstricks)</translation>
+        <translation type="vanished">Сітки  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>Placing/Rotating  (Pstricks)</source>
-        <translation>Розташування/Обертання  (Pstricks)</translation>
+        <translation type="vanished">Розташування/Обертання  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>Arrows  (Pstricks)</source>
-        <translation>Стрілки  (Pstricks)</translation>
+        <translation type="vanished">Стрілки  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>Line styles  (Pstricks)</source>
-        <translation>Стилі ліній  (Pstricks)</translation>
+        <translation type="vanished">Стилі ліній  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>Fill styles  (Pstricks)</source>
-        <translation>Стилі заповнення (Pstricks)</translation>
+        <translation type="vanished">Стилі заповнення (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>Colors  (Pstricks)</source>
-        <translation>Кольори  (Pstricks)</translation>
+        <translation type="vanished">Кольори  (Pstricks)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>Plots (Pstricks/pst-plot)</source>
-        <translation>Графіки (Pstricks/pst-plot)</translation>
+        <translation type="vanished">Графіки (Pstricks/pst-plot)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
@@ -12608,19 +12608,101 @@ The html files are located in the %1 directory.</source>
         <translation>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (Tikz)</source>
-        <translation>Загальне (Tikz)</translation>
+        <translation type="vanished">Загальне (Tikz)</translation>
+    </message>
+    <message>
+        <source>Draw  (Tikz)</source>
+        <translation type="vanished">Рисунки  (Tikz)</translation>
+    </message>
+    <message>
+        <source>Arrows  (Tikz)</source>
+        <translation type="vanished">Стрілки  (Tikz)</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="269"/>
+        <source>General (MetaPost)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="270"/>
+        <source>Alphabetical Commands (MetaPost)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="275"/>
+        <source>General (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="276"/>
+        <source>Lines/Polygons (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="277"/>
+        <source>Arcs/Circles/Ellipses (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="278"/>
+        <source>Curves (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="279"/>
+        <source>Dots (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="280"/>
+        <source>Grids (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="281"/>
+        <source>Placing/Rotating (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="282"/>
+        <source>Arrows (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="283"/>
+        <source>Line styles (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="284"/>
+        <source>Fill styles (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="285"/>
+        <source>Colors (PSTricks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="286"/>
+        <source>Plots (PSTricks/pst-plot)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="288"/>
+        <source>General (TikZ)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
-        <source>Draw  (Tikz)</source>
-        <translation>Рисунки  (Tikz)</translation>
+        <source>Draw (TikZ)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="290"/>
-        <source>Arrows  (Tikz)</source>
-        <translation>Стрілки  (Tikz)</translation>
+        <source>Arrows (TikZ)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>
@@ -12696,22 +12778,22 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>pullback</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>pushout</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>pullback (universal property)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>pushout (universal property)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
