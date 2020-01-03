@@ -3442,7 +3442,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{filelist}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{списокфайлов}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -3487,7 +3487,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>Внутренняя матем. мода LaTeX’а \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -8553,7 +8553,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="213"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>орфография</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="215"/>
@@ -12423,7 +12423,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>New Beamer Slides</source>
-        <translation type="unfinished"/>
+        <translation>Новая презентация Beamer</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>

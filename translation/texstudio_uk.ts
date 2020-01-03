@@ -972,7 +972,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="679"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Селектор файлів (Необов&apos;язково. Якщо наявний, то долучіть кінцеву двокрапку):&lt;/i&gt; Якщо нема селектора, то виберіть головний файл. &lt;b&gt;c:&lt;/b&gt; виберіть поточний файл, &lt;b&gt;p{ext}:&lt;/b&gt; Знайдіть файл з тою самою базовою назвою, як у головного файла та розширенням &lt;b&gt;ext&lt;/b&gt;. Пошук зроблено у каталозі головного файла та додаткових каталогах PDF.&lt;br /&gt;&lt;i&gt;Частини назви шляху:&lt;/i&gt; поєднання &lt;b&gt;a&lt;/b&gt;: абсолютного шляху, &lt;b&gt;m&lt;/b&gt;: назва базового файлу без розширення,&lt;b&gt;e&lt;/b&gt;: розширення, &lt;b&gt;r&lt;/b&gt;: відносний шлях до головного, &lt;b&gt;*&lt;/b&gt;: усі файли, що відповідають наступному шаблону&lt;br/&gt;&lt;i&gt;Кінцеві символи:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: закриває селектор. Наступні символи закривають селектор і мають додаткове значення&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: взяти у подвійні лапки, &lt;b&gt;.&lt;/b&gt;  (крапка) додає крапку в кінці, (пропуск): додає пропуск в кінці&lt;br/&gt;&lt;i&gt;Приклади:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: створює абсолютну назву файлу, взяту у подвійні лапкиs, &lt;b&gt;?e)&lt;/b&gt; просто розширення без передньої крапки (наприклад, tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; взята у подвійні лапки назва файлу без розширення (рівносильна &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; назва файлу з розширенням (наприклад, example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: усі файли .aux у поточному каталозі</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="695"/>
@@ -3440,7 +3440,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{filelist}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{список файлів}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -3485,7 +3485,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>Вбудований математичний режим LaTeX \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -8552,7 +8552,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="213"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>правопис</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="215"/>
@@ -12400,47 +12400,47 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>General (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Загальне (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw  (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Рисування  (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>\\begin{asy} \\end{asy}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asy} \\end{asy}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>\\begin{asydef} \\end{asydef}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asydef} \\end{asydef}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>New Beamer Slides</source>
-        <translation type="unfinished"/>
+        <translation>Нові слайди Beamer</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>empty slide</source>
-        <translation type="unfinished"/>
+        <translation>порожній слайд</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>slide with enumerate</source>
-        <translation type="unfinished"/>
+        <translation>слайд з нумерованим списком</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>slide with itemize</source>
-        <translation type="unfinished"/>
+        <translation>слайд з маркованим списком</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>slide with graphic</source>
-        <translation type="unfinished"/>
+        <translation>слайд з графікою</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
@@ -12455,243 +12455,243 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>\\left{ </source>
-        <translation type="unfinished"/>
+        <translation>\\left{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>\\left&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>\\left} </source>
-        <translation type="unfinished"/>
+        <translation>\\left} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>\\left&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>\\left| </source>
-        <translation type="unfinished"/>
+        <translation>\\left| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>\\left\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\left\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>\\right} </source>
-        <translation type="unfinished"/>
+        <translation>\\right} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>\\right&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>\\right{ </source>
-        <translation type="unfinished"/>
+        <translation>\\right{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>\\right&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>\\right| </source>
-        <translation type="unfinished"/>
+        <translation>\\right| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>\\right\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\right\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (Metapost)</source>
-        <translation type="unfinished"/>
+        <translation>Загальне (Metapost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>Alphabetical Commands (Metapost)</source>
-        <translation type="unfinished"/>
+        <translation>Алфавітні команди (Metapost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>beginfig(); endfig;</source>
-        <translation type="unfinished"/>
+        <translation>beginfig(); endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>extra_beginfig(); extra_endfig;</source>
-        <translation type="unfinished"/>
+        <translation>extra_beginfig(); extra_endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>begingraph(); endgraph;</source>
-        <translation type="unfinished"/>
+        <translation>begingraph(); endgraph;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>begingroup(); endgroup;</source>
-        <translation type="unfinished"/>
+        <translation>begingroup(); endgroup;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Загальне (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>Lines/Polygons  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Прямі/Багатокутники  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Дуги/Кола/Еліпси  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Криві  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>Dots  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Крапки  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>Grids  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Сітки  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>Placing/Rotating  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Розташування/Обертання  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>Arrows  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Стрілки  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>Line styles  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Стилі ліній  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>Fill styles  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Стилі заповнення (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>Colors  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Кольори  (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>Plots (Pstricks/pst-plot)</source>
-        <translation type="unfinished"/>
+        <translation>Графіки (Pstricks/pst-plot)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (Tikz)</source>
-        <translation type="unfinished"/>
+        <translation>Загальне (Tikz)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>Draw  (Tikz)</source>
-        <translation type="unfinished"/>
+        <translation>Рисунки  (Tikz)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>Arrows  (Tikz)</source>
-        <translation type="unfinished"/>
+        <translation>Стрілки  (Tikz)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>\\begin{tikzpicture}[options] \\end{tikzpicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{tikzpicture}[параметри] \\end{tikzpicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>\\begin{scope}[options] \\end{scope}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{scope}[параметри] \\end{scope}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>Exact Sequences</source>
-        <translation type="unfinished"/>
+        <translation>Точні послідовності</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>Squares</source>
-        <translation type="unfinished"/>
+        <translation>Квадрати</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>Triangles</source>
-        <translation type="unfinished"/>
+        <translation>Трикутники</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>Arrows (default style)</source>
-        <translation type="unfinished"/>
+        <translation>Стрілки (усталений стиль)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>Arrow Styles</source>
-        <translation type="unfinished"/>
+        <translation>Стиль стрілок</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>Curved Arrows</source>
-        <translation type="unfinished"/>
+        <translation>Вигнуті стрілки</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="299"/>
         <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>empty</source>
-        <translation type="unfinished"/>
+        <translation>порожня</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>long</source>
-        <translation type="unfinished"/>
+        <translation>довга</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>short</source>
-        <translation type="unfinished"/>
+        <translation>коротка</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>long ladder</source>
-        <translation type="unfinished"/>
+        <translation>довга драбина</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>short ladder</source>
-        <translation type="unfinished"/>
+        <translation>коротка драбина</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>only grid</source>
-        <translation type="unfinished"/>
+        <translation>тільки сітка</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
@@ -12716,114 +12716,114 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>right down</source>
-        <translation type="unfinished"/>
+        <translation>вправо вниз</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="310"/>
         <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>down right</source>
-        <translation type="unfinished"/>
+        <translation>вниз вправо</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="311"/>
         <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>up left</source>
-        <translation type="unfinished"/>
+        <translation>вгору вліво</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>left up</source>
-        <translation type="unfinished"/>
+        <translation>вліво вгору</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="313"/>
         <source>right</source>
-        <translation type="unfinished"/>
+        <translation>вправо</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="314"/>
         <source>left</source>
-        <translation type="unfinished"/>
+        <translation>вліво</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="315"/>
         <source>up</source>
-        <translation type="unfinished"/>
+        <translation>вниз</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="316"/>
         <source>down</source>
-        <translation type="unfinished"/>
+        <translation>вгору</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>up right</source>
-        <translation type="unfinished"/>
+        <translation>вгору вправо</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>down left</source>
-        <translation type="unfinished"/>
+        <translation>вниз вліво</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>solid (default)</source>
-        <translation type="unfinished"/>
+        <translation>суцільна (усталена)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>dashed</source>
-        <translation type="unfinished"/>
+        <translation>штрихова</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>dotted</source>
-        <translation type="unfinished"/>
+        <translation>пунктирна</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>double</source>
-        <translation type="unfinished"/>
+        <translation>подвійна</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>wave</source>
-        <translation type="unfinished"/>
+        <translation>хвиляста</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>solid no tip</source>
-        <translation type="unfinished"/>
+        <translation>суцільна без вістря</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="328"/>
         <source>dashed no tip</source>
-        <translation type="unfinished"/>
+        <translation>штрихова без вістря</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="329"/>
         <source>dotted no tip</source>
-        <translation type="unfinished"/>
+        <translation>пунктирна без вістря</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="330"/>
         <source>double no tip</source>
-        <translation type="unfinished"/>
+        <translation>подвійна без вістря</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>wave no tip</source>
-        <translation type="unfinished"/>
+        <translation>хвиляста без вістря</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>over</source>
-        <translation type="unfinished"/>
+        <translation>над</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>under</source>
-        <translation type="unfinished"/>
+        <translation>під</translation>
     </message>
 </context>
 <context>

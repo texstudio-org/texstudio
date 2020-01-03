@@ -770,7 +770,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
     <message>
         <location filename="../src/configdialog.ui" line="14"/>
         <source>Configure TeXstudio</source>
-        <translation>TeXstudio beállításai</translation>
+        <translation>A TeXstudio beállításai</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="99"/>
@@ -2073,7 +2073,7 @@ meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az u
     <message>
         <location filename="../src/configdialog.ui" line="3028"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation>Buboréksúgót jelenít meg a címkék/bibligráfia elemek, előnézet színek vagy képek célszövegéhez</translation>
+        <translation>Buboréksúgót jelenít meg a címkék/bibliográfia elemek, előnézet színek vagy képek célszövegéhez</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3031"/>
@@ -3432,7 +3432,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{filelist}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{fájllista}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -3477,7 +3477,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX sorközi matematikai mód \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -4422,12 +4422,12 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1819"/>
         <source>label missing!</source>
-        <translation>címke hiányzik!</translation>
+        <translation>A címke hiányzik!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1821"/>
         <source>label defined multiple times!</source>
-        <translation>címke többszörösen definiálva!</translation>
+        <translation>A címke többszörösen definiált!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
@@ -4608,13 +4608,13 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2413"/>
         <source>label missing!</source>
-        <translation>címke hiányzik!</translation>
+        <translation>A címke hiányzik!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2415"/>
         <location filename="../src/latexeditorview.cpp" line="2433"/>
         <source>label defined multiple times!</source>
-        <translation>címke többszörösen definiálva!</translation>
+        <translation>A címke többszörösen definiált!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2423"/>
@@ -4627,7 +4627,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2436"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n hivatkozás ehhez a címkéhez</numerusform><numerusform>%n hivatkozás ehhez a címkéhez</numerusform></translation>
+        <translation><numerusform>%n hivatkozás ehhez a címkéhez</numerusform><numerusform>%n hivatkozás erre a címkére</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2441"/>
@@ -8535,7 +8535,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="213"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>betűzés</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="215"/>
@@ -9478,7 +9478,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="867"/>
         <source>Select All &amp;Occurrences</source>
-        <translation>Összes &amp;Occurrences kijelölése</translation>
+        <translation>Összes &amp;előfordulás kijelölése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="868"/>
@@ -12377,47 +12377,47 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>General (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Általános (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw  (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Rajzolás (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>\\begin{asy} \\end{asy}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asy} \\end{asy}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>\\begin{asydef} \\end{asydef}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asydef} \\end{asydef}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>New Beamer Slides</source>
-        <translation type="unfinished"/>
+        <translation>Új Beamer diák</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>empty slide</source>
-        <translation type="unfinished"/>
+        <translation>üres dia</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>slide with enumerate</source>
-        <translation type="unfinished"/>
+        <translation>dia felsorolással</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>slide with itemize</source>
-        <translation type="unfinished"/>
+        <translation>dia számozással</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>slide with graphic</source>
-        <translation type="unfinished"/>
+        <translation>dia grafikával</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
@@ -12432,67 +12432,67 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>\\left{ </source>
-        <translation type="unfinished"/>
+        <translation>\\left{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>\\left&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>\\left} </source>
-        <translation type="unfinished"/>
+        <translation>\\left} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>\\left&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>\\left| </source>
-        <translation type="unfinished"/>
+        <translation>\\left| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>\\left\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\left\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>\\right} </source>
-        <translation type="unfinished"/>
+        <translation>\\right} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>\\right&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>\\right{ </source>
-        <translation type="unfinished"/>
+        <translation>\\right{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>\\right&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>\\right| </source>
-        <translation type="unfinished"/>
+        <translation>\\right| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>\\right\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\right\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (Metapost)</source>
-        <translation type="unfinished"/>
+        <translation>Általános (Metapost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
@@ -12502,173 +12502,173 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>beginfig(); endfig;</source>
-        <translation type="unfinished"/>
+        <translation>beginfig(); endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>extra_beginfig(); extra_endfig;</source>
-        <translation type="unfinished"/>
+        <translation>extra_beginfig(); extra_endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>begingraph(); endgraph;</source>
-        <translation type="unfinished"/>
+        <translation>begingraph(); endgraph;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>begingroup(); endgroup;</source>
-        <translation type="unfinished"/>
+        <translation>begingroup(); endgroup;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Általános (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>Lines/Polygons  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Vonalak/sokszögek (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Ívek/körök/ellipszisek (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Görbék (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>Dots  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Pontok (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>Grids  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Rácsok (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>Placing/Rotating  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Elhelyezés/forgatás (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>Arrows  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Nyilak (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>Line styles  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Vonalstílusok (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>Fill styles  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Kitöltési stílusok (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>Colors  (Pstricks)</source>
-        <translation type="unfinished"/>
+        <translation>Színek (Pstricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>Plots (Pstricks/pst-plot)</source>
-        <translation type="unfinished"/>
+        <translation>Diagramok (Pstricks/pst-plot)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (Tikz)</source>
-        <translation type="unfinished"/>
+        <translation>Általános (Tikz)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>Draw  (Tikz)</source>
-        <translation type="unfinished"/>
+        <translation>Rajzolás (Tikz)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>Arrows  (Tikz)</source>
-        <translation type="unfinished"/>
+        <translation>Nyilak (Tikz)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>\\begin{tikzpicture}[options] \\end{tikzpicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{tikzpicture}[kapcsolók] \\end{tikzpicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>\\begin{scope}[options] \\end{scope}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{scope}[kapcsolók] \\end{scope}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>Exact Sequences</source>
-        <translation type="unfinished"/>
+        <translation>Pontos szekvenciák</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>Squares</source>
-        <translation type="unfinished"/>
+        <translation>Téglalap</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>Triangles</source>
-        <translation type="unfinished"/>
+        <translation>Háromszögek</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>Arrows (default style)</source>
-        <translation type="unfinished"/>
+        <translation>Nyilak (alapértelmezett stílus)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>Arrow Styles</source>
-        <translation type="unfinished"/>
+        <translation>Nyílstílusok</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>Curved Arrows</source>
-        <translation type="unfinished"/>
+        <translation>Ívelt nyilak</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="299"/>
         <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>empty</source>
-        <translation type="unfinished"/>
+        <translation>üres</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>long</source>
-        <translation type="unfinished"/>
+        <translation>hosszú</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>short</source>
-        <translation type="unfinished"/>
+        <translation>rövid</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>long ladder</source>
-        <translation type="unfinished"/>
+        <translation>hosszú létra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>short ladder</source>
-        <translation type="unfinished"/>
+        <translation>rövid létra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>only grid</source>
-        <translation type="unfinished"/>
+        <translation>csak rács</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
@@ -12745,27 +12745,27 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>solid (default)</source>
-        <translation type="unfinished"/>
+        <translation>tömör (alapértelmezett)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>dashed</source>
-        <translation type="unfinished"/>
+        <translation>vonalkázott</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>dotted</source>
-        <translation type="unfinished"/>
+        <translation>pontozott</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>double</source>
-        <translation type="unfinished"/>
+        <translation>kettős</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>wave</source>
-        <translation type="unfinished"/>
+        <translation>hullám</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="327"/>
