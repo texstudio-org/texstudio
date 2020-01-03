@@ -315,12 +315,13 @@ QStringList SpellerManager::availableDicts()
 {
 	if (dictFiles.keys().isEmpty())
 		return QStringList() << emptySpeller->name();
-	return QStringList(dictFiles.keys());
+    return QStringList()<< emptySpeller->name() <<dictFiles.keys();
 }
 
 bool SpellerManager::hasSpeller(const QString &name)
 {
 	if (name == emptySpeller->name()) return true;
+    if (name == "none" || name == "<none>") return true;
 	return dictFiles.contains(name);
 }
 
