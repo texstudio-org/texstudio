@@ -1370,7 +1370,14 @@ void LatexEditorView::setSpellerManager(SpellerManager *manager)
 	connect(spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(reloadSpeller()));
 }
 
-bool LatexEditorView::setSpeller(const QString &name)
+/*!
+ * \brief Set new spelling language
+ * No change if old and new are identical
+ * The speller engine is forwarded to the syntax checker where the actual online checking is done.
+ * \param name of the desired language
+ * \return success of operation
+ */
+bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
 {
 	if (!spellerManager) return false;
 
@@ -1396,8 +1403,8 @@ bool LatexEditorView::setSpeller(const QString &name)
 	connect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
 	emit spellerChanged(name);
 
-	if (document) {
-		document->updateMagicComment("spellcheck", speller->name());
+    if (document && updateComment) {
+        document->updateMagicComment("spellcheck", speller->name());
 	}
 
 	// force new highlighting
