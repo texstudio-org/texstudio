@@ -2145,11 +2145,11 @@ bool BuildManager::testAndRunInternalCommand(const QString &cmd, const QFileInfo
 QString BuildManager::findFile(const QString &defaultName, const QStringList &searchPaths, bool mostRecent)
 {
 	//TODO: merge with findResourceFile
-	QFileInfo base(defaultName);
+	QFileInfo defaultFileInfo(defaultName);
 	QFileInfo mrFileInfo;
-	if (base.exists()) {
+	if (defaultFileInfo.exists()) {
 		if (mostRecent) {
-			mrFileInfo = base;
+			mrFileInfo = defaultFileInfo;
 		} else {
 			return defaultName;
 		}
@@ -2157,15 +2157,15 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 	foreach (QString p, searchPaths) {
 		QFileInfo fi;
 		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && (p[2] == '\\' || p[2] == '/'))) {
-			fi = QFileInfo(QDir(p), base.fileName());
+			fi = QFileInfo(QDir(p), defaultFileInfo.fileName());
 		} else {
 			// ?? seems a bit weird: if p is not an absolute path, then interpret p as directory
 			// e.g. default = /my/filename.tex
 			//	  p = foo
 			// -->  /my/foo/filename.tex
 			// TODO: do we want/use this anywere or can it be removed?
-			QString absPath = base.absolutePath() + "/";
-			QString baseName = "/" + base.fileName();
+			QString absPath = defaultFileInfo.absolutePath() + "/";
+			QString baseName = "/" + defaultFileInfo.fileName();
 			fi = QFileInfo(absPath + p + baseName);
 		}
 		if (fi.exists()) {
