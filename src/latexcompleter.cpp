@@ -870,7 +870,7 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
 		cw.snippetLength = 0;
 		newWordList.append(cw);
 	}
-	qSort(newWordList.begin(), newWordList.end());
+    std::sort(newWordList.begin(), newWordList.end());
 
 	keyValLists.insert(name, newWordList);
 }
@@ -899,7 +899,7 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords, const Q
 		cw.snippetLength = 0;
 		newWordList.append(cw);
 	}
-	qSort(newWordList.begin(), newWordList.end());
+    std::sort(newWordList.begin(), newWordList.end());
 
 	contextLists.insert(context, newWordList);
 }
@@ -1004,7 +1004,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
     }else{
         // normal sorting
         if (!fetchMore) {
-            it = qLowerBound(baselist.begin(), baselist.end(), CompletionWord(word));
+            it = std::lower_bound(baselist.begin(), baselist.end(), CompletionWord(word));
         }
         // special treatment for citation commands as they generated on the fly
         //TODO: needs to be adapted to later code
@@ -1113,7 +1113,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
             QChar lst = wordp[wordp.length() - 1];
             ushort nr = lst.unicode();
             wordp[wordp.length() - 1] = QChar(nr + 1);
-            QList<CompletionWord>::const_iterator it2 = qLowerBound(baselist, CompletionWord(wordp));
+            QList<CompletionWord>::const_iterator it2 = std::lower_bound(baselist.begin(),baselist.end(), CompletionWord(wordp));
             mWordCount = it2 - it;
             if(it2==baselist.constBegin()){
                 mLastWordInList = baselist.last();
@@ -1142,7 +1142,7 @@ void CompletionListModel::incUsage(const QModelIndex &index)
 	if (curWord.usageCount < -1)
 		return; // don't count text words
 
-	CodeSnippetList::iterator it = qBinaryFind(wordsCommands.begin(), wordsCommands.end(), curWord);
+    CodeSnippetList::iterator it = std::lower_bound(wordsCommands.begin(), wordsCommands.end(), curWord);
 	if (it == wordsCommands.end()) // not found, e.g. citations
 		return;
 	if (it->word == curWord.word) {
@@ -1190,7 +1190,7 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, Completion
 		}
 		newWordList.append(cw);
 	}
-	qSort(newWordList.begin(), newWordList.end());
+    std::sort(newWordList.begin(), newWordList.end());
 
 	switch (completionType) {
 	case CT_NORMALTEXT:
@@ -1215,7 +1215,7 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, Co
 	foreach (const CompletionWord &cw, newwords) {
 		newWordList.append(cw);
 	}
-	qSort(newWordList.begin(), newWordList.end());
+    std::sort(newWordList.begin(), newWordList.end());
 
 	//if (completionType==CT_NORMALTEXT) wordsText=newWordList;
 	//else wordsCommands=newWordList;
@@ -1266,7 +1266,7 @@ void CompletionListModel::setBaseWords(const CodeSnippetList &baseCommands, cons
 void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords)
 {
 	wordsAbbrev = newwords;
-	qSort(wordsAbbrev.begin(), wordsAbbrev.end());
+    std::sort(wordsAbbrev.begin(), wordsAbbrev.end());
 }
 
 void CompletionListModel::setConfig(LatexCompleterConfig *newConfig)
@@ -1393,7 +1393,7 @@ void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, Completio
 		}
 		newWordList.append(cw);
 	}
-	qSort(newWordList.begin(), newWordList.end());
+    std::sort(newWordList.begin(), newWordList.end());
 	//
 	CodeSnippetList concated;
 	if (config && completionType == CT_COMMANDS) concated.unite(config->words);
@@ -1576,7 +1576,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 			} else {
 				// nothing special, simply add
 				QList<CompletionWord>::iterator it;
-				it = qLowerBound(listModel->baselist.begin(), listModel->baselist.end(), cw);
+                it = std::lower_bound(listModel->baselist.begin(), listModel->baselist.end(), cw);
 				listModel->baselist.insert(it, cw); // keep sorting
 			}
 		}

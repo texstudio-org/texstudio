@@ -417,8 +417,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	 * e.g. definition of specialDef command, but packages are load at the end of this method.
 	 */
 	//qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
-    QTime tm;
-    tm.start();
+
 	if (!parent->patchEnabled())
 		return false;
 
@@ -1717,7 +1716,7 @@ QList<CodeSnippet> LatexDocument::userCommandList() const
 	foreach (UserCommandPair cmd, mUserCommandList.values()) {
 		csl.append(cmd.snippet);
 	}
-	qSort(csl);
+    std::sort(csl.begin(),csl.end());
 	return csl;
 }
 
@@ -2419,7 +2418,7 @@ void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se
 			)
 			newPos = oldPos;
 		else {
-			newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
+            newPos = std::upper_bound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
 			while (newPos > 0
 				 && newParent->children[newPos-1]->getRealLineNumber() == se->getRealLineNumber()
 				 && newParent->children[newPos-1]->columnNumber == se->columnNumber
@@ -2430,7 +2429,7 @@ void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se
 		oldPos = -1;
 		if (newParent->children.size() > 0 &&
 				newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber())
-			newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
+            newPos = std::upper_bound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
 		else
 			newPos = newParent->children.size();
 	}
