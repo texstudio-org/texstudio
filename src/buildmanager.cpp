@@ -2153,9 +2153,8 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 		else
 			return defaultName;
 	}
-
 	foreach (QString p, searchPaths) {
-        QFileInfo fi;
+		QFileInfo fi;
 		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && (p[2] == '\\' || p[2] == '/'))) {
 			fi = QFileInfo(QDir(p), base.fileName());
 		} else {
@@ -2195,7 +2194,7 @@ QString BuildManager::findCompiledFile(const QString &compiledFilename, const QF
 
 	searchPaths << mainFile.absolutePath();
 	searchPaths << splitPaths(resolvePaths(additionalPdfPaths));
-    foundPathname = findFile(mainFile.absolutePath()+QDir::separator()+compiledFilename, searchPaths, true);
+	foundPathname = findFile(mainFile.absolutePath()+QDir::separator()+compiledFilename, searchPaths, true);
 	if (foundPathname == "") {
 		// If searched filename is relative prepend the mainFile directory
 		// so PDF viewer shows a reasonable error message
