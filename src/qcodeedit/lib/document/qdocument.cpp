@@ -2097,7 +2097,7 @@ void QDocument::foldLines(QList<int> &lines) {
 	if (lines.isEmpty())
 		return;
 
-	qSort(lines);
+    std::sort(lines.begin(),lines.end());
 	QFoldedLineIterator fli = languageDefinition()->foldedLineIterator(this);
 	while (fli.lineNr <= lines.last()) {
 		if (fli.open && !fli.collapsedBlockStart && lines.contains(fli.lineNr)) {
@@ -7289,7 +7289,7 @@ QList<int> QDocumentPrivate::testGetHiddenLines(){
 		for (int i=1;i<=it.value();i++)
 			res.insert(i+it.key());
 	QList<int> tmp = res.toList();
-	qSort(tmp);
+    std::sort(tmp.begin(),tmp.end());
 	return tmp;
 }
 

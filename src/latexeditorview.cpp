@@ -831,7 +831,7 @@ QList<QPair<int, int> > LatexEditorView::getSelectedLineBlocks()
 				lines << l;
 		} else lines << cursors[i].lineNumber();
 	}
-	qSort(lines);
+    std::sort(lines.begin(),lines.end());
 	//merge blocks as speed up and to remove duplicates
 	QList<QPair<int, int> > result;
 	int i = 0;
@@ -876,7 +876,7 @@ void LatexEditorView::alignMirrors()
 	foreach (int l, lines) {
 		QList<QDocumentCursor*> row = map.values(l);
 		colCount = qMax(colCount, row.size());
-		qSort(row.begin(), row.end(), cursorPointerLessThan);
+        std::sort(row.begin(), row.end(), cursorPointerLessThan);
 		cs.append(row);
 	}
 	document->beginMacro();

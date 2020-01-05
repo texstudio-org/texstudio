@@ -586,7 +586,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 				if (!words.contains(line)) {
 					CodeSnippet cs = CodeSnippet(line);
-					CodeSnippetList::iterator it = qLowerBound(words.begin(), words.end(), cs);
+                    CodeSnippetList::iterator it = std::lower_bound(words.begin(), words.end(), cs);
 					it = words.insert(it, cs);
 					uint hash = qHash(line);
 					int len = line.length();

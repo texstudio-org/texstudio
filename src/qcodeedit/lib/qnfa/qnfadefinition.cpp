@@ -224,7 +224,7 @@ void QNFADefinition::load(const QDomDocument& doc, QLanguageFactory::LangData *d
 			nd->m_openingParenthesisEnd[(int)(s.at(s.length()-1).toLatin1())] = true;
 		}
 	}
-	qSort(nd->m_openingParenthesisList.begin(), nd->m_openingParenthesisList.end(), lengthLessThan);
+    std::sort(nd->m_openingParenthesisList.begin(), nd->m_openingParenthesisList.end(), lengthLessThan);
 
 	for (QHash<QString, int>::iterator i = tempOpening.begin(); i != tempOpening.end(); ++i)
 		m_openingParenthesis.insert(i.key(),i.value());
