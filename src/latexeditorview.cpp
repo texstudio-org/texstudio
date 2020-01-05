@@ -1377,7 +1377,7 @@ void LatexEditorView::setSpellerManager(SpellerManager *manager)
  * \param name of the desired language
  * \return success of operation
  */
-bool LatexEditorView::setSpeller(const QString &name)
+bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
 {
 	if (!spellerManager) return false;
 
@@ -1412,8 +1412,8 @@ bool LatexEditorView::setSpeller(const QString &name)
 	connect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
 	emit spellerChanged(name);
 
-	if (document) {
-		document->updateMagicComment("spellcheck", speller->name());
+    if (document && updateComment) {
+        document->updateMagicComment("spellcheck", speller->name());
 	}
 
 	// force new highlighting

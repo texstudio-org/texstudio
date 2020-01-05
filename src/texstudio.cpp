@@ -5548,7 +5548,7 @@ void Texstudio::changeEditorSpeller()
 	if (!action) return;
 	if (!currentEditorView()) return;
 
-	if (!currentEditorView()->setSpeller(action->data().toString())) {
+    if (!currentEditorView()->setSpeller(action->data().toString(),true)) {
 		// restore activity of previous action
 		foreach (QAction *act, statusTbLanguage->actions()) {
 			if (act->data().toString() == currentEditorView()->getSpeller()) {
