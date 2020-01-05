@@ -2151,7 +2151,7 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 		if (mostRecent) {
 			mrFileInfo = defaultFileInfo;
 		} else {
-			return defaultName;
+			return defaultFileInfo.absoluteFilePath();
 		}
 	}
 	foreach (QString p, searchPaths) {
