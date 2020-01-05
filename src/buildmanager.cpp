@@ -2146,12 +2146,13 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 {
 	//TODO: merge with findResourceFile
 	QFileInfo base(defaultName);
-	QFileInfo* mr = nullptr;
+	QFileInfo mrFileInfo;
 	if (base.exists()) {
-		if (mostRecent)
-			mr = new QFileInfo(base);
-		else
+		if (mostRecent) {
+			mrFileInfo = base;
+		} else {
 			return defaultName;
+		}
 	}
 	foreach (QString p, searchPaths) {
 		QFileInfo fi;
@@ -2169,19 +2170,19 @@ QString BuildManager::findFile(const QString &defaultName, const QStringList &se
 		}
 		if (fi.exists()) {
 			if (mostRecent) {
-				if (mr == nullptr || mr->lastModified() < fi.lastModified()) {
-					if (mr != nullptr)
-						delete mr;
-					mr = new QFileInfo(fi);
+				if (
+					mrFileInfo.filePath().isEmpty() ||
+					mrFileInfo.lastModified() < fi.lastModified()
+				) {
+					mrFileInfo = fi;
 				}
-			} else
+			} else {
 				return fi.absoluteFilePath();
+			}
 		}
 	}
-	if (mostRecent && mr != nullptr) {
-		QString result = mr->absoluteFilePath();
-		delete mr;
-		return result;
+	if (mostRecent && (mrFileInfo.filePath().isEmpty() == false)) {
+		return mrFileInfo.absoluteFilePath();
 	} else {
 		return "";
 	}
