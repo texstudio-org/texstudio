@@ -4,6 +4,7 @@
 #include "configmanagerinterface.h"
 #include "utilsSystem.h"
 #include "execprogram.h"
+#include "findindirs.h"
 
 #include "userquickdialog.h"
 
@@ -2142,60 +2143,13 @@ bool BuildManager::testAndRunInternalCommand(const QString &cmd, const QFileInfo
 	return false;
 }
 
-QString BuildManager::findFile(const QString &defaultName, const QStringList &searchPaths, bool mostRecent)
-{
-	//TODO: merge with findResourceFile
-	QFileInfo base(defaultName);
-	QFileInfo* mr = nullptr;
-	if (base.exists()) {
-		if (mostRecent)
-			mr = new QFileInfo(base);
-		else
-			return defaultName;
-	}
-
-	foreach (QString p, searchPaths) {
-        QFileInfo fi;
-		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && (p[2] == '\\' || p[2] == '/'))) {
-			fi = QFileInfo(QDir(p), base.fileName());
-		} else {
-			// ?? seems a bit weird: if p is not an absolute path, then interpret p as directory
-			// e.g. default = /my/filename.tex
-			//	  p = foo
-			// -->  /my/foo/filename.tex
-			// TODO: do we want/use this anywere or can it be removed?
-			QString absPath = base.absolutePath() + "/";
-			QString baseName = "/" + base.fileName();
-			fi = QFileInfo(absPath + p + baseName);
-		}
-		if (fi.exists()) {
-			if (mostRecent) {
-				if (mr == nullptr || mr->lastModified() < fi.lastModified()) {
-					if (mr != nullptr)
-						delete mr;
-					mr = new QFileInfo(fi);
-				}
-			} else
-				return fi.absoluteFilePath();
-		}
-	}
-	if (mostRecent && mr != nullptr) {
-		QString result = mr->absoluteFilePath();
-		delete mr;
-		return result;
-	} else {
-		return "";
-	}
-}
-
 QString BuildManager::findCompiledFile(const QString &compiledFilename, const QFileInfo &mainFile)
 {
-	QStringList searchPaths;
-	QString foundPathname;
-
-	searchPaths << mainFile.absolutePath();
-	searchPaths << splitPaths(resolvePaths(additionalPdfPaths));
-    foundPathname = findFile(mainFile.absolutePath()+QDir::separator()+compiledFilename, searchPaths, true);
+	QString mainDir(mainFile.absolutePath());
+	FindInDirs findInDirs(true, false, mainDir);
+	findInDirs.loadDirs(mainDir);
+	findInDirs.loadDirs(resolvePaths(additionalPdfPaths));
+	QString foundPathname = findInDirs.findAbsolute(compiledFilename);
 	if (foundPathname == "") {
 		// If searched filename is relative prepend the mainFile directory
 		// so PDF viewer shows a reasonable error message

@@ -25,6 +25,7 @@
 #include "dblclickmenubar.h"
 #include "filechooser.h"
 #include "filedialog.h"
+#include "findindirs.h"
 #include "tabdialog.h"
 #include "arraydialog.h"
 #include "bibtexdialog.h"
@@ -5863,10 +5864,11 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 QDateTime Texstudio::GetBblLastModified(void)
 {
 	QFileInfo compileFile (documents.getTemporaryCompileFileName());
-	QStringList searchPaths;
-	searchPaths << compileFile.absolutePath();
-	searchPaths << splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths));
-	QString bblPathname = buildManager.findFile(compileFile.completeBaseName() + ".bbl", searchPaths, true);
+	QString compileDir(compileFile.absolutePath());
+	FindInDirs findInDirs(true, false, compileDir);
+	findInDirs.loadDirs(compileDir);
+	findInDirs.loadDirs(BuildManager::resolvePaths(buildManager.additionalLogPaths));
+	QString bblPathname = findInDirs.findAbsolute(compileFile.completeBaseName() + ".bbl");
 	if (bblPathname == "") {
 		return QDateTime();
 	}
@@ -6123,10 +6125,14 @@ bool Texstudio::logExists()
 	QString finame = documents.getTemporaryCompileFileName();
 	if (finame == "")
 		return false;
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)), true);
-	QFileInfo fic(logFileName);
-	if (fic.exists() && fic.isReadable()) return true;
-	else return false;
+	QString logPathname(getAbsoluteFilePath(documents.getLogFileName()));
+	FindInDirs findInDirs(
+		true,
+		true,
+		QFileInfo(logPathname).absolutePath(),
+		BuildManager::resolvePaths(buildManager.additionalLogPaths)
+	);
+	return findInDirs.findAbsolute(logPathname) != "";
 }
 
 bool Texstudio::loadLog()
@@ -6138,9 +6144,23 @@ bool Texstudio::loadLog()
 		QMessageBox::warning(this, tr("Error"), tr("File must be saved and compiling before you can view the log"));
 		return false;
 	}
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)), true);
+	QString logPathname(getAbsoluteFilePath(documents.getLogFileName()));
+	FindInDirs findInDirs(
+		true,
+		true,
+		QFileInfo(logPathname).absolutePath(),
+		BuildManager::resolvePaths(buildManager.additionalLogPaths)
+	);
+	QString foundPathname = findInDirs.findAbsolute(logPathname);
+	if (foundPathname == "") {
+		return false;
+	}
 	QTextCodec * codec = QTextCodec::codecForName(configManager.logFileEncoding.toLatin1());
-	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName, codec ? codec : documents.getCurrentDocument()->codec() );
+	return outputView->getLogWidget()->loadLogFile(
+		foundPathname,
+		compileFileName,
+		codec ? codec : documents.getCurrentDocument()->codec()
+	);
 }
 
 void Texstudio::showLog()
