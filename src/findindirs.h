@@ -53,7 +53,7 @@ public:
 	 * \return Returns the absolute pathname of the found file. If no matching
 	 * file is found then an empty string ("") is returned.
 	 */
-	QString findAbsolute(const QString &pathname);
+	QString findAbsolute(const QString &pathname) const;
 
 private:
 	bool findCheckFile(const QFileInfo &fileInfo) const;

@@ -28,7 +28,7 @@ void FindInDirs::loadDirs(const QStringList &dirs)
 	}
 }
 
-QString FindInDirs::findAbsolute(const QString &pathname)
+QString FindInDirs::findAbsolute(const QString &pathname) const
 {
 	QFileInfo pathInfo(pathname);
 	QFileInfo mrInfo;
