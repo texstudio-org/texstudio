@@ -5865,7 +5865,7 @@ QDateTime Texstudio::GetBblLastModified(void)
 {
 	QFileInfo compileFile (documents.getTemporaryCompileFileName());
 	QString compileDir(compileFile.absolutePath());
-	FindInDirs findInDirs(true, compileDir);
+	FindInDirs findInDirs(true, false, compileDir);
 	findInDirs.loadOneDir(compileDir);
 	findInDirs.loadDirs(BuildManager::resolvePaths(buildManager.additionalLogPaths));
 	QString bblPathname = findInDirs.findAbsolute(compileFile.completeBaseName() + ".bbl");
@@ -6128,17 +6128,11 @@ bool Texstudio::logExists()
 	QString logPathname(getAbsoluteFilePath(documents.getLogFileName()));
 	FindInDirs findInDirs(
 		true,
+		true,
 		QFileInfo(logPathname).absolutePath(),
 		BuildManager::resolvePaths(buildManager.additionalLogPaths)
 	);
-	QString foundPathname = findInDirs.findAbsolute(logPathname);
-	if (foundPathname == "") {
-		return false;
-	}
-	if (QFileInfo(foundPathname).isReadable() == false) {
-		return false;
-	}
-	return true;
+	return findInDirs.findAbsolute(logPathname) != "";
 }
 
 bool Texstudio::loadLog()
@@ -6152,6 +6146,7 @@ bool Texstudio::loadLog()
 	}
 	QString logPathname(getAbsoluteFilePath(documents.getLogFileName()));
 	FindInDirs findInDirs(
+		true,
 		true,
 		QFileInfo(logPathname).absolutePath(),
 		BuildManager::resolvePaths(buildManager.additionalLogPaths)

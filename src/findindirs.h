@@ -7,14 +7,17 @@
 class FindInDirs
 {
 public:
-	FindInDirs(bool mostRecent, const QString &resolveDir, const QString &dirs = "");
+	FindInDirs(bool mostRecent, bool checkReadable, const QString &resolveDir, const QString &dirs = "");
 	void loadDirs(const QString &dirs);
 	void loadDirs(const QStringList &dirs);
 	void loadOneDir(const QString &dir);
 	QString findAbsolute(const QString &pathname);
 
 private:
+	bool findCheckFile(const QFileInfo &fileInfo) const;
+
 	bool m_mostRecent;
+	bool m_checkReadable;
 	QString m_resolveDir;
 	QStringList m_absDirs;
 };

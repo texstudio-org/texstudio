@@ -2146,7 +2146,7 @@ bool BuildManager::testAndRunInternalCommand(const QString &cmd, const QFileInfo
 QString BuildManager::findCompiledFile(const QString &compiledFilename, const QFileInfo &mainFile)
 {
 	QString mainDir(mainFile.absolutePath());
-	FindInDirs findInDirs(true, mainDir);
+	FindInDirs findInDirs(true, false, mainDir);
 	findInDirs.loadOneDir(mainDir);
 	findInDirs.loadDirs(resolvePaths(additionalPdfPaths));
 	QString foundPathname = findInDirs.findAbsolute(compiledFilename);

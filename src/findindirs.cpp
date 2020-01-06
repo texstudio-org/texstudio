@@ -1,8 +1,9 @@
 #include "findindirs.h"
 #include "utilsSystem.h"
 
-FindInDirs::FindInDirs(bool mostRecent, const QString &resolveDir, const QString &dirs) :
+FindInDirs::FindInDirs(bool mostRecent, bool checkReadable, const QString &resolveDir, const QString &dirs) :
 	m_mostRecent(mostRecent),
+	m_checkReadable(checkReadable),
 	m_resolveDir(resolveDir)
 {
 	Q_ASSERT(QDir::isAbsolutePath(resolveDir));
@@ -36,7 +37,7 @@ QString FindInDirs::findAbsolute(const QString &pathname)
 {
 	QFileInfo pathInfo(pathname);
 	QFileInfo mrInfo;
-	if (pathInfo.exists()) {
+	if (findCheckFile(pathInfo)) {
 		if (m_mostRecent) {
 			mrInfo = pathInfo;
 		} else {
@@ -45,7 +46,7 @@ QString FindInDirs::findAbsolute(const QString &pathname)
 	}
 	foreach (const QString &oneSearchDir, m_absDirs) {
 		QFileInfo fi (QDir(oneSearchDir), pathInfo.fileName());
-		if (fi.exists()) {
+		if (findCheckFile(fi)) {
 			if (m_mostRecent) {
 				if (
 					mrInfo.filePath().isEmpty() ||
@@ -63,4 +64,9 @@ QString FindInDirs::findAbsolute(const QString &pathname)
 	} else {
 		return "";
 	}
+}
+
+bool FindInDirs::findCheckFile(const QFileInfo &fileInfo) const
+{
+	return(m_checkReadable ? fileInfo.isReadable() : fileInfo.exists());
 }
