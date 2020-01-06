@@ -10,7 +10,6 @@ public:
 	FindInDirs(bool mostRecent, bool checkReadable, const QString &resolveDir, const QString &dirs = "");
 	void loadDirs(const QString &dirs);
 	void loadDirs(const QStringList &dirs);
-	void loadOneDir(const QString &dir);
 	QString findAbsolute(const QString &pathname);
 
 private:

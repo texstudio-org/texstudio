@@ -2147,7 +2147,7 @@ QString BuildManager::findCompiledFile(const QString &compiledFilename, const QF
 {
 	QString mainDir(mainFile.absolutePath());
 	FindInDirs findInDirs(true, false, mainDir);
-	findInDirs.loadOneDir(mainDir);
+	findInDirs.loadDirs(mainDir);
 	findInDirs.loadDirs(resolvePaths(additionalPdfPaths));
 	QString foundPathname = findInDirs.findAbsolute(compiledFilename);
 	if (foundPathname == "") {

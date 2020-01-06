@@ -20,17 +20,12 @@ void FindInDirs::loadDirs(const QString &dirs)
 void FindInDirs::loadDirs(const QStringList &dirs)
 {
 	foreach(const QString &oneDir, dirs) {
-		loadOneDir(oneDir);
+		m_absDirs.push_back(
+			QDir::isAbsolutePath(oneDir) ?
+			oneDir :
+			m_resolveDir + QDir::separator() + oneDir
+		);
 	}
-}
-
-void FindInDirs::loadOneDir(const QString &dir)
-{
-	QString resolved =
-		QDir::isAbsolutePath(dir) ?
-		dir :
-		m_resolveDir + QDir::separator() + dir;
-	m_absDirs.push_back(resolved);
 }
 
 QString FindInDirs::findAbsolute(const QString &pathname)

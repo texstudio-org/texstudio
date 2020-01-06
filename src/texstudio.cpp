@@ -5866,7 +5866,7 @@ QDateTime Texstudio::GetBblLastModified(void)
 	QFileInfo compileFile (documents.getTemporaryCompileFileName());
 	QString compileDir(compileFile.absolutePath());
 	FindInDirs findInDirs(true, false, compileDir);
-	findInDirs.loadOneDir(compileDir);
+	findInDirs.loadDirs(compileDir);
 	findInDirs.loadDirs(BuildManager::resolvePaths(buildManager.additionalLogPaths));
 	QString bblPathname = findInDirs.findAbsolute(compileFile.completeBaseName() + ".bbl");
 	if (bblPathname == "") {
