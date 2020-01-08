@@ -315,7 +315,7 @@ isEmpty(USE_SYSTEM_QUAZIP) {
 include(src/pdfviewer/pdfviewer.pri)
 LIBS += -lz # Internal PDF viewer and internal QuaZIP require zlib
 win32: {
-    LIBS += -lShlwapi # SyncTeX/Windows uses Shlwapi
+    LIBS += -lshlwapi # SyncTeX/Windows uses shlwapi
 }
 
 # ###############################
