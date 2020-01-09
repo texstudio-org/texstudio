@@ -61,7 +61,7 @@
 	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
 	<li><a href="#SECTION32a">4.2 Syntax Check</a></li>
 	<li><a href="#SECTION32">4.3 Bibliography</a></li>
-	<li><a href="#SECTION33a">4.4 External Commands</h2>
+	<li><a href="#SECTION33a">4.4 External Commands</a></li>
 	<li><a href="#SECTION33b">4.5 SVN Support</a></li>
 	<li><a href="#SECTION33">4.6 Personal macros</a></li>
 	<li><a href="#SECTION34">4.7 PSTricks support</a></li>
@@ -685,17 +685,35 @@ Note: texstudio needs that the env-name starts with "%", though that character i
   </tr>
   <tr><td> writeFile(name, value) </td>	<td> Writes value to file name (requires write privileges) </td></tr>
   <tr><td> readFile(name) </td>	<td> Reads the entire file name (requires read privileges) </td></tr>
-  <tr><td> system(cmd, workingDirectory="") </td>	<td> Calls cmd and returns a ProcessX object which has this methodes:
-    <ul>
-    <li>waitForFinished: Wait until the process is finished</li>
-    <li>readAllStandardOutputStr: Returns the stdout</li>
-    <li>readAllStandardErrorStr: Returns the stderr</li>
-    <li>exitCode: The exit code</li>
-    <li>exitStatus: The qt exit status</li>
-    <li>terminate or kill: Stops the process</li>
-    </ul>
-	If workingDirectory is not set, the working directory will be inherited from the TeXstudio executable.
-  </td></tr>
+  <tr>
+    <td> system(cmd, workingDirectory="") </td>
+    <td>
+	Calls an external command <b>cmd</b>, which includes the program name and its arguments.<br>
+	<b>cmd</b> may undergo command-line expansion as follows:
+        <ul>
+            <li>
+              If <b>cmd</b> contains the string <b>txs:///</b> or if it does <b>not</b>
+	      contain any pipe (|) characters, then <b>cmd</b> undergoes standard command-line expansion like any other
+              <a href="#SECTION33a">external command</a>.<br>
+            </li>
+            <li>
+              If <b>cmd</b> does not contain the string <b>txs:///</b> and it contains at least one pipe character, then
+              it is executed without any string expansion or replacement.<br>
+            </li>
+        </ul>
+	If <b>workingDirectory</b> is not set, the working directory will be inherited from the TeXstudio executable.<br>
+        This command returns a ProcessX object which has the following methods:
+        <ul>
+          <li>waitForFinished: Wait until the process is finished</li>
+          <li>readAllStandardOutputStr: Returns the stdout</li>
+          <li>readAllStandardErrorStr: Returns the stderr</li>
+          <li>exitCode: The exit code</li>
+          <li>exitStatus: The qt exit status</li>
+          <li>terminate or kill: Stops the process</li>
+        </ul>
+        If the script does is not granted permission to run the external command, then <b>system()</b> returns <b>null</b>.
+    </td>
+  </tr>
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
   <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
   <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>
