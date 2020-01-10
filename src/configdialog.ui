@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>708</width>
-            <height>756</height>
+            <width>562</width>
+            <height>640</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -735,8 +735,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>933</width>
-            <height>612</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -893,8 +893,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>240</width>
-                   <height>103</height>
+                   <width>856</width>
+                   <height>76</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -1574,7 +1574,7 @@ Then you can select a new shortcut by one of the following ways:
           </item>
           <item row="12" column="1">
            <widget class="QComboBox" name="comboboxLineNumbers">
-            <property stdset="0">
+            <property name="" stdset="0">
              <bool>true</bool>
             </property>
             <item>
@@ -1958,8 +1958,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>889</width>
-            <height>1816</height>
+            <width>870</width>
+            <height>1589</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2851,130 +2851,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pageCustomHighlighting">
-      <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QTableWidget" name="twHighlighEnvirons">
-         <property name="toolTip">
-          <string>Here the highlighting of custom environments can be changed.</string>
-         </property>
-         <property name="rowCount">
-          <number>1</number>
-         </property>
-         <property name="columnCount">
-          <number>2</number>
-         </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>200</number>
-         </attribute>
-         <row/>
-         <column>
-          <property name="text">
-           <string>Custom Environment</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Type of Environment</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout">
-         <item>
-          <widget class="QPushButton" name="pbAddLine">
-           <property name="toolTip">
-            <string>Here you can add another environment for custom highlighting.</string>
-           </property>
-           <property name="text">
-            <string>Add Line</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbRemoveLine">
-           <property name="text">
-            <string>Remove Line</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QTableWidget" name="twCustomSyntax">
-         <property name="rowCount">
-          <number>1</number>
-         </property>
-         <attribute name="horizontalHeaderStretchLastSection">
-          <bool>true</bool>
-         </attribute>
-         <row/>
-         <column>
-          <property name="text">
-           <string>Additional Commands</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QPushButton" name="pbAddSyntaxLine">
-           <property name="text">
-            <string>Add Line</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbRemoveSyntaxLine">
-           <property name="text">
-            <string>Remove Line</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="pageCompletion">
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <property name="leftMargin">
@@ -3269,8 +3145,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>645</width>
-            <height>884</height>
+            <width>513</width>
+            <height>692</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3795,8 +3671,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>456</width>
-            <height>313</height>
+            <width>367</width>
+            <height>259</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4057,8 +3933,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>654</width>
-            <height>589</height>
+            <width>515</width>
+            <height>466</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4623,12 +4499,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>comboBoxAutoSave</tabstop>
   <tabstop>checkBoxHackDisableAccentWorkaround</tabstop>
   <tabstop>checkBoxHackAutoRendering</tabstop>
-  <tabstop>twHighlighEnvirons</tabstop>
-  <tabstop>pbAddLine</tabstop>
-  <tabstop>pbRemoveLine</tabstop>
-  <tabstop>twCustomSyntax</tabstop>
-  <tabstop>pbAddSyntaxLine</tabstop>
-  <tabstop>pbRemoveSyntaxLine</tabstop>
   <tabstop>spinBoxTabRelFontSize</tabstop>
   <tabstop>completeListWidget</tabstop>
   <tabstop>checkBoxGrammarRepetitionCheck</tabstop>

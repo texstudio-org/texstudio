@@ -101,8 +101,6 @@ public:
 	QList<QMenu *> allMenus;
 	QList<QMenu *> standardToolbarMenus;
 
-	QStringList *environModes;
-
 	void setBuildManger(BuildManager *buildManager) { mBuildManager = buildManager; }
 
 	bool riddled;
@@ -143,11 +141,6 @@ private slots:
 	void refreshLastUpdateTime();
 
 	void populateComboBoxFont(bool onlyMonospaced);
-
-	void custEnvAddLine();
-	void custEnvRemoveLine();
-	void custSyntaxAddLine();
-	void custSyntaxRemoveLine();
 
 	void revertClicked();
 

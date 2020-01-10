@@ -397,8 +397,6 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	UtilsUi::enableTouchScrolling(ui.scrollAreaBuild);
 	UtilsUi::enableTouchScrolling(ui.menuTree);
 	UtilsUi::enableTouchScrolling(ui.scrollAreaAdvancedEditor);
-	UtilsUi::enableTouchScrolling(ui.twHighlighEnvirons);
-	UtilsUi::enableTouchScrolling(ui.twCustomSyntax);
 	UtilsUi::enableTouchScrolling(ui.scrollAreaGrammar);
 	UtilsUi::enableTouchScrolling(ui.scrollAreaPreview);
 	UtilsUi::enableTouchScrolling(ui.scrollAreaPDFviewer);
@@ -462,12 +460,6 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 
 	ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>").arg("<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
-	//page custom environment
-	connect(ui.pbAddLine, SIGNAL(clicked()), this, SLOT(custEnvAddLine()));
-	connect(ui.pbRemoveLine, SIGNAL(clicked()), this, SLOT(custEnvRemoveLine()));
-	connect(ui.pbAddSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxAddLine()));
-	connect(ui.pbRemoveSyntaxLine, SIGNAL(clicked()), this, SLOT(custSyntaxRemoveLine()));
-    environModes = nullptr;
 	//pagequick
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
 	connect(ui.pushButtonGrammarLTPath, SIGNAL(clicked()), this, SLOT(browseGrammarLTPath()));
@@ -1141,74 +1133,6 @@ void ConfigDialog::populateComboBoxFont(bool onlyMonospaced)
 
 }
 
-void ConfigDialog::custEnvAddLine()
-{
-	int i = ui.twHighlighEnvirons->rowCount();
-	ui.twHighlighEnvirons->setRowCount(i + 1);
-
-	QStringList lst;
-	if (environModes)
-		lst = *environModes;
-	else
-		lst << "verbatim" << "math";
-
-	QTableWidgetItem *item = new QTableWidgetItem("");
-	ui.twHighlighEnvirons->setItem(i, 0, item);
-    QComboBox *cb = new QComboBox(nullptr);
-	cb->insertItems(0, lst);
-	ui.twHighlighEnvirons->setCellWidget(i, 1, cb);
-}
-
-void ConfigDialog::custEnvRemoveLine()
-{
-	int i = ui.twHighlighEnvirons->currentRow();
-	if (i < 0)
-		i = ui.twHighlighEnvirons->rowCount() - 1;
-
-	ui.twHighlighEnvirons->removeRow(i);
-
-	i = ui.twHighlighEnvirons->rowCount();
-	if (i == 0) {
-		ui.twHighlighEnvirons->setRowCount(i + 1);
-
-		QStringList lst;
-		if (environModes)
-			lst = *environModes;
-		else
-			lst << "verbatim" << "math";
-
-		QTableWidgetItem *item = new QTableWidgetItem("");
-		ui.twHighlighEnvirons->setItem(i, 0, item);
-        QComboBox *cb = new QComboBox(nullptr);
-		cb->insertItems(0, lst);
-		ui.twHighlighEnvirons->setCellWidget(i, 1, cb);
-	}
-}
-
-void ConfigDialog::custSyntaxAddLine()
-{
-	int i = ui.twCustomSyntax->rowCount();
-	ui.twCustomSyntax->setRowCount(i + 1);
-
-	QTableWidgetItem *item = new QTableWidgetItem("");
-	ui.twCustomSyntax->setItem(i, 0, item);
-}
-
-void ConfigDialog::custSyntaxRemoveLine()
-{
-	int i = ui.twCustomSyntax->currentRow();
-	if (i < 0)
-		i = ui.twCustomSyntax->rowCount() - 1;
-	ui.twCustomSyntax->removeRow(i);
-
-	i = ui.twCustomSyntax->rowCount();
-	if (i == 0) {
-		ui.twCustomSyntax->setRowCount(i + 1);
-
-		QTableWidgetItem *item = new QTableWidgetItem("");
-		ui.twCustomSyntax->setItem(i, 0, item);
-	}
-}
 
 bool ConfigDialog::askRiddle()
 {

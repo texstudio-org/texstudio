@@ -1524,40 +1524,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->fmConfig->setBasePointSize( editorConfig->fontSize );
 	confDlg->fmConfig->addScheme("", QDocument::defaultFormatScheme());
 
-	// custom higlighting
-	{
-		confDlg->environModes = &enviromentModes;
-		int l = 0;
-		confDlg->ui.twHighlighEnvirons->setRowCount(customEnvironments.size() + 1);
-		QMap<QString, QVariant>::const_iterator i;
-		for (i = customEnvironments.constBegin(); i != customEnvironments.constEnd(); ++i) {
-			QString env = i.key();
-			QTableWidgetItem *item = new QTableWidgetItem(env);
-			confDlg->ui.twHighlighEnvirons->setItem(l, 0, item);
-			//item=new QTableWidgetItem(i.value());
-            QComboBox *cb = new QComboBox(nullptr);
-			cb->insertItems(0, enviromentModes);
-			cb->setCurrentIndex(i.value().toInt());
-			confDlg->ui.twHighlighEnvirons->setCellWidget(l, 1, cb);
-			l++;
-		}
-		QTableWidgetItem *item = new QTableWidgetItem("");
-		confDlg->ui.twHighlighEnvirons->setItem(l, 0, item);
-		//item=new QTableWidgetItem(i.value());
-        QComboBox *cb = new QComboBox(nullptr);
-		cb->insertItems(0, enviromentModes);
-		confDlg->ui.twHighlighEnvirons->setCellWidget(l, 1, cb);
-
-		confDlg->ui.twCustomSyntax->setRowCount(LatexParser::getInstance().customCommands.count() + 1);
-		l = 0;
-		foreach (const QString &cmd, LatexParser::getInstance().customCommands) {
-			QTableWidgetItem *item = new QTableWidgetItem(cmd);
-			confDlg->ui.twCustomSyntax->setItem(l, 0, item);
-			l++;
-		}
-		item = new QTableWidgetItem("");
-		confDlg->ui.twCustomSyntax->setItem(l, 0, item);
-	}
 	// set scaling sizes
 	confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
 	confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
@@ -1821,23 +1787,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		if (language == tr("default")) language = "";
 		if (language != lastLanguage) loadTranslations(language);
 
-		// custom highlighting
-		customEnvironments.clear();
-		for (int i = 0; i < confDlg->ui.twHighlighEnvirons->rowCount(); i++) {
-			QString env = confDlg->ui.twHighlighEnvirons->item(i, 0)->text();
-			if (!env.isEmpty()) {
-				if (env.endsWith("*") && !env.endsWith("\\*"))
-					env.replace(env.length() - 1, 1, "\\*");
-				QComboBox *cb = qobject_cast<QComboBox *>(confDlg->ui.twHighlighEnvirons->cellWidget(i, 1));
-				customEnvironments.insert(env, cb->currentIndex());
-			}
-		}
-		latexParser.customCommands.clear();
-		for (int i = 0; i < confDlg->ui.twCustomSyntax->rowCount(); i++) {
-			QString cmd = confDlg->ui.twCustomSyntax->item(i, 0)->text();
-			if (!cmd.isEmpty())
-				latexParser.customCommands.insert(cmd);
-		}
 		// GUI scaling
 		guiToolbarIconSize = confDlg->ui.horizontalSliderIcon->value();
 		guiSecondaryToolbarIconSize = confDlg->ui.horizontalSliderCentraIcon->value();
