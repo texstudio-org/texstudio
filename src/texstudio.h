@@ -494,7 +494,9 @@ protected slots:
 	void viewCollapseBlock();
 	void viewExpandBlock();
 
+#ifndef NO_POPPLER_PREVIEW
 	QObject *newPdfPreviewer(bool embedded = false);
+#endif
 	void pdfClosed();
 
 	void masterDocumentChanged(LatexDocument *doc);

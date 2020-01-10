@@ -5780,7 +5780,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 #endif
 
 #else
-    UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
+	Q_UNUSED(master)
+	Q_UNUSED(options)
+	UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
 #endif
 
 }
@@ -7119,9 +7121,9 @@ void Texstudio::pdfClosed()
 }
 
 
+#ifndef NO_POPPLER_PREVIEW
 QObject *Texstudio::newPdfPreviewer(bool embedded)
 {
-#ifndef NO_POPPLER_PREVIEW
 	PDFDocument *pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, embedded);
 	pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiSecondaryToolbarIconSize : configManager.guiToolbarIconSize);
 	if (embedded) {
@@ -7162,10 +7164,8 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
 		connect(pdfviewerWindow, SIGNAL(syncView(QString, QFileInfo, int)), doc, SLOT(syncFromView(QString, QFileInfo, int)));
 	}
 	return pdfviewerWindow;
-#else
-	return 0;
-#endif
 }
+#endif
 
 void Texstudio::masterDocumentChanged(LatexDocument *doc)
 {
@@ -8433,6 +8433,9 @@ void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 			}
 		}
 	}
+#else
+	Q_UNUSED(cur)
+	Q_UNUSED(inForeground)
 #endif
 }
 
@@ -10268,6 +10271,9 @@ void Texstudio::openInternalDocViewer(QString package, const QString command)
 		if (!command.isEmpty())
 			pdf->search(command, false, false, false, false, false);
 	}
+#else
+	Q_UNUSED(package)
+	Q_UNUSED(command)
 #endif
 }
 /*!
@@ -10401,6 +10407,8 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 		enlargedViewer=false;
 	}
 	viewer->setStateEnlarged(false);
+#else
+	Q_UNUSED(preserveConfig)
 #endif
 }
 
