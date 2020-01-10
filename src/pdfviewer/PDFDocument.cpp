@@ -421,7 +421,7 @@ PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> a
 		QMessageBox::warning(this, "", tr("File %1 does not exists").arg(url));
 		return;
 	}
-	this->load(url);
+	this->load(QUrl::fromLocalFile(url));
 
 	popup = new QMenu(this);
 	popup->addAction(tr("&Play"), this, SLOT(realPlay()));
