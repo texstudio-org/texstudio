@@ -505,7 +505,6 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Editor"), getRealIcon("config_editor"));
 	createIcon(tr("Adv. Editor"), getRealIcon("config_advancededitor"), true);
 	createIcon(tr("Syntax Highlighting"), getRealIcon("config_highlighting"));
-	createIcon(tr("Custom Highlighting"), getRealIcon("config_highlighting"), true);
 	createIcon(tr("Completion"), getRealIcon("config_completion"));
 	createIcon(tr("Language Checking"), getRealIcon("config_editor"));
 	createIcon(tr("Preview"), getRealIcon("config_preview"));
