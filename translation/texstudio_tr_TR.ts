@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr_TR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr_TR" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -909,7 +907,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
         <location filename="../src/configdialog.ui" line="508"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Almak istediğiniz güncelleme bildirimlerini belirleyin:
 - Kararlı Sürümler: Sizin için en önemlisi kararlılık ise bunu seçin.
@@ -1117,7 +1115,7 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harfe duyarlıdır.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1082"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2644,8 +2642,8 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
         <location filename="../src/configdialog.ui" line="4331"/>
         <location filename="../src/configdialog.ui" line="4386"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>PDF kitaplığı oluşturucu arka plan uygulaması olarak poppler kullanıyor.
 Varsayılan değer olan &apos;Splash&apos; çoğu durum için uygundur.
@@ -4323,7 +4321,7 @@ Tüm değişiklikleri geri almak istediğinize emin misiniz?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Şekil konumu ayarları
@@ -4441,7 +4439,7 @@ Yardımcı komutu desteklemiyor</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya Adı: %1&lt;/b&gt;
 </translation>
@@ -4629,7 +4627,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2430"/>
         <location filename="../src/latexeditorview.cpp" line="2502"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya Adı: %1&lt;/b&gt;
 </translation>
@@ -4637,9 +4635,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2443"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>bu etikete %n başvuru</numerusform>
-        </translation>
+        <translation><numerusform>bu etikete %n başvuru</numerusform><numerusform>bu etikete %n başvuru</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2448"/>
@@ -6319,7 +6315,7 @@ dosyasına yazılamadı.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1099"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Disk üzerindeki özgün dosya kayıt sırasında silindi.
 Dosyanın kopyasını şu konumda bulabilirsiniz
@@ -9218,27 +9214,19 @@ dosyası silinemedi.</translation>
         <translation>Sol/Sağ Parantezler</translation>
     </message>
     <message>
-        <source>Pstricks Commands</source>
-        <translation type="vanished">Pstricks Komutları</translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="658"/>
         <source>MetaPost Commands</source>
         <translation>MetaPost Komutları</translation>
     </message>
     <message>
-        <source>Tikz Commands</source>
-        <translation type="vanished">Tikz Komutları</translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="657"/>
         <source>PSTricks Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>PSTricks Komutları</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="659"/>
         <source>TikZ Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>TikZ Komutları</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="660"/>
@@ -10648,7 +10636,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1920"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation>Bir SyncTeX&#xa0;dosyasının hatalarını ayıklamak istiyor musunuz?</translation>
+        <translation>Bir SyncTeX dosyasının hatalarını ayıklamak istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1994"/>
@@ -10926,7 +10914,7 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5636"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Dosya adı belirlenemedi.
 Bir belgeyi derlemeden önce bir kez kaydetmeniz gerekir.</translation>
@@ -12515,14 +12503,6 @@ HTML dosyalarını % 1 klasöründe bulabilirsiniz.</translation>
         <translation>\\right\\| </translation>
     </message>
     <message>
-        <source>General (Metapost)</source>
-        <translation type="vanished">Genel (Üst yazı)</translation>
-    </message>
-    <message>
-        <source>Alphabetical Commands (Metapost)</source>
-        <translation type="vanished">Alfabetik Komutlar (Üst yazı)</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>beginfig(); endfig;</source>
         <translation>beginfig(); endfig;</translation>
@@ -12543,154 +12523,94 @@ HTML dosyalarını % 1 klasöründe bulabilirsiniz.</translation>
         <translation>begingroup(); endgroup;</translation>
     </message>
     <message>
-        <source>General (Pstricks)</source>
-        <translation type="vanished">Genel (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Lines/Polygons  (Pstricks)</source>
-        <translation type="vanished">Çizgiler/Poligonlar (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Arcs/Circles/Ellipses  (Pstricks)</source>
-        <translation type="vanished">Yaylar/Çemberler/Elipsler (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Curves  (Pstricks)</source>
-        <translation type="vanished">Eğriler (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Dots  (Pstricks)</source>
-        <translation type="vanished">Noktalar (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Grids  (Pstricks)</source>
-        <translation type="vanished">Izgaralar (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Placing/Rotating  (Pstricks)</source>
-        <translation type="vanished">Konumlandırma/Döndürme (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Arrows  (Pstricks)</source>
-        <translation type="vanished">Oklar (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Line styles  (Pstricks)</source>
-        <translation type="vanished">Çizgi biçemleri (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Fill styles  (Pstricks)</source>
-        <translation type="vanished">Doldurma biçemleri (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Colors  (Pstricks)</source>
-        <translation type="vanished">Renkler (Pstricks)</translation>
-    </message>
-    <message>
-        <source>Plots (Pstricks/pst-plot)</source>
-        <translation type="vanished">Noktalar (Pstricks/pst-plot)</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</source>
         <translation>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</translation>
     </message>
     <message>
-        <source>General (Tikz)</source>
-        <translation type="vanished">Genel (Tikz)</translation>
-    </message>
-    <message>
-        <source>Draw  (Tikz)</source>
-        <translation type="vanished">Çizim (Tikz)</translation>
-    </message>
-    <message>
-        <source>Arrows  (Tikz)</source>
-        <translation type="vanished">Oklar (Tikz)</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (MetaPost)</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>Alphabetical Commands (MetaPost)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alfabetik Komutlar (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>Lines/Polygons (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Çizgiler/Poligonlar (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Yaylar/Çemberler/Elipsler (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eğriler (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>Dots (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Noktalar (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>Grids (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Izgaralar (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>Placing/Rotating (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Konumlandırma/Döndürme (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>Arrows (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Oklar (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>Line styles (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Çizgi biçemleri (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>Fill styles (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Doldurma biçemleri (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>Colors (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation>Renkler (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>Plots (PSTricks/pst-plot)</source>
-        <translation type="unfinished"></translation>
+        <translation>Noktalar (PSTricks/pst-plot)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (TikZ)</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>Draw (TikZ)</source>
-        <translation type="unfinished"></translation>
+        <translation>Çizim (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>Arrows (TikZ)</source>
-        <translation type="unfinished"></translation>
+        <translation>Oklar (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>

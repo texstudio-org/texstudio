@@ -8665,7 +8665,7 @@ Faites-vous confiance à ce script ?</translation>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation>p{} (largeur fixée — haut/à gauche)</translation>
+        <translation>p{} (largeur fixée — haut/gauche)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
