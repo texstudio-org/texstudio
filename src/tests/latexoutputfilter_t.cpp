@@ -690,6 +690,21 @@ void LatexOutputFilterTest::detectError_data()
                 )
             << short(LatexOutputFilter::Start)
             << "";
+    QTest::newRow("Undefinded control sequence V")
+            << (QStringList()
+                <<"! Undefined control sequence."
+                <<"\\variable ->\\3"
+                <<"              \\frac {d^{2}y}{dt^{2}}+2\\frac {dy}{dt}+y\\left ( t\\right ) = u(t)"
+                <<"l.12   \\variable"
+                <<""
+                <<"The control sequence at the end of the top line"
+                <<"of your error message was never \\def'ed. If you have"
+                <<"misspelled it (e.g., `\\hobx'), type `I' and the correct"
+                <<"spelling (e.g., `I\\hbox'). Otherwise just continue,"
+                <<"and I'll forget about whatever was undefined."
+                )
+            << short(LatexOutputFilter::Start)
+            << "";
 }
 
 void LatexOutputFilterTest::detectError()
