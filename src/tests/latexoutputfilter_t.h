@@ -9,7 +9,7 @@ class LatexOutputFilterTest : public QObject
 {
 	Q_OBJECT
 public:
-	explicit LatexOutputFilterTest(QObject *parent = 0);
+    explicit LatexOutputFilterTest(QObject *parent = nullptr);
 	
 signals:
 	
