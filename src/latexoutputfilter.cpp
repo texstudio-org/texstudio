@@ -20,8 +20,6 @@
 #include "latexoutputfilter.h"
 
 
-using namespace std;
-
 QColor LatexLogEntry::textColors[LT_MAX] = {QColor(Qt::black), QColor(230, 32, 32), QColor(234, 136, 32), QColor(58, 58, 230), QColor(Qt::darkBlue)};
 
 //====================texstudio log data struct=======================
