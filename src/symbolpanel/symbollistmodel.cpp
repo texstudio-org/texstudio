@@ -238,7 +238,7 @@ void SymbolListModel::removeFavorite(const QString &id)
 
 QIcon SymbolListModel::getIcon(const SymbolItem &item) const
 {
-#if defined( Q_OS_MAC ) && (QT_VERSION >= 0x050500)
+#if defined( Q_OS_MAC ) && (QT_VERSION >= 0x050500) && (QT_VERSION < QT_VERSION_CHECK(5,14,0))
 	// work-around for another QT/OSX bug
 	if(item.iconFile.endsWith(".svg")){
 		const int sz = iconSizeHint + 4;
