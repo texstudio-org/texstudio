@@ -1,3 +1,8 @@
+TeXstudio 2.12.22
+----------------
+- fix garbled symbol panel on OSX with QT 5.14+
+- fix crash when changed %!Tex language=...
+
 TeXstudio 2.12.20
 ----------------
 - fix bug when replacing highlighted search results
