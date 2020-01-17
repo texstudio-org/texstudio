@@ -322,10 +322,13 @@ win32: {
 
 CONFIG(debug, debug|release) {
     message(Creating debug version)
-    CONFIG -= release
-    QT += testlib
-    include(src/tests/tests.pri)
+    CONFIG -= debug_and_release release
+} else {
+    message(Creating release version)
+    CONFIG -= debug_and_release debug
+    NO_TESTS = 1
 }
+
 macx:LIBS += -framework CoreFoundation
 
 freebsd-* {
@@ -339,6 +342,9 @@ freebsd-* {
 !isEmpty(NO_TESTS) {
     DEFINES += NO_TESTS
     message("tests disabled as you wish.")
+} else {
+    QT += testlib
+    include(src/tests/tests.pri)
 }
 !isEmpty(DEBUG_LOGGER) {
     DEFINES += DEBUG_LOGGER
