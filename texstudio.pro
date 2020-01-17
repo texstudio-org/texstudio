@@ -300,17 +300,7 @@ include(src/latexparser/latexparser.pri)
 
 include(src/symbolpanel/symbolpanel.pri)
 
-isEmpty(USE_SYSTEM_QUAZIP) {
-  DEFINES += QUAZIP_STATIC
-  include(src/quazip/quazip/quazip.pri)
-} else {
-    message(System quazip5)
-    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
-    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
-
-    INCLUDEPATH += $${QUAZIP_INCLUDE}
-    LIBS += $${QUAZIP_LIB}
-}
+include(src/quazip/quazip/quazip.pri)
 
 include(src/pdfviewer/pdfviewer.pri)
 LIBS += -lz # Internal PDF viewer and internal QuaZIP require zlib
