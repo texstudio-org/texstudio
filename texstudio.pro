@@ -325,9 +325,6 @@ CONFIG(debug, debug|release) {
     CONFIG -= release
     QT += testlib
     include(src/tests/tests.pri)
-    win32:LIBS += -lQt5Testd
-    #unix:!macx:LIBS += -lQtTest
-    macx:LIBS += -framework QtTest
 }
 macx:LIBS += -framework CoreFoundation
 
