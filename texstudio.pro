@@ -285,14 +285,7 @@ unix {
         utilities
 }
 
-isEmpty(USE_SYSTEM_HUNSPELL){
-  DEFINES += HUNSPELL_STATIC
-  include(src/hunspell/hunspell.pri)
-} else {
-  message(System hunspell)
-  CONFIG += link_pkgconfig
-  PKGCONFIG += hunspell
-}
+include(src/hunspell/hunspell.pri)
 
 include(src/qcodeedit/qcodeedit.pri)
 
@@ -300,91 +293,21 @@ include(src/latexparser/latexparser.pri)
 
 include(src/symbolpanel/symbolpanel.pri)
 
-isEmpty(USE_SYSTEM_QUAZIP) {
-  DEFINES += QUAZIP_STATIC
-  include(src/quazip/quazip/quazip.pri)
-} else {
-    message(System quazip5)
-    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
-    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
-
-    INCLUDEPATH += $${QUAZIP_INCLUDE}
-    LIBS += $${QUAZIP_LIB}
-}
+include(src/quazip/quazip/quazip.pri)
 
 include(src/pdfviewer/pdfviewer.pri)
-LIBS += -lz # Internal PDF viewer and internal QuaZIP require zlib
-win32: {
-    LIBS += -lshlwapi # SyncTeX/Windows uses shlwapi
-}
 
 # ###############################
 
 CONFIG(debug, debug|release) {
     message(Creating debug version)
-    CONFIG -= release
-    QT += testlib
-
-    SOURCES += \
-        src/tests/codesnippet_t.cpp \
-        src/tests/encoding_t.cpp \
-        src/tests/latexcompleter_t.cpp \
-        src/tests/latexeditorview_bm.cpp \
-        src/tests/latexeditorview_t.cpp \
-        src/tests/latexoutputfilter_t.cpp \
-        src/tests/latexparser_t.cpp \
-        src/tests/latexparsing_t.cpp \
-        src/tests/qcetestutil.cpp \
-        src/tests/qdocumentcursor_t.cpp \
-        src/tests/qdocumentline_t.cpp \
-        src/tests/qdocumentsearch_t.cpp \
-        src/tests/qeditor_t.cpp \
-        src/tests/qsearchreplacepanel_t.cpp \
-        src/tests/scriptengine_t.cpp \
-        src/tests/smallUsefulFunctions_t.cpp \
-        src/tests/structureview_t.cpp \
-        src/tests/syntaxcheck_t.cpp \
-        src/tests/tablemanipulation_t.cpp \
-        src/tests/usermacro_t.cpp \
-        src/tests/testmanager.cpp \
-        src/tests/testutil.cpp
-    HEADERS += \
-        src/tests/qsearchreplacepanel_t.h \
-        src/tests/updatechecker_t.h \
-        src/tests/qdocumentcursor_t.h \
-        src/tests/qdocumentline_t.h \
-        src/tests/qdocumentsearch_t.h \
-        src/tests/codesnippet_t.h \
-        src/tests/latexcompleter_t.h \
-        src/tests/latexeditorview_bm.h \
-        src/tests/latexeditorview_t.h \
-        src/tests/latexoutputfilter_t.h \
-        src/tests/latexparser_t.h \
-        src/tests/latexparsing_t.h \
-        src/tests/latexstyleparser_t.h \
-        src/tests/scriptengine_t.h \
-        src/tests/qeditor_t.h \
-        src/tests/buildmanager_t.h \
-        src/tests/tablemanipulation_t.h \
-        src/tests/smallUsefulFunctions_t.h \
-        src/tests/utilsui_t.h \
-        src/tests/utilsversion_t.h \
-        src/tests/encoding_t.h \
-        src/tests/help_t.h \
-        src/tests/syntaxcheck_t.h \
-        src/tests/qcetestutil.h \
-        src/tests/testmanager.h \
-        src/tests/testutil.h \
-        src/tests/usermacro_t.h \
-        src/tests/structureview_t.h
-    !greaterThan(QT_MAJOR_VERSION, 4) {
-        win32:LIBS += -lQtTestd4
-    } else {
-        win32:LIBS += -lQt5Testd
-    }
-    #unix:!macx:LIBS += -lQtTest
-    macx:LIBS += -framework QtTest
+    CONFIG -= debug_and_release release
+} else {
+    message(Creating release version)
+    CONFIG -= debug_and_release debug
+    NO_TESTS = 1
 }
+
 macx:LIBS += -framework CoreFoundation
 
 freebsd-* {
@@ -395,10 +318,7 @@ freebsd-* {
     DEFINES += NO_CRASH_HANDLER
     message("Internal crash handler disabled as you wish.")
 }
-!isEmpty(NO_TESTS) {
-    DEFINES += NO_TESTS
-    message("tests disabled as you wish.")
-}
+include(src/tests/tests.pri)
 !isEmpty(DEBUG_LOGGER) {
     DEFINES += DEBUG_LOGGER
     message("Enabling debug logger.")
