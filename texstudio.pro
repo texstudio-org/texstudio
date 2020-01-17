@@ -296,10 +296,6 @@ include(src/symbolpanel/symbolpanel.pri)
 include(src/quazip/quazip/quazip.pri)
 
 include(src/pdfviewer/pdfviewer.pri)
-LIBS += -lz # Internal PDF viewer and internal QuaZIP require zlib
-win32: {
-    LIBS += -lshlwapi # SyncTeX/Windows uses shlwapi
-}
 
 # ###############################
 

@@ -4,6 +4,8 @@ isEmpty(USE_SYSTEM_QUAZIP) {
 	INCLUDEPATH += $$PWD
 	DEPENDPATH += $$PWD
 
+	LIBS *= -lz
+
 	HEADERS += \
 		$$PWD/minizip_crypt.h \
 		$$PWD/ioapi.h \
