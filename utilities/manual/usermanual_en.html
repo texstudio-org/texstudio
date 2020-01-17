@@ -694,7 +694,9 @@ Note: texstudio needs that the env-name starts with "%", though that character i
             <li>
               If <b>cmd</b> contains the string <b>txs:///</b> or if it does <b>not</b>
 	      contain any pipe (|) characters, then <b>cmd</b> undergoes standard command-line expansion like any other
-              <a href="#SECTION33a">external command</a>.<br>
+              <a href="#SECTION33a">external command</a>. When expanding any tokens the current file is assumed to be
+              the empty string, so any tokens that use the current file (e.g. <b>%</b> or <b>?</b>) will expand to the
+              empty string too.
             </li>
             <li>
               If <b>cmd</b> does not contain the string <b>txs:///</b> and it contains at least one pipe character, then
@@ -711,7 +713,25 @@ Note: texstudio needs that the env-name starts with "%", though that character i
           <li>exitStatus: The qt exit status</li>
           <li>terminate or kill: Stops the process</li>
         </ul>
-        If the script does is not granted permission to run the external command, then <b>system()</b> returns <b>null</b>.
+        If the script does is not granted permission to run the external command, then <b>system()</b> returns <b>null</b>.<br>
+        <br>
+        Examples<br>
+        <br>
+        List all the files in the Subversion repository /usr/local/svnrepository<br>
+        The command contains the string <b>txs:///</b>, so it undergoes the expansion as an <a href="#SECTION33a">external command</a>.
+        <pre>%SCRIPT
+cmd = system("txs:///svn ls /usr/local/svnrepository")
+cmd.waitForFinished()
+output = cmd.readAllStandardOutputStr()
+alert (output)</pre>
+        Download the web page from <b>http://www.my-website.com??arg1=abc&amp;arg2=def</b> and save it as the local file
+        <b>/home/john/page.html</b>.<br>
+        The command does not contain any pipe characters (|), so it undergoes the expansion as an <a href="#SECTION33a">external command</a>.<br>
+        Note that we have doubled the character <b>?</b> in the URL, otherwise it would be expanded to current file which in our case would
+        be the empty string.
+        <pre>%SCRIPT
+cmd = system ("wget -O /home/john/page.html http://www.my-website.com??arg1=abc&arg2=def")
+cmd.waitForFinished()</pre>
     </td>
   </tr>
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
