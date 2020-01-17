@@ -339,13 +339,7 @@ freebsd-* {
     DEFINES += NO_CRASH_HANDLER
     message("Internal crash handler disabled as you wish.")
 }
-!isEmpty(NO_TESTS) {
-    DEFINES += NO_TESTS
-    message("tests disabled as you wish.")
-} else {
-    QT += testlib
-    include(src/tests/tests.pri)
-}
+include(src/tests/tests.pri)
 !isEmpty(DEBUG_LOGGER) {
     DEFINES += DEBUG_LOGGER
     message("Enabling debug logger.")
