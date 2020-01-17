@@ -285,14 +285,7 @@ unix {
         utilities
 }
 
-isEmpty(USE_SYSTEM_HUNSPELL){
-  DEFINES += HUNSPELL_STATIC
-  include(src/hunspell/hunspell.pri)
-} else {
-  message(System hunspell)
-  CONFIG += link_pkgconfig
-  PKGCONFIG += hunspell
-}
+include(src/hunspell/hunspell.pri)
 
 include(src/qcodeedit/qcodeedit.pri)
 
