@@ -223,6 +223,7 @@
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
 <file>completion/xparse.cwl</file>
+<file>completion/xpatch.cwl</file>
 <file>completion/xspace.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xy.cwl</file>
