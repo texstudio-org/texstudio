@@ -17,7 +17,7 @@
 \pgfmatrixcolumnsep#*
 \pgfmatrixrowsep#*
 \tikzstyle{style} = {definition}#s#%tikzstyle
-\begin{tikzpicture}#\picture
+\begin{tikzpicture}
 \begin{tikzpicture}[options%keyvals]
 \end{tikzpicture}
 \tikz
@@ -66,7 +66,7 @@
 \tikzdeclarecoordinatesystem{arg1}#*
 \tikzaliascoordinatesystem{arg1}#*
 
-\usetikzlibrary{keyvals}
+\usetikzlibrary{%<library list%>%keyvals}
 #keyvals:\usetikzlibrary
 3d
 angles

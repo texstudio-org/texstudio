@@ -153,6 +153,7 @@
 <file>completion/overpic.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/parskip.cwl</file>
+<file>completion/patch-common.cwl</file>
 <file>completion/pdfpages.cwl</file>
 <file>completion/pgfcore.cwl</file>
 <file>completion/pgf.cwl</file>
@@ -173,6 +174,7 @@
 <file>completion/pstricks.cwl</file>
 <file>completion/pst-text.cwl</file>
 <file>completion/pst-tree.cwl</file>
+<file>completion/regexpatch.cwl</file>
 <file>completion/rotating.cwl</file>
 <file>completion/scraddr.cwl</file>
 <file>completion/scrdate.cwl</file>
@@ -223,6 +225,7 @@
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
 <file>completion/xparse.cwl</file>
+<file>completion/xpatch.cwl</file>
 <file>completion/xspace.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xy.cwl</file>
