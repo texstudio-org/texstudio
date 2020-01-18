@@ -2,6 +2,7 @@
 # neeraavi 21 Mar 2007
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
+#modified muzimuzhi 18 Jan 2020
 
 #include:nameref
 
@@ -18,6 +19,7 @@ bookmarksopen#true,false
 bookmarksopenlevel=
 bookmarkstype=
 breaklinks#true,false
+CJKbookmarks#true,false
 citebordercolor=#%color
 citecolor=#%color
 colorlinks#true,false
@@ -25,6 +27,11 @@ debug#true,false
 destlabel#true,false
 draft#true,false
 driverfallback=
+dvipdfm
+dvipdfmx
+dvips
+dvipsone
+dviwindo
 encap=
 extension=
 filebordercolor=#%color
@@ -36,7 +43,7 @@ hyperfigures#true,false
 hyperfootnotes#true,false
 hyperindex#true,false
 hypertex
-hypertexname#true,false
+hypertexnames#true,false
 implicit#true,false
 latex2html
 linkbordercolor=#%color
@@ -45,13 +52,14 @@ linktoc=#section,page,all,none
 linktocpage#true,false
 menubordercolor=#%color
 menucolor=#%color
+nativepdf#true,false
 naturalnames#true,false
 nesting#true,false
 pageanchor#true,false
 pagebackref#true,false
-pdftex
 pdfauthor=
 pdfborder=
+pdfborderstyle=
 pdfcenterwindow#true,false
 pdfcreator=
 pdfdirection=
@@ -62,6 +70,7 @@ pdfhighlight=
 pdfinfo=
 pdfkeywords=
 pdflang=
+pdfmark#true,false
 pdfmenubar#true,false
 pdfnewwindow#true,false
 pdfnonfullscreenpagemode
@@ -81,23 +90,29 @@ pdfremotestartview=
 pdfstartpage=
 pdfstartview=
 pdfsubject=
+pdftex
 pdftitle=
 pdftoolbar#true,false
-pdftrapped=
+pdftrapped=#True,False,Unknown
 pdfview=
 pdfviewarea=
 pdfviewclip=
 pdfwindowui#true,false
 plainpages#true,false
+ps2pdf
 psdextra#true,false
 raiselinks#true,false
 runbordercolor=#%color
 runcolor=#%color
 setpagesize#true,false
+tex4ht
+textures
 unicode#true,false
 urlbordercolor=#%color
 urlcolor=#%color
 verbose#true,false
+vtex
+xetex
 #endkeyvals
 
 \href[options]{URL}{text}#U
