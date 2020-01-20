@@ -161,7 +161,7 @@ public:
 		QVariant getCookie(int type) const{ //locking needs to be done externally !!!
 			return mCookies.value(type,QVariant());
 		}
-		QVariant getCookieLocked(int type) const{ //locking needs to be done externally !!!
+		QVariant getCookieLocked(int type) const{
 			QReadLocker locker(&mLock);
 			return mCookies.value(type,QVariant());
 		}
