@@ -14,8 +14,12 @@ QString getTerminalCommand()
 	// gnome
 	ExecProgram execGsettings("gsettings get org.gnome.desktop.default-applications.terminal exec", "");
 	if (execGsettings.execAndWait()) {
-		// "gsettings" terminates with exit code 0 if settings were fetched successfully
-		return execGsettings.m_standardOutput.replace('\'', "");
+		/*
+			1. "gsettings" terminates with exit code 0 if settings were fetched successfully.
+			2. The returned value has a trailing LF so we trim it.
+			3. The command is wrapped in single quotes, e.g. 'gnome-terminal' so we remove the single quotes.
+		 */
+		return execGsettings.m_standardOutput.trimmed().replace('\'', "");
 	}
 
 	// fallback
