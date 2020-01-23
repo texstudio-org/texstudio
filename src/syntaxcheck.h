@@ -120,7 +120,7 @@ signals:
 
 protected:
 	void run();
-	void checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket);
+    void checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket, int commentStart=-1);
 
 private:
 	QQueue<SyntaxLine> mLines;
