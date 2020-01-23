@@ -1,9 +1,26 @@
+# tikz-cd package
+# Fernando Muro, 5 Nov 2017
+# muzimuzhi, 23 Jan 2020, tikz-cd v0.9f
+
 #include: tikz
-\begin{tikzcd}#\math,array
+\begin{tikzcd}#\array
+\begin{tikzcd}[options]#\array
 \end{tikzcd}
-\arrow[keyvals]
-#keyvals:\arrow#c
-hook
+\arrow[options%keyvals]#/tikzcd
+\arrow[options%keyvals]{direction}%<labels%>#*/tikzcd
+\ar[options%keyvals]#/tikzcd
+\rar[options%keyvals]%<labels%>#*/tikzcd
+\lar[options%keyvals]%<labels%>#*/tikzcd
+\dar[options%keyvals]%<labels%>#*/tikzcd
+\uar[options%keyvals]%<labels%>#*/tikzcd
+\drar[options%keyvals]%<labels%>#*/tikzcd
+\urar[options%keyvals]%<labels%>#*/tikzcd
+\dlar[options%keyvals]%<labels%>#*/tikzcd
+\ular[options%keyvals]%<labels%>#*/tikzcd
+\tikzcdset{options%keyvals}
+
+## arrow types
+#keyvals:\arrow#c,\ar#c,\rar#c,\lar#c,\dar#c,\uar#c,\drar#c,\urar#c,\dlar#c,\ular#c
 to head
 rightarrow
 leftarrow
@@ -44,4 +61,39 @@ rightharpoondown
 leftharpoonup
 leftharpoondown
 crossing over
+#endkeyvals
+
+## appearance of diagrames
+#keyvals:\tikzcdset,\begin{tikzcd}#c
+every diagram
+diagrames=%<options%>
+every matrix
+every cell
+cells=%<options%>
+row sep=
+column sep=
+sep=
+cramped
+math mode%true,false
+background color=#%color
+every arrow
+arrows=%<options%>
+arrow style=Latin Modern,math font,tikz
+from=
+to=
+phantom
+shift left=##L
+shift right=##L
+shift={%<coordinate%>}
+xshift=##L
+yshift=##L
+start anchor=
+end anchor=
+shorten=##L
+crossing over
+corssing over clearance=##L
+every label
+labels=%<options%>
+marking
+description
 #endkeyvals
