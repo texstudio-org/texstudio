@@ -57,6 +57,7 @@
 \datavisualization#*
 \pgfextra#*
 \pgfstrokehook#*
+\tikztostart#*
 \tikztotarget#*
 \tikztonodes#*
 \pgfplotlastpoint#*
