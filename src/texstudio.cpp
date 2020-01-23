@@ -1953,6 +1953,8 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 			existingView->editor->setHidden(false);
 			documents.addDocument(existingView->document, false);
 			editors->addEditor(existingView);
+            if(asProject)
+                editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
 			updateStructure(false, existingView->document, true);
 			existingView->editor->setFocus();
 			updateCaption();

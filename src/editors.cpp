@@ -480,6 +480,11 @@ void Editors::moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int 
 	if (!target || target->containsEditor(edView)) {
 		// only move within the tab
         if (target == nullptr) target = tabWidgetFromEditor(edView);
+        if (target == nullptr) {
+            // the tab is REALLY not there, see crash in issue #899
+            insertEditor(edView,targetIndex);
+            return;
+        }
 		if (targetIndex < 0) targetIndex = qMax(0, target->count() - 1);
 		int currentIndex = target->indexOf(edView);
 		if (currentIndex != targetIndex) {  // nothing todo otherwise
