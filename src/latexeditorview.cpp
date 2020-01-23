@@ -1413,8 +1413,8 @@ bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
 	emit spellerChanged(name);
 
     if (document && updateComment) {
-        document->updateMagicComment("spellcheck", speller->name());
-	}
+        document->updateMagicComment("spellcheck", speller ? speller->name() : "<none>");
+    }
 
 	// force new highlighting
     if(!dontRecheck){
@@ -1441,6 +1441,7 @@ void LatexEditorView::reloadSpeller()
 QString LatexEditorView::getSpeller()
 {
 	if (useDefaultSpeller) return QString("<default>");
+    if(speller==nullptr) return QString("<none>");
 	return speller->name();
 }
 
@@ -1963,14 +1964,14 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 			changedLines << temp;
 			if (line.firstChar() == -1) {
-				emit linesChanged(speller->name(), document, changedLines, truefirst);
+                emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
 				truefirst += changedLines.size();
 				changedLines.clear();
 				if (i >= linenr + count) break;
 			}
 		}
 		if (!changedLines.isEmpty())
-			emit linesChanged(speller->name(), document, changedLines, truefirst);
+            emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
 
     }
 
