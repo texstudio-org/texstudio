@@ -111,7 +111,7 @@ void SyntaxCheck::run()
 			newLine.dlh->removeCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE); //remove possible errors from unclosed envs
 		}
 		TokenList tl = newLine.dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-        QPair<int,int> commentStart = newLine.dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
+        QPair<int,int> commentStart = newLine.dlh->getCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
 		newLine.dlh->unlock();
 
 		StackEnvironment activeEnv = newLine.prevEnv;
