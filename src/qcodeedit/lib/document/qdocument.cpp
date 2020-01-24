@@ -3173,6 +3173,70 @@ QVector<int> QDocumentLineHandle::getCachedFormats() const
 	return m_cache;
 }
 
+/*!
+ * \brief Returns the specified cookie type associated with this line.
+ * \details Returns the specified cookie type associated with this line.
+ * Not thread safe. Caller must hold a read lock of the line.
+ * \param[in] type The type of the returned cookie.
+ * \return Returns the cookie of the specified type.
+ */
+QVariant QDocumentLineHandle::getCookie(int type) const
+{
+	return mCookies.value(type,QVariant());
+}
+
+/*!
+ * \brief Returns the specified cookie type associated with this line.
+ * \details Returns the specified cookie type associated with this line.
+ * Thread safe. Obtains a read lock for the duration of the call.
+ * \param[in] type The type of the returned cookie.
+ * \return Returns the cookie of the specified type.
+ */
+QVariant QDocumentLineHandle::getCookieLocked(int type) const
+{
+	QReadLocker locker(&mLock);
+	return mCookies.value(type,QVariant());
+}
+
+/*!
+ * \brief Sets the specified cookie type for this line to the specified value.
+ * \details Sets the specified cookie type for this line to the specified value.
+ * Not thread safe. Caller must hold a write lock of the line.
+ * \param[in] type The type of the cookie to be set.
+ * \param[in] data The value of the cookie to be set.
+ */
+void QDocumentLineHandle::setCookie(int type,QVariant data)
+{
+	mCookies.insert(type,data);
+}
+
+/*!
+ * \brief Checks if the line has a cookie of the specified type.
+ * \details Checks if the line has a cookie of the specified type.
+ * Not thread safe. Caller must hold a read lock of the line.
+ * \param[in] type The type of the checked cookie.
+ * \return Returns a boolean flag indicating if the line has a cookie of the
+ * specified type.
+ */
+bool QDocumentLineHandle::hasCookie(int type) const
+{
+	return mCookies.contains(type);
+}
+
+/*!
+ * \brief Removes the specified cookie type for this line.
+ * \details Removes the specified cookie type for this line.
+ * If this line does not have a cookie of the specified type then does nothing.
+ * Not thread safe. Caller must hold a write lock of the line.
+ * \param[in] type The type of the cookie to be removed.
+ * \return Returns a boolean flag indicating if the line had a cookie of the
+ * specified type.
+ */
+bool QDocumentLineHandle::removeCookie(int type)
+{
+	return mCookies.remove(type);
+}
+
 bool QDocumentLineHandle::isRTLByLayout() const{
 	if (!m_layout) return false;
 	else {
