@@ -1,4 +1,3 @@
-
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include "scriptengine_t.h"
@@ -17,7 +16,7 @@ ScriptEngineTest::ScriptEngineTest(LatexEditorView* editor, bool all): edView(ed
 void ScriptEngineTest::script_data(){
 	QTest::addColumn<QString>("script");
 	QTest::addColumn<QString>("newText");
-	
+
 	//-------------cursor without selection--------------
 	QTest::newRow("Setup Text")
 		<< "editor.setText(\"Hallo\", false)"
@@ -45,12 +44,12 @@ void ScriptEngineTest::script_data(){
 	if (all) {
 		QTest::newRow("Select All/copy/paste")
 		<< "editor.selectAll();editor.copy();editor.selectNothing();editor.paste()"
-		<< "HalloHallo";	
-	} else 
+		<< "HalloHallo";
+	} else
 		QTest::newRow("SKIP Select All/copy/paste ")
 		<< "editor.setText(\"HalloHallo\");"
 		<< "HalloHallo";
-	
+
 	QTest::newRow("remove Selection")
 		<< "cursor.movePosition(1,cursorEnums.Start);cursor.movePosition(5,cursorEnums.Right,cursorEnums.KeepAnchor);cursor.removeSelectedText()"
 		<< "Hallo";
@@ -74,9 +73,9 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("Search/Replace Test 2")
 		<< "editor.replace(\"ll\", \"tt\", editor.document().cursor(1,0,1,6)); "
 		<< "Hbllo1\nHatto2\nHallo3";
-    //QTest::newRow("Search/Replace Test 2a")
-    //    << "var c2=new QDocumentCursor(editor.document(),1,0,1,6); editor.replace(\"ll\", \"tt\", c2); "
-    //   << "Hbllo1\nHatto2\nHallo3";
+	//QTest::newRow("Search/Replace Test 2a")
+	//    << "var c2=new QDocumentCursor(editor.document(),1,0,1,6); editor.replace(\"ll\", \"tt\", c2); "
+	//   << "Hbllo1\nHatto2\nHallo3";
 	QTest::newRow("Search/Replace Test 3")
 		<< "editor.replace(/b..o/, function(c){return editor.search(c.selectedText());}); "
 		<< "H11\nHatto2\nHallo3";
@@ -132,12 +131,11 @@ void ScriptEngineTest::script_data(){
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
 	QFETCH(QString, newText);
-    scriptengine eng(nullptr);
+	scriptengine eng(nullptr);
 	eng.setEditorView(edView);
 	eng.setScript(script);
 	eng.run();
 
-	QEQUAL(edView->editor->document()->text(), newText);	
+	QEQUAL(edView->editor->document()->text(), newText);
 }
 #endif
-
