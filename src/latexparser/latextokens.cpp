@@ -314,7 +314,7 @@ bool Token::operator ==(const Token &v) const
  * \brief returns the starting position of the inner part of the token
  * (currently only applies to all forms of braces)
  */
-int Token::innerStart()
+int Token::innerStart() const
 {
 	return start + leftDelimWidth.value(type, 0);
 }
@@ -323,7 +323,7 @@ int Token::innerStart()
  * \brief returns the starting position of the inner part of the token
  * (currently only applies to all forms of braces)
  */
-int Token::innerLength()
+int Token::innerLength() const
 {
 	return length - leftDelimWidth.value(type, 0) - rightDelimWidth.value(type, 0);
 }
@@ -333,7 +333,7 @@ int Token::innerLength()
  * \brief get text which is represented by the token
  * \return text of token
  */
-QString Token::getText()
+QString Token::getText() const
 {
 	dlh->lockForRead();
 	QString result = dlh->text().mid(start, length);
@@ -344,7 +344,7 @@ QString Token::getText()
 /*!
  * \brief Returns the text without braces if the token is a braced type () or {} or []. Returns the complete text otherwise.
  */
-QString Token::getInnerText()
+QString Token::getInnerText() const
 {
 	QString text = getText();
 	return text.mid(leftDelimWidth.value(type, 0), innerLength());

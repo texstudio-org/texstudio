@@ -77,10 +77,10 @@ public:
 	static TokenType opposite(TokenType type);
 	static TokenType closed(TokenType type);
 	bool operator==(const Token &v) const;
-	int innerStart();
-	int innerLength();
-	QString getText();
-	QString getInnerText();
+	int innerStart() const;
+	int innerLength() const;
+	QString getText() const;
+	QString getInnerText() const;
 };
 QDebug operator<<(QDebug dbg, Token::TokenType tk);
 QDebug operator<<(QDebug dbg, Token tk);
