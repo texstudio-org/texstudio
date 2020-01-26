@@ -6,6 +6,36 @@
 class QDocumentLineHandle;
 class QDocument;
 
+/*
+ * \brief Wrapper for the TokenType enum.
+ * \details This class contains all the TokenType enums. It is has two purposes:
+ * 	1. Provide enums for Token class.
+ * 	2. Generate a MOC object that is used to provide these enums to the script engine.
+ * The enums should really be a namespace, but Q_NAMESPACE is only supported in Qt5.8+
+ */
+class EnumsTokenType
+{
+	Q_GADGET
+	Q_ENUMS(TokenType)
+
+public:
+	enum TokenType {
+		none = 0, word, command, braces, bracket,
+		squareBracket, openBrace, openBracket, openSquare, less,
+		closeBrace, closeBracket, closeSquareBracket, greater, math,
+		comment, commandUnknown, label, bibItem, file,
+		imagefile, bibfile, keyValArg, keyVal_key, keyVal_val,
+		list, text, env, beginEnv, def,
+		labelRef, package, width, placement, colDef,
+		title, shorttitle, todo, url, documentclass,
+		beamertheme, packageoption, color, verbatimStart, verbatimStop,
+		verbatim, symbol, punctuation, number, generalArg,
+		defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
+		specialArg, newTheorem, newBibItem, formula, overlay,
+		overlayRegion, _end = 255
+	};
+};
+
 /*!
  * \brief repesent syntax information on text element
  * The objective for this class is to translate a text(-line) into a series of tokens which can be interpreted much faster and easier subsequently
@@ -30,7 +60,7 @@ class QDocument;
  \endverbatim
  The level is encoded via the level-property. The list is actually still linear.
  */
-class Token
+class Token : public EnumsTokenType
 {
 public:
 	Token(): start(-1), length(-1), level(-1), dlh(nullptr), type(none), subtype(none), argLevel(0) {}
@@ -40,24 +70,9 @@ public:
 	QString optionalCommandName;
 	QDocumentLineHandle *dlh;
 
-	enum TokenType {
-		none = 0, word, command, braces, bracket,
-		squareBracket, openBrace, openBracket, openSquare, less,
-		closeBrace, closeBracket, closeSquareBracket, greater, math,
-		comment, commandUnknown, label, bibItem, file,
-		imagefile, bibfile, keyValArg, keyVal_key, keyVal_val,
-		list, text, env, beginEnv, def,
-		labelRef, package, width, placement, colDef,
-		title, shorttitle, todo, url, documentclass,
-		beamertheme, packageoption, color, verbatimStart, verbatimStop,
-		verbatim, symbol, punctuation, number, generalArg,
-		defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
-		specialArg, newTheorem, newBibItem, formula, overlay,
-		overlayRegion, _end = 255
+	enum CommentType {
+		unknownComment = 0, todoComment, magicComment
 	};
-    enum CommentType {
-        unknownComment = 0, todoComment , magicComment
-    };
 
 	static QString tokenTypeName(TokenType t);
 

@@ -727,6 +727,38 @@ void qScriptValueToStringPtr(const QScriptValue &value, QString *&str)
 
 #define SCRIPT_TO_BOOLEAN toBool
 
+QScriptValue getLineTokens(QScriptContext *context, QScriptEngine *engine)
+{
+	QDocument *document = qobject_cast<QDocument *>(context->thisObject().toQObject());
+	SCRIPT_REQUIRE(document != nullptr, "this must be a document object")
+	SCRIPT_REQUIRE(context->argumentCount() == 1, "exactly one argument is required")
+	int lineNr = context->argument(0).toInt32();
+	if ((lineNr < 0) || (lineNr >= document->lineCount())) {
+		return QScriptValue(false);
+	}
+	QDocumentLineHandle *dlh = document->line(lineNr).handle();
+	QVariant cookie = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE);
+	if (cookie.isValid() == false) {
+		return QScriptValue(false);
+	}
+	if (cookie.canConvert<TokenList>() == false) {
+		return QScriptValue(false);
+	}
+	TokenList tlNative = cookie.value<TokenList>();
+	QScriptValue tlJs = engine->newArray(tlNative.size());
+	int tokenNum = 0;
+	foreach(const Token &tokenNative, tlNative) {
+		QScriptValue tokenJs = engine->newObject();
+		tokenJs.setProperty("type", tokenNative.type);
+		tokenJs.setProperty("subtype", tokenNative.subtype);
+		tokenJs.setProperty("startColumn", tokenNative.start);
+		tokenJs.setProperty("level", tokenNative.level);
+		tokenJs.setProperty("text", tokenNative.getText());
+		tlJs.setProperty(tokenNum, tokenJs);
+		++tokenNum;
+	}
+	return tlJs;
+}
 
 QScriptValue insertSnippet(QScriptContext *context, QScriptEngine *engine)
 {
@@ -997,7 +1029,6 @@ void TimeoutWrapper::run()
 scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
 {
 	engine = new QScriptEngine(this);
-	qScriptRegisterQObjectMetaType<QDocument *>(engine);
 	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
 	qScriptRegisterMetaType<QFileInfo>(engine, qScriptValueFromQFileInfo, qScriptValueToQFileInfo, QScriptValue());
 	qScriptRegisterMetaType<QString *>(engine, qScriptValueFromStringPtr, qScriptValueToStringPtr, QScriptValue());
@@ -1013,6 +1044,11 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 	qScriptRegisterQObjectMetaType<PDFDocument *>(engine);
 	qScriptRegisterQObjectMetaType<PDFWidget *>(engine);
 #endif
+
+	QScriptValue extendedQDocument = engine->newObject();
+	extendedQDocument.setProperty("getLineTokens", engine->newFunction(&getLineTokens), QScriptValue::ReadOnly | QScriptValue::Undeletable);
+	qScriptRegisterQObjectMetaType<QDocument *>(engine, extendedQDocument);
+
 	QScriptValue extendedQEditor = engine->newObject();
 	extendedQEditor.setProperty("insertSnippet", engine->newFunction(&insertSnippet), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replaceSelectedText", engine->newFunction(&replaceSelectedText), QScriptValue::ReadOnly | QScriptValue::Undeletable);
@@ -1115,8 +1151,11 @@ void scriptengine::run()
 
 	engine->globalObject().setProperty("setTimeout", engine->newFunction(setTimeout));
 
-	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
+	QScriptValue qsMetaObject;
+	qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
+	qsMetaObject = engine->newQMetaObject(&EnumsTokenType::staticMetaObject);
+	engine->globalObject().setProperty("latexTokenType", qsMetaObject);
 
 	QScriptValue uidClass = engine->scriptValueFromQMetaObject<UniversalInputDialogScript>();
 	engine->globalObject().setProperty("UniversalInputDialog", uidClass);
