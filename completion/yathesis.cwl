@@ -92,8 +92,8 @@ datetime
 # Cover and title pages
 #
 # Author
-\author{%<prénom%>}{%<nom%>}#n
-\author[%<email%>]{%<prénom%>}{%<nom%>}#n
+\author{prénom}{nom}#n
+\author[email]{prénom}{nom}#n
 #
 # Title, etc.
 \title[titre dans la langue secondaire%text]{titre dans la langue principale%text}#n
@@ -107,8 +107,8 @@ datetime
 \academicfield{discipline%text}#n
 \speciality{spécialité%text}#n
 \subject{sujet%text}#n
-\date{%<jour%>}{%<mois%>}{%<année%>}#n
-\submissiondate{%<jour%>}{%<mois%>}{%<année%>}#n
+\date{jour}{mois}{année}#n
+\submissiondate{jour}{mois}{année}#n
 #
 # Institute and entities
 \pres{%<nom du PRES%>}#n
@@ -119,40 +119,15 @@ datetime
 \doctoralschool{nom de l'école doctorale%text}#n
 \laboratory{%<nom du laboratoire%>}{%<adresse du laboratoire%>}#n
 #
-\pres[%<précision(s)%>]{%<nom du PRES%>}#n
-\comue[%<précision(s)%>]{%<nom de la ComUE%>}#n
-\institute[%<précision(s)%>]{nom de l'institut%text}#n
-\coinstitute[%<précision(s)%>]{nom de l'institut de cotutelle%text}#n
-\company[%<précision(s)%>]{%<nom de l'entreprise%>}#n
-\doctoralschool[%<précision(s)%>]{nom de l'école doctorale%text}#n
-\laboratory[%<précision(s)%>]{%<nom du laboratoire%>}{%<adresse du laboratoire%>}#n
+\pres[précision%keyvals]{nom du PRES}#n
+\comue[précision%keyvals]{nom de la ComUE}#n
+\institute[précision%keyvals]{nom de l'institut%text}#n
+\coinstitute[précision%keyvals]{nom de l'institut de cotutelle%text}#n
+\company[précision%keyvals]{nom de l'entreprise}#n
+\doctoralschool[précision%keyvals]{nom de l'école doctorale%text}#n
+\laboratory[précision%keyvals]{nom du laboratoire}{adresse du laboratoire}#n
 #
-#keyvals:\pres
-logo=
-logoheight=
-url=
-#endkeyvals
-#keyvals:\comue
-logo=
-logoheight=
-url=
-#endkeyvals
-#keyvals:\institute
-logo=
-logoheight=
-url=
-#endkeyvals
-#keyvals:\coinstitute
-logo=
-logoheight=
-url=
-#endkeyvals
-#keyvals:\company
-logo=
-logoheight=
-url=
-#endkeyvals
-#keyvals:\doctoralschool
+#keyvals:\pres,\comue,\institute,\coinstitute,\company,\doctoralschool
 logo=
 logoheight=
 url=
@@ -168,89 +143,23 @@ nonamelink
 #endkeyvals
 #
 # Committee
-\supervisor{%<prénom%>}{%<nom%>}#n
-\cosupervisor{%<prénom%>}{%<nom%>}#n
-\comonitor{%<prénom%>}{%<nom%>}#n
-\referee{%<prénom%>}{%<nom%>}#n
-\examiner{%<prénom%>}{%<nom%>}#n
-\committeepresident{%<prénom%>}{%<nom%>}#n
-\guest{%<prénom%>}{%<nom%>}#n
+\supervisor{prénom}{nom}#n
+\cosupervisor{prénom}{nom}#n
+\comonitor{prénom}{nom}#n
+\referee{prénom}{nom}#n
+\examiner{prénom}{nom}#n
+\committeepresident{prénom}{nom}#n
+\guest{prénom}{nom}#n
 #
-\supervisor[%<précision(s)%>]{%<prénom%>}{%<nom%>}#n
-\cosupervisor[%<précision(s)%>]{%<prénom%>}{%<nom%>}#n
-\comonitor[%<précision(s)%>]{%<prénom%>}{%<nom%>}#n
-\referee[%<précision(s)%>]{%<prénom%>}{%<nom%>}#n
-\examiner[%<précision(s)%>]{%<prénom%>}{%<nom%>}#n
-\committeepresident[%<précision(s)%>]{%<prénom%>}{%<nom%>}#n
-\guest[%<précision(s)%>]{%<prénom%>}{%<nom%>}#n
+\supervisor[précision%keyvals]{prénom}{nom}#n
+\cosupervisor[précision%keyvals]{prénom}{nom}#n
+\comonitor[précision%keyvals]{prénom}{nom}#n
+\referee[précision%keyvals]{prénom}{nom}#n
+\examiner[précision%keyvals]{prénom}{nom}#n
+\committeepresident[précision%keyvals]{prénom}{nom}#n
+\guest[précision%keyvals]{prénom}{nom}#n
 #
-#keyvals:\supervisor
-affiliation=
-professor
-seniorresearcher
-mcf
-mcf*
-associateprofessor
-associateprofessor*
-juniorresearcher
-juniorresearcher*
-#endkeyvals
-#keyvals:\cosupervisor
-affiliation=
-professor
-seniorresearcher
-mcf
-mcf*
-associateprofessor
-associateprofessor*
-juniorresearcher
-juniorresearcher*
-#endkeyvals
-#keyvals:\comonitor
-affiliation=
-professor
-seniorresearcher
-mcf
-mcf*
-associateprofessor
-associateprofessor*
-juniorresearcher
-juniorresearcher*
-#endkeyvals
-#keyvals:\referee
-affiliation=
-professor
-seniorresearcher
-mcf
-mcf*
-associateprofessor
-associateprofessor*
-juniorresearcher
-juniorresearcher*
-#endkeyvals
-#keyvals:\examiner
-affiliation=
-professor
-seniorresearcher
-mcf
-mcf*
-associateprofessor
-associateprofessor*
-juniorresearcher
-juniorresearcher*
-#endkeyvals
-#keyvals:\committeepresident
-affiliation=
-professor
-seniorresearcher
-mcf
-mcf*
-associateprofessor
-associateprofessor*
-juniorresearcher
-juniorresearcher*
-#endkeyvals
-#keyvals:\guest
+#keyvals:\supervisor,\cosupervisor,\comonitor,\referee,\examiner,\committeepresident,\guest
 affiliation=
 professor
 seniorresearcher
@@ -263,7 +172,7 @@ juniorresearcher*
 #endkeyvals
 #
 # Misc
-\ordernumber[%<numéro d'ordre%>]#n
+\ordernumber[numéro d'ordre]#n
 \ordernumber#n*
 #
 # Preliminary part
@@ -279,8 +188,8 @@ juniorresearcher*
 \dedication{dédicace%text}#n
 \makededications#n
 \makededications*#n
-\frontepigraph{épigraphe%text}{%<auteur%>}
-\frontepigraph[%<langue%>]{épigraphe%text}{%<auteur%>}
+\frontepigraph{épigraphe%text}{auteur}
+\frontepigraph[langue%keyvals]{épigraphe%text}{auteur}
 #keyvals:\frontepigraph
 afrikaans
 bahasa
@@ -331,10 +240,10 @@ welsh
 \begin{abstract}[intitulé alternatif%text]#n*
 \end{abstract}#n
 \makeabstract#n
-\newglssymbol{%<label%>}{%<symbole%>}{%<nom%>}{description%text}#n
-\newglssymbol[%<classement%>]{%<label%>}{%<symbole%>}{%<nom%>}{description%text}#n
+\newglssymbol{label}{symbole}{nom}{description%text}#n
+\newglssymbol[classement]{label}{symbole}{nom}{description%text}#n
 \tableofcontents#n*
-\tableofcontents[%<précision(s)%>]#n*
+\tableofcontents[précision%keyvals]#n*
 #
 #keyvals:\tableofcontents
 depth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
@@ -385,4 +294,4 @@ name=
 #
 # Customization
 #
-\expression{%<label%>}{valeur (en français)%text}{valeur (en anglais)%text}#n*
+\expression{label}{valeur (en français)%text}{valeur (en anglais)%text}#n*
