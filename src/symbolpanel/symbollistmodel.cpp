@@ -105,7 +105,9 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 
 		if (fileName.endsWith("svg")) {
 			symbolItem = loadSymbolFromSvg(fileName);
+#if QT_VERSION>=QT_VERSION_CHECK(5, 6, 0)
             symbolItem.icon.setIsMask(true);
+#endif
 		} else {
 			QImage img = QImage(fileName);
 			symbolItem.command = img.text("Command");
@@ -113,7 +115,9 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 			symbolItem.unicode = img.text("CommandUnicode");
 			symbolItem.iconFile = fileName;
 			symbolItem.icon = QIcon(fileName);
+#if QT_VERSION>=QT_VERSION_CHECK(5, 6, 0)
             symbolItem.icon.setIsMask(true);
+#endif
 		}
 		if (!symbolItem.unicode.isEmpty()) {
 			// convert to real unicode
