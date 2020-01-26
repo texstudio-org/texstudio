@@ -523,7 +523,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-            if (speller->hideNonTextSpellingErrors && containsEnv(*ltxCommands, "math", activeEnv)){
+            if (speller->hideNonTextSpellingErrors && (containsEnv(*ltxCommands, "math", activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv))){
                 word.clear();
             }
             if (!word.isEmpty() && !speller->check(word) ) {
