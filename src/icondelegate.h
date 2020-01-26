@@ -24,7 +24,7 @@ class IconDelegate : public QAbstractItemDelegate
 	Q_OBJECT
 
 public:
-	IconDelegate(QObject *parent = 0)
+    IconDelegate(QObject *parent = nullptr)
 		: QAbstractItemDelegate(parent) {}
 
 	void paint(QPainter *painter, const QStyleOptionViewItem &option,

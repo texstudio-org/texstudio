@@ -590,116 +590,116 @@ void Texstudio::addMacrosAsTagList()
  */
 void Texstudio::setupDockWidgets()
 {
-	//to allow retranslate this function must be able to be called multiple times
+    //to allow retranslate this function must be able to be called multiple times
 
     // adapt icon size to dpi
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
 
-	if (!sidePanel) {
-		sidePanel = new SidePanel(this);
-		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
-		sidePanel->toggleViewAction()->setText(tr("Side Panel"));
-		sidePanel->toggleViewAction()->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
-		addAction(sidePanel->toggleViewAction());
+    if (!sidePanel) {
+        sidePanel = new SidePanel(this);
+        sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
+        sidePanel->toggleViewAction()->setText(tr("Side Panel"));
+        sidePanel->toggleViewAction()->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
+        addAction(sidePanel->toggleViewAction());
 
-		sidePanelSplitter->insertWidget(0, sidePanel);
-		sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
-		sidePanelSplitter->setStretchFactor(1, 1);
-	}
+        sidePanelSplitter->insertWidget(0, sidePanel);
+        sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
+        sidePanelSplitter->setStretchFactor(1, 1);
+    }
 
-	//Structure panel
-	if (!leftPanel) {
-		leftPanel = new CustomWidgetList(this);
-		leftPanel->setObjectName("leftPanel");
-		TitledPanelPage *page = new TitledPanelPage(leftPanel, "leftPanel", "TODO");
-		sidePanel->appendPage(page);
-		if (hiddenLeftPanelWidgets != "") {
-			leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
-			hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
-		}
-		connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
-	}
+    //Structure panel
+    if (!leftPanel) {
+        leftPanel = new CustomWidgetList(this);
+        leftPanel->setObjectName("leftPanel");
+        TitledPanelPage *page = new TitledPanelPage(leftPanel, "leftPanel", "TODO");
+        sidePanel->appendPage(page);
+        if (hiddenLeftPanelWidgets != "") {
+            leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
+            hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
+        }
+        connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
+    }
 
-	if (!structureTreeView) {
-		structureTreeView = new StructureTreeView(editors, documents, configManager, this);
-		structureTreeView->setModel(documents.model);
+    if (!structureTreeView) {
+        structureTreeView = new StructureTreeView(editors, documents, configManager, this);
+        structureTreeView->setModel(documents.model);
 
-		connect(structureTreeView, SIGNAL(requestCloseDocument(LatexDocument*)), this, SLOT(structureContextMenuCloseDocument(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestToggleMasterDocument(LatexDocument*)), this, SLOT(structureContextMenuToggleMasterDocument(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestOpenAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuOpenAllRelatedDocuments(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestCloseAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuCloseAllRelatedDocuments(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestGotoLine(LatexDocument*,int,int)), this, SLOT(gotoLine(LatexDocument*,int,int)));
-		connect(structureTreeView, SIGNAL(requestOpenExternalFile(QString)), this, SLOT(openExternalFile(QString)));
-		connect(structureTreeView, SIGNAL(insertText(QString)), this, SLOT(insertText(QString)));
-		connect(structureTreeView, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
-		connect(structureTreeView, SIGNAL(createLabelForStructureEntry(const StructureEntry*)), this, SLOT(createLabelForStructureEntry(const StructureEntry*)));
+        connect(structureTreeView, SIGNAL(requestCloseDocument(LatexDocument*)), this, SLOT(structureContextMenuCloseDocument(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestToggleMasterDocument(LatexDocument*)), this, SLOT(structureContextMenuToggleMasterDocument(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestOpenAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuOpenAllRelatedDocuments(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestCloseAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuCloseAllRelatedDocuments(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestGotoLine(LatexDocument*,int,int)), this, SLOT(gotoLine(LatexDocument*,int,int)));
+        connect(structureTreeView, SIGNAL(requestOpenExternalFile(QString)), this, SLOT(openExternalFile(QString)));
+        connect(structureTreeView, SIGNAL(insertText(QString)), this, SLOT(insertText(QString)));
+        connect(structureTreeView, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
+        connect(structureTreeView, SIGNAL(createLabelForStructureEntry(const StructureEntry*)), this, SLOT(createLabelForStructureEntry(const StructureEntry*)));
 
-		//disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
-		connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
+        //disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
+        connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
 
-		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
-	} else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
-	if (!leftPanel->widget("bookmarks")) {
-		QListWidget *bookmarksWidget = bookmarks->widget();
-		connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
-		connect(bookmarks, SIGNAL(gotoLineRequest(int, int, LatexEditorView *)), this, SLOT(gotoLine(int, int, LatexEditorView *)));
-		leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
-	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
+        leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
+    } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
+    if (!leftPanel->widget("bookmarks")) {
+        QListWidget *bookmarksWidget = bookmarks->widget();
+        connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
+        connect(bookmarks, SIGNAL(gotoLineRequest(int, int, LatexEditorView *)), this, SLOT(gotoLine(int, int, LatexEditorView *)));
+        leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
+    } else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 
-	if (!leftPanel->widget("symbols")) {
-		symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
+    if (!leftPanel->widget("symbols")) {
+        symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
-		connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
-		leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
+        connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
+        leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
     } else leftPanel->setWidgetText("symbols", tr("Symbols"));
 
-	addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
-	addTagList("pstricks", getRealIconFile("pstricks"), tr("PSTricks Commands"), "pstricks_tags.xml");
-	addTagList("metapost", getRealIconFile("metapost"), tr("MetaPost Commands"), "metapost_tags.xml");
-	addTagList("tikz", getRealIconFile("tikz"), tr("TikZ Commands"), "tikz_tags.xml");
-	addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
-	addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
-	addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
+    addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
+    addTagList("pstricks", getRealIconFile("pstricks"), tr("PSTricks Commands"), "pstricks_tags.xml");
+    addTagList("metapost", getRealIconFile("metapost"), tr("MetaPost Commands"), "metapost_tags.xml");
+    addTagList("tikz", getRealIconFile("tikz"), tr("TikZ Commands"), "tikz_tags.xml");
+    addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
+    addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
+    addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
 
     addMacrosAsTagList();
 
-	leftPanel->showWidgets();
+    leftPanel->showWidgets();
 
-	// OUTPUT WIDGETS
-	if (!outputView) {
-		outputView = new OutputViewWidget(this);
-		outputView->setObjectName("OutputView");
-		centralVSplitter->addWidget(outputView);
-		outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
-		centralVSplitter->setStretchFactor(1, 0);
-		centralVSplitter->restoreState(configManager.getOption("centralVSplitterState").toByteArray());
+    // OUTPUT WIDGETS
+    if (!outputView) {
+        outputView = new OutputViewWidget(this);
+        outputView->setObjectName("OutputView");
+        centralVSplitter->addWidget(outputView);
+        outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
+        centralVSplitter->setStretchFactor(1, 0);
+        centralVSplitter->restoreState(configManager.getOption("centralVSplitterState").toByteArray());
 
-		connect(outputView->getLogWidget(), SIGNAL(logEntryActivated(int)), this, SLOT(gotoLogEntryEditorOnly(int)));
-		connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
-		connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
-		connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
-		connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument *, int, const SearchQuery *)), this, SLOT(jumpToSearchResult(QDocument *, int, const SearchQuery *)));
-		connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery *)), this, SLOT(runSearch(SearchQuery *)));
+        connect(outputView->getLogWidget(), SIGNAL(logEntryActivated(int)), this, SLOT(gotoLogEntryEditorOnly(int)));
+        connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
+        connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
+        connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
+        connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument *, int, const SearchQuery *)), this, SLOT(jumpToSearchResult(QDocument *, int, const SearchQuery *)));
+        connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery *)), this, SLOT(runSearch(SearchQuery *)));
 
-		connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable(const QString &, const PreviewSource &)));
-		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
+        connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable(const QString &, const PreviewSource &)));
+        connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
         connect(&buildManager, SIGNAL(clearLogs()), SLOT(clearLogs()));
 
-		connect(&buildManager, SIGNAL(beginRunningCommands(QString, bool, bool, bool)), SLOT(beginRunningCommand(QString, bool, bool, bool)));
-		connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
-		connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
-		connect(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), SLOT(endRunningCommand(QString, bool, bool, bool)));
-		connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult *)), SLOT(viewLogOrReRun(LatexCompileResult *)));
-		connect(&buildManager, SIGNAL(runInternalCommand(QString, QFileInfo, QString)), SLOT(runInternalCommand(QString, QFileInfo, QString)));
-		connect(&buildManager, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequested(QString, QString *, bool *)));
+        connect(&buildManager, SIGNAL(beginRunningCommands(QString, bool, bool, bool)), SLOT(beginRunningCommand(QString, bool, bool, bool)));
+        connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
+        connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
+        connect(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), SLOT(endRunningCommand(QString, bool, bool, bool)));
+        connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult *)), SLOT(viewLogOrReRun(LatexCompileResult *)));
+        connect(&buildManager, SIGNAL(runInternalCommand(QString, QFileInfo, QString)), SLOT(runInternalCommand(QString, QFileInfo, QString)));
+        connect(&buildManager, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequested(QString, QString *, bool *)));
 
-		addAction(outputView->toggleViewAction());
-		QAction *temp = new QAction(this);
-		temp->setSeparator(true);
-		addAction(temp);
-	}
-	sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
+        addAction(outputView->toggleViewAction());
+        QAction *temp = new QAction(this);
+        temp->setSeparator(true);
+        addAction(temp);
+    }
+    sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
 }
 
 void Texstudio::updateToolBarMenu(const QString &menuName)
