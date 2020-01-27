@@ -4005,6 +4005,7 @@ void Texstudio::readSettings(bool reread)
 
 	symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
 	                                      config->value("Symbols/FavoriteIDs").toStringList());
+    symbolListModel->setDarkmode(config->value("Symbols/darkMode", false).toBool());
 	hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
 
 	configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys

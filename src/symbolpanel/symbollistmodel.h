@@ -40,6 +40,7 @@ public:
 
 	QVariantMap usageCountAsQVariantMap() const;
 	QStringList favorites() const;
+    void setDarkmode(bool active);
 
 public slots:
 	void addFavorite(const QString &id);
@@ -58,6 +59,7 @@ private:
 	int iconSizeHint;  // only needed for a workaround on OSX which renders svg -> pixmap -> icon
 	QHash<QString, int> usageCount;
 	QStringList favoriteIds;
+    bool m_darkMode;
 };
 
 #endif // SYMBOLLISTMODEL_H
