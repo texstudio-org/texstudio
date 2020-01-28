@@ -6367,7 +6367,6 @@ void Texstudio::helpAbout()
 
 void Texstudio::generalOptions()
 {
-	QMap<QString, QVariant> oldCustomEnvironments = configManager.customEnvironments;
 	bool oldModernStyle = modernStyle;
 	bool oldSystemTheme = useSystemTheme;
 	int oldReplaceQuotes = configManager.replaceQuotes;
@@ -6492,11 +6491,6 @@ void Texstudio::generalOptions()
 		changeSymbolGridIconSize(configManager.guiSymbolGridIconSize, false);
 		//custom toolbar
 		setupToolBars();
-		// custom evironments
-		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
-		if (customEnvironmentChanged) {
-			updateTexQNFA();
-		}
 		//completion
 		completionBaseCommandsUpdated = true;
 		completerNeedsUpdate();

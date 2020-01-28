@@ -188,10 +188,6 @@ public:
 	QString spellLanguage;
 	QString spell_dic, thesaurus_database;
 
-	// custom highlighting
-	QStringList enviromentModes;
-	QMap<QString, QVariant> customEnvironments;
-
 	//debug
 #ifndef QT_NO_DEBUG
 	QDateTime debugLastFileModification;

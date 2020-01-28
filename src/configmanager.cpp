@@ -435,9 +435,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Structure/MarkStructureElementsInAppendix", &markStructureElementsInAppendix, true, &pseudoDialog->checkBoxMarkStructureElementsInAppendix);
 	registerOption("StructureView/ReferenceCommandsInContextMenu", &referenceCommandsInContextMenu, "\\ref", &pseudoDialog->leReferenceCommandsInContextMenu);
 
-	enviromentModes << "verbatim" << "numbers" << "picture" << "comment";
-
-
 	//beginRegisterGroup("texmaker");
 	//files
 	registerOption("Files/New File Encoding", &newFileEncodingName, "utf-8", &pseudoDialog->comboBoxEncoding); //check
@@ -1126,7 +1123,6 @@ QSettings *ConfigManager::readSettings(bool reread)
 	replacedIconsOnMenus = config->value("customIcons").toMap();
 
 	//custom highlighting
-	customEnvironments = config->value("customHighlighting").toMap();
 	LatexParser::getInstance().customCommands = QSet<QString>::fromList(config->value("customCommands").toStringList());
 
 	//--------------------appearance------------------------------------
@@ -1287,7 +1283,6 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	}
 	config->setValue("customIcons", replacedIconsOnMenus);
 	// custom highlighting
-	config->setValue("customHighlighting", customEnvironments);
 	QStringList zw = LatexParser::getInstance().customCommands.toList();
 	config->setValue("customCommands", zw);
 
