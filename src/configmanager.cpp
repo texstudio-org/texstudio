@@ -669,6 +669,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 #endif
 	registerOption("GUI/Texmaker Palette", &useTexmakerPalette, false, &pseudoDialog->checkBoxUseTexmakerPalette);
 	registerOption("GUI/Use System Theme", &useSystemTheme, true, &pseudoDialog->checkBoxUseSystemTheme);
+    registerOption("GUI/Use Dark Mode", &darkMode, false, &pseudoDialog->checkBoxDarkMode);
 	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);

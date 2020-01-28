@@ -4005,7 +4005,7 @@ void Texstudio::readSettings(bool reread)
 
 	symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
 	                                      config->value("Symbols/FavoriteIDs").toStringList());
-    symbolListModel->setDarkmode(config->value("Symbols/darkMode", false).toBool());
+    symbolListModel->setDarkmode(configManager.darkMode);
 	hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
 
 	configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
@@ -6424,6 +6424,7 @@ void Texstudio::generalOptions()
 		if (configManager.autoDetectEncodingFromChars)
 			QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
+        symbolListModel->setDarkmode(configManager.darkMode);
 
 		ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 		if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);

@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,7 +185,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>562</width>
+            <width>870</width>
             <height>640</height>
            </rect>
           </property>
@@ -208,29 +208,23 @@
               <string>Appearance</string>
              </property>
              <layout class="QGridLayout">
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
+              <item row="4" column="1">
+               <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
                 <property name="text">
-                 <string>Language:</string>
+                 <string>Ignore Most System Colors</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_5">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
+              <item row="7" column="1">
+               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
                 <property name="text">
-                 <string>Font:</string>
+                 <string>MRU Document Chooser</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -244,8 +238,35 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_7">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Color Scheme:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1" colspan="3">
+               <widget class="QFontComboBox" name="comboBoxInterfaceFont">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="1" colspan="3">
+               <widget class="QComboBox" name="comboBoxLanguage">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_3">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -253,7 +274,43 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Font Size:</string>
+                 <string>Style:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1" colspan="3">
+               <widget class="QSpinBox" name="spinBoxInterfaceFontSize">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Language:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Font:</string>
                 </property>
                </widget>
               </item>
@@ -271,8 +328,8 @@
                 </item>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_3">
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_7">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -280,21 +337,11 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Style:</string>
+                 <string>Font Size:</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1" colspan="3">
-               <widget class="QSpinBox" name="spinBoxInterfaceFontSize">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2" colspan="2">
+              <item row="4" column="2">
                <widget class="QCheckBox" name="checkBoxUseSystemTheme">
                 <property name="text">
                  <string>Use System Theme Icons</string>
@@ -304,50 +351,13 @@
                 </property>
                </widget>
               </item>
-              <item row="8" column="1" colspan="3">
-               <widget class="QComboBox" name="comboBoxLanguage">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+              <item row="4" column="3">
+               <widget class="QCheckBox" name="checkBoxDarkMode">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uses white color for symbols and activates alternative syntax hightligthing colors which are more apropriate for dark backgrounds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
-               </widget>
-              </item>
-              <item row="3" column="1" colspan="3">
-               <widget class="QFontComboBox" name="comboBoxInterfaceFont">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_14">
                 <property name="text">
-                 <string>Color Scheme:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
-                <property name="text">
-                 <string>Ignore Most System Colors</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="1">
-               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
-                <property name="text">
-                 <string>MRU Document Chooser</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
+                 <string>Dark Mode</string>
                 </property>
                </widget>
               </item>

@@ -125,12 +125,7 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 			symbolItem.packages = img.text("Packages");
 			symbolItem.unicode = img.text("CommandUnicode");
 			symbolItem.iconFile = fileName;
-            if(m_darkMode){
-                img.invertPixels(QImage::InvertRgb);
-                symbolItem.icon = QIcon(QPixmap::fromImage(img));
-            }else {
-                symbolItem.icon = QIcon(fileName);
-            }
+            symbolItem.icon = QIcon(fileName);
 		}
 		if (!symbolItem.unicode.isEmpty()) {
 			// convert to real unicode
@@ -312,7 +307,13 @@ QIcon SymbolListModel::getIcon(const SymbolItem &item) const
                 img.invertPixels(QImage::InvertRgb);
             return QIcon(QPixmap::fromImage(img));
         }else{
-            return item.icon;
+            if(m_darkMode){
+                QImage img(item.iconFile);
+                img.invertPixels(QImage::InvertRgb);
+                return QIcon(QPixmap::fromImage(img));
+            } else{
+                return item.icon;
+            }
         }
     }else{
         return item.icon;
