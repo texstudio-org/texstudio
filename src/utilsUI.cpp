@@ -276,7 +276,7 @@ static QString strippedActionText(QString s) {
  */
 void addShortcutToToolTip(QAction *action)
 {
-	if (!action->shortcut().isEmpty() and !action->property("hasShortcutToolTip").toBool()) {
+	if (!action->shortcut().isEmpty() && !action->property("hasShortcutToolTip").toBool()) {
 		QString tooltip = action->property("tooltipBackup").toString();
 		if (tooltip.isEmpty()) {
 			tooltip = action->toolTip();
