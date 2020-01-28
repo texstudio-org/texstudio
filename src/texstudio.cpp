@@ -1740,8 +1740,6 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	REQUIRE(edit->codeeditor);
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
 
-	//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
-
 	connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
 	connect(edit->editor, SIGNAL(requestClose()), &documents, SLOT(requestedClose()));
 	connect(edit->editor, SIGNAL(redoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
@@ -4069,21 +4067,28 @@ void Texstudio::readSettings(bool reread)
 	config->endGroup();
 	config->endGroup();
 
-	config->beginGroup("formats");
-	m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
-	if (config->contains("data/styleHint/bold")) {
-		//rename data/styleHint/* => data/wordRepetition/*
-		config->beginGroup("data");
-		config->beginGroup("styleHint");
-		QStringList temp = config->childKeys();
-		config->endGroup();
-		foreach (const QString & s, temp) config->setValue("wordRepetition/" + s, config->value("styleHint/" + s));
-		config->remove("styleHint");
-		config->endGroup();
-	}
+    if(configManager.darkMode){
+        config->beginGroup("formatsDark");
+        m_formats = new QFormatFactory(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
+        m_formats->load(*config, true); //load customized formats
+        config->endGroup();
+    }else{
+        config->beginGroup("formats");
+        m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+        if (config->contains("data/styleHint/bold")) {
+            //rename data/styleHint/* => data/wordRepetition/*
+            config->beginGroup("data");
+            config->beginGroup("styleHint");
+            QStringList temp = config->childKeys();
+            config->endGroup();
+            foreach (const QString & s, temp) config->setValue("wordRepetition/" + s, config->value("styleHint/" + s));
+            config->remove("styleHint");
+            config->endGroup();
+        }
 
-	m_formats->load(*config, true); //load customized formats
-	config->endGroup();
+        m_formats->load(*config, true); //load customized formats
+        config->endGroup();
+    }
 
 	documents.settingsRead();
 
@@ -4176,10 +4181,18 @@ void Texstudio::saveSettings(const QString &configName)
 
 	config->endGroup();
 
-	config->beginGroup("formats");
-	QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
-	m_formats->save(*config, &defaultFormats);
-	config->endGroup();
+    // separate light/dark highlight formats
+    if(configManager.darkMode){
+        config->beginGroup("formatsDark");
+        QFormatFactory defaultFormats(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
+        m_formats->save(*config, &defaultFormats);
+        config->endGroup();
+    }else{
+        config->beginGroup("formats");
+        QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+        m_formats->save(*config, &defaultFormats);
+        config->endGroup();
+    }
 
 	searchResultWidget()->saveConfig();
 
@@ -9875,8 +9888,8 @@ void Texstudio::recoverFromCrash()
 
 	if (nestedCrashes > 5) {
 		qFatal("Forced kill after recovering failed after: %s\n", qPrintable(name));
-		exit(1);
-	}
+        exit(1);
+    }
 
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 
@@ -9950,8 +9963,8 @@ void Texstudio::recoverFromCrash()
 	//fprintf(stderr, "result: %i, accept: %i, yes: %i, reject: %i, dest: %i\n",mb->result(),QMessageBox::AcceptRole,QMessageBox::YesRole,QMessageBox::RejectRole,QMessageBox::DestructiveRole);
 	if (mb->result() == QMessageBox::DestructiveRole || (!wasLoop && mb->result() == QMessageBox::RejectRole)) {
 		qFatal("Killed on user request after error: %s\n", qPrintable(name));
-		exit(1);
-	}
+        exit(1);
+    }
 	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
 		delete mb;
 		Guardian::continueEndlessLoop();

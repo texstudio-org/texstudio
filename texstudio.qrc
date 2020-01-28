@@ -79,5 +79,6 @@
         <file>images/beamer/Szeged.png</file>
         <file>images/beamer/Warsaw.png</file>
         <file>tags/beamer_tags.xml</file>
+        <file>utilities/qxs/defaultFormatsDark.qxf</file>
     </qresource>
 </RCC>
