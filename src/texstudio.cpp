@@ -4001,6 +4001,7 @@ void Texstudio::readSettings(bool reread)
         ownStyle+="QMenuBar::item:pressed { background: #888888; }";
         ownStyle+="QCheckBox::indicator:unchecked { background: #404040; }";
         ownStyle+="QTableView::indicator:unchecked { background-color: #404040 }";
+        ownStyle+="QListView::indicator:unchecked { background-color: #404040 }";
         setStyleSheet(ownStyle);
     }
 
