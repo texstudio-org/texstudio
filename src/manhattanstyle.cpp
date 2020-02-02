@@ -433,7 +433,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 		int oldState = w->property("_q_stylestate").toInt();
 		oldRect = w->property("_q_stylerect").toRect();
 		newRect = w->rect();
-		w->setProperty("_q_stylestate", (int)option->state);
+        w->setProperty("_q_stylestate", static_cast<int>(option->state));
 		w->setProperty("_q_stylerect", w->rect());
 
 		// Determine the animated transition
@@ -449,8 +449,8 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 			QImage endImage(option->rect.size(), QImage::Format_ARGB32_Premultiplied);
 			Animation *anim = d->animator.widgetAnimation(widget);
 			QStyleOption opt = *option;
-			opt.state = (QStyle::State)oldState;
-			opt.state |= (State)State_Animating;
+            opt.state = static_cast<QStyle::State>(oldState);
+            opt.state |= static_cast<State>(State_Animating);
 			startImage.fill(0);
 			Transition *t = new Transition;
 			t->setWidget(w);
@@ -462,7 +462,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 				d->animator.stopAnimation(widget);
 			}
 			QStyleOption endOpt = *option;
-			endOpt.state |= (State)State_Animating;
+            endOpt.state |= static_cast<State>(State_Animating);
 			t->setStartImage(startImage);
 			d->animator.startAnimation(t);
 			endImage.fill(0);
