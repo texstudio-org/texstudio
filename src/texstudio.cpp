@@ -3938,59 +3938,59 @@ void Texstudio::editTextToTitlecaseSmart()
 void Texstudio::editFind()
 {
 #ifndef NO_POPPLER_PREVIEW
-	QWidget *w = QApplication::focusWidget();
-	while (w && !qobject_cast<PDFDocument *>(w))
-		w = w->parentWidget();
+    QWidget *w = QApplication::focusWidget();
+    while (w && !qobject_cast<PDFDocument *>(w))
+        w = w->parentWidget();
 
-	if (qobject_cast<PDFDocument *>(w)) {
-		PDFDocument *focusedPdf = qobject_cast<PDFDocument *>(w);
-		if (focusedPdf->embeddedMode) {
-			focusedPdf->search();
-			return;
-		}
-	}
+    if (qobject_cast<PDFDocument *>(w)) {
+        PDFDocument *focusedPdf = qobject_cast<PDFDocument *>(w);
+        if (focusedPdf->embeddedMode) {
+            focusedPdf->search();
+            return;
+        }
+    }
 #endif
-	if (!currentEditor()) return;
-	currentEditor()->find();
+    if (!currentEditor()) return;
+    currentEditor()->find();
 }
 
 /////////////// CONFIG ////////////////////
 void Texstudio::readSettings(bool reread)
 {
-	QuickDocumentDialog::registerOptions(configManager);
-	QuickBeamerDialog::registerOptions(configManager);
-	buildManager.registerOptions(configManager);
-	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
-	configManager.registerOption("PDFSplitter", &pdfSplitterRel, 0.5);
+    QuickDocumentDialog::registerOptions(configManager);
+    QuickBeamerDialog::registerOptions(configManager);
+    buildManager.registerOptions(configManager);
+    configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
+    configManager.registerOption("PDFSplitter", &pdfSplitterRel, 0.5);
 
-	configManager.buildManager = &buildManager;
-	scriptengine::buildManager = &buildManager;
-	scriptengine::app = this;
-	QSettings *config = configManager.readSettings(reread);
-	completionBaseCommandsUpdated = true;
+    configManager.buildManager = &buildManager;
+    scriptengine::buildManager = &buildManager;
+    scriptengine::app = this;
+    QSettings *config = configManager.readSettings(reread);
+    completionBaseCommandsUpdated = true;
 
-	config->beginGroup("texmaker");
+    config->beginGroup("texmaker");
 
-	QRect screen = QApplication::desktop()->availableGeometry();
-	int w = config->value("Geometries/MainwindowWidth", screen.width() - 100).toInt();
-	int h = config->value("Geometries/MainwindowHeight", screen.height() - 100).toInt() ;
-	int x = config->value("Geometries/MainwindowX", screen.x() + 10).toInt();
-	int y = config->value("Geometries/MainwindowY", screen.y() + 10).toInt() ;
-	int screenNumber = QApplication::desktop()->screenNumber(QPoint(x, y));
-	screen = QApplication::desktop()->availableGeometry(screenNumber);
-	if (!screen.contains(x, y)) {
-		// top left is not on screen
-		x = screen.x() + 10;
-		y = screen.y() + 10;
-		if (x + w > screen.right()) w = screen.width() - 100;
-		if (y + h > screen.height()) h = screen.height() - 100;
-	}
-	resize(w, h);
-	move(x, y);
-	windowstate = config->value("MainWindowState").toByteArray();
-	stateFullScreen = config->value("MainWindowFullssscreenState").toByteArray();
-	tobemaximized = config->value("MainWindow/Maximized", false).toBool();
-	tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
+    QRect screen = QApplication::desktop()->availableGeometry();
+    int w = config->value("Geometries/MainwindowWidth", screen.width() - 100).toInt();
+    int h = config->value("Geometries/MainwindowHeight", screen.height() - 100).toInt() ;
+    int x = config->value("Geometries/MainwindowX", screen.x() + 10).toInt();
+    int y = config->value("Geometries/MainwindowY", screen.y() + 10).toInt() ;
+    int screenNumber = QApplication::desktop()->screenNumber(QPoint(x, y));
+    screen = QApplication::desktop()->availableGeometry(screenNumber);
+    if (!screen.contains(x, y)) {
+        // top left is not on screen
+        x = screen.x() + 10;
+        y = screen.y() + 10;
+        if (x + w > screen.right()) w = screen.width() - 100;
+        if (y + h > screen.height()) h = screen.height() - 100;
+    }
+    resize(w, h);
+    move(x, y);
+    windowstate = config->value("MainWindowState").toByteArray();
+    stateFullScreen = config->value("MainWindowFullssscreenState").toByteArray();
+    tobemaximized = config->value("MainWindow/Maximized", false).toBool();
+    tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
 
     //dark mode menu
     if(configManager.darkMode && configManager.useTexmakerPalette){
@@ -3999,83 +3999,84 @@ void Texstudio::readSettings(bool reread)
         ownStyle+="QMenuBar::item { background: transparent;}";
         ownStyle+="QMenuBar::item:selected { background: #808080;}";
         ownStyle+="QMenuBar::item:pressed { background: #888888; }";
+        ownStyle+="QCheckBox::indicator:unchecked { background: #606060; }";
         setStyleSheet(ownStyle);
     }
 
-	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
+    documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
 
-	spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
-	spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
-	spellerManager.setDefaultSpeller(configManager.spellLanguage);
+    spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
+    spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
+    spellerManager.setDefaultSpeller(configManager.spellLanguage);
 
-	ThesaurusDialog::setUserPath(configManager.configFileNameBase);
-	ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
+    ThesaurusDialog::setUserPath(configManager.configFileNameBase);
+    ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 
-	symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
-	                                      config->value("Symbols/FavoriteIDs").toStringList());
+    symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
+                                          config->value("Symbols/FavoriteIDs").toStringList());
     symbolListModel->setDarkmode(configManager.darkMode);
-	hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
+    hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
 
-	configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
-	configManager.editorAvailableOperations = QEditor::getAvailableOperations();
-	if (config->value("Editor/Use Tab for Move to Placeholder", false).toBool()) {
-		//import deprecated option
-		QEditor::addEditOperation(QEditor::NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
-		QEditor::addEditOperation(QEditor::PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
-		QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
-		QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
-	};
-	// import and remove old key mapping
-	{
-		config->beginGroup("Editor Key Mapping");
-		QStringList sl = config->childKeys();
-		if (!sl.empty()) {
-			foreach (const QString &key, sl) {
-				int k = key.toInt();
-				if (k == 0) continue;
-				int operationID = config->value(key).toInt();
-				QString defaultKey = configManager.editorKeys.key(operationID);
-				if (!defaultKey.isNull()) {
-					configManager.editorKeys.remove(defaultKey);
-				}
-				configManager.editorKeys.insert(QKeySequence(k).toString(), config->value(key).toInt());
-			}
-			QEditor::setEditOperations(configManager.editorKeys);
-			config->remove("");
-		}
-		config->endGroup();
-	}
-	config->beginGroup("Editor Key Mapping New");
-	QStringList sl = config->childKeys();
-	QSet<int>manipulatedOps;
-	if (!sl.empty()) {
-		foreach (const QString &key, sl) {
-			if (key.isEmpty()) continue;
-			int operationID = config->value(key).toInt();
-			if (key.startsWith("#")) {
-				// remove predefined key
-				QString realKey = key.mid(1);
-				if (configManager.editorKeys.value(realKey) == operationID) {
-					configManager.editorKeys.remove(realKey);
-				}
-			} else {
-				/*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
-				    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
-				    if (!defaultKeys.isEmpty()) {
-				        foreach(const QString elem,defaultKeys){
-				            configManager.editorKeys.remove(elem);
-				        }
-				        manipulatedOps.insert(operationID);
-				    }
-				}*/
-				// replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
-				configManager.editorKeys.insert(key, operationID);
-			}
-		}
-		QEditor::setEditOperations(configManager.editorKeys);
-	}
-	config->endGroup();
-	config->endGroup();
+    configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
+    configManager.editorAvailableOperations = QEditor::getAvailableOperations();
+    if (config->value("Editor/Use Tab for Move to Placeholder", false).toBool()) {
+        //import deprecated option
+        QEditor::addEditOperation(QEditor::NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
+        QEditor::addEditOperation(QEditor::PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
+        QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
+        QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
+    };
+    // import and remove old key mapping
+    {
+        config->beginGroup("Editor Key Mapping");
+        QStringList sl = config->childKeys();
+        if (!sl.empty()) {
+            foreach (const QString &key, sl) {
+                int k = key.toInt();
+                if (k == 0) continue;
+                int operationID = config->value(key).toInt();
+                QString defaultKey = configManager.editorKeys.key(operationID);
+                if (!defaultKey.isNull()) {
+                    configManager.editorKeys.remove(defaultKey);
+                }
+                configManager.editorKeys.insert(QKeySequence(k).toString(), config->value(key).toInt());
+            }
+            QEditor::setEditOperations(configManager.editorKeys);
+            config->remove("");
+        }
+        config->endGroup();
+    }
+    config->beginGroup("Editor Key Mapping New");
+    QStringList sl = config->childKeys();
+    QSet<int>manipulatedOps;
+    if (!sl.empty()) {
+        foreach (const QString &key, sl) {
+            if (key.isEmpty()) continue;
+            int operationID = config->value(key).toInt();
+            if (key.startsWith("#")) {
+                // remove predefined key
+                QString realKey = key.mid(1);
+                if (configManager.editorKeys.value(realKey) == operationID) {
+                    configManager.editorKeys.remove(realKey);
+                }
+            } else {
+                /*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                                    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
+                                    if (!defaultKeys.isEmpty()) {
+                                        foreach(const QString elem,defaultKeys){
+                                            configManager.editorKeys.remove(elem);
+                                        }
+                                        manipulatedOps.insert(operationID);
+                                    }
+                                }*/
+                // replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
+                configManager.editorKeys.insert(key, operationID);
+            }
+        }
+        QEditor::setEditOperations(configManager.editorKeys);
+    }
+    config->endGroup();
+    config->endGroup();
 
     if(configManager.darkMode){
         config->beginGroup("formatsDark");
@@ -4100,9 +4101,9 @@ void Texstudio::readSettings(bool reread)
         config->endGroup();
     }
 
-	documents.settingsRead();
+    documents.settingsRead();
 
-	configManager.editorConfig->settingsChanged();
+    configManager.editorConfig->settingsChanged();
 }
 
 void Texstudio::saveSettings(const QString &configName)
