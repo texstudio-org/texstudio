@@ -642,6 +642,7 @@ void Texstudio::setupDockWidgets()
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
     if (!leftPanel->widget("bookmarks")) {
         QListWidget *bookmarksWidget = bookmarks->widget();
+        bookmarks->setDarkMode(configManager.darkMode);
         connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
         connect(bookmarks, SIGNAL(gotoLineRequest(int, int, LatexEditorView *)), this, SLOT(gotoLine(int, int, LatexEditorView *)));
         leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));

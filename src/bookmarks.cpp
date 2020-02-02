@@ -41,7 +41,7 @@ QStringList Bookmark::toStringList() const
 
 
 Bookmarks::Bookmarks(const LatexDocuments *docs, QObject *parent) :
-	QObject(parent)
+    QObject(parent),m_darkMode(false)
 {
 	documents = docs;
 	initializeWidget();
@@ -225,7 +225,30 @@ void Bookmarks::updateBookmarks(LatexEditorView *edView)
             item->setData(LineNr, lineNr);
             item->setData(DocLineHandle, 0);
         }
-	}
+    }
+}
+
+void Bookmarks::setDarkMode(bool mode)
+{
+    m_darkMode=mode;
+    if(mode){
+        bookmarksWidget->setStyleSheet(
+            "QListWidget {alternate-background-color: #202040;}"
+            "QListWidget::item {"
+            "padding: 4px;"
+            "border-bottom: 1px solid palette(dark); }"
+            "QListWidget::item:selected {"
+            "color: palette(highlighted-text);"
+            "background-color: palette(highlight); }");
+    }else{
+        bookmarksWidget->setStyleSheet(
+            "QListWidget::item {"
+            "padding: 4px;"
+            "border-bottom: 1px solid palette(dark); }"
+            "QListWidget::item:selected {"
+            "color: palette(highlighted-text);"
+            "background-color: palette(highlight); }");
+    }
 }
 
 
