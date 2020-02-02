@@ -708,7 +708,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 			QStyleOptionMenuItem item = *mbi;
 			item.rect = mbi->rect;
 			QPalette pal = mbi->palette;
-			pal.setBrush(QPalette::ButtonText, dis ? Qt::gray : Qt::black);
+            pal.setBrush(QPalette::ButtonText, dis ? Qt::gray : Qt::black);
 			item.palette = pal;
 			QCommonStyle::drawControl(element, &item, painter, widget);
 			QRect r = option->rect;
