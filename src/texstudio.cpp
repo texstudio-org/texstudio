@@ -3992,6 +3992,16 @@ void Texstudio::readSettings(bool reread)
 	tobemaximized = config->value("MainWindow/Maximized", false).toBool();
 	tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
 
+    //dark mode menu
+    if(configManager.darkMode && configManager.useTexmakerPalette){
+        QString ownStyle;
+        ownStyle="QMenuBar {background: #404040 }";
+        ownStyle+="QMenuBar::item { background: transparent;}";
+        ownStyle+="QMenuBar::item:selected { background: #808080;}";
+        ownStyle+="QMenuBar::item:pressed { background: #888888; }";
+        setStyleSheet(ownStyle);
+    }
+
 	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
 
 	spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
