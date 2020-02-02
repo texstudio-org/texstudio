@@ -93,9 +93,9 @@ QFormatConfig::QFormatConfig(QWidget *w, bool adaptStyle)
 	// https://bugreports.qt-project.org/browse/QTBUG-25148
 	// https://sourceforge.net/p/texstudio/bugs/615/
 	// https://sourceforge.net/p/texstudio/bugs/630/
-	if (adaptStyle) {
+    if (adaptStyle) {
 		m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
-	}
+    }
 #endif
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),

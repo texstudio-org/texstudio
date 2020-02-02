@@ -36,7 +36,7 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 	Q_OBJECT
 	
 	public:
-		QFormatConfig(QWidget *w = 0, bool adaptStyle = true);
+        QFormatConfig(QWidget *w = nullptr, bool adaptStyle = true);
 		
 		bool isAutonomous() const;
 		
