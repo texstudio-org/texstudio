@@ -1,16 +1,16 @@
 <!DOCTYPE QXF>
 <QXF version="1.0" >
     <format id="background" >
-        <linescolor>#c0c0c0</linescolor>
+        <linescolor>#44475A</linescolor>
     </format>
     <format id="line:error">
-		<background>#ffcabf</background>
+		<background>#FF5555</background>
 	</format>
     <format id="line:warning">
-		<background>#fffbbf</background>
+		<background>#BD93F9</background>
 	</format>
     <format id="line:badbox">
-		<background>#bfd6ff</background>
+		<background>#8BE9FD</background>
 	</format>
     <format id="line:bookmark"></format>
     <format id="line:bookmark0"></format>
@@ -30,16 +30,16 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#555580</foreground>
+        <foreground>#50FA7B</foreground>
     </format>
     <format id="commentTodo" >
-        <bold>false</bold>
+        <bold>true</bold>
         <italic>false</italic>
         <overline>false</overline>
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <background>#a8cf83</background>
+        <foreground>#6c56a4</foreground>
     </format>
     <format id="comment" >
         <bold>false</bold>
@@ -48,7 +48,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#808080</foreground>
+        <foreground>#6272A4</foreground>
     </format>
     <format id="keyword" >
         <bold>false</bold>
@@ -57,7 +57,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#800000</foreground>
+        <foreground>#8BE9FD</foreground>
     </format>
     <format id="extra-keyword" >
         <bold>true</bold>
@@ -66,7 +66,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#0095ff</foreground>
+        <foreground>#BD93F9</foreground>
     </format>
     <format id="math-keyword" >
         <bold>false</bold>
@@ -75,7 +75,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#808000</foreground>
+        <foreground>#FFB86C</foreground>
     </format>
 	<format id="link" >
         <underline>true</underline>
@@ -91,27 +91,27 @@
         <foreground>#0055FF</foreground>
     </format>
     <format id="verbatim" >
-        <foreground>#008080</foreground>
+        <foreground>#8BE9FD</foreground>
     </format>
     <format id="sweave-block" >
-        <foreground>#800000</foreground>
+        <foreground>#8BE9FD</foreground>
     </format>
 	<format id="sweave-delimiter" >
         <bold>true</bold>
-        <foreground>#0095ff</foreground>
+        <foreground>#8BE9FD</foreground>
     </format>
     <format id="pweave-block" >
-        <foreground>#800000</foreground>
+        <foreground>#8BE9FD</foreground>
     </format>
 	<format id="pweave-delimiter" >
         <bold>true</bold>
         <foreground>#0095ff</foreground>
     </format>
     <format id="picture" >
-        <foreground>#804000</foreground>
+        <foreground>#FFB86C</foreground>
     </format>
     <format id="picture-keyword" >
-        <foreground>#c06000</foreground>
+        <foreground>#FFB86C</foreground>
     </format>
     <format id="braceMatch" >
         <bold>true</bold>
@@ -120,7 +120,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <background>#ffff7f</background>
+        <background>#8BE9FD</background>
     </format>
     <format id="braceMismatch" >
         <bold>true</bold>
@@ -130,7 +130,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <background>#c00000</background>
-        <foreground>#ffff7f</foreground>
+        <foreground>#FF5555</foreground>
     </format>
     <format id="search" >
 		<bold>false</bold>
@@ -167,7 +167,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#ff0000</foreground>
+        <foreground>#ffFFFFF</foreground>
     </format>
     <format id="escapeseq" >
         <bold>false</bold>
@@ -184,11 +184,11 @@
     </format>
     <format id="wordRepetition" >
         <waveUnderline>true</waveUnderline>
-        <linescolor>#008000</linescolor>
+        <linescolor>#00B000</linescolor>
     </format>
     <format id="wordRepetitionLongRange" >
         <waveUnderline>true</waveUnderline>
-        <linescolor>#008000</linescolor>
+        <linescolor>#00A000</linescolor>
     </format>
     <format id="badWord" >
         <strikeout>true</strikeout>
@@ -196,7 +196,7 @@
     </format>
     <format id="grammarMistake" >
         <waveUnderline>true</waveUnderline>
-        <linescolor>#000080</linescolor>
+        <linescolor>#0000A0</linescolor>
     </format>
     <format id="grammarMistakeSpecial1" >
         <background>#00FFA0</background>
@@ -225,7 +225,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#000080</foreground>
+        <foreground>#206dc0</foreground>
     </format>
 	<format id="referencePresent" >
 		<bold>false</bold>
@@ -300,7 +300,7 @@
 		<foreground>#000000</foreground>
 	</format>
 	<format id="current" >
-		<background>#EEEEFF</background>
+		<background>#48484e</background>
 	</format>
 	<format id="selection" >
 		<background>#B2D8FF</background>
