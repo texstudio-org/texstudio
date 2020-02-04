@@ -1202,11 +1202,10 @@ QString getCommandLineViewPdfExternal()
 		return def;
 
 	foreach (const QString &p, getProgramFilesPaths())
-		if (QDir(p + "Adobe").exists())
-			foreach (const QString &rv, QDir(p + "Adobe").entryList(QStringList() << "Reader*", QDir::Dirs, QDir::Time)) {
-				QString x = p + "Adobe/" + rv + "/Reader/AcroRd32.exe";
-				if (QFile::exists(x)) return "\"" + x + "\" \"?am.pdf\"";
-			}
+		if (QDir(p + "Adobe").exists()) {
+			QDirIterator it(p + "Adobe", QStringList() << "AcroRd32.exe", QDir::Files, QDirIterator::Subdirectories);
+			if (it.hasNext()) return "\"" + QDir::toNativeSeparators(it.next()) + "\" \"?am.pdf\"";
+		}
 	return "";
 }
 
