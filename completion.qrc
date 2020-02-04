@@ -90,6 +90,7 @@
 <file>completion/german.cwl</file>
 <file>completion/glossaries.cwl</file>
 <file>completion/glosstex.cwl</file>
+<file>completion/graphbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/harvard.cwl</file>
 <file>completion/hlist.cwl</file>
