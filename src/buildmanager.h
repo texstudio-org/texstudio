@@ -139,7 +139,9 @@ public:
 	void saveSettings(QSettings &settings);
 
 	void checkLatexConfiguration(bool &noWarnAgain);
+#ifdef Q_OS_WIN32
 	void swapWinSearchPath(QString &miktex, QString &texlive);
+#endif
 
 public slots:
     bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);

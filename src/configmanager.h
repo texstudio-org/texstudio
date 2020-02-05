@@ -345,7 +345,9 @@ private slots:
 	void managedOptionBoolToggled();
 private:
 	void updateManagedOptionObjects(ManagedProperty *property);
+#ifdef Q_OS_WIN32
 private slots:
 	void searchLaTeX();
+#endif
 };
 #endif

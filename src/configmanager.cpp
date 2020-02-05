@@ -3555,13 +3555,10 @@ void ConfigManager::updateManagedOptionObjects(ManagedProperty *property)
 		property->writeToObject(o);
 }
 
+#ifdef Q_OS_WIN
 void ConfigManager::searchLaTeX()
 {
-#ifdef Q_OS_WIN
 	QString fileName = QFileDialog::getOpenFileName(nullptr, tr("Browse program"), "", tr("pdflatex.exe"));
-#else
-	QString fileName = QFileDialog::getOpenFileName(nullptr, tr("Browse program"), "", tr("pdflatex"));
-#endif
 	if (fileName.isEmpty()) return;
 	QFileInfo fi(fileName);
 	if (!fi.exists()) return;
@@ -3589,3 +3586,4 @@ void ConfigManager::searchLaTeX()
 	}
 	buildManager->swapWinSearchPath(tmpMiktex, tmpTexlive);
 }
+#endif

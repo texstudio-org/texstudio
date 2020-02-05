@@ -1495,6 +1495,7 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 	}
 }
 
+#ifdef Q_OS_WIN32
 void BuildManager::swapWinSearchPath(QString &miktex, QString &texlive)
 {
 	QString oldMiktexBinPath = miktexBinPath;
@@ -1504,6 +1505,7 @@ void BuildManager::swapWinSearchPath(QString &miktex, QString &texlive)
 	miktex = oldMiktexBinPath;
 	texlive = oldTexliveWinBinPath;
 }
+#endif
 
 bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QTextCodec *codecForBuffer )
 {
