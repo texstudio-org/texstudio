@@ -1495,6 +1495,16 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 	}
 }
 
+void BuildManager::swapWinSearchPath(QString &miktex, QString &texlive)
+{
+	QString oldMiktexBinPath = miktexBinPath;
+	QString oldTexliveWinBinPath = texliveWinBinPath;
+	miktexBinPath = miktex;
+	texliveWinBinPath = texlive;
+	miktex = oldMiktexBinPath;
+	texlive = oldTexliveWinBinPath;
+}
+
 bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QTextCodec *codecForBuffer )
 {
 	if (waitingForProcess()) return false;

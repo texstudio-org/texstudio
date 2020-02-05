@@ -345,5 +345,7 @@ private slots:
 	void managedOptionBoolToggled();
 private:
 	void updateManagedOptionObjects(ManagedProperty *property);
+private slots:
+	void searchLaTeX();
 };
 #endif

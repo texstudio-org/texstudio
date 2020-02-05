@@ -1377,6 +1377,13 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	createCommandList(confDlg->ui.groupBoxCommands, tempOrder, false, false);
     createCommandList(confDlg->ui.groupBoxMetaCommands, tempOrder, false, true);
     createCommandList(confDlg->ui.groupBoxUserCommands, tempOrder, true, false);
+#ifdef Q_OS_WIN
+	QPushButton *searchButton = new QPushButton(tr("Search LaTeX"));
+	searchButton->setProperty(PROPERTY_WIDGET_TYPE, CG_ADD);
+	searchButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+	confDlg->ui.pageCommands->layout()->addWidget(searchButton);
+	connect(searchButton, SIGNAL(clicked()), SLOT(searchLaTeX()));
+#endif
 	confDlg->setBuildManger(buildManager);
 
 	//quickbuild/more page
@@ -2873,6 +2880,7 @@ void ConfigManager::createCommandList(QGroupBox *box, const QStringList &order, 
 	QWidget *scrollAreaWidgetContents = new QWidget();
 	QGridLayout *gl = new QGridLayout(scrollAreaWidgetContents);
 	gl->setVerticalSpacing(2);
+	gl->setObjectName("commandGrid");
 	int row = 0;
 	foreach (const QString &id, order) {
 		const CommandInfo &cmd = tempCommands.value(id);
@@ -3545,4 +3553,39 @@ void ConfigManager::updateManagedOptionObjects(ManagedProperty *property)
 		return;
 	foreach (QObject *o, managedOptionObjects[property].second)
 		property->writeToObject(o);
+}
+
+void ConfigManager::searchLaTeX()
+{
+#ifdef Q_OS_WIN
+	QString fileName = QFileDialog::getOpenFileName(nullptr, tr("Browse program"), "", tr("pdflatex.exe"));
+#else
+	QString fileName = QFileDialog::getOpenFileName(nullptr, tr("Browse program"), "", tr("pdflatex"));
+#endif
+	if (fileName.isEmpty()) return;
+	QFileInfo fi(fileName);
+	if (!fi.exists()) return;
+	QString tmpMiktex = QDir::toNativeSeparators(fi.absoluteDir().absolutePath()) + fi.absoluteDir().separator();
+	QString tmpTexlive = tmpMiktex;
+	buildManager->swapWinSearchPath(tmpMiktex, tmpTexlive);
+	QPushButton *searchButton = qobject_cast<QPushButton *>(sender());
+	QWidget *parentWidget = searchButton->parentWidget();
+	QGroupBox *groupBoxCommands = parentWidget->findChild<QGroupBox*>("groupBoxCommands");
+	QGridLayout *commandGrid = groupBoxCommands->findChild<QGridLayout*>("commandGrid");
+	for (int i = 0; i < commandGrid->rowCount(); i++)
+	{
+		QWidget *w = NULL;
+		for (int j = 1; j < commandGrid->columnCount() && w == NULL; j++)
+		{
+			QLayoutItem *ql = commandGrid->itemAtPosition(i, j);
+			if (ql == NULL) continue;
+			QPushButton* pb = (QPushButton*)ql->widget();
+			if (pb == NULL) continue;
+			if (pb->property(PROPERTY_WIDGET_TYPE) == CG_PROGRAM) w = pb->property(PROPERTY_ASSOCIATED_INPUT).value<QWidget *>();
+		}
+		if (w == NULL) continue;
+		QString newCommandLine = tempCommands.value(getCmdID(w)).guessCommandLine();
+		if (!newCommandLine.isEmpty()) setText(w, newCommandLine);
+	}
+	buildManager->swapWinSearchPath(tmpMiktex, tmpTexlive);
 }
