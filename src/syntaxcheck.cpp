@@ -25,6 +25,7 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 	mLinesLock.lock();
 	stopped = false;
 	mLines.clear();
+	mLinesEnqueuedCounter.fetchAndStoreOrdered(0);
 	mLinesLock.unlock();
 }
 
@@ -59,6 +60,7 @@ void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, T
     newLine.hint=hint;
 	mLinesLock.lock();
 	mLines.enqueue(newLine);
+	mLinesEnqueuedCounter.ref();
 	mLinesLock.unlock();
 	//avoid reading of any results before this execution is stopped
 	//mResultLock.lock(); not possible under windows
@@ -272,21 +274,28 @@ void SyntaxCheck::setFormats(QMap<QString, int> formatList)
 /*!
 * \brief wait for queue to be empty. Used for self-test only.
 */
-void SyntaxCheck::waitForQueueProcess()
+void SyntaxCheck::waitForQueueProcess(void)
 {
-    wait(1);
-	while (!crashed && mLinesAvailable.available() > 0) {
-		wait(1);
-	}
-}
+	int linesBefore, linesAfter;
 
-/*!
-* \brief check if queue is empty. Used for self-test only.
-* \return queue is not empty
-*/
-bool SyntaxCheck::queuedLines()
-{
-	return mLinesAvailable.available() > 0;
+	/*
+	 * The logic in the following loop is not perfect because it could terminate the loop too early if it takes more
+	 * than 10ms between the call to mLinesAvailable.acquire() and the following call to mLinesAvailable.release().
+	 * Implementing the check properly requires bi-directional communication with the worker thread with commands to
+	 * pause/unpause the worker thread which complicates the code too much just to handle testing.
+	 */
+	linesBefore = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
+	forever {
+		for (int i = 0; i < 2; ++i) {
+			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers, 1000); // Process queued checkNextLine events
+			wait(5); // Give the checkNextLine signal handler time to queue the next line
+		}
+		linesAfter = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
+		if ((linesBefore == linesAfter) && !mLinesAvailable.available()) {
+			break;
+		}
+		linesBefore = linesAfter;
+	}
 }
 
 /*!
