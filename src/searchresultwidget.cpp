@@ -180,7 +180,7 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		size = doCheck(option, option.rect, Qt::Checked).size();
 
 		QRect checkboxRect(option.rect.x(), option.rect.y(), size.width(), size.height());
-		QItemDelegate::drawCheck(painter, option, checkboxRect, (Qt::CheckState) index.data(Qt::CheckStateRole).toInt());
+        QItemDelegate::drawCheck(painter, option, checkboxRect, static_cast<Qt::CheckState>(index.data(Qt::CheckStateRole).toInt()));
 	}
 	int spacing = 2;
 	r.adjust(size.width() + spacing, 0, 0, 0);
@@ -238,8 +238,13 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		part = text.mid(match.pos, match.length);
 		w = painter->fontMetrics().width(part);
 		painter->save();
-		painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
-		painter->setPen(option.palette.color(cg, QPalette::Text));
+        if(darkMode){
+            painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
+            painter->setPen(Qt::black);
+        }else{
+            painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
+            painter->setPen(option.palette.color(cg, QPalette::Text));
+        }
 		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, part);
 		painter->restore();
 		r.setLeft(r.left() + w + 1);

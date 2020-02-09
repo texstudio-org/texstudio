@@ -12,7 +12,7 @@ class SearchResultWidget : public QWidget
 	Q_OBJECT
 
 public:
-	explicit SearchResultWidget(QWidget *parent = 0);
+    explicit SearchResultWidget(QWidget *parent = nullptr);
 
 	void setQuery(SearchQuery *sq);
 	SearchQuery::Scope searchScope() const;
@@ -53,7 +53,7 @@ class SearchTreeDelegate: public QItemDelegate
 	Q_OBJECT
 
 public:
-	SearchTreeDelegate(QString editorFontFamily, QObject *parent = 0);
+    SearchTreeDelegate(QString editorFontFamily, QObject *parent = nullptr);
 
 protected:
 	void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
