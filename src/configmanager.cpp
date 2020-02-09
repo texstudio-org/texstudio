@@ -2630,9 +2630,9 @@ void ConfigManager::setInterfaceStyle()
             pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
             pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
 
-            pal.setColor(QPalette::Active, QPalette::Base, QColor("#202020"));
-            pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#202020"));
-            pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#202020"));
+            pal.setColor(QPalette::Active, QPalette::Base, QColor("#303030"));
+            pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#303030"));
+            pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#303030"));
 
             pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#e0e0e0"));
             pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#e0e0e0"));
