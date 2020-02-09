@@ -149,7 +149,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <foreground>#008000</foreground>
+        <foreground>#00B000</foreground>
     </format>
     <format id="math-delimiter" >
         <bold>false</bold>
@@ -234,7 +234,7 @@
 		<underline>false</underline>
 		<strikeout>false</strikeout>
 		<waveUnderline>false</waveUnderline>
-		<foreground>#008000</foreground>
+		<foreground>#00B000</foreground>
 	</format>
 	<format id="referenceMissing" >
 		<bold>false</bold>
@@ -243,7 +243,7 @@
 		<underline>false</underline>
 		<strikeout>false</strikeout>
 		<waveUnderline>true</waveUnderline>
-		<foreground>#008000</foreground>
+		<foreground>#00B000</foreground>
 	</format>
 	<format id="referenceMultiple" >
 		<bold>false</bold>
@@ -252,7 +252,7 @@
 		<underline>false</underline>
 		<strikeout>false</strikeout>
 		<waveUnderline>true</waveUnderline>
-		<foreground>#800080</foreground>
+		<foreground>#FF00FF</foreground>
 	</format>
 	<format id="citationPresent" >
 		<bold>false</bold>
@@ -261,7 +261,7 @@
 		<underline>false</underline>
 		<strikeout>false</strikeout>
 		<waveUnderline>false</waveUnderline>
-		<foreground>#008000</foreground>
+		<foreground>#00B000</foreground>
 	</format>
 	<format id="citationMissing" >
 		<bold>false</bold>
@@ -270,7 +270,7 @@
 		<underline>false</underline>
 		<strikeout>false</strikeout>
 		<waveUnderline>true</waveUnderline>
-		<foreground>#008000</foreground>
+		<foreground>#00B000</foreground>
 	</format>
 	<format id="packagePresent" >
 		<bold>false</bold>
@@ -279,7 +279,7 @@
 		<underline>false</underline>
 		<strikeout>false</strikeout>
 		<waveUnderline>false</waveUnderline>
-		<foreground>#008000</foreground>
+		<foreground>#00B000</foreground>
 	</format>
 	<format id="packageMissing" >
 		<bold>false</bold>
@@ -288,7 +288,7 @@
 		<underline>false</underline>
 		<strikeout>false</strikeout>
 		<waveUnderline>true</waveUnderline>
-		<foreground>#008000</foreground>
+		<foreground>#00B000</foreground>
 	</format>
 	<format id="structure" >
 		<bold>true</bold>
@@ -332,7 +332,7 @@
 		<bold>true</bold>
 	</format>
 	<format id="txs-test-pass" >
-        <foreground>#008000</foreground>
+        <foreground>#00B000</foreground>
 	</format>
 	<format id="txs-test-fail" >
 		<foreground>#C00000</foreground>
@@ -431,10 +431,10 @@
         <foreground>#808080</foreground>
     </format>
     <format id="qtscript:string" >
-        <foreground>#008000</foreground>
+        <foreground>#00B000</foreground>
     </format>
     <format id="qtscript:number" >
-        <foreground>#000080</foreground>
+        <foreground>#0000B0</foreground>
     </format>
     <format id="qtscript:keyword" >
         <foreground>#808000</foreground>
