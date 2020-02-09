@@ -226,25 +226,32 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 }
 
 bool modernStyle;
+bool darkMode;
 bool useSystemTheme;
 QString getRealIconFile(const QString &icon)
 {
 	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
-	QStringList iconNames = QStringList()
-	                        << ":/images-ng/" + icon + ".svg"
-	                        << ":/images-ng/" + icon + ".svgz"     //voruebergehend
-	                        << ":/symbols-ng/icons/" + icon + ".svg" //voruebergehend
-	                        << ":/symbols-ng/icons/" + icon + ".png"; //voruebergehend
-	if (modernStyle) {
-		iconNames << ":/images-ng/modern/" + icon + ".svg"
-		          << ":/images-ng/modern/" + icon + ".svgz"
-		          << ":/modern/images/modern/" + icon + ".png";
-	} else {
-		iconNames << ":/images-ng/classic/" + icon + ".svg"
-		          << ":/images-ng/classic/" + icon + ".svgz"
-		          << ":/classic/images/classic/" + icon + ".png";
-	}
-	iconNames << ":/images/" + icon + ".png";
+    QStringList suffixList{""};
+    if(darkMode)
+        suffixList=QStringList{"_dm",""};
+    QStringList iconNames = QStringList();
+    for(const QString& suffix : suffixList){
+        iconNames
+                << ":/images-ng/" + icon + suffix + ".svg"
+                << ":/images-ng/" + icon + suffix + ".svgz"     //voruebergehend
+                << ":/symbols-ng/icons/" + icon + suffix + ".svg" //voruebergehend
+                << ":/symbols-ng/icons/" + icon + suffix + ".png"; //voruebergehend
+        if (modernStyle) {
+            iconNames << ":/images-ng/modern/" + icon + suffix + ".svg"
+                      << ":/images-ng/modern/" + icon + suffix + ".svgz"
+                      << ":/modern/images/modern/" + icon + suffix + ".png";
+        } else {
+            iconNames << ":/images-ng/classic/" + icon + suffix + ".svg"
+                      << ":/images-ng/classic/" + icon + suffix + ".svgz"
+                      << ":/classic/images/classic/" + icon + suffix + ".png";
+        }
+        iconNames << ":/images/" + icon + ".png";
+    }
 
 	foreach (const QString &name, iconNames) {
 		if (QFileInfo(name).exists())

@@ -81,7 +81,6 @@ public:
 	int guiToolbarIconSize, guiSymbolGridIconSize;
 	int guiSecondaryToolbarIconSize;
 	bool useTexmakerPalette;
-    bool darkMode;
 	int interfaceFontSize;
 	bool mruDocumentChooser;
 	bool configShowAdvancedOptions, configRiddled;

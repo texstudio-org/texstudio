@@ -28,6 +28,7 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 QString findResourceFile(const QString &fileName, bool allowOverride = false, QStringList additionalPreferredPaths = QStringList(), QStringList additionalFallbackPaths = QStringList());
 
 extern bool modernStyle;
+extern bool darkMode;
 extern bool useSystemTheme;
 
 extern QCache<QString, QIcon>iconCache;

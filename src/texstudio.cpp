@@ -642,7 +642,7 @@ void Texstudio::setupDockWidgets()
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
     if (!leftPanel->widget("bookmarks")) {
         QListWidget *bookmarksWidget = bookmarks->widget();
-        bookmarks->setDarkMode(configManager.darkMode);
+        bookmarks->setDarkMode(darkMode);
         connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
         connect(bookmarks, SIGNAL(gotoLineRequest(int, int, LatexEditorView *)), this, SLOT(gotoLine(int, int, LatexEditorView *)));
         leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
@@ -3994,7 +3994,7 @@ void Texstudio::readSettings(bool reread)
     tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
 
     //dark mode menu
-    if(configManager.darkMode && configManager.useTexmakerPalette){
+    if(darkMode && configManager.useTexmakerPalette){
         QString ownStyle;
         ownStyle="QMenuBar {background: #404040 }";
         ownStyle+="QMenuBar::item { background: transparent;}";
@@ -4017,7 +4017,7 @@ void Texstudio::readSettings(bool reread)
 
     symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
                                           config->value("Symbols/FavoriteIDs").toStringList());
-    symbolListModel->setDarkmode(configManager.darkMode);
+    symbolListModel->setDarkmode(darkMode);
     hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
 
     configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
@@ -4081,7 +4081,7 @@ void Texstudio::readSettings(bool reread)
     config->endGroup();
     config->endGroup();
 
-    if(configManager.darkMode){
+    if(darkMode){
         config->beginGroup("formatsDark");
         m_formats = new QFormatFactory(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
         m_formats->load(*config, true); //load customized formats
@@ -4196,7 +4196,7 @@ void Texstudio::saveSettings(const QString &configName)
 	config->endGroup();
 
     // separate light/dark highlight formats
-    if(configManager.darkMode){
+    if(darkMode){
         config->beginGroup("formatsDark");
         QFormatFactory defaultFormats(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
         m_formats->save(*config, &defaultFormats);
@@ -6450,7 +6450,7 @@ void Texstudio::generalOptions()
 		if (configManager.autoDetectEncodingFromChars)
 			QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
-        symbolListModel->setDarkmode(configManager.darkMode);
+        symbolListModel->setDarkmode(darkMode);
 
 		ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 		if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);
