@@ -10,4 +10,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: read and cut bintray entries
-      run: .github/scritps/bintrayCutEntries.sh ${{ secrets.bintrayAccess }}
+      run: ./.github/scripts/bintrayCutEntries.sh ${{ secrets.bintrayAccess }}
+
