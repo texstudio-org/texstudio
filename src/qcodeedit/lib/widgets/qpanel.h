@@ -40,7 +40,7 @@ class QCE_EXPORT QPanel : public QWidget
 	Q_OBJECT
 	
 	public:
-		QPanel(QWidget *p = 0);
+        QPanel(QWidget *p = nullptr);
 		virtual ~QPanel();
 		
 		virtual QString id() const = 0;
@@ -54,7 +54,7 @@ class QCE_EXPORT QPanel : public QWidget
 		bool defaultVisibility() const;
 		void setDefaultVisibility(bool on);
 		
-		static QPanel* panel(const QString& id, QWidget *p = 0);
+        static QPanel* panel(const QString& id, QWidget *p = nullptr);
 		static void registerCreator(QPanelCreator *c);
 		
 	protected:

@@ -110,6 +110,9 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	//		geometry().y(),
 	//		geometry().width(),
 	//		geometry().height());
+
+
+
 	static QPixmap _warn = QPixmap(getRealIconFile("warning")).scaledToHeight(16, Qt::SmoothTransformation);
 	static QPixmap _mod = QPixmap(getRealIconFile("document-save")).scaledToHeight(16, Qt::SmoothTransformation);
 
@@ -125,7 +128,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	QDocumentCursorHandle* c = e->cursorHandle();
 
 	if (c) {
-		s = tr("Line: %1").arg(c->lineNumber() + 1);
+        s = tr("Line: %1").arg(c->lineNumber() + 1);
 		s += spacing + tr("Column: %1").arg(c->visualColumnNumber());
 
 		if (c->hasSelection()) {
@@ -144,7 +147,6 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 			s+= spacing + tr("RTL", "Abbreviation for Right-To-Left used in status bar.");
 		}
 	}
-
 	p->drawText(xpos, ascent, s);
 	xpos += fm.width(s) + 10;
 

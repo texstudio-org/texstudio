@@ -4003,6 +4003,8 @@ void Texstudio::readSettings(bool reread)
         ownStyle+="QCheckBox::indicator:unchecked { background: #404040; }";
         ownStyle+="QTableView::indicator:unchecked { background-color: #404040 }";
         ownStyle+="QListView::indicator:unchecked { background-color: #404040 }";
+        ownStyle+="QTabBar::tab {background-color: #404040 }";
+        ownStyle+="QTabBar::tab:selected {background-color: #606060 }";
         setStyleSheet(ownStyle);
     }
 

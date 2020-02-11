@@ -496,8 +496,8 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 	}
 	break;
 
-	case PE_FrameStatusBarItem:
-		break;
+    case PE_FrameStatusBarItem:
+        break;
 
 	case PE_PanelButtonTool: {
 		Animation *anim = d->animator.widgetAnimation(widget);
