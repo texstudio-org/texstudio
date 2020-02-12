@@ -976,8 +976,15 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 
 	// ceck for meta line commands at beginning of line
 	bool recheck = true;
+    if(line.startsWith("%") && recheck){
+        int behind=line.indexOf(QRegExp("[\\n\\r]"));
+        pre.append(line.left(behind));
 
-	while (line.startsWith("\\") && recheck) {
+        line = line.mid(behind).trimmed();
+        recheck = true;
+    }
+
+    while (line.startsWith("\\") && recheck) {
 		recheck = false;
 		foreach (const QString &cmd, metaLineCommands) {
 			if (line.startsWith(cmd)) {
