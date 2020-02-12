@@ -4030,7 +4030,7 @@ void Texstudio::readSettings(bool reread)
         QEditor::addEditOperation(QEditor::PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
         QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
         QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
-    };
+    }
     // import and remove old key mapping
     {
         config->beginGroup("Editor Key Mapping");

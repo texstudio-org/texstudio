@@ -871,7 +871,7 @@ void LatexTables::alignTableCols(QDocumentCursor &cur)
 	}
 
 	QString alignment;
-	if (args.count() < 2 && mathTables.contains(tableType)) {
+    if (args.count() < 3 && mathTables.contains(tableType)) {
 		alignment = "l"; // may be more. But thats caught by the fallback (filling with additional "l").
 	}
 	// assume alignment in second arg except for the following environments (which have it in the third one)
