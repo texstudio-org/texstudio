@@ -636,7 +636,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 QString name;
                 QString val;
                 splitMagicComment(text, name, val);
-                if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex")) {
+                if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex" || val == "bibtex8")) {
                     addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, posMagicComment++);
                     commentStart.second=Token::magicComment;
                     dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
