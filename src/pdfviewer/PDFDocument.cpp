@@ -2716,7 +2716,7 @@ void PDFDocument::init(bool embedded)
 	leCurrentPage->setText("1");
 	leCurrentPage->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	// TODO: hack to adjust color of the line edit for modern style. Should be done properly in style itself (manhattanstyle.cpp)
-	bool modernStyle = ConfigManager::getInstance()->getOption("GUI/Style").toBool();
+    int modernStyle = ConfigManager::getInstance()->getOption("GUI/Style").toInt();
 	if (modernStyle) {
 		leCurrentPage->setStyleSheet("QLineEdit{ color: white; padding-top: -1px; margin-right: 2px; }");
 	} else {

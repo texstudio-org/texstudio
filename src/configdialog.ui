@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>870</width>
-            <height>640</height>
+            <width>866</width>
+            <height>735</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -326,6 +326,11 @@
                   <string>Modern</string>
                  </property>
                 </item>
+                <item>
+                 <property name="text">
+                  <string>Modern - dark</string>
+                 </property>
+                </item>
                </widget>
               </item>
               <item row="6" column="0">
@@ -348,16 +353,6 @@
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="3">
-               <widget class="QCheckBox" name="checkBoxDarkMode">
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uses white color for symbols and activates alternative syntax hightligthing colors which are more apropriate for dark backgrounds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Dark Mode</string>
                 </property>
                </widget>
               </item>
@@ -745,8 +740,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>821</width>
+            <height>598</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -903,8 +898,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>856</width>
-                   <height>76</height>
+                   <width>205</width>
+                   <height>79</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -1968,8 +1963,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>870</width>
-            <height>1589</height>
+            <width>779</width>
+            <height>1795</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3155,8 +3150,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>513</width>
-            <height>692</height>
+            <width>571</width>
+            <height>790</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3681,8 +3676,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>367</width>
-            <height>259</height>
+            <width>397</width>
+            <height>297</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3943,8 +3938,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>515</width>
-            <height>466</height>
+            <width>576</width>
+            <height>531</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">

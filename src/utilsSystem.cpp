@@ -225,7 +225,7 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 	return "";
 }
 
-bool modernStyle;
+int modernStyle;
 bool darkMode;
 bool useSystemTheme;
 QString getRealIconFile(const QString &icon)

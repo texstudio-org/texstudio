@@ -6396,7 +6396,8 @@ void Texstudio::helpAbout()
 
 void Texstudio::generalOptions()
 {
-	bool oldModernStyle = modernStyle;
+    bool oldDarkMode = darkMode;
+    int oldModernStyle = modernStyle;
 	bool oldSystemTheme = useSystemTheme;
 	int oldReplaceQuotes = configManager.replaceQuotes;
 	autosaveTimer.stop();
@@ -6469,6 +6470,17 @@ void Texstudio::generalOptions()
 		updateHighlighting |= (inlineSyntaxChecking != configManager.editorConfig->inlineSyntaxChecking);
 		updateHighlighting |= (realtimeChecking != configManager.editorConfig->realtimeChecking);
 		updateHighlighting |= (additionalBibPaths != configManager.additionalBibPaths);
+        if(oldDarkMode != darkMode){
+            // reload other formats
+            QSettings *config=configManager.getSettings();
+            config->beginGroup("texmaker");
+            config->beginGroup("formatsDark");
+            m_formats = new QFormatFactory(darkMode ? ":/qxs/defaultFormatsDark.qxf" : ":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+            m_formats->load(*config, true); //load customized formats
+            config->endGroup();
+            config->endGroup();
+            updateHighlighting=true;
+        }
 		// check for change in load completion files
 		QStringList newLoadedFiles = configManager.completerConfig->getLoadedFiles();
 		foreach (const QString &elem, newLoadedFiles) {

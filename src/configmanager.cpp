@@ -666,7 +666,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 #endif
 	registerOption("GUI/Texmaker Palette", &useTexmakerPalette, false, &pseudoDialog->checkBoxUseTexmakerPalette);
 	registerOption("GUI/Use System Theme", &useSystemTheme, true, &pseudoDialog->checkBoxUseSystemTheme);
-    registerOption("GUI/Use Dark Mode", &darkMode, false, &pseudoDialog->checkBoxDarkMode);
 	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
@@ -1290,7 +1289,12 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 
 	config->sync();
 
-	return config;
+    return config;
+}
+
+QSettings *ConfigManager::getSettings()
+{
+    return persistentConfig;
 }
 
 bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
@@ -2613,7 +2617,11 @@ void ConfigManager::setInterfaceStyle()
 	//default values are read from systemPalette and defaultStyleName
 
 	QString newStyle = interfaceStyle != "" ? interfaceStyle : defaultStyleName;
+
 	if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
+
+    darkMode=modernStyle>1;
+
 	if (modernStyle) {
 		ManhattanStyle *style = new ManhattanStyle(newStyle);
 		if (style->isValid()) QApplication::setStyle(style);

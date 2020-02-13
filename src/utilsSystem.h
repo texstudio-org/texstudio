@@ -27,7 +27,7 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 //returns the real name of a resource file
 QString findResourceFile(const QString &fileName, bool allowOverride = false, QStringList additionalPreferredPaths = QStringList(), QStringList additionalFallbackPaths = QStringList());
 
-extern bool modernStyle;
+extern int modernStyle;
 extern bool darkMode;
 extern bool useSystemTheme;
 

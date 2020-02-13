@@ -44,6 +44,7 @@ public:
 	QSettings *newQSettings();
 	QSettings *readSettings(bool reread = false);
 	QSettings *saveSettings(const QString &saveName = "");
+    QSettings *getSettings();
 
     bool execConfigDialog(QWidget *parentToDialog);
 
