@@ -282,8 +282,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
-    iconSize = qRound(qMax(16, configManager.guiSecondaryToolbarIconSize)*scale);
-    centralToolBar->setIconSize(QSize(iconSize, iconSize));
+	iconSize = qRound(configManager.guiSecondaryToolbarIconSize*scale);
+	centralToolBar->setIconSize(QSize(iconSize, iconSize));
 
 	editors = new Editors(centralFrame);
 	editors->setFocus();
