@@ -1568,13 +1568,13 @@ void LatexDocument::replaceLabelsAndRefs(const QString &name, const QString &new
 
 void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
 {
-	masterDocument = doc;
-	if (recheck) {
-		QList<LatexDocument *>listOfDocs = getListOfDocs();
-		foreach (LatexDocument *elem, listOfDocs) {
-			elem->recheckRefsLabels();
-		}
-	}
+    masterDocument = doc;
+    if (recheck) {
+        QList<LatexDocument *>listOfDocs = getListOfDocs();
+        foreach (LatexDocument *elem, listOfDocs) {
+            elem->recheckRefsLabels();
+        }
+    }
 }
 
 void LatexDocument::addChild(LatexDocument *doc)
@@ -1808,7 +1808,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 	LatexEditorView *view = document->getEditorView();
 	if (view)
 		view->closeCompleter();
-	if (document != masterDocument) {
+        if ((document != masterDocument)||(documents.count()==1) ) {
 		// get list of all affected documents
 		QList<LatexDocument *> lstOfDocs = document->getListOfDocs();
 		// special treatment to remove document in purge mode (hidden doc was deleted on disc)
@@ -1897,7 +1897,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		}
 		documents.removeAll(document);
 		if (document == currentDocument) {
-            currentDocument = nullptr;
+                    currentDocument = nullptr;
 		}
 		if (row >= 0 ) { //&& !model->getSingleDocMode()){
 			model->removeElementFinished();
@@ -1905,6 +1905,14 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		//model->resetAll();
 		if (n > 1) { // don't remove document, stays hidden instead
 			hideDocInEditor(document->getEditorView());
+                        if(masterDocument && documents.count()==1){
+                            // special check if masterDocument, but document is not visible
+                            LatexDocument *doc=documents.first();
+                            if(!doc->getEditorView()){
+                                // no view left -> purge
+                                deleteDocument(masterDocument);
+                            }
+                        }
 			return;
 		}
 		delete view;
@@ -1921,6 +1929,13 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		if (document == currentDocument)
 			currentDocument = nullptr;
 	}
+        // purge masterdocument if none is left
+        if(documents.isEmpty()){
+            if(masterDocument){
+                masterDocument=nullptr;
+            }
+            hiddenDocuments.clear();
+        }
 }
 
 void LatexDocuments::requestedClose()
@@ -1949,7 +1964,7 @@ void LatexDocuments::setMasterDocument(LatexDocument *document)
 		// repaint doc
 		foreach (LatexDocument *doc, documents) {
 			LatexEditorView *edView = doc->getEditorView();
-			if (edView) edView->documentContentChanged(0, edView->editor->document()->lines());
+                        if (edView) edView->documentContentChanged(0, doc->lines());
 		}
 	}
 	model->resetAll();
