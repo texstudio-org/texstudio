@@ -13,7 +13,7 @@
  */
 
 SymbolListModel::SymbolListModel(QVariantMap usageCountMap, QStringList favoriteList) :
-    iconSizeHint(32),m_darkMode(false)
+    m_darkMode(false)
 {
 	foreach (const QString &key, usageCountMap.keys()) {
 		usageCount.insert(key, usageCountMap.value(key).toInt());
@@ -291,18 +291,12 @@ QIcon SymbolListModel::getIcon(const SymbolItem &item) const
     // render SVG explicitely in darkMode and as a work-around for OSX bug
     if(m_darkMode || use_fallback){
         if(item.iconFile.endsWith(".svg")){
-            const int sz = iconSizeHint + 4;
             QSvgRenderer svgRender(item.iconFile);
-            QImage img(2*sz, 2*sz, QImage::Format_ARGB32);
-            //img.setDevicePixelRatio(2.0);
-            img.fill(0x000000000);
-            QPainter p(&img);
             QSize svgSize=svgRender.defaultSize()*4;
-            if(svgSize.width()>2*sz){
-                svgSize.setWidth(2*sz);
-                svgSize.setHeight(svgSize.height()*2*sz/svgSize.width());
-            }
-            svgRender.render(&p,QRectF(QPointF((2.0*sz-svgSize.width())/2,0),svgSize));
+            QImage img(svgSize.width(), svgSize.height(), QImage::Format_ARGB32);
+            QPainter p(&img);
+            img.fill(0x000000000);
+            svgRender.render(&p);
             if(m_darkMode)
                 img.invertPixels(QImage::InvertRgb);
             return QIcon(QPixmap::fromImage(img));
