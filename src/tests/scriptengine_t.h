@@ -10,11 +10,15 @@ class ScriptEngineTest: public QObject{
 	public:
 		ScriptEngineTest(LatexEditorView* editor, bool all);
 	private:
+		static QString getLineTokensText(int numTokens, ...);
+
 		LatexEditorView *edView;
 		bool all;
 	private slots:
 		void script_data();
 		void script();
+		void getLineTokens_data(void);
+		void getLineTokens(void);
 };
 
 #endif

@@ -33,12 +33,12 @@ QList<Macro> *scriptengine::macros = nullptr;
 #ifdef QJS
 template <typename Tp> QJSValue qScriptValueFromQObject(QJSEngine *engine, Tp const &qobject)
 {
-    return engine->newQObject(qobject);
+	return engine->newQObject(qobject);
 }
 
 template <typename Tp> void qScriptValueToQObject(const QJSValue &value, Tp &qobject)
 {
-    qobject = qobject_cast<Tp>(value.toQObject());
+	qobject = qobject_cast<Tp>(value.toQObject());
 }
 
 //template <typename Tp> int qScriptRegisterQObjectMetaType( QJSEngine *engine, const QJSValue &prototype = QJSValue(), Tp * /* dummy */ = nullptr)
@@ -48,53 +48,53 @@ template <typename Tp> void qScriptValueToQObject(const QJSValue &value, Tp &qob
 
 QJSValue qScriptValueFromDocumentCursor(QJSEngine *engine, QDocumentCursor const &cursor)
 {
-    return engine->newQObject(new QDocumentCursor(cursor));
+	return engine->newQObject(new QDocumentCursor(cursor));
 }
 void qScriptValueToDocumentCursor(const QJSValue &value, QDocumentCursor &qobject)
 {
-    Q_ASSERT(value.toQObject());
-    qobject = *qobject_cast<QDocumentCursor *>(value.toQObject());
+	Q_ASSERT(value.toQObject());
+	qobject = *qobject_cast<QDocumentCursor *>(value.toQObject());
 }
 
 template <typename Tp> QJSValue qScriptValueFromQList(QJSEngine *engine, QList<Tp> const &list)
 {
-    QJSValue result = engine->newArray(list.size());
-    for (int i = 0; i < list.size(); i++)
-        result.setProperty(i,  engine->newQObject(list[i])); //engine->newVariant(QVariant::fromValue<Tp>(list[i])));
-    return result;
+	QJSValue result = engine->newArray(list.size());
+	for (int i = 0; i < list.size(); i++)
+		result.setProperty(i,  engine->newQObject(list[i])); //engine->newVariant(QVariant::fromValue<Tp>(list[i])));
+	return result;
 }
 
 QDocumentCursor cursorFromValue(const QJSValue &value)
 {
-    QDocumentCursor *c = qobject_cast<QDocumentCursor *> (value.toQObject());
-    if (!c) {
-        if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object"));
-        return QDocumentCursor();
-    }
-    return *c;
+	QDocumentCursor *c = qobject_cast<QDocumentCursor *> (value.toQObject());
+	if (!c) {
+		if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object"));
+		return QDocumentCursor();
+	}
+	return *c;
 }
 
 QJSValue qScriptValueFromQFileInfo(QJSEngine *engine, QFileInfo const &fi)
 {
-    return engine->toScriptValue(fi.absoluteFilePath());
+	return engine->toScriptValue(fi.absoluteFilePath());
 }
 
 void qScriptValueToQFileInfo(const QJSValue &value, QFileInfo &fi)
 {
-    fi = QFileInfo(value.toString());
+	fi = QFileInfo(value.toString());
 }
 
 
 ScriptObject *needPrivileges(QJSEngine *engine, const QString &fn, const QString &args, bool write = true)
 {
-    ScriptObject *sc = qobject_cast<ScriptObject *>(engine->globalObject().toQObject());
-    REQUIRE_RET(sc, nullptr);
-    if (write) {
-        if (!sc->needWritePrivileges(fn, args)) return nullptr;
-    } else {
-        if (!sc->needReadPrivileges(fn, args)) return nullptr;
-    }
-    return sc;
+	ScriptObject *sc = qobject_cast<ScriptObject *>(engine->globalObject().toQObject());
+	REQUIRE_RET(sc, nullptr);
+	if (write) {
+		if (!sc->needWritePrivileges(fn, args)) return nullptr;
+	} else {
+		if (!sc->needReadPrivileges(fn, args)) return nullptr;
+	}
+	return sc;
 }
 
 //map qstring* to scriptvalue object, for callbacks
@@ -103,65 +103,65 @@ static quintptr PointerObsfuscationKey = 0;
 
 quintptr pointerObsfuscationKey()   //hide true pointers from scripts
 {
-    while (PointerObsfuscationKey == 0) {
-        for (unsigned int i = 0; i < sizeof(PointerObsfuscationKey); i++)
-            PointerObsfuscationKey = (PointerObsfuscationKey << 8) | (rand() & 0xFF);
-    }
-    return PointerObsfuscationKey;
+	while (PointerObsfuscationKey == 0) {
+		for (unsigned int i = 0; i < sizeof(PointerObsfuscationKey); i++)
+			PointerObsfuscationKey = (PointerObsfuscationKey << 8) | (rand() & 0xFF);
+	}
+	return PointerObsfuscationKey;
 }
 
 QString *getStrPtr(QJSValue value)
 {
-    if (value.property("dataStore").isUndefined())
-        return nullptr;
-    bool ok = false;
-    quintptr ptr = value.property("dataStore").toVariant().toULongLong(&ok);
-    if (!ok || ptr == 0 || ptr == pointerObsfuscationKey())
-        return nullptr;
-    return reinterpret_cast<QString *>(ptr ^ pointerObsfuscationKey());
+	if (value.property("dataStore").isUndefined())
+		return nullptr;
+	bool ok = false;
+	quintptr ptr = value.property("dataStore").toVariant().toULongLong(&ok);
+	if (!ok || ptr == 0 || ptr == pointerObsfuscationKey())
+		return nullptr;
+	return reinterpret_cast<QString *>(ptr ^ pointerObsfuscationKey());
 }
 
 QJSValue getSetStrValue(QJSEngine *engine)
 {
-    /*bool setterMode = context->argumentCount() == 1;
-    QString *s = getStrPtr(context->thisObject());
-    if (setterMode && !s) {
-        s = new QString();
-        context->thisObject().setProperty("dataStore", engine->newVariant((quintptr)(s) ^ pointerObsfuscationKey()));
-    }
-    if (!s) return engine->undefinedValue();
-    if (setterMode) {
-        if (!needPrivileges(engine, "string setting", context->argument(0).toString())){
-            delete s;
-            return engine->undefinedValue();
-        }
-        *s = context->argument(0).toString();
-    }
-    return engine->newVariant(*s);*/
-    return QJSValue();
+	/*bool setterMode = context->argumentCount() == 1;
+	QString *s = getStrPtr(context->thisObject());
+	if (setterMode && !s) {
+		s = new QString();
+		context->thisObject().setProperty("dataStore", engine->newVariant((quintptr)(s) ^ pointerObsfuscationKey()));
+	}
+	if (!s) return engine->undefinedValue();
+	if (setterMode) {
+		if (!needPrivileges(engine, "string setting", context->argument(0).toString())){
+			delete s;
+			return engine->undefinedValue();
+		}
+		*s = context->argument(0).toString();
+	}
+	return engine->newVariant(*s);*/
+	return QJSValue();
 }
 
 
 QJSValue qScriptValueFromStringPtr(QJSEngine *engine, QString *const &str)
 {
-    QJSValue wrapper = engine->newObject();
-    //wrapper.setProperty("dataStore", QJSValue(reinterpret_cast<quintptr>(str) ^ pointerObsfuscationKey()));
-    wrapper.setProperty("value", QJSValue(&getSetStrValue));
-    //it should set wrapper.toString to wrapper.value, but I don't know how you can do that (setProperty didn't work)
-    return wrapper;
+	QJSValue wrapper = engine->newObject();
+	//wrapper.setProperty("dataStore", QJSValue(reinterpret_cast<quintptr>(str) ^ pointerObsfuscationKey()));
+	wrapper.setProperty("value", QJSValue(&getSetStrValue));
+	//it should set wrapper.toString to wrapper.value, but I don't know how you can do that (setProperty didn't work)
+	return wrapper;
 }
 
 void qScriptValueToStringPtr(const QJSValue &value, QString *&str)
 {
-    str = nullptr;
-    QString *s = getStrPtr(value);
-    if (!s) {
-        if (!value.isObject()) return;
-        s = new QString(); //memory leak. But better than null pointer
-        //QJSValue(value).setProperty("dataStore", QJSValue((uint)(s) ^ pointerObsfuscationKey()));
-        QJSValue(value).setProperty("value", QJSValue(&getSetStrValue));
-    }
-    str = s;
+	str = nullptr;
+	QString *s = getStrPtr(value);
+	if (!s) {
+		if (!value.isObject()) return;
+		s = new QString(); //memory leak. But better than null pointer
+		//QJSValue(value).setProperty("dataStore", QJSValue((uint)(s) ^ pointerObsfuscationKey()));
+		QJSValue(value).setProperty("value", QJSValue(&getSetStrValue));
+	}
+	str = s;
 }
 /* porting will be stopped for.
  *
@@ -175,333 +175,333 @@ void qScriptValueToStringPtr(const QJSValue &value, QString *&str)
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
 {
-    engine = new QJSEngine(this);
-    qmlRegisterType<QDocument>();
-    //qmlRegisterType<QDocumentCursor>();
-    //qmlRegisterType<QDocumentCursor>("",0,0,"QDocumentCursor");
-    //qmlRegisterType<QFileInfo>();
-    qmlRegisterType<ProcessX>();
-    qmlRegisterType<SubScriptObject>();
-    qmlRegisterType<Texstudio>();
-    qmlRegisterType<QAction>();
-    qmlRegisterType<QMenu>();
-    qmlRegisterType<LatexEditorView>();
-    qmlRegisterType<LatexDocument>();
-    qmlRegisterType<LatexDocuments>();
+	engine = new QJSEngine(this);
+	qmlRegisterType<QDocument>();
+	//qmlRegisterType<QDocumentCursor>();
+	//qmlRegisterType<QDocumentCursor>("",0,0,"QDocumentCursor");
+	//qmlRegisterType<QFileInfo>();
+	qmlRegisterType<ProcessX>();
+	qmlRegisterType<SubScriptObject>();
+	qmlRegisterType<Texstudio>();
+	qmlRegisterType<QAction>();
+	qmlRegisterType<QMenu>();
+	qmlRegisterType<LatexEditorView>();
+	qmlRegisterType<LatexDocument>();
+	qmlRegisterType<LatexDocuments>();
 #ifndef NO_POPPLER_PREVIEW
-    qmlRegisterType<PDFDocument>();
-    qmlRegisterType<PDFWidget>();
+	qmlRegisterType<PDFDocument>();
+	qmlRegisterType<PDFWidget>();
 #endif
 
-    //qmlRegisterType<QList<LatexDocument *> >();
+	//qmlRegisterType<QList<LatexDocument *> >();
 #ifndef NO_POPPLER_PREVIEW
-    //qmlRegisterType<QList<PDFDocument *> >();
+	//qmlRegisterType<QList<PDFDocument *> >();
 #endif
 
-    qRegisterMetaType<RunCommandFlags>();
+	qRegisterMetaType<RunCommandFlags>();
 
-    qmlRegisterType<BuildManager>();
+	qmlRegisterType<BuildManager>();
 
-    qmlRegisterType<QKeySequence>();
-    //qmlRegisterType<QUILoader>();
+	qmlRegisterType<QKeySequence>();
+	//qmlRegisterType<QUILoader>();
 }
 
 scriptengine::~scriptengine()
 {
-    engine->collectGarbage();
-    delete engine;
-    engine=nullptr;
-    //don't delete globalObject, it has either been destroyed in run, or by another script
+	engine->collectGarbage();
+	delete engine;
+	engine=nullptr;
+	//don't delete globalObject, it has either been destroyed in run, or by another script
 }
 
 void scriptengine::setScript(const QString &script, bool allowWrite)
 {
-    m_script = script;
-    m_allowWrite = allowWrite;
+	m_script = script;
+	m_allowWrite = allowWrite;
 }
 
 void scriptengine::setEditorView(LatexEditorView *edView)
 {
-    REQUIRE(edView);
-    m_editor = edView->editor;
-    m_editorView = edView;
+	REQUIRE(edView);
+	m_editor = edView->editor;
+	m_editorView = edView;
 }
 
 void scriptengine::run()
 {
-    /*delete globalObject;
-    globalObject = new ScriptObject(m_script, buildManager, app);
-    if (m_allowWrite) {
-        globalObject->registerAllowedWrite();
-    }
-    QScriptValue globalValue = engine->newQObject(globalObject);
-    globalValue.setPrototype(engine->globalObject());
-    engine->setGlobalObject(globalValue);*/
-    QJSValue jsApp=engine->newQObject(app);
-    engine->globalObject().setProperty("app",jsApp);
-    QQmlEngine::setObjectOwnership(app, QQmlEngine::CppOwnership);
+	/*delete globalObject;
+	globalObject = new ScriptObject(m_script, buildManager, app);
+	if (m_allowWrite) {
+		globalObject->registerAllowedWrite();
+	}
+	QScriptValue globalValue = engine->newQObject(globalObject);
+	globalValue.setPrototype(engine->globalObject());
+	engine->setGlobalObject(globalValue);*/
+	QJSValue jsApp=engine->newQObject(app);
+	engine->globalObject().setProperty("app",jsApp);
+	QQmlEngine::setObjectOwnership(app, QQmlEngine::CppOwnership);
 
-    QDocumentCursor c( m_editor ? m_editor->cursorHandle() : nullptr); //create from handle, so modifying the cursor in the script directly affects the actual cursor
-    QJSValue cursorValue;
-    if (m_editorView)
-        engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
+	QDocumentCursor c( m_editor ? m_editor->cursorHandle() : nullptr); //create from handle, so modifying the cursor in the script directly affects the actual cursor
+	QJSValue cursorValue;
+	if (m_editorView)
+		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
 
-    if (m_editor) {
-        QJSValue scriptJS=engine->newQObject(this);
-        QJSValue editorValue = engine->newQObject(m_editor);
-        QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
-        QQmlEngine::setObjectOwnership(m_editor, QQmlEngine::CppOwnership);
-        editorValue.setProperty("cutBuffer", m_editor->cutBuffer);
-        editorValue.setProperty("insertSnippet", scriptJS.property("insertSnippet"));
-        editorValue.setProperty("replaceSelectedText", scriptJS.property("replaceSelectedText"));
-        editorValue.setProperty("search", scriptJS.property("searchFunction"));
-        editorValue.setProperty("replace", scriptJS.property("replaceFunction"));
-        editorValue.setProperty("save", scriptJS.property("save"));
-        editorValue.setProperty("saveCopy", scriptJS.property("saveCopy"));
-        engine->globalObject().setProperty("editor", editorValue);
-        //engine->globalObject().setProperty("editor.abc", editorValue.property("insertTab"));
+	if (m_editor) {
+		QJSValue scriptJS=engine->newQObject(this);
+		QJSValue editorValue = engine->newQObject(m_editor);
+		QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
+		QQmlEngine::setObjectOwnership(m_editor, QQmlEngine::CppOwnership);
+		editorValue.setProperty("cutBuffer", m_editor->cutBuffer);
+		editorValue.setProperty("insertSnippet", scriptJS.property("insertSnippet"));
+		editorValue.setProperty("replaceSelectedText", scriptJS.property("replaceSelectedText"));
+		editorValue.setProperty("search", scriptJS.property("searchFunction"));
+		editorValue.setProperty("replace", scriptJS.property("replaceFunction"));
+		editorValue.setProperty("save", scriptJS.property("save"));
+		editorValue.setProperty("saveCopy", scriptJS.property("saveCopy"));
+		engine->globalObject().setProperty("editor", editorValue);
+		//engine->globalObject().setProperty("editor.abc", editorValue.property("insertTab"));
 
-        cursorValue = engine->newQObject(&c);
-        engine->globalObject().setProperty("cursor", cursorValue);
-        QQmlEngine::setObjectOwnership(&c, QQmlEngine::CppOwnership);
+		cursorValue = engine->newQObject(&c);
+		engine->globalObject().setProperty("cursor", cursorValue);
+		QQmlEngine::setObjectOwnership(&c, QQmlEngine::CppOwnership);
 
-        QJSValue matches = engine->newArray(triggerMatches.size());
-        for (int i = 0; i < triggerMatches.size(); i++) matches.setProperty(i, triggerMatches[i]);
-        engine->globalObject().setProperty("triggerMatches", matches);
-    }
-    engine->globalObject().setProperty("triggerId", QJSValue(triggerId));
+		QJSValue matches = engine->newArray(triggerMatches.size());
+		for (int i = 0; i < triggerMatches.size(); i++) matches.setProperty(i, triggerMatches[i]);
+		engine->globalObject().setProperty("triggerMatches", matches);
+	}
+	engine->globalObject().setProperty("triggerId", QJSValue(triggerId));
 
-    //engine->globalObject().setProperty("include", engine->newFunction(include));
-    //QJSValue script= engine->newQObject(this);
+	//engine->globalObject().setProperty("include", engine->newFunction(include));
+	//QJSValue script= engine->newQObject(this);
 
-    //engine->globalObject().setProperty("setTimeout", script.property("setTimeout"));
+	//engine->globalObject().setProperty("setTimeout", script.property("setTimeout"));
 
-    QJSValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
-    engine->globalObject().setProperty("cursorEnums", qsMetaObject);
-    engine->globalObject().setProperty("QDocumentCursor", qsMetaObject);
+	QJSValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
+	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
+	engine->globalObject().setProperty("QDocumentCursor", qsMetaObject);
 
-    QJSValue uidClass = engine->newQMetaObject(&UniversalInputDialogScript::staticMetaObject);
-    engine->globalObject().setProperty("UniversalInputDialog", uidClass);
+	QJSValue uidClass = engine->newQMetaObject(&UniversalInputDialogScript::staticMetaObject);
+	engine->globalObject().setProperty("UniversalInputDialog", uidClass);
 
-    FileChooser flchooser(nullptr, scriptengine::tr("File Chooser"));
-    engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
+	FileChooser flchooser(nullptr, scriptengine::tr("File Chooser"));
+	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 
-    engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
-    QQmlEngine::setObjectOwnership(&app->documents, QQmlEngine::CppOwnership);
-    engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, app->documents.documents));
+	engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
+	QQmlEngine::setObjectOwnership(&app->documents, QQmlEngine::CppOwnership);
+	engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, app->documents.documents));
 #ifndef NO_POPPLER_PREVIEW
-    engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
+	engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
 #endif
-    QJSValue bm = engine->newQObject(&app->buildManager);
-    QQmlEngine::setObjectOwnership(&app->buildManager, QQmlEngine::CppOwnership);
+	QJSValue bm = engine->newQObject(&app->buildManager);
+	QQmlEngine::setObjectOwnership(&app->buildManager, QQmlEngine::CppOwnership);
 
-    //bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));
-    //bm.setProperty("commandLineRequested", engine->globalObject().property("buildManagerCommandLineRequestedWrapper"));
-    engine->globalObject().setProperty("buildManager", bm);
-    //connect(buildManager, SIGNAL(commandLineRequested(QString,QString*)), SLOT(buildManagerCommandLineRequestedWrapperSlot(const QString&, QString*)));
+	//bm.setProperty("runCommand", engine->newFunction(buildManagerRunCommandWrapper));
+	//bm.setProperty("commandLineRequested", engine->globalObject().property("buildManagerCommandLineRequestedWrapper"));
+	engine->globalObject().setProperty("buildManager", bm);
+	//connect(buildManager, SIGNAL(commandLineRequested(QString,QString*)), SLOT(buildManagerCommandLineRequestedWrapperSlot(const QString&, QString*)));
 
-    QJSValue result=engine->evaluate(m_script);
+	QJSValue result=engine->evaluate(m_script);
 
-    if (result.isError()) {
-        QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(result.property("lineNumber").toInt()).arg(result.toString());
-        qDebug() << error;
-        QMessageBox::critical(nullptr, tr("Script-Error"), error);
-    }
+	if (result.isError()) {
+		QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(result.property("lineNumber").toInt()).arg(result.toString());
+		qDebug() << error;
+		QMessageBox::critical(nullptr, tr("Script-Error"), error);
+	}
 
-    if (m_editor) {
-        if (!engine->globalObject().property("cursor").strictlyEquals(cursorValue))
-            m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
-    }
+	if (m_editor) {
+		if (!engine->globalObject().property("cursor").strictlyEquals(cursorValue))
+			m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
+	}
 
 }
 
 void scriptengine::insertSnippet(const QString& arg)
 {
-    CodeSnippet cs(arg);
+	CodeSnippet cs(arg);
 
-    if (!m_editor) return;
-    foreach (QDocumentCursor c, m_editor->cursors()) {
-        cs.insertAt(m_editor, &c);
-    }
+	if (!m_editor) return;
+	foreach (QDocumentCursor c, m_editor->cursors()) {
+		cs.insertAt(m_editor, &c);
+	}
 }
 
 #define SCRIPT_REQUIRE(cond, message) if (!(cond)) { engine->throwError(scriptengine::tr(message)); return QJSValue();}
 
 QJSValue scriptengine::replaceSelectedText(QJSValue replacementText,QJSValue options)
 {
-    bool noEmpty = false;
-    bool onlyEmpty = false;
-    bool append = false;
-    bool prepend = false;
-    bool macro = false;
+	bool noEmpty = false;
+	bool onlyEmpty = false;
+	bool append = false;
+	bool prepend = false;
+	bool macro = false;
 
-    if (!options.isUndefined() ) {
-        SCRIPT_REQUIRE(options.isObject(), "2nd value needs to be an object")
-        noEmpty = options.property("noEmpty").toBool();
-        onlyEmpty = options.property("onlyEmpty").toBool();
-        append = options.property("append").toBool();
-        prepend = options.property("prepend").toBool();
-        macro = options.property("macro").toBool();
-        SCRIPT_REQUIRE(!macro || !(append || prepend), "Macro option cannot be combined with append or prepend option.") //well it could, but there is no good way to	define what should happen to the selection
-    }
+	if (!options.isUndefined() ) {
+		SCRIPT_REQUIRE(options.isObject(), "2nd value needs to be an object")
+		noEmpty = options.property("noEmpty").toBool();
+		onlyEmpty = options.property("onlyEmpty").toBool();
+		append = options.property("append").toBool();
+		prepend = options.property("prepend").toBool();
+		macro = options.property("macro").toBool();
+		SCRIPT_REQUIRE(!macro || !(append || prepend), "Macro option cannot be combined with append or prepend option.") //well it could, but there is no good way to	define what should happen to the selection
+	}
 
 
-    QList<QDocumentCursor> cursors = m_editor->cursors();
-    QList<PlaceHolder> newMacroPlaceholder = macro ? m_editor->getPlaceHolders() : QList<PlaceHolder>();
-    QList<QDocumentCursor> newMacroCursors;
+	QList<QDocumentCursor> cursors = m_editor->cursors();
+	QList<PlaceHolder> newMacroPlaceholder = macro ? m_editor->getPlaceHolders() : QList<PlaceHolder>();
+	QList<QDocumentCursor> newMacroCursors;
 
-    m_editor->document()->beginMacro();
-    foreach (QDocumentCursor c, cursors) {
-        QString st = c.selectedText();
-        if (noEmpty && st.isEmpty()) continue;
-        if (onlyEmpty && !st.isEmpty()) continue;
-        QString newst;
-        if (replacementText.isCallable()) {
-            QJSValue cb = replacementText.call(QJSValueList() << engine->toScriptValue(st) << engine->newQObject(&c));
-            newst = cb.toString();
-        } else {
-            newst = replacementText.toString();
-        }
-        if (!macro) {
-            if (append && prepend) newst = newst + st + newst;
-            else if (append) newst = st + newst;
-            else if (prepend) newst = newst + st;
-            c.replaceSelectedText(newst);
-        } else {
-            m_editor->clearPlaceHolders();
-            m_editor->clearCursorMirrors();
-            CodeSnippet cs(newst);
-            cs.insertAt(m_editor, &c);
-            newMacroPlaceholder << m_editor->getPlaceHolders();
-            if (m_editor->cursor().isValid()) {
-                newMacroCursors << m_editor->cursor();
-                newMacroCursors.last().setAutoUpdated(true);
-            } else newMacroCursors << c; //CodeSnippet does not select without placeholder. But here we do, since it is called replaceSelectedText
-        }
-    }
-    m_editor->document()->endMacro();
-    if (macro && (cursors.size() > 0 /*|| (append && prepend) disallowed*/)) { //inserting multiple macros destroyed the new cursors, we need to insert them again
-        if (noEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && c.selectedText().isEmpty()) newMacroCursors << c;
-        if (onlyEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && !c.selectedText().isEmpty()) newMacroCursors << c;
-        if (newMacroCursors.size())
-            m_editor->setCursor(newMacroCursors.first());
-        for (int i = 1; i < newMacroCursors.size(); i++)
-            m_editor->addCursorMirror(newMacroCursors[i]);
-        m_editor->replacePlaceHolders(newMacroPlaceholder);
-    }
-    return QJSValue();
+	m_editor->document()->beginMacro();
+	foreach (QDocumentCursor c, cursors) {
+		QString st = c.selectedText();
+		if (noEmpty && st.isEmpty()) continue;
+		if (onlyEmpty && !st.isEmpty()) continue;
+		QString newst;
+		if (replacementText.isCallable()) {
+			QJSValue cb = replacementText.call(QJSValueList() << engine->toScriptValue(st) << engine->newQObject(&c));
+			newst = cb.toString();
+		} else {
+			newst = replacementText.toString();
+		}
+		if (!macro) {
+			if (append && prepend) newst = newst + st + newst;
+			else if (append) newst = st + newst;
+			else if (prepend) newst = newst + st;
+			c.replaceSelectedText(newst);
+		} else {
+			m_editor->clearPlaceHolders();
+			m_editor->clearCursorMirrors();
+			CodeSnippet cs(newst);
+			cs.insertAt(m_editor, &c);
+			newMacroPlaceholder << m_editor->getPlaceHolders();
+			if (m_editor->cursor().isValid()) {
+				newMacroCursors << m_editor->cursor();
+				newMacroCursors.last().setAutoUpdated(true);
+			} else newMacroCursors << c; //CodeSnippet does not select without placeholder. But here we do, since it is called replaceSelectedText
+		}
+	}
+	m_editor->document()->endMacro();
+	if (macro && (cursors.size() > 0 /*|| (append && prepend) disallowed*/)) { //inserting multiple macros destroyed the new cursors, we need to insert them again
+		if (noEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && c.selectedText().isEmpty()) newMacroCursors << c;
+		if (onlyEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && !c.selectedText().isEmpty()) newMacroCursors << c;
+		if (newMacroCursors.size())
+			m_editor->setCursor(newMacroCursors.first());
+		for (int i = 1; i < newMacroCursors.size(); i++)
+			m_editor->addCursorMirror(newMacroCursors[i]);
+		m_editor->replacePlaceHolders(newMacroPlaceholder);
+	}
+	return QJSValue();
 }
 
 QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1, QJSValue arg2, QJSValue arg3, bool replace)
 {
-    //read arguments
-    SCRIPT_REQUIRE(m_editor, "invalid object")
-    SCRIPT_REQUIRE(!replace || !arg1.isUndefined(), "at least two arguments are required")
-    SCRIPT_REQUIRE(!searchText.isUndefined() , "at least one argument is required")
-    SCRIPT_REQUIRE(searchText.isString() || searchText.isRegExp(), "first argument must be a string or regexp")
-    QDocumentSearch::Options flags = QDocumentSearch::Silent;
-    bool global = false, caseInsensitive = false;
-    QString searchFor;
-    if (searchText.isRegExp()) {
-        flags |= QDocumentSearch::RegExp;
-        QRegExp r = searchText.toVariant().toRegExp();
-        searchFor = r.pattern();
-        caseInsensitive = r.caseSensitivity() == Qt::CaseInsensitive;
-        //Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
-        global = searchText.property("global").toBool();
-    } else searchFor = searchText.toString();
-    QJSValue handler;
-    QDocumentCursor m_scope = m_editor->document()->cursor(0, 0, m_editor->document()->lineCount(), 0);
-    int handlerCount = 0;
-    for (int i = 1; i < 4; i++){
-        QJSValue args;
-        switch (i)
-        {
-        case 1:
-            args=arg1;
-            break;
-        case 2:
-            args=arg2;
-            break;
-        case 3:
-            args=arg3;
-            break;
-        }
-        if(args.isUndefined())
-            break;
-        if (args.isString() || args.isCallable()) handlerCount++;
-    }
-    SCRIPT_REQUIRE(handlerCount <= (replace ? 3 : 2), "too many string or function arguments")
-    for (int i = 1; i < 4; i++) {
-        QJSValue a;
-        switch (i)
-        {
-        case 1:
-            a=arg1;
-            break;
-        case 2:
-            a=arg2;
-            break;
-        case 3:
-            a=arg3;
-            break;
-        }
-        if(a.isUndefined())
-            break;
-        if (a.isCallable()) {
-            SCRIPT_REQUIRE(handler.isUndefined(), "Multiple callbacks")
-            handler = a;
-        } else if (a.isString()) {
-            if (!replace || handlerCount > 1) {
-                QString s = a.toString().toLower();
-                global = s.contains("g");
-                caseInsensitive = s.contains("i");
-                if (s.contains("w")) flags |= QDocumentSearch::WholeWords;
-            } else {
-                SCRIPT_REQUIRE(handler.isUndefined(), "Multiple callbacks")
-                handler = a;
-            }
-            handlerCount--;
-        } else if (a.isNumber()) flags |= QDocumentSearch::Options((int)a.toNumber());
-        else if (a.isObject()) m_scope = cursorFromValue(a);
-        else SCRIPT_REQUIRE(false, "Invalid argument")
-    }
-    SCRIPT_REQUIRE(!handler.isUndefined() || !replace, "No callback given")
-    if (!caseInsensitive) flags |= QDocumentSearch::CaseSensitive;
+	//read arguments
+	SCRIPT_REQUIRE(m_editor, "invalid object")
+	SCRIPT_REQUIRE(!replace || !arg1.isUndefined(), "at least two arguments are required")
+	SCRIPT_REQUIRE(!searchText.isUndefined() , "at least one argument is required")
+	SCRIPT_REQUIRE(searchText.isString() || searchText.isRegExp(), "first argument must be a string or regexp")
+	QDocumentSearch::Options flags = QDocumentSearch::Silent;
+	bool global = false, caseInsensitive = false;
+	QString searchFor;
+	if (searchText.isRegExp()) {
+		flags |= QDocumentSearch::RegExp;
+		QRegExp r = searchText.toVariant().toRegExp();
+		searchFor = r.pattern();
+		caseInsensitive = r.caseSensitivity() == Qt::CaseInsensitive;
+		//Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
+		global = searchText.property("global").toBool();
+	} else searchFor = searchText.toString();
+	QJSValue handler;
+	QDocumentCursor m_scope = m_editor->document()->cursor(0, 0, m_editor->document()->lineCount(), 0);
+	int handlerCount = 0;
+	for (int i = 1; i < 4; i++){
+		QJSValue args;
+		switch (i)
+		{
+		case 1:
+			args=arg1;
+			break;
+		case 2:
+			args=arg2;
+			break;
+		case 3:
+			args=arg3;
+			break;
+		}
+		if(args.isUndefined())
+			break;
+		if (args.isString() || args.isCallable()) handlerCount++;
+	}
+	SCRIPT_REQUIRE(handlerCount <= (replace ? 3 : 2), "too many string or function arguments")
+	for (int i = 1; i < 4; i++) {
+		QJSValue a;
+		switch (i)
+		{
+		case 1:
+			a=arg1;
+			break;
+		case 2:
+			a=arg2;
+			break;
+		case 3:
+			a=arg3;
+			break;
+		}
+		if(a.isUndefined())
+			break;
+		if (a.isCallable()) {
+			SCRIPT_REQUIRE(handler.isUndefined(), "Multiple callbacks")
+			handler = a;
+		} else if (a.isString()) {
+			if (!replace || handlerCount > 1) {
+				QString s = a.toString().toLower();
+				global = s.contains("g");
+				caseInsensitive = s.contains("i");
+				if (s.contains("w")) flags |= QDocumentSearch::WholeWords;
+			} else {
+				SCRIPT_REQUIRE(handler.isUndefined(), "Multiple callbacks")
+				handler = a;
+			}
+			handlerCount--;
+		} else if (a.isNumber()) flags |= QDocumentSearch::Options((int)a.toNumber());
+		else if (a.isObject()) m_scope = cursorFromValue(a);
+		else SCRIPT_REQUIRE(false, "Invalid argument")
+	}
+	SCRIPT_REQUIRE(!handler.isUndefined() || !replace, "No callback given")
+	if (!caseInsensitive) flags |= QDocumentSearch::CaseSensitive;
 
-    //search/replace
-    QDocumentSearch search(m_editor, searchFor, flags);
-    search.setScope(m_scope);
-    if (replace && handler.isString()) {
-        search.setReplaceText(handler.toString());
-        search.setOption(QDocumentSearch::Replace, true);
-        return search.next(false, global, false, false);
-    }
-    if (handler.isUndefined())
-        return search.next(false, global, true, false);
-    int count = 0;
-    while (search.next(false, false, true, false) && search.cursor().isValid()) {
-        count++;
-        QDocumentCursor temp = search.cursor();
-        QJSValue cb = handler.call(QJSValueList() << engine->newQObject(&temp));
-        if (replace && !cb.isError()) {
-            QDocumentCursor tmp = search.cursor();
-            tmp.replaceSelectedText(cb.toString());
-            search.setCursor(tmp.selectionEnd());
-        }
-        if (!global) break;
-    }
-    return count;
+	//search/replace
+	QDocumentSearch search(m_editor, searchFor, flags);
+	search.setScope(m_scope);
+	if (replace && handler.isString()) {
+		search.setReplaceText(handler.toString());
+		search.setOption(QDocumentSearch::Replace, true);
+		return search.next(false, global, false, false);
+	}
+	if (handler.isUndefined())
+		return search.next(false, global, true, false);
+	int count = 0;
+	while (search.next(false, false, true, false) && search.cursor().isValid()) {
+		count++;
+		QDocumentCursor temp = search.cursor();
+		QJSValue cb = handler.call(QJSValueList() << engine->newQObject(&temp));
+		if (replace && !cb.isError()) {
+			QDocumentCursor tmp = search.cursor();
+			tmp.replaceSelectedText(cb.toString());
+			search.setCursor(tmp.selectionEnd());
+		}
+		if (!global) break;
+	}
+	return count;
 }
 
 QJSValue scriptengine::searchFunction(QJSValue searchFor,QJSValue arg1,QJSValue arg2,QJSValue arg3)
 {
-    return searchReplaceFunction(searchFor,arg1,arg2,arg3, false);
+	return searchReplaceFunction(searchFor,arg1,arg2,arg3, false);
 }
 
 QJSValue scriptengine::replaceFunction(QJSValue searchFor,QJSValue arg1,QJSValue arg2,QJSValue arg3)
 {
-    return searchReplaceFunction(searchFor,arg1,arg2,arg3, true);
+	return searchReplaceFunction(searchFor,arg1,arg2,arg3, true);
 }
 
 UniversalInputDialogScript::UniversalInputDialogScript(QWidget *parent): UniversalInputDialog(parent)
@@ -510,71 +510,71 @@ UniversalInputDialogScript::UniversalInputDialogScript(QWidget *parent): Univers
 
 UniversalInputDialogScript::~UniversalInputDialogScript()
 {
-    for (int i = 0; i < properties.size(); i++) properties[i].deallocate();
+	for (int i = 0; i < properties.size(); i++) properties[i].deallocate();
 }
 
 QWidget* UniversalInputDialogScript::add(const QJSValue &def, const QJSValue &description, const QJSValue &id)
 {
-    QWidget *w = nullptr;
-    if (def.isArray()) {
-        QStringList options;
-        QJSValueIterator it(def);
-        while (it.hasNext()) {
-            it.next();
-            if (it.value().isString() || it.value().isNumber()) options << it.value().toString();
-            //else engine->throwError("Invalid default value in array (must be string or number): " + it.value().toString());
-        }
-        w = addComboBox(ManagedProperty::fromValue(options), description.toString());
-    } else if (def.isBool()) {
-        w = addCheckBox(ManagedProperty::fromValue(def.toBool()), description.toString());
-    } else if (def.isNumber()) {
-        w = addDoubleSpinBox(ManagedProperty::fromValue(def.toNumber()), description.toString());
-    } else if (def.isString()) {
-        w = addLineEdit(ManagedProperty::fromValue(def.toString()), description.toString());
-    } else {
+	QWidget *w = nullptr;
+	if (def.isArray()) {
+		QStringList options;
+		QJSValueIterator it(def);
+		while (it.hasNext()) {
+			it.next();
+			if (it.value().isString() || it.value().isNumber()) options << it.value().toString();
+			//else engine->throwError("Invalid default value in array (must be string or number): " + it.value().toString());
+		}
+		w = addComboBox(ManagedProperty::fromValue(options), description.toString());
+	} else if (def.isBool()) {
+		w = addCheckBox(ManagedProperty::fromValue(def.toBool()), description.toString());
+	} else if (def.isNumber()) {
+		w = addDoubleSpinBox(ManagedProperty::fromValue(def.toNumber()), description.toString());
+	} else if (def.isString()) {
+		w = addLineEdit(ManagedProperty::fromValue(def.toString()), description.toString());
+	} else {
 
-        //engine->throwError(tr("Invalid default value: %1").arg(def.toString()));
-        return nullptr;
-    }
-    if (!id.isUndefined()) properties.last().name = id.toString();
-    return w;
+		//engine->throwError(tr("Invalid default value: %1").arg(def.toString()));
+		return nullptr;
+	}
+	if (!id.isUndefined()) properties.last().name = id.toString();
+	return w;
 }
 
 
 QJSValue UniversalInputDialogScript::execDialog()
 {
-    if (!UniversalInputDialog::exec()) return QJSValue();
-    return getAll();
+	if (!UniversalInputDialog::exec()) return QJSValue();
+	return getAll();
 }
 
 
 QJSValue UniversalInputDialogScript::getAll()
 {
-    QJSValue res = engine->newArray(properties.size());
-    for (int i = 0; i < properties.size(); i++) {
-        res.setProperty(i, engine->toScriptValue(properties[i].valueToQVariant()));
-        if (!properties[i].name.isEmpty())
-            res.setProperty(properties[i].name, engine->toScriptValue(properties[i].valueToQVariant()));
-    }
-    return res;
+	QJSValue res = engine->newArray(properties.size());
+	for (int i = 0; i < properties.size(); i++) {
+		res.setProperty(i, engine->toScriptValue(properties[i].valueToQVariant()));
+		if (!properties[i].name.isEmpty())
+			res.setProperty(properties[i].name, engine->toScriptValue(properties[i].valueToQVariant()));
+	}
+	return res;
 }
 
 QVariant UniversalInputDialogScript::get(const QJSValue &id)
 {
-    if (id.isNumber()) {
-        int i = id.toInt();
-        if (i < 0 || i > properties.size()) return QVariant();
-        return properties[i].valueToQVariant();
-    }
-    if (id.isString()) {
-        QString sid = id.toString();
-        foreach (const ManagedProperty &mp, properties)
-            if (mp.name == sid)
-                return mp.valueToQVariant();
-        return QVariant();
-    }
-    //engine->throwError(tr("Unknown variable %1").arg(id.toString()));
-    return QVariant();
+	if (id.isNumber()) {
+		int i = id.toInt();
+		if (i < 0 || i > properties.size()) return QVariant();
+		return properties[i].valueToQVariant();
+	}
+	if (id.isString()) {
+		QString sid = id.toString();
+		foreach (const ManagedProperty &mp, properties)
+			if (mp.name == sid)
+				return mp.valueToQVariant();
+		return QVariant();
+	}
+	//engine->throwError(tr("Unknown variable %1").arg(id.toString()));
+	return QVariant();
 }
 #else
 //copied from trolltech mailing list
@@ -605,13 +605,13 @@ void qScriptValueToDocumentCursor(const QScriptValue &value, QDocumentCursor &qo
 
 /**QScriptValue qScriptValueFromKeySequence(QScriptEngine *engine, QKeySequence const &ks)
 {
- return engine->newVariant(ks);
+	return engine->newVariant(ks);
 }
 void qScriptValueToKeySequence(const QScriptValue &value, QKeySequence &ks) {
- if (value.isString()) ks = QKeySequence(value.toString());
- else if (value.isNumber()) ks = QKeySequence(value.toInt32());
- else if (value.isVariant()) ks = value.toVariant().value<QKeySequence>();
- else ks = QKeySequence();
+    if (value.isString()) ks = QKeySequence(value.toString());
+    else if (value.isNumber()) ks = QKeySequence(value.toInt32());
+    else if (value.isVariant()) ks = value.toVariant().value<QKeySequence>();
+    else ks = QKeySequence();
 }*/
 
 template <typename Tp> QScriptValue qScriptValueFromQList(QScriptEngine *engine, QList<Tp> const &list)
@@ -646,11 +646,11 @@ void qScriptValueToQFileInfo(const QScriptValue &value, QFileInfo &fi)
 ScriptObject *needPrivileges(QScriptEngine *engine, const QString &fn, const QString &args, bool write = true)
 {
 	ScriptObject *sc = qobject_cast<ScriptObject *>(engine->globalObject().toQObject());
-    REQUIRE_RET(sc, nullptr);
+	REQUIRE_RET(sc, nullptr);
 	if (write) {
-        if (!sc->needWritePrivileges(fn, args)) return nullptr;
+		if (!sc->needWritePrivileges(fn, args)) return nullptr;
 	} else {
-        if (!sc->needReadPrivileges(fn, args)) return nullptr;
+		if (!sc->needReadPrivileges(fn, args)) return nullptr;
 	}
 	return sc;
 }
@@ -671,11 +671,11 @@ quintptr pointerObsfuscationKey()   //hide true pointers from scripts
 QString *getStrPtr(QScriptValue value)
 {
 	if (!value.property("dataStore").isValid())
-        return nullptr;
+		return nullptr;
 	bool ok = false;
 	quintptr ptr = value.property("dataStore").toVariant().toULongLong(&ok);
 	if (!ok || ptr == 0 || ptr == pointerObsfuscationKey())
-        return nullptr;
+		return nullptr;
 	return (QString *)(ptr ^ pointerObsfuscationKey());
 }
 
@@ -689,10 +689,10 @@ QScriptValue getSetStrValue(QScriptContext *context, QScriptEngine *engine)
 	}
 	if (!s) return engine->undefinedValue();
 	if (setterMode) {
-        if (!needPrivileges(engine, "string setting", context->argument(0).toString())){
-            delete s;
+		if (!needPrivileges(engine, "string setting", context->argument(0).toString())){
+			delete s;
 			return engine->undefinedValue();
-        }
+		}
 		*s = context->argument(0).toString();
 	}
 	return engine->newVariant(*s);
@@ -710,7 +710,7 @@ QScriptValue qScriptValueFromStringPtr(QScriptEngine *engine, QString *const &st
 
 void qScriptValueToStringPtr(const QScriptValue &value, QString *&str)
 {
-    str = nullptr;
+	str = nullptr;
 	QString *s = getStrPtr(value);
 	if (!s) {
 		if (!value.isObject()) return;
@@ -727,10 +727,42 @@ void qScriptValueToStringPtr(const QScriptValue &value, QString *&str)
 
 #define SCRIPT_TO_BOOLEAN toBool
 
+QScriptValue getLineTokens(QScriptContext *context, QScriptEngine *engine)
+{
+	QDocument *document = qobject_cast<QDocument *>(context->thisObject().toQObject());
+	SCRIPT_REQUIRE(document != nullptr, "this must be a document object")
+	SCRIPT_REQUIRE(context->argumentCount() == 1, "exactly one argument is required")
+	int lineNr = context->argument(0).toInt32();
+	if ((lineNr < 0) || (lineNr >= document->lineCount())) {
+		return QScriptValue(false);
+	}
+	QDocumentLineHandle *dlh = document->line(lineNr).handle();
+	QVariant cookie = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE);
+	if (cookie.isValid() == false) {
+		return QScriptValue(false);
+	}
+	if (cookie.canConvert<TokenList>() == false) {
+		return QScriptValue(false);
+	}
+	TokenList tlNative = cookie.value<TokenList>();
+	QScriptValue tlJs = engine->newArray(tlNative.size());
+	int tokenNum = 0;
+	foreach(const Token &tokenNative, tlNative) {
+		QScriptValue tokenJs = engine->newObject();
+		tokenJs.setProperty("type", tokenNative.type);
+		tokenJs.setProperty("subtype", tokenNative.subtype);
+		tokenJs.setProperty("startColumn", tokenNative.start);
+		tokenJs.setProperty("level", tokenNative.level);
+		tokenJs.setProperty("text", tokenNative.getText());
+		tlJs.setProperty(tokenNum, tokenJs);
+		++tokenNum;
+	}
+	return tlJs;
+}
 
 QScriptValue insertSnippet(QScriptContext *context, QScriptEngine *engine)
 {
-    SCRIPT_REQUIRE(context->argumentCount() == 1, "exactly one argument is required")
+	SCRIPT_REQUIRE(context->argumentCount() == 1, "exactly one argument is required")
 	CodeSnippet cs(context->argument(0).toString());
 
 	QEditor *editor = qobject_cast<QEditor *>(context->thisObject().toQObject());
@@ -744,7 +776,7 @@ QScriptValue insertSnippet(QScriptContext *context, QScriptEngine *engine)
 QScriptValue replaceSelectedText(QScriptContext *context, QScriptEngine *engine)
 {
 	QEditor *editor = qobject_cast<QEditor *>(context->thisObject().toQObject());
-    SCRIPT_REQUIRE(context->argumentCount() >= 1, "at least one argument is required")
+	SCRIPT_REQUIRE(context->argumentCount() >= 1, "at least one argument is required")
 
 	bool noEmpty = false;
 	bool onlyEmpty = false;
@@ -810,11 +842,11 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 {
 	QEditor *editor = qobject_cast<QEditor *>(context->thisObject().toQObject());
 	//read arguments
-    SCRIPT_REQUIRE(editor, "invalid object")
-    SCRIPT_REQUIRE(!replace || context->argumentCount() >= 2, "at least two arguments are required")
-    SCRIPT_REQUIRE(context->argumentCount() >= 1, "at least one argument is required")
-    SCRIPT_REQUIRE(context->argumentCount() <= 4, "too many arguments")
-    SCRIPT_REQUIRE(context->argument(0).isString() || context->argument(0).isRegExp(), "first argument must be a string or regexp")
+	SCRIPT_REQUIRE(editor, "invalid object")
+	SCRIPT_REQUIRE(!replace || context->argumentCount() >= 2, "at least two arguments are required")
+	SCRIPT_REQUIRE(context->argumentCount() >= 1, "at least one argument is required")
+	SCRIPT_REQUIRE(context->argumentCount() <= 4, "too many arguments")
+	SCRIPT_REQUIRE(context->argument(0).isString() || context->argument(0).isRegExp(), "first argument must be a string or regexp")
 	QDocumentSearch::Options flags = QDocumentSearch::Silent;
 	bool global = false, caseInsensitive = false;
 	QString searchFor;
@@ -896,11 +928,11 @@ QScriptValue buildManagerRunCommandWrapper(QScriptContext *context, QScriptEngin
 	ScriptObject *sc = needPrivileges(engine, "buildManager.runCommand", context->argument(0).toString() + ", " + context->argument(1).toString() + ", " + context->argument(2).toString());
 	if (!sc) return engine->undefinedValue();
 	return engine->newVariant(sc->buildManager->runCommand(
-	                              context->argument(0).toString(),
-	                              context->argument(1).isUndefined() ? QFileInfo() : context->argument(1).toString(),
-	                              context->argument(2).isUndefined() ? QFileInfo() : context->argument(2).toString(),
-	                              context->argument(3).isUndefined() ? 0 : context->argument(3).toInt32()
-	                          ));
+								context->argument(0).toString(),
+								context->argument(1).isUndefined() ? QFileInfo() : context->argument(1).toString(),
+								context->argument(2).isUndefined() ? QFileInfo() : context->argument(2).toString(),
+								context->argument(3).isUndefined() ? 0 : context->argument(3).toInt32()
+							));
 }
 
 QScriptValue editorSaveWrapper(QScriptContext *context, QScriptEngine *engine)
@@ -953,7 +985,7 @@ QScriptValue include(QScriptContext *context, QScriptEngine *engine)
 
 	QScriptContext *currentContext = engine->currentContext();
 	QScriptContext *parentContext = currentContext->parentContext();
-    if (parentContext != nullptr) {
+	if (parentContext != nullptr) {
 		currentContext->setActivationObject(parentContext->activationObject());
 		currentContext->setThisObject(parentContext->thisObject());
 	}
@@ -975,29 +1007,28 @@ QScriptValue setTimeout(QScriptContext *context, QScriptEngine *engine)
 
 void TimeoutWrapper::run()
 {
-    QScriptEngine *engine = fun.engine();
-    ScriptObject *sc = qobject_cast<ScriptObject *>(engine->globalObject().toQObject());
-    Texstudio* app=sc->getApp();
-    engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
-    engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, app->documents.documents));
+	QScriptEngine *engine = fun.engine();
+	ScriptObject *sc = qobject_cast<ScriptObject *>(engine->globalObject().toQObject());
+	Texstudio* app=sc->getApp();
+	engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
+	engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, app->documents.documents));
 #ifndef NO_POPPLER_PREVIEW
-    engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
+	engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
 #endif
-    QScriptValue result = fun.call();
-    if(result.isError()){
-        int ln=result.property("lineNumber").toInt32();
-        QString msg=result.toString();
-        QString error=QString("Script error in line: %1\n\n%2").arg(ln).arg(msg);
-        qDebug() << error;
-        QMessageBox::critical(nullptr, tr("Script-Error"), error);
-    }
-    deleteLater();
+	QScriptValue result = fun.call();
+	if(result.isError()){
+		int ln=result.property("lineNumber").toInt32();
+		QString msg=result.toString();
+		QString error=QString("Script error in line: %1\n\n%2").arg(ln).arg(msg);
+		qDebug() << error;
+		QMessageBox::critical(nullptr, tr("Script-Error"), error);
+	}
+	deleteLater();
 }
 
 scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
 {
 	engine = new QScriptEngine(this);
-	qScriptRegisterQObjectMetaType<QDocument *>(engine);
 	qScriptRegisterMetaType<QDocumentCursor>(engine, qScriptValueFromDocumentCursor, qScriptValueToDocumentCursor, QScriptValue());
 	qScriptRegisterMetaType<QFileInfo>(engine, qScriptValueFromQFileInfo, qScriptValueToQFileInfo, QScriptValue());
 	qScriptRegisterMetaType<QString *>(engine, qScriptValueFromStringPtr, qScriptValueToStringPtr, QScriptValue());
@@ -1013,6 +1044,11 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 	qScriptRegisterQObjectMetaType<PDFDocument *>(engine);
 	qScriptRegisterQObjectMetaType<PDFWidget *>(engine);
 #endif
+
+	QScriptValue extendedQDocument = engine->newObject();
+	extendedQDocument.setProperty("getLineTokens", engine->newFunction(&getLineTokens), QScriptValue::ReadOnly | QScriptValue::Undeletable);
+	qScriptRegisterQObjectMetaType<QDocument *>(engine, extendedQDocument);
+
 	QScriptValue extendedQEditor = engine->newObject();
 	extendedQEditor.setProperty("insertSnippet", engine->newFunction(&insertSnippet), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replaceSelectedText", engine->newFunction(&replaceSelectedText), QScriptValue::ReadOnly | QScriptValue::Undeletable);
@@ -1059,7 +1095,7 @@ void scriptengine::setEditorView(LatexEditorView *edView)
 /* partly copied from qt's Q_SCRIPT_DECLARE_QMETAOBJECT */ \
 template<> inline QScriptValue qscriptQMetaObjectConstructor<UniversalInputDialogScript>(QScriptContext *ctx, QScriptEngine *eng, UniversalInputDialogScript *)
 {
-    UniversalInputDialogScript *t = new UniversalInputDialogScript(eng, nullptr);
+	UniversalInputDialogScript *t = new UniversalInputDialogScript(eng, nullptr);
 
 	if (ctx->argumentCount()) {
 		if (!ctx->argument(0).isArray() || !(ctx->argument(1).isArray() || ctx->argument(1).isUndefined()))
@@ -1083,7 +1119,7 @@ template<> inline QScriptValue qscriptQMetaObjectConstructor<UniversalInputDialo
 
 void scriptengine::run()
 {
-    delete globalObject;
+	delete globalObject;
 	globalObject = new ScriptObject(m_script, buildManager, app);
 	if (m_allowWrite) {
 		globalObject->registerAllowedWrite();
@@ -1092,7 +1128,7 @@ void scriptengine::run()
 	globalValue.setPrototype(engine->globalObject());
 	engine->setGlobalObject(globalValue);
 
-    QDocumentCursor c( m_editor ? m_editor->cursorHandle() : nullptr); //create from handle, so modifying the cursor in the script directly affects the actual cursor
+	QDocumentCursor c( m_editor ? m_editor->cursorHandle() : nullptr); //create from handle, so modifying the cursor in the script directly affects the actual cursor
 	QScriptValue cursorValue;
 	if (m_editorView)
 		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
@@ -1115,13 +1151,16 @@ void scriptengine::run()
 
 	engine->globalObject().setProperty("setTimeout", engine->newFunction(setTimeout));
 
-	QScriptValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
+	QScriptValue qsMetaObject;
+	qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
+	qsMetaObject = engine->newQMetaObject(&EnumsTokenType::staticMetaObject);
+	engine->globalObject().setProperty("latexTokenType", qsMetaObject);
 
 	QScriptValue uidClass = engine->scriptValueFromQMetaObject<UniversalInputDialogScript>();
 	engine->globalObject().setProperty("UniversalInputDialog", uidClass);
 
-    FileChooser flchooser(nullptr, scriptengine::tr("File Chooser"));
+	FileChooser flchooser(nullptr, scriptengine::tr("File Chooser"));
 	engine->globalObject().setProperty("fileChooser", engine->newQObject(&flchooser));
 
 	engine->globalObject().setProperty("documentManager", engine->newQObject(&app->documents));
@@ -1141,7 +1180,7 @@ void scriptengine::run()
 		QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(engine->uncaughtExceptionLineNumber()).arg(engine->uncaughtException().toString());
 		error += "\n" + QString(tr("Backtrace %1")).arg(engine->uncaughtExceptionBacktrace().join(", "));
 		qDebug() << error;
-        QMessageBox::critical(nullptr, tr("Script-Error"), error);
+		QMessageBox::critical(nullptr, tr("Script-Error"), error);
 	}
 
 	if (m_editor) {
@@ -1151,7 +1190,7 @@ void scriptengine::run()
 
 	if (!globalObject->backgroundScript) {
 		delete globalObject;
-        globalObject = nullptr;
+		globalObject = nullptr;
 	}
 }
 
@@ -1167,7 +1206,7 @@ UniversalInputDialogScript::~UniversalInputDialogScript()
 
 QScriptValue UniversalInputDialogScript::add(const QScriptValue &def, const QScriptValue &description, const QScriptValue &id)
 {
-    QWidget *w = nullptr;
+	QWidget *w = nullptr;
 	if (def.isArray()) {
 		QStringList options;
 		QScriptValueIterator it(def);
