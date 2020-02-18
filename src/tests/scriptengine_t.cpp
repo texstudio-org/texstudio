@@ -2,6 +2,7 @@
 #include "mostQtHeaders.h"
 #include "scriptengine_t.h"
 #include "scriptengine.h"
+#include "latexdocument.h"
 #include "latexeditorview.h"
 #include "qdocumentcursor.h"
 #include "qdocument.h"
@@ -138,4 +139,127 @@ void ScriptEngineTest::script(){
 
 	QEQUAL(edView->editor->document()->text(), newText);
 }
+
+void ScriptEngineTest::getLineTokens_data(void)
+{
+	QTest::addColumn<QString>("documentText");
+	QTest::addColumn<int>("lineNr");
+	QTest::addColumn<QString>("jsonExpected");
+
+	QTest::newRow("negative line number")
+		<< (
+			"\\documentclass{amsart}\n"
+			"\\begin{document}\n"
+			"some text\n"
+			"\\end{document}"
+
+		)
+		<< -1
+		<< "false";
+	QTest::newRow("line 0")
+		<< QString ()
+		<< 0
+		<< getLineTokensText(
+			3,
+			Token::command, Token::none, 0, 0, "\\documentclass",
+			Token::braces, Token::documentclass, 14, 1, "{amsart}",
+			Token::documentclass, Token::none, 15, 1, "amsart"
+		);
+	QTest::newRow("line 1")
+		<< QString ()
+		<< 1
+		<< getLineTokensText(
+			3,
+			Token::command, Token::none, 0, 0, "\\begin",
+			Token::braces, Token::beginEnv, 6, 1, "{document}",
+			Token::beginEnv, Token::none, 7, 1, "document"
+		);
+	QTest::newRow("line 2")
+		<< QString ()
+		<< 2
+		<< getLineTokensText(
+			2,
+			Token::word, Token::none, 0, 0, "some",
+			Token::word, Token::none, 5, 0, "text"
+		);
+	QTest::newRow("line 3")
+		<< QString ()
+		<< 3
+		<< getLineTokensText(
+			3,
+			Token::command, Token::none, 0, 0, "\\end",
+			Token::braces, Token::env, 4, 1, "{document}",
+			Token::env, Token::none, 5, 1, "document"
+		);
+	QTest::newRow("too big line number")
+		<< QString ()
+		<< 4
+		<< "false";
+}
+
+void ScriptEngineTest::getLineTokens(void)
+{
+	QFETCH(QString, documentText);
+	QFETCH(int, lineNr);
+	QFETCH(QString, jsonExpected);
+
+	if (!documentText.isEmpty()) {
+		edView->editor->setText(documentText, false);
+		edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+	}
+	scriptengine eng(nullptr);
+	eng.setEditorView(edView);
+	// Our JS script relies on JSON.stringify() not reordering the object properties in the resulting JSON string
+	eng.setScript(
+		QString(
+			"tlExpected = JSON.stringify(%2);"
+			"tlActual = JSON.stringify(editor.document().getLineTokens(%1));"
+			"if (tlExpected !== tlActual) {"
+				"throw ('Wrong tokens list. Expected ' + tlExpected + ', got ' + tlActual);"
+			"}"
+		)
+		.arg(lineNr)
+		.arg(jsonExpected)
+	);
+	eng.run();
+}
+
+/*!
+ * \brief Converts the specified token list into a JSON string
+ * \details Converts the specified token list into a JSON string. The numTokens parameter is followed by numTokens groups
+ * of arguments, each group consisting of type, subtype, start column, level, text.
+ * \param[in] numTokens The number of token groups
+ * \returns Returns the JSON string for the token list.
+ */
+QString ScriptEngineTest::getLineTokensText(int numTokens, ...)
+{
+	QRegExp rxEscape("([\"\\\\])");
+
+	va_list vaList;
+	// We don't use QJsonDocument because it reorders the properties in the resulting JSON string.
+	QString result("[");
+	va_start(vaList, numTokens);
+	for (int i = 0; i < numTokens; ++i) {
+		if (i) {
+			result += ",";
+		}
+		int type = va_arg(vaList, int);
+		int subtype = va_arg(vaList, int);
+		int startColumn = va_arg(vaList, int);
+		int level = va_arg(vaList, int);
+		QString text(va_arg(vaList, const char *));
+		text.replace(rxEscape, "\\\\1");
+		result +=
+			QString ("{type:%1,subtype:%2,startColumn:%3,level:%4,text:\"%5\"}")
+			.arg(type)
+			.arg(subtype)
+			.arg(startColumn)
+			.arg(level)
+			.arg(text);
+	}
+	va_end(vaList);
+	result += "]";
+	return result;
+}
+
 #endif
