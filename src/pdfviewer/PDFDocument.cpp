@@ -2358,27 +2358,6 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
         setAutoHideToolbars(true);
     }
 
-    //batch test:
-    /*QString test = QProcessEnvironment::systemEnvironment().value("TEST");
-    if (!test.isEmpty())
-    for (int i=test.toInt();i<13960;i++) {
-        qDebug() << ("/tmp/test"+QString::number(i)+".pdf");
-        //Poppler::Document* doc = Poppler::Document::load("/tmp/test"+QString::number(i)+".pdf");
-        QFile f("/tmp/test"+QString::number(i)+".pdf");
-        if (!f.open(QFile::ReadOnly)) qDebug() << "file open failed";
-        Poppler::Document* doc = Poppler::Document::loadFromData(f.readAll());
-
-        if (doc) {
-        qDebug() << " => "<<doc->numPages();
-        if (doc->numPages() > 0) {
-            Poppler::Page *p = doc->page(0);
-            qDebug() << p;
-            if (p) delete p;
-        }
-        delete doc;
-        }
-
-    }*/
 }
 
 PDFDocument::~PDFDocument()

@@ -6562,13 +6562,13 @@ void Texstudio::generalOptions()
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
 #ifndef NO_POPPLER_PREVIEW
-	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
-		viewer->reloadSettings();
-	}
-    if(pdfviewerWindow){
-        pdfviewerWindow->close();
-        delete pdfviewerWindow;
-    }
+        foreach (PDFDocument *viewer, PDFDocument::documentList()) {
+            viewer->reloadSettings();
+        }
+        if(pdfviewerWindow){
+            pdfviewerWindow->close();
+            delete pdfviewerWindow;
+        }
 #endif
 }
 

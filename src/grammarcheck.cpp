@@ -640,6 +640,11 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
     javaProcess->waitForStarted();
 
+    QString errorMessageString=javaProcess->readAllStandardError();
+    if(!errorMessageString.isEmpty()){
+        emit errorMessage(errorMessageString);
+    }
+
     connectionAvailability = Unknown;
     startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
 }
@@ -662,6 +667,10 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
     REQUIRE(nam);
 
     QString lang = language;
+    if(lang.count('-')>1){
+        // chop language code to country_variant
+        lang=lang.left(5);
+    }
     if (languagesCodesFail.contains(lang) && lang.contains('-'))
         lang = lang.left(lang.indexOf('-'));
 
