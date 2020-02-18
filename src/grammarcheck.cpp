@@ -522,13 +522,6 @@ struct CheckRequestBackend {
     CheckRequestBackend(uint ti, uint st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
 };
 
-QString quoteSpaces(const QString &s)
-{
-	if (!s.contains(' ')) return s;
-	return '"' + s + '"';
-}
-
-
 const QNetworkRequest::Attribute AttributeTicket = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User);
 const QNetworkRequest::Attribute AttributeLanguage = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User + 2);
 const QNetworkRequest::Attribute AttributeText = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User + 3);
@@ -632,7 +625,12 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     }
     triedToStart = true;
     startTime = 0;
-    if (ltPath == "" || !QFileInfo(ltPath).exists()) return;
+    if (ltPath == "")
+        return;
+    if(!QFileInfo(ltPath).exists()){
+        emit errorMessage(QString("LT path \" %1 \" not found !").arg(ltPath));
+        return;
+    }
     javaProcess = new QProcess();
     connect(javaProcess, SIGNAL(finished(int)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
@@ -640,7 +638,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
     javaProcess->waitForStarted();
 
-    QString errorMessageString=javaProcess->readAllStandardError();
+    QString errorMessageString=javaProcess->readAllStandardOutput();
     if(!errorMessageString.isEmpty()){
         emit errorMessage(errorMessageString);
     }

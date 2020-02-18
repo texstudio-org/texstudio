@@ -225,6 +225,13 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 	return "";
 }
 
+QString quoteSpaces(const QString &s)
+{
+    if (!s.contains(' ')) return s;
+    return '"' + s + '"';
+}
+
+
 int modernStyle;
 bool darkMode;
 bool useSystemTheme;

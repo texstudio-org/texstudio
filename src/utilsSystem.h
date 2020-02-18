@@ -16,6 +16,8 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
 QLocale::Language getKeyboardLanguage();
 QKeySequence filterLocaleShortcut(QKeySequence ks);
 
+QString quoteSpaces(const QString &s);
+
 QChar getPathListSeparator();
 QStringList splitPaths(const QString &paths);
 
