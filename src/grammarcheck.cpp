@@ -60,7 +60,12 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 }
 
 QString GrammarCheck::serverUrl() {
-	return backend->url();
+    return backend->url();
+}
+
+QString GrammarCheck::getLastErrorMessage()
+{
+    return backend->getLastErrorMessage();
 }
 
 /*!
@@ -628,7 +633,8 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     if (ltPath == "")
         return;
     if(!QFileInfo(ltPath).exists()){
-        emit errorMessage(QString("LT path \" %1 \" not found !").arg(ltPath));
+        errorText=QString("LT path \" %1 \" not found !").arg(ltPath);
+        emit errorMessage(errorText);
         return;
     }
     javaProcess = new QProcess();
@@ -638,9 +644,9 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
     javaProcess->waitForStarted(500);
     javaProcess->waitForReadyRead(500);
-    QString errorMessageString=javaProcess->readAllStandardError();
-    if(!errorMessageString.isEmpty()){
-        emit errorMessage(errorMessageString);
+    errorText=javaProcess->readAllStandardError();
+    if(!errorText.isEmpty()){
+        emit errorMessage(errorText);
     }
 
     connectionAvailability = Unknown;
@@ -713,6 +719,17 @@ void GrammarCheckLanguageToolJSON::shutdown()
         nam = nullptr;
     }
 }
+
+/*!
+ * \brief GrammarCheckLanguageToolJSON::getLastErrorMessage
+ * gets the latest error message which occured when operating LT or the start of LT with java
+ * \return error message
+ */
+QString GrammarCheckLanguageToolJSON::getLastErrorMessage()
+{
+    return errorText;
+}
+
 /*!
  * \brief GrammarCheckLanguageToolJSON::finished
  * Slot for postprocessing LT data
@@ -739,7 +756,8 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
         if(error==1){
             tryToStart();
         }else{
-            emit errorMessage(nreply->errorString());
+            errorText=nreply->errorString();
+            emit errorMessage(errorText);
         }
         if (connectionAvailability == Broken) {
             if (delayedRequests.size()) delayedRequests.clear();
@@ -759,7 +777,8 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
     if( status== 400 && reply.startsWith("Error:")){
         // LT announces error in set-up, probably with the language code
         // put error message into status symbol
-        emit errorMessage(QString(reply));
+        errorText=QString(reply);
+        emit errorMessage(errorText);
     }
 
     if (status == 500 && reply.contains("language code") && reply.contains("IllegalArgumentException")) {

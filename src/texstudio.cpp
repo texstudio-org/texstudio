@@ -10268,6 +10268,7 @@ void Texstudio::checkLanguageTool()
         break;
     case GrammarCheck::LTS_Error:
         result +=tr("error");
+        result +="\n"+grammarCheck->getLastErrorMessage();
         break;
     case GrammarCheck::LTS_Unknown:
         result +=tr("unknown");

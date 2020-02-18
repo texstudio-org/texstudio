@@ -61,6 +61,8 @@ public:
 	enum LTStatus {LTS_Unknown, LTS_Working, LTS_Error};
 	LTStatus languageToolStatus() { return ltstatus; }
 	QString serverUrl();
+    QString getLastErrorMessage();
+
 signals:
 	void checked(const void *doc, const void *line, int lineNr, QList<GrammarError> errors);
 	void languageToolStatusChanged();
@@ -105,6 +107,7 @@ public:
 	virtual QString url() = 0;
     virtual void check(uint ticket, uint subticket, const QString &language, const QString &text) = 0;
 	virtual void shutdown() = 0;
+    virtual QString getLastErrorMessage() = 0;
 signals:
 	void checked(uint ticket, int subticket, const QList<GrammarError> &errors);
     void languageToolStatusChanged();
@@ -128,6 +131,7 @@ public:
     virtual QString url();
     virtual void check(uint ticket, uint subticket, const QString &language, const QString &text);
     virtual void shutdown();
+    virtual QString getLastErrorMessage();
 private slots:
     void finished(QNetworkReply *reply);
 private:
@@ -150,6 +154,7 @@ private:
     QList<CheckRequestBackend> delayedRequests;
 
     QSet<QString> languagesCodesFail;
+    QString errorText; // last error message
 };
 
 #endif // GRAMMARCHECK_H
