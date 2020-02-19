@@ -1625,6 +1625,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>keys</code>, <code>keyvals</code>, <code>%&lt;options%&gt;</code> or ends with <code>%keyvals</code>: key/value list</li>
   <li><code>envname</code>, <code>environment name</code> or ends with <code>%envname</code>: environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present!)</li>
   <li><code>verbatimSymbol</code>: verbatim argument, e.g. <code>\verb|%&lt;text%&gt;|</code> and <code>\verb{verbatimSymbol}#S</code> from latex-document.cwl in source code.</li>
+  <li><code>formula</code> or ends with <code>%formula</code>: The argument is always treated as if in math-mode. See chemformula.cwl for an example.</li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
 <h3>4.14.3 Classification format</h3>
