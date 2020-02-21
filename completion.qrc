@@ -127,6 +127,7 @@
 <file>completion/makecell.cwl</file>
 <file>completion/manyfoot.cwl</file>
 <file>completion/marvosym.cwl</file>
+<file>completion/mathpartir.cwl</file>
 <file>completion/mathtools.cwl</file>
 <file>completion/mdframed.cwl</file>
 <file>completion/mdwlist.cwl</file>
