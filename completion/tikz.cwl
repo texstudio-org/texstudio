@@ -1,5 +1,5 @@
 # tikz package
-# muzimuzhi/12 Nov 2019
+# muzimuzhi/12 Nov 2019, 23 Feb 2020
 
 #include:pgfcore
 
@@ -25,34 +25,34 @@
 \tikzifinpicture{arg1}#*
 \tikzaddtikzonlycommandshortcutlet{arg1}#*
 \tikzaddtikzonlycommandshortcutdef{arg1}#*
-\path#/tikzpicture
-\path[options%keyvals]#/tikzpicture
-\draw#/tikzpicture
-\draw[options%keyvals]#/tikzpicture
-\fill#/tikzpicture
-\fill[options%keyvals]#/tikzpicture
-\filldraw#/tikzpicture
-\filldraw[options%keyvals]#/tikzpicture
-\pattern#/tikzpicture
-\pattern[options%keyvals]#/tikzpicture
-\shade#/tikzpicture
-\shade[options%keyvals]#/tikzpicture
-\shadedraw#/tikzpicture
-\shadedraw[options%keyvals]#/tikzpicture
-\clip#*/tikzpicture
-\clip[options%keyvals]#*/tikzpicture
+\path
+\path[options%keyvals]
+\draw
+\draw[options%keyvals]
+\fill
+\fill[options%keyvals]
+\filldraw
+\filldraw[options%keyvals]
+\pattern
+\pattern[options%keyvals]
+\shade
+\shade[options%keyvals]
+\shadedraw
+\shadedraw[options%keyvals]
+\clip#*
+\clip[options%keyvals]#*
 \useasboundingbox#*
-\node#/tikzpicture
-\node[options%keyvals] (node name) {};#s/tikzpicture#(%node)
-\nodepart[options%keyvals]{part name}#/tikzpicture
-\coordinate#/tikzpicture
-\coordinate[options%keyvals]#/tikzpicture
-\pic/#tikzpicture
-\pic/[options%keyvals]#tikzpicture
-\graph#/tikzpicture
-\graph[options%keyvals]#/tikzpicture
-\matrix#/tikzpicture
-\matrix[options%keyvals]#/tikzpicture
+\node
+\node[options%keyvals] (node name) {};#s#%node
+\nodepart[options%keyvals]{part name}
+\coordinate
+\coordinate[options%keyvals]
+\pic
+\pic[options%keyvals]
+\graph
+\graph[options%keyvals]
+\matrix
+\matrix[options%keyvals]
 \calendar#*
 \datavisualization#*
 \pgfextra#*
@@ -68,7 +68,7 @@
 \tikzaliascoordinatesystem{arg1}#*
 
 \usetikzlibrary{%<library list%>%keyvals}
-#keyvals:\usetikzlibrary
+#keyvals:\usetikzlibrary#c
 3d
 angles
 animations
@@ -142,7 +142,7 @@ shapes.gates.ee.IEC
 shapes.gates.logic
 shapes.gates.logic.IEC
 shapes.gates.logic.US
-shapes.geometry
+shapes.geometric
 shapes.misc
 shapes.multipart
 shapes.symbols
