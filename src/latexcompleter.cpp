@@ -51,7 +51,7 @@ public:
 		return editor->text(curLineNumber).mid(curStart, editor->cursor().columnNumber() - curStart);
 	}
 
-	// check if current cursor/placeholder is mirrored
+    /// check if current cursor/placeholder is mirrored
 	bool isMirrored()
 	{
 		if (!editor) return false;
@@ -204,7 +204,7 @@ public:
 		editor->setCursor(cursor);//necessary to keep the cursor at the same place (but why???)  TODO: remove this line (it cause \ to disable placeholders which other keys don't disable)
 	}
 
-	//selects an index in the completion suggestion list
+    ///selects an index in the completion suggestion list
 	void select(const QModelIndex &ind)
 	{
 		if (!completer || !completer->list) return;
@@ -212,7 +212,7 @@ public:
 		completer->selectionChanged(ind);
 	}
 
-	//moves the selection index to the next/previous delta-th entry in the suggestion list
+    ///moves the selection index to the next/previous delta-th entry in the suggestion list
 	bool selectDelta(const int delta)
 	{
 		if (!completer || !completer->list || !completer->list->isVisible()) {

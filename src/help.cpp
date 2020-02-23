@@ -251,7 +251,7 @@ bool LatexReference::contains(const QString &command)
 	return m_anchors.contains(command);
 }
 
-/* tries to generate a text of suitable length for display as a tooltip */
+/// tries to generate a text of suitable length for display as a tooltip
 QString LatexReference::getTextForTooltip(const QString &command)
 {
 	QString sectionText = getSectionText(command);
@@ -270,7 +270,7 @@ QString LatexReference::getTextForTooltip(const QString &command)
 	return sectionText;
 }
 
-/* get all the text in the section describing the command
+/*! get all the text in the section describing the command
  * it starts with the first heading after the section anchor and ranges down to the next <hr>
  */
 QString LatexReference::getSectionText(const QString &command)
@@ -290,8 +290,8 @@ QString LatexReference::getSectionText(const QString &command)
 	return m_htmltext.mid(sAnchor.start_pos, sAnchor.end_pos - sAnchor.start_pos);
 }
 
-/* get only a partial description for the command
- * the serach looks for the following block types (sqare brackets mark the extrated text:
+/*! get only a partial description for the command
+ *  the serach looks for the following block types (sqare brackets mark the extrated text:
  *    [<dt>(anchor-in-here)</dt><dd></dd>]
  *    </div>[(anchor-in-here)]</a name=
  */

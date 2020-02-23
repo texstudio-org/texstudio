@@ -18,18 +18,13 @@
 
 #include "qcodeedit.h"
 #include "qeditor.h"
-//#include "latexeditorview.h"
 #include "directoryreader.h"
 #include "bibtexreader.h"
-
-//#include "qdocumentline_p.h"
-
 
 class CompletionListModel;
 class LatexCompleterConfig;
 class LatexReference;
 class LatexParser;
-//class Reference;
 
 /*!
  * \brief Implements the actual completer
@@ -55,7 +50,7 @@ public:
 						 CF_FORCE_REFLIST = 1024};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag)
 
-	LatexCompleter(const LatexParser &latexParser, QObject *p = 0); ///< constructor
+    LatexCompleter(const LatexParser &latexParser, QObject *p = nullptr); ///< constructor
 	virtual ~LatexCompleter();
 
 	void complete(QEditor *newEditor, const CompletionFlags &flags); ///< initiate completion with given flags
