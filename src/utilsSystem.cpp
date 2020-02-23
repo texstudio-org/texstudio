@@ -225,6 +225,14 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 	return "";
 }
 
+/*!
+ * \brief put quotes araound strin when necessary
+ *
+ * Enclose the given string with quotes if it contains spaces.
+ * This function is useful
+ * \param s input string
+ * \return string with quotes (if s contains spaces)
+ */
 QString quoteSpaces(const QString &s)
 {
     if (!s.contains(' ')) return s;
@@ -235,6 +243,15 @@ QString quoteSpaces(const QString &s)
 int modernStyle;
 bool darkMode;
 bool useSystemTheme;
+
+/*!
+ * \brief return icon according to settings
+ *
+ * The icon is looked up in txs resources. It prefers svg over png.
+ * In case of active dark mode, icons with name icon_dm is used (if present).
+ * \param icon icon name
+ * \return found icon as file name
+ */
 QString getRealIconFile(const QString &icon)
 {
 	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
@@ -268,6 +285,13 @@ QString getRealIconFile(const QString &icon)
 	return icon;
 }
 
+/*!
+ * \brief search icon
+ *
+ * Looks up icon by name. If settings allow, tries to use system icons, otherwise tries to find in txs resources.
+ * \param icon icon name
+ * \return icon
+ */
 QIcon getRealIcon(const QString &icon)
 {
 	if (icon.isEmpty()) return QIcon();
@@ -285,6 +309,14 @@ QIcon getRealIcon(const QString &icon)
 	return ic;
 }
 
+/*!
+ * \brief search icon
+ *
+ * Looks up icon by name. If settings allow, tries to use system icons, otherwise tries to find in txs resources.
+ * The icon is cached for better reactivity.
+ * \param icon icon name
+ * \return icon
+ */
 QIcon getRealIconCached(const QString &icon)
 {
 	if (iconCache.contains(icon)) {
@@ -309,6 +341,21 @@ QIcon getRealIconCached(const QString &icon)
 	return *icn;
 }
 
+/*!
+ * \brief Tries to determine if the system uses dark mode
+ *
+ * This function tries to determine if a system uses "dark mode" by looking up general text color and converting it into gray-scale value.
+ * A value above 200 (scale is 0 .. 255 ) is considered as light text color on probably dark background, hence a dark mode is detected.
+ * This approach is independent on specific on different systems.
+ * \return true -> uses dark mode
+ */
+bool systemUsesDarkMode()
+{
+    QPalette pal=QApplication::palette();
+    QColor clr=pal.color(QPalette::Text);
+    return qGray(clr.rgb())>200;
+}
+
 bool isFileRealWritable(const QString &filename)
 {
 #ifdef Q_OS_WIN32
@@ -325,11 +372,24 @@ bool isFileRealWritable(const QString &filename)
 	return result;
 #endif
 }
-
+/*!
+ * \brief checks if file exists and is writeable
+ *
+ * Convenience function
+ * \param filename
+ * \return
+ */
 bool isExistingFileRealWritable(const QString &filename)
 {
 	return QFileInfo(filename).exists() && isFileRealWritable(filename);
 }
+
+/*!
+ * \brief make sure that the dirPath is terminated with a separator (/ or \)
+ *
+ * \param dirPath
+ * \return dirPath with trailing separator
+ */
 
 QString ensureTrailingDirSeparator(const QString &dirPath)
 {
@@ -340,12 +400,23 @@ QString ensureTrailingDirSeparator(const QString &dirPath)
 #endif
 	return dirPath + "/";
 }
-
+/*!
+ * \brief join dirname and filename with apropriate separator
+ * \param dirname
+ * \param filename
+ * \return
+ */
 QString joinPath(const QString &dirname, const QString &filename)
 {
 	return ensureTrailingDirSeparator(dirname) + filename;
 }
-
+/*!
+ * \brief join dirname, dirname2 and filename with apropriate separator
+ * \param dirname
+ * \param dirname2
+ * \param filename
+ * \return
+ */
 QString joinPath(const QString &dirname, const QString &dirname2, const QString &filename)
 {
 	return ensureTrailingDirSeparator(dirname) + ensureTrailingDirSeparator(dirname2) + filename;
@@ -396,7 +467,13 @@ QFileInfo getNonSymbolicFileInfo(const QFileInfo& info)
 		return info;
 #endif
 }
-
+/*!
+ * \brief replace file extension
+ * \param filename
+ * \param newExtension
+ * \param appendIfNoExt
+ * \return
+ */
 QString replaceFileExtension(const QString &filename, const QString &newExtension, bool appendIfNoExt)
 {
 	QFileInfo fi(filename);
@@ -507,7 +584,13 @@ QString getNonextistentFilename(const QString &guess, const QString &fallback)
 	}
 	return fallback;
 }
-
+/*!
+ * \brief get environment path
+ *
+ * Get the content of PATH environment variable.
+ * On OSX starts a bash to get a more complete picture as programs get started without access to the bash PATH.
+ * \return path
+ */
 QString getEnvironmentPath()
 {
 	static QString path;
@@ -529,12 +612,20 @@ QString getEnvironmentPath()
 	}
 	return path;
 }
-
+/*!
+ * \brief get environment path list
+ * Same as getEnvironmentPath(), but splits the sresult into a stringlist.
+ * \return
+ */
 QStringList getEnvironmentPathList()
 {
 	return getEnvironmentPath().split(getPathListSeparator());
 }
-
+/*!
+ * \brief update path settings for a process
+ * \param proc process
+ * \param additionalPaths
+ */
 void updatePathSettings(QProcess *proc, QString additionalPaths)
 {
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -602,7 +693,11 @@ QString msgGraphicalShellAction()
 	return QApplication::translate("Texstudio", "Show Containing Folder");
 #endif
 }
-
+/*!
+ * \brief determine which x11 environment is used.
+ * This is probably obsolete.
+ * \return 0 : no kde ; 3: kde ; 4 : kde4 ; 5 : kde5
+ */
 int x11desktop_env()
 {
 	// 0 : no kde ; 3: kde ; 4 : kde4 ; 5 : kde5 ;
@@ -649,13 +744,13 @@ bool hasAtLeastQt(int major, int minor)
 	return (ma > major) || (ma == major && mi >= minor);
 }
 
-// convenience function for unique connections independent of the Qt version
+/// convenience function for unique connections independent of the Qt version
 bool connectUnique(const QObject *sender, const char *signal, const QObject *receiver, const char *method)
 {
 	return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
 }
 
-// compatibility function for missing QProcessEnvironment::keys() in Qt < 4.8
+/// compatibility function for missing QProcessEnvironment::keys() in Qt < 4.8
 QStringList envKeys(const QProcessEnvironment &env)
 {
 	return env.keys();
@@ -686,3 +781,4 @@ void SafeThread::wait(unsigned long time)
 	if (crashed) return;
 	QThread::wait(time);
 }
+
