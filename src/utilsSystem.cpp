@@ -750,12 +750,6 @@ bool connectUnique(const QObject *sender, const char *signal, const QObject *rec
 	return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
 }
 
-/// compatibility function for missing QProcessEnvironment::keys() in Qt < 4.8
-QStringList envKeys(const QProcessEnvironment &env)
-{
-	return env.keys();
-}
-
 void ThreadBreaker::sleep(unsigned long s)
 {
 	QThread::sleep(s);

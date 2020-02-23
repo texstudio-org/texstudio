@@ -204,7 +204,7 @@ QHash<QString, QString> getEnvVariables(bool uppercaseNames)
 {
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	QHash<QString, QString> result;
-	foreach (const QString &name, envKeys(env)) {
+    foreach (const QString &name, env.keys()) {
 		if (uppercaseNames) {
 			result.insert(name.toUpper(), env.value(name));
 		} else {
