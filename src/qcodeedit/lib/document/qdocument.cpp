@@ -2670,7 +2670,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
 	if ( (composited.count() < cpos) || fonts.isEmpty() ){
-		int result=QFontMetrics(*QDocumentPrivate::m_font).width(m_text.left(cpos));
+		int result=UtilsUi::getFmWidth(QFontMetrics(*QDocumentPrivate::m_font), m_text.left(cpos));
 		return result;
 	}
 
@@ -2688,10 +2688,10 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 			int taboffset = ncolsToNextTabStop(column, tabStop);
 
 			column += taboffset;
-			cwidth = fm.width(' ') * taboffset;
+			cwidth = UtilsUi::getFmWidth(fm, ' ') * taboffset;
 		} else {
 			++column;
-			cwidth = fm.width(c);
+			cwidth = UtilsUi::getFmWidth(fm, c);
 		}
 
 		screenx += cwidth;
@@ -2775,10 +2775,10 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 				int taboffset = ncolsToNextTabStop(column, tabStop);
 
 				column += taboffset;
-				cwidth = fm.width(' ') * taboffset;
+				cwidth = UtilsUi::getFmWidth(fm, ' ') * taboffset;
 			} else {
 				++column;
-				cwidth = fm.width(m_text.at(idx));
+				cwidth = UtilsUi::getFmWidth(fm, m_text.at(idx));
 			}
 
 			int mid = (x + (cwidth / 2) + 1);
@@ -7572,7 +7572,7 @@ void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
 
 		// need to get the font metrics in the context of the paint device to get correct UI scaling
 		QFontMetrics fm = QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));
-		m_spaceWidth = fm.width(' ');
+		m_spaceWidth = UtilsUi::getFmWidth(fm, ' ');
 		m_ascent = fm.ascent();
 		m_descent = fm.descent();
 		m_lineHeight = fm.height();
@@ -7668,7 +7668,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 	}
 
 	if ( containsSurrogates || (m_workArounds & QDocument::DisableWidthCache) )
-		return m_fontMetrics[fid].width(text);
+		return UtilsUi::getFmWidth(m_fontMetrics[fid], text);
 
 	int rwidth=0;
 
@@ -7676,7 +7676,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 	foreach(const QChar& c, text){
 		const int *cwidth;
 		if (!cache->valueIfThere(c, cwidth))
-			cwidth = cache->insert(c,m_fontMetrics[fid].width(c));
+			cwidth = cache->insert(c,UtilsUi::getFmWidth(m_fontMetrics[fid], c));
 		rwidth+=*cwidth;
 	}
 	return rwidth;
@@ -7712,8 +7712,8 @@ int QDocumentPrivate::textWidthSingleLetterFallback(int fid, const QString& text
 		const int *cwidth;
 		if (!cache->valueIfThere(char_id, cwidth)) {
 			int nwidth;
-			if (cat == QChar::Other_Surrogate) nwidth = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
-			else nwidth = m_fontMetrics[fid].width(c);
+			if (cat == QChar::Other_Surrogate) nwidth = UtilsUi::getFmWidth(m_fontMetrics[fid], QString(lastSurrogate)+c);
+			else nwidth = UtilsUi::getFmWidth(m_fontMetrics[fid], c);
 			cwidth = cache->insert(char_id, nwidth);
 		}
 		rwidth+=*cwidth;
@@ -7740,8 +7740,8 @@ void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, b
 		const QPixmap* px;
 		if (!cache->valueIfThere(char_id, px)){
 			int cw;
-			if (cat == QChar::Other_Surrogate) cw = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
-			else cw = m_fontMetrics[fid].width(c);
+			if (cat == QChar::Other_Surrogate) cw = UtilsUi::getFmWidth(m_fontMetrics[fid], QString(lastSurrogate)+c);
+			else cw = UtilsUi::getFmWidth(m_fontMetrics[fid], c);
 			QPixmap pm(cw,m_lineSpacing);
 			pm.fill(QColor::fromRgb(255,255,255,0)); //transparent background (opaque background would be twice as fast, but then we need much more pixmaps)
 			QPainter pmp(&pm);

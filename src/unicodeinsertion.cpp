@@ -1,4 +1,5 @@
 #include "unicodeinsertion.h"
+#include "utilsUI.h"
 
 QString unicodePointToString(unsigned int u)
 {
@@ -29,7 +30,7 @@ void QLineEditWithMetaText::paintEvent ( QPaintEvent *ev)
 	QPainter p(this);
 	QFontMetrics fm(font());
 	p.setPen(QApplication::palette().windowText().color().lighter(50));
-	p.drawText(width() - fm.width(metaText) - 5, (height() + fm.height()) / 2 - 2, metaText);
+	p.drawText(width() - UtilsUi::getFmWidth(fm, metaText) - 5, (height() + fm.height()) / 2 - 2, metaText);
 
 }
 

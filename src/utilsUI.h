@@ -38,6 +38,10 @@ void enableTouchScrolling(QWidget *w, bool enable = true);
 
 void resizeInFontHeight(QWidget *w, int width, int height);
 
+// Given font metrics returns the text pixel size
+int getFmWidth(const QFontMetrics &fm, QChar ch);
+int getFmWidth(const QFontMetrics &fm, const QString &text, int len = -1);
+
 }  // namespace UtilsUi
 
 #endif // UTILSUI_H

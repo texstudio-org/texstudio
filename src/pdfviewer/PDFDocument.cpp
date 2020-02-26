@@ -2689,7 +2689,7 @@ void PDFDocument::init(bool embedded)
 
 	leCurrentPage = new QLineEdit(toolBar);
 	leCurrentPage->setMaxLength(5);
-	leCurrentPage->setFixedWidth(fontMetrics().width("#####"));
+	leCurrentPage->setFixedWidth(UtilsUi::getFmWidth(fontMetrics(), "#####"));
 	leCurrentPageValidator = new QIntValidator(1, 99999, leCurrentPage);
 	leCurrentPage->setValidator(leCurrentPageValidator);
 	leCurrentPage->setText("1");
@@ -2730,7 +2730,7 @@ void PDFDocument::init(bool embedded)
 	scaleButton->setToolTip(tr("Scale"));
 	scaleButton->setPopupMode(QToolButton::InstantPopup);
 	scaleButton->setAutoRaise(true);
-	scaleButton->setMinimumWidth(statusBar()->fontMetrics().width("OOOOOO"));
+	scaleButton->setMinimumWidth(UtilsUi::getFmWidth(statusBar()->fontMetrics(), "OOOOOO"));
 	scaleButton->setText("100%");
 	statusBar()->addPermanentWidget(scaleButton);
 	QList<int> levels = QList<int>() << 25 << 50 << 75 << 100 << 150 << 200 << 300 << 400;
@@ -3202,7 +3202,7 @@ retryNow:
                 int maxDigits = 1 + qFloor(log10(pdfWidget->realNumPages()));
 		//if (maxDigits < 2) maxDigits = 2;
 		leCurrentPage->setMaxLength(maxDigits);
-		leCurrentPage->setFixedWidth(fontMetrics().width(QString(maxDigits + 1, '#')));
+		leCurrentPage->setFixedWidth(UtilsUi::getFmWidth(fontMetrics(), QString(maxDigits + 1, '#')));
 		leCurrentPageValidator->setTop(pdfWidget->realNumPages());
 		//qDebug() << pdfWidget->realNumPages() << maxDigits << fontMetrics().width(QString(maxDigits+1, '#'));
 

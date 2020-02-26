@@ -3,7 +3,7 @@
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
-** 
+**
 ** This file may be used under the terms of the GNU General Public License
 ** version 3 as published by the Free Software Foundation and appearing in the
 ** file GPL.txt included in the packaging of this file.
@@ -14,11 +14,12 @@
 ****************************************************************************/
 
 #include "qlinenumberpanel.h"
+#include "utilsUI.h"
 
 /*!
 	\file qlinenumberpanel.cpp
 	\brief Implementation of the QLineNumberPanel class
-	
+
 	\see QLineNumberPanel
 */
 
@@ -55,7 +56,7 @@ QLineNumberPanel::QLineNumberPanel(QWidget *p)
 */
 QLineNumberPanel::~QLineNumberPanel()
 {
-	
+
 }
 
 /*!
@@ -75,7 +76,7 @@ bool QLineNumberPanel::isVerboseMode() const
 }
 
 /*!
-	
+
 */
 void QLineNumberPanel::setVerboseMode(bool y)
 {
@@ -99,13 +100,13 @@ void QLineNumberPanel::editorChange(QEditor *e)
 					this	, SLOT  ( update() ) );
 		disconnect( editor()->document(), SIGNAL( fontChanged(QFont) ),
 					this	, SLOT  ( setFont_slot(QFont) ) );
-		
+
 	}
-	
+
 	if ( e )
 	{
-		setFixedWidth(fontMetrics().width(QString::number(e->document()->lines())) + 5);
-		
+		setFixedWidth(UtilsUi::getFmWidth(fontMetrics(), QString::number(e->document()->lines())) + 5);
+
 		connect(e	, SIGNAL( cursorPositionChanged() ),
 				this, SLOT  ( update() ) );
 
@@ -124,13 +125,13 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			0x21B3
 			0x2937
 	*/
-	
+
 	QFont f(font());
 	f.setWeight(QFont::Bold);
 	const QFontMetrics sfm(f);
     bool specialFontUsage=false;
     QFont specialFont(font());
-	
+
 	#ifndef WIN32
 	static const QChar wrappingArrow(0x2937);
     const QFontMetrics specialSfm(sfm);
@@ -149,64 +150,64 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	const QFontMetrics specialSfm(specialFont);
 	specialFontUsage=true;
 	#endif
-	
+
 	int max = e->document()->lines();
 	if(max<100) max=100; // always reserve 3 line number columns to avoid ugly jumping of width
 	QString s_width=QString::number(max);
 	s_width.fill('6');
-	const int panelWidth = sfm.width(s_width) + 5;
+	const int panelWidth = UtilsUi::getFmWidth(sfm, s_width) + 5;
 	setFixedWidth(panelWidth);
-		
+
 	int n, posY,
 		as = QFontMetrics(e->document()->font()).ascent(),
 		ls = e->document()->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
-	
+
 	QString txt;
 	QDocument *d = e->document();
 	const int cursorLine = e->cursor().lineNumber();
-	
+
 	n = d->lineNumber(contentsY);
 	posY = as + 2 + d->y(n) - contentsY;
-	
+
 	//qDebug("first = %i; last = %i", first, last);
 	//qDebug("beg pos : %i", posY);
-	
+
 	for ( ; ; ++n )
 	{
 		//qDebug("n = %i; pos = %i", n, posY);
 		QDocumentLine line = d->line(n);
-		
+
 		if ( line.isNull() || ((posY - as) > pageBottom) )
 			break;
-		
+
 		if ( line.isHidden() )
 			continue;
-		
+
 		bool draw = true;
-		
+
 		if ( !m_verbose )
 		{
 			draw = !((n + 1) % 10) || !n || !line.marks().empty();
 		}
-		
+
 		txt = QString::number(n + 1);
-		
+
 		if ( n == cursorLine )
 		{
 			draw = true;
-			
+
 			p->save();
 			QFont f = p->font();
 			f.setWeight(QFont::Bold);
 
 			p->setFont(f);
 		}
-		
-		if ( draw ) 
+
+		if ( draw )
 		{
-			p->drawText(width() - 2 - sfm.width(txt),
+			p->drawText(width() - 2 - UtilsUi::getFmWidth(sfm, txt),
 						posY,
 						txt);
             if(specialFontUsage){
@@ -216,34 +217,34 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
                 	p->setFont(specialFont);
             	}
             }
-		
+
 			for ( int i = 1; i < line.lineSpan(); ++i )
-				p->drawText(width() - 2 - specialSfm.width(wrappingArrow), posY + i * ls, wrappingArrow);
+				p->drawText(width() - 2 - UtilsUi::getFmWidth(specialSfm, wrappingArrow), posY + i * ls, wrappingArrow);
 
             if(specialFontUsage){
-                if (line.lineSpan()>1) 
+                if (line.lineSpan()>1)
                     p->restore();
             }
 		} else {
 			int yOff = posY - (as + 1) + ls / 2;
-			
+
 			if ( (n + 1) % 5 )
 				p->drawPoint(width() - 5, yOff);
 			else
 				p->drawLine(width() - 7, yOff, width() - 2, yOff);
 		}
-				
+
 		if ( n == cursorLine )
 		{
 			p->restore();
 		}
-		
+
 		posY += ls * line.lineSpan();
 	}
-	
+
 	//p->setPen(Qt::DotLine);
 	//p->drawLine(width()-1, 0, width()-1, pageBottom);
-	
+
 	//setFixedWidth(sfm.width(txt) + 5);
 	return true;
 }

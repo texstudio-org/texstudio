@@ -18,6 +18,7 @@
 //  - use KileDocument::Extensions
 
 #include "latexoutputfilter.h"
+#include "utilsUI.h"
 
 
 QColor LatexLogEntry::textColors[LT_MAX] = {QColor(Qt::black), QColor(230, 32, 32), QColor(234, 136, 32), QColor(58, 58, 230), QColor(Qt::darkBlue)};
@@ -91,13 +92,13 @@ QString LatexLogEntry::niceMessage(bool richFormat) const
 
 		QFont f = QToolTip::font();
 		QFontMetrics fm(f);
-		width = fm.width(message, beginBold);
-		width += fm.width(message.mid(endBold));
+		width = UtilsUi::getFmWidth(fm, message, beginBold);
+		width += UtilsUi::getFmWidth(fm, message.mid(endBold));
 		f.setBold(true);
 		fm = QFontMetrics(f);
-		width += fm.width(message.mid(beginBold, endBold - beginBold));
+		width += UtilsUi::getFmWidth(fm, message.mid(beginBold, endBold - beginBold));
 	} else {
-		width = QFontMetrics(QToolTip::font()).width(message);
+		width = UtilsUi::getFmWidth(QFontMetrics(QToolTip::font()), message);
 	}
 
 	return QString("<tr><td style=\"color: %1\">%2</td><td width=\"%3\"><nobr>%4</nobr></td>").arg(textColors[type].name()).arg(pre).arg(width).arg(fmtMsg);

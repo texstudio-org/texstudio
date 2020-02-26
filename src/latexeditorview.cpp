@@ -2880,7 +2880,7 @@ void LatexEditorViewConfig::settingsChanged()
 		}
 
 	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;
-	int letterWidth = fms.first().width('a');
+	int letterWidth = UtilsUi::getFmWidth(fms.first(), 'a');
 
 	const QString lettersToCheck("abcdefghijklmnoqrstuvwxyzABCDEFHIJKLMNOQRSTUVWXYZ_+ 123/()=.,;#");
 	QVector<QMap<QChar, int> > widths;
@@ -2889,13 +2889,13 @@ void LatexEditorViewConfig::settingsChanged()
 	foreach (const QChar &c, lettersToCheck) {
 		for (int fmi = 0; fmi < fms.size(); fmi++) {
 			const QFontMetrics &fm = fms[fmi];
-			int currentWidth = fm.width(c);
+			int currentWidth = UtilsUi::getFmWidth(fm, c);
 			widths[fmi].insert(c, currentWidth);
 			if (currentWidth != letterWidth) lettersHaveDifferentWidth = true;
 			QString testString;
 			for (int i = 1; i < 10; i++) {
 				testString += c;
-				int stringWidth = fm.width(testString);
+				int stringWidth = UtilsUi::getFmWidth(fm, testString);
 				if (stringWidth % i != 0) sameLettersHaveDifferentWidth = true;
 				if (currentWidth != stringWidth / i) sameLettersHaveDifferentWidth = true;
 			}
@@ -2909,7 +2909,7 @@ void LatexEditorViewConfig::settingsChanged()
 			int expectedWidth = 0;
 			for (int i = 0; i < ligatures[l].size() && !sameLettersHaveDifferentWidth; i++) {
 				expectedWidth += widths[fmi].value(ligatures[l][i]);
-				if (expectedWidth != fms[fmi].width(ligatures[l].left(i + 1))) sameLettersHaveDifferentWidth = true;
+				if (expectedWidth != UtilsUi::getFmWidth(fms[fmi], ligatures[l].left(i + 1))) sameLettersHaveDifferentWidth = true;
 			}
 		}
 	}
