@@ -438,8 +438,8 @@ void QuickDocumentDialog::geometryValuesChanged()
 	qreal marginTop = (ui.checkBoxGeometryMarginTop->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginTop->value(), ui.spinBoxGeometryMarginTop->suffix()) : -1);
 	qreal marginBottom = (ui.checkBoxGeometryMarginBottom->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginBottom->value(), ui.spinBoxGeometryMarginBottom->suffix()) : -1);
 
-	bool twoSide = ui.listWidgetOptions->isItemSelected(ui.listWidgetOptions->findItems("twoside", Qt::MatchExactly).first());
-	bool landscape = ui.listWidgetOptions->isItemSelected(ui.listWidgetOptions->findItems("landscape", Qt::MatchExactly).first());
+	bool twoSide = ui.listWidgetOptions->findItems("twoside", Qt::MatchExactly).first()->isSelected();
+	bool landscape = ui.listWidgetOptions->findItems("landscape", Qt::MatchExactly).first()->isSelected();
 
 	if (landscape) qSwap(physicalPaperWidth, physicalPaperHeight);
 
