@@ -695,7 +695,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/SegmentPreviewScalePercent", &segmentPreviewScalePercent, 150, &pseudoDialog->spinBoxSegmentPreviewScalePercent);
 
 	//pdf preview
-	QRect screen = QApplication::desktop()->availableGeometry();
+	QRect screen = QGuiApplication::primaryScreen()->availableGeometry();
 	registerOption("Geometries/PdfViewerLeft", &pdfDocumentConfig->windowLeft, screen.left() + screen.width() * 2 / 3);
 	registerOption("Geometries/PdfViewerTop", &pdfDocumentConfig->windowTop, screen.top() + 10);
 	registerOption("Geometries/PdfViewerWidth", &pdfDocumentConfig->windowWidth, screen.width() / 3 - 26);

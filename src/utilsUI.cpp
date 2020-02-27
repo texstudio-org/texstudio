@@ -391,5 +391,23 @@ int getFmWidth(const QFontMetrics &fm, const QString &text, int len)
 #endif
 }
 
+/*!
+ * \brief Return the screen geometry for a given point
+ * \param[in] pos Position
+ * \returns The screen geometry at the given point
+ */
+QRect getAvailableGeometryAt(const QPoint &pos)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+	QScreen *pScreen = QGuiApplication::screenAt(pos);
+	if (pScreen == nullptr) {
+		return QRect();
+	}
+	return pScreen->availableGeometry();
+#else
+	return QApplication::desktop()->availableGeometry(pos);
+#endif
+}
+
 
 }  // namespace UtilsUi

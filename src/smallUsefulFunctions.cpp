@@ -948,7 +948,7 @@ QString getImageAsText(const QPixmap &AImage, const int w)
 void showTooltipLimited(QPoint pos, QString text, int relatedWidgetWidth)
 {
 	text.replace("\t", "    "); //if there are tabs at the position in the string, qt crashes. (13707)
-	QRect screen = QApplication::desktop()->availableGeometry(pos);
+	QRect screen = UtilsUi::getAvailableGeometryAt(pos);
 	// estimate width of coming tooltip
 	// rather dirty code
 	bool textWillWarp = Qt::mightBeRichText(text);
