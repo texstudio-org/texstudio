@@ -555,7 +555,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 			                  rect.topLeft().y() + margin);
 		} else { //Draw vertical separator
 			const int offset = rect.height() / 2;
-			painter->setPen(QPen(option->palette.background().color().darker(110)));
+			painter->setPen(QPen(option->palette.window().color().darker(110)));
 			painter->drawLine(rect.topLeft().x() + margin ,
 			                  rect.topLeft().y() + offset,
 			                  rect.topRight().x() - margin,
