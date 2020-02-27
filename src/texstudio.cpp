@@ -3069,7 +3069,7 @@ void Texstudio::viewDocumentList()
 	QList<LatexEditorView *> editorList = editors->editors();
 
 	if (configManager.mruDocumentChooser) {
-		qSort(editorList.begin(), editorList.end(), mruEditorViewLessThan);
+		std::sort(editorList.begin(), editorList.end(), mruEditorViewLessThan);
 		if (editorList.size() > 1)
 			if (editorList.first() == currentEditorView())
 				curIndex = 1;
