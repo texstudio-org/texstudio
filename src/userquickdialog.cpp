@@ -57,7 +57,7 @@ void UserQuickDialog::addItem(QString name)
 	if (cmd == "" || name == tr("User")) item->setFlags(item->flags() | Qt::ItemIsEditable);
 	if (ui.listWidget->count() > 0) {
 		ui.listWidget->setCurrentItem(item);
-		ui.listWidget->setItemSelected(ui.listWidget->currentItem(), true);
+		ui.listWidget->currentItem()->setSelected (true);
 	}
 }
 
@@ -69,7 +69,7 @@ void UserQuickDialog::actionUp()
 	delete ui.listWidget->item(current);
 	ui.listWidget->insertItem(current - 1, item);
 	ui.listWidget->setCurrentItem(ui.listWidget->item(current - 1));
-	ui.listWidget->setItemSelected(ui.listWidget->item(current - 1), true);
+	ui.listWidget->item(current - 1)->setSelected(true);
 }
 
 void UserQuickDialog::actionDown()
@@ -80,7 +80,7 @@ void UserQuickDialog::actionDown()
 	delete ui.listWidget->item(current);
 	ui.listWidget->insertItem(current + 1, item);
 	ui.listWidget->setCurrentItem(ui.listWidget->item(current + 1));
-	ui.listWidget->setItemSelected(ui.listWidget->item(current + 1), true);
+	ui.listWidget->item(current + 1)->setSelected(true);
 }
 
 void UserQuickDialog::actionDelete()
@@ -91,10 +91,10 @@ void UserQuickDialog::actionDelete()
 
 	if (current == ui.listWidget->count()) {
 		ui.listWidget->setCurrentItem(ui.listWidget->item(current - 1));
-		ui.listWidget->setItemSelected(ui.listWidget->item(current - 1), true);
+		ui.listWidget->item(current - 1)->setSelected(true);
 	} else {
 		ui.listWidget->setCurrentItem(ui.listWidget->item(current));
-		ui.listWidget->setItemSelected(ui.listWidget->item(current), true);
+		ui.listWidget->item(current)->setSelected(true);
 	}
 }
 
