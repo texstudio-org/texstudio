@@ -3972,13 +3972,12 @@ void Texstudio::readSettings(bool reread)
 
     config->beginGroup("texmaker");
 
-    QRect screen = QApplication::desktop()->availableGeometry();
+    QRect screen = QGuiApplication::primaryScreen()->availableGeometry();
     int w = config->value("Geometries/MainwindowWidth", screen.width() - 100).toInt();
     int h = config->value("Geometries/MainwindowHeight", screen.height() - 100).toInt() ;
     int x = config->value("Geometries/MainwindowX", screen.x() + 10).toInt();
     int y = config->value("Geometries/MainwindowY", screen.y() + 10).toInt() ;
-    int screenNumber = QApplication::desktop()->screenNumber(QPoint(x, y));
-    screen = QApplication::desktop()->availableGeometry(screenNumber);
+    screen = UtilsUi::getAvailableGeometryAt(QPoint(x, y));
     if (!screen.contains(x, y)) {
         // top left is not on screen
         x = screen.x() + 10;
@@ -8018,7 +8017,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		else
 			p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 
-		QRect screen = QApplication::desktop()->screenGeometry();
+		QRect screen = QGuiApplication::primaryScreen()->geometry();
 		int w = pixmap.width();
 		if (w > screen.width()) w = screen.width() - 2;
 		if (!fromPDF) {
@@ -8133,7 +8132,7 @@ void Texstudio::showImgPreview(const QString &fname)
 		p = currentEditorView()->getHoverPosistion();
 		//else
 		//    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-		QRect screen = QApplication::desktop()->screenGeometry();
+		QRect screen = QGuiApplication::primaryScreen()->geometry();
 		QPixmap img(imageName);
 		int w = qMin(img.width(), configManager.editorConfig->maxImageTooltipWidth);
 		w = qMin(w, screen.width() - 8);
@@ -8170,7 +8169,7 @@ void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
 	p = currentEditorView()->getHoverPosistion();
 	//else
 	//    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-	QRect screen = QApplication::desktop()->screenGeometry();
+	QRect screen = QGuiApplication::primaryScreen()->geometry();
 	int w = pm.width();
 	if (w > screen.width()) w = screen.width() - 2;
 	QString text;

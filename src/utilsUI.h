@@ -42,6 +42,9 @@ void resizeInFontHeight(QWidget *w, int width, int height);
 int getFmWidth(const QFontMetrics &fm, QChar ch);
 int getFmWidth(const QFontMetrics &fm, const QString &text, int len = -1);
 
+// Return the screen geometry for a given point
+QRect getAvailableGeometryAt(const QPoint &pos);
+
 }  // namespace UtilsUi
 
 #endif // UTILSUI_H

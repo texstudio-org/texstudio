@@ -554,7 +554,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.tbRevertSymbol, SIGNAL(clicked()), this, SLOT(revertClicked()));
 
 	// limit dialog size
-	QRect screen = QApplication::desktop()->screenGeometry();
+	QRect screen = QGuiApplication::primaryScreen()->geometry();
 	if (!screen.isEmpty()) {
 		int nwidth = width(), nheight = height();
 		if (nwidth > screen.width()) nwidth = screen.width();

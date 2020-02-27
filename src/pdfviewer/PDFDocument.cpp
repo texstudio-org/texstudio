@@ -2332,8 +2332,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
         int &y = globalConfig->windowTop;
         int &w = globalConfig->windowWidth;
         int &h = globalConfig->windowHeight;
-        int screenNumber = QApplication::desktop()->screenNumber(QPoint(x, y));
-        QRect screen = QApplication::desktop()->availableGeometry(screenNumber);
+        QRect screen = UtilsUi::getAvailableGeometryAt(QPoint(x, y));
         // add some tolerance, as fullscreen seems to have negative coordinate (KDE, Win7 ...)
         screen.adjust(-8, -8, +8, +8);
         if (!screen.contains(x, y)) {
@@ -3411,14 +3410,13 @@ void PDFDocument::updateDisplayState(DisplayFlags displayFlags)
 
 void PDFDocument::arrangeWindows(bool tile)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-	for (int screenIndex = 0; screenIndex < desktop->numScreens(); ++screenIndex) {
+	foreach (const QScreen *screen, QGuiApplication::screens()) {
 		QWidgetList windows;
 		foreach (QWidget *widget, QApplication::topLevelWidgets())
 			if (!widget->isHidden() && qobject_cast<QMainWindow *>(widget))
 				windows << widget;
 		if (windows.size() > 0)
-			(*(tile ? &tileWindowsInRect : &stackWindowsInRect)) (windows, desktop->availableGeometry(screenIndex));
+			(*(tile ? &tileWindowsInRect : &stackWindowsInRect)) (windows, screen->availableGeometry());
 	}
 }
 
