@@ -214,7 +214,7 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	QVariant vLineNumber = index.data(SearchResultModel::LineNumberRole);
 	if (vLineNumber.isValid()) {
 		int hPadding = 1;
-		int lwidth = painter->fontMetrics().width("00000") + 2 * hPadding;
+		int lwidth = UtilsUi::getFmWidth(painter->fontMetrics(), "00000") + 2 * hPadding;
 		QRect lineNumberRect = QRect(r.left(), r.top(), lwidth, r.height());
 		if (!isSelected) {
 			painter->fillRect(lineNumberRect, option.palette.window());
@@ -231,12 +231,12 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	foreach (SearchMatch match, matches) {
 		// text before match
 		QString part = text.mid(pos, match.pos - pos);
-		int w = painter->fontMetrics().width(part);
+		int w = UtilsUi::getFmWidth(painter->fontMetrics(), part);
 		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, part);
 		r.setLeft(r.left() + w + 1);
 		// matched text
 		part = text.mid(match.pos, match.length);
-		w = painter->fontMetrics().width(part);
+		w = UtilsUi::getFmWidth(painter->fontMetrics(), part);
 		painter->save();
         if(darkMode){
             painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));

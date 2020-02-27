@@ -764,12 +764,12 @@ public:
 			for (int i = 0; i < cw.placeHolders[0].size(); i++) {
 				QString temp = firstLine.mid(p, cw.placeHolders[0][i].offset - p);
                 painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
-				r.setLeft(r.left() + fmn.width(temp));
+				r.setLeft(r.left() + UtilsUi::getFmWidth(fmn, temp));
 				temp = firstLine.mid(cw.placeHolders[0][i].offset, cw.placeHolders[0][i].length);
 				painter->setFont(fPlHolder);
 				painter->setPen(plHolderColor);
                 painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
-				r.setLeft(r.left() + fmi.width(temp) + 1);
+				r.setLeft(r.left() + UtilsUi::getFmWidth(fmi, temp) + 1);
 				p = cw.placeHolders[0][i].offset + cw.placeHolders[0][i].length;
 				painter->setFont(fNormal);
 				painter->setPen(normalColor);
@@ -1435,7 +1435,7 @@ void LatexCompleter::adjustWidget()
 	const QList<CompletionWord> &words = listModel->getWords();
 	for (int i = 0; i < words.size(); i++) {
 		if (words[i].lines.empty() || words[i].placeHolders.empty()) continue;
-		int temp = fm.width(words[i].lines[0]) + words[i].placeHolders[0].size() + 10;
+		int temp = UtilsUi::getFmWidth(fm, words[i].lines[0]) + words[i].placeHolders[0].size() + 10;
 		if (temp > newWordMax) newWordMax = temp;
 	}
 	maxWordLen = newWordMax;

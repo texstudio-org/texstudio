@@ -1523,7 +1523,7 @@ void Texstudio::createStatusBar()
 	statusTbLanguage->setToolTip(tr("Language"));
 	statusTbLanguage->setPopupMode(QToolButton::InstantPopup);
 	statusTbLanguage->setAutoRaise(true);
-	statusTbLanguage->setMinimumWidth(status->fontMetrics().width("OOOOOOO"));
+	statusTbLanguage->setMinimumWidth(UtilsUi::getFmWidth(status->fontMetrics(), "OOOOOOO"));
 	connect(&spellerManager, SIGNAL(dictPathChanged()), this, SLOT(updateAvailableLanguages()));
 	connect(&spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(updateAvailableLanguages()));
 	updateAvailableLanguages();
@@ -1536,7 +1536,7 @@ void Texstudio::createStatusBar()
 	statusTbEncoding->setText(tr("Encoding") + "  ");
 	statusTbEncoding->setPopupMode(QToolButton::InstantPopup);
 	statusTbEncoding->setAutoRaise(true);
-	statusTbEncoding->setMinimumWidth(status->fontMetrics().width("OOOOO"));
+	statusTbEncoding->setMinimumWidth(UtilsUi::getFmWidth(status->fontMetrics(), "OOOOO"));
 
 	QSet<int> encodingMibs;
 	foreach (const QString &s, configManager.commonEncodings) {

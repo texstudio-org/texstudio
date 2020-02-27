@@ -16,6 +16,7 @@ struct BibTeXType {
 		mandatoryFields(other.mandatoryFields), optionalFields(other.optionalFields) {}
 	BibTeXType (const QString &d, const QString &n, const QStringList &mf, const QStringList &of):
 		name(n), description(d), mandatoryFields(mf), optionalFields(of) {}
+	BibTeXType & operator= (const BibTeXType &other) = default; // Silence -Wdeprecated-copy
 };
 
 
