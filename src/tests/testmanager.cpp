@@ -34,7 +34,7 @@ const QRegExp TestToken::ignoredTextRegExp ("[$\t *!{}.\\][]+");
 const QRegExp TestToken::specialCharTextRegExp ("[A-Z'\"\\\\\\{\\}a-z0-9ö]+");
 const QRegExp TestToken::punctationRegExp("[!():\"?,.;-]");
 
-int totalTestTime;
+long long totalTestTime;
 char* tempResult;
 bool globalExecuteAllTests;
 
@@ -44,10 +44,11 @@ QString TestManager::performTest(QObject* obj){
 	argv[0]=(char*)"texstudio";
 	argv[1]=(char*)"-o";
 	argv[2]=tempResult;
-	QTime timing; timing.start();
+    QElapsedTimer timing;
+    timing.start();
 	QTest::qExec(obj,3,argv);
 	delete obj;
-	int time = timing.elapsed();
+    long long time = timing.elapsed();
 	totalTestTime += time;
 	QString testTime = QString("Time: %1 ms\n\n" ).arg(time);
 	QFile f(QFile::decodeName(tempResult));

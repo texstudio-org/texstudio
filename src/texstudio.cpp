@@ -3200,11 +3200,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     recheckLabels = false; // impede label rechecking on hidden docs
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
-#ifndef QT_NO_DEBUG
-    QTime tm;
-    tm.start();
-    qDebug()<<"start";
-#endif
+
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3263,9 +3259,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
     }
-#ifndef QT_NO_DEBUG
-    qDebug()<<"finished:"<<tm.elapsed();
-#endif
 }
 
 Session Texstudio::getCurrentSession()
@@ -9454,7 +9447,7 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 {
 	QKeySequence seq = QKeySequence::fromString(shortcut, QKeySequence::PortableText);
 	if (seq.count() > 0) {
-	        int key = seq[0] & ~Qt::KeyboardModifierMask;
+        int key = seq[0] & ~Qt::KeyboardModifierMask;
 		Qt::KeyboardModifiers modifiers = static_cast<Qt::KeyboardModifiers>(seq[0]) & Qt::KeyboardModifierMask;
 		// TODO: we could additionally provide the text for the KeyEvent (necessary for actually typing characters
 		QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, key, modifiers);
@@ -9962,7 +9955,7 @@ void Texstudio::recoverFromCrash()
 	mb->show();
 	QApplication::processEvents(QEventLoop::AllEvents);
 	mb->setFocus(); //without it, raise doesn't work. If it is in the loop (outside time checking if), the buttons can't be clicked on (windows)
-	QTime t;
+    QElapsedTimer t;
 	t.start();
 	while (mb->isVisible()) {
 		QApplication::processEvents(QEventLoop::AllEvents);
@@ -10138,7 +10131,7 @@ void Texstudio::checkCWLs()
 	foreach (LatexDocument *doc, docs) {
 		const QSet<QString> &cwl = doc->getCWLFiles();
 		cwls.unite(cwl);
-		res << doc->getFileName() + ": " + QStringList(cwl.toList()).join(", ");
+        res << doc->getFileName() + ": " + QStringList(cwl.values()).join(", ");
 		QList<CodeSnippet> users = doc->userCommandList();
 		if (!users.isEmpty()) {
 			QString line = QString("\t%1 user commands: ").arg(users.size());
@@ -10146,7 +10139,7 @@ void Texstudio::checkCWLs()
 			res << line;
 		}
 	}
-	cwls.unite(configManager.completerConfig->getLoadedFiles().toSet());
+    cwls.unite(configManager.completerConfig->getLoadedFiles().toSet());
 	res << "global: " << configManager.completerConfig->getLoadedFiles().join(", ");
 
 	res << "" << "";
@@ -10161,7 +10154,7 @@ void Texstudio::checkCWLs()
 
 		res << "\tpossible commands";
 		foreach (const QString &key, package.possibleCommands.keys())
-			res << QString("\t\t%1: %2").arg(key).arg(QStringList(package.possibleCommands.value(key).toList()).join(", "));
+            res << QString("\t\t%1: %2").arg(key).arg(QStringList(package.possibleCommands.value(key).values()).join(", "));
 		res << "\tspecial def commands";
 		foreach (const QString &key, package.specialDefCommands.keys())
 			res << QString("\t\t%1: %2").arg(key).arg(package.specialDefCommands.value(key));
@@ -10173,7 +10166,7 @@ void Texstudio::checkCWLs()
 			line.chop(2);
 			res << line;
 		}
-		res << QString("\toption Commands: %1").arg(QStringList(package.optionCommands.toList()).join(", "));
+        res << QString("\toption Commands: %1").arg(QStringList(package.optionCommands.values()).join(", "));
 		QString line = QString("\tkinds: ");
 		foreach (const QString &key, package.commandDescriptions.keys()) {
 			const CommandDescription &cmd = package.commandDescriptions.value(key);

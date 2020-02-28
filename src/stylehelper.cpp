@@ -129,7 +129,7 @@ static QColor mergedColors(const QColor &colorA, const QColor &colorB, int facto
 void StyleHelper::verticalGradient(QPainter *painter, const QRect &spanRect, const QRect &clipRect)
 {
     QString key;
-    key.sprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
+    key.asprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
                                              clipRect.height(), StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;
@@ -170,7 +170,7 @@ void StyleHelper::verticalGradient(QPainter *painter, const QRect &spanRect, con
 void StyleHelper::horizontalGradient(QPainter *painter, const QRect &spanRect, const QRect &clipRect)
 {
     QString key;
-    key.sprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(),
+    key.asprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(),
                 clipRect.width(), clipRect.height(), StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;
@@ -209,7 +209,7 @@ void StyleHelper::horizontalGradient(QPainter *painter, const QRect &spanRect, c
 void StyleHelper::menuGradient(QPainter *painter, const QRect &spanRect, const QRect &clipRect)
 {
     QString key;
-    key.sprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
+    key.asprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
                                              clipRect.height(), StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;

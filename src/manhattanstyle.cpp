@@ -616,7 +616,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 		int size = qMin(r.height(), r.width());
 		QPixmap pixmap;
 		QString pixmapName;
-		pixmapName.sprintf("%s-%s-%d-%d-%d-%lld",
+        pixmapName.asprintf("%s-%s-%d-%d-%d-%lld",
 		                   "$qt_ia", metaObject()->className(),
 		                   uint(option->state), element,
 		                   size, option->palette.cacheKey());
@@ -832,7 +832,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 
 	case CE_ToolBar: {
 		QString key;
-		key.sprintf("mh_toolbar %d %d %d", option->rect.width(), option->rect.height(), StyleHelper::baseColor().rgb());
+        key.asprintf("mh_toolbar %d %d %d", option->rect.width(), option->rect.height(), StyleHelper::baseColor().rgb());
 
 		QPixmap pixmap;
 		QPainter *p = painter;

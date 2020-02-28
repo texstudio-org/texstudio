@@ -238,8 +238,6 @@ void LatexReference::setFile(QString filename)
 
 	QFile f(filename);
 	if (!f.open(QFile::ReadOnly | QFile::Text)) return;
-	QTime t;
-	t.start();
 	QTextStream stream(&f);
 	stream.setCodec("UTF-8");
 	m_htmltext = stream.readAll();

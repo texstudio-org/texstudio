@@ -20,7 +20,7 @@ private slots:
 		QSignalSpy spy(UpdateChecker::instance(), SIGNAL(checkCompleted()));
 		UpdateChecker::instance()->check();
 		// wait until check is completed
-		QTime time;
+        QElapsedTimer time;
 		time.start();
 		while (spy.count() == 0 && time.elapsed() < 5000) {
 			QTest::qWait(100);
