@@ -3409,7 +3409,13 @@ void QDocumentLineHandle::layout(int lineNr) const
 			// therefore we do not include the trailing spaces for RTL text.
 			opt.setFlags(QTextOption::IncludeTrailingSpaces);
 		}
-		opt.setTabStop(m_doc->tabStop() * QDocumentPrivate::m_spaceWidth);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+		opt.setTabStopDistance(
+#else
+		opt.setTabStop(
+#endif
+			m_doc->tabStop() * QDocumentPrivate::m_spaceWidth
+		);
 
 		//opt.setWrapMode(QTextOption::NoWrap);
 		opt.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
