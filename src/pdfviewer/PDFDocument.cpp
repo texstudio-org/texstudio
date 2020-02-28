@@ -278,7 +278,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect &visibleRect)
 				if (br.y() > visibleRect.height()) br.setY(visibleRect.height());
 				QSize  size = QSize(br.x() - tl.x(), br.y() - tl.y()) * kMagFactor;
 				QPoint loc = tl * kMagFactor;
-				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize) {
+                if (page != imagePage || qAbs(dpi/imageDpi-1.0)>0.001 || loc != imageLoc || size != imageSize) {
 					//don't cache in rendermanager in order to reduce memory consumption
 					image = doc->renderManager->renderToImage(pageNr, this, "setImage", dpi * overScale , dpi * overScale, loc.x() * overScale, loc.y() * overScale, size.width() * overScale, size.height() * overScale, false, true);
 				}
@@ -621,7 +621,7 @@ void PDFWidget::delayedUpdate() {
         return;
 
     // No need to actually call update later since it'll be called by renderManager.
-    if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+    if (pages.size() > 0 && (realPageIndex != imagePage || qAbs(newDpi/imageDpi-1.0)>0.001 || newRect != imageRect || forceUpdate)) {
         if (gridx <= 1 && gridy <= 1)
             doc->renderManager->renderToImage(pages.first(), this, "setImage",
                                               dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
@@ -709,7 +709,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	PDFDocument *doc = getPDFDocument();
 	if (!doc || !doc->renderManager)
 		return;
-	if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+    if (pages.size() > 0 && (realPageIndex != imagePage || qAbs(newDpi/imageDpi-1.0)>0.001 || newRect != imageRect || forceUpdate)) {
 		painter.setBrush(QApplication::palette().color(QPalette::Dark));
 		painter.setPen(QApplication::palette().color(QPalette::Dark));
 		if (gridx <= 1 && gridy <= 1) {
@@ -2066,7 +2066,7 @@ void PDFWidget::doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor) //
 		} else if (newScaleFactor > kMaxScaleFactor) {
 			newScaleFactor = kMaxScaleFactor;
 		}
-		if (newScaleFactor == scaleFactor) {
+        if (qAbs(newScaleFactor/scaleFactor-1)<0.001) { // about equal
 			return;
 		}
 		scaleFactor = newScaleFactor;
@@ -2287,7 +2287,7 @@ void PDFWidget::saveState()
 
 void PDFWidget::restoreState()
 {
-	if (scaleFactor != saveScaleFactor) {
+    if (qAbs(scaleFactor/saveScaleFactor-1.0)>0.001) {
 		scaleFactor = saveScaleFactor;
 		adjustSize();
 		update();
