@@ -165,14 +165,12 @@ void XmlTagsListWidget::addListWidgetItems(const xmlTagList &tagList)
 	QFont optionFont = qApp->font();
 	optionFont.setItalic(true);
 	QFont commandFont = qApp->font();
-	//QColor titleBg(QApplication::style()->standardPalette().color(QPalette::Normal, QPalette::Highlight));
 	//QColor titleFg(QApplication::style()->standardPalette().color(QPalette::Normal, QPalette::HighlightedText));
-	QColor titleBg("#447BCD");
 	QColor titleFg("#ffffff");
 	QListWidgetItem *item = new QListWidgetItem(this);
     QString itemText = tr(qPrintable(tagList.title));
 	item->setText(itemText);
-	item->setBackgroundColor(titleBg);
+	item->setBackground(QBrush(QColor("#447BCD")));
 	item->setTextColor(titleFg);
 	item->setFont(titleFont);
 	for (int i = 0; i < tagList.tags.size(); ++i) {
