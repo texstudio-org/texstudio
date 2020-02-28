@@ -94,6 +94,7 @@ struct QCharTreeNode
 {
 	inline QCharTreeNode(quint16 v = 0) { value.unicode = v; }
 	inline QCharTreeNode(const QCharTreeNode& o) { value = o.value; next = o.next; }
+	QCharTreeNode& operator= (const QCharTreeNode& o) = default; // Silence -Wdeprecated-copy
 
 	union
 	{

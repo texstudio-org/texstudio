@@ -134,7 +134,7 @@ void StyleHelper::verticalGradient(QPainter *painter, const QRect &spanRect, con
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;
-    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
         pixmap = QPixmap(clipRect.size());
         p = new QPainter(&pixmap);
         rect = QRect(0, 0, clipRect.width(), clipRect.height());
@@ -158,7 +158,7 @@ void StyleHelper::verticalGradient(QPainter *painter, const QRect &spanRect, con
     p->setPen(light);
     p->drawLine(rect.topRight() - QPoint(1, 0), rect.bottomRight() - QPoint(1, 0));
 
-    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
         painter->drawPixmap(clipRect.topLeft(), pixmap);
         p->end();
         delete p;
@@ -175,7 +175,7 @@ void StyleHelper::horizontalGradient(QPainter *painter, const QRect &spanRect, c
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;
-    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
         pixmap = QPixmap(clipRect.size());
         p = new QPainter(&pixmap);
         rect = QRect(0, 0, clipRect.width(), clipRect.height());
@@ -198,7 +198,7 @@ void StyleHelper::horizontalGradient(QPainter *painter, const QRect &spanRect, c
     shadowGradient.setColorAt(1, QColor(0, 0, 0, 40));
     p->fillRect(rect, shadowGradient);*/
 
-    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
         painter->drawPixmap(clipRect.topLeft(), pixmap);
         p->end();
         delete p;
@@ -214,7 +214,7 @@ void StyleHelper::menuGradient(QPainter *painter, const QRect &spanRect, const Q
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;
-    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
         pixmap = QPixmap(clipRect.size());
         p = new QPainter(&pixmap);
         rect = QRect(0, 0, clipRect.width(), clipRect.height());
@@ -226,7 +226,7 @@ void StyleHelper::menuGradient(QPainter *painter, const QRect &spanRect, const Q
     grad.setColorAt(1, menuColor);
     p->fillRect(rect, grad);
 
-    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+    if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
         painter->drawPixmap(clipRect.topLeft(), pixmap);
         p->end();
         delete p;

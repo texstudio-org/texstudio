@@ -555,7 +555,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 			                  rect.topLeft().y() + margin);
 		} else { //Draw vertical separator
 			const int offset = rect.height() / 2;
-			painter->setPen(QPen(option->palette.background().color().darker(110)));
+			painter->setPen(QPen(option->palette.window().color().darker(110)));
 			painter->drawLine(rect.topLeft().x() + margin ,
 			                  rect.topLeft().y() + offset,
 			                  rect.topRight().x() - margin,
@@ -620,7 +620,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 		                   "$qt_ia", metaObject()->className(),
 		                   uint(option->state), element,
 		                   size, option->palette.cacheKey());
-		if (!QPixmapCache::find(pixmapName, pixmap)) {
+		if (!QPixmapCache::find(pixmapName, &pixmap)) {
 			int border = size / 5;
 			int sqsize = 2 * (size / 2);
 			QImage image(sqsize, sqsize, QImage::Format_ARGB32);
@@ -837,7 +837,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 		QPixmap pixmap;
 		QPainter *p = painter;
 		QRect rect = option->rect;
-		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
 			pixmap = QPixmap(option->rect.size());
 			p = new QPainter(&pixmap);
 			rect = QRect(0, 0, option->rect.width(), option->rect.height());
@@ -877,7 +877,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 			p->drawLine(rect.topRight(), rect.bottomRight());
 		}
 
-		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
 			painter->drawPixmap(rect.topLeft(), pixmap);
 			p->end();
 			delete p;

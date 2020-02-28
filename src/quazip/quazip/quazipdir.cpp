@@ -320,7 +320,7 @@ bool QuaZipDirComparator::operator()(const QuaZipFileInfo64 &info1,
 }
 
 template<typename TFileInfoList>
-bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters, 
+bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
     QDir::Filters filter, QDir::SortFlags sort, TFileInfoList &result) const
 {
     QString basePath = simplePath();
@@ -390,7 +390,7 @@ bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
                 == Qt::CaseInsensitive)
             srt |= QDir::IgnoreCase;
         QuaZipDirComparator lessThan(srt);
-        qSort(list.begin(), list.end(), lessThan);
+        std::sort(list.begin(), list.end(), lessThan);
     }
     QuaZipDir_convertInfoList(list, result);
     return true;
