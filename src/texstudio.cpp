@@ -7384,7 +7384,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 	// collect user commands and references
 	QSet<QString> collected_labels;
     foreach (const LatexDocument *doc, docs) {
-		collected_labels.unite(doc->labelItems().toSet());
+        collected_labels.unite(convertStringListtoSet(doc->labelItems()));
 		foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
 			QString temp = refCommand + "{%1}";
 			foreach (const QString &l, doc->labelItems())
@@ -7411,7 +7411,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 		}
 		//handle bibitem definitions
 		foreach (const LatexDocument *doc, docs) {
-			bibIds.unite(doc->bibItems().toSet());
+            bibIds.unite(convertStringListtoSet(doc->bibItems()));
 		}
 		//automatic use of cite commands
 		QStringList citationCommands;
@@ -7428,7 +7428,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 			//temp=citeCommand.replace("%<bibid%>","@");
 			//words.insert(temp);
 		}
-		completer->setAdditionalWords(citationCommands.toSet(), CT_CITATIONCOMMANDS);
+        completer->setAdditionalWords(convertStringListtoSet(citationCommands), CT_CITATIONCOMMANDS);
 		completer->setAdditionalWords(bibIds, CT_CITATIONS);
 	}
 
@@ -9897,7 +9897,7 @@ void Texstudio::recoverFromCrash()
 				backtraceFilename = print_backtrace(name);
 				exit(1);
 			}
-		};
+        }
 		ThreadBreaker::forceTerminate();
 		return;
 	}
@@ -10139,7 +10139,7 @@ void Texstudio::checkCWLs()
 			res << line;
 		}
 	}
-    cwls.unite(configManager.completerConfig->getLoadedFiles().toSet());
+    cwls.unite(convertStringListtoSet(configManager.completerConfig->getLoadedFiles()));
 	res << "global: " << configManager.completerConfig->getLoadedFiles().join(", ");
 
 	res << "" << "";

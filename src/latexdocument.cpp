@@ -2763,7 +2763,7 @@ CodeSnippetList LatexDocument::additionalCommandsList()
 {
 	LatexPackage pck;
 	QStringList loadedFiles, files;
-	files = mCWLFiles.toList();
+    files = mCWLFiles.values();
 	gatherCompletionFiles(files, loadedFiles, pck, true);
 	return pck.completionWords;
 }
@@ -2787,7 +2787,7 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 	gatherCompletionFiles(files, loadedFiles, pck);
 	update = true;
 
-	mCWLFiles = loadedFiles.toSet();
+    mCWLFiles = convertStringListtoSet(loadedFiles);
 	QSet<QString> userCommandsForSyntaxCheck = ltxCommands.possibleCommands["user"];
 	QSet<QString> columntypeForSyntaxCheck = ltxCommands.possibleCommands["%columntypes"];
 	ltxCommands.optionCommands = pck.optionCommands;
@@ -3037,7 +3037,7 @@ QSet<QString> LatexDocument::usedPackages()
 {
 	QSet<QString> packages;
 	foreach (LatexDocument *doc, getListOfDocs()) {
-		packages.unite(doc->containedPackages().toSet());
+        packages.unite(convertStringListtoSet(doc->containedPackages()));
 	}
 	return packages;
 }

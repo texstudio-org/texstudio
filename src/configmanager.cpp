@@ -1128,7 +1128,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	replacedIconsOnMenus = config->value("customIcons").toMap();
 
 	//custom highlighting
-	LatexParser::getInstance().customCommands = QSet<QString>::fromList(config->value("customCommands").toStringList());
+    LatexParser::getInstance().customCommands = convertStringListtoSet(config->value("customCommands").toStringList());
 
 	//--------------------appearance------------------------------------
 	QFontDatabase fdb;

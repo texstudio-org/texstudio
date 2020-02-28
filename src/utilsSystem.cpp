@@ -776,3 +776,13 @@ void SafeThread::wait(unsigned long time)
 	QThread::wait(time);
 }
 
+
+QSet<QString> convertStringListtoSet(const QStringList &list)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    return QSet<QString>(list.begin(),list.end());
+#else
+    return QSet<QString>::fromList(list);
+#endif
+
+}

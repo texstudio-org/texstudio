@@ -862,7 +862,7 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
 			QString key = str;
 			if (key.endsWith("="))
 				key.chop(1);
-			setKeyValWords(name + "/" + key, lst.toSet());
+            setKeyValWords(name + "/" + key, convertStringListtoSet(lst));
 		}
 		CompletionWord cw(str, false);
 		cw.index = 0;
@@ -890,7 +890,7 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords, const Q
 			QString key = str;
 			if (key.endsWith("="))
 				key.chop(1);
-			setKeyValWords(context + "/" + key, lst.toSet());
+            setKeyValWords(context + "/" + key, convertStringListtoSet(lst));
 		}
 		CompletionWord cw(str);
 		cw.index = 0;

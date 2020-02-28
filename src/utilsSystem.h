@@ -91,6 +91,8 @@ int x11desktop_env();
 
 bool isRetinaMac();
 
+QSet<QString> convertStringListtoSet(const QStringList &list);
+
 ///check if the run-time qt version is higher than the given version (e.g. 4,3)
 bool hasAtLeastQt(int major, int minor);
 

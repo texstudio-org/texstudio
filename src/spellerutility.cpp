@@ -83,7 +83,7 @@ bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
     std::sort(ignoredWordList.begin(), ignoredWordList.end(), localeAwareLessThan);
 	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
 	ignoredWordsModel.setStringList(ignoredWordList);
-	ignoredWords = ignoredWordList.toSet();
+    ignoredWords = convertStringListtoSet(ignoredWordList);
 	mLastError.clear();
 	emit dictionaryLoaded();
 	return true;

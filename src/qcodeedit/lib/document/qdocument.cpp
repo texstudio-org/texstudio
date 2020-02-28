@@ -7352,7 +7352,7 @@ QList<int> QDocumentPrivate::testGetHiddenLines(){
 	for (QMap<int, int>::iterator it = m_hidden.begin(); it != m_hidden.end(); ++it )
 		for (int i=1;i<=it.value();i++)
 			res.insert(i+it.key());
-	QList<int> tmp = res.toList();
+    QList<int> tmp = res.values();
     std::sort(tmp.begin(),tmp.end());
 	return tmp;
 }
