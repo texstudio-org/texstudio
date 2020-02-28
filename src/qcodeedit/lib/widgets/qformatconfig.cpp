@@ -320,7 +320,6 @@ void QFormatConfig::cancel()
 {
 	m_table->clearContents();
 
-	QTime T; T.start();
 	QFontDatabase database;
 	QStringList fonts = database.families();
 	fonts.insert(0, tr("<default>"));
@@ -454,7 +453,6 @@ void QFormatConfig::cancel()
 
 	m_table->resizeColumnsToContents();
 	
-	qDebug () << T.elapsed();
 }
 
 /*!
