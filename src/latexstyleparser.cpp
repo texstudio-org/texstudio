@@ -68,15 +68,19 @@ void LatexStyleParser::run()
 
 		QStringList results, parsedPackages;
 		results = readPackage(fullName, parsedPackages); // parse package(s)
-		results = results.toSet().toList();  // remove duplicates
-		results.sort();
+        results.sort();
+        auto last = std::unique(results.begin(),results.end());  // remove duplicates
+        results.erase(last,results.end());
+
 
 		if (texdefMode) {
 			QStringList appendList;
 			//QStringList texdefResults=readPackageTexDef(fn); // parse package(s) by texdef as well for indirectly defined commands
 			QStringList texdefResults = readPackageTracing(fn);
-			texdefResults = texdefResults.toSet().toList();  // remove duplicates
-			texdefResults.sort();
+            texdefResults.sort();
+            auto last = std::unique(texdefResults.begin(),texdefResults.end());  // remove duplicates
+            texdefResults.erase(last,texdefResults.end());
+
 			// add only additional commands to results
 			if ( !results.isEmpty() && !texdefResults.isEmpty()) {
 				QStringList::const_iterator texdefIterator;

@@ -1288,7 +1288,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	}
 	config->setValue("customIcons", replacedIconsOnMenus);
 	// custom highlighting
-	QStringList zw = LatexParser::getInstance().customCommands.toList();
+    QStringList zw = LatexParser::getInstance().customCommands.values();
 	config->setValue("customCommands", zw);
 
 	config->endGroup();
