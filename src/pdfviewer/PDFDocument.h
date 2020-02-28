@@ -329,7 +329,7 @@ private:
 class PDFSearchResult
 {
 public:
-	explicit PDFSearchResult(const PDFDocument *pdfdoc = NULL, int page = -1, QRectF rect = QRectF())
+    explicit PDFSearchResult(const PDFDocument *pdfdoc = nullptr, int page = -1, QRectF rect = QRectF())
 		: doc(pdfdoc), pageIdx(page), selRect(rect)
 	{ }
 
