@@ -1317,8 +1317,8 @@ void PDFWidget::jumpToSource()
 
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
-	if (event->delta() == 0) return;
-	float numDegrees = event->delta() / 8.0;
+    if (event->angleDelta().isNull()) return;
+    float numDegrees = event->angleDelta().y() / 8.0f;
 	if ((summedWheelDegrees < 0) != (numDegrees < 0)) summedWheelDegrees = 0;
 	// we may accumulate rotation and handle it in larger chunks
 	summedWheelDegrees += numDegrees;
@@ -1329,7 +1329,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 			inhibitNextContextMenuEvent = true;
 		}
 		if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
-			doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
+            doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
 			summedWheelDegrees = 0;
 		}
 		event->accept();
@@ -2736,7 +2736,7 @@ void PDFDocument::init(bool embedded)
 	QActionGroup *scaleActions = new QActionGroup(scaleButton);
 	foreach (int level, levels) {
 		QAction *act = new QAction(scaleActions);
-		act->setText(QString("%1\%").arg(level));
+        act->setText(QString("%1%%").arg(level));
 		act->setData(QVariant(level));
 		connect(act, SIGNAL(triggered()), this, SLOT(zoomFromAction()));
 	}
@@ -2808,35 +2808,11 @@ void PDFDocument::init(bool embedded)
 	connect(actionEnlargeViewer, SIGNAL(triggered()), this , SLOT(enlarge()));
 	connect(actionShrinkViewer, SIGNAL(triggered()), this , SLOT(shrink()));
 
-    //connect(actionQuit_TeXworks, SIGNAL(triggered()), SIGNAL(triggeredQuit()));
 
-    //connect(actionFind_2, SIGNAL(triggered()), this, SLOT(doFindDialog()));
-    //connect(actionFind_again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
-
-    //connect(actionFirst_Page, SIGNAL(triggered()), pdfWidget, SLOT(goFirst()));
-    //connect(actionBack, SIGNAL(triggered()), pdfWidget, SLOT(goBack()));
-    /*connect(actionPrevious_Page, SIGNAL(triggered()), pdfWidget, SLOT(goPrev()));
-	connect(actionForward, SIGNAL(triggered()), pdfWidget, SLOT(goForward()));
-	connect(actionNext_Page, SIGNAL(triggered()), pdfWidget, SLOT(goNext()));
-	connect(actionLast_Page, SIGNAL(triggered()), pdfWidget, SLOT(goLast()));
-	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
-
-	connect(actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
-	connect(actionSplitMerge, SIGNAL(triggered()), SLOT(splitMergeTool()));
-	connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
-
-	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
-    */
     connect(pdfWidget, SIGNAL(changedPage(int, bool)), this, SLOT(enablePageActions(int, bool)));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
 	connect(actionFit_to_Text_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitTextWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
-
-
-    /*connect(actionGrid11, SIGNAL(triggered()), SLOT(setGrid()));
-	connect(actionGrid12, SIGNAL(triggered()), SLOT(setGrid()));
-	connect(actionGrid21, SIGNAL(triggered()), SLOT(setGrid()));
-    connect(actionGrid22, SIGNAL(triggered()), SLOT(setGrid()));*/
 
 
 	if (!embedded) {
@@ -2846,10 +2822,10 @@ void PDFDocument::init(bool embedded)
 
         //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
-        conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, nullptr);
+        conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
         connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
 		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
-        conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, nullptr);
+        conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
 	} else {
 		pdfWidget->setGridSize(1, 1, true);
 		pdfWidget->setSinglePageStep(true);
@@ -2870,20 +2846,6 @@ void PDFDocument::init(bool embedded)
 		new QShortcut(QKeySequence("Ctrl+0"), pdfWidget, SLOT(fixedScale()), Q_NULLPTR, Qt::WidgetShortcut);
 
 
-    /*connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
-
-	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
-	connect(actionToggleEmbedded, SIGNAL(triggered()), SLOT(toggleEmbedded()));
-
-	connect(actionCloseElement, SIGNAL(triggered()), SLOT(closeElement()));
-	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
-	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
-	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
-	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
-	connect(actionFocus_Editor, SIGNAL(triggered()), this, SIGNAL(focusEditor()));
-	connect(actionNew_Window, SIGNAL(triggered()), SIGNAL(triggeredClone()));
-    */
-
 	conf->registerOption("Preview/Scrolling Follows Cursor", &globalConfig->followFromCursor, false);
 	conf->linkOptionToObject(&globalConfig->followFromCursor, actionScrolling_follows_cursor);
 	conf->registerOption("Preview/Cursor Follows Scrolling", &globalConfig->followFromScroll, false);
@@ -2897,7 +2859,6 @@ void PDFDocument::init(bool embedded)
 	conf->linkOptionToObject(&globalConfig->grayscale, actionGrayscale);
     //connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
-    //connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
     if(!embedded){
         menuShow->addAction(toolBar->toggleViewAction());
         menuShow->addSeparator();
@@ -3448,7 +3409,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 	int pageIdx;
 #ifdef HAS_POPPLER_31
-    Poppler::Page::SearchFlags searchFlags = nullptr;
+    Poppler::Page::SearchFlags searchFlags = Poppler::Page::NoSearchFlags;
 #else
     Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
 #endif
@@ -3793,9 +3754,9 @@ int PDFDocument::scaleToZoomSliderPos(qreal scale)
 	if (scale < 1.01 && scale > 0.99)
 		return 0;
 	if (scale < 1) {
-		return (scale - 1) / (1 - kMinScaleFactor) * abs(zoomSlider->minimum() + 10) - 10;
+        return qRound((scale - 1) / (1 - kMinScaleFactor) * abs(zoomSlider->minimum() + 10) - 10);
 	} else {
-		return (scale - 1) / (kMaxScaleFactor - 1) * (zoomSlider->maximum() - 10) + 10;
+        return qRound((scale - 1) / (kMaxScaleFactor - 1) * (zoomSlider->maximum() - 10) + 10);
 	}
 }
 
@@ -4112,7 +4073,7 @@ void PDFDocument::printPDF()
 
 	QString command;
 	// texmaker 3.0.1 solution
-	unsigned int firstPage, lastPage;
+    int firstPage, lastPage;
 	QPrinter printer(QPrinter::HighResolution);
 	QPrintDialog printDlg(&printer, this);
 	printer.setDocName(fileName());

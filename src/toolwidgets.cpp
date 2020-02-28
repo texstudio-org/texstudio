@@ -109,9 +109,9 @@ void PreviewWidget::resetZoom()
 
 void PreviewWidget::wheelEvent(QWheelEvent *event)
 {
-	if (!preViewer->pixmap()) return;
+    if (!preViewer->pixmap()) return;
 	if (event->modifiers() == Qt::ControlModifier) {
-		float numDegrees = event->delta() / 8.0f;
+        float numDegrees = event->angleDelta().y() / 8.0f;
 		float numSteps = numDegrees / 15.0f;
 		scaleImage(qPow(1.4, numSteps));
 		event->accept();

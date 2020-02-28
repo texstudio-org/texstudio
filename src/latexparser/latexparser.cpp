@@ -44,29 +44,29 @@ LatexParser * LatexParser::getInstancePtr()
 
 void LatexParser::init()
 {
-	environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
-	mathStartCommands  << "$" << "$$" << "\\(" << "\\[" ;
-	mathStopCommands  << "$" << "$$" << "\\)" << "\\]" ;
+    environmentCommands = QSet<QString>{"\\begin" , "\\end" , "\\newenvironment" , "\\renewenvironment"};
+    mathStartCommands = QStringList{ "$" , "$$" , "\\(" , "\\[" };
+    mathStopCommands = QStringList{ "$" , "$$" , "\\)" , "\\]" } ;
 
 	possibleCommands.clear();
-	possibleCommands["tabular"] = QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["array"] = QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["tabbing"] = QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-	possibleCommands["normal"] = QSet<QString>::fromList(QStringList() << "\\\\" << "\\_" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" << "\\." << "\\u" << "\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\&" << "\\~" << "\\" << "\\," << "\\%" << "\\\"");
-	possibleCommands["math"] = QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
-	possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\newlength" << "\\let";
-	possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
-	possibleCommands["%graphics"] << "\\includegraphics";
-	possibleCommands["%bibitem"] << "\\bibitem";
-	possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite"  ;
-	possibleCommands["%label"] << "\\label";
-	possibleCommands["%bibliography"] << "\\bibliography";
-	possibleCommands["%file"] << "\\include" << "\\input" << "\\import" << "\\includeonly" << "\\includegraphics" << "\\bibliographystyle" << "\\bibliography";
+    possibleCommands["tabular"] = QSet<QString>{"&" };
+    possibleCommands["array"] = QSet<QString>{ "&" };
+    possibleCommands["tabbing"] = QSet<QString>{"\\<" , "\\>" , "\\=" , "\\+"};
+    possibleCommands["normal"] = QSet<QString>{ "\\\\" , "\\_" , "\\-" , "$" , "$$" , "\\$" , "\\#" , "\\{" , "\\}" , "\\S" , "\\'" , "\\`" , "\\^" , "\\=" , "\\." , "\\u" , "\\v" , "\\H" , "\\t" , "\\c" , "\\d" , "\\b" , "\\o" , "\\O" , "\\P" , "\\l" , "\\L" , "\\&" , "\\~" , "\\" , "\\," , "\\%" , "\\\""};
+    possibleCommands["math"] = QSet<QString>{ "_" , "^" , "\\$" , "\\#" , "\\{" , "\\}" , "\\S" , "\\," , "\\!" , "\\;" , "\\:" , "\\\\" , "\\ " , "\\|"};
+    possibleCommands["%definition"] = QSet<QString>{ "\\newcommand" , "\\renewcommand" , "\\newcommand*" , "\renewcommand*" , "\\providecommand" , "\\newlength" , "\\let"};
+    possibleCommands["%usepackage"] = QSet<QString>{ "\\usepackage" , "\\documentclass" };
+    possibleCommands["%graphics"] = QSet<QString>{ "\\includegraphics" };
+    possibleCommands["%bibitem"] = QSet<QString>{ "\\bibitem" };
+    possibleCommands["%cite"]  = QSet<QString>{ "\\cite" ,  "\\nptextcite"  };
+    possibleCommands["%label"] = QSet<QString>{ "\\label" };
+    possibleCommands["%bibliography"] = QSet<QString>{ "\\bibliography" };
+    possibleCommands["%file"] = QSet<QString>{ "\\include" , "\\input" , "\\import" , "\\includeonly" , "\\includegraphics" , "\\bibliographystyle" , "\\bibliography"};
 	possibleCommands["%ref"] = QSet<QString>();  // will all be populated via cwl
-	possibleCommands["%include"] << "\\include" << "\\input";
-	possibleCommands["%import"] << "\\import" << "\\inputfrom" << "\\subimport" << "\\subinputfrom"
-                                << "\\import*" << "\\inputfrom*" << "\\subimport*" << "\\subinputfrom*"
-                                << "\\includefrom" << "\\includefrom*" << "\\subincludefrom" << "\\subincludefrom*";
+    possibleCommands["%include"] = QSet<QString>{ "\\include" , "\\input"};
+    possibleCommands["%import"] = QSet<QString>{ "\\import" , "\\inputfrom" , "\\subimport" , "\\subinputfrom"
+                                , "\\import*" , "\\inputfrom*" , "\\subimport*" , "\\subinputfrom*"
+                                , "\\includefrom" , "\\includefrom*" , "\\subincludefrom" , "\\subincludefrom*"};
 	commandDefs.clear();
 }
 
