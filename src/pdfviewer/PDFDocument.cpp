@@ -1945,7 +1945,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 void PDFWidget::fixedScale(qreal scale)
 {
 	scaleOption = kFixedMag;
-	if (scaleFactor != scale) {
+    if (qAbs(scaleFactor/scale-1.0)>0.001) {
 		scaleFactor = scale;
 		adjustSize();
         delayedUpdate();
@@ -1999,7 +1999,7 @@ void PDFWidget::fitTextWidth(bool checked)
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
-			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
+            scrollArea->horizontalScrollBar()->setValue(qRound(((textRect.left() * dpi / 72.0) - margin) *scaleFactor));
             delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
@@ -2164,7 +2164,7 @@ QPoint PDFWidget::mapFromScaledPosition(int page, const QPointF &scaledPos) cons
 	if (document.isNull() || pages.size() == 0) return QPoint();
 	QRect r = pageRect(page);
 	if (r.isNull()) return QPoint();
-	return r.topLeft() + QPoint( scaledPos.x() * r.width(), scaledPos.y() * r.height() );
+    return r.topLeft() + QPoint( qRound(scaledPos.x() * r.width()), qRound(scaledPos.y() * r.height() ) );
 	/*	if (rpage < 0 || rpage >= realNumPages()) return QPoint();
 		QPoint p = pageRect(rpage).topLeft();
 		Poppler::Page *popplerPage=document->page(rpage);
@@ -2196,8 +2196,8 @@ QRect PDFWidget::pageRect(int page) const
 	QScopedPointer<Poppler::Page> popplerPage(document->page(page));
 	if (!popplerPage)
 		return grect;
-	int realSizeW =  dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().width();
-	int realSizeH =  dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().height();
+    int realSizeW =  qRound(dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().width());
+    int realSizeH =  qRound(dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().height());
 	int xOffset = (grect.width() - realSizeW) / 2;
 	int yOffset = (grect.height() - realSizeH) / 2;
 	if (gridx == 2 && getPageOffset() == 1) {
@@ -2841,9 +2841,9 @@ void PDFDocument::init(bool embedded)
 	connect(pdfWidget, SIGNAL(syncClick(int, const QPointF &, bool)), this, SLOT(syncClick(int, const QPointF &, bool)));
 
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
-		new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()), Q_NULLPTR, Qt::WidgetShortcut);
+        new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()), Q_NULLPTR, Qt::WidgetShortcut);
 	if (!actionActual_Size->shortcut().isEmpty())
-		new QShortcut(QKeySequence("Ctrl+0"), pdfWidget, SLOT(fixedScale()), Q_NULLPTR, Qt::WidgetShortcut);
+        new QShortcut(QKeySequence("Ctrl+0"), pdfWidget, SLOT(fixedScale()), Q_NULLPTR, Qt::WidgetShortcut);
 
 
 	conf->registerOption("Preview/Scrolling Follows Cursor", &globalConfig->followFromCursor, false);
@@ -3438,7 +3438,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 	//	}
 	searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
 
-	runs = (true ? 2 : 1); //true = always wrap around
+    runs = (/* DISABLES CODE */ (true) ? 2 : 1 ); //true = always wrap around
 
 	Q_ASSERT(!backwards || !incremental);
 	if (incremental) {
