@@ -3409,7 +3409,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 	int pageIdx;
 #ifdef HAS_POPPLER_31
-    Poppler::Page::SearchFlags searchFlags = Poppler::Page::NoSearchFlags;
+    Poppler::Page::SearchFlags searchFlags = 0;
 #else
     Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
 #endif
