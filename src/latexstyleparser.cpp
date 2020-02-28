@@ -675,7 +675,7 @@ void LatexStyleParser::parseLineXparseOutputCwl(QStringList &results, const QStr
 	}
 	const XpArg &xpOneArg = *itPos++;
 	QString cwlOneArg =
-		(xpOneArg.fixedChar != 0) ?
+        (xpOneArg.fixedChar != nullptr) ?
 		QString(xpOneArg.fixedChar) :
 		(
 			QString(xpOneArg.delimLeft) +
