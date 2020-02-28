@@ -2736,7 +2736,7 @@ void PDFDocument::init(bool embedded)
 	QActionGroup *scaleActions = new QActionGroup(scaleButton);
 	foreach (int level, levels) {
 		QAction *act = new QAction(scaleActions);
-        act->setText(QString("%1%%").arg(level));
+        act->setText(QString("%1%").arg(level));
 		act->setData(QVariant(level));
 		connect(act, SIGNAL(triggered()), this, SLOT(zoomFromAction()));
 	}
