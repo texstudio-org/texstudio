@@ -3,7 +3,7 @@
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
-** 
+**
 ** This file may be used under the terms of the GNU General Public License
 ** version 3 as published by the Free Software Foundation and appearing in the
 ** file GPL.txt included in the packaging of this file.
@@ -23,8 +23,8 @@
 /*!
 	\file qdocument.h
 	\brief Definition of the QDocument class
-	
-	\defgroup document Document related classes 
+
+	\defgroup document Document related classes
 */
 
 #include <QList>
@@ -98,14 +98,15 @@ struct PlaceHolder
 		virtual ~Affector() {}
 		virtual QString affect(const QKeyEvent *e, const QString& base, int ph, int mirror) const = 0;
 	};
-	
-	PlaceHolder() : 
+
+	PlaceHolder() :
            length(0), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(nullptr) {}
-	PlaceHolder(const PlaceHolder& ph) : 
+	PlaceHolder(const PlaceHolder& ph) :
 	       length(ph.length), autoRemove(ph.autoRemove), autoOverride(ph.autoOverride), autoRemoveIfLeft(ph.autoRemoveIfLeft), affector(ph.affector), cursor(ph.cursor), mirrors(ph.mirrors){}
-	PlaceHolder(int len, const QDocumentCursor &cur): 
+	PlaceHolder(int len, const QDocumentCursor &cur):
            length(len), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(nullptr), cursor(cur) {}
-	
+	PlaceHolder& operator= (const PlaceHolder& ph) = default; // Silence -Wdeprecated-copy
+
 	int length;
 	bool autoRemove, autoOverride, autoRemoveIfLeft;
 	Affector *affector;
@@ -119,9 +120,9 @@ class QCE_EXPORT QDocument : public QObject
 	friend class QDocumentPrivate;
 	friend class QDocumentCommand;
 	friend class QDocumentCommandChangeCodec;
-	
+
 	Q_OBJECT
-	
+
 	public:
 		struct PaintContext
 		{
@@ -138,7 +139,7 @@ class QCE_EXPORT QDocument : public QObject
 			int curPlaceHolder, lastPlaceHolder;
 			QList<PlaceHolder> placeHolders;
 		};
-		
+
 		enum LineEnding
 		{
 			Conservative,
@@ -147,14 +148,14 @@ class QCE_EXPORT QDocument : public QObject
 			Windows,
 			Mac
 		};
-		
+
 		enum TextProcessing
 		{
 			RemoveTrailingWS		= 1,
 			PreserveIndent			= 2,
 			RestoreTrailingIndent	= 4
 		};
-		
+
 		enum WhiteSpaceFlag
 		{
 			ShowNone		= 0x00,
@@ -162,7 +163,7 @@ class QCE_EXPORT QDocument : public QObject
 			ShowLeading		= 0x02,
 			ShowTabs		= 0x04
 		};
-		
+
 		Q_DECLARE_FLAGS(WhiteSpaceMode, WhiteSpaceFlag)
 
 		enum WorkAroundFlag
@@ -179,28 +180,28 @@ class QCE_EXPORT QDocument : public QObject
 
         explicit QDocument(QObject *p = nullptr);
 		virtual ~QDocument();
-		
+
 		Q_INVOKABLE QString text(int mode) const;
 		Q_INVOKABLE QString text(bool removeTrailing = false, bool preserveIndent = true) const;
 		Q_INVOKABLE QStringList textLines() const;
 		Q_INVOKABLE void setText(const QString& s, bool allowUndo);
-		
+
 		void load(const QString& file, QTextCodec* codec);
 		void startChunkLoading();
 		void stopChunkLoading();
 		void addChunk(const QString& txt);
-		
+
 		QString getFileName() const;
 		QFileInfo getFileInfo() const;
 		QString getName() const;
 		void setFileName_DONOTCALLTHIS(const QString& fileName);
-		
+
 		LineEnding lineEnding() const;
 		LineEnding originalLineEnding() const;
 		Q_INVOKABLE QString lineEndingString() const;
 		void setLineEnding(LineEnding le);
         void setLineEndingDirect(LineEnding le,bool dontSendEmit=false);
-		
+
 		QTextCodec* codec() const;
 		void setCodec(QTextCodec* codec);
 		void setCodecDirect(QTextCodec* codec);
@@ -210,33 +211,33 @@ class QCE_EXPORT QDocument : public QObject
 
 		QDateTime lastModified() const;
 		void setLastModified(const QDateTime& d);
-		
+
 		Q_INVOKABLE bool canUndo() const;
 		Q_INVOKABLE bool canRedo() const;
-		
+
 		int width() const;
 		int height() const;
 		int widthConstraint() const;
-		
+
 		int lines() const;
 		Q_INVOKABLE int lineCount() const;
 		int visualLines() const;
 		Q_INVOKABLE int visualLineCount() const;
-		
+
 		int visualLineNumber(int textLineNumber) const;
 		int textLineNumber(int visualLineNumber) const;
-		
+
 		int y(int line) const;
         int lineNumber(int ypos, int *wrap = nullptr) const;
-		
+
 		QRect lineRect(int line) const;
-		
+
 		QDocumentCursor* editCursor() const;
 		void setEditCursor(QDocumentCursor *c);
-				
+
 		QLanguageDefinition* languageDefinition() const;
 		void setLanguageDefinition(QLanguageDefinition *l);
-		
+
 		int maxMarksPerLine() const;
 		int findNextMark(int id, int from = 0, int until = -1) const;
 		int findPreviousMark(int id, int from = -1, int until = 0) const;
@@ -247,12 +248,12 @@ class QCE_EXPORT QDocument : public QObject
 		QDocumentLine lineAt(const QPoint& p) const;
 		void cursorForDocumentPosition(const QPoint& p, int& line, int& column) const;
 		QDocumentCursor cursorAt(const QPoint& p) const;
-		
+
 		QDocumentLine line(int line) const;
 		QDocumentLine line(QDocumentConstIterator iterator) const;
-		
+
 		Q_INVOKABLE QDocumentCursor cursor(int line, int column = 0, int lineTo=-1, int columnTo=-1) const;
-		
+
 		QDocumentLine findLine(int& position) const;
 		int findLineContaining(const QString &searchText,  const int& startLine=0, const Qt::CaseSensitivity cs = Qt::CaseSensitive, const bool backward=false) const;
 		int findLineRegExp(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs, const bool wholeWord, const bool useRegExp) const;
@@ -260,30 +261,30 @@ class QCE_EXPORT QDocument : public QObject
 
 		bool isLineModified(const QDocumentLine& l) const;
 		bool hasLineEverBeenModified(const QDocumentLine& l) const;
-		
+
 		virtual void draw(QPainter *p, PaintContext& cxt);
 
 		virtual QString exportAsHtml(const QDocumentCursor &range, bool includeHeader=true, bool simplifyCSS = false, int maxLineWidth = -1, int maxWrap = 0) const;
-		
+
 		void execute(QDocumentCommand *cmd);
-		
+
 		inline QDocumentPrivate* impl() { return m_impl; }
-		
+
 		QDocumentConstIterator begin() const;
 		QDocumentConstIterator end() const;
-		
+
 		QDocumentConstIterator iterator(int ln) const;
 		QDocumentConstIterator iterator(const QDocumentLine& l) const;
-		
+
 		Q_INVOKABLE void beginMacro();
 		Q_INVOKABLE void endMacro();
 		Q_INVOKABLE bool hasMacros();
-		
+
 		//Defer contentChange-signals until the last call of endDelayedUpdateBlock() and then emit all of them.
-		//ATTENTION: This only works if the commands don't change the document line count or all changes occur top-to-bottom. 
+		//ATTENTION: This only works if the commands don't change the document line count or all changes occur top-to-bottom.
 		Q_INVOKABLE void beginDelayedUpdateBlock();
 		Q_INVOKABLE void endDelayedUpdateBlock();
-		
+
 		QFormatScheme* formatScheme() const;
 		void setFormatScheme(QFormatScheme *f);
 		QColor getBackground() const;
@@ -295,9 +296,9 @@ class QCE_EXPORT QDocument : public QObject
 		//void clearMatchesFromToWhenFlushing(int groupId, int firstMatch, int lastMatch);
 		void flushMatches(int groupId);
 		void addMatch(int groupId, int line, int pos, int len, int format);
-		
+
 		void clearLanguageMatches();
-		
+
 		static QFont font();
         static QFont baseFont();
         static int fontSizeModifier();
@@ -307,7 +308,7 @@ class QCE_EXPORT QDocument : public QObject
 		static int getLineSpacing();
 		static void setLineSpacingFactor(double scale);
 		static void setCenterDocumentInEditor(bool center);
-		
+
 		static LineEnding defaultLineEnding();
 		static void setDefaultLineEnding(LineEnding le);
 
@@ -315,10 +316,10 @@ class QCE_EXPORT QDocument : public QObject
 		static void setDefaultCodec(QTextCodec* codec);
 		static void addGuessEncodingCallback(const GuessEncodingCallback& callback);
 		static void removeGuessEncodingCallback(const GuessEncodingCallback& callback);
-		
+
 		static int tabStop();
 		static void setTabStop(int n);
-		
+
 		static WhiteSpaceMode showSpaces();
 		static void setShowSpaces(WhiteSpaceMode y);
 
@@ -326,16 +327,16 @@ class QCE_EXPORT QDocument : public QObject
 		static void setDefaultFormatScheme(QFormatScheme *f);
 		static void formatScheme(QFormatScheme *f);
 		static void formatSchemeDeleted(QFormatScheme *f);
-		
+
 		int getFormatId(const QString& id);
-		
+
 		static int screenColumn(const QChar *d, int l, int tabStop, int column = 0);
 		static QString screenable(const QChar *d, int l, int tabStop, int column = 0);
-		
+
         inline void markViewDirty() { emit formatsChanged(); }
-		
+
 		bool isClean() const;
-		
+
 		Q_INVOKABLE void expand(int line);
 		Q_INVOKABLE void collapse(int line);
 		Q_INVOKABLE void expandParents(int l);
@@ -355,8 +356,8 @@ class QCE_EXPORT QDocument : public QObject
 		bool forceLineWrapCalculation() const;
 		void setForceLineWrapCalculation(bool v);
 		void setOverwriteMode(bool overwrite);
-		
-		void applyHardLineWrap(const QList<QDocumentLineHandle*>& handles);		
+
+		void applyHardLineWrap(const QList<QDocumentLineHandle*>& handles);
         bool linesMerged(QDocumentLineHandle* dlh,int bo,QDocumentLineHandle* fromLineHandle);
         void linesUnMerged(QDocumentLineHandle *dlh,QDocumentLineHandle *fromLineHandle);
         int bookMarkId(int bookmarkNumber);
@@ -370,49 +371,49 @@ class QCE_EXPORT QDocument : public QObject
 
 	public slots:
 		void clear();
-		
+
 		void undo();
 		void redo();
 
 		void clearUndo();
 		QString debugUndoStack(int limit = 10000) const;
-		
+
 		void setClean();
-		
+
 		void highlight();
-		
+
 		void print(QPrinter *p);
-		
+
 		void clearWidthConstraint();
 		void setWidthConstraint(int width);
 		void markFormatCacheDirty();
-		
+
 	signals:
 		void cleanChanged(bool m);
-		
+
 		void undoAvailable(bool y);
 		void redoAvailable(bool y);
-		
+
 		void formatsChanged();
 		void contentsChanged();
 		void fontChanged(QFont);
-		
+
 		void formatsChange (int line, int lines);
 		void contentsChange(int line, int lines);
-		
+
 		void widthChanged(int width);
 		void heightChanged(int height);
 		void sizeChanged(const QSize& s);
-		
+
 		void lineCountChanged(int n);
 		void visualLineCountChanged(int n);
-		
+
 		void lineDeleted(QDocumentLineHandle *h);
 		void lineRemoved(QDocumentLineHandle *h);
 		void markChanged(QDocumentLineHandle *l, int m, bool on);
-		
+
 		void lineEndingChanged(int lineEnding);
-		
+
 		void slowOperationStarted();
 		void slowOperationEnded();
 
