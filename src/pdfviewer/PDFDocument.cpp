@@ -88,7 +88,7 @@ QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGra
 		for (int i = 0; i < img.width(); i++) {
 			for (int j = 0; j < img.height(); j++) {
 				QRgb value = img.pixel(i, j);
-				retImg.setPixel(i, j, qGray(value));
+                retImg.setPixel(i, j, static_cast<uint>(qGray(value)));
 			}
 		}
 		return QPixmap::fromImage(retImg);
@@ -1070,7 +1070,7 @@ void PDFWidget::goToDestination(const QString &destName)
 		goToDestination(*dest);
 }
 
-void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
+void PDFWidget::goToPageRelativePosition(int page, double xinpdf, double yinpdf)
 {
 	PDFScrollArea *scrollArea = getScrollArea();
 	if (!scrollArea) return;
@@ -1078,9 +1078,9 @@ void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
 	scrollArea->goToPage(page);
 
 	if (qIsNaN(xinpdf)) xinpdf = 0;
-	xinpdf = qBound<float>(0, xinpdf, 1);
+    xinpdf = qBound<double>(0, xinpdf, 1);
 	if (qIsNaN(yinpdf)) yinpdf = 0;
-	yinpdf = qBound<float>(0, yinpdf, 1);
+    yinpdf = qBound<double>(0, yinpdf, 1);
 
 	QPoint p = mapFromScaledPosition(page, QPointF( xinpdf, yinpdf));
 
@@ -1318,7 +1318,7 @@ void PDFWidget::jumpToSource()
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->angleDelta().isNull()) return;
-    float numDegrees = event->angleDelta().y() / 8.0f;
+    double numDegrees = event->angleDelta().y() / 8.0;
 	if ((summedWheelDegrees < 0) != (numDegrees < 0)) summedWheelDegrees = 0;
 	// we may accumulate rotation and handle it in larger chunks
 	summedWheelDegrees += numDegrees;
@@ -3620,7 +3620,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 	pdfWidget->setHighlightPath(-1, QPainterPath());
 	pdfWidget->update();
 	QDir curDir(QFileInfo(curFile).canonicalPath());
-	QSynctex::NodeIterator iter = scanner.editQuery(pageIndex + 1, pos.x(), pos.y());
+    QSynctex::NodeIterator iter = scanner.editQuery(pageIndex + 1, static_cast<float>(pos.x()), static_cast<float>(pos.y()));
 	while (iter.hasNext()) {
 		QSynctex::Node node = iter.next();
 		QString fullName = scanner.getNameFileInfo(curDir, node).canonicalFilePath();
