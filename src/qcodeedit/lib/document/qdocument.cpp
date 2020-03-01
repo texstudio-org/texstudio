@@ -3301,14 +3301,16 @@ QVector<int> QDocumentLineHandle::compose() const
 	return m_cache;
 }
 
-QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
+// After we switch to Qt5.6+, the return type should become QVector<QTextLayout::FormatRange>
+template <template<class T> class CONTAINER_TYPE>
+CONTAINER_TYPE<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 {
 	// don't do locking here as it is mainly called by draw (and locked there) !!!!
 	if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		compose();
 
 	// turning format "map" into ranges that QTextLayout can understand...
-	QList<QTextLayout::FormatRange> m_ranges;
+	CONTAINER_TYPE<QTextLayout::FormatRange> m_ranges;
 
 	QTextLayout::FormatRange r;
 	r.start = r.length = -1;
@@ -3433,7 +3435,11 @@ void QDocumentLineHandle::layout(int lineNr) const
 		m_layout->setTextOption(opt);
 
 		// Syntax highlighting, inbuilt and arbitrary
-		m_layout->setAdditionalFormats(decorations());
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+		m_layout->setFormats(decorations<QVector>());
+#else
+		m_layout->setAdditionalFormats(decorations<QList>());
+#endif
 		setFlag(QDocumentLine::FormatsApplied, true);
 
 		// Begin layouting

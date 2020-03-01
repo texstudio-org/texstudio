@@ -175,7 +175,8 @@ public:
 
 		int getPictureCookieHeight() const;
 
-		QList<QTextLayout::FormatRange> decorations() const;
+		template <template<class T> class CONTAINER_TYPE>
+		CONTAINER_TYPE<QTextLayout::FormatRange> decorations() const;
 
 		QString m_text;
 		QDocument *m_doc;
