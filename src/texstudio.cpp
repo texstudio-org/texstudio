@@ -8760,7 +8760,7 @@ void Texstudio::showOldRevisions()
 	cmbLog = new QComboBox(svndlg);
 	cmbLog->insertItems(0, log);
 	lay->addWidget(cmbLog);
-	connect(svndlg, SIGNAL(finished(int)), this, SLOT(svnDialogClosed()));
+	connect(svndlg, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(svnDialogClosed()));
 	connect(cmbLog, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeToRevision(QString)));
 	connect(currentEditor(), SIGNAL(textEdited(QKeyEvent *)), svndlg, SLOT(close()));
 	currentEditor()->setProperty("Revision", log.first());
