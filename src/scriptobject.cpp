@@ -115,7 +115,7 @@ ProcessX *ScriptObject::system(const QString &commandline, const QString &workin
 	else
 		p = buildManager->newProcessInternal(commandline, QFileInfo()); //use internal, so people can pass | to sh
     if (!p) return nullptr;
-	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
+	connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), p, SLOT(deleteLater()));
 	QMetaObject::invokeMethod(reinterpret_cast<QObject *>(app), "connectSubCommand", Q_ARG(ProcessX *, p), Q_ARG(bool, true));
 	if (!workingDirectory.isEmpty())
 		p->setWorkingDirectory(workingDirectory);

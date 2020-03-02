@@ -42,7 +42,7 @@ void Help::viewTexdoc(QString package)
 	if (!package.isEmpty()) {
 		if (texdocCommand().isEmpty()) UtilsUi::txsWarning(tr("texdoc not found."));
 		QProcess *proc = new QProcess(this);
-		connect(proc, SIGNAL(finished(int)), this, SLOT(texdocProcessFinished()));
+		connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(texdocProcessFinished()));
 #ifdef Q_OS_OSX
 		QStringList paths;
 		paths.append(getEnvironmentPathList());
@@ -173,7 +173,7 @@ void Help::texdocAvailableRequest(const QString &package)
 	}
 	QProcess *proc = new QProcess(this);
 	proc->setProperty("package", package);
-	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
+	connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(texdocAvailableRequestFinished(int)));
 #ifdef Q_OS_OSX
 	QStringList paths;
 	paths.append(getEnvironmentPathList());

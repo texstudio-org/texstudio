@@ -638,7 +638,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
         return;
     }
     javaProcess = new QProcess();
-    connect(javaProcess, SIGNAL(finished(int)), javaProcess, SLOT(deleteLater()));
+    connect(javaProcess, SIGNAL(finished(int, QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
     javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
