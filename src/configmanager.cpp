@@ -1005,11 +1005,11 @@ QSettings *ConfigManager::readSettings(bool reread)
 
 	//user macros
 	if (!reread) {
-        QDir dir(configBaseDir+"/macro");
+        QDir dir(joinPath(configBaseDir,"macro"));
         if(dir.exists()){
             // use file based macros
             for (int i = 0; i < 1000; i++) {
-                QString fileName=QString(configBaseDir+"/macro/Macro_%1.txsMacro").arg(i);
+                QString fileName=joinPath(configBaseDir,"macro",QString("Macro_%1.txsMacro").arg(i));
                 if(QFile(fileName).exists()){
                     Macro macro;
                     macro.load(fileName);
@@ -1246,8 +1246,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
         if(newlyCreatedPath && index<10 && index!=2){
             macro.setShortcut(QString("Shift+F%1").arg(index+1));
         }
-        macro.save(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index));
-		config->setValue(QString("Macros/%1").arg(index++), macro.toStringList());
+        macro.save(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index++));
 	}
     // remove unused macro files
     // lazy approach, only first macro is removed
@@ -1255,6 +1254,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
     if(fn.exists()){
         fn.remove();
     }
+    index=0;
 	while (config->contains(QString("Macros/%1").arg(index))) { //remove old macros which are not used any more
 		config->remove(QString("Macros/%1").arg(index));
 		index++;
