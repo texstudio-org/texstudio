@@ -9513,12 +9513,12 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="875"/>
         <source>Move Line &amp;Up</source>
-        <translation>Sort &amp;felfelé mozgatása</translation>
+        <translation>Sor &amp;felfelé mozgatása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="876"/>
         <source>Move Line &amp;Down</source>
-        <translation>Sort &amp;lefelé mozgatása</translation>
+        <translation>Sor &amp;lefelé mozgatása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="877"/>
