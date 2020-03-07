@@ -467,6 +467,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                         cd.args--;
                                         cd.argTypes.takeFirst();
                                         cd.optionalCommandName="\\begin{" + env + "}";
+                                        cd.level=tk1.level;
                                         commandStack.push(cd);
                                         forceContinue=true;
                                     }else{
@@ -482,6 +483,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                         cd.args--;
                                         cd.argTypes.takeFirst();
                                         cd.optionalCommandName="\\begin{" + env + "}";
+                                        cd.level=tk1.level;
                                         commandStack.push(cd);
                                         forceContinue=true;
                                     }
