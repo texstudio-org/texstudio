@@ -291,10 +291,10 @@ void QDocumentSearch::recreateRegExp(){
 	      Qt::CaseInsensitive;
 
 #if QT_VERSION >= 0x050500
-	QRegularExpression::PatternOption patternOption= cs==Qt::CaseInsensitive ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption ;
+    QRegularExpression::PatternOptions patternOption= cs==Qt::CaseInsensitive ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption ;
+    patternOption |= QRegularExpression::UseUnicodePropertiesOption;
 	if ( hasOption(RegExp) )
 	{
-
 		m_regularExpression = QRegularExpression(m_string, patternOption);
 	} else if ( hasOption(WholeWords) ) {
 		//todo: screw this? it prevents searching of "world!" and similar things
