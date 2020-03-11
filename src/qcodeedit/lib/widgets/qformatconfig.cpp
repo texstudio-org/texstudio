@@ -77,7 +77,7 @@ QFormatConfig::QFormatConfig(QWidget *w, bool adaptStyle)
     m_table->horizontalHeaderItem(9)->setIcon(getRealIcon("format-stroke-color"));
 	m_table->horizontalHeaderItem(10)->setText(tr("Font Family"));
 	m_table->horizontalHeaderItem(11)->setText(tr("Size")); // don't vary point size as the drwaing engine can't cope with it
-	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: If the size is larger that the line spacing, characters may be clipped."));
+	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: If the size is larger than the line spacing, characters may be clipped."));
 	m_table->horizontalHeaderItem(12)->setText(tr("Prio"));  //TODO: images
 	m_table->horizontalHeaderItem(12)->setToolTip(tr("Priority determines which format is drawn on top, if multiple formats apply."));
 
