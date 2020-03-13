@@ -111,6 +111,7 @@
 \numberwithin{env}{counter}
 \numberwithin[format]{env}{counter}
 \operatorname{name}
+\operatorname*{name}
 \operatornamewithlimits{name}
 \overleftrightarrow{argument}#m
 \overset{superscript}{argument}#m
