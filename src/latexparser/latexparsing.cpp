@@ -157,13 +157,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	QString line = dlh->text();
 	bool verbatimMode = false;
 	int level = 0;
-	if (!stack.isEmpty()) {
-	    if (stack.top().type == Token::verbatim) {
-		verbatimMode = true;
-	    } else {
-		level = stack.top().level + 1;
-	    }
-	}
+    if (!stack.isEmpty()) {
+        if (stack.top().type == Token::verbatim) {
+            verbatimMode = true;
+        } else {
+            level = stack.top().level + 1;
+        }
+    }
 	TokenList lexed;
 
 	QString verbatimSymbol;
@@ -727,8 +727,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
         if(cd.verbatimAfterOptionalArg){ //optional arg not found
             Token tk3;
             tk3.dlh = dlh;
-            tk3.level = level - 1;
+            tk3.level = level;
             tk3.type = Token::verbatim;
+            cd.verbatimAfterOptionalArg=false; // don't search again on next line
             stack.push(tk3);
         }
     }
