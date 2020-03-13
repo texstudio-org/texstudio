@@ -4,6 +4,7 @@
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
 #include:latex-dev
+#include:textcomp
 \abstractname#*
 \addcontentsline{file}{secunit}{entry}#*
 \Alph{counter}#*
