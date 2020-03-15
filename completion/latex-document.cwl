@@ -466,6 +466,7 @@
 \vdots
 \vector(xslope,yslope){length}#*/picture
 \verb|%<text%>|
+\verb*|%<text%>|
 \verb{verbatimSymbol}#S
 \verb*{verbatimSymbol}#S
 \vline
