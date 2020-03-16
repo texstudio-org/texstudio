@@ -20,8 +20,9 @@
 #include:newfloat
 #endif
 
-\begin{minted}{language}#V
-\begin{minted}[options%keyvals]{language}#V
+\begin{minted}[options%keyvals]#SV
+\begin{minted}{language}
+\begin{minted}[options%keyvals]{language}
 \end{minted}
 \mint{%<language%>}{%<code%>}
 \mint{%<language%>}|%<code%>|

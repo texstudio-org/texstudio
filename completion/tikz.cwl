@@ -135,6 +135,7 @@ routing
 scopes
 shadings
 shadows
+shapes
 shapes.arrows
 shapes.callouts
 shapes.gates.ee
