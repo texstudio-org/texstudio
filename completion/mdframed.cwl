@@ -53,7 +53,7 @@
 \mdtheorem{envname}{caption}[within]#N
 
 #keyvals:\begin{mdframed},\newmdenv,\renewmdenv,\surroundwithmdframed,\mdfsetup,\mmdfdefinestyle,\mdfapptodefinestyle,\mdfsubtitle,\mdfsubsubtitle,\newmdtheoremenv,\mdtheorem
-# length options
+# length options. These options accept both number (using unit in option "defaultunit") and dimension.
 extratopheight
 footenotedistance
 frametitleaboveskip
