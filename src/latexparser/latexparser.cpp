@@ -52,7 +52,7 @@ void LatexParser::init()
     possibleCommands["tabular"] = QSet<QString>{"&" };
     possibleCommands["array"] = QSet<QString>{ "&" };
     possibleCommands["tabbing"] = QSet<QString>{"\\<" , "\\>" , "\\=" , "\\+"};
-    possibleCommands["normal"] = QSet<QString>{ "\\\\" , "\\_" , "\\-" , "$" , "$$" , "\\$" , "\\#" , "\\{" , "\\}" , "\\S" , "\\'" , "\\`" , "\\^" , "\\=" , "\\." , "\\u" , "\\v" , "\\H" , "\\t" , "\\c" , "\\d" , "\\b" , "\\o" , "\\O" , "\\P" , "\\l" , "\\L" , "\\&" , "\\~" , "\\" , "\\," , "\\%" , "\\\""};
+    possibleCommands["normal"] = QSet<QString>{ "\\\\" , "\\_" , "\\-" , "$" , "$$" , "\\$" , "\\#" , "\\{" , "\\}" , "\\S" , "\\'" , "\\`" , "\\^" , "\\=" , "\\." , "\\u" , "\\v" , "\\H" , "\\t" , "\\c" , "\\d" , "\\b" , "\\o" , "\\O" , "\\P" , "\\l" , "\\L" , "\\&" , "\\~" , "\\" , "\\," , "\\%" , "\\\"", "\\," , "\\!" , "\\;" , "\\:"};
     possibleCommands["math"] = QSet<QString>{ "_" , "^" , "\\$" , "\\#" , "\\{" , "\\}" , "\\S" , "\\," , "\\!" , "\\;" , "\\:" , "\\\\" , "\\ " , "\\|"};
     possibleCommands["%definition"] = QSet<QString>{ "\\newcommand" , "\\renewcommand" , "\\newcommand*" , "\renewcommand*" , "\\providecommand" , "\\newlength" , "\\let"};
     possibleCommands["%usepackage"] = QSet<QString>{ "\\usepackage" , "\\documentclass" };
