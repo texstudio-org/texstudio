@@ -287,9 +287,12 @@
 \mathunderscore#m
 \mathversion#*
 \mbox{text}
+\medspace
 \mdseries#*
 \multicolumn{cols}{pos}{text}
 \multiput(xcoord,ycoord)(xdelta,ydelta){copies}{object}#*/picture
+\negmedspace
+\negthickspace
 \newblock#*
 \newlabel
 \newlength{newlength%cmd}#d
@@ -448,6 +451,7 @@
 \thanks{text}
 \thicklines
 \thinlines
+\thickspace
 \thispagestyle{empty/plain/headings/myheadings}
 \time
 \tiny

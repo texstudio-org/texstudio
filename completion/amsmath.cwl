@@ -100,12 +100,8 @@
 \leftroot{argument}
 \lvert#m
 \lVert#m
-\medspace
 \mod#
 \mspace{dimen}#m
-\negmedspace
-\negthickspace
-\negthinspace
 \nobreakdash
 \notag#m
 \numberwithin{env}{counter}
@@ -129,7 +125,6 @@
 \tbinom{above}{below}#m
 \text{text}#m
 \tfrac{%<num%:translatabe%>}{%<den%:translatable%>}#m
-\thickspace
 \underleftarrow{argument}#m
 \underleftrightarrow{argument}#m
 \underrightarrow{argument}#m
