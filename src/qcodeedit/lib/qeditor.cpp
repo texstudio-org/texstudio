@@ -3626,11 +3626,10 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 
 		repaintCursor();
 
-		if( !(viewport()->rect().contains(e->pos())) )
-		{
+		if( !(viewport()->rect().contains(e->pos())) ) {
 			//don't accelerate scrolling just because the mouse is moving
 			if( m_autoScroll.isActive() ) break;
-			m_autoScroll.start(33,this);
+			m_autoScroll.start(33, this);
 		} else {
 			m_autoScroll.stop();
 		}
@@ -5473,7 +5472,6 @@ bool QEditor::isCursorVisible() const
 
 	return display.contains(pos); //cursor);
 }
-
 
 /*!
 	\brief Ensure that the current cursor is visible
