@@ -697,7 +697,7 @@ public slots:
 		bool m_selection;
 		QRect m_crect, m_margins;
 		QPoint m_clickPoint, m_dragPoint;
-		QBasicTimer m_blink, m_click, m_drag;
+		QBasicTimer m_blink, m_click, m_drag, m_autoScroll;
 
 		bool mDisplayModifyTime;
 		bool mIgnoreExternalChanges;

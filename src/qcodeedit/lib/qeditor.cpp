@@ -3169,6 +3169,33 @@ void QEditor::timerEvent(QTimerEvent *e)
 		//startDrag();
 	} else if ( id == m_click.timerId() ) {
 		m_click.stop();
+	} else if ( id == m_autoScroll.timerId() ) {
+		const QPoint cPos = mapFromGlobal(QCursor::pos());
+		const QPoint mousePos = mapToContents(cPos);
+
+		QDocumentCursor newCursor = cursorForPosition(mousePos);
+
+		if ( newCursor.isNull() ) {
+			newCursor = QDocumentCursor(m_doc, 0, 0);
+			if( mousePos.x() >= 0 ) {
+				newCursor.movePosition( 1, QDocumentCursor::End );
+			}
+		}
+
+		if (m_multiClickCursor.isValid()) {
+			m_cursor.select(m_multiClickCursor.lineNumber(), m_multiClickCursor.columnNumber(),
+			                newCursor.lineNumber(), newCursor.columnNumber()
+			                );
+			m_cursor.expandSelect(m_multiClickCursor.property("isTripleClick").toBool() ? QDocumentCursor::LineUnderCursor : m_doubleClickSelectionType);
+		} else {
+			m_cursor.setSelectionBoundary(newCursor);
+		}
+
+		ensureCursorVisible();
+		//emit clearAutoCloseStack();
+		emitCursorPositionChanged();
+
+		repaintCursor();
 	}
 }
 
@@ -3599,6 +3626,15 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 
 		repaintCursor();
 
+		if( !(viewport()->rect().contains(e->pos())) )
+		{
+			//don't accelerate scrolling just because the mouse is moving
+			if( m_autoScroll.isActive() ) break;
+			m_autoScroll.start(33,this);
+		} else {
+			m_autoScroll.stop();
+		}
+
 		const QPoint mousePos = mapToContents(e->pos());
 
 		QDocumentCursor newCursor = cursorForPosition(mousePos);
@@ -3773,6 +3809,7 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		if ( b->mouseReleaseEvent(e, this) )
 			return;
 
+	m_autoScroll.stop( );
 	repaintCursor();
 
 	if ( flag(MaybeDrag) )
@@ -5436,6 +5473,7 @@ bool QEditor::isCursorVisible() const
 
 	return display.contains(pos); //cursor);
 }
+
 
 /*!
 	\brief Ensure that the current cursor is visible
