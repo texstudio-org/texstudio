@@ -336,6 +336,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 }
 #undef READ_FROM_OBJECT
 
+const int ConfigManager::MAX_NUM_MACROS;
 QTextCodec *ConfigManager::newFileEncoding = nullptr;
 QString ConfigManager::configDirOverride;
 bool ConfigManager::dontRestoreSession=false;
@@ -1008,7 +1009,7 @@ QSettings *ConfigManager::readSettings(bool reread)
         QDir dir(joinPath(configBaseDir,"macro"));
         if(dir.exists()){
             // use file based macros
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < ConfigManager::MAX_NUM_MACROS; i++) {
                 QString fileName=joinPath(configBaseDir,"macro",QString("Macro_%1.txsMacro").arg(i));
                 if(QFile(fileName).exists()){
                     Macro macro;
@@ -1020,7 +1021,7 @@ QSettings *ConfigManager::readSettings(bool reread)
             }
         }else{
             if (config->value("Macros/0").isValid()) {
-                for (int i = 0; i < 1000; i++) {
+                for (int i = 0; i < ConfigManager::MAX_NUM_MACROS; i++) {
                     QStringList ls = config->value(QString("Macros/%1").arg(i)).toStringList();
                     if (ls.isEmpty()) break;
                     completerConfig->userMacros.append(Macro(ls));

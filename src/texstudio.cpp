@@ -9099,7 +9099,7 @@ void Texstudio::loadProfile()
 				config->setValue(key, profile->value(key));
 			}
 			// handle macros
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < ConfigManager::MAX_NUM_MACROS; i++) {
 			    QStringList ls = profile->value(QString("texmaker/Macros/%1").arg(i)).toStringList();
 			    if (ls.isEmpty()) break;
 			    if (!macro) { //remove old values
