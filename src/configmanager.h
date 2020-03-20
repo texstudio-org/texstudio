@@ -34,6 +34,8 @@ class ConfigManager: public QObject, public ConfigManagerInterface
 	Q_OBJECT
 
 public:
+    static const int MAX_NUM_MACROS = 5000;
+
     ConfigManager(QObject *parent = nullptr);
 	~ConfigManager();
 
