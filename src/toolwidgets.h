@@ -43,7 +43,6 @@ private:
 	bool mFit;
 };
 
-#ifdef TERMINAL
 class TerminalWidget : public QWidget
 {
 	Q_OBJECT
@@ -57,10 +56,11 @@ public slots:
 
 private :
 	void initQTermWidget();
+#ifdef TERMINAL
 	QTermWidget *qTermWidget;
+#endif
 	QHBoxLayout *layout;
 };
-#endif
 
 class OutputViewWidget: public TitledPanel
 {
