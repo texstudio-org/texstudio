@@ -30,6 +30,10 @@ QT += \
     LIBS += -lphonon4qt5
     DEFINES += PHONON
 }
+!isEmpty(TERMINAL){
+    LIBS += -lqtermwidget5
+    DEFINES += TERMINAL
+}
 !isEmpty(QJS){
     DEFINES += QJS
     QT += qml

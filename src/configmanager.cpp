@@ -2124,7 +2124,7 @@ QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const 
     if (iconFile.isEmpty()) act = new QAction(text, rootMenu);
     else act = new QAction(getRealIcon(iconFile), text, rootMenu);
 
-    act->setObjectName(completeId);
+	act->setObjectName(completeId);
     act->setShortcuts(shortCuts);
 #if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
     // workaround for osx not being able to use alt+key/esc as shortcut
