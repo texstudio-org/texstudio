@@ -11,11 +11,11 @@
  *
  * It maintains the knowledge of the currentEditor() and the currentTabWidget().
  * Also, it sends appropriate signals to the editors and tabWidgets and provides
- * singals to hook to these changes.
+ * signals to hook to these changes.
  *
  * Currently this class serves two purposes:
  *
- * 1) It maintains and abstract order of editors. Editors can be grouped (currently
+ * 1) It maintains an abstract order of editors. Editors can be grouped (currently
  *    implemented as tabs in tabWidgets). The groups are ordered and the editors
  *    within a group are ordered, thus providing a complete order of all editors.
  *    The main purpose of this class it to provide an interface to this order, which

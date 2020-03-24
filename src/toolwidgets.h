@@ -6,6 +6,10 @@
 
 #include "mostQtHeaders.h"
 
+#ifdef TERMINAL
+#include <qtermwidget5/qtermwidget.h>
+#endif
+
 #include "titledpanel.h"
 #include "logeditor.h"
 #include "latexlog.h"
@@ -39,6 +43,25 @@ private:
 	bool mFit;
 };
 
+class TerminalWidget : public QWidget
+{
+	Q_OBJECT
+
+public:
+    explicit TerminalWidget(QWidget *parent = nullptr);
+	void setCurrentFileName(const QString &filename);
+
+public slots:
+	void qTermWidgetFinished();
+
+private :
+	void initQTermWidget();
+#ifdef TERMINAL
+	QTermWidget *qTermWidget;
+#endif
+	QHBoxLayout *layout;
+};
+
 class OutputViewWidget: public TitledPanel
 {
 	Q_OBJECT
@@ -49,6 +72,7 @@ public:
 	const QString MESSAGES_PAGE;
 	const QString LOG_PAGE;
 	const QString PREVIEW_PAGE;
+	const QString TERMINAL_PAGE;
 	const QString SEARCH_RESULT_PAGE;
 
 	LatexLogWidget *getLogWidget() { return logWidget; }
@@ -56,6 +80,7 @@ public:
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	bool childHasFocus();
+	void setCurrentFileName(const QString &filename);
 
 	virtual void changeEvent(QEvent *event);
 
@@ -72,6 +97,9 @@ signals:
 
 private:
 	PreviewWidget *previewWidget;
+#ifdef TERMINAL
+	TerminalWidget *terminalWidget;
+#endif
 	LatexLogWidget *logWidget;
 	SearchResultWidget *searchResultWidget;
 	LogEditor *OutputMessages;
@@ -140,7 +168,6 @@ private:
 	//new layout
 	QStackedWidget *stack;
 	QToolBar *toolbar;
-
 };
 
 #endif

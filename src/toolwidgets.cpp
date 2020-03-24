@@ -139,18 +139,59 @@ void PreviewWidget::contextMenu(QPoint point)
 	menu.exec(menuParent->mapToGlobal(point));
 }
 
+TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
+{
+#ifdef TERMINAL
+	//setBackgroundRole(QPalette::Base);
+	layout = new QHBoxLayout(this);
+	layout->setSpacing(0);
+	layout->setMargin(0);
+	setLayout(layout);
+
+	initQTermWidget();
+#endif
+}
+
+void TerminalWidget::qTermWidgetFinished()
+{
+	// in case the shell closed the widget is reinitiated
+#ifdef TERMINAL
+	delete qTermWidget;
+	initQTermWidget();
+#endif
+}
+
+void TerminalWidget::initQTermWidget()
+{
+#ifdef TERMINAL
+	qTermWidget = new QTermWidget(this);
+	qTermWidget->setTerminalSizeHint(false);
+	layout->addWidget(qTermWidget,0,0);
+	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
+#endif
+}
+
+void TerminalWidget::setCurrentFileName(const QString &filename)
+{
+#ifdef TERMINAL
+	QString const &path = filename.left(filename.lastIndexOf('/'));
+	if( qTermWidget->workingDirectory() != path )
+		qTermWidget->changeDir(path);
+#endif
+}
+
 OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	TitledPanel(parent),
 	MESSAGES_PAGE("messages"),
 	LOG_PAGE("log"),
 	PREVIEW_PAGE("preview"),
+	TERMINAL_PAGE("terminal"),
 	SEARCH_RESULT_PAGE("search")
 {
 	setSelectorStyle(TabSelector);
 	mToggleViewAction->setText(tr("Messages / Log File"));
 	mToggleViewAction->setIcon(getRealIcon("logpanel"));
 	setFrameStyle(NoFrame);
-
 
 	// messages
 	QFontMetrics fm(QApplication::font());
@@ -172,8 +213,12 @@ OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	previewWidget = new PreviewWidget(this);
 	appendPage(new TitledPanelPage(previewWidget, PREVIEW_PAGE, tr("Preview")), false);
 
-	// global search results
+#ifdef TERMINAL
+	terminalWidget = new TerminalWidget(this);
+	appendPage(new TitledPanelPage(terminalWidget, TERMINAL_PAGE, tr("Terminal")), false);
+#endif
 
+	// global search results
 	searchResultWidget = new SearchResultWidget(this);
 
 	//appendPage(new TitledPanelPage(OutputSearchTree, SEARCH_RESULT_PAGE, tr("Search Results")));
@@ -262,6 +307,13 @@ void OutputViewWidget::changeEvent(QEvent *event)
 	default:
 		break;
 	}
+}
+
+void OutputViewWidget::setCurrentFileName(const QString &filename)
+{
+#ifdef TERMINAL
+	terminalWidget->setCurrentFileName(filename);
+#endif
 }
 
 

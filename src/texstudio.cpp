@@ -1586,7 +1586,7 @@ void Texstudio::createStatusBar()
 
 void Texstudio::updateCaption()
 {
-        if (!currentEditorView()) documents.currentDocument = nullptr;
+	if (!currentEditorView()) documents.currentDocument = nullptr;
 	else {
 		documents.currentDocument = currentEditorView()->document;
 		documents.updateStructure();
@@ -1594,7 +1594,7 @@ void Texstudio::updateCaption()
 	}
 	if (completer && completer->isVisible()) completer->close();
 	QString title;
-	if (!currentEditorView())	{
+	if (!currentEditorView()) {
 		title = TEXSTUDIO;
 	} else {
 		QString file = QDir::toNativeSeparators(getCurrentFileName());
@@ -1637,6 +1637,7 @@ void Texstudio::updateMasterDocumentCaption()
 void Texstudio::currentEditorChanged()
 {
 	updateCaption();
+	outputView->setCurrentFileName(getCurrentFileName());
 	if (!currentEditorView()) return;
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
