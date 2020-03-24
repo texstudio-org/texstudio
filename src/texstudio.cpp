@@ -1637,7 +1637,9 @@ void Texstudio::updateMasterDocumentCaption()
 void Texstudio::currentEditorChanged()
 {
 	updateCaption();
-	outputView->setCurrentFileName(getCurrentFileName());
+#ifdef TERMINAL
+	outputView->getTerminalWidget()->setCurrentFileName(getCurrentFileName());
+#endif
 	if (!currentEditorView()) return;
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
@@ -6562,6 +6564,9 @@ void Texstudio::generalOptions()
             pdfviewerWindow->close();
             delete pdfviewerWindow;
         }
+#endif
+#ifdef TERMINAL
+	outputView->getTerminalWidget()->updateSettings();
 #endif
 }
 

@@ -9,6 +9,10 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifdef TERMINAL
+#include <qtermwidget5/qtermwidget.h>
+#endif
+
 #include "configdialog.h"
 #include "configmanager.h"
 
@@ -99,6 +103,7 @@ ShortcutDelegate::ShortcutDelegate(QObject *parent): treeWidget(nullptr)
 {
 	Q_UNUSED(parent)
 }
+
 QWidget *ShortcutDelegate::createEditor(QWidget *parent,
                                         const QStyleOptionViewItem &option ,
                                         const QModelIndex &index) const
@@ -443,6 +448,11 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 
     ui.comboBoxThesaurusFileName->setCompleter(nullptr);
 
+#ifdef TERMINAL
+	populateTerminalColorSchemes();
+	populateTerminalComboBoxFont(true);
+#endif
+
 	connect(ui.pushButtonDictDir, SIGNAL(clicked()), this, SLOT(browseDictDir()));
 	connect(ui.leDictDir, SIGNAL(textChanged(QString)), this, SLOT(updateDefaultDictSelection(QString)));
 
@@ -510,6 +520,9 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Preview"), getRealIcon("config_preview"));
 	createIcon(tr("Internal PDF Viewer"), getRealIcon("config_preview"));
 	createIcon(tr("SVN"), getRealIcon("config_svn"));
+#ifdef TERMINAL
+	createIcon(tr("Terminal"), getRealIcon("config_terminal"), true);
+#endif
 
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
@@ -1129,9 +1142,35 @@ void ConfigDialog::populateComboBoxFont(bool onlyMonospaced)
 	// restore font setting if possible
 	int idx = ui.comboBoxFont->findText(currentFont);
 	if (idx >= 0) ui.comboBoxFont->setCurrentIndex(idx);
+}
+
+void ConfigDialog::populateTerminalComboBoxFont(bool onlyMonospaced)
+{
+	QString currentFont = ui.comboBoxTerminalFont->currentText();
+	ui.comboBoxTerminalFont->clear();
+	QFontDatabase fdb;
+	if (onlyMonospaced) {
+		foreach (const QString &font, fdb.families()) {
+			if (fdb.isFixedPitch(font)) {
+				ui.comboBoxTerminalFont->addItem(font);
+			}
+		}
+	} else {
+		ui.comboBoxTerminalFont->addItems(fdb.families());
+	}
+	// restore font setting if possible
+	int idx = ui.comboBoxTerminalFont->findText(currentFont);
+	if (idx >= 0) ui.comboBoxTerminalFont->setCurrentIndex(idx);
 
 }
 
+#ifdef TERMINAL
+void ConfigDialog::populateTerminalColorSchemes()
+{
+	QTermWidget qTermWidget;
+	ui.comboBoxTerminalColorScheme->addItems( qTermWidget.availableColorSchemes() );
+}
+#endif
 
 bool ConfigDialog::askRiddle()
 {

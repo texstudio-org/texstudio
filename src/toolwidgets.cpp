@@ -139,9 +139,9 @@ void PreviewWidget::contextMenu(QPoint point)
 	menu.exec(menuParent->mapToGlobal(point));
 }
 
+#ifdef TERMINAL
 TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 {
-#ifdef TERMINAL
 	//setBackgroundRole(QPalette::Base);
 	layout = new QHBoxLayout(this);
 	layout->setSpacing(0);
@@ -149,36 +149,44 @@ TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 	setLayout(layout);
 
 	initQTermWidget();
-#endif
 }
 
 void TerminalWidget::qTermWidgetFinished()
 {
 	// in case the shell closed the widget is reinitiated
-#ifdef TERMINAL
 	delete qTermWidget;
 	initQTermWidget();
-#endif
 }
 
 void TerminalWidget::initQTermWidget()
 {
-#ifdef TERMINAL
 	qTermWidget = new QTermWidget(this);
 	qTermWidget->setTerminalSizeHint(false);
 	layout->addWidget(qTermWidget,0,0);
 	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
-#endif
+	updateSettings(true);
 }
 
 void TerminalWidget::setCurrentFileName(const QString &filename)
 {
-#ifdef TERMINAL
 	QString const &path = filename.left(filename.lastIndexOf('/'));
 	if( qTermWidget->workingDirectory() != path )
 		qTermWidget->changeDir(path);
-#endif
 }
+
+void TerminalWidget::updateSettings(bool noreset)
+{
+	bool reset = false;
+	qTermWidget->setColorScheme(
+		ConfigManagerInterface::getInstance()->getOption("Terminal/ColorScheme").toString()
+	);
+	qTermWidget->setTerminalFont( QFont(
+			ConfigManagerInterface::getInstance()->getOption("Terminal/Font Family").toString(),
+			ConfigManagerInterface::getInstance()->getOption("Terminal/Font Size").toInt()
+		)
+	);
+}
+#endif
 
 OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	TitledPanel(parent),
@@ -307,13 +315,6 @@ void OutputViewWidget::changeEvent(QEvent *event)
 	default:
 		break;
 	}
-}
-
-void OutputViewWidget::setCurrentFileName(const QString &filename)
-{
-#ifdef TERMINAL
-	terminalWidget->setCurrentFileName(filename);
-#endif
 }
 
 
