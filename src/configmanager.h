@@ -82,6 +82,7 @@ public:
 	QString terminalColorScheme;
 	QString terminalFontFamily;
 	int terminalFontSize;
+	QString terminalShell;
 #endif
 
 	//appearance

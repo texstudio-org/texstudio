@@ -660,6 +660,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Terminal/ColorScheme", &terminalColorScheme, "Linux", &pseudoDialog->comboBoxTerminalColorScheme);
 	registerOption("Terminal/Font Family", &terminalFontFamily, "", &pseudoDialog->comboBoxTerminalFont);
 	registerOption("Terminal/Font Size", &terminalFontSize, -1, &pseudoDialog->spinBoxTerminalFontSize);
+	registerOption("Terminal/Shell", &terminalShell, "/bin/bash", &pseudoDialog->lineEditTerminalShell);
 #endif
 
 	//interfaces

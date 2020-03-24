@@ -160,8 +160,11 @@ void TerminalWidget::qTermWidgetFinished()
 
 void TerminalWidget::initQTermWidget()
 {
-	qTermWidget = new QTermWidget(this);
+	qTermWidget = new QTermWidget(0, this);
+	curShell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+	qTermWidget->setShellProgram(curShell);
 	qTermWidget->setTerminalSizeHint(false);
+	qTermWidget->startShellProgram();
 	layout->addWidget(qTermWidget,0,0);
 	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
 	updateSettings(true);
@@ -176,15 +179,20 @@ void TerminalWidget::setCurrentFileName(const QString &filename)
 
 void TerminalWidget::updateSettings(bool noreset)
 {
-	bool reset = false;
-	qTermWidget->setColorScheme(
-		ConfigManagerInterface::getInstance()->getOption("Terminal/ColorScheme").toString()
-	);
-	qTermWidget->setTerminalFont( QFont(
-			ConfigManagerInterface::getInstance()->getOption("Terminal/Font Family").toString(),
-			ConfigManagerInterface::getInstance()->getOption("Terminal/Font Size").toInt()
-		)
-	);
+	if (!noreset) {
+		QString const &shell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+		if (shell != curShell) {
+			delete qTermWidget;
+			initQTermWidget();
+			return;
+		}
+	}
+
+	QString const &colorScheme = ConfigManagerInterface::getInstance()->getOption("Terminal/ColorScheme").toString();
+	QString const &fontFamily = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Family").toString();
+	int fontSize = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Size").toInt();
+	qTermWidget->setColorScheme(colorScheme);
+	qTermWidget->setTerminalFont( QFont( fontFamily, fontSize ) );
 }
 #endif
 

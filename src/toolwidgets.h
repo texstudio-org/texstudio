@@ -51,12 +51,13 @@ class TerminalWidget : public QWidget
 public:
     explicit TerminalWidget(QWidget *parent = nullptr);
 	void setCurrentFileName(const QString &filename);
-	void updateSettings(bool noreset=true);
+	void updateSettings(bool noreset=false);
 
 public slots:
 	void qTermWidgetFinished();
 
 private :
+	QString curShell;
 	void initQTermWidget();
 	QTermWidget *qTermWidget;
 	QHBoxLayout *layout;

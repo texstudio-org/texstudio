@@ -1144,6 +1144,7 @@ void ConfigDialog::populateComboBoxFont(bool onlyMonospaced)
 	if (idx >= 0) ui.comboBoxFont->setCurrentIndex(idx);
 }
 
+#ifdef TERMINAL
 void ConfigDialog::populateTerminalComboBoxFont(bool onlyMonospaced)
 {
 	QString currentFont = ui.comboBoxTerminalFont->currentText();
@@ -1164,7 +1165,6 @@ void ConfigDialog::populateTerminalComboBoxFont(bool onlyMonospaced)
 
 }
 
-#ifdef TERMINAL
 void ConfigDialog::populateTerminalColorSchemes()
 {
 	QTermWidget qTermWidget;

@@ -4521,6 +4521,16 @@ Note: Changing this setting will only affect documents that are opened afterward
             </property>
            </widget>
           </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelShell">
+            <property name="text">
+             <string>Shell:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEditTerminalShell"/>
+          </item>
 		 </layout>
 		</widget>
 	   </item>
