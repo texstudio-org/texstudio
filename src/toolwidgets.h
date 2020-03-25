@@ -43,6 +43,7 @@ private:
 	bool mFit;
 };
 
+#ifdef TERMINAL
 class TerminalWidget : public QWidget
 {
 	Q_OBJECT
@@ -50,17 +51,18 @@ class TerminalWidget : public QWidget
 public:
     explicit TerminalWidget(QWidget *parent = nullptr);
 	void setCurrentFileName(const QString &filename);
+	void updateSettings(bool noreset=false);
 
 public slots:
 	void qTermWidgetFinished();
 
 private :
+	QString curShell;
 	void initQTermWidget();
-#ifdef TERMINAL
 	QTermWidget *qTermWidget;
-#endif
 	QHBoxLayout *layout;
 };
+#endif
 
 class OutputViewWidget: public TitledPanel
 {
@@ -77,10 +79,12 @@ public:
 
 	LatexLogWidget *getLogWidget() { return logWidget; }
 	SearchResultWidget *getSearchResultWidget() { return searchResultWidget; }
+#ifdef TERMINAL
+	TerminalWidget *getTerminalWidget() { return terminalWidget; }
+#endif
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	bool childHasFocus();
-	void setCurrentFileName(const QString &filename);
 
 	virtual void changeEvent(QEvent *event);
 

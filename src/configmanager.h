@@ -77,6 +77,14 @@ public:
 	bool svnKeywordSubstitution;
 	int svnSearchPathDepth;
 
+#ifdef TERMINAL
+	// terminal
+	QString terminalColorScheme;
+	QString terminalFontFamily;
+	int terminalFontSize;
+	QString terminalShell;
+#endif
+
 	//appearance
 	QPalette systemPalette;
 	QString interfaceStyle;

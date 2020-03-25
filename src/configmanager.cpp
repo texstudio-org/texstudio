@@ -656,6 +656,13 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/SVN KeywordSubstitution", &svnKeywordSubstitution, false, &pseudoDialog->cbKeywordSubstitution);
 	registerOption("Tools/SVN Search Path Depth", &svnSearchPathDepth, 2, &pseudoDialog->sbDirSearchDepth);
 
+#ifdef TERMINAL
+	registerOption("Terminal/ColorScheme", &terminalColorScheme, "Linux", &pseudoDialog->comboBoxTerminalColorScheme);
+	registerOption("Terminal/Font Family", &terminalFontFamily, "", &pseudoDialog->comboBoxTerminalFont);
+	registerOption("Terminal/Font Size", &terminalFontSize, -1, &pseudoDialog->spinBoxTerminalFontSize);
+	registerOption("Terminal/Shell", &terminalShell, "/bin/bash", &pseudoDialog->lineEditTerminalShell);
+#endif
+
 	//interfaces
     int defaultStyle=0;
     if(systemUsesDarkMode()){
@@ -1185,6 +1192,24 @@ QSettings *ConfigManager::readSettings(bool reread)
 		QApplication::setDesktopSettingsAware(false);
 #endif
 	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
+
+#ifdef TERMINAL
+#ifdef Q_OS_WIN32
+	if (terminalFontFamily.isEmpty()) {
+		if (xf.contains("Consolas", Qt::CaseInsensitive)) terminalFontFamily = "Consolas";
+		else if (xf.contains("Courier New", Qt::CaseInsensitive)) terminalFontFamily = "Courier New";
+		else terminalFontFamily->fontFamily = qApp->font().family();
+	}
+	if (terminalFontSize == -1) terminalFontSize = 10;
+#else
+	if (terminalFontFamily.isEmpty()) {
+		if (xf.contains("DejaVu Sans Mono", Qt::CaseInsensitive)) terminalFontFamily = "DejaVu Sans Mono";
+		else if (xf.contains("Lucida Sans Typewriter", Qt::CaseInsensitive)) terminalFontFamily = "Lucida Sans Typewriter";
+		else terminalFontFamily = qApp->font().family();
+	}
+	if (terminalFontSize == -1) terminalFontSize = qApp->font().pointSize();
+#endif
+#endif
 
 	config->endGroup();
 

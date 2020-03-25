@@ -139,9 +139,9 @@ void PreviewWidget::contextMenu(QPoint point)
 	menu.exec(menuParent->mapToGlobal(point));
 }
 
+#ifdef TERMINAL
 TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 {
-#ifdef TERMINAL
 	//setBackgroundRole(QPalette::Base);
 	layout = new QHBoxLayout(this);
 	layout->setSpacing(0);
@@ -149,36 +149,52 @@ TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 	setLayout(layout);
 
 	initQTermWidget();
-#endif
 }
 
 void TerminalWidget::qTermWidgetFinished()
 {
 	// in case the shell closed the widget is reinitiated
-#ifdef TERMINAL
 	delete qTermWidget;
 	initQTermWidget();
-#endif
 }
 
 void TerminalWidget::initQTermWidget()
 {
-#ifdef TERMINAL
-	qTermWidget = new QTermWidget(this);
+	qTermWidget = new QTermWidget(0, this);
+	curShell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+	qTermWidget->setShellProgram(curShell);
 	qTermWidget->setTerminalSizeHint(false);
+	qTermWidget->startShellProgram();
 	layout->addWidget(qTermWidget,0,0);
 	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
-#endif
+	updateSettings(true);
 }
 
 void TerminalWidget::setCurrentFileName(const QString &filename)
 {
-#ifdef TERMINAL
 	QString const &path = filename.left(filename.lastIndexOf('/'));
 	if( qTermWidget->workingDirectory() != path )
 		qTermWidget->changeDir(path);
-#endif
 }
+
+void TerminalWidget::updateSettings(bool noreset)
+{
+	if (!noreset) {
+		QString const &shell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+		if (shell != curShell) {
+			delete qTermWidget;
+			initQTermWidget();
+			return;
+		}
+	}
+
+	QString const &colorScheme = ConfigManagerInterface::getInstance()->getOption("Terminal/ColorScheme").toString();
+	QString const &fontFamily = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Family").toString();
+	int fontSize = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Size").toInt();
+	qTermWidget->setColorScheme(colorScheme);
+	qTermWidget->setTerminalFont( QFont( fontFamily, fontSize ) );
+}
+#endif
 
 OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	TitledPanel(parent),
@@ -307,13 +323,6 @@ void OutputViewWidget::changeEvent(QEvent *event)
 	default:
 		break;
 	}
-}
-
-void OutputViewWidget::setCurrentFileName(const QString &filename)
-{
-#ifdef TERMINAL
-	terminalWidget->setCurrentFileName(filename);
-#endif
 }
 
 
