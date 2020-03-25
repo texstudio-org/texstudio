@@ -54,7 +54,7 @@ void LatexParser::init()
     possibleCommands["tabbing"] = QSet<QString>{"\\<" , "\\>" , "\\=" , "\\+"};
     possibleCommands["normal"] = QSet<QString>{ "\\\\" , "\\_" , "\\-" , "$" , "$$" , "\\$" , "\\#" , "\\{" , "\\}" , "\\S" , "\\'" , "\\`" , "\\^" , "\\=" , "\\." , "\\u" , "\\v" , "\\H" , "\\t" , "\\c" , "\\d" , "\\b" , "\\o" , "\\O" , "\\P" , "\\l" , "\\L" , "\\&" , "\\~" , "\\" , "\\," , "\\%" , "\\\"", "\\," , "\\!" , "\\;" , "\\:"};
     possibleCommands["math"] = QSet<QString>{ "_" , "^" , "\\$" , "\\#" , "\\{" , "\\}" , "\\S" , "\\," , "\\!" , "\\;" , "\\:" , "\\\\" , "\\ " , "\\|"};
-    possibleCommands["%definition"] = QSet<QString>{ "\\newcommand" , "\\renewcommand" , "\\newcommand*" , "\renewcommand*" , "\\providecommand" , "\\newlength" , "\\let"};
+    possibleCommands["%definition"] = QSet<QString>{ "\\newcommand" , "\\renewcommand" , "\\newcommand*" , "\\renewcommand*" , "\\providecommand" , "\\newlength" , "\\let"};
     possibleCommands["%usepackage"] = QSet<QString>{ "\\usepackage" , "\\documentclass" };
     possibleCommands["%graphics"] = QSet<QString>{ "\\includegraphics" };
     possibleCommands["%bibitem"] = QSet<QString>{ "\\bibitem" };
