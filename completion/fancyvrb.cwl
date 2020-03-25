@@ -1,6 +1,7 @@
 # fancyvrb package
 # neeraavi 12 Apr 2007
 # muzimuzhi 15 Mar 2020, fancyvrb v3.5
+# muzimuzhi 25 Mar 2020
 
 #include:keyval
 
@@ -42,8 +43,11 @@
 # saving and restoring verbatim text and envs
 \SaveVerb{name}{verbatimSymbol}#S
 \SaveVerb{name}|%<code%>|
-\SaveVerb[options%kayvals]{name}|%<code%>|
+\SaveVerb[aftersave=%|]{name}|%<code%>|
 \UseVerb{name}
+\UseVerb[options%keyvals]{name}
+\UseVerb*{name}
+\UseVerb*[options%keyvals]{name}
 \begin{SaveVerbatim}{name}#V
 \begin{SaveVerbatim}[options%keyvals]{name}
 \end{SaveVerbatim}
@@ -70,12 +74,13 @@
 \begin{VerbatimOut}{file name}#V
 \end{VerbatimOut}
 
-#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\RecustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\begin{VerbatimOut}
+#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\RecustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\begin{VerbatimOut}
 boxwidth
 baseline=#b,c,t
 commentchar=%<single char%>
 gobble
 formatcom
+formatcom*
 fontfamily
 fontsize
 fontshape
@@ -107,5 +112,4 @@ hfuzz=##L
 samepage#true,false
 codes
 defineactive
-aftersave
 #endkeyvals

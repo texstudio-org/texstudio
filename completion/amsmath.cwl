@@ -100,7 +100,7 @@
 \leftroot{argument}
 \lvert#m
 \lVert#m
-\mod#
+\mod#m
 \mspace{dimen}#m
 \nobreakdash
 \notag#m

@@ -449,9 +449,9 @@
 \textvisiblespace
 \textwidth
 \thanks{text}
-\thicklines
-\thinlines
+\thicklines#*/picture
 \thickspace
+\thinlines#*/picture
 \thispagestyle{empty/plain/headings/myheadings}
 \time
 \tiny
