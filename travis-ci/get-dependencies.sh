@@ -55,7 +55,7 @@ elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 #	print_info "Brewing packages: qt5 poppler"
 #	brew install qt5
 #	brew uninstall poppler
-	brew unlink python@2
+#	brew unlink python@2
     brew uninstall --ignore-dependencies poppler
 	brew install "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
 else
