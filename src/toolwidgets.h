@@ -50,10 +50,12 @@ class TerminalWidget : public QWidget
 
 public:
     explicit TerminalWidget(QWidget *parent = nullptr);
+    ~TerminalWidget();
 	void setCurrentFileName(const QString &filename);
 	void updateSettings(bool noreset=false);
+	bool eventFilter(QObject *watched, QEvent *event);
 
-public slots:
+private slots:
 	void qTermWidgetFinished();
 
 private :
