@@ -30,11 +30,19 @@ QT += \
     LIBS += -lphonon4qt5
     DEFINES += PHONON
 }
+
+PKG_CONFIG_EXE = $$pkgConfigExecutable()
+!isEmpty(PKG_CONFIG_EXE):isEmpty(TERMINAL):
+system($$PKG_CONFIG_EXE --print-provides qtermwidget5):{
+    TERMINAL=1
+    message(Use detected qterminal)
+}
 !isEmpty(TERMINAL){
     LIBS += -lqtermwidget5
     DEFINES += TERMINAL
     message(Use qterminal)
 }
+
 !isEmpty(QJS){
     DEFINES += QJS
     QT += qml
