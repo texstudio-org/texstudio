@@ -147,7 +147,7 @@ TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 	layout->setSpacing(0);
 	layout->setMargin(0);
 	setLayout(layout);
-	this->installEventFilter(this);
+	installEventFilter(this);
 	initQTermWidget();
 }
 
