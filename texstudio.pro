@@ -33,6 +33,7 @@ QT += \
 !isEmpty(TERMINAL){
     LIBS += -lqtermwidget5
     DEFINES += TERMINAL
+    message(Use qterminal)
 }
 !isEmpty(QJS){
     DEFINES += QJS
