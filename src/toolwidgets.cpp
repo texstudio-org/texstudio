@@ -147,8 +147,36 @@ TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 	layout->setSpacing(0);
 	layout->setMargin(0);
 	setLayout(layout);
-
+	installEventFilter(this);
 	initQTermWidget();
+}
+
+TerminalWidget::~TerminalWidget()
+{
+	delete qTermWidget;
+	delete layout;
+}
+
+/*
+ * Overrides QShortcuts snitching these key combos
+ * in case the TerminalWidget has focus.
+ */
+bool TerminalWidget::eventFilter(QObject *watched, QEvent *event)
+{
+	if (event->type() == QEvent::ShortcutOverride) {
+		QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+		if (keyEvent->modifiers().testFlag(Qt::ControlModifier)
+			&& ( (keyEvent->key() == 'C')
+			|| (keyEvent->key() == 'D')
+			|| (keyEvent->key() == 'L')
+			|| (keyEvent->key() == 'X')
+			|| (keyEvent->key() == 'Y')
+			|| (keyEvent->key() == 'V') ) ) {
+			event->accept();
+			return true;
+		}
+	}
+	return QWidget::eventFilter(watched, event);
 }
 
 void TerminalWidget::qTermWidgetFinished()
