@@ -14,7 +14,7 @@ matrix:
   - env: QT=qt5win
     os: linux
     services: docker
-dist: bionic
+dist: xenial
 sudo: required
 branches:
   only:
