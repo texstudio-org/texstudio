@@ -193,7 +193,7 @@ void TerminalWidget::initQTermWidget()
 	qTermWidget->setShellProgram(curShell);
 	qTermWidget->setTerminalSizeHint(false);
 	qTermWidget->startShellProgram();
-	layout->addWidget(qTermWidget,0,0);
+    layout->addWidget(qTermWidget,0);
 	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
 	updateSettings(true);
 }
