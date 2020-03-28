@@ -2,7 +2,7 @@ Source: texstudio
 Section: editors
 Priority: extra
 Maintainer: J. Sundermeyer <jsundermeyer@user.sourceforge.net>
-Build-Depends: debhelper (>= 7.0.50~),qtbase5-dev,qt5-default,qt5-qmake, libqt5svg5-dev,qtscript5-dev,qttools5-dev,libpoppler-qt5-dev, zlib1g-dev, pkg-config, libqtermwidget5-dev
+Build-Depends: debhelper (>= 7.0.50~),qtbase5-dev,qt5-default,qt5-qmake, libqt5svg5-dev,qtscript5-dev,qttools5-dev,libpoppler-qt5-dev, zlib1g-dev, pkg-config, libqtermwidget5-0-dev
 Standards-Version: 3.9.1
 Homepage: texstudio.sf.net
 #Vcs-Git: git://git.debian.org/collab-maint/texstudio.git
