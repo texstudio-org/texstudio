@@ -1,3 +1,43 @@
+#########################################################################################
+# pkgAtLeastVersion(widget_name, widget_version)
+# Custom test that checks if widget_name is installed and at least version widget_version
+#########################################################################################
+defineTest(pkgAtLeastVersion) {
+	# We do not use "pkg-config --atleast-version ..." because there is bug in
+	# Ubuntu 16.04 which causes the command to fail.
+	MOD_LINES = $$system($$pkgConfigExecutable() "--modversion " $$1, lines, exitCode)
+	if (!isEqual(exitCode, 0)) {
+		return (false)
+	}
+	if (isEmpty(MOD_LINES)) {
+		return (false)
+	}
+	MOD_VERSION = $$first(MOD_LINES)
+	# Compare found module version in MOD_VERSION and required version in argument 2
+	# versionAtLeast() is not supported before Qt 5.10, so we have a custom implementation
+	# of this function.
+	MOD_SEGMENTS = $$split(MOD_VERSION, ".")
+	REQ_SEGMENTS = $$split(2, ".")
+	INDEX = 0
+	for(REQ_ITEM, REQ_SEGMENTS) {
+		MOD_ITEM = $$member(MOD_SEGMENTS, $$INDEX)
+		if(isEmpty(MOD_ITEM)) {
+			MOD_ITEM = 0
+		}
+		if (lessThan(MOD_ITEM, $$REQ_ITEM)) {
+			return(false)
+		}
+		if (greaterThan(MOD_ITEM, $$REQ_ITEM)) {
+			return(true)
+		}
+		INDEX = $$num_add($$INDEX, 1)
+	}
+	return(true)
+}
+
+####################
+# Start of main code
+####################
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
@@ -31,9 +71,7 @@ QT += \
     DEFINES += PHONON
 }
 
-PKG_CONFIG_EXE = $$pkgConfigExecutable()
-!isEmpty(PKG_CONFIG_EXE):isEmpty(TERMINAL):
-system($$PKG_CONFIG_EXE --print-provides qtermwidget5):{
+isEmpty(TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
     TERMINAL=1
     message(Use detected qterminal)
 }
