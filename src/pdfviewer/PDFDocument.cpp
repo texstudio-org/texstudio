@@ -539,6 +539,8 @@ PDFWidget::PDFWidget(bool embedded)
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
 	setScaledContents(true);
+	// Mouse tracking must be always enabled because we use the mouseMoveEvent to update the
+	// widget state (e.g. change the cursor image when hovering over links)
 	setMouseTracking(true);
 	grabGesture(Qt::PinchGesture);
 	grabGesture(Qt::TapGesture);
@@ -4200,13 +4202,14 @@ void PDFDocument::setAutoHideToolbars(bool enabled)
 {
 	setToolbarsVisible(!enabled);
 	actionAutoHideToolbars->setChecked(enabled);
-	// since we want to have the MouseMoveEvent down at the pdfWidget (internally e.g. for magnifier) up to
-	// the window (for toolbar hiding) all widgets in between seem to need MouseTracking enabled. Otherwise
-	// they will swallow the move event.
-	QWidget *w = pdfWidget;
-	while (w) {
-		w->setMouseTracking(enabled);
-		w = w->parentWidget();
+	// When autohiding the toolbars we need the mouseMoveEvent of pdfWidget in order to track user activity.
+	// We also enable/disable the mouse-tracking flag of all ancestors of the widget because otherwise the may
+	// swallow the mouseMoveEvent. However we do not change the mouse-tracking flag of the pdfWidget itself
+	// because it must be always enabled (the widget uses mouseMoveEvent to maintain its internal state).
+	if (pdfWidget) {
+		for (QWidget *w = pdfWidget->parentWidget(); w; w = w->parentWidget()) {
+			w->setMouseTracking(enabled);
+		}
 	}
 }
 
