@@ -67,7 +67,7 @@
 \tikzdeclarecoordinatesystem{arg1}#*
 \tikzaliascoordinatesystem{arg1}#*
 
-\usetikzlibrary{%<library list%>%keyvals}
+\usetikzlibrary{library list%keyvals}
 #keyvals:\usetikzlibrary#c
 3d
 angles
