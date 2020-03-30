@@ -3231,6 +3231,7 @@ void PDFDocument::toggleAutoHideToolbars()
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (act) {
 		globalConfig->autoHideToolbars = act->isChecked();
+		reloadSettings();
 	}
 }
 
