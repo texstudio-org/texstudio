@@ -1148,7 +1148,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location filename="../src/configdialog.ui" line="1122"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation>Fechar Elemento aplica-se a uma lista fixada de elementos GUI (não mostrada aqui). O primeiro elemento visível será fechado. Com esta configuração você poderá impedir alguns elementos de serem fechados.</translation>
+        <translation>Fechar Elemento aplica-se a uma lista fixada de elementos GUI (nem todos são mostrados aqui). O primeiro elemento visível será fechado. Com esta configuração você pode impedir que alguns elementos sejam fechados.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1125"/>
