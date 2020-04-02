@@ -428,9 +428,10 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	}
 	if (config.badWordCheck) {
 		for (int w = 0 ; w < words.size(); w++) {
-			if (ld.badWords.contains(words[w]))
+			QString normalized = words[w].toLower();
+			if (ld.badWords.contains(normalized))
 				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_BAD_WORD, tr("Bad word"), QStringList() << "");
-			else if (words[w].length() > 1 && words[w].endsWith('.') && ld.badWords.contains(words[w].left(words[w].length() - 1)))
+			else if (normalized.length() > 1 && normalized.endsWith('.') && ld.badWords.contains(normalized.left(normalized.length() - 1)))
 				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w] - 1, GET_BAD_WORD, tr("Bad word"), QStringList() << "");
 		}
 
