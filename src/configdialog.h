@@ -107,7 +107,6 @@ public:
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 private slots:
-	QListWidgetItem *createIcon(const QString &caption, const QIcon &icon, bool advancedOption = false);
 	void comboBoxWithPathEdited(const QString &newText);
 	void comboBoxWithPathHighlighted(const QString &newText);
 	void browseThesaurus();
@@ -149,6 +148,9 @@ private slots:
 	void revertClicked();
 
 private:
+	enum ContentsType {CONTENTS_BASIC, CONTENTS_ADVANCED, CONTENTS_DISABLED};
+
+	QListWidgetItem *createIcon(const QString &caption, const QIcon &icon, ContentsType contentsType = CONTENTS_BASIC);
 	bool askRiddle();
 	void hideShowAdvancedOptions(QWidget *w, bool on);
 	static bool metaFilterRecurseWidget(const QString &filter, QWidget *widget);

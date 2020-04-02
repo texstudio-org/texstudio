@@ -509,20 +509,28 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Commands"), getRealIcon("config_commands"));
 	createIcon(tr("Build"), getRealIcon("config_quickbuild"));
 	createIcon(tr("Shortcuts"), getRealIcon("config_shortcut"));
-	createIcon(tr("Menus"), getRealIcon("config_latexmenus"), true);
-	createIcon(tr("Toolbars"), getRealIcon("config_toolbars"), true);
-	createIcon(tr("GUI Scaling"), getRealIcon("config_toolbars"), true);
+	createIcon(tr("Menus"), getRealIcon("config_latexmenus"), CONTENTS_ADVANCED);
+	createIcon(tr("Toolbars"), getRealIcon("config_toolbars"), CONTENTS_ADVANCED);
+	createIcon(tr("GUI Scaling"), getRealIcon("config_toolbars"), CONTENTS_ADVANCED);
 	createIcon(tr("Editor"), getRealIcon("config_editor"));
-	createIcon(tr("Adv. Editor"), getRealIcon("config_advancededitor"), true);
+	createIcon(tr("Adv. Editor"), getRealIcon("config_advancededitor"), CONTENTS_ADVANCED);
 	createIcon(tr("Syntax Highlighting"), getRealIcon("config_highlighting"));
 	createIcon(tr("Completion"), getRealIcon("config_completion"));
 	createIcon(tr("Language Checking"), getRealIcon("config_editor"));
 	createIcon(tr("Preview"), getRealIcon("config_preview"));
 	createIcon(tr("Internal PDF Viewer"), getRealIcon("config_preview"));
 	createIcon(tr("SVN"), getRealIcon("config_svn"));
+	createIcon(
+		tr("Terminal"),
+		getRealIcon("config_terminal"),
 #ifdef TERMINAL
-	createIcon(tr("Terminal"), getRealIcon("config_terminal"), true);
+		CONTENTS_ADVANCED
+#else
+		CONTENTS_DISABLED
 #endif
+	);
+
+	Q_ASSERT(ui.pagesWidget->count() == ui.contentsWidget->count());
 
 	connect(ui.contentsWidget,
 	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
@@ -583,7 +591,7 @@ ConfigDialog::~ConfigDialog()
 {
 }
 
-QListWidgetItem *ConfigDialog::createIcon(const QString &caption, const QIcon &icon, bool advancedOption)
+QListWidgetItem *ConfigDialog::createIcon(const QString &caption, const QIcon &icon, ContentsType contentsType)
 {
 	QListWidgetItem *button = new QListWidgetItem(ui.contentsWidget);
 	button->setIcon(icon);
@@ -591,9 +599,9 @@ QListWidgetItem *ConfigDialog::createIcon(const QString &caption, const QIcon &i
 	button->setToolTip(caption);
 	//button->setTextAlignment(Qt::AlignVCenter);
 	button->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-	if (advancedOption) {
-		//button->setHidden(true);
-		button->setData(Qt::UserRole, true);
+	button->setData(Qt::UserRole, contentsType);
+	if (contentsType == CONTENTS_DISABLED) {
+		button->setHidden(true);
 	}
 	return button;
 }
@@ -813,9 +821,13 @@ void ConfigDialog::advancedOptionsToggled(bool on)
 
 	hideShowAdvancedOptions(this, on);
 	ui.contentsWidget->reset();
-	for (int i = 0; i < ui.contentsWidget->count(); i++)
-		if (ui.contentsWidget->item(i)->data(Qt::UserRole).toBool())
-			ui.contentsWidget->item(i)->setHidden(!on);
+	for (int i = 0; i < ui.contentsWidget->count(); i++) {
+		ContentsType contentsType = static_cast<ContentsType>(ui.contentsWidget->item(i)->data(Qt::UserRole).toInt());
+		ui.contentsWidget->item(i)->setHidden(
+			((contentsType == CONTENTS_ADVANCED) && (on == false)) ||
+			(contentsType == CONTENTS_DISABLED)
+		);
+	}
 
 	if (currentPage && !currentPage->isHidden()) {
 		currentPage->setSelected(true);
@@ -926,15 +938,15 @@ void ConfigDialog::metaFilterChanged(const QString &filter)
 	ui.checkBoxShowAdvancedOptions->setEnabled(filter.isEmpty());
 
 	for (int i = 0; i < ui.pagesWidget->count(); i++) {
-		bool shown = metaFilterRecurseLayout(filter, ui.pagesWidget->widget(i)->layout());
-		/*QWidget * page = ui.pagesWidget->widget(i);
-		foreach (QObject* o, page->children()){
-			QWidget* w = qobject_cast<QWidget*>(o);
-			if (w) shown |= metaFilterRecurse(filter,  w);
-		}*/
-		ui.contentsWidget->item(i)->setHidden(!shown);
+		QListWidgetItem *oneItem = ui.contentsWidget->item(i);
+		bool shown =
+			(oneItem->data(Qt::UserRole).toInt() == CONTENTS_DISABLED) ?
+			false :
+			metaFilterRecurseLayout(filter, ui.pagesWidget->widget(i)->layout());
+		oneItem->setHidden(!shown);
 	}
 
+	// If selected page is hidden, select the next visible page.
 	if (currentPage && !currentPage->isHidden()) {
 		currentPage->setSelected(true);
 		ui.contentsWidget->setCurrentItem(currentPage);
