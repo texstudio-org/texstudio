@@ -6468,11 +6468,9 @@ void Texstudio::generalOptions()
         if(oldDarkMode != darkMode){
             // reload other formats
             QSettings *config=configManager.getSettings();
-            config->beginGroup("texmaker");
-            config->beginGroup("formatsDark");
+            config->beginGroup(darkMode ? "formatsDark" : "formats");
             m_formats = new QFormatFactory(darkMode ? ":/qxs/defaultFormatsDark.qxf" : ":/qxs/defaultFormats.qxf", this); //load default formats from resource file
             m_formats->load(*config, true); //load customized formats
-            config->endGroup();
             config->endGroup();
             updateHighlighting=true;
         }
