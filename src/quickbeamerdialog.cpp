@@ -83,9 +83,11 @@ void QuickBeamerDialog::Init()
 	ui.comboBoxTheme->addItem( "Boadilla" );
 	ui.comboBoxTheme->addItem( "CambridgeUS" );
 	ui.comboBoxTheme->addItem( "Copenhagen" );
+	ui.comboBoxTheme->addItem( "Cuerna" );
 	ui.comboBoxTheme->addItem( "Darmstadt" );
 	ui.comboBoxTheme->addItem( "Dresden" );
 	ui.comboBoxTheme->addItem( "EastLansing" );
+	ui.comboBoxTheme->addItem( "focus" );
 	ui.comboBoxTheme->addItem( "Frankfurt" );
 	ui.comboBoxTheme->addItem( "Goettingen" );
 	ui.comboBoxTheme->addItem( "Hannover" );
@@ -95,6 +97,7 @@ void QuickBeamerDialog::Init()
 	ui.comboBoxTheme->addItem( "Madrid" );
 	ui.comboBoxTheme->addItem( "Malmoe" );
 	ui.comboBoxTheme->addItem( "Marburg" );
+	ui.comboBoxTheme->addItem( "metropolis" );
 	ui.comboBoxTheme->addItem( "Montpellier" );
 	ui.comboBoxTheme->addItem( "PaloAlto" );
 	ui.comboBoxTheme->addItem( "Pittsburgh" );
