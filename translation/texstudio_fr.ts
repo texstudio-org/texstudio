@@ -626,7 +626,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Les distributions LaTeX populaires sous Windows sont %1 et %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
@@ -848,7 +848,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Moderne - sombre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -2706,12 +2706,12 @@ Remarque : modifier ce paramètre n&apos;affectera que les documents ouverts ens
         <location filename="../src/configdialog.ui" line="4476"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4527"/>
         <source>Shell:</source>
-        <translation type="unfinished"/>
+        <translation>Interpréteur de commandes (« shell ») :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -4980,7 +4980,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="262"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="269"/>
@@ -7196,7 +7196,9 @@ Remarques :
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation>Taille de la police proportionnelle à celle de l&apos;éditeur.
+
+Remarque : si la taille dépasse celle de la hauteur des lignes, des caractères peuvent être coupés.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>

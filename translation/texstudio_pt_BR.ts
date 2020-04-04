@@ -624,7 +624,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Distribuições populares do LaTeX para Windows são %1 e %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
@@ -846,7 +846,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Moderno - escuro</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -2702,12 +2702,12 @@ Obs.: Esta mudança afetará somente documentos abertos a seguir. </translation>
         <location filename="../src/configdialog.ui" line="4476"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4527"/>
         <source>Shell:</source>
-        <translation type="unfinished"/>
+        <translation>Shell:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -4980,7 +4980,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="262"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="269"/>
@@ -7196,7 +7196,9 @@ Notas:
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation>Tamanho da fonte relativo ao tamanho da fonte do editor.
+
+Nota: Se o tamanho for maior que o espaçamento entre linhas, caracteres poderão ser cortados.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -12516,7 +12518,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>Alphabetical Commands (MetaPost)</source>
-        <translation type="unfinished"/>
+        <translation>Comandos Alfabéticos (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
@@ -12531,7 +12533,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Arcos/Círculos/Elipses (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>

@@ -626,7 +626,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Популярними дистрибутивами LaTeX на ОС Windows є %1 та %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
@@ -848,7 +848,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Сучасна - темна</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -2705,12 +2705,12 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="4476"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Термінал</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4527"/>
         <source>Shell:</source>
-        <translation type="unfinished"/>
+        <translation>Оболонка:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -4984,7 +4984,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="262"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Термінал</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="269"/>
@@ -7201,7 +7201,9 @@ Notes:
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation>Розмір шрифту стосується розміру шрифту редактора.
+
+Примітка: якщо цей розмір більший, ніж відстань між рядками, символи можуть виявитися обрізаними.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -12676,22 +12678,22 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>pullback</source>
-        <translation type="unfinished"/>
+        <translation>коуніверсальний квадрат</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>pushout</source>
-        <translation type="unfinished"/>
+        <translation>універсальний квадрат</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>pullback (universal property)</source>
-        <translation type="unfinished"/>
+        <translation>коуніверсальний квадрат (універсальна властивість)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>pushout (universal property)</source>
-        <translation type="unfinished"/>
+        <translation>універсальний квадрат (універсальна властивість)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
