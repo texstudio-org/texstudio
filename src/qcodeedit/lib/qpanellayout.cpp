@@ -23,10 +23,10 @@
 #include "qpanel.h"
 #include "qeditor.h"
 
-#ifdef Q_OS_WIN32
+//#ifdef Q_OS_WIN32
 // panel position fix required on some systems to work around a bug in QAbstractScrollArea
-#define _PANEL_POSITION_FIX_
-#endif
+#define QCE_PANEL_POSITION_FIX_
+//#endif
 
 /*!
 	\class QPanelLayout
@@ -274,7 +274,7 @@ QLayoutItem* QPanelLayout::takeAt(int idx)
 void QPanelLayout::setGeometry(const QRect &r)
 {
 	//qDebug("laying out %i panels", count());
-	#ifdef _PANEL_POSITION_FIX_
+    #ifdef QCE_PANEL_POSITION_FIX_
 	QScrollBar *vb = m_parent->verticalScrollBar(),
 			*hb = m_parent->horizontalScrollBar();
 	
