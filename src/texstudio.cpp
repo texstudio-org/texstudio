@@ -4195,13 +4195,24 @@ void Texstudio::saveSettings(const QString &configName)
     // separate light/dark highlight formats
     if(darkMode){
         config->beginGroup("formatsDark");
-        QFormatFactory defaultFormats(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
-        m_formats->save(*config, &defaultFormats);
+
+        if(asProfile){
+            // save all color info, don't remove default values
+            m_formats->save(*config, nullptr);
+        }else{
+            QFormatFactory defaultFormats(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
+            m_formats->save(*config, &defaultFormats);
+        }
         config->endGroup();
     }else{
         config->beginGroup("formats");
-        QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
-        m_formats->save(*config, &defaultFormats);
+        if(asProfile){
+            // save all color info, don't remove default values
+            m_formats->save(*config, nullptr);
+        }else{
+            QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+            m_formats->save(*config, &defaultFormats);
+        }
         config->endGroup();
     }
 
