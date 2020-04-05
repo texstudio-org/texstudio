@@ -25,6 +25,7 @@
 #include "dblclickmenubar.h"
 #include "filechooser.h"
 #include "filedialog.h"
+#include "findindirs.h"
 #include "tabdialog.h"
 #include "arraydialog.h"
 #include "bibtexdialog.h"
@@ -281,8 +282,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
-    iconSize = qRound(qMax(16, configManager.guiSecondaryToolbarIconSize)*scale);
-    centralToolBar->setIconSize(QSize(iconSize, iconSize));
+	iconSize = qRound(configManager.guiSecondaryToolbarIconSize*scale);
+	centralToolBar->setIconSize(QSize(iconSize, iconSize));
 
 	editors = new Editors(centralFrame);
 	editors->setFocus();
@@ -589,116 +590,116 @@ void Texstudio::addMacrosAsTagList()
  */
 void Texstudio::setupDockWidgets()
 {
-	//to allow retranslate this function must be able to be called multiple times
+    //to allow retranslate this function must be able to be called multiple times
 
     // adapt icon size to dpi
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
 
-	if (!sidePanel) {
-		sidePanel = new SidePanel(this);
-		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
-		sidePanel->toggleViewAction()->setText(tr("Side Panel"));
-		sidePanel->toggleViewAction()->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
-		addAction(sidePanel->toggleViewAction());
+    if (!sidePanel) {
+        sidePanel = new SidePanel(this);
+        sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
+        sidePanel->toggleViewAction()->setText(tr("Side Panel"));
+        sidePanel->toggleViewAction()->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
+        addAction(sidePanel->toggleViewAction());
 
-		sidePanelSplitter->insertWidget(0, sidePanel);
-		sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
-		sidePanelSplitter->setStretchFactor(1, 1);
-	}
+        sidePanelSplitter->insertWidget(0, sidePanel);
+        sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
+        sidePanelSplitter->setStretchFactor(1, 1);
+    }
 
-	//Structure panel
-	if (!leftPanel) {
-		leftPanel = new CustomWidgetList(this);
-		leftPanel->setObjectName("leftPanel");
-		TitledPanelPage *page = new TitledPanelPage(leftPanel, "leftPanel", "TODO");
-		sidePanel->appendPage(page);
-		if (hiddenLeftPanelWidgets != "") {
-			leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
-			hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
-		}
-		connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
-	}
+    //Structure panel
+    if (!leftPanel) {
+        leftPanel = new CustomWidgetList(this);
+        leftPanel->setObjectName("leftPanel");
+        TitledPanelPage *page = new TitledPanelPage(leftPanel, "leftPanel", "TODO");
+        sidePanel->appendPage(page);
+        if (hiddenLeftPanelWidgets != "") {
+            leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
+            hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
+        }
+        connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
+    }
 
-	if (!structureTreeView) {
-		structureTreeView = new StructureTreeView(editors, documents, configManager, this);
-		structureTreeView->setModel(documents.model);
+    if (!structureTreeView) {
+        structureTreeView = new StructureTreeView(editors, documents, configManager, this);
+        structureTreeView->setModel(documents.model);
 
-		connect(structureTreeView, SIGNAL(requestCloseDocument(LatexDocument*)), this, SLOT(structureContextMenuCloseDocument(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestToggleMasterDocument(LatexDocument*)), this, SLOT(structureContextMenuToggleMasterDocument(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestOpenAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuOpenAllRelatedDocuments(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestCloseAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuCloseAllRelatedDocuments(LatexDocument*)));
-		connect(structureTreeView, SIGNAL(requestGotoLine(LatexDocument*,int,int)), this, SLOT(gotoLine(LatexDocument*,int,int)));
-		connect(structureTreeView, SIGNAL(requestOpenExternalFile(QString)), this, SLOT(openExternalFile(QString)));
-		connect(structureTreeView, SIGNAL(insertText(QString)), this, SLOT(insertText(QString)));
-		connect(structureTreeView, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
-		connect(structureTreeView, SIGNAL(createLabelForStructureEntry(const StructureEntry*)), this, SLOT(createLabelForStructureEntry(const StructureEntry*)));
+        connect(structureTreeView, SIGNAL(requestCloseDocument(LatexDocument*)), this, SLOT(structureContextMenuCloseDocument(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestToggleMasterDocument(LatexDocument*)), this, SLOT(structureContextMenuToggleMasterDocument(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestOpenAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuOpenAllRelatedDocuments(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestCloseAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuCloseAllRelatedDocuments(LatexDocument*)));
+        connect(structureTreeView, SIGNAL(requestGotoLine(LatexDocument*,int,int)), this, SLOT(gotoLine(LatexDocument*,int,int)));
+        connect(structureTreeView, SIGNAL(requestOpenExternalFile(QString)), this, SLOT(openExternalFile(QString)));
+        connect(structureTreeView, SIGNAL(insertText(QString)), this, SLOT(insertText(QString)));
+        connect(structureTreeView, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
+        connect(structureTreeView, SIGNAL(createLabelForStructureEntry(const StructureEntry*)), this, SLOT(createLabelForStructureEntry(const StructureEntry*)));
 
-		//disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
-		connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
+        //disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
+        connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
 
-		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
-	} else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
-	if (!leftPanel->widget("bookmarks")) {
-		QListWidget *bookmarksWidget = bookmarks->widget();
-		connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
-		connect(bookmarks, SIGNAL(gotoLineRequest(int, int, LatexEditorView *)), this, SLOT(gotoLine(int, int, LatexEditorView *)));
-		leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
-	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
+        leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
+    } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
+    if (!leftPanel->widget("bookmarks")) {
+        QListWidget *bookmarksWidget = bookmarks->widget();
+        bookmarks->setDarkMode(darkMode);
+        connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
+        connect(bookmarks, SIGNAL(gotoLineRequest(int, int, LatexEditorView *)), this, SLOT(gotoLine(int, int, LatexEditorView *)));
+        leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
+    } else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 
-	if (!leftPanel->widget("symbols")) {
-		symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
+    if (!leftPanel->widget("symbols")) {
+        symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
-		connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
-		leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
+        connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
+        leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
     } else leftPanel->setWidgetText("symbols", tr("Symbols"));
 
-	addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
-	addTagList("pstricks", getRealIconFile("pstricks"), tr("PSTricks Commands"), "pstricks_tags.xml");
-	addTagList("metapost", getRealIconFile("metapost"), tr("MetaPost Commands"), "metapost_tags.xml");
-	addTagList("tikz", getRealIconFile("tikz"), tr("TikZ Commands"), "tikz_tags.xml");
-	addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
-	addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
-	addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
-
+    addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
+    addTagList("pstricks", getRealIconFile("pstricks"), tr("PSTricks Commands"), "pstricks_tags.xml");
+    addTagList("metapost", getRealIconFile("metapost"), tr("MetaPost Commands"), "metapost_tags.xml");
+    addTagList("tikz", getRealIconFile("tikz"), tr("TikZ Commands"), "tikz_tags.xml");
+    addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
+    addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
+    addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
     addMacrosAsTagList();
 
-	leftPanel->showWidgets();
+    leftPanel->showWidgets();
 
-	// OUTPUT WIDGETS
-	if (!outputView) {
-		outputView = new OutputViewWidget(this);
-		outputView->setObjectName("OutputView");
-		centralVSplitter->addWidget(outputView);
-		outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
-		centralVSplitter->setStretchFactor(1, 0);
-		centralVSplitter->restoreState(configManager.getOption("centralVSplitterState").toByteArray());
+    // OUTPUT WIDGETS
+    if (!outputView) {
+        outputView = new OutputViewWidget(this);
+        outputView->setObjectName("OutputView");
+        centralVSplitter->addWidget(outputView);
+        outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
+        centralVSplitter->setStretchFactor(1, 0);
+        centralVSplitter->restoreState(configManager.getOption("centralVSplitterState").toByteArray());
 
-		connect(outputView->getLogWidget(), SIGNAL(logEntryActivated(int)), this, SLOT(gotoLogEntryEditorOnly(int)));
-		connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
-		connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
-		connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
-		connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument *, int, const SearchQuery *)), this, SLOT(jumpToSearchResult(QDocument *, int, const SearchQuery *)));
-		connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery *)), this, SLOT(runSearch(SearchQuery *)));
+        connect(outputView->getLogWidget(), SIGNAL(logEntryActivated(int)), this, SLOT(gotoLogEntryEditorOnly(int)));
+        connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
+        connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
+        connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
+        connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument *, int, const SearchQuery *)), this, SLOT(jumpToSearchResult(QDocument *, int, const SearchQuery *)));
+        connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery *)), this, SLOT(runSearch(SearchQuery *)));
 
-		connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable(const QString &, const PreviewSource &)));
-		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
+        connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable(const QString &, const PreviewSource &)));
+        connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
         connect(&buildManager, SIGNAL(clearLogs()), SLOT(clearLogs()));
 
-		connect(&buildManager, SIGNAL(beginRunningCommands(QString, bool, bool, bool)), SLOT(beginRunningCommand(QString, bool, bool, bool)));
-		connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
-		connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
-		connect(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), SLOT(endRunningCommand(QString, bool, bool, bool)));
-		connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult *)), SLOT(viewLogOrReRun(LatexCompileResult *)));
-		connect(&buildManager, SIGNAL(runInternalCommand(QString, QFileInfo, QString)), SLOT(runInternalCommand(QString, QFileInfo, QString)));
-		connect(&buildManager, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequested(QString, QString *, bool *)));
+        connect(&buildManager, SIGNAL(beginRunningCommands(QString, bool, bool, bool)), SLOT(beginRunningCommand(QString, bool, bool, bool)));
+        connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
+        connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
+        connect(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), SLOT(endRunningCommand(QString, bool, bool, bool)));
+        connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult *)), SLOT(viewLogOrReRun(LatexCompileResult *)));
+        connect(&buildManager, SIGNAL(runInternalCommand(QString, QFileInfo, QString)), SLOT(runInternalCommand(QString, QFileInfo, QString)));
+        connect(&buildManager, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequested(QString, QString *, bool *)));
 
-		addAction(outputView->toggleViewAction());
-		QAction *temp = new QAction(this);
-		temp->setSeparator(true);
-		addAction(temp);
-	}
-	sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
+        addAction(outputView->toggleViewAction());
+        QAction *temp = new QAction(this);
+        temp->setSeparator(true);
+        addAction(temp);
+    }
+    sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
 }
 
 void Texstudio::updateToolBarMenu(const QString &menuName)
@@ -1521,7 +1522,7 @@ void Texstudio::createStatusBar()
 	statusTbLanguage->setToolTip(tr("Language"));
 	statusTbLanguage->setPopupMode(QToolButton::InstantPopup);
 	statusTbLanguage->setAutoRaise(true);
-	statusTbLanguage->setMinimumWidth(status->fontMetrics().width("OOOOOOO"));
+	statusTbLanguage->setMinimumWidth(UtilsUi::getFmWidth(status->fontMetrics(), "OOOOOOO"));
 	connect(&spellerManager, SIGNAL(dictPathChanged()), this, SLOT(updateAvailableLanguages()));
 	connect(&spellerManager, SIGNAL(defaultSpellerChanged()), this, SLOT(updateAvailableLanguages()));
 	updateAvailableLanguages();
@@ -1534,7 +1535,7 @@ void Texstudio::createStatusBar()
 	statusTbEncoding->setText(tr("Encoding") + "  ");
 	statusTbEncoding->setPopupMode(QToolButton::InstantPopup);
 	statusTbEncoding->setAutoRaise(true);
-	statusTbEncoding->setMinimumWidth(status->fontMetrics().width("OOOOO"));
+	statusTbEncoding->setMinimumWidth(UtilsUi::getFmWidth(status->fontMetrics(), "OOOOO"));
 
 	QSet<int> encodingMibs;
 	foreach (const QString &s, configManager.commonEncodings) {
@@ -1584,7 +1585,7 @@ void Texstudio::createStatusBar()
 
 void Texstudio::updateCaption()
 {
-        if (!currentEditorView()) documents.currentDocument = nullptr;
+	if (!currentEditorView()) documents.currentDocument = nullptr;
 	else {
 		documents.currentDocument = currentEditorView()->document;
 		documents.updateStructure();
@@ -1592,7 +1593,7 @@ void Texstudio::updateCaption()
 	}
 	if (completer && completer->isVisible()) completer->close();
 	QString title;
-	if (!currentEditorView())	{
+	if (!currentEditorView()) {
 		title = TEXSTUDIO;
 	} else {
 		QString file = QDir::toNativeSeparators(getCurrentFileName());
@@ -1635,6 +1636,9 @@ void Texstudio::updateMasterDocumentCaption()
 void Texstudio::currentEditorChanged()
 {
 	updateCaption();
+#ifdef TERMINAL
+	outputView->getTerminalWidget()->setCurrentFileName(getCurrentFileName());
+#endif
 	if (!currentEditorView()) return;
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
@@ -1738,8 +1742,6 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	REQUIRE(m_languages);
 	REQUIRE(edit->codeeditor);
 	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
-
-	//edit->setFormats(m_formats->id("environment"),m_formats->id("referenceMultiple"),m_formats->id("referencePresent"),m_formats->id("referenceMissing"));
 
 	connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
 	connect(edit->editor, SIGNAL(requestClose()), &documents, SLOT(requestedClose()));
@@ -1952,6 +1954,8 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 			existingView->editor->setHidden(false);
 			documents.addDocument(existingView->document, false);
 			editors->addEditor(existingView);
+            if(asProject)
+                editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
 			updateStructure(false, existingView->document, true);
 			existingView->editor->setFocus();
 			updateCaption();
@@ -3067,7 +3071,7 @@ void Texstudio::viewDocumentList()
 	QList<LatexEditorView *> editorList = editors->editors();
 
 	if (configManager.mruDocumentChooser) {
-		qSort(editorList.begin(), editorList.end(), mruEditorViewLessThan);
+		std::sort(editorList.begin(), editorList.end(), mruEditorViewLessThan);
 		if (editorList.size() > 1)
 			if (editorList.first() == currentEditorView())
 				curIndex = 1;
@@ -3198,11 +3202,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     recheckLabels = false; // impede label rechecking on hidden docs
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
-#ifndef QT_NO_DEBUG
-    QTime tm;
-    tm.start();
-    qDebug()<<"start";
-#endif
+
     QStringList missingFiles;
     for (int i = 0; i < s.files().size(); i++) {
         FileInSession f = s.files().at(i);
@@ -3261,9 +3261,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     if (warnMissing && !missingFiles.isEmpty()) {
         UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
     }
-#ifndef QT_NO_DEBUG
-    qDebug()<<"finished:"<<tm.elapsed();
-#endif
 }
 
 Session Texstudio::getCurrentSession()
@@ -3937,153 +3934,175 @@ void Texstudio::editTextToTitlecaseSmart()
 void Texstudio::editFind()
 {
 #ifndef NO_POPPLER_PREVIEW
-	QWidget *w = QApplication::focusWidget();
-	while (w && !qobject_cast<PDFDocument *>(w))
-		w = w->parentWidget();
+    QWidget *w = QApplication::focusWidget();
+    while (w && !qobject_cast<PDFDocument *>(w))
+        w = w->parentWidget();
 
-	if (qobject_cast<PDFDocument *>(w)) {
-		PDFDocument *focusedPdf = qobject_cast<PDFDocument *>(w);
-		if (focusedPdf->embeddedMode) {
-			focusedPdf->search();
-			return;
-		}
-	}
+    if (qobject_cast<PDFDocument *>(w)) {
+        PDFDocument *focusedPdf = qobject_cast<PDFDocument *>(w);
+        if (focusedPdf->embeddedMode) {
+            focusedPdf->search();
+            return;
+        }
+    }
 #endif
-	if (!currentEditor()) return;
-	currentEditor()->find();
+    if (!currentEditor()) return;
+    currentEditor()->find();
 }
 
 /////////////// CONFIG ////////////////////
 void Texstudio::readSettings(bool reread)
 {
-	QuickDocumentDialog::registerOptions(configManager);
-	QuickBeamerDialog::registerOptions(configManager);
-	buildManager.registerOptions(configManager);
-	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
-	configManager.registerOption("PDFSplitter", &pdfSplitterRel, 0.5);
+    QuickDocumentDialog::registerOptions(configManager);
+    QuickBeamerDialog::registerOptions(configManager);
+    buildManager.registerOptions(configManager);
+    configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
+    configManager.registerOption("PDFSplitter", &pdfSplitterRel, 0.5);
 
-	configManager.buildManager = &buildManager;
-	scriptengine::buildManager = &buildManager;
-	scriptengine::app = this;
-	QSettings *config = configManager.readSettings(reread);
-	completionBaseCommandsUpdated = true;
+    configManager.buildManager = &buildManager;
+    scriptengine::buildManager = &buildManager;
+    scriptengine::app = this;
+    QSettings *config = configManager.readSettings(reread);
+    completionBaseCommandsUpdated = true;
 
-	config->beginGroup("texmaker");
+    config->beginGroup("texmaker");
 
-	QRect screen = QApplication::desktop()->availableGeometry();
-	int w = config->value("Geometries/MainwindowWidth", screen.width() - 100).toInt();
-	int h = config->value("Geometries/MainwindowHeight", screen.height() - 100).toInt() ;
-	int x = config->value("Geometries/MainwindowX", screen.x() + 10).toInt();
-	int y = config->value("Geometries/MainwindowY", screen.y() + 10).toInt() ;
-	int screenNumber = QApplication::desktop()->screenNumber(QPoint(x, y));
-	screen = QApplication::desktop()->availableGeometry(screenNumber);
-	if (!screen.contains(x, y)) {
-		// top left is not on screen
-		x = screen.x() + 10;
-		y = screen.y() + 10;
-		if (x + w > screen.right()) w = screen.width() - 100;
-		if (y + h > screen.height()) h = screen.height() - 100;
-	}
-	resize(w, h);
-	move(x, y);
-	windowstate = config->value("MainWindowState").toByteArray();
-	stateFullScreen = config->value("MainWindowFullssscreenState").toByteArray();
-	tobemaximized = config->value("MainWindow/Maximized", false).toBool();
-	tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
+    QRect screen = QGuiApplication::primaryScreen()->availableGeometry();
+    int w = config->value("Geometries/MainwindowWidth", screen.width() - 100).toInt();
+    int h = config->value("Geometries/MainwindowHeight", screen.height() - 100).toInt() ;
+    int x = config->value("Geometries/MainwindowX", screen.x() + 10).toInt();
+    int y = config->value("Geometries/MainwindowY", screen.y() + 10).toInt() ;
+    screen = UtilsUi::getAvailableGeometryAt(QPoint(x, y));
+    if (!screen.contains(x, y)) {
+        // top left is not on screen
+        x = screen.x() + 10;
+        y = screen.y() + 10;
+        if (x + w > screen.right()) w = screen.width() - 100;
+        if (y + h > screen.height()) h = screen.height() - 100;
+    }
+    resize(w, h);
+    move(x, y);
+    windowstate = config->value("MainWindowState").toByteArray();
+    stateFullScreen = config->value("MainWindowFullssscreenState").toByteArray();
+    tobemaximized = config->value("MainWindow/Maximized", false).toBool();
+    tobefullscreen = config->value("MainWindow/FullScreen", false).toBool();
 
-	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
+    //dark mode menu
+    if(darkMode && configManager.useTexmakerPalette){
+        QString ownStyle;
+        ownStyle="QMenuBar {background: #404040 }";
+        ownStyle+="QMenuBar::item { background: transparent;}";
+        ownStyle+="QMenuBar::item:selected { background: #808080;}";
+        ownStyle+="QMenuBar::item:pressed { background: #888888; }";
+        ownStyle+="QCheckBox::indicator:unchecked { background: #404040; }";
+        ownStyle+="QTableView::indicator:unchecked { background-color: #404040 }";
+        ownStyle+="QListView::indicator:unchecked { background-color: #404040 }";
+        ownStyle+="QTabBar::tab {background-color: #404040 }";
+        ownStyle+="QTabBar::tab:selected {background-color: #606060 }";
+        setStyleSheet(ownStyle);
+    }
 
-	spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
-	spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
-	spellerManager.setDefaultSpeller(configManager.spellLanguage);
+    documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
 
-	ThesaurusDialog::setUserPath(configManager.configFileNameBase);
-	ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
+    spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
+    spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
+    spellerManager.setDefaultSpeller(configManager.spellLanguage);
 
-	symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
-	                                      config->value("Symbols/FavoriteIDs").toStringList());
-	hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
+    ThesaurusDialog::setUserPath(configManager.configFileNameBase);
+    ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 
-	configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
-	configManager.editorAvailableOperations = QEditor::getAvailableOperations();
-	if (config->value("Editor/Use Tab for Move to Placeholder", false).toBool()) {
-		//import deprecated option
-		QEditor::addEditOperation(QEditor::NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
-		QEditor::addEditOperation(QEditor::PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
-		QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
-		QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
-	};
-	// import and remove old key mapping
-	{
-		config->beginGroup("Editor Key Mapping");
-		QStringList sl = config->childKeys();
-		if (!sl.empty()) {
-			foreach (const QString &key, sl) {
-				int k = key.toInt();
-				if (k == 0) continue;
-				int operationID = config->value(key).toInt();
-				QString defaultKey = configManager.editorKeys.key(operationID);
-				if (!defaultKey.isNull()) {
-					configManager.editorKeys.remove(defaultKey);
-				}
-				configManager.editorKeys.insert(QKeySequence(k).toString(), config->value(key).toInt());
-			}
-			QEditor::setEditOperations(configManager.editorKeys);
-			config->remove("");
-		}
-		config->endGroup();
-	}
-	config->beginGroup("Editor Key Mapping New");
-	QStringList sl = config->childKeys();
-	QSet<int>manipulatedOps;
-	if (!sl.empty()) {
-		foreach (const QString &key, sl) {
-			if (key.isEmpty()) continue;
-			int operationID = config->value(key).toInt();
-			if (key.startsWith("#")) {
-				// remove predefined key
-				QString realKey = key.mid(1);
-				if (configManager.editorKeys.value(realKey) == operationID) {
-					configManager.editorKeys.remove(realKey);
-				}
-			} else {
-				/*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
-				    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
-				    if (!defaultKeys.isEmpty()) {
-				        foreach(const QString elem,defaultKeys){
-				            configManager.editorKeys.remove(elem);
-				        }
-				        manipulatedOps.insert(operationID);
-				    }
-				}*/
-				// replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
-				configManager.editorKeys.insert(key, operationID);
-			}
-		}
-		QEditor::setEditOperations(configManager.editorKeys);
-	}
-	config->endGroup();
-	config->endGroup();
+    symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
+                                          config->value("Symbols/FavoriteIDs").toStringList());
+    symbolListModel->setDarkmode(darkMode);
+    hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
 
-	config->beginGroup("formats");
-	m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
-	if (config->contains("data/styleHint/bold")) {
-		//rename data/styleHint/* => data/wordRepetition/*
-		config->beginGroup("data");
-		config->beginGroup("styleHint");
-		QStringList temp = config->childKeys();
-		config->endGroup();
-		foreach (const QString & s, temp) config->setValue("wordRepetition/" + s, config->value("styleHint/" + s));
-		config->remove("styleHint");
-		config->endGroup();
-	}
+    configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
+    configManager.editorAvailableOperations = QEditor::getAvailableOperations();
+    if (config->value("Editor/Use Tab for Move to Placeholder", false).toBool()) {
+        //import deprecated option
+        QEditor::addEditOperation(QEditor::NextPlaceHolder, Qt::ControlModifier, Qt::Key_Tab);
+        QEditor::addEditOperation(QEditor::PreviousPlaceHolder, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Backtab);
+        QEditor::addEditOperation(QEditor::CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
+        QEditor::addEditOperation(QEditor::CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
+    }
+    // import and remove old key mapping
+    {
+        config->beginGroup("Editor Key Mapping");
+        QStringList sl = config->childKeys();
+        if (!sl.empty()) {
+            foreach (const QString &key, sl) {
+                int k = key.toInt();
+                if (k == 0) continue;
+                int operationID = config->value(key).toInt();
+                QString defaultKey = configManager.editorKeys.key(operationID);
+                if (!defaultKey.isNull()) {
+                    configManager.editorKeys.remove(defaultKey);
+                }
+                configManager.editorKeys.insert(QKeySequence(k).toString(), config->value(key).toInt());
+            }
+            QEditor::setEditOperations(configManager.editorKeys);
+            config->remove("");
+        }
+        config->endGroup();
+    }
+    config->beginGroup("Editor Key Mapping New");
+    QStringList sl = config->childKeys();
+    QSet<int>manipulatedOps;
+    if (!sl.empty()) {
+        foreach (const QString &key, sl) {
+            if (key.isEmpty()) continue;
+            int operationID = config->value(key).toInt();
+            if (key.startsWith("#")) {
+                // remove predefined key
+                QString realKey = key.mid(1);
+                if (configManager.editorKeys.value(realKey) == operationID) {
+                    configManager.editorKeys.remove(realKey);
+                }
+            } else {
+                /*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                                    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
+                                    if (!defaultKeys.isEmpty()) {
+                                        foreach(const QString elem,defaultKeys){
+                                            configManager.editorKeys.remove(elem);
+                                        }
+                                        manipulatedOps.insert(operationID);
+                                    }
+                                }*/
+                // replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
+                configManager.editorKeys.insert(key, operationID);
+            }
+        }
+        QEditor::setEditOperations(configManager.editorKeys);
+    }
+    config->endGroup();
+    config->endGroup();
 
-	m_formats->load(*config, true); //load customized formats
-	config->endGroup();
+    if(darkMode){
+        config->beginGroup("formatsDark");
+        m_formats = new QFormatFactory(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
+        m_formats->load(*config, true); //load customized formats
+        config->endGroup();
+    }else{
+        config->beginGroup("formats");
+        m_formats = new QFormatFactory(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+        if (config->contains("data/styleHint/bold")) {
+            //rename data/styleHint/* => data/wordRepetition/*
+            config->beginGroup("data");
+            config->beginGroup("styleHint");
+            QStringList temp = config->childKeys();
+            config->endGroup();
+            foreach (const QString & s, temp) config->setValue("wordRepetition/" + s, config->value("styleHint/" + s));
+            config->remove("styleHint");
+            config->endGroup();
+        }
 
-	documents.settingsRead();
+        m_formats->load(*config, true); //load customized formats
+        config->endGroup();
+    }
 
-	configManager.editorConfig->settingsChanged();
+    documents.settingsRead();
+
+    configManager.editorConfig->settingsChanged();
 }
 
 void Texstudio::saveSettings(const QString &configName)
@@ -4172,10 +4191,29 @@ void Texstudio::saveSettings(const QString &configName)
 
 	config->endGroup();
 
-	config->beginGroup("formats");
-	QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
-	m_formats->save(*config, &defaultFormats);
-	config->endGroup();
+    // separate light/dark highlight formats
+    if(darkMode){
+        config->beginGroup("formatsDark");
+
+        if(asProfile){
+            // save all color info, don't remove default values
+            m_formats->save(*config, nullptr);
+        }else{
+            QFormatFactory defaultFormats(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
+            m_formats->save(*config, &defaultFormats);
+        }
+        config->endGroup();
+    }else{
+        config->beginGroup("formats");
+        if(asProfile){
+            // save all color info, don't remove default values
+            m_formats->save(*config, nullptr);
+        }else{
+            QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+            m_formats->save(*config, &defaultFormats);
+        }
+        config->endGroup();
+    }
 
 	searchResultWidget()->saveConfig();
 
@@ -5548,7 +5586,7 @@ void Texstudio::changeEditorSpeller()
 	if (!action) return;
 	if (!currentEditorView()) return;
 
-	if (!currentEditorView()->setSpeller(action->data().toString())) {
+    if (!currentEditorView()->setSpeller(action->data().toString(),true)) {
 		// restore activity of previous action
 		foreach (QAction *act, statusTbLanguage->actions()) {
 			if (act->data().toString() == currentEditorView()->getSpeller()) {
@@ -5779,7 +5817,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 #endif
 
 #else
-    UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
+	Q_UNUSED(master)
+	Q_UNUSED(options)
+	UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
 #endif
 
 }
@@ -5863,10 +5903,11 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 QDateTime Texstudio::GetBblLastModified(void)
 {
 	QFileInfo compileFile (documents.getTemporaryCompileFileName());
-	QStringList searchPaths;
-	searchPaths << compileFile.absolutePath();
-	searchPaths << splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths));
-	QString bblPathname = buildManager.findFile(compileFile.completeBaseName() + ".bbl", searchPaths, true);
+	QString compileDir(compileFile.absolutePath());
+	FindInDirs findInDirs(true, false, compileDir);
+	findInDirs.loadDirs(compileDir);
+	findInDirs.loadDirs(BuildManager::resolvePaths(buildManager.additionalLogPaths));
+	QString bblPathname = findInDirs.findAbsolute(compileFile.completeBaseName() + ".bbl");
 	if (bblPathname == "") {
 		return QDateTime();
 	}
@@ -6123,10 +6164,14 @@ bool Texstudio::logExists()
 	QString finame = documents.getTemporaryCompileFileName();
 	if (finame == "")
 		return false;
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)), true);
-	QFileInfo fic(logFileName);
-	if (fic.exists() && fic.isReadable()) return true;
-	else return false;
+	QString logPathname(getAbsoluteFilePath(documents.getLogFileName()));
+	FindInDirs findInDirs(
+		true,
+		true,
+		QFileInfo(logPathname).absolutePath(),
+		BuildManager::resolvePaths(buildManager.additionalLogPaths)
+	);
+	return findInDirs.findAbsolute(logPathname) != "";
 }
 
 bool Texstudio::loadLog()
@@ -6138,9 +6183,23 @@ bool Texstudio::loadLog()
 		QMessageBox::warning(this, tr("Error"), tr("File must be saved and compiling before you can view the log"));
 		return false;
 	}
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)), true);
+	QString logPathname(getAbsoluteFilePath(documents.getLogFileName()));
+	FindInDirs findInDirs(
+		true,
+		true,
+		QFileInfo(logPathname).absolutePath(),
+		BuildManager::resolvePaths(buildManager.additionalLogPaths)
+	);
+	QString foundPathname = findInDirs.findAbsolute(logPathname);
+	if (foundPathname == "") {
+		return false;
+	}
 	QTextCodec * codec = QTextCodec::codecForName(configManager.logFileEncoding.toLatin1());
-	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName, codec ? codec : documents.getCurrentDocument()->codec() );
+	return outputView->getLogWidget()->loadLogFile(
+		foundPathname,
+		compileFileName,
+		codec ? codec : documents.getCurrentDocument()->codec()
+	);
 }
 
 void Texstudio::showLog()
@@ -6342,8 +6401,8 @@ void Texstudio::helpAbout()
 
 void Texstudio::generalOptions()
 {
-	QMap<QString, QVariant> oldCustomEnvironments = configManager.customEnvironments;
-	bool oldModernStyle = modernStyle;
+    bool oldDarkMode = darkMode;
+    int oldModernStyle = modernStyle;
 	bool oldSystemTheme = useSystemTheme;
 	int oldReplaceQuotes = configManager.replaceQuotes;
 	autosaveTimer.stop();
@@ -6399,6 +6458,7 @@ void Texstudio::generalOptions()
 		if (configManager.autoDetectEncodingFromChars)
 			QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
+        symbolListModel->setDarkmode(darkMode);
 
 		ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 		if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);
@@ -6415,6 +6475,15 @@ void Texstudio::generalOptions()
 		updateHighlighting |= (inlineSyntaxChecking != configManager.editorConfig->inlineSyntaxChecking);
 		updateHighlighting |= (realtimeChecking != configManager.editorConfig->realtimeChecking);
 		updateHighlighting |= (additionalBibPaths != configManager.additionalBibPaths);
+        if(oldDarkMode != darkMode){
+            // reload other formats
+            QSettings *config=configManager.getSettings();
+            config->beginGroup(darkMode ? "formatsDark" : "formats");
+            m_formats = new QFormatFactory(darkMode ? ":/qxs/defaultFormatsDark.qxf" : ":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+            m_formats->load(*config, true); //load customized formats
+            config->endGroup();
+            updateHighlighting=true;
+        }
 		// check for change in load completion files
 		QStringList newLoadedFiles = configManager.completerConfig->getLoadedFiles();
 		foreach (const QString &elem, newLoadedFiles) {
@@ -6466,11 +6535,6 @@ void Texstudio::generalOptions()
 		changeSymbolGridIconSize(configManager.guiSymbolGridIconSize, false);
 		//custom toolbar
 		setupToolBars();
-		// custom evironments
-		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
-		if (customEnvironmentChanged) {
-			updateTexQNFA();
-		}
 		//completion
 		completionBaseCommandsUpdated = true;
 		completerNeedsUpdate();
@@ -6501,13 +6565,16 @@ void Texstudio::generalOptions()
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
 #ifndef NO_POPPLER_PREVIEW
-	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
-		viewer->reloadSettings();
-	}
-    if(pdfviewerWindow){
-        pdfviewerWindow->close();
-        delete pdfviewerWindow;
-    }
+        foreach (PDFDocument *viewer, PDFDocument::documentList()) {
+            viewer->reloadSettings();
+        }
+        if(pdfviewerWindow){
+            pdfviewerWindow->close();
+            delete pdfviewerWindow;
+        }
+#endif
+#ifdef TERMINAL
+	outputView->getTerminalWidget()->updateSettings();
 #endif
 }
 
@@ -7099,9 +7166,9 @@ void Texstudio::pdfClosed()
 }
 
 
+#ifndef NO_POPPLER_PREVIEW
 QObject *Texstudio::newPdfPreviewer(bool embedded)
 {
-#ifndef NO_POPPLER_PREVIEW
 	PDFDocument *pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, embedded);
 	pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiSecondaryToolbarIconSize : configManager.guiToolbarIconSize);
 	if (embedded) {
@@ -7142,10 +7209,8 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
 		connect(pdfviewerWindow, SIGNAL(syncView(QString, QFileInfo, int)), doc, SLOT(syncFromView(QString, QFileInfo, int)));
 	}
 	return pdfviewerWindow;
-#else
-	return 0;
-#endif
 }
+#endif
 
 void Texstudio::masterDocumentChanged(LatexDocument *doc)
 {
@@ -7333,7 +7398,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 	// collect user commands and references
 	QSet<QString> collected_labels;
     foreach (const LatexDocument *doc, docs) {
-		collected_labels.unite(doc->labelItems().toSet());
+        collected_labels.unite(convertStringListtoSet(doc->labelItems()));
 		foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
 			QString temp = refCommand + "{%1}";
 			foreach (const QString &l, doc->labelItems())
@@ -7360,7 +7425,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 		}
 		//handle bibitem definitions
 		foreach (const LatexDocument *doc, docs) {
-			bibIds.unite(doc->bibItems().toSet());
+            bibIds.unite(convertStringListtoSet(doc->bibItems()));
 		}
 		//automatic use of cite commands
 		QStringList citationCommands;
@@ -7377,7 +7442,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 			//temp=citeCommand.replace("%<bibid%>","@");
 			//words.insert(temp);
 		}
-		completer->setAdditionalWords(citationCommands.toSet(), CT_CITATIONCOMMANDS);
+        completer->setAdditionalWords(convertStringListtoSet(citationCommands), CT_CITATIONCOMMANDS);
 		completer->setAdditionalWords(bibIds, CT_CITATIONS);
 	}
 
@@ -7959,7 +8024,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		else
 			p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 
-		QRect screen = QApplication::desktop()->screenGeometry();
+		QRect screen = QGuiApplication::primaryScreen()->geometry();
 		int w = pixmap.width();
 		if (w > screen.width()) w = screen.width() - 2;
 		if (!fromPDF) {
@@ -8074,7 +8139,7 @@ void Texstudio::showImgPreview(const QString &fname)
 		p = currentEditorView()->getHoverPosistion();
 		//else
 		//    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-		QRect screen = QApplication::desktop()->screenGeometry();
+		QRect screen = QGuiApplication::primaryScreen()->geometry();
 		QPixmap img(imageName);
 		int w = qMin(img.width(), configManager.editorConfig->maxImageTooltipWidth);
 		w = qMin(w, screen.width() - 8);
@@ -8111,7 +8176,7 @@ void Texstudio::showImgPreviewFinished(const QPixmap &pm, int page)
 	p = currentEditorView()->getHoverPosistion();
 	//else
 	//    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
-	QRect screen = QApplication::desktop()->screenGeometry();
+	QRect screen = QGuiApplication::primaryScreen()->geometry();
 	int w = pm.width();
 	if (w > screen.width()) w = screen.width() - 2;
 	QString text;
@@ -8413,6 +8478,9 @@ void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 			}
 		}
 	}
+#else
+	Q_UNUSED(cur)
+	Q_UNUSED(inForeground)
 #endif
 }
 
@@ -8706,7 +8774,7 @@ void Texstudio::showOldRevisions()
 	cmbLog = new QComboBox(svndlg);
 	cmbLog->insertItems(0, log);
 	lay->addWidget(cmbLog);
-	connect(svndlg, SIGNAL(finished(int)), this, SLOT(svnDialogClosed()));
+	connect(svndlg, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(svnDialogClosed()));
 	connect(cmbLog, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeToRevision(QString)));
 	connect(currentEditor(), SIGNAL(textEdited(QKeyEvent *)), svndlg, SLOT(close()));
 	currentEditor()->setProperty("Revision", log.first());
@@ -9045,7 +9113,7 @@ void Texstudio::loadProfile()
 				config->setValue(key, profile->value(key));
 			}
 			// handle macros
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < ConfigManager::MAX_NUM_MACROS; i++) {
 			    QStringList ls = profile->value(QString("texmaker/Macros/%1").arg(i)).toStringList();
 			    if (ls.isEmpty()) break;
 			    if (!macro) { //remove old values
@@ -9393,7 +9461,7 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 {
 	QKeySequence seq = QKeySequence::fromString(shortcut, QKeySequence::PortableText);
 	if (seq.count() > 0) {
-	        int key = seq[0] & ~Qt::KeyboardModifierMask;
+        int key = seq[0] & ~Qt::KeyboardModifierMask;
 		Qt::KeyboardModifiers modifiers = static_cast<Qt::KeyboardModifiers>(seq[0]) & Qt::KeyboardModifierMask;
 		// TODO: we could additionally provide the text for the KeyEvent (necessary for actually typing characters
 		QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, key, modifiers);
@@ -9843,7 +9911,7 @@ void Texstudio::recoverFromCrash()
 				backtraceFilename = print_backtrace(name);
 				exit(1);
 			}
-		};
+        }
 		ThreadBreaker::forceTerminate();
 		return;
 	}
@@ -9854,8 +9922,8 @@ void Texstudio::recoverFromCrash()
 
 	if (nestedCrashes > 5) {
 		qFatal("Forced kill after recovering failed after: %s\n", qPrintable(name));
-		exit(1);
-	}
+        exit(1);
+    }
 
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 
@@ -9901,7 +9969,7 @@ void Texstudio::recoverFromCrash()
 	mb->show();
 	QApplication::processEvents(QEventLoop::AllEvents);
 	mb->setFocus(); //without it, raise doesn't work. If it is in the loop (outside time checking if), the buttons can't be clicked on (windows)
-	QTime t;
+    QElapsedTimer t;
 	t.start();
 	while (mb->isVisible()) {
 		QApplication::processEvents(QEventLoop::AllEvents);
@@ -9929,8 +9997,8 @@ void Texstudio::recoverFromCrash()
 	//fprintf(stderr, "result: %i, accept: %i, yes: %i, reject: %i, dest: %i\n",mb->result(),QMessageBox::AcceptRole,QMessageBox::YesRole,QMessageBox::RejectRole,QMessageBox::DestructiveRole);
 	if (mb->result() == QMessageBox::DestructiveRole || (!wasLoop && mb->result() == QMessageBox::RejectRole)) {
 		qFatal("Killed on user request after error: %s\n", qPrintable(name));
-		exit(1);
-	}
+        exit(1);
+    }
 	if (wasLoop && mb->result() == QMessageBox::RejectRole) {
 		delete mb;
 		Guardian::continueEndlessLoop();
@@ -10077,7 +10145,7 @@ void Texstudio::checkCWLs()
 	foreach (LatexDocument *doc, docs) {
 		const QSet<QString> &cwl = doc->getCWLFiles();
 		cwls.unite(cwl);
-		res << doc->getFileName() + ": " + QStringList(cwl.toList()).join(", ");
+        res << doc->getFileName() + ": " + QStringList(cwl.values()).join(", ");
 		QList<CodeSnippet> users = doc->userCommandList();
 		if (!users.isEmpty()) {
 			QString line = QString("\t%1 user commands: ").arg(users.size());
@@ -10085,7 +10153,7 @@ void Texstudio::checkCWLs()
 			res << line;
 		}
 	}
-	cwls.unite(configManager.completerConfig->getLoadedFiles().toSet());
+    cwls.unite(convertStringListtoSet(configManager.completerConfig->getLoadedFiles()));
 	res << "global: " << configManager.completerConfig->getLoadedFiles().join(", ");
 
 	res << "" << "";
@@ -10100,7 +10168,7 @@ void Texstudio::checkCWLs()
 
 		res << "\tpossible commands";
 		foreach (const QString &key, package.possibleCommands.keys())
-			res << QString("\t\t%1: %2").arg(key).arg(QStringList(package.possibleCommands.value(key).toList()).join(", "));
+            res << QString("\t\t%1: %2").arg(key).arg(QStringList(package.possibleCommands.value(key).values()).join(", "));
 		res << "\tspecial def commands";
 		foreach (const QString &key, package.specialDefCommands.keys())
 			res << QString("\t\t%1: %2").arg(key).arg(package.specialDefCommands.value(key));
@@ -10112,7 +10180,7 @@ void Texstudio::checkCWLs()
 			line.chop(2);
 			res << line;
 		}
-		res << QString("\toption Commands: %1").arg(QStringList(package.optionCommands.toList()).join(", "));
+        res << QString("\toption Commands: %1").arg(QStringList(package.optionCommands.values()).join(", "));
 		QString line = QString("\tkinds: ");
 		foreach (const QString &key, package.commandDescriptions.keys()) {
 			const CommandDescription &cmd = package.commandDescriptions.value(key);
@@ -10149,10 +10217,10 @@ void Texstudio::checkLanguageTool()
 
     // where is pdflatex located
 #ifdef Q_OS_WIN
-    runCommand("where " + cmd, &buffer);
+    runCommand("where " + quoteSpaces(cmd), &buffer);
     result = "where java: " + buffer + "\n\n";
 #else
-    runCommand("which " + cmd, &buffer);
+    runCommand("which " + quoteSpaces(cmd), &buffer);
     result = "which java: " + buffer + "\n\n";
 #endif
     buffer.clear();
@@ -10206,6 +10274,7 @@ void Texstudio::checkLanguageTool()
         break;
     case GrammarCheck::LTS_Error:
         result +=tr("error");
+        result +="\n"+grammarCheck->getLastErrorMessage();
         break;
     case GrammarCheck::LTS_Unknown:
         result +=tr("unknown");
@@ -10248,6 +10317,9 @@ void Texstudio::openInternalDocViewer(QString package, const QString command)
 		if (!command.isEmpty())
 			pdf->search(command, false, false, false, false, false);
 	}
+#else
+	Q_UNUSED(package)
+	Q_UNUSED(command)
 #endif
 }
 /*!
@@ -10381,6 +10453,8 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 		enlargedViewer=false;
 	}
 	viewer->setStateEnlarged(false);
+#else
+	Q_UNUSED(preserveConfig)
 #endif
 }
 

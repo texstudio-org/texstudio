@@ -38,7 +38,7 @@ class QCE_EXPORT QStatusPanel : public QPanel
 	public:
 		Q_PANEL(QStatusPanel, "Status Panel")
 		
-		QStatusPanel(QWidget *p = 0);
+        QStatusPanel(QWidget *p = nullptr);
 		virtual ~QStatusPanel();
 		
 		virtual QString type() const;

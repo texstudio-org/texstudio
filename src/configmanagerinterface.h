@@ -1,6 +1,8 @@
 #ifndef CONFIGMANAGERINTERFACE_H
 #define CONFIGMANAGERINTERFACE_H
 
+#include "mostQtHeaders.h"
+
 
 typedef QMap<QString, QString> StringStringMap;
 
@@ -87,7 +89,7 @@ public:
 	//If the object representation changes => (If fullsync => the option and all linked objects are changed
 	//                                         If !fullsync => the option is changed to the value of the majority of the objects)
 	//Setting a link changes the object value to the current option value
-    virtual void linkOptionToObject(const void *optionStorage, QObject *widget, LinkOptions options = nullptr) = 0;
+    virtual void linkOptionToObject(const void *optionStorage, QObject *widget, LinkOptions options = LO_NONE) = 0;
 
 	virtual void updateAllLinkedObjects(const void *optionStorage) = 0;
 

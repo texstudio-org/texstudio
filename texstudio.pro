@@ -1,3 +1,43 @@
+#########################################################################################
+# pkgAtLeastVersion(widget_name, widget_version)
+# Custom test that checks if widget_name is installed and at least version widget_version
+#########################################################################################
+defineTest(pkgAtLeastVersion) {
+	# We do not use "pkg-config --atleast-version ..." because there is bug in
+	# Ubuntu 16.04 which causes the command to fail.
+	MOD_LINES = $$system($$pkgConfigExecutable() "--modversion " $$1, lines, exitCode)
+	if (!isEqual(exitCode, 0)) {
+		return (false)
+	}
+	if (isEmpty(MOD_LINES)) {
+		return (false)
+	}
+	MOD_VERSION = $$first(MOD_LINES)
+	# Compare found module version in MOD_VERSION and required version in argument 2
+	# versionAtLeast() is not supported before Qt 5.10, so we have a custom implementation
+	# of this function.
+	MOD_SEGMENTS = $$split(MOD_VERSION, ".")
+	REQ_SEGMENTS = $$split(2, ".")
+	INDEX = 0
+	for(REQ_ITEM, REQ_SEGMENTS) {
+		MOD_ITEM = $$member(MOD_SEGMENTS, $$INDEX)
+		if(isEmpty(MOD_ITEM)) {
+			MOD_ITEM = 0
+		}
+		if (lessThan(MOD_ITEM, $$REQ_ITEM)) {
+			return(false)
+		}
+		if (greaterThan(MOD_ITEM, $$REQ_ITEM)) {
+			return(true)
+		}
+		INDEX = $$num_add($$INDEX, 1)
+	}
+	return(true)
+}
+
+####################
+# Start of main code
+####################
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
@@ -30,6 +70,17 @@ QT += \
     LIBS += -lphonon4qt5
     DEFINES += PHONON
 }
+
+isEmpty(TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
+    TERMINAL=1
+    message(Use detected qterminal)
+}
+!isEmpty(TERMINAL){
+    LIBS += -lqtermwidget5
+    DEFINES += TERMINAL
+    message(Use qterminal)
+}
+
 !isEmpty(QJS){
     DEFINES += QJS
     QT += qml
@@ -285,14 +336,7 @@ unix {
         utilities
 }
 
-isEmpty(USE_SYSTEM_HUNSPELL){
-  DEFINES += HUNSPELL_STATIC
-  include(src/hunspell/hunspell.pri)
-} else {
-  message(System hunspell)
-  CONFIG += link_pkgconfig
-  PKGCONFIG += hunspell
-}
+include(src/hunspell/hunspell.pri)
 
 include(src/qcodeedit/qcodeedit.pri)
 
@@ -300,17 +344,7 @@ include(src/latexparser/latexparser.pri)
 
 include(src/symbolpanel/symbolpanel.pri)
 
-isEmpty(USE_SYSTEM_QUAZIP) {
-  DEFINES += QUAZIP_STATIC
-  include(src/quazip/quazip/quazip.pri)
-} else {
-    message(System quazip5)
-    isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
-    isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
-
-    INCLUDEPATH += $${QUAZIP_INCLUDE}
-    LIBS += $${QUAZIP_LIB}
-}
+include(src/quazip/quazip/quazip.pri)
 
 include(src/pdfviewer/pdfviewer.pri)
 
@@ -318,74 +352,14 @@ include(src/pdfviewer/pdfviewer.pri)
 
 CONFIG(debug, debug|release) {
     message(Creating debug version)
-    CONFIG -= release
-    QT += testlib
-
-    SOURCES += \
-        src/tests/codesnippet_t.cpp \
-        src/tests/encoding_t.cpp \
-        src/tests/latexcompleter_t.cpp \
-        src/tests/latexeditorview_bm.cpp \
-        src/tests/latexeditorview_t.cpp \
-        src/tests/latexoutputfilter_t.cpp \
-        src/tests/latexparser_t.cpp \
-        src/tests/latexparsing_t.cpp \
-        src/tests/qcetestutil.cpp \
-        src/tests/qdocumentcursor_t.cpp \
-        src/tests/qdocumentline_t.cpp \
-        src/tests/qdocumentsearch_t.cpp \
-        src/tests/qeditor_t.cpp \
-        src/tests/qsearchreplacepanel_t.cpp \
-        src/tests/scriptengine_t.cpp \
-        src/tests/smallUsefulFunctions_t.cpp \
-        src/tests/structureview_t.cpp \
-        src/tests/syntaxcheck_t.cpp \
-        src/tests/tablemanipulation_t.cpp \
-        src/tests/usermacro_t.cpp \
-        src/tests/testmanager.cpp \
-        src/tests/testutil.cpp
-    HEADERS += \
-        src/tests/qsearchreplacepanel_t.h \
-        src/tests/updatechecker_t.h \
-        src/tests/qdocumentcursor_t.h \
-        src/tests/qdocumentline_t.h \
-        src/tests/qdocumentsearch_t.h \
-        src/tests/codesnippet_t.h \
-        src/tests/latexcompleter_t.h \
-        src/tests/latexeditorview_bm.h \
-        src/tests/latexeditorview_t.h \
-        src/tests/latexoutputfilter_t.h \
-        src/tests/latexparser_t.h \
-        src/tests/latexparsing_t.h \
-        src/tests/latexstyleparser_t.h \
-        src/tests/scriptengine_t.h \
-        src/tests/qeditor_t.h \
-        src/tests/buildmanager_t.h \
-        src/tests/tablemanipulation_t.h \
-        src/tests/smallUsefulFunctions_t.h \
-        src/tests/utilsui_t.h \
-        src/tests/utilsversion_t.h \
-        src/tests/encoding_t.h \
-        src/tests/help_t.h \
-        src/tests/syntaxcheck_t.h \
-        src/tests/qcetestutil.h \
-        src/tests/testmanager.h \
-        src/tests/testutil.h \
-        src/tests/usermacro_t.h \
-        src/tests/structureview_t.h
-    !greaterThan(QT_MAJOR_VERSION, 4) {
-        win32:LIBS += -lQtTestd4
-    } else {
-        win32:LIBS += -lQt5Testd
-    }
-    #unix:!macx:LIBS += -lQtTest
-    macx:LIBS += -framework QtTest
+    CONFIG -= debug_and_release release
+} else {
+    message(Creating release version)
+    CONFIG -= debug_and_release debug
+    NO_TESTS = 1
 }
+
 macx:LIBS += -framework CoreFoundation
-
-unix {
-    LIBS += -lz
-}
 
 freebsd-* {
     LIBS += -lexecinfo
@@ -395,10 +369,7 @@ freebsd-* {
     DEFINES += NO_CRASH_HANDLER
     message("Internal crash handler disabled as you wish.")
 }
-!isEmpty(NO_TESTS) {
-    DEFINES += NO_TESTS
-    message("tests disabled as you wish.")
-}
+include(src/tests/tests.pri)
 !isEmpty(DEBUG_LOGGER) {
     DEFINES += DEBUG_LOGGER
     message("Enabling debug logger.")

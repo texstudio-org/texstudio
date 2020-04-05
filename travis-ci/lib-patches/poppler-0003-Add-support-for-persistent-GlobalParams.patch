@@ -1,16 +1,16 @@
-From b578db7298998b9b540aa047709289d411236dea Mon Sep 17 00:00:00 2001
+From f846a87ae97367072394007562a7a2e4f85b4d0d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
 Date: Fri, 12 Feb 2016 08:00:59 -0500
 Subject: [PATCH 3/3] Add support for persistent GlobalParams
 
 ---
  qt5/src/poppler-document.cc |  1 +
- qt5/src/poppler-private.cc  | 17 +++++++++++++----
+ qt5/src/poppler-private.cc  | 16 ++++++++++++----
  qt5/src/poppler-private.h   |  1 +
- 3 files changed, 15 insertions(+), 4 deletions(-)
+ 3 files changed, 14 insertions(+), 4 deletions(-)
 
 diff --git a/qt5/src/poppler-document.cc b/qt5/src/poppler-document.cc
-index 81db4eaf..8125e73f 100644
+index ba9b86cd..68a73063 100644
 --- a/qt5/src/poppler-document.cc
 +++ b/qt5/src/poppler-document.cc
 @@ -59,6 +59,7 @@ namespace Poppler {
@@ -22,45 +22,44 @@ index 81db4eaf..8125e73f 100644
    Document *Document::load(const QString &filePath, const QByteArray &ownerPassword,
  			   const QByteArray &userPassword)
 diff --git a/qt5/src/poppler-private.cc b/qt5/src/poppler-private.cc
-index a3fbec36..619632dd 100644
+index 3c9bf512..65311f85 100644
 --- a/qt5/src/poppler-private.cc
 +++ b/qt5/src/poppler-private.cc
-@@ -248,8 +248,13 @@ namespace Debug {
+@@ -248,8 +248,12 @@ namespace Debug {
          count --;
          if ( count == 0 )
          {
 -            utf8Map = nullptr;
--            delete globalParams;
+-            globalParams.reset();
 +            if ( ownGlobalParams )
 +            {
 +                utf8Map = nullptr;
-+                delete globalParams;
-+                globalParams = nullptr;
++                globalParams.reset();
 +                ownGlobalParams = false;
 +            }
          }
        }
      
-@@ -264,8 +269,12 @@ namespace Debug {
+@@ -264,8 +268,12 @@ namespace Debug {
  
          if ( count == 0 )
          {
 -            utf8Map = nullptr;
--            globalParams = new GlobalParams();
+-            globalParams = std::make_unique<GlobalParams>();
 +            if ( !globalParams )
 +            {
 +                utf8Map = nullptr;
-+                globalParams = new GlobalParams();
++                globalParams = std::make_unique<GlobalParams>();
 +                ownGlobalParams = true;
 +            }
              setErrorCallback(qt5ErrorFunction, nullptr);
          }
          count ++;
 diff --git a/qt5/src/poppler-private.h b/qt5/src/poppler-private.h
-index de5ec041..54ccc418 100644
+index 28b5ca30..2ac843a2 100644
 --- a/qt5/src/poppler-private.h
 +++ b/qt5/src/poppler-private.h
-@@ -158,6 +158,7 @@ namespace Poppler {
+@@ -160,6 +160,7 @@ namespace Poppler {
  	int m_hints;
  	static int count;
  	static QMutex mutex;

@@ -15,6 +15,7 @@
 
 #include "qstatuspanel.h"
 #include "utilsSystem.h"
+#include "utilsUI.h"
 
 /*!
 	\file qstatuspanel.cpp
@@ -110,6 +111,9 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	//		geometry().y(),
 	//		geometry().width(),
 	//		geometry().height());
+
+
+
 	static QPixmap _warn = QPixmap(getRealIconFile("warning")).scaledToHeight(16, Qt::SmoothTransformation);
 	static QPixmap _mod = QPixmap(getRealIconFile("document-save")).scaledToHeight(16, Qt::SmoothTransformation);
 
@@ -125,7 +129,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	QDocumentCursorHandle* c = e->cursorHandle();
 
 	if (c) {
-		s = tr("Line: %1").arg(c->lineNumber() + 1);
+        s = tr("Line: %1").arg(c->lineNumber() + 1);
 		s += spacing + tr("Column: %1").arg(c->visualColumnNumber());
 
 		if (c->hasSelection()) {
@@ -144,9 +148,8 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 			s+= spacing + tr("RTL", "Abbreviation for Right-To-Left used in status bar.");
 		}
 	}
-
 	p->drawText(xpos, ascent, s);
-	xpos += fm.width(s) + 10;
+	xpos += UtilsUi::getFmWidth(fm, s) + 10;
 
 	bool displayModifyIcon = false; // we never need this, because it's displayed in the editor tab.
 	int sz = qMin(height(), _mod.height());
@@ -166,19 +169,19 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	} else {
 		xpos += sz + 10;
 	}
-	xpos += fm.width(timeDiff);
+	xpos += UtilsUi::getFmWidth(fm, timeDiff);
 	xpos += 20;
-	
+
 	s = editor()->flag(QEditor::Overwrite) ? tr("OVERWRITE") : tr("INSERT");
 	p->drawText(xpos, ascent, s);
-	xpos += fm.width(s) + 10;
+	xpos += UtilsUi::getFmWidth(fm, s) + 10;
 
 	m_conflictSpot = 0;
 
 	if ( editor()->isInConflict() )
 	{
 		s =  tr("Conflict");
-		int w = fm.width(s) + 30;
+		int w = UtilsUi::getFmWidth(fm, s) + 30;
 
 		if ( xpos + w + _warn.width() < width() )
 		{
@@ -192,7 +195,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 	}
 
 	setFixedHeight(fontMetrics().lineSpacing() + 4);
-	
+
 	if(!e->displayModifyTime() && timer){
 		disconnect(timer, SIGNAL(timeout()), this, SLOT(update()));
 		delete timer;
@@ -205,7 +208,7 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 		timer->start(1000);
 	}
 	//QTimer::singleShot(1000, this, SLOT( update() ) );
-	
+
 	return true;
 }
 
@@ -229,7 +232,7 @@ void QStatusPanel::mousePressEvent(QMouseEvent *e)
 void QStatusPanel::mouseReleaseEvent(QMouseEvent *e)
 {
 	Q_UNUSED(e)
-	
+
 	editor()->setFocus();
 }
 

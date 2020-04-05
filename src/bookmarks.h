@@ -26,7 +26,7 @@ class Bookmarks : public QObject
 	Q_OBJECT
 
 public:
-	Bookmarks(const LatexDocuments *docs, QObject *parent = 0); ///< constructor
+    Bookmarks(const LatexDocuments *docs, QObject *parent = nullptr); ///< constructor
 
 	void setBookmarks(const QList<Bookmark> &bookmarkList); ///< set list of bookmarks
 	QList<Bookmark> getBookmarks(); ///< get list of bookmarks
@@ -44,6 +44,7 @@ public slots:
 
 	void restoreBookmarks(LatexEditorView *edView);
 	void updateBookmarks(LatexEditorView *edView);
+    void setDarkMode(bool mode);
 
 protected slots:
 	void clickedOnBookmark(QListWidgetItem *item);
@@ -59,6 +60,8 @@ private:
 	void createContextMenu();
 	QListWidget *bookmarksWidget;
 	const LatexDocuments *documents;
+
+    bool m_darkMode;
 };
 
 #endif // BOOKMARKS_H

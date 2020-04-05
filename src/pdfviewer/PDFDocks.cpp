@@ -1000,7 +1000,7 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 	f.setPixelSize(r.height());
 	p.setFont(f);
 	p.setPen(textColor);
-	int labelWidth = p.fontMetrics().width("9999 min");
+	int labelWidth = UtilsUi::getFmWidth(p.fontMetrics(), "9999 min");
 	QRect textRect = rect();
 	textRect.setWidth(labelWidth);
 	p.drawText(textRect, Qt::AlignHCenter | Qt::AlignVCenter, text);

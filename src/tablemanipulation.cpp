@@ -871,7 +871,7 @@ void LatexTables::alignTableCols(QDocumentCursor &cur)
 	}
 
 	QString alignment;
-	if (args.count() < 2 && mathTables.contains(tableType)) {
+    if (args.count() < 3 && mathTables.contains(tableType)) {
 		alignment = "l"; // may be more. But thats caught by the fallback (filling with additional "l").
 	}
 	// assume alignment in second arg except for the following environments (which have it in the third one)
@@ -976,8 +976,15 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 
 	// ceck for meta line commands at beginning of line
 	bool recheck = true;
+    if(line.startsWith("%") && recheck){
+        int behind=line.indexOf(QRegExp("[\\n\\r]"));
+        pre.append(line.left(behind));
 
-	while (line.startsWith("\\") && recheck) {
+        line = line.mid(behind).trimmed();
+        recheck = true;
+    }
+
+    while (line.startsWith("\\") && recheck) {
 		recheck = false;
 		foreach (const QString &cmd, metaLineCommands) {
 			if (line.startsWith(cmd)) {

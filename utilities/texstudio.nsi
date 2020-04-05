@@ -1,9 +1,9 @@
 !define APPNAME "TeXstudio"
 !define DESCRIPTION "TeXstudio is a fully featured LaTeX editor."
 # These three must be integers
-!define VERSIONMAJOR 2
-!define VERSIONMINOR 12
-!define VERSIONBUILD 18
+!define VERSIONMAJOR 3
+!define VERSIONMINOR 00
+!define VERSIONBUILD 00
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 !define HELPURL "https://texstudio.org" # "Support Information" link

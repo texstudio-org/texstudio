@@ -157,9 +157,9 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 
 		const QString &s = boundaries.endLine != ln ? l.text() : l.text().left(boundaries.end);
 #if QT_VERSION > 0x050500
-		m_match=m_regularExpression.match(s, hc.columnNumber());
-		int column = m_match.capturedStart();
-		int length = m_match.capturedLength();
+        QRegularExpressionMatch match=m_regularExpression.match(s, hc.columnNumber());
+        int column = match.capturedStart();
+        int length = match.capturedLength();
 #else
 		int column=m_regexp.indexIn(s, hc.columnNumber());
 		int length=m_regexp.matchedLength();
@@ -291,10 +291,10 @@ void QDocumentSearch::recreateRegExp(){
 	      Qt::CaseInsensitive;
 
 #if QT_VERSION >= 0x050500
-	QRegularExpression::PatternOption patternOption= cs==Qt::CaseInsensitive ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption ;
+    QRegularExpression::PatternOptions patternOption= cs==Qt::CaseInsensitive ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption ;
+    patternOption |= QRegularExpression::UseUnicodePropertiesOption;
 	if ( hasOption(RegExp) )
 	{
-
 		m_regularExpression = QRegularExpression(m_string, patternOption);
 	} else if ( hasOption(WholeWords) ) {
 		//todo: screw this? it prevents searching of "world!" and similar things
@@ -607,7 +607,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 
 	QDocumentCursor firstMatch;
 
-	recreateRegExp();
+    recreateRegExp();
 	
 	int replaceCount = 0;
 	
@@ -615,6 +615,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	if (hasOption(Replace) && again && !all) {
 		bool replaceSelectedText = false;
 #if QT_VERSION > 0x050500
+        qDebug()<<m_match.hasMatch() << m_match.captured();
 		if (m_match.hasMatch() && m_match.captured()==m_cursor.selectedText())  {
 			replaceSelectedText = true;
 		} else if (m_regularExpression.pattern().contains("(?=") || m_regularExpression.pattern().contains("(?!")) {
@@ -666,7 +667,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			//and if (foundCount) is true, it thinks already found something and doesn't restart from scope
 		}
 
-	}
+    }
 
 	// search next
 	//ensure that the current selection isn't searched

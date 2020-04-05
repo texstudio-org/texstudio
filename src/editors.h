@@ -11,7 +11,7 @@ class Editors : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit Editors(QWidget *parent = 0);
+    explicit Editors(QWidget *parent = nullptr);
 	void addTabWidget(TxsTabWidget *w);
 	void addEditor(LatexEditorView *edView, bool asCurrent = true);
 	void insertEditor(LatexEditorView *edView, int index, bool asCurrent = true);
@@ -21,7 +21,7 @@ public slots:
 	void requestCloseEditor(LatexEditorView *edView);
 	void removeEditor(LatexEditorView *edView);
 protected:
-	void insertEditor(LatexEditorView *edView, TxsTabWidget *tabWidget=0 /*current*/, int pos=-1 /*append*/, bool asCurrent = true);
+    void insertEditor(LatexEditorView *edView, TxsTabWidget *tabWidget=nullptr /*current*/, int pos=-1 /*append*/, bool asCurrent = true);
 	void removeEditor(LatexEditorView *edView, TxsTabWidget *tabWidget);
 public:
 	bool containsEditor(LatexEditorView *edView) const;

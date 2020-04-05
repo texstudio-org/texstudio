@@ -11,11 +11,11 @@
  *
  * It maintains the knowledge of the currentEditor() and the currentTabWidget().
  * Also, it sends appropriate signals to the editors and tabWidgets and provides
- * singals to hook to these changes.
+ * signals to hook to these changes.
  *
  * Currently this class serves two purposes:
  *
- * 1) It maintains and abstract order of editors. Editors can be grouped (currently
+ * 1) It maintains an abstract order of editors. Editors can be grouped (currently
  *    implemented as tabs in tabWidgets). The groups are ordered and the editors
  *    within a group are ordered, thus providing a complete order of all editors.
  *    The main purpose of this class it to provide an interface to this order, which
@@ -480,6 +480,11 @@ void Editors::moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int 
 	if (!target || target->containsEditor(edView)) {
 		// only move within the tab
         if (target == nullptr) target = tabWidgetFromEditor(edView);
+        if (target == nullptr) {
+            // the tab is REALLY not there, see crash in issue #899
+            insertEditor(edView,targetIndex);
+            return;
+        }
 		if (targetIndex < 0) targetIndex = qMax(0, target->count() - 1);
 		int currentIndex = target->indexOf(edView);
 		if (currentIndex != targetIndex) {  // nothing todo otherwise

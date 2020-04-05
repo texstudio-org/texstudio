@@ -109,9 +109,9 @@ void PreviewWidget::resetZoom()
 
 void PreviewWidget::wheelEvent(QWheelEvent *event)
 {
-	if (!preViewer->pixmap()) return;
+    if (!preViewer->pixmap()) return;
 	if (event->modifiers() == Qt::ControlModifier) {
-		float numDegrees = event->delta() / 8.0f;
+        float numDegrees = event->angleDelta().y() / 8.0f;
 		float numSteps = numDegrees / 15.0f;
 		scaleImage(qPow(1.4, numSteps));
 		event->accept();
@@ -139,18 +139,103 @@ void PreviewWidget::contextMenu(QPoint point)
 	menu.exec(menuParent->mapToGlobal(point));
 }
 
+#ifdef TERMINAL
+TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
+{
+	//setBackgroundRole(QPalette::Base);
+	layout = new QHBoxLayout(this);
+	layout->setSpacing(0);
+	layout->setMargin(0);
+	setLayout(layout);
+	installEventFilter(this);
+	initQTermWidget();
+}
+
+TerminalWidget::~TerminalWidget()
+{
+	delete qTermWidget;
+	delete layout;
+}
+
+/*
+ * Overrides QShortcuts snitching these key combos
+ * in case the TerminalWidget has focus.
+ */
+bool TerminalWidget::eventFilter(QObject *watched, QEvent *event)
+{
+	if (event->type() == QEvent::ShortcutOverride) {
+		QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+		if (keyEvent->modifiers().testFlag(Qt::ControlModifier)
+			&& ( (keyEvent->key() == 'C')
+			|| (keyEvent->key() == 'D')
+			|| (keyEvent->key() == 'L')
+			|| (keyEvent->key() == 'X')
+			|| (keyEvent->key() == 'Y')
+			|| (keyEvent->key() == 'V') ) ) {
+			event->accept();
+			return true;
+		}
+	}
+	return QWidget::eventFilter(watched, event);
+}
+
+void TerminalWidget::qTermWidgetFinished()
+{
+	// in case the shell closed the widget is reinitiated
+	delete qTermWidget;
+	initQTermWidget();
+}
+
+void TerminalWidget::initQTermWidget()
+{
+	qTermWidget = new QTermWidget(0, this);
+	curShell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+	qTermWidget->setShellProgram(curShell);
+	qTermWidget->setTerminalSizeHint(false);
+	qTermWidget->startShellProgram();
+    layout->addWidget(qTermWidget,0);
+	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
+	updateSettings(true);
+}
+
+void TerminalWidget::setCurrentFileName(const QString &filename)
+{
+	QString const &path = filename.left(filename.lastIndexOf('/'));
+	if( qTermWidget->workingDirectory() != path )
+		qTermWidget->changeDir(path);
+}
+
+void TerminalWidget::updateSettings(bool noreset)
+{
+	if (!noreset) {
+		QString const &shell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+		if (shell != curShell) {
+			delete qTermWidget;
+			initQTermWidget();
+			return;
+		}
+	}
+
+	QString const &colorScheme = ConfigManagerInterface::getInstance()->getOption("Terminal/ColorScheme").toString();
+	QString const &fontFamily = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Family").toString();
+	int fontSize = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Size").toInt();
+	qTermWidget->setColorScheme(colorScheme);
+	qTermWidget->setTerminalFont( QFont( fontFamily, fontSize ) );
+}
+#endif
+
 OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	TitledPanel(parent),
 	MESSAGES_PAGE("messages"),
 	LOG_PAGE("log"),
 	PREVIEW_PAGE("preview"),
+	TERMINAL_PAGE("terminal"),
 	SEARCH_RESULT_PAGE("search")
 {
 	setSelectorStyle(TabSelector);
 	mToggleViewAction->setText(tr("Messages / Log File"));
 	mToggleViewAction->setIcon(getRealIcon("logpanel"));
 	setFrameStyle(NoFrame);
-
 
 	// messages
 	QFontMetrics fm(QApplication::font());
@@ -172,8 +257,12 @@ OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	previewWidget = new PreviewWidget(this);
 	appendPage(new TitledPanelPage(previewWidget, PREVIEW_PAGE, tr("Preview")), false);
 
-	// global search results
+#ifdef TERMINAL
+	terminalWidget = new TerminalWidget(this);
+	appendPage(new TitledPanelPage(terminalWidget, TERMINAL_PAGE, tr("Terminal")), false);
+#endif
 
+	// global search results
 	searchResultWidget = new SearchResultWidget(this);
 
 	//appendPage(new TitledPanelPage(OutputSearchTree, SEARCH_RESULT_PAGE, tr("Search Results")));

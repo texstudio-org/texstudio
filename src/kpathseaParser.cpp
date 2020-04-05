@@ -99,7 +99,7 @@ void MiktexPackageScanner::savePackageMap(const QHash<QString, QStringList> &map
 	QFile f(ensureTrailingDirSeparator(settingsDir) + "miktexPackageNames.dat");
 	if (f.open(QFile::WriteOnly | QFile::Text)) {
 		QTextStream out(&f);
-		out << "% This file maps the MikTeX package names to the .sty and .cls file names.\n";
+		out << "% This file maps the MiKTeX package names to the .sty and .cls file names.\n";
 		out << "% It's used as cache for a fast lookup. It's automatically created and may be deleted without harm.\n";
 		foreach (const QString &mpmName, map.keys()) {
 			out << mpmName << ":" << map.value(mpmName).join(",") << "\n";

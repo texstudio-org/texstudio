@@ -42,6 +42,7 @@ public:
 	{
 		return soll.compare(other) == 0;
 	}
+    TestToken& operator =(const TestToken & other) = default;
 private:
 	QString soll;
 };

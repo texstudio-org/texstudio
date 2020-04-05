@@ -25,6 +25,7 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 	mLinesLock.lock();
 	stopped = false;
 	mLines.clear();
+	mLinesEnqueuedCounter.fetchAndStoreOrdered(0);
 	mLinesLock.unlock();
 }
 
@@ -59,6 +60,7 @@ void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, T
     newLine.hint=hint;
 	mLinesLock.lock();
 	mLines.enqueue(newLine);
+	mLinesEnqueuedCounter.ref();
 	mLinesLock.unlock();
 	//avoid reading of any results before this execution is stopped
 	//mResultLock.lock(); not possible under windows
@@ -111,12 +113,13 @@ void SyntaxCheck::run()
 			newLine.dlh->removeCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE); //remove possible errors from unclosed envs
 		}
 		TokenList tl = newLine.dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        QPair<int,int> commentStart = newLine.dlh->getCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
 		newLine.dlh->unlock();
 
 		StackEnvironment activeEnv = newLine.prevEnv;
 		Ranges newRanges;
 
-		checkLine(line, newRanges, activeEnv, newLine.dlh, tl, newLine.stack, newLine.ticket);
+        checkLine(line, newRanges, activeEnv, newLine.dlh, tl, newLine.stack, newLine.ticket,commentStart.first);
 		// place results
         if (newLine.clearOverlay){
             QList<int> fmtList={syntaxErrorFormat,SpellerUtility::spellcheckErrorFormat};
@@ -171,8 +174,9 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 	QString line = dlh->text();
 	QStack<Environment> activeEnv = previous;
 	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
 	Ranges newRanges;
-	checkLine(line, newRanges, activeEnv, dlh, tl, stack, dlh->getCurrentTicket());
+    checkLine(line, newRanges, activeEnv, dlh, tl, stack, dlh->getCurrentTicket(),commentStart.first);
 	// add Error for unclosed env
 	QVariant var = dlh->getCookieLocked(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE);
 	if (var.isValid()) {
@@ -270,21 +274,28 @@ void SyntaxCheck::setFormats(QMap<QString, int> formatList)
 /*!
 * \brief wait for queue to be empty. Used for self-test only.
 */
-void SyntaxCheck::waitForQueueProcess()
+void SyntaxCheck::waitForQueueProcess(void)
 {
-    wait(1);
-	while (!crashed && mLinesAvailable.available() > 0) {
-		wait(1);
-	}
-}
+	int linesBefore, linesAfter;
 
-/*!
-* \brief check if queue is empty. Used for self-test only.
-* \return queue is not empty
-*/
-bool SyntaxCheck::queuedLines()
-{
-	return mLinesAvailable.available() > 0;
+	/*
+	 * The logic in the following loop is not perfect because it could terminate the loop too early if it takes more
+	 * than 10ms between the call to mLinesAvailable.acquire() and the following call to mLinesAvailable.release().
+	 * Implementing the check properly requires bi-directional communication with the worker thread with commands to
+	 * pause/unpause the worker thread which complicates the code too much just to handle testing.
+	 */
+	linesBefore = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
+	forever {
+		for (int i = 0; i < 2; ++i) {
+			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers, 1000); // Process queued checkNextLine events
+			wait(5); // Give the checkNextLine signal handler time to queue the next line
+		}
+		linesAfter = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
+		if ((linesBefore == linesAfter) && !mLinesAvailable.available()) {
+			break;
+		}
+		linesBefore = linesAfter;
+	}
 }
 
 /*!
@@ -444,7 +455,7 @@ bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 * \param stack token stack at start of line
 * \param ticket ticket number for current processed line
 */
-void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket)
+void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket,int commentStart)
 {
 	// do syntax check on that line
 	int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
@@ -521,7 +532,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-            if (speller->hideNonTextSpellingErrors && containsEnv(*ltxCommands, "math", activeEnv)){
+            if (speller->hideNonTextSpellingErrors && (containsEnv(*ltxCommands, "math", activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv))){
                 word.clear();
             }
             if (!word.isEmpty() && !speller->check(word) ) {
@@ -1084,7 +1095,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 if(altEnvs.contains(key)){
                     Error elem;
                     int start= env.dlh==dlh ? env.startingColumn : 0;
-                    elem.range = QPair<int, int>(start, line.length());
+                    elem.range = QPair<int, int>(start, commentStart>=0 ? commentStart : line.length());
                     elem.type = ERR_highlight;
                     elem.format=mFormatList.value(key);
                     newRanges.prepend(elem);  // draw this first and then other on top (e.g. keyword highlighting) !

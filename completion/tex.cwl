@@ -334,7 +334,7 @@
 \tracingstats#*
 \uccode#*
 \uchyph#*
-\underline{text}#m
+\underline{text}#
 \unhbox#*
 \unhcopy#*
 \unkern#*
@@ -631,7 +631,7 @@
 \nearrow#m
 \ne#m
 \neg#m
-\negthinspace#*
+\negthinspace
 \neq#m
 \newbox#*
 \newbox{cmd}#dS
@@ -813,7 +813,7 @@
 \textindent#*
 \theta#m
 \Theta#m
-\thinspace#*
+\thinspace
 \tilde{a}#m
 \times#m
 \to#m

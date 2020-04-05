@@ -112,14 +112,25 @@ bool TxsTabWidget::isEmpty() const {
 	return (count() == 0);
 }
 
+/*!
+ * \brief check if active tab is the left most
+ * \return
+ */
 bool TxsTabWidget::currentEditorViewIsFirst() const {
 	return (currentIndex() == 0);
 }
-
+/*!
+ * \brief check if active tab is the right most
+ * \return
+ */
 bool TxsTabWidget::currentEditorViewIsLast() const {
 	return (currentIndex() >= count()-1);
 }
-
+/*!
+ * \brief activate tab to the right
+ *
+ * right most tab remains active, no roll over.
+ */
 void TxsTabWidget::gotoNextDocument()
 {
 	if (count() <= 1) return;
@@ -127,7 +138,11 @@ void TxsTabWidget::gotoNextDocument()
 	if (cPage >= count()) setCurrentIndex(0);
 	else setCurrentIndex(cPage);
 }
-
+/*!
+ * \brief activate tab to the left
+ *
+ * Left most tab (0) remains active, no roll over.
+ */
 void TxsTabWidget::gotoPrevDocument()
 {
 	if (count() <= 1) return;
@@ -135,12 +150,16 @@ void TxsTabWidget::gotoPrevDocument()
 	if (cPage < 0) setCurrentIndex(count() - 1);
 	else setCurrentIndex(cPage);
 }
-
+/*!
+ * \brief activate first document/tab
+ */
 void TxsTabWidget::gotoFirstDocument() {
 	if (count() <= 1) return;
 	setCurrentIndex(0);
 }
-
+/*!
+ * \brief activate last document/tab
+ */
 void TxsTabWidget::gotoLastDocument() {
 	if (count() <= 1) return;
 	setCurrentIndex(count()-1);
@@ -166,7 +185,12 @@ void TxsTabWidget::onTabCloseRequest(int i)
 {
 	emit closeEditorRequested(editorAt(i));
 }
-
+/*!
+ * \brief insert tab with given editor
+ * \param edView editor
+ * \param pos position, 0 is left most
+ * \param asCurrent put editor as active into foreground
+ */
 void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent)
 {
 	Q_ASSERT(edView);
@@ -176,7 +200,10 @@ void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent
 
 	if (asCurrent) setCurrentEditor(edView);
 }
-
+/*!
+ * \brief remove tab which is connected to the given editor
+ * \param edView
+ */
 void TxsTabWidget::removeEditor(LatexEditorView *edView)
 {
 	int i = indexOf(edView);

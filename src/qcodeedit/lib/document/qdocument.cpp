@@ -2097,7 +2097,7 @@ void QDocument::foldLines(QList<int> &lines) {
 	if (lines.isEmpty())
 		return;
 
-	qSort(lines);
+    std::sort(lines.begin(),lines.end());
 	QFoldedLineIterator fli = languageDefinition()->foldedLineIterator(this);
 	while (fli.lineNr <= lines.last()) {
 		if (fli.open && !fli.collapsedBlockStart && lines.contains(fli.lineNr)) {
@@ -2670,7 +2670,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
 	if ( (composited.count() < cpos) || fonts.isEmpty() ){
-		int result=QFontMetrics(*QDocumentPrivate::m_font).width(m_text.left(cpos));
+		int result=UtilsUi::getFmWidth(QFontMetrics(*QDocumentPrivate::m_font), m_text.left(cpos));
 		return result;
 	}
 
@@ -2688,10 +2688,10 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 			int taboffset = ncolsToNextTabStop(column, tabStop);
 
 			column += taboffset;
-			cwidth = fm.width(' ') * taboffset;
+			cwidth = UtilsUi::getFmWidth(fm, ' ') * taboffset;
 		} else {
 			++column;
-			cwidth = fm.width(c);
+			cwidth = UtilsUi::getFmWidth(fm, c);
 		}
 
 		screenx += cwidth;
@@ -2775,10 +2775,10 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 				int taboffset = ncolsToNextTabStop(column, tabStop);
 
 				column += taboffset;
-				cwidth = fm.width(' ') * taboffset;
+				cwidth = UtilsUi::getFmWidth(fm, ' ') * taboffset;
 			} else {
 				++column;
-				cwidth = fm.width(m_text.at(idx));
+				cwidth = UtilsUi::getFmWidth(fm, m_text.at(idx));
 			}
 
 			int mid = (x + (cwidth / 2) + 1);
@@ -3173,6 +3173,70 @@ QVector<int> QDocumentLineHandle::getCachedFormats() const
 	return m_cache;
 }
 
+/*!
+ * \brief Returns the specified cookie type associated with this line.
+ * \details Returns the specified cookie type associated with this line.
+ * Not thread safe. Caller must hold a read lock of the line.
+ * \param[in] type The type of the returned cookie.
+ * \return Returns the cookie of the specified type.
+ */
+QVariant QDocumentLineHandle::getCookie(int type) const
+{
+	return mCookies.value(type,QVariant());
+}
+
+/*!
+ * \brief Returns the specified cookie type associated with this line.
+ * \details Returns the specified cookie type associated with this line.
+ * Thread safe. Obtains a read lock for the duration of the call.
+ * \param[in] type The type of the returned cookie.
+ * \return Returns the cookie of the specified type.
+ */
+QVariant QDocumentLineHandle::getCookieLocked(int type) const
+{
+	QReadLocker locker(&mLock);
+	return mCookies.value(type,QVariant());
+}
+
+/*!
+ * \brief Sets the specified cookie type for this line to the specified value.
+ * \details Sets the specified cookie type for this line to the specified value.
+ * Not thread safe. Caller must hold a write lock of the line.
+ * \param[in] type The type of the cookie to be set.
+ * \param[in] data The value of the cookie to be set.
+ */
+void QDocumentLineHandle::setCookie(int type,QVariant data)
+{
+	mCookies.insert(type,data);
+}
+
+/*!
+ * \brief Checks if the line has a cookie of the specified type.
+ * \details Checks if the line has a cookie of the specified type.
+ * Not thread safe. Caller must hold a read lock of the line.
+ * \param[in] type The type of the checked cookie.
+ * \return Returns a boolean flag indicating if the line has a cookie of the
+ * specified type.
+ */
+bool QDocumentLineHandle::hasCookie(int type) const
+{
+	return mCookies.contains(type);
+}
+
+/*!
+ * \brief Removes the specified cookie type for this line.
+ * \details Removes the specified cookie type for this line.
+ * If this line does not have a cookie of the specified type then does nothing.
+ * Not thread safe. Caller must hold a write lock of the line.
+ * \param[in] type The type of the cookie to be removed.
+ * \return Returns a boolean flag indicating if the line had a cookie of the
+ * specified type.
+ */
+bool QDocumentLineHandle::removeCookie(int type)
+{
+	return mCookies.remove(type);
+}
+
 bool QDocumentLineHandle::isRTLByLayout() const{
 	if (!m_layout) return false;
 	else {
@@ -3237,14 +3301,16 @@ QVector<int> QDocumentLineHandle::compose() const
 	return m_cache;
 }
 
-QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
+// After we switch to Qt5.6+, the return type should become QVector<QTextLayout::FormatRange>
+template <template<class T> class CONTAINER_TYPE>
+CONTAINER_TYPE<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 {
 	// don't do locking here as it is mainly called by draw (and locked there) !!!!
 	if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		compose();
 
 	// turning format "map" into ranges that QTextLayout can understand...
-	QList<QTextLayout::FormatRange> m_ranges;
+	CONTAINER_TYPE<QTextLayout::FormatRange> m_ranges;
 
 	QTextLayout::FormatRange r;
 	r.start = r.length = -1;
@@ -3345,7 +3411,13 @@ void QDocumentLineHandle::layout(int lineNr) const
 			// therefore we do not include the trailing spaces for RTL text.
 			opt.setFlags(QTextOption::IncludeTrailingSpaces);
 		}
-		opt.setTabStop(m_doc->tabStop() * QDocumentPrivate::m_spaceWidth);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+		opt.setTabStopDistance(
+#else
+		opt.setTabStop(
+#endif
+			m_doc->tabStop() * QDocumentPrivate::m_spaceWidth
+		);
 
 		//opt.setWrapMode(QTextOption::NoWrap);
 		opt.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
@@ -3363,7 +3435,11 @@ void QDocumentLineHandle::layout(int lineNr) const
 		m_layout->setTextOption(opt);
 
 		// Syntax highlighting, inbuilt and arbitrary
-		m_layout->setAdditionalFormats(decorations());
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+		m_layout->setFormats(decorations<QVector>());
+#else
+		m_layout->setAdditionalFormats(decorations<QList>());
+#endif
 		setFlag(QDocumentLine::FormatsApplied, true);
 
 		// Begin layouting
@@ -6905,7 +6981,10 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 
 		pseudoWrap = reservedHeight / m_lineSpacing;
 		int x = qMax(-m_leftMargin, (m_width - pm.width()) / 2);
-		int y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2;
+                // special treatment if line width > viewport width (e.g. no line wrap)
+                x = qMin(x,(cxt.width-pm.width())/2);
+
+                int y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2;
 		p->fillRect(x - PICTURE_BORDER, y - PICTURE_BORDER, pm.width() + 2*PICTURE_BORDER, pm.height() + 2* PICTURE_BORDER, Qt::white);
 		p->drawPixmap(x, y, pm);
 
@@ -7288,8 +7367,8 @@ QList<int> QDocumentPrivate::testGetHiddenLines(){
 	for (QMap<int, int>::iterator it = m_hidden.begin(); it != m_hidden.end(); ++it )
 		for (int i=1;i<=it.value();i++)
 			res.insert(i+it.key());
-	QList<int> tmp = res.toList();
-	qSort(tmp);
+    QList<int> tmp = res.values();
+    std::sort(tmp.begin(),tmp.end());
 	return tmp;
 }
 
@@ -7508,7 +7587,7 @@ void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
 
 		// need to get the font metrics in the context of the paint device to get correct UI scaling
 		QFontMetrics fm = QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));
-		m_spaceWidth = fm.width(' ');
+		m_spaceWidth = UtilsUi::getFmWidth(fm, ' ');
 		m_ascent = fm.ascent();
 		m_descent = fm.descent();
 		m_lineHeight = fm.height();
@@ -7604,7 +7683,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 	}
 
 	if ( containsSurrogates || (m_workArounds & QDocument::DisableWidthCache) )
-		return m_fontMetrics[fid].width(text);
+		return UtilsUi::getFmWidth(m_fontMetrics[fid], text);
 
 	int rwidth=0;
 
@@ -7612,7 +7691,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 	foreach(const QChar& c, text){
 		const int *cwidth;
 		if (!cache->valueIfThere(c, cwidth))
-			cwidth = cache->insert(c,m_fontMetrics[fid].width(c));
+			cwidth = cache->insert(c,UtilsUi::getFmWidth(m_fontMetrics[fid], c));
 		rwidth+=*cwidth;
 	}
 	return rwidth;
@@ -7648,8 +7727,8 @@ int QDocumentPrivate::textWidthSingleLetterFallback(int fid, const QString& text
 		const int *cwidth;
 		if (!cache->valueIfThere(char_id, cwidth)) {
 			int nwidth;
-			if (cat == QChar::Other_Surrogate) nwidth = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
-			else nwidth = m_fontMetrics[fid].width(c);
+			if (cat == QChar::Other_Surrogate) nwidth = UtilsUi::getFmWidth(m_fontMetrics[fid], QString(lastSurrogate)+c);
+			else nwidth = UtilsUi::getFmWidth(m_fontMetrics[fid], c);
 			cwidth = cache->insert(char_id, nwidth);
 		}
 		rwidth+=*cwidth;
@@ -7676,8 +7755,8 @@ void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, b
 		const QPixmap* px;
 		if (!cache->valueIfThere(char_id, px)){
 			int cw;
-			if (cat == QChar::Other_Surrogate) cw = m_fontMetrics[fid].width(QString(lastSurrogate)+c);
-			else cw = m_fontMetrics[fid].width(c);
+			if (cat == QChar::Other_Surrogate) cw = UtilsUi::getFmWidth(m_fontMetrics[fid], QString(lastSurrogate)+c);
+			else cw = UtilsUi::getFmWidth(m_fontMetrics[fid], c);
 			QPixmap pm(cw,m_lineSpacing);
 			pm.fill(QColor::fromRgb(255,255,255,0)); //transparent background (opaque background would be twice as fast, but then we need much more pixmaps)
 			QPainter pmp(&pm);

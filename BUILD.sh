@@ -84,6 +84,11 @@ else
 	OPTION_PHONON=no
 fi
 
+if [ "$SYSTEM" = 1 ]; then
+	readoption "Do you want a terminal widget (requires the qtermwidget5 library)?" yes;
+	OPTION_TERMINAL=$NEWVALUE
+fi
+
 readswitchy "Do you want to build a debug or release version?" "debug release d r deb rel" debug;
 case "$NEWVALUE" in
 	d|deb|debug) OPTION_DEBUG_BUILD=yes;;
@@ -109,6 +114,7 @@ fi
 #pass parameters to qmake
 TXSCOMPILEOPTIONS=$*
 if [ "$OPTION_PDFVIEWER" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_POPPLER_PREVIEW=true"; fi
+if [ "$OPTION_TERMINAL" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS TERMINAL=true"; fi
 if [ "$OPTION_PHONON" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS PHONON=true"; fi
 if [ "$OPTION_TESTS" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_TESTS=true"; fi
 if [ "$OPTION_DEBUG_BUILD" = yes ]; then

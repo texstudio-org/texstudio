@@ -13,14 +13,17 @@
  */
 
 SymbolListModel::SymbolListModel(QVariantMap usageCountMap, QStringList favoriteList) :
-	iconSizeHint(32)
+    m_darkMode(false)
 {
 	foreach (const QString &key, usageCountMap.keys()) {
 		usageCount.insert(key, usageCountMap.value(key).toInt());
 	}
 	favoriteIds = favoriteList;
 }
-
+/*!
+ * \brief find and load all symbols of a given category
+ * \param category
+ */
 void SymbolListModel::load(QString category)
 {
 	QStringList files;
@@ -37,7 +40,11 @@ void SymbolListModel::load(QString category)
 
 	loadSymbols(category, fullNames);
 }
-
+/*!
+ * \brief extract meta data from SVG file and add the file directly as QIcon
+ * \param fileName
+ * \return
+ */
 SymbolItem loadSymbolFromSvg(QString fileName)
 {
 	QFile file(fileName);
@@ -92,7 +99,14 @@ SymbolItem loadSymbolFromSvg(QString fileName)
 	item.icon = QIcon(fileName);
 	return item;
 }
-
+/*!
+ * \brief load symbols from files
+ * png is inverted in dark mode.
+ * Symbols are taken from symbols-ng, directory symbols is used as fall-back.
+ * meta data is extracted from png/svg files.
+ * \param category add symbols to given category
+ * \param fileNames list of file names
+ */
 void SymbolListModel::loadSymbols(const QString &category, const QStringList &fileNames)
 {
 	for (int i = 0; i < fileNames.size(); ++i) {
@@ -111,7 +125,7 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 			symbolItem.packages = img.text("Packages");
 			symbolItem.unicode = img.text("CommandUnicode");
 			symbolItem.iconFile = fileName;
-			symbolItem.icon = QIcon(fileName);
+            symbolItem.icon = QIcon(fileName);
 		}
 		if (!symbolItem.unicode.isEmpty()) {
 			// convert to real unicode
@@ -136,7 +150,11 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 	}
 	return;
 }
-
+/*!
+ * \brief generate a QVariantMap of symbol ids/usage count.
+ * Is used for saving info in configuration.
+ * \return map
+ */
 QVariantMap SymbolListModel::usageCountAsQVariantMap() const {
 	QVariantMap map;
 	foreach (const QString &key, usageCount.keys()) {
@@ -144,18 +162,30 @@ QVariantMap SymbolListModel::usageCountAsQVariantMap() const {
 	}
 	return map;
 }
-
+/*!
+ * \brief return ids of favourites
+ * \return
+ */
 QStringList SymbolListModel::favorites() const
 {
 	return favoriteIds;
 }
-
+/*!
+ * \brief gives number of symbols
+ * \param parent
+ * \return number of symbols
+ */
 int SymbolListModel::rowCount(const QModelIndex &parent) const
 {
 	Q_UNUSED(parent)
 	return symbols.count();
 }
-
+/*!
+ * \brief provide model data for list view
+ * \param index
+ * \param role
+ * \return GUI data
+ */
 QVariant SymbolListModel::data(const QModelIndex &index, int role) const
 {
 	int r = index.row();
@@ -185,7 +215,10 @@ QVariant SymbolListModel::data(const QModelIndex &index, int role) const
 	}
 	return QVariant();
 }
-
+/*!
+ * \brief increment usage count of symbol id
+ * \param id
+ */
 void SymbolListModel::incrementUsage(const QString &id)
 {
 	usageCount.insert(id, usageCount.value(id, 0) + 1);
@@ -198,7 +231,19 @@ void SymbolListModel::incrementUsage(const QString &id)
 		}
 	}
 }
-
+/*!
+ * \brief activate dark mode
+ * This mode basically inverts icon colors (black to white)
+ * \param active true -> activate mode
+ */
+void SymbolListModel::setDarkmode(bool active)
+{
+    m_darkMode=active;
+}
+/*!
+ * \brief add symbol with id to favourite list
+ * \param id  symbol id
+ */
 void SymbolListModel::addFavorite(const QString &id)
 {
 	if (!favoriteIds.contains(id)) {
@@ -213,7 +258,10 @@ void SymbolListModel::addFavorite(const QString &id)
 		}
 	}
 }
-
+/*!
+ * \brief remove symbol with id from favourite list
+ * \param id symbol id
+ */
 void SymbolListModel::removeFavorite(const QString &id)
 {
 	if (favoriteIds.removeOne(id)) {
@@ -227,35 +275,49 @@ void SymbolListModel::removeFavorite(const QString &id)
 		}
 	}
 }
-
+/*!
+ * \brief return the icon for a symbol
+ * This icon is manipulated in darkmode to be inverted (SVG only)
+ * \param item
+ * \return icon
+ */
 QIcon SymbolListModel::getIcon(const SymbolItem &item) const
 {
-#if defined( Q_OS_MAC )
-	// work-around for another QT/OSX bug
-	if(item.iconFile.endsWith(".svg")){
-		const int sz = iconSizeHint + 4;
-		QSvgRenderer svgRender(item.iconFile);
-		QImage img(2*sz, 2*sz, QImage::Format_ARGB32);
-		//img.setDevicePixelRatio(2.0);
-		img.fill(0x000000000);
-		QPainter p(&img);
-		QSize svgSize=svgRender.defaultSize()*4;
-		if(svgSize.width()>2*sz){
-			svgSize.setWidth(2*sz);
-			svgSize.setHeight(svgSize.height()*2*sz/svgSize.width());
-		}
-		svgRender.render(&p,QRectF(QPointF((2.0*sz-svgSize.width())/2,0),svgSize));
-		return QIcon(QPixmap::fromImage(img));
-	}else{
-		return QIcon(item.iconFile);
-	}
+#if defined( Q_OS_MAC ) && (QT_VERSION < QT_VERSION_CHECK(5,14,0))
+    bool use_fallback=true;
 #else
-	//QIcon *icon = new QIcon(item.iconFile);
-	//qDebug() << item.command << icon.actualSize(QSize(iconSizeHint, iconSizeHint));
-	return item.icon;
+    bool use_fallback=false;
 #endif
+    // render SVG explicitely in darkMode and as a work-around for OSX bug
+    if(m_darkMode || use_fallback){
+        if(item.iconFile.endsWith(".svg")){
+            QSvgRenderer svgRender(item.iconFile);
+            QSize svgSize=svgRender.defaultSize()*4;
+            QImage img(svgSize.width(), svgSize.height(), QImage::Format_ARGB32);
+            QPainter p(&img);
+            img.fill(0x000000000);
+            svgRender.render(&p);
+            if(m_darkMode)
+                img.invertPixels(QImage::InvertRgb);
+            return QIcon(QPixmap::fromImage(img));
+        }else{
+            if(m_darkMode){
+                QImage img(item.iconFile);
+                img.invertPixels(QImage::InvertRgb);
+                return QIcon(QPixmap::fromImage(img));
+            } else{
+                return item.icon;
+            }
+        }
+    }else{
+        return item.icon;
+    }
 }
-
+/*!
+ * \brief get tooltip text for symbolitem item
+ * \param item
+ * \return tooltip text
+ */
 QString SymbolListModel::getTooltip(const SymbolItem &item) const
 {
 	QStringList args, pkgs;

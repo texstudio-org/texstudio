@@ -1,5 +1,5 @@
 # tikz package
-# muzimuzhi/12 Nov 2019
+# muzimuzhi/12 Nov 2019, 23 Feb 2020
 
 #include:pgfcore
 
@@ -17,46 +17,47 @@
 \pgfmatrixcolumnsep#*
 \pgfmatrixrowsep#*
 \tikzstyle{style} = {definition}#s#%tikzstyle
-\begin{tikzpicture}#\picture
-\begin{tikzpicture}[options%keyvals]
+\begin{tikzpicture}
+\begin{tikzpicture}[options%keyvals]#\picture
 \end{tikzpicture}
 \tikz
 \tikz[options%keyvals]
 \tikzifinpicture{arg1}#*
 \tikzaddtikzonlycommandshortcutlet{arg1}#*
 \tikzaddtikzonlycommandshortcutdef{arg1}#*
-\path#/tikzpicture
-\path[options%keyvals]#/tikzpicture
-\draw#/tikzpicture
-\draw[options%keyvals]#/tikzpicture
-\fill#/tikzpicture
-\fill[options%keyvals]#/tikzpicture
-\filldraw#/tikzpicture
-\filldraw[options%keyvals]#/tikzpicture
-\pattern#/tikzpicture
-\pattern[options%keyvals]#/tikzpicture
-\shade#/tikzpicture
-\shade[options%keyvals]#/tikzpicture
-\shadedraw#/tikzpicture
-\shadedraw[options%keyvals]#/tikzpicture
-\clip#*/tikzpicture
-\clip[options%keyvals]#*/tikzpicture
+\path
+\path[options%keyvals]
+\draw
+\draw[options%keyvals]
+\fill
+\fill[options%keyvals]
+\filldraw
+\filldraw[options%keyvals]
+\pattern
+\pattern[options%keyvals]
+\shade
+\shade[options%keyvals]
+\shadedraw
+\shadedraw[options%keyvals]
+\clip#*
+\clip[options%keyvals]#*
 \useasboundingbox#*
-\node#/tikzpicture
-\node[options%keyvals] (node name) {};#s/tikzpicture#(%node)
-\nodepart[options%keyvals]{part name}#/tikzpicture
-\coordinate#/tikzpicture
-\coordinate[options%keyvals]#/tikzpicture
-\pic/#tikzpicture
-\pic/[options%keyvals]#tikzpicture
-\graph#/tikzpicture
-\graph[options%keyvals]#/tikzpicture
-\matrix#/tikzpicture
-\matrix[options%keyvals]#/tikzpicture
+\node
+\node[options%keyvals] (node name) {};#s#%node
+\nodepart[options%keyvals]{part name}
+\coordinate
+\coordinate[options%keyvals]
+\pic
+\pic[options%keyvals]
+\graph
+\graph[options%keyvals]
+\matrix
+\matrix[options%keyvals]
 \calendar#*
 \datavisualization#*
 \pgfextra#*
 \pgfstrokehook#*
+\tikztostart#*
 \tikztotarget#*
 \tikztonodes#*
 \pgfplotlastpoint#*
@@ -66,8 +67,8 @@
 \tikzdeclarecoordinatesystem{arg1}#*
 \tikzaliascoordinatesystem{arg1}#*
 
-\usetikzlibrary{keyvals}
-#keyvals:\usetikzlibrary
+\usetikzlibrary{library list%keyvals}
+#keyvals:\usetikzlibrary#c
 3d
 angles
 animations
@@ -134,6 +135,7 @@ routing
 scopes
 shadings
 shadows
+shapes
 shapes.arrows
 shapes.callouts
 shapes.gates.ee
@@ -141,7 +143,7 @@ shapes.gates.ee.IEC
 shapes.gates.logic
 shapes.gates.logic.IEC
 shapes.gates.logic.US
-shapes.geometry
+shapes.geometric
 shapes.misc
 shapes.multipart
 shapes.symbols

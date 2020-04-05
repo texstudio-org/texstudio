@@ -593,6 +593,6 @@ void CodeSnippetList::insert(const QString &elem)
 {
 	CodeSnippet cs(elem);
 	cs.usageCount = 2;
-	QList<CodeSnippet>::iterator it = qLowerBound(this->begin(), this->end(), cs);
+    QList<CodeSnippet>::iterator it = std::lower_bound(this->begin(), this->end(), cs);
 	QList<CodeSnippet>::insert(it, cs);
 }

@@ -4,6 +4,7 @@
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
 #include:latex-dev
+#include:textcomp
 \abstractname#*
 \addcontentsline{file}{secunit}{entry}#*
 \Alph{counter}#*
@@ -286,9 +287,12 @@
 \mathunderscore#m
 \mathversion#*
 \mbox{text}
+\medspace
 \mdseries#*
 \multicolumn{cols}{pos}{text}
 \multiput(xcoord,ycoord)(xdelta,ydelta){copies}{object}#*/picture
+\negmedspace
+\negthickspace
 \newblock#*
 \newlabel
 \newlength{newlength%cmd}#d
@@ -445,8 +449,9 @@
 \textvisiblespace
 \textwidth
 \thanks{text}
-\thicklines
-\thinlines
+\thicklines#*/picture
+\thickspace
+\thinlines#*/picture
 \thispagestyle{empty/plain/headings/myheadings}
 \time
 \tiny
@@ -465,6 +470,7 @@
 \vdots
 \vector(xslope,yslope){length}#*/picture
 \verb|%<text%>|
+\verb*|%<text%>|
 \verb{verbatimSymbol}#S
 \verb*{verbatimSymbol}#S
 \vline

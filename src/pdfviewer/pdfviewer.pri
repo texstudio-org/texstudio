@@ -4,9 +4,7 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-
 include(synctex/synctex.pri)
-
 
 HEADERS += \
     $$PWD/PDFDocument.h \
@@ -42,7 +40,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
             LIBS += ./zlib1.dll ./libpoppler-qt5.dll
         }
         DEFINES += HAS_POPPLER_31
-        LIBS += -lshlwapi
+        LIBS *= -lshlwapi
     } else {
         macx { # PATH to pkgconfig needs to be present in build PATH
             QT_CONFIG -= no-pkg-config
@@ -70,6 +68,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
 
         system($${PKG_CONFIG_EXE} --atleast-version=0.31 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_31
     }
+    LIBS *= -lz
 } else {
     DEFINES += NO_POPPLER_PREVIEW
     message("Internal pdf previewer disabled as you wish.")

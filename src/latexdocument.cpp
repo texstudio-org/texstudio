@@ -417,8 +417,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	 * e.g. definition of specialDef command, but packages are load at the end of this method.
 	 */
 	//qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
-    QTime tm;
-    tm.start();
+
 	if (!parent->patchEnabled())
 		return false;
 
@@ -637,7 +636,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 QString name;
                 QString val;
                 splitMagicComment(text, name, val);
-                if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex")) {
+                if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex" || val == "bibtex8")) {
                     addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, posMagicComment++);
                     commentStart.second=Token::magicComment;
                     dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
@@ -1569,13 +1568,13 @@ void LatexDocument::replaceLabelsAndRefs(const QString &name, const QString &new
 
 void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
 {
-	masterDocument = doc;
-	if (recheck) {
-		QList<LatexDocument *>listOfDocs = getListOfDocs();
-		foreach (LatexDocument *elem, listOfDocs) {
-			elem->recheckRefsLabels();
-		}
-	}
+    masterDocument = doc;
+    if (recheck) {
+        QList<LatexDocument *>listOfDocs = getListOfDocs();
+        foreach (LatexDocument *elem, listOfDocs) {
+            elem->recheckRefsLabels();
+        }
+    }
 }
 
 void LatexDocument::addChild(LatexDocument *doc)
@@ -1717,7 +1716,7 @@ QList<CodeSnippet> LatexDocument::userCommandList() const
 	foreach (UserCommandPair cmd, mUserCommandList.values()) {
 		csl.append(cmd.snippet);
 	}
-	qSort(csl);
+    std::sort(csl.begin(),csl.end());
 	return csl;
 }
 
@@ -1809,7 +1808,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 	LatexEditorView *view = document->getEditorView();
 	if (view)
 		view->closeCompleter();
-	if (document != masterDocument) {
+        if ((document != masterDocument)||(documents.count()==1) ) {
 		// get list of all affected documents
 		QList<LatexDocument *> lstOfDocs = document->getListOfDocs();
 		// special treatment to remove document in purge mode (hidden doc was deleted on disc)
@@ -1898,7 +1897,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		}
 		documents.removeAll(document);
 		if (document == currentDocument) {
-            currentDocument = nullptr;
+                    currentDocument = nullptr;
 		}
 		if (row >= 0 ) { //&& !model->getSingleDocMode()){
 			model->removeElementFinished();
@@ -1906,6 +1905,14 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		//model->resetAll();
 		if (n > 1) { // don't remove document, stays hidden instead
 			hideDocInEditor(document->getEditorView());
+                        if(masterDocument && documents.count()==1){
+                            // special check if masterDocument, but document is not visible
+                            LatexDocument *doc=documents.first();
+                            if(!doc->getEditorView()){
+                                // no view left -> purge
+                                deleteDocument(masterDocument);
+                            }
+                        }
 			return;
 		}
 		delete view;
@@ -1922,6 +1929,13 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		if (document == currentDocument)
 			currentDocument = nullptr;
 	}
+        // purge masterdocument if none is left
+        if(documents.isEmpty()){
+            if(masterDocument){
+                masterDocument=nullptr;
+            }
+            hiddenDocuments.clear();
+        }
 }
 
 void LatexDocuments::requestedClose()
@@ -1950,7 +1964,7 @@ void LatexDocuments::setMasterDocument(LatexDocument *document)
 		// repaint doc
 		foreach (LatexDocument *doc, documents) {
 			LatexEditorView *edView = doc->getEditorView();
-			if (edView) edView->documentContentChanged(0, edView->editor->document()->lines());
+                        if (edView) edView->documentContentChanged(0, doc->lines());
 		}
 	}
 	model->resetAll();
@@ -2419,7 +2433,7 @@ void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se
 			)
 			newPos = oldPos;
 		else {
-			newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
+            newPos = std::upper_bound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
 			while (newPos > 0
 				 && newParent->children[newPos-1]->getRealLineNumber() == se->getRealLineNumber()
 				 && newParent->children[newPos-1]->columnNumber == se->columnNumber
@@ -2430,7 +2444,7 @@ void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se
 		oldPos = -1;
 		if (newParent->children.size() > 0 &&
 				newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber())
-			newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
+            newPos = std::upper_bound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
 		else
 			newPos = newParent->children.size();
 	}
@@ -2749,7 +2763,7 @@ CodeSnippetList LatexDocument::additionalCommandsList()
 {
 	LatexPackage pck;
 	QStringList loadedFiles, files;
-	files = mCWLFiles.toList();
+    files = mCWLFiles.values();
 	gatherCompletionFiles(files, loadedFiles, pck, true);
 	return pck.completionWords;
 }
@@ -2773,7 +2787,7 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 	gatherCompletionFiles(files, loadedFiles, pck);
 	update = true;
 
-	mCWLFiles = loadedFiles.toSet();
+    mCWLFiles = convertStringListtoSet(loadedFiles);
 	QSet<QString> userCommandsForSyntaxCheck = ltxCommands.possibleCommands["user"];
 	QSet<QString> columntypeForSyntaxCheck = ltxCommands.possibleCommands["%columntypes"];
 	ltxCommands.optionCommands = pck.optionCommands;
@@ -3023,7 +3037,7 @@ QSet<QString> LatexDocument::usedPackages()
 {
 	QSet<QString> packages;
 	foreach (LatexDocument *doc, getListOfDocs()) {
-		packages.unite(doc->containedPackages().toSet());
+        packages.unite(convertStringListtoSet(doc->containedPackages()));
 	}
 	return packages;
 }

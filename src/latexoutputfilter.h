@@ -50,8 +50,6 @@ struct LatexLogEntry {
  * @author Jeroen Wijnhout
  */
 
-class KTextEdit;
-
 class LOFStackItem
 {
 public:

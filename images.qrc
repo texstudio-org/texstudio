@@ -20,9 +20,11 @@
         <file>images-ng/bookmarks.svg</file>
         <file>images-ng/build.svgz</file>
         <file>images-ng/case.svg</file>
+        <file>images-ng/case_dm.svg</file>
         <file>images-ng/chapter.svg</file>
         <file>images-ng/close-tab-hover.svgz</file>
         <file>images-ng/close-tab.svgz</file>
+        <file>images-ng/close-tab_dm.svgz</file>
         <file>images-ng/compile-latex.svgz</file>
         <file>images-ng/compile-lua.svgz</file>
         <file>images-ng/compile-pdf.svgz</file>
@@ -39,13 +41,16 @@
         <file>images-ng/config_quickbuild.svg</file>
         <file>images-ng/config_shortcut.svg</file>
         <file>images-ng/config_svn.svg</file>
+        <file>images-ng/config_terminal.svg</file>
         <file>images-ng/config_toolbars.svg</file>
         <file>images-ng/configure.svgz</file>
         <file>images-ng/convert-dvipdf.svgz</file>
         <file>images-ng/convert-dvips.svgz</file>
         <file>images-ng/convert-pspdf.svgz</file>
         <file>images-ng/count.svg</file>
+        <file>images-ng/count_dm.svg</file>
         <file>images-ng/cursor.svg</file>
+        <file>images-ng/cursor_dm.svg</file>
         <file>images-ng/cutCol.svg</file>
         <file>images-ng/dialog-error.svg</file>
         <file>images-ng/document-close.svgz</file>
@@ -65,6 +70,7 @@
         <file>images-ng/error.svgz</file>
         <file>images-ng/escape.svg</file>
         <file>images-ng/extend.svg</file>
+        <file>images-ng/extend_dm.svg</file>
         <file>images-ng/font_emph48.svg</file>
         <file>images-ng/font_textbf48.svg</file>
         <file>images-ng/font_textit48.svg</file>
@@ -127,6 +133,7 @@
         <file>images-ng/prompt.svg</file>
         <file>images-ng/pstricks.svg</file>
         <file>images-ng/regex.svg</file>
+        <file>images-ng/regex_dm.svg</file>        
         <file>images-ng/remCol.svg</file>
         <file>images-ng/remRow.svg</file>
         <file>images-ng/repeat-compile-off.svg</file>
@@ -138,6 +145,7 @@
         <file>images-ng/right.svgz</file>
         <file>images-ng/section.svg</file>
         <file>images-ng/selection.svg</file>
+        <file>images-ng/selection_dm.svg</file>
         <file>images-ng/sidebar.svg</file>
         <file>images-ng/stop.svgz</file>
         <file>images-ng/strikeout.svg</file>
@@ -161,6 +169,7 @@
         <file>images-ng/warning.svgz</file>
         <file>images-ng/waveUnderline.svg</file>
         <file>images-ng/word.svg</file>
+        <file>images-ng/word_dm.svg</file>
         <file>images-ng/xy.svg</file>
         <file>images-ng/zoom-fit-best.svg</file>
         <file>images-ng/zoom-fit-text-width.svgz</file>
@@ -207,12 +216,18 @@
         <file>images-ng/modern/zoom-out.svgz</file>
         <file>images-ng/math.svg</file>
         <file>images-ng/comment.svg</file>
+        <file>images-ng/comment_dm.svg</file>
         <file>images-ng/non-comment.svg</file>
+        <file>images-ng/non-comment_dm.svg</file>
         <file>images-ng/command.svg</file>
+        <file>images-ng/command_dm.svg</file>
         <file>images-ng/all.svg</file>
+        <file>images-ng/all_dm.svg</file>
         <file>images-ng/verbatim.svg</file>
         <file>images-ng/cite.svg</file>
+        <file>images-ng/cite_dm.svg</file>        
         <file>images-ng/label.svg</file>
+        <file>images-ng/label_dm.svg</file>
         <file>images-ng/executeMacro.svg</file>
     </qresource>
 </RCC>

@@ -35,11 +35,11 @@ public:
 	int rowCount(const QModelIndex &parent) const;
 	QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
 
-	void setIconSizeHint(int size) { iconSizeHint = size; }
 	void incrementUsage(const QString &id);
 
 	QVariantMap usageCountAsQVariantMap() const;
 	QStringList favorites() const;
+    void setDarkmode(bool active);
 
 public slots:
 	void addFavorite(const QString &id);
@@ -55,9 +55,9 @@ protected:
 
 private:
 	QList<SymbolItem> symbols;
-	int iconSizeHint;  // only needed for a workaround on OSX which renders svg -> pixmap -> icon
 	QHash<QString, int> usageCount;
 	QStringList favoriteIds;
+    bool m_darkMode;
 };
 
 #endif // SYMBOLLISTMODEL_H

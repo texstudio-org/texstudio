@@ -34,6 +34,8 @@ class ConfigManager: public QObject, public ConfigManagerInterface
 	Q_OBJECT
 
 public:
+    static const int MAX_NUM_MACROS = 5000;
+
     ConfigManager(QObject *parent = nullptr);
 	~ConfigManager();
 
@@ -44,6 +46,7 @@ public:
 	QSettings *newQSettings();
 	QSettings *readSettings(bool reread = false);
 	QSettings *saveSettings(const QString &saveName = "");
+    QSettings *getSettings();
 
     bool execConfigDialog(QWidget *parentToDialog);
 
@@ -73,6 +76,14 @@ public:
 	bool svnUndo;
 	bool svnKeywordSubstitution;
 	int svnSearchPathDepth;
+
+#ifdef TERMINAL
+	// terminal
+	QString terminalColorScheme;
+	QString terminalFontFamily;
+	int terminalFontSize;
+	QString terminalShell;
+#endif
 
 	//appearance
 	QPalette systemPalette;
@@ -186,10 +197,6 @@ public:
 	QString spellDictDir;
 	QString spellLanguage;
 	QString spell_dic, thesaurus_database;
-
-	// custom highlighting
-	QStringList enviromentModes;
-	QMap<QString, QVariant> customEnvironments;
 
 	//debug
 #ifndef QT_NO_DEBUG

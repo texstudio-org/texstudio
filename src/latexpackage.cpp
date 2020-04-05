@@ -586,7 +586,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 
 				if (!words.contains(line)) {
 					CodeSnippet cs = CodeSnippet(line);
-					CodeSnippetList::iterator it = qLowerBound(words.begin(), words.end(), cs);
+                    CodeSnippetList::iterator it = std::lower_bound(words.begin(), words.end(), cs);
 					it = words.insert(it, cs);
 					uint hash = qHash(line);
 					int len = line.length();
@@ -631,6 +631,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 		if (suffix == "%todo") return Token::todo;
 		if (suffix == "%l") return Token::width;
 		if (suffix == "%cmd") return Token::def;
+		if (suffix == "%formula") return Token::formula;
 		if (suffix == "%keyvals") return Token::keyValArg;
 		if ((suffix == "%envname") && definition.contains('N')) return Token::newTheorem;
 		if (suffix == "%ref") return Token::labelRef;

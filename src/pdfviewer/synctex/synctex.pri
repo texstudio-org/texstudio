@@ -1,6 +1,10 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
+win32: {
+    LIBS *= -lshlwapi
+}
+
 HEADERS += \
     $$PWD/synctex_parser.h \
     $$PWD/synctex_parser_utils.h \

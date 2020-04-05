@@ -7,6 +7,9 @@
 #include <QPlainTextEdit>
 #include "usermacro.h"
 
+/*!
+ * \brief provide simple UI to browse macros from github.com/texstudio-org/texstudio-macro
+ */
 class MacroBrowserUI : public QDialog
 {
     Q_OBJECT

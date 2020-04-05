@@ -6,6 +6,10 @@
 
 #include "mostQtHeaders.h"
 
+#ifdef TERMINAL
+#include <qtermwidget5/qtermwidget.h>
+#endif
+
 #include "titledpanel.h"
 #include "logeditor.h"
 #include "latexlog.h"
@@ -17,7 +21,7 @@ class PreviewWidget : public QScrollArea
 	Q_OBJECT
 
 public:
-	explicit PreviewWidget(QWidget *parent = 0);
+    explicit PreviewWidget(QWidget *parent = nullptr);
 
 public slots:
 	void previewLatex(const QPixmap &previewImage);
@@ -39,20 +43,47 @@ private:
 	bool mFit;
 };
 
+#ifdef TERMINAL
+class TerminalWidget : public QWidget
+{
+	Q_OBJECT
+
+public:
+    explicit TerminalWidget(QWidget *parent = nullptr);
+    ~TerminalWidget();
+	void setCurrentFileName(const QString &filename);
+	void updateSettings(bool noreset=false);
+	bool eventFilter(QObject *watched, QEvent *event);
+
+private slots:
+	void qTermWidgetFinished();
+
+private :
+	QString curShell;
+	void initQTermWidget();
+	QTermWidget *qTermWidget;
+	QHBoxLayout *layout;
+};
+#endif
+
 class OutputViewWidget: public TitledPanel
 {
 	Q_OBJECT
 
 public:
-	explicit OutputViewWidget(QWidget *parent = 0);
+    explicit OutputViewWidget(QWidget *parent = nullptr);
 
 	const QString MESSAGES_PAGE;
 	const QString LOG_PAGE;
 	const QString PREVIEW_PAGE;
+	const QString TERMINAL_PAGE;
 	const QString SEARCH_RESULT_PAGE;
 
 	LatexLogWidget *getLogWidget() { return logWidget; }
 	SearchResultWidget *getSearchResultWidget() { return searchResultWidget; }
+#ifdef TERMINAL
+	TerminalWidget *getTerminalWidget() { return terminalWidget; }
+#endif
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	bool childHasFocus();
@@ -72,6 +103,9 @@ signals:
 
 private:
 	PreviewWidget *previewWidget;
+#ifdef TERMINAL
+	TerminalWidget *terminalWidget;
+#endif
 	LatexLogWidget *logWidget;
 	SearchResultWidget *searchResultWidget;
 	LogEditor *OutputMessages;
@@ -88,7 +122,7 @@ class SidePanel: public TitledPanel
 	Q_OBJECT
 
 public:
-	SidePanel(QWidget *parent = 0) : TitledPanel(parent) { setFrameStyle(QFrame::NoFrame); }
+    SidePanel(QWidget *parent = nullptr) : TitledPanel(parent) { setFrameStyle(QFrame::NoFrame); }
 	QSize sizeHint() const { return QSize(280, 0); }
 };
 
@@ -98,7 +132,7 @@ class CustomWidgetList: public QWidget
 	Q_OBJECT
 
 public:
-	CustomWidgetList(QWidget *parent = 0);
+    CustomWidgetList(QWidget *parent = nullptr);
 	void addWidget(QWidget *widget, const QString &id, const QString &text, const QString &iconName);
 	void setWidgetText(const QString &id, const QString &text);
 	void setWidgetText(QWidget *widget, const QString &text);
@@ -140,7 +174,6 @@ private:
 	//new layout
 	QStackedWidget *stack;
 	QToolBar *toolbar;
-
 };
 
 #endif

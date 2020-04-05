@@ -157,13 +157,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	QString line = dlh->text();
 	bool verbatimMode = false;
 	int level = 0;
-	if (!stack.isEmpty()) {
-	    if (stack.top().type == Token::verbatim) {
-		verbatimMode = true;
-	    } else {
-		level = stack.top().level + 1;
-	    }
-	}
+    if (!stack.isEmpty()) {
+        if (stack.top().type == Token::verbatim) {
+            verbatimMode = true;
+        } else {
+            level = stack.top().level + 1;
+        }
+    }
 	TokenList lexed;
 
 	QString verbatimSymbol;
@@ -218,7 +218,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             Token tk3 = tl.at(i + 2);
             if (tk2.type == Token::openBrace && tk3.type == Token::word) {
                 QString env = line.mid(tk3.start, tk3.length);
-                if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing correspondents to open !
+                if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing corresponds to open !
                     verbatimMode = false;
                     stack.pop();
                 } else
@@ -246,7 +246,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }else{
                 if(tk.type==Token::closeBrace){
                     Token tk1=stack.pop();
-                    if(!stack.isEmpty() && stack.top().subtype==Token::definition){ // check if more than openBrace/defintion are on the stack, if yes , juts pop it and continue in definition mode
+                    if(!stack.isEmpty() && stack.top().subtype==Token::definition){ // check if more than openBrace/defintion are on the stack, if yes , just pop it and continue in definition mode
                         tk.subtype=Token::definition;
                         lexed << tk;
                         level=tk1.level; // restore original level
@@ -328,7 +328,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
 
                 }
-                if ((cd.args > 0 || cd.optionalArgs > 0 || cd.bracketArgs > 0 ) && tk.subtype != Token::def) { // don't interpret commands in defintion (\newcommand{def})
+                if ((cd.args > 0 || cd.optionalArgs > 0 || cd.bracketArgs > 0 ) && tk.subtype != Token::def) { // don't interpret commands in definition (\newcommand{def})
                     cd.optionalCommandName=command;
                     commandStack.push(cd);
                 }
@@ -405,7 +405,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             continue;
         }
 	    if (Token::tkClose().contains(tk.type)) {
-		// special treament for brackets as they don't have any syntaxtical meaning except with some commands
+		// special treament for brackets as they don't have any syntactic meaning except with some commands
             if (tk.type == Token::closeBracket || tk.type == Token::greater ) {
                 if (stack.isEmpty())
                     continue;
@@ -467,6 +467,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                         cd.args--;
                                         cd.argTypes.takeFirst();
                                         cd.optionalCommandName="\\begin{" + env + "}";
+                                        cd.level=tk1.level;
                                         commandStack.push(cd);
                                         forceContinue=true;
                                     }else{
@@ -482,6 +483,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                         cd.args--;
                                         cd.argTypes.takeFirst();
                                         cd.optionalCommandName="\\begin{" + env + "}";
+                                        cd.level=tk1.level;
                                         commandStack.push(cd);
                                         forceContinue=true;
                                     }
@@ -725,8 +727,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
         if(cd.verbatimAfterOptionalArg){ //optional arg not found
             Token tk3;
             tk3.dlh = dlh;
-            tk3.level = level - 1;
+            tk3.level = level;
             tk3.type = Token::verbatim;
+            cd.verbatimAfterOptionalArg=false; // don't search again on next line
             stack.push(tk3);
         }
     }
@@ -746,7 +749,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
     }
     dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(stack));
     dlh->setCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE, QVariant::fromValue<CommandStack>(commandStack));
-    dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >({commentStart,-1}));
+    dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >({commentStart, Token::unknownComment}));
     dlh->unlock();
 
     bool remainderChanged = (stack != oldRemainder) || (commandStack != oldCommandStack) ;

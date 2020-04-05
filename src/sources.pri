@@ -27,6 +27,7 @@ HEADERS += \
     $$PWD/execprogram.h \
     $$PWD/filechooser.h \
     $$PWD/fileselector.h \
+    $$PWD/findindirs.h \
     $$PWD/flowlayout.h \
     $$PWD/grammarcheck.h \
     $$PWD/grammarcheck_config.h \
@@ -133,6 +134,7 @@ SOURCES += \
     $$PWD/execprogram.cpp \
     $$PWD/filechooser.cpp \
     $$PWD/fileselector.cpp \
+    $$PWD/findindirs.cpp \
     $$PWD/flowlayout.cpp \
     $$PWD/grammarcheck.cpp \
     $$PWD/help.cpp \

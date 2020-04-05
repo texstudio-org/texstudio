@@ -134,7 +134,13 @@ void QuaZipNewInfo::setFileNTFSTimes(const QString &fileName)
     }
     setFileNTFSmTime(fi.lastModified());
     setFileNTFSaTime(fi.lastRead());
-    setFileNTFScTime(fi.created());
+    setFileNTFScTime(
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+	    fi.birthTime()
+#else
+	    fi.created()
+#endif
+    );
 }
 
 static void setNTFSTime(QByteArray &extra, const QDateTime &time, int position,

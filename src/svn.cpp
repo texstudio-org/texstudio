@@ -18,28 +18,49 @@ QString SVN::quote(QString filename) {
 	}
 	return quotePath(filename);
 }
-
+/*!
+ * \brief generate string which contains command "svn action args"
+ * \param action
+ * \param args
+ * \return
+ */
 QString SVN::makeCmd(QString action, QString args)
 {
 	return BuildManager::CMD_SVN + " " + action + " " + args;
 }
-
+/*!
+ * \brief generate a string which contains the command for "svnadmin action args"
+ * \param action
+ * \param args
+ * \return
+ */
 QString SVN::makeAdminCmd(QString action, QString args)
 {
 	return BuildManager::CMD_SVNADMIN + " " + action + " " + args;
 }
 
-
+/*!
+ * \brief svn commit filenmae
+ * \param filename
+ * \param message commit message
+ */
 void SVN::commit(QString filename, QString message) const
 {
 	runSvn("commit", "-m " + enquoteStr(message) + " " + quote(filename));
 }
-
+/*!
+ * \brief svn lock filename
+ * \param filename
+ */
 void SVN::lock(QString filename) const
 {
 	runSvn("lock", quote(filename));
 }
-
+/*!
+ * \brief get svn status filename
+ * \param filename
+ * \return
+ */
 SVN::Status SVN::status(QString filename) const
 {
 	QString output = runSvn("status", quote(filename));
@@ -50,7 +71,11 @@ SVN::Status SVN::status(QString filename) const
 	if (output.startsWith("L")) return SVN::Locked;
 	return SVN::Unknown;
 }
-
+/*!
+ * \brief get svn log
+ * \param filename
+ * \return
+ */
 QStringList SVN::log(QString filename) const
 {
 	QString output = runSvn("log", quote(filename));
@@ -65,7 +90,10 @@ QStringList SVN::log(QString filename) const
 	}
 	return revisions;
 }
-
+/*!
+ * \brief create a svn repository with trunk/branches/tags in directory filename
+ * \param filename
+ */
 void SVN::createRepository(QString filename) const
 {
 	QString path = QFileInfo(filename).absolutePath();
@@ -76,7 +104,12 @@ void SVN::createRepository(QString filename) const
 	runSvn("mkdir", "\"file:///" + path + "/repo/tags\" -m\"txs auto generate\"");
 	runSvn("checkout", "\"file:///" + path + "/repo/trunk\" \"" + path + "\"");
 }
-
+/*!
+ * \brief run svn command
+ * \param action
+ * \param args
+ * \return
+ */
 QString SVN::runSvn(QString action, QString args) const
 {
 	QString output;
@@ -84,7 +117,12 @@ QString SVN::runSvn(QString action, QString args) const
 	emit runCommand(makeCmd(action, args), &output);
 	return output;
 }
-
+/*!
+ * \brief run svnadmin
+ * \param action
+ * \param args
+ * \return
+ */
 QString SVN::runSvnAdmin(QString action, QString args) const
 {
 	QString output;

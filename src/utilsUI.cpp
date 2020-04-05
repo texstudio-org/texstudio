@@ -114,7 +114,7 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 		QString text = list[i];
 		//QIcon icon = (i<icons.length()) ? icons[i] : QIcon();
 		QAction *mAction = mMenu->addAction(text, receiver, member);
-		max = qMax(max, fm.width(text + "        "));
+		max = qMax(max, getFmWidth(fm, text + "        "));
 		if (i == defaultIndex) {
 			combo->setDefaultAction(mAction);
 			defaultSet = true;
@@ -276,7 +276,7 @@ static QString strippedActionText(QString s) {
  */
 void addShortcutToToolTip(QAction *action)
 {
-	if (!action->shortcut().isEmpty() and !action->property("hasShortcutToolTip").toBool()) {
+	if (!action->shortcut().isEmpty() && !action->property("hasShortcutToolTip").toBool()) {
 		QString tooltip = action->property("tooltipBackup").toString();
 		if (tooltip.isEmpty()) {
 			tooltip = action->toolTip();
@@ -358,5 +358,56 @@ void resizeInFontHeight(QWidget *w, int width, int height)
 	//qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;
 	w->resize(newSize);
 }
+
+/*!
+ * \brief Given font metrics return pixel size of a character
+ * \param[in] fm Font metrics
+ * \param[in] ch Character
+ * \returns Returns pixel size of character
+ */
+int getFmWidth(const QFontMetrics &fm, QChar ch)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	return fm.horizontalAdvance(ch);
+#else
+	return fm.width(ch);
+#endif
+}
+
+/*!
+ * \brief Given font metrics return pixel size of a text string
+ * \param[in] fm Font metrics
+ * \param[in] text Text string
+ * \param[in] len Only calculate width of the first len characters of the string. If not specified,
+ * then -1 is assumed which means calculate width of the whole string.
+ * \returns Returns pixel size of the text string
+ */
+int getFmWidth(const QFontMetrics &fm, const QString &text, int len)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+	return fm.horizontalAdvance(text, len);
+#else
+	return fm.width(text, len);
+#endif
+}
+
+/*!
+ * \brief Return the screen geometry for a given point
+ * \param[in] pos Position
+ * \returns The screen geometry at the given point
+ */
+QRect getAvailableGeometryAt(const QPoint &pos)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+	QScreen *pScreen = QGuiApplication::screenAt(pos);
+	if (pScreen == nullptr) {
+		return QRect();
+	}
+	return pScreen->availableGeometry();
+#else
+	return QApplication::desktop()->availableGeometry(pos);
+#endif
+}
+
 
 }  // namespace UtilsUi

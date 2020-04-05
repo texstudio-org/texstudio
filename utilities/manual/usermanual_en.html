@@ -61,7 +61,7 @@
 	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
 	<li><a href="#SECTION32a">4.2 Syntax Check</a></li>
 	<li><a href="#SECTION32">4.3 Bibliography</a></li>
-	<li><a href="#SECTION33a">4.4 External Commands</h2>
+	<li><a href="#SECTION33a">4.4 External Commands</a></li>
 	<li><a href="#SECTION33b">4.5 SVN Support</a></li>
 	<li><a href="#SECTION33">4.6 Personal macros</a></li>
 	<li><a href="#SECTION34">4.7 PSTricks support</a></li>
@@ -685,17 +685,55 @@ Note: texstudio needs that the env-name starts with "%", though that character i
   </tr>
   <tr><td> writeFile(name, value) </td>	<td> Writes value to file name (requires write privileges) </td></tr>
   <tr><td> readFile(name) </td>	<td> Reads the entire file name (requires read privileges) </td></tr>
-  <tr><td> system(cmd, workingDirectory="") </td>	<td> Calls cmd and returns a ProcessX object which has this methodes:
-    <ul>
-    <li>waitForFinished: Wait until the process is finished</li>
-    <li>readAllStandardOutputStr: Returns the stdout</li>
-    <li>readAllStandardErrorStr: Returns the stderr</li>
-    <li>exitCode: The exit code</li>
-    <li>exitStatus: The qt exit status</li>
-    <li>terminate or kill: Stops the process</li>
-    </ul>
-	If workingDirectory is not set, the working directory will be inherited from the TeXstudio executable.
-  </td></tr>
+  <tr>
+    <td> system(cmd, workingDirectory="") </td>
+    <td>
+	Calls an external command <b>cmd</b>, which includes the program name and its arguments.<br>
+	<b>cmd</b> may undergo command-line expansion as follows:
+        <ul>
+            <li>
+              If <b>cmd</b> contains the string <b>txs:///</b> or if it does <b>not</b>
+	      contain any pipe (|) characters, then <b>cmd</b> undergoes standard command-line expansion like any other
+              <a href="#SECTION33a">external command</a>. When expanding any tokens the current file is assumed to be
+              the empty string, so any tokens that use the current file (e.g. <b>%</b> or <b>?</b>) will expand to the
+              empty string too.
+            </li>
+            <li>
+              If <b>cmd</b> does not contain the string <b>txs:///</b> and it contains at least one pipe character, then
+              it is executed without any string expansion or replacement.<br>
+            </li>
+        </ul>
+	If <b>workingDirectory</b> is not set, the working directory will be inherited from the TeXstudio executable.<br>
+        This command returns a ProcessX object which has the following methods:
+        <ul>
+          <li>waitForFinished: Wait until the process is finished</li>
+          <li>readAllStandardOutputStr: Returns the stdout</li>
+          <li>readAllStandardErrorStr: Returns the stderr</li>
+          <li>exitCode: The exit code</li>
+          <li>exitStatus: The qt exit status</li>
+          <li>terminate or kill: Stops the process</li>
+        </ul>
+        If the script does is not granted permission to run the external command, then <b>system()</b> returns <b>null</b>.<br>
+        <br>
+        Examples<br>
+        <br>
+        List all the files in the Subversion repository /usr/local/svnrepository<br>
+        The command contains the string <b>txs:///</b>, so it undergoes the expansion as an <a href="#SECTION33a">external command</a>.
+        <pre>%SCRIPT
+cmd = system("txs:///svn ls /usr/local/svnrepository")
+cmd.waitForFinished()
+output = cmd.readAllStandardOutputStr()
+alert (output)</pre>
+        Download the web page from <b>http://www.my-website.com??arg1=abc&amp;arg2=def</b> and save it as the local file
+        <b>/home/john/page.html</b>.<br>
+        The command does not contain any pipe characters (|), so it undergoes the expansion as an <a href="#SECTION33a">external command</a>.<br>
+        Note that we have doubled the character <b>?</b> in the URL, otherwise it would be expanded to current file which in our case would
+        be the empty string.
+        <pre>%SCRIPT
+cmd = system ("wget -O /home/john/page.html http://www.my-website.com??arg1=abc&arg2=def")
+cmd.waitForFinished()</pre>
+    </td>
+  </tr>
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
   <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
   <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>
@@ -875,6 +913,37 @@ Note: texstudio needs that the env-name starts with "%", though that character i
 <tr><td>editor.document().text([removeTrailing = false], [preserveIndent = true]) </td><td>  Returns the complete text of the document </td></tr>
 <tr><td>editor.document().textLines() </td><td>   Returns an array of all text lines     </td></tr>
 <tr><td>editor.document().lineEndingString() </td><td> Returns a string containing the ending of a line (\n or \n\r)       </td></tr>
+
+<tr>
+  <td>editor.document().getLineTokens(lineNr)</td>
+  <td>
+    Returns an array of parser tokens for a given zero-based line number. Each token is an object with the following properties:
+    <ul>
+      <li><b>type</b>: Token type (integer)</li>
+      <li><b>subtype</b>: Token subtype (integer)</li>
+      <li><b>startColumn</b>: Starting column number (integer)</li>
+      <li><b>level</b>: Token level (integer)</li>
+      <li><b>text</b>: Token text (string)</li>
+    </ul>
+    The token type and subtype values can be compared with the integer properties of the <b>latexTokenType</b> object. Each property of this object corresponds to one token type:<br>
+    <br>
+    none, word, command, braces, bracket, squareBracket, openBrace, openBracket, openSquare, less, closeBrace, closeBracket, closeSquareBracket, greater, math,
+    comment, commandUnknown, label, bibItem, file, imagefile, bibfile, keyValArg, keyVal_key, keyVal_val, list, text, env, beginEnv, def,
+    labelRef, package, width, placement, colDef, title, shorttitle, todo, url, documentclass, beamertheme, packageoption, color, verbatimStart, verbatimStop,
+    verbatim, symbol, punctuation, number, generalArg, defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList, specialArg, newTheorem, newBibItem, formula, overlay,
+    overlayRegion
+    <br>
+    <br>
+    This method returns <b>false</b> on error. This could happen in one of the following cases:
+    <ul>
+      <li><b>lineNr</b> is outside of the range of valid line numbers (negative or greater or equal to the number of document lines).</li>
+      <li>The parser has not finished parsing the specified line yet.</li>
+      <li>The currently open file is not a TeX file.</li>
+    </ul>
+  </td>
+</tr>
+
+
 <tr><td>editor.document().canUndo() </td><td>   Returns true if undo is possible     </td></tr>
 <tr><td>editor.document().canRedo() </td><td>    Returns true if redo is possible    </td></tr>
 <tr><td>editor.document().expand(lineNr)</td><td>    Expands the line    </td></tr>
@@ -1516,7 +1585,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>#endkeyvals</code> (at start of line): end definition of keyvals, see graphicx.cwl in source code</li>
   <li><code>#ifOption:&lt;option&gt;</code> (at start of line): the following block is only loaded if &lt;option&gt; was used in the usepackage command, e.g. \usepackage[svgnames]{color} -> option=svgnames</li>
   <li><code>#endif</code> (at start of line): end conditional block</li>
-  <li><code>#</code> (at start of line with the exception of <code>#include,#repl,#keyvals or #endkeyvals </code>): This line is a comment and will be ignored.</li>
+  <li><code>#</code> (at start of line with the exception of <code>#include</code>, <code>#repl</code>, <code>#keyvals</code> or <code>#endkeyvals</code>): This line is a comment and will be ignored.</li>
   <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
 </ul>
 <p>cwl files should be encoded as UTF-8.</p>
@@ -1554,7 +1623,9 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>%plain</code>: options ending with <code>%plain</code> are interpreted to have no special meaning. This way, you can e.g. define <code>label%plain</code> to have a placeholder named <code>label</code> without the semantics that it defines a label.</li>
   <li><code>beamertheme</code>: beamer theme, e.g. \usebeamertheme{beamertheme}</li>
   <li><code>keys</code>, <code>keyvals</code>, <code>%&lt;options%&gt;</code> or ends with <code>%keyvals</code>: key/value list</li>
-  <li><code>envname</code>, <code>environment name</code> or ends with <code>%envname</code>: environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
+  <li><code>envname</code>, <code>environment name</code> or ends with <code>%envname</code>: environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present!)</li>
+  <li><code>verbatimSymbol</code>: verbatim argument, e.g. <code>\verb|%&lt;text%&gt;|</code> and <code>\verb{verbatimSymbol}#S</code> from latex-document.cwl in source code.</li>
+  <li><code>formula</code> or ends with <code>%formula</code>: The argument is always treated as if in math-mode. See chemformula.cwl for an example.</li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
 <h3>4.14.3 Classification format</h3>

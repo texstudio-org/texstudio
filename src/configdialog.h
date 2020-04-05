@@ -101,15 +101,12 @@ public:
 	QList<QMenu *> allMenus;
 	QList<QMenu *> standardToolbarMenus;
 
-	QStringList *environModes;
-
 	void setBuildManger(BuildManager *buildManager) { mBuildManager = buildManager; }
 
 	bool riddled;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 private slots:
-	QListWidgetItem *createIcon(const QString &caption, const QIcon &icon, bool advancedOption = false);
 	void comboBoxWithPathEdited(const QString &newText);
 	void comboBoxWithPathHighlighted(const QString &newText);
 	void browseThesaurus();
@@ -143,15 +140,17 @@ private slots:
 	void refreshLastUpdateTime();
 
 	void populateComboBoxFont(bool onlyMonospaced);
-
-	void custEnvAddLine();
-	void custEnvRemoveLine();
-	void custSyntaxAddLine();
-	void custSyntaxRemoveLine();
+#ifdef TERMINAL
+	void populateTerminalColorSchemes();
+	void populateTerminalComboBoxFont(bool onlyMonospaced);
+#endif
 
 	void revertClicked();
 
 private:
+	enum ContentsType {CONTENTS_BASIC, CONTENTS_ADVANCED, CONTENTS_DISABLED};
+
+	QListWidgetItem *createIcon(const QString &caption, const QIcon &icon, ContentsType contentsType = CONTENTS_BASIC);
 	bool askRiddle();
 	void hideShowAdvancedOptions(QWidget *w, bool on);
 	static bool metaFilterRecurseWidget(const QString &filter, QWidget *widget);

@@ -3,7 +3,7 @@
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
-** 
+**
 ** This file may be used under the terms of the GNU General Public License
 ** version 3 as published by the Free Software Foundation and appearing in the
 ** file GPL.txt included in the packaging of this file.
@@ -54,16 +54,16 @@ class QCE_EXPORT QDocumentLineHandle
 	friend class QDocumentLine;
 	friend class QDocumentBuffer;
 	friend class QDocumentPrivate;
-	
+
 	public:
 		QDocumentLineHandle(QDocument *d);
 		QDocumentLineHandle(const QString& s, QDocument *d);
-		
+
 		int count() const;
 		int length() const;
-		
+
 		int position() const;
-		
+
 		QString text() const;
 //private:
 //		int line() const;
@@ -71,35 +71,35 @@ public:
 		int xToCursor(int x) const;
 		int cursorToX(int i) const;
 		int cursorToXNoLock(int i) const;
-		
+
 		int wrappedLineForCursor(int cpos) const;
 		int wrappedLineForCursorNoLock(int cpos) const;
-		
+
 		int documentOffsetToCursor(int x, int y) const;
 		void cursorToDocumentOffset(int cpos, int& x, int& y) const;
-		
+
 		QPoint cursorToDocumentOffset(int cpos) const;
-		
+
 		int indent() const;
-		
+
 		int nextNonSpaceChar(uint pos) const;
 		int previousNonSpaceChar(int pos) const;
 		int nextNonSpaceCharNoLock(uint pos) const;
 		int previousNonSpaceCharNoLock(int pos) const;
-		
+
 		bool hasFlag(int flag) const;
 		void setFlag(int flag, bool y = true) const;
-		
+
 		QDocument* document() const;
 
 		void updateWrap(int lineNr) const;
 		void updateWrapAndNotifyDocument(int ownLineNumber) const;
-		
+
 		void setFormats(const QVector<int>& formats);
-		
+
 		void clearOverlays();
 		void clearOverlays(int format);
-        void clearOverlays(QList<int> formats);
+		void clearOverlays(QList<int> formats);
 		void addOverlay(const QFormatRange& over);
 		void addOverlayNoLock(const QFormatRange& over);
 		void removeOverlay(const QFormatRange& over);
@@ -108,9 +108,9 @@ public:
 		QFormatRange getOverlayAt(int index, int preferredFormat) const;
 		QFormatRange getFirstOverlay(int start = 0, int end = -1, int preferredFormat = -1) const;
 		QFormatRange getLastOverlay(int start = 0, int end = -1, int preferredFormat = -1) const;
-		
+
 		void shiftOverlays(int position, int offset);
-		
+
 		void draw(int lineNr,
 					QPainter *p,
 					int xOffset,
@@ -120,25 +120,25 @@ public:
 					bool fullSel,
 					int yStart=0,
 					int yEnd=-1) const;
-		
+
 		QString exportAsHtml(int fromOffset=0, int toOffset = -1, int maxLineWidth = -1, int maxWrap = 0) const;
 
 		inline QString& textBuffer() { setFlag(QDocumentLine::LayoutDirty, true); return m_text; }
-		
+
 		inline void ref() { m_ref.ref(); }
-        inline void deref() { if ( !m_ref.deref() ) delete this; }
-        int getRef(){ return m_ref.fetchAndAddRelaxed(0); }
+		inline void deref() { if ( !m_ref.deref() ) delete this; }
+		int getRef(){ return m_ref.fetchAndAddRelaxed(0); }
 
 		QList<int> getBreaks();
 		void clearFrontiers(){
 		    m_frontiers.clear();
 		}
-		
+
 		~QDocumentLineHandle();
 
-        QVector<int> compose() const;
+		QVector<int> compose() const;
 		QVector<int> getFormats() const;
-        QVector<int> getCachedFormats() const;
+		QVector<int> getCachedFormats() const;
 
 		void lockForRead() const {
 		    mLock.lockForRead();
@@ -158,22 +158,11 @@ public:
 		    return mTicket;
 		}
 
-		QVariant getCookie(int type) const{ //locking needs to be done externally !!!
-			return mCookies.value(type,QVariant());
-		}
-        QVariant getCookieLocked(int type) const{ //locking needs to be done externally !!!
-            QReadLocker locker(&mLock);
-            return mCookies.value(type,QVariant());
-        }
-		void setCookie(int type,QVariant data){ //locking needs to be done externally !!!
-			mCookies.insert(type,data);
-		}
-		bool hasCookie(int type) const{
-			return mCookies.contains(type);
-		}
-		bool removeCookie(int type){
-			return mCookies.remove(type);
-		}
+		QVariant getCookie(int type) const;
+		QVariant getCookieLocked(int type) const;
+		void setCookie(int type,QVariant data);
+		bool hasCookie(int type) const;
+		bool removeCookie(int type);
 
 		bool isRTLByLayout() const;
 		bool isRTLByText() const;
@@ -182,25 +171,26 @@ public:
 		void drawBorders(QPainter *p, int yStart, int yEnd) const;
 
 		void applyOverlays() const;
-        void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = nullptr, int from = 0, int until = -1) const;
-		
+		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = nullptr, int from = 0, int until = -1) const;
+
 		int getPictureCookieHeight() const;
 
-		QList<QTextLayout::FormatRange> decorations() const;
-		
+		template <template<class T> class CONTAINER_TYPE>
+		CONTAINER_TYPE<QTextLayout::FormatRange> decorations() const;
+
 		QString m_text;
 		QDocument *m_doc;
 
 		QAtomicInt m_ref;
 
-        mutable int m_indent;
+		mutable int m_indent;
 		mutable quint16 m_state;
 		mutable QTextLayout *m_layout;
 		mutable QVector<int> m_cache;
 		mutable QVector< QPair<int, int> > m_frontiers; //list of line wraps, <character, x in pixel (if it were unwrapped) >
-		
+
 		QNFAMatchContext m_context;
-		
+
 		QVector<int> m_formats;
 		QVector<QParenthesis> m_parens;
 		QList<QFormatRange> m_overlays;

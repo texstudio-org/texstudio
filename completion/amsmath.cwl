@@ -100,17 +100,14 @@
 \leftroot{argument}
 \lvert#m
 \lVert#m
-\medspace
-\mod#
+\mod#m
 \mspace{dimen}#m
-\negmedspace
-\negthickspace
-\negthinspace
 \nobreakdash
 \notag#m
 \numberwithin{env}{counter}
 \numberwithin[format]{env}{counter}
 \operatorname{name}
+\operatorname*{name}
 \operatornamewithlimits{name}
 \overleftrightarrow{argument}#m
 \overset{superscript}{argument}#m
@@ -128,7 +125,6 @@
 \tbinom{above}{below}#m
 \text{text}#m
 \tfrac{%<num%:translatabe%>}{%<den%:translatable%>}#m
-\thickspace
 \underleftarrow{argument}#m
 \underleftrightarrow{argument}#m
 \underrightarrow{argument}#m

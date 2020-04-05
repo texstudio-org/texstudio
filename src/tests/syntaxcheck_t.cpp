@@ -19,7 +19,7 @@ void SyntaxCheckTest::checktabular_data(){
 	QTest::addColumn<int>("row");
 	QTest::addColumn<int>("col");
 	QTest::addColumn<QString>("expectedMessage");
-	
+
 	//-------------cursor without selection--------------
     QTest::newRow("all okay")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -167,7 +167,7 @@ void SyntaxCheckTest::checktabular(){
 	QFETCH(int, row);
 	QFETCH(int, col);
 	QFETCH(QString, expectedMessage);
-	
+
 	expectedMessage = QApplication::translate("SyntaxCheck", qPrintable(expectedMessage));
 
 	bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
@@ -176,10 +176,7 @@ void SyntaxCheckTest::checktabular(){
 	edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
 
 	edView->editor->setText(text, false);
-	do{
-        edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-		QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
-    }while(edView->document->SynChecker.queuedLines());
+	edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 	StackEnvironment env;
     edView->document->getEnv(row,env);
     QDocumentLineHandle *prev=edView->document->line(row-1).handle();
@@ -188,7 +185,7 @@ void SyntaxCheckTest::checktabular(){
           remainder=prev->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
     QString message=edView->document->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env,remainder);
 	QEQUAL(message, expectedMessage);
-	
+
 	edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
 	edView->getConfig()->realtimeChecking = realtimeChecking;
 }
@@ -257,10 +254,7 @@ void SyntaxCheckTest::checkkeyval(){
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
-    do{
-        doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
-    }while(doc->SynChecker.queuedLines());
+    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
     QDocumentLineHandle *dlh=doc->line(1).handle();
     QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
@@ -304,10 +298,7 @@ void SyntaxCheckTest::checkArguments(){
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
-    do{
-        doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
-    }while(doc->SynChecker.queuedLines());
+    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
     bool synError=false;
     for(int i=0;i<doc->lineCount();i++){

@@ -80,10 +80,10 @@ bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
 		encodedString = codec->fromUnicode(elem);
 		pChecker->add(encodedString.data());
 	}
-	qSort(ignoredWordList.begin(), ignoredWordList.end(), localeAwareLessThan);
+    std::sort(ignoredWordList.begin(), ignoredWordList.end(), localeAwareLessThan);
 	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
 	ignoredWordsModel.setStringList(ignoredWordList);
-	ignoredWords = ignoredWordList.toSet();
+    ignoredWords = convertStringListtoSet(ignoredWordList);
 	mLastError.clear();
 	emit dictionaryLoaded();
 	return true;
@@ -124,12 +124,13 @@ void SpellerUtility::addToIgnoreList(QString toIgnore)
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	encodedString = codec->fromUnicode(word);
     QMutexLocker locker(&mSpellerMutex);
-    if(!pChecker)
+    if(!pChecker){
         return;
+    }
 	pChecker->add(encodedString.data());
 	ignoredWords.insert(word);
 	if (!ignoredWordList.contains(word))
-		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(), ignoredWordList.end(), word, localeAwareLessThan), word);
+        ignoredWordList.insert(std::lower_bound(ignoredWordList.begin(), ignoredWordList.end(), word, localeAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 	saveIgnoreList();
 	emit ignoredWordAdded(word);
@@ -139,8 +140,9 @@ void SpellerUtility::removeFromIgnoreList(QString toIgnore)
 {
 	QByteArray encodedString;
     QMutexLocker locker(&mSpellerMutex);
-    if(!pChecker)
+    if(!pChecker){
         return;
+    }
 	QString spell_encoding = QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	encodedString = codec->fromUnicode(toIgnore);
@@ -315,12 +317,13 @@ QStringList SpellerManager::availableDicts()
 {
 	if (dictFiles.keys().isEmpty())
 		return QStringList() << emptySpeller->name();
-	return QStringList(dictFiles.keys());
+    return QStringList()<< emptySpeller->name() <<dictFiles.keys();
 }
 
 bool SpellerManager::hasSpeller(const QString &name)
 {
 	if (name == emptySpeller->name()) return true;
+    if (name == "none" || name == "<none>") return true;
 	return dictFiles.contains(name);
 }
 

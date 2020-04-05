@@ -831,7 +831,7 @@ QList<QPair<int, int> > LatexEditorView::getSelectedLineBlocks()
 				lines << l;
 		} else lines << cursors[i].lineNumber();
 	}
-	qSort(lines);
+    std::sort(lines.begin(),lines.end());
 	//merge blocks as speed up and to remove duplicates
 	QList<QPair<int, int> > result;
 	int i = 0;
@@ -876,7 +876,7 @@ void LatexEditorView::alignMirrors()
 	foreach (int l, lines) {
 		QList<QDocumentCursor*> row = map.values(l);
 		colCount = qMax(colCount, row.size());
-		qSort(row.begin(), row.end(), cursorPointerLessThan);
+        std::sort(row.begin(), row.end(), cursorPointerLessThan);
 		cs.append(row);
 	}
 	document->beginMacro();
@@ -1377,7 +1377,7 @@ void LatexEditorView::setSpellerManager(SpellerManager *manager)
  * \param name of the desired language
  * \return success of operation
  */
-bool LatexEditorView::setSpeller(const QString &name)
+bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
 {
 	if (!spellerManager) return false;
 
@@ -1412,9 +1412,9 @@ bool LatexEditorView::setSpeller(const QString &name)
 	connect(speller, SIGNAL(ignoredWordAdded(QString)), this, SLOT(spellRemoveMarkers(QString)));
 	emit spellerChanged(name);
 
-	if (document) {
-		document->updateMagicComment("spellcheck", speller->name());
-	}
+    if (document && updateComment) {
+        document->updateMagicComment("spellcheck", speller ? speller->name() : "<none>");
+    }
 
 	// force new highlighting
     if(!dontRecheck){
@@ -1441,6 +1441,7 @@ void LatexEditorView::reloadSpeller()
 QString LatexEditorView::getSpeller()
 {
 	if (useDefaultSpeller) return QString("<default>");
+    if(speller==nullptr) return QString("<none>");
 	return speller->name();
 }
 
@@ -1963,14 +1964,14 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 			changedLines << temp;
 			if (line.firstChar() == -1) {
-				emit linesChanged(speller->name(), document, changedLines, truefirst);
+                emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
 				truefirst += changedLines.size();
 				changedLines.clear();
 				if (i >= linenr + count) break;
 			}
 		}
 		if (!changedLines.isEmpty())
-			emit linesChanged(speller->name(), document, changedLines, truefirst);
+            emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
 
     }
 
@@ -2879,7 +2880,7 @@ void LatexEditorViewConfig::settingsChanged()
 		}
 
 	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;
-	int letterWidth = fms.first().width('a');
+	int letterWidth = UtilsUi::getFmWidth(fms.first(), 'a');
 
 	const QString lettersToCheck("abcdefghijklmnoqrstuvwxyzABCDEFHIJKLMNOQRSTUVWXYZ_+ 123/()=.,;#");
 	QVector<QMap<QChar, int> > widths;
@@ -2888,13 +2889,13 @@ void LatexEditorViewConfig::settingsChanged()
 	foreach (const QChar &c, lettersToCheck) {
 		for (int fmi = 0; fmi < fms.size(); fmi++) {
 			const QFontMetrics &fm = fms[fmi];
-			int currentWidth = fm.width(c);
+			int currentWidth = UtilsUi::getFmWidth(fm, c);
 			widths[fmi].insert(c, currentWidth);
 			if (currentWidth != letterWidth) lettersHaveDifferentWidth = true;
 			QString testString;
 			for (int i = 1; i < 10; i++) {
 				testString += c;
-				int stringWidth = fm.width(testString);
+				int stringWidth = UtilsUi::getFmWidth(fm, testString);
 				if (stringWidth % i != 0) sameLettersHaveDifferentWidth = true;
 				if (currentWidth != stringWidth / i) sameLettersHaveDifferentWidth = true;
 			}
@@ -2908,7 +2909,7 @@ void LatexEditorViewConfig::settingsChanged()
 			int expectedWidth = 0;
 			for (int i = 0; i < ligatures[l].size() && !sameLettersHaveDifferentWidth; i++) {
 				expectedWidth += widths[fmi].value(ligatures[l][i]);
-				if (expectedWidth != fms[fmi].width(ligatures[l].left(i + 1))) sameLettersHaveDifferentWidth = true;
+				if (expectedWidth != UtilsUi::getFmWidth(fms[fmi], ligatures[l].left(i + 1))) sameLettersHaveDifferentWidth = true;
 			}
 		}
 	}

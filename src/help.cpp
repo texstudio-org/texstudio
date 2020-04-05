@@ -42,7 +42,7 @@ void Help::viewTexdoc(QString package)
 	if (!package.isEmpty()) {
 		if (texdocCommand().isEmpty()) UtilsUi::txsWarning(tr("texdoc not found."));
 		QProcess *proc = new QProcess(this);
-		connect(proc, SIGNAL(finished(int)), this, SLOT(texdocProcessFinished()));
+		connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(texdocProcessFinished()));
 #ifdef Q_OS_OSX
 		QStringList paths;
 		paths.append(getEnvironmentPathList());
@@ -75,7 +75,7 @@ bool Help::isTexdocExpectedToFinish()
 {
 	if (!isMiktexTexdoc()) return true;
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-	foreach (const QString &var, envKeys(env)) {
+    foreach (const QString &var, env.keys()) {
 		if (var.startsWith("MIKTEX_VIEW_")) {
 			// miktex texdoc will run as long as the viewer is opened when the MIKTEX_VIEW_* variables are set
 			// http://docs.miktex.org/manual/mthelp.html
@@ -173,7 +173,7 @@ void Help::texdocAvailableRequest(const QString &package)
 	}
 	QProcess *proc = new QProcess(this);
 	proc->setProperty("package", package);
-	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
+	connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(texdocAvailableRequestFinished(int)));
 #ifdef Q_OS_OSX
 	QStringList paths;
 	paths.append(getEnvironmentPathList());
@@ -238,8 +238,6 @@ void LatexReference::setFile(QString filename)
 
 	QFile f(filename);
 	if (!f.open(QFile::ReadOnly | QFile::Text)) return;
-	QTime t;
-	t.start();
 	QTextStream stream(&f);
 	stream.setCodec("UTF-8");
 	m_htmltext = stream.readAll();
@@ -251,7 +249,7 @@ bool LatexReference::contains(const QString &command)
 	return m_anchors.contains(command);
 }
 
-/* tries to generate a text of suitable length for display as a tooltip */
+/// tries to generate a text of suitable length for display as a tooltip
 QString LatexReference::getTextForTooltip(const QString &command)
 {
 	QString sectionText = getSectionText(command);
@@ -270,7 +268,7 @@ QString LatexReference::getTextForTooltip(const QString &command)
 	return sectionText;
 }
 
-/* get all the text in the section describing the command
+/*! get all the text in the section describing the command
  * it starts with the first heading after the section anchor and ranges down to the next <hr>
  */
 QString LatexReference::getSectionText(const QString &command)
@@ -290,8 +288,8 @@ QString LatexReference::getSectionText(const QString &command)
 	return m_htmltext.mid(sAnchor.start_pos, sAnchor.end_pos - sAnchor.start_pos);
 }
 
-/* get only a partial description for the command
- * the serach looks for the following block types (sqare brackets mark the extrated text:
+/*! get only a partial description for the command
+ *  the serach looks for the following block types (sqare brackets mark the extrated text:
  *    [<dt>(anchor-in-here)</dt><dd></dd>]
  *    </div>[(anchor-in-here)]</a name=
  */

@@ -59,9 +59,11 @@
         <file>images/beamer/Boadilla.png</file>
         <file>images/beamer/CambridgeUS.png</file>
         <file>images/beamer/Copenhagen.png</file>
+        <file>images/beamer/Cuerna.png</file>
         <file>images/beamer/Darmstadt.png</file>
         <file>images/beamer/Dresden.png</file>
         <file>images/beamer/EastLansing.png</file>
+        <file>images/beamer/focus.png</file>
         <file>images/beamer/Frankfurt.png</file>
         <file>images/beamer/Goettingen.png</file>
         <file>images/beamer/Hannover.png</file>
@@ -71,6 +73,7 @@
         <file>images/beamer/Madrid.png</file>
         <file>images/beamer/Malmoe.png</file>
         <file>images/beamer/Marburg.png</file>
+        <file>images/beamer/metropolis.png</file>
         <file>images/beamer/Montpellier.png</file>
         <file>images/beamer/PaloAlto.png</file>
         <file>images/beamer/Pittsburgh.png</file>
@@ -79,5 +82,6 @@
         <file>images/beamer/Szeged.png</file>
         <file>images/beamer/Warsaw.png</file>
         <file>tags/beamer_tags.xml</file>
+        <file alias="qxs/defaultFormatsDark.qxf">utilities/qxs/defaultFormatsDark.qxf</file>
     </qresource>
 </RCC>

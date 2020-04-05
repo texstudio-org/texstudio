@@ -1,3 +1,19 @@
+TeXstudio 3.00.00
+-----------------
+- speed up document parsing, should result in faster document load times
+- spell checking is done asynchronously
+- custom verbatim/math env highlighting abandoned for a cwl based approach
+
+TeXstudio 2.12.22
+----------------
+- fixes garbled symbols in OSX
+- fix crash when changing magic language comment 
+- fix pdf search path handling.
+
+TeXstudio 2.12.20
+----------------
+- fixes a problem with replacing when search highlight is activated.
+
 TeXstudio 2.12.18
 ----------------
 - bug fixes

@@ -341,8 +341,16 @@ void ThesaurusDialog::addUserWordClicked()
 	QStringList categories;
 	for (int i = 1; i < classlistWidget->count(); i++)
 		categories << classlistWidget->item(i)->text();
-	if (classlistWidget->currentItem() && categories.indexOf(classlistWidget->currentItem()->text()) >= 0 )
-		categories.swap(0, categories.indexOf(classlistWidget->currentItem()->text()));
+	if (classlistWidget->currentItem() && categories.indexOf(classlistWidget->currentItem()->text()) >= 0 ) {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
+		categories.swapItemsAt(
+#else
+		categories.swap(
+#endif
+			0,
+			categories.indexOf(classlistWidget->currentItem()->text())
+		);
+	}
 	UniversalInputDialog uid;
 	uid.addVariable(&word, tr("New Word:"));
 	uid.addVariable(&categories, tr("Category:"))->setEditable(true);

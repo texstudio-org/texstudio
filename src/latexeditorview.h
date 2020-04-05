@@ -106,7 +106,7 @@ public:
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
 	void setSpellerManager(SpellerManager *manager);
-	bool setSpeller(const QString &name);
+    bool setSpeller(const QString &name,bool updateComment=false);
 	Q_INVOKABLE QString getSpeller();
 
 	static void setCompleter(LatexCompleter *newCompleter);

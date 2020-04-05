@@ -90,8 +90,8 @@
 ## Sec. III.1 Default settings
 \defaultfontfeatures{font features%keyvals}
 \defaultfontfeatures[font name list]{font features%keyvals}
-\defaultfontfeatures*{font features%keyvals}
-\defaultfontfeatures*[font name list]{font features%keyvals}
+\defaultfontfeatures+{font features%keyvals}
+\defaultfontfeatures+[font name list]{font features%keyvals}
 
 ## Sec. III.2 Working with the currently selected features
 \IfFontFeatureActiveTF{font feature}{true}{false}
@@ -135,9 +135,11 @@ CJKShape
 CharacterVariant
 CharacterWidth
 Color
+Colour
 Contextuals
 Diacritics
 Extension
+ExternalLocation
 FakeBold
 FakeSlant
 FakeStretch
@@ -171,6 +173,7 @@ SlantedFont
 SmallCapsFeatures
 SmallCapsFont
 Style
+StylisticAlternates
 StylisticSet
 UprightFeatures
 UprightFont
@@ -180,4 +183,5 @@ VerticalPosition
 WordSpace
 Mapping=%<xetex-only feature%>
 Renderer=%<xetex-only feature%>
+WordSpace=
 #endkeyvals

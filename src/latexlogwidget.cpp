@@ -32,11 +32,11 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	QFontMetrics fm(QApplication::font());
 	errorTable->setSelectionBehavior(QAbstractItemView::SelectRows);
 	errorTable->setSelectionMode(QAbstractItemView::SingleSelection);
-	errorTable->setColumnWidth(0, fm.width("> "));
-	errorTable->setColumnWidth(1, 20 * fm.width("w"));
-	errorTable->setColumnWidth(2, fm.width("WarningW"));
-	errorTable->setColumnWidth(3, fm.width("Line WWWWW"));
-	errorTable->setColumnWidth(4, 20 * fm.width("w"));
+	errorTable->setColumnWidth(0, UtilsUi::getFmWidth(fm, "> "));
+	errorTable->setColumnWidth(1, 20 * UtilsUi::getFmWidth(fm, "w"));
+	errorTable->setColumnWidth(2, UtilsUi::getFmWidth(fm, "WarningW"));
+	errorTable->setColumnWidth(3, UtilsUi::getFmWidth(fm, "Line WWWWW"));
+	errorTable->setColumnWidth(4, 20 * UtilsUi::getFmWidth(fm, "w"));
 	connect(errorTable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(clickedOnLogModelIndex(const QModelIndex &)));
 
 	errorTable->horizontalHeader()->setStretchLastSection(true);

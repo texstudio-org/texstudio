@@ -90,6 +90,7 @@ public:
     friend class LatexEditorViewTest;
 	friend class LatexStructureMerger;
 	friend class LatexStructureMergerMerge;
+	friend class ScriptEngineTest;
 
 private:
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle *, ReferencePair> &list);

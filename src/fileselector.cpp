@@ -1,4 +1,5 @@
 #include "fileselector.h"
+#include "utilsUI.h"
 
 FileSelector::FileSelector(QWidget *parent, bool multiselect) :
 	QWidget(parent), multiselect(multiselect)
@@ -58,7 +59,7 @@ void FileSelector::setCentered()
 		}*/
 		QFontMetrics fm = list->fontMetrics();
 		for (int i = 0; i < rawFiles.size(); i++)
-			fsw = qMax(fsw, fm.width(rawFiles[i]) + scrollbarwidth );
+			fsw = qMax(fsw, UtilsUi::getFmWidth(fm, rawFiles[i]) + scrollbarwidth );
 		fsw = qMin(fsw, s.width());
 
 		setGeometry(s.width() / 2 - fsw / 2 + p.x(), s.height() / 8 + p.y(), fsw, s.height() / 2);

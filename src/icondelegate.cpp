@@ -293,8 +293,8 @@ QPixmap *IconDelegate::selected(const QPixmap &pixmap, const QPalette &palette, 
 {
 	QString key = QString("%1-%2").arg(pixmap.cacheKey()).arg(enabled);
 	//key.sprintf("%d-%d", pixmap.cacheKey(), boolKey);
-	QPixmap *pm = QPixmapCache::find(key);
-	if (!pm) {
+    QPixmap *pm=nullptr;
+    if (QPixmapCache::find(key,pm)) {
 		QImage img = pixmap.toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
 
 		QColor color = palette.color(enabled ? QPalette::Normal : QPalette::Disabled, QPalette::Highlight);

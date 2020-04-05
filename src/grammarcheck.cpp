@@ -60,7 +60,12 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 }
 
 QString GrammarCheck::serverUrl() {
-	return backend->url();
+    return backend->url();
+}
+
+QString GrammarCheck::getLastErrorMessage()
+{
+    return backend->getLastErrorMessage();
 }
 
 /*!
@@ -314,7 +319,7 @@ void GrammarCheck::process(int reqId)
 
 	for (int b = 0; b < crBlocks.size(); b++) {
 		const TokenizedBlock &tb = crBlocks.at(b);
-		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
+        if (tb.words.isEmpty() || newstatus != LTS_Working ) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			const QStringList &words = tb.words;
             QString joined;
@@ -370,8 +375,12 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	QMap<QString, LanguageGrammarData>::const_iterator it = languages.constFind(cr.language);
 	if (it == languages.constEnd()) {
 		LanguageGrammarData lgd;
-        lgd.stopWords = readWordList(config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".stopWords");
-        lgd.badWords = readWordList(config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".badWords");
+        QString path=config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".stopWords";
+        path = ConfigManagerInterface::getInstance()->parseDir(path);
+        lgd.stopWords = readWordList(path);
+        path=config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".badWords";
+        path = ConfigManagerInterface::getInstance()->parseDir(path);
+        lgd.badWords = readWordList(path);
 		languages.insert(cr.language, lgd);
 		it = languages.constFind(cr.language);
 	}
@@ -423,9 +432,10 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	}
 	if (config.badWordCheck) {
 		for (int w = 0 ; w < words.size(); w++) {
-			if (ld.badWords.contains(words[w]))
+			QString normalized = words[w].toLower();
+			if (ld.badWords.contains(normalized))
 				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_BAD_WORD, tr("Bad word"), QStringList() << "");
-			else if (words[w].length() > 1 && words[w].endsWith('.') && ld.badWords.contains(words[w].left(words[w].length() - 1)))
+			else if (normalized.length() > 1 && normalized.endsWith('.') && ld.badWords.contains(normalized.left(normalized.length() - 1)))
 				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w] - 1, GET_BAD_WORD, tr("Bad word"), QStringList() << "");
 		}
 
@@ -522,13 +532,6 @@ struct CheckRequestBackend {
     CheckRequestBackend(uint ti, uint st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
 };
 
-QString quoteSpaces(const QString &s)
-{
-	if (!s.contains(' ')) return s;
-	return '"' + s + '"';
-}
-
-
 const QNetworkRequest::Attribute AttributeTicket = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User);
 const QNetworkRequest::Attribute AttributeLanguage = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User + 2);
 const QNetworkRequest::Attribute AttributeText = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User + 3);
@@ -600,7 +603,7 @@ void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
  */
 bool GrammarCheckLanguageToolJSON::isAvailable()
 {
-    return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
+    return (connectionAvailability == Unknown) || (connectionAvailability == WorkedAtLeastOnce);
 }
 
 /*!
@@ -632,13 +635,24 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     }
     triedToStart = true;
     startTime = 0;
-    if (ltPath == "" || !QFileInfo(ltPath).exists()) return;
+    if (ltPath == "")
+        return;
+    if(!QFileInfo(ltPath).exists()){
+        errorText=QString("LT path \" %1 \" not found !").arg(ltPath);
+        emit errorMessage(errorText);
+        return;
+    }
     javaProcess = new QProcess();
-    connect(javaProcess, SIGNAL(finished(int)), javaProcess, SLOT(deleteLater()));
+    connect(javaProcess, SIGNAL(finished(int, QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
     javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
-    javaProcess->waitForStarted();
+    javaProcess->waitForStarted(500);
+    javaProcess->waitForReadyRead(500);
+    errorText=javaProcess->readAllStandardError();
+    if(!errorText.isEmpty()){
+        emit errorMessage(errorText);
+    }
 
     connectionAvailability = Unknown;
     startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
@@ -662,6 +676,10 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
     REQUIRE(nam);
 
     QString lang = language;
+    if(lang.count('-')>1){
+        // chop language code to country_variant
+        lang=lang.left(5);
+    }
     if (languagesCodesFail.contains(lang) && lang.contains('-'))
         lang = lang.left(lang.indexOf('-'));
 
@@ -706,6 +724,17 @@ void GrammarCheckLanguageToolJSON::shutdown()
         nam = nullptr;
     }
 }
+
+/*!
+ * \brief GrammarCheckLanguageToolJSON::getLastErrorMessage
+ * gets the latest error message which occured when operating LT or the start of LT with java
+ * \return error message
+ */
+QString GrammarCheckLanguageToolJSON::getLastErrorMessage()
+{
+    return errorText;
+}
+
 /*!
  * \brief GrammarCheckLanguageToolJSON::finished
  * Slot for postprocessing LT data
@@ -732,7 +761,8 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
         if(error==1){
             tryToStart();
         }else{
-            emit errorMessage(nreply->errorString());
+            errorText=nreply->errorString();
+            emit errorMessage(errorText);
         }
         if (connectionAvailability == Broken) {
             if (delayedRequests.size()) delayedRequests.clear();
@@ -752,7 +782,8 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
     if( status== 400 && reply.startsWith("Error:")){
         // LT announces error in set-up, probably with the language code
         // put error message into status symbol
-        emit errorMessage(QString(reply));
+        errorText=QString(reply);
+        emit errorMessage(errorText);
     }
 
     if (status == 500 && reply.contains("language code") && reply.contains("IllegalArgumentException")) {

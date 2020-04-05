@@ -2,7 +2,10 @@
 #define SVN_H
 
 #include "mostQtHeaders.h"
-
+/*!
+ * \brief SVN class
+ * This class provides easy access to the svn command.
+ */
 class SVN : public QObject
 {
 	Q_OBJECT

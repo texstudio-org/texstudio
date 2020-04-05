@@ -135,6 +135,8 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/translation\" \"package-zip/translations\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/templates\" \"package-zip\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/manual\" \"package-zip/help\""
+	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/latex2e.css\" \"package-zip/help\""
+	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/latex2e.html\" \"package-zip/help\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/dictionaries\" \"package-zip/dictionaries\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/TexTablet\" \"package-zip/TexTablet\""
         echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/travis-ci/mxe/fonts\" \"package-zip/share/\""

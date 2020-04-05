@@ -101,12 +101,11 @@ public:
 	void stop();
 	void setErrFormat(int errFormat);
     QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
-	void waitForQueueProcess();
+	void waitForQueueProcess(void);
 	static int containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id = -1);
 	int topEnv(const QString &name, const StackEnvironment &envs, const int id = -1);
 	bool checkCommand(const QString &cmd, const StackEnvironment &envs);
 	static bool equalEnvStack(StackEnvironment env1, StackEnvironment env2);
-	bool queuedLines();
 
 	void setLtxCommands(const LatexParser &cmds);
     void setSpeller(SpellerUtility *su);
@@ -120,12 +119,13 @@ signals:
 
 protected:
 	void run();
-	void checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket);
+    void checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket, int commentStart=-1);
 
 private:
 	QQueue<SyntaxLine> mLines;
 	QSemaphore mLinesAvailable;
 	QMutex mLinesLock;
+	QAtomicInt mLinesEnqueuedCounter; //!< Total number of lines enqueued from beginning. Never decremented.
 	bool stopped;
     int syntaxErrorFormat;
 	LatexParser *ltxCommands;

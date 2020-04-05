@@ -133,7 +133,7 @@ void WebPublishDialog::convert(const QString &fileName)
 		if (fip.exists() && fip.isReadable() && (!config->browser.isEmpty()) && (!errprocess)) {
 			ui.messagetextEdit->append(tr("Running browser ."));
 			proc = new QProcess(this);
-			connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater())); //will free proc after the process has ended
+			connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), proc, SLOT(deleteLater())); //will free proc after the process has ended
 			proc->setWorkingDirectory(workdir);
 
 			proc->start(config->browser + " " + firstpage);
@@ -167,7 +167,7 @@ void WebPublishDialog::RunCommand(const QString &cmd, const QString &file, const
 	proc->setWorkingDirectory(workdir);
 	if (stdErrSlot)	connect(proc, SIGNAL(readyReadStandardError()), this, stdErrSlot);
 	else 	connect(proc, SIGNAL(readyReadStandardError()), this, SLOT(readOutputForLog()));
-	connect(proc, SIGNAL(finished(int)), this, SLOT(SlotEndProcess(int)));
+	connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(SlotEndProcess(int)));
 	proc->startCommand();
 	if (!proc->waitForStarted(1000)) {
 		ui.messagetextEdit->append(tr("Error") + " : " + tr("could not start the command"));
@@ -394,7 +394,7 @@ void WebPublishDialog::extractpage(QString psfile, int page)
 		} else {
 			QTextStream outts(&outf);
 			bool go = true;
-			while (!psts.atEnd()) {				
+			while (!psts.atEnd()) {
 				line = psts.readLine();
 				if (rxpage.indexIn(line) > -1) {
 					int numpage = rxpage.cap(1).toInt();

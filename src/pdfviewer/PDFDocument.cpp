@@ -88,7 +88,7 @@ QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGra
 		for (int i = 0; i < img.width(); i++) {
 			for (int j = 0; j < img.height(); j++) {
 				QRgb value = img.pixel(i, j);
-				retImg.setPixel(i, j, qGray(value));
+                retImg.setPixel(i, j, static_cast<uint>(qGray(value)));
 			}
 		}
 		return QPixmap::fromImage(retImg);
@@ -278,7 +278,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect &visibleRect)
 				if (br.y() > visibleRect.height()) br.setY(visibleRect.height());
 				QSize  size = QSize(br.x() - tl.x(), br.y() - tl.y()) * kMagFactor;
 				QPoint loc = tl * kMagFactor;
-				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize) {
+                if (page != imagePage || qAbs(dpi/imageDpi-1.0)>0.001 || loc != imageLoc || size != imageSize) {
 					//don't cache in rendermanager in order to reduce memory consumption
 					image = doc->renderManager->renderToImage(pageNr, this, "setImage", dpi * overScale , dpi * overScale, loc.x() * overScale, loc.y() * overScale, size.width() * overScale, size.height() * overScale, false, true);
 				}
@@ -421,7 +421,7 @@ PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> a
 		QMessageBox::warning(this, "", tr("File %1 does not exists").arg(url));
 		return;
 	}
-	this->load(url);
+	this->load(QUrl::fromLocalFile(url));
 
 	popup = new QMenu(this);
 	popup->addAction(tr("&Play"), this, SLOT(realPlay()));
@@ -539,6 +539,8 @@ PDFWidget::PDFWidget(bool embedded)
 	setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
 	setScaledContents(true);
+	// Mouse tracking must be always enabled because we use the mouseMoveEvent to update the
+	// widget state (e.g. change the cursor image when hovering over links)
 	setMouseTracking(true);
 	grabGesture(Qt::PinchGesture);
 	grabGesture(Qt::TapGesture);
@@ -621,7 +623,7 @@ void PDFWidget::delayedUpdate() {
         return;
 
     // No need to actually call update later since it'll be called by renderManager.
-    if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+    if (pages.size() > 0 && (realPageIndex != imagePage || qAbs(newDpi/imageDpi-1.0)>0.001 || newRect != imageRect || forceUpdate)) {
         if (gridx <= 1 && gridy <= 1)
             doc->renderManager->renderToImage(pages.first(), this, "setImage",
                                               dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0,
@@ -709,7 +711,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	PDFDocument *doc = getPDFDocument();
 	if (!doc || !doc->renderManager)
 		return;
-	if (pages.size() > 0 && (realPageIndex != imagePage || newDpi != imageDpi || newRect != imageRect || forceUpdate)) {
+    if (pages.size() > 0 && (realPageIndex != imagePage || qAbs(newDpi/imageDpi-1.0)>0.001 || newRect != imageRect || forceUpdate)) {
 		painter.setBrush(QApplication::palette().color(QPalette::Dark));
 		painter.setPen(QApplication::palette().color(QPalette::Dark));
 		if (gridx <= 1 && gridy <= 1) {
@@ -1070,7 +1072,7 @@ void PDFWidget::goToDestination(const QString &destName)
 		goToDestination(*dest);
 }
 
-void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
+void PDFWidget::goToPageRelativePosition(int page, double xinpdf, double yinpdf)
 {
 	PDFScrollArea *scrollArea = getScrollArea();
 	if (!scrollArea) return;
@@ -1078,9 +1080,9 @@ void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
 	scrollArea->goToPage(page);
 
 	if (qIsNaN(xinpdf)) xinpdf = 0;
-	xinpdf = qBound<float>(0, xinpdf, 1);
+    xinpdf = qBound<double>(0, xinpdf, 1);
 	if (qIsNaN(yinpdf)) yinpdf = 0;
-	yinpdf = qBound<float>(0, yinpdf, 1);
+    yinpdf = qBound<double>(0, yinpdf, 1);
 
 	QPoint p = mapFromScaledPosition(page, QPointF( xinpdf, yinpdf));
 
@@ -1317,8 +1319,8 @@ void PDFWidget::jumpToSource()
 
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
-	if (event->delta() == 0) return;
-	float numDegrees = event->delta() / 8.0;
+    if (event->angleDelta().isNull()) return;
+    double numDegrees = event->angleDelta().y() / 8.0;
 	if ((summedWheelDegrees < 0) != (numDegrees < 0)) summedWheelDegrees = 0;
 	// we may accumulate rotation and handle it in larger chunks
 	summedWheelDegrees += numDegrees;
@@ -1329,7 +1331,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 			inhibitNextContextMenuEvent = true;
 		}
 		if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
-			doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
+            doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
 			summedWheelDegrees = 0;
 		}
 		event->accept();
@@ -1945,7 +1947,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 void PDFWidget::fixedScale(qreal scale)
 {
 	scaleOption = kFixedMag;
-	if (scaleFactor != scale) {
+    if (qAbs(scaleFactor/scale-1.0)>0.001) {
 		scaleFactor = scale;
 		adjustSize();
         delayedUpdate();
@@ -1999,7 +2001,7 @@ void PDFWidget::fitTextWidth(bool checked)
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
 			adjustSize();
-			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
+            scrollArea->horizontalScrollBar()->setValue(qRound(((textRect.left() * dpi / 72.0) - margin) *scaleFactor));
             delayedUpdate();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
@@ -2066,7 +2068,7 @@ void PDFWidget::doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor) //
 		} else if (newScaleFactor > kMaxScaleFactor) {
 			newScaleFactor = kMaxScaleFactor;
 		}
-		if (newScaleFactor == scaleFactor) {
+        if (qAbs(newScaleFactor/scaleFactor-1)<0.001) { // about equal
 			return;
 		}
 		scaleFactor = newScaleFactor;
@@ -2164,7 +2166,7 @@ QPoint PDFWidget::mapFromScaledPosition(int page, const QPointF &scaledPos) cons
 	if (document.isNull() || pages.size() == 0) return QPoint();
 	QRect r = pageRect(page);
 	if (r.isNull()) return QPoint();
-	return r.topLeft() + QPoint( scaledPos.x() * r.width(), scaledPos.y() * r.height() );
+    return r.topLeft() + QPoint( qRound(scaledPos.x() * r.width()), qRound(scaledPos.y() * r.height() ) );
 	/*	if (rpage < 0 || rpage >= realNumPages()) return QPoint();
 		QPoint p = pageRect(rpage).topLeft();
 		Poppler::Page *popplerPage=document->page(rpage);
@@ -2196,8 +2198,8 @@ QRect PDFWidget::pageRect(int page) const
 	QScopedPointer<Poppler::Page> popplerPage(document->page(page));
 	if (!popplerPage)
 		return grect;
-	int realSizeW =  dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().width();
-	int realSizeH =  dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().height();
+    int realSizeW =  qRound(dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().width());
+    int realSizeH =  qRound(dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().height());
 	int xOffset = (grect.width() - realSizeW) / 2;
 	int yOffset = (grect.height() - realSizeH) / 2;
 	if (gridx == 2 && getPageOffset() == 1) {
@@ -2287,7 +2289,7 @@ void PDFWidget::saveState()
 
 void PDFWidget::restoreState()
 {
-	if (scaleFactor != saveScaleFactor) {
+    if (qAbs(scaleFactor/saveScaleFactor-1.0)>0.001) {
 		scaleFactor = saveScaleFactor;
 		adjustSize();
 		update();
@@ -2332,8 +2334,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
         int &y = globalConfig->windowTop;
         int &w = globalConfig->windowWidth;
         int &h = globalConfig->windowHeight;
-        int screenNumber = QApplication::desktop()->screenNumber(QPoint(x, y));
-        QRect screen = QApplication::desktop()->availableGeometry(screenNumber);
+        QRect screen = UtilsUi::getAvailableGeometryAt(QPoint(x, y));
         // add some tolerance, as fullscreen seems to have negative coordinate (KDE, Win7 ...)
         screen.adjust(-8, -8, +8, +8);
         if (!screen.contains(x, y)) {
@@ -2358,27 +2359,6 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
         setAutoHideToolbars(true);
     }
 
-    //batch test:
-    /*QString test = QProcessEnvironment::systemEnvironment().value("TEST");
-    if (!test.isEmpty())
-    for (int i=test.toInt();i<13960;i++) {
-        qDebug() << ("/tmp/test"+QString::number(i)+".pdf");
-        //Poppler::Document* doc = Poppler::Document::load("/tmp/test"+QString::number(i)+".pdf");
-        QFile f("/tmp/test"+QString::number(i)+".pdf");
-        if (!f.open(QFile::ReadOnly)) qDebug() << "file open failed";
-        Poppler::Document* doc = Poppler::Document::loadFromData(f.readAll());
-
-        if (doc) {
-        qDebug() << " => "<<doc->numPages();
-        if (doc->numPages() > 0) {
-            Poppler::Page *p = doc->page(0);
-            qDebug() << p;
-            if (p) delete p;
-        }
-        delete doc;
-        }
-
-    }*/
 }
 
 PDFDocument::~PDFDocument()
@@ -2710,13 +2690,13 @@ void PDFDocument::init(bool embedded)
 
 	leCurrentPage = new QLineEdit(toolBar);
 	leCurrentPage->setMaxLength(5);
-	leCurrentPage->setFixedWidth(fontMetrics().width("#####"));
+	leCurrentPage->setFixedWidth(UtilsUi::getFmWidth(fontMetrics(), "#####"));
 	leCurrentPageValidator = new QIntValidator(1, 99999, leCurrentPage);
 	leCurrentPage->setValidator(leCurrentPageValidator);
 	leCurrentPage->setText("1");
 	leCurrentPage->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	// TODO: hack to adjust color of the line edit for modern style. Should be done properly in style itself (manhattanstyle.cpp)
-	bool modernStyle = ConfigManager::getInstance()->getOption("GUI/Style").toBool();
+    int modernStyle = ConfigManager::getInstance()->getOption("GUI/Style").toInt();
 	if (modernStyle) {
 		leCurrentPage->setStyleSheet("QLineEdit{ color: white; padding-top: -1px; margin-right: 2px; }");
 	} else {
@@ -2751,14 +2731,14 @@ void PDFDocument::init(bool embedded)
 	scaleButton->setToolTip(tr("Scale"));
 	scaleButton->setPopupMode(QToolButton::InstantPopup);
 	scaleButton->setAutoRaise(true);
-	scaleButton->setMinimumWidth(statusBar()->fontMetrics().width("OOOOOO"));
+	scaleButton->setMinimumWidth(UtilsUi::getFmWidth(statusBar()->fontMetrics(), "OOOOOO"));
 	scaleButton->setText("100%");
 	statusBar()->addPermanentWidget(scaleButton);
 	QList<int> levels = QList<int>() << 25 << 50 << 75 << 100 << 150 << 200 << 300 << 400;
 	QActionGroup *scaleActions = new QActionGroup(scaleButton);
 	foreach (int level, levels) {
 		QAction *act = new QAction(scaleActions);
-		act->setText(QString("%1\%").arg(level));
+        act->setText(QString("%1%").arg(level));
 		act->setData(QVariant(level));
 		connect(act, SIGNAL(triggered()), this, SLOT(zoomFromAction()));
 	}
@@ -2830,35 +2810,11 @@ void PDFDocument::init(bool embedded)
 	connect(actionEnlargeViewer, SIGNAL(triggered()), this , SLOT(enlarge()));
 	connect(actionShrinkViewer, SIGNAL(triggered()), this , SLOT(shrink()));
 
-    //connect(actionQuit_TeXworks, SIGNAL(triggered()), SIGNAL(triggeredQuit()));
 
-    //connect(actionFind_2, SIGNAL(triggered()), this, SLOT(doFindDialog()));
-    //connect(actionFind_again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
-
-    //connect(actionFirst_Page, SIGNAL(triggered()), pdfWidget, SLOT(goFirst()));
-    //connect(actionBack, SIGNAL(triggered()), pdfWidget, SLOT(goBack()));
-    /*connect(actionPrevious_Page, SIGNAL(triggered()), pdfWidget, SLOT(goPrev()));
-	connect(actionForward, SIGNAL(triggered()), pdfWidget, SLOT(goForward()));
-	connect(actionNext_Page, SIGNAL(triggered()), pdfWidget, SLOT(goNext()));
-	connect(actionLast_Page, SIGNAL(triggered()), pdfWidget, SLOT(goLast()));
-	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
-
-	connect(actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
-	connect(actionSplitMerge, SIGNAL(triggered()), SLOT(splitMergeTool()));
-	connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
-
-	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
-    */
     connect(pdfWidget, SIGNAL(changedPage(int, bool)), this, SLOT(enablePageActions(int, bool)));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
 	connect(actionFit_to_Text_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitTextWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
-
-
-    /*connect(actionGrid11, SIGNAL(triggered()), SLOT(setGrid()));
-	connect(actionGrid12, SIGNAL(triggered()), SLOT(setGrid()));
-	connect(actionGrid21, SIGNAL(triggered()), SLOT(setGrid()));
-    connect(actionGrid22, SIGNAL(triggered()), SLOT(setGrid()));*/
 
 
 	if (!embedded) {
@@ -2868,10 +2824,10 @@ void PDFDocument::init(bool embedded)
 
         //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
-        conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, nullptr);
+        conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
         connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
 		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
-        conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, nullptr);
+        conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
 	} else {
 		pdfWidget->setGridSize(1, 1, true);
 		pdfWidget->setSinglePageStep(true);
@@ -2887,24 +2843,10 @@ void PDFDocument::init(bool embedded)
 	connect(pdfWidget, SIGNAL(syncClick(int, const QPointF &, bool)), this, SLOT(syncClick(int, const QPointF &, bool)));
 
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
-		new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()), Q_NULLPTR, Qt::WidgetShortcut);
+        new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()), Q_NULLPTR, Qt::WidgetShortcut);
 	if (!actionActual_Size->shortcut().isEmpty())
-		new QShortcut(QKeySequence("Ctrl+0"), pdfWidget, SLOT(fixedScale()), Q_NULLPTR, Qt::WidgetShortcut);
+        new QShortcut(QKeySequence("Ctrl+0"), pdfWidget, SLOT(fixedScale()), Q_NULLPTR, Qt::WidgetShortcut);
 
-
-    /*connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
-
-	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
-	connect(actionToggleEmbedded, SIGNAL(triggered()), SLOT(toggleEmbedded()));
-
-	connect(actionCloseElement, SIGNAL(triggered()), SLOT(closeElement()));
-	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
-	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
-	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
-	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
-	connect(actionFocus_Editor, SIGNAL(triggered()), this, SIGNAL(focusEditor()));
-	connect(actionNew_Window, SIGNAL(triggered()), SIGNAL(triggeredClone()));
-    */
 
 	conf->registerOption("Preview/Scrolling Follows Cursor", &globalConfig->followFromCursor, false);
 	conf->linkOptionToObject(&globalConfig->followFromCursor, actionScrolling_follows_cursor);
@@ -2919,7 +2861,6 @@ void PDFDocument::init(bool embedded)
 	conf->linkOptionToObject(&globalConfig->grayscale, actionGrayscale);
     //connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
-    //connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
     if(!embedded){
         menuShow->addAction(toolBar->toggleViewAction());
         menuShow->addSeparator();
@@ -3223,7 +3164,7 @@ retryNow:
                 int maxDigits = 1 + qFloor(log10(pdfWidget->realNumPages()));
 		//if (maxDigits < 2) maxDigits = 2;
 		leCurrentPage->setMaxLength(maxDigits);
-		leCurrentPage->setFixedWidth(fontMetrics().width(QString(maxDigits + 1, '#')));
+		leCurrentPage->setFixedWidth(UtilsUi::getFmWidth(fontMetrics(), QString(maxDigits + 1, '#')));
 		leCurrentPageValidator->setTop(pdfWidget->realNumPages());
 		//qDebug() << pdfWidget->realNumPages() << maxDigits << fontMetrics().width(QString(maxDigits+1, '#'));
 
@@ -3290,6 +3231,7 @@ void PDFDocument::toggleAutoHideToolbars()
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (act) {
 		globalConfig->autoHideToolbars = act->isChecked();
+		reloadSettings();
 	}
 }
 
@@ -3432,14 +3374,13 @@ void PDFDocument::updateDisplayState(DisplayFlags displayFlags)
 
 void PDFDocument::arrangeWindows(bool tile)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-	for (int screenIndex = 0; screenIndex < desktop->numScreens(); ++screenIndex) {
+	foreach (const QScreen *screen, QGuiApplication::screens()) {
 		QWidgetList windows;
 		foreach (QWidget *widget, QApplication::topLevelWidgets())
 			if (!widget->isHidden() && qobject_cast<QMainWindow *>(widget))
 				windows << widget;
 		if (windows.size() > 0)
-			(*(tile ? &tileWindowsInRect : &stackWindowsInRect)) (windows, desktop->availableGeometry(screenIndex));
+			(*(tile ? &tileWindowsInRect : &stackWindowsInRect)) (windows, screen->availableGeometry());
 	}
 }
 
@@ -3471,7 +3412,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 	int pageIdx;
 #ifdef HAS_POPPLER_31
-    Poppler::Page::SearchFlags searchFlags = nullptr;
+    Poppler::Page::SearchFlags searchFlags = 0;
 #else
     Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
 #endif
@@ -3500,7 +3441,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 	//	}
 	searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
 
-	runs = (true ? 2 : 1); //true = always wrap around
+    runs = (/* DISABLES CODE */ (true) ? 2 : 1 ); //true = always wrap around
 
 	Q_ASSERT(!backwards || !incremental);
 	if (incremental) {
@@ -3682,7 +3623,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 	pdfWidget->setHighlightPath(-1, QPainterPath());
 	pdfWidget->update();
 	QDir curDir(QFileInfo(curFile).canonicalPath());
-	QSynctex::NodeIterator iter = scanner.editQuery(pageIndex + 1, pos.x(), pos.y());
+    QSynctex::NodeIterator iter = scanner.editQuery(pageIndex + 1, static_cast<float>(pos.x()), static_cast<float>(pos.y()));
 	while (iter.hasNext()) {
 		QSynctex::Node node = iter.next();
 		QString fullName = scanner.getNameFileInfo(curDir, node).canonicalFilePath();
@@ -3816,9 +3757,9 @@ int PDFDocument::scaleToZoomSliderPos(qreal scale)
 	if (scale < 1.01 && scale > 0.99)
 		return 0;
 	if (scale < 1) {
-		return (scale - 1) / (1 - kMinScaleFactor) * abs(zoomSlider->minimum() + 10) - 10;
+        return qRound((scale - 1) / (1 - kMinScaleFactor) * abs(zoomSlider->minimum() + 10) - 10);
 	} else {
-		return (scale - 1) / (kMaxScaleFactor - 1) * (zoomSlider->maximum() - 10) + 10;
+        return qRound((scale - 1) / (kMaxScaleFactor - 1) * (zoomSlider->maximum() - 10) + 10);
 	}
 }
 
@@ -4135,7 +4076,7 @@ void PDFDocument::printPDF()
 
 	QString command;
 	// texmaker 3.0.1 solution
-	unsigned int firstPage, lastPage;
+    int firstPage, lastPage;
 	QPrinter printer(QPrinter::HighResolution);
 	QPrintDialog printDlg(&printer, this);
 	printer.setDocName(fileName());
@@ -4262,13 +4203,14 @@ void PDFDocument::setAutoHideToolbars(bool enabled)
 {
 	setToolbarsVisible(!enabled);
 	actionAutoHideToolbars->setChecked(enabled);
-	// since we want to have the MouseMoveEvent down at the pdfWidget (internally e.g. for magnifier) up to
-	// the window (for toolbar hiding) all widgets in between seem to need MouseTracking enabled. Otherwise
-	// they will swallow the move event.
-	QWidget *w = pdfWidget;
-	while (w) {
-		w->setMouseTracking(enabled);
-		w = w->parentWidget();
+	// When autohiding the toolbars we need the mouseMoveEvent of pdfWidget in order to track user activity.
+	// We also enable/disable the mouse-tracking flag of all ancestors of the widget because otherwise the may
+	// swallow the mouseMoveEvent. However we do not change the mouse-tracking flag of the pdfWidget itself
+	// because it must be always enabled (the widget uses mouseMoveEvent to maintain its internal state).
+	if (pdfWidget) {
+		for (QWidget *w = pdfWidget->parentWidget(); w; w = w->parentWidget()) {
+			w->setMouseTracking(enabled);
+		}
 	}
 }
 

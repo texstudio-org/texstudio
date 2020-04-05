@@ -77,7 +77,7 @@ QFormatConfig::QFormatConfig(QWidget *w, bool adaptStyle)
     m_table->horizontalHeaderItem(9)->setIcon(getRealIcon("format-stroke-color"));
 	m_table->horizontalHeaderItem(10)->setText(tr("Font Family"));
 	m_table->horizontalHeaderItem(11)->setText(tr("Size")); // don't vary point size as the drwaing engine can't cope with it
-	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: If the size is larger that the line spacing, characters may be clipped."));
+	m_table->horizontalHeaderItem(11)->setToolTip(tr("Font size relative to editor font size.\n\nNote: If the size is larger than the line spacing, characters may be clipped."));
 	m_table->horizontalHeaderItem(12)->setText(tr("Prio"));  //TODO: images
 	m_table->horizontalHeaderItem(12)->setToolTip(tr("Priority determines which format is drawn on top, if multiple formats apply."));
 
@@ -93,9 +93,9 @@ QFormatConfig::QFormatConfig(QWidget *w, bool adaptStyle)
 	// https://bugreports.qt-project.org/browse/QTBUG-25148
 	// https://sourceforge.net/p/texstudio/bugs/615/
 	// https://sourceforge.net/p/texstudio/bugs/630/
-	if (adaptStyle) {
+    if (adaptStyle) {
 		m_table->setStyleSheet("QTableWidget {background-color: palette(window);}");
-	}
+    }
 #endif
 
 	connect(m_table, SIGNAL( itemSelectionChanged() ),
@@ -320,7 +320,6 @@ void QFormatConfig::cancel()
 {
 	m_table->clearContents();
 
-	QTime T; T.start();
 	QFontDatabase database;
 	QStringList fonts = database.families();
 	fonts.insert(0, tr("<default>"));
@@ -454,7 +453,6 @@ void QFormatConfig::cancel()
 
 	m_table->resizeColumnsToContents();
 	
-	qDebug () << T.elapsed();
 }
 
 /*!

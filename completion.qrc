@@ -90,6 +90,7 @@
 <file>completion/german.cwl</file>
 <file>completion/glossaries.cwl</file>
 <file>completion/glosstex.cwl</file>
+<file>completion/graphbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/harvard.cwl</file>
 <file>completion/hlist.cwl</file>
@@ -126,6 +127,7 @@
 <file>completion/makecell.cwl</file>
 <file>completion/manyfoot.cwl</file>
 <file>completion/marvosym.cwl</file>
+<file>completion/mathpartir.cwl</file>
 <file>completion/mathtools.cwl</file>
 <file>completion/mdframed.cwl</file>
 <file>completion/mdwlist.cwl</file>
@@ -153,6 +155,7 @@
 <file>completion/overpic.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/parskip.cwl</file>
+<file>completion/patch-common.cwl</file>
 <file>completion/pdfpages.cwl</file>
 <file>completion/pgfcore.cwl</file>
 <file>completion/pgf.cwl</file>
@@ -161,6 +164,7 @@
 <file>completion/physics.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/placeins.cwl</file>
+<file>completion/proof.cwl</file>
 <file>completion/psfrag.cwl</file>
 <file>completion/pst-3d.cwl</file>
 <file>completion/pst-blur.cwl</file>
@@ -173,6 +177,7 @@
 <file>completion/pstricks.cwl</file>
 <file>completion/pst-text.cwl</file>
 <file>completion/pst-tree.cwl</file>
+<file>completion/regexpatch.cwl</file>
 <file>completion/rotating.cwl</file>
 <file>completion/scraddr.cwl</file>
 <file>completion/scrdate.cwl</file>
@@ -223,6 +228,7 @@
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
 <file>completion/xparse.cwl</file>
+<file>completion/xpatch.cwl</file>
 <file>completion/xspace.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xy.cwl</file>

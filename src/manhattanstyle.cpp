@@ -433,7 +433,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 		int oldState = w->property("_q_stylestate").toInt();
 		oldRect = w->property("_q_stylerect").toRect();
 		newRect = w->rect();
-		w->setProperty("_q_stylestate", (int)option->state);
+        w->setProperty("_q_stylestate", static_cast<int>(option->state));
 		w->setProperty("_q_stylerect", w->rect());
 
 		// Determine the animated transition
@@ -449,8 +449,8 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 			QImage endImage(option->rect.size(), QImage::Format_ARGB32_Premultiplied);
 			Animation *anim = d->animator.widgetAnimation(widget);
 			QStyleOption opt = *option;
-			opt.state = (QStyle::State)oldState;
-			opt.state |= (State)State_Animating;
+            opt.state = static_cast<QStyle::State>(oldState);
+            opt.state |= static_cast<State>(State_Animating);
 			startImage.fill(0);
 			Transition *t = new Transition;
 			t->setWidget(w);
@@ -462,7 +462,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 				d->animator.stopAnimation(widget);
 			}
 			QStyleOption endOpt = *option;
-			endOpt.state |= (State)State_Animating;
+            endOpt.state |= static_cast<State>(State_Animating);
 			t->setStartImage(startImage);
 			d->animator.startAnimation(t);
 			endImage.fill(0);
@@ -496,8 +496,8 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 	}
 	break;
 
-	case PE_FrameStatusBarItem:
-		break;
+    case PE_FrameStatusBarItem:
+        break;
 
 	case PE_PanelButtonTool: {
 		Animation *anim = d->animator.widgetAnimation(widget);
@@ -555,7 +555,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 			                  rect.topLeft().y() + margin);
 		} else { //Draw vertical separator
 			const int offset = rect.height() / 2;
-			painter->setPen(QPen(option->palette.background().color().darker(110)));
+			painter->setPen(QPen(option->palette.window().color().darker(110)));
 			painter->drawLine(rect.topLeft().x() + margin ,
 			                  rect.topLeft().y() + offset,
 			                  rect.topRight().x() - margin,
@@ -616,11 +616,11 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 		int size = qMin(r.height(), r.width());
 		QPixmap pixmap;
 		QString pixmapName;
-		pixmapName.sprintf("%s-%s-%d-%d-%d-%lld",
+        pixmapName.asprintf("%s-%s-%d-%d-%d-%lld",
 		                   "$qt_ia", metaObject()->className(),
 		                   uint(option->state), element,
 		                   size, option->palette.cacheKey());
-		if (!QPixmapCache::find(pixmapName, pixmap)) {
+		if (!QPixmapCache::find(pixmapName, &pixmap)) {
 			int border = size / 5;
 			int sqsize = 2 * (size / 2);
 			QImage image(sqsize, sqsize, QImage::Format_ARGB32);
@@ -708,7 +708,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 			QStyleOptionMenuItem item = *mbi;
 			item.rect = mbi->rect;
 			QPalette pal = mbi->palette;
-			pal.setBrush(QPalette::ButtonText, dis ? Qt::gray : Qt::black);
+            pal.setBrush(QPalette::ButtonText, dis ? Qt::gray : Qt::black);
 			item.palette = pal;
 			QCommonStyle::drawControl(element, &item, painter, widget);
 			QRect r = option->rect;
@@ -832,12 +832,12 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 
 	case CE_ToolBar: {
 		QString key;
-		key.sprintf("mh_toolbar %d %d %d", option->rect.width(), option->rect.height(), StyleHelper::baseColor().rgb());
+        key.asprintf("mh_toolbar %d %d %d", option->rect.width(), option->rect.height(), StyleHelper::baseColor().rgb());
 
 		QPixmap pixmap;
 		QPainter *p = painter;
 		QRect rect = option->rect;
-		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
 			pixmap = QPixmap(option->rect.size());
 			p = new QPainter(&pixmap);
 			rect = QRect(0, 0, option->rect.width(), option->rect.height());
@@ -877,7 +877,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 			p->drawLine(rect.topRight(), rect.bottomRight());
 		}
 
-		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, pixmap)) {
+		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
 			painter->drawPixmap(rect.topLeft(), pixmap);
 			p->end();
 			delete p;
