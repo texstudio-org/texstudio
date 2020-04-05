@@ -4,6 +4,7 @@
 #include "mostQtHeaders.h"
 
 #include "latexparser/latexparser.h"
+#include "configmanagerinterface.h"
 //TODO: move this away
 #include "grammarcheck_config.h"
 
@@ -138,7 +139,7 @@ private:
     QNetworkAccessManager *nam;
     QUrl server;
 
-    enum Availability {Terminated = -2, Broken = -1, Unknown = 0, WorkedAtLeastOnce = 1};
+    enum Availability {Terminated , Broken , Unknown , WorkedAtLeastOnce };
     Availability connectionAvailability;
 
     bool triedToStart;

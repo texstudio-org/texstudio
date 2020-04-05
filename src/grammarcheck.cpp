@@ -319,7 +319,7 @@ void GrammarCheck::process(int reqId)
 
 	for (int b = 0; b < crBlocks.size(); b++) {
 		const TokenizedBlock &tb = crBlocks.at(b);
-		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
+        if (tb.words.isEmpty() || newstatus != LTS_Working ) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			const QStringList &words = tb.words;
             QString joined;
@@ -375,8 +375,12 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	QMap<QString, LanguageGrammarData>::const_iterator it = languages.constFind(cr.language);
 	if (it == languages.constEnd()) {
 		LanguageGrammarData lgd;
-        lgd.stopWords = readWordList(config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".stopWords");
-        lgd.badWords = readWordList(config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".badWords");
+        QString path=config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".stopWords";
+        path = ConfigManagerInterface::getInstance()->parseDir(path);
+        lgd.stopWords = readWordList(path);
+        path=config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".badWords";
+        path = ConfigManagerInterface::getInstance()->parseDir(path);
+        lgd.badWords = readWordList(path);
 		languages.insert(cr.language, lgd);
 		it = languages.constFind(cr.language);
 	}
@@ -599,7 +603,7 @@ void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
  */
 bool GrammarCheckLanguageToolJSON::isAvailable()
 {
-    return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
+    return (connectionAvailability == Unknown) || (connectionAvailability == WorkedAtLeastOnce);
 }
 
 /*!
