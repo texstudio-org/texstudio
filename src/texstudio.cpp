@@ -662,7 +662,6 @@ void Texstudio::setupDockWidgets()
     addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
     addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
     addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
-
     addMacrosAsTagList();
 
     leftPanel->showWidgets();

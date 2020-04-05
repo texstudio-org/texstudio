@@ -1,43 +1,46 @@
 # mode: yathesis.cls
-# denisbitouze, 30.10.2016
+# denisbitouze, 2020-04-05
 #
-#include:class-book
-#include:pgfopts
-#include:etoolbox
-#include:xpatch
-#include:morewrites%
-#include:filehook
-#include:hopatch
-#include:xifthen
-#include:xkeyval%
-#include:geometry
-#include:graphicx
-#include:environ
 #include:adjustbox
 #include:array
-#include:xstring
-#include:textcase
-#include:translator
-#include:iftex
-#include:epigraph
-#include:tcolorbox
-#include:marvosym
-#include:setspace
-#include:etoc
-#include:tocbibind
-#include:nonumonpart
-#include:xcolor
-#include:datatool
-#include:fncychap
-#include:titleps
-#include:ifdraft
-#include:draftwatermark
 #include:babel
-#include:iflang
-#include:datetime
-#include:hypcap
+#include:biblatex
 #include:bookmark
-#include:glossaries-babel
+#include:colophon
+#include:csquotes
+#include:datatool
+#include:datetime
+#include:draftwatermark
+#include:environ
+#include:epigraph
+#include:etoc
+#include:etoolbox
+#include:filehook
+#include:fncychap
+#include:geometry
+#include:graphicx
+#include:hopatch
+#include:hypcap
+#include:ifdraft
+#include:iflang
+#include:iftex
+#include:letltxmacro
+#include:marvosym
+#include:morewrites
+#include:nonumonpart
+#include:pgfopts
+#include:setspace
+#include:tcolorbox
+#include:textcase
+#include:titleps
+#include:tocbibind
+#include:translator
+#include:twoopt
+#include:xcolor
+#include:xifthen
+#include:xkeyval
+#include:xpatch
+#include:xstring
 #
 # Document class
 #keyvals:\documentclass/yathesis
@@ -50,6 +53,7 @@ sepcorpaffilfrench=
 sepcorpaffilenglish=
 version=#inprogress,inprogress*,submitted,submitted*,final,draft
 output=#screen,paper,paper*
+colophon=#verso-frontcover,recto-backcover,nowhere
 localtocs
 localtocs/depth=#section,subsection,subsubsection,paragraph,subparagraph
 localbibs
@@ -68,7 +72,7 @@ nodate
 noinstitute
 nodoctoralschool
 nolaboratory
-nolaboratoryadress
+nolaboratoryaddress
 nosupervisor
 nomaketitle
 nokeywords
@@ -127,10 +131,16 @@ datetime
 \doctoralschool[précision%keyvals]{nom de l'école doctorale%text}#n
 \laboratory[précision%keyvals]{nom du laboratoire}{adresse du laboratoire}#n
 #
-#keyvals:\pres,\comue,\institute,\coinstitute,\company,\doctoralschool
+#keyvals:\pres,\comue,\doctoralschool
 logo=
 logoheight=
 url=
+#endkeyvals
+#keyvals:\institute,\coinstitute,\company
+logo=
+logoheight=
+url=
+nologo
 #endkeyvals
 #keyvals:\laboratory
 logo=
@@ -174,6 +184,12 @@ juniorresearcher*
 # Misc
 \ordernumber[numéro d'ordre]#n
 \ordernumber#n*
+#
+#keyvals:\maketitle
+nofrontcover
+noaim
+frametitle=#shadowbox,ovalbox,none,fbox
+#endkeyvals
 #
 # Preliminary part
 #
