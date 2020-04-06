@@ -53,6 +53,8 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	print_info "Running macdeployqt"
 	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg	
 
+	echo_and_run "sha256sum ${TRAVIS_BUILD_DIR}/texstudio.dmg "
+	
 	print_info "Renaming .dmg"
 	cp "${TRAVIS_BUILD_DIR}/texstudio.dmg" "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
 	mv "${TRAVIS_BUILD_DIR}/texstudio.dmg" "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"
@@ -94,6 +96,7 @@ if [ "${QT}" = "qt5Release" ]; then
 	./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -extra-plugins=iconengines/libqsvgicon.so
 	./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
 	echo_and_run "sha256sum appdir/usr/bin/texstudio "
+	echo_and_run "sha256sum ${TRAVIS_BUILD_DIR}/TeXstudio-${VERSION}-x86_64.AppImage "
 	cp "${TRAVIS_BUILD_DIR}/TeXstudio-${VERSION}-x86_64.AppImage" "texstudio-${VERSION}-x86_64.AppImage"
 	cp "${TRAVIS_BUILD_DIR}/TeXstudio-${VERSION}-x86_64.AppImage" "texstudio-${TRAVIS_TAG}-x86_64.AppImage"
 
