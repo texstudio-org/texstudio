@@ -626,7 +626,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation>Популярными дистрибутивами LaTeX для Windows являются %1 и %2.</translation>
+        <translation>Популярными дистрибутивами LaTeX’а для Windows являются %1 и %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
@@ -848,7 +848,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Модерн (тёмная)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -7204,7 +7204,7 @@ Notes:
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
         <translation>Размер шрифта относительно размера шрифта редактора.
 
-Примечание: Если размер больше, чем межстрочное расстояние, то символы могут быть обрезаны.</translation>
+Примечание: если размер больше, чем межстрочное расстояние, то символы могут быть обрезаны.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -12525,7 +12525,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Рисование (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>

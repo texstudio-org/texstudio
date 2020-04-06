@@ -12519,7 +12519,7 @@ Les fichiers html sont situés dans le répertoire %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Dessin (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
