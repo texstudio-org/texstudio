@@ -558,11 +558,11 @@ Before an external command is executed the command line undergoes expansion wher
 			<b>[selector]</b> selects the pathname that is used by <b>[pathname parts]</b>. It can be one of the following:
 			<ul>
 				<li><b>No selector</b> used at all. In this case the root (master) document is selected.</li>
-				<li><b>c:</b> selects the current document which can be different from the root document.</li>
-				<li><b>p{ext}</b> searches for a file with same basename as the root document and extension <b>ext</b>. The search is done in
+				<li><b>c:</b> selects the current document which can be different from the root document. Note that the trailing colon is a part of the selector.</li>
+				<li><b>p{ext}:</b> searches for a file with same basename as the root document and extension <b>ext</b>. The search is done in
 				the dictory containing the root (master) document and in the additional PDF search paths. If a matching file is found then it
 				selected for further processing by [pathname parts]. If no matching file is found then TeXstudio selects a default pathname
-				which is the master file with its extension replaced by <b>ext</b>.</li>
+				which is the master file with its extension replaced by <b>ext</b>. Note that the trailing colon is a part of the selector.</li>
 			</ul>
 		</li>
 		<li>
@@ -596,7 +596,7 @@ Before an external command is executed the command line undergoes expansion wher
 	<li><b>?e)</b> expands to the extension of the root document without leading dot (e.g. tex).</li>
 	<li><b>?m</b> expands to the double-quoted complete basename of the root document (identical to <b>%</b>).</li>
 	<li><b>?me</b> expands to the filename of the root document (e.g. example.tex).</li>
-	<li><b>?{pdf}ame</b> expands to the absolute pathname of the output PDF file (e.g. /some/directory/mydocument.pdf).</li>
+	<li><b>?p{pdf}:ame</b> expands to the absolute pathname of the output PDF file (e.g. /some/directory/mydocument.pdf).</li>
 	<li>?*.aux expands once for each .aux file in the current directory.</li>
 </ul>
 
@@ -1280,7 +1280,7 @@ Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pd
 <p>
 Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
 To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TeXstudio" -> "Commands").
-When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file. If your PDF file is not in the same directory as your .tex file  you can use the <b>?p{pdf}ame</b> placeholder. For details see <a href="#SECTION33a">External Commands</a>.<br><br>
+When the viewer is launched, the <b>@</b>-placeholder will be replaced by the current line number and <b>?c:ame</b> by the complete absolute filename of the current file. If your PDF file is not in the same directory as your .tex file  you can use the <b>?p{pdf}:ame</b> placeholder. For details see <a href="#SECTION33a">External Commands</a>.<br><br>
 On Windows, you can execute DDE commands by inserting a command of the form: <span class="command">dde:///service/control/[commands...]</span> or (since TeXstudio 1.9.9) also <span class="command">dde:///programpath:service/control/[commands...]</span> to start the program if necessary.
 <br><br>
 Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
