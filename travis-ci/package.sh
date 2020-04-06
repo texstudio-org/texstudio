@@ -158,9 +158,10 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "tar -x -C \"package-zip/share/\" -f \"${TRAVIS_BUILD_DIR}/${POPPLERDATA_FILE}\" && mv \"package-zip/share/${POPPLERDATA_SUBDIR}\" \"package-zip/share/poppler\""
 
 	print_info "zipping '${TRAVIS_BUILD_DIR}/texstudio-${TARGET_OS}-${VERSION_NAME}.zip'"
+	
+	echo_and_run "cd package-zip && zip -r \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" *"
 	echo_and_run "sha256sum \"${TRAVIS_BUILD_DIR}/texstudio_installer.exe\" "
 	echo_and_run "sha256sum \"${TRAVIS_BUILD_DIR}/texstudio.exe\" "
-	echo_and_run "cd package-zip && zip -r \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" *"
 	echo_and_run "sha256sum \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" "
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" \"${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-win-portable-qt5.zip\" "
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio_installer.exe\" \"${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-win-qt5.exe\" "
