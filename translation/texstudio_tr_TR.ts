@@ -626,7 +626,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ve %2 beğenilen Windows LaTeX dağıtımlarıdır.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
@@ -848,7 +848,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Çağdaş - koyu</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -2705,12 +2705,12 @@ Not: Bu ayar, yalnız değiştirildikten sonra açılan belgeleri etkiler.</tran
         <location filename="../src/configdialog.ui" line="4476"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Konsol</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4527"/>
         <source>Shell:</source>
-        <translation type="unfinished"/>
+        <translation>Kabuk:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -4983,7 +4983,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="262"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Konsol</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="269"/>
@@ -7198,7 +7198,9 @@ Notlar:
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation>Düzenleyicinin metin boyutuna göre metin boyutu.
+
+Not: Boyut satır boşluğundan büyük olursa karakterler kırpılabilir.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -12510,7 +12512,7 @@ HTML dosyalarını % 1 klasöründe bulabilirsiniz.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Çizim (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>

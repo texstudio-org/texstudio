@@ -623,7 +623,7 @@ Cambie su configuración y defina las listas de orden solo en &apos;Opciones -&g
     <message>
         <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Distribuciones de LaTeX populares en Windows son %1 y %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
