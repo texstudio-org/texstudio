@@ -450,7 +450,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		else fr = cursor.line().getOverlayAt(cursor.columnNumber(), f);
 		if (fr.length > 0 && fr.format == f) {
 			QString word = cursor.line().text().mid(fr.offset, fr.length);
-			editor->setCursor(editor->document()->cursor(cursor.lineNumber(), fr.offset, cursor.lineNumber(), fr.offset + fr.length));
+            //editor->setCursor(editor->document()->cursor(cursor.lineNumber(), fr.offset, cursor.lineNumber(), fr.offset + fr.length)); // no need to select word as it is not changed anyway, see also #1034
 			QAction *act = new QAction(LatexEditorView::tr("New BibTeX Entry %1").arg(word), contextMenu);
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(requestCitation()));
 			contextMenu->addAction(act);
