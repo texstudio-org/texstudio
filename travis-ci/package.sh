@@ -53,6 +53,8 @@ if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	print_info "Running macdeployqt"
 	/usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg	
 
+	echo_and_run "sha256sum ${TRAVIS_BUILD_DIR}/texstudio.dmg "
+	
 	print_info "Renaming .dmg"
 	cp "${TRAVIS_BUILD_DIR}/texstudio.dmg" "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-${TRAVIS_OS_NAME}.dmg"
 	mv "${TRAVIS_BUILD_DIR}/texstudio.dmg" "${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_OS_NAME}-${VERSION_NAME}.dmg"
@@ -93,6 +95,8 @@ if [ "${QT}" = "qt5Release" ]; then
 	export VERSION=${TRAVIS_OS_NAME}-${VERSION_NAME}
 	./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -extra-plugins=iconengines/libqsvgicon.so
 	./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+	echo_and_run "sha256sum appdir/usr/bin/texstudio "
+	echo_and_run "sha256sum ${TRAVIS_BUILD_DIR}/TeXstudio-${VERSION}-x86_64.AppImage "
 	cp "${TRAVIS_BUILD_DIR}/TeXstudio-${VERSION}-x86_64.AppImage" "texstudio-${VERSION}-x86_64.AppImage"
 	cp "${TRAVIS_BUILD_DIR}/TeXstudio-${VERSION}-x86_64.AppImage" "texstudio-${TRAVIS_TAG}-x86_64.AppImage"
 
@@ -154,7 +158,11 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "tar -x -C \"package-zip/share/\" -f \"${TRAVIS_BUILD_DIR}/${POPPLERDATA_FILE}\" && mv \"package-zip/share/${POPPLERDATA_SUBDIR}\" \"package-zip/share/poppler\""
 
 	print_info "zipping '${TRAVIS_BUILD_DIR}/texstudio-${TARGET_OS}-${VERSION_NAME}.zip'"
+	
 	echo_and_run "cd package-zip && zip -r \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" *"
+	echo_and_run "sha256sum \"${TRAVIS_BUILD_DIR}/texstudio_installer.exe\" "
+	echo_and_run "sha256sum \"${TRAVIS_BUILD_DIR}/texstudio.exe\" "
+	echo_and_run "sha256sum \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" "
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio-win-${VERSION_NAME}.zip\" \"${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-win-portable-qt5.zip\" "
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio_installer.exe\" \"${TRAVIS_BUILD_DIR}/texstudio-${TRAVIS_TAG}-win-qt5.exe\" "
 
