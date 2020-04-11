@@ -272,8 +272,6 @@ bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor)
 	default:
 		return false;
 	}
-
-	return false;
 }
 
 bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
@@ -429,9 +427,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				        || editor->cursor().selectedText() == lastSpellCheckedWord) {
 					lastSpellCheckedWord = word;
 					word = latexToPlainWord(word);
-					QDocumentCursor wordSelection(editor->document(), cursor.lineNumber(), fr.offset);
-					wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-					editor->setCursor(wordSelection);
+                    edView->wordSelection=QDocumentCursor(editor->document(), cursor.lineNumber(), fr.offset);
+                    edView->wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                    //editor->setCursor(wordSelection);
 
 					if ((editorViewConfig->contextMenuSpellcheckingEntryLocation == 0) ^ (event->modifiers() & editorViewConfig->contextMenuKeyboardModifiers)) {
 						edView->addSpellingActions(contextMenu, lastSpellCheckedWord, false);
@@ -2158,9 +2156,11 @@ void LatexEditorView::textReplaceFromAction()
 	QAction *action = qobject_cast<QAction *>(QObject::sender());
 	if (editor && action) {
 		QString replacementText = action->data().toString();
+        editor->setCursor(wordSelection);
 		if (replacementText.isEmpty()) editor->cursor().removeSelectedText();
 		else editor->write(replacementText);
 		editor->setCursor(editor->cursor()); //to remove selection range
+        wordSelection=QDocumentCursor();
 	}
 }
 
