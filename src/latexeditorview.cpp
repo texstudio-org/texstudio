@@ -406,9 +406,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				if (fr.length > 0 && fr.format == f) {
 					QVariant var = cursor.line().getCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE);
 					if (var.isValid()) {
-						QDocumentCursor wordSelection(editor->document(), cursor.lineNumber(), fr.offset);
-						wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-						editor->setCursor(wordSelection);
+                        edView->wordSelection=QDocumentCursor(editor->document(), cursor.lineNumber(), fr.offset);
+                        edView->wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                        //editor->setCursor(wordSelection);
 
 						const QList<GrammarError> &errors = var.value<QList<GrammarError> >();
 						for (int i = 0; i < errors.size(); i++)
