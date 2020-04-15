@@ -272,8 +272,6 @@ bool DefaultInputBinding::mousePressEvent(QMouseEvent *event, QEditor *editor)
 	default:
 		return false;
 	}
-
-	return false;
 }
 
 bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
@@ -408,9 +406,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				if (fr.length > 0 && fr.format == f) {
 					QVariant var = cursor.line().getCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE);
 					if (var.isValid()) {
-						QDocumentCursor wordSelection(editor->document(), cursor.lineNumber(), fr.offset);
-						wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-						editor->setCursor(wordSelection);
+                        edView->wordSelection=QDocumentCursor(editor->document(), cursor.lineNumber(), fr.offset);
+                        edView->wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                        //editor->setCursor(wordSelection);
 
 						const QList<GrammarError> &errors = var.value<QList<GrammarError> >();
 						for (int i = 0; i < errors.size(); i++)
@@ -429,9 +427,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				        || editor->cursor().selectedText() == lastSpellCheckedWord) {
 					lastSpellCheckedWord = word;
 					word = latexToPlainWord(word);
-					QDocumentCursor wordSelection(editor->document(), cursor.lineNumber(), fr.offset);
-					wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-					editor->setCursor(wordSelection);
+                    edView->wordSelection=QDocumentCursor(editor->document(), cursor.lineNumber(), fr.offset);
+                    edView->wordSelection.movePosition(fr.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                    //editor->setCursor(wordSelection);
 
 					if ((editorViewConfig->contextMenuSpellcheckingEntryLocation == 0) ^ (event->modifiers() & editorViewConfig->contextMenuKeyboardModifiers)) {
 						edView->addSpellingActions(contextMenu, lastSpellCheckedWord, false);
@@ -450,7 +448,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		else fr = cursor.line().getOverlayAt(cursor.columnNumber(), f);
 		if (fr.length > 0 && fr.format == f) {
 			QString word = cursor.line().text().mid(fr.offset, fr.length);
-			editor->setCursor(editor->document()->cursor(cursor.lineNumber(), fr.offset, cursor.lineNumber(), fr.offset + fr.length));
+            //editor->setCursor(editor->document()->cursor(cursor.lineNumber(), fr.offset, cursor.lineNumber(), fr.offset + fr.length)); // no need to select word as it is not changed anyway, see also #1034
 			QAction *act = new QAction(LatexEditorView::tr("New BibTeX Entry %1").arg(word), contextMenu);
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(requestCitation()));
 			contextMenu->addAction(act);
@@ -2158,9 +2156,11 @@ void LatexEditorView::textReplaceFromAction()
 	QAction *action = qobject_cast<QAction *>(QObject::sender());
 	if (editor && action) {
 		QString replacementText = action->data().toString();
+        editor->setCursor(wordSelection);
 		if (replacementText.isEmpty()) editor->cursor().removeSelectedText();
 		else editor->write(replacementText);
 		editor->setCursor(editor->cursor()); //to remove selection range
+        wordSelection=QDocumentCursor();
 	}
 }
 

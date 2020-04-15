@@ -6,7 +6,7 @@
 QString getTerminalCommand()
 {
 #ifdef Q_OS_MAC
-	QString command = "open -a /Applications/Utilities/Terminal.app/";
+	QString command = "open -a Terminal";
 	return command;
 #else // Linux
 	// Linux does not have a uniform way to determine the default terminal application

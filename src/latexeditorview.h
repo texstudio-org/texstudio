@@ -173,6 +173,8 @@ private:
 
 	QPoint m_point;
 
+    QDocumentCursor wordSelection;
+
 	static int environmentFormat, referencePresentFormat, referenceMissingFormat, referenceMultipleFormat, citationMissingFormat, citationPresentFormat, structureFormat, todoFormat,
 	       packagePresentFormat, packageMissingFormat, packageUndefinedFormat,
 	       wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
