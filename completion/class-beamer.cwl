@@ -440,10 +440,10 @@
 \mode<mode specification>
 \mode*
 \mode
-\note<overlay specification>[options]{note text}
-\note<overlay specification>{note text}
-\note[options]{note text}
-\note{note text}
+\note<overlay specification>[options]{note text%text}
+\note<overlay specification>{note text%text}
+\note[options]{note text%text}
+\note{note text%text}
 \AtBeginNote{text}
 \AtEndNote{text}
 \pause[number]
