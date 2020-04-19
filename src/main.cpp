@@ -187,6 +187,9 @@ int main(int argc, char **argv)
 {
 	QString appId = generateAppId();
 	// This is a dummy constructor so that the programs loads fast.
+#if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
+    QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+#endif
 	TexstudioApp a(appId, argc, argv);
 	bool startAlways = false;
 	QStringList cmdLine = parseArguments(QCoreApplication::arguments(), startAlways);

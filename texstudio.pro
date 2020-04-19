@@ -168,7 +168,7 @@ unix:!macx {
     icon.path = $${DATADIR}/icons/hicolor/scalable/apps
     icon.files = utilities/texstudio.svg
     isEmpty(NO_APPDATA) {
-        appdata.path = $${DATADIR}/appdata
+        appdata.path = $${DATADIR}/metainfo
         appdata.files = utilities/texstudio.appdata.xml
         INSTALLS += appdata
     }
