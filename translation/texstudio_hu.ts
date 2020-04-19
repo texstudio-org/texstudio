@@ -9819,7 +9819,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="990"/>
         <source>Jump to Match</source>
-        <translation>Ugrás az eggyezéshez</translation>
+        <translation>Ugrás az egyezéshez</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="991"/>
