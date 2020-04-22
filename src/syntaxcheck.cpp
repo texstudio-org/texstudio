@@ -291,7 +291,8 @@ void SyntaxCheck::waitForQueueProcess(void)
 	linesBefore = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
 	forever {
 		for (int i = 0; i < 2; ++i) {
-			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers, 1000); // Process queued checkNextLine events
+			QCoreApplication::processEvents(QEventLoop::AllEvents, 1000); 			// Process queued checkNextLine events
+			QCoreApplication::sendPostedEvents(Q_NULLPTR, QEvent::DeferredDelete);		// Deferred delete must be processed explicitly. Using 0 for event_type does not work.
 			wait(5); // Give the checkNextLine signal handler time to queue the next line
 		}
 		linesAfter = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
