@@ -101,7 +101,9 @@ public:
 	void stop();
 	void setErrFormat(int errFormat);
     QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
+#ifndef NO_TESTS
 	void waitForQueueProcess(void);
+#endif
 	static int containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id = -1);
 	int topEnv(const QString &name, const StackEnvironment &envs, const int id = -1);
 	bool checkCommand(const QString &cmd, const StackEnvironment &envs);

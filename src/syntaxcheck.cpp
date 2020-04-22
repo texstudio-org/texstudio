@@ -271,8 +271,12 @@ void SyntaxCheck::setFormats(QMap<QString, int> formatList)
     mLtxCommandLock.unlock();
 }
 
+#ifndef NO_TESTS
+
 /*!
-* \brief wait for queue to be empty. Used for self-test only.
+* \brief Wait for syntax checker to finish processing.
+* \details Wait for syntax checker to finish processing. This method should be used only in self-tests because
+* in some rare cases it could return too early before the syntax checker queue is fully processsed.
 */
 void SyntaxCheck::waitForQueueProcess(void)
 {
@@ -297,6 +301,8 @@ void SyntaxCheck::waitForQueueProcess(void)
 		linesBefore = linesAfter;
 	}
 }
+
+#endif
 
 /*!
 * \brief check if top-most environment in 'envs' is `name`
