@@ -22,11 +22,13 @@ public:
 private:
 	bool m_mustExists;
 	QMessageBox::StandardButton m_button;
-private slots: 
+private slots:
 	void closeNow();
 };
 void closeMessageBoxLater(bool mustExists=false, QMessageBox::StandardButton button=QMessageBox::NoButton);
 void messageBoxShouldBeClose();
+
+void processPendingEvents(void);
 }
 
 extern bool globalExecuteAllTests;
