@@ -20,7 +20,7 @@
 #include "cleandialog.h"
 
 #include "debughelper.h"
-#include "debugloggermain.h"
+#include "debuglogger.h"
 
 #include "dblclickmenubar.h"
 #include "filechooser.h"
