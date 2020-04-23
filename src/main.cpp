@@ -21,7 +21,7 @@
 #include "texstudio.h"
 #include "smallUsefulFunctions.h"
 #include "debughelper.h"
-#include "debugloggermain.h"
+#include "debuglogger.h"
 #include "utilsVersion.h"
 #include <qtsingleapplication.h>
 #include <QSplashScreen>

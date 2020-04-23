@@ -3,10 +3,8 @@ DEPENDPATH += $$PWD
 
 HEADERS += \
     $$PWD/debughelper.h \
-    $$PWD/debugloggermain.h \
-    $$PWD/debugloggerqt.h
+    $$PWD/debuglogger.h
 
 SOURCES += \
     $$PWD/debughelper.cpp \
-    $$PWD/debugloggermain.cpp \
-    $$PWD/debugloggerqt.cpp
+    $$PWD/debuglogger.cpp
