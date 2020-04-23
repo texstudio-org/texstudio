@@ -10,7 +10,7 @@ class BuildManager;
 class TestManager : public QObject {
 	Q_OBJECT
 public:
-    enum TestLevel {TL_ALL, TL_FAST,TL_AUTO/*, TL_NONE*/};
+	enum TestLevel {TL_ALL, TL_FAST,TL_AUTO/*, TL_NONE*/};
 	QString execute(TestLevel level, LatexEditorView *edView, QCodeEdit* codeedit, QEditor* editor, BuildManager* buildManager);
 signals:
 	void newMessage(const QString &m);
