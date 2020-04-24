@@ -1,7 +1,7 @@
 # xcolor package
 # sdm 2014
 # thatlittleboy/2018-11-11
-# muzimuzhi/12 Nov 2019
+# muzimuzhi/12 Nov 2019, 25 Apr 2020
 
 #include:color
 #ifOption:table
@@ -11,8 +11,13 @@
 #include:pdfcolmk
 #endif
 
+\definecolor{name}{model-list}{spec-list}#s#%color
 \definecolor[type]{name}{model-list}{spec-list}#s#%color
+\providecolor{name}{model-list}{spec-list}#s#%color
 \providecolor[type]{name}{model-list}{spec-list}#s#%color
+\colorlet{name}{color}#s#%color
+\colorlet{name}[num-model]{color}#s#%color
+\colorlet[type]{name}{color}#s#%color
 \colorlet[type]{name}[num-model]{color}#s#%color
 
 \definecolorset[type]{model-list}{head}{tail}{set-spec}#*
