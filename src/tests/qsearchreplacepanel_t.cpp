@@ -347,10 +347,8 @@ void QSearchReplacePanelTest::findReplace(){
 				if (mes) QTest::closeMessageBoxLater(true,QMessageBox::Yes);
 				widget->bNext->click();
 				if (mes) QTest::messageBoxShouldBeClose();
-				QApplication::processEvents();
+				QTest::processPendingEvents();
 			}
-			//QApplication::processEvents();
-			//Sleep(1000);
 			QEQUAL2(ed->cursor().selectionStart().lineNumber(),move[1].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 			QEQUAL2(ed->cursor().selectionStart().columnNumber(),move[2].toInt(),QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
 			QEQUAL2(ed->cursor().selectedText(),move[0],QString("%1 highlight-run: %2").arg(movements[i]).arg(highlightRun));
@@ -431,7 +429,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 	 * event set QApplicationPrivate::active_window
 	 */
 	panel->activateWindow();
-	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
+	QTest::processPendingEvents();
 
 	//test if the current selection is used as search scope
 	for (int oldSel=0;oldSel<2;oldSel++){
