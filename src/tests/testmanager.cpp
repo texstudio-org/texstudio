@@ -121,7 +121,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	return tr;
 }
 
-bool TestManager::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
+bool TestManager::nativeEventFilter(const QByteArray &, void *, long *)
 {
 	return true;
 }
