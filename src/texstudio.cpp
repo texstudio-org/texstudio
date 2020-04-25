@@ -1174,8 +1174,8 @@ void Texstudio::setupMenus()
 
 	//---view---
 	menu = newManagedMenu("main/view", tr("&View"));
-	newManagedAction(menu, "prevdocument", tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageUp << Qt::CTRL + Qt::SHIFT + Qt::Key_Tab);
-	newManagedAction(menu, "nextdocument", tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageDown << Qt::CTRL + Qt::Key_Tab);
+    newManagedAction(menu, "prevdocument", tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageUp << MAC_OTHER(Qt::META + Qt::SHIFT + Qt::Key_Tab,Qt::CTRL + Qt::SHIFT + Qt::Key_Tab));
+    newManagedAction(menu, "nextdocument", tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageDown << MAC_OTHER(Qt::META + Qt::Key_Tab,Qt::CTRL + Qt::Key_Tab));
 	newManagedMenu(menu, "documents", tr("Open Documents"));
 	newManagedAction(menu, "documentlist", tr("List Of Open Documents"), SLOT(viewDocumentList()));
 	newManagedAction(menu, "documentlisthidden", tr("List Of Hidden Documents"), SLOT(viewDocumentListHidden()));
