@@ -2652,7 +2652,13 @@ void ConfigManager::setInterfaceStyle()
 
 	if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
 
-    darkMode=modernStyle>1;
+    // dark mode is derived from system text color (very light => dark mode)
+    // however if system colors are ignored, only style manhattan - dark results in dark mode
+    if(useTexmakerPalette){
+        darkMode=modernStyle>1;
+    }else{
+        darkMode=systemUsesDarkMode();
+    }
 
 	if (modernStyle) {
 		ManhattanStyle *style = new ManhattanStyle(newStyle);

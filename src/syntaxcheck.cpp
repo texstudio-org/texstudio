@@ -271,8 +271,12 @@ void SyntaxCheck::setFormats(QMap<QString, int> formatList)
     mLtxCommandLock.unlock();
 }
 
+#ifndef NO_TESTS
+
 /*!
-* \brief wait for queue to be empty. Used for self-test only.
+* \brief Wait for syntax checker to finish processing.
+* \details Wait for syntax checker to finish processing. This method should be used only in self-tests because
+* in some rare cases it could return too early before the syntax checker queue is fully processsed.
 */
 void SyntaxCheck::waitForQueueProcess(void)
 {
@@ -287,7 +291,8 @@ void SyntaxCheck::waitForQueueProcess(void)
 	linesBefore = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
 	forever {
 		for (int i = 0; i < 2; ++i) {
-			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers, 1000); // Process queued checkNextLine events
+			QCoreApplication::processEvents(QEventLoop::AllEvents, 1000); 			// Process queued checkNextLine events
+			QCoreApplication::sendPostedEvents(Q_NULLPTR, QEvent::DeferredDelete);		// Deferred delete must be processed explicitly. Using 0 for event_type does not work.
 			wait(5); // Give the checkNextLine signal handler time to queue the next line
 		}
 		linesAfter = mLinesEnqueuedCounter.fetchAndAddOrdered(0);
@@ -297,6 +302,8 @@ void SyntaxCheck::waitForQueueProcess(void)
 		linesBefore = linesAfter;
 	}
 }
+
+#endif
 
 /*!
 * \brief check if top-most environment in 'envs' is `name`

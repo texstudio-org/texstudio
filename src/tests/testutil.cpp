@@ -11,8 +11,8 @@ MessageBoxCloser::MessageBoxCloser(bool mustExists, QMessageBox::StandardButton 
 void MessageBoxCloser::closeNow(){
 	deleteLater();
 	QWidget* messageWindow = QApplication::activeModalWidget();
-	if (!messageWindow) 
-		foreach (QWidget *widget, QApplication::topLevelWidgets()) 
+	if (!messageWindow)
+		foreach (QWidget *widget, QApplication::topLevelWidgets())
 			if (widget->isModal())
 				messageWindow=widget;
 	if (!messageWindow) {
@@ -26,7 +26,7 @@ void MessageBoxCloser::closeNow(){
 		default:
 			QTest::keyClick(messageWindow, Qt::Key_Escape);
 			break;
-	}	
+	}
     curCloser=nullptr;
 }
 void closeMessageBoxLater(bool mustExists, QMessageBox::StandardButton button){
@@ -36,7 +36,16 @@ void closeMessageBoxLater(bool mustExists, QMessageBox::StandardButton button){
 void messageBoxShouldBeClose(){
 	QVERIFY2(!curCloser, "MessageBox couldn't be closed");
 }
+
+/**
+ * \brief Process all pending events except for UI and network events.
+ */
+void processPendingEvents(void)
+{
+	QCoreApplication::processEvents(QEventLoop::AllEvents);
+	// Deferred delete must be processed explicitly. Using 0 for event_type does not work.
+	QCoreApplication::sendPostedEvents(Q_NULLPTR, QEvent::DeferredDelete);
+}
+
 }
 #endif
-
-

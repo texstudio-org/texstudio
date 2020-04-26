@@ -306,7 +306,6 @@ void GrammarCheck::process(int reqId)
 		}
 	}
 
-	bool backendAvailable = backend->isAvailable();
     LTStatus newstatus = backend->isWorking() ? LTS_Working : LTS_Error;
 	if (newstatus != ltstatus) {
 		ltstatus = newstatus;
