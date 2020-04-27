@@ -6058,7 +6058,9 @@ void Texstudio::processNotification(const QString &message)
 		outputView->showPage(outputView->MESSAGES_PAGE);
 	outputView->insertMessageLine(message + "\n");
 }
-
+/*!
+ * \brief clear log view in panel
+ */
 void Texstudio::clearLogs(){
     outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
@@ -6074,14 +6076,21 @@ void Texstudio::openTerminal()
 	startTerminalEmulator(workdir);
 	// maybe some visual feedback here ?
 }
-
+/*!
+ * \brief run a command which was triggered from a Qaction (menu or toolbar)
+ * The actual command is stored as data in the action.
+ * runCommand is used
+ */
 void Texstudio::commandFromAction()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
 	runCommand(act->data().toString());
 }
-
+/*!
+ * \brief clean auxilliary files
+ * Uses CleanDialog for actual functionality
+ */
 void Texstudio::cleanAll()
 {
 	CleanDialog cleanDlg(this);
@@ -6091,7 +6100,10 @@ void Texstudio::cleanAll()
 		UtilsUi::txsInformation(tr("No open project or tex file to clean."));
 	}
 }
-
+/*!
+ * \brief export document as html
+ * Use WebPublishDialog for actual functionality
+ */
 void Texstudio::webPublish()
 {
 	if (!currentEditorView()) {
@@ -6108,7 +6120,10 @@ void Texstudio::webPublish()
 	ttwpDlg->exec();
 	delete ttwpDlg;
 }
-
+/*!
+ * \brief export current document as html
+ * Use document->exportAsHtml
+ */
 void Texstudio::webPublishSource()
 {
 	if (!currentEditor()) return;
@@ -6120,7 +6135,10 @@ void Texstudio::webPublishSource()
 	htmll->show();
 	htmll->resize(300,300);*/
 }
-
+/*!
+ * \brief open analyse text dialog
+ * Makes use of TextAnalysisDialog
+ */
 void Texstudio::analyseText()
 {
 	if (!currentEditorView()) {
@@ -6145,7 +6163,10 @@ void Texstudio::analyseTextFormDestroyed()
 {
         textAnalysisDlg = nullptr;
 }
-
+/*!
+ * \brief generate random text
+ * convienience function
+ */
 void Texstudio::generateRandomText()
 {
 	if (!currentEditorView()) {
@@ -6161,6 +6182,10 @@ void Texstudio::generateRandomText()
 }
 
 //////////////// MESSAGES - LOG FILE///////////////////////
+
+/// \brief check if log exists
+/// \return true if log is found
+///
 bool Texstudio::logExists()
 {
 	QString finame = documents.getTemporaryCompileFileName();
@@ -6175,7 +6200,12 @@ bool Texstudio::logExists()
 	);
 	return findInDirs.findAbsolute(logPathname) != "";
 }
-
+/*!
+ * \brief load log from latex compilation
+ * Try to find log in build dir as well as in additional log paths
+ * Assume latin1 as text codec for log.
+ * \return operation successful
+ */
 bool Texstudio::loadLog()
 {
 	outputView->getLogWidget()->resetLog();
@@ -6203,13 +6233,13 @@ bool Texstudio::loadLog()
 		codec ? codec : documents.getCurrentDocument()->codec()
 	);
 }
-
+/// open log page on panel
 void Texstudio::showLog()
 {
 	outputView->showPage(outputView->LOG_PAGE);
 }
 
-//shows the log (even if it is empty)
+///shows the log (even if it is empty)
 void Texstudio::viewLog()
 {
 	showLog();
