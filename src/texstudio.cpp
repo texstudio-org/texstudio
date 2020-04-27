@@ -6255,7 +6255,9 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
 }
 
 ////////////////////////// ERRORS /////////////////////////////
-
+/*!
+ * \brief post processing after latex compilation errors are detected
+ */
 void Texstudio::onCompileError()
 {
 	if (configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
@@ -6265,7 +6267,7 @@ void Texstudio::onCompileError()
 	}
 }
 
-// changes visibilita of log markers in all editors
+/// changes visibilita of log markers in all editors
 void Texstudio::setLogMarksVisible(bool visible)
 {
 	foreach (LatexEditorView *edView, editors->editors()) {
@@ -6275,7 +6277,7 @@ void Texstudio::setLogMarksVisible(bool visible)
 	if (act) act->setChecked(visible);
 }
 
-// removes the log entries from all editors
+/// removes the log entries from all editors
 void Texstudio::clearLogEntriesInEditors()
 {
 	foreach (LatexEditorView *edView, editors->editors()) {
@@ -6283,7 +6285,7 @@ void Texstudio::clearLogEntriesInEditors()
 	}
 }
 
-// adds the current log entries to all editors
+/// adds the current log entries to all editors
 void Texstudio::updateLogEntriesInEditors()
 {
 	clearLogEntriesInEditors();
@@ -6321,7 +6323,10 @@ void Texstudio::updateLogEntriesInEditors()
 		}
 	}
 }
-
+/*!
+ * \brief check if the log viewer contains latex errors
+ * \return true if latex errors present
+ */
 bool Texstudio::hasLatexErrors()
 {
 	return outputView->getLogWidget()->getLogModel()->found(LT_ERROR);
@@ -6349,6 +6354,11 @@ void Texstudio::clearMarkers()
 	setLogMarksVisible(false);
 }
 //////////////// HELP /////////////////
+/*!
+ * \brief opem latex2e.html in external browser
+ * The latex2e help file is present as html. An external browser is called via QDesktopService to open that file.
+ */
+
 void Texstudio::latexHelp()
 {
 	QString latexHelp = findResourceFile("latex2e.html");
@@ -6357,7 +6367,10 @@ void Texstudio::latexHelp()
 	else if (!QDesktopServices::openUrl("file:///" + latexHelp))
 		QMessageBox::warning(this, tr("Error"), tr("Could not open browser"));
 }
-
+/*!
+ * \brief open user manual in external browser
+ * The usermanual is present as html. An external browser is called via QDesktopService to open that file.
+ */
 void Texstudio::userManualHelp()
 {
 	QString latexHelp = findResourceFile("usermanual_en.html");
@@ -6366,7 +6379,12 @@ void Texstudio::userManualHelp()
 	else if (!QDesktopServices::openUrl("file:///" + latexHelp))
 		QMessageBox::warning(this, tr("Error"), tr("Could not open browser"));
 }
-
+/*!
+ * \brief exec Help
+ * First compile a list of all packages (which txs has detected)
+ * Present that list via a simple selection dialog which in term calls texdoc to present package help.
+ * txs internal package names are filtered out.
+ */
 void Texstudio::texdocHelp()
 {
 	QString selection;
