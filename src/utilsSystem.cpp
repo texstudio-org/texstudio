@@ -349,9 +349,8 @@ QIcon getRealIconCached(const QString &icon)
  * This approach is independent on specific on different systems.
  * \return true -> uses dark mode
  */
-bool systemUsesDarkMode()
+bool systemUsesDarkMode(const QPalette &pal)
 {
-    QPalette pal=QApplication::palette();
     QColor clr=pal.color(QPalette::Text);
     return qGray(clr.rgb())>200;
 }

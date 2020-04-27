@@ -330,6 +330,8 @@ protected slots:
 
 	void LTErrorMessage(QString message);
 
+    void paletteChanged(const QPalette &palette);
+
 private slots:
 	void readSettings(bool reread = false); ///< read configured/default settings from ini
 	void saveSettings(const QString &configName = ""); ///< save all setting to ini
