@@ -6390,7 +6390,10 @@ void Texstudio::texdocHelp()
 
 	Help::instance()->execTexdocDialog(packages, selection);
 }
-
+/*!
+ * \brief show about dialog
+ * About dialog is produced in AboutDialog
+ */
 void Texstudio::helpAbout()
 {
 	// The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
