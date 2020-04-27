@@ -704,7 +704,25 @@ void LatexEditorView::updateReplamentList(const LatexParser &cmds, bool forceUpd
 		mReplacementList = replacementList;
         document->setReplacementList(mReplacementList);
         reCheckSyntax(0); //force complete spellcheck
-	}
+    }
+}
+
+/*!
+ * \brief Helper class to update the palete of editor/codeeditor
+ * QCodeeditor does not use inheritance from a widget, so any palette automatism is disabled
+ * To counteract this deficiency, codeeditors children (panels) are updated explicitely
+ *
+ * It would probably be better to adapt qcodeeditor to an inheritance based model, but that may take effort and time
+ * \param pal new palette
+ */
+void LatexEditorView::updatePalette(const QPalette &pal)
+{
+    editor->setPalette(pal);
+    for(QPanel *p:codeeditor->panels()){
+        p->setPalette(pal);
+    }
+    editor->horizontalScrollBar()->setPalette(pal);
+    editor->verticalScrollBar()->setPalette(pal);
 }
 
 void LatexEditorView::paste()

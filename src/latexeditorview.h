@@ -162,6 +162,8 @@ public:
 
 	void updateReplamentList(const LatexParser &cmds, bool forceUpdate = false);
 
+    void updatePalette(const QPalette & pal);
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction,
 	        *statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
