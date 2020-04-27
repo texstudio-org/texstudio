@@ -10633,9 +10633,9 @@ void Texstudio::LTErrorMessage(QString message){
 	statusLabelLanguageTool->setToolTip(QString(tr("Error when communicating with LT: %1")).arg(message));
 }
 
-void Texstudio::paletteChanged(){
+void Texstudio::paletteChanged(const QPalette &palette){
     bool oldDarkMode=darkMode;
-    bool newDarkMode=systemUsesDarkMode();
+    bool newDarkMode=systemUsesDarkMode(palette);
     if(newDarkMode != oldDarkMode && !configManager.useTexmakerPalette){
         // load appropriate syntax highlighting scheme
         QSettings *config=configManager.getSettings();
@@ -10648,7 +10648,7 @@ void Texstudio::paletteChanged(){
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
-        edView->updatePalette(QApplication::palette());
+        edView->updatePalette(palette);
         ed->document()->markFormatCacheDirty();
         ed->update();
     }
