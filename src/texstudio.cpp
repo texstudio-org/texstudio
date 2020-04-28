@@ -1060,7 +1060,7 @@ void Texstudio::setupMenus()
 	updateUserToolMenu();
 	menu->addSeparator();
 	newManagedAction(menu, "clean", tr("Cle&an Auxiliary Files..."), SLOT(cleanAll()));
-	newManagedAction(menu, "terminal", tr("Open &Terminal"), SLOT(openTerminal()));
+	newManagedAction(menu, "terminal", tr("Open External &Terminal"), SLOT(openExternalTerminal()));
 	menu->addSeparator();
 	newManagedAction(menu, "viewlog", tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), "viewlog")->setData(BuildManager::CMD_VIEW_LOG);
 	act = newManagedAction(menu, "logmarkers", tr("Show Log Markers"), nullptr, 0, "logmarkers");
@@ -6065,7 +6065,7 @@ void Texstudio::clearLogs(){
     outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
 
-void Texstudio::openTerminal(void)
+void Texstudio::openExternalTerminal(void)
 {
 	QString fileMain, fileCurrent;
 
