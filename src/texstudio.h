@@ -443,7 +443,7 @@ private slots:
 protected slots:
 	void processNotification(const QString &message);
     void clearLogs();
-	void openTerminal(); ///< open external terminal
+	void openTerminal(void); ///< open external terminal
 	void cleanAll();
 	void commandFromAction();  ///< calls a command given by sender.data, doesn't wait
 

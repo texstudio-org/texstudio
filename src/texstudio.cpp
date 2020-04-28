@@ -6065,16 +6065,22 @@ void Texstudio::clearLogs(){
     outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
 
-void Texstudio::openTerminal()
+void Texstudio::openTerminal(void)
 {
-	QString workdir;
-	if (currentEditor())
-		workdir = currentEditor()->fileInfo().absolutePath();
-	else
-		workdir = getUserDocumentFolder();
+	QString fileMain, fileCurrent;
 
-	startTerminalEmulator(workdir);
-	// maybe some visual feedback here ?
+	if ((fileMain = documents.getTemporaryCompileFileName()) == "") {
+		fileMain = getUserDocumentFolder() + QDir::separator() + "none.tex";
+	}
+	if ((fileCurrent = getCurrentFileName()) == "") {
+		fileCurrent = fileMain;
+	}
+	buildManager.runCommand(
+		BuildManager::CMD_TERMINAL_EXTERNAL,
+		fileMain,
+		fileCurrent,
+		currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0
+	);
 }
 /*!
  * \brief run a command which was triggered from a Qaction (menu or toolbar)
