@@ -6,7 +6,7 @@
 
 #include "mostQtHeaders.h"
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 #include <qtermwidget5/qtermwidget.h>
 #endif
 
@@ -43,7 +43,7 @@ private:
 	bool mFit;
 };
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 class TerminalWidget : public QWidget
 {
 	Q_OBJECT
@@ -81,7 +81,7 @@ public:
 
 	LatexLogWidget *getLogWidget() { return logWidget; }
 	SearchResultWidget *getSearchResultWidget() { return searchResultWidget; }
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	TerminalWidget *getTerminalWidget() { return terminalWidget; }
 #endif
 	bool isPreviewPanelVisible();
@@ -103,7 +103,7 @@ signals:
 
 private:
 	PreviewWidget *previewWidget;
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	TerminalWidget *terminalWidget;
 #endif
 	LatexLogWidget *logWidget;

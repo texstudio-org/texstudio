@@ -1638,7 +1638,7 @@ void Texstudio::updateMasterDocumentCaption()
 void Texstudio::currentEditorChanged()
 {
 	updateCaption();
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	outputView->getTerminalWidget()->setCurrentFileName(getCurrentFileName());
 #endif
 	if (!currentEditorView()) return;
@@ -6635,7 +6635,7 @@ void Texstudio::generalOptions()
         delete pdfviewerWindow;
     }
 #endif
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
     outputView->getTerminalWidget()->updateSettings();
 #endif
 }

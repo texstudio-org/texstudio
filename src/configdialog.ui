@@ -4453,7 +4453,7 @@ Note: Changing this setting will only affect documents that are opened afterward
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="pageTerminal">
+     <widget class="QWidget" name="pageInternalTerminal">
       <layout class="QGridLayout">
        <property name="leftMargin">
         <number>0</number>
@@ -4473,7 +4473,7 @@ Note: Changing this setting will only affect documents that are opened afterward
        <item row="0" column="0">
         <widget class="QGroupBox" name="groupBox_4">
          <property name="title">
-          <string>Terminal</string>
+          <string>Internal Terminal</string>
          </property>
          <layout class="QGridLayout">
           <item row="0" column="0">
