@@ -656,7 +656,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/SVN KeywordSubstitution", &svnKeywordSubstitution, false, &pseudoDialog->cbKeywordSubstitution);
 	registerOption("Tools/SVN Search Path Depth", &svnSearchPathDepth, 2, &pseudoDialog->sbDirSearchDepth);
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	registerOption("Terminal/ColorScheme", &terminalColorScheme, "Linux", &pseudoDialog->comboBoxTerminalColorScheme);
 	registerOption("Terminal/Font Family", &terminalFontFamily, "", &pseudoDialog->comboBoxTerminalFont);
 	registerOption("Terminal/Font Size", &terminalFontSize, -1, &pseudoDialog->spinBoxTerminalFontSize);
@@ -1193,7 +1193,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 #endif
 	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 #ifdef Q_OS_WIN32
 	if (terminalFontFamily.isEmpty()) {
 		if (xf.contains("Consolas", Qt::CaseInsensitive)) terminalFontFamily = "Consolas";

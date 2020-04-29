@@ -1060,7 +1060,7 @@ void Texstudio::setupMenus()
 	updateUserToolMenu();
 	menu->addSeparator();
 	newManagedAction(menu, "clean", tr("Cle&an Auxiliary Files..."), SLOT(cleanAll()));
-	newManagedAction(menu, "terminal", tr("Open &Terminal"), SLOT(openTerminal()));
+	newManagedAction(menu, "terminal", tr("Open External &Terminal"), SLOT(openExternalTerminal()));
 	menu->addSeparator();
 	newManagedAction(menu, "viewlog", tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), "viewlog")->setData(BuildManager::CMD_VIEW_LOG);
 	act = newManagedAction(menu, "logmarkers", tr("Show Log Markers"), nullptr, 0, "logmarkers");
@@ -1638,7 +1638,7 @@ void Texstudio::updateMasterDocumentCaption()
 void Texstudio::currentEditorChanged()
 {
 	updateCaption();
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	outputView->getTerminalWidget()->setCurrentFileName(getCurrentFileName());
 #endif
 	if (!currentEditorView()) return;
@@ -6065,16 +6065,22 @@ void Texstudio::clearLogs(){
     outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
 
-void Texstudio::openTerminal()
+void Texstudio::openExternalTerminal(void)
 {
-	QString workdir;
-	if (currentEditor())
-		workdir = currentEditor()->fileInfo().absolutePath();
-	else
-		workdir = getUserDocumentFolder();
+	QString fileMain, fileCurrent;
 
-	startTerminalEmulator(workdir);
-	// maybe some visual feedback here ?
+	if ((fileMain = documents.getTemporaryCompileFileName()) == "") {
+		fileMain = getUserDocumentFolder() + QDir::separator() + "none.tex";
+	}
+	if ((fileCurrent = getCurrentFileName()) == "") {
+		fileCurrent = fileMain;
+	}
+	buildManager.runCommand(
+		BuildManager::CMD_TERMINAL_EXTERNAL,
+		fileMain,
+		fileCurrent,
+		currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0
+	);
 }
 /*!
  * \brief run a command which was triggered from a Qaction (menu or toolbar)
@@ -6629,7 +6635,7 @@ void Texstudio::generalOptions()
         delete pdfviewerWindow;
     }
 #endif
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
     outputView->getTerminalWidget()->updateSettings();
 #endif
 }

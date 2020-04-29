@@ -139,7 +139,7 @@ void PreviewWidget::contextMenu(QPoint point)
 	menu.exec(menuParent->mapToGlobal(point));
 }
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 {
 	//setBackgroundRole(QPalette::Base);
@@ -257,7 +257,7 @@ OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	previewWidget = new PreviewWidget(this);
 	appendPage(new TitledPanelPage(previewWidget, PREVIEW_PAGE, tr("Preview")), false);
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	terminalWidget = new TerminalWidget(this);
 	appendPage(new TitledPanelPage(terminalWidget, TERMINAL_PAGE, tr("Terminal")), false);
 #endif
