@@ -9,7 +9,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 #include <qtermwidget5/qtermwidget.h>
 #endif
 
@@ -448,7 +448,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 
     ui.comboBoxThesaurusFileName->setCompleter(nullptr);
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	populateTerminalColorSchemes();
 	populateTerminalComboBoxFont(true);
 #endif
@@ -521,9 +521,9 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Internal PDF Viewer"), getRealIcon("config_preview"));
 	createIcon(tr("SVN"), getRealIcon("config_svn"));
 	createIcon(
-		tr("Terminal"),
+		tr("Internal Terminal"),
 		getRealIcon("config_terminal"),
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 		CONTENTS_ADVANCED
 #else
 		CONTENTS_DISABLED
@@ -1156,7 +1156,7 @@ void ConfigDialog::populateComboBoxFont(bool onlyMonospaced)
 	if (idx >= 0) ui.comboBoxFont->setCurrentIndex(idx);
 }
 
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 void ConfigDialog::populateTerminalComboBoxFont(bool onlyMonospaced)
 {
 	QString currentFont = ui.comboBoxTerminalFont->currentText();

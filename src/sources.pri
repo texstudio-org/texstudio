@@ -232,6 +232,3 @@ FORMS += \
     $$PWD/usermenudialog.ui \
     $$PWD/userquickdialog.ui \
     $$PWD/webpublishdialog.ui
-
-win32: SOURCES += $$PWD/utilssystem_win.cpp
-else: SOURCES += $$PWD/utilssystem_unix.cpp

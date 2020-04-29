@@ -41,6 +41,7 @@ CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) C
 CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(GLOSSARY, glossary) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
 CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
+CMD_DEFINE(TERMINAL_EXTERNAL, terminal-external)
 #undef CMD_DEFINE
 // *INDENT-ON* (astyle-config)
 
@@ -351,7 +352,45 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
 	registerCommand("svnadmin",    "svnadmin",     "SVNADMIN",    "", "Tools/SVNADMIN");
 
+	registerCommand("terminal-external", "", tr("External Terminal"), "", "", guessTerminalExternal, false);
+
 	internalCommands << CMD_VIEW_PDF_INTERNAL << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
+}
+
+QString BuildManager::guessTerminalExternal(void)
+{
+#if defined(Q_OS_DARWIN)
+	return "open -a Terminal ?c:a\"";
+#elif defined(Q_OS_UNIX)
+	// Linux/Unix does not have a uniform way to determine the default terminal application
+
+	// Gnome
+	ExecProgram execGsettings("gsettings get org.gnome.desktop.default-applications.terminal exec", "");
+	if (execGsettings.execAndWait()) {
+		/*
+			1. "gsettings" terminates with exit code 0 if settings were fetched successfully.
+			2. The returned value has a trailing LF so we trim it.
+			3. The command is wrapped in single quotes, e.g. 'gnome-terminal' so we remove the single quotes.
+		 */
+		return execGsettings.m_standardOutput.trimmed().replace('\'', "");
+	}
+
+	// Fallback
+	QStringList fallbacks = QStringList() << "konsole" << "xterm";
+	foreach (const QString &fallback, fallbacks) {
+		ExecProgram execWhich("which " + fallback, "");
+		if (execWhich.execAndWait()) {
+			// "which" terminates with exit code 0 if settings were fetched successfully
+			return execWhich.m_standardOutput;
+		}
+	}
+#elif defined(Q_OS_WIN)
+	QString command = QString::fromLocal8Bit(qgetenv("COMSPEC"));
+	if (command != "") {
+		return command;
+	}
+#endif
+	return QString("<unknown>");
 }
 
 void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands)
@@ -1347,7 +1386,7 @@ void BuildManager::readSettings(QSettings &settings)
 			if (idx >= 0 && idx < userToolDisplayNames.length()) {
 				displayName = userToolDisplayNames[idx];
 			}
-            registerCommand(id, "", displayName, "", "", nullptr, true).commandLine = cmd;
+			registerCommand(id, "", displayName, "", "", nullptr, true).commandLine = cmd;
 		} else {
 			// default command
 			it.value().commandLine = cmd;

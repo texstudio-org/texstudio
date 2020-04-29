@@ -115,7 +115,7 @@ public:
 	static const QString CMD_VIEW_DVI, CMD_VIEW_PS, CMD_VIEW_PDF, CMD_VIEW_LOG;
 	static const QString CMD_DVIPNG, CMD_DVIPS, CMD_DVIPDF, CMD_PS2PDF, CMD_GS, CMD_MAKEINDEX, CMD_TEXINDY, CMD_MAKEGLOSSARIES, CMD_METAPOST, CMD_ASY, CMD_BIBTEX, CMD_BIBTEX8, CMD_BIBER, CMD_SVN, CMD_SVNADMIN;
 	static const QString CMD_COMPILE, CMD_VIEW, CMD_BIBLIOGRAPHY, CMD_INDEX, CMD_GLOSSARY, CMD_QUICK, CMD_RECOMPILE_BIBLIOGRAPHY;
-	static const QString CMD_VIEW_PDF_INTERNAL, CMD_INTERNAL_PRE_COMPILE, CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY;
+	static const QString CMD_VIEW_PDF_INTERNAL, CMD_INTERNAL_PRE_COMPILE, CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, CMD_TERMINAL_EXTERNAL;
 
 	static QString chainCommands(const QString &a);
 	static QString chainCommands(const QString &a, const QString &b);
@@ -214,6 +214,7 @@ signals:
 private:
 
 	void initDefaultCommandNames();
+	static QString guessTerminalExternal(void);
 	void checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands);
 
     CommandInfo &registerCommand(const QString &id, const QString &basename, const QString &displayName, const QString &args, const QString &oldConfig = "", GuessCommandLineFunc guessFunc = nullptr, bool user = false);

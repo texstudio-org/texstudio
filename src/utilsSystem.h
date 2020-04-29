@@ -84,8 +84,6 @@ void updatePathSettings(QProcess *proc, QString additionalPaths);
 void showInGraphicalShell(QWidget *parent, const QString &pathIn);
 QString msgGraphicalShellAction();
 
-bool startTerminalEmulator(const QString &workingDir);
-
 //returns kde version 0,3,4
 int x11desktop_env();
 

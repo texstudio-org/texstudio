@@ -71,13 +71,13 @@ QT += \
     DEFINES += PHONON
 }
 
-isEmpty(TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
-    TERMINAL=1
+isEmpty(INTERNAL_TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
+    INTERNAL_TERMINAL=1
     message(Use detected qterminal)
 }
-!isEmpty(TERMINAL){
+!isEmpty(INTERNAL_TERMINAL){
     LIBS += -lqtermwidget5
-    DEFINES += TERMINAL
+    DEFINES += INTERNAL_TERMINAL
     message(Use qterminal)
 }
 

@@ -140,7 +140,7 @@ private slots:
 	void refreshLastUpdateTime();
 
 	void populateComboBoxFont(bool onlyMonospaced);
-#ifdef TERMINAL
+#ifdef INTERNAL_TERMINAL
 	void populateTerminalColorSchemes();
 	void populateTerminalComboBoxFont(bool onlyMonospaced);
 #endif
