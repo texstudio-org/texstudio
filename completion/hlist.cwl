@@ -22,7 +22,7 @@ col sep=##L
 item offset=##L
 label sep=##L
 label width=##L
-label align=left,right,center
+label align=#left,right,center
 label=%<code%>
 pre label=%<code%>
 post label=%<code%>
@@ -31,7 +31,7 @@ resume#true,false
 autoindent#true,false
 pre item=%<code%>
 post item=%<code%>
-show label=#true,false
+show label#true,false
 list parindent=##L
 show frame#true,false
 #endkeyvals
