@@ -422,35 +422,64 @@ all
 \begin{docCommand*}{name}{parameters}#*
 \begin{docCommand*}[options%keyvals]{name}{parameters}#*
 \end{docCommand*}#*
+\begin{docCommands}{{%<variant1%>},{%<variant2%>}}#*
+\begin{docCommands}[options%keyvals]{{%<variant1%>},{%<variant2%>}}#*
+\end{docCommands}#*
 \begin{docEnvironment}{name}{parameters}#*
 \begin{docEnvironment}[options%keyvals]{name}{parameters}#*
 \end{docEnvironment}#*
 \begin{docEnvironment*}{name}{parameters}#*
 \begin{docEnvironment*}[options%keyvals]{name}{parameters}#*
 \end{docEnvironment*}#*
-\begin{docKey}{name}{parameters}{description}{key description}#*
-\begin{docKey}[key path][options%keyvals]{name}{parameters}{description}{key description}#*
+\begin{docEnvironments}{{%<variant1%>},{%<variant2%>}}#*
+\begin{docEnvironments}[options%keyvals]{{%<variant1%>},{%<variant2%>}}#*
+\end{docEnvironments}#*
+\begin{docKey}{name}{parameters}{description}#*
+\begin{docKey}[key path][options%keyvals]{name}{parameters}{description}#*
 \end{docKey}#*
-\begin{docKey*}{name}{parameters}{description}{key description}#*
-\begin{docKey*}[key path][options%keyvals]{name}{parameters}{description}{key description}#*
+\begin{docKey*}{name}{parameters}{description}#*
+\begin{docKey*}[key path][options%keyvals]{name}{parameters}{description}#*
 \end{docKey*}#*
+\begin{docKeys}{{%<variant1%>},{%<variant2%>}}#*
+\begin{docKeys}[options%keyvals]{{%<variant1%>},{%<variant2%>}}#*
+\end{docKeys}#*
+\begin{docPathOperation}{name}{parameters}#*
+\begin{docPathOperation}[options%keyvals]{name}{parameters}#*
+\end{docPathOperation}#*
+\begin{docPathOperation*}{name}{parameters}#*
+\begin{docPathOperation*}[options%keyvals]{name}{parameters}#*
+\end{docPathOperation*}#*
+\begin{docPathOperations}{{%<variant1%>},{%<variant2%>}}#*
+\begin{docPathOperations}[options%keyvals]{{%<variant1%>},{%<variant2%>}}#*
+\end{docPathOperations}#*
 \docValue{name}#*
+\docValue[options%keyvals]{name}#*
 \docValue*{name}#*
+\docValue*[options%keyvals]{name}#*
 \docAuxCommand{name}#*
+\docAuxCommand[options%keyvals]{name}#*
 \docAuxCommand*{name}#*
+\docAuxCommand*[options%keyvals]{name}#*
 \docAuxEnvironment{name}#*
+\docAuxEnvironment[options%keyvals]{name}#*
 \docAuxEnvironment*{name}#*
-\docAuxEnvironment*[key path]{name}#*
+\docAuxEnvironment*[options%keyvals]{name}#*
 \docAuxKey{name}#*
-\docAuxKey[key path]{name}#*
+\docAuxKey[key path][options%keyvals]{name}#*
 \docAuxKey*{name}#*
-\docAuxKey*[key path]{name}#*
+\docAuxKey*[key path][options%keyvals]{name}#*
 \docCounter{name}#*
+\docCounter[options%keyvals]{name}#*
 \docCounter*{name}#*
+\docCounter*[options%keyvals]{name}#*
 \docLength{name}#*
+\docLength[options%keyvals]{name}#*
 \docLength*{name}#*
+\docLength*[options%keyvals]{name}#*
 \docColor{name}#*
+\docColor[options%keyvals]{name}#*
 \docColor*{name}#*
+\docColor*[options%keyvals]{name}#*
 \cs{name}#*
 \meta{text}#*
 \marg{text}#*
@@ -462,25 +491,98 @@ all
 \end{dispExample*}#*
 \begin{dispListing}#*
 \end{dispListing}#*
-\begin*{dispListing}{options%keyvals}#*
-\end*{dispListing}#*
+\begin{dispListing*}{options%keyvals}#*
+\end{dispListing*}#*
 \begin{absquote}#*
 \end{absquote}#*
 \tcbmakedocSubKey{name}{key path}#*
+\tcbmakedocSubKeys{name}{key path}#*
 \refCom{name}#*
 \refCom*{name}#*
 \refEnv{name}#*
 \refEnv*{name}#*
 \refKey{name}#*
 \refKey*{name}#*
+\refPathOperation{name}#*
+\refPathOperation*{name}#*
 \refAux{name}#*
 \refAuxcs{name}#*
 \colDef{text}#*
-\col0pt{text}#*
+\colOpt{text}#*
+\colFade{text}#*
 \tcbdocmarginnote{text}#*
 \tcbdocmarginnote[options%keyvals]{text}#*
 \tcbdocnew{date}#*
 \tcbdocupdated{date}#*
+
+# ---------------------------------------
+# << Option Keys >> - Documentation library
+# ---------------------------------------
+#keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset
+doc name
+doc parameter
+doc description
+doc label
+doc index
+doc sort index
+doc into index#true,false
+doc no index
+doc new
+doc updated
+doc new and updated={%<new date%>}{%<update date%>}
+doc left=##L
+doc right=##L
+doc left indent=##L
+doc right indent=##L
+doc raster
+doc head
+before doc body
+after doc body
+#endkeyvals
+
+#keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\tcbset
+before doc body command
+after doc body command
+doc head command
+doc raster command
+#endkeyvals
+
+#keyvals:\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\tcbset
+before doc body environment
+after doc body environment
+doc head environment
+doc raster environment
+#endkeyvals
+
+#keyvals:\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbset
+doc keypath
+before doc body key
+after doc body key
+doc head key
+doc raster key
+#endkeyvals
+
+#keyvals:\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset
+before doc body path
+after doc body path
+doc head path
+doc raster path
+#endkeyvals
+
+#keyvas:\tcbdocmarginnote,\tcbset
+doc marginnote
+#endkeyvals
+
+#keyvals:\begin{dispExample*},\begin{dispListing*},\tcbset
+docexample/.style=
+documentation listing options
+documentation listing style
+documentation minted options
+documentation minted style
+documentation minted language
+before example
+after example
+#endkeyvals
 
 # ---------------------------------------
 # << Option Keys >> - Standard + External + Doc
@@ -1371,13 +1473,7 @@ external/clear preclass
 external/preamble=
 external/preamble tcbset=
 external/clear preamble
-docexample/.style=
-documentation listing options=
-documentation listing style=
-documentation minted options=
-documentation minted style=
-documentation minted language=
-keywords bold
+# Documentation library
 keywords bold#true,false
 index command=
 index command name=
@@ -1385,22 +1481,22 @@ index format=#pgfsection,pgfchapter,pgf,doc,off
 index actual=
 index quote=
 index level=
-index default settings
-index german settings
-index annotate
+index default settings/.style=
+index german settings/.style=
 index annotate#true,false
-index colorize
 index colorize#true,false
-color command=
-color environment=
-color key=
-color value=
-color counter=
-color length=
-color color=
-color definition=
-color option=
-color hyperlink=
+color command=#%color
+color environment=#%color
+color key=#%color
+color path=#%color
+color value=#%color
+color counter=#%color
+color length=#%color
+color color=#%color
+color definition=#%color
+color option=#%color
+color fade=#%color
+color hyperlink=#%color
 english language
 doclang/color=
 doclang/colors=
@@ -1414,33 +1510,12 @@ doclang/keys=
 doclang/length=
 doclang/lengths=
 doclang/new=
+doclang/path=
+doclang/paths=
 doclang/pageshort=
 doclang/updated=
 doclang/value=
 doclang/values=
-doc left=
-doc right=
-doc left indent=
-doc right indent=
-doc head command=
-doc head environment=
-doc head key=
-doc head=
-before doc body command=
-after doc body command=
-before doc body environment=
-after doc body environment=
-before doc body key=
-after doc body key=
-before doc body=
-after doc body=
-doc description=
-doc into index
-doc into index#true,false
-doc marginnote=
-doc new=
-doc updated=
-doc new and updated=
 #endkeyvals
 
 # ---------------------------------------
@@ -4089,74 +4164,4 @@ verbatim
 IfNoValueTF=
 IfValueTF=
 IfBooleanTF=
-docexample/.style=
-documentation listing options=
-documentation listing style=
-documentation minted options=
-documentation minted style=
-documentation minted language=
-keywords bold
-keywords bold#true,false
-index command=
-index command name=
-index format=#pgfsection,pgfchapter,pgf,doc,off
-index actual=
-index quote=
-index level=
-index default settings
-index german settings
-index annotate
-index annotate#true,false
-index colorize
-index colorize#true,false
-color command=
-color environment=
-color key=
-color value=
-color counter=
-color length=
-color color=
-color definition=
-color option=
-color hyperlink=
-english language
-doclang/color=
-doclang/colors=
-doclang/counter=
-doclang/environment=
-doclang/environments=
-doclang/environment content=
-doclang/index=
-doclang/key=
-doclang/keys=
-doclang/length=
-doclang/lengths=
-doclang/new=
-doclang/pageshort=
-doclang/updated=
-doclang/value=
-doclang/values=
-doc left=
-doc right=
-doc left indent=
-doc right indent=
-doc head command=
-doc head environment=
-doc head key=
-doc head=
-before doc body command=
-after doc body command=
-before doc body environment=
-after doc body environment=
-before doc body key=
-after doc body key=
-before doc body=
-after doc body=
-doc description=
-doc into index
-doc into index#true,false
-doc marginnote=
-doc new=
-doc updated=
-doc new and updated=
 #endkeyvals
