@@ -610,7 +610,9 @@ TeXstudioですべてのコマンドのパスを/usr/texbin/から
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>コマンド%1は簡潔なことが望まれます。しかし、現在%2個のコマンドを含むコマンドチェーンとして定義されています。これは仕様を逸脱しており、想定外の副作用につながりかねません。
+
+設定を変更して、「オプション-&gt;TeXstudioの設定-&gt;コマンド」ではなく「オプション-&gt;TeXstudioの設定-&gt;ビルド」だけでコマンドリストを定義してください。</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1061"/>
@@ -625,7 +627,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1482"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Windowsで人気のLaTeXディストリビューションは%1と%2です。</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
@@ -847,7 +849,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>モダン - ダーク</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -877,7 +879,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="446"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"/>
+        <translation>システムのファイルダイアログを使用</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="456"/>
@@ -973,12 +975,12 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="674"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: 拡張子なしのファイル名; &lt;b&gt;@&lt;/b&gt;: 行番号; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: 書式付きファイル名</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="684"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;ファイルセレクタselector（オプション。もし存在する場合、終わりのコロンを含む）:&lt;/i&gt; セレクタがない場合、マスターファイルを選択。&lt;b&gt;c&lt;/b&gt; 現在のファイルを選択。&lt;b&gt;p{ext}:&lt;/b&gt; マスターファイルと同じベース名と拡張子&lt;b&gt;ext&lt;/b&gt;を持つファイルを探します。検索はマスターファイルディレクトリと追加のPDFディレクトリで行われます。&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; 次の組み合せからなります。&lt;b&gt;a&lt;/b&gt;: 絶対パス、&lt;b&gt;m&lt;/b&gt;: 拡張子なしのベースファイル名、&lt;b&gt;e&lt;/b&gt;: 拡張子、&lt;b&gt;r&lt;/b&gt;: マスターに対する相対パス、&lt;b&gt;*&lt;/b&gt;: 続くパターンに一致するすべてのファイル&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: セレクタの終了。次の文字はセレクタの終了と追加の意味を持ちます。&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: ダブルクォートで囲みます。&lt;b&gt;.&lt;/b&gt;（ドット）最後に点を追加。&lt;b&gt;（スペース）&lt;/b&gt;: 最後にスペースを追加します。&lt;br/&gt;&lt;i&gt;例:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: ダブルクォートで囲まれた完全な絶対パスのファイル名、&lt;b&gt;?e)&lt;/b&gt;ドットなしの拡張子のみ（例えばtex）、&lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt;: ダブルクォートで囲まれた、拡張子なしファイル名（&lt;b&gt;%&lt;/b&gt;と同じ）、&lt;b&gt;?me&lt;/b&gt; 拡張子ありのファイル名（例：example.tex）、&lt;b&gt;?*.aux&lt;/b&gt;: 現在のディレクトリ内のすべての「.aux」ファイル</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="700"/>
@@ -1156,27 +1158,27 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"/>
+        <translation>「要素を閉じる」はGUI要素（ここではすべては表示されていない）の固定リストに適用されます。最初に見える要素が閉じられます。この設定で、閉じることから要素を除外できます。</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"/>
+        <translation>要素を閉じる(Esc)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"/>
+        <translation>ログ表示を閉じる</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>埋め込みビューワーを閉じる</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>全画面表示モードを終了する</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1160"/>
@@ -1426,12 +1428,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1794"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>ポーランド語の引用符：,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1799"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>ポーランド語の引用符(unicode)： „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1807"/>
@@ -1506,7 +1508,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1930"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>保存時に後ろの空白を削除</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1576"/>
@@ -1661,7 +1663,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2245"/>
         <source>Line Wrapping:</source>
-        <translation>行のワードラップ:</translation>
+        <translation>行の折り返し:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2252"/>
@@ -1731,12 +1733,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2350"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>この設定は、文章の幅が行の折り返しで制限されている場合にのみ効果があります。</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2353"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>エディタで文章を中央寄せする</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2360"/>
@@ -1751,22 +1753,22 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2378"/>
         <source>No Line Wrap</source>
-        <translation>行のワードラップをしない</translation>
+        <translation>行の折り返しをしない</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2383"/>
         <source>Soft Line Wrap at Window Edge</source>
-        <translation>ウィンドウ端で緩やかに行のワードラップを行う</translation>
+        <translation>ウィンドウ端で緩やかに行の折り返しを行う</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2388"/>
         <source>Soft Line Wrap after max. Characters</source>
-        <translation>最大文字数を超えたら緩やかに行のワードラップを行う</translation>
+        <translation>最大文字数を超えたら緩やかに行の折り返しを行う</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2393"/>
         <source>Hard Line Wrap after max. Characters</source>
-        <translation>最大文字数を超えたら厳密に行のワードラップを行う</translation>
+        <translation>最大文字数を超えたら厳密に行の折り返しを行う</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2401"/>
@@ -1798,17 +1800,17 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"/>
+        <translation>ドラッグ＆ドロップをできるようにする</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2443"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;（Zoteroなどの）外部プログラムは、次のようにしてtexstudioに引用を挿入できます：&lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;。&lt;/p&gt;&lt;p&gt;もしカーソルが引用コマンド内にはない場合、ここで与えられた「コマンド」が\citeコマンドとして使われます。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2446"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation>引用の挿入に対するlatexコマンド:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2459"/>
@@ -2123,7 +2125,7 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="../src/configdialog.ui" line="3044"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>あいまい</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3049"/>
@@ -2133,12 +2135,12 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="../src/configdialog.ui" line="3072"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation>数式環境の外で補完によって数式コマンドが挿入された場合、$$が自動的に挿入されます。</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3075"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation>必要な数式区切り記号の自動挿入</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3085"/>
@@ -2178,7 +2180,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3201"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation>セミコロンで区切られた、Hunspell辞書のあるフォルダ。特別なキーワード[txs-settings-dir]と[txs-app-dir]は、それぞれのディレクトリに変換されます。</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3211"/>
@@ -2546,7 +2548,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4095"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"/>
+        <translation>影なしの円</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4103"/>
@@ -2653,12 +2655,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4322"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>用紙の色</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4332"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>既定の背景色。16進数RGB値として指定。注：このオプションはオプション変更後に読み込まれたPDFにのみ影響します。すでに開いているPDFの用紙の色は変更されません。</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4384"/>
@@ -2704,12 +2706,12 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="4476"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>端末</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4527"/>
         <source>Shell:</source>
-        <translation type="unfinished"/>
+        <translation>シェル:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -3415,7 +3417,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{filelist}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{filelist}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -3460,7 +3462,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>LaTeXインライン数式モード \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -3914,12 +3916,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="409"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>読み込み専用に設定</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="411"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>読み込み専用を解除</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="416"/>
@@ -3929,7 +3931,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="419"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>他のすべての文書を閉じる</translation>
     </message>
 </context>
 <context>
@@ -4250,7 +4252,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"/>
+        <translation>この場所(H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4300,7 +4302,16 @@ Are you sure you want to undo all changes?</source>
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>図の配置選択
+
+[t] 上部：ページの上部
+[b] 下部：ページの下部
+[p] 新ページ：図に対する新ページ
+[h] この場所：テキスト中のこの位置
+[H] まさにこの場所：テキスト中の厳密にこの場所（floatパッケージが必要）
+[!]: 「良い」配置を決めるためにLaTeXが使用する内部パラメータを上書き。
+
+注：最初の4つは単なる提案です。結果のページレイアウトが悪い場合、LaTeXはこの配置選択を無視します。</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="263"/>
@@ -4375,7 +4386,7 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="1310"/>
         <location filename="../src/latexcompleter.cpp" line="1320"/>
         <source>fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>あいまい</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1311"/>
@@ -4402,7 +4413,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1821"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>ラベルが複数回定義されています！</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
@@ -4589,7 +4600,7 @@ The wizard does not support command </source>
         <location filename="../src/latexeditorview.cpp" line="2423"/>
         <location filename="../src/latexeditorview.cpp" line="2441"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>ラベルが複数回定義されています！</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2431"/>
@@ -4857,17 +4868,17 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="40"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"/>
+        <translation>リポジトリからマクロをみる</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="142"/>
         <source>Browse macro repository</source>
-        <translation type="unfinished"/>
+        <translation>マクロリポジトリをみる</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="143"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"/>
+        <translation>リポジトリが見つかりません。ネットワークエラー：%1</translation>
     </message>
 </context>
 <context>
@@ -4972,7 +4983,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="262"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>端末</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="269"/>
@@ -5100,12 +5111,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="504"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"/>
+        <translation>次の表示場所を検索</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="505"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"/>
+        <translation>前の表示場所を検索</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="507"/>
@@ -5138,7 +5149,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>開始時間</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
@@ -5148,7 +5159,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="994"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>待機</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="996"/>
@@ -5256,7 +5267,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2481"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"/>
+        <translation>同期を無視</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2484"/>
@@ -5381,7 +5392,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2521"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>ツールバーを自動的に隠す</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2539"/>
@@ -5741,7 +5752,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="617"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"/>
+        <translation>検索結果に移動する時にエディタを同期します。</translation>
     </message>
 </context>
 <context>
@@ -5840,7 +5851,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1117"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>「外部ファイルを開く」は現在PDFのみサポートされています。</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1136"/>
@@ -5991,7 +6002,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="846"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>（これまで見つかった%2カ所のうち）%1カ所の部分が置換されました</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="885"/>
@@ -6022,7 +6033,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="918"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="939"/>
         <source>%1 (of %2) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>（%2カ所のうち）%1カ所の部分が置換されています</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="919"/>
@@ -6141,7 +6152,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="678"/>
         <source>Dynamic line wrapping</source>
-        <translation>動的な行のワードラップ</translation>
+        <translation>動的な行の折り返し</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="690"/>
@@ -6193,7 +6204,13 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"/>
+        <translation>%1
+は別のアプリケーションで変更されています。
+ディスク上のファイルを上書きする場合、「保存」を押してください。
+ディスクからファイルを祭よ見込みする場合、「リセット」を押してください。
+エディタ上で差分を表示する場合、「差分」を押してください。
+この警告を無視する場合、「無視」を押してください。
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="926"/>
@@ -6318,7 +6335,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+はTeXstudioの外部で変更されました。ディスクから再読み込みしますか？
+
+注：
+- 再読み込みはエディタの内容をディスクのファイルで上書きします。これはやり直せません。
+- オプションで確認なしの再読み込みを設定できます。</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1331"/>
@@ -7174,7 +7196,9 @@ Notes:
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation>エディタのフォントサイズに対するフォントサイズ。
+
+注：サイズが行間隔より大きい場合、文字が切り取られます。</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -7308,7 +7332,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="218"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"/>
+        <translation>選択したテキストタイプ（数式、コマンドなど）でのみ検索</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="238"/>
@@ -7350,7 +7374,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="347"/>
         <source>Count occurrences</source>
-        <translation type="unfinished"/>
+        <translation>見つかった回数を数える</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="348"/>
@@ -7571,7 +7595,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="121"/>
         <source>Babel</source>
-        <translation type="unfinished"/>
+        <translation>Babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="137"/>
@@ -7616,12 +7640,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"/>
+        <translation>Input encoding</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"/>
+        <translation>Font encoding</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -8314,22 +8338,22 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"/>
+        <translation>「お気に入り」から削除</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"/>
+        <translation>「お気に入り」に追加</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"/>
+        <translation>コマンドを挿入</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
         <source>Insert unicode</source>
-        <translation type="unfinished"/>
+        <translation>unicodeを挿入</translation>
     </message>
 </context>
 <context>
@@ -8338,19 +8362,19 @@ Do you trust this script?</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>演算子記号</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>関係演算子</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="34"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>矢印</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="35"/>
@@ -8362,37 +8386,37 @@ Do you trust this script?</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>ギリシャ文字</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>キリル文字</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>様々な数学記号</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="39"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>様々なテキスト記号</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="40"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>wasysym</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="41"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>特別な記号</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="77"/>
@@ -8412,7 +8436,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="118"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>カテゴリー</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="129"/>
@@ -8430,7 +8454,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="206"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"/>
+        <translation>不明な環境</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="207"/>
@@ -8505,7 +8529,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="221"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>スペル</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="224"/>
@@ -8617,73 +8641,73 @@ Do you trust this script?</source>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 上揃え / 両端揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 上揃え / 左揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 上揃え / 中央揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 上揃え / 右揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} （固定幅 - 中央揃え / 両端揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} （固定幅 - 中央揃え / 左揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} （固定幅 - 中央揃え / 中央揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} （固定幅 - 中央揃え / 右揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} （固定幅 - 下揃え / 両端揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} （固定幅 - 下揃え / 左揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} （固定幅 - 下揃え / 中央揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} （固定幅 - 下揃え / 右揃え）</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -9140,7 +9164,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="586"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>マクロ</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="602"/>
@@ -9163,7 +9187,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="655"/>
         <location filename="../src/texstudio.cpp" line="656"/>
         <source>Symbols</source>
-        <translation type="unfinished"/>
+        <translation>記号</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="658"/>
@@ -9178,12 +9202,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="659"/>
         <source>PSTricks Commands</source>
-        <translation type="unfinished"/>
+        <translation>PSTricks コマンド</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="661"/>
         <source>TikZ Commands</source>
-        <translation type="unfinished"/>
+        <translation>TikZ コマンド</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="662"/>
@@ -9193,12 +9217,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="663"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Beamer コマンド</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="664"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>XY コマンド(xy-pic)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="791"/>
@@ -9449,7 +9473,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="868"/>
         <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"/>
+        <translation>見つかったものすべてを選択(&amp;O)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="869"/>
@@ -10184,12 +10208,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1100"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>TeXコメントとしてプログラムを挿入</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1101"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"/>
+        <translation>TeXコメントとして参考文献ツールを挿入</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1103"/>
@@ -10331,7 +10355,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1197"/>
         <source>Close Element</source>
-        <translation type="unfinished"/>
+        <translation>要素を閉じる</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1200"/>
@@ -10501,7 +10525,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1296"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>LanguageToolの確認</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1297"/>
@@ -10531,7 +10555,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1461"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"/>
+        <translation>インライン文法チェックはユーザーが無効化しています！</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1522"/>
@@ -10809,7 +10833,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3719"/>
         <source>Join lines before wrapping</source>
-        <translation>ワードラップを行う前に行を結合する</translation>
+        <translation>折り返しを行う前に行を結合する</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3733"/>
@@ -10927,12 +10951,12 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="5961"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation>%!TeX プログラムは次を使用: %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5964"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"/>
+        <translation>%!TeX プログラムは認識されません！(%1) 既定値を使用します。</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6025"/>
@@ -11193,69 +11217,81 @@ TeXstudioを実行し続けますか? これはデータの破壊につながる
     <message>
         <location filename="../src/texstudio.cpp" line="10213"/>
         <source>LT Report</source>
-        <translation type="unfinished"/>
+        <translation>LT レポート</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10240"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"/>
+        <translation>プロセスの開始に失敗しました
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10243"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"/>
+        <translation>プロセスはクラッシュしました
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10253"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"/>
+        <translation>リアルタイムチェックは有効です。
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10255"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"/>
+        <translation>リアルタイムチェックは無効です！！！
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10258"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>文法チェックは有効です。
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10260"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"/>
+        <translation>文法チェックは無効です！！！
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10263"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>自動的に起動を試みます。
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10265"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>自動起動は無効です。
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10270"/>
         <source>LT current status: </source>
-        <translation type="unfinished"/>
+        <translation>現在のLTステータス：</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10273"/>
         <source>working</source>
-        <translation type="unfinished"/>
+        <translation>起動中</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10276"/>
@@ -11271,12 +11307,13 @@ TeXstudioを実行し続けますか? これはデータの破壊につながる
         <location filename="../src/texstudio.cpp" line="10283"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"/>
+        <translation>LT-URL: %1
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10577"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"/>
+        <translation>LTとの通信時エラー： %1</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="648"/>
@@ -11484,7 +11521,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation type="unfinished"/>
+        <translation>最少登場回数：</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>
@@ -11734,7 +11771,7 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudioの新規リリース候補が利用可能です。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;現在のバージョン：&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新の安定バージョン：&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;リリース候補：&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt; &lt;a href=&apos;%7&apos;&gt;TeXstudio webサイト&lt;/a&gt;からダウンロード可能です。</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
@@ -11744,7 +11781,7 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="211"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio開発版の新しいバージョンが利用可能です。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;現在のバージョン：&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新の安定バージョン：&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新の開発バージョン：&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&apos;%7&apos;&gt;TeXstudio webサイト&lt;/a&gt;からダウンロードできます。</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
@@ -11772,32 +11809,32 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="77"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"/>
+        <translation>txsサイトで提供されているマクロを見ます。</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="80"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>マクロを見る</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="87"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"/>
+        <translation>ファイルへマクロを書き出します</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="90"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>書き出し</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="97"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"/>
+        <translation>ファイルからマクロを取り込みます</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="100"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>取り込み</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="117"/>
@@ -11807,7 +11844,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="128"/>
         <source>Folder</source>
-        <translation type="unfinished"/>
+        <translation>フォルダーの追加</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="145"/>
@@ -11913,68 +11950,68 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>ショートカットキー</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="482"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F2</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="492"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="497"/>
         <location filename="../src/usermenudialog.ui" line="502"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F5</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="507"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F6</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="512"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F7</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="517"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F8</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="522"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F9</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="527"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F10</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="532"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F11</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="537"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F12</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="299"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"/>
+        <translation>フォルダーは空ではありません。</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="304"/>
@@ -11984,18 +12021,18 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="383"/>
         <source>Import macro</source>
-        <translation type="unfinished"/>
+        <translation>マクロの取り込み</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="383"/>
         <location filename="../src/usermenudialog.cpp" line="395"/>
         <source>txs macro files (*.txsMacro)</source>
-        <translation type="unfinished"/>
+        <translation>txs マクロファイル(*.txsMacro)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="395"/>
         <source>Export macro</source>
-        <translation type="unfinished"/>
+        <translation>マクロの書き出し</translation>
     </message>
 </context>
 <context>
@@ -12340,42 +12377,42 @@ htmlファイルは%1ディレクトリにあります。</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>General (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>一般 (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>\\begin{asy} \\end{asy}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asy} \\end{asy}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>\\begin{asydef} \\end{asydef}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asydef} \\end{asydef}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>New Beamer Slides</source>
-        <translation type="unfinished"/>
+        <translation>新規Beamerスライドの作成</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>empty slide</source>
-        <translation type="unfinished"/>
+        <translation>空のスライドの作成</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>slide with enumerate</source>
-        <translation type="unfinished"/>
+        <translation>enumerate環境を含むスライドの作成</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>slide with itemize</source>
-        <translation type="unfinished"/>
+        <translation>itemize環境を含むスライドの作成</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>slide with graphic</source>
-        <translation type="unfinished"/>
+        <translation>graphic環境を含むスライドの作成</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
@@ -12390,380 +12427,380 @@ htmlファイルは%1ディレクトリにあります。</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>\\left{ </source>
-        <translation type="unfinished"/>
+        <translation>\\left{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>\\left&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>\\left} </source>
-        <translation type="unfinished"/>
+        <translation>\\left} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>\\left&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>\\left| </source>
-        <translation type="unfinished"/>
+        <translation>\\left| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>\\left\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\left\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>\\right} </source>
-        <translation type="unfinished"/>
+        <translation>\\right} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>\\right&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>\\right{ </source>
-        <translation type="unfinished"/>
+        <translation>\\right{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>\\right&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>\\right| </source>
-        <translation type="unfinished"/>
+        <translation>\\right| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>\\right\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\right\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>beginfig(); endfig;</source>
-        <translation type="unfinished"/>
+        <translation>beginfig(); endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>extra_beginfig(); extra_endfig;</source>
-        <translation type="unfinished"/>
+        <translation>extra_beginfig(); extra_endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>begingraph(); endgraph;</source>
-        <translation type="unfinished"/>
+        <translation>begingraph(); endgraph;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>begingroup(); endgroup;</source>
-        <translation type="unfinished"/>
+        <translation>begingroup(); endgroup;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (MetaPost)</source>
-        <translation type="unfinished"/>
+        <translation>一般 (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>描画 (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>Alphabetical Commands (MetaPost)</source>
-        <translation type="unfinished"/>
+        <translation>アルファベットコマンド (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>一般 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>Lines/Polygons (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>線／多角形 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>円弧／円／楕円 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>曲線 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>Dots (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>点 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>Grids (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>グリッド (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>Placing/Rotating (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>配置／回転 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>Arrows (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>矢印 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>Line styles (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>線のスタイル (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>Fill styles (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>塗り潰しスタイル (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>Colors (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>色 (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>Plots (PSTricks/pst-plot)</source>
-        <translation type="unfinished"/>
+        <translation>データ描画 (PSTricks/pst-plot)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (TikZ)</source>
-        <translation type="unfinished"/>
+        <translation>一般 (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>Draw (TikZ)</source>
-        <translation type="unfinished"/>
+        <translation>描画 (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>Arrows (TikZ)</source>
-        <translation type="unfinished"/>
+        <translation>矢印 (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>\\begin{tikzpicture}[options] \\end{tikzpicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{tikzpicture}[options] \\end{tikzpicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>\\begin{scope}[options] \\end{scope}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{scope}[options] \\end{scope}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>Exact Sequences</source>
-        <translation type="unfinished"/>
+        <translation>完全系列</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>Squares</source>
-        <translation type="unfinished"/>
+        <translation>四角形</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>Triangles</source>
-        <translation type="unfinished"/>
+        <translation>三角形</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>Arrows (default style)</source>
-        <translation type="unfinished"/>
+        <translation>矢印（既定のスタイル）</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>Arrow Styles</source>
-        <translation type="unfinished"/>
+        <translation>矢印のスタイル</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>Curved Arrows</source>
-        <translation type="unfinished"/>
+        <translation>曲がった矢印</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="299"/>
         <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>empty</source>
-        <translation type="unfinished"/>
+        <translation>空</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>long</source>
-        <translation type="unfinished"/>
+        <translation>長完全列</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>short</source>
-        <translation type="unfinished"/>
+        <translation>短完全列</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>long ladder</source>
-        <translation type="unfinished"/>
+        <translation>長はしご</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>short ladder</source>
-        <translation type="unfinished"/>
+        <translation>短はしご</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>only grid</source>
-        <translation type="unfinished"/>
+        <translation>グリッドのみ</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>pullback</source>
-        <translation type="unfinished"/>
+        <translation>pullback</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>pushout</source>
-        <translation type="unfinished"/>
+        <translation>pushout</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>pullback (universal property)</source>
-        <translation type="unfinished"/>
+        <translation>pullback （一般的な属性）</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>pushout (universal property)</source>
-        <translation type="unfinished"/>
+        <translation>pushout （一般的な属性）</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>right down</source>
-        <translation type="unfinished"/>
+        <translation>右下型</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="310"/>
         <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>down right</source>
-        <translation type="unfinished"/>
+        <translation>下右型</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="311"/>
         <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>up left</source>
-        <translation type="unfinished"/>
+        <translation>上左型</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>left up</source>
-        <translation type="unfinished"/>
+        <translation>左上型</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="313"/>
         <source>right</source>
-        <translation type="unfinished"/>
+        <translation>右向き</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="314"/>
         <source>left</source>
-        <translation type="unfinished"/>
+        <translation>左向き</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="315"/>
         <source>up</source>
-        <translation type="unfinished"/>
+        <translation>上向き</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="316"/>
         <source>down</source>
-        <translation type="unfinished"/>
+        <translation>下向き</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>up right</source>
-        <translation type="unfinished"/>
+        <translation>上右向き</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>down left</source>
-        <translation type="unfinished"/>
+        <translation>下左向き</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>solid (default)</source>
-        <translation type="unfinished"/>
+        <translation>連続線（既定）</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>dashed</source>
-        <translation type="unfinished"/>
+        <translation>破線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>dotted</source>
-        <translation type="unfinished"/>
+        <translation>点線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>double</source>
-        <translation type="unfinished"/>
+        <translation>二重線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>wave</source>
-        <translation type="unfinished"/>
+        <translation>波線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>solid no tip</source>
-        <translation type="unfinished"/>
+        <translation>先端なし連続線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="328"/>
         <source>dashed no tip</source>
-        <translation type="unfinished"/>
+        <translation>先端なし破線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="329"/>
         <source>dotted no tip</source>
-        <translation type="unfinished"/>
+        <translation>先端なし点線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="330"/>
         <source>double no tip</source>
-        <translation type="unfinished"/>
+        <translation>先端なし二重線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>wave no tip</source>
-        <translation type="unfinished"/>
+        <translation>先端なし波線</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>over</source>
-        <translation type="unfinished"/>
+        <translation>上曲がり</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>under</source>
-        <translation type="unfinished"/>
+        <translation>下曲がり</translation>
     </message>
 </context>
 <context>
