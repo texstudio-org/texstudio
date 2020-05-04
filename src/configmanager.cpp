@@ -1329,6 +1329,13 @@ QSettings *ConfigManager::getSettings()
     return persistentConfig;
 }
 
+/*!
+ * \brief show and execute configuration dialog
+ * Translates internal settings into human readable settings and vice versa
+ * Fills the config dialog with available settings
+ * \param parentToDialog
+ * \return dialog was exited with "okay"
+ */
 bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 {
 	ConfigDialog *confDlg = new ConfigDialog(parentToDialog);

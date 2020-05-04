@@ -6458,6 +6458,11 @@ void Texstudio::helpAbout()
 }
 ////////////// OPTIONS //////////////////////////////////////
 
+/*!
+ * \brief Show the general options dialog and activate changed options in the program
+ * The method tries to detect some changes in order to redo with changed settings only when necessary.
+ * Among otheres these areas include style, dark mode and online sytax check.
+ */
 void Texstudio::generalOptions()
 {
     bool oldDarkMode = darkMode;
@@ -6640,6 +6645,13 @@ void Texstudio::generalOptions()
 #endif
 }
 
+/*!
+ * \brief execute commandLine arguments
+ * txs can be started with command line arguments.
+ * Most of them are interpreted here as they interact with documents
+ * \param detected command line arguments as string list
+ * \param realCmdLine
+ */
 void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 {
 	// parse command line
@@ -6744,12 +6756,23 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 	if (realCmdLine) Guardian::summon();
     return;
 }
-
+/*!
+ * \brief hide splash screen again
+ */
 void Texstudio::hideSplash()
 {
 	if (splashscreen) splashscreen->hide();
 }
-
+/*!
+ * \brief execute self tests
+ * \param command line arguments which may influence the behavior of this method
+ * options are:
+ * --disable-tests  : no tests are run
+ * --execute-tests  : tests are run even if they were executed already in a previous run
+ * --execute-all-tests  : run tests, including some more time consuming ones
+ * --auto-tests  : run a subset of tests which work on travis-ci
+ * \return false if some tests failed
+ */
 bool Texstudio::executeTests(const QStringList &args)
 {
 	QFileInfo myself(QCoreApplication::applicationFilePath());
@@ -6818,7 +6841,12 @@ void Texstudio::showTestProgress(const QString &message)
 	outputView->insertMessageLine(message);
 	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
 }
-
+/*!
+ * \brief generate translations for definition files
+ * some command insertions are control via definition files, not c++ source code
+ * This method reads in those commands and generate a pseudo sorce code (additionaltranslations.cpp) which can be used to generate translations
+ * The translation for the pseudo code are used to do the translation of the commands in the definition files
+ */
 void Texstudio::generateAddtionalTranslations()
 {
 	QStringList translations;
