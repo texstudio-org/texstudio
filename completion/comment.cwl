@@ -4,7 +4,7 @@
 \begin{comment}#V
 \end{comment}
 \includecomment{envname}#N
-\excludecoment{envname}#N
+\excludecomment{envname}#N
 \CommentCutFile#*
 \ProcessCutFile#*
 \generalcomment{envname}{begdef}{enddef}#*N

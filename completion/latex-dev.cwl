@@ -211,7 +211,6 @@
 \height#*L
 \partopsep#*L
 \parsep#*L
-\lineskiplimits#*
 \footheight#*L
 # pdftex specials
 \pdfoutput#*
