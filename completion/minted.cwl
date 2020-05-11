@@ -62,7 +62,7 @@
 #keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\nnewmintedfile
 autogobble#true,false
 baselinestretch=##L
-beameroveerlays#true,false
+beameroverlays#true,false
 breakafter=
 breakaftergroup#true,false
 breakaftersymbolpre=

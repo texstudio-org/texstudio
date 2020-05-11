@@ -2,7 +2,7 @@
 # neeraavi 21 Mar 2007
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
-#modified muzimuzhi 18 Jan 2020
+#modified muzimuzhi 18 Jan 2020, 8 May 2020
 
 #include:nameref
 
@@ -150,17 +150,89 @@ xetex
 \hypercalcbp{dimen specification}
 
 \Acrobatmenu{menuoption}{text}
-\TextField[parameters]{label}
-\CheckBox[parameters]{label}
-\ChoiceMenu[parameters]{label}{choices}
-\PushButton[parameters]{label}
-\Submit[parameters]{label}
-\Reset[parameters]{label}
-\LayoutTextField{label}{field}
-\LayoutChoiceField{label}{field}
-\LayoutCheckField{label}{field}
-\MakeRadioField{width}{height}
-\MakeCheckField{width}{height}
-\MakeTextField{width}{height}
-\MakeChoiceField{width}{height}
-\MakeButtonField{text}
+
+\begin{Form}
+\begin{Form}[options%keyvals]
+\end{Form}
+#keyvals:\begin{Form}
+action=%<URL%>
+encoding=
+method=#post,get
+#endkeyvals
+
+\TextField[parameters]{label}#/Form
+\CheckBox[parameters]{label}#/Form
+\ChoiceMenu[parameters]{label}{choices}#/Form
+\PushButton[parameters]{label}#/Form
+\Submit[parameters]{label}#/Form
+\Reset[parameters]{label}#/Form
+#keyvals:\TextField,\CheckBox,\ChoiceMenu,\PushButton,\Submit,\Reset
+accesskey
+align=#0,1,2
+altname
+backgroundcolor=#%color
+bordercolor=#%color
+bordersep=##L
+borderwidth=##L
+calculate
+charsize=##L
+checkboxsymbol
+checked#true,false
+color=#%color
+combo#true,false
+default
+disabled#true,false
+format
+height=##L
+hidden#true,false
+keystroke
+mappingname
+maxlen
+menulength
+multiline#true,false
+name
+onblur
+onchange
+onclick
+ondbclick
+onfocus
+onkeydown
+onkeypress
+onkeyup
+onmousedown
+onmousemove
+onmouseout
+onmouseover
+onmouseup
+onselect
+password#true,false
+popdown#true,false
+radio#true,false
+radiosymbol
+readonly#true,false
+rotation
+tabkey
+validate
+value
+width=##L
+#endkeyvals
+
+\LayoutTextField{label}{field}#*
+\LayoutChoiceField{label}{field}#*
+\LayoutCheckField{label}{field}#*
+\MakeRadioField{width}{height}#*
+\MakeCheckField{width}{height}#*
+\MakeTextField{width}{height}#*
+\MakeChoiceField{width}{height}#*
+\MakeButtonField{text}#*
+\DefaultHeightofSubmit#*
+\DefaultWidthofSubmit#*
+\DefaultHeightofReset#*
+\DefaultWidthofReset#*
+\DefaultHeightofCheckBox#*
+\DefaultWidthofCheckBox#*
+\DefaultHeightofChoiceMenu#*
+\DefaultWidthofChoiceMenu#*
+\DefaultHeightofText#*
+\DefaultHeightofTextMultiline#*
+\DefaultWidthofText#*
