@@ -1356,10 +1356,10 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 				mayChangePage = false;
 		}
 		if (mayChangePage) {
-			if (event->delta() > 0 && realPageIndex > 0) {
+            if (event->angleDelta().y() > 0 && realPageIndex > 0) {
 				goPrev();
 				scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
-			} else if (event->delta() < 0 && realPageIndex < realNumPages() - 1) {
+            } else if (event->angleDelta().y() < 0 && realPageIndex < realNumPages() - 1) {
 				goNext();
 				scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 			}
@@ -3412,7 +3412,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 	int pageIdx;
 #ifdef HAS_POPPLER_31
-    Poppler::Page::SearchFlags searchFlags = 0;
+    Poppler::Page::SearchFlags searchFlags = Poppler::Page::SearchFlags();
 #else
     Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
 #endif
