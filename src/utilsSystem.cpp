@@ -674,7 +674,7 @@ void showInGraphicalShell(QWidget *parent, const QString &pathIn)
 	const QString app = UnixUtils::fileBrowser(&dummySettings);
 	QProcess browserProc;
 	const QString browserArgs = UnixUtils::substituteFileBrowserParameters(app, folder);
-	bool success = browserProc.startDetached(browserArgs);
+    bool success = browserProc.startDetached(browserArgs,QStringList());
 	const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
 	success = success && error.isEmpty();
 	if (!success)
