@@ -1337,7 +1337,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		event->accept();
 	} else	{
 		static QTime lastScrollTime = QTime::currentTime();
-		QScrollBar *scrollBar = (event->orientation() == Qt::Horizontal)
+        QScrollBar *scrollBar = (event->angleDelta().y() == 0) // -> horizontal scroll
 		                        ? getScrollArea()->horizontalScrollBar()
 		                        : getScrollArea()->verticalScrollBar();
 		bool mayChangePage = !getScrollArea()->getContinuous();
