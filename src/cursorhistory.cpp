@@ -50,11 +50,11 @@ bool CursorHistory::insertPos(QDocumentCursor cur, bool deleteBehindCurrent)
 		return false;
 	}
 
-	if (history.count() >= m_maxLength) {
+    if (history.size() >= m_maxLength) {
 		if (currentEntry == history.begin()) {
-			history.removeLast();
+            history.pop_back();
 		} else {
-			history.removeFirst();
+            history.pop_front();
 		}
 	}
 
