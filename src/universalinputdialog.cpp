@@ -26,11 +26,11 @@ void UniversalInputDialog::addWidget(QWidget *widget, const QString &description
 	descWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
 
 	if (description.length() < 32) {
-        gridLayout->addWidget(descWidget, gridLayout->rowCount(), 0, nullptr);
-        gridLayout->addWidget(widget, gridLayout->rowCount() - 1, 1, nullptr);
+        gridLayout->addWidget(descWidget, gridLayout->rowCount(), 0);
+        gridLayout->addWidget(widget, gridLayout->rowCount() - 1, 1);
 	} else {
-        gridLayout->addWidget(descWidget, gridLayout->rowCount(), 0, 1, 2, nullptr );
-        gridLayout->addWidget(widget, gridLayout->rowCount(), 0, 1, 2, nullptr);
+        gridLayout->addWidget(descWidget, gridLayout->rowCount(), 0, 1, 2 );
+        gridLayout->addWidget(widget, gridLayout->rowCount(), 0, 1, 2 );
 	}
 }
 
@@ -41,7 +41,7 @@ QCheckBox *UniversalInputDialog::addCheckBox(const ManagedProperty &mp, const QS
 	properties << mp;
 	mp.writeToObject(checkBox);
 	properties.last().widgetOffset = (ptrdiff_t)checkBox;
-	gridLayout->addWidget(checkBox, gridLayout->rowCount(), 1, nullptr);
+    gridLayout->addWidget(checkBox, gridLayout->rowCount(), 1 );
 	return checkBox;
 }
 
@@ -121,6 +121,6 @@ void UniversalInputDialog::showEvent(QShowEvent *event)
 	box->button(QDialogButtonBox::Ok)->setDefault(true);
 	connect(box, SIGNAL(accepted()), this, SLOT(myAccept()));
 	connect(box, SIGNAL(rejected()), this, SLOT(reject()));
-    gridLayout->addWidget(box, gridLayout->rowCount(), 0, 1, 2, nullptr);
+    gridLayout->addWidget(box, gridLayout->rowCount(), 0, 1, 2 );
 	setLayout(gridLayout);
 }
