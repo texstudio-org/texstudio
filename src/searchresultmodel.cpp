@@ -228,7 +228,7 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const
 Qt::ItemFlags SearchResultModel::flags(const QModelIndex &index) const
 {
 	if (!index.isValid())
-        return nullptr;
+        return Qt::ItemFlags();
 
 	return Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable ;
 }

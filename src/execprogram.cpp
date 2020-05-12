@@ -56,10 +56,7 @@ void ExecProgram::execAndNoWait(QProcess &proc) const
 	qputenv("PATH", pathExtended.toLocal8Bit());
 	// If there are no arguments specified separately assume that the program name
 	// also contains all the arguments (if any)
-	if (m_arguments.isEmpty()) {
-		proc.start(m_program);
-	} else {
-		proc.start(m_program, m_arguments);
-	}
+    proc.start(m_program, m_arguments);
+
 	qputenv("PATH", pathOrig.toLocal8Bit());
 }

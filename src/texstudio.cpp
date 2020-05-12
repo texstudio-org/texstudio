@@ -10319,7 +10319,7 @@ void Texstudio::checkLanguageTool()
     QProcess *javaProcess = new QProcess();
 
     result += "JAVA: " + cmd + "\n";
-    javaProcess->start(cmd);
+    javaProcess->start(cmd,QStringList());
     javaProcess->waitForFinished(500);
     int code=javaProcess->exitCode();
     switch (code) {

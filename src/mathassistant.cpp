@@ -32,7 +32,7 @@ void MathAssistant::exec()
 		return;
 	}
 	process.setWorkingDirectory(QFileInfo(texTablet).absolutePath());
-	process.start("\"" + texTablet + "\"");
+    process.start("\"" + texTablet + "\"",QStringList());
 }
 
 void MathAssistant::processError(QProcess::ProcessError err)
