@@ -10314,12 +10314,11 @@ void Texstudio::checkLanguageTool()
     result = "which java: " + buffer + "\n\n";
 #endif
     buffer.clear();
-    cmd += " -version";
     // run pdflatex
     QProcess *javaProcess = new QProcess();
 
     result += "JAVA: " + cmd + "\n";
-    javaProcess->start(cmd,QStringList());
+    javaProcess->start(cmd,QStringList("-version"));
     javaProcess->waitForFinished(500);
     int code=javaProcess->exitCode();
     switch (code) {
