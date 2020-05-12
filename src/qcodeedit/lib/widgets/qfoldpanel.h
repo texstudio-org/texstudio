@@ -18,6 +18,8 @@
 
 #include "mostQtHeaders.h"
 
+#include <QPainterPath>
+
 #include "qpanel.h"
 
 /*!

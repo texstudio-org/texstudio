@@ -31,6 +31,7 @@
 #include <QPinchGesture>
 #include <QTapGesture>
 #include <QProgressDialog>
+#include <QPainterPath>
 
 #include "poppler-qt5.h"
 #include "qsynctex.h"
@@ -55,6 +56,7 @@ class PDFAnnotations;
 class PDFAnnotation;
 class PDFAnnotationTableView;
 class MessageFrame;
+
 
 class PDFMagnifier : public QLabel
 {
