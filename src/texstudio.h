@@ -69,7 +69,7 @@ class Texstudio : public QMainWindow
 	Q_OBJECT
 
 public:
-    Texstudio(QWidget *parent = nullptr, Qt::WindowFlags flags = nullptr, QSplashScreen *splash = nullptr);
+    Texstudio(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags(), QSplashScreen *splash = nullptr);
 	~Texstudio();
 
 	Q_INVOKABLE QString getCurrentFileName(); ///< returns the absolute file name of the current file or "" if none is opene

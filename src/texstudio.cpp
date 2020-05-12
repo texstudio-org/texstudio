@@ -1222,7 +1222,7 @@ void Texstudio::setupMenus()
 	for (int i = 0; i < submenu->actions().size(); i++)
 		if (!submenu->actions()[i]->isCheckable()) {
 			submenu->actions()[i]->setCheckable(true);
-			configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], nullptr);
+            configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], LinkOptions());
 			LatexEditorView::setGrammarOverlayDisabled(i, !submenu->actions()[i]->isChecked());
 		}
 
