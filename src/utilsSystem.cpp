@@ -596,7 +596,7 @@ QString getEnvironmentPath()
 	if (path.isNull()) {
 #ifdef Q_OS_MAC
 		QProcess *myProcess = new QProcess();
-        myProcess->start("bash",QStringList() << "-l" <<"-c" << "\"echo -n $PATH\"");  // -n ensures there is no newline at the end
+        myProcess->start("bash -l -c \"echo -n $PATH\"");  // -n ensures there is no newline at the end
 		myProcess->waitForFinished(3000);
 		if (myProcess->exitStatus() == QProcess::NormalExit) {
 			QByteArray res = myProcess->readAllStandardOutput();
