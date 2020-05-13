@@ -997,7 +997,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				foreach (const QString &elem, packages) {
 					if (!removedUsepackages.removeAll(firstOptArg + "#" + elem))
 						addedUsepackages << firstOptArg + "#" + elem;
-					mUsepackageList.insertMulti(dlh, firstOptArg + "#" + elem); // hand on option of usepackages for conditional cwl load ..., force load if option is changed
+                    mUsepackageList.insert(dlh, firstOptArg + "#" + elem); // hand on option of usepackages for conditional cwl load ..., force load if option is changed
 				}
 				continue;
 			}
@@ -1534,7 +1534,7 @@ void LatexDocument::replaceLabel(const QString &name, const QString &newName, QD
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
 	for (it = mLabelItem.constBegin(); it != mLabelItem.constEnd(); ++it) {
 		if (it.value().name == name) {
-			labelItemsMatchingName.insertMulti(it.key(), it.value());
+            labelItemsMatchingName.insert(it.key(), it.value());
 		}
 	}
 	replaceItems(labelItemsMatchingName, newName, cursor);
@@ -1551,7 +1551,7 @@ void LatexDocument::replaceRefs(const QString &name, const QString &newName, QDo
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
 	for (it = mRefItem.constBegin(); it != mRefItem.constEnd(); ++it) {
 		if (it.value().name == name) {
-			refItemsMatchingName.insertMulti(it.key(), it.value());
+            refItemsMatchingName.insert(it.key(), it.value());
 		}
 	}
 	replaceItems(refItemsMatchingName, newName, cursor);

@@ -2062,9 +2062,9 @@ void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 			while (blockStartList.size()>0 && blockStartList.last().second<=c){
 				c-=blockStartList.last().second;
 				if (fli.hiddenCollapsedBlockEnd)
-					m_impl->m_hidden.insertMulti(blockStartList.last().first, fli.lineNr-blockStartList.last().first);
+                    m_impl->m_hidden.insert(blockStartList.last().first, fli.lineNr-blockStartList.last().first);
 				else
-					m_impl->m_hidden.insertMulti(blockStartList.last().first, fli.lineNr-blockStartList.last().first-1);
+                    m_impl->m_hidden.insert(blockStartList.last().first, fli.lineNr-blockStartList.last().first-1);
 				blockStartList.removeLast();
 			}
 			if (c>0 && !blockStartList.empty()) blockStartList.last().second-=c;
@@ -2073,7 +2073,7 @@ void QDocument::correctFolding(int fromInc, int toInc, bool forceCorrection){
 			blockStartList << QPair<int,int>(fli.lineNr, fli.open);
 	}
 	for (int i=0;i<blockStartList.size();i++)
-		m_impl->m_hidden.insertMulti(blockStartList[i].first,lines()-1-blockStartList[i].first);
+        m_impl->m_hidden.insert(blockStartList[i].first,lines()-1-blockStartList[i].first);
 
 	m_impl->setHeight();
 	//emitFormatsChange(line, count);
@@ -6530,7 +6530,7 @@ QFormatScheme* QDocumentPrivate::m_defaultFormatScheme = getStaticDefault<QForma
 QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 
 bool QDocumentPrivate::m_fixedPitch;
-QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=nullptr;
+QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=QDocument::WorkAroundMode();
 double QDocumentPrivate::m_lineSpacingFactor = 1.0;
 bool QDocumentPrivate::m_centerDocumentInEditor = false;
 int QDocumentPrivate::m_staticCachesLogicalDpiY = -1;// resolution for which the caches are valid (depends on OS gui scaling)
@@ -8538,7 +8538,7 @@ int QDocumentPrivate::textLine(int visualLine, int *wrap) const
 
 void QDocumentPrivate::hideEvent(int line, int count)
 {
-	m_hidden.insertMulti(line, count);
+    m_hidden.insert(line, count);
 
 	setHeight();
 	//emitFormatsChange(line, count);
@@ -8580,9 +8580,9 @@ void QDocumentPrivate::updateHidden(int line, int count)
 	{
 		if ( it.key() < line )
 		{
-			m_hidden.insertMulti(it.key(), *it);
+            m_hidden.insert(it.key(), *it);
 		} else {
-			m_hidden.insertMulti(it.key() + count, *it);
+            m_hidden.insert(it.key() + count, *it);
 		}
 
 		++it;
