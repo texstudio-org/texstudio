@@ -225,6 +225,7 @@
 <file>completion/xcolor.cwl</file>
 <file>completion/xepersian.cwl</file>
 <file>completion/xetex.cwl</file>
+<file>completion/xfrac.cwl</file>
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
 <file>completion/xparse.cwl</file>
