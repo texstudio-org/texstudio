@@ -136,7 +136,7 @@ void WebPublishDialog::convert(const QString &fileName)
 			connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), proc, SLOT(deleteLater())); //will free proc after the process has ended
 			proc->setWorkingDirectory(workdir);
 
-			proc->start(config->browser + " " + firstpage);
+            proc->start(config->browser,QStringList(firstpage));
 			if (!proc->waitForStarted(1000)) {
 				ui.messagetextEdit->append(tr("Error") + " : " + tr("could not start the command"));
 				errprocess = true;

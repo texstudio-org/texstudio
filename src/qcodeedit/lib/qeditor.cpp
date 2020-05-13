@@ -4117,7 +4117,7 @@ void QEditor::wheelEvent(QWheelEvent *e)
 {
 	if ( e->modifiers() & Qt::ControlModifier && flag(MouseWheelZoom))
 	{
-		const int delta = e->delta();
+        const int delta = e->angleDelta().y();
 
 		if ( delta > 0 )
 			zoom(1);

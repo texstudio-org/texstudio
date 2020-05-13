@@ -35,7 +35,7 @@ void RandomTextGenerator::changeEvent(QEvent *e)
 
 int myrand(int max)
 {
-	return qrand() % max;
+    return std::rand() % max;
 }
 
 
@@ -112,7 +112,7 @@ void RandomTextGenerator::generateText()
 	ui->outputEdit->setText(tr("Generating random text..."));
 	QApplication::processEvents();
 
-	qsrand(QDateTime::currentDateTime().toTime_t()); //TODO: milliseconds
+    std::srand(QDateTime::currentDateTime().toTime_t()); //TODO: milliseconds
 
 	text = "";
 	QFile f;
@@ -143,7 +143,7 @@ void RandomTextGenerator::generateText()
 				wordToId.insert(words[i], totalIds);
 				idToWord.insert(totalIds, words[i]);
 			}
-			startingIndices.insertMulti(id, i);
+            startingIndices.insert(id, i);
 			wordsIds << id;
 		}
 		QString text;

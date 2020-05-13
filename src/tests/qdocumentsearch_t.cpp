@@ -11,7 +11,7 @@ QDocumentSearchTest::QDocumentSearchTest(QEditor* editor, bool all): QObject(nul
 	ed->setFlag(QEditor::HardLineWrap, false);
 }
 void QDocumentSearchTest::initTestCase(){
-    ds=new QDocumentSearch(ed,"",nullptr);
+    ds=new QDocumentSearch(ed,"",QDocumentSearch::Options());
 	ed->document()->setLineEnding(QDocument::Unix); //necessary to compare with "\n" separated lines
 }
 //cursor movement

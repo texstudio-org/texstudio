@@ -318,7 +318,7 @@ void GrammarCheck::process(int reqId)
 
 	for (int b = 0; b < crBlocks.size(); b++) {
 		const TokenizedBlock &tb = crBlocks.at(b);
-        if (tb.words.isEmpty() || newstatus != LTS_Working ) backendChecked(crTicket, b, QList<GrammarError>(), true);
+        if (tb.words.isEmpty() || !backend->isAvailable() ) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			const QStringList &words = tb.words;
             QString joined;
@@ -645,7 +645,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     connect(javaProcess, SIGNAL(finished(int, QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-    javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
+    javaProcess->start(quoteSpaces(javaPath)+ " -cp " + quoteSpaces(ltPath) + " " + ltArguments);
     javaProcess->waitForStarted(500);
     javaProcess->waitForReadyRead(500);
     errorText=javaProcess->readAllStandardError();

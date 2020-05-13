@@ -596,7 +596,7 @@ QString getEnvironmentPath()
 	if (path.isNull()) {
 #ifdef Q_OS_MAC
 		QProcess *myProcess = new QProcess();
-		myProcess->start("bash -l -c \"echo -n $PATH\"");  // -n ensures there is no newline at the end
+        myProcess->start("bash -l -c \"echo -n $PATH\"");  // -n ensures there is no newline at the end
 		myProcess->waitForFinished(3000);
 		if (myProcess->exitStatus() == QProcess::NormalExit) {
 			QByteArray res = myProcess->readAllStandardOutput();
@@ -674,7 +674,7 @@ void showInGraphicalShell(QWidget *parent, const QString &pathIn)
 	const QString app = UnixUtils::fileBrowser(&dummySettings);
 	QProcess browserProc;
 	const QString browserArgs = UnixUtils::substituteFileBrowserParameters(app, folder);
-	bool success = browserProc.startDetached(browserArgs);
+    bool success = browserProc.startDetached(browserArgs,QStringList());
 	const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
 	success = success && error.isEmpty();
 	if (!success)

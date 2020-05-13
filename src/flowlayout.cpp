@@ -114,7 +114,7 @@ QLayoutItem *FlowLayoutX::takeAt(int index)
 //! [6]
 Qt::Orientations FlowLayoutX::expandingDirections() const
 {
-    return nullptr;
+    return Qt::Orientations();
 }
 //! [6]
 

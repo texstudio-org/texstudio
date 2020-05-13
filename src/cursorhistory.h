@@ -15,7 +15,7 @@
 #include "latexdocument.h"
 #include "cursorposition.h"
 
-typedef QLinkedList<CursorPosition> CursorPosList;
+typedef std::list<CursorPosition> CursorPosList;
 
 class CursorHistory : public QObject
 {
@@ -24,7 +24,7 @@ class CursorHistory : public QObject
 public:
 	explicit CursorHistory(LatexDocuments *docs);
 
-	int maxLength() { return m_maxLength; }
+    uint maxLength() { return m_maxLength; }
 
 	bool insertPos(QDocumentCursor cur, bool deleteBehindCurrent = true);
 	QDocumentCursor currentPos();
@@ -37,7 +37,7 @@ public:
 	QAction *forwardAction() { return m_forwardAction; }
 
 	void clear();
-	int count() { return history.count(); }
+    int count() { return history.size(); }
 
 	void debugPrint();
 signals:
@@ -64,7 +64,7 @@ private:
 	CursorPosList history;
 	QAction *m_backAction;
 	QAction *m_forwardAction;
-	int m_maxLength;
+    uint m_maxLength;
 	bool m_insertionEnabled;
 };
 

@@ -1222,7 +1222,7 @@ void Texstudio::setupMenus()
 	for (int i = 0; i < submenu->actions().size(); i++)
 		if (!submenu->actions()[i]->isCheckable()) {
 			submenu->actions()[i]->setCheckable(true);
-			configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], nullptr);
+            configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], LinkOptions());
 			LatexEditorView::setGrammarOverlayDisabled(i, !submenu->actions()[i]->isChecked());
 		}
 
@@ -10314,12 +10314,11 @@ void Texstudio::checkLanguageTool()
     result = "which java: " + buffer + "\n\n";
 #endif
     buffer.clear();
-    cmd += " -version";
     // run pdflatex
     QProcess *javaProcess = new QProcess();
 
     result += "JAVA: " + cmd + "\n";
-    javaProcess->start(cmd);
+    javaProcess->start(cmd,QStringList("-version"));
     javaProcess->waitForFinished(500);
     int code=javaProcess->exitCode();
     switch (code) {

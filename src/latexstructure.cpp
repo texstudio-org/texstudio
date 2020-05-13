@@ -2,7 +2,7 @@
 #include "latexdocument.h"
 
 
-StructureEntry::StructureEntry(LatexDocument *doc, Type newType): type(newType), level(0), valid(false), parent(nullptr), document(doc), columnNumber(0), parentRow(-1), lineHandle(nullptr), lineNumber(-1), m_contexts(nullptr)
+StructureEntry::StructureEntry(LatexDocument *doc, Type newType): type(newType), level(0), valid(false), parent(nullptr), document(doc), columnNumber(0), parentRow(-1), lineHandle(nullptr), lineNumber(-1), m_contexts(Unknown)
 {
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(document);
@@ -149,7 +149,7 @@ LatexDocumentsModel::LatexDocumentsModel(LatexDocuments &docs): documents(docs),
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex &index ) const
 {
 	if (index.isValid()) return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
-    else return nullptr;
+    else return Qt::NoItemFlags;
 }
 
 QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
