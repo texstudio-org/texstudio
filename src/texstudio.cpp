@@ -2739,6 +2739,11 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 			emit infoFileSaved(edView->editor->fileName());
 		}
 	}
+    // save hidden files (in case that they are changed via replace in all docs
+    foreach (LatexDocument *d, documents.hiddenDocuments){
+        d->getEditorView()->editor->save();
+    }
+
 
 	if (currentEditorView() != currentEdView)
 		editors->setCurrentEditor(currentEdView);
