@@ -44,7 +44,7 @@ void Macro::init(const QString &nname, Macro::Type ntype, const QString &ntag, c
 	trigger = ntrigger;
 	triggerLookBehind = false;
 	QString realtrigger = trigger;
-    triggers = nullptr;
+    triggers = SpecialTriggers();
 	if (realtrigger.trimmed().startsWith("?")) {
 		QStringList sl = realtrigger.split("|");
 		realtrigger.clear();

@@ -2999,6 +2999,15 @@ void PDFDocument::sideBySide()
 
 void PDFDocument::closeEvent(QCloseEvent *event)
 {
+	/*
+	 * Qt is buggy because it only restores the parent cursor shape if PDFWidget is the widget receiving the last mouse event
+	 * (qt_last_mouse_receiver). If we close the PDFWidget by pressing ESC while the zoom tool is the last mouse receiver,
+	 * the shape of the cursor will remain unchanged (magnifying glass, if we just closed the magnifier or blank if we closed
+	 * while using the magnifier). That is why we unset the PDFWidget's cursor, forcing Qt to restore the parent cursor shape.
+	 */
+	if (pdfWidget) {
+		pdfWidget->unsetCursor();
+	}
 	Q_ASSERT(globalConfig);
 	if (isVisible() && !embeddedMode) {
 		saveGeometryToConfig();

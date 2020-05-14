@@ -466,7 +466,7 @@ void LatexParser::importCwlAliases(const QString filename)
 				continue;
 			}
 			if (!alias.isEmpty())
-				packageAliases.insertMulti(alias, line);
+                packageAliases.insert(alias, line);
 		}
 	}
 }

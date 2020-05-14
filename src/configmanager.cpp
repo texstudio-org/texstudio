@@ -1468,7 +1468,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	QMultiMap<int, QString> keysReversed;
 	QHash<QString, int>::const_iterator it = this->editorKeys.constBegin();
 	while (it != this->editorKeys.constEnd()) {
-		keysReversed.insertMulti(it.value(), it.key());
+        keysReversed.insert(it.value(), it.key());
 		++it;
 	}
 	int ht = confDlg->ui.comboBoxLanguage->minimumSizeHint().height();
