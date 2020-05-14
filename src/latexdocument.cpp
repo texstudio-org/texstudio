@@ -1944,7 +1944,11 @@ void LatexDocuments::requestedClose()
 	LatexDocument *doc = qobject_cast<LatexDocument *>(editor->document());
 	deleteDocument(doc, true, true);
 }
-
+/*!
+ * \brief set \param document as new master document
+ * Garcefully close old master document if set and set document as new master
+ * \param document
+ */
 void LatexDocuments::setMasterDocument(LatexDocument *document)
 {
 	if (document == masterDocument) return;
@@ -1970,17 +1974,28 @@ void LatexDocuments::setMasterDocument(LatexDocument *document)
 	model->resetAll();
 	emit masterDocumentChanged(masterDocument);
 }
-
+/*!
+ * \brief return current document
+ * \return current document
+ */
 LatexDocument *LatexDocuments::getCurrentDocument() const
 {
 	return currentDocument;
 }
-
+/*!
+ * \brief return master document if one is set
+ * \return masterDocument
+ */
 LatexDocument *LatexDocuments::getMasterDocument() const
 {
 	return masterDocument;
 }
 
+/*!
+ * \brief return list of *all* open documents
+ * This includes visibles and hidden documents in memory
+ * \return list of documents
+ */
 QList<LatexDocument *> LatexDocuments::getDocuments() const
 {
 	QList<LatexDocument *> docs = documents + hiddenDocuments;
@@ -1994,7 +2009,10 @@ void LatexDocuments::move(int from, int to)
 	documents.move(from, to);
 	model->layoutChanged();
 }
-
+/*!
+ * \brief get file name of current document
+ * \return file name
+ */
 QString LatexDocuments::getCurrentFileName() const
 {
 	if (!currentDocument) return "";

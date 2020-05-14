@@ -2908,16 +2908,18 @@ void Texstudio::fileExitWithError()
 
 bool Texstudio::saveAllFilesForClosing()
 {
-	return saveFilesForClosing(editors->editors());
+    return saveFilesForClosing(documents.getDocuments());
 }
 
-bool Texstudio::saveFilesForClosing(const QList<LatexEditorView *> &editorList)
+bool Texstudio::saveFilesForClosing(const QList<LatexDocument *> &documentList)
 {
 	LatexEditorView *savedCurrentEditorView = currentEditorView();
-	foreach (LatexEditorView *edView, editorList) {
+    foreach (LatexDocument *doc, documentList) {
 repeatAfterFileSavingFailed:
+        LatexEditorView *edView=doc->getEditorView();
 		if (edView->editor->isContentModified()) {
-			editors->setCurrentEditor(edView);
+            if(!doc->isHidden())
+                editors->setCurrentEditor(edView);
 			switch (QMessageBox::warning(this, TEXSTUDIO,
 			                             tr("The document \"%1\" contains unsaved work. "
 			                                "Do you want to save it before closing?").arg(edView->displayName()),
@@ -4473,11 +4475,8 @@ void Texstudio::structureContextMenuCloseAllRelatedDocuments(LatexDocument *docu
 	if (!document) return;
 
 	QList<LatexDocument *> l = document->getListOfDocs();
-	QList<LatexEditorView *> viewsToClose;
-	foreach (LatexDocument *d, l)
-		if (d->getEditorView())
-			viewsToClose << d->getEditorView();
-	if (!saveFilesForClosing(viewsToClose)) return;
+
+    if (!saveFilesForClosing(l)) return;
 	foreach (LatexDocument *d, l) {
 		if (documents.documents.contains(d))
 			documents.deleteDocument(d); //this might hide the document
