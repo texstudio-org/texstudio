@@ -10674,6 +10674,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
     bool oldDarkMode=darkMode;
     bool newDarkMode=systemUsesDarkMode(palette);
     if(newDarkMode != oldDarkMode && !configManager.useTexmakerPalette){
+        darkMode=newDarkMode;
         // load appropriate syntax highlighting scheme
         QSettings *config=configManager.getSettings();
         config->beginGroup(darkMode ? "formatsDark" : "formats");
