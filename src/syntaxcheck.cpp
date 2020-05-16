@@ -772,6 +772,15 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					word = word + line.mid(tkEnvName.start, tkEnvName.length);
 				}
 			}
+            // special treatment for & in math
+            if(word=="&" && containsEnv(*ltxCommands, "math", activeEnv)){
+                Error elem;
+                elem.range = QPair<int, int>(tk.start, tk.length);
+                elem.type = ERR_highlight;
+                elem.format=mFormatList.value("align-ampersand");
+                newRanges.append(elem);
+                continue;
+            }
 
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
