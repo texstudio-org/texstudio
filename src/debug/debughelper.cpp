@@ -9,6 +9,11 @@
 #define NO_CRASH_HANDLER
 #endif
 
+// disable backtrace on ARM as the code does not compile
+#if (defined(arm) || defined(__arm__))
+#define NO_CRASH_HANDLER
+#endif
+
 #ifndef NO_CRASH_HANDLER
 #if (defined(x86_64) || defined(__x86_64__))
 #define CPU_IS_X86_64
