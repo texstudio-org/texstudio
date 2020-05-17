@@ -220,14 +220,14 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbFilter->setMinimumSize(buttonSize);
 	cbFilter->setMaximumSize(buttonSize);
 	QMenu *menu=new QMenu();
-	menu->addAction(getRealIcon("all"),"all",this,SLOT(filterChanged()));
-	menu->addAction(getRealIcon("math"),"math",this,SLOT(filterChanged()));
-	menu->addAction(getRealIcon("verbatim"),"verbatim",this,SLOT(filterChanged()));
-	menu->addAction(getRealIcon("comment"),"comment",this,SLOT(filterChanged()));
-	menu->addAction(getRealIcon("non-comment"),"non-comment",this,SLOT(filterChanged()));
-	menu->addAction(getRealIcon("command"),"keyword",this,SLOT(filterChanged()));
-	menu->addAction(getRealIcon("label"),"label",this,SLOT(filterChanged()));
-	menu->addAction(getRealIcon("cite"),"citation",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("all"),"all",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("math"),"math",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("verbatim"),"verbatim",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("comment"),"comment",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("non-comment"),"non-comment",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("command"),"keyword",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("label"),"label",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("cite"),"citation",this,SLOT(filterChanged()));
 	cbFilter->setMenu(menu);
 	cbFilter->setPopupMode(QToolButton::InstantPopup);
 	cbFilter->setIcon(getRealIconCached("all"));
@@ -925,15 +925,16 @@ void QSearchReplacePanel::setFilteredIconAndFormats(const char* icon, const std:
 	for (const char * fmt : formats)
 		ids << doc->getFormatId(fmt);
 	m_search->setFilteredFormats(ids, inverted);
+    currentFilter=QString(icon);
 }
 
 
 void QSearchReplacePanel::filterChanged()
 {
 	QAction *act=qobject_cast<QAction*>(sender());
-	if(act==nullptr)
-		return;
-	QString text=act->text();
+    QString text=currentFilter.isNull() ? "all" : currentFilter;
+    if(act)
+        text=act->text();
 	if(text=="all") setFilteredIconAndFormats("all", {});
 	else if(text=="math") setFilteredIconAndFormats("math", {"numbers", "math-keyword", "math-delimiter"});
 	else if(text=="verbatim") setFilteredIconAndFormats("verbatim", {"verbatim"});
@@ -1144,26 +1145,74 @@ void QSearchReplacePanel::updateReplacementHint(){
 		lReplacementText->setToolTip("");
 	}
 }
-
+/*!
+ * \brief get search text
+ * \return
+ */
 QString QSearchReplacePanel::getSearchText() const{
 	return cFind->currentText();
 }
-
+/*!
+ * \brief get replacement text
+ * \return
+ */
 QString QSearchReplacePanel::getReplaceText() const
 {
 	return cReplace->currentText();
 }
-
+/*!
+ * \brief check if search is case sensitive
+ * \return
+ */
 bool QSearchReplacePanel::getSearchIsCase() const
 {
 	return cbCase->isChecked();
 }
-
+/*!
+ * \brief check if searched for words
+ * \return
+ */
 bool QSearchReplacePanel::getSearchIsWords() const
 {
-	return cbWords->isChecked();
+    return cbWords->isChecked();
 }
-
+/*!
+ * \brief update icons
+ * Recreate all icons in the panel as different variants are used for light-/dark-mode
+ * This method needs to be called if the darkmode was changed and the icons needs to be chanegd as well
+ */
+void QSearchReplacePanel::updateIcon()
+{
+    QIcon closeIcon = getRealIconCached("close-tab",true);
+    closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
+    bClose->setIcon(closeIcon);
+    bNext->setIcon(getRealIconCached("down",true));
+    bPrevious->setIcon(getRealIconCached("up",true));
+    bCount->setIcon(getRealIconCached("count",true));
+    cbCase->setIcon(getRealIconCached("case",true));
+    cbWords->setIcon(getRealIconCached("word",true));
+    cbCursor->setIcon(getRealIconCached("cursor",true));
+    cbRegExp->setIcon(getRealIconCached("regex",true));
+    cbHighlight->setIcon(getRealIconCached("highlight",true));
+    cbSelection->setIcon(getRealIconCached("selection",true));
+    bExtend->setIcon(getRealIconCached("extend",true));
+    // update filter icons
+    QMenu *menu=new QMenu();
+    menu->addAction(getRealIconCached("all",true),"all",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("math",true),"math",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("verbatim",true),"verbatim",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("comment",true),"comment",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("non-comment",true),"non-comment",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("command",true),"keyword",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("label",true),"label",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("cite",true),"citation",this,SLOT(filterChanged()));
+    cbFilter->setMenu(menu);
+    filterChanged();
+}
+/*!
+ * \brief check if regular expressions are searched for
+ * \return
+ */
 bool QSearchReplacePanel::getSearchIsRegExp() const
 {
 	return cbRegExp->isChecked();

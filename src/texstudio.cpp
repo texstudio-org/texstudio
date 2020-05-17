@@ -10689,6 +10689,8 @@ void Texstudio::paletteChanged(const QPalette &palette){
         edView->updatePalette(palette);
         ed->document()->markFormatCacheDirty();
         ed->update();
+        QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(edView->codeeditor->panels("Search")[0]);
+        searchpanel->updateIcon();
     }
 }
 

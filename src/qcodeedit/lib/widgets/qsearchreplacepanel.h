@@ -59,6 +59,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
         bool getSearchIsCase() const;
         bool getSearchIsRegExp() const;
         bool getSearchIsWords() const;
+
+        void updateIcon();
 		
 		
 	public slots:
@@ -154,6 +156,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
         QLabel *lReplacementText;
 		
 		bool useLineForSearch, searchOnlyInSelection;
+
+        QString currentFilter;
 };
 
 #endif // _QSEARCH_REPLACE_PANEL_H_
