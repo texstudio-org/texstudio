@@ -12,22 +12,32 @@ defineTest(pkgAtLeastVersion) {
 	if (isEmpty(MOD_LINES)) {
 		return (false)
 	}
-	MOD_VERSION = $$first(MOD_LINES)
-	# Compare found module version in MOD_VERSION and required version in argument 2
-	# versionAtLeast() is not supported before Qt 5.10, so we have a custom implementation
-	# of this function.
-	MOD_SEGMENTS = $$split(MOD_VERSION, ".")
-	REQ_SEGMENTS = $$split(2, ".")
+	if (versionGreaterOrEqual($$first(MOD_LINES), $$2)) {
+		return (true)
+	} else {
+		return (false)
+	}
+}
+
+###########################################################################################
+# versionGreaterOrEqual(VERSION_1, VERSION_2)
+# Custom test that compares two dot-separated versions and checks if VERSION_1 >= VERSION_2
+# versionAtLeast() is not supported before Qt 5.10, so we have a custom implementation of
+# this function.
+###########################################################################################
+defineTest(versionGreaterOrEqual) {
+	VER_1_SEGMENTS = $$split(1, ".")
+	VER_2_SEGMENTS = $$split(2, ".")
 	INDEX = 0
-	for(REQ_ITEM, REQ_SEGMENTS) {
-		MOD_ITEM = $$member(MOD_SEGMENTS, $$INDEX)
-		if(isEmpty(MOD_ITEM)) {
-			MOD_ITEM = 0
+	for(VER_2_ITEM, VER_2_SEGMENTS) {
+		VER_1_ITEM = $$member(VER_1_SEGMENTS, $$INDEX)
+		if(isEmpty(VER_1_ITEM)) {
+			VER_1_ITEM = 0
 		}
-		if (lessThan(MOD_ITEM, $$REQ_ITEM)) {
+		if (lessThan(VER_1_ITEM, $$VER_2_ITEM)) {
 			return(false)
 		}
-		if (greaterThan(MOD_ITEM, $$REQ_ITEM)) {
+		if (greaterThan(VER_1_ITEM, $$VER_2_ITEM)) {
 			return(true)
 		}
 		INDEX = $$num_add($$INDEX, 1)
@@ -42,15 +52,18 @@ TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
 DISTFILES = texstudio.astylerc
-greaterThan(QT_MAJOR_VERSION, 4) {
-    message(Building with Qt5)
-    CONFIG += qt
-    !win32: CONFIG -= precompile_header # precompiling does not work with Qt5 and mingw
-    win32: CONFIG -= precompile_header
+win32 {
+	!versionGreaterOrEqual($$QT_VERSION, "5.10.0") {
+		error(Windows builds require Qt version 5.10.0 or newer)
+	}
 } else {
-    message(Qt4 support has been removed.)
-
+	!versionGreaterOrEqual($$QT_VERSION, "5.0.0") {
+		error(Non-Windows builds require Qt version 5.0.0 or newer)
+	}
 }
+message(Building with Qt $$QT_VERSION)
+CONFIG += qt
+CONFIG -= precompile_header
 
 # allow loading extra config by file for automatic compilations (OBS)
 exists(texstudio.pri):include(texstudio.pri)
