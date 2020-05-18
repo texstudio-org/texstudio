@@ -812,7 +812,7 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
 	actSave = newManagedAction(menu, "save", tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "document-save");
 	newManagedAction(menu, "saveas", tr("Save &As..."), SLOT(fileSaveAs()), filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_S));
-	newManagedAction(menu, "saveall", tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL + Qt::SHIFT + Qt::ALT + Qt::Key_S);
+    newManagedAction(menu, "saveall", tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL + Qt::SHIFT + Qt::Key_S);
 	newManagedAction(menu, "maketemplate", tr("&Make Template..."), SLOT(fileMakeTemplate()));
 
 
@@ -1082,7 +1082,7 @@ void Texstudio::setupMenus()
 	// add some additional items
 	menu = newManagedMenu("main/latex", tr("&LaTeX"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(insertFromAction())));
-	newManagedAction(menu, "insertrefnextlabel", tr("Insert \\ref to Next Label"), SLOT(editInsertRefToNextLabel()), Qt::ALT + Qt::CTRL + Qt::Key_R);
+    newManagedAction(menu, "insertrefnextlabel", tr("Insert \\ref to Next Label"), SLOT(editInsertRefToNextLabel()), filterLocaleShortcut(Qt::ALT + Qt::CTRL + Qt::Key_R));
 	newManagedAction(menu, "insertrefprevlabel", tr("Insert \\ref to Previous Label"), SLOT(editInsertRefToPrevLabel()));
 	submenu = newManagedMenu(menu, "tabularmanipulation", tr("Manipulate Tables", "table"));
 	newManagedAction(submenu, "addRow", tr("Add Row", "table"), SLOT(addRowCB()), QKeySequence(), "addRow");

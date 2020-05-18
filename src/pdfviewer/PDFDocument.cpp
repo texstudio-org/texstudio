@@ -2395,7 +2395,9 @@ PDFDocument::~PDFDocument()
     delete menubar;
     menubar=nullptr;
 }
-
+/*!
+ * \brief setup ToolBar
+ */
 void PDFDocument::setupToolBar(){
     toolBar = new QToolBar(this);
     toolBar->setWindowTitle(tr("Toolbar"));
@@ -2436,7 +2438,10 @@ void PDFDocument::setupToolBar(){
     statusbar->setObjectName(QString("statusbar"));
     setStatusBar(statusbar);
 }
-
+/*!
+ * \brief setup menus
+ * \param embedded adapt to embedded setting
+ */
 void PDFDocument::setupMenus(bool embedded)
 {
     ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
@@ -2464,7 +2469,7 @@ void PDFDocument::setupMenus(bool embedded)
     actionUserManual=configManager->newManagedAction(menuroot,menuHelp, "help", tr("User &Manual..."), this,SIGNAL(triggeredManual()), QList<QKeySequence>());
 	menuHelp->addSeparator();
 
-    configManager->newManagedAction(menuroot,menuHelp, "about", tr("About"), this,SIGNAL(triggeredAbout()), QList<QKeySequence>() << Qt::CTRL + Qt::SHIFT + Qt::ALT + Qt::Key_A);
+    configManager->newManagedAction(menuroot,menuHelp, "about", tr("About"), this,SIGNAL(triggeredAbout()), QList<QKeySequence>() );
     configManager->newManagedAction(menuroot,menuFile, "open", tr("&Open..."), this,SLOT(fileOpen()), QList<QKeySequence>(),"document-open" );
     configManager->newManagedAction(menuroot,menuFile, "split", tr("Split && Merge..."), this,SLOT(splitMergeTool()), QList<QKeySequence>() );
     actionClose=configManager->newManagedAction(menuroot,menuFile, "close", tr("&Close"), this,SLOT(close()), QList<QKeySequence>()<< Qt::CTRL + Qt::Key_W ,"close");
@@ -2514,7 +2519,7 @@ void PDFDocument::setupMenus(bool embedded)
 	menuView->addSeparator();
     actionFull_Screen=configManager->newManagedAction(menuroot,menuView, "fullscreen", tr("Full &Screen"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::ControlModifier+Qt::ShiftModifier+Qt::Key_F);
     actionPresentation=configManager->newManagedAction(menuroot,menuView, "presentation", tr("Presentation"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::Key_F5);
-    actionExternalViewer=configManager->newManagedAction(menuroot,menuView, "external", tr("External Viewer"), this, SLOT(runExternalViewer()), QList<QKeySequence>()<<QKeySequence("CTRL+ALT+X"),"acroread");
+    actionExternalViewer=configManager->newManagedAction(menuroot,menuView, "external", tr("External Viewer"), this, SLOT(runExternalViewer()), QList<QKeySequence>(),"acroread");
     actionEnlargeViewer=configManager->newManagedAction(menuroot,menuView, "enlarge", tr("Enlarge Viewer"), this, SLOT(enlarge()), QList<QKeySequence>(),"enlarge-viewer");
     actionShrinkViewer=configManager->newManagedAction(menuroot,menuView, "shrink", tr("Shrink Viewer"), this, SLOT(shrink()), QList<QKeySequence>(),"shrink-viewer");
     actionToggleEmbedded=configManager->newManagedAction(menuroot,menuView, "toggle", tr("Windowed/Embedded"), this, SLOT(toggleEmbedded()), QList<QKeySequence>());
@@ -2522,14 +2527,6 @@ void PDFDocument::setupMenus(bool embedded)
 	actionAutoHideToolbars->setCheckable(true);
 	actionAutoHideToolbars->setChecked(globalConfig->autoHideToolbars);
 
-    /*actionGrid11=configManager->newManagedAction(menuroot,menuGrid, "grid11", tr("1x1"), this, SLOT(setGrid()), QList<QKeySequence>());
-    actionGrid11->setProperty("grid","1x1");
-    actionGrid21=configManager->newManagedAction(menuroot,menuGrid, "grid21", tr("2x1"), this, SLOT(setGrid()), QList<QKeySequence>());
-    actionGrid21->setProperty("grid","2x1");
-    actionGrid12=configManager->newManagedAction(menuroot,menuGrid, "grid12", tr("1x2"), this, SLOT(setGrid()), QList<QKeySequence>());
-    actionGrid12->setProperty("grid","1x2");
-    actionGrid22=configManager->newManagedAction(menuroot,menuGrid, "grid22", tr("2x2"), this, SLOT(setGrid()), QList<QKeySequence>());
-    actionGrid22->setProperty("grid","2x2");*/
     static QStringList sl;
     configManager->registerOption("Preview/Possible Grid Sizes", &sl, QStringList() << "1x1" << "2x1" << "1x2" << "2x2" << "3x1" << "3x2" << "3x3");
     foreach (const QString &gs, sl) {
@@ -2563,7 +2560,10 @@ void PDFDocument::setupMenus(bool embedded)
     configManager->modifyManagedShortcuts("pdf");
 }
 
-// the shortcuts will only be triggered if this widget has focus (used in embedded mode)
+/*!
+ * \brief the shortcuts will only be triggered if this widget has focus (used in embedded mode)
+ * \param actions
+ */
 void PDFDocument::shortcutOnlyIfFocused(const QList<QAction *> &actions)
 {
 	foreach (QAction *act, actions) {
@@ -2571,19 +2571,22 @@ void PDFDocument::shortcutOnlyIfFocused(const QList<QAction *> &actions)
 		act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 	}
 }
-
+/*!
+ * \brief reload settings
+ */
 void PDFDocument::reloadSettings()
 {
 	if (embeddedMode) setAutoHideToolbars(globalConfig->autoHideToolbars);
 }
-
+/*!
+ * \brief initialize PDF window/widget
+ * \param embedded when used embedded, adapt settings. E.g. no menu , etc.
+ */
 void PDFDocument::init(bool embedded)
 {
 	ConfigManagerInterface *conf = ConfigManagerInterface::getInstance();
 
 	docList.append(this);
-
-    //setupUi(this);
 
 	menuShow = new QMenu(this);
 	menuShow->setObjectName(QString::fromUtf8("menuShow"));
@@ -2603,36 +2606,6 @@ void PDFDocument::init(bool embedded)
 
 	//load icons
 	setWindowIcon(QIcon(":/images/previewicon.png"));
-
-    //actionBack->setIcon(getRealIcon("back"));
-    //actionForward->setIcon(getRealIcon("forward"));
-    //actionFirst_Page->setIcon(getRealIcon("go-first"));
-    //actionPrevious_Page->setIcon(getRealIcon("go-previous"));
-    //actionNext_Page->setIcon(getRealIcon("go-next"));
-    //actionLast_Page->setIcon(getRealIcon("go-last"));
-    //actionZoom_In->setIcon(getRealIcon("zoom-in"));
-    //actionZoom_Out->setIcon(getRealIcon("zoom-out"));
-    //actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
-    //actionActual_Size->setIcon(getRealIcon("zoom-original"));
-    //actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
-    //actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
-    //actionNew->setIcon(getRealIcon("docuemtn-new"));
-    //actionFileOpen->setIcon(getRealIcon("document-open"));
-    //actionClose->setIcon(getRealIcon("close"));
-    //action_Print->setIcon(getRealIcon("fileprint"));
-#ifdef Q_OS_WIN32
-	//action_Print->setVisible(false);
-#endif
-    /*actionUndo->setIcon(getRealIcon("edit-undo"));
-	actionRedo->setIcon(getRealIcon("edit-redo"));
-	actionCut->setIcon(getRealIcon("edit-cut"));
-    actionCopy->setIcon(getRealIcon("edit-copy"));
-    actionPaste->setIcon(getRealIcon("edit-paste"));*/
-    //actionMagnify->setIcon(getRealIcon("magnifier-button"));
-    //actionScroll->setIcon(getRealIcon("hand"));
-    //actionTypeset->setIcon(getRealIcon("build"));
-    //actionEnlargeViewer->setIcon(getRealIcon("enlarge-viewer"));
-    //actionShrinkViewer->setIcon(getRealIcon("shrink-viewer"));
 
 	QIcon icon = getRealIcon("syncSource-off");
 	icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
