@@ -7,6 +7,7 @@
 	SOURCES += \
 		src/tests/codesnippet_t.cpp \
 		src/tests/encoding_t.cpp \
+		src/tests/execprogram_t.cpp \
 		src/tests/latexcompleter_t.cpp \
 		src/tests/latexeditorview_bm.cpp \
 		src/tests/latexeditorview_t.cpp \
@@ -28,6 +29,7 @@
 		src/tests/testmanager.cpp \
 		src/tests/testutil.cpp
 	HEADERS += \
+		src/tests/execprogram_t.h \
 		src/tests/qsearchreplacepanel_t.h \
 		src/tests/updatechecker_t.h \
 		src/tests/qdocumentcursor_t.h \

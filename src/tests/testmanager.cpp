@@ -5,6 +5,7 @@
 #include "latexparser_t.h"
 #include "latexparsing_t.h"
 #include "encoding_t.h"
+#include "execprogram_t.h"
 #include "buildmanager_t.h"
 #include "codesnippet_t.h"
 #include "qdocumentcursor_t.h"
@@ -76,6 +77,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new LatexParserTest()
 		<< new LatexParsingTest()
 		<< new EncodingTest()
+		<< new ExecProgramTest()
 		<< new LatexOutputFilterTest()
 		<< new BuildManagerTest(buildManager)
 		<< new CodeSnippetTest(editor)
