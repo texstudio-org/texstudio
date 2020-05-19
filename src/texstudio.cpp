@@ -87,6 +87,10 @@
 
 #include "PDFDocument_config.h"
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 /*! \file texstudio.cpp
  * contains the GUI definition as well as some helper functions
  */
@@ -6069,6 +6073,9 @@ void Texstudio::clearLogs(){
     outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
 
+/*!
+ * \brief Opens a new external terminal
+ */
 void Texstudio::openExternalTerminal(void)
 {
 	QString fileMain, fileCurrent;
@@ -6079,13 +6086,37 @@ void Texstudio::openExternalTerminal(void)
 	if ((fileCurrent = getCurrentFileName()) == "") {
 		fileCurrent = fileMain;
 	}
-	buildManager.runCommand(
-		BuildManager::CMD_TERMINAL_EXTERNAL,
+	ExpandingOptions expOptions(
 		fileMain,
 		fileCurrent,
 		currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0
 	);
+	ExpandedCommands expCommands = buildManager.expandCommandLine(
+		BuildManager::CMD_TERMINAL_EXTERNAL,
+		expOptions
+	);
+	if (expCommands.commands.isEmpty()) {
+		return;
+	}
+	QString commandLine(expCommands.commands.first().command);
+	ExecProgram execProgram(
+		commandLine,
+		"",
+		QFileInfo(fileCurrent).absolutePath()
+	);
+#ifdef Q_OS_WIN
+	execProgram.m_winProcModifier = [] (QProcess::CreateProcessArguments *args) {
+		args->flags |= CREATE_NEW_CONSOLE;
+	};
+#endif
+	bool execResult = execProgram.execDetached();
+	outputView->insertMessageLine(
+		execResult ?
+		QString("Started external terminal program %1").arg(commandLine) :
+		QString("Could not start external terminal program %1").arg(commandLine)
+	);
 }
+
 /*!
  * \brief run a command which was triggered from a Qaction (menu or toolbar)
  * The actual command is stored as data in the action.
