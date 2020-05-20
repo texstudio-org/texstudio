@@ -1246,47 +1246,47 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		parent->addDocToLoad(fname);
 	}
 	//qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
-    if (reRunSuggested && !recheck){
+	if (reRunSuggested && !recheck){
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
-    }
-    if(!recheck){
-        // do syntax check after recheck !
-        bool initialRun=false;
-        if (syntaxChecking && languageIsLatexLike()) {
-            for(int i = lineNrStart; i < linenr + count; ++i){
-                QDocumentLineHandle *dlh = line(i).handle();
-                if (!dlh)
-                    continue; //non-existing line ...
-                StackEnvironment env;
-                getEnv(i, env);
-                QDocumentLineHandle *lastHandle = nullptr;
-                TokenStack oldRemainder;
-                if (i > 0) {
-                    lastHandle = line(i - 1).handle();
-                }else{
-                    // check whether syntax checker has ever run
-                    if(!dlh->hasCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE)){
-                        // initial run
-                        // it is sufficient to put first line
-                        SynChecker.putLine(dlh, env, oldRemainder, true);
-                        initialRun=true;
-                        break;
-                    }
-                }
-                if (lastHandle) {
-                    oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-                }
+	}
+	if(!recheck){
+		// do syntax check after recheck !
+		bool initialRun=false;
+		if (syntaxChecking && languageIsLatexLike()) {
+			for(int i = lineNrStart; i < linenr + count; ++i){
+				QDocumentLineHandle *dlh = line(i).handle();
+				if (!dlh)
+					continue; //non-existing line ...
+				StackEnvironment env;
+				getEnv(i, env);
+				QDocumentLineHandle *lastHandle = nullptr;
+				TokenStack oldRemainder;
+				if (i > 0) {
+					lastHandle = line(i - 1).handle();
+				}else{
+					// check whether syntax checker has ever run
+					if(!dlh->hasCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE)){
+						// initial run
+						// it is sufficient to put first line
+						SynChecker.putLine(dlh, env, oldRemainder, true, i);
+						initialRun=true;
+						break;
+					}
+				}
+				if (lastHandle) {
+					oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+				}
 
-                SynChecker.putLine(dlh, env, oldRemainder, true);
-            }
-        }
-        if(initialRun){
-            // execute QCE highlting
-            parent->enablePatch(false);
-            highlight();
-            parent->enablePatch(true);
-        }
-    }
+				SynChecker.putLine(dlh, env, oldRemainder, true, i);
+			}
+		}
+		if(initialRun){
+			// execute QCE highlting
+			parent->enablePatch(false);
+			highlight();
+			parent->enablePatch(true);
+		}
+	}
 
 	return reRunSuggested;
 }
@@ -3258,7 +3258,7 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, i
 							env = result.value<StackEnvironment>();
 						remainder = prev->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
 					}
-					SynChecker.putLine(unclosedEnv.dlh, env, remainder, true);
+					SynChecker.putLine(unclosedEnv.dlh, env, remainder, true, unclosedEnvIndex);
 				}
 			}
 			if (env.size() > 1) {
@@ -3306,7 +3306,7 @@ void LatexDocument::reCheckSyntax(int linenr, int count)
 		TokenStack remainder;
 		if (prev.handle())
 			remainder = prev.handle()->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-		SynChecker.putLine(line.handle(), env, remainder, true);
+		SynChecker.putLine(line.handle(), env, remainder, true, i);
 		prev = line;
 		line = this->line(i + 1);
 	}
