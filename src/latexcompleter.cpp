@@ -1529,7 +1529,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 	if (forcedGraphic) {
 		if (!dirReader) {
 			dirReader = new directoryReader(this);
-			connect(dirReader, SIGNAL(directoryLoaded(QString, QSet<QString>)), this, SLOT(directoryLoaded(QString, QSet<QString>)));
+            connect(dirReader, &directoryReader::directoryLoaded, this, &LatexCompleter::directoryLoaded);
 			connect(this, SIGNAL(setDirectoryForCompletion(QString)), dirReader, SLOT(readDirectory(QString)));
 			dirReader->start();
 		}

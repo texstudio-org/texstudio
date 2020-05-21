@@ -91,6 +91,10 @@ signals:
 	void showImagePreview(QString fn); ///< show preview of selected image
 	void showPreview(QString text); ///< show preview of selected item, usually references or citations
 
+public slots:
+
+    void bibtexSectionFound(QString content);
+
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
@@ -135,7 +139,6 @@ private slots:
 	void changeView(int pos);
 	void listClicked(QModelIndex index);
 	void directoryLoaded(QString dn, QSet<QString> content);
-	void bibtexSectionFound(QString content);
 };
 
 #endif
