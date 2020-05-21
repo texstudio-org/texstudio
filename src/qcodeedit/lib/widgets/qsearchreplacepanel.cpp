@@ -924,7 +924,8 @@ void QSearchReplacePanel::setFilteredIconAndFormats(const char* icon, const std:
 	QList<int> ids;
 	for (const char * fmt : formats)
 		ids << doc->getFormatId(fmt);
-	m_search->setFilteredFormats(ids, inverted);
+    if(m_search)
+        m_search->setFilteredFormats(ids, inverted);
     currentFilter=QString(icon);
 }
 
