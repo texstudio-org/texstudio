@@ -141,12 +141,12 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 			}
 			else if (cmdArgument == "--config" && (++i < args.count()))
 				ConfigManager::configDirOverride = args[i];
-			else if (cmdArgument.startsWith("-"))
-				cmdLine << cmdArgument;
 #ifdef DEBUG_LOGGER
-			else if ((cmdArgument == "-debug-logfile" || cmdArgument == "--debug-logfile") && (++i < args.count()))
-				cmdLine << "--debug-logfile" << args[i];
+			else if ((cmdArgument == "--debug-logfile") && (++i < args.count()))
+				debugLoggerStart(args[i]);
 #endif
+			else if (cmdArgument.startsWith('-'))
+				cmdLine << cmdArgument;
 		} else
 			cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
 	}
