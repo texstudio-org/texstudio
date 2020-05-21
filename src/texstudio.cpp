@@ -368,9 +368,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	completer = new LatexCompleter(latexParser, this);
 	completer->setConfig(configManager.completerConfig);
 	completer->setPackageList(&latexPackageList);
-	connect(completer, SIGNAL(showImagePreview(QString)), this, SLOT(showImgPreview(QString)));
-	connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-	connect(this, SIGNAL(imgPreview(QString)), completer, SLOT(bibtexSectionFound(QString)));
+        connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
+        connect(completer, &LatexCompleter::showPreview, this, QOverload<const QString&>::of(&Texstudio::showPreview));
+        connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
 	//updateCompleter();
 	LatexEditorView::setCompleter(completer);
 	completer->setLatexReference(latexReference);
