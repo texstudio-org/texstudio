@@ -73,6 +73,7 @@
 	<li><a href="#SHORTCUTS">4.13 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.14 Description of the cwl format</a></li>
 	<li><a href="#TABLETEMPLATE">4.15 Using table templates</a></li>
+  <li><a href="#MISC-FEATURES">4.16 Miscellaneous Features</a></li>
 	</ul>
 </li>
 <li><a href="#TENTATIVE-FEATURES">5. Experimental Features</a>
@@ -1798,6 +1799,13 @@ println("\\end{"+env+"}")
 </pre>
 </p>
 
+<h2 id="MISC-FEATURES">4.16 Miscellaneous Features</h2>
+
+<ul>
+  <li>Mark an extra foldable range</li>
+  Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments <code>%BEGIN_FOLD</code> and <code>%END_FOLD</code>.
+</ul>
+
 <h1 id="TENTATIVE-FEATURES">5. Tentative Features</h1>
 <p>These features allow you to modify core aspects of TeXstudio and thus provide a great flexibility of adapting TeXstudio to your needs. Since these features are either complex or are tightly bound to the internals, we cannot guarantee functionality in all cases and forever. For once, we do not have enough resources to provide full support. Additionally, the dependence on internals conflicts with our need to freely change internals without restriction for future development.</p>
 <p>Nevertheless, we decided that these features may be of interest for experiended users. As a compromise, we provide these features tentatively.</p>
@@ -1872,7 +1880,7 @@ println("\\end{"+env+"}")
 </pre>
 
 <p>The results is the following highlighting:</p>
-<img src="format_example.png" border=1>
+<img src="format_example.png" border=1 margin-left=3cm>
 
 <h1 id="CHANGELOG">Changelog</h1>
 
