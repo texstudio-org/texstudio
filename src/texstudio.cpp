@@ -6720,9 +6720,6 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
 		if (args[i] == "--page") page = args[++i].toInt() - 1;
 #endif
-#ifdef DEBUG_LOGGER
-		if (args[i] == "--debug-logfile") debugLoggerStart(args[++i]);
-#endif
 	}
 
 #ifndef NO_POPPLER_PREVIEW
