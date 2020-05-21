@@ -2659,19 +2659,21 @@ void ConfigManager::setInterfaceStyle()
 
 	if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
 
+	if (modernStyle) {
+		ManhattanStyle *style = new ManhattanStyle(newStyle);
+		if (style->isValid()) QApplication::setStyle(style);
+	} else
+        QApplication::setStyle(newStyle);
+
     // dark mode is derived from system text color (very light => dark mode)
     // however if system colors are ignored, only style manhattan - dark results in dark mode
+    // do the check after setting style, as the style can also activate a dark mode
     if(useTexmakerPalette){
         darkMode=modernStyle>1;
     }else{
         darkMode=systemUsesDarkMode();
     }
 
-	if (modernStyle) {
-		ManhattanStyle *style = new ManhattanStyle(newStyle);
-		if (style->isValid()) QApplication::setStyle(style);
-	} else
-        QApplication::setStyle(newStyle);
     QPalette pal = systemPalette;
     if (useTexmakerPalette) { //modify palette like texmaker does it
         if(darkMode){
