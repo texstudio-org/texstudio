@@ -6610,7 +6610,8 @@ void Texstudio::generalOptions()
                         edView->clearOverlays();
                     }
                 }
-
+                QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(edView->codeeditor->panels("Search")[0]);
+                searchpanel->updateIcon();
             }
             if (m_formats->modified)
                 QDocument::setBaseFont(QDocument::baseFont(), true);
@@ -10698,6 +10699,11 @@ void Texstudio::LTErrorMessage(QString message){
 	statusLabelLanguageTool->setToolTip(QString(tr("Error when communicating with LT: %1")).arg(message));
 }
 
+/*!
+ * \brief react to changed palette
+ * i.e. change form light- to dark-mode and vice-versa
+ * \param palette new palette
+ */
 void Texstudio::paletteChanged(const QPalette &palette){
     bool oldDarkMode=darkMode;
     bool newDarkMode=systemUsesDarkMode(palette);

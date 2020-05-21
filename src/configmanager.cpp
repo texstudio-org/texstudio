@@ -2649,7 +2649,11 @@ void ConfigManager::loadTranslations(QString locale)
 	basicTranslator->load(findResourceFile("qt_" + locale + ".qm"));
 	//}
 }
-
+/*!
+ * \brief set txs InterfaceStyle
+ * Fall-back to default style if none is defined
+ * Also detect whether light- or dark-mode is used by checking the colour of text (white -> dark background -> dark mode)
+ */
 void ConfigManager::setInterfaceStyle()
 {
 	//style is controlled by the properties interfaceStyle, modernStyle and useTexmakerPalette
