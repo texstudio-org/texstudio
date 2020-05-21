@@ -5,6 +5,9 @@ a:visited { color: #672967; text-decoration: none }
 	font: normal 80% 'trebuchet ms', arial, sans-serif;
 	background: #ffffff;
 	color: black;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6  {
