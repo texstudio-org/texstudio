@@ -145,7 +145,7 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 			else if ((cmdArgument == "--debug-logfile") && (++i < args.count()))
 				debugLoggerStart(args[i]);
 #endif
-			else if (cmdArgument.startsWith('-'))
+			else
 				cmdLine << cmdArgument;
 		} else
 			cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
