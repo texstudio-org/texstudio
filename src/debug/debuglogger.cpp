@@ -75,9 +75,10 @@ void DebugLogger::logMessage (QtMsgType msgType, const char *file, unsigned int 
 	}
 	fprintf (
 		m_logHandle,
-		"[%s][%lld][%s:%u][%s]: %s\n",
+		"[%s][%lld,0x%p][%s:%u][%s]: %s\n",
 		QDateTime::currentDateTime().toString(Qt::ISODateWithMs).toLocal8Bit().constData(),
 		static_cast<long long int>(QCoreApplication::applicationPid()),
+		QThread::currentThreadId(),
 		file ? file : "???",
 		line,
 		levelName,
