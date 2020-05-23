@@ -87,6 +87,10 @@
 
 #include "PDFDocument_config.h"
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 /*! \file texstudio.cpp
  * contains the GUI definition as well as some helper functions
  */
@@ -364,9 +368,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	completer = new LatexCompleter(latexParser, this);
 	completer->setConfig(configManager.completerConfig);
 	completer->setPackageList(&latexPackageList);
-	connect(completer, SIGNAL(showImagePreview(QString)), this, SLOT(showImgPreview(QString)));
-	connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-	connect(this, SIGNAL(imgPreview(QString)), completer, SLOT(bibtexSectionFound(QString)));
+    connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
+    connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
+    connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
 	//updateCompleter();
 	LatexEditorView::setCompleter(completer);
 	completer->setLatexReference(latexReference);
@@ -812,7 +816,7 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
 	actSave = newManagedAction(menu, "save", tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "document-save");
 	newManagedAction(menu, "saveas", tr("Save &As..."), SLOT(fileSaveAs()), filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_S));
-	newManagedAction(menu, "saveall", tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL + Qt::SHIFT + Qt::ALT + Qt::Key_S);
+    newManagedAction(menu, "saveall", tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL + Qt::SHIFT + Qt::Key_S);
 	newManagedAction(menu, "maketemplate", tr("&Make Template..."), SLOT(fileMakeTemplate()));
 
 
@@ -1082,7 +1086,7 @@ void Texstudio::setupMenus()
 	// add some additional items
 	menu = newManagedMenu("main/latex", tr("&LaTeX"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(insertFromAction())));
-	newManagedAction(menu, "insertrefnextlabel", tr("Insert \\ref to Next Label"), SLOT(editInsertRefToNextLabel()), Qt::ALT + Qt::CTRL + Qt::Key_R);
+    newManagedAction(menu, "insertrefnextlabel", tr("Insert \\ref to Next Label"), SLOT(editInsertRefToNextLabel()), filterLocaleShortcut(Qt::ALT + Qt::CTRL + Qt::Key_R));
 	newManagedAction(menu, "insertrefprevlabel", tr("Insert \\ref to Previous Label"), SLOT(editInsertRefToPrevLabel()));
 	submenu = newManagedMenu(menu, "tabularmanipulation", tr("Manipulate Tables", "table"));
 	newManagedAction(submenu, "addRow", tr("Add Row", "table"), SLOT(addRowCB()), QKeySequence(), "addRow");
@@ -2739,6 +2743,11 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 			emit infoFileSaved(edView->editor->fileName());
 		}
 	}
+    // save hidden files (in case that they are changed via replace in all docs
+    foreach (LatexDocument *d, documents.hiddenDocuments){
+        d->getEditorView()->editor->save();
+    }
+
 
 	if (currentEditorView() != currentEdView)
 		editors->setCurrentEditor(currentEdView);
@@ -2903,16 +2912,18 @@ void Texstudio::fileExitWithError()
 
 bool Texstudio::saveAllFilesForClosing()
 {
-	return saveFilesForClosing(editors->editors());
+    return saveFilesForClosing(documents.getDocuments());
 }
 
-bool Texstudio::saveFilesForClosing(const QList<LatexEditorView *> &editorList)
+bool Texstudio::saveFilesForClosing(const QList<LatexDocument *> &documentList)
 {
 	LatexEditorView *savedCurrentEditorView = currentEditorView();
-	foreach (LatexEditorView *edView, editorList) {
+    foreach (LatexDocument *doc, documentList) {
 repeatAfterFileSavingFailed:
+        LatexEditorView *edView=doc->getEditorView();
 		if (edView->editor->isContentModified()) {
-			editors->setCurrentEditor(edView);
+            if(!doc->isHidden())
+                editors->setCurrentEditor(edView);
 			switch (QMessageBox::warning(this, TEXSTUDIO,
 			                             tr("The document \"%1\" contains unsaved work. "
 			                                "Do you want to save it before closing?").arg(edView->displayName()),
@@ -4468,11 +4479,8 @@ void Texstudio::structureContextMenuCloseAllRelatedDocuments(LatexDocument *docu
 	if (!document) return;
 
 	QList<LatexDocument *> l = document->getListOfDocs();
-	QList<LatexEditorView *> viewsToClose;
-	foreach (LatexDocument *d, l)
-		if (d->getEditorView())
-			viewsToClose << d->getEditorView();
-	if (!saveFilesForClosing(viewsToClose)) return;
+
+    if (!saveFilesForClosing(l)) return;
 	foreach (LatexDocument *d, l) {
 		if (documents.documents.contains(d))
 			documents.deleteDocument(d); //this might hide the document
@@ -6065,6 +6073,9 @@ void Texstudio::clearLogs(){
     outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
 
+/*!
+ * \brief Opens a new external terminal
+ */
 void Texstudio::openExternalTerminal(void)
 {
 	QString fileMain, fileCurrent;
@@ -6075,13 +6086,37 @@ void Texstudio::openExternalTerminal(void)
 	if ((fileCurrent = getCurrentFileName()) == "") {
 		fileCurrent = fileMain;
 	}
-	buildManager.runCommand(
-		BuildManager::CMD_TERMINAL_EXTERNAL,
+	ExpandingOptions expOptions(
 		fileMain,
 		fileCurrent,
 		currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0
 	);
+	ExpandedCommands expCommands = buildManager.expandCommandLine(
+		BuildManager::CMD_TERMINAL_EXTERNAL,
+		expOptions
+	);
+	if (expCommands.commands.isEmpty()) {
+		return;
+	}
+	QString commandLine(expCommands.commands.first().command);
+	ExecProgram execProgram(
+		commandLine,
+		"",
+		QFileInfo(fileCurrent).absolutePath()
+	);
+#ifdef Q_OS_WIN
+	execProgram.m_winProcModifier = [] (QProcess::CreateProcessArguments *args) {
+		args->flags |= CREATE_NEW_CONSOLE;
+	};
+#endif
+	bool execResult = execProgram.execDetached();
+	outputView->insertMessageLine(
+		execResult ?
+		QString("Started external terminal program %1").arg(commandLine) :
+		QString("Could not start external terminal program %1").arg(commandLine)
+	);
 }
+
 /*!
  * \brief run a command which was triggered from a Qaction (menu or toolbar)
  * The actual command is stored as data in the action.
@@ -6575,7 +6610,8 @@ void Texstudio::generalOptions()
                         edView->clearOverlays();
                     }
                 }
-
+                QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(edView->codeeditor->panels("Search")[0]);
+                searchpanel->updateIcon();
             }
             if (m_formats->modified)
                 QDocument::setBaseFont(QDocument::baseFont(), true);
@@ -6684,9 +6720,6 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 #ifndef NO_POPPLER_PREVIEW
 		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
 		if (args[i] == "--page") page = args[++i].toInt() - 1;
-#endif
-#ifdef DEBUG_LOGGER
-		if (args[i] == "--debug-logfile") debugLoggerStart(args[++i]);
 #endif
 	}
 
@@ -10666,10 +10699,16 @@ void Texstudio::LTErrorMessage(QString message){
 	statusLabelLanguageTool->setToolTip(QString(tr("Error when communicating with LT: %1")).arg(message));
 }
 
+/*!
+ * \brief react to changed palette
+ * i.e. change form light- to dark-mode and vice-versa
+ * \param palette new palette
+ */
 void Texstudio::paletteChanged(const QPalette &palette){
     bool oldDarkMode=darkMode;
     bool newDarkMode=systemUsesDarkMode(palette);
     if(newDarkMode != oldDarkMode && !configManager.useTexmakerPalette){
+        darkMode=newDarkMode;
         // load appropriate syntax highlighting scheme
         QSettings *config=configManager.getSettings();
         config->beginGroup(darkMode ? "formatsDark" : "formats");
@@ -10684,6 +10723,8 @@ void Texstudio::paletteChanged(const QPalette &palette){
         edView->updatePalette(palette);
         ed->document()->markFormatCacheDirty();
         ed->update();
+        QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(edView->codeeditor->panels("Search")[0]);
+        searchpanel->updateIcon();
     }
 }
 

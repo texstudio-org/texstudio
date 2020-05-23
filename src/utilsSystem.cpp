@@ -315,11 +315,12 @@ QIcon getRealIcon(const QString &icon)
  * Looks up icon by name. If settings allow, tries to use system icons, otherwise tries to find in txs resources.
  * The icon is cached for better reactivity.
  * \param icon icon name
+ * \param forceReload ignore cache and reload icon from database. This is necessary if light-/dark-mode is changed.
  * \return icon
  */
-QIcon getRealIconCached(const QString &icon)
+QIcon getRealIconCached(const QString &icon, bool forceReload)
 {
-	if (iconCache.contains(icon)) {
+    if (iconCache.contains(icon) && !forceReload) {
 		return *iconCache[icon];
 	}
 	if (icon.isEmpty()) return QIcon();
