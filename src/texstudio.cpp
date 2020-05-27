@@ -9252,6 +9252,7 @@ void Texstudio::loadProfile()
 		delete profile;
 		delete config;
 		readSettings(true);
+        configManager.modifyManagedShortcuts();
 		if (macro)
 			updateUserMacros();
 		if (userCommand)
