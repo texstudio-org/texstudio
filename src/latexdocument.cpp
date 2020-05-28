@@ -1250,42 +1250,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
 	}
 	if(!recheck){
-		// do syntax check after recheck !
-		bool initialRun=false;
-		if (syntaxChecking && languageIsLatexLike()) {
-			for(int i = lineNrStart; i < linenr + count; ++i){
-				QDocumentLineHandle *dlh = line(i).handle();
-				if (!dlh)
-					continue; //non-existing line ...
-				StackEnvironment env;
-				getEnv(i, env);
-				QDocumentLineHandle *lastHandle = nullptr;
-				TokenStack oldRemainder;
-				if (i > 0) {
-					lastHandle = line(i - 1).handle();
-				}else{
-					// check whether syntax checker has ever run
-					if(!dlh->hasCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE)){
-						// initial run
-						// it is sufficient to put first line
-						SynChecker.putLine(dlh, env, oldRemainder, true, i);
-						initialRun=true;
-						break;
-					}
-				}
-				if (lastHandle) {
-					oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-				}
-
-				SynChecker.putLine(dlh, env, oldRemainder, true, i);
-			}
-		}
-		if(initialRun){
-			// execute QCE highlting
-			parent->enablePatch(false);
-			highlight();
-			parent->enablePatch(true);
-		}
+		reCheckSyntax(lineNrStart, newCount);
 	}
 
 	return reRunSuggested;
@@ -3282,34 +3247,54 @@ bool LatexDocument::languageIsLatexLike() const
 	return LATEX_LIKE_LANGUAGES.contains(ld->language());
 }
 
-void LatexDocument::reCheckSyntax(int linenr, int count)
+/*
+ * \brief Forces syntax recheck of a group of lines
+ * \param[in] lineStart Starting line number to be checked
+ * \param[in] lineNum Total number of lines to be checked. If -1, then check all lines to the end of the document.
+ */
+void LatexDocument::reCheckSyntax(int lineStart, int lineNum)
 {
+	// Basic sanity checks
+	Q_ASSERT(lineStart >= 0);
+	Q_ASSERT((lineNum == -1) || (lineNum > 0));
 
-	if (!syntaxChecking || !languageIsLatexLike())
+	// If the document does not support syntax checking just return silently
+	if (!syntaxChecking || !languageIsLatexLike()) {
 		return;
-
-	if (linenr < 0 || linenr >= lineCount()) linenr = 0;
-
-    // check if document has ever been checked
-    if(line(0).isValid() && !line(0).handle()->hasCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE)){
-        return; // recheck deferred as initial check is iminent
-    }
-
-	QDocumentLine line = this->line(linenr);
-	QDocumentLine prev;
-	if (linenr > 0) prev = this->line(linenr - 1);
-	int lineNrEnd = count < 0 ? lineCount() : qMin(count + linenr, lineCount());
-	for (int i = linenr; i < lineNrEnd; i++) {
-		Q_ASSERT(line.isValid());
-		StackEnvironment env;
-		getEnv(i, env);
-		TokenStack remainder;
-		if (prev.handle())
-			remainder = prev.handle()->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-		SynChecker.putLine(line.handle(), env, remainder, true, i);
-		prev = line;
-		line = this->line(i + 1);
 	}
+
+	int lineTotal = lineCount();
+	int lineEnd;
+	if (lineNum == -1) {
+		lineEnd = lineTotal;
+	} else {
+		if ((lineEnd = lineStart + lineNum) > lineTotal) {
+			lineEnd = lineTotal;
+		}
+	}
+	// Fast return if zero lines will be checked
+	if (lineStart == lineEnd) {
+		return;
+	}
+
+	// Delete the environment cookies for the specified lines to force their re-check
+	for (int i = lineStart; i < lineEnd; ++i) {
+		QDocumentLineHandle *dlh = line(i).handle();
+		// Is it ever possible for dlh to be null ?
+		if (dlh) {
+			dlh->removeCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+		}
+	}
+
+	// Enqueue the first line for syntax checking. The remaining lines will be enqueued automatically
+	// through the checkNextLine signal because we deleted their STACK_ENVIRONMENT_COOKIE cookies.
+	StackEnvironment prevEnv;
+	getEnv(lineStart, prevEnv);
+	TokenStack prevTokens;
+	if (lineStart) {
+		prevTokens = line(lineStart-1).getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
+	}
+	SynChecker.putLine(line(lineStart).handle(), prevEnv, prevTokens, true, lineStart);
 }
 
 QString LatexDocument::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack)
