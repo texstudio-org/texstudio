@@ -934,8 +934,9 @@ void QSearchReplacePanel::filterChanged()
 {
 	QAction *act=qobject_cast<QAction*>(sender());
     QString text=currentFilter.isNull() ? "all" : currentFilter;
-    if(act)
+    if(act){
         text=act->text();
+    }
 	if(text=="all") setFilteredIconAndFormats("all", {});
 	else if(text=="math") setFilteredIconAndFormats("math", {"numbers", "math-keyword", "math-delimiter"});
 	else if(text=="verbatim") setFilteredIconAndFormats("verbatim", {"verbatim"});
