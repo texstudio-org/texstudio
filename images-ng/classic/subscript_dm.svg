@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64px"
+   height="64px"
+   id="svg2993"
+   version="1.1"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="subscript_dm.svg">
+  <defs
+     id="defs2995" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="10.5625"
+     inkscape:cx="30.343195"
+     inkscape:cy="32"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     inkscape:window-width="1019"
+     inkscape:window-height="882"
+     inkscape:window-x="657"
+     inkscape:window-y="106"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata2998">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       style="font-size:64px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif Italic"
+       id="text3001">
+      <path
+         d="m 26.285197,33.764898 c 0.213312,3e-6 0.405311,-0.02133 0.576,-0.064 0.170644,-0.08533 0.362644,-0.234663 0.576,-0.448 0.21331,-0.21333 0.426644,-0.447996 0.64,-0.704 0.21331,-0.255995 0.554643,-0.682662 1.024,-1.28 0.511975,-0.597327 1.023975,-1.19466 1.536,-1.792 l 0.896,0.512 c -1.834692,2.858671 -3.285357,4.800002 -4.352,5.824 -1.066688,0.981333 -2.218687,1.472 -3.456,1.472 -1.024018,0 -1.792017,-0.298667 -2.304,-0.896 -0.512016,-0.597332 -0.981349,-1.727998 -1.408,-3.392 l -1.92,-7.68 c -3.797343,5.248006 -6.400007,8.55467 -7.808,9.92 -1.3653375,1.365334 -2.6666695,2.048 -3.9040001,2.048 -0.9813339,0 -1.7493331,-0.234667 -2.304,-0.704 -0.597332,-0.511999 -0.8959983,-1.173332 -0.896,-1.984 1.7e-6,-0.639997 0.2133348,-1.17333 0.64,-1.6 0.4266673,-0.426662 0.9386668,-0.639995 1.536,-0.64 0.511999,5e-6 1.1733317,0.213338 1.984,0.64 0.8106634,0.384003 1.3866628,0.576003 1.728,0.576 0.7253284,3e-6 1.8133271,-1.023996 3.2640001,-3.072 l 5.248,-7.488 -1.856,-7.872 c -0.426677,-1.919976 -0.810677,-3.135975 -1.152,-3.648 -0.341343,-0.511974 -0.917342,-0.767974 -1.728,-0.768 -0.426674,2.6e-5 -1.62134,0.234693 -3.5840001,0.704 l -0.256,-0.96 0.704,-0.256 C 13.463855,8.9755926 15.959852,8.3569265 17.197197,8.3568983 c 0.85332,2.82e-5 1.493319,0.4053611 1.92,1.216 0.469319,0.7680267 0.938651,2.2400247 1.408,4.4159997 l 0.704,3.52 c 2.218648,-3.413311 4.03198,-5.781308 5.44,-7.104 1.407977,-1.3653055 2.815975,-2.0479715 4.224,-2.0479997 0.767973,2.82e-5 1.386639,0.2346946 1.856,0.704 0.511972,0.4266937 0.767971,0.9813597 0.768,1.6639997 -2.9e-5,0.682692 -0.213362,1.237358 -0.64,1.664 -0.384028,0.426691 -0.917361,0.640024 -1.6,0.64 -0.426693,2.4e-5 -0.981359,-0.170643 -1.664,-0.512 -0.682691,-0.383975 -1.216024,-0.575975 -1.6,-0.576 -1.237355,2.5e-5 -3.32802,2.581356 -6.272,7.744 -1.7e-5,0.98135 0.853316,4.800012 2.56,11.456 0.426647,1.749337 1.087979,2.624003 1.984,2.624"
+         style="fill:#ffffff"
+         id="path3818" />
+    </g>
+    <rect
+       style="color:#000000;fill:none;stroke:#338000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3005"
+       width="24.005543"
+       height="24.005543"
+       x="35.497227"
+       y="36.497231" />
+  </g>
+</svg>

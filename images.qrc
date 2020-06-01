@@ -133,7 +133,7 @@
         <file>images-ng/prompt.svg</file>
         <file>images-ng/pstricks.svg</file>
         <file>images-ng/regex.svg</file>
-        <file>images-ng/regex_dm.svg</file>        
+        <file>images-ng/regex_dm.svg</file>
         <file>images-ng/remCol.svg</file>
         <file>images-ng/remRow.svg</file>
         <file>images-ng/repeat-compile-off.svg</file>
@@ -225,9 +225,17 @@
         <file>images-ng/all_dm.svg</file>
         <file>images-ng/verbatim.svg</file>
         <file>images-ng/cite.svg</file>
-        <file>images-ng/cite_dm.svg</file>        
+        <file>images-ng/cite_dm.svg</file>
         <file>images-ng/label.svg</file>
         <file>images-ng/label_dm.svg</file>
         <file>images-ng/executeMacro.svg</file>
+        <file>images-ng/classic/subscript_dm.svg</file>
+        <file>images-ng/classic/superscript_dm.svg</file>
+        <file>images-ng/classic/dfrac_dm.svg</file>
+        <file>images-ng/classic/sqrt_dm.svg</file>
+        <file>images-ng/classic/smallfrac_dm.svg</file>
+        <file>images-ng/classic/newline_dm.svg</file>
+        <file>images-ng/go-next-diff_dm.svg</file>
+        <file>images-ng/go-previous-diff_dm.svg</file>
     </qresource>
 </RCC>
