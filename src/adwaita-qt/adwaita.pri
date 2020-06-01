@@ -15,7 +15,6 @@ HEADERS += \
     $$PWD/style/adwaitamnemonics.h \
     $$PWD/style/adwaitasplitterproxy.h \
     $$PWD/style/adwaitastyle.h \
-    $$PWD/style/adwaitastyleplugin.h \
     $$PWD/style/adwaitawindowmanager.h \
     $$PWD/style/config-adwaita.h \
     $$PWD/style/kstylekde4compat.h \
@@ -26,7 +25,6 @@ SOURCES += \
     $$PWD/style/adwaitamnemonics.cpp \
     $$PWD/style/adwaitasplitterproxy.cpp \
     $$PWD/style/adwaitastyle.cpp \
-    $$PWD/style/adwaitastyleplugin.cpp \
     $$PWD/style/adwaitawindowmanager.cpp \
     $$PWD/style/kstylekde4compat.cpp \
     
