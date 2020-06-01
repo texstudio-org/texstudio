@@ -361,6 +361,8 @@ include(src/quazip/quazip/quazip.pri)
 
 include(src/pdfviewer/pdfviewer.pri)
 
+include(src/adwaita-qt/adwaita.pri)
+
 # ###############################
 
 CONFIG(debug, debug|release) {

@@ -23,6 +23,10 @@
 
 #include "manhattanstyle.h"
 
+#ifdef ADWAITA
+#include "adwaitastyle.h"
+#endif
+
 const QString TXS_AUTO_REPLACE_QUOTE_OPEN = "TMX:Replace Quote Open";
 const QString TXS_AUTO_REPLACE_QUOTE_CLOSE = "TMX:Replace Quote Close";
 
@@ -1558,7 +1562,12 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	//appearance
 	QString displayedInterfaceStyle = interfaceStyle == "" ? tr("default") : interfaceStyle;
 	confDlg->ui.comboBoxInterfaceStyle->clear();
-	confDlg->ui.comboBoxInterfaceStyle->addItems(QStyleFactory::keys() << tr("default"));
+    QStringList availableStyles=QStyleFactory::keys();
+#ifdef ADWAITA
+    availableStyles << "Adwaita (txs)" << "Adwaita Dark (txs)";
+#endif
+    availableStyles << tr("default");
+    confDlg->ui.comboBoxInterfaceStyle->addItems(availableStyles);
 	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
 
@@ -2661,13 +2670,27 @@ void ConfigManager::setInterfaceStyle()
 
 	QString newStyle = interfaceStyle != "" ? interfaceStyle : defaultStyleName;
 
-	if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
+    bool handled=false;
+#ifdef ADWAITA
+    if(newStyle=="Adwaita (txs)"){
+        QApplication::setStyle(new Adwaita::Style(false));
+        handled=true;
+    }
+    if(newStyle=="Adwaita Dark (txs)"){
+        QApplication::setStyle(new Adwaita::Style(true));
+        handled=true;
+    }
+#endif
+    if(!handled){
+        if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
 
-	if (modernStyle) {
-		ManhattanStyle *style = new ManhattanStyle(newStyle);
-		if (style->isValid()) QApplication::setStyle(style);
-	} else
-        QApplication::setStyle(newStyle);
+        if (modernStyle) {
+            ManhattanStyle *style = new ManhattanStyle(newStyle);
+            if (style->isValid()) QApplication::setStyle(style);
+        } else
+            QApplication::setStyle(newStyle);
+    }
+
 
     // dark mode is derived from system text color (very light => dark mode)
     // however if system colors are ignored, only style manhattan - dark results in dark mode
