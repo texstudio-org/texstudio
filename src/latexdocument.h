@@ -194,7 +194,7 @@ public:
     static int syntaxErrorFormat,spellErrorFormat;
 
 	bool languageIsLatexLike() const;
-	void reCheckSyntax(int linenr = 0, int count = -1);
+	void reCheckSyntax(int lineStart = 0, int lineNum = -1);
 	QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
 
 	void getEnv(int lineNumber, StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env

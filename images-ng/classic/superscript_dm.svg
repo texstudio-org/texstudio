@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64px"
+   height="64px"
+   id="svg2993"
+   version="1.1"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="superscript_dm.svg"
+   inkscape:export-filename="G:\TeXstudio\icons\own icons\superscript.png"
+   inkscape:export-xdpi="30.9375"
+   inkscape:export-ydpi="30.9375">
+  <defs
+     id="defs2995" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="12.328125"
+     inkscape:cx="30.580482"
+     inkscape:cy="32"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     inkscape:window-width="3840"
+     inkscape:window-height="2075"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2998">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       style="font-size:64px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif Italic"
+       id="text3001">
+      <path
+         d="m 23.572477,56.963064 c 0.213312,3e-6 0.405311,-0.02133 0.576,-0.064 0.170644,-0.08533 0.362644,-0.234663 0.576,-0.448 0.213311,-0.21333 0.426644,-0.447996 0.64,-0.704 0.21331,-0.255996 0.554643,-0.682662 1.024,-1.28 0.511975,-0.597327 1.023975,-1.19466 1.536,-1.792 l 0.896,0.512 c -1.834692,2.858671 -3.285357,4.800002 -4.352,5.824 -1.066688,0.981333 -2.218687,1.471999 -3.456,1.472 -1.024018,-10e-7 -1.792017,-0.298667 -2.304,-0.896 -0.512016,-0.597332 -0.981349,-1.727998 -1.408,-3.392 l -1.92,-7.68 c -3.797343,5.248006 -6.4000068,8.55467 -7.8080001,9.92 -1.3653373,1.365333 -2.6666693,2.047999 -3.904,2.048 -0.9813338,-10e-7 -1.749333,-0.234667 -2.304,-0.704 -0.59733187,-0.511999 -0.89599824,-1.173332 -0.89599996,-1.984 1.72e-6,-0.639997 0.21333484,-1.17333 0.63999996,-1.6 0.4266674,-0.426662 0.9386669,-0.639996 1.536,-0.64 0.5119991,4e-6 1.1733317,0.213338 1.984,0.64 0.8106635,0.384003 1.3866629,0.576003 1.728,0.576 0.7253285,3e-6 1.8133274,-1.023996 3.264,-3.072 l 5.2480001,-7.488 -1.856,-7.872 c -0.426677,-1.919976 -0.810677,-3.135975 -1.152,-3.648 -0.341343,-0.511974 -0.917342,-0.767974 -1.728,-0.768 -0.4266742,2.6e-5 -1.6213397,0.234692 -3.5840001,0.704 l -0.256,-0.96 0.704,-0.256 c 3.7546581,-1.237306 6.2506561,-1.855972 7.4880001,-1.856 0.85332,2.8e-5 1.493319,0.405361 1.92,1.216 0.469319,0.768026 0.938651,2.240025 1.408,4.416 l 0.704,3.52 c 2.218648,-3.413311 4.03198,-5.781308 5.44,-7.104 1.407977,-1.365306 2.815975,-2.047972 4.224,-2.048 0.767973,2.8e-5 1.386639,0.234695 1.856,0.704 0.511972,0.426694 0.767971,0.98136 0.768,1.664 -2.9e-5,0.682692 -0.213362,1.237358 -0.64,1.664 -0.384028,0.426691 -0.91736,0.640024 -1.6,0.64 -0.426693,2.4e-5 -0.981359,-0.170643 -1.664,-0.512 -0.682691,-0.383975 -1.216024,-0.575975 -1.6,-0.576 -1.237355,2.5e-5 -3.32802,2.581356 -6.272,7.744 -1.7e-5,0.981349 0.853316,4.800012 2.56,11.456 0.426647,1.749337 1.087979,2.624003 1.984,2.624"
+         style="fill:#ffffff"
+         id="path4931" />
+    </g>
+    <rect
+       style="color:#000000;fill:none;stroke:#338000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3005"
+       width="28"
+       height="28"
+       x="32"
+       y="4.5" />
+  </g>
+</svg>

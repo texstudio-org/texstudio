@@ -4349,12 +4349,16 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 		doc = currentEditorView()->document;
 	if (initial) {
 		doc->patchStructure(0, -1);
+		// execute QCE highlting
+		doc->parent->enablePatch(false);
+		doc->highlight();
+		doc->parent->enablePatch(true);
 
-        bool previouslyEmpty=doc->localMacros.isEmpty();
+		bool previouslyEmpty=doc->localMacros.isEmpty();
 		doc->updateMagicCommentScripts();
 		configManager.completerConfig->userMacros << doc->localMacros;
-        if(!doc->localMacros.isEmpty() || !previouslyEmpty)
-            updateUserMacros();
+		if(!doc->localMacros.isEmpty() || !previouslyEmpty)
+			updateUserMacros();
 	} else {
 		// updateStructure() rebuilds the complete structure model. Therefore, all expansion states in the view are lost
 		// to work around this, we save the a tag (unique idetifier) of all expanded entries and restore the expansion state after update

@@ -262,9 +262,7 @@ QString getRealIconFile(const QString &icon)
     for(const QString& suffix : suffixList){
         iconNames
                 << ":/images-ng/" + icon + suffix + ".svg"
-                << ":/images-ng/" + icon + suffix + ".svgz"     //voruebergehend
-                << ":/symbols-ng/icons/" + icon + suffix + ".svg" //voruebergehend
-                << ":/symbols-ng/icons/" + icon + suffix + ".png"; //voruebergehend
+                << ":/images-ng/" + icon + suffix + ".svgz" ;
         if (modernStyle) {
             iconNames << ":/images-ng/modern/" + icon + suffix + ".svg"
                       << ":/images-ng/modern/" + icon + suffix + ".svgz"
@@ -274,6 +272,8 @@ QString getRealIconFile(const QString &icon)
                       << ":/images-ng/classic/" + icon + suffix + ".svgz"
                       << ":/classic/images/classic/" + icon + suffix + ".png";
         }
+        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".svg" ;//voruebergehend
+        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".png"; //voruebergehend
         iconNames << ":/images/" + icon + ".png";
     }
 

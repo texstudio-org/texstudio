@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64px"
+   height="64px"
+   id="svg2993"
+   version="1.1"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="dfrac_dm.svg"
+   inkscape:export-filename="G:\TeXstudio\icons\own icons\dfrac.png"
+   inkscape:export-xdpi="30.940001"
+   inkscape:export-ydpi="30.940001">
+  <defs
+     id="defs2995" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="10.5625"
+     inkscape:cx="24.987179"
+     inkscape:cy="32.18632"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     inkscape:window-width="3840"
+     inkscape:window-height="2075"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4528" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata2998">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       style="fill:#338000;stroke:#338000;stroke-width:5.01336145;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 62.258284,28.109317 -56.8267309,0"
+       id="path3028"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <g
+       style="font-size:48px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:FreeSerifb;-inkscape-font-specification:FreeSerifb Bold Italic"
+       id="text3140">
+      <path
+         d="m 29.092919,59.775146 c -1.007999,0 -2.592002,-1.68 -4.512,-1.68 -1.247999,0 -2.4,1.248002 -2.4,2.64 0,1.583999 1.296001,2.88 2.976,2.88 9.071991,0 20.352,-23.136005 20.352,-28.944 0,-1.631998 -1.392002,-3.072 -2.976,-3.072 -1.439999,0 -2.736,1.296002 -2.736,2.784 0,2.735998 2.64,2.448002 2.64,4.272 0,1.439999 -0.864004,3.456007 -4.176,9.84 l -0.576,-3.6 c -0.911999,-5.711994 -2.304001,-11.040002 -3.168,-13.296 -2.303998,0.576 -4.032003,0.864001 -7.152,1.152 l 0,1.296 c 0.863999,0 1.104,0.048 1.44,0.24 1.871998,1.103999 4.704,16.992003 4.704,19.68 0,2.447998 -2.736002,5.808 -4.416,5.808"
+         style="fill:#ffffff"
+         id="path3037" />
+    </g>
+    <g
+       style="font-size:48px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:FreeSerif;-inkscape-font-specification:FreeSerif Italic"
+       id="text3144">
+      <path
+         d="m 43.516919,6.9646382 c 1.439998,0 2.688,-1.1520013 2.688,-2.496 0,-1.5839984 -1.344002,-2.976 -2.784,-2.976 -2.255998,0 -3.744004,1.2960054 -7.584,6.624 -0.863999,-4.0799959 -1.248001,-5.2800013 -2.16,-6.624 l -8.016,1.152 0,1.296 c 1.007999,-0.096 1.248,-0.096 1.68,-0.096 1.535998,0 2.208,0.8640024 2.688,3.216 l 1.44,7.3919998 -2.112,3.36 c -0.959999,1.535999 -1.488001,1.968 -2.304,1.968 -0.672,0 -1.680001,-1.008 -2.928,-1.008 -1.487999,0 -2.64,1.200002 -2.64,2.688 0,1.679999 1.248002,2.832 3.072,2.832 2.399997,0 3.504003,-0.960004 6.288,-5.568 l 1.152,-1.872 c 0.911999,4.511996 1.872003,7.44 4.656,7.44 2.303997,0 4.320003,-1.632004 7.248,-5.856 l -1.008,-0.672 c -1.871998,2.399998 -2.352001,2.832 -3.216,2.832 -0.911999,0 -1.392001,-0.720002 -1.776,-2.544 l -1.536,-7.488 c 0.815999,-1.1039987 2.544002,-4.5599998 4.416,-4.5599998 0.623999,0 1.728001,0.96 2.736,0.96"
+         style="font-weight:bold;line-height:125%;font-family:FreeSerifb;-inkscape-font-specification:FreeSerifb Bold Italic;fill:#ffffff"
+         id="path3034" />
+    </g>
+  </g>
+</svg>
