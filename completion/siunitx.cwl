@@ -4,17 +4,109 @@
 \A#*
 \ampere
 \amu#*
-\ang[%<options%>]{%<degrees%>}
-\ang[%<options%>]{%<decimal number%>}
 \ang{%<degrees%>}
 \ang{%<decimal number%>}
+\ang[%<options%>]{%<degrees%>}
+\ang[%<options%>]{%<decimal number%>}
 #keyvals:\ang
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-mode=#math,text
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Font settings ; section 5.3 ; with "unit-"
+unit-color=#%color
+unit-mode=#math,text
+unit-math-rm=#*
+unit-math-sf=#*
+unit-math-tt=#*
+unit-text-rm=#*
+unit-text-sf=#*
+unit-text-tt=#*
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
+add-decimal-zero#true,false
+add-integer-zero#true,false
+explicit-sign=
+fixed-exponent=
+minimum-integer-digits=
+omit-uncertainty#true,false
+retain-explicit-plus#true,false
+retain-unity-mantissa#true,false
+retain-zero-exponent#true,false
+round-half=#up,even
+round-integer-to-decimal#true,false
+round-minimum=
+round-mode=#off,figures,places
+round-precision=
+scientific-notation=#true,false,fixed,engineering
+zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
+bracket-negative-numbers#true,false
+bracket-numbers#true,false
+close-bracket=
+complex-root-position=#after-number,before-number
+copy-complex-root=
+copy-decimal-marker=
+exponent-base=
+exponent-product=
+group-digits=#true,false,decimal,integer
+group-minimum-digits=
+group-separator=
+negative-color=#%color
+open-bracket=
+output-close-uncertainty=
+output-complex-root=
+output-decimal-marker=
+output-exponent-marker=
+output-open-uncertainty=
+separate-uncertainty#true,false
+tight-spacing#true,false
+uncertainty-separator=
+# Angles ; section 5.9
 add-arc-degree-zero#true,false
 add-arc-minute-zero#true,false
 add-arc-second-zero#true,false
 angle-symbol-over-decimal#true,false
 arc-separator=
 number-angle-product=
+# Symbols ; section 5.15
+math-arcminute=
+math-arcsecond=
+math-degree=
+redefine-symbols#true,false
+text-arcminute=
+text-arcsecond=
+text-degree=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
 #endkeyvals
 \angstrom
 \arcminute
@@ -50,8 +142,179 @@ number-angle-product=
 \DeclareSIPrefix{%<prefix%>}{%<symbol%>}{%<power of 10%>}#d
 \DeclareSIPrePower{%<power macro%>}{%<number%>}#d
 \DeclareSIQualifier{%<qualifier%>}{%<symbol%>}#d
-\DeclareSIUnit[options]{unit%cmd}{definition}#d
 \DeclareSIUnit{unit%cmd}{definition}#d
+\DeclareSIUnit[%<options%>]{unit%cmd}{definition}#d
+#keyvals:\DeclareSIUnit
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-mode=#math,text
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Font settings ; section 5.3 ; with "unit-"
+unit-color=#%color
+unit-mode=#math,text
+unit-math-rm=#*
+unit-math-sf=#*
+unit-math-tt=#*
+unit-text-rm=#*
+unit-text-sf=#*
+unit-text-tt=#*
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
+add-decimal-zero#true,false
+add-integer-zero#true,false
+explicit-sign=
+fixed-exponent=
+minimum-integer-digits=
+omit-uncertainty#true,false
+retain-explicit-plus#true,false
+retain-unity-mantissa#true,false
+retain-zero-exponent#true,false
+round-half=#up,even
+round-integer-to-decimal#true,false
+round-minimum=
+round-mode=#off,figures,places
+round-precision=
+scientific-notation=#true,false,fixed,engineering
+zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
+bracket-negative-numbers#true,false
+bracket-numbers#true,false
+close-bracket=
+complex-root-position=#after-number,before-number
+copy-complex-root=
+copy-decimal-marker=
+exponent-base=
+exponent-product=
+group-digits=#true,false,decimal,integer
+group-minimum-digits=
+group-separator=
+negative-color=#%color
+open-bracket=
+output-close-uncertainty=
+output-complex-root=
+output-decimal-marker=
+output-exponent-marker=
+output-open-uncertainty=
+separate-uncertainty#true,false
+tight-spacing#true,false
+uncertainty-separator=
+# Multi-part numbers ; section 5.7
+fraction-function=
+input-product=
+input-quotient=
+output-product=
+output-quotient=
+quotient-mode=#symbol,fraction
+# Lists and ranges of numbers ; section 5.8
+list-final-separator=
+list-pair-separator=
+list-separator=
+range-phrase=
+# Angles ; section 5.9
+add-arc-degree-zero#true,false
+add-arc-minute-zero#true,false
+add-arc-second-zero#true,false
+angle-symbol-over-decimal#true,false
+arc-separator=
+number-angle-product=
+# Creating units ; section 5.10
+free-standing-units#true,false
+overwrite-functions#true,false
+space-before-unit#true,false
+unit-optional-argument#true,false
+use-xspace#true,false
+# Using units ; section 5.12
+bracket-unit-denominator#true,false
+forbid-literal-units#true,false
+literal-superscript-as-power#true,false
+inter-unit-product=
+parse-units#true,false
+per-mode=#fraction,reciprocal,reciprocal-positive-first,symbol,symbol-or-fraction,repeated-symbol
+per-symbol=
+power-font=#number,unit
+prefixes-as-symbols#true,false
+qualifier-mode=#subscript,space,text,brackets,phrase
+qualifier-phrase=
+sticky-per#true,false
+# Numbers with units ; section 5.13
+allow-number-unit-breaks#true,false
+exponent-to-prefix#true,false
+list-units=#brackets,repeat,single
+multi-part-units=#brackets,repeat,single
+number-unit-product=
+product-units=#brackets,brackets-power,power,repeat,single
+range-units=#brackets,repeat,single
+# Tabular material ; section 5.14
+table-align-comparator#true,false
+table-align-exponent#true,false
+table-align-text-pre#true,false
+table-align-text-post#true,false
+table-align-uncertainty#true,false
+table-alignment=#center,right,left
+table-auto-round#true,false
+table-column-width=
+table-comparator#true,false
+table-figures-decimal=
+table-figures-exponent=
+table-figures-integer=
+table-figures-uncertainty=
+table-format=
+table-number-alignment=#center-decimal-marker,center,left,right
+table-parse-only#true,false
+table-omit-exponent#true,false
+table-space-text-pre=
+table-space-text-post=
+table-sign-exponent#true,false
+table-sign-mantissa#true,false
+table-text-alignment=#center,right,left
+table-unit-alignment=#center,right,left
+# Symbols ; section 5.15
+math-angstrom=
+math-arcminute=
+math-arcsecond=
+math-celsius=
+math-degree=
+math-micro=
+math-ohm=
+redefine-symbols#true,false
+text-angstrom=
+text-arcminute=
+text-arcsecond=
+text-celsius=
+text-degree=
+text-micro=
+text-ohm=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
+#endkeyvals
 \degreeCelsius
 \deka
 \dm#*
@@ -153,8 +416,43 @@ number-angle-product=
 \nm#*
 \nmol#*
 \ns#*
+\num{%<number%>}
 \num[%<options%>]{%<number%>}
 #keyvals:\num
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+math-rm=#*
+math-sf=#*
+math-tt=#*
+mode=#math,text
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-mode=#math,text
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
 add-decimal-zero#true,false
 add-integer-zero#true,false
 explicit-sign=
@@ -171,6 +469,7 @@ round-mode=#off,figures,places
 round-precision=
 scientific-notation=#true,false,fixed,engineering
 zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
 bracket-negative-numbers#true,false
 bracket-numbers#true,false
 close-bracket=
@@ -182,9 +481,7 @@ exponent-product=
 group-digits=#true,false,decimal,integer
 group-minimum-digits=
 group-separator=
-color=
-negative-color=
-number-color=
+negative-color=#%color
 open-bracket=
 output-close-uncertainty=
 output-complex-root=
@@ -194,6 +491,7 @@ output-open-uncertainty=
 separate-uncertainty#true,false
 tight-spacing#true,false
 uncertainty-separator=
+# Multi-part numbers ; section 5.7
 fraction-function=
 input-product=
 input-quotient=
@@ -201,17 +499,175 @@ output-product=
 output-quotient=
 quotient-mode=#symbol,fraction
 #endkeyvals
-\num{%<number%>}
-\numlist[%<options%>]{%<numbers%>}
 \numlist{%<numbers%>}
+\numlist[%<options%>]{%<numbers%>}
 #keyvals:\numlist
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-mode=#math,text
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
+add-decimal-zero#true,false
+add-integer-zero#true,false
+explicit-sign=
+fixed-exponent=
+minimum-integer-digits=
+omit-uncertainty#true,false
+retain-explicit-plus#true,false
+retain-unity-mantissa#true,false
+retain-zero-exponent#true,false
+round-half=#up,even
+round-integer-to-decimal#true,false
+round-minimum=
+round-mode=#off,figures,places
+round-precision=
+scientific-notation=#true,false,fixed,engineering
+zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
+bracket-negative-numbers#true,false
+bracket-numbers#true,false
+close-bracket=
+complex-root-position=#after-number,before-number
+copy-complex-root=
+copy-decimal-marker=
+exponent-base=
+exponent-product=
+group-digits=#true,false,decimal,integer
+group-minimum-digits=
+group-separator=
+negative-color=#%color
+open-bracket=
+output-close-uncertainty=
+output-complex-root=
+output-decimal-marker=
+output-exponent-marker=
+output-open-uncertainty=
+separate-uncertainty#true,false
+tight-spacing#true,false
+uncertainty-separator=
+# Multi-part numbers ; section 5.7
+fraction-function=
+input-product=
+input-quotient=
+output-product=
+output-quotient=
+quotient-mode=#symbol,fraction
+# Lists and ranges of numbers ; section 5.8
 list-final-separator=
 list-pair-separator=
 list-separator=
-range-phrase=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
 #endkeyvals
+\numrange{%<number1%>}{%<number2%>}
 \numrange[%<options%>]{%<number1%>}{%<number2%>}
-\numrange{%<number2%>}{%<number2%>}
+#keyvals:\numrange
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-mode=#math,text
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
+add-decimal-zero#true,false
+add-integer-zero#true,false
+explicit-sign=
+fixed-exponent=
+minimum-integer-digits=
+omit-uncertainty#true,false
+retain-explicit-plus#true,false
+retain-unity-mantissa#true,false
+retain-zero-exponent#true,false
+round-half=#up,even
+round-integer-to-decimal#true,false
+round-minimum=
+round-mode=#off,figures,places
+round-precision=
+scientific-notation=#true,false,fixed,engineering
+zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
+bracket-negative-numbers#true,false
+bracket-numbers#true,false
+close-bracket=
+complex-root-position=#after-number,before-number
+copy-complex-root=
+copy-decimal-marker=
+exponent-base=
+exponent-product=
+group-digits=#true,false,decimal,integer
+group-minimum-digits=
+group-separator=
+negative-color=#%color
+open-bracket=
+output-close-uncertainty=
+output-complex-root=
+output-decimal-marker=
+output-exponent-marker=
+output-open-uncertainty=
+separate-uncertainty#true,false
+tight-spacing#true,false
+uncertainty-separator=
+# Lists and ranges of numbers ; section 5.8
+range-phrase=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
+#endkeyvals
 \nV#*
 \of
 \ohm
@@ -236,87 +692,38 @@ range-phrase=
 \SendSettingsToPgf
 \SI[%<options%>]{%<value%>}[%<pre-unit%>]{%<unit commands%>}
 \SI[%<options%>]{%<value%>}{%<unit commands%>}
-\si{%<unit%>}
 \SI{%<value%>}[%<pre-unit%>]{%<unit commands%>}
 \SI{%<value%>}{%<unit commands%>}
 #keyvals:\SI
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
 mode=#math,text
-math-rm=
-math-sf=
-math-tt=
-text-rm=
-text-sf=
-text-tt=
-color=
-number-color=
-unit-color=
-locale=#DE,UK,US,ZA,FR
-allow-number-unit-breaks#true,false
-exponent-to-prefix#true,false
-list-units=#brackets,repeat,single
-multi-part-units=#brackets,repeat,single
-number-unit-product=
-product-units=#brackets,brackets-power,power,repeat,single
-range-units=#brackets,repeat,single
-parse-units#true,false
-#endkeyvals
-\si[%<options%>]{%<unit%>}
-#keyvals:\si
-bracket-unit-denominator#true,false
-forbid-literal-units#true,false
-literal-superscript-as-power#true,false
-inter-unit-product=
-parse-units#true,false
-per-mode=#fraction,reciprocal,reciprocal-positive-first,symbol,symbol-or-fraction,repeated-symbol
-per-symbol=
-power-font=
-prefixes-as-symbols#true,false
-qualifier-mode=#subscript,space,text,brackets
-sticky-per#true,false
-color=
-unit-color=
-#endkeyvals
-\siemens
-\sievert
-\SIlist{%<values%>}{%<unit commands%>}
-\SIlist[%<options%>]{%<values%>}{%<unit commands%>}
-\SIrange{%<value1%>}{%<value2%>}{%<unit commands%>}
-\SIrange[%<options%>]{%<value1%>}{%<value2%>}{%<unit commands%>}
-\sisetup{%<options%>}
-#keyvals:\sisetup
-detect-all
-detect-display-math#true,false
-detect-family#true,false
-detect-inline-family=#text,math
-detect-inline-weight=#text,math
-detect-mode#true,false
-detect-none
-detect-shape#true,false
-detect-weight#true,false
-color=
-mode=#math,text
-math-rm=
-math-sf=
-math-tt=
-text-rm=
-text-sf=
-text-tt=
-number-color=
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
 number-mode=#math,text
-number-math-rm=
-number-math-sf=
-number-math-tt=
-number-text-rm=
-number-text-sf=
-number-text-tt=
-unit-color=
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Font settings ; section 5.3 ; with "unit-"
+unit-color=#%color
 unit-mode=#math,text
-unit-math-rm=
-unit-math-sf=
-unit-math-tt=
-unit-text-rm=
-unit-text-sf=
-unit-text-tt=
+unit-math-rm=#*
+unit-math-sf=#*
+unit-math-tt=#*
+unit-text-rm=#*
+unit-text-sf=#*
+unit-text-tt=#*
+# Parsing numbers ; section 5.4
 input-close-uncertainty=
 input-comparators=
 input-complex-roots=
@@ -330,6 +737,7 @@ input-signs=
 input-uncertainty-signs=
 input-symbols=
 parse-numbers#true,false
+# Post-processing numbers ; section 5.5
 add-decimal-zero#true,false
 add-integer-zero#true,false
 explicit-sign=
@@ -346,6 +754,7 @@ round-mode=#off,figures,places
 round-precision=
 scientific-notation=#true,false,fixed,engineering
 zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
 bracket-negative-numbers#true,false
 bracket-numbers#true,false
 close-bracket=
@@ -357,7 +766,7 @@ exponent-product=
 group-digits=#true,false,decimal,integer
 group-minimum-digits=
 group-separator=
-negative-color=
+negative-color=#%color
 open-bracket=
 output-close-uncertainty=
 output-complex-root=
@@ -367,27 +776,14 @@ output-open-uncertainty=
 separate-uncertainty#true,false
 tight-spacing#true,false
 uncertainty-separator=
+# Multi-part numbers ; section 5.7
 fraction-function=
 input-product=
 input-quotient=
 output-product=
 output-quotient=
 quotient-mode=#symbol,fraction
-list-final-separator=
-list-pair-separator=
-list-separator=
-range-phrase=
-add-arc-degree-zero#true,false
-add-arc-minute-zero#true,false
-add-arc-second-zero#true,false
-angle-symbol-over-decimal#true,false
-arc-separator=
-number-angle-product=
-free-standing-units#true,false
-overwrite-functions#true,false
-space-before-unit#true,false
-unit-optional-argument#true,false
-use-xspace#true,false
+# Using units ; section 5.12
 bracket-unit-denominator#true,false
 forbid-literal-units#true,false
 literal-superscript-as-power#true,false
@@ -400,6 +796,475 @@ prefixes-as-symbols#true,false
 qualifier-mode=#subscript,space,text,brackets,phrase
 qualifier-phrase=
 sticky-per#true,false
+# Numbers with units ; section 5.13
+allow-number-unit-breaks#true,false
+exponent-to-prefix#true,false
+multi-part-units=#brackets,repeat,single
+number-unit-product=
+product-units=#brackets,brackets-power,power,repeat,single
+# Symbols ; section 5.15
+math-angstrom=
+math-arcminute=
+math-arcsecond=
+math-celsius=
+math-degree=
+math-micro=
+math-ohm=
+redefine-symbols#true,false
+text-angstrom=
+text-arcminute=
+text-arcsecond=
+text-celsius=
+text-degree=
+text-micro=
+text-ohm=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
+#endkeyvals
+\si{%<unit%>}
+\si[%<options%>]{%<unit%>}
+#keyvals:\si
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "unit-"
+unit-color=#%color
+unit-mode=#math,text
+unit-math-rm=#*
+unit-math-sf=#*
+unit-math-tt=#*
+unit-text-rm=#*
+unit-text-sf=#*
+unit-text-tt=#*
+# Using units ; section 5.12
+bracket-unit-denominator#true,false
+forbid-literal-units#true,false
+literal-superscript-as-power#true,false
+inter-unit-product=
+parse-units#true,false
+per-mode=#fraction,reciprocal,reciprocal-positive-first,symbol,symbol-or-fraction,repeated-symbol
+per-symbol=
+power-font=#number,unit
+prefixes-as-symbols#true,false
+qualifier-mode=#subscript,space,text,brackets,phrase
+qualifier-phrase=
+sticky-per#true,false
+# Symbols ; section 5.15
+math-angstrom=
+math-arcminute=
+math-arcsecond=
+math-celsius=
+math-degree=
+math-micro=
+math-ohm=
+redefine-symbols#true,false
+text-angstrom=
+text-arcminute=
+text-arcsecond=
+text-celsius=
+text-degree=
+text-micro=
+text-ohm=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
+#endkeyvals
+\siemens
+\sievert
+\SIlist{%<values%>}{%<unit commands%>}
+\SIlist[%<options%>]{%<values%>}{%<unit commands%>}
+#keyvals:\SIlist
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-mode=#math,text
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Font settings ; section 5.3 ; with "unit-"
+unit-color=#%color
+unit-mode=#math,text
+unit-math-rm=#*
+unit-math-sf=#*
+unit-math-tt=#*
+unit-text-rm=#*
+unit-text-sf=#*
+unit-text-tt=#*
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
+add-decimal-zero#true,false
+add-integer-zero#true,false
+explicit-sign=
+fixed-exponent=
+minimum-integer-digits=
+omit-uncertainty#true,false
+retain-explicit-plus#true,false
+retain-unity-mantissa#true,false
+retain-zero-exponent#true,false
+round-half=#up,even
+round-integer-to-decimal#true,false
+round-minimum=
+round-mode=#off,figures,places
+round-precision=
+scientific-notation=#true,false,fixed,engineering
+zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
+bracket-negative-numbers#true,false
+bracket-numbers#true,false
+close-bracket=
+complex-root-position=#after-number,before-number
+copy-complex-root=
+copy-decimal-marker=
+exponent-base=
+exponent-product=
+group-digits=#true,false,decimal,integer
+group-minimum-digits=
+group-separator=
+negative-color=#%color
+open-bracket=
+output-close-uncertainty=
+output-complex-root=
+output-decimal-marker=
+output-exponent-marker=
+output-open-uncertainty=
+separate-uncertainty#true,false
+tight-spacing#true,false
+uncertainty-separator=
+# Multi-part numbers ; section 5.7
+fraction-function=
+input-product=
+input-quotient=
+output-product=
+output-quotient=
+quotient-mode=#symbol,fraction
+# Lists and ranges of numbers ; section 5.8
+list-final-separator=
+list-pair-separator=
+list-separator=
+# Using units ; section 5.12
+bracket-unit-denominator#true,false
+forbid-literal-units#true,false
+literal-superscript-as-power#true,false
+inter-unit-product=
+parse-units#true,false
+per-mode=#fraction,reciprocal,reciprocal-positive-first,symbol,symbol-or-fraction,repeated-symbol
+per-symbol=
+power-font=#number,unit
+prefixes-as-symbols#true,false
+qualifier-mode=#subscript,space,text,brackets,phrase
+qualifier-phrase=
+sticky-per#true,false
+# Numbers with units ; section 5.13
+allow-number-unit-breaks#true,false
+exponent-to-prefix#true,false
+list-units=#brackets,repeat,single
+multi-part-units=#brackets,repeat,single
+number-unit-product=
+product-units=#brackets,brackets-power,power,repeat,single
+# Symbols ; section 5.15
+math-angstrom=
+math-arcminute=
+math-arcsecond=
+math-celsius=
+math-degree=
+math-micro=
+math-ohm=
+redefine-symbols#true,false
+text-angstrom=
+text-arcminute=
+text-arcsecond=
+text-celsius=
+text-degree=
+text-micro=
+text-ohm=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
+#endkeyvals
+\SIrange{%<value1%>}{%<value2%>}{%<unit commands%>}
+\SIrange[%<options%>]{%<value1%>}{%<value2%>}{%<unit commands%>}
+#keyvals:\SIrange
+# Detecting Fonts ; section 5.2 : ignored
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=#*
+math-sf=#*
+math-tt=#*
+text-rm=#*
+text-sf=#*
+text-tt=#*
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-mode=#math,text
+number-math-rm=#*
+number-math-sf=#*
+number-math-tt=#*
+number-text-rm=#*
+number-text-sf=#*
+number-text-tt=#*
+# Font settings ; section 5.3 ; with "unit-"
+unit-color=#%color
+unit-mode=#math,text
+unit-math-rm=#*
+unit-math-sf=#*
+unit-math-tt=#*
+unit-text-rm=#*
+unit-text-sf=#*
+unit-text-tt=#*
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
+add-decimal-zero#true,false
+add-integer-zero#true,false
+explicit-sign=
+fixed-exponent=
+minimum-integer-digits=
+omit-uncertainty#true,false
+retain-explicit-plus#true,false
+retain-unity-mantissa#true,false
+retain-zero-exponent#true,false
+round-half=#up,even
+round-integer-to-decimal#true,false
+round-minimum=
+round-mode=#off,figures,places
+round-precision=
+scientific-notation=#true,false,fixed,engineering
+zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
+bracket-negative-numbers#true,false
+bracket-numbers#true,false
+close-bracket=
+complex-root-position=#after-number,before-number
+copy-complex-root=
+copy-decimal-marker=
+exponent-base=
+exponent-product=
+group-digits=#true,false,decimal,integer
+group-minimum-digits=
+group-separator=
+negative-color=#%color
+open-bracket=
+output-close-uncertainty=
+output-complex-root=
+output-decimal-marker=
+output-exponent-marker=
+output-open-uncertainty=
+separate-uncertainty#true,false
+tight-spacing#true,false
+uncertainty-separator=
+# Lists and ranges of numbers ; section 5.8
+range-phrase=
+# Using units ; section 5.12
+bracket-unit-denominator#true,false
+forbid-literal-units#true,false
+literal-superscript-as-power#true,false
+inter-unit-product=
+parse-units#true,false
+per-mode=#fraction,reciprocal,reciprocal-positive-first,symbol,symbol-or-fraction,repeated-symbol
+per-symbol=
+power-font=#number,unit
+prefixes-as-symbols#true,false
+qualifier-mode=#subscript,space,text,brackets,phrase
+qualifier-phrase=
+sticky-per#true,false
+# Numbers with units ; section 5.13
+allow-number-unit-breaks#true,false
+exponent-to-prefix#true,false
+number-unit-product=
+range-units=#brackets,repeat,single
+# Symbols ; section 5.15
+math-angstrom=
+math-arcminute=
+math-arcsecond=
+math-celsius=
+math-degree=
+math-micro=
+math-ohm=
+redefine-symbols#true,false
+text-angstrom=
+text-arcminute=
+text-arcsecond=
+text-celsius=
+text-degree=
+text-micro=
+text-ohm=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
+#endkeyvals
+\sisetup{%<options%>}
+#keyvals:\sisetup
+# Detecting Fonts ; section 5.2
+detect-all
+detect-display-math#true,false
+detect-family#true,false
+detect-inline-family=#text,math
+detect-inline-weight=#text,math
+detect-mode#true,false
+detect-none
+detect-shape#true,false
+detect-weight#true,false
+# Font settings ; section 5.3
+color=#%color
+mode=#math,text
+math-rm=
+math-sf=
+math-tt=
+text-rm=
+text-sf=
+text-tt=
+# Font settings ; section 5.3 ; with "number-"
+number-color=#%color
+number-mode=#math,text
+number-math-rm=
+number-math-sf=
+number-math-tt=
+number-text-rm=
+number-text-sf=
+number-text-tt=
+# Font settings ; section 5.3 ; with "unit-"
+unit-color=#%color
+unit-mode=#math,text
+unit-math-rm=
+unit-math-sf=
+unit-math-tt=
+unit-text-rm=
+unit-text-sf=
+unit-text-tt=
+# Parsing numbers ; section 5.4
+input-close-uncertainty=
+input-comparators=
+input-complex-roots=
+input-decimal-markers=
+input-digits=
+input-exponent-markers=
+input-ignore=
+input-open-uncertainty=
+input-protect-tokens=
+input-signs=
+input-uncertainty-signs=
+input-symbols=
+parse-numbers#true,false
+# Post-processing numbers ; section 5.5
+add-decimal-zero#true,false
+add-integer-zero#true,false
+explicit-sign=
+fixed-exponent=
+minimum-integer-digits=
+omit-uncertainty#true,false
+retain-explicit-plus#true,false
+retain-unity-mantissa#true,false
+retain-zero-exponent#true,false
+round-half=#up,even
+round-integer-to-decimal#true,false
+round-minimum=
+round-mode=#off,figures,places
+round-precision=
+scientific-notation=#true,false,fixed,engineering
+zero-decimal-to-integer#true,false
+# Printing numbers ; section 5.6
+bracket-negative-numbers#true,false
+bracket-numbers#true,false
+close-bracket=
+complex-root-position=#after-number,before-number
+copy-complex-root=
+copy-decimal-marker=
+exponent-base=
+exponent-product=
+group-digits=#true,false,decimal,integer
+group-minimum-digits=
+group-separator=
+negative-color=#%color
+open-bracket=
+output-close-uncertainty=
+output-complex-root=
+output-decimal-marker=
+output-exponent-marker=
+output-open-uncertainty=
+separate-uncertainty#true,false
+tight-spacing#true,false
+uncertainty-separator=
+# Multi-part numbers ; section 5.7
+fraction-function=
+input-product=
+input-quotient=
+output-product=
+output-quotient=
+quotient-mode=#symbol,fraction
+# Lists and ranges of numbers ; section 5.8
+list-final-separator=
+list-pair-separator=
+list-separator=
+range-phrase=
+# Angles ; section 5.9
+add-arc-degree-zero#true,false
+add-arc-minute-zero#true,false
+add-arc-second-zero#true,false
+angle-symbol-over-decimal#true,false
+arc-separator=
+number-angle-product=
+# Creating units ; section 5.10
+free-standing-units#true,false
+overwrite-functions#true,false
+space-before-unit#true,false
+unit-optional-argument#true,false
+use-xspace#true,false
+# Using units ; section 5.12
+bracket-unit-denominator#true,false
+forbid-literal-units#true,false
+literal-superscript-as-power#true,false
+inter-unit-product=
+parse-units#true,false
+per-mode=#fraction,reciprocal,reciprocal-positive-first,symbol,symbol-or-fraction,repeated-symbol
+per-symbol=
+power-font=#number,unit
+prefixes-as-symbols#true,false
+qualifier-mode=#subscript,space,text,brackets,phrase
+qualifier-phrase=
+sticky-per#true,false
+# Numbers with units ; section 5.13
 allow-number-unit-breaks#true,false
 exponent-to-prefix#true,false
 list-units=#brackets,repeat,single
@@ -407,7 +1272,7 @@ multi-part-units=#brackets,repeat,single
 number-unit-product=
 product-units=#brackets,brackets-power,power,repeat,single
 range-units=#brackets,repeat,single
-locale=#DE,UK,US,ZA,FR
+# Tabular material ; section 5.14
 table-align-comparator#true,false
 table-align-exponent#true,false
 table-align-text-pre#true,false
@@ -431,6 +1296,25 @@ table-sign-exponent#true,false
 table-sign-mantissa#true,false
 table-text-alignment=#center,right,left
 table-unit-alignment=#center,right,left
+# Symbols ; section 5.15
+math-angstrom=
+math-arcminute=
+math-arcsecond=
+math-celsius=
+math-degree=
+math-micro=
+math-ohm=
+redefine-symbols#true,false
+text-angstrom=
+text-arcminute=
+text-arcsecond=
+text-celsius=
+text-degree=
+text-micro=
+text-ohm=
+# Other options ; section 5.16
+locale=#DE,UK,US,ZA,FR
+strict#true,false
 #endkeyvals
 \SIUnitSymbolAngstrom
 \SIUnitSymbolArcminute
