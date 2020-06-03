@@ -345,12 +345,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	restoreState(windowstate, 0);
 	//workaround as toolbar central seems not be be handled by windowstate
 	centralToolBar->setVisible(configManager.centralVisible);
-	if (tobemaximized) showMaximized();
-	if (tobefullscreen) {
-		showFullScreen();
-		restoreState(stateFullScreen, 1);
-		fullscreenModeAction->setChecked(true);
-	}
 
 	createStatusBar();
 	completer = nullptr;
@@ -358,7 +352,22 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	updateMasterDocumentCaption();
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 
-	show();
+	if (tobefullscreen) {
+		showFullScreen();
+		restoreState(stateFullScreen, 1);
+		fullscreenModeAction->setChecked(true);
+	} else if (tobemaximized) {
+#ifdef Q_OS_WIN
+		// Workaround a Qt/Windows bug which prevents too small windows from maximizing
+		// For more details see:
+		// https://stackoverflow.com/questions/27157312/qt-showmaximized-not-working-in-windows
+		// https://bugreports.qt.io/browse/QTBUG-77077
+		resize(800, 600);
+#endif
+		showMaximized();
+	} else {
+		show();
+	}
 	if (splash)
 		splash->raise();
 
