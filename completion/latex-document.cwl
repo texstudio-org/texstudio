@@ -33,7 +33,9 @@
 \begin{figure*}
 \begin{figure*}[placement]
 \begin{filecontents}
+\begin{filecontents}[options%keyvals]
 \begin{filecontents*}
+\begin{filecontents*}[options%keyvals]
 \begin{flushleft}
 \begin{flushright}
 \begin{footnotesize}
@@ -565,3 +567,13 @@
 #repl:\`e è
 #repl:\`o ò
 #repl:\`u ù
+
+# keyvals
+#keyvals:\begin{filecontents},\begin{filecontents*}
+force
+overwrite
+nosearch
+#endkeyvals
+#keyvals:\begin{filecontents}
+noheader
+#endkeyvals
