@@ -271,7 +271,6 @@
 \markright{righthead}#*
 \mathbf{text}#m
 \mathcal{text}#m
-\mathds{text}#m
 \mathellipsis#m
 \mathgroup#m
 \mathit{text}#m
