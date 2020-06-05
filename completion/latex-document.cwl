@@ -16,7 +16,6 @@
 \author{names}
 %<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>
 \begin{abstract}
-\begin{alltt}
 \begin{array}{cols}#m
 \begin{array}[pos]{cols}#m
 \begin{bmatrix}#m\array
@@ -83,7 +82,6 @@
 \begin{vmatrix}#m\array
 \begin{verse}
 \end{abstract}
-\end{alltt}
 \end{array}
 \end{bmatrix}
 \end{Bmatrix}

@@ -8,6 +8,7 @@
 <file>completion/algorithm.cwl</file>
 <file>completion/algorithmicx.cwl</file>
 <file>completion/algpseudocode.cwl</file>
+<file>completion/alltt.cwl</file>
 <file>completion/allrunes.cwl</file>
 <file>completion/amsbsy.cwl</file>
 <file>completion/amsfonts.cwl</file>
