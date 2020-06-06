@@ -73,6 +73,7 @@ public:
 	//svn
 	//bool autoCheckinAfterSave;
 	int autoCheckinAfterSaveLevel;
+    int useVCS; // 0 SVN   1 GIT
 	bool svnUndo;
 	bool svnKeywordSubstitution;
 	int svnSearchPathDepth;

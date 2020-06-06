@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>14</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -741,7 +741,7 @@
             <x>0</x>
             <y>0</y>
             <width>821</width>
-            <height>598</height>
+            <height>603</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -3150,7 +3150,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>571</width>
+            <width>746</width>
             <height>790</height>
            </rect>
           </property>
@@ -3676,8 +3676,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>397</width>
-            <height>297</height>
+            <width>760</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3938,8 +3938,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>531</height>
+            <width>760</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4379,6 +4379,20 @@ Note: Changing this setting will only affect documents that are opened afterward
         <number>0</number>
        </property>
        <item>
+        <widget class="QComboBox" name="comboBoxUseVCS">
+         <item>
+          <property name="text">
+           <string>Use SVN</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Use GIT</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
         <widget class="QComboBox" name="comboBoxAutoCheckinLevel">
          <property name="toolTip">
           <string>Select how txs checks in saved files</string>
@@ -4403,7 +4417,7 @@ Note: Changing this setting will only affect documents that are opened afterward
        <item>
         <widget class="QCheckBox" name="cbSVNUndo">
          <property name="text">
-          <string>Use SVN revisions to undo before last saved version</string>
+          <string>Use SVN/GIT revisions to undo before last saved version</string>
          </property>
         </widget>
        </item>

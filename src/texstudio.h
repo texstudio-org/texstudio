@@ -46,6 +46,7 @@
 #include "kpathseaParser.h"
 #include "diffoperations.h"
 #include "svn.h"
+#include "git.h"
 
 #include <QProgressDialog>
 
@@ -190,6 +191,7 @@ private:
 
 	SpellerManager spellerManager;
 	SVN svn;
+    GIT git;
 	SafeThread grammarCheckThread;
 	GrammarCheck *grammarCheck;
 	Bookmarks *bookmarks;

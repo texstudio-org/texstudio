@@ -408,8 +408,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	*/
 
-	connect(&svn, SIGNAL(statusMessage(QString)), this, SLOT(setStatusMessageProcess(QString)));
-	connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&git, &GIT::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&git, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
 
     connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
 
@@ -840,7 +842,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "copyfilename", tr("Copy filename to &clipboard"), SLOT(fileUtilCopyFileName()));
 	newManagedAction(submenu, "copymasterfilename", tr("Copy master filename to clipboard"), SLOT(fileUtilCopyMasterFileName()));
 
-	QMenu *svnSubmenu = newManagedMenu(menu, "svn", tr("S&VN..."));
+    QMenu *svnSubmenu = newManagedMenu(menu, "svn", tr("S&VN/GIT..."));
 	newManagedAction(svnSubmenu, "checkin", tr("Check &in..."), SLOT(fileCheckin()));
 	newManagedAction(svnSubmenu, "svnupdate", tr("SVN &update..."), SLOT(fileUpdate()));
 	newManagedAction(svnSubmenu, "svnupdatecwd", tr("SVN update &work directory"), SLOT(fileUpdateCWD()));
@@ -8627,8 +8629,10 @@ void Texstudio::fileCheckin(QString filename)
 	UniversalInputDialog dialog;
 	QString text;
 	dialog.addTextEdit(&text, tr("commit comment:"));
-	bool wholeDirectory;
-	dialog.addVariable(&wholeDirectory, tr("check in whole directory ?"));
+    bool wholeDirectory=false;
+    if(configManager.useVCS==0){ // SVN only
+        dialog.addVariable(&wholeDirectory, tr("check in whole directory ?"));
+    }
 	if (dialog.exec() == QDialog::Accepted) {
 		fileSave(true);
 		if (wholeDirectory) {
@@ -8638,7 +8642,11 @@ void Texstudio::fileCheckin(QString filename)
 		if (svnadd(fn)) {
 			checkin(fn, text, configManager.svnKeywordSubstitution);
 		} else {
-			svn.createRepository(fn);
+            if(configManager.useVCS==0){
+                svn.createRepository(fn);
+            }else{
+                git.createRepository(fn);
+            }
 			svnadd(fn);
 			checkin(fn, text, configManager.svnKeywordSubstitution);
 		}
@@ -8681,11 +8689,19 @@ void Texstudio::fileCheckinPdf(QString filename)
 	QString basename = fi.baseName();
 	QString path = fi.path();
 	QString fn = path + "/" + basename + ".pdf";
-	SVN::Status status = svn.status(fn);
-	if (status == SVN::CheckedIn) return;
-	if (status == SVN::Unmanaged)
-		svnadd(fn);
-	fileCheckin(fn);
+    if(configManager.useVCS==0){
+        SVN::Status status = svn.status(fn);
+        if (status == SVN::CheckedIn) return;
+        if (status == SVN::Unmanaged)
+            svnadd(fn);
+        fileCheckin(fn);
+    }else{
+        GIT::Status status = git.status(fn);
+        if (status == GIT::CheckedIn) return;
+        if (status == GIT::Unmanaged)
+            svnadd(fn);
+        fileCheckin(fn);
+    }
 }
 /*!
  * \brief svn update file
@@ -8711,7 +8727,12 @@ void Texstudio::fileUpdateCWD(QString filename)
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if (fn.isEmpty()) return;
 	fn = QFileInfo(fn).path();
-	QString output = svn.runSvn("update", "--non-interactive " + SVN::quote(fn));
+    QString output;
+    if(configManager.useVCS==0){
+        output = svn.runSvn("update", "--non-interactive " + SVN::quote(fn));
+    }else{
+        output = git.runGit("pull", SVN::quote(fn));
+    }
 	outputView->insertMessageLine(output);
 }
 
@@ -8729,7 +8750,11 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
 			} else {
 				//create simple repository
-				svn.createRepository(filename);
+                if(configManager.useVCS==0){
+                    svn.createRepository(filename);
+                }else{
+                    git.createRepository(filename);
+                }
 				svnadd(filename);
 				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
 			}
@@ -8744,7 +8769,11 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 void Texstudio::checkin(QString fn, QString text, bool blocking)
 {
 	Q_UNUSED(blocking)
-	svn.commit(fn, text);
+    if(configManager.useVCS==0){
+        svn.commit(fn, text);
+    }else{
+        git.commit(fn, text);
+    }
 	LatexEditorView *edView = getEditorViewFromFileName(fn);
 	if (edView)
 		edView->editor->setProperty("undoRevision", 0);
@@ -8753,23 +8782,38 @@ void Texstudio::checkin(QString fn, QString text, bool blocking)
 bool Texstudio::svnadd(QString fn, int stage)
 {
 	QString path = QFileInfo(fn).absolutePath();
-	if (!QFile::exists(path + "/.svn")) {
-		if (stage < configManager.svnSearchPathDepth) {
-			if (stage > 0) {
-				QDir dr(path);
-				dr.cdUp();
-				path = dr.absolutePath();
-			}
-			if (svnadd(path, stage + 1)) {
-				checkin(path);
-			} else
-				return false;
-		} else {
-			return false;
-		}
-	}
-	svn.runSvn("add", SVN::quote(fn));
-	return true;
+    if(configManager.useVCS==0){
+        if (!QFile::exists(path + "/.svn")) {
+            if (stage < configManager.svnSearchPathDepth) {
+                if (stage > 0) {
+                    QDir dr(path);
+                    dr.cdUp();
+                    path = dr.absolutePath();
+                }
+                if (svnadd(path, stage + 1)) {
+                    checkin(path);
+                } else
+                    return false;
+            } else {
+                return false;
+            }
+        }
+        svn.runSvn("add", SVN::quote(fn));
+        return true;
+    }else{
+        GIT::Status st=git.status(fn);
+        if(st==GIT::NoRepository){
+            return false;
+        }
+        if(st==GIT::Unmanaged){
+            git.runGit("add", GIT::quote(fn));
+            return true;
+        }
+        if(st==GIT::Modified){
+            return true;
+        }
+        return false;
+    }
 }
 
 void Texstudio::svnUndo(bool redo)
@@ -8900,7 +8944,12 @@ void Texstudio::showOldRevisions()
 	}
 	updateCaption();
 
-	QStringList log = svn.log(currentEditor()->fileName());
+    QStringList log;
+    if(configManager.useVCS==0){
+        log = svn.log(currentEditor()->fileName());
+    }else{
+        log = git.log(currentEditor()->fileName());
+    }
 	if (log.size() < 1) return;
 
 	svndlg = new QDialog(this);

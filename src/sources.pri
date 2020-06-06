@@ -29,6 +29,7 @@ HEADERS += \
     $$PWD/fileselector.h \
     $$PWD/findindirs.h \
     $$PWD/flowlayout.h \
+    $$PWD/git.h \
     $$PWD/grammarcheck.h \
     $$PWD/grammarcheck_config.h \
     $$PWD/help.h \
@@ -136,6 +137,7 @@ SOURCES += \
     $$PWD/fileselector.cpp \
     $$PWD/findindirs.cpp \
     $$PWD/flowlayout.cpp \
+    $$PWD/git.cpp \
     $$PWD/grammarcheck.cpp \
     $$PWD/help.cpp \
     $$PWD/icondelegate.cpp \
