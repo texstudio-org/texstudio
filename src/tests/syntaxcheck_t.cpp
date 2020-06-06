@@ -250,7 +250,7 @@ void SyntaxCheckTest::checkkeyval(){
 
     edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
 
-    text="\\usepackage{siunitx}\n"+text;
+    text="\\usepackage{siunitx,color}\n"+text;
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
