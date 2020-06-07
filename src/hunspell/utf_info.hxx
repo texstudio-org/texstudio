@@ -35,9 +35,15 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#include "csutil.hxx"
+// Unicode character encoding information
+struct unicode_info {
+  unsigned short c;
+  unsigned short cupper;
+  unsigned short clower;
+};
+
 /* fields: Unicode letter, toupper, tolower */
-static struct unicode_info utf_lst[] = {
+static const struct unicode_info utf_lst[] = {
     {0x0041, 0x0041, 0x0061}, {0x0042, 0x0042, 0x0062},
     {0x0043, 0x0043, 0x0063}, {0x0044, 0x0044, 0x0064},
     {0x0045, 0x0045, 0x0065}, {0x0046, 0x0046, 0x0066},
