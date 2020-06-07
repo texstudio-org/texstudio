@@ -14,6 +14,7 @@
 \appendixname#*
 \arabic{counter}#*
 \author{names}
+%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>
 \begin{abstract}
 \begin{array}{cols}#m
 \begin{array}[pos]{cols}#m
