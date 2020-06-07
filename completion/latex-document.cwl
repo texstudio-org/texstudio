@@ -16,7 +16,6 @@
 \author{names}
 %<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>
 \begin{abstract}
-\begin{alltt}
 \begin{array}{cols}#m
 \begin{array}[pos]{cols}#m
 \begin{bmatrix}#m\array
@@ -34,7 +33,9 @@
 \begin{figure*}
 \begin{figure*}[placement]
 \begin{filecontents}
+\begin{filecontents}[options%keyvals]
 \begin{filecontents*}
+\begin{filecontents*}[options%keyvals]
 \begin{flushleft}
 \begin{flushright}
 \begin{footnotesize}
@@ -72,18 +73,13 @@
 \begin{tabular*}{width}{cols}#\tabular
 \begin{thebibliography}{widestlabel}
 \begin{theindex}
-\begin{theorem}
-\begin{theorem}[optional]
 \begin{tiny}
 \begin{titlepage}
 \begin{trivlist}
 \begin{verbatim}#V
 \begin{verbatim*}#V
-\begin{Vmatrix}#m\array
-\begin{vmatrix}#m\array
 \begin{verse}
 \end{abstract}
-\end{alltt}
 \end{array}
 \end{bmatrix}
 \end{Bmatrix}
@@ -126,15 +122,12 @@
 \end{tabular*}
 \end{thebibliography}
 \end{theindex}
-\end{theorem}
 \end{tiny}
 \end{titlepage}
 \end{trivlist}
 \end{verbatim}
 \end{verbatim*}
 \end{verse}
-\end{Vmatrix}
-\end{vmatrix}
 \ensuremath{formula}
 \bezier{n}(x1,y1)(x2,y2)(x3,y3)#*/picture
 \bfseries
@@ -180,7 +173,6 @@
 \emph{text}
 \enlargethispage*{size}
 \enlargethispage{size}
-\family
 \fbox{text}
 \figurename
 \flq
@@ -273,7 +265,6 @@
 \markright{righthead}#*
 \mathbf{text}#m
 \mathcal{text}#m
-\mathds{text}#m
 \mathellipsis#m
 \mathgroup#m
 \mathit{text}#m
@@ -510,6 +501,7 @@
 \renewenvironment*{envname}[args][default]{begdef}{enddef}#N
 \renewenvironment*{envname}[args]{begdef}{enddef}#N
 \renewenvironment*{envname}{begdef}{enddef}#N
+# combinations
 \left#mK
 \left(#m
 \left\lbrace#mM
@@ -568,3 +560,13 @@
 #repl:\`e è
 #repl:\`o ò
 #repl:\`u ù
+
+# keyvals
+#keyvals:\begin{filecontents},\begin{filecontents*}
+force
+overwrite
+nosearch
+#endkeyvals
+#keyvals:\begin{filecontents}
+noheader
+#endkeyvals

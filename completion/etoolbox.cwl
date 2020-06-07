@@ -1,7 +1,9 @@
 # etoolbox package
+# Martin Sievers 18 May 2018
 # muzimuzhi/29 Aug 2019 for etoolbox v2.5e
 
-#include:etex
+# etex package is only loaded for texlive 2014 or older
+# #include:etex
 
 ## user commands - definitions
 \newrobustcmd{cmd}{def}#d
@@ -112,6 +114,7 @@
 \protected@csxpreto{csname}{code}#*
 
 ## author commands - patching
+\patchcmd{command}{search}{replace}{success}{failure}
 \patchcmd[prefix]{command}{search}{replace}{success}{failure}
 \ifpatchable{command}{search}{true}{false}
 \ifpatchable*{command}{true}{false}
