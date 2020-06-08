@@ -277,7 +277,7 @@ private slots:
 	void svnPatch(QEditor *ed, QString diff);
 	void showOldRevisions();
 	void changeToRevision(QString rev, QString old_rev = "");
-	void svnDialogClosed();
+    void svnDialogClosed(int);
 	void fileDiff();
 	void fileDiff3();
 	bool checkSVNConflicted(bool substituteContents = true);
