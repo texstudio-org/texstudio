@@ -8959,7 +8959,7 @@ void Texstudio::showOldRevisions()
 	cmbLog = new QComboBox(svndlg);
 	cmbLog->insertItems(0, log);
 	lay->addWidget(cmbLog);
-	connect(svndlg, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(svnDialogClosed()));
+    connect(svndlg, SIGNAL(finished(int)), this, SLOT(svnDialogClosed()));
 	connect(cmbLog, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeToRevision(QString)));
 	connect(currentEditor(), SIGNAL(textEdited(QKeyEvent *)), svndlg, SLOT(close()));
 	currentEditor()->setProperty("Revision", log.first());
@@ -8978,6 +8978,10 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 	QString filename = currentEditor()->fileName();
 	// get diff
 	QRegExp rx("^[r](\\d+) \\|");
+    if(configManager.useVCS==1){
+        //GIT
+        rx.setPattern("^([a-f0-9]+) ");
+    }
 	QString old_revision;
 	if (old_rev.isEmpty()) {
 		disconnect(currentEditor(), SIGNAL(contentModified(bool)), svndlg, SLOT(close()));
@@ -8994,7 +8998,14 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 	if (rx.indexIn(new_revision) > -1) {
 		new_revision = rx.cap(1);
 	} else return;
-	QString cmd = SVN::makeCmd("diff", "-r " + old_revision + ":" + new_revision + " " + SVN::quote(filename));
+    QString cmd;
+    if(configManager.useVCS==0){
+        //SVN
+        cmd = SVN::makeCmd("diff", "-r " + old_revision + ":" + new_revision + " " + SVN::quote(filename));
+    }else{
+        //GIT
+        cmd = GIT::makeCmd("diff", old_revision + " " + new_revision + " " + SVN::quote(filename));
+    }
 	QString buffer;
 	runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
 	// patch
