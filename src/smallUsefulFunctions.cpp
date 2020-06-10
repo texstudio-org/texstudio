@@ -991,7 +991,9 @@ void showTooltipLimited(QPoint pos, QString text, int relatedWidgetWidth)
 					}
 				}
 				int averageWidth = lLabel.fontMetrics().averageCharWidth();
-				maxLength = qMin(maxLength, availableWidth / averageWidth);
+                if(averageWidth>1){
+                    maxLength = qMin(maxLength, availableWidth / averageWidth);
+                }
 				while (textWidthInPixels > availableWidth && maxLength > 10) {
 					maxLength -= 2;
 					for (int i = 0; i < lines.count(); i++) {
