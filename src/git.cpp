@@ -64,6 +64,10 @@ QStringList GIT::log(QString filename) const
 {
     QString output = runGit("log --pretty=\"%h %s@@@\"", quote(filename));
     QStringList revisions = output.split("@@@", QString::SkipEmptyParts);
+    // circumvent strange behaviour of git adding \n  now and then ...
+    for(QString& elem:revisions){
+        elem=elem.simplified();
+    }
     return revisions;
 }
 /*!

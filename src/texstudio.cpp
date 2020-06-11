@@ -5687,9 +5687,11 @@ void Texstudio::addMagicProgram()
 }
 
 ///////////////TOOLS////////////////////
-bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer)
+bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll)
 {
-	fileSaveAll(buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+    if(saveAll){
+        fileSaveAll(buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+    }
 	if (documents.getTemporaryCompileFileName() == "") {
 		if (buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_NAMED && currentEditorView()) {
 			QString tmpName = buildManager.createTemporaryFileName();
@@ -5721,9 +5723,12 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
 	commandline.replace('@', "@@");
 	commandline.replace('%', "%%");
 	commandline.replace('?', "??");
-	return runCommand(commandline, buffer, codecForBuffer);
+    return runCommand(commandline, buffer, codecForBuffer,false);
 }
-
+/*!
+ * \brief set StatusMessage for a process
+ * \param message
+ */
 void Texstudio::setStatusMessageProcess(const QString &message)
 {
 	statusLabelProcess->setText(message);
@@ -8660,6 +8665,9 @@ void Texstudio::fileCheckin(QString filename)
  */
 void Texstudio::fileLockPdf(QString filename)
 {
+    if(configManager.useVCS>0){ // GIT
+        return;
+    }
 	if (!currentEditorView()) return;
 	QString finame = filename;
 	if (finame.isEmpty())
@@ -8839,6 +8847,9 @@ void Texstudio::svnUndo(bool redo)
 
 void Texstudio::svnPatch(QEditor *ed, QString diff)
 {
+    if(diff.isEmpty()){
+        return;
+    }
 	QStringList lines;
 	//for(int i=0;i<diff.length();i++)
 	//   qDebug()<<diff[i];
@@ -8859,7 +8870,10 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 			lines[i] = lines[i].mid(p);
 		}
 	}
-	for (int i = 0; i < 3; i++) lines.removeFirst();
+    if(lines.size()<4){
+        return;
+    }
+    for (int i = 0; i < 3 ; i++) lines.removeFirst();
 	if (!lines.first().contains("@@")) {
 		lines.removeFirst();
 	}
@@ -8941,7 +8955,19 @@ void Texstudio::showOldRevisions()
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
 		checkin(currentEditor()->fileName(), "txs auto checkin", true);
-	}
+    }else{
+        bool modifiedOnDisk=false;
+        if(configManager.useVCS==0){
+            SVN::Status st = svn.status(currentEditor()->fileName());
+            modifiedOnDisk=(st==SVN::Modified);
+        }else{
+            GIT::Status st = git.status(currentEditor()->fileName());
+            modifiedOnDisk=(st==GIT::Modified);
+        }
+        if(modifiedOnDisk){
+            checkin(currentEditor()->fileName(), "txs auto checkin", true);
+        }
+    }
 	updateCaption();
 
     QStringList log;
@@ -8984,7 +9010,6 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
     }
 	QString old_revision;
 	if (old_rev.isEmpty()) {
-		disconnect(currentEditor(), SIGNAL(contentModified(bool)), svndlg, SLOT(close()));
 		QVariant zw = currentEditor()->property("Revision");
 		Q_ASSERT(zw.isValid());
 		old_revision = zw.toString();
@@ -9007,10 +9032,10 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
         cmd = GIT::makeCmd("diff", old_revision + " " + new_revision + " " + SVN::quote(filename));
     }
 	QString buffer;
-	runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
+    runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
 	// patch
 	svnPatch(currentEditor(), buffer);
-	currentEditor()->setProperty("Revision", rev);
+    currentEditor()->setProperty("Revision", rev);
 }
 
 bool Texstudio::generateMirror(bool setCur)
