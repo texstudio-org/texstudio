@@ -8992,13 +8992,23 @@ void Texstudio::showOldRevisions()
 	svndlg->setAttribute(Qt::WA_DeleteOnClose, true);
 	svndlg->show();
 }
-
+/*!
+ * \brief reset when closing svn old revision dialog
+ * the dialog itself is deleted
+ * if the revision is the most recent, test is declared unmodified
+ */
 void Texstudio::svnDialogClosed(int)
 {
 	if (cmbLog->currentIndex() == 0) currentEditor()->document()->setClean();
 	svndlg = nullptr;
 }
-
+/*!
+ * \brief change editor content from one revision to another
+ * diff is generated via git/svn
+ * and that diff is applied to the current editor
+ * \param rev
+ * \param old_rev
+ */
 void Texstudio::changeToRevision(QString rev, QString old_rev)
 {
 	QString filename = currentEditor()->fileName();
