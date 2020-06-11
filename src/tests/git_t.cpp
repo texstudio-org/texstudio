@@ -20,7 +20,7 @@ void GitTest::basicFunctionality()
     if(!dir.isValid())
         return;
     // create test file
-    path = dir.filePath("contents.txt");
+    path = dir.path()+"/content.txt";
     QFile data(path);
     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream out(&data);
