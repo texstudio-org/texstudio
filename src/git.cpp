@@ -90,7 +90,7 @@ QString GIT::runGit(QString action, QString args) const
 {
 	QString output;
     emit statusMessage(QString(" GIT %1 ").arg(action));
-	emit runCommand(makeCmd(action, args), &output);
+    emit runCommand(makeCmd(action, args), &output);
 	return output;
 }
 

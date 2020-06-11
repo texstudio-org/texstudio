@@ -1536,7 +1536,7 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 	}
 }
 
-bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QTextCodec *codecForBuffer )
+bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QTextCodec *codecForBuffer , QString *errorMsg)
 {
 	if (waitingForProcess()) return false;
 
@@ -1566,7 +1566,7 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	bool asyncPdf = !(expansion.commands.last().flags & RCF_WAITFORFINISHED) && (expansion.commands.last().flags & RCF_CHANGE_PDF);
 
 	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
-	bool result = runCommandInternal(expansion, mainFile, buffer, codecForBuffer);
+    bool result = runCommandInternal(expansion, mainFile, buffer, codecForBuffer,errorMsg);
 	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
 	return result;
 }
@@ -1598,7 +1598,7 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 	return true;
 }
 
-bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer, QTextCodec *codecForBuffer)
+bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer, QTextCodec *codecForBuffer, QString *errorMsg)
 {
 	const QList<CommandToRun> &commands = expandedCommands.commands;
 
@@ -1623,6 +1623,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 
 
 		p->setStdoutBuffer(buffer);
+        p->setStderrBuffer(errorMsg);
 		p->setStdoutCodec(codecForBuffer);
 
 		emit beginRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
@@ -2305,7 +2306,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 #endif
 
 ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const QString &fileToCompile):
-    QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(nullptr), stdoutCodec(nullptr)
+    QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(nullptr),stderrBuffer(nullptr), stdoutCodec(nullptr)
 {
 
 	QString stdoutRedirection, stderrRedirection;
@@ -2415,6 +2416,11 @@ QString *ProcessX::getStdoutBuffer()
 void ProcessX::setStdoutBuffer(QString *buffer)
 {
 	stdoutBuffer = buffer;
+}
+
+void ProcessX::setStderrBuffer(QString *buffer)
+{
+    stderrBuffer = buffer;
 }
 
 void ProcessX::setStdoutCodec(QTextCodec *codec)
@@ -2530,5 +2536,6 @@ void ProcessX::readFromStandardError(bool force)
 {
 	if (!stderrEnabled && !force) return;
 	QString t = readAllStandardErrorStr().simplified();
+    if (stderrBuffer) stderrBuffer->append(t);
 	emit standardErrorRead(t);
 }

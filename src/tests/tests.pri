@@ -59,3 +59,9 @@
 		src/tests/usermacro_t.h \
 		src/tests/structureview_t.h
 }
+
+HEADERS += \
+    $$PWD/git_t.h
+
+SOURCES += \
+    $$PWD/git_t.cpp
