@@ -1798,6 +1798,10 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 		//after setting the class to article dvipng runs in 77ms
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0, "\\documentclass{article}\n\\usepackage{beamerarticle}");
+        // remove \mode... as well (#1125)
+        QRegExp beamerMode("\\\\mode.*\n");
+        beamerMode.setMinimal(true);
+        preamble_mod.remove(beamerMode);
 	}
 
 	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
