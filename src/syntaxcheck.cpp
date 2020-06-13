@@ -616,6 +616,28 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				activeEnv.top().excessCol = 0;
 				continue;
 			}
+            // command highlighing
+            // this looks slow
+            // TODO: optimize !
+            for(const Environment &env:activeEnv){
+                if(!env.dlh)
+                    continue; //ignore "normal" env
+                if(env.name=="document")
+                    continue; //ignore "document" env
+                for(const QString &key: mFormatList.keys()){
+                    if(key.at(0)=='#'){
+                        QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
+                        altEnvs<<env.name;
+                        if(altEnvs.contains(key.mid(1))){
+                            Error elem;
+                            elem.range = QPair<int, int>(tk.start, tk.length);
+                            elem.type = ERR_highlight;
+                            elem.format=mFormatList.value(key);
+                            newRanges.append(elem);
+                        }
+                    }
+                }
+            }
 			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
 				continue;
 			if (!checkCommand(word, activeEnv)) {
@@ -758,7 +780,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 		}
 
 
-		if (tk.type == Token::command) {
+        if (tk.type == Token::command) {
 			QString word = line.mid(tk.start, tk.length);
 			if(!tk.optionalCommandName.isEmpty()){
 				word=tk.optionalCommandName;
