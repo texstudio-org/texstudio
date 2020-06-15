@@ -8941,7 +8941,13 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 		}
 	}
 }
-
+/*!
+ * \brief show old revisions from svn/git repository
+ * List all stored revision names/numbers in a dialog which allows to switch back to old revisions of the text
+ * The text is directly updated when an old revision is selected via a combobox.
+ * The user can either select and copy content to bring to the most recent version or he can edit the old revision thereby making it the current one.
+ * To enable changing to the most recent version again, text is automatically saved *and* checked in.
+ */
 void Texstudio::showOldRevisions()
 {
 	// check if a dialog is already open
