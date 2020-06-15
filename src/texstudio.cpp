@@ -8878,9 +8878,10 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 		lines.removeFirst();
 	}
 
-	QRegExp rx("@@ -(\\d+),(\\d+)\\s*\\+(\\d+),(\\d+)");
+    QRegExp rx("@@ -(\\d+),?(\\d*)\\s*\\+(\\d+),(\\d+)");
 	int cur_line;
 	bool atDocEnd = false;
+    int realTextLines=ed->document()->lines();
 	QDocumentCursor c = ed->cursor();
 	foreach (const QString &elem, lines) {
 		QChar ch = ' ';
@@ -8900,15 +8901,18 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 				if (c.line().text() != elem.mid(1))
 					qDebug() << "del:" << c.line().text() << elem;
 				c.eraseLine();
+                --realTextLines;
                 //if (atDocEnd) c.deletePreviousChar();
 			} else {
 				if (ch == '+') {
                     //atDocEnd = (c.lineNumber() == ed->document()->lineCount() - 1);
                     if (atDocEnd) {
 						c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::MoveAnchor);
-						c.insertLine();
+                        if(realTextLines>0)
+                            c.insertLine();
                     }
 					c.insertText(elem.mid(1));
+                    ++realTextLines;
 					// if line contains \r, no further line break needed
 					if (!atDocEnd) {
 						c.insertText("\n");
