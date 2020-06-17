@@ -46,6 +46,7 @@
 #include "kpathseaParser.h"
 #include "diffoperations.h"
 #include "svn.h"
+#include "git.h"
 
 #include <QProgressDialog>
 
@@ -190,6 +191,7 @@ private:
 
 	SpellerManager spellerManager;
 	SVN svn;
+    GIT git;
 	SafeThread grammarCheckThread;
 	GrammarCheck *grammarCheck;
 	Bookmarks *bookmarks;
@@ -275,7 +277,7 @@ private slots:
 	void svnPatch(QEditor *ed, QString diff);
 	void showOldRevisions();
 	void changeToRevision(QString rev, QString old_rev = "");
-	void svnDialogClosed();
+    void svnDialogClosed(int);
 	void fileDiff();
 	void fileDiff3();
 	bool checkSVNConflicted(bool substituteContents = true);
@@ -437,7 +439,7 @@ private slots:
 	void endRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async);
 
 
-    bool runCommand(const QString &commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
+    bool runCommand(const QString &commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr, bool saveAll=true);
     bool runCommandNoSpecialChars(QString commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
 	void setStatusMessageProcess(const QString &message);
 protected slots:

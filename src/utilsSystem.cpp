@@ -358,10 +358,10 @@ bool systemUsesDarkMode(const QPalette &pal)
 
 bool isFileRealWritable(const QString &filename)
 {
-#ifdef Q_OS_WIN32
-	//thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
-	return QFileInfo(filename).isWritable();
-#else
+    if(QFileInfo(filename).exists()){
+        return QFileInfo(filename).isWritable();
+    }
+
 	QFile fi(filename);
 	bool result = false;
 	if (fi.exists()) result = fi.open(QIODevice::ReadWrite);
@@ -370,7 +370,6 @@ bool isFileRealWritable(const QString &filename)
 		fi.remove();
 	}
 	return result;
-#endif
 }
 /*!
  * \brief checks if file exists and is writeable

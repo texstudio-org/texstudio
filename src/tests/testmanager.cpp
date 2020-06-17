@@ -27,6 +27,7 @@
 #include "help_t.h"
 #include "usermacro_t.h"
 #include "latexoutputfilter_t.h"
+#include "git_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+.?");
@@ -98,7 +99,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new UtilsUITest(level==TL_ALL)
 		<< new VersionTest(level==TL_ALL)
 		<< new HelpTest()
-		<< new UserMacroTest();
+        << new UserMacroTest()
+        << new GitTest(buildManager);
 	bool allPassed=true;
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";

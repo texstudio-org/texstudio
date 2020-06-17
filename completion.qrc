@@ -8,6 +8,7 @@
 <file>completion/algorithm.cwl</file>
 <file>completion/algorithmicx.cwl</file>
 <file>completion/algpseudocode.cwl</file>
+<file>completion/alltt.cwl</file>
 <file>completion/allrunes.cwl</file>
 <file>completion/amsbsy.cwl</file>
 <file>completion/amsfonts.cwl</file>
@@ -63,6 +64,7 @@
 <file>completion/datatool.cwl</file>
 <file>completion/diagxy.cwl</file>
 <file>completion/doi.cwl</file>
+<file>completion/dsfont.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/enumerate.cwl</file>
 <file>completion/enumitem.cwl</file>

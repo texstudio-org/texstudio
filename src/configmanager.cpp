@@ -653,8 +653,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Log Paths", &BuildManager::additionalLogPaths, "", &pseudoDialog->lineEditPathLog);
 	registerOption("Tools/PDF Paths", &BuildManager::additionalPdfPaths, "", &pseudoDialog->lineEditPathPDF);
 
-	//SVN
+    //SVN/GIT
 	//registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
+    registerOption("Tools/UseVCS", &useVCS, 0, &pseudoDialog->comboBoxUseVCS);
 	registerOption("Tools/Auto Checkin after Save level", &autoCheckinAfterSaveLevel, 0, &pseudoDialog->comboBoxAutoCheckinLevel);
 	registerOption("Tools/SVN Undo", &svnUndo, false, &pseudoDialog->cbSVNUndo);
 	registerOption("Tools/SVN KeywordSubstitution", &svnKeywordSubstitution, false, &pseudoDialog->cbKeywordSubstitution);

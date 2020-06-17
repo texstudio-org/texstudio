@@ -10,7 +10,7 @@ isEmpty(USE_SYSTEM_HUNSPELL){
 		$$PWD/atypes.hxx \
 		$$PWD/baseaffix.hxx \
 		$$PWD/csutil.hxx \
-		$$PWD/dictmgr.hxx \
+		#$$PWD/dictmgr.hxx \
 		$$PWD/hashmgr.hxx \
 		$$PWD/htypes.hxx \
 		$$PWD/hunspell.hxx \
@@ -23,18 +23,18 @@ isEmpty(USE_SYSTEM_HUNSPELL){
 		$$PWD/filemgr.hxx \
 		$$PWD/hunzip.hxx \
 		$$PWD/w_char.hxx \
+		$$PWD/utf_info.hxx \
 		$$PWD/replist.hxx
 	SOURCES += \
 		$$PWD/affentry.cxx \
 		$$PWD/affixmgr.cxx \
 		$$PWD/csutil.cxx \
-		$$PWD/dictmgr.cxx \
+		#$$PWD/dictmgr.cxx \
 		$$PWD/hashmgr.cxx \
 		$$PWD/hunspell.cxx \
 		$$PWD/phonet.cxx \
 		$$PWD/replist.cxx \
 		$$PWD/suggestmgr.cxx \
-		$$PWD/utf_info.cxx \
 		$$PWD/filemgr.cxx \
 		$$PWD/hunzip.cxx
 } else {

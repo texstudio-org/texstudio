@@ -133,6 +133,9 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
 					case '[':
 						sortWord.append('"');
 						break;
+                    case ' ':
+                        sortWord.append('$');
+                        break;
 					case '*':
 						sortWord.append('#');
 						break;

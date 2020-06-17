@@ -519,7 +519,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Language Checking"), getRealIcon("config_editor"));
 	createIcon(tr("Preview"), getRealIcon("config_preview"));
 	createIcon(tr("Internal PDF Viewer"), getRealIcon("config_preview"));
-	createIcon(tr("SVN"), getRealIcon("config_svn"));
+    createIcon(tr("SVN/GIT"), getRealIcon("config_svn"));
 	createIcon(
 		tr("Internal Terminal"),
 		getRealIcon("config_terminal"),

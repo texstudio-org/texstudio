@@ -5612,7 +5612,7 @@ void QDocumentCursorHandle::eraseLine()
 			0,
 			m_doc
 		);
-	} else if (startLine > 0) {
+    } else if (startLine > 0) {
 		// special handling to remove a selection including the last line
 		// QDocumentEraseCommand leaves an empty line if the end (==endLine+1)
 		// is beyond the last line. As a workaround, we change the selection
@@ -5625,7 +5625,16 @@ void QDocumentCursorHandle::eraseLine()
 			m_doc
 		);
 	} else {
-		return;
+        // very special case
+        // document contains only one line which is to be deleted
+        // as a document should always contain 1 line, content is deleted
+        command = new QDocumentEraseCommand(
+            startLine,
+            0,
+            startLine,
+            m_doc->line(startLine).length(),
+            m_doc
+        );
 	}
 	command->setTargetCursor(this);
 	execute(command);

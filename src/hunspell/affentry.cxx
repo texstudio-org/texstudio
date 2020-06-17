@@ -399,28 +399,28 @@ std::string PfxEntry::check_morph(const char* word,
               ((!needflag) || TESTAFF(he->astr, needflag, he->alen) ||
                (contclass && TESTAFF(contclass, needflag, contclasslen)))) {
             if (morphcode) {
-              result.append(" ");
+              result.push_back(MSEP_FLD);
               result.append(morphcode);
             } else
               result.append(getKey());
             if (!HENTRY_FIND(he, MORPH_STEM)) {
-              result.append(" ");
+              result.push_back(MSEP_FLD);
               result.append(MORPH_STEM);
               result.append(HENTRY_WORD(he));
             }
             // store the pointer of the hash entry
             if (HENTRY_DATA(he)) {
-              result.append(" ");
+              result.push_back(MSEP_FLD);
               result.append(HENTRY_DATA2(he));
             } else {
               // return with debug information
               char* flag = pmyMgr->encode_flag(getFlag());
-              result.append(" ");
+              result.push_back(MSEP_FLD);
               result.append(MORPH_FLAG);
               result.append(flag);
               free(flag);
             }
-            result.append("\n");
+            result.push_back(MSEP_REC);
           }
           he = he->next_homonym;
         } while (he);
@@ -804,7 +804,7 @@ std::string SfxEntry::check_twosfx_morph(const char* word,
           if (!st.empty()) {
             if (ppfx->getMorph()) {
               result.append(ppfx->getMorph());
-              result.append(" ");
+              result.push_back(MSEP_FLD);
             }
             result.append(st);
             mychomp(result);
@@ -958,7 +958,7 @@ with bit numconds-1 representing the last char at the end of the string.
 
 Note: since entries in the conds[] are 8 bits, only 8 conditions 
 (read that only 8 character positions) can be examined at one
-end of a word (the beginning for prefixes and the end for suffixes).
+end of a word (the beginning for prefixes and the end for suffixes.
 
 So to make this clearer, lets encode the conds array values for the 
 first two affentries for the suffix D described earlier.

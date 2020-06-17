@@ -1439,7 +1439,7 @@ void LatexCompleter::adjustWidget()
 		if (temp > newWordMax) newWordMax = temp;
 	}
 	maxWordLen = newWordMax;
-	int width = qMax(200, maxWordLen);
+    int width = qMax(400, maxWordLen);
 	QScrollBar *bar = list->verticalScrollBar();
 	if (bar && bar->isVisible()) {
 		width += bar->width() * 4;

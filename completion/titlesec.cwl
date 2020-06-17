@@ -1,6 +1,7 @@
 # Package titlesec
 # http://ctan.org/tex-archive/macros/latex/contrib/titlesec
 # By astroscion: 2012-02-15
+# muzimuzhi, 5 Jun 2020
 \titlelabel{label-format}
 \titleformat*{command%plain}{format}
 \titleformat{command%plain}[shape]{format}{label}{sep%l}{before-code}[after-code]
@@ -16,14 +17,6 @@
 \filinner
 \filouter
 \wordsep
-\thechapter
-\thesubchapter
-\thesection
-\thesubsection
-\thesubsubsection
-\theparagraph
-\thesubparagraph
-\thesubsubparagraph
 \titleline[align]{horizontal material}
 \titlerule[height]
 \titlerule*[width]{text}
@@ -36,9 +29,9 @@
 \subparagraphbreak
 \subsubparagraphbreak
 \chaptertolists
-\titleclass{name}{class}
-\titleclass{name}{class}[super-level-cmd]
-\titleclass{name}[start-level-num]{class}
+\titleclass{name}{class%plain}
+\titleclass{name}{class%plain}[super-level-cmd]
+\titleclass{name}[start-level-num]{class%plain}
 \dottecontents{section}[left%l]{above-code}{label-width%l}{leader-width%l}
 \titlecontents{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[below-code]
 \contentsmargin{right%l}

@@ -408,8 +408,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	*/
 
-	connect(&svn, SIGNAL(statusMessage(QString)), this, SLOT(setStatusMessageProcess(QString)));
-	connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&svn, &SVN::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&git, &GIT::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&git, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
 
     connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
 
@@ -840,7 +842,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "copyfilename", tr("Copy filename to &clipboard"), SLOT(fileUtilCopyFileName()));
 	newManagedAction(submenu, "copymasterfilename", tr("Copy master filename to clipboard"), SLOT(fileUtilCopyMasterFileName()));
 
-	QMenu *svnSubmenu = newManagedMenu(menu, "svn", tr("S&VN..."));
+    QMenu *svnSubmenu = newManagedMenu(menu, "svn", tr("S&VN/GIT..."));
 	newManagedAction(svnSubmenu, "checkin", tr("Check &in..."), SLOT(fileCheckin()));
 	newManagedAction(svnSubmenu, "svnupdate", tr("SVN &update..."), SLOT(fileUpdate()));
 	newManagedAction(svnSubmenu, "svnupdatecwd", tr("SVN update &work directory"), SLOT(fileUpdateCWD()));
@@ -5685,9 +5687,11 @@ void Texstudio::addMagicProgram()
 }
 
 ///////////////TOOLS////////////////////
-bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer)
+bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCodec *codecForBuffer, bool saveAll)
 {
-	fileSaveAll(buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+    if(saveAll){
+        fileSaveAll(buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ALWAYS, buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_CURRENT_OR_NAMED);
+    }
 	if (documents.getTemporaryCompileFileName() == "") {
 		if (buildManager.saveFilesBeforeCompiling == BuildManager::SFBC_ONLY_NAMED && currentEditorView()) {
 			QString tmpName = buildManager.createTemporaryFileName();
@@ -5706,8 +5710,8 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 	}
 
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
-
-	return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer, codecForBuffer);
+    // unified error/stdout into *buffer
+    return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer, codecForBuffer,buffer);
 }
 
 /*!
@@ -5719,9 +5723,12 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
 	commandline.replace('@', "@@");
 	commandline.replace('%', "%%");
 	commandline.replace('?', "??");
-	return runCommand(commandline, buffer, codecForBuffer);
+    return runCommand(commandline, buffer, codecForBuffer,false);
 }
-
+/*!
+ * \brief set StatusMessage for a process
+ * \param message
+ */
 void Texstudio::setStatusMessageProcess(const QString &message)
 {
 	statusLabelProcess->setText(message);
@@ -8627,8 +8634,10 @@ void Texstudio::fileCheckin(QString filename)
 	UniversalInputDialog dialog;
 	QString text;
 	dialog.addTextEdit(&text, tr("commit comment:"));
-	bool wholeDirectory;
-	dialog.addVariable(&wholeDirectory, tr("check in whole directory ?"));
+    bool wholeDirectory=false;
+    if(configManager.useVCS==0){ // SVN only
+        dialog.addVariable(&wholeDirectory, tr("check in whole directory ?"));
+    }
 	if (dialog.exec() == QDialog::Accepted) {
 		fileSave(true);
 		if (wholeDirectory) {
@@ -8638,7 +8647,11 @@ void Texstudio::fileCheckin(QString filename)
 		if (svnadd(fn)) {
 			checkin(fn, text, configManager.svnKeywordSubstitution);
 		} else {
-			svn.createRepository(fn);
+            if(configManager.useVCS==0){
+                svn.createRepository(fn);
+            }else{
+                git.createRepository(fn);
+            }
 			svnadd(fn);
 			checkin(fn, text, configManager.svnKeywordSubstitution);
 		}
@@ -8652,6 +8665,9 @@ void Texstudio::fileCheckin(QString filename)
  */
 void Texstudio::fileLockPdf(QString filename)
 {
+    if(configManager.useVCS>0){ // GIT
+        return;
+    }
 	if (!currentEditorView()) return;
 	QString finame = filename;
 	if (finame.isEmpty())
@@ -8681,11 +8697,19 @@ void Texstudio::fileCheckinPdf(QString filename)
 	QString basename = fi.baseName();
 	QString path = fi.path();
 	QString fn = path + "/" + basename + ".pdf";
-	SVN::Status status = svn.status(fn);
-	if (status == SVN::CheckedIn) return;
-	if (status == SVN::Unmanaged)
-		svnadd(fn);
-	fileCheckin(fn);
+    if(configManager.useVCS==0){
+        SVN::Status status = svn.status(fn);
+        if (status == SVN::CheckedIn) return;
+        if (status == SVN::Unmanaged)
+            svnadd(fn);
+        fileCheckin(fn);
+    }else{
+        GIT::Status status = git.status(fn);
+        if (status == GIT::CheckedIn) return;
+        if (status == GIT::Unmanaged)
+            svnadd(fn);
+        fileCheckin(fn);
+    }
 }
 /*!
  * \brief svn update file
@@ -8711,7 +8735,12 @@ void Texstudio::fileUpdateCWD(QString filename)
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if (fn.isEmpty()) return;
 	fn = QFileInfo(fn).path();
-	QString output = svn.runSvn("update", "--non-interactive " + SVN::quote(fn));
+    QString output;
+    if(configManager.useVCS==0){
+        output = svn.runSvn("update", "--non-interactive " + SVN::quote(fn));
+    }else{
+        output = git.runGit("pull", SVN::quote(fn));
+    }
 	outputView->insertMessageLine(output);
 }
 
@@ -8729,7 +8758,11 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
 			} else {
 				//create simple repository
-				svn.createRepository(filename);
+                if(configManager.useVCS==0){
+                    svn.createRepository(filename);
+                }else{
+                    git.createRepository(filename);
+                }
 				svnadd(filename);
 				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
 			}
@@ -8744,7 +8777,11 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 void Texstudio::checkin(QString fn, QString text, bool blocking)
 {
 	Q_UNUSED(blocking)
-	svn.commit(fn, text);
+    if(configManager.useVCS==0){
+        svn.commit(fn, text);
+    }else{
+        git.commit(fn, text);
+    }
 	LatexEditorView *edView = getEditorViewFromFileName(fn);
 	if (edView)
 		edView->editor->setProperty("undoRevision", 0);
@@ -8753,23 +8790,38 @@ void Texstudio::checkin(QString fn, QString text, bool blocking)
 bool Texstudio::svnadd(QString fn, int stage)
 {
 	QString path = QFileInfo(fn).absolutePath();
-	if (!QFile::exists(path + "/.svn")) {
-		if (stage < configManager.svnSearchPathDepth) {
-			if (stage > 0) {
-				QDir dr(path);
-				dr.cdUp();
-				path = dr.absolutePath();
-			}
-			if (svnadd(path, stage + 1)) {
-				checkin(path);
-			} else
-				return false;
-		} else {
-			return false;
-		}
-	}
-	svn.runSvn("add", SVN::quote(fn));
-	return true;
+    if(configManager.useVCS==0){
+        if (!QFile::exists(path + "/.svn")) {
+            if (stage < configManager.svnSearchPathDepth) {
+                if (stage > 0) {
+                    QDir dr(path);
+                    dr.cdUp();
+                    path = dr.absolutePath();
+                }
+                if (svnadd(path, stage + 1)) {
+                    checkin(path);
+                } else
+                    return false;
+            } else {
+                return false;
+            }
+        }
+        svn.runSvn("add", SVN::quote(fn));
+        return true;
+    }else{
+        GIT::Status st=git.status(fn);
+        if(st==GIT::NoRepository){
+            return false;
+        }
+        if(st==GIT::Unmanaged){
+            git.runGit("add", GIT::quote(fn));
+            return true;
+        }
+        if(st==GIT::Modified){
+            return true;
+        }
+        return false;
+    }
 }
 
 void Texstudio::svnUndo(bool redo)
@@ -8795,6 +8847,9 @@ void Texstudio::svnUndo(bool redo)
 
 void Texstudio::svnPatch(QEditor *ed, QString diff)
 {
+    if(diff.isEmpty()){
+        return;
+    }
 	QStringList lines;
 	//for(int i=0;i<diff.length();i++)
 	//   qDebug()<<diff[i];
@@ -8815,14 +8870,18 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 			lines[i] = lines[i].mid(p);
 		}
 	}
-	for (int i = 0; i < 3; i++) lines.removeFirst();
+    if(lines.size()<4){
+        return;
+    }
+    for (int i = 0; i < 3 ; i++) lines.removeFirst();
 	if (!lines.first().contains("@@")) {
 		lines.removeFirst();
 	}
 
-	QRegExp rx("@@ -(\\d+),(\\d+)\\s*\\+(\\d+),(\\d+)");
+    QRegExp rx("@@ -(\\d+),?(\\d*)\\s*\\+(\\d+),(\\d+)");
 	int cur_line;
 	bool atDocEnd = false;
+    int realTextLines=ed->document()->lines();
 	QDocumentCursor c = ed->cursor();
 	foreach (const QString &elem, lines) {
 		QChar ch = ' ';
@@ -8842,15 +8901,18 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 				if (c.line().text() != elem.mid(1))
 					qDebug() << "del:" << c.line().text() << elem;
 				c.eraseLine();
+                --realTextLines;
                 //if (atDocEnd) c.deletePreviousChar();
 			} else {
 				if (ch == '+') {
                     //atDocEnd = (c.lineNumber() == ed->document()->lineCount() - 1);
                     if (atDocEnd) {
 						c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::MoveAnchor);
-						c.insertLine();
+                        if(realTextLines>0)
+                            c.insertLine();
                     }
 					c.insertText(elem.mid(1));
+                    ++realTextLines;
 					// if line contains \r, no further line break needed
 					if (!atDocEnd) {
 						c.insertText("\n");
@@ -8879,7 +8941,13 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 		}
 	}
 }
-
+/*!
+ * \brief show old revisions from svn/git repository
+ * List all stored revision names/numbers in a dialog which allows to switch back to old revisions of the text
+ * The text is directly updated when an old revision is selected via a combobox.
+ * The user can either select and copy content to bring to the most recent version or he can edit the old revision thereby making it the current one.
+ * To enable changing to the most recent version again, text is automatically saved *and* checked in.
+ */
 void Texstudio::showOldRevisions()
 {
 	// check if a dialog is already open
@@ -8897,10 +8965,27 @@ void Texstudio::showOldRevisions()
 		//currentEditorView()->editor->setModified(false);
 		MarkCurrentFileAsRecent();
 		checkin(currentEditor()->fileName(), "txs auto checkin", true);
-	}
+    }else{
+        bool modifiedOnDisk=false;
+        if(configManager.useVCS==0){
+            SVN::Status st = svn.status(currentEditor()->fileName());
+            modifiedOnDisk=(st==SVN::Modified);
+        }else{
+            GIT::Status st = git.status(currentEditor()->fileName());
+            modifiedOnDisk=(st==GIT::Modified);
+        }
+        if(modifiedOnDisk){
+            checkin(currentEditor()->fileName(), "txs auto checkin", true);
+        }
+    }
 	updateCaption();
 
-	QStringList log = svn.log(currentEditor()->fileName());
+    QStringList log;
+    if(configManager.useVCS==0){
+        log = svn.log(currentEditor()->fileName());
+    }else{
+        log = git.log(currentEditor()->fileName());
+    }
 	if (log.size() < 1) return;
 
 	svndlg = new QDialog(this);
@@ -8910,28 +8995,41 @@ void Texstudio::showOldRevisions()
 	cmbLog = new QComboBox(svndlg);
 	cmbLog->insertItems(0, log);
 	lay->addWidget(cmbLog);
-	connect(svndlg, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(svnDialogClosed()));
+    connect(svndlg, &QDialog::finished, this, &Texstudio::svnDialogClosed);
 	connect(cmbLog, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeToRevision(QString)));
 	connect(currentEditor(), SIGNAL(textEdited(QKeyEvent *)), svndlg, SLOT(close()));
 	currentEditor()->setProperty("Revision", log.first());
 	svndlg->setAttribute(Qt::WA_DeleteOnClose, true);
 	svndlg->show();
 }
-
-void Texstudio::svnDialogClosed()
+/*!
+ * \brief reset when closing svn old revision dialog
+ * the dialog itself is deleted
+ * if the revision is the most recent, test is declared unmodified
+ */
+void Texstudio::svnDialogClosed(int)
 {
 	if (cmbLog->currentIndex() == 0) currentEditor()->document()->setClean();
 	svndlg = nullptr;
 }
-
+/*!
+ * \brief change editor content from one revision to another
+ * diff is generated via git/svn
+ * and that diff is applied to the current editor
+ * \param rev
+ * \param old_rev
+ */
 void Texstudio::changeToRevision(QString rev, QString old_rev)
 {
 	QString filename = currentEditor()->fileName();
 	// get diff
 	QRegExp rx("^[r](\\d+) \\|");
+    if(configManager.useVCS==1){
+        //GIT
+        rx.setPattern("^([a-f0-9]+) ");
+    }
 	QString old_revision;
 	if (old_rev.isEmpty()) {
-		disconnect(currentEditor(), SIGNAL(contentModified(bool)), svndlg, SLOT(close()));
 		QVariant zw = currentEditor()->property("Revision");
 		Q_ASSERT(zw.isValid());
 		old_revision = zw.toString();
@@ -8945,12 +9043,19 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 	if (rx.indexIn(new_revision) > -1) {
 		new_revision = rx.cap(1);
 	} else return;
-	QString cmd = SVN::makeCmd("diff", "-r " + old_revision + ":" + new_revision + " " + SVN::quote(filename));
+    QString cmd;
+    if(configManager.useVCS==0){
+        //SVN
+        cmd = SVN::makeCmd("diff", "-r " + old_revision + ":" + new_revision + " " + SVN::quote(filename));
+    }else{
+        //GIT
+        cmd = GIT::makeCmd("diff", old_revision + " " + new_revision + " " + SVN::quote(filename));
+    }
 	QString buffer;
-	runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
+    runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
 	// patch
 	svnPatch(currentEditor(), buffer);
-	currentEditor()->setProperty("Revision", rev);
+    currentEditor()->setProperty("Revision", rev);
 }
 
 bool Texstudio::generateMirror(bool setCur)

@@ -37,7 +37,7 @@ QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, B
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
 CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(LATEXMK, latexmk)
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
-CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(BIBTEX8, bibtex8) CMD_DEFINE(BIBER, biber) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
+CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(BIBTEX8, bibtex8) CMD_DEFINE(BIBER, biber) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin) CMD_DEFINE(GIT, git)
 CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(GLOSSARY, glossary) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
 CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
@@ -351,6 +351,8 @@ void BuildManager::initDefaultCommandNames()
 
 	registerCommand("svn",         "svn",          "SVN",         "", "Tools/SVN");
 	registerCommand("svnadmin",    "svnadmin",     "SVNADMIN",    "", "Tools/SVNADMIN");
+
+    registerCommand("git",         "git",          "GIT",         "", "Tools/GIT");
 
 	registerCommand("terminal-external", "", tr("External Terminal"), "", "", guessTerminalExternal, false);
 
@@ -1534,7 +1536,7 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 	}
 }
 
-bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QTextCodec *codecForBuffer )
+bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QTextCodec *codecForBuffer , QString *errorMsg)
 {
 	if (waitingForProcess()) return false;
 
@@ -1564,7 +1566,7 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	bool asyncPdf = !(expansion.commands.last().flags & RCF_WAITFORFINISHED) && (expansion.commands.last().flags & RCF_CHANGE_PDF);
 
 	emit beginRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
-	bool result = runCommandInternal(expansion, mainFile, buffer, codecForBuffer);
+    bool result = runCommandInternal(expansion, mainFile, buffer, codecForBuffer,errorMsg);
 	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
 	return result;
 }
@@ -1596,7 +1598,7 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 	return true;
 }
 
-bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer, QTextCodec *codecForBuffer)
+bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, const QFileInfo &mainFile, QString *buffer, QTextCodec *codecForBuffer, QString *errorMsg)
 {
 	const QList<CommandToRun> &commands = expandedCommands.commands;
 
@@ -1621,6 +1623,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 
 
 		p->setStdoutBuffer(buffer);
+        p->setStderrBuffer(errorMsg);
 		p->setStdoutCodec(codecForBuffer);
 
 		emit beginRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
@@ -1795,6 +1798,10 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 		//after setting the class to article dvipng runs in 77ms
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0, "\\documentclass{article}\n\\usepackage{beamerarticle}");
+        // remove \mode... as well (#1125)
+        QRegExp beamerMode("\\\\mode.*\n");
+        beamerMode.setMinimal(true);
+        preamble_mod.remove(beamerMode);
 	}
 
 	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
@@ -2303,7 +2310,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 #endif
 
 ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const QString &fileToCompile):
-    QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(nullptr), stdoutCodec(nullptr)
+    QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(nullptr),stderrBuffer(nullptr), stdoutCodec(nullptr)
 {
 
 	QString stdoutRedirection, stderrRedirection;
@@ -2413,6 +2420,11 @@ QString *ProcessX::getStdoutBuffer()
 void ProcessX::setStdoutBuffer(QString *buffer)
 {
 	stdoutBuffer = buffer;
+}
+
+void ProcessX::setStderrBuffer(QString *buffer)
+{
+    stderrBuffer = buffer;
 }
 
 void ProcessX::setStdoutCodec(QTextCodec *codec)
@@ -2528,5 +2540,6 @@ void ProcessX::readFromStandardError(bool force)
 {
 	if (!stderrEnabled && !force) return;
 	QString t = readAllStandardErrorStr().simplified();
+    if (stderrBuffer) stderrBuffer->append(t);
 	emit standardErrorRead(t);
 }
