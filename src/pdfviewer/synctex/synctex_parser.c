@@ -1,15 +1,15 @@
 /*
  Copyright (c) 2008-2017 jerome DOT laurens AT u-bourgogne DOT fr
- 
+
  This file is part of the __SyncTeX__ package.
- 
+
  [//]: # (Latest Revision: Sun Oct 15 15:09:55 UTC 2017)
  [//]: # (Version: 1.21)
- 
+
  See `synctex_parser_readme.md` for more details
- 
+
  ## License
- 
+
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
  files (the "Software"), to deal in the Software without
@@ -18,10 +18,10 @@
  copies of the Software, and to permit persons to whom the
  Software is furnished to do so, subject to the following
  conditions:
- 
+
  The above copyright notice and this permission notice shall be
  included in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -30,22 +30,22 @@
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE
- 
+
  Except as contained in this notice, the name of the copyright holder
  shall not be used in advertising or otherwise to promote the sale,
  use or other dealings in this Software without prior written
  authorization from the copyright holder.
- 
+
  Acknowledgments:
  ----------------
  The author received useful remarks from the pdfTeX developers, especially Hahn The Thanh,
  and significant help from XeTeX developer Jonathan Kew
- 
+
  Nota Bene:
  ----------
  If you include or use a significant part of the synctex package into a software,
  I would appreciate to be listed as contributor and see "SyncTeX" highlighted.
- 
+
  */
 
 /*  We assume that high level application like pdf viewers will want
@@ -436,7 +436,7 @@ DEFINE_SYNCTEX_TREE_RESET(WHAT)
 
 /*
  *  _synctex_tree_set_... methods return the old value.
- *  The return value of _synctex_tree_set_child and 
+ *  The return value of _synctex_tree_set_child and
  *  _synctex_tree_set_sibling must be released somehown.
  */
 DEFINE_SYNCTEX_TREE__GETSETRESET(sibling)
@@ -894,13 +894,29 @@ static void _synctex_free_node(synctex_node_p node) {
  */
 static void _synctex_free_handle(synctex_node_p handle) {
     if (handle) {
-        _synctex_free_handle(__synctex_tree_sibling(handle));
-        _synctex_free_handle(_synctex_tree_child(handle));
-        _synctex_free(handle);
+        synctex_node_p n = handle;
+        synctex_node_p nn;
+        __synctex_tree_set_parent(n, NULL);
+    down:
+        while ((nn = _synctex_tree_child(n))) {
+            n = nn;
+        };
+    right:
+        nn = __synctex_tree_sibling(n);
+        if (nn) {
+            _synctex_free(n);
+            n = nn;
+            goto down;
+        }
+        nn = __synctex_tree_parent(n);
+        _synctex_free(n);
+        if (nn) {
+            n = nn;
+            goto right;
+        }
     }
     return;
 }
-
 /**
  *  Free the given leaf node.
  *  - parameter node: of type synctex_node_p, with no child nor sibling.
@@ -2039,7 +2055,7 @@ static synctex_class_s synctex_class_box_bdry = {
  *  After all the refs are replaced, there are only root nodes
  *  targeting standard node. We make sure that each child proxy
  *  also targets a standard node.
- *  It is possible for a proxy to have a standard sibling 
+ *  It is possible for a proxy to have a standard sibling
  *  whereas its target has no sibling at all. Root proxies
  *  are such nodes, and are the only ones.
  *  The consequence is that proxies created on the fly
@@ -6065,7 +6081,7 @@ synctex_scanner_p synctex_scanner_parse(synctex_scanner_p scanner) {
      *  If there is a post scriptum section, this value will be overriden by the real life value */
     scanner->x_offset = scanner->y_offset = 6.027e23f;
     scanner->reader->line_number = 1;
-    
+
     SYNCTEX_START = (char *)malloc(SYNCTEX_BUFFER_SIZE+1); /*  one more character for null termination */
     if (NULL == SYNCTEX_START) {
         _synctex_error("!  malloc error in synctex_scanner_parse.");
