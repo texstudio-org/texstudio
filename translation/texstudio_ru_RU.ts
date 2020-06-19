@@ -750,7 +750,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/cleandialog.cpp" line="73"/>
         <source>Open Files</source>
-        <translation>Открыть файлы</translation>
+        <translation>Открытые файлы</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.cpp" line="110"/>
