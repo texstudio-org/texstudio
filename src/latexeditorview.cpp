@@ -1623,7 +1623,7 @@ void LatexEditorView::updateSettings()
 	QDocument::setShowSpaces(config->showWhitespace ? (QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs) : QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
-	QDocument::setCenterDocumentInEditor(config->centerDocumentInEditor);
+    //editor-> setCenterDocumentInEditor(config->centerDocumentInEditor);
 
 	editor->m_preEditFormat = preEditFormat;
 
@@ -1635,8 +1635,10 @@ void LatexEditorView::updateSettings()
 	QDocument::setWorkAround(QDocument::ForceQTextLayout, config->hackRenderingMode == 1);
 	QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, config->hackRenderingMode == 2);
 	LatexDocument::syntaxErrorFormat = syntaxErrorFormat;
-	if (document)
+    if (document){
 		document->updateSettings();
+        document->setCenterDocumentInEditor(config->centerDocumentInEditor);
+    }
 }
 
 void LatexEditorView::updateFormatSettings()

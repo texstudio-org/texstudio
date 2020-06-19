@@ -2020,6 +2020,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	bool bibTeXmodified = documents.bibTeXFilesModified;
 
 	doc = new LatexDocument(this);
+    doc->setCenterDocumentInEditor(configManager.editorConfig->centerDocumentInEditor);
 	doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
 	LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);

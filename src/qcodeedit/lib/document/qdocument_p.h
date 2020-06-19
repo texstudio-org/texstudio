@@ -162,6 +162,7 @@ public:
 		void setWidth(int width);
 		void setHardLineWrap(bool wrap);
 		void setLineWidthConstraint(bool wrap);
+        void setCenterDocumentInEditor(bool center);
 		void setCursorBold(bool bold);
 		
 		void emitFormatsChanged();
@@ -278,7 +279,7 @@ public:
 		static int m_defaultTabStop;
 
 		static double m_lineSpacingFactor;
-		static bool m_centerDocumentInEditor;
+        bool m_centerDocumentInEditor;
 
         static QFont *m_baseFont;  // original font associated with the document
         static QFont *m_font;      // current font, pointSize = m_baseFont.pointSize + m_fontSizeModifier

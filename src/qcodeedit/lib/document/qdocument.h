@@ -307,7 +307,7 @@ class QCE_EXPORT QDocument : public QObject
 		//static const QFontMetrics fontMetrics() const;
 		static int getLineSpacing();
 		static void setLineSpacingFactor(double scale);
-		static void setCenterDocumentInEditor(bool center);
+        void setCenterDocumentInEditor(bool center);
 
 		static LineEnding defaultLineEnding();
 		static void setDefaultLineEnding(LineEnding le);

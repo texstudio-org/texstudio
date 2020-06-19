@@ -772,7 +772,7 @@ void QEditor::setFlag(EditFlag f, bool b)
 		m_state &= ~f;
 	}
 
-	if ( f == LineWrap || f == HardLineWrap || f==LineWidthConstraint)
+    if ( f == LineWrap || f == HardLineWrap || f==LineWidthConstraint)
 	{
 		m_doc->impl()->setHardLineWrap(flag(HardLineWrap));
 		m_doc->impl()->setLineWidthConstraint(flag(LineWidthConstraint));

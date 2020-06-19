@@ -87,6 +87,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			LineWrap			= 0x00000100,
 			HardLineWrap		= 0x00000200,
 			LineWidthConstraint	= 0x00000400,
+            CenterEditor        = 0x04000000,
 
 			AllowDragAndDrop	= 0x00000800,
 
