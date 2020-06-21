@@ -212,6 +212,7 @@
 <file>completion/tikzorbital.cwl</file>
 <file>completion/tikz-timing.cwl</file>
 <file>completion/titlesec.cwl</file>
+<file>completion/titletoc.cwl</file>
 <file>completion/tocbibind.cwl</file>
 <file>completion/tocloft.cwl</file>
 <file>completion/todonotes.cwl</file>
