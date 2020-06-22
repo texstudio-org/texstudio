@@ -128,13 +128,13 @@ all
 \tcbsetforeverylayer{%<options%>}
 \tcbox[%<options%>]{%<box content%>}
 \newtcolorbox{envname}{options%keyvals}#N
-\newtcolorbox[init options%keyvals]{envname}[number][default]{options%keyvals}#*N
+\newtcolorbox[init options%keyvals]{envname}[args][default]{options%keyvals}#*N
 \renewtcolorbox{envname}{options%keyvals}
-\renewtcolorbox[init options%keyvals]{envname}[number][default]{options%keyvals}#*
-\newtcbox{\name}{options%keyvals}
-\newtcbox[init options%keyvals]{\name}[number][default]{options%keyvals}#*
-\renewtcbox{\name}{options%keyvals}
-\renewtcbox[init options%keyvals]{\name}[number][default]{options%keyvals}#*
+\renewtcolorbox[init options%keyvals]{envname}[args][default]{options%keyvals}#*
+\newtcbox{cmd}{options%keyvals}
+\newtcbox[init options%keyvals]{cmd}[args][default]{options%keyvals}#*
+\renewtcbox{cmd}{options%keyvals}
+\renewtcbox[init options%keyvals]{cmd}[args][default]{options%keyvals}#*
 \tcolorboxenvironment{envname}{options%keyvals}#N
 
 # << Subtitle >>
@@ -250,11 +250,11 @@ all
 \tcbuselistinglisting
 \tcbusetemplisting
 \newtcblisting{envname}{options%keyvals}#N
-\newtcblisting[init options%keyvals]{envname}[number][default]{options%keyvals}#*N
+\newtcblisting[init options%keyvals]{envname}[args][default]{options%keyvals}#*N
 \renewtcblisting{envname}{options%keyvals}
-\renewtcblisting[init options%keyvals]{envname}[number][default]{options%keyvals}#*
+\renewtcblisting[init options%keyvals]{envname}[args][default]{options%keyvals}#*
 \newtcbinputlisting{\name}{options%keyvals}
-\newtcbinputlisting[init options%keyvals]{\name}[number][default]{options%keyvals}#*
+\newtcbinputlisting[init options%keyvals]{\name}[args][default]{options%keyvals}#*
 
 # << Theorems >>
 \newtcbtheorem{envname}{display name}{options%keyvals}{prefix}#N
@@ -322,9 +322,9 @@ all
 \tcboxfit{box content}
 \tcboxfit[options%keyvals]{box content}
 \newtcboxfit{\name}{options%keyvals}
-\newtcboxfit[init options%keyvals]{\name}[number][default]{options%keyvals}#*
+\newtcboxfit[init options%keyvals]{\name}[args][default]{options%keyvals}#*
 \renewtcboxfit{\name}{options%keyvals}
-\renewtcboxfit[init options%keyvals]{\name}[number][default]{options%keyvals}#*
+\renewtcboxfit[init options%keyvals]{\name}[args][default]{options%keyvals}#*
 \tcbfontsize{factor}
 \tcbfitdim
 \tcbfitsteps

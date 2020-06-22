@@ -36,11 +36,7 @@
 \sayehfamily#*
 \textsayeh{text}#*
 \setlatinsansfont[Options]{font name}
-\sffamily#*
-\textsf{text}#*
 \setlatinmonofont[Options]{font name}
-\ttfamily
-\texttt{text}
 \begin{latin}
 \end{latin}
 \begin{persian}
@@ -54,7 +50,6 @@
 \persianyear
 \persianmonth
 \persianday
-\today
 \latintoday
 \twocolumnstableofcontents
 \XePersian
