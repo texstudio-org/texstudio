@@ -2186,10 +2186,10 @@ void LatexEditorView::textReplaceFromAction()
 
 void LatexEditorView::spellCheckingAlwaysIgnore()
 {
-	if (speller && editor && editor->cursor().hasSelection() && (editor->cursor().selectedText() == defaultInputBinding->lastSpellCheckedWord)) {
-		QString newToIgnore = editor->cursor().selectedText();
-		speller->addToIgnoreList(newToIgnore);
-	}
+    if (speller && editor && wordSelection.selectedText() == defaultInputBinding->lastSpellCheckedWord) {
+        QString newToIgnore = wordSelection.selectedText();
+        speller->addToIgnoreList(newToIgnore);
+    }
 }
 
 void LatexEditorView::addReplaceActions(QMenu *menu, const QStringList &replacements, bool italic)
