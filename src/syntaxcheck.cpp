@@ -467,6 +467,21 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 	// do syntax check on that line
 	int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
 
+    // special treatment for empty lines with $/$$ math environmens
+    // latex treats them as error, so do we
+    if(tl.length()==0 && activeEnv.top().name=="math"){
+        if(activeEnv.top().origName=="$" || activeEnv.top().origName=="$$"){
+            Environment env=activeEnv.pop();
+            /* how to present an error without character present ?
+            Error elem;
+            elem.type = ERR_highlight;
+            elem.format=mFormatList["math"];
+            elem.range = QPair<int, int>(0, 0);
+            newRanges.prepend(elem);
+            */
+        }
+    }
+
     // check command-words
 	for (int i = 0; i < tl.length(); i++) {
 		Token tk = tl.at(i);

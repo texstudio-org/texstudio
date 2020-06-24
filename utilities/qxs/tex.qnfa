@@ -82,14 +82,6 @@ environments in smallUsefulFunctions.cpp)
 
 	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
 	
-	<context id="mathmode$" format="numbers" transparency="true">
-		<start parenthesis="math:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</start>
-		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</stop>
-		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="magicComment" >%\$</stop><!-- can be used as a workaround for closing math at the end of the line, if highlighting misinterprets a $ sign, e.g. \path{$PATH} %$ -->
-		<stop parenthesis="math:close" parenthesisWeight="0" fold="1" format="math-delimiter" >^\n</stop>
-	</context>
-	
-
 	<context id="sexpr" format="sweave-block" transparency="false">
 		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
 			<stop parenthesis="todo:close" parenthesisWeight="12" >}</stop>
