@@ -134,7 +134,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				continue;
 			}
 
-			if (!keyvals.isEmpty()) {
+			if (!keyvals.isEmpty() && !line.startsWith("#")) {
 				// read keyval (name stored in "keyvals")
 				QStringList l_cmds=keyvals.split(',');
 				QString key;
