@@ -203,6 +203,7 @@ public:
 	void enableSyntaxCheck(bool enable)
 	{
 		syntaxChecking = enable;
+        SynChecker.enableSyntaxCheck(enable);
 	}
 
 private:

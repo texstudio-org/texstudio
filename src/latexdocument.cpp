@@ -3259,7 +3259,7 @@ void LatexDocument::reCheckSyntax(int lineStart, int lineNum)
 	Q_ASSERT((lineNum == -1) || (lineNum > 0));
 
 	// If the document does not support syntax checking just return silently
-	if (!syntaxChecking || !languageIsLatexLike()) {
+    if (!languageIsLatexLike()) {
 		return;
 	}
 
