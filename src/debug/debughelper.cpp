@@ -23,6 +23,8 @@
 #define CPU_IS_PPC
 #elif (defined(arm) || defined(__arm__))
 #define CPU_IS_ARM
+#elif (defined(__aarch64__))
+#define CPU_IS_ARM64
 #elif (defined(ia64) || defined(__ia64__))
 #define CPU_IS_IA64
 #elif (defined(mips) || defined(__mips__) || defined(mipsel) || defined(__mipsel__))
@@ -55,7 +57,7 @@ struct SimulatedCPU {
 	char *pc;  //e.g. eip, r15
 	char *frame;  //e.g. ebp, r11
 	char *stack;  //e.g. esp, r13
-#if defined(CPU_IS_ARM) || defined(CPU_IS_MIPS) || defined(CPU_IS_PPC) || defined(CPU_IS_SPARC32)
+#if defined(CPU_IS_ARM) || defined(CPU_IS_ARM64) || defined(CPU_IS_MIPS) || defined(CPU_IS_PPC) || defined(CPU_IS_SPARC32)
 	char *returnTo;  //lr/r14
 #endif
 
@@ -521,17 +523,21 @@ QString print_backtrace(const QString &message)
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[1]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[31] //not always used
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[34]
-#elif defined(CPU_IS_ARM)
-/*
+#elif defined(CPU_IS_ARM) && defined(__linux__)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_fp
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_lr
-*/
+#elif defined(CPU_IS_ARM)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R15]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R13]
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R11]
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R14]
+#elif defined(CPU_IS_ARM64) && defined(__linux__)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.pc
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.sp
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[29]
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[30]
 #elif defined(CPU_IS_IA64)
 #define PC_FROM_UCONTEXT(context) (context)->_u._mc.sc_ip
 #define STACK_FROM_UCONTEXT(context) (context)->_u._mc.sc_gr[12] //is that register 12?
@@ -1078,7 +1084,7 @@ void SimulatedCPU::set_from_real()
 	    "mov %%rbp, %0\n"
 	    "mov %%rsp, %1"
 	    : "=r"(frame), "=r"(stack));
-#elif defined(CPU_IS_ARM)
+#elif (defined(CPU_IS_ARM) || defined(CPU_IS_ARM64))
 	__asm__( //otherway around in the mov than x86?
 	    "mov %[fp], fp\n"
 	    "mov %[sp], sp\n"
@@ -1168,7 +1174,7 @@ recover:
 	sigSegvRecoverReturnAddress = 0;
 }
 
-#elif defined(CPU_IS_ARM) || defined(CPU_IS_MIPS)
+#elif defined(CPU_IS_ARM) || defined(CPU_IS_ARM64) || defined(CPU_IS_MIPS)
 //todo: does this work on mips?
 void SimulatedCPU::call(char *value)     //bl
 {
