@@ -528,16 +528,16 @@ QString print_backtrace(const QString &message)
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_fp
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_lr
-#elif defined(CPU_IS_ARM)
-#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R15]
-#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R13]
-#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R11]
-#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R14]
 #elif defined(CPU_IS_ARM64) && defined(__linux__)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[29]
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[30]
+#elif (defined(CPU_IS_ARM64) || defined(CPU_IS_ARM)) && defined (__NetBSD__)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_PC]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_SP]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_FP]
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.regs[_REG_LR]
 #elif defined(CPU_IS_IA64)
 #define PC_FROM_UCONTEXT(context) (context)->_u._mc.sc_ip
 #define STACK_FROM_UCONTEXT(context) (context)->_u._mc.sc_gr[12] //is that register 12?
