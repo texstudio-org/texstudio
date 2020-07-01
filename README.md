@@ -139,7 +139,7 @@ You do not necessarily have to be a programmer to help and make TeXstudio even b
 * [Translate](https://www.transifex.com/texstudio/texstudio/) TeXstudio into a new language or update an existing translation.
 * Design icons.
 * Help on improving our website.
-* Update or extend the [user manual](http://texstudio.sourceforge.net/manual/current/usermanual_en.html) or [the wiki](https://github.com/texstudio-org/texstudio/wiki).
+* Update or extend the [user manual](https://htmlpreview.github.io/?https://github.com/texstudio-org/texstudio/master/utilities/manual/usermanual_en.html) or [the wiki](https://github.com/texstudio-org/texstudio/wiki).
 * Write tutorials or create screencasts.
 * Package TeXstudio for your favorite distribution or platform.
 * TeXstudio is written in C++/Qt. Programmers are welcome to implement new features or fix bugs. Code development takes place on github. Pull-requests, direct patches or changed files are welcome.
