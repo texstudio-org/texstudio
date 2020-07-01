@@ -522,16 +522,12 @@ QString print_backtrace(const QString &message)
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[31] //not always used
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[34]
 #elif defined(CPU_IS_ARM)
-/*
+
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_fp
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_lr
-*/
-#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R15]
-#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R13]
-#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R11]
-#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R14]
+
 #elif defined(CPU_IS_IA64)
 #define PC_FROM_UCONTEXT(context) (context)->_u._mc.sc_ip
 #define STACK_FROM_UCONTEXT(context) (context)->_u._mc.sc_gr[12] //is that register 12?
