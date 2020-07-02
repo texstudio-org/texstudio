@@ -16,47 +16,10 @@
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="7" column="0">
-      <widget class="QCheckBox" name="checkBoxAMS">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelTheme">
        <property name="text">
-        <string>AMS Packages</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelEncoding">
-       <property name="text">
-        <string>Encoding</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="lineEditAuthor"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelSize">
-       <property name="text">
-        <string>Typeface Size</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QCheckBox" name="checkBoxBabel">
-       <property name="text">
-        <string>babel Package</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="comboBoxSize"/>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLineEdit" name="lineEditTitle"/>
-     </item>
-     <item row="8" column="0">
-      <widget class="QCheckBox" name="checkBoxGraphicx">
-       <property name="text">
-        <string>graphicx Package</string>
+        <string>Theme</string>
        </property>
       </widget>
      </item>
@@ -67,11 +30,28 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QListWidget" name="listWidgetBabel"/>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="lineEditAuthor"/>
      </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="comboBoxEncoding"/>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelEncoding">
+       <property name="text">
+        <string>Encoding</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelSize">
+       <property name="text">
+        <string>Typeface Size</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="lineEditTitle"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBoxSize"/>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="labelAuthor">
@@ -80,12 +60,18 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelTheme">
+     <item row="6" column="1">
+      <widget class="QListWidget" name="listWidgetBabel"/>
+     </item>
+     <item row="6" column="0">
+      <widget class="QCheckBox" name="checkBoxBabel">
        <property name="text">
-        <string>Theme</string>
+        <string>babel Package</string>
        </property>
       </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="comboBoxEncoding"/>
      </item>
      <item row="0" column="1">
       <widget class="QComboBox" name="comboBoxTheme"/>
@@ -147,14 +133,10 @@
   <tabstop>lineEditTitle</tabstop>
   <tabstop>listWidgetBabel</tabstop>
   <tabstop>checkBoxBabel</tabstop>
-  <tabstop>checkBoxAMS</tabstop>
-  <tabstop>checkBoxGraphicx</tabstop>
   <tabstop>buttonBox</tabstop>
   <tabstop>scrollArea</tabstop>
  </tabstops>
- <resources>
-  <include location="texmaker.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>

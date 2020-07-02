@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation>A TeXstudio használja az adwaita-qt (GPL2) stílust</translation>
+        <translation>A TeXstudio felhasználja az adwaita-qt (GPL2) stílust. </translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="39"/>
@@ -621,7 +621,7 @@ támogatott.</translation>
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation>A(z) %1 parancs atomi kellene legyen. Viszont jelenleg egy %2 parancsból álló láncként van megadva. Ez nincs a specifikációban, és meglepő mellékhatásai lehetnek.
+        <translation>%1 parancsnak eleminek kell lennie. Viszont jelenleg egy %2 parancsból álló láncként van megadva. Ez nincs a specifikációban és váratlan mellékhatásai lehetnek.
 
 Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beállításai -&gt; Fordítás” lapon definiálja a parancslistákat, ne a „Beállítások -&gt; TeXstudio beállításai -&gt; Parancsok” alatt.</translation>
     </message>
@@ -674,7 +674,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
         <location filename="../src/buildmanager.cpp" line="1577"/>
         <location filename="../src/buildmanager.cpp" line="1590"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX változatot,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a „Parancsok” beállítási fülön.&lt;br&gt; A (La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztés nélkül dolgozni.</translation>
+        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX disztribúciót,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a „Parancsok” beállítási fülön.&lt;br&gt; A (La)TeX szerkesztők, mint amilyen a TeXstudio is, nem működnek ilyen (La)TeX parancsokat értelmező disztribúciók nélkül.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1586"/>
@@ -1183,17 +1183,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation>Beépített nézőke bezárása.</translation>
+        <translation>Beépített nézőke bezárása</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation>Kilépés teljes képernyős módból.</translation>
+        <translation>Kilépés teljes képernyős módból</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1160"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation>Gyorsbillentyűk megjelenítése a buboréksúgókban</translation>
+        <translation>Billentyűkombinációk megjelenítése a buboréksúgókban</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1183"/>
@@ -2735,7 +2735,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
-        <translation>A(z) &lt;%1&gt; hivatkozás már az alábbi parancshot van rendelve:</translation>
+        <translation>&lt;%1&gt; billentyűkombináció már a következő parancshoz van rendelve:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
@@ -2806,7 +2806,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="492"/>
         <source>Asymptote</source>
-        <translation>Aszimptota</translation>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="493"/>
@@ -2831,7 +2831,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="504"/>
         <source>Additional Shortcut</source>
-        <translation>További billentyűkombinációk</translation>
+        <translation>További billentyűkombináció</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="508"/>
@@ -3489,72 +3489,72 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>env equation</source>
-        <translation>env equation</translation>
+        <translation>equation</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>env equation* (amsmath)</source>
-        <translation>env equation* (amsmath)</translation>
+        <translation>equation* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>env align (amsmath)</source>
-        <translation>env align (amsmath)</translation>
+        <translation>align (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env align* (amsmath)</source>
-        <translation>env align* (amsmath)</translation>
+        <translation>align* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env alignat (amsmath)</source>
-        <translation>env alignat (amsmath)</translation>
+        <translation>alignat (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>env alignat* (amsmath)</source>
-        <translation>env alignat* (amsmath)</translation>
+        <translation>alignat* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env flalign (amsmath)</source>
-        <translation>env flalign (amsmath)</translation>
+        <translation>flalign (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env flalign* (amsmath)</source>
-        <translation>env flalign* (amsmath)</translation>
+        <translation>flalign* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env gather (amsmath)</source>
-        <translation>env gather (amsmath)</translation>
+        <translation>gather (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env gather* (amsmath)</source>
-        <translation>env gather* (amsmath)</translation>
+        <translation>gather* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>env multline (amsmath)</source>
-        <translation>env multline (amsmath)</translation>
+        <translation>multline (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>env multline* (amsmath)</source>
-        <translation>env multline* (amsmath)</translation>
+        <translation>multline* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env cases (amsmath)</source>
-        <translation>env cases (amsmath)</translation>
+        <translation>cases (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>env split (amsmath)</source>
-        <translation>env split (amsmath)</translation>
+        <translation>split (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
@@ -4310,10 +4310,10 @@ Note: The first 4 placement preferences are just suggestions. If the resulting p
 [b]: A lap aljára
 [p]: Egy ábráknak fenntartott lapra
 [h]: Erre a helyre a szövegben
-[H]: Szigorúan erre a helyre a szövegben
+[H]: Szigorúan erre a helyre a szövegben (float csomag)
 [!]: A LaTeX által „jónak” tekintett pozíció belső meghatározási paramétereinek felülbírálása.
 
-Megjegyzés: Ezek a megjelenítési paraméterek csak javaslatok. Ha a megjelenítés túl csúnyán nézne ki, a LaTeX figyelmen kívül hagyhatja.</translation>
+Megjegyzés: Az első 4 megjelenítési paraméter csak javaslat. Ha a megjelenítés túl csúnyán nézne ki, a LaTeX figyelmen kívül hagyhatja.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="263"/>
@@ -5434,7 +5434,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2552"/>
         <source>Focus Editor</source>
-        <translation>Fókusz szerkesztő</translation>
+        <translation>Fókuszban a szerkesztő</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2554"/>
@@ -6119,7 +6119,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="614"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
         <source>Unc&amp;omment</source>
-        <translation>Megjegyzés &amp;visszavonása</translation>
+        <translation>Megjegyzés &amp;eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="626"/>
@@ -6206,12 +6206,12 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation>A(z) %1
-fájlt módosította egy másik alkalmazás.
-Nyomja meg a „Mentést” a lemezen lévő felülírásához
-Nyomja meg a „Visszaállítást” a fájl újratöltéséhez.
-Nyomja meg a „Különbséget” az összehasonlításhoz.
-Nyomja meg a „Mellőzést” a figyelmeztetés elvétéséhez.
+        <translation>%1
+módosult egy másik alkalmazással.
+Nyomja meg a „Mentést” a lemezen lévő felülírásához!
+Nyomja meg a „Visszaállítást” a fájl újratöltéséhez!
+Nyomja meg a „Különbséget” az összehasonlításhoz!
+Nyomja meg a „Mellőzést” a figyelmeztetés elvétéséhez!
 </translation>
     </message>
     <message>
@@ -6333,8 +6333,8 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation>A(z) %1
-a TeXstudión kívül változott meg. Újratölti a lemezről?
+        <translation>%1
+a TeXstudio-n kívül változott meg. Újratölti a lemezről?
 
 Megjegyzések:
 - Az újratöltés felülírja a szerkesztő tartalmát a lemezen lévő fájllal. Ez nem vonható vissza.
@@ -7067,12 +7067,12 @@ Megjegyzések:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>asymptote:keyword</source>
-        <translation>aszimptota:kulcsszó</translation>
+        <translation>asymptote:kulcsszó</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>asymptote:type</source>
-        <translation>aszimptota:típus</translation>
+        <translation>asymptote:típus</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="226"/>
@@ -7082,7 +7082,7 @@ Megjegyzések:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>asymptote:string</source>
-        <translation>aszimptota:szöveg</translation>
+        <translation>asymptote:szöveg</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="228"/>
@@ -9025,7 +9025,7 @@ fájlt nem lehet eltávolítani.</translation>
         <location filename="../src/additionaltranslations.cpp" line="334"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation>Aszimptota</translation>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="335"/>
@@ -9144,7 +9144,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="413"/>
         <source>Asymptote files</source>
-        <translation>Aszimptota fájlok</translation>
+        <translation>Asymptote fájlok</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="414"/>
@@ -9726,7 +9726,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="972"/>
         <source>Toggle &amp;Comment</source>
-        <translation>&amp;Megjegyzés bekapcsolása</translation>
+        <translation>&amp;Megjegyzés kapcsoló</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="973"/>
@@ -10322,12 +10322,12 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1189"/>
         <source>Focus Editor</source>
-        <translation>Fókusz szerkesztő</translation>
+        <translation>Fókuszban a szerkesztő</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1190"/>
         <source>Focus Viewer</source>
-        <translation>Fókusz megjelenítő</translation>
+        <translation>Fókuszban a megjelenítő</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1193"/>
@@ -10964,7 +10964,7 @@ Beleegyezik a cserébe?
     <message>
         <location filename="../src/texstudio.cpp" line="6041"/>
         <source>Could not start %1.</source>
-        <translation>A(z) %1 nem indítható el.</translation>
+        <translation>%1 nem indítható el.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6069"/>
@@ -11124,9 +11124,10 @@ Do you want to create it?</source>
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation>A(z) %1 ütközik a tárolóval.
+        <translation>%1 ütközik a tárolóval.
 Kattintson az „OK” gombra a különbségek megjelenítéséhez, a subversion által előállított forráskód helyett.
-Egyébként nyomja meg a „Mégse” gombot.</translation>
+Egyébként nyomja meg a „Mégse” gombot.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10076"/>

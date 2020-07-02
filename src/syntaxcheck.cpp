@@ -20,7 +20,7 @@
 * \param parent
 */
 SyntaxCheck::SyntaxCheck(QObject *parent) :
-    SafeThread(parent), syntaxErrorFormat(-1), ltxCommands(nullptr), newLtxCommandsAvailable(false), speller(nullptr), newSpeller(nullptr)
+    SafeThread(parent), mSyntaxChecking(true), syntaxErrorFormat(-1), ltxCommands(nullptr), newLtxCommandsAvailable(false), speller(nullptr), newSpeller(nullptr)
 {
 	mLinesLock.lock();
 	stopped = false;
@@ -130,6 +130,10 @@ void SyntaxCheck::run()
 		newLine.dlh->lockForWrite();
 		if (newLine.ticket == newLine.dlh->getCurrentTicket()) { // discard results if text has been changed meanwhile
             foreach (const Error &elem, newRanges){
+                if(!mSyntaxChecking && (elem.type!=ERR_spelling) && (elem.type!=ERR_highlight) ){
+                    // skip all syntax errors
+                    continue;
+                }
                 int fmt= elem.type == ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat;
                 fmt= elem.type == ERR_highlight ? elem.format : fmt;
                 newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, fmt));
@@ -248,6 +252,15 @@ void SyntaxCheck::setSpeller(SpellerUtility *su)
     newLtxCommandsAvailable = true;
     newSpeller=su;
     mLtxCommandLock.unlock();
+}
+/*!
+ * \brief enable showing of Syntax errors
+ * Since the syntax checker is also used for asynchronous syntax highligting/spell checking, it will not be disabled any more. Only syntax error will not be shown any more.
+ * \param enable
+ */
+void SyntaxCheck::enableSyntaxCheck(const bool enable){
+    if (stopped) return;
+    mSyntaxChecking=enable;
 }
 /*!
  * \brief set character/text replacementList for spell checking
@@ -466,6 +479,21 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 {
 	// do syntax check on that line
 	int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
+
+    // special treatment for empty lines with $/$$ math environmens
+    // latex treats them as error, so do we
+    if(tl.length()==0 && !activeEnv.isEmpty() && activeEnv.top().name=="math"){
+        if(activeEnv.top().origName=="$" || activeEnv.top().origName=="$$"){
+            Environment env=activeEnv.pop();
+            /* how to present an error without character present ?
+            Error elem;
+            elem.type = ERR_highlight;
+            elem.format=mFormatList["math"];
+            elem.range = QPair<int, int>(0, 0);
+            newRanges.prepend(elem);
+            */
+        }
+    }
 
     // check command-words
 	for (int i = 0; i < tl.length(); i++) {

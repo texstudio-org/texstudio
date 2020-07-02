@@ -1317,7 +1317,7 @@ void QDocument::setLineSpacingFactor(double scale)
 
 void QDocument::setCenterDocumentInEditor(bool center)
 {
-	QDocumentPrivate::m_centerDocumentInEditor = center;
+     m_impl->setCenterDocumentInEditor(center);
 }
 
 /*!
@@ -6541,7 +6541,6 @@ QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 bool QDocumentPrivate::m_fixedPitch;
 QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=QDocument::WorkAroundMode();
 double QDocumentPrivate::m_lineSpacingFactor = 1.0;
-bool QDocumentPrivate::m_centerDocumentInEditor = false;
 int QDocumentPrivate::m_staticCachesLogicalDpiY = -1;// resolution for which the caches are valid (depends on OS gui scaling)
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
@@ -6568,6 +6567,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	m_width(0),
 	m_height(0),
 	m_tabStop(m_defaultTabStop),
+    m_centerDocumentInEditor(false),
 	m_language(nullptr),
 	m_maxMarksPerLine(0),
 	_nix(0),
@@ -7287,10 +7287,21 @@ QDocumentLineHandle* QDocumentPrivate::lineForPosition(int& position) const
 
 	return nullptr;
 }
-
+/*!
+ * \brief set HardLineWrap mode
+ * \param wrap
+ */
 void QDocumentPrivate::setHardLineWrap(bool wrap)
 {
 	m_hardLineWrap=wrap;
+}
+/*!
+ * \brief set center document mode
+ * Only effective if text width is constraint to be smaller then view width
+ * \param center
+ */
+void QDocumentPrivate::setCenterDocumentInEditor(bool center){
+    m_centerDocumentInEditor=center;
 }
 void QDocumentPrivate::setLineWidthConstraint(bool wrap)
 {

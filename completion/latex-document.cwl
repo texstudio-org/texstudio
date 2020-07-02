@@ -14,6 +14,7 @@
 \appendixname#*
 \arabic{counter}#*
 \author{names}
+# the following line generates the general "\begin{%<environment%>}"
 %<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>
 \begin{abstract}
 \begin{array}{cols}#m

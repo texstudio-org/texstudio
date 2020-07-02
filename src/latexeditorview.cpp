@@ -1623,7 +1623,7 @@ void LatexEditorView::updateSettings()
 	QDocument::setShowSpaces(config->showWhitespace ? (QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs) : QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
-	QDocument::setCenterDocumentInEditor(config->centerDocumentInEditor);
+    //editor-> setCenterDocumentInEditor(config->centerDocumentInEditor);
 
 	editor->m_preEditFormat = preEditFormat;
 
@@ -1635,8 +1635,10 @@ void LatexEditorView::updateSettings()
 	QDocument::setWorkAround(QDocument::ForceQTextLayout, config->hackRenderingMode == 1);
 	QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, config->hackRenderingMode == 2);
 	LatexDocument::syntaxErrorFormat = syntaxErrorFormat;
-	if (document)
+    if (document){
 		document->updateSettings();
+        document->setCenterDocumentInEditor(config->centerDocumentInEditor);
+    }
 }
 
 void LatexEditorView::updateFormatSettings()
@@ -1962,6 +1964,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
             // blank irrelevant content, i.e. commands, non-text, comments, verbatim
             QDocumentLineHandle *dlh = line.handle();
             TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            if(tl.isEmpty()){
+                // special treatment of in verbatim env, as no tokens are generated
+                temp.text.fill(' ',temp.text.length());
+            }
             foreach(Token tk,tl){
                 if(tk.type==Token::word && (tk.subtype==Token::none||tk.subtype==Token::text))
                     continue;
@@ -2184,10 +2190,10 @@ void LatexEditorView::textReplaceFromAction()
 
 void LatexEditorView::spellCheckingAlwaysIgnore()
 {
-	if (speller && editor && editor->cursor().hasSelection() && (editor->cursor().selectedText() == defaultInputBinding->lastSpellCheckedWord)) {
-		QString newToIgnore = editor->cursor().selectedText();
-		speller->addToIgnoreList(newToIgnore);
-	}
+    if (speller && editor && wordSelection.selectedText() == defaultInputBinding->lastSpellCheckedWord) {
+        QString newToIgnore = wordSelection.selectedText();
+        speller->addToIgnoreList(newToIgnore);
+    }
 }
 
 void LatexEditorView::addReplaceActions(QMenu *menu, const QStringList &replacements, bool italic)

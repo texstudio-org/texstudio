@@ -191,11 +191,6 @@ QString QuickBeamerDialog::getNewDocumentText()
 		tag += QString("\\usepackage{lmodern}\n");
 	}
 
-	if (ui.checkBoxAMS->isChecked())
-		tag += QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
-	if (ui.checkBoxGraphicx->isChecked())
-		tag += QString("\\usepackage{graphicx}\n");
-
     tag += "\\usetheme{" + ui.comboBoxTheme->currentText() + "}\n";
 
     tag += QString("\\begin{document}\n");

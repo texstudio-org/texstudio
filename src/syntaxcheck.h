@@ -113,6 +113,7 @@ public:
     void setSpeller(SpellerUtility *su);
     void setReplacementList(QMap<QString, QString> replacementList);
     void setFormats(QMap<QString, int> formatList);
+    void enableSyntaxCheck(const bool enable);
 
 	void markUnclosedEnv(Environment env);
 
@@ -129,6 +130,7 @@ private:
 	QMutex mLinesLock;
 	QAtomicInt mLinesEnqueuedCounter; //!< Total number of lines enqueued from beginning. Never decremented.
 	bool stopped;
+    bool mSyntaxChecking; //! show/hide syntax errors
     int syntaxErrorFormat;
 	LatexParser *ltxCommands;
 
