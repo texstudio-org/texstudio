@@ -1964,6 +1964,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
             // blank irrelevant content, i.e. commands, non-text, comments, verbatim
             QDocumentLineHandle *dlh = line.handle();
             TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            if(tl.isEmpty()){
+                // special treatment of in verbatim env, as no tokens are generated
+                temp.text.fill(' ',temp.text.length());
+            }
             foreach(Token tk,tl){
                 if(tk.type==Token::word && (tk.subtype==Token::none||tk.subtype==Token::text))
                     continue;
