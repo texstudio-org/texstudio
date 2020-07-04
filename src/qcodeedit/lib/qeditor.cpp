@@ -3170,7 +3170,7 @@ void QEditor::timerEvent(QTimerEvent *e)
 	} else if ( id == m_click.timerId() ) {
 		m_click.stop();
 	} else if ( id == m_autoScroll.timerId() ) {
-		const QPoint cPos = mapFromGlobal(QCursor::pos());
+		const QPoint cPos = viewport()->mapFromGlobal(QCursor::pos());
 		const QPoint mousePos = mapToContents(cPos);
 
 		QDocumentCursor newCursor = cursorForPosition(mousePos);
