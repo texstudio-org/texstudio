@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="hu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -928,7 +926,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Meghatározza, hogy milyen frissítési értesítéseket fog kapni:
 – Stabil kiadások: válassza ezt, ha a stabilitás a legfontosabb.
@@ -1131,20 +1129,19 @@ A változókat $MYVAR-ként kell megadni. Kis-nagybetű érzékeny.
         <location filename="../src/configdialog.ui" line="1080"/>
         <location filename="../src/configdialog.cpp" line="511"/>
         <source>Shortcuts</source>
-        <translation>Billentyűkombinációk</translation>
+        <translation>Billentyűparancsok</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
-        <translation>Billentyűkombináció megváltoztatásához kattintson a &quot;Jelenlegi billentyűkombináció&quot;-ra vagy &quot;További billentyűkombinációk&quot;-ra. Ezután új billentyűkombinációt választhat az alábbi módok egyikével:
-(1) kiválaszthatja a legödülő listából
-(2) beütheti a billentyűkombinációt 
-(3) begépelheti a billentyűkombináció szövegét
-</translation>
+        <translation>A billentyűparancs megváltoztatásához kattintson duplán a „Jelenlegi billentyűparancs”-ra vagy a „További billentyűparancs”-ra. Ezután új billentyűparancsot választhat az alábbi módok egyikével:
+(1) kiválaszthatja a legördülő listából
+(2) beütheti a billentyűparancsot 
+(3) begépelheti a billentyűparancs szövegét</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1104"/>
@@ -1195,7 +1192,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1160"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation>Billentyűkombinációk megjelenítése a buboréksúgókban</translation>
+        <translation>Billentyűparancsok megjelenítése a buboréksúgókban</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1183"/>
@@ -1614,7 +1611,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2161"/>
         <source>Spellchecking via context menu:</source>
-        <translation>Helyesírásellenőrzés a párbeszéd menün keresztül:</translation>
+        <translation>Helyesírás-ellenőrzés a párbeszéd menün keresztül:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2168"/>
@@ -1891,7 +1888,7 @@ meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az u
     <message>
         <location filename="../src/configdialog.ui" line="2572"/>
         <source>Separate Line (No Indent)</source>
-        <translation>Elválasztó vonal (beljebbkezdés nélkül)</translation>
+        <translation>Elválasztó vonal (behúzás nélkül)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2577"/>
@@ -2303,7 +2300,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="../src/configdialog.ui" line="3425"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation>Vesszővel elválasztott LanguageTool szabályok, melyek nem leszenek hibaként kiemelve.</translation>
+        <translation>Vesszővel elválasztott LanguageTool szabályok, melyek nem lesznek hibaként kiemelve.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3449"/>
@@ -2357,7 +2354,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
         <location filename="../src/configdialog.ui" line="3564"/>
         <location filename="../src/configdialog.ui" line="3612"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation>A LanguageTool indításakor átadott argumentumok. Ennek a beállításnak csak akkor van hatása, ha a LanguageTool a TeXstudióból kerül indítésra (tehát egy már futó kiszolgáló esetén nem).</translation>
+        <translation>A LanguageTool indításakor átadott argumentumok. Ennek a beállításnak csak akkor van hatása, ha a LanguageTool a TeXstudióból kerül indításra (tehát egy már futó kiszolgáló esetén nem).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3567"/>
@@ -2622,8 +2619,8 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
         <location filename="../src/configdialog.ui" line="4212"/>
         <location filename="../src/configdialog.ui" line="4267"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>A poppler PDF-könyvtár által használt renderelési háttérrendszer:
 A „Splash” az alapértelmezett, és a megfelelő a legtöbb helyzetben.
@@ -2673,12 +2670,12 @@ Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentum
     <message>
         <location filename="../src/configdialog.ui" line="4385"/>
         <source>Use SVN</source>
-        <translation type="unfinished"></translation>
+        <translation>Használjon SVN-t</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4390"/>
         <source>Use GIT</source>
-        <translation type="unfinished"></translation>
+        <translation>Használjon GIT-et</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4398"/>
@@ -2688,26 +2685,22 @@ Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentum
     <message>
         <location filename="../src/configdialog.ui" line="4402"/>
         <source>No automatic check-in after save</source>
-        <translation>Nincs automatikus becsekkolás mentés után</translation>
+        <translation>Nincs automatikus bejelentkezés mentés után</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4407"/>
         <source>Check-in after File/Save only</source>
-        <translation>Becsekkolás csak Fájl/Mentés után</translation>
+        <translation>Bejelentkezés csak Fájl/Mentés után</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4412"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation>Becsekkolás minden mentés művelet után, tehát fordítás előtt is.</translation>
+        <translation>Bejelentkezés minden mentés művelet után, tehát fordítás előtt is.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4420"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use SVN revisions to undo before last saved version</source>
-        <translation type="vanished">Az utolsó mentés előtti verzió visszaállításához az SVN kiadásokat használja</translation>
+        <translation>Használja az SVN / GIT verziókat az utolsó mentett verzió előtti visszavonáshoz</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4427"/>
@@ -2738,7 +2731,7 @@ Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentum
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
         <source>The shortcut you entered is invalid.</source>
-        <translation>A megadott billentyűkombináció érvénytelen.</translation>
+        <translation>A megadott billentyűparancs érvénytelen.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="208"/>
@@ -2751,12 +2744,12 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
-        <translation>&lt;%1&gt; billentyűkombináció már a következő parancshoz van rendelve:</translation>
+        <translation>&lt;%1&gt; billentyűparancs már a következő parancshoz van rendelve:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
         <source>Do you wish to remove the old assignment and bind the shortcut to the new command?</source>
-        <translation>Szeretné eltávolítani a régi hivatkozást, és hozzárendést készíteni az új parancshoz?</translation>
+        <translation>Szeretné eltávolítani a régi hivatkozást és hozzárendelést készíteni az új parancshoz?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="306"/>
@@ -2837,17 +2830,17 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="504"/>
         <source>Default Shortcut</source>
-        <translation>Alapértelmezett billentyűkombináció</translation>
+        <translation>Alapértelmezett billentyűparancs</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="504"/>
         <source>Current Shortcut</source>
-        <translation>Jelenlegi billentyűkombináció</translation>
+        <translation>Jelenlegi billentyűparancs</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="504"/>
         <source>Additional Shortcut</source>
-        <translation>További billentyűkombináció</translation>
+        <translation>További billentyűparancs</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="508"/>
@@ -2892,11 +2885,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="522"/>
         <source>SVN/GIT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SVN</source>
-        <translation type="vanished">SVN</translation>
+        <translation>SVN/GIT</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="560"/>
@@ -3011,7 +3000,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1469"/>
         <source>Basic Key Mapping</source>
-        <translation>Alapvető billenyűparancsok</translation>
+        <translation>Alapvető billentyűparancsok</translation>
     </message>
 </context>
 <context>
@@ -4284,7 +4273,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="440"/>
         <source>Save current settings as default.</source>
-        <translation>Jelenlegi állapot alapértelmezettkénti mentése.</translation>
+        <translation>Jelenlegi állapot mentése alapértelmezettként.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="443"/>
@@ -4321,7 +4310,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Paraméterek az ábrák elhelyezésére
@@ -4419,7 +4408,7 @@ A varázsló nem támogatja a parancsot</translation>
         <location filename="../src/latexcompleter.cpp" line="1312"/>
         <location filename="../src/latexcompleter.cpp" line="1322"/>
         <source>press shift+space to change view</source>
-        <translation>Nézetmód váltáshot nyomja meg a shift+space billentyűket</translation>
+        <translation>Nézetmód váltáshoz nyomja meg a shift+space billentyűket</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1479"/>
@@ -4438,7 +4427,7 @@ A varázsló nem támogatja a parancsot</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
@@ -4449,7 +4438,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/diffoperations.cpp" line="26"/>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation>Ismeretlen hiba. Újra kellene indítani a TeXstudio-t</translation>
+        <translation>Ismeretlen hiba. Újra kellene indítani a TeXstudiót</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="37"/>
@@ -4626,7 +4615,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2455"/>
         <location filename="../src/latexeditorview.cpp" line="2527"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
@@ -4634,9 +4623,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2468"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n hivatkozás ehhez a címkéhez</numerusform>
-        </translation>
+        <translation><numerusform>%n hivatkozás ehhez a címkéhez</numerusform><numerusform>%n hivatkozás erre a címkére</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2473"/>
@@ -4836,7 +4823,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="129"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
-        <translation>A logfájl nagyon nagy (%1 MB). Biztosan be akarja tölteni?</translation>
+        <translation>A naplófájl nagyon nagy (%1 MB). Biztosan be akarja tölteni?</translation>
     </message>
 </context>
 <context>
@@ -6314,7 +6301,7 @@ sikertelen.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1099"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Az eredeti fájl a lemezen megsemmisült a mentés művelet során.
 Itt talál egy másolatot:
@@ -6356,7 +6343,7 @@ Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
         <translation>%1
-a TeXstudio-n kívül változott meg. Újratölti a lemezről?
+a TeXstudión kívül változott meg. Újratölti a lemezről?
 
 Megjegyzések:
 - Az újratöltés felülírja a szerkesztő tartalmát a lemezen lévő fájllal. Ez nem vonható vissza.
@@ -6447,7 +6434,7 @@ Megjegyzések:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4631"/>
         <source>Move cursor to line start</source>
-        <translation>Kurzor a sorelejére</translation>
+        <translation>Kurzor a sor elejére</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4632"/>
@@ -6774,12 +6761,12 @@ Megjegyzések:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>magicComment</source>
-        <translation>mágikusMegjegyzés</translation>
+        <translation>mágikus megjegyzés</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>commentTodo</source>
-        <translation>megjegyzésTodo</translation>
+        <translation>Todo megjegyzés</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="163"/>
@@ -7545,10 +7532,6 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <translation>Párbeszédablak</translation>
     </message>
     <message>
-        <source>AMS Packages</source>
-        <translation type="vanished">AMS csomagok</translation>
-    </message>
-    <message>
         <location filename="../src/quickbeamerdialog.ui" line="39"/>
         <source>Encoding</source>
         <translation>Kódolás</translation>
@@ -7562,10 +7545,6 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <location filename="../src/quickbeamerdialog.ui" line="69"/>
         <source>babel Package</source>
         <translation>babel csomag</translation>
-    </message>
-    <message>
-        <source>graphicx Package</source>
-        <translation type="vanished">graphicx csomag</translation>
     </message>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="29"/>
@@ -8044,7 +8023,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="137"/>
         <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
-        <translation>Billentyűkombináció megváltoztatásához szerkessze a &quot;Jelenlegi billentyűkombináció&quot; vagy &quot;További billentyűkombinációk&quot; oszlopot.</translation>
+        <translation>Egy billentyűparancs megváltoztatásához szerkessze a „Jelenlegi billentyűparancs” vagy a „További billentyűparancs” oszlopot.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="187"/>
@@ -8799,10 +8778,10 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation>A Texstudio nem megfelelő helyeken lévő felhasználói sablonokat talált.
+        <translation>A TeXstudio nem megfelelő helyeken lévő felhasználói sablonokat talált.
 Mostantól a sablonok át lesznek helyezve a(z)
 %1
-helyre. A Texstudionak át kellene oda helyezni a többi sablont is?
+helyre. A TeXstudiónak át kellene oda helyezni a többi sablont is?
 Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógusban.</translation>
     </message>
     <message>
@@ -9347,13 +9326,9 @@ fájlt nem lehet eltávolítani.</translation>
         <translation>Mesterfájlnév vágólapra másolása</translation>
     </message>
     <message>
-        <source>S&amp;VN...</source>
-        <translation type="vanished">S&amp;VN...</translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="845"/>
         <source>S&amp;VN/GIT...</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="846"/>
@@ -10727,7 +10702,7 @@ this other file before you can overwrite it.</source>
         <translation>A(z)
 %1
 nevű fájl mentése nem lehetséges, mert ilyen nevű fájl
-módosult változata már meg van nyitva a TeXStudioban.
+módosult változata már meg van nyitva a TeXStudióban.
 El kellene menteni, vagy be kellene zárni a másik fájlt.
 </translation>
     </message>
@@ -10917,7 +10892,7 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5702"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
@@ -11180,7 +11155,7 @@ Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>A TeXstudio %1 hatására összeomlott.
 
-%2Biztosan futtatni akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
+%2Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10199"/>
@@ -11220,7 +11195,7 @@ The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>A TeXstudio összeomlott a(z) %2 szálbeli %1 hatására.
 A szál leállt.
-Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
+Biztosan futtani akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10284"/>
@@ -11968,7 +11943,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shortcut</source>
-        <translation>Billentyűkombináció</translation>
+        <translation>Billentyűparancs</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="482"/>
