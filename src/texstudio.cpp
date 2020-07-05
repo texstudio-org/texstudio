@@ -3571,7 +3571,8 @@ void Texstudio::editEraseWordCmdEnv()
 		tk = tl.at(tkPos);
 
 	switch (tk.type) {
-
+    case Token::commandUnknown:
+        [[gnu::fallthrough]]
 	case Token::command:
 		command = tk.getText();
 		if (command == "\\begin" || command == "\\end") {
