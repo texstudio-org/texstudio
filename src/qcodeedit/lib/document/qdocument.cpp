@@ -7705,7 +7705,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 				containsSurrogates = true;
 		}
 	}
- qDebug()<<m_fontMetrics[fid].averageCharWidth();
+
 	if ( containsSurrogates || (m_workArounds & QDocument::DisableWidthCache) )
 		return UtilsUi::getFmWidth(m_fontMetrics[fid], text);
 
