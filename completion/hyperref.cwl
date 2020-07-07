@@ -129,8 +129,8 @@ xetex
 \hyperref[label%ref]{URL}{category}{name}{text}#M
 \hyperref[label%ref]{text}
 \hyperref{text}
-\hyperlink{name}{text}
-\hypertarget{name}{text}
+\hyperlink{target name}{link text}
+\hypertarget{target name}{anchor text}
 
 \phantomsection
 

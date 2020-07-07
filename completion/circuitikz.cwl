@@ -93,9 +93,9 @@
 \state#*
 \stoppgfdecoration#*
 \stoppgfmetadecoration#*
-ifpgfdecoratepathhascorners#*
-ifpgfdecoraterectangleclockwise#*
-pgfdecoratepathhascornersfalse#*
-pgfdecoratepathhascornerstrue#*
-pgfdecoraterectangleclockwisefalse#*
-pgfdecoraterectangleclockwisetrue#*
+\ifpgfdecoratepathhascorners#*
+\ifpgfdecoraterectangleclockwise#*
+\pgfdecoratepathhascornersfalse#*
+\pgfdecoratepathhascornerstrue#*
+\pgfdecoraterectangleclockwisefalse#*
+\pgfdecoraterectangleclockwisetrue#*
