@@ -10,19 +10,20 @@
 #include:xcolor
 \foreach#*
 \breakforeach#*
-\pgfpoint{arg1}#*
-\pgfqpoint{arg1}#*
+\pgfpoint{x}{y}#*
+\pgfqpoint{x}{y}#*
 \pgfpointorigin#*
 \pgfpointtransformed{arg1}#*
-\pgfpointdiff{arg1}#*
-\pgfpointadd{arg1}#*
-\pgfpointscale{arg1}#*
-\pgfqpointscale{arg1}#*
-\pgfpointintersectionoflines{arg1}#*
-\pgfpointintersectionofcircles{arg1}#*
-\pgfpointlineattime{arg1}#*
-\pgfpointlineatdistance{arg1}#*
-\pgfpointcurveattime{arg1}#*
+\pgfpointdiff{start}{end}#*
+\pgfpointadd{vec1}{vec2}#*
+\pgfpointscale{factor}{coordinate}#*
+\pgfqpointscale{factor}{coordinate}#*
+\pgfpointintersectionoflines{start1}{end1}{start2}{end2}#*
+\pgfpointintersectionofcircles{o1}{o2}{r1}{r2}{solution}#*
+\pgfpointlineattime{time}{p1}{p2}#*
+\pgfpointlineatdistance{distance}{p1}{p2}#*
+\pgfpointarcaxesattime{time}{center}{0-degree axis}{90-degree axis}{start angle}{end angle}#*
+\pgfpointcurveattime{time}{p1}{p2}{p3}{p4}#*
 \pgfpointpolar{arg1}#*
 \pgfqpointpolar{arg1}#*
 \pgfpointpolarxy{arg1}#*
@@ -182,12 +183,21 @@
 \pgfaliasshading{arg1}#*
 \pgfshadepath{arg1}#*
 \pgfsetadditionalshadetransform{arg1}#*
-\pgfdeclareimage#*
+\pgfdeclareimage[options%keyvals]{image name}{imagefile}#*
+\pgfdeclareimage{image name}{imagefile}#*
 \pgfdeclaremask#*
-\pgfaliasimage{arg1}#*
-\pgfuseimage{arg1}#*
+\pgfaliasimage{new image name}{existing image name}#*
+\pgfuseimage{imagefile}#*
 \pgfalternateextension#*
-\pgfimage#*
+\pgfimage[options%keyvals]{imagefile}#*
+\pgfimage{imagefile}#*
+#keyvals:\pgfdeclareimage,\pgfimage
+height=##L
+width=##L
+page=%<page number%>
+interpolate#true,false
+mask=%<mask name%>
+#endkeyvals
 \pgfrealjobname{arg1}#*
 \relax#*
 \shipout#*
