@@ -22,7 +22,6 @@
 \pgfcircmathresult#*
 \pgfcircresetpath#*
 \pgfcircversion#*
-\pgfmathresult#*
 \stretto#*
 \anchor#*
 \anchorborder#*

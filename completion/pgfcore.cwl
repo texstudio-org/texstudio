@@ -66,7 +66,6 @@
 \pgfpathcurvebetweentime#*
 \pgfpathcurvebetweentimecontinue#*
 \pgfusepath{arg1}#*
-\expandafter#*
 \pgfsetshortenstart{arg1}#*
 \pgfsetshortenend{arg1}#*
 \pgfscope#*
@@ -100,7 +99,6 @@
 \pgfsetmiterlimit{arg1}#*
 \pgfsetdash{arg1}#*
 \pgfsetstrokecolor{arg1}#*
-\expandafter#*
 \pgfsetfillcolor{arg1}#*
 \pgfsetcolor{arg1}#*
 \pgfsetbuttcap#*
@@ -158,10 +156,8 @@
 \pgfprocessround{arg1}#*
 \pgfprocesspathreplacestartandend{arg1}#*
 \pgfsetarrowsend{arg1}#*
-\csname#*
 \pgfsetarrowsstart{arg1}#*
 \pgfsetarrows{arg1}#*
-\expandafter#*
 \pgfgetarrowoptions{arg1}#*
 \pgfsetarrowoptions{arg1}#*
 \pgfarrowsdeclare{arg1}#*
@@ -173,13 +169,11 @@
 \pgfarrowsdeclaredouble#*
 \pgfarrowsdeclaretriple#*
 \pgfdeclarehorizontalshading#*
-\csname#*
 \pgfdeclareverticalshading#*
 \pgfdeclareradialshading#*
 \pgfdeclarefunctionalshading#*
 \pgfshadecolortorgb{arg1}#*
 \pgfuseshading{arg1}#*
-\expandafter#*
 \pgfaliasshading{arg1}#*
 \pgfshadepath{arg1}#*
 \pgfsetadditionalshadetransform{arg1}#*
@@ -199,18 +193,13 @@ interpolate#true,false
 mask=%<mask name%>
 #endkeyvals
 \pgfrealjobname{arg1}#*
-\relax#*
-\shipout#*
 \pgfincludeexternalgraphics{arg1}#*
 \pgfexternalreaddpth{arg1}#*
 \pgfexternaldepth#*
 \pgfexternaltrimleft#*
 \pgfexternaltrimright#*
 \dpthimport#*
-\noexpand#*
 \pgfexternalstorecommand{arg1}#*
-\n#*
-\write#*
 \pgfdeclarelayer{arg1}#*
 \pgfsetlayers{arg1}#*
 \pgfonlayer{arg1}#*
