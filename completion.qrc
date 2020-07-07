@@ -162,6 +162,7 @@
 <file>completion/pgf.cwl</file>
 <file>completion/pgfcore.cwl</file>
 <file>completion/pgfkeys.cwl</file>
+<file>completion/pgfmath.cwl</file>
 <file>completion/pgfplots.cwl</file>
 <file>completion/pgfplotstable.cwl</file>
 <file>completion/pgfrcs.cwl</file>
