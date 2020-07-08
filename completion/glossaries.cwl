@@ -90,7 +90,6 @@
 \altnewglossary{arg1}{arg2}{arg3}#S
 \andname#S
 \begin{theglossary}#S
-\csname#S
 \currentglssubentry#S
 \defglsdisplayfirst{arg1}{arg2}#S
 \defglsdisplay{arg1}{arg2}#S

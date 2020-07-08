@@ -51,5 +51,3 @@
 \algrenewcomment#S
 \algsetlanguage{arg1}#S
 \algtext#S
-\csname#S
-\expandafter#S
