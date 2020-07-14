@@ -52,12 +52,12 @@
 \IfFileExists{file}{then}{else}#*
 \InputIfFileExists{file}{then}{else}#*
 \LastDeclaredEncoding#*
-\LoadClass[optionlist]{class}#u*
-\LoadClass[optionlist]{class}[release]#u*
-\LoadClass{class}#u*
-\LoadClass{class}[release]#u*
-\LoadClassWithOptions{class}#u*
-\LoadClassWithOptions{class}[release]#u*
+\LoadClass[optionlist]{class}#*u
+\LoadClass[optionlist]{class}[release]#*u
+\LoadClass{class}#*u
+\LoadClass{class}[release]#*u
+\LoadClassWithOptions{class}#*u
+\LoadClassWithOptions{class}[release]#*u
 \NeedsTeXFormat{format}#*
 \NeedsTeXFormat{format}[release]#*
 \OptionNotUsed#*
@@ -77,12 +77,12 @@
 \ProvidesPackage{name}#*
 \ProvidesPackage{name}[release info]#*
 \ProvideTextCommand{cmd}{encoding}[num][default]{definition}#*
-\RequirePackage[optionlist]{package}#u*
-\RequirePackage[optionlist]{package}[release]#u*
+\RequirePackage[optionlist]{package}#*u
+\RequirePackage[optionlist]{package}[release]#*u
 \RequirePackage{package}#u
-\RequirePackage{package}[release]#u*
-\RequirePackageWithOptions{package}#u*
-\RequirePackageWithOptions{package}[release]#u*
+\RequirePackage{package}[release]#*u
+\RequirePackageWithOptions{package}#*u
+\RequirePackageWithOptions{package}[release]#*u
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
 \setlanguage{language}#*

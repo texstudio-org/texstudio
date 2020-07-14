@@ -433,7 +433,7 @@
 \bot#m
 \bowtie#m
 \brace#*m
-\bracevert#m*
+\bracevert#*m
 \brack#*m
 \break#*
 \breve{a}#m
