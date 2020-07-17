@@ -29,7 +29,7 @@
 #include:pdftexcmds
 #include:pdfescape
 #include:bigintcalc
-#include: bitset
+#include:bitset
 #include:uniquecounter
 #include:letltxmacro
 #include:hopatch
@@ -334,30 +334,21 @@
 \titlegraphic{text}
 \subject{text}
 \keywords{text}
-\section<mode specification>[short section name]{section name}
-\section<mode specification>{section name}
-\section[short section name]{section name}
-\section{section name}
-\section<mode specification>*[short section name]{section name}
-\section<mode specification>*{section name}
-\section*[short section name]{section name}
-\section*{section name}
-\subsection<mode specification>[short section name]{section name}
-\subsection<mode specification>{section name}
-\subsection[short section name]{section name}
-\subsection{section name}
-\subsection<mode specification>*[short section name]{section name}
-\subsection<mode specification>*{section name}
-\subsection*[short section name]{section name}
-\subsection*{section name}
-\subsubsection<mode specification>[short section name]{section name}
-\subsubsection<mode specification>{section name}
-\subsubsection[short section name]{section name}
-\subsubsection{section name}
-\subsubsection<mode specification>*[short section name]{section name}
-\subsubsection<mode specification>*{section name}
-\subsubsection*[short section name]{section name}
-\subsubsection*{section name}
+\section<mode specification>[short title]{title}
+\section<mode specification>{title}
+\section<mode specification>*[short title]{title}
+\section<mode specification>*{title}
+\section*[short title]{title}
+\subsection<mode specification>[short title]{title}
+\subsection<mode specification>{title}
+\subsection<mode specification>*[short title]{title}
+\subsection<mode specification>*{title}
+\subsection*[short title]{title}
+\subsubsection<mode specification>[short title]{title}
+\subsubsection<mode specification>{title}
+\subsubsection<mode specification>*[short title]{title}
+\subsubsection<mode specification>*{title}
+\subsubsection*[short title]{title}
 \AtBeginSection[special star text]{text}
 \AtBeginSection{text}
 \AtBeginSubsection[special star text]{text}
@@ -474,8 +465,7 @@
 \item[item label]<alert specification>
 \item[item label]
 \item
-\label<overlay specification>{label name}
-\label{key}
+\label<overlay specification>{key%labeldef}
 \resetcounteronoverlays{counter name}
 \resetcountonoverlays{count register name}
 \action<action specification>{text}
