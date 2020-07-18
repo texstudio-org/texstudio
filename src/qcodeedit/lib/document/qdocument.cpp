@@ -3965,31 +3965,34 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					pal.highlight()
 				);
 			} else {
-				if ( formats[0].foreground.isValid() ) p->setPen(formats[0].foreground);
-				else if ( formats[1].foreground.isValid() ) p->setPen(formats[1].foreground);
-				else if ( formats[2].foreground.isValid() ) p->setPen(formats[2].foreground);
-				else p->setPen(pal.text().color());
+                QColor fg(pal.text().color());
+                int priority=-100;
+                for(int i=0;i<3;i=i+1){
+                    if ( formats[i].foreground.isValid() && formats[i].priority>priority){
+                        fg=formats[i].foreground;
+                        priority=formats[i].priority;
+                    }
+                }
+                p->setPen(fg);
 
-				if ( formats[0].background.isValid() ) {
-					p->fillRect(
-						xpos, ypos,
-						rwidth,
-						QDocumentPrivate::m_lineSpacing,
-						formats[0].background
-					);
-				} else if ( formats[1].background.isValid() ) {
-					p->fillRect(
-						xpos, ypos,
-						rwidth, QDocumentPrivate::m_lineSpacing,
-						formats[1].background
-					);
-				} else if ( formats[2].background.isValid() ) {
-					p->fillRect(
-						xpos, ypos,
-						rwidth, QDocumentPrivate::m_lineSpacing,
-						formats[2].background
-					);
-				}
+                // not sure whether fg/bg should be handled separately concerning priority
+                QColor bg;
+                priority=-100;
+                for(int i=0;i<3;i=i+1){
+                if ( formats[i].background.isValid() &&  formats[i].priority>priority) {
+                    bg=formats[i].background;
+                    priority=formats[i].priority;
+                }
+                }
+                if(priority>-100){
+                    p->fillRect(
+                        xpos, ypos,
+                        rwidth,
+                        QDocumentPrivate::m_lineSpacing,
+                        bg
+                    );
+                }
+
 			}
 
 			if ( r.format & FORMAT_SPACE )
