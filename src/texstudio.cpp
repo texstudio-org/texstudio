@@ -8071,25 +8071,27 @@ void Texstudio::previewLatex()
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
 	}
-	if (!previewc.hasSelection()) {
-		// in environment delimiter (\begin{env} or \end{env})
-		QString command;
-		Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
-		if (tk.type != Token::none)
-			command = tk.getText();
-		if (tk.type == Token::env || tk.type == Token::beginEnv ) {
-			c.setColumnNumber(tk.start);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
-		}
-		if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
-			c.setColumnNumber(tk.start + tk.length + 1);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
-		}
-	}
-	if (!previewc.hasSelection()) {
-		// already at parenthesis
-		previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
-	}
+        if (!previewc.hasSelection()) {
+            // in environment delimiter (\begin{env} or \end{env})
+            QString command;
+            Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
+            if (tk.type != Token::none)
+                command = tk.getText();
+            if (tk.type == Token::env || tk.type == Token::beginEnv ) {
+                TokenList tl = c.line().handle()->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+                tk=Parsing::getCommandTokenFromToken(tl,tk);
+                c.setColumnNumber(tk.start);
+                previewc = currentEditorView()->parenthizedTextSelection(c);
+            }
+            if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
+                c.setColumnNumber(tk.start);
+                previewc = currentEditorView()->parenthizedTextSelection(c);
+            }
+        }
+        if (!previewc.hasSelection()) {
+            // already at parenthesis
+            previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
+        }
 	if (!previewc.hasSelection()) return;
 
 	showPreview(previewc, true);
