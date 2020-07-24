@@ -2809,7 +2809,7 @@ QDocumentCursor LatexEditorView::parenthizedTextSelection(const QDocumentCursor 
  * finds the beginning of the specified allowedFormats
  * additional formats can be allowed at the line end (e.g. comments)
  */
-QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats)
+QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> )
 {
 	QDocumentCursor c(cursor);
 

@@ -8234,25 +8234,28 @@ void Texstudio::clearPreview()
 		endLine = startLine;
 	}
 
-	for (int i = startLine; i <= endLine; i++) {
-		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
-		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-		edit->document()->adjustWidth(i);
-		for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
-			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
-			        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
-                // remove cookies from last previewed line
-                int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
-                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
-                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-				// remove mark
-				int sid = edit->document()->getFormatId("previewSelection");
-				if (!sid) return;
-				updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
-				currentEditorView()->autoPreviewCursor.removeAt(j);
-			}
+        for (int i = startLine; i <= endLine; i++) {
+            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
+            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+            edit->document()->adjustWidth(i);
+            for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
+                if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
+                        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
+                    // remove cookies from last previewed line
+                    int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
+                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
+                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+                    // remove mark
+                    int sid = edit->document()->getFormatId("previewSelection");
+                    if (!sid) return;
+                    updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
+                    currentEditorView()->autoPreviewCursor.removeAt(j);
+                    if(el>endLine){
+                        edit->document()->adjustWidth(el); // text line with preview picture needs to be resized
+                    }
+                }
 
-	}
+        }
 }
 
 void Texstudio::showImgPreview(const QString &fname)
