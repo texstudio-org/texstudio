@@ -512,7 +512,7 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument *doc): QDockWidget(doc), docume
 	minimum_width = frame_2->sizeHint().width() + leFind->sizeHint().width() + 2 * bNext->sizeHint().width() + 5 * hboxLayout->spacing();
 	//;
 
-	cbCase->setChecked(false);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(ConfigManagerInterface::getInstance(), bool, caseConfig, false, "Preview/Search Case Sensitive", cbCase);
 
 	leFind->installEventFilter(this);
 
@@ -607,7 +607,8 @@ PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc)
 	cbWords = new QCheckBox(this);
 	cbWords->setObjectName("cbWords");
 	cbWords->setText(tr("Words"));
-    cbWords->setToolTip(tr("Only searches for whole words."));
+	cbWords->setToolTip(tr("Only searches for whole words."));
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(ConfigManagerInterface::getInstance(), bool, wordConfig, false, "Preview/Whole Words", cbWords);
 
 	gridLayout1->addWidget(cbWords, 0, 2, 1, 1);
 
@@ -615,7 +616,7 @@ PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc)
 	cbSync->setObjectName("cbSync");
 	cbSync->setText(tr("Sync"));
 	cbSync->setToolTip(tr("Synchronize editor when jumping to search results."));
-	cbSync->setChecked(true);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(ConfigManagerInterface::getInstance(), bool, syncConfig, true, "Preview/Search Sync", cbSync);
 
 	gridLayout1->addWidget(cbSync, 0, 3, 1, 1);
 
