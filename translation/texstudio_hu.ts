@@ -2670,7 +2670,7 @@ Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentum
     <message>
         <location filename="../src/configdialog.ui" line="4348"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation>A dokumentum automatikus újrafordítása változáskor</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4392"/>
@@ -8784,9 +8784,9 @@ From now on user templates are hosted at
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
         <translation>A TeXstudio nem megfelelő helyeken lévő felhasználói sablonokat talált.
-Mostantól a sablonok át lesznek helyezve a(z)
+Mostantól a sablonok át lesznek helyezve ide:
 %1
-helyre. A TeXstudiónak át kellene oda helyezni a többi sablont is?
+A TeXstudiónak át kellene oda helyezni a többi sablont is?
 Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógusban.</translation>
     </message>
     <message>
@@ -9479,22 +9479,22 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Előző előfordulás kijelölése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Következő előfordulás kijelölése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Előző előfordulás kijelölése is</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Következő előfordulás kijelölése is</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
@@ -11220,7 +11220,7 @@ The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>A TeXstudio összeomlott a(z) %2 szálbeli %1 hatására.
 A szál leállt.
-Biztosan futtani akarja a TeXstudiót? Adatok veszhetnek el.</translation>
+Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10319"/>

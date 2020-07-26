@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="21"/>
         <source>&lt;b&gt;This is a development version.&lt;/b&gt;&lt;br&gt;</source>
-        <translation>&lt;b&gt;Это отладочная версия.&lt;/b&gt;&lt;br&gt;</translation>
+        <translation>&lt;b&gt;Это версия, находящаяся в разработке.&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="22"/>
@@ -926,10 +926,10 @@ Please change your configuration and define command lists only at &apos;Options 
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation>Определяет тип получаемых оповещений об обновлениях:
-— стабильные версии — выберите этот тип, если стабильность наиболее важна для вас.
-— релиз-кандидаты — близки к будущему релизу в отношении функциональности и стабильности. Выберите этот тип, чтобы получать предварительные версии будущих релизов и помочь нам тестированием версии перед тем, как она будет опубликована как официальный релиз. (Также получение оповещений о стабильных версиях.)
-— версии для разработчиков — содержат последнюю функциональность, но могут быть нестабильными. (Получение оповещений также о стабильных версиях и релиз-кандидатах.)</translation>
+        <translation>Определяет уровень уведомлений о наличии обновлений:
+— стабильные версии — если вам наиболее важна стабильность.
+— релиз-кандидаты — близки к новому релизу по функциональности и стабильности. Выберите, чтобы получать предварительные версии будущих релизов и помочь нам тестировать версии перед выпуском официального релиза. (Также получать оповещений о стабильных версиях.)
+— версии в разработке — содержат новейшие возможности, но могут быть нестабильными. (Также получать оповещения о стабильных версиях и релиз-кандидатах.)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="520"/>
@@ -944,7 +944,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="530"/>
         <source>Development Versions</source>
-        <translation>Версии для разработчиков</translation>
+        <translation>Версии в разработке</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="551"/>
@@ -2677,7 +2677,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4348"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation>Автокомпилировать документ после изменений</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4392"/>
@@ -9497,22 +9497,22 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Выбрать пред. совпадение</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Выбрать след. совпадение</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Также выбрать пред. совпадение</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Также выбрать след. совпадение</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
@@ -11819,12 +11819,12 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation>Проверка обновления версии разработчика прошла неудачно (неверный формат файла обновления).</translation>
+        <translation>Проверка обновления версии в разработке прошла неудачно (неверный формат файла обновления).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="211"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Доступна новая версия TeXstudio для разработчиков.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Текущая версия:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Последняя стабильная версия:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Последняя версия для разработчиков:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Вы можете загрузить её с &lt;a href=&apos;%7&apos;&gt;сайта TeXstudio&lt;/a&gt;.</translation>
+        <translation>Доступна новая версия TeXstudio в разработке.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Текущая версия:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Последняя стабильная версия:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Последняя версия в разработке:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Вы можете загрузить её с &lt;a href=&apos;%7&apos;&gt;сайта TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
