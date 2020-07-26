@@ -153,6 +153,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	bibTypeActions = nullptr;
 	highlightLanguageActions = nullptr;
 	runningPDFCommands = runningPDFAsyncCommands = 0;
+	activeEditorForPreview = nullptr;
 	completerPreview = false;
 	recheckLabels = true;
 	cursorHistory = nullptr;
@@ -435,8 +436,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	if (configManager.autosaveEveryMinutes > 0) {
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
-    connect(&previewDelayTimer,SIGNAL(timeout()),this,SLOT(showPreviewQueue()));
-    previewDelayTimer.setSingleShot(true);
+	connect(&previewDelayTimer,SIGNAL(timeout()),this,SLOT(showPreviewQueue()));
+	previewDelayTimer.setSingleShot(true);
+	connect(&previewFullCompileDelayTimer,SIGNAL(timeout()),this,SLOT(recompileForPreviewNow()));
+	previewFullCompileDelayTimer.setSingleShot(true);
 
 	connect(this, SIGNAL(infoFileSaved(QString, int)), this, SLOT(checkinAfterSave(QString, int)));
 
@@ -1776,6 +1779,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(showImgPreview(QString)), this, SLOT(showImgPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
+	connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
 	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
 	connect(edit, SIGNAL(findLabelUsages(LatexDocument *, QString)), this, SLOT(findLabelUsages(LatexDocument *, QString)));
 	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
@@ -6084,6 +6088,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	}
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
+	activeEditorForPreview = nullptr;
 }
 
 void Texstudio::processNotification(const QString &message)
@@ -6357,7 +6362,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
  */
 void Texstudio::onCompileError()
 {
-	if (configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
+	if (!activeEditorForPreview && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
 		viewLog();
 	} else {
 		setLogMarksVisible(true);
@@ -8388,7 +8393,7 @@ void Texstudio::showPreview(const QDocumentCursor &previewc)
 	if (sid)
 		updateEmphasizedRegion(previewc, sid);
 
-    previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
+	  previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
     //QTimer::singleShot(qMax(40, configManager.autoPreviewDelay), this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
 }
 
@@ -8535,6 +8540,26 @@ void Texstudio::showPreviewQueue()
 			if (c.lineNumber() == line)
 				showPreview(c, false);
 	previewQueue.clear();
+}
+
+
+
+void Texstudio::recompileForPreview(){
+	if (documents.getCompileFileName().isEmpty()) return;
+	if (buildManager.waitingForProcess()) return;
+#ifndef NO_POPPLER_PREVIEW
+	if (PDFDocument::documentList().isEmpty()) return;
+#endif
+	activeEditorForPreview = currentEditor();
+	if (!activeEditorForPreview || activeEditorForPreview->fileName().isEmpty()) return;
+	if (!documents.currentDocument || documents.currentDocument->mayHaveDiffMarkers) return;
+	previewFullCompileDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
+}
+void Texstudio::recompileForPreviewNow(){
+	if (buildManager.waitingForProcess()) return;
+	if (!activeEditorForPreview || activeEditorForPreview != currentEditor()) return;
+	activeEditorForPreview->save();
+	runCommand(BuildManager::CMD_COMPILE, nullptr, nullptr, false);
 }
 
 void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)

@@ -1938,6 +1938,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 	}
 
+	if (config->fullCompilePreview) emit showFullPreview();
+
 	// checking
 	if (!QDocument::defaultFormatScheme()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)

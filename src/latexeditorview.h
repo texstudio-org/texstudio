@@ -306,6 +306,7 @@ signals:
 	void showPreview(const QString &text);
 	void showPreview(const QDocumentCursor &c);
 	void showImgPreview(const QString &fileName);
+	void showFullPreview();
 	void openFile(const QString &name);
 	void openFile(const QString &baseName, const QString &defaultExtension);
 	void openCompleter();

@@ -735,6 +735,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/HighlightDuration", &pdfDocumentConfig->highlightDuration, 2000, &pseudoDialog->spinBoxHighlightDuration);
 	registerOption("Preview/Sync File Mask", &pdfDocumentConfig->syncFileMask, "*.tex;*.tikz;*.pdf_tex;*.ctx", &pseudoDialog->lineEditPreviewSyncFileMask);
 	registerOption("Preview/AutoHideToolbars", &pdfDocumentConfig->autoHideToolbars, false, &pseudoDialog->autoHideToolbars);
+	registerOption("Preview/Auto Full Recompile", &editorConfig->fullCompilePreview, false, &pseudoDialog->autoRecompileFullDocument);
 
 	registerOption("Preview/EnlargedEmbedded", &viewerEnlarged, false);
 
