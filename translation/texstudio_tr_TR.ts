@@ -2674,7 +2674,7 @@ Not: Bu ayar, yalnız değiştirildikten sonra açılan belgeleri etkiler.</tran
     <message>
         <location filename="../src/configdialog.ui" line="4348"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation>Değişiklik yapıldığında belge otomatik olarak derlensin</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4392"/>
@@ -9494,22 +9494,22 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Ö&amp;nceki Eşleşmeyi Seç</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sonraki Eşleşmeyi Seç</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Önceki Eşleşmeyi Otomatik Seç</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki Eşleşmeyi Otomatik Seç</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
