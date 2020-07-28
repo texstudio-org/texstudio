@@ -2671,7 +2671,7 @@ Obs.: Esta mudança afetará somente documentos abertos a seguir. </translation>
     <message>
         <location filename="../src/configdialog.ui" line="4348"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation>Compilar automaticamente o documento quando houver alterações</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4392"/>
@@ -9492,22 +9492,22 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar Ocorrência &amp;Anterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar Ocorrência &amp;Posterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar também Ocorrência Anterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar também Ocorrência Posterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
