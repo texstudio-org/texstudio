@@ -183,7 +183,7 @@ juniorresearcher*
 #
 # Misc
 \ordernumber[numéro d'ordre]#n
-\ordernumber#n*
+\ordernumber#*n
 #
 #keyvals:\maketitle
 nofrontcover
@@ -253,13 +253,13 @@ welsh
 \makefrontepigraphs#n
 \makefrontepigraphs*#n
 \begin{abstract}#n
-\begin{abstract}[intitulé alternatif%text]#n*
+\begin{abstract}[intitulé alternatif%text]#*n
 \end{abstract}#n
 \makeabstract#n
 \newglssymbol{label}{symbole}{nom}{description%text}#n
 \newglssymbol[classement]{label}{symbole}{nom}{description%text}#n
-\tableofcontents#n*
-\tableofcontents[précision%keyvals]#n*
+\tableofcontents#*n
+\tableofcontents[précision%keyvals]#*n
 #
 #keyvals:\tableofcontents
 depth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
@@ -310,4 +310,4 @@ name=
 #
 # Customization
 #
-\expression{label}{valeur (en français)%text}{valeur (en anglais)%text}#n*
+\expression{label}{valeur (en français)%text}{valeur (en anglais)%text}#*n

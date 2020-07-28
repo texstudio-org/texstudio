@@ -153,6 +153,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	bibTypeActions = nullptr;
 	highlightLanguageActions = nullptr;
 	runningPDFCommands = runningPDFAsyncCommands = 0;
+	activeEditorForPreview = nullptr;
 	completerPreview = false;
 	recheckLabels = true;
 	cursorHistory = nullptr;
@@ -435,8 +436,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	if (configManager.autosaveEveryMinutes > 0) {
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
-    connect(&previewDelayTimer,SIGNAL(timeout()),this,SLOT(showPreviewQueue()));
-    previewDelayTimer.setSingleShot(true);
+	connect(&previewDelayTimer,SIGNAL(timeout()),this,SLOT(showPreviewQueue()));
+	previewDelayTimer.setSingleShot(true);
+	connect(&previewFullCompileDelayTimer,SIGNAL(timeout()),this,SLOT(recompileForPreviewNow()));
+	previewFullCompileDelayTimer.setSingleShot(true);
 
 	connect(this, SIGNAL(infoFileSaved(QString, int)), this, SLOT(checkinAfterSave(QString, int)));
 
@@ -882,7 +885,11 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "selection", tr("&Selection"));
 	newManagedEditorAction(submenu, "selectAll", tr("Select &All"), "selectAll", Qt::CTRL + Qt::Key_A);
-    newManagedEditorAction(submenu, "selectAllOccurences", tr("Select All &Occurrences"), "selectAllOccurences");
+	newManagedEditorAction(submenu, "selectAllOccurences", tr("Select All &Occurrences"), "selectAllOccurences");
+	newManagedEditorAction(submenu, "selectPrevOccurence", tr("Select &Prev Occurrence"), "selectPrevOccurence");
+	newManagedEditorAction(submenu, "selectNextOccurence", tr("Select &Next Occurrence"), "selectNextOccurence");
+	newManagedEditorAction(submenu, "selectPrevOccurenceKeepMirror", tr("Also Select Prev Occurrence"), "selectPrevOccurenceKeepMirror");
+	newManagedEditorAction(submenu, "selectNextOccurenceKeepMirror", tr("Also Select Next Occurrence"), "selectNextOccurenceKeepMirror");
 	newManagedEditorAction(submenu, "expandSelectionToWord", tr("Expand Selection to Word"), "selectExpandToNextWord", Qt::CTRL + Qt::Key_D);
 	newManagedEditorAction(submenu, "expandSelectionToLine", tr("Expand Selection to Line"), "selectExpandToNextLine", Qt::CTRL + Qt::Key_L);
 
@@ -1772,6 +1779,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(showImgPreview(QString)), this, SLOT(showImgPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
+	connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
 	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
 	connect(edit, SIGNAL(findLabelUsages(LatexDocument *, QString)), this, SLOT(findLabelUsages(LatexDocument *, QString)));
 	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
@@ -3571,7 +3579,8 @@ void Texstudio::editEraseWordCmdEnv()
 		tk = tl.at(tkPos);
 
 	switch (tk.type) {
-
+    case Token::commandUnknown:
+        [[gnu::fallthrough]]
 	case Token::command:
 		command = tk.getText();
 		if (command == "\\begin" || command == "\\end") {
@@ -6079,6 +6088,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	}
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
+	activeEditorForPreview = nullptr;
 }
 
 void Texstudio::processNotification(const QString &message)
@@ -6352,7 +6362,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
  */
 void Texstudio::onCompileError()
 {
-	if (configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
+	if (!activeEditorForPreview && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
 		viewLog();
 	} else {
 		setLogMarksVisible(true);
@@ -8066,25 +8076,27 @@ void Texstudio::previewLatex()
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
 	}
-	if (!previewc.hasSelection()) {
-		// in environment delimiter (\begin{env} or \end{env})
-		QString command;
-		Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
-		if (tk.type != Token::none)
-			command = tk.getText();
-		if (tk.type == Token::env || tk.type == Token::beginEnv ) {
-			c.setColumnNumber(tk.start);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
-		}
-		if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
-			c.setColumnNumber(tk.start + tk.length + 1);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
-		}
-	}
-	if (!previewc.hasSelection()) {
-		// already at parenthesis
-		previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
-	}
+        if (!previewc.hasSelection()) {
+            // in environment delimiter (\begin{env} or \end{env})
+            QString command;
+            Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
+            if (tk.type != Token::none)
+                command = tk.getText();
+            if (tk.type == Token::env || tk.type == Token::beginEnv ) {
+                TokenList tl = c.line().handle()->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+                tk=Parsing::getCommandTokenFromToken(tl,tk);
+                c.setColumnNumber(tk.start);
+                previewc = currentEditorView()->parenthizedTextSelection(c);
+            }
+            if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
+                c.setColumnNumber(tk.start);
+                previewc = currentEditorView()->parenthizedTextSelection(c);
+            }
+        }
+        if (!previewc.hasSelection()) {
+            // already at parenthesis
+            previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
+        }
 	if (!previewc.hasSelection()) return;
 
 	showPreview(previewc, true);
@@ -8229,25 +8241,28 @@ void Texstudio::clearPreview()
 		endLine = startLine;
 	}
 
-	for (int i = startLine; i <= endLine; i++) {
-		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
-		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-		edit->document()->adjustWidth(i);
-		for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
-			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
-			        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
-                // remove cookies from last previewed line
-                int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
-                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
-                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-				// remove mark
-				int sid = edit->document()->getFormatId("previewSelection");
-				if (!sid) return;
-				updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
-				currentEditorView()->autoPreviewCursor.removeAt(j);
-			}
+        for (int i = startLine; i <= endLine; i++) {
+            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
+            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+            edit->document()->adjustWidth(i);
+            for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
+                if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
+                        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
+                    // remove cookies from last previewed line
+                    int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
+                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
+                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+                    // remove mark
+                    int sid = edit->document()->getFormatId("previewSelection");
+                    if (!sid) return;
+                    updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
+                    currentEditorView()->autoPreviewCursor.removeAt(j);
+                    if(el>endLine){
+                        edit->document()->adjustWidth(el); // text line with preview picture needs to be resized
+                    }
+                }
 
-	}
+        }
 }
 
 void Texstudio::showImgPreview(const QString &fname)
@@ -8378,7 +8393,7 @@ void Texstudio::showPreview(const QDocumentCursor &previewc)
 	if (sid)
 		updateEmphasizedRegion(previewc, sid);
 
-    previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
+	  previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
     //QTimer::singleShot(qMax(40, configManager.autoPreviewDelay), this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
 }
 
@@ -8525,6 +8540,26 @@ void Texstudio::showPreviewQueue()
 			if (c.lineNumber() == line)
 				showPreview(c, false);
 	previewQueue.clear();
+}
+
+
+
+void Texstudio::recompileForPreview(){
+	if (documents.getCompileFileName().isEmpty()) return;
+	if (buildManager.waitingForProcess()) return;
+#ifndef NO_POPPLER_PREVIEW
+	if (PDFDocument::documentList().isEmpty()) return;
+#endif
+	activeEditorForPreview = currentEditor();
+	if (!activeEditorForPreview || activeEditorForPreview->fileName().isEmpty()) return;
+	if (!documents.currentDocument || documents.currentDocument->mayHaveDiffMarkers) return;
+	previewFullCompileDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
+}
+void Texstudio::recompileForPreviewNow(){
+	if (buildManager.waitingForProcess()) return;
+	if (!activeEditorForPreview || activeEditorForPreview != currentEditor()) return;
+	activeEditorForPreview->save();
+	runCommand(BuildManager::CMD_COMPILE, nullptr, nullptr, false);
 }
 
 void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)

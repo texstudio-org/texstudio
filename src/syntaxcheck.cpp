@@ -1161,7 +1161,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 if(altEnvs.contains(key)){
                     Error elem;
                     int start= env.dlh==dlh ? env.startingColumn : 0;
-                    elem.range = QPair<int, int>(start, commentStart>=0 ? commentStart : line.length());
+                    elem.range = QPair<int, int>(start, commentStart>=0 ? commentStart-start : line.length()-start);
                     elem.type = ERR_highlight;
                     elem.format=mFormatList.value(key);
                     newRanges.prepend(elem);  // draw this first and then other on top (e.g. keyword highlighting) !

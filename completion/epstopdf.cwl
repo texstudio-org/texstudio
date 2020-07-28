@@ -9,6 +9,5 @@
 \DeclareGraphicsRule
 \epstopdfDeclareGraphicsRule
 \epstopdfcall
-\noexpand
 \AppendGraphicsExtensions{ext}
 \PrependGraphicsExtensions{ext}

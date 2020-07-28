@@ -3,6 +3,8 @@ TeXstudio 3.00.00
 - speed up document parsing, should result in faster document load times
 - spell checking is done asynchronously
 - custom verbatim/math env highlighting abandoned for a cwl based approach
+- better dark-mode support 
+- qt4 support abandoned
 
 TeXstudio 2.12.22
 ----------------

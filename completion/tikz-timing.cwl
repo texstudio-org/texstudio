@@ -13,7 +13,6 @@
 \dslope#*
 \charc#*
 \charb#*
-\expandafter#*
 \tikztimingmetachar{arg1}#*
 \abc#*
 \background#*

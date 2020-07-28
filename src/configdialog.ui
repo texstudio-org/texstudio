@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>14</number>
+      <number>13</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>746</width>
-            <height>735</height>
+            <width>860</width>
+            <height>888</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -740,8 +740,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>821</width>
-            <height>603</height>
+            <width>1060</width>
+            <height>654</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -898,8 +898,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>774</width>
-                   <height>79</height>
+                   <width>1018</width>
+                   <height>115</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -1963,8 +1963,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>779</width>
-            <height>1795</height>
+            <width>996</width>
+            <height>2136</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3150,8 +3150,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>746</width>
-            <height>790</height>
+            <width>860</width>
+            <height>1014</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3676,8 +3676,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>760</width>
-            <height>617</height>
+            <width>880</width>
+            <height>609</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3937,9 +3937,9 @@ them here.</string>
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>760</width>
-            <height>617</height>
+            <y>-115</y>
+            <width>860</width>
+            <height>724</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -3961,6 +3961,101 @@ them here.</string>
               <string>Internal PDF Viewer</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
+              <item row="7" column="1">
+               <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
+                <property name="text">
+                 <string>Border</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_66">
+                <property name="text">
+                 <string>Highlight Duration</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_25">
+                <property name="text">
+                 <string>Magnifier Size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
+                <property name="suffix">
+                 <string> px</string>
+                </property>
+                <property name="prefix">
+                 <string/>
+                </property>
+                <property name="minimum">
+                 <number>50</number>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+                <property name="singleStep">
+                 <number>50</number>
+                </property>
+                <property name="value">
+                 <number>300</number>
+                </property>
+               </widget>
+              </item>
+              <item row="14" column="0">
+               <widget class="QLabel" name="label_69">
+                <property name="text">
+                 <string>Load Strategy:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_84">
+                <property name="text">
+                 <string>Paper Color</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewScale">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="specialValueText">
+                 <string notr="true"/>
+                </property>
+                <property name="suffix">
+                 <string>%</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_29">
+                <property name="text">
+                 <string>Scaling:</string>
+                </property>
+               </widget>
+              </item>
               <item row="9" column="1">
                <widget class="QLineEdit" name="lineEditHighlightColor">
                 <property name="toolTip">
@@ -4006,75 +4101,13 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="10" column="1">
-               <widget class="QSpinBox" name="spinBoxHighlightDuration">
-                <property name="specialValueText">
-                 <string>Infinite</string>
-                </property>
-                <property name="suffix">
-                 <string notr="true"> ms</string>
-                </property>
-                <property name="maximum">
-                 <number>86400000</number>
-                </property>
-                <property name="value">
-                 <number>2000</number>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_67">
+                <property name="text">
+                 <string>Highlight Color</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_29">
-                <property name="text">
-                 <string>Scaling:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_28">
-                <property name="text">
-                 <string>Scale Option:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QSpinBox" name="spinBoxPreviewScale">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="specialValueText">
-                 <string notr="true"/>
-                </property>
-                <property name="suffix">
-                 <string>%</string>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>10000</number>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_25">
-                <property name="text">
-                 <string>Magnifier Size:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QSpinBox" name="spinBoxPreviewDPI">
-                <property name="suffix">
-                 <string> dpi</string>
-                </property>
-                <property name="maximum">
-                 <number>600</number>
                 </property>
                </widget>
               </item>
@@ -4097,20 +4130,125 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_66">
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_27">
                 <property name="text">
-                 <string>Highlight Duration</string>
+                 <string>Screen Resolution:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <widget class="QLabel" name="label_34">
+                <property name="text">
+                 <string>Synchronized Files Types:</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_27">
+              <item row="13" column="1">
+               <widget class="QSpinBox" name="spinBoxCacheSizeMB">
+                <property name="suffix">
+                 <string> MB</string>
+                </property>
+                <property name="minimum">
+                 <number>100</number>
+                </property>
+                <property name="maximum">
+                 <number>1024</number>
+                </property>
+                <property name="singleStep">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>512</number>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="1">
+               <widget class="QComboBox" name="comboBoxPDFRenderBackend">
+                <property name="toolTip">
+                 <string>The Render Backend used by the PDF library poppler.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string notr="true">Splash</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">Arthur</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_26">
                 <property name="text">
-                 <string>Screen Resolution:</string>
+                 <string>Magnifier Shape:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="checkBoxDisableHorizontalScrollingForFitToTextWidth">
+                <property name="text">
+                 <string>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewDPI">
+                <property name="suffix">
+                 <string> dpi</string>
+                </property>
+                <property name="maximum">
+                 <number>600</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>Scale Option:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>Cache Size:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="0">
+               <widget class="QLabel" name="label_76">
+                <property name="toolTip">
+                 <string>The Render Backend used by the PDF library poppler.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</string>
+                </property>
+                <property name="text">
+                 <string>Render Backend:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -4127,41 +4265,16 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <widget class="QCheckBox" name="checkBoxDisableHorizontalScrollingForFitToTextWidth">
-                <property name="text">
-                 <string>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</string>
+              <item row="8" column="1">
+               <widget class="QLineEdit" name="lineEditPaperColor">
+                <property name="toolTip">
+                 <string>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</string>
                 </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
+                <property name="inputMask">
+                 <string notr="true">\#HHHHHH;_</string>
                 </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
                 <property name="text">
-                 <string>Border</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_26">
-                <property name="text">
-                 <string>Magnifier Shape:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="16" column="0">
-               <widget class="QCheckBox" name="autoHideToolbars">
-                <property name="text">
-                 <string>Auto-hide Toolbars in Embedded Mode</string>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="label_67">
-                <property name="text">
-                 <string>Highlight Color</string>
+                 <string notr="true">#</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -4196,119 +4309,6 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="13" column="0">
-               <widget class="QLabel" name="label_18">
-                <property name="text">
-                 <string>Cache Size:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="15" column="1">
-               <widget class="QComboBox" name="comboBoxPDFRenderBackend">
-                <property name="toolTip">
-                 <string>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
-Note: Changing this setting will only affect documents that are opened afterwards.</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-                <item>
-                 <property name="text">
-                  <string notr="true">Splash</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string notr="true">Arthur</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="6" column="1">
-               <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
-                <property name="suffix">
-                 <string> px</string>
-                </property>
-                <property name="prefix">
-                 <string/>
-                </property>
-                <property name="minimum">
-                 <number>50</number>
-                </property>
-                <property name="maximum">
-                 <number>10000</number>
-                </property>
-                <property name="singleStep">
-                 <number>50</number>
-                </property>
-                <property name="value">
-                 <number>300</number>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="0">
-               <widget class="QLabel" name="label_34">
-                <property name="text">
-                 <string>Synchronized Files Types:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="15" column="0">
-               <widget class="QLabel" name="label_76">
-                <property name="toolTip">
-                 <string>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
-Note: Changing this setting will only affect documents that are opened afterwards.</string>
-                </property>
-                <property name="text">
-                 <string>Render Backend:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="14" column="0">
-               <widget class="QLabel" name="label_69">
-                <property name="text">
-                 <string>Load Strategy:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="13" column="1">
-               <widget class="QSpinBox" name="spinBoxCacheSizeMB">
-                <property name="suffix">
-                 <string> MB</string>
-                </property>
-                <property name="minimum">
-                 <number>100</number>
-                </property>
-                <property name="maximum">
-                 <number>1024</number>
-                </property>
-                <property name="singleStep">
-                 <number>100</number>
-                </property>
-                <property name="value">
-                 <number>512</number>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="0" colspan="2">
                <widget class="QLabel" name="label_77">
                 <property name="text">
@@ -4316,29 +4316,36 @@ Note: Changing this setting will only affect documents that are opened afterward
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_84">
+              <item row="16" column="0">
+               <widget class="QCheckBox" name="autoHideToolbars">
                 <property name="text">
-                 <string>Paper Color</string>
+                 <string>Auto-hide Toolbars in Embedded Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="1">
+               <widget class="QSpinBox" name="spinBoxHighlightDuration">
+                <property name="specialValueText">
+                 <string>Infinite</string>
+                </property>
+                <property name="suffix">
+                 <string notr="true"> ms</string>
+                </property>
+                <property name="maximum">
+                 <number>86400000</number>
+                </property>
+                <property name="value">
+                 <number>2000</number>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
-               <widget class="QLineEdit" name="lineEditPaperColor">
-                <property name="toolTip">
-                 <string>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</string>
-                </property>
-                <property name="inputMask">
-                 <string notr="true">\#HHHHHH;_</string>
-                </property>
+              <item row="17" column="0" colspan="2">
+               <widget class="QCheckBox" name="autoRecompileFullDocument">
                 <property name="text">
-                 <string notr="true">#</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
+                 <string>Auto-recompile document on changes</string>
                 </property>
                </widget>
               </item>

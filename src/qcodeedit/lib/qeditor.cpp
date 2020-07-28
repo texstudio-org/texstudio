@@ -2966,6 +2966,27 @@ void QEditor::selectExpandToNextLine()
  */
 void QEditor::selectAllOccurences()
 {
+	selectOccurence(false, false, true);
+}
+void QEditor::selectNextOccurence()
+{
+	selectOccurence(false, false, false);
+}
+void QEditor::selectPrevOccurence()
+{
+	selectOccurence(true, false, false);
+}
+void QEditor::selectNextOccurenceKeepMirror()
+{
+	selectOccurence(false, true, false);
+}
+void QEditor::selectPrevOccurenceKeepMirror()
+{
+	selectOccurence(true, true, false);
+}
+void QEditor::selectOccurence(bool backward, bool keepMirrors, bool all)
+{
+	//backward and all are exclusive
 	if (!m_cursor.hasSelection()) {
 		m_cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
 	}
@@ -2985,6 +3006,9 @@ void QEditor::selectAllOccurences()
 	bool atBoundaries = (cStart.atLineStart() || !cStart.previousChar().isLetterOrNumber())
 	                 && (cEnd.atLineEnd() || !cEnd.nextChar().isLetterOrNumber());
 
+	QList<QDocumentCursor> cursors;
+	if (keepMirrors) cursors = this->cursors();
+
 	// TODO: this is a quick solution: using the search panel to select all matches
 	//       1. initialize the search with the required parameters
 	//       2. select all matches
@@ -2992,12 +3016,21 @@ void QEditor::selectAllOccurences()
 	// It would be better to be able to perform the search and select without interfering
 	// with the search panel UI.
 	find(text, false, false, isWord && atBoundaries, true);
-	selectAllMatches();
+	if (all) selectAllMatches();
+	else if (backward) {
+		findPrev();
+		findPrev();
+	} else {
+		//findNext(); find above already searched one
+	}
 	relayPanelCommand("Search", "closeElement", QList<QVariant>() << true);
+
+	if (keepMirrors) m_mirrors = cursors;
 
 	emitCursorPositionChanged();
 	viewport()->update();
 }
+
 
 /*!
 	\internal
@@ -3170,7 +3203,7 @@ void QEditor::timerEvent(QTimerEvent *e)
 	} else if ( id == m_click.timerId() ) {
 		m_click.stop();
 	} else if ( id == m_autoScroll.timerId() ) {
-		const QPoint cPos = mapFromGlobal(QCursor::pos());
+		const QPoint cPos = viewport()->mapFromGlobal(QCursor::pos());
 		const QPoint mousePos = mapToContents(cPos);
 
 		QDocumentCursor newCursor = cursorForPosition(mousePos);

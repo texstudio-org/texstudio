@@ -392,7 +392,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void selectExpandToNextWord();
 		void selectExpandToNextLine();
 		void selectAllOccurences();
-		
+		void selectNextOccurence();
+		void selectPrevOccurence();
+		void selectNextOccurenceKeepMirror();
+		void selectPrevOccurenceKeepMirror();
+		void selectOccurence(bool backward, bool keepMirrors, bool all);
+
 		void relayPanelCommand(const QString& panel, const QString& command, const QList<QVariant>& args = QList<QVariant>());
 
 		void find();

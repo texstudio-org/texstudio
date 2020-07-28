@@ -1938,6 +1938,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 	}
 
+	if (config->fullCompilePreview) emit showFullPreview();
+
 	// checking
 	if (!QDocument::defaultFormatScheme()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
@@ -2809,25 +2811,37 @@ QDocumentCursor LatexEditorView::parenthizedTextSelection(const QDocumentCursor 
  * finds the beginning of the specified allowedFormats
  * additional formats can be allowed at the line end (e.g. comments)
  */
-QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats)
+QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> )
 {
 	QDocumentCursor c(cursor);
+
 	QVector<int> lineFormats = c.line().getFormats();
 	int col = c.columnNumber();
-	if ((col > 0 && allowedFormats.contains(lineFormats[col - 1])) // prev char or next char is allowed
-	        || (col < lineFormats.size() && allowedFormats.contains(lineFormats[col]))
-	   ) {
+    QFormatRange rng=c.line().getOverlayAt(col);
+    if (col >= 0 && allowedFormats.contains(rng.format) ) {
 		while (true) {
-			while (col > 0 && allowedFormats.contains(lineFormats[col - 1])) col--;
+            while (col > 0) {
+                rng=c.line().getOverlayAt(col-1);
+                if(allowedFormats.contains(rng.format)){
+                    col--;
+                }else{
+                    break;
+                }
+            }
 			if (col > 0) break;
 			// continue on previous line
 			c.movePosition(1, QDocumentCursor::PreviousLine);
 			c.movePosition(1, QDocumentCursor::EndOfLine);
 			lineFormats = c.line().getFormats();
 			col = c.columnNumber();
-			QString text = c.line().text();
-			while (col > 0 && (allowedLineEndFormats.contains(lineFormats[col - 1]) || text[col - 1].isSpace())) col--;
-
+            while (col > 0) {
+                rng=c.line().getOverlayAt(col-1);
+                if(allowedFormats.contains(rng.format)){
+                    col--;
+                }else{
+                    break;
+                }
+            }
 		}
 		c.setColumnNumber(col);
 		return c;

@@ -12,7 +12,7 @@
 <item tag="path "/>
 <item tag="pen "/>
 </section>
-<section title="Draw  (Asymptote)">
+<section title="Draw (Asymptote)">
 <item tag="draw(%|);"/>
 <item tag="fill(%|);"/>
 <item tag="clip(%|);"/>

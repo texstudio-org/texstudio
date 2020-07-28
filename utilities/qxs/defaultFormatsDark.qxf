@@ -89,6 +89,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#0055FF</foreground>
+        <priority>5</priority>
     </format>
     <format id="verbatim" >
         <foreground>#8BE9FD</foreground>

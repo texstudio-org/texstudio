@@ -72,7 +72,7 @@ class QCE_EXPORT QFormatScheme : public QObject
 		virtual QFormat format(const QString& sfid) const;
 		
 		static void mergeFormats(int &oldFormat, int newFormat);
-		void extractFormats(int mergedFormat, int* fmt, QFormat* formats, int &fontFormat) const;
+        void extractFormats(int mergedFormat, int* fmt, QFormat* formats, int &fontFormat) const;
 
 		QString exportAsCSS(bool simplifyCSS);
 

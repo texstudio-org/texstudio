@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="nl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -76,7 +74,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="39"/>
@@ -382,7 +380,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="82"/>
         <location filename="../src/buildmanager.cpp" line="104"/>
-        <location filename="../src/buildmanager.cpp" line="1985"/>
+        <location filename="../src/buildmanager.cpp" line="1992"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;Onbekend&gt;</translation>
     </message>
@@ -561,12 +559,12 @@
         <translation>Hercompileer bibliografie</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="355"/>
+        <location filename="../src/buildmanager.cpp" line="357"/>
         <source>External Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="417"/>
+        <location filename="../src/buildmanager.cpp" line="419"/>
         <source>OSX 10.11 does not allow applications to write there anymore. Therefore,
 recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
@@ -579,7 +577,7 @@ Wens je dat TeXstudio alle commandopaden aanpast van  /usr/texbin/ naar
 %1?</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="428"/>
+        <location filename="../src/buildmanager.cpp" line="430"/>
         <source>OSX 10.11 does not allow applications to write there anymore. You may
 need to update MacTeX to version 2015.
 
@@ -596,28 +594,28 @@ Wens je dat TeXstudio alle commandopaden aanpast van  /usr/texbin/ naar
 /Library/TeX/texbin/?</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="439"/>
+        <location filename="../src/buildmanager.cpp" line="441"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
         <translation>Sommige commando&apos;s verwijzen naar de map /usr/textbin. </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="953"/>
+        <location filename="../src/buildmanager.cpp" line="955"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>De opdracht werd uitgebreid tot  %1 levels. Wens je verder uit te breiden &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1006"/>
+        <location filename="../src/buildmanager.cpp" line="1008"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation>U hebt txs:///command[... of txs:///command{... aanpassingen gebruikt. We onsdersteunen enkel aanpassingen van het formaat txs:///command/[... or txs:///command/{... met een slash achtervoegsel om de syntax simpel te houden. </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1017"/>
-        <location filename="../src/buildmanager.cpp" line="1018"/>
+        <location filename="../src/buildmanager.cpp" line="1019"/>
+        <location filename="../src/buildmanager.cpp" line="1020"/>
         <source>Command %1 not defined</source>
         <translation>Opdracht %1 niet toegekend.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1066"/>
+        <location filename="../src/buildmanager.cpp" line="1068"/>
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
@@ -626,78 +624,78 @@ Please change your configuration and define command lists only at &apos;Options 
 Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&gt; Configureer TeXstudio -&gt; Bouw&apos; en niet in &apos;Options -&gt; Configureer TexStudio -&gt; Opdrachten&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1100"/>
+        <location filename="../src/buildmanager.cpp" line="1102"/>
         <source>Failed to understand command %1</source>
         <translation>Commando  %1 niet begrepen.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1517"/>
+        <location filename="../src/buildmanager.cpp" line="1519"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
         <translation>Er werd geen LaTeX distributie gevonden op uw systeem. Als gevolg hiervan zijn de overeenkomstige commando&apos;s niet geconfigureerd. Dit betekent dat je uw documenten niet kunt compileren naar het gewenste output formaat (bijv. pdf).</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1521"/>
+        <location filename="../src/buildmanager.cpp" line="1523"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1523"/>
+        <location filename="../src/buildmanager.cpp" line="1525"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
         <translation>Wens je met LaTeX aan de slag gaan dan is het aan te raden om één van deze te installeren. </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1526"/>
+        <location filename="../src/buildmanager.cpp" line="1528"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
         <translation>Een populaire LaTeX-distributie voor OSX is %1.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1528"/>
+        <location filename="../src/buildmanager.cpp" line="1530"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
         <translation>Wens je met LaTeX aan de slag gaan dan is het aan te raden om deze te installeren. </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1531"/>
+        <location filename="../src/buildmanager.cpp" line="1533"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
         <translation>Wens je met LaTeX aan de slag gaan dan is het aan te raden om een LaTeX-distributie te installeren. </translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1544"/>
+        <location filename="../src/buildmanager.cpp" line="1546"/>
         <source>Error: No command given</source>
         <translation>Foutmelding: geen commando opgegeven.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1575"/>
+        <location filename="../src/buildmanager.cpp" line="1577"/>
         <source>Error: No command expanded</source>
         <translation>Foutmelding; geen commando uitgebreidt.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1577"/>
-        <location filename="../src/buildmanager.cpp" line="1590"/>
+        <location filename="../src/buildmanager.cpp" line="1579"/>
+        <location filename="../src/buildmanager.cpp" line="1592"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Installeer een (La)Tex distributie&lt;/b&gt; bijv. MiKTeX of TeXLive, en zorg ervoor dat de paden correct zijn ingesteld op de commando-configuratiepagina. &lt;br&gt; Een (La)TeX-editor als TeXstudio kan niet functioneren zonder de (La)TeX programma&apos;s die voorzien worden door deze distributies.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1586"/>
+        <location filename="../src/buildmanager.cpp" line="1588"/>
         <source>Error: One command expansion invalid.</source>
         <translation>Foutmelding: ongeldige commando-expansie.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1587"/>
+        <location filename="../src/buildmanager.cpp" line="1589"/>
         <source>Parent Command</source>
         <translation>Hoofd Commando</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1588"/>
+        <location filename="../src/buildmanager.cpp" line="1590"/>
         <source>Primary Command</source>
         <translation>Eerste commando</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1954"/>
+        <location filename="../src/buildmanager.cpp" line="1961"/>
         <source>Internal Pdf Viewer</source>
         <translation>Interne Pdf Weergave</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2218"/>
+        <location filename="../src/buildmanager.cpp" line="2225"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>Je hebt een dde:// commando gebruikt met twee //. Dit wordt niet langer ondersteund. Verander dit naar een drievoudige dde:/// commando door een derde / aan toe te voegen. </translation>
     </message>
@@ -817,7 +815,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="345"/>
         <location filename="../src/configdialog.ui" line="1736"/>
-        <location filename="../src/configdialog.ui" line="4510"/>
+        <location filename="../src/configdialog.ui" line="4531"/>
         <source>Font Size:</source>
         <translation>Lettergrootte:</translation>
     </message>
@@ -843,7 +841,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="244"/>
-        <location filename="../src/configdialog.ui" line="4482"/>
+        <location filename="../src/configdialog.ui" line="4503"/>
         <source>Color Scheme:</source>
         <translation>Kleurschema:</translation>
     </message>
@@ -860,7 +858,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -890,7 +888,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="446"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="456"/>
@@ -926,9 +924,9 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="520"/>
@@ -983,18 +981,18 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="674"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="684"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="700"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="778"/>
@@ -1113,12 +1111,12 @@ Variabelen zijn geschreven als $MYVAR. Ze zijn hoofdlettergevoelig. </translatio
     <message>
         <location filename="../src/configdialog.ui" line="1040"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1043"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1080"/>
@@ -1128,12 +1126,12 @@ Variabelen zijn geschreven als $MYVAR. Ze zijn hoofdlettergevoelig. </translatio
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1104"/>
@@ -1159,32 +1157,32 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1160"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1183"/>
@@ -1303,7 +1301,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1554"/>
         <location filename="../src/configdialog.cpp" line="515"/>
-        <location filename="../src/configmanager.cpp" line="1467"/>
+        <location filename="../src/configmanager.cpp" line="1469"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -1334,7 +1332,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1639"/>
-        <location filename="../src/configdialog.ui" line="4496"/>
+        <location filename="../src/configdialog.ui" line="4517"/>
         <source>Font Family:</source>
         <translation>Lettertype familie:</translation>
     </message>
@@ -1376,7 +1374,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1717"/>
         <location filename="../src/configdialog.ui" line="3879"/>
-        <location filename="../src/configdialog.ui" line="4054"/>
+        <location filename="../src/configdialog.ui" line="4042"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1428,12 +1426,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1794"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1799"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1807"/>
@@ -1516,7 +1514,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1930"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1576"/>
@@ -1726,7 +1724,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2333"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2336"/>
@@ -1741,12 +1739,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2350"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2353"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2360"/>
@@ -1782,7 +1780,7 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="2401"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2405"/>
@@ -1807,17 +1805,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2436"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2443"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2446"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2459"/>
@@ -1842,7 +1840,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2486"/>
         <source>Regular expression for TODO comment: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2499"/>
@@ -2030,7 +2028,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
 &lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
 &lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
 &lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2892"/>
@@ -2090,27 +2088,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2967"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3001"/>
         <source>Complete selected text when non-word character is pressed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3011"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3014"/>
         <source>Auto Complete Common Prefix</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3026"/>
         <source>Preferred Commands Set:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3034"/>
@@ -2125,7 +2123,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3044"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3049"/>
@@ -2135,12 +2133,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3072"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3075"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3085"/>
@@ -2151,12 +2149,12 @@ are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3093"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3161"/>
@@ -2176,7 +2174,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3201"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3211"/>
@@ -2201,12 +2199,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3271"/>
         <source>Internal Grammar Check</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3277"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3280"/>
@@ -2221,37 +2219,37 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3297"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3307"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3317"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3327"/>
         <source>Long Range Repetitions:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3337"/>
         <source>Min Length of Words with Long Repetition:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3347"/>
         <source>Wordlist Directory:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3354"/>
         <source>Certain informal or weak words will be highlighted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3357"/>
@@ -2261,27 +2259,27 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3364"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3391"/>
         <source>LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3397"/>
         <source>Path containing the LanguageTool java archive.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3404"/>
         <source>LT Path:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3411"/>
         <source>Start LanguageTool if not running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3418"/>
@@ -2345,12 +2343,12 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="3564"/>
         <location filename="../src/configdialog.ui" line="3612"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3567"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3591"/>
@@ -2361,7 +2359,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3605"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3696"/>
@@ -2466,7 +2464,7 @@ them here.</source>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3866"/>
-        <location filename="../src/configdialog.ui" line="4031"/>
+        <location filename="../src/configdialog.ui" line="4055"/>
         <source>Scaling:</source>
         <translation>Schalen</translation>
     </message>
@@ -2477,234 +2475,249 @@ them here.</source>
         <translation>Interne PDF Viewer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3967"/>
+        <location filename="../src/configdialog.ui" line="4062"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3970"/>
+        <location filename="../src/configdialog.ui" line="4065"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3984"/>
+        <location filename="../src/configdialog.ui" line="4079"/>
         <source>Original Size</source>
         <translation>Originele grootte</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3989"/>
+        <location filename="../src/configdialog.ui" line="4084"/>
         <source>Fit to Window Width</source>
         <translation>In vensterbreedte passen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3994"/>
+        <location filename="../src/configdialog.ui" line="4089"/>
         <source>Fit to Window Size</source>
         <translation>In venstergrootte passen.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3999"/>
+        <location filename="../src/configdialog.ui" line="4094"/>
         <source>Scaled Size</source>
         <translation>Geschaalde grootte.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4004"/>
+        <location filename="../src/configdialog.ui" line="4099"/>
         <source>Fit to Text Width</source>
         <translation>Aanpassen tot tekstbreedte.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4012"/>
+        <location filename="../src/configdialog.ui" line="4329"/>
         <source>Infinite</source>
         <translation>Oneindig</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4038"/>
+        <location filename="../src/configdialog.ui" line="4225"/>
         <source>Scale Option:</source>
         <translation>Schaaloptie</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4067"/>
+        <location filename="../src/configdialog.ui" line="3984"/>
         <source>Magnifier Size:</source>
         <translation>Vergrootglasgrootte:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4074"/>
+        <location filename="../src/configdialog.ui" line="4215"/>
         <source> dpi</source>
         <translation>dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4085"/>
+        <location filename="../src/configdialog.ui" line="4118"/>
         <source>Square</source>
         <translation>Vierkant</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4090"/>
+        <location filename="../src/configdialog.ui" line="4123"/>
         <source>Circle</source>
         <translation>Cirkel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4095"/>
+        <location filename="../src/configdialog.ui" line="4128"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4103"/>
+        <location filename="../src/configdialog.ui" line="3974"/>
         <source>Highlight Duration</source>
         <translation>Markeringstijd</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4113"/>
+        <location filename="../src/configdialog.ui" line="4136"/>
         <source>Screen Resolution:</source>
         <translation>Schermresolutie:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4133"/>
+        <location filename="../src/configdialog.ui" line="4205"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4143"/>
+        <location filename="../src/configdialog.ui" line="3967"/>
         <source>Border</source>
         <translation>Rand</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4150"/>
+        <location filename="../src/configdialog.ui" line="4198"/>
         <source>Magnifier Shape:</source>
         <translation>Vergrootglas vorm:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4157"/>
+        <location filename="../src/configdialog.ui" line="4322"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Automatisch verbergen werkbalk in interne modus</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4164"/>
+        <location filename="../src/configdialog.ui" line="4107"/>
         <source>Highlight Color</source>
         <translation>Kleur markering</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4174"/>
+        <location filename="../src/configdialog.ui" line="4287"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4184"/>
+        <location filename="../src/configdialog.ui" line="4297"/>
         <source>Buffered</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4189"/>
+        <location filename="../src/configdialog.ui" line="4302"/>
         <source>Direct</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4194"/>
+        <location filename="../src/configdialog.ui" line="4307"/>
         <source>Hybrid</source>
         <translation>Hybride</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4202"/>
+        <location filename="../src/configdialog.ui" line="4232"/>
         <source>Cache Size:</source>
         <translation>Cachegrootte:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4212"/>
-        <location filename="../src/configdialog.ui" line="4267"/>
+        <location filename="../src/configdialog.ui" line="4175"/>
+        <location filename="../src/configdialog.ui" line="4242"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4235"/>
+        <location filename="../src/configdialog.ui" line="3991"/>
         <source> px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4257"/>
+        <location filename="../src/configdialog.ui" line="4143"/>
         <source>Synchronized Files Types:</source>
         <translation>Gesynchroniseerde bestandstypes:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4273"/>
+        <location filename="../src/configdialog.ui" line="4248"/>
         <source>Render Backend:</source>
         <translation>Render Backend:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4283"/>
+        <location filename="../src/configdialog.ui" line="4013"/>
         <source>Load Strategy:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4293"/>
+        <location filename="../src/configdialog.ui" line="4153"/>
         <source> MB</source>
         <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4315"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4322"/>
+        <location filename="../src/configdialog.ui" line="4023"/>
         <source>Paper Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4332"/>
+        <location filename="../src/configdialog.ui" line="4271"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4384"/>
+        <location filename="../src/configdialog.ui" line="4348"/>
+        <source>Auto-recompile document on changes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4392"/>
+        <source>Use SVN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4397"/>
+        <source>Use GIT</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4405"/>
         <source>Select how txs checks in saved files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4388"/>
+        <location filename="../src/configdialog.ui" line="4409"/>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4393"/>
+        <location filename="../src/configdialog.ui" line="4414"/>
         <source>Check-in after File/Save only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4398"/>
+        <location filename="../src/configdialog.ui" line="4419"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4406"/>
-        <source>Use SVN revisions to undo before last saved version</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/configdialog.ui" line="4427"/>
+        <source>Use SVN/GIT revisions to undo before last saved version</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4413"/>
+        <location filename="../src/configdialog.ui" line="4434"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4416"/>
+        <location filename="../src/configdialog.ui" line="4437"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4425"/>
+        <location filename="../src/configdialog.ui" line="4446"/>
         <source>SVN Directory Search Depth: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4476"/>
+        <location filename="../src/configdialog.ui" line="4497"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Internal Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4527"/>
+        <location filename="../src/configdialog.ui" line="4548"/>
         <source>Shell:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -2723,12 +2736,12 @@ Wens je dit teken als sneltoets inschakelen?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
         <source>Do you wish to remove the old assignment and bind the shortcut to the new command?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="306"/>
@@ -2738,12 +2751,12 @@ Wens je dit teken als sneltoets inschakelen?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="471"/>
         <source>Download additional dictionaries from %1 or %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="482"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="483"/>
@@ -2863,8 +2876,8 @@ Wens je dit teken als sneltoets inschakelen?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="522"/>
-        <source>SVN</source>
-        <translation>SVN</translation>
+        <source>SVN/GIT</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="560"/>
@@ -2879,12 +2892,12 @@ Wens je dit teken als sneltoets inschakelen?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="692"/>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="697"/>
         <source>Select the LanguageTool jar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="702"/>
@@ -2894,32 +2907,32 @@ Wens je dit teken als sneltoets inschakelen?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="715"/>
         <source>Select dictionary directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="720"/>
         <source>Search Path for Logs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="725"/>
         <source>Search Path .bib Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="730"/>
         <source>Search Path for Images</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="735"/>
         <source>Search Path for PDFs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="740"/>
         <source>Search Path for Commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="786"/>
@@ -2929,17 +2942,17 @@ Wens je dit teken als sneltoets inschakelen?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="1041"/>
         <source>Load Other Icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1042"/>
         <source>Insert Separator</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1050"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1053"/>
@@ -2966,19 +2979,19 @@ Wens je dit teken als sneltoets inschakelen?</translation>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1189"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1468"/>
+        <location filename="../src/configmanager.cpp" line="1470"/>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3086,7 +3099,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="20"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="31"/>
@@ -3406,7 +3419,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{filelist}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -3451,182 +3464,182 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
         <source>Display math mode \[...\]</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="105"/>
         <source>Subscript - _{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="106"/>
         <source>Superscript - ^{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>\begin{array}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>env equation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>env equation* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>env align (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env align* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env alignat (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>env alignat* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env flalign (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env flalign* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env gather (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env gather* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>env multline (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>env multline* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env cases (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>env split (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>Roman - \mathrm{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>\overset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>\underset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="136"/>
         <source>Negative - \!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>Thin - \,</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>Medium - \:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>Thick - \;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>Interword - \ </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>One quad - \quad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Two quads - \qquad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
@@ -3644,149 +3657,149 @@ options again to only view the most common settings.</source>
         <translation>pageref</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1042"/>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1064"/>
-        <location filename="../src/configmanager.cpp" line="1069"/>
+        <location filename="../src/configmanager.cpp" line="1044"/>
+        <location filename="../src/configmanager.cpp" line="1050"/>
+        <location filename="../src/configmanager.cpp" line="1066"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
         <source>Key replacement: %1 %2</source>
         <translation>Toets vervanging: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1042"/>
-        <location filename="../src/configmanager.cpp" line="1064"/>
+        <location filename="../src/configmanager.cpp" line="1044"/>
+        <location filename="../src/configmanager.cpp" line="1066"/>
         <source>before word</source>
         <translation>Voor woord</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1069"/>
+        <location filename="../src/configmanager.cpp" line="1050"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
         <source>after word</source>
         <translation>Na woord</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1387"/>
-        <location filename="../src/configmanager.cpp" line="1388"/>
-        <location filename="../src/configmanager.cpp" line="1563"/>
-        <location filename="../src/configmanager.cpp" line="1569"/>
-        <location filename="../src/configmanager.cpp" line="1831"/>
-        <location filename="../src/configmanager.cpp" line="1836"/>
+        <location filename="../src/configmanager.cpp" line="1389"/>
+        <location filename="../src/configmanager.cpp" line="1390"/>
+        <location filename="../src/configmanager.cpp" line="1565"/>
+        <location filename="../src/configmanager.cpp" line="1571"/>
+        <location filename="../src/configmanager.cpp" line="1833"/>
+        <location filename="../src/configmanager.cpp" line="1838"/>
         <source>default</source>
         <translation>Standaard</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1445"/>
+        <location filename="../src/configmanager.cpp" line="1447"/>
         <source>Menus</source>
         <translation>Menus</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1453"/>
+        <location filename="../src/configmanager.cpp" line="1455"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1489"/>
-        <location filename="../src/configmanager.cpp" line="2630"/>
+        <location filename="../src/configmanager.cpp" line="1491"/>
+        <location filename="../src/configmanager.cpp" line="2632"/>
         <source>&lt;none&gt;</source>
         <translation>[geen]</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1535"/>
+        <location filename="../src/configmanager.cpp" line="1537"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Voeg Nieuw Menu Item in (voor)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1538"/>
+        <location filename="../src/configmanager.cpp" line="1540"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Voeg Nieuw Submenu in (voor)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1556"/>
+        <location filename="../src/configmanager.cpp" line="1558"/>
         <source>Latex/Math menus</source>
         <translation>Latex/Math menus</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1557"/>
+        <location filename="../src/configmanager.cpp" line="1559"/>
         <source>All menus</source>
         <translation>Alle menus</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1558"/>
+        <location filename="../src/configmanager.cpp" line="1560"/>
         <source>Special Tags</source>
         <translation>Speciale Labels</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1635"/>
+        <location filename="../src/configmanager.cpp" line="1637"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1873"/>
+        <location filename="../src/configmanager.cpp" line="1875"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1888"/>
+        <location filename="../src/configmanager.cpp" line="1890"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Recent &apos;Brondocument&apos; %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1891"/>
+        <location filename="../src/configmanager.cpp" line="1893"/>
         <source>Recent File %1</source>
         <translation>Recent Bestand %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1892"/>
+        <location filename="../src/configmanager.cpp" line="1894"/>
         <source>File list</source>
         <translation>Bestandslijst</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1893"/>
+        <location filename="../src/configmanager.cpp" line="1895"/>
         <source>Open first non-open file</source>
         <translation>Open eerst niet open bestand</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1894"/>
+        <location filename="../src/configmanager.cpp" line="1896"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Open alle bestanden</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1904"/>
+        <location filename="../src/configmanager.cpp" line="1906"/>
         <source>Master Document: </source>
         <translation>Brondocument</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2631"/>
+        <location filename="../src/configmanager.cpp" line="2633"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;standaard&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2860"/>
+        <location filename="../src/configmanager.cpp" line="2862"/>
         <source>Configure</source>
         <translation>Configureer</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2867"/>
+        <location filename="../src/configmanager.cpp" line="2869"/>
         <source>Select Program</source>
         <translation>Selecteer Programma</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2874"/>
+        <location filename="../src/configmanager.cpp" line="2876"/>
         <source>Restore Default</source>
         <translation>Standaard heractiveren.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2921"/>
+        <location filename="../src/configmanager.cpp" line="2923"/>
         <source>Repeat contained compilation commands</source>
         <translation>Herhaal ingehouden compileercommando&apos;s</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2969"/>
+        <location filename="../src/configmanager.cpp" line="2971"/>
         <source>Add</source>
         <translation>Voeg toe</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3032"/>
+        <location filename="../src/configmanager.cpp" line="3034"/>
         <source>Browse program</source>
         <translation>Blader naar programma</translation>
     </message>
@@ -3806,47 +3819,47 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="114"/>
         <source>Tabulators &amp;&amp; Whitespaces</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="131"/>
         <source>Tab width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="163"/>
         <source>Show leading whitespaces</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="173"/>
         <source>Show tabs which are neither leading nor trailing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="183"/>
         <source>Show trailing whitespaces</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="193"/>
         <source>Replace tabs by blanks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="203"/>
         <source>Load &amp;&amp; Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="209"/>
         <source>Default encoding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="219"/>
         <source>Preserve line endings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="233"/>
@@ -3871,12 +3884,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="256"/>
         <source>Remove trailing spaces</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="266"/>
         <source>Preserve trailing indent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3884,12 +3897,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="393"/>
         <source>Move to other view</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="399"/>
         <source>Move all to other view</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="404"/>
@@ -3904,12 +3917,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="409"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="411"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="416"/>
@@ -3919,7 +3932,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="419"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3927,7 +3940,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/encodingdialog.ui" line="14"/>
         <source>Select File Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="20"/>
@@ -3937,12 +3950,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/encodingdialog.ui" line="27"/>
         <source>View With</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="34"/>
         <source>Reload With</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="41"/>
@@ -3957,36 +3970,36 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/encodingdialog.ui" line="90"/>
         <source>File Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="95"/>
         <source>inputenc Parameter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="98"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.cpp" line="35"/>
         <source>Select Encoding for</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.cpp" line="52"/>
         <source>If the new and old encodings are incompatible, some characters may be destroyed.
 Are you sure you want accept data loss?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/encodingdialog.cpp" line="69"/>
         <source>The document has been changed.
 These changes will be lost, if you reload it with the new encoding.
 Are you sure you want to undo all changes?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4022,7 +4035,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="35"/>
         <source>Scheme :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4035,7 +4048,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
         <source>Select the line you want to go to :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
@@ -4058,7 +4071,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="53"/>
         <source>G&amp;o</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4071,12 +4084,12 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/grammarcheck.cpp" line="424"/>
         <source>Word repetition. Distance %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/grammarcheck.cpp" line="426"/>
         <source>Long range word repetition. Distance %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/grammarcheck.cpp" line="436"/>
@@ -4092,17 +4105,17 @@ Are you sure you want to undo all changes?</source>
         <location filename="../src/help.cpp" line="110"/>
         <location filename="../src/help.cpp" line="161"/>
         <source>texdoc not found.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/help.cpp" line="55"/>
         <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/help.cpp" line="134"/>
         <source>texdoc did not respond to query on package:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4116,12 +4129,12 @@ Are you sure you want to undo all changes?</source>
         <location filename="../src/insertgraphics.ui" line="94"/>
         <location filename="../src/insertgraphics.ui" line="160"/>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="97"/>
         <source>Graphics Options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="103"/>
@@ -4146,7 +4159,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="167"/>
         <source>User Defined</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="195"/>
@@ -4156,7 +4169,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="219"/>
         <source>Place in Figure Environment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="228"/>
@@ -4176,7 +4189,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="271"/>
         <source>Caption for display next to the image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="278"/>
@@ -4186,12 +4199,12 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="285"/>
         <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="292"/>
         <source>Span Two Columns</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="299"/>
@@ -4201,7 +4214,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="324"/>
         <source>Caption for display in the list of tables</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="331"/>
@@ -4236,12 +4249,12 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
         <source>Override Internal Layout Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="440"/>
@@ -4266,13 +4279,13 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.cpp" line="50"/>
         <source>Insert Graphic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="78"/>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="82"/>
@@ -4283,40 +4296,40 @@ Are you sure you want to undo all changes?</source>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="263"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="280"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="289"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="303"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="320"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="422"/>
@@ -4335,7 +4348,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/searchquery.cpp" line="161"/>
         <source>Label Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4356,7 +4369,7 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="1310"/>
         <location filename="../src/latexcompleter.cpp" line="1320"/>
         <source>fuzzy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1311"/>
@@ -4368,28 +4381,28 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="1312"/>
         <location filename="../src/latexcompleter.cpp" line="1322"/>
         <source>press shift+space to change view</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1479"/>
         <source> (Usertag)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1819"/>
         <source>label missing!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1821"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4397,18 +4410,18 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/diffoperations.cpp" line="26"/>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="37"/>
         <source>MAGIC_COMMENTS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="38"/>
         <location filename="../src/tests/structureview_t.cpp" line="15"/>
         <source>LABELS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="39"/>
@@ -4428,17 +4441,17 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexdocument.cpp" line="2507"/>
         <source>Invalid codec</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2521"/>
         <source>Missing value for -job-name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2524"/>
         <source>Unknown magic comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4452,7 +4465,7 @@ The wizard does not support command </source>
         <location filename="../src/latexstructure.cpp" line="175"/>
         <location filename="../src/latexstructure.cpp" line="234"/>
         <source> (Line %1)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="194"/>
@@ -4468,17 +4481,17 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexstructure.cpp" line="199"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="201"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="219"/>
         <source>File not found.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4496,7 +4509,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="452"/>
         <source>New BibTeX Entry %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="467"/>
@@ -4513,32 +4526,32 @@ The wizard does not support command </source>
         <location filename="../src/latexeditorview.cpp" line="499"/>
         <location filename="../src/latexeditorview.cpp" line="512"/>
         <source>Open package documentation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="520"/>
         <source>Go to Definition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="526"/>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="533"/>
         <source>Thesaurus...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="560"/>
         <source>use yours</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="564"/>
         <source>use other&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="580"/>
@@ -4551,125 +4564,122 @@ The wizard does not support command </source>
         <translation>naamloos</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2202"/>
+        <location filename="../src/latexeditorview.cpp" line="2210"/>
         <source>Delete</source>
         <translation>Verwijder</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2235"/>
+        <location filename="../src/latexeditorview.cpp" line="2243"/>
         <source>Add to Dictionary</source>
         <translation>Voeg toe aan woordenboek</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2439"/>
+        <location filename="../src/latexeditorview.cpp" line="2447"/>
         <source>label missing!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/latexeditorview.cpp" line="2441"/>
-        <location filename="../src/latexeditorview.cpp" line="2459"/>
-        <source>label defined multiple times!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2449"/>
-        <location filename="../src/latexeditorview.cpp" line="2521"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2462"/>
-        <source>%n reference(s) to this label</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
+        <location filename="../src/latexeditorview.cpp" line="2467"/>
+        <source>label defined multiple times!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2467"/>
+        <location filename="../src/latexeditorview.cpp" line="2457"/>
+        <location filename="../src/latexeditorview.cpp" line="2529"/>
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/latexeditorview.cpp" line="2470"/>
+        <source>%n reference(s) to this label</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message>
+        <location filename="../src/latexeditorview.cpp" line="2475"/>
         <source>Class</source>
         <translation>Klasse</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2467"/>
+        <location filename="../src/latexeditorview.cpp" line="2475"/>
         <source>Package</source>
         <translation>Pakket</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2471"/>
+        <location filename="../src/latexeditorview.cpp" line="2479"/>
         <source>Beamer Theme</source>
         <translation>Beamer Thema</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2480"/>
+        <location filename="../src/latexeditorview.cpp" line="2488"/>
         <source>not found</source>
         <translation>niet gevonden</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2496"/>
+        <location filename="../src/latexeditorview.cpp" line="2504"/>
         <source>Citation correct (reading ...)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2502"/>
+        <location filename="../src/latexeditorview.cpp" line="2510"/>
         <source>Citation missing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2505"/>
+        <location filename="../src/latexeditorview.cpp" line="2513"/>
         <source>Warning:</source>
         <translation>Waarschuwing:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2505"/>
+        <location filename="../src/latexeditorview.cpp" line="2513"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2869"/>
+        <location filename="../src/latexeditorview.cpp" line="2889"/>
         <source>Save Preview Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2869"/>
+        <location filename="../src/latexeditorview.cpp" line="2889"/>
         <source>Images</source>
         <translation>Afbeeldingen</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3000"/>
+        <location filename="../src/latexeditorview.cpp" line="3020"/>
         <source>Remove Bookmark</source>
         <translation>Verwijder Bladwijzer</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3008"/>
+        <location filename="../src/latexeditorview.cpp" line="3028"/>
         <source>Unnamed Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3013"/>
+        <location filename="../src/latexeditorview.cpp" line="3033"/>
         <source>Bookmark</source>
         <translation>Bladwijzer</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3040"/>
+        <location filename="../src/latexeditorview.cpp" line="3060"/>
         <source>Collapse All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3044"/>
+        <location filename="../src/latexeditorview.cpp" line="3064"/>
         <source>Collapse Level %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3049"/>
+        <location filename="../src/latexeditorview.cpp" line="3069"/>
         <source>Expand All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3053"/>
+        <location filename="../src/latexeditorview.cpp" line="3073"/>
         <source>Expand Level %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4677,7 +4687,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlog.cpp" line="27"/>
         <source>Click to jump to the line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexlog.cpp" line="36"/>
@@ -4695,7 +4705,7 @@ The wizard does not support command </source>
         <location filename="../src/latexlog.cpp" line="40"/>
         <location filename="../src/latexlog.cpp" line="180"/>
         <source>bad box</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexlog.cpp" line="47"/>
@@ -4743,7 +4753,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="74"/>
         <source>No log file available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="85"/>
@@ -4768,23 +4778,23 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="99"/>
         <source>Show BadBox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="117"/>
         <source>Log file not found.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="121"/>
         <location filename="../src/latexlogwidget.cpp" line="164"/>
         <source>Log file not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="129"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4792,7 +4802,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/letterdialog.ui" line="41"/>
         <source>Typeface Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/letterdialog.ui" line="56"/>
@@ -4822,7 +4832,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/letterdialog.cpp" line="55"/>
         <source>Quick Letter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4840,17 +4850,17 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="40"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="142"/>
         <source>Browse macro repository</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="143"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4858,17 +4868,17 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="14"/>
         <source>Make Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="20"/>
         <source>Create a template from the current file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="27"/>
         <source>Meta Data</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="33"/>
@@ -4898,13 +4908,13 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="126"/>
         <source>LaTeX Project Public License (LPPL)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.cpp" line="46"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4912,17 +4922,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/mathassistant.cpp" line="25"/>
         <source>TexTablet not found.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/mathassistant.cpp" line="27"/>
         <source>Math Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/mathassistant.cpp" line="69"/>
         <source>TexTablet crashed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4931,19 +4941,19 @@ Do you want to overwrite it?</source>
         <location filename="../src/toolwidgets.cpp" line="236"/>
         <location filename="../src/toolwidgets.cpp" line="326"/>
         <source>Messages / Log File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="247"/>
         <location filename="../src/toolwidgets.cpp" line="327"/>
         <source>Messages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="252"/>
         <location filename="../src/toolwidgets.cpp" line="328"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="258"/>
@@ -4954,13 +4964,13 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/toolwidgets.cpp" line="262"/>
         <source>Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="269"/>
         <location filename="../src/toolwidgets.cpp" line="330"/>
         <source>Search Results</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4978,7 +4988,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="34"/>
         <source>Geometric</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="36"/>
@@ -4998,12 +5008,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="42"/>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="44"/>
         <source>Caret</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="46"/>
@@ -5026,7 +5036,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/pdfannotationdlg.ui" line="14"/>
         <source>Annotation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5072,22 +5082,22 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="492"/>
         <source>Enables case sensitive search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="503"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="504"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="505"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="507"/>
@@ -5097,50 +5107,50 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="509"/>
         <source>Case</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PDFClockDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="914"/>
-        <source>Set Interval...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="915"/>
-        <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <source>Set Interval...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="930"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="916"/>
+        <source>Restart</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="931"/>
         <source>Clock</source>
         <translation>Klok</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
-        <source>Start time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
+        <source>Start time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
         <source>New clock interval (in minutes)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="994"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="995"/>
         <source>wait</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="996"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="997"/>
         <source>%1 sec</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="998"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="999"/>
         <source>%1 min</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5148,7 +5158,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2403"/>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2457"/>
@@ -5163,12 +5173,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2459"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2460"/>
         <source>Grid</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2461"/>
@@ -5188,12 +5198,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2469"/>
         <source>User &amp;Manual...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2472"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2473"/>
@@ -5203,7 +5213,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2474"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2475"/>
@@ -5218,47 +5228,47 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2478"/>
         <source>&amp;Configure TeXstudio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2480"/>
         <source>Scrolling follows cursor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2482"/>
         <source>Cursor follows scrolling</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2484"/>
         <source>Synchronize multiple views</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2486"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2489"/>
         <source>Invert Colors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2491"/>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2494"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2495"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -5268,7 +5278,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2498"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2499"/>
@@ -5283,7 +5293,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2501"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2502"/>
@@ -5298,12 +5308,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2506"/>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2507"/>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2508"/>
@@ -5313,57 +5323,57 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2509"/>
         <source>Fit to Wi&amp;dth</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2511"/>
         <source>Fit to &amp;Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2513"/>
         <source>Fit to &amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2515"/>
         <source>&amp;Continuous</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2520"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2521"/>
         <source>Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2522"/>
         <source>External Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2523"/>
         <source>Enlarge Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2524"/>
         <source>Shrink Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2525"/>
         <source>Windowed/Embedded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2526"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2536"/>
@@ -5373,38 +5383,38 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2539"/>
         <source>Single Page Step</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2542"/>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2544"/>
         <source>&amp;Close something</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2547"/>
         <source>Stac&amp;k</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2548"/>
         <source>&amp;Tile</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2549"/>
         <source>&amp;Side by Side</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2551"/>
         <source>&amp;Go to Source</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2552"/>
         <source>Focus Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2554"/>
@@ -5419,12 +5429,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2556"/>
         <source>Find &amp;again</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2558"/>
         <source>Quick Build</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2593"/>
@@ -5434,12 +5444,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2619"/>
         <source>Windowed Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2622"/>
         <source>Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2681"/>
@@ -5450,7 +5460,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2704"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2722"/>
@@ -5471,22 +5481,22 @@ Do you want to overwrite it?</source>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2769"/>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2772"/>
         <source>Annotations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2892"/>
         <source>Page Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2896"/>
         <source>Page Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
@@ -5498,27 +5508,27 @@ Do you want to overwrite it?</source>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3092"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3106"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3109"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3112"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3115"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3118"/>
@@ -5708,22 +5718,22 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="609"/>
         <source>Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="610"/>
         <source>Only searches for whole words.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="616"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="617"/>
         <source>Sync</source>
         <translation>Synchroniseer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="617"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="618"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5746,7 +5756,7 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="146"/>
         <source>Add page range</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="249"/>
@@ -5764,17 +5774,17 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/pdfsplittool.ui" line="14"/>
         <source>Split &amp; Merge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="40"/>
         <source>Split &amp;&amp; Merge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="47"/>
         <source>Backend:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="87"/>
@@ -5784,12 +5794,12 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/pdfsplittool.ui" line="96"/>
         <source>Output file:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="109"/>
         <source>Add input file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5807,22 +5817,22 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="577"/>
         <source>Actual Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="580"/>
         <source>Fit to Width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="583"/>
         <source>Fit to Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1117"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1136"/>
@@ -5832,27 +5842,27 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1136"/>
         <source>Could not open link:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1247"/>
         <source>Go to Source</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1920"/>
         <source>Go to Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1921"/>
         <source>Page number:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2256"/>
         <source>Calculating text width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2256"/>
@@ -5875,12 +5885,12 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="127"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="128"/>
         <source>Fit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="132"/>
@@ -5891,50 +5901,50 @@ Voer paswoord in: </translation>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2316"/>
+        <location filename="../src/buildmanager.cpp" line="2323"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2325"/>
+        <location filename="../src/buildmanager.cpp" line="2332"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2481"/>
+        <location filename="../src/buildmanager.cpp" line="2493"/>
         <source>Process started: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2487"/>
+        <location filename="../src/buildmanager.cpp" line="2499"/>
         <source>Error: Could not start the command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2490"/>
+        <location filename="../src/buildmanager.cpp" line="2502"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Installeer een (La)Tex distributie&lt;/b&gt; bijv. MiKTeX of TeXLive, en zorg ervoor dat de paden correct zijn ingesteld op de commando-configuratiepagina. &lt;br&gt; Een (La)TeX-editor als TeXstudio kan niet functioneren zonder de (La)TeX programma&apos;s die voorzien worden door deze distributies.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2494"/>
+        <location filename="../src/buildmanager.cpp" line="2506"/>
         <source>Error: Command crashed: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2501"/>
+        <location filename="../src/buildmanager.cpp" line="2513"/>
         <source>Process exited with error(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2504"/>
+        <location filename="../src/buildmanager.cpp" line="2516"/>
         <source>Process exited normally</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="../src/codesnippet.cpp" line="314"/>
+        <location filename="../src/codesnippet.cpp" line="317"/>
         <source>Select a File</source>
         <translation>Selecteer een bestand</translation>
     </message>
@@ -5950,7 +5960,7 @@ Voer paswoord in: </translation>
         <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
         <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
         <source>&amp;Trigger completion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5958,56 +5968,56 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="840"/>
         <source>Replacement prompt</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="841"/>
         <source>Shall it be replaced?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="846"/>
         <source>Replacing Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="846"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="885"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="890"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="897"/>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="917"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="939"/>
         <source>Replacing Finished</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="918"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="939"/>
         <source>%1 (of %2) occurrences have been replaced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="919"/>
         <source>Do you want to continue replacing from the beginning?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -6015,12 +6025,12 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="265"/>
         <source>Panels</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="195"/>
@@ -6045,7 +6055,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="543"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1435"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="554"/>
@@ -6063,30 +6073,30 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="581"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1439"/>
         <source>&amp;Indent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="589"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1440"/>
         <source>&amp;Unindent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="601"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="606"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1441"/>
         <source>Co&amp;mment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="614"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
         <source>Unc&amp;omment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="626"/>
@@ -6121,18 +6131,18 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="678"/>
         <source>Dynamic line wrapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="690"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1456"/>
         <source>Input binding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="715"/>
         <source>Line endings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="722"/>
@@ -6173,7 +6183,7 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="926"/>
@@ -6194,7 +6204,7 @@ Press &quot;Ignore&quot; to ignore this warning.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1015"/>
@@ -6203,7 +6213,7 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1045"/>
@@ -6219,7 +6229,7 @@ When ignoring this warning TeXstudio will try save to the specified
 location. However if there is really not enough space, this will
 result in data loss.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1070"/>
@@ -6229,21 +6239,21 @@ result in data loss.
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1071"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1099"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1226"/>
@@ -6256,13 +6266,13 @@ You&apos;ll find a copy at
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1230"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1256"/>
@@ -6277,12 +6287,12 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1331"/>
         <source>Print Source Code</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1462"/>
@@ -6315,291 +6325,291 @@ Notes:
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4620"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4653"/>
         <source>None</source>
         <translation>Geen</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4621"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4654"/>
         <source>Invalid</source>
         <translation>Ongeldig</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4623"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4639"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4655"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4656"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4672"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4688"/>
         <source>Internal</source>
         <translation>Intern</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4625"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4658"/>
         <source>Move cursor up</source>
         <translation>Beweeg de cursor omhoog</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4626"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4659"/>
         <source>Move cursor down</source>
         <translation>Beweeg de cursor omlaag</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4627"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4660"/>
         <source>Move cursor left (1 character)</source>
         <translation>Beweeg de cursor links (1 teken)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4628"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4661"/>
         <source>Move cursor right (1 character)</source>
         <translation>Beweeg de cursor rechts (1 teken)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4629"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4662"/>
         <source>Move cursor left (1 word)</source>
         <translation>Beweeg de cursor links (1 woord)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4630"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4663"/>
         <source>Move cursor right (1 word)</source>
         <translation>Beweeg de cursor rechts (1 woord)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4631"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4664"/>
         <source>Move cursor to line start</source>
         <translation>Beweeg de cursor naar het begin van de lijn</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4632"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4665"/>
         <source>Move cursor to line end</source>
         <translation>Beweeg de cursor naar het eind van de lijn</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4633"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4666"/>
         <source>Move cursor to document start</source>
         <translation>Beweeg de cursor naar het begin van het document</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4634"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4667"/>
         <source>Move cursor to document end</source>
         <translation>Beweeg de cursor naar het einde van het document</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4636"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4669"/>
         <source>Move cursor one page up</source>
         <translation>Beweeg de cursor 1 pagina hoger</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4637"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4670"/>
         <source>Move cursor one page down</source>
         <translation>Beweeg de cursor 1 pagina lager</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4641"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4674"/>
         <source>Select up</source>
         <translation>Selecteer boven</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4642"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4675"/>
         <source>Select down</source>
         <translation>Selecteer onder</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4643"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4676"/>
         <source>Select left (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4644"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4677"/>
         <source>Select right (1 character)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4645"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4678"/>
         <source>Select left (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4646"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4679"/>
         <source>Select right (1 word)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4647"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4680"/>
         <source>Select to line start</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4648"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4681"/>
         <source>Select to line end</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4649"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4682"/>
         <source>Select to document start</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4650"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4683"/>
         <source>Select to document end</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4652"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4685"/>
         <source>Select page up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4653"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4686"/>
         <source>Select page down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4657"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4690"/>
         <source>Delete left character</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4658"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4691"/>
         <source>Delete right character</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4659"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4692"/>
         <source>Delete left word</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4660"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4693"/>
         <source>Delete right word</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4661"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4694"/>
         <source>New line</source>
         <translation>Nieuwe regel</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4663"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4696"/>
         <source>Change overwrite mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4664"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4697"/>
         <source>Undo</source>
         <translation>Ongedaan maken</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4665"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4698"/>
         <source>Redo</source>
         <translation>Opnieuw</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4666"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4699"/>
         <source>Copy</source>
         <translation>Kopieer</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4667"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4700"/>
         <source>Paste</source>
         <translation>Plak</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4668"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4701"/>
         <source>Cut</source>
         <translation>Knip</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4669"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4702"/>
         <source>Print</source>
         <translation>Print</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4670"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4703"/>
         <source>Select all</source>
         <translation>Selecteer alles</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4671"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4704"/>
         <source>Find</source>
         <translation>Zoek</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4672"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4705"/>
         <source>Find next</source>
         <translation>Zoek volgende</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4673"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4706"/>
         <source>Find previous</source>
         <translation>Zoek vorige</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4674"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4707"/>
         <source>Replace</source>
         <translation>Vervang</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4676"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4709"/>
         <source>Create cursor mirror up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4677"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4710"/>
         <source>Create cursor mirror down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4678"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4711"/>
         <source>Next placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4679"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4712"/>
         <source>Previous placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4680"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4713"/>
         <source>Next placeholder or one word right</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4681"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4714"/>
         <source>Previous placeholder or one word left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4682"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4715"/>
         <source>Next placeholder or character</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4683"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4716"/>
         <source>Previous placeholder or character</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4684"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4717"/>
         <source>Tab or Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4685"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4718"/>
         <source>Insert tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4686"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4719"/>
         <source>Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4687"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4720"/>
         <source>Unindent selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4690"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4723"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -6621,17 +6631,17 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>line:error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>line:warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>line:badbox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
@@ -6761,7 +6771,7 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>picture-keyword</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
@@ -6846,12 +6856,12 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>latexSyntaxMistake</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>temporaryCodeCompletion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
@@ -6861,42 +6871,42 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>referencePresent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>referenceMissing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>referenceMultiple</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>citationPresent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>citationMissing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>packagePresent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>packageMissing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="202"/>
         <source>structure</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="203"/>
@@ -7133,17 +7143,17 @@ Notes:
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
         <source>Prio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="82"/>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="281"/>
@@ -7155,13 +7165,13 @@ Note: If the size is larger than the line spacing, characters may be clipped.</s
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="593"/>
         <source>Unsaved changes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="594"/>
         <source>There are unsaved changes in this format scheme.
 Do you want them to be saved?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7180,8 +7190,8 @@ Do you want them to be saved?</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/codesnippet.cpp" line="241"/>
-        <location filename="../src/codesnippet.cpp" line="243"/>
+        <location filename="../src/codesnippet.cpp" line="244"/>
+        <location filename="../src/codesnippet.cpp" line="246"/>
         <location filename="../src/tests/codesnippet_t.cpp" line="56"/>
         <location filename="../src/tests/codesnippet_t.cpp" line="358"/>
         <location filename="../src/tests/latexcompleter_t.cpp" line="321"/>
@@ -7189,8 +7199,8 @@ Do you want them to be saved?</source>
         <translation>*omgeving-naam*</translation>
     </message>
     <message>
-        <location filename="../src/codesnippet.cpp" line="242"/>
-        <location filename="../src/codesnippet.cpp" line="268"/>
+        <location filename="../src/codesnippet.cpp" line="245"/>
+        <location filename="../src/codesnippet.cpp" line="271"/>
         <location filename="../src/tests/codesnippet_t.cpp" line="140"/>
         <location filename="../src/tests/codesnippet_t.cpp" line="437"/>
         <location filename="../src/tests/latexcompleter_t.cpp" line="322"/>
@@ -7198,12 +7208,12 @@ Do you want them to be saved?</source>
         <translation>inhoud...</translation>
     </message>
     <message>
-        <location filename="../src/codesnippet.cpp" line="266"/>
+        <location filename="../src/codesnippet.cpp" line="269"/>
         <source>label</source>
         <translation>etiket</translation>
     </message>
     <message>
-        <location filename="../src/codesnippet.cpp" line="266"/>
+        <location filename="../src/codesnippet.cpp" line="269"/>
         <source>description</source>
         <translation>beschrijving</translation>
     </message>
@@ -7228,12 +7238,12 @@ Do you want them to be saved?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="154"/>
         <source>Enables case sensitive search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="164"/>
         <source>Only searches for whole words.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="175"/>
@@ -7242,27 +7252,27 @@ Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="187"/>
         <source>Highlights search matches and replaced text.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="197"/>
         <source>Starts the search from the current cursor position.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="208"/>
         <source>Only searches in the selected text.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="218"/>
         <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="238"/>
@@ -7272,23 +7282,23 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="305"/>
         <source>Ask before any match is replaced.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="315"/>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="343"/>
         <source>Close search/replace panel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="344"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
@@ -7303,7 +7313,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="347"/>
         <source>Count occurrences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="348"/>
@@ -7344,12 +7354,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="604"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="609"/>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7407,22 +7417,22 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="60"/>
         <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="66"/>
         <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="74"/>
         <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quagzipfile.cpp" line="80"/>
         <source>Could not gzopen() file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7430,12 +7440,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quazip/quazip/quaziodevice.cpp" line="147"/>
         <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quazip/quazip/quaziodevice.cpp" line="152"/>
         <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7443,7 +7453,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quazip/quazip/quazipfile.cpp" line="247"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7454,42 +7464,32 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>Dialoog</translation>
     </message>
     <message>
-        <location filename="../src/quickbeamerdialog.ui" line="22"/>
-        <source>AMS Packages</source>
-        <translation>AMS Pakketten</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="29"/>
+        <location filename="../src/quickbeamerdialog.ui" line="39"/>
         <source>Encoding</source>
         <translation>Encodering</translation>
     </message>
     <message>
-        <location filename="../src/quickbeamerdialog.ui" line="39"/>
+        <location filename="../src/quickbeamerdialog.ui" line="46"/>
         <source>Typeface Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickbeamerdialog.ui" line="46"/>
+        <location filename="../src/quickbeamerdialog.ui" line="69"/>
         <source>babel Package</source>
         <translation>babel Pakket</translation>
     </message>
     <message>
-        <location filename="../src/quickbeamerdialog.ui" line="59"/>
-        <source>graphicx Package</source>
-        <translation>Graphicx Pakket</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="66"/>
+        <location filename="../src/quickbeamerdialog.ui" line="29"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../src/quickbeamerdialog.ui" line="79"/>
+        <location filename="../src/quickbeamerdialog.ui" line="59"/>
         <source>Author</source>
         <translation>Auteur</translation>
     </message>
     <message>
-        <location filename="../src/quickbeamerdialog.ui" line="86"/>
+        <location filename="../src/quickbeamerdialog.ui" line="22"/>
         <source>Theme</source>
         <translation>Thema</translation>
     </message>
@@ -7524,7 +7524,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="121"/>
         <source>Babel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="137"/>
@@ -7534,7 +7534,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="161"/>
         <source>Typeface Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="177"/>
@@ -7569,12 +7569,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
         <source>Font encoding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="334"/>
@@ -7744,17 +7744,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="130"/>
         <source>First Order Characters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="137"/>
         <source>Second Order Characters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="144"/>
         <source>Third Order Characters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="181"/>
@@ -7764,7 +7764,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="201"/>
         <source>Punctation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="208"/>
@@ -7785,24 +7785,24 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/randomtextgenerator.cpp" line="50"/>
         <source>Reading all words
 (This will take a while but only on the first generation)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="85"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="109"/>
         <source>You didn&apos;t select an order!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="112"/>
         <location filename="../src/randomtextgenerator.cpp" line="128"/>
         <location filename="../src/randomtextgenerator.cpp" line="230"/>
         <source>Generating random text...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="124"/>
@@ -7812,7 +7812,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="215"/>
         <source>Finished generation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7823,23 +7823,23 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="313"/>
         <source>Yes, allow this call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="314"/>
         <source>Yes, allow all calls it will ever make</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="314"/>
         <location filename="../src/scriptobject.cpp" line="327"/>
         <source>No, abort the call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="326"/>
@@ -7847,17 +7847,17 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="326"/>
         <source>Yes, allow this reading</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptobject.cpp" line="327"/>
         <source>Yes, grant permanent read access to everything</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7917,17 +7917,17 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="61"/>
         <source>Expand All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="64"/>
         <source>Collapse All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="67"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7948,12 +7948,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="137"/>
         <source>To change a shortcut, edit the column &quot;Current Shortcut&quot; or &quot;Additional Shortcut&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="187"/>
         <source>Only single characters are allowed as key</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="197"/>
@@ -7991,7 +7991,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/spellerdialog.ui" line="67"/>
         <source>Suggested Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="77"/>
@@ -8001,7 +8001,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/spellerdialog.ui" line="87"/>
         <source>Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="94"/>
@@ -8012,7 +8012,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/spellerdialog.ui" line="108"/>
         <source>User-added Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="134"/>
@@ -8027,32 +8027,32 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/spellerdialog.ui" line="176"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="82"/>
         <source>Check spelling selection...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="92"/>
         <source>Check spelling from cursor...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="218"/>
         <source>No more misspelled words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="227"/>
         <source>Show User Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="232"/>
         <source>Hide User Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="247"/>
@@ -8066,12 +8066,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/spellerutility.cpp" line="256"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerutility.cpp" line="264"/>
         <source>Dictionary import failed: No files could be extracted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8080,12 +8080,12 @@ Do you trust this script?</source>
         <location filename="../src/spellerutility.cpp" line="33"/>
         <source>Missing .aff file:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/spellerutility.cpp" line="35"/>
         <source>Dictionary does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8093,12 +8093,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/structuretreeview.cpp" line="38"/>
         <source>Close document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="39"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="40"/>
@@ -8108,12 +8108,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/structuretreeview.cpp" line="41"/>
         <source>Close all related documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="43"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="45"/>
@@ -8123,39 +8123,39 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/structuretreeview.cpp" line="47"/>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="50"/>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="51"/>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="53"/>
         <location filename="../src/structuretreeview.cpp" line="101"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="54"/>
         <location filename="../src/structuretreeview.cpp" line="102"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="55"/>
         <source>Expand all documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="56"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="65"/>
@@ -8171,7 +8171,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/structuretreeview.cpp" line="69"/>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="80"/>
@@ -8182,7 +8182,7 @@ Do you trust this script?</source>
         <location filename="../src/structuretreeview.cpp" line="84"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="88"/>
@@ -8212,23 +8212,23 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/structuretreeview.cpp" line="97"/>
         <source>Indent Section</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="98"/>
         <source>Unindent Section</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="109"/>
         <location filename="../src/structuretreeview.cpp" line="116"/>
         <source>Go to Definition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="115"/>
         <source>Open Document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8236,7 +8236,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="327"/>
         <source>Command: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="340"/>
@@ -8251,7 +8251,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="353"/>
         <source>Unicode Character: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8259,22 +8259,22 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="40"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="44"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
         <source>Insert command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
         <source>Insert unicode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8283,66 +8283,66 @@ Do you trust this script?</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="34"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Delimiters</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="39"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="40"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="41"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="77"/>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="95"/>
@@ -8357,7 +8357,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="118"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="129"/>
@@ -8368,94 +8368,94 @@ Do you trust this script?</source>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="205"/>
+        <location filename="../src/syntaxcheck.cpp" line="209"/>
         <source>no error</source>
         <translation>geen fout</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="206"/>
-        <source>unrecognized environment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/syntaxcheck.cpp" line="207"/>
-        <source>unrecognized command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/syntaxcheck.cpp" line="208"/>
-        <source>unrecognized math command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/syntaxcheck.cpp" line="209"/>
-        <source>unrecognized tabular command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/syntaxcheck.cpp" line="210"/>
-        <source>tabular command outside tabular env</source>
-        <translation type="unfinished"></translation>
+        <source>unrecognized environment</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="211"/>
-        <source>math command outside math env</source>
-        <translation type="unfinished"></translation>
+        <source>unrecognized command</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="212"/>
-        <source>tabbing command outside tabbing env</source>
-        <translation type="unfinished"></translation>
+        <source>unrecognized math command</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="213"/>
-        <source>more cols in tabular than specified</source>
-        <translation type="unfinished"></translation>
+        <source>unrecognized tabular command</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="214"/>
-        <source>cols in tabular missing</source>
-        <translation type="unfinished"></translation>
+        <source>tabular command outside tabular env</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="215"/>
-        <source>\\ missing</source>
-        <translation type="unfinished"></translation>
+        <source>math command outside math env</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="216"/>
-        <source>closing environment which has not been opened</source>
-        <translation type="unfinished"></translation>
+        <source>tabbing command outside tabbing env</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="217"/>
-        <source>environment not closed</source>
-        <translation type="unfinished"></translation>
+        <source>more cols in tabular than specified</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="218"/>
-        <source>unrecognized key in key option</source>
-        <translation type="unfinished"></translation>
+        <source>cols in tabular missing</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="219"/>
-        <source>unrecognized value in key option</source>
-        <translation type="unfinished"></translation>
+        <source>\\ missing</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="220"/>
-        <source>command outside suitable env</source>
-        <translation type="unfinished"></translation>
+        <source>closing environment which has not been opened</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="221"/>
-        <source>spelling</source>
-        <translation type="unfinished"></translation>
+        <source>environment not closed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/syntaxcheck.cpp" line="222"/>
+        <source>unrecognized key in key option</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/syntaxcheck.cpp" line="223"/>
+        <source>unrecognized value in key option</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="224"/>
+        <source>command outside suitable env</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/syntaxcheck.cpp" line="225"/>
+        <source>spelling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/syntaxcheck.cpp" line="228"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8468,32 +8468,32 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/tabdialog.ui" line="78"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="86"/>
         <source>Column :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="113"/>
         <source>Alignment :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="127"/>
         <source>Left Border :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="167"/>
         <source>Apply to all columns</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="194"/>
         <source>Right Border (last column) :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="232"/>
@@ -8503,42 +8503,42 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/tabdialog.ui" line="263"/>
         <source>Rows</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="271"/>
         <source>Row :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="296"/>
         <source>Top Border</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="305"/>
         <source>Merge columns :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="321"/>
         <source>-&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="364"/>
         <source>Apply to all rows</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="389"/>
         <source>Bottom Border (last row)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="396"/>
         <source>Add vertical margin for each row</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="59"/>
@@ -8562,73 +8562,73 @@ Do you trust this script?</source>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -8640,7 +8640,7 @@ Do you trust this script?</source>
         <location filename="../src/tabdialog.cpp" line="94"/>
         <source>@{text}</source>
         <comment>tabular left border</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="99"/>
@@ -8652,12 +8652,12 @@ Do you trust this script?</source>
         <location filename="../src/tabdialog.cpp" line="100"/>
         <source>@{text}</source>
         <comment>tabular right border</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="139"/>
         <source>Quick Tabular</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8675,7 +8675,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/tabbingdialog.ui" line="75"/>
         <source>Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/tabbingdialog.ui" line="90"/>
@@ -8690,7 +8690,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/tabbingdialog.cpp" line="28"/>
         <source>Quick Tabbing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8702,7 +8702,7 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="79"/>
@@ -8711,34 +8711,34 @@ If not, they will not be available via the Make Template dialog.</source>
 to
 %2
 failed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="82"/>
         <source>File
 %1
  could not be removed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="89"/>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="138"/>
         <source>Unnamed Resource</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="140"/>
         <source>Builtin</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="142"/>
         <source>Basic template files shipped with TeXstudio.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="146"/>
@@ -8749,28 +8749,28 @@ failed.</source>
     <message>
         <location filename="../src/templatemanager.cpp" line="148"/>
         <source>User created template files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="201"/>
         <source>Select LaTeX Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="219"/>
         <source>Select Table Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="53"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="119"/>
         <location filename="../src/templatemanager_p.cpp" line="157"/>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8778,27 +8778,27 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="34"/>
         <source>No Preview</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="86"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="151"/>
         <source>Select Target Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="181"/>
         <source>&lt;No Name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="184"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="185"/>
@@ -8813,12 +8813,12 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="220"/>
         <source>Edit Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="221"/>
         <source>Edit Template Info</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="222"/>
@@ -8828,35 +8828,35 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="225"/>
         <source>Open Template Location</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="239"/>
         <location filename="../src/templateselector.cpp" line="250"/>
         <location filename="../src/templateselector.cpp" line="261"/>
         <source>This template cannot be edited.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="266"/>
         <source>Please Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="266"/>
         <source>Are you sure to delete the following template?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="273"/>
         <location filename="../src/templateselector.cpp" line="278"/>
         <source>You do not have permission to remove this file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="288"/>
         <source>Could not open location:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8864,27 +8864,27 @@ failed.</source>
     <message>
         <location filename="../src/texdocdialog.ui" line="14"/>
         <source>Packages Help (Texdoc)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="45"/>
         <source>description text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="77"/>
         <source>Package:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="113"/>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texdocdialog.cpp" line="96"/>
         <source>No Documentation Available</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8892,7 +8892,7 @@ failed.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="238"/>
@@ -8907,22 +8907,22 @@ failed.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>Math</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="244"/>
@@ -8931,9 +8931,9 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="245"/>
-        <location filename="../src/texstudio.cpp" line="285"/>
+        <location filename="../src/texstudio.cpp" line="286"/>
         <source>Central</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="334"/>
@@ -8951,19 +8951,19 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="336"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="337"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="338"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="339"/>
@@ -8975,7 +8975,7 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="340"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="341"/>
@@ -8987,1838 +8987,1854 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="342"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="343"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="344"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="345"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="346"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="347"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2038"/>
+        <location filename="../src/configmanager.cpp" line="2040"/>
         <source>Edit &amp;Macros...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="359"/>
-        <location filename="../src/texstudio.cpp" line="6063"/>
+        <location filename="../src/texstudio.cpp" line="354"/>
+        <location filename="../src/texstudio.cpp" line="6089"/>
         <source>Ready</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="408"/>
+        <location filename="../src/texstudio.cpp" line="420"/>
         <source>TeX files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="409"/>
+        <location filename="../src/texstudio.cpp" line="421"/>
         <source>LilyPond files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="410"/>
+        <location filename="../src/texstudio.cpp" line="422"/>
         <source>Plaintext files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="411"/>
+        <location filename="../src/texstudio.cpp" line="423"/>
         <source>Pweave files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="412"/>
+        <location filename="../src/texstudio.cpp" line="424"/>
         <source>Sweave files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="413"/>
+        <location filename="../src/texstudio.cpp" line="425"/>
         <source>Asymptote files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="414"/>
+        <location filename="../src/texstudio.cpp" line="426"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="415"/>
-        <location filename="../src/texstudio.cpp" line="9204"/>
-        <location filename="../src/texstudio.cpp" line="9211"/>
+        <location filename="../src/texstudio.cpp" line="427"/>
+        <location filename="../src/texstudio.cpp" line="9354"/>
+        <location filename="../src/texstudio.cpp" line="9361"/>
         <source>All files</source>
         <translation>Alle Bestanden</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="592"/>
+        <location filename="../src/texstudio.cpp" line="606"/>
         <source>Macros</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="608"/>
+        <location filename="../src/texstudio.cpp" line="622"/>
         <source>Side Panel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="647"/>
-        <location filename="../src/texstudio.cpp" line="648"/>
-        <source>Structure</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="654"/>
-        <location filename="../src/texstudio.cpp" line="655"/>
-        <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="661"/>
         <location filename="../src/texstudio.cpp" line="662"/>
-        <source>Symbols</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="664"/>
-        <source>Left/Right Brackets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="666"/>
-        <source>MetaPost Commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="665"/>
-        <source>PSTricks Commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="667"/>
-        <source>TikZ Commands</source>
-        <translation type="unfinished"></translation>
+        <source>Structure</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="668"/>
-        <source>Asymptote Commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="669"/>
+        <source>Bookmarks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="675"/>
+        <location filename="../src/texstudio.cpp" line="676"/>
+        <source>Symbols</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="678"/>
+        <source>Left/Right Brackets</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="680"/>
+        <source>MetaPost Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="679"/>
+        <source>PSTricks Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="681"/>
+        <source>TikZ Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="682"/>
+        <source>Asymptote Commands</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="683"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="670"/>
+        <location filename="../src/texstudio.cpp" line="684"/>
         <source>XY Commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="797"/>
+        <location filename="../src/texstudio.cpp" line="811"/>
         <source>&amp;File</source>
         <translation>&amp;Bestand</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="799"/>
+        <location filename="../src/texstudio.cpp" line="813"/>
         <source>&amp;New</source>
         <translation>&amp;Nieuw</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="800"/>
+        <location filename="../src/texstudio.cpp" line="814"/>
         <source>New From &amp;Template...</source>
         <translation>Nieuw van &amp;Sjabloon...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="801"/>
+        <location filename="../src/texstudio.cpp" line="815"/>
         <source>&amp;Open...</source>
         <translation>&amp;Open...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="803"/>
+        <location filename="../src/texstudio.cpp" line="817"/>
         <source>Open &amp;Recent</source>
         <translation>Open &amp;Recent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="805"/>
+        <location filename="../src/texstudio.cpp" line="819"/>
         <source>Session</source>
         <translation>Sessie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="806"/>
+        <location filename="../src/texstudio.cpp" line="820"/>
         <source>Load Session...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="807"/>
+        <location filename="../src/texstudio.cpp" line="821"/>
         <source>Save Session...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="808"/>
+        <location filename="../src/texstudio.cpp" line="822"/>
         <source>Restore Previous Session</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="817"/>
+        <location filename="../src/texstudio.cpp" line="831"/>
         <source>&amp;Save</source>
         <translation>&amp;Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="818"/>
+        <location filename="../src/texstudio.cpp" line="832"/>
         <source>Save &amp;As...</source>
         <translation>Opslaan &amp;Als...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="819"/>
+        <location filename="../src/texstudio.cpp" line="833"/>
         <source>Save A&amp;ll</source>
         <translation>Alles Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="820"/>
-        <source>&amp;Make Template...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="823"/>
-        <source>Fifi&amp;x</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="824"/>
-        <source>Save renamed/&amp;moved file...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="825"/>
-        <source>Save copied file...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="826"/>
-        <source>&amp;Delete file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="827"/>
-        <source>Set &amp;permissions...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="829"/>
-        <source>&amp;Revert to saved...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="831"/>
-        <source>Copy filename to &amp;clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="832"/>
-        <source>Copy master filename to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="834"/>
-        <source>S&amp;VN...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="835"/>
-        <source>Check &amp;in...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="836"/>
-        <source>SVN &amp;update...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Make Template...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="837"/>
-        <source>SVN update &amp;work directory</source>
-        <translation type="unfinished"></translation>
+        <source>Fifi&amp;x</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="838"/>
-        <source>Sh&amp;ow old Revisions</source>
-        <translation type="unfinished"></translation>
+        <source>Save renamed/&amp;moved file...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="839"/>
-        <source>Lock &amp;PDF</source>
-        <translation type="unfinished"></translation>
+        <source>Save copied file...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="840"/>
-        <source>Check in P&amp;DF</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Delete file</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="841"/>
-        <source>Show difference between two files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="842"/>
-        <source>Show difference between two files in relation to base file</source>
-        <translation type="unfinished"></translation>
+        <source>Set &amp;permissions...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="843"/>
-        <source>Check SVN Conflict</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="844"/>
-        <source>Try to merge differences</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Revert to saved...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="845"/>
-        <source>Remove Difference-Markers</source>
-        <translation type="unfinished"></translation>
+        <source>Copy filename to &amp;clipboard</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="846"/>
-        <source>Declare Conflict Resolved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="847"/>
-        <source>Jump to next difference</source>
-        <translation type="unfinished"></translation>
+        <source>Copy master filename to clipboard</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="848"/>
-        <source>Jump to previous difference</source>
-        <translation type="unfinished"></translation>
+        <source>S&amp;VN/GIT...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="849"/>
+        <source>Check &amp;in...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="850"/>
+        <source>SVN &amp;update...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="851"/>
-        <location filename="../src/texstudio.cpp" line="9405"/>
+        <source>SVN update &amp;work directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="852"/>
+        <source>Sh&amp;ow old Revisions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="853"/>
+        <source>Lock &amp;PDF</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="854"/>
+        <source>Check in P&amp;DF</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="855"/>
+        <source>Show difference between two files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="856"/>
+        <source>Show difference between two files in relation to base file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="857"/>
+        <source>Check SVN Conflict</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="858"/>
+        <source>Try to merge differences</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="859"/>
+        <source>Remove Difference-Markers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="860"/>
+        <source>Declare Conflict Resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="861"/>
+        <source>Jump to next difference</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="862"/>
+        <source>Jump to previous difference</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="865"/>
+        <location filename="../src/texstudio.cpp" line="9555"/>
         <source>&amp;Close</source>
         <translation>&amp;Sluit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="852"/>
+        <location filename="../src/texstudio.cpp" line="866"/>
         <source>Clos&amp;e All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="855"/>
+        <location filename="../src/texstudio.cpp" line="869"/>
         <source>Print Source Code...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="858"/>
+        <location filename="../src/texstudio.cpp" line="872"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="861"/>
+        <location filename="../src/texstudio.cpp" line="875"/>
         <source>&amp;Edit</source>
         <translation>&amp;Bewerken</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="862"/>
+        <location filename="../src/texstudio.cpp" line="876"/>
         <source>&amp;Undo</source>
         <translation>&amp;OngedaanMaken</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="863"/>
+        <location filename="../src/texstudio.cpp" line="877"/>
         <source>&amp;Redo</source>
         <translation>&amp;Opnieuw</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="865"/>
+        <location filename="../src/texstudio.cpp" line="879"/>
         <source>Debug undo stack</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="868"/>
+        <location filename="../src/texstudio.cpp" line="882"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopieer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="869"/>
+        <location filename="../src/texstudio.cpp" line="883"/>
         <source>C&amp;ut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="870"/>
+        <location filename="../src/texstudio.cpp" line="884"/>
         <source>&amp;Paste</source>
         <translation>&amp;Plak</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="872"/>
+        <location filename="../src/texstudio.cpp" line="886"/>
         <source>&amp;Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="873"/>
-        <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="874"/>
-        <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="875"/>
-        <source>Expand Selection to Word</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="876"/>
-        <source>Expand Selection to Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="878"/>
-        <source>&amp;Line Operations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="879"/>
-        <source>Delete &amp;Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="880"/>
-        <source>Delete To &amp;End Of Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="881"/>
-        <source>Delete From &amp;Start Of Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="882"/>
-        <source>Move Line &amp;Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="883"/>
-        <source>Move Line &amp;Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="884"/>
-        <source>Du&amp;plicate Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="885"/>
-        <source>&amp;Align Cursors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="887"/>
-        <source>&amp;Text Operations</source>
-        <translation type="unfinished"></translation>
+        <source>Select &amp;All</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="888"/>
-        <source>To Lowercase</source>
-        <translation type="unfinished"></translation>
+        <source>Select All &amp;Occurrences</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
-        <source>To Uppercase</source>
-        <translation type="unfinished"></translation>
+        <source>Select &amp;Prev Occurrence</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
-        <source>To Titlecase (strict)</source>
-        <translation type="unfinished"></translation>
+        <source>Select &amp;Next Occurrence</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
-        <source>To Titlecase (smart)</source>
-        <translation type="unfinished"></translation>
+        <source>Also Select Prev Occurrence</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="895"/>
-        <source>&amp;Searching</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="892"/>
+        <source>Also Select Next Occurrence</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="893"/>
+        <source>Expand Selection to Word</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="894"/>
+        <source>Expand Selection to Line</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="896"/>
+        <source>&amp;Line Operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="897"/>
+        <source>Delete &amp;Line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="898"/>
+        <source>Delete To &amp;End Of Line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="899"/>
+        <source>Delete From &amp;Start Of Line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="900"/>
+        <source>Move Line &amp;Up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="901"/>
+        <source>Move Line &amp;Down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="902"/>
+        <source>Du&amp;plicate Line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="903"/>
+        <source>&amp;Align Cursors</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="905"/>
+        <source>&amp;Text Operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="906"/>
+        <source>To Lowercase</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="907"/>
+        <source>To Uppercase</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="908"/>
+        <source>To Titlecase (strict)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="909"/>
+        <source>To Titlecase (smart)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="913"/>
+        <source>&amp;Searching</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="914"/>
         <source>&amp;Find</source>
         <translation>&amp;Zoek</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="897"/>
+        <location filename="../src/texstudio.cpp" line="915"/>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="898"/>
+        <location filename="../src/texstudio.cpp" line="916"/>
         <source>Find &amp;Prev</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="899"/>
+        <location filename="../src/texstudio.cpp" line="917"/>
         <source>Continue F&amp;ind</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="900"/>
+        <location filename="../src/texstudio.cpp" line="918"/>
         <source>&amp;Count</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="901"/>
+        <location filename="../src/texstudio.cpp" line="919"/>
         <source>&amp;Select all matches...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="903"/>
+        <location filename="../src/texstudio.cpp" line="921"/>
         <source>&amp;Replace</source>
         <translation>&amp;Vervang</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="904"/>
+        <location filename="../src/texstudio.cpp" line="922"/>
         <source>Replace Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="905"/>
+        <location filename="../src/texstudio.cpp" line="923"/>
         <source>Replace Prev</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="906"/>
+        <location filename="../src/texstudio.cpp" line="924"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="909"/>
+        <location filename="../src/texstudio.cpp" line="927"/>
         <source>Go to</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="911"/>
+        <location filename="../src/texstudio.cpp" line="929"/>
         <source>Line</source>
         <translation>Lijn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="912"/>
+        <location filename="../src/texstudio.cpp" line="930"/>
         <source>Previous Change</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="913"/>
+        <location filename="../src/texstudio.cpp" line="931"/>
         <source>Next Change</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="915"/>
-        <source>Previous mark</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="916"/>
-        <source>Next mark</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="919"/>
-        <source>Go Back</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
-        <source>Go Forward</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="923"/>
-        <source>Goto Bookmark</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="929"/>
-        <location filename="../src/texstudio.cpp" line="936"/>
-        <source>Bookmark %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="933"/>
-        <source>Toggle Bookmark</source>
-        <translation type="unfinished"></translation>
+        <source>Previous mark</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="934"/>
+        <source>Next mark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="937"/>
+        <source>Go Back</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="938"/>
+        <source>Go Forward</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="941"/>
+        <source>Goto Bookmark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="947"/>
+        <location filename="../src/texstudio.cpp" line="954"/>
+        <source>Bookmark %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="951"/>
+        <source>Toggle Bookmark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="952"/>
         <source>Unnamed Bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="940"/>
+        <location filename="../src/texstudio.cpp" line="958"/>
         <source>Line Ending</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="942"/>
+        <location filename="../src/texstudio.cpp" line="960"/>
         <source>DOS/Windows (CR LF)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/texstudio.cpp" line="964"/>
         <source>Unix (LF)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="950"/>
-        <source>Old Mac (CR)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="956"/>
-        <source>Setup Encoding...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
-        <source>Insert Unicode Character...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="962"/>
-        <source>&amp;Idefix</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
-        <source>Erase &amp;Word/Cmd/Env</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="966"/>
-        <source>Pas&amp;te as LaTeX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="967"/>
-        <source>Co&amp;nvert to LaTeX</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="968"/>
-        <source>Pre&amp;view Selection/Parentheses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="969"/>
-        <source>C&amp;lear Inline Preview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="972"/>
-        <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
-        <source>&amp;Comment</source>
-        <translation type="unfinished"></translation>
+        <source>Old Mac (CR)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="974"/>
-        <source>&amp;Uncomment</source>
-        <translation type="unfinished"></translation>
+        <source>Setup Encoding...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="975"/>
-        <source>&amp;Indent</source>
-        <translation type="unfinished"></translation>
+        <source>Insert Unicode Character...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="976"/>
-        <source>Unin&amp;dent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="977"/>
-        <source>Hard Line &amp;Break...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="978"/>
-        <source>R&amp;epeat Hard Line Break</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="980"/>
+        <source>&amp;Idefix</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="981"/>
-        <source>&amp;Go to</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
-        <source>Previous Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
-        <location filename="../src/texstudio.cpp" line="984"/>
-        <source>No LaTeX errors detected !</source>
-        <translation type="unfinished"></translation>
+        <source>Erase &amp;Word/Cmd/Env</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="984"/>
-        <source>Next Error</source>
-        <translation type="unfinished"></translation>
+        <source>Pas&amp;te as LaTeX</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="985"/>
-        <source>Previous Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="985"/>
-        <location filename="../src/texstudio.cpp" line="986"/>
-        <source>No LaTeX warnings detected !</source>
-        <translation type="unfinished"></translation>
+        <source>Co&amp;nvert to LaTeX</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="986"/>
-        <source>Next Warning</source>
-        <translation type="unfinished"></translation>
+        <source>Pre&amp;view Selection/Parentheses</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="987"/>
-        <source>Previous Bad Box</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="987"/>
-        <location filename="../src/texstudio.cpp" line="988"/>
-        <source>No bad boxes detected !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="988"/>
-        <source>Next Bad Box</source>
-        <translation type="unfinished"></translation>
+        <source>C&amp;lear Inline Preview</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="990"/>
-        <source>Definition</source>
-        <translation type="unfinished"></translation>
+        <source>Toggle &amp;Comment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="991"/>
+        <source>&amp;Comment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="992"/>
+        <source>&amp;Uncomment</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="993"/>
-        <source>Re&amp;name Environment</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Indent</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="994"/>
+        <source>Unin&amp;dent</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="995"/>
-        <source>Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <source>Hard Line &amp;Break...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="996"/>
-        <source>Jump to Match</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
-        <source>Select Inner</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="998"/>
-        <source>Select Outer</source>
-        <translation type="unfinished"></translation>
+        <source>R&amp;epeat Hard Line Break</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="999"/>
-        <source>Select Command</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Go to</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
+        <source>Previous Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1001"/>
+        <location filename="../src/texstudio.cpp" line="1002"/>
+        <source>No LaTeX errors detected !</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1002"/>
+        <source>Next Error</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1003"/>
+        <source>Previous Warning</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1003"/>
+        <location filename="../src/texstudio.cpp" line="1004"/>
+        <source>No LaTeX warnings detected !</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1004"/>
+        <source>Next Warning</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1005"/>
+        <source>Previous Bad Box</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1005"/>
+        <location filename="../src/texstudio.cpp" line="1006"/>
+        <source>No bad boxes detected !</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1006"/>
+        <source>Next Bad Box</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1008"/>
+        <source>Definition</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1011"/>
+        <source>Re&amp;name Environment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1013"/>
+        <source>Parenthesis</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1014"/>
+        <source>Jump to Match</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1015"/>
+        <source>Select Inner</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1016"/>
+        <source>Select Outer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1017"/>
+        <source>Select Command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1018"/>
         <source>Select Line</source>
         <translation>Selecteer lijn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1001"/>
+        <location filename="../src/texstudio.cpp" line="1019"/>
         <source>Select Inverting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1004"/>
+        <location filename="../src/texstudio.cpp" line="1022"/>
         <source>Find Mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1006"/>
+        <location filename="../src/texstudio.cpp" line="1024"/>
         <source>Complete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/texstudio.cpp" line="1025"/>
         <source>Normal</source>
         <translation>Normaal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1008"/>
-        <source>\begin{ Completion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1009"/>
-        <source>Normal Text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
-        <source>Close latest open environment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1013"/>
-        <source>Refresh Structure</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1014"/>
-        <source>Refresh Language Model</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1015"/>
-        <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1016"/>
-        <source>Remove Placeholders</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1017"/>
-        <source>Remove Current Placeholder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1022"/>
-        <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1024"/>
-        <source>&amp;Build &amp;&amp; View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1025"/>
-        <source>&amp;Compile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="1026"/>
+        <source>\begin{ Completion</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1027"/>
+        <source>Normal Text</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1028"/>
+        <source>Close latest open environment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1031"/>
+        <source>Refresh Structure</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1032"/>
+        <source>Refresh Language Model</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1033"/>
+        <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1034"/>
+        <source>Remove Placeholders</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1035"/>
+        <source>Remove Current Placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1040"/>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1042"/>
+        <source>&amp;Build &amp;&amp; View</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1043"/>
+        <source>&amp;Compile</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1044"/>
         <source>Stop Compile</source>
         <translation>Stop compilatie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1030"/>
-        <location filename="../src/texstudio.cpp" line="1182"/>
+        <location filename="../src/texstudio.cpp" line="1048"/>
+        <location filename="../src/texstudio.cpp" line="1200"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1031"/>
-        <location filename="../src/texstudio.cpp" line="1129"/>
+        <location filename="../src/texstudio.cpp" line="1049"/>
+        <location filename="../src/texstudio.cpp" line="1147"/>
         <source>&amp;Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1032"/>
+        <location filename="../src/texstudio.cpp" line="1050"/>
         <source>&amp;Glossary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1033"/>
+        <location filename="../src/texstudio.cpp" line="1051"/>
         <source>&amp;Index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1036"/>
+        <location filename="../src/texstudio.cpp" line="1054"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1037"/>
+        <location filename="../src/texstudio.cpp" line="1055"/>
         <source>&amp;Latexmk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1039"/>
-        <location filename="../src/texstudio.cpp" line="1087"/>
+        <location filename="../src/texstudio.cpp" line="1057"/>
+        <location filename="../src/texstudio.cpp" line="1105"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1040"/>
-        <source>&amp;PDFLaTeX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1044"/>
-        <source>DVI-&gt;PS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1045"/>
-        <source>P&amp;S-&gt;PDF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1046"/>
-        <source>DV&amp;I-&gt;PDF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1048"/>
-        <source>View &amp;DVI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1049"/>
-        <source>Vie&amp;w PS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1050"/>
-        <source>View PD&amp;F</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1052"/>
-        <source>&amp;Bibtex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1053"/>
-        <source>&amp;Bibtex 8-Bit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1054"/>
-        <source>Bibe&amp;r</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1056"/>
-        <source>&amp;MakeIndex</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1057"/>
-        <source>&amp;TexIndy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="1058"/>
-        <source>&amp;Makeglossaries</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;PDFLaTeX</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1060"/>
-        <source>&amp;MetaPost</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1061"/>
-        <source>&amp;Asymptote</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1062"/>
+        <source>DVI-&gt;PS</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1063"/>
-        <source>&amp;User</source>
-        <comment>menu</comment>
-        <translation type="unfinished"></translation>
+        <source>P&amp;S-&gt;PDF</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1064"/>
+        <source>DV&amp;I-&gt;PDF</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1066"/>
-        <source>Cle&amp;an Auxiliary Files...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open &amp;Terminal</source>
-        <translation type="vanished">Open &amp;Terminal</translation>
+        <source>View &amp;DVI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1067"/>
-        <source>Open External &amp;Terminal</source>
-        <translation type="unfinished"></translation>
+        <source>Vie&amp;w PS</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1069"/>
-        <source>View &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1068"/>
+        <source>View PD&amp;F</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1070"/>
-        <source>Show Log Markers</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Bibtex</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1071"/>
+        <source>&amp;Bibtex 8-Bit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1072"/>
+        <source>Bibe&amp;r</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1074"/>
-        <source>C&amp;onvert to Html...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;MakeIndex</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1075"/>
-        <source>C&amp;onvert Source to Html...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;TexIndy</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1077"/>
-        <source>A&amp;nalyse Text...</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1076"/>
+        <source>&amp;Makeglossaries</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1078"/>
-        <source>Generate &amp;Random Text...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;MetaPost</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1080"/>
-        <source>Check Spelling...</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1079"/>
+        <source>&amp;Asymptote</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1081"/>
-        <source>Thesaurus...</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;User</source>
+        <comment>menu</comment>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1082"/>
-        <source>Find Word Repetitions...</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1084"/>
+        <source>Cle&amp;an Auxiliary Files...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1089"/>
-        <source>Insert \ref to Next Label</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1085"/>
+        <source>Open External &amp;Terminal</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1090"/>
-        <source>Insert \ref to Previous Label</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1087"/>
+        <source>View &amp;Log</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1091"/>
-        <source>Manipulate Tables</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1088"/>
+        <source>Show Log Markers</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1092"/>
-        <source>Add Row</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <source>C&amp;onvert to Html...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1093"/>
-        <source>Add Column</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1094"/>
-        <source>Remove Row</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <source>C&amp;onvert Source to Html...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1095"/>
-        <source>Remove Column</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <source>A&amp;nalyse Text...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1096"/>
-        <source>Cut Column</source>
-        <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <source>Generate &amp;Random Text...</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1097"/>
+        <location filename="../src/texstudio.cpp" line="1098"/>
+        <source>Check Spelling...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1099"/>
+        <source>Thesaurus...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1100"/>
+        <source>Find Word Repetitions...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1107"/>
+        <source>Insert \ref to Next Label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1108"/>
+        <source>Insert \ref to Previous Label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1109"/>
+        <source>Manipulate Tables</source>
+        <comment>table</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1110"/>
+        <source>Add Row</source>
+        <comment>table</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1111"/>
+        <source>Add Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1112"/>
+        <source>Remove Row</source>
+        <comment>table</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1113"/>
+        <source>Remove Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1114"/>
+        <source>Cut Column</source>
+        <comment>table</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1115"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Plak kolom</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1098"/>
+        <location filename="../src/texstudio.cpp" line="1116"/>
         <source>Add \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1099"/>
+        <location filename="../src/texstudio.cpp" line="1117"/>
         <source>Remove \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1100"/>
+        <location filename="../src/texstudio.cpp" line="1118"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1101"/>
+        <location filename="../src/texstudio.cpp" line="1119"/>
         <source>Align Columns</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1102"/>
+        <location filename="../src/texstudio.cpp" line="1120"/>
         <source>Add magic comments ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1103"/>
+        <location filename="../src/texstudio.cpp" line="1121"/>
         <source>Insert root document name as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1104"/>
-        <location filename="../src/texstudio.cpp" line="1430"/>
+        <location filename="../src/texstudio.cpp" line="1122"/>
+        <location filename="../src/texstudio.cpp" line="1448"/>
         <source>Insert language as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1105"/>
+        <location filename="../src/texstudio.cpp" line="1123"/>
         <source>Insert document coding as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1106"/>
+        <location filename="../src/texstudio.cpp" line="1124"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1107"/>
+        <location filename="../src/texstudio.cpp" line="1125"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1109"/>
+        <location filename="../src/texstudio.cpp" line="1127"/>
         <source>&amp;Math</source>
         <translation>&amp;Math</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1113"/>
+        <location filename="../src/texstudio.cpp" line="1131"/>
         <source>&amp;Wizards</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1114"/>
+        <location filename="../src/texstudio.cpp" line="1132"/>
         <source>Quick &amp;Start...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1115"/>
+        <location filename="../src/texstudio.cpp" line="1133"/>
         <source>Quick &amp;Beamer Presentation...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1116"/>
+        <location filename="../src/texstudio.cpp" line="1134"/>
         <source>Quick &amp;Letter...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1119"/>
+        <location filename="../src/texstudio.cpp" line="1137"/>
         <source>Quick &amp;Tabular...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/texstudio.cpp" line="1138"/>
         <source>Quick T&amp;abbing...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1121"/>
+        <location filename="../src/texstudio.cpp" line="1139"/>
         <source>Quick &amp;Array...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1122"/>
+        <location filename="../src/texstudio.cpp" line="1140"/>
         <source>Insert &amp;Graphic...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1125"/>
+        <location filename="../src/texstudio.cpp" line="1143"/>
         <source>Math Assistant...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1154"/>
+        <location filename="../src/texstudio.cpp" line="1172"/>
         <source>&amp;Clean</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1156"/>
+        <location filename="../src/texstudio.cpp" line="1174"/>
         <source>&amp;Insert Bibliography Entry...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1158"/>
+        <location filename="../src/texstudio.cpp" line="1176"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1162"/>
-        <location filename="../src/texstudio.cpp" line="1172"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
+        <location filename="../src/texstudio.cpp" line="1190"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1167"/>
-        <location filename="../src/texstudio.cpp" line="1173"/>
-        <source>BibLaTeX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
-        <source>Ma&amp;cros</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1183"/>
-        <source>Previous Document</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1184"/>
-        <source>Next Document</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="1185"/>
+        <location filename="../src/texstudio.cpp" line="1191"/>
+        <source>BibLaTeX</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1195"/>
+        <source>Ma&amp;cros</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1201"/>
+        <source>Previous Document</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1202"/>
+        <source>Next Document</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1203"/>
         <source>Open Documents</source>
         <translation>Open Documenten</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1186"/>
+        <location filename="../src/texstudio.cpp" line="1204"/>
         <source>List Of Open Documents</source>
         <translation>Lijst van Open Documenten</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1187"/>
+        <location filename="../src/texstudio.cpp" line="1205"/>
         <source>List Of Hidden Documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1189"/>
+        <location filename="../src/texstudio.cpp" line="1207"/>
         <source>Focus Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1190"/>
+        <location filename="../src/texstudio.cpp" line="1208"/>
         <source>Focus Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/texstudio.cpp" line="1211"/>
         <source>Show</source>
         <translation>Toon</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1196"/>
+        <location filename="../src/texstudio.cpp" line="1214"/>
         <source>Statusbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1200"/>
+        <location filename="../src/texstudio.cpp" line="1218"/>
         <source>Show embedded PDF large</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1201"/>
+        <location filename="../src/texstudio.cpp" line="1219"/>
         <source>Show embedded PDF small</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1203"/>
-        <source>Close Element</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
-        <source>Collapse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1207"/>
-        <location filename="../src/texstudio.cpp" line="1212"/>
-        <source>Everything</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1208"/>
-        <location filename="../src/texstudio.cpp" line="1213"/>
-        <source>Nearest Block</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1210"/>
-        <location filename="../src/texstudio.cpp" line="1215"/>
-        <source>Level %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1211"/>
-        <source>Expand</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
-        <source>Grammar errors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1220"/>
-        <source>Word Repetition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1221"/>
-        <source>Long-range Word Repetition</source>
-        <translation type="unfinished"></translation>
+        <source>Close Element</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1222"/>
-        <source>Bad words</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1223"/>
-        <source>Grammar Mistake</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1224"/>
+        <source>Collapse</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1225"/>
-        <source>Grammar Mistake Special %1</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1230"/>
+        <source>Everything</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1234"/>
-        <source>Editor Zoom</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/texstudio.cpp" line="1226"/>
+        <location filename="../src/texstudio.cpp" line="1231"/>
+        <source>Nearest Block</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1228"/>
+        <location filename="../src/texstudio.cpp" line="1233"/>
+        <source>Level %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1229"/>
+        <source>Expand</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1235"/>
+        <source>Grammar errors</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1238"/>
+        <source>Word Repetition</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1239"/>
+        <source>Long-range Word Repetition</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1240"/>
+        <source>Bad words</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1241"/>
+        <source>Grammar Mistake</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1243"/>
+        <source>Grammar Mistake Special %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1252"/>
+        <source>Editor Zoom</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1253"/>
         <source>Zoom In</source>
         <translation>Inzoomen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1236"/>
+        <location filename="../src/texstudio.cpp" line="1254"/>
         <source>Zoom Out</source>
         <translation>Uitzoomen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1255"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
+        <location filename="../src/texstudio.cpp" line="1257"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1246"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>Highlighting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/texstudio.cpp" line="1288"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1271"/>
+        <location filename="../src/texstudio.cpp" line="1289"/>
         <source>&amp;Configure TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1274"/>
+        <location filename="../src/texstudio.cpp" line="1292"/>
         <source>Load &amp;Profile...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1275"/>
+        <location filename="../src/texstudio.cpp" line="1293"/>
         <source>S&amp;ave Profile...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1276"/>
-        <source>Save &amp;Current Settings</source>
-        <comment>menu</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1277"/>
-        <source>Restore &amp;Default Settings...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1280"/>
-        <source>Root Document</source>
-        <comment>menu</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1283"/>
-        <source>Detect &amp;Automatically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="1291"/>
-        <source>Set Current Document As Explicit Root</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1294"/>
+        <source>Save &amp;Current Settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1295"/>
+        <source>Restore &amp;Default Settings...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1298"/>
+        <source>Root Document</source>
+        <comment>menu</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1301"/>
+        <source>Detect &amp;Automatically</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1309"/>
+        <source>Set Current Document As Explicit Root</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1312"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1295"/>
+        <location filename="../src/texstudio.cpp" line="1313"/>
         <source>LaTeX Reference...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1296"/>
+        <location filename="../src/texstudio.cpp" line="1314"/>
         <source>User Manual...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1297"/>
+        <location filename="../src/texstudio.cpp" line="1315"/>
         <source>Packages Help...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1300"/>
+        <location filename="../src/texstudio.cpp" line="1318"/>
         <source>Check LaTeX Installation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1301"/>
+        <location filename="../src/texstudio.cpp" line="1319"/>
         <source>Check Active Completion Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1302"/>
+        <location filename="../src/texstudio.cpp" line="1320"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1303"/>
+        <location filename="../src/texstudio.cpp" line="1321"/>
         <source>About TeXstudio...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1421"/>
+        <location filename="../src/texstudio.cpp" line="1439"/>
         <source>Default</source>
         <translation>Standaard</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1455"/>
+        <location filename="../src/texstudio.cpp" line="1473"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1459"/>
+        <location filename="../src/texstudio.cpp" line="1477"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1463"/>
+        <location filename="../src/texstudio.cpp" line="1481"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1467"/>
+        <location filename="../src/texstudio.cpp" line="1485"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1528"/>
+        <location filename="../src/texstudio.cpp" line="1546"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1540"/>
-        <location filename="../src/texstudio.cpp" line="1541"/>
-        <location filename="../src/texstudio.cpp" line="5637"/>
-        <location filename="../src/texstudio.cpp" line="5640"/>
-        <location filename="../src/texstudio.cpp" line="5641"/>
+        <location filename="../src/texstudio.cpp" line="1558"/>
+        <location filename="../src/texstudio.cpp" line="1559"/>
+        <location filename="../src/texstudio.cpp" line="5658"/>
+        <location filename="../src/texstudio.cpp" line="5661"/>
+        <location filename="../src/texstudio.cpp" line="5662"/>
         <source>Encoding</source>
         <translation>Encodering</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1563"/>
+        <location filename="../src/texstudio.cpp" line="1581"/>
         <source>More Encodings...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1571"/>
+        <location filename="../src/texstudio.cpp" line="1589"/>
         <source>Insert encoding as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1585"/>
+        <location filename="../src/texstudio.cpp" line="1603"/>
         <source>Go to bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1630"/>
+        <location filename="../src/texstudio.cpp" line="1648"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1631"/>
+        <location filename="../src/texstudio.cpp" line="1649"/>
         <source>Automatic root document detection active</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1636"/>
+        <location filename="../src/texstudio.cpp" line="1654"/>
         <source>&amp;Explicit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1637"/>
+        <location filename="../src/texstudio.cpp" line="1655"/>
         <source>Root</source>
         <comment>explicit root document</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1638"/>
+        <location filename="../src/texstudio.cpp" line="1656"/>
         <source>Explict root document:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1928"/>
+        <location filename="../src/texstudio.cpp" line="1947"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2004"/>
-        <location filename="../src/texstudio.cpp" line="3763"/>
-        <location filename="../src/texstudio.cpp" line="5688"/>
-        <location filename="../src/texstudio.cpp" line="6260"/>
-        <location filename="../src/texstudio.cpp" line="6441"/>
-        <location filename="../src/texstudio.cpp" line="6443"/>
-        <location filename="../src/texstudio.cpp" line="6453"/>
-        <location filename="../src/texstudio.cpp" line="6455"/>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="2023"/>
+        <location filename="../src/texstudio.cpp" line="3784"/>
+        <location filename="../src/texstudio.cpp" line="5711"/>
+        <location filename="../src/texstudio.cpp" line="6287"/>
+        <location filename="../src/texstudio.cpp" line="6468"/>
+        <location filename="../src/texstudio.cpp" line="6470"/>
+        <location filename="../src/texstudio.cpp" line="6480"/>
+        <location filename="../src/texstudio.cpp" line="6482"/>
+        <location filename="../src/texstudio.cpp" line="10004"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2004"/>
+        <location filename="../src/texstudio.cpp" line="2023"/>
         <source>You do not have read permission to the file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2060"/>
+        <location filename="../src/texstudio.cpp" line="2080"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2066"/>
+        <location filename="../src/texstudio.cpp" line="2086"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2193"/>
+        <location filename="../src/texstudio.cpp" line="2213"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2280"/>
+        <location filename="../src/texstudio.cpp" line="2300"/>
         <source>Could not write template data:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2306"/>
+        <location filename="../src/texstudio.cpp" line="2326"/>
         <source>Could not write template meta data:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2355"/>
-        <location filename="../src/texstudio.cpp" line="2417"/>
+        <location filename="../src/texstudio.cpp" line="2375"/>
+        <location filename="../src/texstudio.cpp" line="2437"/>
         <source>File not found:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2359"/>
-        <location filename="../src/texstudio.cpp" line="2421"/>
+        <location filename="../src/texstudio.cpp" line="2379"/>
+        <location filename="../src/texstudio.cpp" line="2441"/>
         <source>You do not have read permission to this file:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2538"/>
-        <location filename="../src/texstudio.cpp" line="9684"/>
+        <location filename="../src/texstudio.cpp" line="2558"/>
+        <location filename="../src/texstudio.cpp" line="9834"/>
         <source>Open Files</source>
         <translation>Open Bestanden</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2572"/>
+        <location filename="../src/texstudio.cpp" line="2592"/>
         <source>Loading of last session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2631"/>
+        <location filename="../src/texstudio.cpp" line="2651"/>
         <source>Save As</source>
         <translation>Opslaan Als</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2648"/>
+        <location filename="../src/texstudio.cpp" line="2668"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
 with this name is open in TeXstudio. You have to save or close
 this other file before you can overwrite it.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2666"/>
+        <location filename="../src/texstudio.cpp" line="2686"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2764"/>
+        <location filename="../src/texstudio.cpp" line="2784"/>
         <source>Rename/Move</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2764"/>
+        <location filename="../src/texstudio.cpp" line="2784"/>
         <source>Copy</source>
         <translation>Kopieer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2779"/>
+        <location filename="../src/texstudio.cpp" line="2799"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2788"/>
+        <location filename="../src/texstudio.cpp" line="2808"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2815"/>
+        <location filename="../src/texstudio.cpp" line="2835"/>
         <source>Numeric permissions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2816"/>
+        <location filename="../src/texstudio.cpp" line="2836"/>
         <source>Verbose permissions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2863"/>
-        <location filename="../src/texstudio.cpp" line="2928"/>
+        <location filename="../src/texstudio.cpp" line="2883"/>
+        <location filename="../src/texstudio.cpp" line="2948"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2865"/>
-        <location filename="../src/texstudio.cpp" line="2930"/>
+        <location filename="../src/texstudio.cpp" line="2885"/>
+        <location filename="../src/texstudio.cpp" line="2950"/>
         <source>Save and Close</source>
         <translation>Opslaan en Sluiten</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2865"/>
-        <location filename="../src/texstudio.cpp" line="2930"/>
+        <location filename="../src/texstudio.cpp" line="2885"/>
+        <location filename="../src/texstudio.cpp" line="2950"/>
         <source>Close without Saving</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2865"/>
-        <location filename="../src/texstudio.cpp" line="2930"/>
+        <location filename="../src/texstudio.cpp" line="2885"/>
+        <location filename="../src/texstudio.cpp" line="2950"/>
         <source>Cancel</source>
         <translation>Annuleer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3009"/>
-        <location filename="../src/texstudio.cpp" line="3059"/>
-        <location filename="../src/texstudio.cpp" line="3139"/>
+        <location filename="../src/texstudio.cpp" line="3029"/>
+        <location filename="../src/texstudio.cpp" line="3079"/>
+        <location filename="../src/texstudio.cpp" line="3159"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3152"/>
+        <location filename="../src/texstudio.cpp" line="3172"/>
         <source>Loading of session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3169"/>
+        <location filename="../src/texstudio.cpp" line="3189"/>
         <source>Load Session</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3169"/>
-        <location filename="../src/texstudio.cpp" line="3187"/>
+        <location filename="../src/texstudio.cpp" line="3189"/>
+        <location filename="../src/texstudio.cpp" line="3207"/>
         <source>TeXstudio Session</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3187"/>
+        <location filename="../src/texstudio.cpp" line="3207"/>
         <source>Save Session</source>
         <translation>Sessie Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3190"/>
+        <location filename="../src/texstudio.cpp" line="3210"/>
         <source>Saving of session failed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3275"/>
+        <location filename="../src/texstudio.cpp" line="3295"/>
         <source>The following files could not be loaded:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3426"/>
+        <location filename="../src/texstudio.cpp" line="3446"/>
         <source>Image Formats (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3428"/>
+        <location filename="../src/texstudio.cpp" line="3448"/>
         <source>Save Image</source>
         <translation>Afbeelding Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3433"/>
+        <location filename="../src/texstudio.cpp" line="3453"/>
         <source>Could not save the image file.</source>
         <translation>Kan de afbeelding niet opslaan.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3730"/>
+        <location filename="../src/texstudio.cpp" line="3751"/>
         <source>Insert hard line breaks after so many characters:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3731"/>
+        <location filename="../src/texstudio.cpp" line="3752"/>
         <source>Smart scope selecting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3732"/>
+        <location filename="../src/texstudio.cpp" line="3753"/>
         <source>Join lines before wrapping</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3746"/>
-        <location filename="../src/texstudio.cpp" line="6155"/>
-        <location filename="../src/texstudio.cpp" line="6190"/>
+        <location filename="../src/texstudio.cpp" line="3767"/>
+        <location filename="../src/texstudio.cpp" line="6182"/>
+        <location filename="../src/texstudio.cpp" line="6217"/>
         <source>No document open</source>
         <translation>Geen open document</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3752"/>
+        <location filename="../src/texstudio.cpp" line="3773"/>
         <source>No dictionary available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3763"/>
+        <location filename="../src/texstudio.cpp" line="3784"/>
         <source>Can&apos;t load Thesaurus Database</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4270"/>
+        <location filename="../src/texstudio.cpp" line="4291"/>
         <source>Unable to write to settings file %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5351"/>
+        <location filename="../src/texstudio.cpp" line="5372"/>
         <source>Quick Start</source>
         <translation>Snelstart</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5373"/>
+        <location filename="../src/texstudio.cpp" line="5394"/>
         <source>Quick Beamer Presentation</source>
         <translation>Snelstart Beamerpresentatie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5410"/>
+        <location filename="../src/texstudio.cpp" line="5431"/>
         <source>&lt;Current File&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5442"/>
+        <location filename="../src/texstudio.cpp" line="5463"/>
         <source>Type: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5488"/>
+        <location filename="../src/texstudio.cpp" line="5509"/>
         <source>Edit User &amp;Tags</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5546"/>
+        <location filename="../src/texstudio.cpp" line="5567"/>
         <source>Labels:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5635"/>
+        <location filename="../src/texstudio.cpp" line="5656"/>
         <source>Encoding Aliases: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5688"/>
-        <source>Can&apos;t detect the file name.
+        <location filename="../src/texstudio.cpp" line="5711"/>
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5695"/>
+        <location filename="../src/texstudio.cpp" line="5718"/>
         <source>Can&apos;t detect the file name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5836"/>
+        <location filename="../src/texstudio.cpp" line="5862"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5856"/>
+        <location filename="../src/texstudio.cpp" line="5882"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10826,394 +10842,394 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5862"/>
+        <location filename="../src/texstudio.cpp" line="5888"/>
         <source>(a) allow for this document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5863"/>
+        <location filename="../src/texstudio.cpp" line="5889"/>
         <source>(b) allow for all documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5864"/>
+        <location filename="../src/texstudio.cpp" line="5890"/>
         <source>(c) use the default command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5940"/>
+        <location filename="../src/texstudio.cpp" line="5966"/>
         <source>Unknown internal command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5975"/>
+        <location filename="../src/texstudio.cpp" line="6001"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5978"/>
+        <location filename="../src/texstudio.cpp" line="6004"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6039"/>
+        <location filename="../src/texstudio.cpp" line="6065"/>
         <source>You cannot compile the document in a non writable directory.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6041"/>
+        <location filename="../src/texstudio.cpp" line="6067"/>
         <source>Could not start %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6069"/>
+        <location filename="../src/texstudio.cpp" line="6096"/>
         <source>Error:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6145"/>
+        <location filename="../src/texstudio.cpp" line="6172"/>
         <source>No open project or tex file to clean.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6194"/>
+        <location filename="../src/texstudio.cpp" line="6221"/>
         <source>Text Analysis</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6218"/>
+        <location filename="../src/texstudio.cpp" line="6245"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6260"/>
+        <location filename="../src/texstudio.cpp" line="6287"/>
         <source>File must be saved and compiling before you can view the log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6441"/>
-        <location filename="../src/texstudio.cpp" line="6453"/>
+        <location filename="../src/texstudio.cpp" line="6468"/>
+        <location filename="../src/texstudio.cpp" line="6480"/>
         <source>File not found</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6443"/>
-        <location filename="../src/texstudio.cpp" line="6455"/>
+        <location filename="../src/texstudio.cpp" line="6470"/>
+        <location filename="../src/texstudio.cpp" line="6482"/>
         <source>Could not open browser</source>
         <translation>Kan browser niet openen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7013"/>
+        <location filename="../src/texstudio.cpp" line="7040"/>
         <source>You have to save the file before it can be defined as root document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8620"/>
+        <location filename="../src/texstudio.cpp" line="8672"/>
         <source>commit comment:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8622"/>
+        <location filename="../src/texstudio.cpp" line="8675"/>
         <source>check in whole directory ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8899"/>
+        <location filename="../src/texstudio.cpp" line="9029"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9178"/>
+        <location filename="../src/texstudio.cpp" line="9328"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9180"/>
+        <location filename="../src/texstudio.cpp" line="9330"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9204"/>
+        <location filename="../src/texstudio.cpp" line="9354"/>
         <source>Save Profile</source>
         <translation>Sla Profiel op</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9204"/>
-        <location filename="../src/texstudio.cpp" line="9211"/>
+        <location filename="../src/texstudio.cpp" line="9354"/>
+        <location filename="../src/texstudio.cpp" line="9361"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXS Profiel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9211"/>
+        <location filename="../src/texstudio.cpp" line="9361"/>
         <source>Load Profile</source>
         <translation>Laad Profiel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9264"/>
+        <location filename="../src/texstudio.cpp" line="9414"/>
         <source>Failed to read profile file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9387"/>
+        <location filename="../src/texstudio.cpp" line="9537"/>
         <source>Problem</source>
         <translation>Probleem</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9387"/>
+        <location filename="../src/texstudio.cpp" line="9537"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9392"/>
+        <location filename="../src/texstudio.cpp" line="9542"/>
         <source>Find Word Repetitions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9401"/>
+        <location filename="../src/texstudio.cpp" line="9551"/>
         <source>&amp;Find Next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9403"/>
+        <location filename="../src/texstudio.cpp" line="9553"/>
         <source>&amp;Find Previous</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9454"/>
+        <location filename="../src/texstudio.cpp" line="9604"/>
         <source>Reached beginning of text.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9454"/>
+        <location filename="../src/texstudio.cpp" line="9604"/>
         <source>Reached end of text.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9684"/>
-        <location filename="../src/texstudio.cpp" line="9894"/>
-        <location filename="../src/texstudio.cpp" line="9897"/>
+        <location filename="../src/texstudio.cpp" line="9834"/>
+        <location filename="../src/texstudio.cpp" line="10044"/>
+        <location filename="../src/texstudio.cpp" line="10047"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="10004"/>
         <source>You do not have read permission to this file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9894"/>
+        <location filename="../src/texstudio.cpp" line="10044"/>
         <source>Open Compare File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9897"/>
+        <location filename="../src/texstudio.cpp" line="10047"/>
         <source>Open Base File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9978"/>
+        <location filename="../src/texstudio.cpp" line="10128"/>
         <source>SVN Conflict!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9979"/>
+        <location filename="../src/texstudio.cpp" line="10129"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10076"/>
-        <location filename="../src/texstudio.cpp" line="10167"/>
-        <location filename="../src/texstudio.cpp" line="10173"/>
+        <location filename="../src/texstudio.cpp" line="10226"/>
+        <location filename="../src/texstudio.cpp" line="10317"/>
+        <location filename="../src/texstudio.cpp" line="10323"/>
         <source>TeXstudio Emergency</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10080"/>
+        <location filename="../src/texstudio.cpp" line="10230"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10083"/>
+        <location filename="../src/texstudio.cpp" line="10233"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10084"/>
+        <location filename="../src/texstudio.cpp" line="10234"/>
         <source>Yes, try to recover</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10085"/>
-        <location filename="../src/texstudio.cpp" line="10090"/>
-        <location filename="../src/texstudio.cpp" line="10169"/>
+        <location filename="../src/texstudio.cpp" line="10235"/>
+        <location filename="../src/texstudio.cpp" line="10240"/>
+        <location filename="../src/texstudio.cpp" line="10319"/>
         <source>No, kill the program</source>
         <translation>Nee, sluit het programma af</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10087"/>
+        <location filename="../src/texstudio.cpp" line="10237"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10088"/>
+        <location filename="../src/texstudio.cpp" line="10238"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Ja, stop de lus en probeer te herstellen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10089"/>
+        <location filename="../src/texstudio.cpp" line="10239"/>
         <source>Yes, continue the loop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10168"/>
+        <location filename="../src/texstudio.cpp" line="10318"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10169"/>
+        <location filename="../src/texstudio.cpp" line="10319"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10173"/>
+        <location filename="../src/texstudio.cpp" line="10323"/>
         <source>I tried to die, but nothing happened.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10205"/>
+        <location filename="../src/texstudio.cpp" line="10355"/>
         <source>System Report</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10341"/>
+        <location filename="../src/texstudio.cpp" line="10491"/>
         <source>LT Report</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10367"/>
+        <location filename="../src/texstudio.cpp" line="10517"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10370"/>
+        <location filename="../src/texstudio.cpp" line="10520"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10380"/>
+        <location filename="../src/texstudio.cpp" line="10530"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10382"/>
+        <location filename="../src/texstudio.cpp" line="10532"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10385"/>
+        <location filename="../src/texstudio.cpp" line="10535"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10387"/>
+        <location filename="../src/texstudio.cpp" line="10537"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10390"/>
+        <location filename="../src/texstudio.cpp" line="10540"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10392"/>
+        <location filename="../src/texstudio.cpp" line="10542"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10397"/>
+        <location filename="../src/texstudio.cpp" line="10547"/>
         <source>LT current status: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10400"/>
+        <location filename="../src/texstudio.cpp" line="10550"/>
         <source>working</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10403"/>
+        <location filename="../src/texstudio.cpp" line="10553"/>
         <source>error</source>
         <translation>error</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10407"/>
+        <location filename="../src/texstudio.cpp" line="10557"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10410"/>
+        <location filename="../src/texstudio.cpp" line="10560"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10704"/>
+        <location filename="../src/texstudio.cpp" line="10854"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="648"/>
+        <location filename="../src/utilsSystem.cpp" line="647"/>
         <source>Launching Windows Explorer Failed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="650"/>
+        <location filename="../src/utilsSystem.cpp" line="649"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="689"/>
+        <location filename="../src/utilsSystem.cpp" line="688"/>
         <source>Show in Explorer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="691"/>
+        <location filename="../src/utilsSystem.cpp" line="690"/>
         <source>Show in Finder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/utilsSystem.cpp" line="693"/>
+        <location filename="../src/utilsSystem.cpp" line="692"/>
         <source>Show Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/utilsUI.cpp" line="69"/>
@@ -11227,12 +11243,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="14"/>
         <source>Text Analysis</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="20"/>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="26"/>
@@ -11243,13 +11259,13 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="33"/>
         <source>Search selection in the document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="40"/>
         <location filename="../src/textanalysis.cpp" line="448"/>
         <source>CSV Export</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="47"/>
@@ -11264,7 +11280,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="63"/>
         <source>Total lines</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="70"/>
@@ -11279,27 +11295,27 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="77"/>
         <source>Text lines</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="84"/>
         <source>Total shown phrases</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="91"/>
         <source>Comment lines</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="119"/>
         <source>Different phrases</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="133"/>
         <source>Characters in phrases</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="166"/>
@@ -11309,32 +11325,32 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="172"/>
         <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="175"/>
         <source>Analyse normal text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="185"/>
         <source>If this is enabled, words/phrases in the comments are counted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="188"/>
         <source>Analyse comments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="195"/>
         <source>If this is enabled, \commands are counted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="198"/>
         <source>Analyse commands</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="211"/>
@@ -11345,32 +11361,32 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
         <source>Show all phrases</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="229"/>
         <source>Minimum phrase length:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="234"/>
         <source>Minimum word length (one):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="239"/>
         <source>Minimum word length (all):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="244"/>
         <source>Fully ignore shorter words:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
@@ -11380,17 +11396,17 @@ If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if 
 If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>
         <source>Only phrase are shown which appears at least so many times in the document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="317"/>
@@ -11398,7 +11414,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="332"/>
@@ -11409,7 +11425,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <location filename="../src/textanalysis.ui" line="351"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="355"/>
@@ -11420,37 +11436,37 @@ If not, end characters are ignored.</source>
         <location filename="../src/textanalysis.ui" line="362"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
 If not, end characters are ignored.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="366"/>
         <source>Respect phrase end chars:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="379"/>
         <source>Maximum words per phrase:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="384"/>
         <source>Min&amp;max words per phrase:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="399"/>
         <source>None (.*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="404"/>
         <source>No Numbers (.*[^0-9].*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="409"/>
         <source>No Digits ([^0-9]*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="417"/>
@@ -11460,7 +11476,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="430"/>
         <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="437"/>
@@ -11569,7 +11585,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/scriptengine.cpp" line="1024"/>
         <source>Script-Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11586,7 +11602,7 @@ If not, end characters are ignored.</source>
         <location filename="../src/txstabwidget.cpp" line="275"/>
         <source>
 included document in %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11630,22 +11646,22 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="208"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="211"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="236"/>
@@ -11668,32 +11684,32 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="77"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="80"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="87"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="90"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="97"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="100"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="117"/>
@@ -11703,7 +11719,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="128"/>
         <source>Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="145"/>
@@ -11750,7 +11766,7 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="360"/>
@@ -11800,68 +11816,68 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="482"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="492"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="497"/>
         <location filename="../src/usermenudialog.ui" line="502"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="507"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="512"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="517"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="522"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="527"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="532"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="537"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="299"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="304"/>
@@ -11871,18 +11887,18 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="383"/>
         <source>Import macro</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="383"/>
         <location filename="../src/usermenudialog.cpp" line="395"/>
         <source>txs macro files (*.txsMacro)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="395"/>
         <source>Export macro</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11930,7 +11946,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/unixutils.cpp" line="60"/>
         <source>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Expands to&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;directory of current file&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;file name (with full path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;file name (without path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11949,12 +11965,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="98"/>
         <source>Number of LaTeX compilations for the input file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="114"/>
         <source>Content name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="121"/>
@@ -11969,12 +11985,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="135"/>
         <source>LaTeX code for the title of the table of contents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="142"/>
         <source>The number of the ps page corresponding to the first numberline indexed in the toc file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="158"/>
@@ -11994,17 +12010,17 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="224"/>
         <source>Title :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="231"/>
         <source>Title of the html files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="238"/>
         <source>Navigation :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="245"/>
@@ -12014,12 +12030,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="252"/>
         <source>Navigation mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="259"/>
         <source>Alignment :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="266"/>
@@ -12029,12 +12045,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="273"/>
         <source>Text displayed at the bottom of each html files </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="280"/>
         <source>Alignment in the html files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="287"/>
@@ -12044,12 +12060,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="316"/>
         <source>Browser command. Let&apos;s empty to not run the browser at the end of the conversion</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="336"/>
         <source>Launch</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="350"/>
@@ -12199,7 +12215,7 @@ De html-bestanden bevinden zich in de %1 map.</translation>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="742"/>
         <source>Writing index page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="808"/>
@@ -12209,7 +12225,7 @@ De html-bestanden bevinden zich in de %1 map.</translation>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="840"/>
         <source>LaTeX errors detected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="855"/>
@@ -12219,7 +12235,7 @@ De html-bestanden bevinden zich in de %1 map.</translation>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="855"/>
         <source>TeX files (*.tex);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -12227,42 +12243,42 @@ De html-bestanden bevinden zich in de %1 map.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>General (Asymptote)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>\\begin{asy} \\end{asy}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>\\begin{asydef} \\end{asydef}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>New Beamer Slides</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>empty slide</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>slide with enumerate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>slide with itemize</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>slide with graphic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
@@ -12277,380 +12293,380 @@ De html-bestanden bevinden zich in de %1 map.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>\\left{ </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>\\left&lt; </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>\\left} </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>\\left&gt; </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>\\left| </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>\\left\\| </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>\\right} </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>\\right&gt; </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>\\right{ </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>\\right&lt; </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>\\right| </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>\\right\\| </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>beginfig(); endfig;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>extra_beginfig(); extra_endfig;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>begingraph(); endgraph;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>begingroup(); endgroup;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (MetaPost)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw (Asymptote)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>Alphabetical Commands (MetaPost)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>Lines/Polygons (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>Dots (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>Grids (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>Placing/Rotating (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>Arrows (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>Line styles (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>Fill styles (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>Colors (PSTricks)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>Plots (PSTricks/pst-plot)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (TikZ)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>Draw (TikZ)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>Arrows (TikZ)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>\\begin{tikzpicture}[options] \\end{tikzpicture}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>\\begin{scope}[options] \\end{scope}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>Exact Sequences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>Squares</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>Triangles</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>Arrows (default style)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>Arrow Styles</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>Curved Arrows</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="299"/>
         <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>empty</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>long</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>short</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>long ladder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>short ladder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>only grid</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>pullback</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>pushout</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>pullback (universal property)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>pushout (universal property)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>right down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="310"/>
         <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>down right</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="311"/>
         <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>up left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>left up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="313"/>
         <source>right</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="314"/>
         <source>left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="315"/>
         <source>up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="316"/>
         <source>down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>up right</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>down left</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>solid (default)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>dashed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>dotted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>double</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>wave</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>solid no tip</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="328"/>
         <source>dashed no tip</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="329"/>
         <source>dotted no tip</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="330"/>
         <source>double no tip</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>wave no tip</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>over</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>under</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -12659,31 +12675,31 @@ De html-bestanden bevinden zich in de %1 map.</translation>
         <location filename="../src/scriptengine.cpp" line="71"/>
         <location filename="../src/scriptengine.cpp" line="629"/>
         <source>Expected cursor object</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="286"/>
         <location filename="../src/scriptengine.cpp" line="1163"/>
         <source>File Chooser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="306"/>
         <location filename="../src/scriptengine.cpp" line="1180"/>
         <source>Uncaught exception at line %1: %2
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="1181"/>
         <source>Backtrace %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="308"/>
         <location filename="../src/scriptengine.cpp" line="1183"/>
         <source>Script-Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

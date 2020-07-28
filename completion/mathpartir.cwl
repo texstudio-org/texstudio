@@ -7,9 +7,9 @@
 \inferrule{premises}{conclusions}#m
 \inferrule[label%text]{premises}{conclusions}#m
 \inferrule*[options%keyvals]{premises}{conclusions}#m
-\infer{premises}{conclusions}#m*
-\infer[label%text]{premises}{conclusions}#m*
-\infer*[options%keyvals]{premises}{conclusions}#m*
+\infer{premises}{conclusions}#*m
+\infer[label%text]{premises}{conclusions}#*m
+\infer*[options%keyvals]{premises}{conclusions}#*m
 #keyvals:\inferrule*,\infer*
 width=##L
 narrower=%<scale%>
