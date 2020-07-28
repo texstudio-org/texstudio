@@ -58,7 +58,8 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	ui.tagEdit->setLayout(new QVBoxLayout());
 	codeedit = new QCodeEdit(ui.tagEdit);
 	codeedit->editor()->setFlag(QEditor::AdjustIndent, false);
-    codeedit->editor()->document()->setCenterDocumentInEditor(false);
+	codeedit->editor()->document()->setCenterDocumentInEditor(false);
+	languages->setLanguage(codeedit->editor(), "");
 	//QLineMarkPanel* lineMarkPanel=new QLineMarkPanel;
 	//QAction* lineMarkPanelAction=codeedit->addPanel(lineMarkPanel, QCodeEdit::West, false);
 	//Q_UNUSED(lineMarkPanelAction)
@@ -257,12 +258,10 @@ void UserMenuDialog::change(QTreeWidgetItem *current,QTreeWidgetItem *previous)
 
         if (codeedit->editor()->text() != m.typedTag()) {
             codeedit->editor()->setText(m.typedTag(), false);
-            if (languages) {
-                QString line = codeedit->editor()->text(0);
-                if (line == "%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
-                else if (line.startsWith("%") && !line.startsWith("%%")) languages->setLanguage(codeedit->editor(), "");
-                else languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
-            }
+            QString line = codeedit->editor()->text(0);
+            if (line == "%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
+            else if (line.startsWith("%") && !line.startsWith("%%")) languages->setLanguage(codeedit->editor(), "");
+            else languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
         }
     }
 }
@@ -416,7 +415,7 @@ void UserMenuDialog::browseMacrosOnRepository(){
 void UserMenuDialog::changeTypeToNormal()
 {
 	QString cur = codeedit->editor()->text();
-	if (languages) languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
+	languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
 	if (cur.startsWith("%SCRIPT\n")) codeedit->editor()->setText(cur.mid(8), false);
 	else if (cur.startsWith("%") && !cur.startsWith("%%")) codeedit->editor()->setText(cur.mid(1), false);
 }
@@ -424,7 +423,7 @@ void UserMenuDialog::changeTypeToNormal()
 void UserMenuDialog::changeTypeToEnvironment()
 {
 	QString cur = codeedit->editor()->text();
-	if (languages) languages->setLanguage(codeedit->editor(), "");
+	languages->setLanguage(codeedit->editor(), "");
 	if (cur.startsWith("%SCRIPT\n")) {
 		codeedit->editor()->setText("%" + cur.mid(8), false);
 	} else {
@@ -438,7 +437,7 @@ void UserMenuDialog::changeTypeToEnvironment()
 void UserMenuDialog::changeTypeToScript()
 {
 	QString cur = codeedit->editor()->text();
-	if (languages) languages->setLanguage(codeedit->editor(), ".qs");
+	languages->setLanguage(codeedit->editor(), ".qs");
 	if (cur.startsWith("%SCRIPT\n")) return;
 	if (cur.startsWith("%") && !cur.startsWith("%%")) cur = cur.mid(1);
 	codeedit->editor()->setText("%SCRIPT\n" + cur, false);

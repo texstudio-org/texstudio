@@ -3,7 +3,7 @@
 ** Copyright (C) 2006-2009 fullmetalcoder <fullmetalcoder@hotmail.fr>
 **
 ** This file is part of the Edyuk project <http://edyuk.org>
-** 
+**
 ** This file may be used under the terms of the GNU General Public License
 ** version 3 as published by the Free Software Foundation and appearing in the
 ** file GPL.txt included in the packaging of this file.
@@ -20,20 +20,20 @@
 /*!
 	\file qformatscheme.cpp
 	\brief Implementation of QFormatScheme
-	
+
 	\see QFormatScheme
 */
 
 /*!
 	\ingroup language
 	@{
-	
+
 	\class QFormatScheme
 	\brief A storage/configuration class for shared highlighting formats
-	
+
 	It stores text formats used by highlighters interfaces and provides
 	a default serializing format in QXF format (XML-based).
-	
+
 	\see QLanguageFactory
 	\see QHighlighter
 */
@@ -108,7 +108,7 @@ QFormatScheme::~QFormatScheme()
 
 /*!
 	\brief Re-initialize the format scheme
-	
+
 	Calling this method leaves the format scheme with only one
 	format : the "normal" one, set to a default-constructed QFormat
 */
@@ -116,7 +116,7 @@ void QFormatScheme::clear()
 {
 	m_formatKeys.clear();
 	m_formatValues.clear();
-	
+
 	setFormat("normal", QFormat());
 }
 
@@ -134,12 +134,12 @@ void QFormatScheme::load(const QString& f)
 	m_settings = f;
 
 	QFile settings(f);
-	
+
 	if ( settings.open(QFile::ReadOnly | QFile::Text) )
 	{
 		QDomDocument doc;
 		doc.setContent(&settings);
-		
+
 		load(doc.documentElement());
 	}
 }
@@ -153,7 +153,7 @@ void QFormatScheme::load(const QString& f)
 void QFormatScheme::save(const QString& f) const
 {
 	QFile settings(f.count() ? f : m_settings);
-	
+
 	if ( settings.open(QFile::WriteOnly | QFile::Text) )
 	{
 		QDomDocument doc("QXF");
@@ -168,10 +168,10 @@ void QFormatScheme::save(const QString& f) const
 	\overload
 	\param elem Source element to scan
 	\param ignoreNewIds whether unknown format identifiers should be ignored
-	
+
 	The given dom element must contain a proper version attribute and format
 	data as child elements (&lt;format&gt; tags)
-	
+
 	\note Previous content is not discarded
 */
 void QFormatScheme::load(const QDomElement& elem, bool ignoreNewIds)
@@ -183,31 +183,31 @@ void QFormatScheme::load(const QDomElement& elem, bool ignoreNewIds)
 		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
 				qPrintable(elem.attribute("version")),
 				QFORMAT_VERSION);
-		
+
 		return;
 	}
-	
+
 	QDomElement e, c;
 	QDomNodeList l, f = elem.elementsByTagName("format");
-	
+
 	for ( int i = 0; i < f.count(); i++ )
 	{
 		e = f.at(i).toElement();
-		
+
 		if ( ignoreNewIds && !m_formatKeys.contains(e.attribute("id")) )
 			continue;
-		
+
 		l = e.childNodes();
-		
+
 		QFormat fmt;
-		
+
 		for ( int i = 0; i < l.count(); i++ )
 		{
 			c = l.at(i).toElement();
-			
+
 			if ( c.isNull() )
 				continue;
-			
+
 			QString field = c.tagName(),
 					value = c.firstChild().toText().data();
 			setFormatOption(fmt,field,value);
@@ -225,16 +225,16 @@ void QFormatScheme::save(QDomElement& elem) const
 {
 	QDomDocument doc = elem.ownerDocument();
 	elem.setAttribute("version", QFORMAT_VERSION);
-	
+
 	for ( int i = 0; i < m_formatKeys.count(); ++i )
 	{
 		QDomText t;
 		QDomElement f, c = doc.createElement("format");
-		
+
 		c.setAttribute("id", m_formatKeys.at(i));
-		
+
 		const QFormat& fmt = m_formatValues.at(i);
-		
+
 		f = doc.createElement("priority");
 		t = doc.createTextNode(QString::number(fmt.priority));
 		f.appendChild(t);
@@ -244,32 +244,32 @@ void QFormatScheme::save(QDomElement& elem) const
 		t = doc.createTextNode((fmt.weight == QFont::Bold) ? "true" : "false");
 		f.appendChild(t);
 		c.appendChild(f);
-		
+
 		f = doc.createElement("italic");
 		t = doc.createTextNode(fmt.italic ? "true" : "false");
 		f.appendChild(t);
 		c.appendChild(f);
-		
+
 		f = doc.createElement("overline");
 		t = doc.createTextNode(fmt.overline ? "true" : "false");
 		f.appendChild(t);
 		c.appendChild(f);
-		
+
 		f = doc.createElement("underline");
 		t = doc.createTextNode(fmt.underline ? "true" : "false");
 		f.appendChild(t);
 		c.appendChild(f);
-		
+
 		f = doc.createElement("strikeout");
 		t = doc.createTextNode(fmt.strikeout ? "true" : "false");
 		f.appendChild(t);
 		c.appendChild(f);
-		
+
 		f = doc.createElement("waveUnderline");
 		t = doc.createTextNode(fmt.waveUnderline ? "true" : "false");
 		f.appendChild(t);
 		c.appendChild(f);
-		
+
 		if ( fmt.foreground.isValid() )
 		{
 			f = doc.createElement("foreground");
@@ -277,7 +277,7 @@ void QFormatScheme::save(QDomElement& elem) const
 			f.appendChild(t);
 			c.appendChild(f);
 		}
-		
+
 		if ( fmt.background.isValid() )
 		{
 			f = doc.createElement("background");
@@ -285,7 +285,7 @@ void QFormatScheme::save(QDomElement& elem) const
 			f.appendChild(t);
 			c.appendChild(f);
 		}
-		
+
 		if ( fmt.linescolor.isValid() )
 		{
 			f = doc.createElement("linescolor");
@@ -293,7 +293,7 @@ void QFormatScheme::save(QDomElement& elem) const
 			f.appendChild(t);
 			c.appendChild(f);
 		}
-		
+
 		f = doc.createElement("fontFamily");
 		t = doc.createTextNode(fmt.fontFamily);
 		f.appendChild(t);
@@ -318,10 +318,10 @@ void QFormatScheme::save(QDomElement& elem) const
 	\brief Load format data from a QSettings object
 	\param s QSettings object from which data will be fetched
 	\param ignoreNewIds whether unknown format identifiers should be ignored
-	
+
 	The QSettings object is assumed to be initialized properly and to
 	point to a correct location.
-	
+
 	\note Previous content is not discarded
 */
 void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
@@ -335,36 +335,36 @@ void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
 		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
 				qPrintable(version),
 				QFORMAT_VERSION);
-		
+
 		return;
 	}
-	
+
 	s.beginGroup("data");
-	
+
 	QStringList l = s.childGroups();
-	
+
 	foreach ( QString id, l )
 	{
 		if ( ignoreNewIds && !m_formatKeys.contains(id) )
 			continue;
-		
+
 		s.beginGroup(id);
-		
+
 		QFormat fmt;
 		QStringList fields = s.childKeys();
-		
+
 		foreach ( QString field, fields )
 		{
 			QString value = s.value(field).toString();
 			setFormatOption(fmt, field, value);
-			
+
 		}
 		fmt.setPriority(fmt.priority); //update priority if other values changed
 
 		setFormat(id, fmt);
 		s.endGroup();
 	}
-	
+
 	s.endGroup();
 }
 
@@ -374,9 +374,9 @@ void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
 void QFormatScheme::save(QSettings& s,QFormatScheme *defaultFormats) const
 {
 	s.setValue("version", QFORMAT_VERSION);
-	
+
 	s.beginGroup("data");
-	
+
 	for ( int i = 0; i < m_formatKeys.count(); ++i )
 	{
 		const QFormat& fmt = m_formatValues.at(i);
@@ -386,7 +386,7 @@ void QFormatScheme::save(QSettings& s,QFormatScheme *defaultFormats) const
 		}
 
 		s.beginGroup(m_formatKeys.at(i));
-		
+
 		s.setValue("priority", fmt.priority);
 		s.setValue("bold", (fmt.weight == QFont::Bold) ? "true" : "false");
 		s.setValue("italic", fmt.italic ? "true" : "false");
@@ -394,35 +394,35 @@ void QFormatScheme::save(QSettings& s,QFormatScheme *defaultFormats) const
 		s.setValue("underline", fmt.underline ? "true" : "false");
 		s.setValue("strikeout", fmt.strikeout ? "true" : "false");
 		s.setValue("waveUnderline", fmt.waveUnderline ? "true" : "false");
-		
+
 		if ( fmt.foreground.isValid() )
 		{
 			s.setValue("foreground", fmt.foreground.name());
 		} else {
 			s.remove("foreground");
 		}
-		
+
 		if ( fmt.background.isValid() )
 		{
 			s.setValue("background", fmt.background.name());
 		} else {
 			s.remove("background");
 		}
-		
+
 		if ( fmt.linescolor.isValid() )
 		{
 			s.setValue("linescolor", fmt.linescolor.name());
 		} else {
 			s.remove("linescolor");
 		}
-		
+
 		s.setValue("fontFamily", fmt.fontFamily);
 		s.setValue("pointSize", fmt.pointSize);
         s.setValue("wrapAround", fmt.wrapAround ? "true" : "false");
 
 		s.endGroup();
 	}
-	
+
 	s.endGroup();
 }
 
@@ -456,7 +456,7 @@ QString QFormatScheme::id(int ifid) const
 int QFormatScheme::id(const QString& sfid) const
 {
 	int idx = m_formatKeys.indexOf(sfid);
-	
+
 	return (idx == -1) ? 0 : idx;
 }
 
@@ -470,7 +470,7 @@ bool QFormatScheme::exists(const QString& sfid) const
 
 /*!
 	\return The text format associated with format key \a fid
-	
+
 	\warning Use at your own risks : if there are no format associated
 	with the requested id this function will crash
 */
@@ -481,7 +481,7 @@ QFormat& QFormatScheme::formatRef(int ifid)
 
 /*!
 	\return The a reference to the text format associated with format key \a fid
-	
+
 	\warning Use at your own risks : if there are no format associated
 	with the requested id this function will crash.
 */
@@ -496,7 +496,7 @@ QFormat& QFormatScheme::formatRef(const QString& sfid)
 QFormat QFormatScheme::format(int ifid) const
 {
 	//qDebug("Querying format id %i within ]-1, %i[", ifid, m_formatValues.count());
-	
+
 	return (ifid < m_formatValues.count()) ? m_formatValues.at(ifid) : QFormat();
 }
 
@@ -516,15 +516,15 @@ QFormat QFormatScheme::format(const QString& sfid) const
 void QFormatScheme::setFormat(const QString& fid, const QFormat& fmt)
 {
 	const int idx = m_formatKeys.indexOf(fid);
-	
+
 	if ( idx != -1 )
 	{
 		modified |= (m_formatValues[idx] != fmt);
 		m_formatValues[idx] = fmt;
 	} else {
-		
+
 		//qDebug("adding format %s [%i]", qPrintable(fid), m_formatKeys.count());
-		
+
 		m_formatKeys << fid;
 		m_formatValues << fmt;
 	}
@@ -539,7 +539,6 @@ void QFormatScheme::mergeFormats(int &oldFormat, int newFormat){
 		//qDebug("%i: %x ", i, m_cache [i]);
 }
 void QFormatScheme::extractFormats(int mergedFormat, int* fmt, QFormat* formats, int &fontFormat) const{
-//this doesn't require a valid "this"
 	fmt[0] = mergedFormat & FORMAT_MASK_BASE;
 	fmt[1] = (mergedFormat >> (FORMAT_SHIFT)) & FORMAT_MASK_BASE;
 	fmt[2] = (mergedFormat >> (2*FORMAT_SHIFT)) & FORMAT_MASK_BASE;
