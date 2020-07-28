@@ -1938,13 +1938,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 	}
 
-	if (config->fullCompilePreview) emit showFullPreview();
 
 	// checking
 	if (!QDocument::defaultFormatScheme()) return;
-	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	const LatexDocument *ldoc = qobject_cast<const LatexDocument *>(editor->document());
 	bool latexLikeChecking = ldoc && ldoc->languageIsLatexLike();
+	if (latexLikeChecking && config->fullCompilePreview) emit showFullPreview();
+	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
 
     if (config->inlineGrammarChecking) {
