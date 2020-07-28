@@ -36,6 +36,7 @@ public:
     void selectFirst();
 
 private:
+	void setLanguageFromText(void);
     QTreeWidgetItem* findCreateFolder(const QString &menu);
     QTreeWidgetItem* findCreateFolder(QTreeWidgetItem *parent, QStringList folders);
 

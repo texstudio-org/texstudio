@@ -258,12 +258,24 @@ void UserMenuDialog::change(QTreeWidgetItem *current,QTreeWidgetItem *previous)
 
         if (codeedit->editor()->text() != m.typedTag()) {
             codeedit->editor()->setText(m.typedTag(), false);
-            QString line = codeedit->editor()->text(0);
-            if (line == "%SCRIPT") languages->setLanguage(codeedit->editor(), ".qs");
-            else if (line.startsWith("%") && !line.startsWith("%%")) languages->setLanguage(codeedit->editor(), "");
-            else languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
+            setLanguageFromText();
         }
     }
+}
+
+void UserMenuDialog::setLanguageFromText(void)
+{
+	QString line = codeedit->editor()->text(0);
+	if (line == "%SCRIPT") {
+		languages->setLanguage(codeedit->editor(), ".qs");
+		ui.radioButtonScript->setChecked(true);
+	} else if (line.startsWith("%") && !line.startsWith("%%")) {
+		languages->setLanguage(codeedit->editor(), "");
+		ui.radioButtonEnvironment->setChecked(true);
+	} else {
+		languages->setLanguage(codeedit->editor(), "(La)TeX Macro");
+		ui.radioButtonNormal->setChecked(true);
+	}
 }
 
 void UserMenuDialog::slotOk()
@@ -445,10 +457,7 @@ void UserMenuDialog::changeTypeToScript()
 
 void UserMenuDialog::textChanged()
 {
-	QString line = codeedit->editor()->text(0);
-	if (line == "%SCRIPT") ui.radioButtonScript->setChecked(true);
-	else if (line.startsWith("%") && !line.startsWith("%%")) ui.radioButtonEnvironment->setChecked(true);
-	else ui.radioButtonNormal->setChecked(true);
+	setLanguageFromText();
     QTreeWidgetItem *item=ui.treeWidget->currentItem();
     if(item==nullptr) return;
     QVariant v=item->data(0,Qt::UserRole);
