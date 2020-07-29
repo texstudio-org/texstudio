@@ -2899,6 +2899,12 @@ void QEditor::selectNothing(){
 	setCursor(cur);
 }
 
+void QEditor::selectExpand(QDocumentCursor::SelectionType selectionType){
+	m_cursor.expandSelect(selectionType);
+	for (int i=0;i<m_mirrors.size();i++)
+		m_mirrors[i].expandSelect(selectionType);
+}
+
 /*!
  * \brief searches for the next occurence of the text in the last selection and
  * selects this additionally. If there is no selection, the word or command under

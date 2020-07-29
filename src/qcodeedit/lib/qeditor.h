@@ -389,6 +389,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void selectAll();
 		void selectNothing();
+		void selectExpand(QDocumentCursor::SelectionType selectionType);
 		void selectExpandToNextWord();
 		void selectExpandToNextLine();
 		void selectAllOccurences();

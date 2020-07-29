@@ -900,6 +900,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "moveLineUp", tr("Move Line &Up"), SLOT(editMoveLineUp()));
 	newManagedAction(submenu, "moveLineDown", tr("Move Line &Down"), SLOT(editMoveLineDown()));
 	newManagedAction(submenu, "duplicateLine", tr("Du&plicate Line"), SLOT(editDuplicateLine()));
+	newManagedAction(submenu, "sortLines", tr("S&ort Lines"), SLOT(editSortLines()));
 	newManagedAction(submenu, "alignMirrors", tr("&Align Cursors"), SLOT(editAlignMirrors()));
 
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
@@ -3527,6 +3528,18 @@ void Texstudio::editDuplicateLine()
 	}
     if(cursors.length()>0)
         ed->setCursor(cursors[0]);
+}
+
+void Texstudio::editSortLines()
+{
+	if (!currentEditorView()) return;
+	static bool completelines; configManager.registerOption("Editor/Sort Lines/Complete Lines", &completelines, false);
+	static bool casesensitive; configManager.registerOption("Editor/Sort Lines/Case Sensitive", &casesensitive, false);
+	UniversalInputDialog dialog;
+	dialog.addVariable(&completelines, tr("Complete Lines"));
+	dialog.addVariable(&casesensitive, tr("Case Sensitive"));
+	if (dialog.exec() == QDialog::Accepted)
+		currentEditorView()->sortSelectedLines(completelines, casesensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
 }
 
 void Texstudio::editAlignMirrors()

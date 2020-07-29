@@ -312,6 +312,7 @@ protected slots:
 	void editMoveLineUp();
 	void editMoveLineDown();
 	void editDuplicateLine();
+	void editSortLines();
 	void editAlignMirrors();
 	void editEraseWordCmdEnv();
 	void editGotoDefinition(QDocumentCursor c = QDocumentCursor());

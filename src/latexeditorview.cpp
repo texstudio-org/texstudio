@@ -2715,6 +2715,37 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 	editor->setCursor(cur);
 }
 
+void LatexEditorView::sortSelectedLines(bool completeLines, Qt::CaseSensitivity caseSensitivity){
+	if (completeLines){
+		editor->selectExpand(QDocumentCursor::LineUnderCursor);
+	}
+	editor->document()->beginMacro();
+	QList<QDocumentCursor> cursors = editor->cursors();
+
+	QList<int> spannedLines;
+	QStringList text;
+	foreach (const QDocumentCursor& c, cursors) {
+		QStringList selectedTextLines = c.selectedText().split('\n');
+		spannedLines << selectedTextLines.length();
+		text << selectedTextLines;
+	}
+	if (text.isEmpty()) return;
+	bool additionalEmptyLine = text.last().isEmpty();
+	if (additionalEmptyLine) text.removeLast();
+
+	text.sort(caseSensitivity);
+
+	for (int i=0; i < cursors.length() - 1; i++){
+		QStringList lines;
+		for (int j=0; j < spannedLines[i]; j++)
+			lines << text.takeFirst();
+		cursors[i].replaceSelectedText(lines.join('\n'));
+	}
+	if (additionalEmptyLine) text.append("");
+	cursors.last().replaceSelectedText(text.join('\n'));
+	editor->document()->endMacro();
+}
+
 QString LatexEditorViewConfig::translateEditOperation(int key)
 {
     return QEditor::translateEditOperation(static_cast<QEditor::EditOperation>(key));

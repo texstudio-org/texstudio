@@ -260,6 +260,7 @@ public slots:
 	void mouseHovered(QPoint pos);
 	bool closeElement();
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
+	void sortSelectedLines(bool completeLines, Qt::CaseSensitivity caseSensitivity);
 	void viewActivated();
 	void clearOverlays();
 	void paste();
