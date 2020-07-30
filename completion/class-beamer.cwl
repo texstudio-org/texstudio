@@ -336,19 +336,13 @@
 \keywords{text}
 \section<mode specification>[short title]{title}
 \section<mode specification>{title}
-\section<mode specification>*[short title]{title}
 \section<mode specification>*{title}
-\section*[short title]{title}
 \subsection<mode specification>[short title]{title}
 \subsection<mode specification>{title}
-\subsection<mode specification>*[short title]{title}
 \subsection<mode specification>*{title}
-\subsection*[short title]{title}
 \subsubsection<mode specification>[short title]{title}
 \subsubsection<mode specification>{title}
-\subsubsection<mode specification>*[short title]{title}
 \subsubsection<mode specification>*{title}
-\subsubsection*[short title]{title}
 \AtBeginSection[special star text]{text}
 \AtBeginSection{text}
 \AtBeginSubsection[special star text]{text}

@@ -147,6 +147,7 @@ xetex
 \subpdfbookmark{text}{name}
 \belowpdfbookmark{text}{name}
 \texorpdfstring{TEXstring}{PDFstring}
+\pdfstringdefDisableCommands{hooks}
 \hypercalcbp{dimen specification}
 
 \Acrobatmenu{menuoption}{text}

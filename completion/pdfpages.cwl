@@ -20,7 +20,7 @@
 
 #keyvals:\includepdf,includepdfmerge,\includepdfset
 pages=
-nup=%<xnup%>n%<ynup%>
+nup=%<xnup%>x%<ynup%>
 landscape#true,false
 delta=%<delx%> %<dely%>
 offset=%<offx%> %<offy%>
