@@ -3533,13 +3533,18 @@ void Texstudio::editDuplicateLine()
 void Texstudio::editSortLines()
 {
 	if (!currentEditorView()) return;
+	QStringList sortingOptions = QStringList() << tr("Ascending") << tr("Descending") << tr("No Sorting") << tr("Random (Shuffle)");
+	static int sorting; configManager.registerOption("Editor/Sort Lines/Method", &sorting, 0);
 	static bool completelines; configManager.registerOption("Editor/Sort Lines/Complete Lines", &completelines, false);
 	static bool casesensitive; configManager.registerOption("Editor/Sort Lines/Case Sensitive", &casesensitive, false);
+	static bool removeduplicates; configManager.registerOption("Editor/Sort Lines/Remove Duplicates", &removeduplicates, false);
 	UniversalInputDialog dialog;
+	dialog.addVariable(&sorting, sortingOptions, tr("Sorting"));
 	dialog.addVariable(&completelines, tr("Complete Lines"));
 	dialog.addVariable(&casesensitive, tr("Case Sensitive"));
+	dialog.addVariable(&removeduplicates, tr("Remove Duplicates"));
 	if (dialog.exec() == QDialog::Accepted)
-		currentEditorView()->sortSelectedLines(completelines, casesensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
+		currentEditorView()->sortSelectedLines(static_cast<LatexEditorView::LineSorting>(sorting), casesensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, completelines, removeduplicates);
 }
 
 void Texstudio::editAlignMirrors()

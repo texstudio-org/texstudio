@@ -2715,12 +2715,14 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 	editor->setCursor(cur);
 }
 
-void LatexEditorView::sortSelectedLines(bool completeLines, Qt::CaseSensitivity caseSensitivity){
+void LatexEditorView::sortSelectedLines(LineSorting sorting, Qt::CaseSensitivity caseSensitivity, bool completeLines, bool removeDuplicates){
 	if (completeLines){
 		editor->selectExpand(QDocumentCursor::LineUnderCursor);
 	}
-	editor->document()->beginMacro();
 	QList<QDocumentCursor> cursors = editor->cursors();
+	std::sort(cursors.begin(), cursors.end());
+	for (int i=0; i < cursors.length(); i++)
+		cursors[i].setAutoUpdated(true); //auto updating is not enabled by default (but it is supposed to be, isn't it?)
 
 	QList<int> spannedLines;
 	QStringList text;
@@ -2733,15 +2735,24 @@ void LatexEditorView::sortSelectedLines(bool completeLines, Qt::CaseSensitivity 
 	bool additionalEmptyLine = text.last().isEmpty();
 	if (additionalEmptyLine) text.removeLast();
 
-	text.sort(caseSensitivity);
+	if (sorting == SortAscending || sorting == SortDescending)
+		text.sort(caseSensitivity);
+	else if (sorting == SortRandomShuffle)
+		std::random_shuffle(text.begin(), text.end());
+	if (sorting == SortDescending)
+		std::reverse(text.begin(), text.end());
+	if (removeDuplicates)
+		text.removeDuplicates();
 
+	if (additionalEmptyLine) text.append("");
+
+	editor->document()->beginMacro();
 	for (int i=0; i < cursors.length() - 1; i++){
 		QStringList lines;
-		for (int j=0; j < spannedLines[i]; j++)
+		for (int j=0; j < qMin(spannedLines[i], text.length()); j++)
 			lines << text.takeFirst();
 		cursors[i].replaceSelectedText(lines.join('\n'));
 	}
-	if (additionalEmptyLine) text.append("");
 	cursors.last().replaceSelectedText(text.join('\n'));
 	editor->document()->endMacro();
 }
