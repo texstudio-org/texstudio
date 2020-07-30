@@ -2674,7 +2674,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4348"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation>Автоматично компілювати документ під час змін</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4392"/>
@@ -9497,22 +9497,22 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Вибрати &amp;попередній збіг</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Вибрати &amp;наступний збіг</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Також вибрати попередній збіг</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Також вибрати наступний збіг</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>

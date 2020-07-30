@@ -635,7 +635,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1523"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Windows上流行的LaTex发行版本是%1和%2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1525"/>
@@ -857,7 +857,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>现代 - 暗黑</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -1515,7 +1515,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1930"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>保存时删除末尾的空格</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1576"/>
@@ -2674,7 +2674,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4348"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation>有变更时自动重新编译文档</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4392"/>
@@ -2730,7 +2730,7 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="4497"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Internal Terminal</source>
-        <translation type="unfinished"/>
+        <translation>内部终端</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4548"/>
@@ -2894,7 +2894,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="522"/>
         <source>SVN/GIT</source>
-        <translation type="unfinished"/>
+        <translation>SVN/GIT</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="560"/>
@@ -5122,12 +5122,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="504"/>
         <source>Find next occurrence</source>
-        <translation type="unfinished"/>
+        <translation>查找下一个</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="505"/>
         <source>Find previous occurrence</source>
-        <translation type="unfinished"/>
+        <translation>查找上一个</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="507"/>
@@ -5160,7 +5160,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation>起始时间</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
@@ -6045,7 +6045,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="918"/>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="939"/>
         <source>%1 (of %2) occurrences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 处 (共 %2 处) 已被替换</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="919"/>
@@ -6216,7 +6216,12 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"/>
+        <translation>文档 %1 被其他程序修改. 
+点击&apos;保存&apos;覆盖文档.
+点击&apos;重设&apos;重新载入文档.
+点击&apos;比较&apos;在编辑器中查看改动.
+点击&apos;忽略&apos;忽略此警告.
+</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="926"/>
@@ -9151,7 +9156,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="606"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>宏</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="622"/>
@@ -9189,12 +9194,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="679"/>
         <source>PSTricks Commands</source>
-        <translation type="unfinished"/>
+        <translation>PSTricks 命令</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="681"/>
         <source>TikZ Commands</source>
-        <translation type="unfinished"/>
+        <translation>TikZ 命令</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="682"/>
@@ -9209,7 +9214,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="684"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>XY 命令</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="811"/>
@@ -9319,7 +9324,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="848"/>
         <source>S&amp;VN/GIT...</source>
-        <translation type="unfinished"/>
+        <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="849"/>
@@ -12549,7 +12554,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>曲线（PSTricks）</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
