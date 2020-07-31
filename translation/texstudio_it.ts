@@ -8533,7 +8533,7 @@ Hai sufficiente fiducia nello script?</translation>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="225"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>spelling</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="228"/>
@@ -9342,7 +9342,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="848"/>
         <source>S&amp;VN/GIT...</source>
-        <translation type="unfinished"/>
+        <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="849"/>
@@ -10859,27 +10859,27 @@ Desideri salvare il documento prima di chiuderlo?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Ascendente</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Discendente</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>No Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Nessun ordinamento</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"/>
+        <translation>Casuale (Mischia)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3542"/>
         <source>Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Ordinamento</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3543"/>
@@ -10894,7 +10894,7 @@ Desideri salvare il documento prima di chiuderlo?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3545"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi Duplicati</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3769"/>
@@ -11339,14 +11339,18 @@ Questo potrebbe provocare una corruzione di dati.</translation>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Prova ad avviarsi automaticamente.
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10560"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Avvio automatico disabilitato.
+
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10565"/>
