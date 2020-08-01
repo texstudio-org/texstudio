@@ -87,15 +87,15 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			LineWrap			= 0x00000100,
 			HardLineWrap		= 0x00000200,
 			LineWidthConstraint	= 0x00000400,
-            CenterEditor        = 0x04000000,
 
 			AllowDragAndDrop	= 0x00000800,
 
 			CtrlNavigation		= 0x00001000,
 			CursorJumpPastWrap	= 0x00002000,
 
-			SmoothScrolling		= 0x00004000,
-			MouseWheelZoom		= 0x00008000,
+			SmoothScrolling     = 0x00004000,
+			MouseWheelZoom      = 0x00008000,
+			VerticalOverScroll  = 0x04000000,
 
 			ReplaceIndentTabs		= 0x00010000,
 			ReplaceTextTabs			= 0x00020000,
@@ -554,6 +554,7 @@ public slots:
 		void emitNeedUpdatedCompleter();
 		
 	protected:
+		void setVerticalScrollBarMaximum();
 		virtual bool event(QEvent *e);
 		
 		virtual void paintEvent(QPaintEvent *e);

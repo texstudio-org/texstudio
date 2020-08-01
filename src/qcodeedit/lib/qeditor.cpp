@@ -765,6 +765,7 @@ bool QEditor::flag(EditFlag f) const
 */
 void QEditor::setFlag(EditFlag f, bool b)
 {
+	bool changed = flag(f) != b;
 	if ( b )
 	{
 		m_state |= f;
@@ -797,6 +798,8 @@ void QEditor::setFlag(EditFlag f, bool b)
 		// TODO : only update cpos if cursor used to be visible?
 		ensureCursorVisible();
 	}
+	if (changed && f == VerticalOverScroll)
+		setVerticalScrollBarMaximum();
 
 }
 
@@ -3037,6 +3040,18 @@ void QEditor::selectOccurence(bool backward, bool keepMirrors, bool all)
 	viewport()->update();
 }
 
+void QEditor::setVerticalScrollBarMaximum()
+{
+	if (!m_doc) return;
+	const QSize viewportSize = viewport()->size();
+	int viewportHeight = viewportSize.height();
+	if (flag(VerticalOverScroll))
+		viewportHeight /= 2;
+	const int ls = m_doc->getLineSpacing();
+	QScrollBar* vsb = verticalScrollBar();
+	vsb->setMaximum(qMax(0, 1 + (m_doc->height() - viewportHeight) / ls));
+	vsb->setPageStep(viewportSize.height() / ls);
+}
 
 /*!
 	\internal
@@ -3054,8 +3069,8 @@ bool QEditor::event(QEvent *e)
 	// qcodedit ...
 	bool r = QAbstractScrollArea::event(e);
 
-	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) && m_doc )
-		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewport()->height()) / m_doc->getLineSpacing()));
+	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) )
+		setVerticalScrollBarMaximum();
 
     if ( e->type() == QEvent::Resize && flag(LineWrap)  && m_doc)
 	{
@@ -4193,9 +4208,7 @@ void QEditor::resizeEvent(QResizeEvent *)
 	    horizontalScrollBar()->setPageStep(viewportSize.width());
 	}
 
-	const int ls = m_doc->getLineSpacing();
-	verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) / ls));
-	verticalScrollBar()->setPageStep(viewportSize.height() / ls);
+	setVerticalScrollBarMaximum();
 
 	emit visibleLinesChanged();
 	//qDebug("page step : %i", viewportSize.height() / ls);
@@ -6091,15 +6104,14 @@ void QEditor::documentWidthChanged(int newWidth)
 	Vertical scrollbar is updated here (maximum is changed
 	and value is modified if needed to ensure that the cursor is visible)
 */
-void QEditor::documentHeightChanged(int newHeight)
+void QEditor::documentHeightChanged(int)
 {
 
 	if ( flag(LineWrap) )
 	{
 		m_doc->setWidthConstraint(wrapWidth());
 	}
-	const int ls = document()->getLineSpacing();
-	verticalScrollBar()->setMaximum(qMax(0, 1 + (newHeight - viewport()->height()) / ls));
+	setVerticalScrollBarMaximum();
 	//ensureCursorVisible();
 }
 
