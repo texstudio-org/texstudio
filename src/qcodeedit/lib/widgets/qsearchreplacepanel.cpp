@@ -220,14 +220,16 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbFilter->setMinimumSize(buttonSize);
 	cbFilter->setMaximumSize(buttonSize);
 	QMenu *menu=new QMenu();
-    menu->addAction(getRealIconCached("all"),"all",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("math"),"math",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("verbatim"),"verbatim",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("comment"),"comment",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("non-comment"),"non-comment",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("command"),"keyword",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("label"),"label",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("cite"),"citation",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("all"),"all",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("math"),"math",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("non-math"),"non-math",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("verbatim"),"verbatim",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("comment"),"comment",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("non-comment"),"non-comment",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("command"),"keyword",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("label"),"label",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("cite"),"citation",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("normal-text"),"normal text",this,SLOT(filterChanged()));
 	cbFilter->setMenu(menu);
 	cbFilter->setPopupMode(QToolButton::InstantPopup);
 	cbFilter->setIcon(getRealIconCached("all"));
@@ -939,12 +941,21 @@ void QSearchReplacePanel::filterChanged()
     }
 	if(text=="all") setFilteredIconAndFormats("all", {});
 	else if(text=="math") setFilteredIconAndFormats("math", {"numbers", "math-keyword", "math-delimiter"});
+	else if(text=="non-math") setFilteredIconAndFormats("non-math", {"numbers", "math-keyword", "math-delimiter"}, true);
 	else if(text=="verbatim") setFilteredIconAndFormats("verbatim", {"verbatim"});
 	else if(text=="comment") setFilteredIconAndFormats("comment", {"comment"});
 	else if(text=="non-comment") setFilteredIconAndFormats("non-comment", {"comment"}, true);
 	else if(text=="keyword") setFilteredIconAndFormats("command", {"keyword", "extra-keyword", "math-keyword"});
 	else if(text=="label") setFilteredIconAndFormats("label", {"referencePresent","referenceMissing","referenceMultiple"});
 	else if(text=="citation") setFilteredIconAndFormats("cite", {"citationPresent","citationMissing"});
+	else if(text=="normal text") setFilteredIconAndFormats("normal-text", {"numbers", "math-keyword", "math-delimiter",
+	                                                                       "verbatim",
+	                                                                       "comment",
+	                                                                       "keyword", "extra-keyword",
+	                                                                       "referencePresent","referenceMissing","referenceMultiple",
+	                                                                       "citationPresent","citationMissing"
+	                                                                      }, true);
+
 }
 
 void QSearchReplacePanel::on_cbWords_toggled(bool on)
@@ -1185,31 +1196,33 @@ bool QSearchReplacePanel::getSearchIsWords() const
  */
 void QSearchReplacePanel::updateIcon()
 {
-    QIcon closeIcon = getRealIconCached("close-tab",true);
-    closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
-    bClose->setIcon(closeIcon);
-    bNext->setIcon(getRealIconCached("down",true));
-    bPrevious->setIcon(getRealIconCached("up",true));
-    bCount->setIcon(getRealIconCached("count",true));
-    cbCase->setIcon(getRealIconCached("case",true));
-    cbWords->setIcon(getRealIconCached("word",true));
-    cbCursor->setIcon(getRealIconCached("cursor",true));
-    cbRegExp->setIcon(getRealIconCached("regex",true));
-    cbHighlight->setIcon(getRealIconCached("highlight",true));
-    cbSelection->setIcon(getRealIconCached("selection",true));
-    bExtend->setIcon(getRealIconCached("extend",true));
-    // update filter icons
-    QMenu *menu=new QMenu();
-    menu->addAction(getRealIconCached("all",true),"all",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("math",true),"math",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("verbatim",true),"verbatim",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("comment",true),"comment",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("non-comment",true),"non-comment",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("command",true),"keyword",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("label",true),"label",this,SLOT(filterChanged()));
-    menu->addAction(getRealIconCached("cite",true),"citation",this,SLOT(filterChanged()));
-    cbFilter->setMenu(menu);
-    filterChanged();
+	QIcon closeIcon = getRealIconCached("close-tab",true);
+	closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
+	bClose->setIcon(closeIcon);
+	bNext->setIcon(getRealIconCached("down",true));
+	bPrevious->setIcon(getRealIconCached("up",true));
+	bCount->setIcon(getRealIconCached("count",true));
+	cbCase->setIcon(getRealIconCached("case",true));
+	cbWords->setIcon(getRealIconCached("word",true));
+	cbCursor->setIcon(getRealIconCached("cursor",true));
+	cbRegExp->setIcon(getRealIconCached("regex",true));
+	cbHighlight->setIcon(getRealIconCached("highlight",true));
+	cbSelection->setIcon(getRealIconCached("selection",true));
+	bExtend->setIcon(getRealIconCached("extend",true));
+	// update filter icons
+	QMenu *menu=new QMenu();
+	menu->addAction(getRealIconCached("all",true),"all",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("math",true),"math",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("non-math",true),"non-math",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("verbatim",true),"verbatim",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("comment",true),"comment",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("non-comment",true),"non-comment",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("command",true),"keyword",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("label",true),"label",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("cite",true),"citation",this,SLOT(filterChanged()));
+	menu->addAction(getRealIconCached("normal-text"),"normal text",this,SLOT(filterChanged()));
+	cbFilter->setMenu(menu);
+	filterChanged();
 }
 /*!
  * \brief check if regular expressions are searched for

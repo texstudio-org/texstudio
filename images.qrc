@@ -215,6 +215,7 @@
         <file>images-ng/modern/zoom-in.svgz</file>
         <file>images-ng/modern/zoom-out.svgz</file>
         <file>images-ng/math.svg</file>
+        <file>images-ng/non-math.svg</file>
         <file>images-ng/comment.svg</file>
         <file>images-ng/comment_dm.svg</file>
         <file>images-ng/non-comment.svg</file>
@@ -223,6 +224,8 @@
         <file>images-ng/command_dm.svg</file>
         <file>images-ng/all.svg</file>
         <file>images-ng/all_dm.svg</file>
+        <file>images-ng/normal-text.svg</file>
+        <file>images-ng/normal-text_dm.svg</file>
         <file>images-ng/verbatim.svg</file>
         <file>images-ng/cite.svg</file>
         <file>images-ng/cite_dm.svg</file>
