@@ -1823,7 +1823,7 @@ Dado que o Unicode não tem suporte nativo no LaTeX, tem de incluir os pacotes a
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Rolamento vertical (para além do fim de ficheiro)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>

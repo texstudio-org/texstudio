@@ -2558,12 +2558,12 @@ possono essere controllate per ripetizioni a grande distanza.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4125"/>
         <source>Square</source>
-        <translation>Quadrata</translation>
+        <translation>Quadrato</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4130"/>
         <source>Circle</source>
-        <translation>Circolare</translation>
+        <translation>Cerchio</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4135"/>
@@ -3488,12 +3488,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="102"/>
         <source>Inline math mode $...$</source>
-        <translation>Modalità matematica nella stessa riga - $...$</translation>
+        <translation>Modalità matematica in linea - $...$</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX math mode in linea \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -3618,12 +3618,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Grassetto &quot;blackboard&quot; - \mathbb{} (amssymb)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Gotico - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
@@ -4442,7 +4442,7 @@ La procedura guidata non supporta il comando </translation>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1821"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>etichetta definita più volte!</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
@@ -4494,7 +4494,7 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
     <message>
         <location filename="../src/latexdocument.cpp" line="2521"/>
         <source>Missing value for -job-name</source>
-        <translation type="unfinished"/>
+        <translation>Valore mancante per -job-name</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="2524"/>
@@ -4529,7 +4529,7 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
     <message>
         <location filename="../src/latexstructure.cpp" line="199"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Oltre la fine del documento.</translation>
     </message>
     <message>
         <location filename="../src/latexstructure.cpp" line="201"/>
@@ -4630,7 +4630,7 @@ Sei fortemente invitato a riavviare TeXstudio</translation>
         <location filename="../src/latexeditorview.cpp" line="2449"/>
         <location filename="../src/latexeditorview.cpp" line="2467"/>
         <source>label defined multiple times!</source>
-        <translation type="unfinished"/>
+        <translation>etichetta definita più volte!</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2457"/>
@@ -4909,7 +4909,7 @@ BibTeX non ignora gli spazi finali.</translation>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="143"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"/>
+        <translation>Repository non trovato. Errore di rete:%1</translation>
     </message>
 </context>
 <context>
@@ -5263,7 +5263,7 @@ Desideri sovrascriverlo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2474"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation type="unfinished"/>
+        <translation>Dividi &amp;&amp; Unisci...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2475"/>
@@ -5298,7 +5298,7 @@ Desideri sovrascriverlo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2486"/>
         <source>Ignore for synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Ingnora per la sincronizzazione</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2489"/>
@@ -5807,7 +5807,7 @@ Ora puoi inserire la password:</translation>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="146"/>
         <source>Add page range</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi intervallo pagine</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="249"/>
@@ -8270,7 +8270,7 @@ Hai sufficiente fiducia nello script?</translation>
         <location filename="../src/structuretreeview.cpp" line="84"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
-        <translation type="unfinished"/>
+        <translation>Inserisci %1 in Etichetta</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="88"/>
@@ -8419,7 +8419,7 @@ Hai sufficiente fiducia nello script?</translation>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="40"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>wasysym</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="41"/>
@@ -8533,7 +8533,7 @@ Hai sufficiente fiducia nello script?</translation>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="224"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>commando al di fuori di env idoneo</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="225"/>
@@ -8650,73 +8650,73 @@ Hai sufficiente fiducia nello script?</translation>
         <location filename="../src/tabdialog.cpp" line="63"/>
         <source>p{} (fixed width - top / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (larghezza fissata - alto / giustificato)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="64"/>
         <source>p{} (fixed width - top / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (larghezza fissata - alto / sinistra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="65"/>
         <source>p{} (fixed width - top / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (larghezza fissata - alto / centrato)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="66"/>
         <source>p{} (fixed width - top / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (larghezza fissata - alto / destra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="68"/>
         <source>m{} (fixed width - center / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (larghezza fissata - centrato / giustificato)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="69"/>
         <source>m{} (fixed width - center / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (larghezza fissata - centrato / sinistra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="70"/>
         <source>m{} (fixed width - center / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (larghezza fissata - centrato / centrato)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="71"/>
         <source>m{} (fixed width - center / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>m{} (larghezza fissata - centrato / destra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="73"/>
         <source>b{} (fixed width - bottom / justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (larghezza fissata - basso / giustificato)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="74"/>
         <source>b{} (fixed width - bottom / left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (larghezza fissata - basso / sinistra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="75"/>
         <source>b{} (fixed width - bottom / center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (larghezza fissata - basso / centrato)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="76"/>
         <source>b{} (fixed width - bottom / right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>b{} (larghezza fissata - basso / destra)</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="93"/>
@@ -9179,7 +9179,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="606"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Macro</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="622"/>
@@ -9217,12 +9217,12 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="679"/>
         <source>PSTricks Commands</source>
-        <translation type="unfinished"/>
+        <translation>Comandi PStricks</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="681"/>
         <source>TikZ Commands</source>
-        <translation type="unfinished"/>
+        <translation>Comandi Tikz</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="682"/>
@@ -9307,7 +9307,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="837"/>
         <source>Fifi&amp;x</source>
-        <translation type="unfinished"/>
+        <translation>Fifi&amp;x</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="838"/>
@@ -9332,7 +9332,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="843"/>
         <source>&amp;Revert to saved...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ritorna a salvato...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="845"/>
@@ -9342,7 +9342,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="846"/>
         <source>Copy master filename to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Copia il nome del file master nella clipboard</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="848"/>
@@ -9488,7 +9488,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="888"/>
         <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"/>
+        <translation>Seleziona Tutte le Occorrenze</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
@@ -11386,17 +11386,17 @@ Questo potrebbe provocare una corruzione di dati.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="10872"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"/>
+        <translation>Errore di comunicazione con LT: %1</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="647"/>
         <source>Launching Windows Explorer Failed</source>
-        <translation type="unfinished"/>
+        <translation>Lancio di Windows Explorer Fallito</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="649"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation type="unfinished"/>
+        <translation>explore.exe non trovato nel path per lanciare Windows Explorer</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="688"/>
@@ -11411,7 +11411,7 @@ Questo potrebbe provocare una corruzione di dati.</translation>
     <message>
         <location filename="../src/utilsSystem.cpp" line="692"/>
         <source>Show Containing Folder</source>
-        <translation type="unfinished"/>
+        <translation>Mostra la Cartella Contenente</translation>
     </message>
     <message>
         <location filename="../src/utilsUI.cpp" line="69"/>
@@ -11592,7 +11592,7 @@ Se &quot;Ignora completamente&quot; è selezionato, parole più brevi sono ignor
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation type="unfinished"/>
+        <translation>Numero minimo di occorrenze:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>
@@ -12447,42 +12447,42 @@ I file HTML si trovano nella cartella %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>General (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Generale (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>\\begin{asy} \\end{asy}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asy} \\end{asy}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>\\begin{asydef} \\end{asydef}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{asydef} \\end{asydef}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>New Beamer Slides</source>
-        <translation type="unfinished"/>
+        <translation>Nuova Slide Beamer</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>empty slide</source>
-        <translation type="unfinished"/>
+        <translation>slide vuota</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>slide with enumerate</source>
-        <translation type="unfinished"/>
+        <translation>slide con enumerate</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>slide with itemize</source>
-        <translation type="unfinished"/>
+        <translation>slide con itemize</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>slide with graphic</source>
-        <translation type="unfinished"/>
+        <translation>slide con graphic</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
@@ -12497,248 +12497,248 @@ I file HTML si trovano nella cartella %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>\\left{ </source>
-        <translation type="unfinished"/>
+        <translation>\\left{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>\\left&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>\\left} </source>
-        <translation type="unfinished"/>
+        <translation>\\left} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>\\left&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\left&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>\\left| </source>
-        <translation type="unfinished"/>
+        <translation>\\left| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>\\left\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\left\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>\\right} </source>
-        <translation type="unfinished"/>
+        <translation>\\right} </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>\\right&gt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&gt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>\\right{ </source>
-        <translation type="unfinished"/>
+        <translation>\\right{ </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>\\right&lt; </source>
-        <translation type="unfinished"/>
+        <translation>\\right&lt; </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>\\right| </source>
-        <translation type="unfinished"/>
+        <translation>\\right| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>\\right\\| </source>
-        <translation type="unfinished"/>
+        <translation>\\right\\| </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>beginfig(); endfig;</source>
-        <translation type="unfinished"/>
+        <translation>beginfig(); endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>extra_beginfig(); extra_endfig;</source>
-        <translation type="unfinished"/>
+        <translation>extra_beginfig(); extra_endfig;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>begingraph(); endgraph;</source>
-        <translation type="unfinished"/>
+        <translation>begingraph(); endgraph;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>begingroup(); endgroup;</source>
-        <translation type="unfinished"/>
+        <translation>begingroup(); endgroup;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (MetaPost)</source>
-        <translation type="unfinished"/>
+        <translation>Generale (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation>Disegna (Asymptote)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>Alphabetical Commands (MetaPost)</source>
-        <translation type="unfinished"/>
+        <translation>Comandi Alfabetici (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Generale (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
         <source>Lines/Polygons (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Linee/Poligoni (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="277"/>
         <source>Arcs/Circles/Ellipses (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Archi/Cerchi/Elllissi (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>Curves (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Curve (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>Dots (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Punti (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>Grids (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Griglie (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>Placing/Rotating (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Posizione/Rotazione (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>Arrows (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Frecce (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="283"/>
         <source>Line styles (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Stile linea (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="284"/>
         <source>Fill styles (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Stile riempimento (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="285"/>
         <source>Colors (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>Colori (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="286"/>
         <source>Plots (PSTricks/pst-plot)</source>
-        <translation type="unfinished"/>
+        <translation>Plot (PSTricks/pst-plot)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (TikZ)</source>
-        <translation type="unfinished"/>
+        <translation>Generale (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
         <source>Draw (TikZ)</source>
-        <translation type="unfinished"/>
+        <translation>Disegna (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="290"/>
         <source>Arrows (TikZ)</source>
-        <translation type="unfinished"/>
+        <translation>Frecce (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>\\begin{tikzpicture}[options] \\end{tikzpicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{tikzpicture}[options] \\end{tikzpicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="292"/>
         <source>\\begin{scope}[options] \\end{scope}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{scope}[options] \\end{scope}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>Exact Sequences</source>
-        <translation type="unfinished"/>
+        <translation>Sequenze esatte</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="294"/>
         <source>Squares</source>
-        <translation type="unfinished"/>
+        <translation>Quadrati</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>Triangles</source>
-        <translation type="unfinished"/>
+        <translation>Triangoli</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="296"/>
         <source>Arrows (default style)</source>
-        <translation type="unfinished"/>
+        <translation>Frecce (default style)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="297"/>
         <source>Arrow Styles</source>
-        <translation type="unfinished"/>
+        <translation>Stile freccia</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="298"/>
         <source>Curved Arrows</source>
-        <translation type="unfinished"/>
+        <translation>Frecce curve</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="299"/>
         <location filename="../src/additionaltranslations.cpp" line="321"/>
         <source>empty</source>
-        <translation type="unfinished"/>
+        <translation>vuoto</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="300"/>
         <source>long</source>
-        <translation type="unfinished"/>
+        <translation>lungo</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="301"/>
         <source>short</source>
-        <translation type="unfinished"/>
+        <translation>corto</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>long ladder</source>
-        <translation type="unfinished"/>
+        <translation>scala lunga</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>short ladder</source>
-        <translation type="unfinished"/>
+        <translation>scala corta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>only grid</source>
-        <translation type="unfinished"/>
+        <translation>solo grigila</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
@@ -12763,114 +12763,114 @@ I file HTML si trovano nella cartella %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>right down</source>
-        <translation type="unfinished"/>
+        <translation>destra basso</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="310"/>
         <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>down right</source>
-        <translation type="unfinished"/>
+        <translation>basso destra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="311"/>
         <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>up left</source>
-        <translation type="unfinished"/>
+        <translation>alto sinistra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>left up</source>
-        <translation type="unfinished"/>
+        <translation>sinistra alto</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="313"/>
         <source>right</source>
-        <translation type="unfinished"/>
+        <translation>destra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="314"/>
         <source>left</source>
-        <translation type="unfinished"/>
+        <translation>sinistra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="315"/>
         <source>up</source>
-        <translation type="unfinished"/>
+        <translation>su</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="316"/>
         <source>down</source>
-        <translation type="unfinished"/>
+        <translation>giù</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>up right</source>
-        <translation type="unfinished"/>
+        <translation>alto destra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>down left</source>
-        <translation type="unfinished"/>
+        <translation>basso sinistra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>solid (default)</source>
-        <translation type="unfinished"/>
+        <translation>pieno (default)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="323"/>
         <source>dashed</source>
-        <translation type="unfinished"/>
+        <translation>tratteggiato</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="324"/>
         <source>dotted</source>
-        <translation type="unfinished"/>
+        <translation>puntinato</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="325"/>
         <source>double</source>
-        <translation type="unfinished"/>
+        <translation>doppio</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>wave</source>
-        <translation type="unfinished"/>
+        <translation>ondulato</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>solid no tip</source>
-        <translation type="unfinished"/>
+        <translation>pieno senza punta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="328"/>
         <source>dashed no tip</source>
-        <translation type="unfinished"/>
+        <translation>tratteggiato senza punta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="329"/>
         <source>dotted no tip</source>
-        <translation type="unfinished"/>
+        <translation>puntinato senza punta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="330"/>
         <source>double no tip</source>
-        <translation type="unfinished"/>
+        <translation>doppio senza punta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>wave no tip</source>
-        <translation type="unfinished"/>
+        <translation>ondulato senza punta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>over</source>
-        <translation type="unfinished"/>
+        <translation>sopra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>under</source>
-        <translation type="unfinished"/>
+        <translation>sotto</translation>
     </message>
 </context>
 <context>
