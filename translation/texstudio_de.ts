@@ -10870,7 +10870,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3543"/>
         <source>Complete Lines</source>
-        <translation>Vervollständige Zeilen</translation>
+        <translation>Vollständige Zeilen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3544"/>
