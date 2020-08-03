@@ -49,15 +49,15 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 		fi
 	fi
 elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-	print_info "Updating homebrew"
-	brew update > brew_update.log || { print_error "Updating homebrew failed"; cat brew_update.log; exit 1; }
+#	print_info "Updating homebrew"
+#	brew update > brew_update.log || { print_error "Updating homebrew failed"; cat brew_update.log; exit 1; }
 # apparently brew comes now with preinstalled qt & poppler
 #	print_info "Brewing packages: qt5 poppler"
 #	brew install qt5
 #	brew uninstall poppler
 #	brew unlink python@2
     brew uninstall --ignore-dependencies poppler
-	brew install "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
+	brew install -v "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
 	print_info "poppler compiled"
 else
 	print_error "Unsupported host/target combination '${TRAVIS_OS_NAME}'"
