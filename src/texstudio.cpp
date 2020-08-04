@@ -153,7 +153,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	bibTypeActions = nullptr;
 	highlightLanguageActions = nullptr;
 	runningPDFCommands = runningPDFAsyncCommands = 0;
-	activeEditorForPreview = nullptr;
+	previewEditorPending = nullptr;
+	previewIsAutoCompiling = false;
 	completerPreview = false;
 	recheckLabels = true;
 	cursorHistory = nullptr;
@@ -6106,7 +6107,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	}
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
-	activeEditorForPreview = nullptr;
+	previewIsAutoCompiling = false;
 }
 
 void Texstudio::processNotification(const QString &message)
@@ -6380,7 +6381,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
  */
 void Texstudio::onCompileError()
 {
-	if (!activeEditorForPreview && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
+	if (!previewIsAutoCompiling && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
 		viewLog();
 	} else {
 		setLogMarksVisible(true);
@@ -8564,19 +8565,24 @@ void Texstudio::showPreviewQueue()
 
 void Texstudio::recompileForPreview(){
 	if (documents.getCompileFileName().isEmpty()) return;
-	if (buildManager.waitingForProcess()) return;
 #ifndef NO_POPPLER_PREVIEW
 	if (PDFDocument::documentList().isEmpty()) return;
 #endif
-	activeEditorForPreview = currentEditor();
-	if (!activeEditorForPreview || activeEditorForPreview->fileName().isEmpty()) return;
 	if (!documents.currentDocument || documents.currentDocument->mayHaveDiffMarkers) return;
+	previewEditorPending = currentEditor();
+	if (!previewEditorPending || previewEditorPending->fileName().isEmpty()) return;
 	previewFullCompileDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
 }
 void Texstudio::recompileForPreviewNow(){
-	if (buildManager.waitingForProcess()) return;
-	if (!activeEditorForPreview || activeEditorForPreview != currentEditor()) return;
-	activeEditorForPreview->save();
+	if (!previewEditorPending || previewEditorPending != currentEditor()) return;
+	if (buildManager.waitingForProcess()) {
+		if (previewEditorPending->isContentModified()) {
+			previewFullCompileDelayTimer.start(qMax(50, configManager.autoPreviewDelay));
+		}
+		return;
+	}
+	previewEditorPending->save();
+	previewIsAutoCompiling = true;
 	runCommand(BuildManager::CMD_COMPILE, nullptr, nullptr, false);
 }
 

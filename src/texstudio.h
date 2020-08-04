@@ -211,7 +211,7 @@ private:
 	QAction *fullscreenModeAction;
 
 	int runningPDFCommands, runningPDFAsyncCommands;
-	QEditor* activeEditorForPreview;
+	QEditor *previewEditorPending; bool previewIsAutoCompiling;
 
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
