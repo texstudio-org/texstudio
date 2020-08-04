@@ -53,8 +53,8 @@ public:
     ~TerminalWidget();
 	void setCurrentFileName(const QString &filename);
 	void updateSettings(bool noreset=false);
-	bool eventFilter(QObject *watched, QEvent *event);
-
+	bool eventFilter(QObject *watched, QEvent *event);	
+	virtual void showEvent(QShowEvent *event);
 private slots:
 	void qTermWidgetFinished();
 
