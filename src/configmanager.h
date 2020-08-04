@@ -14,6 +14,7 @@ class WebPublishDialogConfig;
 class InsertGraphicsConfig;
 struct PDFDocumentConfig;
 class GrammarCheckerConfig;
+class InternalTerminalConfig;
 
 #ifdef Q_OS_WIN
 const QKeySequence::SequenceFormat SHORTCUT_FORMAT = QKeySequence::PortableText;
@@ -78,13 +79,6 @@ public:
 	bool svnKeywordSubstitution;
 	int svnSearchPathDepth;
 
-#ifdef INTERNAL_TERMINAL
-	// terminal
-	QString terminalColorScheme;
-	QString terminalFontFamily;
-	int terminalFontSize;
-	QString terminalShell;
-#endif
 
 	//appearance
 	QPalette systemPalette;
@@ -137,6 +131,9 @@ public:
 
 	//Grammar check
 	GrammarCheckerConfig *const grammarCheckerConfig;
+
+	//Terminal
+	InternalTerminalConfig *const terminalConfig;
 
 	//bool autoReplaceCommands; // moved to static codesnippet
 

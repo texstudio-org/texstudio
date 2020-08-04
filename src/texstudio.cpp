@@ -689,7 +689,7 @@ void Texstudio::setupDockWidgets()
 
     // OUTPUT WIDGETS
     if (!outputView) {
-        outputView = new OutputViewWidget(this);
+			  outputView = new OutputViewWidget(this, configManager.terminalConfig);
         outputView->setObjectName("OutputView");
         centralVSplitter->addWidget(outputView);
         outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());

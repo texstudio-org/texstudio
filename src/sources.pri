@@ -107,7 +107,8 @@ HEADERS += \
     $$PWD/webpublishdialog_config.h \
     $$PWD/xmltagslistwidget.h \
     $$PWD/filedialog.h \
-    $$PWD/macrobrowserui.h
+    $$PWD/macrobrowserui.h \
+    $$PWD/terminal_config.h
 
 SOURCES += \
     $$PWD/aboutdialog.cpp \

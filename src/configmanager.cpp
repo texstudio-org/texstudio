@@ -11,6 +11,7 @@
 #include "insertgraphics_config.h"
 #include "grammarcheck_config.h"
 #include "PDFDocument_config.h"
+#include "terminal_config.h"
 #include "encoding.h"
 #include "codesnippet.h"
 #include "updatechecker.h"
@@ -397,13 +398,14 @@ QString getCmdID(QWidget *w)
 }
 
 ConfigManager::ConfigManager(QObject *parent): QObject (parent),
-    buildManager(nullptr), editorConfig(new LatexEditorViewConfig),
+  buildManager(nullptr), editorConfig(new LatexEditorViewConfig),
 	completerConfig (new LatexCompleterConfig),
 	webPublishDialogConfig (new WebPublishDialogConfig),
 	pdfDocumentConfig(new PDFDocumentConfig),
 	insertGraphicsConfig(new InsertGraphicsConfig),
 	grammarCheckerConfig(new GrammarCheckerConfig),
-    menuParent(nullptr), menuParentsBar(nullptr), modifyMenuContentsFirstCall(true), pdflatexEdit(nullptr), persistentConfig(nullptr)
+  terminalConfig(new InternalTerminalConfig),
+  menuParent(nullptr), menuParentsBar(nullptr), modifyMenuContentsFirstCall(true), pdflatexEdit(nullptr), persistentConfig(nullptr)
 {
 
 	Q_ASSERT(!globalConfigManager);
@@ -663,10 +665,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/SVN Search Path Depth", &svnSearchPathDepth, 2, &pseudoDialog->sbDirSearchDepth);
 
 #ifdef INTERNAL_TERMINAL
-	registerOption("Terminal/ColorScheme", &terminalColorScheme, "Linux", &pseudoDialog->comboBoxTerminalColorScheme);
-	registerOption("Terminal/Font Family", &terminalFontFamily, "", &pseudoDialog->comboBoxTerminalFont);
-	registerOption("Terminal/Font Size", &terminalFontSize, -1, &pseudoDialog->spinBoxTerminalFontSize);
-	registerOption("Terminal/Shell", &terminalShell, "/bin/bash", &pseudoDialog->lineEditTerminalShell);
+	registerOption("Terminal/ColorScheme", &terminalConfig->terminalColorScheme, "Linux", &pseudoDialog->comboBoxTerminalColorScheme);
+	registerOption("Terminal/Font Family", &terminalConfig->terminalFontFamily, "", &pseudoDialog->comboBoxTerminalFont);
+	registerOption("Terminal/Font Size", &terminalConfig->terminalFontSize, -1, &pseudoDialog->spinBoxTerminalFontSize);
+	registerOption("Terminal/Shell", &terminalConfig->terminalShell, "/bin/bash", &pseudoDialog->lineEditTerminalShell);
 #endif
 
 	//interfaces
@@ -759,7 +761,8 @@ ConfigManager::~ConfigManager()
 	delete webPublishDialogConfig;
 	delete insertGraphicsConfig;
 	delete persistentConfig;
-    globalConfigManager = nullptr;
+	delete terminalConfig;
+	globalConfigManager = nullptr;
 }
 
 QString ConfigManager::iniPath()
@@ -1201,21 +1204,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 
 #ifdef INTERNAL_TERMINAL
-#ifdef Q_OS_WIN32
-	if (terminalFontFamily.isEmpty()) {
-		if (xf.contains("Consolas", Qt::CaseInsensitive)) terminalFontFamily = "Consolas";
-		else if (xf.contains("Courier New", Qt::CaseInsensitive)) terminalFontFamily = "Courier New";
-		else terminalFontFamily->fontFamily = qApp->font().family();
-	}
-	if (terminalFontSize == -1) terminalFontSize = 10;
-#else
-	if (terminalFontFamily.isEmpty()) {
-		if (xf.contains("DejaVu Sans Mono", Qt::CaseInsensitive)) terminalFontFamily = "DejaVu Sans Mono";
-		else if (xf.contains("Lucida Sans Typewriter", Qt::CaseInsensitive)) terminalFontFamily = "Lucida Sans Typewriter";
-		else terminalFontFamily = qApp->font().family();
-	}
-	if (terminalFontSize == -1) terminalFontSize = qApp->font().pointSize();
-#endif
+	terminalConfig->initDefaults(xf);
 #endif
 
 	config->endGroup();
