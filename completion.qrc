@@ -106,6 +106,7 @@
 <file>completion/ifvtex.cwl</file>
 <file>completion/ifxetex.cwl</file>
 <file>completion/import.cwl</file>
+<file>completion/incgraph.cwl</file>
 <file>completion/inputenc.cwl</file>
 <file>completion/jurabib.cwl</file>
 <file>completion/kantlipsum.cwl</file>
