@@ -212,6 +212,7 @@
 <file>completion/tex.cwl</file>
 <file>completion/textcomp.cwl</file>
 <file>completion/theorem.cwl</file>
+<file>completion/thmtools.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikz-timing.cwl</file>
 <file>completion/tikz.cwl</file>
