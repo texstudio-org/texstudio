@@ -5,9 +5,11 @@
 # muzimuzhi, 8 Jul 2020
 
 #include:graphicx
-#include:pgfsys
+# NOTE: pgfcore loads pgfsys, the latter loads pgfrcs. Currently there is no pgfsys.cwl so we directly include pgfrcs.cwl.
+#include:pgfrcs
 #include:keyval
 #include:xcolor
+
 \pgfpoint{x}{y}#*
 \pgfqpoint{x}{y}#*
 \pgfpointorigin#*

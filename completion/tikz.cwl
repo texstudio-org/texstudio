@@ -1,7 +1,8 @@
 # tikz package
-# muzimuzhi/12 Nov 2019, 23 Feb 2020
+# muzimuzhi, 12 Nov 2019, 23 Feb 2020, 8 Aug 2020
 
-#include:pgfcore
+#include:pgf
+#include:pgffor
 
 \begin{scope}
 \begin{scope}[options%keyvals]
