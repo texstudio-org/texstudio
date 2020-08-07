@@ -238,6 +238,7 @@
 <file>completion/xfrac.cwl</file>
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
+<file>completion/xmpmulti.cwl</file>
 <file>completion/xparse.cwl</file>
 <file>completion/xpatch.cwl</file>
 <file>completion/xspace.cwl</file>
