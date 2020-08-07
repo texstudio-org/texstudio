@@ -8,8 +8,6 @@
 #include:pgfsys
 #include:keyval
 #include:xcolor
-\foreach#*
-\breakforeach#*
 \pgfpoint{x}{y}#*
 \pgfqpoint{x}{y}#*
 \pgfpointorigin#*
