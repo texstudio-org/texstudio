@@ -1823,7 +1823,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Вертикальне прокручування (прокручування вниз до кінця файлу)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>
@@ -9567,7 +9567,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="903"/>
         <source>S&amp;ort Lines</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Упорядкувати рядки</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="904"/>
@@ -10875,32 +10875,32 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Зростання</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Спадання</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>No Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Без упорядкування</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"/>
+        <translation>Випадково (перемішати)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3542"/>
         <source>Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Упорядкування</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3543"/>
         <source>Complete Lines</source>
-        <translation type="unfinished"/>
+        <translation>Завершити рядки</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3544"/>
@@ -10910,7 +10910,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3545"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>Вилучити дублікати</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3769"/>
