@@ -395,7 +395,6 @@
 \bigennsection#*
 \beta#m
 \bf#*
-\bffam#*
 \bgroup#*
 \big#mK
 \Big#mK
@@ -554,7 +553,6 @@
 \it#*
 \item
 \itemitem#*
-\itfam#*m
 \j#n
 \jmath#m
 \jot#*
@@ -766,7 +764,6 @@
 \skew{num}{math accent}{text}#*
 \sl#*
 \slash#*n
-\slfam#*
 \smallbreak#*
 \smallint#m
 \smallskip#*
@@ -825,7 +822,6 @@
 \triangleleft#m
 \triangleright#m
 \tt#*
-\ttfam#*
 \ttraggedright
 \u{o}#n
 \underbar{text}#*
