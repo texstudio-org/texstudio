@@ -6624,6 +6624,11 @@ void Texstudio::generalOptions()
         updateHighlighting |= (inlineSyntaxChecking != configManager.editorConfig->inlineSyntaxChecking);
         updateHighlighting |= (realtimeChecking != configManager.editorConfig->realtimeChecking);
         updateHighlighting |= (additionalBibPaths != configManager.additionalBibPaths);
+
+        // activate/deactivate speller ...
+        SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
+
+        // dark/light-mode switch
         if(oldDarkMode != darkMode){
             // reload other formats
             QSettings *config=configManager.getSettings();
