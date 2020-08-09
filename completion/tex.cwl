@@ -372,7 +372,6 @@
 \AA#n
 \active#*
 \acute{a}#m
-\advancepageno#*
 \ae#n
 \AE#n
 \aleph#m
@@ -392,7 +391,6 @@
 \b{o}#n
 \backslash#m
 \bar{a}#m
-\bigennsection#*
 \beta#m
 \bf#*
 \bgroup#*
@@ -438,7 +436,6 @@
 \breve{a}#m
 \buildrel#*
 \bullet#m
-\bye#*
 \c{o}#n
 \cal#*
 \cap#m
@@ -451,7 +448,6 @@
 \chi#m
 \choose#*m
 \circ#m
-\cleartabs#*
 \clubsuit#m
 \colon#m
 \cong#m
@@ -493,27 +489,18 @@
 \empty#*
 \emptyset#m
 \endgraf#*
-\endinsert#*
 \endline#*
 \enskip#*
 \enspace#*
 \epsilon#m
-\eqalign{%<line%> \cr %<line%> \cr}#*m
-\eqalignno{%<line%> \cr %<line%> \cr}#*m
 \equiv#m
 \eta#m
 \exists#m
 \exp#m
 \filbreak#*
-\fivebf#*
-\fivei#*
-\fiverm#*
-\fivesy#*
 \flat#m
 \fmtname#*
 \fmtversion#*
-\folio#*
-\footline#*
 \footnote{text}#
 \forall#m
 \frenchspacing#*
@@ -528,10 +515,8 @@
 \goodbreak#*
 \grave{a}#m
 \H{o}#n
-\hang#*n
 \hat{a}#m
 \hbar#m
-\headline#*
 \heartsuit#m
 \hglue#*
 \hidewidth#*
@@ -552,7 +537,6 @@
 \iota#m
 \it#*
 \item
-\itemitem#*
 \j#n
 \jmath#m
 \jot#*
@@ -579,7 +563,6 @@
 \leftrightarrow#m
 \Leftrightarrow#m
 \leq#m
-\leqalignno{%<line%> \cr %<line%> \cr}#*m
 \lfloor#m
 \lg#m
 \lgroup#m
@@ -603,7 +586,6 @@
 \loop#*
 \lor#m
 \lq#*n
-\magnification#*
 \magstep#*
 \magstephalf#*
 \mapsto#m
@@ -616,7 +598,6 @@
 \medskip#*
 \medskipamount#*
 \mid#m
-\midinsert#*
 \min#m
 \mit#*m
 \models#m
@@ -661,10 +642,8 @@
 \nobreak#*
 \nointerlineskip#*
 \nonfrenchspacing#*
-\nopagenumbers#*
 \normalbaselines#*
 \normalbaselineskip#*
-\normalbottom#*
 \normallineskip#*
 \normallineskiplimit#*
 \not#m
@@ -681,7 +660,6 @@
 \OE#n
 \offinterlineskip#*
 \oint#m
-\oldstyle#t
 \omega#m
 \Omega#m
 \ominus#m
@@ -694,8 +672,6 @@
 \overrightarrow{text}#m
 \owns#m
 \P#n
-\pageinsert#*
-\pageno#*
 \parallel#m
 \partial#m
 \perp#m
@@ -704,7 +680,6 @@
 \Phi#m
 \pi#m
 \Pi#m
-\plainoutput#*
 \pm#m
 \pmatrix{%<line%> \cr %<line%> \cr}#*m
 \pmod#m
@@ -712,7 +687,6 @@
 \prec#m
 \preceq#m
 \prime#m
-\proclaim#*
 \prod#m
 \propto#m
 \psi#m
@@ -749,10 +723,6 @@
 \searrow#m
 \sec#m
 \setminus#m
-\settabs#*
-\seveni#*
-\sevenrm#*
-\sevensy#*
 \sharp#m
 \showhyphens{space separated words}#*
 \sigma#m
@@ -788,26 +758,15 @@
 \succeq#m
 \sum#m
 \sup#m
-\supereject#*
 \supset#m
 \supseteq#m
 \surd#m
 \swarrow#m
 \t{oo}#n
-\tabalign#*T
 \tan#m
 \tanh#m
 \tau#m
-\tenbf#*
-\tenex#*
-\teni#*
-\tenit#*
-\tenrm#*
-\tensl#*
-\tensy#*
-\tentt#*
 \TeX#n
-\textindent#*
 \theta#m
 \Theta#m
 \thinspace
@@ -815,14 +774,11 @@
 \times#m
 \to#m
 \top#m
-\topglue#*
-\topinsert#*
 \tracingall#*
 \triangle#m
 \triangleleft#m
 \triangleright#m
 \tt#*
-\ttraggedright
 \u{o}#n
 \underbar{text}#*
 \underbrace{text}#m
@@ -846,7 +802,6 @@
 \vee#m
 \vert#m
 \Vert#m
-\vfootnote{text}#*
 \vglue#*
 \vphantom{text}
 \wedge#m
@@ -961,9 +916,6 @@
 # others
 \begingroup%<..%>\endgroup#*
 \bgroup%<..%>\egroup#*
-\midinsert%<vertical mode material%>\endinsert#*
-\pageinsert%<vertical mode material%>\endinsert#*
-\topinsert%<vertical mode material%>\endinsert#*
 \root %<arg1%> \of %<arg2%>#*m
 \settabs %<number%> \columns#*
 \settabs \+ %<sample line%> \cr#*
