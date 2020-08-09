@@ -1824,7 +1824,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Sur-défilement vertical (défilement au-delà de la fin du fichier)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>
