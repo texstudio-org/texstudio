@@ -818,7 +818,6 @@
 ## PART 3. Miscellany, those missing in _impatient_
 ##
 \centering
-\columns#*
 \footins#*
 \footnoterule#*
 \interdisplaylinepenalty#*
@@ -827,7 +826,6 @@
 \leavevmode#*
 \patterns{patterns}#*
 \removelastskip#*
-\topins#*
 
 
 ##

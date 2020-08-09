@@ -7,6 +7,7 @@
 \bffam
 \bye
 \cleartabs
+\columns
 \endinsert
 \eqalignno{%<line%> \cr %<line%> \cr}#m
 \eqalign{%<line%> \cr %<line%> \cr}#m
@@ -49,6 +50,7 @@
 \tentt
 \textindent{mark}
 \topglue
+\topins
 \topinsert
 \topinsert%<vertical mode material%>\endinsert
 \ttfam
