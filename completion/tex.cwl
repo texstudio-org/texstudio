@@ -1,6 +1,6 @@
 # tex/latex mode: tex primitives and plain tex macros
 # dani/8.1.2004
-# muzimuzhi/20 Aug 2019, 4 Nov 2019, 13 Nov 2019
+# muzimuzhi/20 Aug 2019, 4 Nov 2019, 13 Nov 2019, 10 Aug 2020
 
 ##
 ## References
@@ -312,7 +312,6 @@
 \string#*
 \tabskip#*
 \textfont#*
-\textindent#*
 \textstyle#*
 \the#*
 \thickmuskip#*
@@ -367,7 +366,7 @@
 \xspaceskip
 \year#*
 
-## 2.2 plain tex macros
+## 2.2 plain tex macros that are defined in latex
 \aa#n
 \AA#n
 \active#*

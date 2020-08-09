@@ -1,3 +1,7 @@
+# plaintex format
+# macros available in plain tex format only
+# muzimuzhi, 8-10 Aug 2020
+
 \advancepageno
 \beginsection
 \bffam
