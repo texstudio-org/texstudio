@@ -6624,6 +6624,8 @@ void Texstudio::generalOptions()
         updateHighlighting |= (inlineSyntaxChecking != configManager.editorConfig->inlineSyntaxChecking);
         updateHighlighting |= (realtimeChecking != configManager.editorConfig->realtimeChecking);
         updateHighlighting |= (additionalBibPaths != configManager.additionalBibPaths);
+        // recheck syntax when spellchecking and/or syntaxchecking has been effectively turned on
+        bool recheckSyntax=(configManager.editorConfig->realtimeChecking &&(configManager.editorConfig->inlineSyntaxChecking || configManager.editorConfig->inlineSpellChecking)) || ((configManager.editorConfig->inlineSyntaxChecking && !inlineSyntaxChecking)||(configManager.editorConfig->inlineSpellChecking && !inlineSpellChecking));
 
         // activate/deactivate speller ...
         SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
@@ -6661,6 +6663,9 @@ void Texstudio::generalOptions()
                         edView->document->updateLtxCommands();
                         edView->documentContentChanged(0, edView->document->lines());
                         edView->document->updateCompletionFiles(false, true);
+                        if(recheckSyntax){
+                            edView->reCheckSyntax(0);
+                        }
                     } else {
                         edView->clearOverlays();
                     }
