@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>782</width>
-            <height>888</height>
+            <width>620</width>
+            <height>735</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -740,8 +740,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1060</width>
-            <height>654</height>
+            <width>821</width>
+            <height>598</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -898,8 +898,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>1018</width>
-                   <height>115</height>
+                   <width>205</width>
+                   <height>79</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -1962,9 +1962,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-234</y>
-            <width>936</width>
-            <height>2169</height>
+            <y>0</y>
+            <width>746</width>
+            <height>1824</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3157,8 +3157,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>860</width>
-            <height>1014</height>
+            <width>571</width>
+            <height>790</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3683,8 +3683,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>609</height>
+            <width>397</width>
+            <height>297</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3945,8 +3945,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>860</width>
-            <height>724</height>
+            <width>576</width>
+            <height>560</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4883,6 +4883,22 @@ Note: Changing this setting will only affect documents that are opened afterward
     <hint type="destinationlabel">
      <x>404</x>
      <y>1403</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxRealTimeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxInlinePackageCheck</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>396</x>
+     <y>23</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>396</x>
+     <y>23</y>
     </hint>
    </hints>
   </connection>
