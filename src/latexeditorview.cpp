@@ -1420,7 +1420,7 @@ bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
     }
 	speller = su;
     if(document){
-        SpellerUtility::inlineSpellChecking=config->inlineSpellChecking;
+        SpellerUtility::inlineSpellChecking=config->inlineSpellChecking && config->realtimeChecking;
         SpellerUtility::hideNonTextSpellingErrors=config->hideNonTextSpellingErrors;
         document->setSpeller(speller);
     }
