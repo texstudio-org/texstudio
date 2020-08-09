@@ -2031,7 +2031,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	doc = new LatexDocument(this);
     doc->setCenterDocumentInEditor(configManager.editorConfig->centerDocumentInEditor);
-	doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+    doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
 	LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);
 	if (hidden) {
@@ -6614,7 +6614,7 @@ void Texstudio::generalOptions()
 
         // update syntaxChecking with alls docs
         foreach (LatexDocument *doc, documents.getDocuments()) {
-            doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+            doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
         }
 
         //update highlighting ???
