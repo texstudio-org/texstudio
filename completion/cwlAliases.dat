@@ -25,6 +25,10 @@ scrreprt:
 class-scrartcl,scrreprt,scrbook
 latex-document
 tex
+scrreport:
+class-scrartcl,scrreprt,scrbook
+latex-document
+tex
 scrlttr2:
 class-scrlttr2
 latex-document
