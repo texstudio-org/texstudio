@@ -2767,7 +2767,8 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 	}
     // save hidden files (in case that they are changed via replace in all docs
     foreach (LatexDocument *d, documents.hiddenDocuments){
-        d->getEditorView()->editor->save();
+        if(d->getEditorView()->editor->isContentModified())
+            d->getEditorView()->editor->save();
     }
 
 
