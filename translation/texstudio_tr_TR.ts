@@ -1823,7 +1823,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Dikey Dışa Kaydırma (Dosya sonunun altına kaydır)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>
@@ -9564,7 +9564,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="903"/>
         <source>S&amp;ort Lines</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kısa Satırlar</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="904"/>
@@ -10870,32 +10870,32 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Artan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Azalan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>No Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Sıralama Yok</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"/>
+        <translation>Rastgele (Karıştır)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3542"/>
         <source>Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Sıralama</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3543"/>
         <source>Complete Lines</source>
-        <translation type="unfinished"/>
+        <translation>Satırları Tamamla</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3544"/>
@@ -10905,7 +10905,7 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3545"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>Yinelemeleri Kaldır</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3769"/>
