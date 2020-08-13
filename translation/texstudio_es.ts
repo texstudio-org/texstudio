@@ -2681,12 +2681,12 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4399"/>
         <source>Use SVN</source>
-        <translation type="unfinished"/>
+        <translation>Usa SVN</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4404"/>
         <source>Use GIT</source>
-        <translation type="unfinished"/>
+        <translation>Usa GIT</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4412"/>
@@ -2711,7 +2711,7 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4434"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
-        <translation type="unfinished"/>
+        <translation>Usa SVN/GIT versiones para anular antes de la última memorización</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4441"/>
@@ -2897,7 +2897,7 @@ la clave de todos modos?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="522"/>
         <source>SVN/GIT</source>
-        <translation type="unfinished"/>
+        <translation>SVN/GIT</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="560"/>
@@ -3444,7 +3444,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{filelist}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{lista de ficheros}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -5185,7 +5185,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="995"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation>espera</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="997"/>
@@ -8547,7 +8547,7 @@ siguiente valor:
     <message>
         <location filename="../src/syntaxcheck.cpp" line="225"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>ortografía</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="228"/>
@@ -9182,7 +9182,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="606"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Macros</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="622"/>
@@ -9350,7 +9350,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="848"/>
         <source>S&amp;VN/GIT...</source>
-        <translation type="unfinished"/>
+        <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="849"/>
@@ -9496,22 +9496,22 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecciona la a&amp;parición anterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecciona la próxima &amp;aparición</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecciona la a&amp;parición anterior también</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation>Selecciona la próxima &amp;aparición también</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
@@ -9561,7 +9561,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="903"/>
         <source>S&amp;ort Lines</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ordenar líneas</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="904"/>
@@ -10888,12 +10888,12 @@ No se pudo guardar el archivo de imagen.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3542"/>
         <source>Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Ordenar</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3543"/>
         <source>Complete Lines</source>
-        <translation type="unfinished"/>
+        <translation>Líneas completas</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3544"/>
@@ -12598,12 +12598,12 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="287"/>
         <source>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{pspicture}(x0,y0)(x1,y1) \\end{pspicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>General (MetaPost)</source>
-        <translation type="unfinished"/>
+        <translation>General (MetaPost)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
@@ -12618,7 +12618,7 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
         <source>General (PSTricks)</source>
-        <translation type="unfinished"/>
+        <translation>General (PSTricks)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="276"/>
@@ -12678,7 +12678,7 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="288"/>
         <source>General (TikZ)</source>
-        <translation type="unfinished"/>
+        <translation>General (TikZ)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="289"/>
@@ -12693,7 +12693,7 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="291"/>
         <source>\\begin{tikzpicture}[options] \\end{tikzpicture}</source>
-        <translation type="unfinished"/>
+        <translation>\\begin{tikzpicture}[options] \\end{tikzpicture}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="292"/>
@@ -12784,24 +12784,24 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
         <source>right down</source>
-        <translation type="unfinished"/>
+        <translation>derecha abajo</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="310"/>
         <location filename="../src/additionaltranslations.cpp" line="319"/>
         <source>down right</source>
-        <translation type="unfinished"/>
+        <translation>abajo derecha</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="311"/>
         <location filename="../src/additionaltranslations.cpp" line="318"/>
         <source>up left</source>
-        <translation type="unfinished"/>
+        <translation>arriba izquierda</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="312"/>
         <source>left up</source>
-        <translation type="unfinished"/>
+        <translation>izquierda arriba</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="313"/>
@@ -12826,17 +12826,17 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="317"/>
         <source>up right</source>
-        <translation type="unfinished"/>
+        <translation>arriba izquierda</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="320"/>
         <source>down left</source>
-        <translation type="unfinished"/>
+        <translation>abajo izquierda</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="322"/>
         <source>solid (default)</source>
-        <translation type="unfinished"/>
+        <translation>sólida (norma)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="323"/>
@@ -12856,12 +12856,12 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="326"/>
         <source>wave</source>
-        <translation type="unfinished"/>
+        <translation>ola</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="327"/>
         <source>solid no tip</source>
-        <translation type="unfinished"/>
+        <translation>sólida, no punta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="328"/>
@@ -12881,17 +12881,17 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="331"/>
         <source>wave no tip</source>
-        <translation type="unfinished"/>
+        <translation>ola, no punta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="332"/>
         <source>over</source>
-        <translation type="unfinished"/>
+        <translation>arriba</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="333"/>
         <source>under</source>
-        <translation type="unfinished"/>
+        <translation>abajo</translation>
     </message>
 </context>
 <context>
