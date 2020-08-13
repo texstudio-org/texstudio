@@ -40,7 +40,7 @@ PDFSplitMergeTool::PDFSplitMergeTool(QWidget *parent, const QString &infile) :
 
 void PDFSplitMergeTool::outputFileDialog()
 {
-	QString newFile = FileDialog::getOpenFileName(this, tr("Save PDF"), ui->outputFileEdit->text(), "PDF (*.pdf);;All files (*)");
+	QString newFile = FileDialog::getSaveFileName(this, tr("Save PDF"), ui->outputFileEdit->text(), "PDF (*.pdf);;All files (*)");
 	if (!newFile.isEmpty()) ui->outputFileEdit->setText(newFile);
 }
 
