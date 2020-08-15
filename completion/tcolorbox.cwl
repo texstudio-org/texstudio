@@ -128,28 +128,12 @@ all
 \tcbsetforeverylayer{%<options%>}
 \tcbox[%<options%>]{%<box content%>}
 \newtcolorbox{envname}{options%keyvals}#N
-\newtcolorbox{envname}[args]{options%keyvals}#N
-\newtcolorbox{envname}[args][default]{options%keyvals}#N
-\newtcolorbox[init options]{envname}{options%keyvals}#N
-\newtcolorbox[init options]{envname}[args]{options%keyvals}#N
 \newtcolorbox[init options]{envname}[args][default]{options%keyvals}#N
 \renewtcolorbox{envname}{options%keyvals}
-\renewtcolorbox{envname}[args]{options%keyvals}
-\renewtcolorbox{envname}[args][default]{options%keyvals}
-\renewtcolorbox[init options]{envname}{options%keyvals}
-\renewtcolorbox[init options]{envname}[args]{options%keyvals}
 \renewtcolorbox[init options]{envname}[args][default]{options%keyvals}
 \newtcbox{cmd}{options%keyvals}
-\newtcbox{cmd}[args]{options%keyvals}
-\newtcbox{cmd}[args][default]{options%keyvals}
-\newtcbox[init options]{cmd}{options%keyvals}
-\newtcbox[init options]{cmd}[args]{options%keyvals}
 \newtcbox[init options]{cmd}[args][default]{options%keyvals}
 \renewtcbox{cmd}{options%keyvals}
-\renewtcbox{cmd}[args]{options%keyvals}
-\renewtcbox{cmd}[args][default]{options%keyvals}
-\renewtcbox[init options]{cmd}{options%keyvals}
-\renewtcbox[init options]{cmd}[args]{options%keyvals}
 \renewtcbox[init options]{cmd}[args][default]{options%keyvals}
 \tcolorboxenvironment{envname}{options%keyvals}#N
 
@@ -268,33 +252,17 @@ all
 \tcbuselistinglisting
 \tcbusetemplisting
 \newtcblisting{envname}{options%keyvals}#N
-\newtcblisting{envname}[args]{options%keyvals}#*N
-\newtcblisting{envname}[args][default]{options%keyvals}#*N
-\newtcblisting[init options]{envname}{options%keyvals}#*N
-\newtcblisting[init options]{envname}[args]{options%keyvals}#*N
-\newtcblisting[init options]{envname}[args][default]{options%keyvals}#*N
+\newtcblisting[init options]{envname}[args][default]{options%keyvals}#N
 \renewtcblisting{envname}{options%keyvals}#N
-\renewtcblisting{envname}[args]{options%keyvals}#*N
-\renewtcblisting{envname}[args][default]{options%keyvals}#*N
-\renewtcblisting[init options]{envname}{options%keyvals}#*N
-\renewtcblisting[init options]{envname}[args]{options%keyvals}#*N
-\renewtcblisting[init options]{envname}[args][default]{options%keyvals}#*N
+\renewtcblisting[init options]{envname}[args][default]{options%keyvals}#N
 \newtcbinputlisting{cmd}{options%keyvals}
-\newtcbinputlisting{cmd}[args]{options%keyvals}#*
-\newtcbinputlisting{cmd}[args][default]{options%keyvals}#*
-\newtcbinputlisting[init options]{cmd}{options%keyvals}#*
-\newtcbinputlisting[init options]{cmd}[args]{options%keyvals}#*
-\newtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}#*
+\newtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}
 \renewtcbinputlisting{cmd}{options%keyvals}
-\renewtcbinputlisting{cmd}[args]{options%keyvals}#*
-\renewtcbinputlisting{cmd}[args][default]{options%keyvals}#*
-\renewtcbinputlisting[init options]{cmd}{options%keyvals}#*
-\renewtcbinputlisting[init options]{cmd}[args]{options%keyvals}#*
-\renewtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}#*
+\renewtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}
 
 # << Theorems >>
 \newtcbtheorem{envname}{display name}{options%keyvals}{prefix}#N
-\newtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}
+\newtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}#N
 \renewtcbtheorem{envname}{display name}{options%keyvals}{prefix}
 \renewtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}
 \tcbmaketheorem{envname}{display name}{options%keyvals}{counter}{prefix}#N
@@ -358,17 +326,9 @@ all
 \tcboxfit{box content}
 \tcboxfit[options%keyvals]{box content}
 \newtcboxfit{cmd}{options%keyvals}
-\newtcboxfit{cmd}[args]{options%keyvals}#*
-\newtcboxfit{cmd}[args][default]{options%keyvals}#*
-\newtcboxfit[init options]{cmd}{options%keyvals}#*
-\newtcboxfit[init options]{cmd}[args]{options%keyvals}#*
-\newtcboxfit[init options]{cmd}[args][default]{options%keyvals}#*
+\newtcboxfit[init options]{cmd}[args][default]{options%keyvals}
 \renewtcboxfit{cmd}{options%keyvals}
-\renewtcboxfit{cmd}[args]{options%keyvals}#*
-\renewtcboxfit{cmd}[args][default]{options%keyvals}#*
-\renewtcboxfit[init options]{cmd}{options%keyvals}#*
-\renewtcboxfit[init options]{cmd}[args]{options%keyvals}#*
-\renewtcboxfit[init options]{cmd}[args][default]{options%keyvals}#*
+\renewtcboxfit[init options]{cmd}[args][default]{options%keyvals}
 \tcbfontsize{factor}
 \tcbfitdim
 \tcbfitsteps
