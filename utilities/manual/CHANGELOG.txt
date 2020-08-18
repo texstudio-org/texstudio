@@ -1,4 +1,4 @@
-TeXstudio 3.00.00
+TeXstudio 3.0.0
 -----------------
 - speed up document parsing, should result in faster document load times
 - spell checking is done asynchronously

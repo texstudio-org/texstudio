@@ -139,13 +139,14 @@ private slots:
 	void updateCheckNow();
 	void refreshLastUpdateTime();
 
+	void revertClicked();
+
 	void populateComboBoxFont(bool onlyMonospaced);
+private:
 #ifdef INTERNAL_TERMINAL
 	void populateTerminalColorSchemes();
 	void populateTerminalComboBoxFont(bool onlyMonospaced);
 #endif
-
-	void revertClicked();
 
 private:
 	enum ContentsType {CONTENTS_BASIC, CONTENTS_ADVANCED, CONTENTS_DISABLED};

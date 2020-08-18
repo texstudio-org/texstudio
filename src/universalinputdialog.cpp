@@ -98,6 +98,15 @@ QLineEdit *UniversalInputDialog::addVariable(QString *var, const QString &descri
 	return addLineEdit(ManagedProperty(var), description);
 }
 
+QComboBox *UniversalInputDialog::addVariable(int *var, const QStringList &options, const QString &description)
+{
+	ManagedProperty mp(var);
+	QComboBox *cmb = new QComboBox(this);
+	cmb->addItems(options);
+	addWidget(cmb, description, mp);
+	return cmb;
+}
+
 QComboBox *UniversalInputDialog::addVariable(QStringList *var, const QString &description)
 {
 	return addComboBox(ManagedProperty(var), description);

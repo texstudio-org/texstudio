@@ -57,7 +57,8 @@ elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 #	brew uninstall poppler
 #	brew unlink python@2
     brew uninstall --ignore-dependencies poppler
-	brew install "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
+	brew install -f "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
+	brew switch poppler 0.84.0-texworks
 else
 	print_error "Unsupported host/target combination '${TRAVIS_OS_NAME}'"
 	exit 1

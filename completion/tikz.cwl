@@ -1,7 +1,8 @@
 # tikz package
-# muzimuzhi/12 Nov 2019, 23 Feb 2020
+# muzimuzhi, 12 Nov 2019, 23 Feb 2020, 8 Aug 2020
 
-#include:pgfcore
+#include:pgf
+#include:pgffor
 
 \begin{scope}
 \begin{scope}[options%keyvals]
@@ -156,7 +157,18 @@ turtle
 views
 #endkeyvals
 
-#keyvals:\node#c,\draw#c,\path#c,\begin{scope}#c,\begin{tikzpicture}#c,\tikz#c
+#keyvals:\begin{tikzpicture}#c,\tikz#c
+baseline=%<dimen or coord or default%>
+execute at begin picture=%<code%>
+execute at end picture=%<code%>
+#endkeyvals
+
+#keyvals:\begin{scope}#c
+execute at begin scope=%<code%>
+execute at end scope=%<code%>
+#endkeyvals
+
+#keyvals:\node#c,\draw#c,\path#c,\begin{scope}#c,\begin{tikzpicture}#c,\tikz#c,\tikzset#c
 ## line
 dash pattern=%<dash pattern%>
 dash phase=%<dash phase%>
@@ -176,6 +188,7 @@ line join=#round,bevel,miter
 miter limit=%<factor%>
 help lines
 ## node: shape, text, and position
+anchor=
 inner sep=##L
 inner xsep=##L
 inner ysep=##L
@@ -227,15 +240,20 @@ xslant=%<factor%>
 yslant=%<factor%>
 rotate=%<degree%>
 rotate around={%<degree%>:coordinate}
+### every xxx
+every picture
+every scope
+every node
 ## others
 ->
 <-
 name path=
-color=#%color
+name=
 sharp corners
-rounded corners=
+rounded corners=##L
 outline
 %tikzstyle
+color=#%color
 %color
 #endkeyvals
 

@@ -5,9 +5,9 @@
 
 #keyvals:\includegraphics
 hide#true,false
-align=b,c,l,m,t,u
-vsmash=b,c,l,m,n,t,u
-hsmash=c,l,n,r
+align=#b,c,l,m,t,u
+vsmash=#b,c,l,m,n,t,u
+hsmash=#c,l,n,r
 smash=%<vpos%>%<hpos%>
 vshift=##L
 hshift=##L

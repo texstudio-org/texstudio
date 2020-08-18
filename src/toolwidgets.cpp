@@ -4,6 +4,7 @@
 #include "smallUsefulFunctions.h"
 #include "utilsSystem.h"
 #include "configmanagerinterface.h"
+#include "terminal_config.h"
 
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
@@ -140,7 +141,8 @@ void PreviewWidget::contextMenu(QPoint point)
 }
 
 #ifdef INTERNAL_TERMINAL
-TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
+TerminalWidget::TerminalWidget(QWidget *parent, InternalTerminalConfig *terminalConfig):
+  QWidget(parent), qTermWidget(nullptr), terminalConfig(terminalConfig)
 {
 	//setBackgroundRole(QPalette::Base);
 	layout = new QHBoxLayout(this);
@@ -148,12 +150,11 @@ TerminalWidget::TerminalWidget(QWidget *parent): QWidget(parent)
 	layout->setMargin(0);
 	setLayout(layout);
 	installEventFilter(this);
-	initQTermWidget();
 }
 
 TerminalWidget::~TerminalWidget()
 {
-	delete qTermWidget;
+	if (qTermWidget) delete qTermWidget;
 	delete layout;
 }
 
@@ -179,6 +180,10 @@ bool TerminalWidget::eventFilter(QObject *watched, QEvent *event)
 	return QWidget::eventFilter(watched, event);
 }
 
+void TerminalWidget::showEvent(QShowEvent *){
+	if (!qTermWidget) initQTermWidget();
+}
+
 void TerminalWidget::qTermWidgetFinished()
 {
 	// in case the shell closed the widget is reinitiated
@@ -188,12 +193,13 @@ void TerminalWidget::qTermWidgetFinished()
 
 void TerminalWidget::initQTermWidget()
 {
+	if (qTermWidget) delete qTermWidget;
 	qTermWidget = new QTermWidget(0, this);
-	curShell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+	curShell = terminalConfig->terminalShell;
 	qTermWidget->setShellProgram(curShell);
 	qTermWidget->setTerminalSizeHint(false);
 	qTermWidget->startShellProgram();
-    layout->addWidget(qTermWidget,0);
+	layout->addWidget(qTermWidget,0);
 	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
 	updateSettings(true);
 }
@@ -201,30 +207,31 @@ void TerminalWidget::initQTermWidget()
 void TerminalWidget::setCurrentFileName(const QString &filename)
 {
 	QString const &path = filename.left(filename.lastIndexOf('/'));
-	if( qTermWidget->workingDirectory() != path )
+	if(qTermWidget && qTermWidget->workingDirectory() != path )
 		qTermWidget->changeDir(path);
 }
 
 void TerminalWidget::updateSettings(bool noreset)
 {
 	if (!noreset) {
-		QString const &shell = ConfigManagerInterface::getInstance()->getOption("Terminal/Shell").toString();
+		QString const &shell = terminalConfig->terminalShell;
 		if (shell != curShell) {
-			delete qTermWidget;
 			initQTermWidget();
 			return;
 		}
 	}
 
-	QString const &colorScheme = ConfigManagerInterface::getInstance()->getOption("Terminal/ColorScheme").toString();
-	QString const &fontFamily = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Family").toString();
-	int fontSize = ConfigManagerInterface::getInstance()->getOption("Terminal/Font Size").toInt();
-	qTermWidget->setColorScheme(colorScheme);
-	qTermWidget->setTerminalFont( QFont( fontFamily, fontSize ) );
+	QString const &colorScheme = terminalConfig->terminalColorScheme;
+	QString const &fontFamily = terminalConfig->terminalFontFamily;
+	int fontSize = terminalConfig->terminalFontSize;
+	if (qTermWidget) {
+		qTermWidget->setColorScheme(colorScheme);
+		qTermWidget->setTerminalFont( QFont( fontFamily, fontSize ) );
+	}
 }
 #endif
 
-OutputViewWidget::OutputViewWidget(QWidget *parent) :
+OutputViewWidget::OutputViewWidget(QWidget *parent, InternalTerminalConfig *terminalConfig) :
 	TitledPanel(parent),
 	MESSAGES_PAGE("messages"),
 	LOG_PAGE("log"),
@@ -258,7 +265,7 @@ OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	appendPage(new TitledPanelPage(previewWidget, PREVIEW_PAGE, tr("Preview")), false);
 
 #ifdef INTERNAL_TERMINAL
-	terminalWidget = new TerminalWidget(this);
+	terminalWidget = new TerminalWidget(this, terminalConfig);
 	appendPage(new TitledPanelPage(terminalWidget, TERMINAL_PAGE, tr("Terminal")), false);
 #endif
 

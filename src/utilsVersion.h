@@ -2,7 +2,7 @@
 #define UTILSVERSION_H
 
 #define TEXSTUDIO "TeXstudio"
-#define TXSVERSION "3.00.00"
+#define TXSVERSION "3.0.0"
 
 #define TXSVERSION_NUMERIC 0x030000
 

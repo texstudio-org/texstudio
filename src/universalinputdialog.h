@@ -30,6 +30,7 @@ public:
 	QCheckBox *addVariable(bool *var, const QString &description = "");
 	QSpinBox *addVariable(int *var, const QString &description = "");
 	QLineEdit *addVariable(QString *var, const QString &description = "");
+	QComboBox *addVariable(int *var, const QStringList &options, const QString &description = "");
 	QComboBox *addVariable(QStringList *var, const QString &description = "");
 	QTextEdit *addTextEdit(QString *var, const QString &description = "");
 	QDoubleSpinBox *addVariable(float *var, const QString &description = "");

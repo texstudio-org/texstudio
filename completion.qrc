@@ -106,6 +106,7 @@
 <file>completion/ifvtex.cwl</file>
 <file>completion/ifxetex.cwl</file>
 <file>completion/import.cwl</file>
+<file>completion/incgraph.cwl</file>
 <file>completion/inputenc.cwl</file>
 <file>completion/jurabib.cwl</file>
 <file>completion/kantlipsum.cwl</file>
@@ -161,6 +162,7 @@
 <file>completion/pdfpages.cwl</file>
 <file>completion/pgf.cwl</file>
 <file>completion/pgfcore.cwl</file>
+<file>completion/pgffor.cwl</file>
 <file>completion/pgfkeys.cwl</file>
 <file>completion/pgfmath.cwl</file>
 <file>completion/pgfplots.cwl</file>
@@ -169,6 +171,7 @@
 <file>completion/physics.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/placeins.cwl</file>
+<file>completion/plaintex.cwl</file>
 <file>completion/proof.cwl</file>
 <file>completion/psfrag.cwl</file>
 <file>completion/pst-3d.cwl</file>
@@ -210,6 +213,7 @@
 <file>completion/tex.cwl</file>
 <file>completion/textcomp.cwl</file>
 <file>completion/theorem.cwl</file>
+<file>completion/thmtools.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikz-timing.cwl</file>
 <file>completion/tikz.cwl</file>
@@ -234,6 +238,7 @@
 <file>completion/xfrac.cwl</file>
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
+<file>completion/xmpmulti.cwl</file>
 <file>completion/xparse.cwl</file>
 <file>completion/xpatch.cwl</file>
 <file>completion/xspace.cwl</file>

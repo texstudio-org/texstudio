@@ -153,7 +153,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	bibTypeActions = nullptr;
 	highlightLanguageActions = nullptr;
 	runningPDFCommands = runningPDFAsyncCommands = 0;
-	activeEditorForPreview = nullptr;
+	previewEditorPending = nullptr;
+	previewIsAutoCompiling = false;
 	completerPreview = false;
 	recheckLabels = true;
 	cursorHistory = nullptr;
@@ -688,7 +689,7 @@ void Texstudio::setupDockWidgets()
 
     // OUTPUT WIDGETS
     if (!outputView) {
-        outputView = new OutputViewWidget(this);
+			  outputView = new OutputViewWidget(this, configManager.terminalConfig);
         outputView->setObjectName("OutputView");
         centralVSplitter->addWidget(outputView);
         outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
@@ -900,6 +901,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "moveLineUp", tr("Move Line &Up"), SLOT(editMoveLineUp()));
 	newManagedAction(submenu, "moveLineDown", tr("Move Line &Down"), SLOT(editMoveLineDown()));
 	newManagedAction(submenu, "duplicateLine", tr("Du&plicate Line"), SLOT(editDuplicateLine()));
+	newManagedAction(submenu, "sortLines", tr("S&ort Lines"), SLOT(editSortLines()));
 	newManagedAction(submenu, "alignMirrors", tr("&Align Cursors"), SLOT(editAlignMirrors()));
 
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
@@ -2029,7 +2031,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	doc = new LatexDocument(this);
     doc->setCenterDocumentInEditor(configManager.editorConfig->centerDocumentInEditor);
-	doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+    doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
 	LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);
 	if (hidden) {
@@ -2765,7 +2767,8 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 	}
     // save hidden files (in case that they are changed via replace in all docs
     foreach (LatexDocument *d, documents.hiddenDocuments){
-        d->getEditorView()->editor->save();
+        if(d->getEditorView()->editor->isContentModified())
+            d->getEditorView()->editor->save();
     }
 
 
@@ -3527,6 +3530,23 @@ void Texstudio::editDuplicateLine()
 	}
     if(cursors.length()>0)
         ed->setCursor(cursors[0]);
+}
+
+void Texstudio::editSortLines()
+{
+	if (!currentEditorView()) return;
+	QStringList sortingOptions = QStringList() << tr("Ascending") << tr("Descending") << tr("No Sorting") << tr("Random (Shuffle)");
+	static int sorting; configManager.registerOption("Editor/Sort Lines/Method", &sorting, 0);
+	static bool completelines; configManager.registerOption("Editor/Sort Lines/Complete Lines", &completelines, false);
+	static bool casesensitive; configManager.registerOption("Editor/Sort Lines/Case Sensitive", &casesensitive, false);
+	static bool removeduplicates; configManager.registerOption("Editor/Sort Lines/Remove Duplicates", &removeduplicates, false);
+	UniversalInputDialog dialog;
+	dialog.addVariable(&sorting, sortingOptions, tr("Sorting"));
+	dialog.addVariable(&completelines, tr("Complete Lines"));
+	dialog.addVariable(&casesensitive, tr("Case Sensitive"));
+	dialog.addVariable(&removeduplicates, tr("Remove Duplicates"));
+	if (dialog.exec() == QDialog::Accepted)
+		currentEditorView()->sortSelectedLines(static_cast<LatexEditorView::LineSorting>(sorting), casesensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, completelines, removeduplicates);
 }
 
 void Texstudio::editAlignMirrors()
@@ -6088,7 +6108,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	}
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
-	activeEditorForPreview = nullptr;
+	previewIsAutoCompiling = false;
 }
 
 void Texstudio::processNotification(const QString &message)
@@ -6362,7 +6382,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
  */
 void Texstudio::onCompileError()
 {
-	if (!activeEditorForPreview && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
+	if (!previewIsAutoCompiling && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
 		viewLog();
 	} else {
 		setLogMarksVisible(true);
@@ -6595,7 +6615,7 @@ void Texstudio::generalOptions()
 
         // update syntaxChecking with alls docs
         foreach (LatexDocument *doc, documents.getDocuments()) {
-            doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+            doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
         }
 
         //update highlighting ???
@@ -6605,6 +6625,13 @@ void Texstudio::generalOptions()
         updateHighlighting |= (inlineSyntaxChecking != configManager.editorConfig->inlineSyntaxChecking);
         updateHighlighting |= (realtimeChecking != configManager.editorConfig->realtimeChecking);
         updateHighlighting |= (additionalBibPaths != configManager.additionalBibPaths);
+        // recheck syntax when spellchecking and/or syntaxchecking has been effectively turned on
+        bool recheckSyntax=(configManager.editorConfig->realtimeChecking &&(configManager.editorConfig->inlineSyntaxChecking || configManager.editorConfig->inlineSpellChecking)) || ((configManager.editorConfig->inlineSyntaxChecking && !inlineSyntaxChecking)||(configManager.editorConfig->inlineSpellChecking && !inlineSpellChecking));
+
+        // activate/deactivate speller ...
+        SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
+
+        // dark/light-mode switch
         if(oldDarkMode != darkMode){
             // reload other formats
             QSettings *config=configManager.getSettings();
@@ -6637,6 +6664,9 @@ void Texstudio::generalOptions()
                         edView->document->updateLtxCommands();
                         edView->documentContentChanged(0, edView->document->lines());
                         edView->document->updateCompletionFiles(false, true);
+                        if(recheckSyntax){
+                            edView->reCheckSyntax(0);
+                        }
                     } else {
                         edView->clearOverlays();
                     }
@@ -8546,19 +8576,24 @@ void Texstudio::showPreviewQueue()
 
 void Texstudio::recompileForPreview(){
 	if (documents.getCompileFileName().isEmpty()) return;
-	if (buildManager.waitingForProcess()) return;
 #ifndef NO_POPPLER_PREVIEW
 	if (PDFDocument::documentList().isEmpty()) return;
 #endif
-	activeEditorForPreview = currentEditor();
-	if (!activeEditorForPreview || activeEditorForPreview->fileName().isEmpty()) return;
 	if (!documents.currentDocument || documents.currentDocument->mayHaveDiffMarkers) return;
+	previewEditorPending = currentEditor();
+	if (!previewEditorPending || previewEditorPending->fileName().isEmpty()) return;
 	previewFullCompileDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
 }
 void Texstudio::recompileForPreviewNow(){
-	if (buildManager.waitingForProcess()) return;
-	if (!activeEditorForPreview || activeEditorForPreview != currentEditor()) return;
-	activeEditorForPreview->save();
+	if (!previewEditorPending || previewEditorPending != currentEditor()) return;
+	if (buildManager.waitingForProcess()) {
+		if (previewEditorPending->isContentModified()) {
+			previewFullCompileDelayTimer.start(qMax(50, configManager.autoPreviewDelay));
+		}
+		return;
+	}
+	previewEditorPending->save();
+	previewIsAutoCompiling = true;
 	runCommand(BuildManager::CMD_COMPILE, nullptr, nullptr, false);
 }
 

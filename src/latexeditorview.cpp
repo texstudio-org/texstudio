@@ -1420,7 +1420,7 @@ bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
     }
 	speller = su;
     if(document){
-        SpellerUtility::inlineSpellChecking=config->inlineSpellChecking;
+        SpellerUtility::inlineSpellChecking=config->inlineSpellChecking && config->realtimeChecking;
         SpellerUtility::hideNonTextSpellingErrors=config->hideNonTextSpellingErrors;
         document->setSpeller(speller);
     }
@@ -1592,6 +1592,7 @@ void LatexEditorView::updateSettings()
 	editor->setFlag(QEditor::AllowDragAndDrop, config->allowDragAndDrop);
 	editor->setFlag(QEditor::MouseWheelZoom, config->mouseWheelZoom);
 	editor->setFlag(QEditor::SmoothScrolling, config->smoothScrolling);
+	editor->setFlag(QEditor::VerticalOverScroll, config->verticalOverScroll);
 	editor->setFlag(QEditor::AutoInsertLRM, config->autoInsertLRM);
 	editor->setFlag(QEditor::BidiVisualColumnMode, config->visualColumnMode);
 	editor->setFlag(QEditor::OverwriteOpeningBracketFollowedByPlaceholder, config->overwriteOpeningBracketFollowedByPlaceholder);
@@ -1623,7 +1624,6 @@ void LatexEditorView::updateSettings()
 	QDocument::setShowSpaces(config->showWhitespace ? (QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs) : QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
-    //editor-> setCenterDocumentInEditor(config->centerDocumentInEditor);
 
 	editor->m_preEditFormat = preEditFormat;
 
@@ -1938,13 +1938,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 	}
 
-	if (config->fullCompilePreview) emit showFullPreview();
 
 	// checking
 	if (!QDocument::defaultFormatScheme()) return;
-	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	const LatexDocument *ldoc = qobject_cast<const LatexDocument *>(editor->document());
 	bool latexLikeChecking = ldoc && ldoc->languageIsLatexLike();
+	if (latexLikeChecking && config->fullCompilePreview) emit showFullPreview();
+	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
 
     if (config->inlineGrammarChecking) {
@@ -2713,6 +2713,48 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 	editor->insertText(cur, insertBlock);
 
 	editor->setCursor(cur);
+}
+
+void LatexEditorView::sortSelectedLines(LineSorting sorting, Qt::CaseSensitivity caseSensitivity, bool completeLines, bool removeDuplicates){
+	if (completeLines){
+		editor->selectExpand(QDocumentCursor::LineUnderCursor);
+	}
+	QList<QDocumentCursor> cursors = editor->cursors();
+	std::sort(cursors.begin(), cursors.end());
+	for (int i=0; i < cursors.length(); i++)
+		cursors[i].setAutoUpdated(true); //auto updating is not enabled by default (but it is supposed to be, isn't it?)
+
+	QList<int> spannedLines;
+	QStringList text;
+	foreach (const QDocumentCursor& c, cursors) {
+		QStringList selectedTextLines = c.selectedText().split('\n');
+		spannedLines << selectedTextLines.length();
+		text << selectedTextLines;
+	}
+	if (text.isEmpty()) return;
+	bool additionalEmptyLine = text.last().isEmpty();
+	if (additionalEmptyLine) text.removeLast();
+
+	if (sorting == SortAscending || sorting == SortDescending)
+		text.sort(caseSensitivity);
+	else if (sorting == SortRandomShuffle)
+		std::random_shuffle(text.begin(), text.end());
+	if (sorting == SortDescending)
+		std::reverse(text.begin(), text.end());
+	if (removeDuplicates)
+		text.removeDuplicates();
+
+	if (additionalEmptyLine) text.append("");
+
+	editor->document()->beginMacro();
+	for (int i=0; i < cursors.length() - 1; i++){
+		QStringList lines;
+		for (int j=0; j < qMin(spannedLines[i], text.length()); j++)
+			lines << text.takeFirst();
+		cursors[i].replaceSelectedText(lines.join('\n'));
+	}
+	cursors.last().replaceSelectedText(text.join('\n'));
+	editor->document()->endMacro();
 }
 
 QString LatexEditorViewConfig::translateEditOperation(int key)

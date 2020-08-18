@@ -16,6 +16,8 @@
 #include "latexlogwidget.h"
 #include "searchresultwidget.h"
 
+class InternalTerminalConfig;
+
 class PreviewWidget : public QScrollArea
 {
 	Q_OBJECT
@@ -49,12 +51,12 @@ class TerminalWidget : public QWidget
 	Q_OBJECT
 
 public:
-    explicit TerminalWidget(QWidget *parent = nullptr);
+	  explicit TerminalWidget(QWidget *parent = nullptr, InternalTerminalConfig *terminalConfig = nullptr);
     ~TerminalWidget();
 	void setCurrentFileName(const QString &filename);
 	void updateSettings(bool noreset=false);
-	bool eventFilter(QObject *watched, QEvent *event);
-
+	bool eventFilter(QObject *watched, QEvent *event);	
+	virtual void showEvent(QShowEvent *event);
 private slots:
 	void qTermWidgetFinished();
 
@@ -63,6 +65,7 @@ private :
 	void initQTermWidget();
 	QTermWidget *qTermWidget;
 	QHBoxLayout *layout;
+	InternalTerminalConfig *terminalConfig;
 };
 #endif
 
@@ -71,7 +74,7 @@ class OutputViewWidget: public TitledPanel
 	Q_OBJECT
 
 public:
-    explicit OutputViewWidget(QWidget *parent = nullptr);
+	  explicit OutputViewWidget(QWidget *parent = nullptr, InternalTerminalConfig *terminalConfig = nullptr);
 
 	const QString MESSAGES_PAGE;
 	const QString LOG_PAGE;

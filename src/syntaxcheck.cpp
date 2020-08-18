@@ -482,7 +482,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
     // special treatment for empty lines with $/$$ math environmens
     // latex treats them as error, so do we
-    if(tl.length()==0 && !activeEnv.isEmpty() && activeEnv.top().name=="math"){
+    if(tl.length()==0 && line.simplified().isEmpty() && !activeEnv.isEmpty() && activeEnv.top().name=="math"){
         if(activeEnv.top().origName=="$" || activeEnv.top().origName=="$$"){
             Environment env=activeEnv.pop();
             /* how to present an error without character present ?

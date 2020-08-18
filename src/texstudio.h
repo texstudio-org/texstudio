@@ -211,7 +211,7 @@ private:
 	QAction *fullscreenModeAction;
 
 	int runningPDFCommands, runningPDFAsyncCommands;
-	QEditor* activeEditorForPreview;
+	QEditor *previewEditorPending; bool previewIsAutoCompiling;
 
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
@@ -312,6 +312,7 @@ protected slots:
 	void editMoveLineUp();
 	void editMoveLineDown();
 	void editDuplicateLine();
+	void editSortLines();
 	void editAlignMirrors();
 	void editEraseWordCmdEnv();
 	void editGotoDefinition(QDocumentCursor c = QDocumentCursor());

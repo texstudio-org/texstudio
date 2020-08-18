@@ -1179,8 +1179,7 @@ void ConfigDialog::populateTerminalComboBoxFont(bool onlyMonospaced)
 
 void ConfigDialog::populateTerminalColorSchemes()
 {
-	QTermWidget qTermWidget(0, this);
-	ui.comboBoxTerminalColorScheme->addItems( qTermWidget.availableColorSchemes() );
+	ui.comboBoxTerminalColorScheme->addItems( QTermWidget::availableColorSchemes() );
 }
 #endif
 

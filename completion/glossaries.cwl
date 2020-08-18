@@ -10,7 +10,6 @@
 \CustomNewAcronymDef#S
 \DUANewAcronymDef#S
 \DeclareAcronymList{arg1}#S
-\DeclareOption#S
 \DefaultNewAcronymDef#S
 \DefineAcronymSynonyms#S
 \DescriptionDUANewAcronymDef#S
