@@ -602,7 +602,7 @@ void Texstudio::addMacrosAsTagList()
         list->addItem(item);
     }
     UtilsUi::enableTouchScrolling(list);
-    connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertFromTagList(QListWidgetItem *)));
+    connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertFromTagList(QListWidgetItem *)),Qt::UniqueConnection);
     if(addToPanel)
         leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
 }
