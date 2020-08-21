@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Dependencies
-      run: sudo apt update && apt install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config  
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config  
 
     - name: Build
       run: qmake texstudio.pro CONFIG+=debug
@@ -36,7 +36,9 @@ jobs:
         brew update > brew_update.log || { print_error "Updating homebrew failed"; cat brew_update.log; exit 1; }
         brew install hunspell poppler lua qt5
     - name: Configure
-      run: /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
+      run: |
+        export PATH="/usr/local/opt/bin:$PATH"
+        /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
 
     - name: Build
       run: make -j
