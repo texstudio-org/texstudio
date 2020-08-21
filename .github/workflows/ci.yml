@@ -1,0 +1,40 @@
+name: CI
+on:
+  - push
+  - pull_request
+
+jobs:
+  build-linux-legacy:
+    name: Linux
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: qmake texstudio.pro CONFIG+=debug
+     
+    - name: Test
+      run: ./texstudio --auto-tests
+
+
+################################################################################
+
+  build-macosx-homebrew:
+    name: Mac OS X (Homebrew)
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        brew update > brew_update.log || { print_error "Updating homebrew failed"; cat brew_update.log; exit 1; }
+        brew install hunspell poppler lua qt5
+    - name: Configure
+      run: qmake texstudio.pro CONFIG-=debug
+
+    - name: Build
+      run: make -j
+ 
