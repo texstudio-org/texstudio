@@ -25,6 +25,8 @@ void GitTest::basicFunctionality()
     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream out(&data);
         out << "abc \n" << "bcd \n";
+    }else{
+        QFAIL("Generating test-file failed!");
     }
     // check status
     GIT::Status st=git.status(path);
