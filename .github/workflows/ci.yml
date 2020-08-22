@@ -10,39 +10,26 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        modules: 'qtscript'
+
     - name: Dependencies
-      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config  
+      run: sudo apt-get install libqt5svg5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
 
     - name: Configure
       run: qmake texstudio.pro CONFIG+=debug
-     
+
     - name: Build
-      run: make -j
-     
+      run: make -j 2
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: texstudio
+        path: ./texstudio
+
     - name: Test
-      run: ./texstudio --auto-tests
-
-
-################################################################################
-
-  build-macosx-homebrew:
-    name: Mac OS X (Homebrew)
-    runs-on: macos-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Install Dependencies
-      run: |
-        brew update > brew_update.log || { print_error "Updating homebrew failed"; cat brew_update.log; exit 1; }
-        brew install poppler qt5
-    - name: Configure
-      run: |
-        export PATH="/usr/local/opt/bin:$PATH"
-        /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
-
-    - name: Build
-      run: make -j
- 
+      run: QT_QPA_PLATFORM=offscreen ./texstudio --auto-tests
