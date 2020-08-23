@@ -42,6 +42,7 @@ void GitTest::basicFunctionality()
     git.commit(path, "v1");
     // check status
     st=git.status(path);
+    qDebug()<<st;
     QVERIFY2(st==GIT::CheckedIn,"should be checked in");
     // add text to file
     {
