@@ -13,6 +13,8 @@
  */
 void GitTest::basicFunctionality()
 {
+    if(!m_executeTests) // skip test in auto tests
+        return;
     if(bm->CMD_GIT.isEmpty())
         return;
     // create test dir
@@ -35,14 +37,12 @@ void GitTest::basicFunctionality()
     git.createRepository(path);
     // check status
     st=git.status(path);
-    qDebug()<<st;
     QVERIFY2(st==GIT::Unmanaged,"should be unmanaged");
     // add/checkin
     git.runGit("add", GIT::quote(path));
     git.commit(path, "v1");
     // check status
     st=git.status(path);
-    qDebug()<<st;
     QVERIFY2(st==GIT::CheckedIn,"should be checked in");
     // add text to file
     {
