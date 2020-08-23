@@ -35,6 +35,7 @@ void GitTest::basicFunctionality()
     git.createRepository(path);
     // check status
     st=git.status(path);
+    qDebug()<<st;
     QVERIFY2(st==GIT::Unmanaged,"should be unmanaged");
     // add/checkin
     git.runGit("add", GIT::quote(path));
