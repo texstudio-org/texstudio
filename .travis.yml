@@ -4,11 +4,6 @@ matrix:
   - env: QT=qt5osx
     os: osx
     osx_image: xcode11.6
-  - env: QT=qt5
-    os: linux
-    services: xvfb
-  - env: QT=qt5NoPoppler
-    os: linux
   - env: QT=qt5Release
     os: linux
   - env: QT=qt5win
