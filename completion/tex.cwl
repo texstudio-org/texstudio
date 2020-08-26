@@ -124,7 +124,7 @@
 \expandafter#*
 \fam#*
 \fi#*
-\finalhypendemerits#*
+\finalhyphendemerits#*
 \firstmark#*
 \floatingpenalty#*
 \font#*
