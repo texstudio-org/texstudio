@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio usa adwaita-qt (GPL2) de</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="39"/>
@@ -561,7 +561,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="357"/>
         <source>External Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal externa</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="419"/>
@@ -1513,7 +1513,7 @@ Esto cambia la escala de las barras de herramientas verticales (para pantallas d
     <message>
         <location filename="../src/configdialog.ui" line="1930"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar los espacios en blanco finales al guardar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1576"/>
@@ -2676,7 +2676,7 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4355"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation>Autocompilar documento con los cambios</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4399"/>
@@ -2732,7 +2732,7 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
         <location filename="../src/configdialog.ui" line="4504"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Internal Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal interna</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4555"/>
@@ -3489,7 +3489,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>Modo matemático en línea de LaTeX \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -7223,7 +7223,9 @@ Notas:
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño del tipo de letra en relación con el tamaño del tipo de letra del editor.
+
+Nota: si el tamaño es mayor que el espacio entre líneas, los caracteres pueden ser recortados.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -10105,7 +10107,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1086"/>
         <source>Open External &amp;Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Abrir la &amp;terminal externa</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1088"/>
@@ -10868,12 +10870,12 @@ No se pudo guardar el archivo de imagen.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Subiendo</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Bajando</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
@@ -10883,7 +10885,7 @@ No se pudo guardar el archivo de imagen.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3536"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"/>
+        <translation>Aleatorio (mezclar)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3542"/>
@@ -10903,7 +10905,7 @@ No se pudo guardar el archivo de imagen.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3545"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar duplicados</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3769"/>
@@ -12703,7 +12705,7 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="293"/>
         <source>Exact Sequences</source>
-        <translation type="unfinished"/>
+        <translation>Secuencias exactas</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="294"/>
@@ -12749,12 +12751,12 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="302"/>
         <source>long ladder</source>
-        <translation type="unfinished"/>
+        <translation>escalera larga</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="303"/>
         <source>short ladder</source>
-        <translation type="unfinished"/>
+        <translation>escalera corta</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="304"/>
