@@ -596,7 +596,7 @@ void QLineMarksInfoCenter::cursorMoved(QEditor *e)
 /*!
 	\internal
 */
-void QLineMarksInfoCenter::lineDeleted(QDocumentLineHandle *h)
+void QLineMarksInfoCenter::lineDeleted(QDocumentLineHandle *h, int )
 {
 	QLineMarkHandleList::iterator i = m_lineMarks.begin();
 	

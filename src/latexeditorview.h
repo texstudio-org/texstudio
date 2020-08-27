@@ -141,6 +141,7 @@ public:
 	Q_INVOKABLE void addBookmark(int lineNr, int bookmarkNumber);
 	Q_INVOKABLE bool hasBookmark(int lineNr, int bookmarkNumber);
 	bool hasBookmark(QDocumentLineHandle *dlh, int bookmarkNumber);
+    int hasBookmark(QDocumentLineHandle *dlh);
 
 	QList<QDocumentCursor> autoPreviewCursor;
 
@@ -248,7 +249,7 @@ public slots:
     void reCheckSyntax(int linenr, int count=-1);
 
 private slots:
-	void lineDeleted(QDocumentLineHandle *l);
+    void lineDeleted(QDocumentLineHandle *l,int hint=-1);
 	void textReplaceFromAction();
 	void spellCheckingAlwaysIgnore();
 	void populateSpellingMenu();

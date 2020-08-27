@@ -652,7 +652,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 	connect(foldPanel, SIGNAL(contextMenuRequested(int, QPoint)), this, SLOT(foldContextMenuRequested(int, QPoint)));
 	connect(editor, SIGNAL(hovered(QPoint)), this, SLOT(mouseHovered(QPoint)));
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
-	connect(editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *)), this, SLOT(lineDeleted(QDocumentLineHandle *)));
+    connect(editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *,int)), this, SLOT(lineDeleted(QDocumentLineHandle *,int)));
 
 	connect(doc, SIGNAL(spellingDictChanged(QString)), this, SLOT(changeSpellingDict(QString)));
 	connect(doc, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)), this, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)));
@@ -1191,6 +1191,26 @@ bool LatexEditorView::hasBookmark(QDocumentLineHandle *dlh, int bookmarkNumber)
 	QList<int> m_marks = document->marks(dlh);
 	return m_marks.contains(rmid);
 }
+/*!
+ * \brief check if line has any bookmark (bookmarkid -1 .. 9)
+ * \param dlh
+ * \return bookmark number [-1:9] , -2 -> not found
+ */
+int LatexEditorView::hasBookmark(QDocumentLineHandle *dlh)
+{
+    if (!dlh)
+        return false;
+    int rmidLow = bookMarkId(-1);
+    int rmidUp = bookMarkId(9);
+    QList<int> m_marks = document->marks(dlh);
+    for(int id:m_marks){
+        if(id>=rmidLow && id<=rmidUp){
+            return id;
+        }
+    }
+    return -2; // none found
+}
+
 
 bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 {
@@ -2157,7 +2177,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count)
     document->reCheckSyntax(linenr,count);
 }
 
-void LatexEditorView::lineDeleted(QDocumentLineHandle *l)
+void LatexEditorView::lineDeleted(QDocumentLineHandle *l,int)
 {
 	QHash<QDocumentLineHandle *, int>::iterator it;
 	while ((it = lineToLogEntries.find(l)) != lineToLogEntries.end()) {
@@ -2165,14 +2185,9 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle *l)
 		lineToLogEntries.erase(it);
 	}
 
-	//QMessageBox::information(0,QString::number(nr),"",0);
 	for (int i = changePositions.size() - 1; i >= 0; i--)
 		if (changePositions[i].dlh() == l)
-			/*if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
-			else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
-			else  */ //creating a QDocumentLine with a deleted handle is not possible (it will modify the handle reference count which will trigger another delete event, leading to an endless loop)
 			changePositions.removeAt(i);
-	//    QMessageBox::information(0,"trig",0);
 
 	emit lineHandleDeleted(l);
 	editor->document()->markViewDirty();

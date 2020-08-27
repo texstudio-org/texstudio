@@ -274,7 +274,7 @@ void LatexDocument::updateStructure()
 
 /*! Removes a deleted line from the structure view
 */
-void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
+void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint)
 {
 	if (!baseStructure) return;
 	bool completerNeedsUpdate = false;
@@ -329,21 +329,19 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 		mAppendixLine = nullptr;
 	}
 
-	int linenr = indexOf(dlh);
+    int linenr = indexOf(dlh,hint);
 	if (linenr == -1) linenr = lines();
 
 	// check if line contains bookmark
-	if (edView) {
-		for (int i = -1; i < 10; i++) {
-			if (edView->hasBookmark(dlh, i)) {
-				emit bookmarkRemoved(dlh);
-				edView->removeBookmark(dlh, i);
-				break;
-			}
-		}
-	}
+    if (edView) {
+        int id=edView->hasBookmark(dlh);
+        if (id>-2) {
+            emit bookmarkRemoved(dlh);
+            edView->removeBookmark(dlh, id);
+        }
+    }
 
-	QList<StructureEntry *> categories = QList<StructureEntry *>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
+    QList<StructureEntry *> categories = QList<StructureEntry *>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
 	foreach (StructureEntry *sec, categories) {
 		int l = 0;
 		QMutableListIterator<StructureEntry *> iter(sec->children);
@@ -359,7 +357,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 	}
 
 	QList<StructureEntry *> tmp;
-	LatexStructureMergerMerge(this, LatexParser::getInstance().structureDepth(), linenr, 1)(tmp);
+    if(!baseStructure->children.isEmpty()){ // merge is not the fastest, even when there is nothing to merge
+        LatexStructureMergerMerge(this, LatexParser::getInstance().structureDepth(), linenr, 1)(tmp);
+    }
 
 	// rehighlight current cursor position
 	StructureEntry *newSection = nullptr;

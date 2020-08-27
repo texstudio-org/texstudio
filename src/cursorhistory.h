@@ -49,7 +49,7 @@ public slots:
 private slots:
 	void aboutToDeleteDoc(LatexDocument *doc);
 	void documentClosed(QObject *obj);
-	void lineDeleted(QDocumentLineHandle *dlh);
+    void lineDeleted(QDocumentLineHandle *dlh,int hint=-1);
 
 private:
 	void updateNavActions();

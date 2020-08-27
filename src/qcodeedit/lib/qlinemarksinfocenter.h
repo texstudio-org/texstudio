@@ -168,7 +168,7 @@ class QCE_EXPORT QLineMarksInfoCenter : public QObject
 		
 	protected slots:
 		void cursorMoved(QEditor *e);
-		void lineDeleted(QDocumentLineHandle *h);
+        void lineDeleted(QDocumentLineHandle *h,int hint=-1);
 		void markChanged(const QString& f, QDocumentLineHandle *h, int mark, bool on);
 		
 	private:

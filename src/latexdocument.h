@@ -272,7 +272,7 @@ public:
 public slots:
 	void updateStructure();
 	bool patchStructure(int linenr, int count, bool recheck = false);
-	void patchStructureRemoval(QDocumentLineHandle *dlh);
+    void patchStructureRemoval(QDocumentLineHandle *dlh,int hint=-1);
 	void initClearStructure();
 	void updateLtxCommands(bool updateAll = false);
 	void setLtxCommands(const LatexParser &cmds);

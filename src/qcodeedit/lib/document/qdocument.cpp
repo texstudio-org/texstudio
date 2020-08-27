@@ -443,9 +443,9 @@ QDocument::QDocument(QObject *p)
 			this					, SIGNAL( redoAvailable(bool) ) );
 
 	connect(this							,
-			SIGNAL( lineDeleted(QDocumentLineHandle*) ),
+            SIGNAL( lineDeleted(QDocumentLineHandle*,int) ),
 			QLineMarksInfoCenter::instance(),
-			SLOT  ( lineDeleted(QDocumentLineHandle*) ) );
+            SLOT  ( lineDeleted(QDocumentLineHandle*,int) ) );
 
 }
 
@@ -657,13 +657,14 @@ void QDocument::setText(const QString& s, bool allowUndo)
 
 	m_impl->m_deleting = true;
 
-	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
-		emit lineDeleted(h);
-	//qDeleteAll(m_impl->m_lines);
-	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
+
+    for(int i=0;i<m_impl->m_lines.size();++i){
+        QDocumentLineHandle *h= m_impl->m_lines.at(i);
+        emit lineDeleted(h,i);
+    }
+
+    foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-//		emit lineRemoved(h);
-//		emit lineDeleted(h);
 		h->m_doc = nullptr;
 		h->deref();
 	}
@@ -775,7 +776,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 	bool slow = (size > 30 * 1024);
 	if (slow) emit slowOperationStarted();
 
-	if ( size < 500000 )
+    if ( size < 500000 )
 	{
 		// instant load for files smaller than 500kb
 		QByteArray d = f.readAll();
@@ -790,8 +791,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		int count = 0;
 		QByteArray ba;
 
-		startChunkLoading();
-		//m_lastFileState.checksum = 0;
+        startChunkLoading();
 
 		ba = f.read(100000);
 		if (codec == nullptr)
@@ -808,7 +808,6 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		delete dec;
 		stopChunkLoading();
 	}
-
 	if (slow) emit slowOperationEnded();
 
 	setCodecDirect(codec);
@@ -840,13 +839,12 @@ void QDocument::startChunkLoading()
 
 	m_impl->m_deleting = true;
 
-	//qDeleteAll(m_impl->m_lines);
-	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
-		emit lineDeleted(h);
+    for(int i=0;i<m_impl->m_lines.size();++i){
+        QDocumentLineHandle *h= m_impl->m_lines.at(i);
+        emit lineDeleted(h,i);
+    }
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-//		emit lineRemoved(h);
-//		emit lineDeleted(h);
 		h->m_doc = nullptr;
 		h->deref();
  	}
@@ -8782,7 +8780,7 @@ void QDocumentPrivate::emitLineDeleted(QDocumentLineHandle *h)
 		}
 	}
 
-	emit m_doc->lineDeleted(h);
+    emit m_doc->lineDeleted(h,-1);
 }
 
 void QDocumentPrivate::emitMarkChanged(QDocumentLineHandle *l, int m, bool on)
