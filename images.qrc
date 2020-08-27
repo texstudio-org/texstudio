@@ -240,5 +240,11 @@
         <file>images-ng/classic/newline_dm.svg</file>
         <file>images-ng/go-next-diff_dm.svg</file>
         <file>images-ng/go-previous-diff_dm.svg</file>
+        <file>images-ng/classic/close_dm.svg</file>
+        <file>images-ng/classic/enlarge-viewer_dm.svgz</file>
+        <file>images-ng/classic/shrink-viewer_dm.svgz</file>
+        <file>images-ng/classic/magnifier-button_dm.svgz</file>
+        <file>images-ng/classic/windowed-viewer_dm.svgz</file>
+        <file>images-ng/classic/hide-toolbars_dm.svgz</file>
     </qresource>
 </RCC>
