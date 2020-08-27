@@ -213,7 +213,7 @@
     </format>
     
     <format id="latexSyntaxMistake" >
-        <background>#FFBF9F</background>
+        <background>#B86800</background>
     </format>
     <format id="temporaryCodeCompletion" >
         <italic>true</italic>
