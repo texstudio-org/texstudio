@@ -901,7 +901,7 @@ void PDFOverviewDock::pageChanged(int page)
 }
 
 
-PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent)
+PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent), pageCount(0)
 {
 	setObjectName("clock");
 	setWindowTitle(getTitle());
@@ -913,6 +913,7 @@ PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent)
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 	addAction(tr("Set Interval..."),  SLOT(setInterval()));
+	addAction(tr("Set Page Count..."),  SLOT(setPageCount()));
 	addAction(tr("Restart"), SLOT(restart()));
 }
 
@@ -968,6 +969,15 @@ void PDFClockDock::setInterval(int interval)
 	update();
 }
 
+void PDFClockDock::setPageCount(){
+	UniversalInputDialog d;
+	QSpinBox* sb = d.addVariable(&pageCount, tr("Page count (negative subtracts))"));
+	sb->setMinimum(-99999);
+	sb->setMaximum(99999);
+
+	if (!d.exec()) return;
+}
+
 void PDFClockDock::paintEvent(QPaintEvent *event)
 {
 	if (!document || document->popplerDoc().isNull() || !document->widget()) {
@@ -1009,7 +1019,9 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 	// progress bar
 	r.adjust(labelWidth, 0, 0, 0);
 	p.fillRect(r.x(), 0, qMax<int>(0, r.width() * pendingSeconds / qMax(qint64(start.secsTo(end)), qint64(1))), r.height() * 3 / 4, timeBarColor);
-	p.fillRect(r.x(), r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages() - 1),  r.height() / 4, pagesBarColor);
+
+	int effectivePageCount = pageCount > 0 ? pageCount : document->widget()->realNumPages() + pageCount;
+	p.fillRect(r.x(), r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, effectivePageCount - 1),  r.height() / 4, pagesBarColor);
 }
 
 
