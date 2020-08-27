@@ -24,6 +24,7 @@ public:
 	void createRepository(QString filename) const;
 
     QString runGit(QString action, QString args) const;
+    QString runGit(QString action, QString path,QString args) const;
 
 signals:
 	void runCommand(const QString &commandline, QString *output) const;

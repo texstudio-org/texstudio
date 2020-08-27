@@ -62,7 +62,9 @@ GIT::Status GIT::status(QString filename) const
  */
 QStringList GIT::log(QString filename) const
 {
-    QString output = runGit("log --pretty=\"%h %s@@@\"", quote(filename));
+    const QString path = QFileInfo(filename).absolutePath();
+    QString fn = QFileInfo(filename).fileName();
+    QString output = runGit("log --pretty='%h %s@@@'", quote(path),quote(fn));
     QStringList revisions = output.split("@@@", QString::SkipEmptyParts);
     // circumvent strange behaviour of git adding \n  now and then ...
     for(QString& elem:revisions){
@@ -76,7 +78,7 @@ QStringList GIT::log(QString filename) const
  */
 void GIT::createRepository(QString filename) const
 {
-	QString path = QFileInfo(filename).absolutePath();
+    const QString path = QFileInfo(filename).absolutePath();
     //setStatusMessageProcess(QString(" GIT create repo "));
     runGit("init", quote(path));
 }
@@ -92,6 +94,22 @@ QString GIT::runGit(QString action, QString args) const
     emit statusMessage(QString(" GIT %1 ").arg(action));
     emit runCommand(makeCmd(action, args), &output);
 	return output;
+}
+
+/*!
+ * \brief run GIT command
+ * \param action
+ * \param path
+ * \param args
+ * \return
+ * This variant is specifically useful for git log as it can't handle absolute file paths
+ */
+QString GIT::runGit(QString action,QString path, QString args) const
+{
+    QString output;
+    emit statusMessage(QString(" GIT %1 ").arg(action));
+    emit runCommand(makeCmd("-C "+path+" "+action, args), &output);
+    return output;
 }
 
 
