@@ -39,7 +39,13 @@ ExecProgram::ExecProgram(const QString &progName, const QStringList &arguments, 
  * \brief Basic command-line parser
  * \details Basic command-line parser that splits a command-line into program name and arguments list.
  * The parsed program name and arguments are stored in class member variables.
- * TODO: Improve the parser. We need to add proper quotes processing based on the OS type (UNIX/Win).
+ * The program name and each argument can be in one of the folloowing forms:
+ *   A string without any whitespace, single quotes or double quotes, e.g. C:\Users\Steven\MyProgram.exe
+ *   A double-quoted string. May contain whitespace, single quotes or backslash-escaped double quotes. For example "arg1='value1'"
+ *   A single-quoted string. May contain whitespace, double quotes, backslash-escaped single quotes or. For example 'arg1="value1"' or 'arg1=\'value\''
+ * As of now backslash escaped double-quotes are unusable because the option Tools/SupportShellStyleLiteralQuotes causes BuildManager::parseExtendedCommandLine() to
+ * replace \" (backslash-escaped double-quotes) with """ (triple double-quotes)
+ * TODO: Maybe improve the parser. We need to add proper quotes processing based on the OS type (UNIX/Win).
  * \param[in] shellCommandLine Shell command line that should be parsed.
  */
 void ExecProgram::setProgramAndArguments(const QString &shellCommandLine)
@@ -48,12 +54,10 @@ void ExecProgram::setProgramAndArguments(const QString &shellCommandLine)
 	Q_ASSERT(rxLeadingSpace.isValid());
 	static QRegularExpression rxOneToken(
 		"("
-			"[^[:space:]\"']+|"		// Non-whitespace string without any quotes
-			"\"[^\"]*\"|"			// Double-quoted string
-			"'[^']*'|"			// Single-quoted string
-			"\"[^[:space:]\"]*(?=[^\"]*$)|"	// ERROR: Non-whitespace string starting with a double-quote. No other double-quotes until the end.
-			"'[^[:space:]']*(?=[^']*$)"	// ERROR: Non-whitespace string starting with a single-quote. No other single-quotes until the end.
-		")+",
+			"[^[:space:]\"']+|"	// Non-whitespace string without any quotes
+			"\"(\\\\\"|[^\"])*\"|"	// Double-quoted string. Any internal double-quotes are escaped as \"
+			"'(\\\\'|[^'])*'"	// Single-quoted string. Any internal single-quotes are escaped as \'
+		")",
 		QRegularExpression::DontCaptureOption
 	);
 	Q_ASSERT(rxOneToken.isValid());
@@ -81,15 +85,22 @@ void ExecProgram::setProgramAndArguments(const QString &shellCommandLine)
 			QRegularExpression::NormalMatch,
 			QRegularExpression::AnchoredMatchOption
 		);
-		if (matchOneToken.hasMatch() == false) {
-			// We should never reach this point
-			Q_ASSERT(false);
-			break;
+		if (matchOneToken.hasMatch()) {
+			int oneLength = matchOneToken.capturedLength(0);
+			QString oneToken = matchOneToken.captured(0);
+			QChar firstChar = oneToken[0];
+			if ((firstChar == '\'') || (firstChar == '"')) {
+				oneToken = oneToken.mid(1, oneLength - 2);
+				oneToken.replace(QString("\\") + firstChar, firstChar);
+			}
+			tokens.push_back(oneToken);
+			offset += oneLength;
+		} else {
+			// Malformed command-line remainder that starts with a dangling single or
+			// double quote without a matching ending quote
+			// Just skip the offending quote
+			++offset;
 		}
-		offset += matchOneToken.capturedLength(0);
-		QString oneToken = matchOneToken.captured(0);
-		oneToken.remove('"').remove('\'');
-		tokens.push_back(oneToken);
 	}
 	if (tokens.isEmpty()) {
 		m_program = "";
