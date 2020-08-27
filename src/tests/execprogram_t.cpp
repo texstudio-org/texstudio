@@ -17,19 +17,14 @@ void ExecProgramTest::commandLineParser_data(void)
 	QTest::newRow("only program") << "myprogram" << "myprogram" << QStringList();
 	QTest::newRow("single-quoted program with space") << "'my program'" << "my program" << QStringList();
 	QTest::newRow("double-quoted program with space") << "\"my program\"" << "my program" << QStringList();
-	QTest::newRow("program with internal single-quotes") << "/path/to/m'y prog'ram" << "/path/to/my program" << QStringList();
-	QTest::newRow("program with internal double-quotes") << "/path/to/m\"y prog\"ram" << "/path/to/my program" << QStringList();
-	QTest::newRow("multiple arguments") << "myprogram arg1 arg2 arg3" << "myprogram" << (QStringList() << "arg1" << "arg2" << "arg3");
-	QTest::newRow("argument with single-quoted whitespace") << "myprogram 'abc def' ghi" << "myprogram" << (QStringList() << "abc def" << "ghi");
-	QTest::newRow("argument with double-quoted whitespace") << "myprogram \"abc def\" ghi" << "myprogram" << (QStringList() << "abc def" << "ghi");
-	QTest::newRow("argument with adjacent quotes 1") << "myprogram ab\"cd\"\"ef\"ghi" << "myprogram" << (QStringList() << "abcdefghi");
-	QTest::newRow("argument with adjacent quotes 2") << "myprogram ab\"cd\"'ef'ghi" << "myprogram" << (QStringList() << "abcdefghi");
-	QTest::newRow("argument with adjacent quotes 3") << "myprogram ab'cd'\"ef\"ghi" << "myprogram" << (QStringList() << "abcdefghi");
-	QTest::newRow("argument with adjacent quotes 4") << "myprogram ab'cd''ef'ghi" << "myprogram" << (QStringList() << "abcdefghi");
-	QTest::newRow("double quote inside single quotes") << "myprogram a'b\"cde'f" << "myprogram" << (QStringList() << "abcdef");
-	QTest::newRow("single quote inside double quotes") << "myprogram a\"b'cde\"f" << "myprogram" << (QStringList() << "abcdef");
-	QTest::newRow("unbalanced single quote") << "myprogram abc de'f ghi" << "myprogram" << (QStringList() << "abc" << "def" << "ghi");
-	QTest::newRow("unbalanced double quote") << "myprogram abc de\"f ghi" << "myprogram" << (QStringList() << "abc" << "def" << "ghi");
+	QTest::newRow("program with arguments") << "\"my program\" arg1 arg2" << "my program" << (QStringList() << "arg1" << "arg2");
+	QTest::newRow("single-quoted arguments without separating space") << "\"my program\"'arg1''arg2'" << "my program" << (QStringList() << "arg1" << "arg2");
+	QTest::newRow("double-quoted arguments without separating space") << "\"my program\"\"arg1\"\"arg2\"" << "my program" << (QStringList() << "arg1" << "arg2");
+	QTest::newRow("mixed-quoted arguments without separating space") << "\"my program\"\"arg1\"'arg2'" << "my program" << (QStringList() << "arg1" << "arg2");
+	QTest::newRow("single-quoted argument with double-quote") << "myprogram 'a\"rg1'" << "myprogram" << (QStringList() << "a\"rg1");
+	QTest::newRow("double-quoted argument with single-quote") << "myprogram \"a'rg1\"" << "myprogram" << (QStringList() << "a'rg1");
+	QTest::newRow("single-quoted argument with escaped single-quote") << "myprogram 'a\\'rg1'" << "myprogram" << (QStringList() << "a'rg1");
+	QTest::newRow("double-quoted argument with escaped double-quote") << "myprogram \"a\\\"rg1\"" << "myprogram" << (QStringList() << "a\"rg1");
 }
 
 void ExecProgramTest::commandLineParser(void)
