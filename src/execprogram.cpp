@@ -50,9 +50,9 @@ ExecProgram::ExecProgram(const QString &progName, const QStringList &arguments, 
  */
 void ExecProgram::setProgramAndArguments(const QString &shellCommandLine)
 {
-	static QRegularExpression rxLeadingSpace("\\s*");
-	Q_ASSERT(rxLeadingSpace.isValid());
-	static QRegularExpression rxOneToken(
+	static const QRegularExpression rxSpaceSep("\\s+");
+	Q_ASSERT(rxSpaceSep.isValid());
+	static const QRegularExpression rxArgPiece(
 		"("
 			"[^[:space:]\"']+|"	// Non-whitespace string without any quotes
 			"\"(\\\\\"|[^\"])*\"|"	// Double-quoted string. Any internal double-quotes are escaped as \"
@@ -60,55 +60,71 @@ void ExecProgram::setProgramAndArguments(const QString &shellCommandLine)
 		")",
 		QRegularExpression::DontCaptureOption
 	);
-	Q_ASSERT(rxOneToken.isValid());
+	Q_ASSERT(rxArgPiece.isValid());
 
-	QStringList tokens;
-	int length = shellCommandLine.length();
-	int offset = 0;
+	int shellLineLen = shellCommandLine.length();
+	int shellLineOffset = 0;
+	QStringList arguments;
+	QString argText;
+	bool argValid = false;
 	for (;;) {
-		if (offset >= length) {
+		if (shellLineOffset >= shellLineLen) {
 			break;
 		}
-		QRegularExpressionMatch matchLeadingSpace = rxLeadingSpace.match(
+		QRegularExpressionMatch matchSpaceSep = rxSpaceSep.match(
 			shellCommandLine,
-			offset,
+			shellLineOffset,
 			QRegularExpression::NormalMatch,
 			QRegularExpression::AnchoredMatchOption
 		);
-		offset += matchLeadingSpace.capturedLength(0);
-		if (offset >= length) {
-			break;
-		}
-		QRegularExpressionMatch matchOneToken = rxOneToken.match(
-			shellCommandLine,
-			offset,
-			QRegularExpression::NormalMatch,
-			QRegularExpression::AnchoredMatchOption
-		);
-		if (matchOneToken.hasMatch()) {
-			int oneLength = matchOneToken.capturedLength(0);
-			QString oneToken = matchOneToken.captured(0);
-			QChar firstChar = oneToken[0];
-			if ((firstChar == '\'') || (firstChar == '"')) {
-				oneToken = oneToken.mid(1, oneLength - 2);
-				oneToken.replace(QString("\\") + firstChar, firstChar);
+		if (matchSpaceSep.hasMatch()) {
+			if (argValid) {
+				arguments.push_back(argText);
+				argValid = false;
 			}
-			tokens.push_back(oneToken);
-			offset += oneLength;
+			shellLineOffset += matchSpaceSep.capturedLength(0);
+			if (shellLineOffset >= shellLineLen) {
+				break;
+			}
+		}
+		QRegularExpressionMatch matchArgPiece = rxArgPiece.match(
+			shellCommandLine,
+			shellLineOffset,
+			QRegularExpression::NormalMatch,
+			QRegularExpression::AnchoredMatchOption
+		);
+		if (matchArgPiece.hasMatch()) {
+			int pieceLength = matchArgPiece.capturedLength(0);
+			QString pieceText = matchArgPiece.captured(0);
+			QChar firstChar = pieceText[0];
+			if ((firstChar == '\'') || (firstChar == '"')) {
+				pieceText = pieceText.mid(1, pieceLength - 2);
+				pieceText.replace(QString("\\") + firstChar, firstChar);
+			}
+			if (argValid) {
+				argText += pieceText;
+			} else {
+				argText = pieceText;
+				argValid = true;
+			}
+			shellLineOffset += pieceLength;
 		} else {
 			// Malformed command-line remainder that starts with a dangling single or
 			// double quote without a matching ending quote
 			// Just skip the offending quote
-			++offset;
+			++shellLineOffset;
 		}
 	}
-	if (tokens.isEmpty()) {
+	if (argValid) {
+		arguments.push_back(argText);
+	}
+	if (arguments.isEmpty()) {
 		m_program = "";
 		m_arguments.clear();
 	} else {
-		m_program = tokens.front();
-		tokens.pop_front();
-		m_arguments = tokens;
+		m_program = arguments.front();
+		arguments.pop_front();
+		m_arguments = arguments;
 	}
 }
 
