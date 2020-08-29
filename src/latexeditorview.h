@@ -287,6 +287,7 @@ private:
 	QString extractMath(QDocumentCursor cursor);
 	bool moveToCommandStart (QDocumentCursor &cursor, QString commandPrefix);
 	bool showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos);
+    QString findEnclosedMathText(QDocumentCursor cursor, QString command);
 
 public slots:
 	void temporaryHighlight(QDocumentCursor cur);

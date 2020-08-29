@@ -2326,14 +2326,73 @@ bool LatexEditorView::moveToCommandStart (QDocumentCursor &cursor, QString comma
 	return true;
 }
 
+QString LatexEditorView::findEnclosedMathText(QDocumentCursor cursor, QString command){
+    QString text;
+    QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(), numbersFormat);
+    if(fr.isValid()){
+        // end found
+        // test if start is in the same line
+        if(fr.offset>0){
+            // yes
+            text=cursor.line().text().mid(fr.offset,fr.length);
+        }else{
+            //start in previous lines
+            StackEnvironment env;
+            document->getEnv(cursor.lineNumber(), env);
+            if(!env.isEmpty() && env.top().name=="math"){
+                cursor.moveTo(document->indexOf(env.top().dlh,cursor.lineNumber()),env.top().startingColumn,QDocumentCursor::KeepAnchor);
+                text=cursor.selectedText();
+            }
+        }
+    }else{
+        // try again at end of command ($/$$)
+        fr = cursor.line().getOverlayAt(cursor.columnNumber()+command.length(), numbersFormat);
+        if(fr.isValid()){
+            if(fr.offset+fr.length<cursor.line().length()){
+                // within current line
+                text=cursor.line().text().mid(fr.offset,fr.length);
+            }else{
+                // exceeds current line
+                cursor.movePosition(command.length());
+                int ln=cursor.lineNumber();
+                StackEnvironment env;
+                document->getEnv(ln+1, env);
+                while(true){
+                    ++ln;
+                    QDocumentLine dln=document->line(ln);
+                    if(dln.isValid()){
+                        StackEnvironment envNext;
+                        document->getEnv(ln+1, envNext);
+                        if(env==envNext)
+                            continue;
+                        QFormatRange fr2 = dln.getOverlayAt(0, numbersFormat);
+                        cursor.moveTo(ln,fr2.length,QDocumentCursor::KeepAnchor);
+                        text=cursor.selectedText();
+                        break;
+                    }else{
+                        QDocumentLine dln=document->line(ln-1);
+                        cursor.moveTo(ln-1,dln.length(),QDocumentCursor::KeepAnchor);
+                        text=cursor.selectedText();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return text;
+}
+
 bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos)
 {
 	QStringList envAliases = document->lp.environmentAliases.values(environment);
 	bool found;
+    QString text;
 	if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]") {
 		found = moveToCommandStart(cursor, "\\");
 	} else if (command == "$" || command == "$$") {
 		found = moveToCommandStart(cursor, command);
+        // special treatment for $/$$ as it is handled in syntax checker
+        text=findEnclosedMathText(cursor,command);
 	} else {
 		found = false;
 	}
@@ -2341,7 +2400,7 @@ bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command
 		QToolTip::hideText();
 		return false;
 	}
-	QString text = parenthizedTextSelection(cursor).selectedText();
+    text = text.isEmpty() ? parenthizedTextSelection(cursor).selectedText() : text;
 	if (text.isEmpty()) {
 		QToolTip::hideText();
 		return false;
