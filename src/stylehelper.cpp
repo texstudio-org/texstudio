@@ -128,9 +128,8 @@ static QColor mergedColors(const QColor &colorA, const QColor &colorB, int facto
 
 void StyleHelper::verticalGradient(QPainter *painter, const QRect &spanRect, const QRect &clipRect)
 {
-    QString key;
-    key.asprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
-                                             clipRect.height(), StyleHelper::baseColor().rgb());
+    QString key=QString("mh_toolbar %1 %2 %3 %4 %5").arg(spanRect.width()).arg(spanRect.height()).arg(clipRect.width())
+                                             .arg(clipRect.height()).arg(StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;
@@ -169,9 +168,8 @@ void StyleHelper::verticalGradient(QPainter *painter, const QRect &spanRect, con
 
 void StyleHelper::horizontalGradient(QPainter *painter, const QRect &spanRect, const QRect &clipRect)
 {
-    QString key;
-    key.asprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(),
-                clipRect.width(), clipRect.height(), StyleHelper::baseColor().rgb());
+    QString key=QString("mh_toolbar %1 %2 %3 %4 %5").arg(spanRect.width()).arg(spanRect.height())
+                .arg(clipRect.width()).arg(clipRect.height()).arg(StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;
@@ -208,9 +206,8 @@ void StyleHelper::horizontalGradient(QPainter *painter, const QRect &spanRect, c
 
 void StyleHelper::menuGradient(QPainter *painter, const QRect &spanRect, const QRect &clipRect)
 {
-    QString key;
-    key.asprintf("mh_toolbar %d %d %d %d %d", spanRect.width(), spanRect.height(), clipRect.width(),
-                                             clipRect.height(), StyleHelper::baseColor().rgb());
+    QString key=QString("mh_toolbar %1 %2 %3 %4 %5").arg(spanRect.width()).arg(spanRect.height())
+                .arg(clipRect.width()).arg(clipRect.height()).arg(StyleHelper::baseColor().rgb());
     QPixmap pixmap;
     QPainter *p = painter;
     QRect rect = clipRect;
