@@ -1,6 +1,9 @@
 TeXstudio 3.0.1
 -----------------
-- 
+- fix glitch in mopdern style (#1238 , triangle missing)
+- fix equation preview (#1234)
+- fix commands with quotes (#1225 & #1169)
+- fix syntax marker in darkmode (#1224)
 
 TeXstudio 3.0.0
 -----------------
