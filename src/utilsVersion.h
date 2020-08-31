@@ -6,7 +6,8 @@
 
 #define TXSVERSION_NUMERIC 0x030001
 
-#define IS_DEVELOPMENT_VERSION (TXSVERSION_NUMERIC & 0x000001)
+//#define IS_DEVELOPMENT_VERSION (TXSVERSION_NUMERIC & 0x000001)
+#define IS_DEVELOPMENT_VERSION 0 // odd numbers have not been used at all, git version gives a much clearer insight about the used version
 
 extern const char *TEXSTUDIO_GIT_REVISION;
 
