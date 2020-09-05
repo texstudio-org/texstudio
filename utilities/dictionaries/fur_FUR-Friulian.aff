@@ -1,0 +1,804 @@
+SET UTF-8
+TRY eiasnltrdcoupmvhjâfgôûbèàîzê'SìçùòGCPMIAEZBRUJDFTqLNOVkxHw
+
+MAP 16
+MAP aàâ
+MAP eèêé
+MAP iìî
+MAP oòô
+MAP uùû
+MAP ae
+MAP czs
+MAP qc
+MAP mn
+MAP gz
+MAP ij
+MAP ae
+MAP vg
+MAP fv
+MAP pb
+MAP dt
+
+REP 30
+REP bb b
+REP cc c
+REP cia ça
+REP cio ço
+REP ciu çu
+REP cia cja
+REP cio cjo
+REP ciu cju
+REP dd d
+REP ff f
+REP ge ze
+REP gi zi
+REP gia gja
+REP gie gje
+REP gio gjo
+REP giu gju
+REP gj gji
+REP gl l
+REP ll l
+REP mm m
+REP mp m
+REP pp p
+REP rr r
+REP ss s
+REP s ts
+REP tt t
+REP vv v
+REP z ts
+REP zz ç
+REP zz z
+
+## afìs gjenerâts automaticamentri de tabele afìs par ispell midiant is2my-spell.pl
+## par coments sui flags viôt ispell
+
+PFX a N 1
+PFX a   0   l'   .
+
+SFX b N 7
+SFX b   0   s   [^òàèùìe]
+SFX b   e   is   e
+SFX b   ò   ôs   ò
+SFX b   à   âs   à
+SFX b   è   ês   è
+SFX b   ù   ûs   ù
+SFX b   ì   îs   ì
+
+SFX c N 3
+SFX c   l   i   l
+SFX c   li   i   li
+SFX c   t   cj   t
+
+SFX d N 4
+SFX d   e   ês   e
+SFX d   i   îs   i
+SFX d   u   ûs   u
+SFX d   o   ôs   o
+
+SFX e N 33
+SFX e   0   s   [^lsì]
+SFX e   l   i   l
+SFX e   ì   îs   ì
+SFX e   0   e   [^çcslì]
+SFX e   ì   ie   ì
+SFX e   ç   ce   ç
+SFX e   0   he   c
+SFX e   0   se   [^àèìòù]s
+SFX e   às   asse   às
+SFX e   ès   esse   ès
+SFX e   òs   osse   òs
+SFX e   ùs   usse   ùs
+SFX e   0   e   [^âêîôû]l
+SFX e   âl   ale   âl
+SFX e   ûl   ule   ûl
+SFX e   êl   ele   êl
+SFX e   îl   ile   îl
+SFX e   ôl   ole   ôl
+SFX e   0   is   [^çcslì]
+SFX e   ì   iis   ì
+SFX e   ç   cis   ç
+SFX e   0   his   c
+SFX e   0   sis   [^àèìòù]s
+SFX e   às   assis   às
+SFX e   ès   essis   ès
+SFX e   òs   ossis   òs
+SFX e   ùs   ussis   ùs
+SFX e   0   is   [^âêîôû]l
+SFX e   âl   alis   âl
+SFX e   ûl   ulis   ûl
+SFX e   êl   elis   êl
+SFX e   îl   ilis   îl
+SFX e   ôl   olis   ôl
+
+SFX f N 37
+SFX f   0   s   [^s]
+SFX f   0   e   [^âêîôû]s
+SFX f   ûs   use   ûs
+SFX f   îs   ise   îs
+SFX f   ôs   ose   ôs
+SFX f   âs   ase   âs
+SFX f   ês   ese   ês
+SFX f   f   ve   [^âêôî]f
+SFX f   êf   eve   êf
+SFX f   âf   ave   âf
+SFX f   ôf   ove   ôf
+SFX f   îf   ive   îf
+SFX f   t   de   [^îêâû]t
+SFX f   ît   ide   ît
+SFX f   êt   ede   êt
+SFX f   ât   ade   ât
+SFX f   ât   adis   ât
+SFX f   ût   ude   ût
+SFX f   p   be   p
+SFX f   ç   ze   ç
+SFX f   0   is   [^âêîôû]s
+SFX f   ûs   usis   ûs
+SFX f   îs   isis   îs
+SFX f   ôs   osis   ôs
+SFX f   âs   asis   âs
+SFX f   ês   esis   ês
+SFX f   f   vis   [^âêôî]f
+SFX f   êf   evis   êf
+SFX f   âf   avis   âf
+SFX f   ôf   ovis   ôf
+SFX f   îf   ivis   îf
+SFX f   t   dis   [^îêâû]t
+SFX f   ît   idis   ît
+SFX f   êt   edis   êt
+SFX f   ût   udis   ût
+SFX f   p   bis   p
+SFX f   ç   zis   ç
+
+SFX g N 22
+SFX g   0   s   [^t]
+SFX g   t   cj   t
+SFX g   0   e   t
+SFX g   âr   are   âr
+SFX g   êr   ere   êr
+SFX g   ôr   ore   ôr
+SFX g   ûr   ure   ûr
+SFX g   îr   ire   îr
+SFX g   c   ghe   [^âêî]c
+SFX g   âc   aghe   âc
+SFX g   êc   eghe   êc
+SFX g   îc   ighe   îc
+SFX g   0   is   t
+SFX g   âr   aris   âr
+SFX g   êr   eris   êr
+SFX g   ôr   oris   ôr
+SFX g   ûr   uris   ûr
+SFX g   îr   iris   îr
+SFX g   c   ghis   [^âêî]c
+SFX g   âc   aghis   âc
+SFX g   êc   eghis   êc
+SFX g   îc   ighis   îc
+
+SFX h N 3
+SFX h   0   s   .
+SFX h   i   e   i
+SFX h   l   i   l
+
+SFX i N 5
+SFX i   0   s   .
+SFX i   u   e   u
+SFX i   u   is   u
+SFX i   o   e   o
+SFX i   o   is   o
+
+SFX l N 3
+SFX l   0   s   .
+SFX l   0   je   .
+SFX l   0   jis   .
+
+SFX m N 5
+SFX m   0   s   .
+SFX m   îr   irie   îr
+SFX m   îr   iriis   îr
+SFX m   âr   arie   âr
+SFX m   âr   ariis   âr
+
+SFX n N 3
+SFX n   l   i   l
+SFX n   ûl   ole   ûl
+SFX n   ûl   olis   ûl
+
+SFX o N 3
+SFX o   0   s   .
+SFX o   îr   iere   îr
+SFX o   îr   ieris   îr
+
+SFX p N 3
+SFX p   0   s   .
+SFX p   îr   ere   îr
+SFX p   îr   eris   îr
+
+SFX A N 141
+SFX A   â   i   [^gcçi]â
+SFX A   â   hi   [gc]â
+SFX A   çâ   ci   çâ
+SFX A   â   i   [^aou]iâ
+SFX A   iâ   i   aiâ
+SFX A   iâ   i   oiâ
+SFX A   iâ   i   uiâ
+SFX A   â   is   [^gcçi]â
+SFX A   â   his   [gc]â
+SFX A   çâ   cis   çâ
+SFX A   â   is   [^aou]iâ
+SFX A   iâ   is   aiâ
+SFX A   iâ   is   oiâ
+SFX A   iâ   is   uiâ
+SFX A   â   e   [^gcç]â
+SFX A   â   he   [gc]â
+SFX A   çâ   ce   çâ
+SFX A   â   ìn   [^gcçi]â
+SFX A   â   hìn   [gc]â
+SFX A   çâ   cìn   çâ
+SFX A   â   ìn   [^aou]iâ
+SFX A   iâ   ìn   aiâ
+SFX A   iâ   ìn   oiâ
+SFX A   iâ   ìn   uiâ
+SFX A   â   ais   â
+SFX A   â   in   [^gcçi]â
+SFX A   â   hin   [gc]â
+SFX A   çâ   cin   çâ
+SFX A   â   in   [^aou]iâ
+SFX A   iâ   in   aiâ
+SFX A   iâ   in   oiâ
+SFX A   iâ   in   uiâ
+SFX A   â   avi   â
+SFX A   â   avis   â
+SFX A   â   ave   â
+SFX A   â   avin   â
+SFX A   â   ai   â
+SFX A   â   aris   â
+SFX A   â   à   â
+SFX A   â   arin   â
+SFX A   â   arai   â
+SFX A   â   arâs   â
+SFX A   â   arà   â
+SFX A   â   arìn   â
+SFX A   â   arês   â
+SFX A   â   aran   â
+SFX A   â   edi   [^gcç]â
+SFX A   â   hedi   [gc]â
+SFX A   çâ   cedi   çâ
+SFX A   â   edis   [^gcç]â
+SFX A   â   hedis   [gc]â
+SFX A   çâ   cedis   çâ
+SFX A   â   edin   [^gcç]â
+SFX A   â   hedin   [gc]â
+SFX A   çâ   cedin   çâ
+SFX A   â   às   â
+SFX A   â   assis   â
+SFX A   â   assin   â
+SFX A   â   arès   â
+SFX A   â   aressis   â
+SFX A   â   aressin   â
+SFX A   â   ât   â
+SFX A   â   âts   â
+SFX A   â   ade   â
+SFX A   â   adis   â
+SFX A   â   ant   â
+SFX A   â   ait   â
+SFX A   â   io   [^gcçi]â
+SFX A   â   hio   [gc]â
+SFX A   çâ   cio   çâ
+SFX A   â   io   [^aou]iâ
+SFX A   iâ   io   aiâ
+SFX A   iâ   io   oiâ
+SFX A   iâ   io   uiâ
+SFX A   â   istu   [^gcçi]â
+SFX A   â   histu   [gc]â
+SFX A   çâ   cistu   çâ
+SFX A   â   istu   [^aou]iâ
+SFX A   iâ   istu   aiâ
+SFX A   iâ   istu   oiâ
+SFX A   iâ   istu   uiâ
+SFX A   â   ial   [^gcçi]â
+SFX A   â   hial   [gc]â
+SFX A   çâ   cial   çâ
+SFX A   â   ial   [^aou]iâ
+SFX A   iâ   ial   aiâ
+SFX A   iâ   ial   oiâ
+SFX A   iâ   ial   uiâ
+SFX A   â   ie   [^gcçi]â
+SFX A   â   hie   [gc]â
+SFX A   çâ   cie   çâ
+SFX A   â   ie   [^aou]iâ
+SFX A   iâ   ie   aiâ
+SFX A   iâ   ie   oiâ
+SFX A   iâ   ie   uiâ
+SFX A   â   ìno   [^gcçi]â
+SFX A   â   hìno   [gc]â
+SFX A   çâ   cìno   çâ
+SFX A   â   ìno   [^aou]iâ
+SFX A   iâ   ìno   aiâ
+SFX A   iâ   ìno   oiâ
+SFX A   iâ   ìno   uiâ
+SFX A   â   aiso   â
+SFX A   â   ino   [^gcçi]â
+SFX A   â   hino   [gc]â
+SFX A   çâ   cino   çâ
+SFX A   â   ino   [^aou]iâ
+SFX A   iâ   ino   aiâ
+SFX A   iâ   ino   oiâ
+SFX A   iâ   ino   uiâ
+SFX A   â   avio   â
+SFX A   â   avistu   â
+SFX A   â   avial   â
+SFX A   â   avie   â
+SFX A   â   avino   â
+SFX A   â   aviso   â
+SFX A   â   ario   â
+SFX A   â   aristu   â
+SFX A   â   arial   â
+SFX A   â   arie   â
+SFX A   â   arino   â
+SFX A   â   ariso   â
+SFX A   â   araio   â
+SFX A   â   arâstu   â
+SFX A   â   araial   â
+SFX A   â   araie   â
+SFX A   â   arìno   â
+SFX A   â   arêso   â
+SFX A   â   arano   â
+SFX A   â   assio   â
+SFX A   â   assistu   â
+SFX A   â   assial   â
+SFX A   â   assie   â
+SFX A   â   assino   â
+SFX A   â   assiso   â
+SFX A   â   aressio   â
+SFX A   â   aressistu   â
+SFX A   â   aressial   â
+SFX A   â   aressie   â
+SFX A   â   aressino   â
+SFX A   â   aressiso   â
+
+SFX B N 71
+SFX B   ê   evi   ê
+SFX B   ê   evis   ê
+SFX B   ê   eve   ê
+SFX B   ê   evin   ê
+SFX B   ê   ei   ê
+SFX B   ê   eris   ê
+SFX B   ê   è   ê
+SFX B   ê   erin   ê
+SFX B   ê   arai   ê
+SFX B   ê   arâs   ê
+SFX B   ê   arà   ê
+SFX B   ê   arìn   ê
+SFX B   ê   arês   ê
+SFX B   ê   aran   ê
+SFX B   ê   i   ê
+SFX B   ê   edi   ê
+SFX B   ê   is   ê
+SFX B   ê   edis   ê
+SFX B   ê   ìn   ê
+SFX B   ê   edin   ê
+SFX B   ê   ês   ê
+SFX B   ê   in   ê
+SFX B   ê   ès   ê
+SFX B   ê   essis   ê
+SFX B   ê   essin   ê
+SFX B   ê   arès   ê
+SFX B   ê   aressis   ê
+SFX B   ê   aressin   ê
+SFX B   ê   ût   ê
+SFX B   ê   ûts   ê
+SFX B   ê   ude   ê
+SFX B   ê   udis   ê
+SFX B   ê   int   ê
+SFX B   ê   io   ê
+SFX B   ê   istu   ê
+SFX B   ê   ial   ê
+SFX B   ê   ie   ê
+SFX B   ê   ìno   ê
+SFX B   ê   êso   ê
+SFX B   ê   ino   ê
+SFX B   ê   evio   ê
+SFX B   ê   evistu   ê
+SFX B   ê   evial   ê
+SFX B   ê   evie   ê
+SFX B   ê   evino   ê
+SFX B   ê   eviso   ê
+SFX B   ê   erio   ê
+SFX B   ê   eristu   ê
+SFX B   ê   erial   ê
+SFX B   ê   erie   ê
+SFX B   ê   erino   ê
+SFX B   ê   eriso   ê
+SFX B   ê   araio   ê
+SFX B   ê   arâstu   ê
+SFX B   ê   araial   ê
+SFX B   ê   araie   ê
+SFX B   ê   arìno   ê
+SFX B   ê   arêso   ê
+SFX B   ê   arano   ê
+SFX B   ê   essio   ê
+SFX B   ê   essistu   ê
+SFX B   ê   essial   ê
+SFX B   ê   essie   ê
+SFX B   ê   essino   ê
+SFX B   ê   essiso   ê
+SFX B   ê   aressio   ê
+SFX B   ê   aressistu   ê
+SFX B   ê   aressial   ê
+SFX B   ê   aressie   ê
+SFX B   ê   aressino   ê
+SFX B   ê   aressiso   ê
+
+SFX C N 6
+SFX C   ê   0   ê
+SFX C   ê   is   ê
+SFX C   ê   ìn   ê
+SFX C   ê   ês   ê
+SFX C   ê   in   ê
+SFX C   ê   êt   ê
+
+SFX D N 11
+SFX D   adê   ât   adê
+SFX D   edê   êt   edê
+SFX D   alê   âl   alê
+SFX D   arê   âr   arê
+SFX D   asê   âs   asê
+SFX D   osê   ôs   osê
+SFX D   ê   is   ê
+SFX D   ê   ìn   ê
+SFX D   ê   ês   ê
+SFX D   ê   in   ê
+SFX D   ê   êt   ê
+
+SFX E N 90
+SFX E   i   evi   i
+SFX E   i   evis   i
+SFX E   i   eve   i
+SFX E   i   evin   i
+SFX E   i   ei   i
+SFX E   i   eris   i
+SFX E   i   è   i
+SFX E   i   erin   i
+SFX E   i   arai   [^c]i
+SFX E   ci   çarai   ci
+SFX E   i   arâs   [^c]i
+SFX E   ci   çarâs   ci
+SFX E   i   arà   [^c]i
+SFX E   ci   çarà   ci
+SFX E   i   arìn   [^c]i
+SFX E   ci   çarìn   ci
+SFX E   i   arês   [^c]i
+SFX E   ci   çarês   ci
+SFX E   i   aran   [^c]i
+SFX E   ci   çaran   ci
+SFX E   i   i   i
+SFX E   i   edi   i
+SFX E   i   is   i
+SFX E   i   edis   i
+SFX E   i   edi   i
+SFX E   i   ìn   i
+SFX E   i   edin   i
+SFX E   i   ês   i
+SFX E   i   in   i
+SFX E   i   ès   i
+SFX E   i   essis   i
+SFX E   i   essin   i
+SFX E   i   arès   [^c]i
+SFX E   ci   çarès   ci
+SFX E   i   aressis   [^c]i
+SFX E   ci   çaressis   ci
+SFX E   i   aressin   [^c]i
+SFX E   ci   çaressin   ci
+SFX E   i   int   i
+SFX E   i   io   i
+SFX E   i   istu   i
+SFX E   i   ial   i
+SFX E   i   ie   i
+SFX E   i   ìno   i
+SFX E   i   êso   i
+SFX E   i   ino   i
+SFX E   i   evio   i
+SFX E   i   evistu   i
+SFX E   i   evial   i
+SFX E   i   evie   i
+SFX E   i   evino   i
+SFX E   i   eviso   i
+SFX E   i   erio   i
+SFX E   i   eristu   i
+SFX E   i   erial   i
+SFX E   i   erie   i
+SFX E   i   erino   i
+SFX E   i   eriso   i
+SFX E   i   araio   [^c]i
+SFX E   ci   çaraio   ci
+SFX E   i   arâstu   [^c]i
+SFX E   ci   çarâstu   ci
+SFX E   i   araial   [^c]i
+SFX E   ci   çaraial   ci
+SFX E   i   araie   [^c]i
+SFX E   ci   çaraie   ci
+SFX E   i   arìno   [^c]i
+SFX E   ci   çarìno   ci
+SFX E   i   arêso   [^c]i
+SFX E   ci   çarêso   ci
+SFX E   i   arano   [^c]i
+SFX E   ci   çarano   ci
+SFX E   i   essio   i
+SFX E   i   essistu   i
+SFX E   i   essial   i
+SFX E   i   essie   i
+SFX E   i   essino   i
+SFX E   i   essiso   i
+SFX E   i   aressio   [^c]i
+SFX E   ci   çaressio   ci
+SFX E   i   aressistu   [^c]i
+SFX E   ci   çaressistu   ci
+SFX E   i   aressial   [^c]i
+SFX E   ci   çaressial   ci
+SFX E   i   aressie   [^c]i
+SFX E   ci   çaressie   ci
+SFX E   i   aressino   [^c]i
+SFX E   ci   çaressino   ci
+SFX E   i   aressiso   [^c]i
+SFX E   ci   çaressiso   ci
+
+SFX F N 12
+SFX F   i   ût   [^c]i
+SFX F   ci   çût   ci
+SFX F   î   ût   î
+SFX F   i   ûts   [^c]i
+SFX F   ci   çûts   ci
+SFX F   î   ûts   î
+SFX F   i   ude   [^c]i
+SFX F   ci   çude   ci
+SFX F   î   ude   î
+SFX F   i   udis   [^c]i
+SFX F   ci   çudis   ci
+SFX F   î   udis   î
+
+SFX G N 20
+SFX G   i   t   [^vzs]i
+SFX G   i   ts   [^vzs]i
+SFX G   i   te   [^vzs]i
+SFX G   i   tis   [^vzs]i
+SFX G   i   t   [^u]si
+SFX G   i   ts   [^u]si
+SFX G   i   te   [^u]si
+SFX G   i   tis   [^u]si
+SFX G   vi   t   vi
+SFX G   vi   ts   vi
+SFX G   vi   te   vi
+SFX G   vi   tis   vi
+SFX G   zi   t   zi
+SFX G   zi   ts   zi
+SFX G   zi   te   zi
+SFX G   zi   tis   zi
+SFX G   usi   ot   usi
+SFX G   usi   ots   usi
+SFX G   usi   ote   usi
+SFX G   usi   otis   usi
+
+SFX H N 12
+SFX H   mpi   t   mpi
+SFX H   mpi   ts   mpi
+SFX H   mpi   te   mpi
+SFX H   mpi   tis   mpi
+SFX H   nzi   t   nzi
+SFX H   nzi   ts   nzi
+SFX H   nzi   te   nzi
+SFX H   nzi   tis   nzi
+SFX H   izi   et   izi
+SFX H   izi   ets   izi
+SFX H   izi   ete   izi
+SFX H   izi   etis   izi
+
+SFX I N 12
+SFX I   i   0   [^sbdvzc]i
+SFX I   si   0   si
+SFX I   bi   p   bi
+SFX I   di   t   di
+SFX I   vi   f   vi
+SFX I   zi   ç   zi
+SFX I   ci   ç   ci
+SFX I   i   is   i
+SFX I   i   ìn   i
+SFX I   i   ês   i
+SFX I   i   in   i
+SFX I   i   êt   i
+
+SFX L N 21
+SFX L   adi   ât   adi
+SFX L   edi   êt   edi
+SFX L   idi   ît   idi
+SFX L   odi   ôt   odi
+SFX L   udi   ût   udi
+SFX L   evi   êf   evi
+SFX L   ivi   îf   ivi
+SFX L   ovi   ôf   ovi
+SFX L   ezi   êç   ezi
+SFX L   izi   îç   izi
+SFX L   uzi   ûç   uzi
+SFX L   asi   âs   asi
+SFX L   osi   ôs   osi
+SFX L   usi   ûs   usi
+SFX L   ossi   òs   ossi
+SFX L   essi   ès   essi
+SFX L   i   is   i
+SFX L   i   ìn   i
+SFX L   i   ês   i
+SFX L   i   in   i
+SFX L   i   êt   i
+
+SFX M N 93
+SFX M   î   ìs   î
+SFX M   î   issis   î
+SFX M   î   ìn   î
+SFX M   î   îs   î
+SFX M   î   issin   î
+SFX M   î   ivi   î
+SFX M   î   ivis   î
+SFX M   î   ive   î
+SFX M   î   ivin   î
+SFX M   î   ii   î
+SFX M   î   iris   î
+SFX M   î   ì   î
+SFX M   î   irin   î
+SFX M   î   irai   î
+SFX M   î   issarai   î
+SFX M   î   irâs   î
+SFX M   î   issarâs   î
+SFX M   î   irà   î
+SFX M   î   issarà   î
+SFX M   î   irìn   î
+SFX M   î   issarìn   î
+SFX M   î   irês   î
+SFX M   î   issarês   î
+SFX M   î   iran   î
+SFX M   î   issaran   î
+SFX M   î   issi   î
+SFX M   î   edi   î
+SFX M   î   edis   î
+SFX M   î   edin   î
+SFX M   î   ais   î
+SFX M   î   in   î
+SFX M   î   irès   î
+SFX M   î   issarès   î
+SFX M   î   iressis   î
+SFX M   î   issaressis   î
+SFX M   î   iressin   î
+SFX M   î   issaressin   î
+SFX M   î   ît   î
+SFX M   î   îts   î
+SFX M   î   ide   î
+SFX M   î   idis   î
+SFX M   î   int   î
+SFX M   î   issio   î
+SFX M   î   issistu   î
+SFX M   î   issial   î
+SFX M   î   issie   î
+SFX M   î   ìno   î
+SFX M   î   îso   î
+SFX M   î   issino   î
+SFX M   î   ivio   î
+SFX M   î   ivistu   î
+SFX M   î   ivial   î
+SFX M   î   ivie   î
+SFX M   î   ivino   î
+SFX M   î   iviso   î
+SFX M   î   irio   î
+SFX M   î   iristu   î
+SFX M   î   irial   î
+SFX M   î   irie   î
+SFX M   î   irino   î
+SFX M   î   iriso   î
+SFX M   î   iraio   î
+SFX M   î   issaraio   î
+SFX M   î   irâstu   î
+SFX M   î   issarâstu   î
+SFX M   î   iraial   î
+SFX M   î   iraie   î
+SFX M   î   issaraial   î
+SFX M   î   issaraie   î
+SFX M   î   irìno   î
+SFX M   î   issarìno   î
+SFX M   î   irêso   î
+SFX M   î   issarêso   î
+SFX M   î   irano   î
+SFX M   î   issarano   î
+SFX M   î   issio   î
+SFX M   î   issistu   î
+SFX M   î   issial   î
+SFX M   î   issie   î
+SFX M   î   issino   î
+SFX M   î   issiso   î
+SFX M   î   iressio   î
+SFX M   î   issaressio   î
+SFX M   î   iressistu   î
+SFX M   î   issaressistu   î
+SFX M   î   iressial   î
+SFX M   î   iressie   î
+SFX M   î   issaressial   î
+SFX M   î   issaressie   î
+SFX M   î   iressino   î
+SFX M   î   issaressino   î
+SFX M   î   iressiso   î
+SFX M   î   issaressiso   î
+
+SFX N N 75
+SFX N   ignî   en   ignî
+SFX N   ignî   egnis   ignî
+SFX N   î   ìn   î
+SFX N   î   îs   î
+SFX N   ignî   egnin   ignî
+SFX N   î   ivi   î
+SFX N   î   ivis   î
+SFX N   î   ive   î
+SFX N   î   ivin   î
+SFX N   î   ii   î
+SFX N   î   iris   î
+SFX N   î   ì   î
+SFX N   î   irin   î
+SFX N   î   arai   î
+SFX N   î   arâs   î
+SFX N   î   arà   î
+SFX N   î   arìn   î
+SFX N   î   arês   î
+SFX N   î   aran   î
+SFX N   ignî   egni   ignî
+SFX N   î   edi   î
+SFX N   ignî   egnis   ignî
+SFX N   î   edis   î
+SFX N   î   edin   î
+SFX N   ignî   egnin   ignî
+SFX N   î   ìs   î
+SFX N   î   issis   î
+SFX N   î   issin   î
+SFX N   î   arès   î
+SFX N   î   aressis   î
+SFX N   î   aressin   î
+SFX N   î   ût   î
+SFX N   î   ûts   î
+SFX N   î   ude   î
+SFX N   î   udis   î
+SFX N   î   int   î
+SFX N   î   ît   î
+SFX N   ignî   egnio   ignî
+SFX N   ignî   egnistu   ignî
+SFX N   ignî   egnial   ignî
+SFX N   ignî   egnie   ignî
+SFX N   î   ìno   î
+SFX N   î   îso   î
+SFX N   ignî   egnino   ignî
+SFX N   î   ivio   î
+SFX N   î   ivistu   î
+SFX N   î   ivial   î
+SFX N   î   ivie   î
+SFX N   î   ivino   î
+SFX N   î   iviso   î
+SFX N   î   irio   î
+SFX N   î   iristu   î
+SFX N   î   irial   î
+SFX N   î   irie   î
+SFX N   î   irino   î
+SFX N   î   iriso   î
+SFX N   î   araio   î
+SFX N   î   arâstu   î
+SFX N   î   araial   î
+SFX N   î   araie   î
+SFX N   î   arìno   î
+SFX N   î   arêso   î
+SFX N   î   arano   î
+SFX N   î   issio   î
+SFX N   î   issistu   î
+SFX N   î   issial   î
+SFX N   î   issie   î
+SFX N   î   issino   î
+SFX N   î   issiso   î
+SFX N   î   aressio   î
+SFX N   î   aressistu   î
+SFX N   î   aressial   î
+SFX N   î   aressie   î
+SFX N   î   aressino   î
+SFX N   î   aressiso   î
+

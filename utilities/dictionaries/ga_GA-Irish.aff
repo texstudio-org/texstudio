@@ -1,0 +1,665 @@
+# hunspell affix file for Irish by Kevin Scannell
+# I created this file by converting my ispell affix file on 5 August 2002
+# Exactly the same set of affixes, except one can avoid the acrobatics
+# for the verb "buígh" because hunspell is a bit smarter about
+# combining affixes
+#
+#               ABCDEFGHIJKLMNOPQRSTUVWXYZ
+#               ****** ******     ***
+#
+# Copyright 2002-2007 Kevin P. Scannell
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+#    02110-1301, USA.
+#
+#
+# Consult the web page
+#
+#   https://cadhan.com/gaelspell/
+#
+# for detailed information about these packages and installation information.
+
+SET UTF-8
+
+# TRY aihnrsetcdoglumbíéáfóúpvjzxywqk    (Aug. 2002, 8MB corpus)
+# TRY aihnrestcoldgumíábéfúóCpATBSIDNMGRFLEOPHÉUÁÓÍyÚJvkqKWVwzxjYQZX    (Sept. 2003, 75MB corpus)
+# Latest: July 2006, 128MB corpus
+# TRY aihnretsocldgmuíábéfúóACpTSINBDEMRGL-FOP'HUyÉwvÁÓkÍJÚWKxVYqzjXZQ
+# May 2008, full aimsigh.com corpus
+TRY aihnertsolcdgmuáíbéfúóCApTSBGFILDMRNP-E'OÉÓUÁÚvÍVHZjzQJxqXwyYKkW
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+#                Start hunspell affix file extensions                       #
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+WORDCHARS -'
+
+# see gramadoir morph-ga; not bothering with any replacements
+# from that file that are anchored at ^ or $, nor with any that
+# simply add a fada (hopefully handled by MAP rules below),
+# nor with derivational morphology, since these are undesirable for
+# spelling replacement
+REP 64
+REP a á
+REP e é
+REP i í
+REP o ó
+REP u ú
+REP uigh aigh
+REP uith aith
+REP idhth ith
+REP ighth ith
+REP sg sc
+REP sb sp
+REP sd st
+REP dn nn
+REP eu éa
+REP tch t
+REP idhea ío
+REP ighea ío
+REP idhe í
+REP ighe í
+REP uím aím
+REP uít aít
+REP uío aío
+REP aghadh ú
+REP adha ú
+REP ádh á
+REP mhth f
+REP bhth f
+REP thmh f
+REP thbh f
+REP thch ch
+REP tht t
+REP ghaí aí
+REP llr lr
+REP lls ls
+REP llt lt
+REP nnc nc
+REP nnd nd
+REP nnl nl
+REP nnr nr
+REP nns ns
+REP nnt nt
+REP aingc aing
+REP éagc éag
+REP éigc éig
+REP iargc iarg
+REP éadt éad
+REP éidt éid
+REP domb dom
+REP díomb díom
+REP dhomb dhom
+REP dhíomb dhíom
+REP anbhf anbh
+REP ainbhf ainbh
+REP ighim ím
+REP ighidh í
+REP ighinn ínn
+REP éá éa
+REP áí ái
+REP éí éi
+REP óí ói
+REP úí úi
+REP íó ío
+REP íá iá
+REP íú iú
+
+MAP 5
+MAP aáAÁ
+MAP eéEÉ
+MAP iíIÍ
+MAP oóOÓ
+MAP uúUÚ
+
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+#     End hunspell extensions; remainder are PFX and SFX specifications     #
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+
+PFX S Y 18
+PFX S   b     bh          b
+PFX S   B     Bh          B
+PFX S   c     ch          c
+PFX S   C     Ch          C
+PFX S   d     dh          d
+PFX S   D     Dh          D
+PFX S   f     fh          f
+PFX S   F     Fh          F
+PFX S   g     gh          g
+PFX S   G     Gh          G
+PFX S   m     mh          m
+PFX S   M     Mh          M
+PFX S   p     ph          p
+PFX S   P     Ph          P
+PFX S   s     sh          s[aeiouáéíóúlnr]
+PFX S   S     Sh          S[aeiouáéíóúlnr]
+PFX S   t     th          t
+PFX S   T     Th          T
+
+PFX U Y 16
+PFX U   0     m           b[^h]
+PFX U   bh    mb          bh
+PFX U   0     g           c[^h]
+PFX U   ch    gc          ch
+PFX U   0     n           d[^h\']
+PFX U   dh    nd          dh
+PFX U   0     bh          f[^h]
+PFX U   fh    bhf         fh
+PFX U   0     n           g[^h]
+PFX U   gh    ng          gh
+PFX U   0     b           p[^h]
+PFX U   ph    bp          ph
+PFX U   0     d           t[^h]
+PFX U   th    dt          th
+PFX U   d'  n-        d'[aeiouáéíóú]
+PFX U   0     n-        [aeiouáéíóú]
+
+PFX B N 2
+PFX B   0     b'          [aeiouáéíóú]
+PFX B   f     b'fh        f
+
+PFX H N 1
+PFX H   0     h           [aeiouáéíóú]
+
+PFX M N 2
+PFX M   0     m'          [aeiouáéíóú]
+PFX M   f     m'fh        f
+
+PFX D N 2
+PFX D   0     d'          [aeiouáéíóú]
+PFX D   f     d'fh        f
+
+PFX T N 2
+PFX T   0     t-        [aeiouáéíóú]
+PFX T   0     t           s
+
+PFX L Y 180
+PFX L   0     an-       [^bcfgmp]
+PFX L   b     an-bh     b
+PFX L   c     an-ch     c
+PFX L   f     an-fh     f
+PFX L   g     an-gh     g
+PFX L   m     an-mh     m
+PFX L   p     an-ph     p
+PFX L   0     dea-      [^bcdfgmpst]
+PFX L   0     dea-      s[^aeiouáéíóúlnr]
+PFX L   s     dea-sh    s[aeiouáéíóúlnr]
+PFX L   b     dea-bh    b
+PFX L   c     dea-ch    c
+PFX L   d     dea-dh    d
+PFX L   f     dea-fh    f
+PFX L   g     dea-gh    g
+PFX L   m     dea-mh    m
+PFX L   p     dea-ph    p
+PFX L   t     dea-th    t
+PFX L   0     ain         [deéiílnrst]
+PFX L   b     ainbh       b
+PFX L   c     ainch       c
+PFX L   f     ainfh       f
+PFX L   g     aingh       g
+PFX L   m     ainmh       m
+PFX L   p     ainph       p
+PFX L   0     ath         [^bcdfgmpst]
+PFX L   b     athbh       b
+PFX L   c     athch       c
+PFX L   d     athdh       d
+PFX L   f     athfh       f
+PFX L   g     athgh       g
+PFX L   m     athmh       m
+PFX L   p     athph       p
+PFX L   0     a           t
+PFX L   0     ath         s[^aeiouáéíóúlnr]
+PFX L   s     athsh       s[aeiouáéíóúlnr]
+PFX L   0     comh        [^bcdfgmnpst]
+PFX L   b     comhbh      b
+PFX L   c     comhch      c
+PFX L   d     comhdh      d
+PFX L   f     comhfh      f
+PFX L   g     comhgh      g
+PFX L   p     comhph      p
+PFX L   t     comhth      t
+PFX L   0     comh        s[^aeiouáéíóúlnr]
+PFX L   s     comhsh      s[aeiouáéíóúlnr]
+PFX L   m     cómh        m[aáoóuú]
+PFX L   m     cóimh       m[eéií]
+PFX L   0     có          n[aáoóuú]
+PFX L   0     cói         n[eéií]
+PFX L   0     do-       [^bcdfglmnprst]
+PFX L   0     do          [lnr]
+PFX L   b     dobh        b
+PFX L   c     doch        c
+PFX L   d     dodh        d
+PFX L   f     dofh        f
+PFX L   g     dogh        g
+PFX L   m     domh        m
+PFX L   p     doph        p
+PFX L   t     doth        t
+PFX L   0     do          s[^aeiouáéíóúlnr]
+PFX L   s     dosh        s[aeiouáéíóúlnr]
+PFX L   0     droch       [^bcdfgmpst]
+PFX L   b     drochbh     b
+PFX L   c     droch-ch  c
+PFX L   d     drochdh     d
+PFX L   f     drochfh     f
+PFX L   g     drochgh     g
+PFX L   m     drochmh     m
+PFX L   p     drochph     p
+PFX L   t     drochth     t
+PFX L   0     droch       s[^aeiouáéíóúlnr]
+PFX L   s     drochsh     s[aeiouáéíóúlnr]
+PFX L   0     for         [^bcdfgmprst]
+PFX L   b     forbh       b
+PFX L   c     forch       c
+PFX L   d     fordh       d
+PFX L   f     forfh       f
+PFX L   g     forgh       g
+PFX L   m     formh       m
+PFX L   p     forph       p
+PFX L   0     for-      r
+PFX L   t     forth       t
+PFX L   0     for         s[^aeiouáéíóúlnr]
+PFX L   s     forsh       s[aeiouáéíóúlnr]
+PFX L   0     fo-       [^bcdfglmnprst]
+PFX L   0     fo          [lnr]
+PFX L   b     fobh        b
+PFX L   c     foch        c
+PFX L   d     fodh        d
+PFX L   f     fofh        f
+PFX L   g     fogh        g
+PFX L   m     fomh        m
+PFX L   p     foph        p
+PFX L   t     foth        t
+PFX L   0     fo          s[^aeiouáéíóúlnr]
+PFX L   s     fosh        s[aeiouáéíóúlnr]
+PFX L   0     frith       [^bcdfgmpst]
+PFX L   b     frithbh     b
+PFX L   c     frithch     c
+PFX L   d     frithdh     d
+PFX L   f     frithfh     f
+PFX L   g     frithgh     g
+PFX L   m     frithmh     m
+PFX L   p     frithph     p
+PFX L   0     fri         t
+PFX L   0     frith       s[^aeiouáéíóúlnr]
+PFX L   s     frithsh     s[aeiouáéíóúlnr]
+PFX L   0     il          [^bcfgmp]
+PFX L   b     ilbh        b
+PFX L   c     ilch        c
+PFX L   f     ilfh        f
+PFX L   g     ilgh        g
+PFX L   m     ilmh        m
+PFX L   p     ilph        p
+PFX L   0     im          [^bcdfgmpst]
+PFX L   b     imbh        b
+PFX L   c     imch        c
+PFX L   d     imdh        d
+PFX L   f     imfh        f
+PFX L   g     imgh        g
+PFX L   p     imph        p
+PFX L   t     imth        t
+PFX L   0     im          s[^aeiouáéíóúlnr]
+PFX L   s     imsh        s[aeiouáéíóúlnr]
+PFX L   0     in          [^bcfgmnp]
+PFX L   b     inbh        b
+PFX L   c     inch        c
+PFX L   f     infh        f
+PFX L   g     ingh        g
+PFX L   m     inmh        m
+PFX L   p     inph        p
+PFX L   0     in-       n
+PFX L   0     mí-       [^bcdfglmnprst]
+PFX L   0     mí          [lnr]
+PFX L   b     míbh        b
+PFX L   c     mích        c
+PFX L   d     mídh        d
+PFX L   f     mífh        f
+PFX L   g     mígh        g
+PFX L   m     mímh        m
+PFX L   p     míph        p
+PFX L   t     míth        t
+PFX L   0     mí          s[^aeiouáéíóúlnr]
+PFX L   s     mísh        s[aeiouáéíóúlnr]
+PFX L   0     réamh       [^bcdfgmpst]
+PFX L   b     réamhbh     b
+PFX L   c     réamhch   c
+PFX L   d     réamhdh     d
+PFX L   f     réamhfh     f
+PFX L   g     réamhgh     g
+PFX L   m     réamh-mh  m
+PFX L   p     réamhph     p
+PFX L   t     réamhth     t
+PFX L   0     réamh       s[^aeiouáéíóúlnr]
+PFX L   s     réamhsh     s[aeiouáéíóúlnr]
+PFX L   0     ró-       [^bcdfglmnprst]
+PFX L   0     ró          [lnr]
+PFX L   b     róbh        b
+PFX L   c     róch        c
+PFX L   d     ródh        d
+PFX L   f     rófh        f
+PFX L   g     rógh        g
+PFX L   m     rómh        m
+PFX L   p     róph        p
+PFX L   t     róth        t
+PFX L   0     ró          s[^aeiouáéíóúlnr]
+PFX L   s     rósh        s[aeiouáéíóúlnr]
+PFX L   0     so-       [^bcdfglmnprst]
+PFX L   0     so          [lnr]
+PFX L   b     sobh        b
+PFX L   c     soch        c
+PFX L   d     sodh        d
+PFX L   f     sofh        f
+PFX L   g     sogh        g
+PFX L   m     somh        m
+PFX L   p     soph        p
+PFX L   t     soth        t
+PFX L   0     so          s[^aeiouáéíóúlnr]
+PFX L   s     sosh        s[aeiouáéíóúlnr]
+
+SFX A Y 83
+SFX A   im    nn          [^ui]aim
+SFX A   0     id          [^ui]aim
+SFX A   im    dh          [^ui]aim
+SFX A   aim   faidh       [^uif]aim
+SFX A   aim   faimid      [^uif]aim
+SFX A   aim   far         [^uif]aim
+SFX A   m     gí          [^ui]aim
+SFX A   0     is          [^ui]aim
+SFX A   m     dís         [^ui]aim
+SFX A   aim   tar         [^heuti]aim
+SFX A   m     dh          faim
+SFX A   im    r           faim
+SFX A   im    r           taim
+SFX A   aim   tar         bhaim
+SFX A   aim   tar         chaim
+SFX A   aim   tar         dhaim
+SFX A   aim   tar         ghaim
+SFX A   aim   tar         mhaim
+SFX A   thaim tar         thaim
+SFX A   im    nn          [oáóú]im
+SFX A   0     id          [oáóú]im
+SFX A   m     tear        [oáóú]im
+SFX A   im    dh          [oáóú]im
+SFX A   im    faidh       [oáóú]im
+SFX A   im    faimid      [oáóú]im
+SFX A   im    far         [oáóú]im
+SFX A   m     gí          [oáóú]im
+SFX A   m     dís         [oáóú]im
+SFX A   0     is          [oáóú]im
+SFX A   im    nn          [iu]aim
+SFX A   0     id          [iu]aim
+SFX A   m     tear        [iu]aim
+SFX A   im    dh          [iu]aim
+SFX A   im    faidh       [iu]aim
+SFX A   im    faimid      [iu]aim
+SFX A   im    far         [iu]aim
+SFX A   m     gí          [iu]aim
+SFX A   0     is          [iu]aim
+SFX A   m     dís         [iu]aim
+SFX A   aim   itear       eaim
+SFX A   im    eann        [^aoáéóú]im
+SFX A   0     id          [^aoáéóú]im
+SFX A   im    eadh        [^aoáéóú]im
+SFX A   im    fidh        [^aoáéóú]im
+SFX A   im    fimid       [^aoáéóú]im
+SFX A   im    fear        [^aoáéóú]im
+SFX A   m     gí          [^aoáéóú]im
+SFX A   0     is          [^aoáéóú]im
+SFX A   m     dís         [^aoáéóú]im
+SFX A   im    tear        [^haoáéóút]im
+SFX A   im    ear         tim
+SFX A   im    tear        bhim
+SFX A   im    tear        chim
+SFX A   im    tear        dhim
+SFX A   thim  tear        thim
+SFX A   im    ann         éim
+SFX A   0     id          éim
+SFX A   m     tear        éim
+SFX A   im    adh         éim
+SFX A   m     fidh        éim
+SFX A   m     fimid       éim
+SFX A   m     fear        éim
+SFX A   m     gí          éim
+SFX A   0     is          éim
+SFX A   m     dís         éim
+SFX A   m     onn         ím
+SFX A   m     mid         ím
+SFX A   m     odh         ím
+SFX A   m     fidh        ím
+SFX A   m     fimid       ím
+SFX A   m     fear        ím
+SFX A   m     gí          ím
+SFX A   0     is          ím
+SFX A   m     dís         ím
+SFX A   ím    itear       [^aou]ím
+SFX A   m     tear        aím
+SFX A   ím    itear       [^l]oím
+SFX A   m     tear        loím
+SFX A   ím    itear       [^hb]uím
+SFX A   m     tear        buím
+SFX A   ím    itear       ghuím
+SFX A   ím    itear       shuím
+SFX A   m     tear        bhuím
+
+SFX E Y 120
+SFX E   inn   mar         [^iu]ainn
+SFX E   inn   dh          [^iu]ainn
+SFX E   nn    mis         [^iu]ainn
+SFX E   nn    dís         [^iu]ainn
+SFX E   ainn  fainn       [^iuf]ainn
+SFX E   ainn  fá          [^iuf]ainn
+SFX E   ainn  fadh        [^iuf]ainn
+SFX E   ainn  faimis      [^iuf]ainn
+SFX E   ainn  faidís      [^iuf]ainn
+SFX E   ainn  faí         [^iuf]ainn
+SFX E   inn   dar         [^iu]ainn
+SFX E   ainn  tá          [^heuti]ainn
+SFX E   ainn  taí         [^heuti]ainn
+SFX E   ainn  á           [ft]ainn
+SFX E   inn   í           [ft]ainn
+SFX E   ainn  tá          bhainn
+SFX E   ainn  taí         bhainn
+SFX E   ainn  tá          chainn
+SFX E   ainn  taí         chainn
+SFX E   ainn  tá          dhainn
+SFX E   ainn  taí         dhainn
+SFX E   ainn  tá          ghainn
+SFX E   ainn  taí         ghainn
+SFX E   ainn  tá          mhainn
+SFX E   ainn  taí         mhainn
+SFX E   thainn tá          thainn
+SFX E   thainn taí         thainn
+SFX E   inn   mar         [oáóú]inn
+SFX E   nn    teá         [oáóú]inn
+SFX E   inn   dh          [oáóú]inn
+SFX E   nn    mis         [oáóú]inn
+SFX E   nn    dís         [oáóú]inn
+SFX E   nn    tí          [oáóú]inn
+SFX E   inn   fainn       [oáóú]inn
+SFX E   inn   fá          [oáóú]inn
+SFX E   inn   fadh        [oáóú]inn
+SFX E   inn   faimis      [oáóú]inn
+SFX E   inn   faidís      [oáóú]inn
+SFX E   inn   faí         [oáóú]inn
+SFX E   inn   dar         [oáóú]inn
+SFX E   inn   mar         [iu]ainn
+SFX E   nn    teá         [iu]ainn
+SFX E   inn   dh          [iu]ainn
+SFX E   nn    mis         [iu]ainn
+SFX E   nn    dís         [iu]ainn
+SFX E   nn    tí          [iu]ainn
+SFX E   inn   fainn       [iu]ainn
+SFX E   inn   fá          [iu]ainn
+SFX E   inn   fadh        [iu]ainn
+SFX E   inn   faimis      [iu]ainn
+SFX E   inn   faidís      [iu]ainn
+SFX E   inn   faí         [iu]ainn
+SFX E   inn   dar         [iu]ainn
+SFX E   ainn  iteá        eainn
+SFX E   ainn  ití         eainn
+SFX E   inn   eamar       [^aoáéóú]inn
+SFX E   inn   eadh        [^aoáéóú]inn
+SFX E   nn    mis         [^aoáéóú]inn
+SFX E   nn    dís         [^aoáéóú]inn
+SFX E   inn   finn        [^aoáéóú]inn
+SFX E   inn   feá         [^aoáéóú]inn
+SFX E   inn   feadh       [^aoáéóú]inn
+SFX E   inn   fimis       [^aoáéóú]inn
+SFX E   inn   fidís       [^aoáéóú]inn
+SFX E   inn   fí          [^aoáéóú]inn
+SFX E   inn   eadar       [^aoáéóú]inn
+SFX E   inn   teá         [^haoáéóút]inn
+SFX E   inn   tí          [^haoáéóút]inn
+SFX E   inn   eá          tinn
+SFX E   inn   í           tinn
+SFX E   inn   teá         bhinn
+SFX E   inn   tí          bhinn
+SFX E   inn   teá         chinn
+SFX E   inn   tí          chinn
+SFX E   inn   teá         dhinn
+SFX E   inn   tí          dhinn
+SFX E   thinn teá         thinn
+SFX E   thinn tí          thinn
+SFX E   inn   amar        éinn
+SFX E   nn    teá         éinn
+SFX E   inn   adh         éinn
+SFX E   nn    mis         éinn
+SFX E   nn    dís         éinn
+SFX E   nn    tí          éinn
+SFX E   nn    finn        éinn
+SFX E   nn    feá         éinn
+SFX E   nn    feadh       éinn
+SFX E   nn    fimis       éinn
+SFX E   nn    fidís       éinn
+SFX E   nn    fí          éinn
+SFX E   inn   adar        éinn
+SFX E   nn    omar        ínn
+SFX E   nn    odh         ínn
+SFX E   nn    mis         ínn
+SFX E   nn    dís         ínn
+SFX E   nn    finn        ínn
+SFX E   nn    feá         ínn
+SFX E   nn    feadh       ínn
+SFX E   nn    fimis       ínn
+SFX E   nn    fidís       ínn
+SFX E   nn    fí          ínn
+SFX E   nn    odar        ínn
+SFX E   ínn   iteá        [^aou]ínn
+SFX E   ínn   ití         [^aou]ínn
+SFX E   nn    teá         aínn
+SFX E   nn    tí          aínn
+SFX E   ínn   iteá        [^l]oínn
+SFX E   ínn   ití         [^l]oínn
+SFX E   nn    teá         loínn
+SFX E   nn    tí          loínn
+SFX E   ínn   iteá        [^hb]uínn
+SFX E   ínn   ití         [^hb]uínn
+SFX E   ínn   iteá        ghuínn
+SFX E   ínn   ití         ghuínn
+SFX E   ínn   iteá        shuínn
+SFX E   ínn   ití         shuínn
+SFX E   nn    teá         bhuínn
+SFX E   nn    tí          bhuínn
+SFX E   nn    teá         buínn
+SFX E   nn    tí          buínn
+
+SFX C Y 20
+SFX C   m     onn         aím
+SFX C   0     id          aím
+SFX C   m     tear        aím
+SFX C   m     odh         aím
+SFX C   aím   óidh        aím
+SFX C   aím   óimid       aím
+SFX C   aím   ófar        aím
+SFX C   m     gí          aím
+SFX C   0     is          aím
+SFX C   m     dís         aím
+SFX C   m     onn         [^a]ím
+SFX C   0     id          [^a]ím
+SFX C   m     tear        [^a]ím
+SFX C   m     odh         [^a]ím
+SFX C   ím    eoidh       [^a]ím
+SFX C   ím    eoimid      [^a]ím
+SFX C   ím    eofar       [^a]ím
+SFX C   m     gí          [^a]ím
+SFX C   0     is          [^a]ím
+SFX C   m     dís         [^a]ím
+
+SFX F Y 26
+SFX F   nn    omar        aínn
+SFX F   nn    teá         aínn
+SFX F   nn    odh         aínn
+SFX F   nn    mis         aínn
+SFX F   nn    dís         aínn
+SFX F   nn    tí          aínn
+SFX F   aínn  óinn        aínn
+SFX F   aínn  ófá         aínn
+SFX F   aínn  ódh         aínn
+SFX F   aínn  óimis       aínn
+SFX F   aínn  óidís       aínn
+SFX F   aínn  ófaí        aínn
+SFX F   nn    odar        aínn
+SFX F   nn    omar        [^a]ínn
+SFX F   nn    teá         [^a]ínn
+SFX F   nn    odh         [^a]ínn
+SFX F   nn    mis         [^a]ínn
+SFX F   nn    dís         [^a]ínn
+SFX F   nn    tí          [^a]ínn
+SFX F   ínn   eoinn       [^a]ínn
+SFX F   ínn   eofá        [^a]ínn
+SFX F   ínn   eodh        [^a]ínn
+SFX F   ínn   eoimis      [^a]ínn
+SFX F   ínn   eoidís      [^a]ínn
+SFX F   ínn   eofaí       [^a]ínn
+SFX F   nn    odar        [^a]ínn
+
+SFX I Y 11
+SFX I   im    nn          laim
+SFX I   0     id          laim
+SFX I   im    dh          laim
+SFX I   aim   a           laim
+SFX I   aim   faidh       laim
+SFX I   aim   faimid      laim
+SFX I   aim   far         laim
+SFX I   m     gí          laim
+SFX I   0     is          laim
+SFX I   m     dís         laim
+SFX I   laim  iltear      laim
+
+SFX J Y 13
+SFX J   inn   mar         lainn
+SFX J   inn   dh          lainn
+SFX J   nn    mis         lainn
+SFX J   nn    dís         lainn
+SFX J   ainn  fainn       lainn
+SFX J   ainn  fá          lainn
+SFX J   ainn  fadh        lainn
+SFX J   ainn  faimis      lainn
+SFX J   ainn  faidís      lainn
+SFX J   ainn  faí         lainn
+SFX J   inn   dar         lainn
+SFX J   lainn ilteá       lainn
+SFX J   lainn iltí        lainn
+
+SFX K Y 11
+SFX K   0     ín          .
+SFX K   0     sa          .
+SFX K   0     se          .
+SFX K   0     na          .
+SFX K   0     ne          .
+SFX K   0     -sa       .
+SFX K   0     -se       .
+SFX K   0     -na       .
+SFX K   0     -ne       .
+SFX K   0     -san      .
+SFX K   0     -sean     .
+

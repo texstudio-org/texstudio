@@ -1,0 +1,1730 @@
+#Stavekontrolden version 2.5.99
+#Denne fil er en del af Stavekontrolden - et softwareprodukt, der gør det muligt at stavekontrollere på dansk.
+
+#Copyright (C) 2020 Foreningen for frit tilgængelige sprogværktøjer
+#Website: http://www.stavekontrolden.dk
+#E-mail: info@stavekontrolden.dk
+
+#License
+
+#GPL 2.0/LGPL 2.1/MPL 1.1 tri-license
+
+#This library is free software; you can redistribute it and/or modify it under the terms of one or more of the following, the GNU Lesser General Public License as published by the Free Software Foundation; version 2.1 of the License, GNU General Public License as published by the Free Software Foundation; version 2.0 of the License, and Mozilla Public License as published by the The Mozilla Foundation; version 1.1 of the License.
+
+#This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License, GNU General Public License, and Mozilla Public License for more details.
+
+#You should have received a copy of the GNU Lesser General Public License and  GNU General Public along with this library; if not, write to the:
+
+#Free Software Foundation, Inc.
+#51 Franklin Street, Fifth Floor
+#Boston
+#MA  02110-1301  USA
+
+#You should have received a copy of the Mozilla Public License along with this library; if not, visit http://www.mozilla.org/MPL/MPL-1.1.html
+
+#Til sammensætninger: Bindestreg er et ord i sammensætninger
+COMPOUNDMIN 1
+COMPOUNDWORDMAX 2
+WORDCHARS -.
+
+#Undlad at foreslå opdeling af ord - opdeling vil forårsage flere fejl end det vil afhjælpe
+NOSPLITSUGS
+
+#Max. antal sammensatte ord i forslagslisten (0 switches off - n)
+MAXCPDSUGS 0
+
+#Tillad at der ingen forslag kommer
+ONLYMAXDIFF
+
+NOSUGGEST 1111
+
+REP 115
+REP ^allesammen$ alle_sammen
+REP ^altsammen$ alt_sammen
+REP ^forlængst$ for_længst
+REP ^fremfor$ frem_for
+REP ^påny$ på_ny
+REP ^nutildags$ nu_til_dags
+REP ^vedlige$ ved_lige #vedlige -&gt; ved lige
+REP k g #Enkeltbogstaver folk tit bytter om på, som herved kommer højere op på listen
+REP g k
+REP b p
+REP p b
+REP o å
+REP å o
+REP m n
+REP n m
+REP s c
+REP c s
+REP æ e
+REP e æ
+REP i e
+REP e i
+REP a e
+REP e a
+REP j g
+REP g j
+REP d t
+REP t d
+REP o u
+REP u o
+REP d g
+REP v hv #hv problematikken. vilket -&gt; hvilket
+REP hv v #hvores -&gt; vores
+REP sj ti
+REP ti j
+REP j ti
+REP t ss
+REP f ph
+REP ph f
+REP nn nd
+REP nd nn
+REP ll ld
+REP ld ll
+REP k ch
+REP ch k
+REP ch sj
+REP ch j
+REP kk gg #Dobbelt bogstaver folk tit bytter om på
+REP gg kk
+REP mm nn
+REP nn mm
+REP bb pp
+REP pp bb
+REP n nn #Dobbelt bogstav eller ej
+REP nn n
+REP l ll
+REP ll l
+REP k kk
+REP kk k
+REP g gg
+REP gg g
+REP m mm
+REP mm m
+REP p pp
+REP pp p
+REP s ss
+REP ss s
+REP f ff
+REP ff f
+REP d dd
+REP dd d
+REP t tt
+REP tt t
+REP mang ment #varesortimanget -&gt; varesortimentet
+REP ch tj #chekke -&gt; tjekke
+REP aks acc #aksepter -&gt; accepter #vaksine -&gt; vaccine
+REP and an #andgriber -&gt; angriber
+REP t s #invation -&gt; invasion
+REP t ed
+REP in ind
+REP ind in
+REP ud u #overdreven brug af stumt d. udsædvanlig -&gt; usædvanlig
+REP ud uden
+REP rd r
+REP dt t #virkefeldt -&gt; virkefelt
+REP dt d
+REP e um #akvarie -&gt; akvarium #jubilæe -&gt; jubilæum
+REP ene$ erne #sygeplejerskene -&gt; sygeplejerskerne #lærene -&gt; lærerne
+REP ene ende
+REP ende ene
+REP erer ere
+REP e en
+REP x ks #syntax -&gt; syntaks
+REP e de
+REP sj ch
+REP øv eu #øvforisk -&gt; euforisk
+REP ø eu #øforisk -&gt; euforisk
+REP y ud
+REP sj g
+REP ds c
+REP ^u in #ueffektiv -&gt; ineffektiv
+REP ^in u #inkorrekte -&gt; ukorrekt
+REP ^ind u #indkorrekte -&gt; ukorrekt
+REP je æ #kjekke -&gt; kække
+REP le ti #stalestikkerne -&gt; statistikkerne
+REP ^op efter #opfølgeren -&gt; efterfølgeren
+REP ede$ te #låsede -&gt; låste
+REP ^i i_ #iaften -&gt; i aften
+REP ^hen hen_ #henover -&gt; hen over
+REP ^inden inden_ #indendøre -&gt; inden døre
+REP ss$ s' #Genitiv
+REP xs$ x' #faxs -&gt; fax'
+REP zs$ z' #jazzs -&gt; jazz'
+REP aa å #Intet dansk keyboard
+REP ae æ
+REP oe ø
+
+SET UTF-8
+
+TRY esrntliadkogmufbvphæøyjåcSMAKBHTLzRNEGéJVFDCwPIxOZ'.UWqØYÅüXQöèóáúðëÆíÖäÜÁàôïêÞÓÿîçãÒÍ.
+FLAG num
+KEY qwertyuiopå|asdfghjklæø|zxcvbnm
+
+
+#Verbum, svagt bøjet, -ede i datid
+SFX 1 Y 4
+SFX 1 0 de/22,34 e	+DATID
+SFX 1 0 ede/34,22 [^e]	+DATID
+SFX 1 0 et/34,22 [^e]	+PERF_PART
+SFX 1 0 t/22,34 e	+PERF_PART
+
+#Substantiv, fælleskøn
+SFX 2 Y 4
+SFX 2 0 ns/11,4,8,34,35 e	+GENITIV
+SFX 2 0 n/10,34 e	+BESTEMT_ENTAL
+SFX 2 0 en/10,34 [^e]	+BESTEMT_ENTAL
+SFX 2 0 ens/34 [^e]	+GENITIV
+
+#Substantiv, konsonantfordobling, intetkøn, -er i flertal
+SFX 3 Y 20
+SFX 3 0 b/11,4,8,35,34 b	+KONSONANT_FORDOBLING
+SFX 3 0 c/11,4,8,35,34 c	+KONSONANT_FORDOBLING
+SFX 3 0 d/11,4,8,35,34 d	+KONSONANT_FORDOBLING
+SFX 3 0 f/11,4,8,35,34 f	+KONSONANT_FORDOBLING
+SFX 3 0 g/11,4,8,35,34 g	+KONSONANT_FORDOBLING
+SFX 3 0 h/11,4,8,35,34 h	+KONSONANT_FORDOBLING
+SFX 3 0 j/11,4,8,35,34 j	+KONSONANT_FORDOBLING
+SFX 3 0 k/11,4,8,35,34 k	+KONSONANT_FORDOBLING
+SFX 3 0 l/11,4,8,35,34 l	+KONSONANT_FORDOBLING
+SFX 3 0 m/11,4,8,35,34 m	+KONSONANT_FORDOBLING
+SFX 3 0 n/11,4,8,35,34 n	+KONSONANT_FORDOBLING
+SFX 3 0 p/11,4,8,35,34 p	+KONSONANT_FORDOBLING
+SFX 3 0 q/11,4,8,35,34 q	+KONSONANT_FORDOBLING
+SFX 3 0 r/11,4,8,35,34 r	+KONSONANT_FORDOBLING
+SFX 3 0 s/11,4,8,35,34 s	+KONSONANT_FORDOBLING
+SFX 3 0 t/11,4,8,35,34 t	+KONSONANT_FORDOBLING
+SFX 3 0 v/11,4,8,35,34 v	+KONSONANT_FORDOBLING
+SFX 3 0 w/11,4,8,35,34 w	+KONSONANT_FORDOBLING
+SFX 3 0 x/11,4,8,35,34 x	+KONSONANT_FORDOBLING
+SFX 3 0 z/11,4,8,35,34 z	+KONSONANT_FORDOBLING
+
+#Substantiv, intetkøn
+SFX 4 Y 4
+SFX 4 0 et/10,34 [^e]	+BESTEMT_ENTAL
+SFX 4 0 t/10,34 e	+BESTEMT_ENTAL
+SFX 4 0 ts/34 e	+GENITIV
+SFX 4 0 ets/34 [^e]	+GENITIV
+
+#Substantiv, flertal, med -e
+SFX 5 Y 8
+SFX 5 0 es/34 .	+GENITIV
+SFX 5 0 ene/10,34 [^r]	+PLUR_BEK
+SFX 5 0 e/10,34 .	+PLUR_UBEK
+SFX 5 0 ne/10,34 er	+PLUR_BEK
+SFX 5 0 enes/34 [^r]	+PLUR_BEK
+SFX 5 0 nes/34 er	+GENITIV
+SFX 5 0 ene/34 [^e]r	+PLUR_BEK
+SFX 5 0 enes/34 [^e]r	+PLUR_BEK
+
+#Ulovligt ord
+FORBIDDENWORD 6
+
+#Substantiv, konsonantfordobling, fælleskøn, -er i flertal
+SFX 7 Y 20
+SFX 7 0 b/11,2,8,35,34 b	+KONSONANT_FORDOBLING
+SFX 7 0 c/11,2,8,35,34 c	+KONSONANT_FORDOBLING
+SFX 7 0 d/11,2,8,35,34 d	+KONSONANT_FORDOBLING
+SFX 7 0 f/11,2,8,35,34 f	+KONSONANT_FORDOBLING
+SFX 7 0 g/11,2,8,35,34 g	+KONSONANT_FORDOBLING
+SFX 7 0 h/11,2,8,35,34 h	+KONSONANT_FORDOBLING
+SFX 7 0 j/11,2,8,35,34 j	+KONSONANT_FORDOBLING
+SFX 7 0 k/11,2,8,35,34 k	+KONSONANT_FORDOBLING
+SFX 7 0 l/11,2,8,35,34 l	+KONSONANT_FORDOBLING
+SFX 7 0 m/11,2,8,35,34 m	+KONSONANT_FORDOBLING
+SFX 7 0 n/11,2,8,35,34 n	+KONSONANT_FORDOBLING
+SFX 7 0 p/11,2,8,35,34 p	+KONSONANT_FORDOBLING
+SFX 7 0 q/11,2,8,35,34 q	+KONSONANT_FORDOBLING
+SFX 7 0 r/11,2,8,35,34 r	+KONSONANT_FORDOBLING
+SFX 7 0 s/11,2,8,35,34 s	+KONSONANT_FORDOBLING
+SFX 7 0 t/11,2,8,35,34 t	+KONSONANT_FORDOBLING
+SFX 7 0 v/11,2,8,35,34 v	+KONSONANT_FORDOBLING
+SFX 7 0 w/11,2,8,35,34 w	+KONSONANT_FORDOBLING
+SFX 7 0 x/11,2,8,35,34 x	+KONSONANT_FORDOBLING
+SFX 7 0 z/11,2,8,35,34 z	+KONSONANT_FORDOBLING
+
+#NeedAffix
+NEEDAFFIX 8
+
+#Proprium
+SFX 9 Y 5
+SFX 9 0 s [^sxz]	+GENITIV
+SFX 9 0 's s	+GENITIV
+SFX 9 0 ' [sxz]	+GENITIV
+SFX 9 0 es s	+GENITIV
+SFX 9 0 's [ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ]
+
+#Genitiv
+SFX 10 Y 4
+SFX 10 0 s/34 [^sxz]	+GENITIV
+SFX 10 0 es/34 s	+GENITIV
+SFX 10 0 ’s/34 s	+GENITIV
+SFX 10 0 '/34 [sxz]	+GENITIV
+
+#Substantiv, flertal, med -er
+SFX 11 Y 8
+SFX 11 0 rnes/10,34 e	+GENITIV
+SFX 11 0 r/10,34 e	+PLUR_UBEK
+SFX 11 0 er/10,34 [^e]	+PLUR_UBEK
+SFX 11 0 erne/10,34 [^e]	+PLUR_BEK
+SFX 11 0 ernes/34 [^e]	+GENITIV
+SFX 11 0 rne/34 e	+PLUR_BEK
+SFX 11 0 ers/34 [^e]	+GENITIV
+SFX 11 0 rs/34 e	+GENITIV
+
+#Substantiv, flertal, med -re
+SFX 12 Y 4
+SFX 12 0 re/10,34 .
+SFX 12 0 ne/10,34 .
+SFX 12 0 nes/34 .	+GENITIV
+SFX 12 0 res/34 .	+GENITIV
+
+#Substantiv, flertal, med -re, stamme -er fjernes
+SFX 13 Y 164
+SFX 13 er rene/34 [^bcdfghjklmnpqrstvwxz]er	+PLUR_BEK
+SFX 13 er renes/34 [^bcdfghjklmnpqrstvwxz]er	+GENITIV
+SFX 13 er re/34 [^bcdfghjklmnpqrstvwxz]er	+PLUR_UBEK
+SFX 13 er res/34 [^bcdfghjklmnpqrstvwxz]er	+GENITIV
+SFX 13 er re/34 [^b]ber	+PLUR_UBEK
+SFX 13 er re/34 [^c]cer	+PLUR_UBEK
+SFX 13 er re/34 [^d]der	+PLUR_UBEK
+SFX 13 er re/34 [^f]fer	+PLUR_UBEK
+SFX 13 er re/34 [^g]ger	+PLUR_UBEK
+SFX 13 er re/34 [^h]her	+PLUR_UBEK
+SFX 13 er re/34 [^j]jer	+PLUR_UBEK
+SFX 13 er re/34 [^k]ker	+PLUR_UBEK
+SFX 13 er re/34 [^l]ler	+PLUR_UBEK
+SFX 13 er re/34 [^m]mer	+PLUR_UBEK
+SFX 13 er re/34 [^n]ner	+PLUR_UBEK
+SFX 13 er re/34 [^p]per	+PLUR_UBEK
+SFX 13 er re/34 [^q]qer	+PLUR_UBEK
+SFX 13 er re/34 [^r]rer	+PLUR_UBEK
+SFX 13 er re/34 [^s]ser	+PLUR_UBEK
+SFX 13 er re/34 [^t]ter	+PLUR_UBEK
+SFX 13 er re/34 [^v]ver	+PLUR_UBEK
+SFX 13 er re/34 [^w]wer	+PLUR_UBEK
+SFX 13 er re/34 [^x]xer	+PLUR_UBEK
+SFX 13 er re/34 [^z]zer	+PLUR_UBEK
+SFX 13 er res/34 [^b]ber	+GENITIV
+SFX 13 er res/34 [^c]cer	+GENITIV
+SFX 13 er res/34 [^d]der	+GENITIV
+SFX 13 er res/34 [^f]fer	+GENITIV
+SFX 13 er res/34 [^g]ger	+GENITIV
+SFX 13 er res/34 [^h]her	+GENITIV
+SFX 13 er res/34 [^j]jer	+GENITIV
+SFX 13 er res/34 [^k]ker	+GENITIV
+SFX 13 er res/34 [^l]ler	+GENITIV
+SFX 13 er res/34 [^m]mer	+GENITIV
+SFX 13 er res/34 [^n]ner	+GENITIV
+SFX 13 er res/34 [^p]per	+GENITIV
+SFX 13 er res/34 [^q]qer	+GENITIV
+SFX 13 er res/34 [^r]rer	+GENITIV
+SFX 13 er res/34 [^s]ser	+GENITIV
+SFX 13 er res/34 [^t]ter	+GENITIV
+SFX 13 er res/34 [^v]ver	+GENITIV
+SFX 13 er res/34 [^w]wer	+GENITIV
+SFX 13 er res/34 [^x]xer	+GENITIV
+SFX 13 er res/34 [^z]zer	+GENITIV
+SFX 13 ber re/34 bber	+PLUR_UBEK
+SFX 13 cer re/34 ccer	+PLUR_UBEK
+SFX 13 der re/34 dder	+PLUR_UBEK
+SFX 13 fer re/34 ffer	+PLUR_UBEK
+SFX 13 ger re/34 gger	+PLUR_UBEK
+SFX 13 her re/34 hher	+PLUR_UBEK
+SFX 13 jer re/34 jjer	+PLUR_UBEK
+SFX 13 ker re/34 kker	+PLUR_UBEK
+SFX 13 ler re/34 ller	+PLUR_UBEK
+SFX 13 mer re/34 mmer	+PLUR_UBEK
+SFX 13 ner re/34 nner	+PLUR_UBEK
+SFX 13 per re/34 pper	+PLUR_UBEK
+SFX 13 qer re/34 qqer	+PLUR_UBEK
+SFX 13 rer re/34 rrer	+PLUR_UBEK
+SFX 13 ser re/34 sser	+PLUR_UBEK
+SFX 13 ter re/34 tter	+PLUR_UBEK
+SFX 13 ver re/34 vver	+PLUR_UBEK
+SFX 13 wer re/34 wwer	+PLUR_UBEK
+SFX 13 xer re/34 xxer	+PLUR_UBEK
+SFX 13 zer re/34 zzer	+PLUR_UBEK
+SFX 13 ber res/34,34 bber	+GENITIV
+SFX 13 cer res/34,34 ccer	+GENITIV
+SFX 13 der res/34,34 dder	+GENITIV
+SFX 13 fer res/34,34 ffer	+GENITIV
+SFX 13 ger res/34,34 gger	+GENITIV
+SFX 13 her res/34,34 hher	+GENITIV
+SFX 13 jer res/34,34 jjer	+GENITIV
+SFX 13 ker res/34,34 kker	+GENITIV
+SFX 13 ler res/34,34 ller	+GENITIV
+SFX 13 mer res/34,34 mmer	+GENITIV
+SFX 13 ner res/34,34 nner	+GENITIV
+SFX 13 per res/34,34 pper	+GENITIV
+SFX 13 qer res/34,34 qqer	+GENITIV
+SFX 13 rer res/34,34 rrer	+GENITIV
+SFX 13 ser res/34,34 sser	+GENITIV
+SFX 13 ter res/34,34 tter	+GENITIV
+SFX 13 ver res/34,34 vver	+GENITIV
+SFX 13 wer res/34,34 wwer	+GENITIV
+SFX 13 xer res/34,34 xxer	+GENITIV
+SFX 13 zer res/34,34 zzer	+GENITIV
+SFX 13 er rene/34 [^b]ber	+PLUR_BEK
+SFX 13 er rene/34 [^c]cer	+PLUR_BEK
+SFX 13 er rene/34 [^d]der	+PLUR_BEK
+SFX 13 er rene/34 [^f]fer	+PLUR_BEK
+SFX 13 er rene/34 [^g]ger	+PLUR_BEK
+SFX 13 er rene/34 [^h]her	+PLUR_BEK
+SFX 13 er rene/34 [^j]jer	+PLUR_BEK
+SFX 13 er rene/34 [^k]ker	+PLUR_BEK
+SFX 13 er rene/34 [^l]ler	+PLUR_BEK
+SFX 13 er rene/34 [^m]mer	+PLUR_BEK
+SFX 13 er rene/34 [^n]ner	+PLUR_BEK
+SFX 13 er rene/34 [^p]per	+PLUR_BEK
+SFX 13 er rene/34 [^q]qer	+PLUR_BEK
+SFX 13 er rene/34 [^r]rer	+PLUR_BEK
+SFX 13 er rene/34 [^s]ser	+PLUR_BEK
+SFX 13 er rene/34 [^t]ter	+PLUR_BEK
+SFX 13 er rene/34 [^v]ver	+PLUR_BEK
+SFX 13 er rene/34 [^w]wer	+PLUR_BEK
+SFX 13 er rene/34 [^x]xer	+PLUR_BEK
+SFX 13 er rene/34 [^z]zer	+PLUR_BEK
+SFX 13 er renes/34 [^b]ber	+GENITIV
+SFX 13 er renes/34 [^c]cer	+GENITIV
+SFX 13 er renes/34 [^d]der	+GENITIV
+SFX 13 er renes/34 [^f]fer	+GENITIV
+SFX 13 er renes/34 [^g]ger	+GENITIV
+SFX 13 er renes/34 [^h]her	+GENITIV
+SFX 13 er renes/34 [^j]jer	+GENITIV
+SFX 13 er renes/34 [^k]ker	+GENITIV
+SFX 13 er renes/34 [^l]ler	+GENITIV
+SFX 13 er renes/34 [^m]mer	+GENITIV
+SFX 13 er renes/34 [^n]ner	+GENITIV
+SFX 13 er renes/34 [^p]per	+GENITIV
+SFX 13 er renes/34 [^q]qer	+GENITIV
+SFX 13 er renes/34 [^r]rer	+GENITIV
+SFX 13 er renes/34 [^s]ser	+GENITIV
+SFX 13 er renes/34 [^t]ter	+GENITIV
+SFX 13 er renes/34 [^v]ver	+GENITIV
+SFX 13 er renes/34 [^w]wer	+GENITIV
+SFX 13 er renes/34 [^x]xer	+GENITIV
+SFX 13 er renes/34 [^z]zer	+GENITIV
+SFX 13 ber rene/34 bber	+PLUR_BEK
+SFX 13 cer rene/34 ccer	+PLUR_BEK
+SFX 13 der rene/34 dder	+PLUR_BEK
+SFX 13 fer rene/34 ffer	+PLUR_BEK
+SFX 13 ger rene/34 gger	+PLUR_BEK
+SFX 13 her rene/34 hher	+PLUR_BEK
+SFX 13 jer rene/34 jjer	+PLUR_BEK
+SFX 13 ker rene/34 kker	+PLUR_BEK
+SFX 13 ler rene/34 ller	+PLUR_BEK
+SFX 13 mer rene/34 mmer	+PLUR_BEK
+SFX 13 ner rene/34 nner	+PLUR_BEK
+SFX 13 per rene/34 pper	+PLUR_BEK
+SFX 13 qer rene/34 qqer	+PLUR_BEK
+SFX 13 rer rene/34 rrer	+PLUR_BEK
+SFX 13 ser rene/34 sser	+PLUR_BEK
+SFX 13 ter rene/34 tter	+PLUR_BEK
+SFX 13 ver rene/34 vver	+PLUR_BEK
+SFX 13 wer rene/34 wwer	+PLUR_BEK
+SFX 13 xer rene/34 xxer	+PLUR_BEK
+SFX 13 zer rene/34 zzer	+PLUR_BEK
+SFX 13 ber renes/34 bber	+GENITIV
+SFX 13 cer renes/34 ccer	+GENITIV
+SFX 13 der renes/34 dder	+GENITIV
+SFX 13 fer renes/34 ffer	+GENITIV
+SFX 13 ger renes/34 gger	+GENITIV
+SFX 13 her renes/34 hher	+GENITIV
+SFX 13 jer renes/34 jjer	+GENITIV
+SFX 13 ker renes/34 kker	+GENITIV
+SFX 13 ler renes/34 ller	+GENITIV
+SFX 13 mer renes/34 mmer	+GENITIV
+SFX 13 ner renes/34 nner	+GENITIV
+SFX 13 per renes/34 pper	+GENITIV
+SFX 13 qer renes/34 qqer	+GENITIV
+SFX 13 rer renes/34 rrer	+GENITIV
+SFX 13 ser renes/34 sser	+GENITIV
+SFX 13 ter renes/34 tter	+GENITIV
+SFX 13 ver renes/34 vver	+GENITIV
+SFX 13 wer renes/34 wwer	+GENITIV
+SFX 13 xer renes/34 xxer	+GENITIV
+SFX 13 zer renes/34 zzer	+GENITIV
+
+#Substantiv, bekendt form fælleskøn med -eren
+SFX 14 Y 2
+SFX 14 0 en/34 .	+BESTEMT_ENTAL
+SFX 14 0 ens/34 .	+GENITIV
+
+#Substantiv, bekendt form intetkøn med -ret eller -eret
+SFX 15 Y 16
+SFX 15 0 et/34 .	+BESTEMT_ENTAL
+SFX 15 er ret/34 [^fmtr]er	+BESTEMT_ENTAL
+SFX 15 er rets/34 [^fmtr]er	+GENITIV
+SFX 15 0 ets/34 .	+GENITIV
+SFX 15 er ret/34 [^f]fer	+BESTEMT_ENTAL
+SFX 15 er ret/34 [^m]mer	+BESTEMT_ENTAL
+SFX 15 er ret/34 [^t]ter	+BESTEMT_ENTAL
+SFX 15 fer ret/34 ffer	+BESTEMT_ENTAL
+SFX 15 mer ret/34 mmer	+BESTEMT_ENTAL
+SFX 15 ter ret/34 tter	+BESTEMT_ENTAL
+SFX 15 er rets/34 [^f]fer	+GENITIV
+SFX 15 er rets/34 [^m]mer	+GENITIV
+SFX 15 er rets/34 [^t]ter	+GENITIV
+SFX 15 fer rets/34 ffer	+GENITIV
+SFX 15 mer rets/34 mmer	+GENITIV
+SFX 15 ter rets/34 tter	+GENITIV
+
+#Substantiv, konsonantfordobling, fælleskøn, -re i flertal
+SFX 16 Y 20
+SFX 16 0 b/8,12,2,35,34 b	+KONSONANT_FORDOBLING
+SFX 16 0 c/8,12,2,35,34 c	+KONSONANT_FORDOBLING
+SFX 16 0 d/8,12,2,35,34 d	+KONSONANT_FORDOBLING
+SFX 16 0 f/8,12,2,35,34 f	+KONSONANT_FORDOBLING
+SFX 16 0 g/8,12,2,35,34 g	+KONSONANT_FORDOBLING
+SFX 16 0 h/8,12,2,35,34 h	+KONSONANT_FORDOBLING
+SFX 16 0 j/8,12,2,35,34 j	+KONSONANT_FORDOBLING
+SFX 16 0 k/8,12,2,35,34 k	+KONSONANT_FORDOBLING
+SFX 16 0 l/8,12,2,35,34 l	+KONSONANT_FORDOBLING
+SFX 16 0 m/8,12,2,35,34 m	+KONSONANT_FORDOBLING
+SFX 16 0 n/8,12,2,35,34 n	+KONSONANT_FORDOBLING
+SFX 16 0 p/8,12,2,35,34 p	+KONSONANT_FORDOBLING
+SFX 16 0 q/8,12,2,35,34 q	+KONSONANT_FORDOBLING
+SFX 16 0 r/8,12,2,35,34 r	+KONSONANT_FORDOBLING
+SFX 16 0 s/8,12,2,35,34 s	+KONSONANT_FORDOBLING
+SFX 16 0 t/8,12,2,35,34 t	+KONSONANT_FORDOBLING
+SFX 16 0 v/8,12,2,35,34 v	+KONSONANT_FORDOBLING
+SFX 16 0 w/8,12,2,35,34 w	+KONSONANT_FORDOBLING
+SFX 16 0 x/8,12,2,35,34 x	+KONSONANT_FORDOBLING
+SFX 16 0 z/8,12,2,35,34 z	+KONSONANT_FORDOBLING
+
+#Substantiv, konsonantfordobling, intetkøn, -re i flertal
+SFX 17 Y 20
+SFX 17 0 b/8,12,4,35,34 b	+KONSONANT_FORDOBLING
+SFX 17 0 c/8,12,4,35,34 c	+KONSONANT_FORDOBLING
+SFX 17 0 d/8,12,4,35,34 d	+KONSONANT_FORDOBLING
+SFX 17 0 f/8,12,4,35,34 f	+KONSONANT_FORDOBLING
+SFX 17 0 g/8,12,4,35,34 g	+KONSONANT_FORDOBLING
+SFX 17 0 h/8,12,4,35,34 h	+KONSONANT_FORDOBLING
+SFX 17 0 j/8,12,4,35,34 j	+KONSONANT_FORDOBLING
+SFX 17 0 k/8,12,4,35,34 k	+KONSONANT_FORDOBLING
+SFX 17 0 l/8,12,4,35,34 l	+KONSONANT_FORDOBLING
+SFX 17 0 m/8,12,4,35,34 m	+KONSONANT_FORDOBLING
+SFX 17 0 n/8,12,4,35,34 n	+KONSONANT_FORDOBLING
+SFX 17 0 p/8,12,4,35,34 p	+KONSONANT_FORDOBLING
+SFX 17 0 q/8,12,4,35,34 q	+KONSONANT_FORDOBLING
+SFX 17 0 r/8,12,4,35,34 r	+KONSONANT_FORDOBLING
+SFX 17 0 s/8,12,4,35,34 s	+KONSONANT_FORDOBLING
+SFX 17 0 t/8,12,4,35,34 t	+KONSONANT_FORDOBLING
+SFX 17 0 v/8,12,4,35,34 v	+KONSONANT_FORDOBLING
+SFX 17 0 w/8,12,4,35,34 w	+KONSONANT_FORDOBLING
+SFX 17 0 x/8,12,4,35,34 x	+KONSONANT_FORDOBLING
+SFX 17 0 z/8,12,4,35,34 z	+KONSONANT_FORDOBLING
+
+#Substantiv, konsonantfordobling, intetkøn, -e i flertal
+SFX 18 Y 20
+SFX 18 0 b/8,5,4,35,34 b	+KONSONANT_FORDOBLING
+SFX 18 0 c/8,5,4,35,34 c	+KONSONANT_FORDOBLING
+SFX 18 0 d/8,5,4,35,34 d	+KONSONANT_FORDOBLING
+SFX 18 0 f/8,5,4,35,34 f	+KONSONANT_FORDOBLING
+SFX 18 0 g/8,5,4,35,34 g	+KONSONANT_FORDOBLING
+SFX 18 0 h/8,5,4,35,34 h	+KONSONANT_FORDOBLING
+SFX 18 0 j/8,5,4,35,34 j	+KONSONANT_FORDOBLING
+SFX 18 0 k/8,5,4,35,34 k	+KONSONANT_FORDOBLING
+SFX 18 0 l/8,5,4,35,34 l	+KONSONANT_FORDOBLING
+SFX 18 0 m/8,5,4,35,34 m	+KONSONANT_FORDOBLING
+SFX 18 0 n/8,5,4,35,34 n	+KONSONANT_FORDOBLING
+SFX 18 0 p/8,5,4,35,34 p	+KONSONANT_FORDOBLING
+SFX 18 0 q/8,5,4,35,34 q	+KONSONANT_FORDOBLING
+SFX 18 0 r/8,5,4,35,34 r	+KONSONANT_FORDOBLING
+SFX 18 0 s/8,5,4,35,34 s	+KONSONANT_FORDOBLING
+SFX 18 0 t/8,5,4,35,34 t	+KONSONANT_FORDOBLING
+SFX 18 0 v/8,5,4,35,34 v	+KONSONANT_FORDOBLING
+SFX 18 0 w/8,5,4,35,34 w	+KONSONANT_FORDOBLING
+SFX 18 0 x/8,5,4,35,34 x	+KONSONANT_FORDOBLING
+SFX 18 0 z/8,5,4,35,34 z	+KONSONANT_FORDOBLING
+
+#Substantiv, konsonantfordobling, fælleskøn, -e i flertal
+SFX 19 Y 20
+SFX 19 0 b/8,2,5,35,34 b	+KONSONANT_FORDOBLING
+SFX 19 0 c/8,2,5,35,34 c	+KONSONANT_FORDOBLING
+SFX 19 0 d/8,2,5,35,34 d	+KONSONANT_FORDOBLING
+SFX 19 0 f/8,2,5,35,34 f	+KONSONANT_FORDOBLING
+SFX 19 0 g/8,2,5,35,34 g	+KONSONANT_FORDOBLING
+SFX 19 0 h/8,2,5,35,34 h	+KONSONANT_FORDOBLING
+SFX 19 0 j/8,2,5,35,34 j	+KONSONANT_FORDOBLING
+SFX 19 0 k/8,2,5,35,34 k	+KONSONANT_FORDOBLING
+SFX 19 0 l/8,2,5,35,34 l	+KONSONANT_FORDOBLING
+SFX 19 0 m/8,2,5,35,34 m	+KONSONANT_FORDOBLING
+SFX 19 0 n/8,2,5,35,34 n	+KONSONANT_FORDOBLING
+SFX 19 0 p/8,2,5,35,34 p	+KONSONANT_FORDOBLING
+SFX 19 0 q/8,2,5,35,34 q	+KONSONANT_FORDOBLING
+SFX 19 0 r/8,2,5,35,34 r	+KONSONANT_FORDOBLING
+SFX 19 0 s/8,2,5,35,34 s	+KONSONANT_FORDOBLING
+SFX 19 0 t/8,2,5,35,34 t	+KONSONANT_FORDOBLING
+SFX 19 0 v/8,2,5,35,34 v	+KONSONANT_FORDOBLING
+SFX 19 0 w/8,2,5,35,34 w	+KONSONANT_FORDOBLING
+SFX 19 0 x/8,2,5,35,34 x	+KONSONANT_FORDOBLING
+SFX 19 0 z/8,2,5,35,34 z	+KONSONANT_FORDOBLING
+
+#Verbum, svagt bøjet, -te i datid
+SFX 20 Y 2
+SFX 20 e te/22,34 .	+DATID
+SFX 20 e t/22,34 .	+PERF_PART
+
+#Verbum, svagt bøjet
+SFX 21 Y 44
+SFX 21 0 r/34 .	+NUTID
+SFX 21 0 nde/22,34 e	+PRÆSENS_PART
+SFX 21 be 0 bbe	+IMPERATIV
+SFX 21 ce 0 cce	+IMPERATIV
+SFX 21 de 0 dde	+IMPERATIV
+SFX 21 fe 0 ffe	+IMPERATIV
+SFX 21 ge 0 gge	+IMPERATIV
+SFX 21 he 0 hhe	+IMPERATIV
+SFX 21 je 0 jje	+IMPERATIV
+SFX 21 ke 0 kke	+IMPERATIV
+SFX 21 le 0 lle	+IMPERATIV
+SFX 21 me 0 mme	+IMPERATIV
+SFX 21 ne 0 nne	+IMPERATIV
+SFX 21 pe 0 ppe	+IMPERATIV
+SFX 21 qe 0 qqe	+IMPERATIV
+SFX 21 re 0 rre	+IMPERATIV
+SFX 21 se 0 sse	+IMPERATIV
+SFX 21 te 0 tte	+IMPERATIV
+SFX 21 ve 0 vve	+IMPERATIV
+SFX 21 we 0 wwe	+IMPERATIV
+SFX 21 xe 0 xxe	+IMPERATIV
+SFX 21 ze 0 zze	+IMPERATIV
+SFX 21 e 0 [^b]be	+IMPERATIV
+SFX 21 e 0 [^c]ce	+IMPERATIV
+SFX 21 e 0 [^d]de	+IMPERATIV
+SFX 21 e 0 [^f]fe	+IMPERATIV
+SFX 21 e 0 [^g]ge	+IMPERATIV
+SFX 21 e 0 [^h]he	+IMPERATIV
+SFX 21 e 0 [^j]je	+IMPERATIV
+SFX 21 e 0 [^k]ke	+IMPERATIV
+SFX 21 e 0 [^l]le	+IMPERATIV
+SFX 21 e 0 [^m]me	+IMPERATIV
+SFX 21 e 0 [^n]ne	+IMPERATIV
+SFX 21 e 0 [^p]pe	+IMPERATIV
+SFX 21 e 0 [^q]qe	+IMPERATIV
+SFX 21 e 0 [^r]re	+IMPERATIV
+SFX 21 e 0 [^s]se	+IMPERATIV
+SFX 21 e 0 [^t]te	+IMPERATIV
+SFX 21 e 0 [^v]ve	+IMPERATIV
+SFX 21 e 0 [^w]we	+IMPERATIV
+SFX 21 e 0 [^x]xe	+IMPERATIV
+SFX 21 e 0 [^z]ze	+IMPERATIV
+SFX 21 0 ende/34,22 [^e]	+PRÆSENS_PART
+SFX 21 ere ér/34 ere	+IMPERATIV
+
+#Verbum, passiv
+SFX 22 Y 1
+SFX 22 0 s/22,34 [^s]	+PASSIV
+
+#Adjektiv, svagt bøjet med komparation
+SFX 23 Y 8
+SFX 23 0 e/10,34 .	+PLUR_UBEK
+SFX 23 0 ere/10,34 .	+KOMPARATIV
+SFX 23 0 st/10,34 .	+SUPERLATIV
+SFX 23 0 ste/10,34 .	+SUPERLATIV_PLURALIS
+SFX 23 0 es/34 .	+GENITIV
+SFX 23 0 eres/34 .	+GENITIV
+SFX 23 0 sts/34 .	+GENITIV
+SFX 23 0 stes/34 .	+GENITIV
+
+#Adjektiv, svagt bøjet uden komparation
+SFX 24 Y 3
+SFX 24 0 e/34 .	+PLUR_BEK
+SFX 24 0 t/34 [^t]	+BESTEMT_ENTAL
+SFX 24 0 es/34 .	+GENITIV
+
+#Adjektiv, d erstatter t med komparation
+SFX 25 Y 4
+SFX 25 t de/10,34 .	+PLUR_BEK
+SFX 25 t dere/10,34 .	+KOMPARATIV
+SFX 25 t dest/10,34 .	+SUPERLATIV
+SFX 25 t deste/10,34 .	+SUPERLATIV_PLURALIS
+
+#Adjektiv, d erstatter t uden komparation
+SFX 26 Y 4
+SFX 26 t de/10 .	+PLUR_BEK
+SFX 26 0 s/34 [^s]	+GENITIV
+SFX 26 0 '/34 s	+GENITIV
+SFX 26 0 es/34 s	+GENITIV
+
+#Adjektiv, ender på -ende
+SFX 27 Y 3
+SFX 27 0 s/34 [^s]	+GENITIV
+SFX 27 0 '/34 s	+GENITIV
+SFX 27 0 es/34 s	+GENITIV
+
+#Adjektiv, ender på -sk
+SFX 28 Y 4
+SFX 28 0 e/34 .	+PLUR_BEK
+SFX 28 0 s/34 [^s]	+GENITIV
+SFX 28 0 '/34 s	+GENITIV
+SFX 28 0 es/34 .	+GENITIV
+
+#Sammensætning, fugeelement -s-
+SFX 29 Y 2
+SFX 29 0 s/32,35,36 .
+SFX 29 0 s/33,35,36 .
+
+#Sammensætning, fugeelement -e-
+SFX 30 Y 2
+SFX 30 0 e/32,36,35 .
+SFX 30 0 e/33,36,35 .
+
+#Sammensætning, fugeelement Ø
+SFX 31 Y 2
+SFX 31 0 0/32,36,35 .
+SFX 31 0 0/33,36,35 .
+
+#Sammensætning, start
+COMPOUNDBEGIN 32
+
+#Sammensætning, midte
+COMPOUNDMIDDLE 33
+
+#Sammensætning, slut
+COMPOUNDEND 34
+
+#Sammensætning, tillad affix inde i sammensætning
+COMPOUNDPERMITFLAG 35
+
+#Sammensætning, kun i sammensætninger
+ONLYINCOMPOUND 36
+
+#Sammensætning, bindestreg
+PFX 37 Y 1
+PFX 37 0 -/35 .	+FUGNING
+
+#Adjektiv, svagt bøjet med komparation, -est
+SFX 38 Y 8
+SFX 38 0 ere/10,34 .	+KOMPARATIV
+SFX 38 0 e/10,34 .	+PLUR_BEK
+SFX 38 0 est/10,34 .	+SUPERLATIV
+SFX 38 0 este/10,34 .	+SUPERLATIV_PLURALIS
+SFX 38 0 estes/34 .	+GENITIV
+SFX 38 0 ests/34 .	+GENITIV
+SFX 38 0 eres/34 .	+GENITIV
+SFX 38 0 es/34 .	+GENITIV
+
+#Sammensætning, ord sidst i sammensætning
+SFX 39 Y 1
+SFX 39 0 0/35,34 .	+ORD_SIDST
+
+#Adjektiv, dobbeltkonsonant
+SFX 40 Y 20
+SFX 40 0 b/23,8,35 b	+KONSONANT_FORDOBLING
+SFX 40 0 c/23,8,35 c	+KONSONANT_FORDOBLING
+SFX 40 0 d/23,8,35 d	+KONSONANT_FORDOBLING
+SFX 40 0 f/23,8,35 f	+KONSONANT_FORDOBLING
+SFX 40 0 g/23,8,35 g	+KONSONANT_FORDOBLING
+SFX 40 0 h/23,8,35 h	+KONSONANT_FORDOBLING
+SFX 40 0 j/23,8,35 j	+KONSONANT_FORDOBLING
+SFX 40 0 k/23,8,35 k	+KONSONANT_FORDOBLING
+SFX 40 0 l/23,8,35 l	+KONSONANT_FORDOBLING
+SFX 40 0 m/23,8,35 m	+KONSONANT_FORDOBLING
+SFX 40 0 n/23,8,35 n	+KONSONANT_FORDOBLING
+SFX 40 0 p/23,8,35 p	+KONSONANT_FORDOBLING
+SFX 40 0 q/23,8,35 q	+KONSONANT_FORDOBLING
+SFX 40 0 r/23,8,35 r	+KONSONANT_FORDOBLING
+SFX 40 0 s/23,8,35 s	+KONSONANT_FORDOBLING
+SFX 40 0 t/23,8,35 t	+KONSONANT_FORDOBLING
+SFX 40 0 v/23,8,35 v	+KONSONANT_FORDOBLING
+SFX 40 0 w/23,8,35 w	+KONSONANT_FORDOBLING
+SFX 40 0 x/23,8,35 x	+KONSONANT_FORDOBLING
+SFX 40 0 z/23,8,35 z	+KONSONANT_FORDOBLING
+
+#Adjektiv, d erstatter t med komparation, -est
+SFX 41 Y 4
+SFX 41 t dere/10,34 .	+KOMPARATIV
+SFX 41 t de/10,34 .	+PLUR_BEK
+SFX 41 t dest/10,34 .	+SUPERLATIV
+SFX 41 t deste/10,34 .	+SUPERLATIV_PLURALIS
+
+#Adjektiv, dobbeltkonsonant, -est
+SFX 42 Y 20
+SFX 42 0 b/8,38,35 b	+KONSONANT_FORDOBLING
+SFX 42 0 c/8,38,35 c	+KONSONANT_FORDOBLING
+SFX 42 0 d/8,38,35 d	+KONSONANT_FORDOBLING
+SFX 42 0 f/8,38,35 f	+KONSONANT_FORDOBLING
+SFX 42 0 g/8,38,35 g	+KONSONANT_FORDOBLING
+SFX 42 0 h/8,38,35 h	+KONSONANT_FORDOBLING
+SFX 42 0 j/8,38,35 j	+KONSONANT_FORDOBLING
+SFX 42 0 k/8,38,35 k	+KONSONANT_FORDOBLING
+SFX 42 0 l/8,38,35 l	+KONSONANT_FORDOBLING
+SFX 42 0 m/8,38,35 m	+KONSONANT_FORDOBLING
+SFX 42 0 n/8,38,35 n	+KONSONANT_FORDOBLING
+SFX 42 0 p/8,38,35 p	+KONSONANT_FORDOBLING
+SFX 42 0 q/8,38,35 q	+KONSONANT_FORDOBLING
+SFX 42 0 r/8,38,35 r	+KONSONANT_FORDOBLING
+SFX 42 0 s/8,38,35 s	+KONSONANT_FORDOBLING
+SFX 42 0 t/8,38,35 t	+KONSONANT_FORDOBLING
+SFX 42 0 v/8,38,35 v	+KONSONANT_FORDOBLING
+SFX 42 0 w/8,38,35 w	+KONSONANT_FORDOBLING
+SFX 42 0 x/8,38,35 x	+KONSONANT_FORDOBLING
+SFX 42 0 z/8,38,35 z	+KONSONANT_FORDOBLING
+
+#Substantiv, ubestemt
+SFX 43 Y 3
+SFX 43 0 s [^szx]	+GENITIV
+SFX 43 0 ' [szx]	+GENITIV
+SFX 43 0 es s	+GENITIV
+
+#Substantiv, torso, fælleskøn
+SFX 44 Y 4
+SFX 44 0 en/10,34 [^e]	+BESTEMT_ENTAL
+SFX 44 0 n/10,34 e	+BESTEMT_ENTAL
+SFX 44 0 ens/34 [^e]	+GENITIV
+SFX 44 0 ns/34 e	+GENITIV
+
+#Substantiv, torso, intetkøn
+SFX 45 Y 2
+SFX 45 0 et/10,34 [^e]	+BESTEMT_ENTAL
+SFX 45 0 t/10,34 e	+BESTEMT_ENTAL
+
+#Substantiv, flertal, med Ø
+SFX 46 Y 8
+SFX 46 0 ne/34 e	+PLUR_BEK
+SFX 46 0 ene/34 [^er]	+PLUR_BEK
+SFX 46 0 enes/34 [^er]	+GENITIV
+SFX 46 0 nes/34 e	+GENITIV
+SFX 46 0 ne/34 er	+PLUR_BEK
+SFX 46 0 ene/34 [^e]r	+PLUR_BEK
+SFX 46 0 nes/34 er	+GENITIV
+SFX 46 0 enes/34 [^e]r	+GENITIV
+
+#Substantiv, konsonantfordobling, intetkøn, -Ø i flertal
+SFX 47 Y 20
+SFX 47 0 b/8,46,4,35,34 b	+KONSONANT_FORDOBLING
+SFX 47 0 c/8,46,4,35,34 c	+KONSONANT_FORDOBLING
+SFX 47 0 d/8,46,4,35,34 d	+KONSONANT_FORDOBLING
+SFX 47 0 f/8,46,4,35,34 f	+KONSONANT_FORDOBLING
+SFX 47 0 g/8,46,4,35,34 g	+KONSONANT_FORDOBLING
+SFX 47 0 h/8,46,4,35,34 h	+KONSONANT_FORDOBLING
+SFX 47 0 j/8,46,4,35,34 j	+KONSONANT_FORDOBLING
+SFX 47 0 k/8,46,4,35,34 k	+KONSONANT_FORDOBLING
+SFX 47 0 l/8,46,4,35,34 l	+KONSONANT_FORDOBLING
+SFX 47 0 m/8,46,4,35,34 m	+KONSONANT_FORDOBLING
+SFX 47 0 n/8,46,4,35,34 n	+KONSONANT_FORDOBLING
+SFX 47 0 p/8,46,4,35,34 p	+KONSONANT_FORDOBLING
+SFX 47 0 q/8,46,4,35,34 q	+KONSONANT_FORDOBLING
+SFX 47 0 r/8,46,4,35,34 r	+KONSONANT_FORDOBLING
+SFX 47 0 s/8,46,4,35,34 s	+KONSONANT_FORDOBLING
+SFX 47 0 t/8,46,4,35,34 t	+KONSONANT_FORDOBLING
+SFX 47 0 v/8,46,4,35,34 v	+KONSONANT_FORDOBLING
+SFX 47 0 w/8,46,4,35,34 w	+KONSONANT_FORDOBLING
+SFX 47 0 x/8,46,4,35,34 x	+KONSONANT_FORDOBLING
+SFX 47 0 z/8,46,4,35,34 z	+KONSONANT_FORDOBLING
+
+#Substantiv, konsonantfordobling, fælleskøn, -Ø i flertal
+SFX 48 Y 20
+SFX 48 0 b/8,46,2,35,34 b	+KONSONANT_FORDOBLING
+SFX 48 0 c/8,46,2,35,34 c	+KONSONANT_FORDOBLING
+SFX 48 0 d/8,46,2,35,34 d	+KONSONANT_FORDOBLING
+SFX 48 0 f/8,46,2,35,34 f	+KONSONANT_FORDOBLING
+SFX 48 0 g/8,46,2,35,34 g	+KONSONANT_FORDOBLING
+SFX 48 0 h/8,46,2,35,34 h	+KONSONANT_FORDOBLING
+SFX 48 0 j/8,46,2,35,34 j	+KONSONANT_FORDOBLING
+SFX 48 0 k/8,46,2,35,34 k	+KONSONANT_FORDOBLING
+SFX 48 0 l/8,46,2,35,34 l	+KONSONANT_FORDOBLING
+SFX 48 0 m/8,46,2,35,34 m	+KONSONANT_FORDOBLING
+SFX 48 0 n/8,46,2,35,34 n	+KONSONANT_FORDOBLING
+SFX 48 0 p/8,46,2,35,34 p	+KONSONANT_FORDOBLING
+SFX 48 0 q/8,46,2,35,34 q	+KONSONANT_FORDOBLING
+SFX 48 0 r/8,46,2,35,34 r	+KONSONANT_FORDOBLING
+SFX 48 0 s/8,46,2,35,34 s	+KONSONANT_FORDOBLING
+SFX 48 0 t/8,46,2,35,34 t	+KONSONANT_FORDOBLING
+SFX 48 0 v/8,46,2,35,34 v	+KONSONANT_FORDOBLING
+SFX 48 0 w/8,46,2,35,34 w	+KONSONANT_FORDOBLING
+SFX 48 0 x/8,46,2,35,34 x	+KONSONANT_FORDOBLING
+SFX 48 0 z/8,46,2,35,34 z	+KONSONANT_FORDOBLING
+
+#Adjektiv, svagt bøjet, intetkøn
+SFX 49 Y 1
+SFX 49 0 t/10,34 [^t]	+BESTEMT_ENTAL
+
+#Apostrof, fælleskøn
+SFX 50 Y 1
+SFX 50 0 '/8,2,11,10,35 .
+
+#Apostrof, intetkøn
+SFX 51 Y 1
+SFX 51 0 '/8,4,11,10,35 .
+
+#Apostrof NeedAffix
+
+#Sammensætning, fugeelement -
+SFX 53 Y 2
+SFX 53 0 -/32,35 .
+SFX 53 0 -/33,35 .
+
+#Proprium med mulighed for retning som præfix
+PFX 54 Y 261
+PFX 54 A Norda/9 A
+PFX 54 A Syda/9 A
+PFX 54 A Vesta/9 A
+PFX 54 A Østa/9 A
+PFX 54 A Nordvesta/9 A
+PFX 54 A Nordøsta/9 A
+PFX 54 A Sydvesta/9 A
+PFX 54 A Sydøsta/9 A
+PFX 54 A Midta/9 A
+PFX 54 B Nordb/9 B
+PFX 54 B Sydb/9 B
+PFX 54 B Vestb/9 B
+PFX 54 B Østb/9 B
+PFX 54 B Nordvestb/9 B
+PFX 54 B Nordøstb/9 B
+PFX 54 B Sydvestb/9 B
+PFX 54 B Sydøstb/9 B
+PFX 54 B Midtb/9 B
+PFX 54 C Nordc/9 C
+PFX 54 C Sydc/9 C
+PFX 54 C Vestc/9 C
+PFX 54 C Østc/9 C
+PFX 54 C Nordvestc/9 C
+PFX 54 C Nordøstc/9 C
+PFX 54 C Sydvestc/9 C
+PFX 54 C Sydøstc/9 C
+PFX 54 C Midtc/9 C
+PFX 54 D Nordd/9 D
+PFX 54 D Sydd/9 D
+PFX 54 D Vestd/9 D
+PFX 54 D Østd/9 D
+PFX 54 D Nordvestd/9 D
+PFX 54 D Nordøstd/9 D
+PFX 54 D Sydvestd/9 D
+PFX 54 D Sydøstd/9 D
+PFX 54 D Midtd/9 D
+PFX 54 E Norde/9 E
+PFX 54 E Syde/9 E
+PFX 54 E Veste/9 E
+PFX 54 E Øste/9 E
+PFX 54 E Nordveste/9 E
+PFX 54 E Nordøste/9 E
+PFX 54 E Sydveste/9 E
+PFX 54 E Sydøste/9 E
+PFX 54 E Midte/9 E
+PFX 54 F Nordf/9 F
+PFX 54 F Sydf/9 F
+PFX 54 F Vestf/9 F
+PFX 54 F Østf/9 F
+PFX 54 F Nordvestf/9 F
+PFX 54 F Nordøstf/9 F
+PFX 54 F Sydvestf/9 F
+PFX 54 F Sydøstf/9 F
+PFX 54 F Midtf/9 F
+PFX 54 G Nordg/9 G
+PFX 54 G Sydg/9 G
+PFX 54 G Vestg/9 G
+PFX 54 G Østg/9 G
+PFX 54 G Nordvestg/9 G
+PFX 54 G Nordøstg/9 G
+PFX 54 G Sydvestg/9 G
+PFX 54 G Sydøstg/9 G
+PFX 54 G Midtg/9 G
+PFX 54 H Nordh/9 H
+PFX 54 H Sydh/9 H
+PFX 54 H Vesth/9 H
+PFX 54 H Østh/9 H
+PFX 54 H Nordvesth/9 H
+PFX 54 H Nordøsth/9 H
+PFX 54 H Sydvesth/9 H
+PFX 54 H Sydøsth/9 H
+PFX 54 H Midth/9 H
+PFX 54 I Nordi/9 I
+PFX 54 I Sydi/9 I
+PFX 54 I Vesti/9 I
+PFX 54 I Østi/9 I
+PFX 54 I Nordvesti/9 I
+PFX 54 I Nordøsti/9 I
+PFX 54 I Sydvesti/9 I
+PFX 54 I Sydøsti/9 I
+PFX 54 I Midti/9 I
+PFX 54 J Nordj/9 J
+PFX 54 J Sydj/9 J
+PFX 54 J Vestj/9 J
+PFX 54 J Østj/9 J
+PFX 54 J Nordvestj/9 J
+PFX 54 J Nordøstj/9 J
+PFX 54 J Sydvestj/9 J
+PFX 54 J Sydøstj/9 J
+PFX 54 J Midtj/9 J
+PFX 54 K Nordk/9 K
+PFX 54 K Sydk/9 K
+PFX 54 K Vestk/9 K
+PFX 54 K Østk/9 K
+PFX 54 K Nordvestk/9 K
+PFX 54 K Nordøstk/9 K
+PFX 54 K Sydvestk/9 K
+PFX 54 K Sydøstk/9 K
+PFX 54 K Midtk/9 K
+PFX 54 L Nordl/9 L
+PFX 54 L Sydl/9 L
+PFX 54 L Vestl/9 L
+PFX 54 L Østl/9 L
+PFX 54 L Nordvestl/9 L
+PFX 54 L Nordøstl/9 L
+PFX 54 L Sydvestl/9 L
+PFX 54 L Sydøstl/9 L
+PFX 54 L Midtl/9 L
+PFX 54 M Nordm/9 M
+PFX 54 M Sydm/9 M
+PFX 54 M Vestm/9 M
+PFX 54 M Østm/9 M
+PFX 54 M Nordvestm/9 M
+PFX 54 M Nordøstm/9 M
+PFX 54 M Sydvestm/9 M
+PFX 54 M Sydøstm/9 M
+PFX 54 M Midtm/9 M
+PFX 54 N Nordn/9 N
+PFX 54 N Sydn/9 N
+PFX 54 N Vestn/9 N
+PFX 54 N Østn/9 N
+PFX 54 N Nordvestn/9 N
+PFX 54 N Nordøstn/9 N
+PFX 54 N Sydvestn/9 N
+PFX 54 N Sydøstn/9 N
+PFX 54 N Midtn/9 N
+PFX 54 O Nordo/9 O
+PFX 54 O Sydo/9 O
+PFX 54 O Vesto/9 O
+PFX 54 O Østo/9 O
+PFX 54 O Nordvesto/9 O
+PFX 54 O Nordøsto/9 O
+PFX 54 O Sydvesto/9 O
+PFX 54 O Sydøsto/9 O
+PFX 54 O Midto/9 O
+PFX 54 P Nordp/9 P
+PFX 54 P Sydp/9 P
+PFX 54 P Vestp/9 P
+PFX 54 P Østp/9 P
+PFX 54 P Nordvestp/9 P
+PFX 54 P Nordøstp/9 P
+PFX 54 P Sydvestp/9 P
+PFX 54 P Sydøstp/9 P
+PFX 54 P Midtp/9 P
+PFX 54 Q Nordq/9 Q
+PFX 54 Q Sydq/9 Q
+PFX 54 Q Vestq/9 Q
+PFX 54 Q Østq/9 Q
+PFX 54 Q Nordvestq/9 Q
+PFX 54 Q Nordøstq/9 Q
+PFX 54 Q Sydvestq/9 Q
+PFX 54 Q Sydøstq/9 Q
+PFX 54 Q Midtq/9 Q
+PFX 54 R Nordr/9 R
+PFX 54 R Sydr/9 R
+PFX 54 R Vestr/9 R
+PFX 54 R Østr/9 R
+PFX 54 R Nordvestr/9 R
+PFX 54 R Nordøstr/9 R
+PFX 54 R Sydvestr/9 R
+PFX 54 R Sydøstr/9 R
+PFX 54 R Midtr/9 R
+PFX 54 S Nords/9 S
+PFX 54 S Syds/9 S
+PFX 54 S Vests/9 S
+PFX 54 S Østs/9 S
+PFX 54 S Nordvests/9 S
+PFX 54 S Nordøsts/9 S
+PFX 54 S Sydvests/9 S
+PFX 54 S Sydøsts/9 S
+PFX 54 S Midts/9 S
+PFX 54 T Nordt/9 T
+PFX 54 T Sydt/9 T
+PFX 54 T Vestt/9 T
+PFX 54 T Østt/9 T
+PFX 54 T Nordvestt/9 T
+PFX 54 T Nordøstt/9 T
+PFX 54 T Sydvestt/9 T
+PFX 54 T Sydøstt/9 T
+PFX 54 T Midtt/9 T
+PFX 54 U Nordu/9 U
+PFX 54 U Sydu/9 U
+PFX 54 U Vestu/9 U
+PFX 54 U Østu/9 U
+PFX 54 U Nordvestu/9 U
+PFX 54 U Nordøstu/9 U
+PFX 54 U Sydvestu/9 U
+PFX 54 U Sydøstu/9 U
+PFX 54 U Midtu/9 U
+PFX 54 V Nordv/9 V
+PFX 54 V Sydv/9 V
+PFX 54 V Vestv/9 V
+PFX 54 V Østv/9 V
+PFX 54 V Nordvestv/9 V
+PFX 54 V Nordøstv/9 V
+PFX 54 V Sydvestv/9 V
+PFX 54 V Sydøstv/9 V
+PFX 54 V Midtv/9 V
+PFX 54 W Nordw/9 W
+PFX 54 W Sydw/9 W
+PFX 54 W Vestw/9 W
+PFX 54 W Østw/9 W
+PFX 54 W Nordvestw/9 W
+PFX 54 W Nordøstw/9 W
+PFX 54 W Sydvestw/9 W
+PFX 54 W Sydøstw/9 W
+PFX 54 W Midtw/9 W
+PFX 54 X Nordx/9 X
+PFX 54 X Sydx/9 X
+PFX 54 X Vestx/9 X
+PFX 54 X Østx/9 X
+PFX 54 X Nordvestx/9 X
+PFX 54 X Nordøstx/9 X
+PFX 54 X Sydvestx/9 X
+PFX 54 X Sydøstx/9 X
+PFX 54 X Midtx/9 X
+PFX 54 Y Nordy/9 Y
+PFX 54 Y Sydy/9 Y
+PFX 54 Y Vesty/9 Y
+PFX 54 Y Østy/9 Y
+PFX 54 Y Nordvesty/9 Y
+PFX 54 Y Nordøsty/9 Y
+PFX 54 Y Sydvesty/9 Y
+PFX 54 Y Sydøsty/9 Y
+PFX 54 Y Midty/9 Y
+PFX 54 Z Nordz/9 Z
+PFX 54 Z Sydz/9 Z
+PFX 54 Z Vestz/9 Z
+PFX 54 Z Østz/9 Z
+PFX 54 Z Nordvestz/9 Z
+PFX 54 Z Nordøstz/9 Z
+PFX 54 Z Sydvestz/9 Z
+PFX 54 Z Sydøstz/9 Z
+PFX 54 Z Midtz/9 Z
+PFX 54 Æ Nordæ/9 Æ
+PFX 54 Æ Sydæ/9 Æ
+PFX 54 Æ Vestæ/9 Æ
+PFX 54 Æ Østæ/9 Æ
+PFX 54 Æ Nordvestæ/9 Æ
+PFX 54 Æ Nordøstæ/9 Æ
+PFX 54 Æ Sydvestæ/9 Æ
+PFX 54 Æ Sydøstæ/9 Æ
+PFX 54 Æ Midtæ/9 Æ
+PFX 54 Ø Nordø/9 Ø
+PFX 54 Ø Sydø/9 Ø
+PFX 54 Ø Vestø/9 Ø
+PFX 54 Ø Østø/9 Ø
+PFX 54 Ø Nordvestø/9 Ø
+PFX 54 Ø Nordøstø/9 Ø
+PFX 54 Ø Sydvestø/9 Ø
+PFX 54 Ø Sydøstø/9 Ø
+PFX 54 Ø Midtø/9 Ø
+PFX 54 Å Nordå/9 Å
+PFX 54 Å Sydå/9 Å
+PFX 54 Å Vestå/9 Å
+PFX 54 Å Østå/9 Å
+PFX 54 Å Nordvestå/9 Å
+PFX 54 Å Nordøstå/9 Å
+PFX 54 Å Sydvestå/9 Å
+PFX 54 Å Sydøstå/9 Å
+PFX 54 Å Midtå/9 Å
+
+#Sammensætning, fugeelement fjern e
+SFX 55 Y 2
+SFX 55 e 0/36,33,35 .
+SFX 55 e 0/36,35,32 .
+
+#Sammensætning, fugeelement fjern e tilføj s
+SFX 56 Y 2
+SFX 56 e s/36,32,35 .
+SFX 56 e s/36,33,35 .
+
+#Substantiv, konsonantfordobling, intetkøn, torso
+SFX 57 Y 20
+SFX 57 0 bet/34,10 b	+KONSONANT_FORDOBLING
+SFX 57 0 cet/34,10 c	+KONSONANT_FORDOBLING
+SFX 57 0 det/34,10 d	+KONSONANT_FORDOBLING
+SFX 57 0 fet/34,10 f	+KONSONANT_FORDOBLING
+SFX 57 0 get/34,10 g	+KONSONANT_FORDOBLING
+SFX 57 0 het/34,10 h	+KONSONANT_FORDOBLING
+SFX 57 0 jet/34,10 j	+KONSONANT_FORDOBLING
+SFX 57 0 ket/34,10 k	+KONSONANT_FORDOBLING
+SFX 57 0 let/34,10 l	+KONSONANT_FORDOBLING
+SFX 57 0 met/34,10 m	+KONSONANT_FORDOBLING
+SFX 57 0 net/34,10 n	+KONSONANT_FORDOBLING
+SFX 57 0 pet/34,10 p	+KONSONANT_FORDOBLING
+SFX 57 0 qet/34,10 q	+KONSONANT_FORDOBLING
+SFX 57 0 ret/34,10 r	+KONSONANT_FORDOBLING
+SFX 57 0 set/34,10 s	+KONSONANT_FORDOBLING
+SFX 57 0 tet/34,10 t	+KONSONANT_FORDOBLING
+SFX 57 0 vet/34,10 v	+KONSONANT_FORDOBLING
+SFX 57 0 wet/34,10 w	+KONSONANT_FORDOBLING
+SFX 57 0 xet/34,10 x	+KONSONANT_FORDOBLING
+SFX 57 0 zet/34,10 z	+KONSONANT_FORDOBLING
+
+#Substantiv, konsonantfordobling, fælleskøn, torso
+SFX 58 Y 20
+SFX 58 0 ben/34,10 b	+KONSONANT_FORDOBLING
+SFX 58 0 cen/34,10 c	+KONSONANT_FORDOBLING
+SFX 58 0 den/34,10 d	+KONSONANT_FORDOBLING
+SFX 58 0 fen/34,10 f	+KONSONANT_FORDOBLING
+SFX 58 0 gen/34,10 g	+KONSONANT_FORDOBLING
+SFX 58 0 hen/34,10 h	+KONSONANT_FORDOBLING
+SFX 58 0 jen/34,10 j	+KONSONANT_FORDOBLING
+SFX 58 0 ken/34,10 k	+KONSONANT_FORDOBLING
+SFX 58 0 len/34,10 l	+KONSONANT_FORDOBLING
+SFX 58 0 men/34,10 m	+KONSONANT_FORDOBLING
+SFX 58 0 nen/34,10 n	+KONSONANT_FORDOBLING
+SFX 58 0 pen/34,10 p	+KONSONANT_FORDOBLING
+SFX 58 0 qen/34,10 q	+KONSONANT_FORDOBLING
+SFX 58 0 ren/34,10 r	+KONSONANT_FORDOBLING
+SFX 58 0 sen/34,10 s	+KONSONANT_FORDOBLING
+SFX 58 0 ten/34,10 t	+KONSONANT_FORDOBLING
+SFX 58 0 ven/34,10 v	+KONSONANT_FORDOBLING
+SFX 58 0 wen/34,10 w	+KONSONANT_FORDOBLING
+SFX 58 0 xen/34,10 x	+KONSONANT_FORDOBLING
+SFX 58 0 zen/34,10 z	+KONSONANT_FORDOBLING
+
+#Adjektiv, svagt bøjet uden komparation, dobbeltkonsonant
+SFX 59 Y 20
+SFX 59 0 be/10,34 b	+KONSONANT_FORDOBLING
+SFX 59 0 ce/10,34 c	+KONSONANT_FORDOBLING
+SFX 59 0 de/10,34 d	+KONSONANT_FORDOBLING
+SFX 59 0 fe/10,34 f	+KONSONANT_FORDOBLING
+SFX 59 0 ge/10,34 g	+KONSONANT_FORDOBLING
+SFX 59 0 he/10,34 h	+KONSONANT_FORDOBLING
+SFX 59 0 je/10,34 j	+KONSONANT_FORDOBLING
+SFX 59 0 ke/10,34 k	+KONSONANT_FORDOBLING
+SFX 59 0 le/10,34 l	+KONSONANT_FORDOBLING
+SFX 59 0 me/10,34 m	+KONSONANT_FORDOBLING
+SFX 59 0 ne/10,34 n	+KONSONANT_FORDOBLING
+SFX 59 0 pe/10,34 p	+KONSONANT_FORDOBLING
+SFX 59 0 qe/10,34 q	+KONSONANT_FORDOBLING
+SFX 59 0 re/10,34 r	+KONSONANT_FORDOBLING
+SFX 59 0 se/10,34 s	+KONSONANT_FORDOBLING
+SFX 59 0 te/10,34 t	+KONSONANT_FORDOBLING
+SFX 59 0 ve/10,34 v	+KONSONANT_FORDOBLING
+SFX 59 0 we/10,34 w	+KONSONANT_FORDOBLING
+SFX 59 0 xe/10,34 x	+KONSONANT_FORDOBLING
+SFX 59 0 ze/10,34 z	+KONSONANT_FORDOBLING
+
+#Sammensætning, fugeelement -er-
+SFX 60 Y 2
+SFX 60 0 er/32,35,36 .
+SFX 60 0 er/36,33,35 .
+
+#Sammensætning, fugeelement -kons.f.+e
+SFX 61 Y 40
+SFX 61 0 be/36,32,35 b
+SFX 61 0 ce/36,32,35 c
+SFX 61 0 de/36,32,35 d
+SFX 61 0 fe/36,32,35 f
+SFX 61 0 ge/36,32,35 g
+SFX 61 0 he/36,32,35 h
+SFX 61 0 je/36,32,35 j
+SFX 61 0 ke/36,32,35 k
+SFX 61 0 le/36,32,35 l
+SFX 61 0 me/36,32,35 m
+SFX 61 0 ne/36,32,35 n
+SFX 61 0 pe/36,32,35 p
+SFX 61 0 qe/36,32,35 q
+SFX 61 0 re/36,32,35 r
+SFX 61 0 se/36,32,35 s
+SFX 61 0 te/36,32,35 t
+SFX 61 0 ve/36,32,35 v
+SFX 61 0 we/36,32,35 w
+SFX 61 0 xe/36,32,35 x
+SFX 61 0 ze/36,32,35 z
+SFX 61 0 be/36,33,35 b
+SFX 61 0 ce/36,33,35 c
+SFX 61 0 de/36,33,35 d
+SFX 61 0 fe/36,33,35 f
+SFX 61 0 ge/36,33,35 g
+SFX 61 0 he/36,33,35 h
+SFX 61 0 je/36,33,35 j
+SFX 61 0 ke/36,33,35 k
+SFX 61 0 le/36,33,35 l
+SFX 61 0 me/36,33,35 m
+SFX 61 0 ne/36,33,35 n
+SFX 61 0 pe/36,33,35 p
+SFX 61 0 qe/36,33,35 q
+SFX 61 0 re/36,33,35 r
+SFX 61 0 se/36,33,35 s
+SFX 61 0 te/36,33,35 t
+SFX 61 0 ve/36,33,35 v
+SFX 61 0 we/36,33,35 w
+SFX 61 0 xe/36,33,35 x
+SFX 61 0 ze/36,33,35 z
+
+#Sammensætning, fugeelement Ø el. s
+SFX 62 Y 4
+SFX 62 0 0/36,32,35 .
+SFX 62 0 0/36,33,35 .
+SFX 62 0 s/36,32,35 .
+SFX 62 0 s/36,33,35 .
+
+#Sammensætning, fugeelement Ø el. e
+SFX 63 Y 4
+SFX 63 0 0/32,36,35 .
+SFX 63 0 0/36,33,35 .
+SFX 63 0 e/35,36,32 .
+SFX 63 0 e/36,33,35 .
+
+#Substantiv, ender på el, -ler i flertal
+SFX 64 Y 164
+SFX 64 el ler/34 [^bcdfghjklmnpqrstvwxz]el	+PLUR_UBEK
+SFX 64 el lers/34 [^bcdfghjklmnpqrstvwxz]el	+GENITIV
+SFX 64 el lerne/34 [^bcdfghjklmnpqrstvwxz]el	+PLUR_UBEK
+SFX 64 el lernes/34 [^bcdfghjklmnpqrstvwxz]el	+GENITIV
+SFX 64 el ler/34 [^b]bel	+PLUR_BEK
+SFX 64 el ler/34 [^c]cel	+PLUR_BEK
+SFX 64 el ler/34 [^d]del	+PLUR_BEK
+SFX 64 el ler/34 [^f]fel	+PLUR_BEK
+SFX 64 el ler/34 [^g]gel	+PLUR_BEK
+SFX 64 el ler/34 [^h]hel	+PLUR_BEK
+SFX 64 el ler/34 [^j]jel	+PLUR_BEK
+SFX 64 el ler/34 [^k]kel	+PLUR_BEK
+SFX 64 el ler/34 [^l]lel	+PLUR_BEK
+SFX 64 el ler/34 [^m]mel	+PLUR_BEK
+SFX 64 el ler/34 [^n]nel	+PLUR_BEK
+SFX 64 el ler/34 [^p]pel	+PLUR_BEK
+SFX 64 el ler/34 [^q]qel	+PLUR_BEK
+SFX 64 el ler/34 [^r]rel	+PLUR_BEK
+SFX 64 el ler/34 [^s]sel	+PLUR_BEK
+SFX 64 el ler/34 [^t]tel	+PLUR_BEK
+SFX 64 el ler/34 [^v]vel	+PLUR_BEK
+SFX 64 el ler/34 [^w]wel	+PLUR_BEK
+SFX 64 el ler/34 [^x]xel	+PLUR_BEK
+SFX 64 el ler/34 [^z]zel	+PLUR_BEK
+SFX 64 bel ler/34 bbel	+PLUR_BEK
+SFX 64 cel ler/34 ccel	+PLUR_BEK
+SFX 64 del ler/34 ddel	+PLUR_BEK
+SFX 64 fel ler/34 ffel	+PLUR_BEK
+SFX 64 gel ler/34 ggel	+PLUR_BEK
+SFX 64 hel ler/34 hhel	+PLUR_BEK
+SFX 64 jel ler/34 jjel	+PLUR_BEK
+SFX 64 kel ler/34 kkel	+PLUR_BEK
+SFX 64 lel ler/34 llel	+PLUR_BEK
+SFX 64 mel ler/34 mmel	+PLUR_BEK
+SFX 64 nel ler/34 nnel	+PLUR_BEK
+SFX 64 pel ler/34 ppel	+PLUR_BEK
+SFX 64 qel ler/34 qqel	+PLUR_BEK
+SFX 64 rel ler/34 rrel	+PLUR_BEK
+SFX 64 sel ler/34 ssel	+PLUR_BEK
+SFX 64 tel ler/34 ttel	+PLUR_BEK
+SFX 64 vel ler/34 vvel	+PLUR_BEK
+SFX 64 wel ler/34 wwel	+PLUR_BEK
+SFX 64 xel ler/34 xxel	+PLUR_BEK
+SFX 64 zel ler/34 zzel	+PLUR_BEK
+SFX 64 el lers/34 [^b]bel	+GENITIV
+SFX 64 el lers/34 [^c]cel	+GENITIV
+SFX 64 el lers/34 [^d]del	+GENITIV
+SFX 64 el lers/34 [^f]fel	+GENITIV
+SFX 64 el lers/34 [^g]gel	+GENITIV
+SFX 64 el lers/34 [^h]hel	+GENITIV
+SFX 64 el lers/34 [^j]jel	+GENITIV
+SFX 64 el lers/34 [^k]kel	+GENITIV
+SFX 64 el lers/34 [^l]lel	+GENITIV
+SFX 64 el lers/34 [^m]mel	+GENITIV
+SFX 64 el lers/34 [^n]nel	+GENITIV
+SFX 64 el lers/34 [^p]pel	+GENITIV
+SFX 64 el lers/34 [^q]qel	+GENITIV
+SFX 64 el lers/34 [^r]rel	+GENITIV
+SFX 64 el lers/34 [^s]sel	+GENITIV
+SFX 64 el lers/34 [^t]tel	+GENITIV
+SFX 64 el lers/34 [^v]vel	+GENITIV
+SFX 64 el lers/34 [^w]wel	+GENITIV
+SFX 64 el lers/34 [^x]xel	+GENITIV
+SFX 64 el lers/34 [^z]zel	+GENITIV
+SFX 64 bel lers/34 bbel	+GENITIV
+SFX 64 cel lers/34 ccel	+GENITIV
+SFX 64 del lers/34 ddel	+GENITIV
+SFX 64 fel lers/34 ffel	+GENITIV
+SFX 64 gel lers/34 ggel	+GENITIV
+SFX 64 hel lers/34 hhel	+GENITIV
+SFX 64 jel lers/34 jjel	+GENITIV
+SFX 64 kel lers/34 kkel	+GENITIV
+SFX 64 lel lers/34 llel	+GENITIV
+SFX 64 mel lers/34 mmel	+GENITIV
+SFX 64 nel lers/34 nnel	+GENITIV
+SFX 64 pel lers/34 ppel	+GENITIV
+SFX 64 qel lers/34 qqel	+GENITIV
+SFX 64 rel lers/34 rrel	+GENITIV
+SFX 64 sel lers/34 ssel	+GENITIV
+SFX 64 tel lers/34 ttel	+GENITIV
+SFX 64 vel lers/34 vvel	+GENITIV
+SFX 64 wel lers/34 wwel	+GENITIV
+SFX 64 xel lers/34 xxel	+GENITIV
+SFX 64 zel lers/34 zzel	+GENITIV
+SFX 64 el lerne/34 [^b]bel	+PLUR_UBEK
+SFX 64 el lerne/34 [^c]cel	+PLUR_UBEK
+SFX 64 el lerne/34 [^d]del	+PLUR_UBEK
+SFX 64 el lerne/34 [^f]fel	+PLUR_UBEK
+SFX 64 el lerne/34 [^g]gel	+PLUR_UBEK
+SFX 64 el lerne/34 [^h]hel	+PLUR_UBEK
+SFX 64 el lerne/34 [^j]jel	+PLUR_UBEK
+SFX 64 el lerne/34 [^k]kel	+PLUR_UBEK
+SFX 64 el lerne/34 [^l]lel	+PLUR_UBEK
+SFX 64 el lerne/34 [^m]mel	+PLUR_UBEK
+SFX 64 el lerne/34 [^n]nel	+PLUR_UBEK
+SFX 64 el lerne/34 [^p]pel	+PLUR_UBEK
+SFX 64 el lerne/34 [^q]qel	+PLUR_UBEK
+SFX 64 el lerne/34 [^r]rel	+PLUR_UBEK
+SFX 64 el lerne/34 [^s]sel	+PLUR_UBEK
+SFX 64 el lerne/34 [^t]tel	+PLUR_UBEK
+SFX 64 el lerne/34 [^v]vel	+PLUR_UBEK
+SFX 64 el lerne/34 [^w]wel	+PLUR_UBEK
+SFX 64 el lerne/34 [^x]xel	+PLUR_UBEK
+SFX 64 el lerne/34 [^z]zel	+PLUR_UBEK
+SFX 64 bel lerne/34 bbel	+PLUR_UBEK
+SFX 64 cel lerne/34 ccel	+PLUR_UBEK
+SFX 64 del lerne/34 ddel	+PLUR_UBEK
+SFX 64 fel lerne/34 ffel	+PLUR_UBEK
+SFX 64 gel lerne/34 ggel	+PLUR_UBEK
+SFX 64 hel lerne/34 hhel	+PLUR_UBEK
+SFX 64 jel lerne/34 jjel	+PLUR_UBEK
+SFX 64 kel lerne/34 kkel	+PLUR_UBEK
+SFX 64 lel lerne/34 llel	+PLUR_UBEK
+SFX 64 mel lerne/34 mmel	+PLUR_UBEK
+SFX 64 nel lerne/34 nnel	+PLUR_UBEK
+SFX 64 pel lerne/34 ppel	+PLUR_UBEK
+SFX 64 qel lerne/34 qqel	+PLUR_UBEK
+SFX 64 rel lerne/34 rrel	+PLUR_UBEK
+SFX 64 sel lerne/34 ssel	+PLUR_UBEK
+SFX 64 tel lerne/34 ttel	+PLUR_UBEK
+SFX 64 vel lerne/34 vvel	+PLUR_UBEK
+SFX 64 wel lerne/34 wwel	+PLUR_UBEK
+SFX 64 xel lerne/34 xxel	+PLUR_UBEK
+SFX 64 zel lerne/34 zzel	+PLUR_UBEK
+SFX 64 el lernes/34 [^b]bel	+GENITIV
+SFX 64 el lernes/34 [^c]cel	+GENITIV
+SFX 64 el lernes/34 [^d]del	+GENITIV
+SFX 64 el lernes/34 [^f]fel	+GENITIV
+SFX 64 el lernes/34 [^g]gel	+GENITIV
+SFX 64 el lernes/34 [^h]hel	+GENITIV
+SFX 64 el lernes/34 [^j]jel	+GENITIV
+SFX 64 el lernes/34 [^k]kel	+GENITIV
+SFX 64 el lernes/34 [^l]lel	+GENITIV
+SFX 64 el lernes/34 [^m]mel	+GENITIV
+SFX 64 el lernes/34 [^n]nel	+GENITIV
+SFX 64 el lernes/34 [^p]pel	+GENITIV
+SFX 64 el lernes/34 [^q]qel	+GENITIV
+SFX 64 el lernes/34 [^r]rel	+GENITIV
+SFX 64 el lernes/34 [^s]sel	+GENITIV
+SFX 64 el lernes/34 [^t]tel	+GENITIV
+SFX 64 el lernes/34 [^v]vel	+GENITIV
+SFX 64 el lernes/34 [^w]wel	+GENITIV
+SFX 64 el lernes/34 [^x]xel	+GENITIV
+SFX 64 el lernes/34 [^z]zel	+GENITIV
+SFX 64 bel lernes/34 bbel	+GENITIV
+SFX 64 cel lernes/34 ccel	+GENITIV
+SFX 64 del lernes/34 ddel	+GENITIV
+SFX 64 fel lernes/34 ffel	+GENITIV
+SFX 64 gel lernes/34 ggel	+GENITIV
+SFX 64 hel lernes/34 hhel	+GENITIV
+SFX 64 jel lernes/34 jjel	+GENITIV
+SFX 64 kel lernes/34 kkel	+GENITIV
+SFX 64 lel lernes/34 llel	+GENITIV
+SFX 64 mel lernes/34 mmel	+GENITIV
+SFX 64 nel lernes/34 nnel	+GENITIV
+SFX 64 pel lernes/34 ppel	+GENITIV
+SFX 64 qel lernes/34 qqel	+GENITIV
+SFX 64 rel lernes/34 rrel	+GENITIV
+SFX 64 sel lernes/34 ssel	+GENITIV
+SFX 64 tel lernes/34 ttel	+GENITIV
+SFX 64 vel lernes/34 vvel	+GENITIV
+SFX 64 wel lernes/34 wwel	+GENITIV
+SFX 64 xel lernes/34 xxel	+GENITIV
+SFX 64 zel lernes/34 zzel	+GENITIV
+
+#Substantiv, fælleskøn, ender på el, bekendt form ental, -el erstattes med -len
+SFX 65 Y 82
+SFX 65 el len/34 [^bcdfghjklmnpqrstvwxz]el	+BESTEMT_ENTAL
+SFX 65 el lens/34 [^bcdfghjklmnpqrstvwxz]el	+GENITIV
+SFX 65 el len/34 [^b]bel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^c]cel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^d]del	+BESTEMT_ENTAL
+SFX 65 el len/34 [^f]fel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^g]gel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^h]hel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^j]jel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^k]kel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^l]lel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^m]mel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^n]nel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^p]pel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^q]qel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^r]rel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^s]sel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^t]tel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^v]vel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^w]wel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^x]xel	+BESTEMT_ENTAL
+SFX 65 el len/34 [^z]zel	+BESTEMT_ENTAL
+SFX 65 el lens/34 [^b]bel	+GENITIV
+SFX 65 el lens/34 [^c]cel	+GENITIV
+SFX 65 el lens/34 [^d]del	+GENITIV
+SFX 65 el lens/34 [^f]fel	+GENITIV
+SFX 65 el lens/34 [^g]gel	+GENITIV
+SFX 65 el lens/34 [^h]hel	+GENITIV
+SFX 65 el lens/34 [^j]jel	+GENITIV
+SFX 65 el lens/34 [^k]kel	+GENITIV
+SFX 65 el lens/34 [^l]lel	+GENITIV
+SFX 65 el lens/34 [^m]mel	+GENITIV
+SFX 65 el lens/34 [^n]nel	+GENITIV
+SFX 65 el lens/34 [^p]pel	+GENITIV
+SFX 65 el lens/34 [^q]qel	+GENITIV
+SFX 65 el lens/34 [^r]rel	+GENITIV
+SFX 65 el lens/34 [^s]sel	+GENITIV
+SFX 65 el lens/34 [^t]tel	+GENITIV
+SFX 65 el lens/34 [^v]vel	+GENITIV
+SFX 65 el lens/34 [^w]wel	+GENITIV
+SFX 65 el lens/34 [^x]xel	+GENITIV
+SFX 65 el lens/34 [^z]zel	+GENITIV
+SFX 65 bel len/34 bbel	+BESTEMT_ENTAL
+SFX 65 cel len/34 ccel	+BESTEMT_ENTAL
+SFX 65 del len/34 ddel	+BESTEMT_ENTAL
+SFX 65 fel len/34 ffel	+BESTEMT_ENTAL
+SFX 65 gel len/34 ggel	+BESTEMT_ENTAL
+SFX 65 hel len/34 hhel	+BESTEMT_ENTAL
+SFX 65 jel len/34 jjel	+BESTEMT_ENTAL
+SFX 65 kel len/34 kkel	+BESTEMT_ENTAL
+SFX 65 lel len/34 llel	+BESTEMT_ENTAL
+SFX 65 mel len/34 mmel	+BESTEMT_ENTAL
+SFX 65 nel len/34 nnel	+BESTEMT_ENTAL
+SFX 65 pel len/34 ppel	+BESTEMT_ENTAL
+SFX 65 qel len/34 qqel	+BESTEMT_ENTAL
+SFX 65 rel len/34 rrel	+BESTEMT_ENTAL
+SFX 65 sel len/34 ssel	+BESTEMT_ENTAL
+SFX 65 tel len/34 ttel	+BESTEMT_ENTAL
+SFX 65 vel len/34 vvel	+BESTEMT_ENTAL
+SFX 65 wel len/34 wwel	+BESTEMT_ENTAL
+SFX 65 xel len/34 xxel	+BESTEMT_ENTAL
+SFX 65 zel len/34 zzel	+BESTEMT_ENTAL
+SFX 65 bel lens/34 bbel	+GENITIV
+SFX 65 cel lens/34 ccel	+GENITIV
+SFX 65 del lens/34 ddel	+GENITIV
+SFX 65 fel lens/34 ffel	+GENITIV
+SFX 65 gel lens/34 ggel	+GENITIV
+SFX 65 hel lens/34 hhel	+GENITIV
+SFX 65 jel lens/34 jjel	+GENITIV
+SFX 65 kel lens/34 kkel	+GENITIV
+SFX 65 lel lens/34 llel	+GENITIV
+SFX 65 mel lens/34 mmel	+GENITIV
+SFX 65 nel lens/34 nnel	+GENITIV
+SFX 65 pel lens/34 ppel	+GENITIV
+SFX 65 qel lens/34 qqel	+GENITIV
+SFX 65 rel lens/34 rrel	+GENITIV
+SFX 65 sel lens/34 ssel	+GENITIV
+SFX 65 tel lens/34 ttel	+GENITIV
+SFX 65 vel lens/34 vvel	+GENITIV
+SFX 65 wel lens/34 wwel	+GENITIV
+SFX 65 xel lens/34 xxel	+GENITIV
+SFX 65 zel lens/34 zzel	+GENITIV
+
+#Substantiv, intetkøn, ender på el, bestemt form ental,  -el erstattes med -let
+SFX 66 Y 82
+SFX 66 el let/34 [^bcdfghjklmnpqrstvwxz]el	+BESTEMT_ENTAL
+SFX 66 el lets/34 [^bcdfghjklmnpqrstvwxz]el	+GENITIV
+SFX 66 el let/34 [^b]bel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^c]cel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^d]del	+BESTEMT_ENTAL
+SFX 66 el let/34 [^f]fel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^g]gel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^h]hel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^j]jel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^k]kel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^l]lel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^m]mel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^n]nel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^p]pel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^q]qel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^r]rel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^s]sel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^t]tel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^v]vel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^w]wel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^x]xel	+BESTEMT_ENTAL
+SFX 66 el let/34 [^z]zel	+BESTEMT_ENTAL
+SFX 66 bel let/34 bbel	+BESTEMT_ENTAL
+SFX 66 cel let/34 ccel	+BESTEMT_ENTAL
+SFX 66 del let/34 ddel	+BESTEMT_ENTAL
+SFX 66 fel let/34 ffel	+BESTEMT_ENTAL
+SFX 66 gel let/34 ggel	+BESTEMT_ENTAL
+SFX 66 hel let/34 hhel	+BESTEMT_ENTAL
+SFX 66 jel let/34 jjel	+BESTEMT_ENTAL
+SFX 66 kel let/34 kkel	+BESTEMT_ENTAL
+SFX 66 lel let/34 llel	+BESTEMT_ENTAL
+SFX 66 mel let/34 mmel	+BESTEMT_ENTAL
+SFX 66 nel let/34 nnel	+BESTEMT_ENTAL
+SFX 66 pel let/34 ppel	+BESTEMT_ENTAL
+SFX 66 qel let/34 qqel	+BESTEMT_ENTAL
+SFX 66 rel let/34 rrel	+BESTEMT_ENTAL
+SFX 66 sel let/34 ssel	+BESTEMT_ENTAL
+SFX 66 tel let/34 ttel	+BESTEMT_ENTAL
+SFX 66 vel let/34 vvel	+BESTEMT_ENTAL
+SFX 66 wel let/34 wwel	+BESTEMT_ENTAL
+SFX 66 xel let/34 xxel	+BESTEMT_ENTAL
+SFX 66 zel let/34 zzel	+BESTEMT_ENTAL
+SFX 66 el lets/34 [^b]bel	+GENITIV
+SFX 66 el lets/34 [^c]cel	+GENITIV
+SFX 66 el lets/34 [^d]del	+GENITIV
+SFX 66 el lets/34 [^f]fel	+GENITIV
+SFX 66 el lets/34 [^g]gel	+GENITIV
+SFX 66 el lets/34 [^h]hel	+GENITIV
+SFX 66 el lets/34 [^j]jel	+GENITIV
+SFX 66 el lets/34 [^k]kel	+GENITIV
+SFX 66 el lets/34 [^l]lel	+GENITIV
+SFX 66 el lets/34 [^m]mel	+GENITIV
+SFX 66 el lets/34 [^n]nel	+GENITIV
+SFX 66 el lets/34 [^p]pel	+GENITIV
+SFX 66 el lets/34 [^q]qel	+GENITIV
+SFX 66 el lets/34 [^r]rel	+GENITIV
+SFX 66 el lets/34 [^s]sel	+GENITIV
+SFX 66 el lets/34 [^t]tel	+GENITIV
+SFX 66 el lets/34 [^v]vel	+GENITIV
+SFX 66 el lets/34 [^w]wel	+GENITIV
+SFX 66 el lets/34 [^x]xel	+GENITIV
+SFX 66 el lets/34 [^z]zel	+GENITIV
+SFX 66 bel lets/34 bbel	+GENITIV
+SFX 66 cel lets/34 ccel	+GENITIV
+SFX 66 del lets/34 ddel	+GENITIV
+SFX 66 fel lets/34 ffel	+GENITIV
+SFX 66 gel lets/34 ggel	+GENITIV
+SFX 66 hel lets/34 hhel	+GENITIV
+SFX 66 jel lets/34 jjel	+GENITIV
+SFX 66 kel lets/34 kkel	+GENITIV
+SFX 66 lel lets/34 llel	+GENITIV
+SFX 66 mel lets/34 mmel	+GENITIV
+SFX 66 nel lets/34 nnel	+GENITIV
+SFX 66 pel lets/34 ppel	+GENITIV
+SFX 66 qel lets/34 qqel	+GENITIV
+SFX 66 rel lets/34 rrel	+GENITIV
+SFX 66 sel lets/34 ssel	+GENITIV
+SFX 66 tel lets/34 ttel	+GENITIV
+SFX 66 vel lets/34 vvel	+GENITIV
+SFX 66 wel lets/34 wwel	+GENITIV
+SFX 66 xel lets/34 xxel	+GENITIV
+SFX 66 zel lets/34 zzel	+GENITIV
+
+#Sammensætning, fugeelement Ø el. kons.f.+e
+SFX 67 Y 42
+SFX 67 0 0/32,35,36 .
+SFX 67 0 be/32,35,36 b
+SFX 67 0 ce/32,35,36 c
+SFX 67 0 de/32,35,36 d
+SFX 67 0 fe/32,35,36 f
+SFX 67 0 ge/32,35,36 g
+SFX 67 0 he/32,35,36 h
+SFX 67 0 je/32,35,36 j
+SFX 67 0 ke/32,35,36 k
+SFX 67 0 le/32,35,36 l
+SFX 67 0 me/32,35,36 m
+SFX 67 0 ne/32,35,36 n
+SFX 67 0 pe/32,35,36 p
+SFX 67 0 qe/32,35,36 q
+SFX 67 0 re/32,35,36 r
+SFX 67 0 se/32,35,36 s
+SFX 67 0 te/32,35,36 t
+SFX 67 0 ve/32,35,36 v
+SFX 67 0 we/32,35,36 w
+SFX 67 0 xe/32,35,36 x
+SFX 67 0 ze/32,35,36 z
+SFX 67 0 be/33,36,35 b
+SFX 67 0 ce/33,36,35 c
+SFX 67 0 de/33,36,35 d
+SFX 67 0 fe/33,36,35 f
+SFX 67 0 ge/33,36,35 g
+SFX 67 0 he/33,36,35 h
+SFX 67 0 je/33,36,35 j
+SFX 67 0 ke/33,36,35 k
+SFX 67 0 le/33,36,35 l
+SFX 67 0 me/33,36,35 m
+SFX 67 0 ne/33,36,35 n
+SFX 67 0 pe/33,36,35 p
+SFX 67 0 qe/33,36,35 q
+SFX 67 0 re/33,36,35 r
+SFX 67 0 se/33,36,35 s
+SFX 67 0 te/33,36,35 t
+SFX 67 0 ve/33,36,35 v
+SFX 67 0 we/33,36,35 w
+SFX 67 0 xe/33,36,35 x
+SFX 67 0 ze/33,36,35 z
+SFX 67 0 0/33,35,36 .
+
+#Sammensætning, fugeelement -kons.f.+er
+SFX 68 Y 40
+SFX 68 0 ber/32,35,36 b
+SFX 68 0 cer/32,35,36 c
+SFX 68 0 der/32,35,36 d
+SFX 68 0 fer/32,35,36 f
+SFX 68 0 ger/32,35,36 g
+SFX 68 0 her/32,35,36 h
+SFX 68 0 jer/32,35,36 j
+SFX 68 0 ker/32,35,36 k
+SFX 68 0 ler/32,35,36 l
+SFX 68 0 mer/32,35,36 m
+SFX 68 0 ner/32,35,36 n
+SFX 68 0 per/32,35,36 p
+SFX 68 0 qer/32,35,36 q
+SFX 68 0 rer/32,35,36 r
+SFX 68 0 ser/32,35,36 s
+SFX 68 0 ter/32,35,36 t
+SFX 68 0 ver/32,35,36 v
+SFX 68 0 wer/32,35,36 w
+SFX 68 0 xer/32,35,36 x
+SFX 68 0 zer/32,35,36 z
+SFX 68 0 ber/36,33,35 b
+SFX 68 0 cer/36,33,35 c
+SFX 68 0 der/36,33,35 d
+SFX 68 0 fer/36,33,35 f
+SFX 68 0 ger/36,33,35 g
+SFX 68 0 her/36,33,35 h
+SFX 68 0 jer/36,33,35 j
+SFX 68 0 ker/36,33,35 k
+SFX 68 0 ler/36,33,35 l
+SFX 68 0 mer/36,33,35 m
+SFX 68 0 ner/36,33,35 n
+SFX 68 0 per/36,33,35 p
+SFX 68 0 qer/36,33,35 q
+SFX 68 0 rer/36,33,35 r
+SFX 68 0 ser/36,33,35 s
+SFX 68 0 ter/36,33,35 t
+SFX 68 0 ver/36,33,35 v
+SFX 68 0 wer/36,33,35 w
+SFX 68 0 xer/36,33,35 x
+SFX 68 0 zer/36,33,35 z
+
+#Sammensætning, fugeelement fjern um  tilføj e
+SFX 69 Y 2
+SFX 69 um e/36,32,35 .	+FUGNING
+SFX 69 um e/36,33,35 .	+FUGNING
+
+#Substantiv, intetkøn, ender på um, bestemt form ental, -um erstattes med -et
+SFX 70 Y 2
+SFX 70 um et/34 .	+BESTEMT_ENTAL
+SFX 70 um ets/34 .	+GENITIV
+
+#Substantiv, ender på um, flertal, -um erstattes med -er
+SFX 71 Y 4
+SFX 71 um er/34 .	+PLUR_UBEK
+SFX 71 um ers/34 .	+GENITIV
+SFX 71 um erne/34 .	+PLUR_BEK
+SFX 71 um ernes/34 .	+GENITIV
+
+#Substantiv, ender på um, -um erstattes med -e i ental
+SFX 72 Y 2
+SFX 72 um e/34 .
+SFX 72 um es/34 .	+GENITIV
+
+#Substantiv, kun flertal, bestemt form -ne (efter -e og -r) eller -ene (øvrige)
+SFX 74 Y 4
+SFX 74 0 ne/34 [er]	+PLUR_BEK
+SFX 74 0 nes/34 [er]	+GENITIV
+SFX 74 0 ene/34 [^er]	+PLUR_BEK
+SFX 74 0 enes/34 [^er]	+GENITIV
+
+#Apostrof før endelse, fælleskøn, torso
+SFX 75 Y 3
+SFX 75 0 'en .	+BESTEMT_ENTAL
+SFX 75 0 'ens .	+GENITIV
+SFX 75 0 's .	+GENITIV
+
+#Substantiv med apostrof før endelse, intetkøn, torso
+SFX 76 Y 3
+SFX 76 0 'et .	+BESTEMT_ENTAL
+SFX 76 0 'ets .	+GENITIV
+SFX 76 0 's .	+GENITIV
