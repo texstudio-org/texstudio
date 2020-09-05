@@ -1,3 +1,7 @@
+TeXstudio 3.0.2
+-----------------
+- 
+
 TeXstudio 3.0.1
 -----------------
 - fix glitch in mopdern style (#1238 , triangle missing)

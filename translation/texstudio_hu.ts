@@ -1823,7 +1823,7 @@ meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az u
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Függőleges túlgörgetés (Görgetés a fájl vége alá)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>
@@ -10738,8 +10738,7 @@ this other file before you can overwrite it.</source>
 %1
 nevű fájl mentése nem lehetséges, mert ilyen nevű fájl
 módosult változata már meg van nyitva a TeXStudióban.
-El kellene menteni, vagy be kellene zárni a másik fájlt.
-</translation>
+El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2687"/>
