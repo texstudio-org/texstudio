@@ -188,6 +188,7 @@ void TerminalWidget::qTermWidgetFinished()
 {
 	// in case the shell closed the widget is reinitiated
 	delete qTermWidget;
+	qTermWidget = nullptr; // Prevent double-delete of terminal widget
 	initQTermWidget();
 }
 
