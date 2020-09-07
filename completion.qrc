@@ -224,6 +224,7 @@
 <file>completion/tocloft.cwl</file>
 <file>completion/todonotes.cwl</file>
 <file>completion/ulem.cwl</file>
+<file>completion/unicode-math.cwl</file>
 <file>completion/units.cwl</file>
 <file>completion/unravel.cwl</file>
 <file>completion/upgreek.cwl</file>
