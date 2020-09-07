@@ -15,77 +15,81 @@
 
 ## Sec. II.1 Main commands
 \setmainfont{font}
-\setmainfont[font features%keyvals]{font}
+\setmainfont[font features]{font}*
 \setmainfont{font}[font features%keyvals]
-\setmainfont[font features%keyvals]{font}[font features%keyvals]#*
+\setmainfont[font features]{font}[font features%keyvals]#*
+\setromanfont{font}
+\setromanfont[font features]{font}*
+\setromanfont{font}[font features%keyvals]
+\setromanfont[font features]{font}[font features%keyvals]#*
 \setsansfont{font}
-\setsansfont[font features%keyvals]{font}
+\setsansfont[font features]{font}*
 \setsansfont{font}[font features%keyvals]
-\setsansfont[font features%keyvals]{font}[font features%keyvals]#*
+\setsansfont[font features]{font}[font features%keyvals]#*
 \setmonofont{font}
-\setmonofont[font features%keyvals]{font}
+\setmonofont[font features]{font}*
 \setsansfont{font}[font features%keyvals]
-\setsansfont[font features%keyvals]{font}[font features%keyvals]#*
+\setsansfont[font features]{font}[font features%keyvals]#*
 
 \newfontfamily{cmd}{font}#d
-\newfontfamily{cmd}[font features%keyvals]{font}#d
+\newfontfamily{cmd}[font features]{font}#*d
 \newfontfamily{cmd}{font}[font features%keyvals]#d
-\newfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\newfontfamily{cmd}[font features]{font}[font features%keyvals]#*d
 \setfontfamily{cmd}{font}#d
-\setfontfamily{cmd}[font features%keyvals]{font}#d
+\setfontfamily{cmd}[font features]{font}#*d
 \setfontfamily{cmd}{font}[font features%keyvals]#d
-\setfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\setfontfamily{cmd}[font features]{font}[font features%keyvals]#*d
 \renewfontfamily{cmd}{font}#d
-\renewfontfamily{cmd}[font features%keyvals]{font}#d
+\renewfontfamily{cmd}[font features]{font}#*d
 \renewfontfamily{cmd}{font}[font features%keyvals]#d
-\renewfontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\renewfontfamily{cmd}[font features]{font}[font features%keyvals]#*d
 \providefontfamily{cmd}{font}#d
-\providefontfamily{cmd}[font features%keyvals]{font}#d
+\providefontfamily{cmd}[font features]{font}#*d
 \providefontfamily{cmd}{font}[font features%keyvals]#d
-\providefontfamily{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\providefontfamily{cmd}[font features]{font}[font features%keyvals]#*d
 
 \fontspec{font}
-\fontspec[font features%keyvals]{font}
+\fontspec[font features]{font}#*
 \fontspec{font}[font features%keyvals]
-\fontspec[font features%keyvals]{font}[font features%keyvals]#*
+\fontspec[font features]{font}[font features%keyvals]#*
 
 ## Sec. II.2 Font selection
 \IfFontExistsTF{font name}{true}{false}
 
 ## Sec. II.4 Commands to select single font faces
 \newfontface{cmd}{font}#d
-\newfontface{cmd}[font features%keyvals]{font}#d
+\newfontface{cmd}[font features]{font}#*d
 \newfontface{cmd}{font}[font features%keyvals]#d
-\newfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\newfontface{cmd}[font features]{font}[font features%keyvals]#*d
 \setfontface{cmd}{font}#d
-\setfontface{cmd}[font features%keyvals]{font}#d
+\setfontface{cmd}[font features]{font}#*d
 \setfontface{cmd}{font}[font features%keyvals]#d
-\setfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\setfontface{cmd}[font features]{font}[font features%keyvals]#*d
 \renewfontface{cmd}{font}#d
-\renewfontface{cmd}[font features%keyvals]{font}#d
+\renewfontface{cmd}[font features]{font}#*d
 \renewfontface{cmd}{font}[font features%keyvals]#d
-\renewfontface{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\renewfontface{cmd}[font features]{font}[font features%keyvals]#*d
 \providefontface{cmd}{font}#d
-\providefontface{cmd}[font features%keyvals]{font}#d
+\providefontface{cmd}[font features]{font}#*d
 \providefontface{cmd}{font}[font features%keyvals]#d
-\providefontface{cmd}[font features%keyvals]{font}[font features%keyvals]#*d
+\providefontface{cmd}[font features]{font}[font features%keyvals]#*d
 
 \setmathrm{font}
-\setmathrm[font features%keyvals]{font}
+\setmathrm[font features]{font}#*
 \setmathrm{font}[font features%keyvals]
-\setmathrm[font features%keyvals]{font}[font features%keyvals]#*
+\setmathrm[font features]{font}[font features%keyvals]#*
 \setmathsf{font}
-\setmathsf[font features%keyvals]{font}
+\setmathsf[font features]{font}#*
 \setmathsf{font}[font features%keyvals]
-\setmathsf[font features%keyvals]{font}[font features%keyvals]#*
+\setmathsf[font features]{font}[font features%keyvals]#*
 \setmathtt{font}
-\setmathtt[font features%keyvals]{font}
+\setmathtt[font features]{font}#*
 \setmathtt{font}[font features%keyvals]
-\setmathtt[font features%keyvals]{font}[font features%keyvals]#*
+\setmathtt[font features]{font}[font features%keyvals]#*
 \setboldmathrm{font}
-\setboldmathrm[font features%keyvals]{font}
+\setboldmathrm[font features]{font}#*
 \setboldmathrm{font}[font features%keyvals]
-\setboldmathrm[font features%keyvals]{font}[font features%keyvals]#*
+\setboldmathrm[font features]{font}[font features%keyvals]#*
 
 ## Sec. III.1 Default settings
 \defaultfontfeatures{font features%keyvals}
@@ -120,7 +124,7 @@
 
 ## common keyvals list, 
 ## both cmds and keys are in alphabetic order, except for engine specific keys
-#keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setsansfont
+#keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setromanfont,\setsansfont
 Alternate
 Annotation
 AutoFakeBold
