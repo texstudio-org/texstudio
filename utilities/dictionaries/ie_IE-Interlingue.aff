@@ -1,0 +1,357 @@
+# Occidental (Interlingue)
+# v1.0
+#
+# Copyright 2015-2020 Smirnova O. I.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+SET UTF-8
+
+WORDCHARS -
+TRY áéíeinatrsloucdmpvgfbhqxyjkóúzöüäçčšžÍ
+
+NOSUGGEST !
+
+BREAK 1
+BREAK -
+
+NOSPLITSUGS
+KEEPCASE +
+COMPOUNDMIN 2
+#COMPOUNDFLAG c
+COMPOUNDBEGIN a
+COMPOUNDEND b
+ONLYINCOMPOUND c
+COMPOUNDPERMITFLAG d
+WARN ?
+
+ICONV 7
+ICONV à á
+ICONV ì í
+ICONV è é
+ICONV ﬁ fi
+ICONV ﬂ fl
+ICONV œ oe
+ICONV æ ae
+
+REP 9
+REP a á
+REP à á
+REP ^in ín
+REP ^ne ín
+REP li$ men
+REP ism$ isme
+REP l' li
+REP ľ li
+REP ^l' li_
+
+MAP 7
+MAP aá(a')
+MAP eé(e')
+MAP iíy
+MAP oó
+MAP uú
+MAP t(th)
+MAP c(ch)k(qu)
+
+PFX N Y 5
+PFX N 0 ín [^í]
+PFX N 0 ín í[^n]
+PFX N 0 im [mbp]
+PFX N 0 il l
+PFX N 0 ir r
+
+PFX I Y 1
+PFX I i í i
+
+PFX j Y 20
+PFX j 0 yotta .
+PFX j 0 zetta .
+PFX j 0 exa   .
+PFX j 0 peta  .
+PFX j 0 tera  .
+PFX j 0 giga  .
+PFX j 0 mega  .
+PFX j 0 kilo  .
+PFX j 0 hecto .
+PFX j 0 deca  .
+PFX j 0 deci  .
+PFX j 0 centi .
+PFX j 0 milli .
+PFX j 0 micro .
+PFX j 0 nano  .
+PFX j 0 pico  .
+PFX j 0 femto .
+PFX j 0 atto  .
+PFX j 0 zepto .
+PFX j 0 yocto .
+
+SFX A Y 7
+SFX A 0 s  [aeiou]
+SFX A 0 i  [^aeious]
+SFX A 0 is [^aeious]
+SFX A 0 i  [^é]s
+SFX A 0 is [^é]s
+SFX A és esi  és
+SFX A és esis és
+
+SFX E Y 2
+SFX E 0 ssim/M  i
+SFX E 0 issim/M [^i]
+
+SFX H Y 13
+SFX H 0 o  [^eo]
+SFX H 0 os [^eo]
+SFX H 0 a  [^eo]
+SFX H 0 as [^eo]
+SFX H 0 e  [^eo]
+SFX H 0 es [^eo]
+SFX H 0 s  [oe]
+SFX H e o  e
+SFX H e os e
+SFX H e a  e
+SFX H e as e
+SFX H o a  o
+SFX H o as o
+
+SFX M Y 2
+SFX M 0 men  .
+SFX M 0 imen [^ic]
+
+SFX S Y 3
+SFX S 0 s  [aeioucgkmáéíóú]
+SFX S 0 es [^aeiouáíóú]
+SFX S 0 e  [^aeiouáéíóú]
+
+SFX V Y 8
+SFX V r 0/d    r
+SFX V r t/HMN  r
+SFX V r s      r
+SFX V r nt/HMN  [^i]r
+SFX V r ent/HMN ir
+SFX V r ye     r
+SFX V r nd/AS  [^i]r
+SFX V r end/AS ir
+
+SFX C Y 9
+SFX C i ant   i
+SFX C 0 esim/MS [^i]
+SFX C 0 esim/MS ri
+SFX C i esim/MS ci
+SFX C 0 plic  [iu]
+SFX C 0 uplic [^iu]
+SFX C 0 ene/S [^i]
+SFX C 0 ene/S ri
+SFX C i ene/S ci
+
+SFX X Y 10
+SFX X e 0/cd e
+SFX X o 0/cd o
+SFX X a 0/cd a
+SFX X r 0/cd ar
+SFX X er 0/cd er
+SFX X e -/cd e
+SFX X o -/cd o
+SFX X a -/cd a
+SFX X r -/cd ar
+SFX X er -/cd er
+
+PFX n Y 2
+PFX n 0 ín .
+PFX n 0 in .
+
+SFX B Y 8
+SFX B r   bil/AMN    [ai]r
+SFX B r   bilitá/n   [ai]r
+SFX B er  ibil/AMN   [^dr]er
+SFX B er  ibilitá/n  [^dr]er
+SFX B der sibil/AMN  der
+SFX B der sibilitá/n der
+SFX B rer sibil/AMN  rer
+SFX B rer sibilitá/n rer
+
+SFX G Y 2
+SFX G r  bilitás/n  [ai]r
+SFX G er ibilitás/n er
+
+SFX T Y 8
+SFX T me t   sme
+SFX T me te  sme
+SFX T me tes sme
+SFX T me tic/M sme
+SFX T m  t   sm
+SFX T m  te  sm
+SFX T m  tes sm
+SFX T m  tic/M sm
+
+SFX Q Y 10
+SFX Q 0  ic/M   [^aeox]
+SFX Q e  c/M    ie
+SFX Q a  c/Mp   ia
+SFX Q e  ic/M   [^si]e
+SFX Q o  ic/M   o
+SFX Q se tic/M  [^s]se
+SFX Q xe ctic/M xe
+SFX Q x  ctic/M x
+SFX Q 0  tic/M  ma
+SFX Q a  0/M    ica
+
+SFX Z Y 5
+SFX Z r  tion  [ai]r
+SFX Z er tion  [aeou]er
+SFX Z er ion   [stx]er
+SFX Z der sion der
+SFX Z rer sion rer
+
+SFX O Y 10
+SFX O r  tione  [ai]r
+SFX O r  tiones [ai]r
+SFX O er tione  [aeou]er
+SFX O er tiones [aeou]er
+SFX O er ione   [stx]er
+SFX O er iones  [stx]er
+SFX O der sione  der
+SFX O der siones der
+SFX O rer sione  rer
+SFX O rer siones rer
+
+SFX R Y 10
+SFX R r  tor/S [ai]r
+SFX R r  tori  [ai]r
+SFX R er tor/S [aoeu]er
+SFX R er tori  [aoeu]er
+SFX R er or/S  [st]er
+SFX R er ori   [st]er
+SFX R der sor/S der
+SFX R der sori  der
+SFX R rer sor/S rer
+SFX R rer sori  rer
+
+SFX L Y 3
+SFX L 0 l/M  a
+SFX L 0 al/M [^ae]
+SFX L e al/M e
+
+SFX U Y 6
+SFX U 0 tte   e
+SFX U 0 ttes  e
+SFX U o ette  o
+SFX U o ettes o
+SFX U 0 ette  [^eo]
+SFX U 0 ettes [^eo]
+
+SFX F Y 4
+SFX F 0 ssa   e
+SFX F 0 ssas  e
+SFX F 0 essa  [^e]
+SFX F 0 essas [^e]
+
+SFX J Y 4
+SFX J 0 in [^eéo]
+SFX J e in e
+SFX J é in é
+SFX J o in o
+
+PFX p Y 26
+PFX p A a A
+PFX p B b B
+PFX p C c C
+PFX p D c D
+PFX p E e E
+PFX p F f F
+PFX p G g G
+PFX p H h H
+PFX p I i I
+PFX p J j J
+PFX p K k K
+PFX p L l L
+PFX p M m M
+PFX p N n N
+PFX p O o O
+PFX p P p P
+PFX p Q q Q
+PFX p R r R
+PFX p S s S
+PFX p T t T
+PFX p U u U
+PFX p V v V
+PFX p W w W
+PFX p X x X
+PFX p Y y Y
+PFX p Z z Z
+
+SFX K Y 2
+SFX K 0 n/pAHb  a
+SFX K 0 an/pAHb [^a]
+
+SFX k Y 7
+SFX k 0  s/pAHb  e
+SFX k ia es/pAHb ia
+SFX k ia és/pb   ia
+SFX k a  es/pAHb [^i]a
+SFX k a  és/pb   [^i]a
+SFX k 0  es/pAHb [^ae]
+SFX k 0  és/pb   [^ae]
+
+SFX g Y 5
+SFX g r  ge/S  ar
+SFX g er age/S er
+SFX g 0  age/S [^ae]r
+SFX g 0  age/S [^er]
+SFX g e  age/S e
+
+SFX m Y 8
+SFX m r  ment/d   [ai]r
+SFX m r  mentes/d [ai]r
+SFX m r  ment/d   [^eu]er
+SFX m r  mentes/d [^eu]er
+SFX m er ment/d   [eu]er
+SFX m er mentes/d [eu]er
+SFX m 0  ment/d   [^r]
+SFX m 0  mentes/d [^r]
+
+SFX t Y 2
+SFX t 0 tá/S  i
+SFX t 0 itá/S [^i]
+
+SFX u Y 5
+SFX u r   tura/S [ai]r
+SFX u der sura/S der
+SFX u rer sura/S rer
+SFX u er  ura/S  [^draeou]er
+SFX u er  tura/S [aeou]er
+
+SFX v Y 5
+SFX v r   tiv/Md [ai]r
+SFX v der siv/Md der
+SFX v rer siv/Md rer
+SFX v er  iv/Md  [^draou]er
+SFX v er  tiv/Md [aou]er
+
+SFX w Y 5
+SFX w r   tiv/MS [ai]r
+SFX w der siv/MS der
+SFX w rer siv/MS rer
+SFX w er  iv/MS  [^draou]er
+SFX w er  tiv/MS [aou]er
+
+SFX y Y 2
+SFX y ia o-/pacd ia
+SFX y e  o-/pacd e
+
+SFX z Y 5
+SFX z 0 osi/AM [^aáeo]
+SFX z e osi/AM e
+SFX z 0 si/AM  o
+SFX z a osi/AM a
+SFX z á osi/AM á

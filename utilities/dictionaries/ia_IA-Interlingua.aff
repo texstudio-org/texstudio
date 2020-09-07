@@ -1,0 +1,1227 @@
+##################################################################
+# Interlingua - Regulas de affixation                            #
+# (c) 2009-2013 Artek Dzialek (artur<point>dzialek<at>gazeta.pl) #
+# Iste software es licentiate secundo GPL 3.                     #
+##################################################################
+
+VERSION 2014-05-18
+SET UTF-8
+FLAG UTF-8
+
+TRY eaiortncslpmuhdgbyfvxqzkjwàáâäãçèéêëìíîïñòóôöõøùúûüýÿ'EAIORTNCSLPMUHDGBYFVXQZKJWÀÁÂÄÃÇÈÉÊËÌÍÎÏÑÒÓÔÖÕØÙÚÛÜÝŸ
+KEY qwa|wes|erd|rtf|tyg|yuh|uij|iok|opl|asz|sdx|dfc|fgv|ghb|hjn|jkm|kl|zxs|xcd|cvf|vbg|bnh|nmj
+
+WORDCHARS -’'0123456789
+
+#NOSPLITSUGS
+NOSUGGEST !
+NEEDAFFIX _
+KEEPCASE |
+COMPOUNDFLAG +
+
+COMPOUNDPERMITFLAG H
+COMPOUNDBEGIN I
+COMPOUNDEND J
+ONLYINCOMPOUND K
+
+COMPOUNDMIN 2
+COMPOUNDRULE 1
+COMPOUNDRULE Y*Z
+
+
+MAP 16
+MAP aàáâäã
+MAP cç
+MAP eèéêë
+MAP iìíîï
+MAP nñ
+MAP oòóôöõø
+MAP uùúûü
+MAP yýÿ
+MAP AÀÁÂÄÃ
+MAP CÇ
+MAP EÈÉÊË
+MAP IÌÍÎÏ
+MAP NÑ
+MAP OÒÓÔÖÕØ
+MAP UÙÚÛÜ
+MAP YỲŸ
+
+REP 64
+REP c qu
+REP qu c
+REP ch c
+REP c ch
+REP ch k
+REP k ch
+REP ch q
+REP q ch
+REP ph f
+REP f ph
+REP rh r
+REP r rh
+REP th t
+REP t th
+REP x ct
+REP ct x
+REP bb b
+REP b bb
+REP cc c
+REP c cc
+REP ff f
+REP f ff
+REP ll l
+REP l ll
+REP mm m
+REP m mm
+REP nn n
+REP n nn
+REP pp p
+REP p pp
+REP rr r
+REP r rr
+REP ss s
+REP s ss
+REP ss c
+REP c ss
+REP tt t
+REP t tt
+REP z zz
+REP zz z
+REP ae ä
+REP ä ae
+REP oe ö
+REP ö oe
+REP ue ü
+REP ü ue
+REP au o
+REP ea i
+REP i ea
+REP o au
+REP oo u
+REP u oo
+REP a$ e
+REP a$ o
+REP e$ a
+REP e$ o
+REP o$ a
+REP o$ e
+REP as$ es
+REP as$ os
+REP es$ as
+REP es$ os
+REP os$ as
+REP os$ es
+
+SFX A Y 41
+SFX A   0   0   [iechklnr]  ds:e po:adj
+SFX A   0   e   i           ds:e po:adj
+SFX A   i-  e   i-          ds:e po:adj
+SFX A   c-  0   c-          ds:e po:adj
+SFX A   0   o   [ichklnr]   ds:o po:adv
+SFX A   e   o   e           ds:o po:adv
+SFX A   -   o   [ci]-       ds:o po:adv
+SFX A   0   mente   [eilnr] ds:mente po:adv
+SFX A   0   emente  i       ds:mente po:adv
+SFX A   i-  emente  i-      ds:mente po:adv
+SFX A   0   amente  [chk]   ds:mente po:adv
+SFX A   -   amente  c-      ds:mente po:adv
+SFX A   0   issime/_B   [hklnr] ds:issim
+SFX A   e   issime/_B   [^i]e   ds:issim
+SFX A   e   ssime/_B    ie      ds:issim
+SFX A   0   ssime/_B    i       ds:issim
+SFX A   -   ssime/_B    i-      ds:issim
+SFX A   0   hissime/_B  c       ds:issim
+SFX A   -   hissime/_B  c-      ds:issim
+SFX A   0   0   [echklnr]   ds:e is:sg po:sb
+SFX A   0   e   i           ds:e is:sg po:sb
+SFX A   i-  e   i-          ds:e is:sg po:sb
+SFX A   c-  0   c-          ds:e is:sg po:sb
+SFX A   e   o   e           ds:o is:sg po:sb
+SFX A   0   o   [ichklnr]   ds:o is:sg po:sb
+SFX A   -   o   [ci]-       ds:o is:sg po:sb
+SFX A   e   a   e           ds:a is:sg po:sb
+SFX A   0   a   [ichklnr]   ds:a is:sg po:sb
+SFX A   -   a   [ci]-       ds:a is:sg po:sb
+SFX A   0   s   e           ds:e is:pl po:sb
+SFX A   0   es  [hklnr]     ds:e is:pl po:sb
+SFX A   0   es  i           ds:e is:pl po:sb
+SFX A   i-  es  i-          ds:e is:pl po:sb
+SFX A   0   hes c           ds:e is:pl po:sb
+SFX A   -   hes c-          ds:e is:pl po:sb
+SFX A   e   os  e           ds:o is:pl po:sb
+SFX A   0   os  [ichklnr]   ds:o is:pl po:sb
+SFX A   -   os  [ci]-       ds:o is:pl po:sb
+SFX A   e   as  e           ds:a is:pl po:sb
+SFX A   0   as  [ichklnr]   ds:a is:pl po:sb
+SFX A   -   as  [ci]-       ds:a is:pl po:sb
+#SFX A  0  -    [eilnr] ds:- po:adv
+#SFX A  0  e-   i       ds:- po:adv
+#SFX A  i- e-   i-      ds:- po:adv
+#SFX A  0  a-   [chk]   ds:a- po:adv
+#SFX A  -  a-   c-      ds:a- po:adv
+#Flag for adjectives and derived nouns of two forms ending with -o and -a "following 1/2 declension"
+#special endings uzbek, tadjik, kazakh
+
+SFX B Y 19
+SFX B   0  0    [eiclnr]    ds:e po:adj
+SFX B   0  e    i           ds:e po:adj
+SFX B   e  o    e           ds:o po:adv
+SFX B   0  o    [iclnr]     ds:o po:adv
+SFX B   0  mente    [ielnr] ds:mente po:adv
+SFX B   0  amente   c       ds:mente po:adv
+SFX B   0  0    [eclnr] ds:e is:sg po:sb
+SFX B   0  e    i       ds:e is:sg po:sb
+SFX B   e  o    e       ds:o is:sg po:sb
+SFX B   0  o    [iclnr] ds:o is:sg po:sb
+SFX B   e  a    e       ds:a is:sg po:sb
+SFX B   0  a    [iclnr] ds:a is:sg po:sb
+SFX B   0  s    e       ds:e is:pl po:sb
+SFX B   0  es   [ilnr]  ds:e is:pl po:sb
+SFX B   0  hes  c       ds:e is:pl po:sb
+SFX B   e  os   e       ds:o is:pl po:sb
+SFX B   0  os   [iclnr] ds:o is:pl po:sb
+SFX B   e  as   e       ds:a is:pl po:sb
+SFX B   0  as   [iclnr] ds:a is:pl po:sb
+#SFX B  0  -    [ielnr] ds:- po:adv
+#SFX B  0  a-   c       ds:a- po:adv
+#Continuation flag for derived adjectives
+
+SFX C Y 1
+SFX C  0  0    .   po:adj
+#Flag for invariable adjectives derived by conversion from nouns or attributively used phrases
+
+SFX D Y 1
+SFX D   0  0    .   po:adv
+#Flag for simple adverbs and adverbly used phrases
+
+SFX E Y 13
+SFX E   0  0        [aeiyuclmnrt]   ds:0 po:adj
+SFX E   0  mente    [aeiyuclnmt]    ds:mente po:adv
+SFX E   0  mente    [^o]r           ds:mente po:adv
+SFX E   0  mente    [^tsx]or        ds:mente po:adv
+SFX E   a  issime/_B    [^c]a       ds:issim
+SFX E   a  hissime/_B   ca          ds:issim
+SFX E   e  issime/_B    e           ds:issim
+SFX E   0  ssime/_B     i           ds:issim
+SFX E   0  issime/_B    [yulnmrt]   ds:issim
+SFX E   0  hissime/_B   c           ds:issim
+SFX E   0  0        [aeiyuclmnrt]   ds:0 is:sg po:sb
+SFX E   0  s        [aeiyuct]       ds:0 is:pl po:sb
+SFX E   0  es       [lmnr]          ds:0 is:pl po:sb
+#SFX E  0  -        [aeiyuclnmt]    ds:- po:adv
+#SFX E  0  -        [^o]r           ds:- po:adv
+#SFX E  0  -        [^tsx]or        ds:- po:adv
+#Flag for one form adjectives from the "purist list", "following 3/4 declension",
+#+chic, nonchalant, flamboyant because of chicmente, nonchalantmente, flamboyantmente
+
+SFX F Y 5
+SFX F   0  0        [aer]   ds:0 po:adj
+SFX F   0  mente    [ae]    ds:mente po:adv
+SFX F   0  0        [aer]   ds:0 is:sg po:sb
+SFX F   0  s        [ae]    ds:0 is:pl po:sb
+SFX F   0  es       [tsx]or ds:0 is:pl po:sb
+#SFX F  0  -     [ae]    ds:-   po:adv
+#Continuation flag for derived adjectives ending with -ante/-ente, -abile/-ibile, -ista and -tor/-sor/-xor
+
+SFX G Y 1
+SFX G   0   0   .   is:sg po:sb
+
+SFX L Y 1
+SFX L   0   0   .   is:pl po:sb
+
+SFX M Y 2
+SFX M   o   a/_S    o    ds:a
+SFX M   or  rice/_S tor  ds:rice
+
+SFX N Y 45
+SFX N   a   esime   a       ds:esim po:adj
+SFX N   0   sime    e       ds:esim po:adj
+SFX N   i   esime   i       ds:esim po:adj
+SFX N   o   esime   o       ds:esim po:adj
+SFX N   0   esime   [^aeio] ds:esim po:adj
+SFX N   a   esimo   a       ds:esim ds:o po:adv
+SFX N   0   simo    e       ds:esim ds:o po:adv
+SFX N   i   esimo   i       ds:esim ds:o po:adv
+SFX N   o   esimo   o       ds:esim ds:o po:adv
+SFX N   0   esimo   [^aeio] ds:esim ds:o po:adv
+SFX N   a   esimemente  a       ds:esim ds:mente po:adv
+SFX N   0   simemente   e       ds:esim ds:mente po:adv
+SFX N   i   esimemente  i       ds:esim ds:mente po:adv
+SFX N   o   esimemente  o       ds:esim ds:mente po:adv
+SFX N   0   esimemente  [^aeio] ds:esim ds:mente po:adv
+SFX N   a   esime   a       ds:esim ds:e is:sg po:sb
+SFX N   0   sime    e       ds:esim ds:e is:sg po:sb
+SFX N   i   esime   i       ds:esim ds:e is:sg po:sb
+SFX N   o   esime   o       ds:esim ds:e is:sg po:sb
+SFX N   0   esime   [^aeio] ds:esim ds:e is:sg po:sb
+SFX N   a   esimo   a       ds:esim ds:o is:sg po:sb
+SFX N   0   simo    e       ds:esim ds:o is:sg po:sb
+SFX N   i   esimo   i       ds:esim ds:o is:sg po:sb
+SFX N   o   esimo   o       ds:esim ds:o is:sg po:sb
+SFX N   0   esimo   [^aeio] ds:esim ds:o is:sg po:sb
+SFX N   a   esima   a       ds:esim ds:a is:sg po:sb
+SFX N   0   sima    e       ds:esim ds:a is:sg po:sb
+SFX N   i   esima   i       ds:esim ds:a is:sg po:sb
+SFX N   o   esima   o       ds:esim ds:a is:sg po:sb
+SFX N   0   esima   [^aeio] ds:esim ds:a is:sg po:sb
+SFX N   a   esimes  a       ds:esim ds:e is:pl po:sb
+SFX N   0   simes   e       ds:esim ds:e is:pl po:sb
+SFX N   i   esimes  i       ds:esim ds:e is:pl po:sb
+SFX N   o   esimes  o       ds:esim ds:e is:pl po:sb
+SFX N   0   esimes  [^aeio] ds:esim ds:e is:pl po:sb
+SFX N   a   esimos  a       ds:esim ds:o is:pl po:sb
+SFX N   0   simos   e       ds:esim ds:o is:pl po:sb
+SFX N   i   esimos  i       ds:esim ds:o is:pl po:sb
+SFX N   o   esimos  o       ds:esim ds:o is:pl po:sb
+SFX N   0   esimos  [^aeio] ds:esim ds:o is:pl po:sb
+SFX N   a   esimas  a       ds:esim ds:a is:pl po:sb
+SFX N   0   simas   e       ds:esim ds:a is:pl po:sb
+SFX N   i   esimas  i       ds:esim ds:a is:pl po:sb
+SFX N   o   esimas  o       ds:esim ds:a is:pl po:sb
+SFX N   0   esimas  [^aeio] ds:esim ds:a is:pl po:sb
+
+SFX O Y 9
+SFX O   0   0   e   ds:e po:adj
+SFX O   e   o   e   ds:o po:adv
+SFX O   0   mente   e   ds:mente po:adv
+SFX O   0   0   e   ds:e is:sg po:sb
+SFX O   e   o   e   ds:o is:sg po:sb
+SFX O   e   a   e   ds:a is:sg po:sb
+SFX O   0   s   e   ds:e is:pl po:sb
+SFX O   e   os  e   ds:o is:pl po:sb
+SFX O   e   as  e   ds:a is:pl po:sb
+
+SFX P Y 9
+SFX P   0  0    [^is]                    is:sg po:pron
+SFX P   0  0    is                       is:sg po:pron
+SFX P   0  0    [^o]i                    is:sg po:pron
+SFX P   0  0    [^i]s                    is:pl po:pron
+SFX P   0  0    [nv]oi                   is:pl po:pron
+SFX P   0  s    [^ioucjgmnst][aeo]       is:pl po:pron
+SFX P   0  s    [aoumnrst][iucjnst][aeo] is:pl po:pron
+SFX P   0  es   [lrn]                    is:pl po:pron
+SFX P   0  hes  [pa][ou]c                is:pl po:pron
+
+SFX Q Y 7
+SFX Q   0  0      .      ds:e po:adj
+SFX Q   0  0/_P   [^iur] ds:e
+SFX Q   0  e/_P   [iur]  ds:e
+SFX Q   e  o/_P   e      ds:o
+SFX Q   e  a/_P   e      ds:a
+SFX Q   0  o/_P   [^e]   ds:o
+SFX Q   0  a/_P   [^e]   ds:a
+
+SFX R Y 2
+SFX R   0  0      .   ds:e po:adj
+SFX R   0  0/_P   .   ds:e
+
+SFX S Y 4
+SFX S   0  0    .           is:sg po:sb
+SFX S   0  s    [aáeéiouy]   is:pl po:sb
+SFX S   0  es   [^aáeéiouyc] is:pl po:sb
+SFX S   0  hes  c           is:pl po:sb
+
+SFX T Y 27
+SFX T   0   0       .               is:sg po:sb
+SFX T   ice ex      ice             is:sg po:sb
+SFX T   ce  x       [ay]ce          is:sg po:sb
+SFX T   de  s       ide             is:sg po:sb
+SFX T   ge  x       ge              is:sg po:sb
+SFX T   che x       che             is:sg po:sb
+SFX T   e   is      [^c]he          is:sg po:sb
+SFX T   e   is      [blmnrstvx]e    is:sg po:sb
+SFX T   0   s       e               is:pl po:sb
+SFX T   um  a       um              is:pl po:sb
+SFX T   on  a       on              is:pl po:sb
+SFX T   und ünde   und             is:pl po:sb
+SFX T   opf öpfe   opf             is:pl po:sb
+SFX T   ock öcke   ock             is:pl po:sb
+SFX T   ack äcke   ack             is:pl po:sb
+SFX T   ann änner  ann             is:pl po:sb
+SFX T   aus äuser  aus             is:pl po:sb
+SFX T   aps äpse   aps             is:pl po:sb
+SFX T   0   er      [se][td]        is:pl po:sb
+SFX T   0   en      nz              is:pl po:sb
+SFX T   0   se      [tn]is          is:pl po:sb
+SFX T   0   e       [^iup]s         is:pl po:sb
+SFX T   0   e       [^tn]is         is:pl po:sb
+SFX T   0   e       [^s]t           is:pl po:sb
+SFX T   0   e       [^i]st          is:pl po:sb
+SFX T   0   e       [^eoun][dnz]    is:pl po:sb
+SFX T   0   e       [ghlv]       is:pl po:sb
+
+SFX U Y 15
+SFX U   0   0   .           is:sg po:sb
+SFX U   y   ies [^aeiou]y   is:pl po:sb
+SFX U   0   s   [aeiou]y    is:pl po:sb
+SFX U   0   s   [^ufns]     is:pl po:sb
+SFX U   0   s   [^ae]u      is:pl po:sb
+SFX U   0   x   [ae]u       is:pl po:sb
+SFX U   0   s   [^l]f       is:pl po:sb
+SFX U   0   s   [^ea]lf     is:pl po:sb
+SFX U   f   ves [ea]lf      is:pl po:sb
+SFX U   0   s   [^a]n       is:pl po:sb
+SFX U   0   s   [^m]an      is:pl po:sb
+SFX U   an  en  [^l]man     is:pl po:sb
+SFX U   0   s   lman        is:pl po:sb
+SFX U   0   x   [ae]u       is:pl po:sb
+SFX U   0   0   s           is:pl po:sb
+
+SFX V Y 30
+SFX V   r   r/_S    ar  ds:a is:inf
+SFX V   r   r/_S    er  ds:e is:inf
+SFX V   r   r/_S    ir  ds:i is:inf
+SFX V   r   nte/_F  ar  ds:a is:act
+SFX V   r   nte/_F  er  ds:e is:act
+SFX V   r   ente/_F ir  ds:i is:act
+SFX V   r   ntissime/_B     ar  ds:a is:act ds:issim
+SFX V   r   ntissime/_B     er  ds:e is:act ds:issim
+SFX V   r   entissime/_B    ir  ds:i is:act ds:issim
+SFX V   r   te/_B       ar  ds:a is:pass
+SFX V   er  ite/_B      er  ds:i is:pass
+SFX V   r   te/_B       ir  ds:i is:pass
+SFX V   r   tissime/_B  ar  ds:a is:pass ds:issim
+SFX V   er  itissime/_B er  ds:i is:pass ds:issim
+SFX V   r   tissime/_B  ir  ds:i is:pass ds:issim
+SFX V   r  r    ar  ds:a is:inf  po:vb
+SFX V   r  r    er  ds:e is:inf  po:vb
+SFX V   r  r    ir  ds:i is:inf  po:vb
+SFX V   r  0    ar  ds:a is:pres po:vb
+SFX V   r  0    er  ds:e is:pres po:vb
+SFX V   r  0    ir  ds:i is:pres po:vb
+SFX V   r  va   ar  ds:a is:pret po:vb
+SFX V   r  va   er  ds:e is:pret po:vb
+SFX V   r  va   ir  ds:i is:pret po:vb
+SFX V   r  ra   ar  ds:a is:fut  po:vb
+SFX V   r  ra   er  ds:e is:fut  po:vb
+SFX V   r  ra   ir  ds:i is:fut  po:vb
+SFX V   r  rea  ar  ds:a is:cond po:vb
+SFX V   r  rea  er  ds:e is:cond po:vb
+SFX V   r  rea  ir  ds:i is:cond po:vb
+
+SFX W Y 22
+SFX W   r   re/_S   er  ds:0 is:inf
+SFX W   r   r/_G    er  ds:0 is:inf
+SFX W   r   nte/_F      [^cp]er             ds:0 is:actv
+SFX W   r   nte/_F      [^ai][cp]er         ds:0 is:actv
+SFX W   r   nte/_F      [^fjpsc][ai][cp]er  ds:0 is:actv
+SFX W   er  iente/_F    [fjpsc][ai][cp]er   ds:0 is:actv
+SFX W   r   ntissime/_B     [^cp]er             ds:0 is:actv ds:issim
+SFX W   r   ntissime/_B     [^ai][cp]er         ds:0 is:actv ds:issim
+SFX W   r   ntissime/_B     [^fjpsc][ai][cp]er  ds:0 is:actv ds:issim
+SFX W   er  ientissime/_B   [fjpsc][ai][cp]er   ds:0 is:actv ds:issim
+SFX W   er  ite/_B  er      ds:i is:pass
+SFX W   -   e/_B    t-      ds:0 is:pass
+SFX W   -   e/_B    [sx]-   ds:0 is:pass
+SFX W   er  itissime/_B er      ds:i is:pass
+SFX W   -   issime/_B   t-      ds:0 is:pass ds:issim
+SFX W   -   issime/_B   [sx]-   ds:0 is:pass ds:issim
+SFX W   r   re  er  ds:0 is:inf  po:vb
+SFX W   r   r   er  ds:0 is:inf  po:vb
+SFX W   r   0   er  ds:0 is:pres po:vb
+SFX W   r   va  er  ds:0 is:pret po:vb
+SFX W   r   ra  er  ds:0 is:fut  po:vb
+SFX W   r   rea er  ds:0 is:cond po:vb
+
+SFX X Y   1
+SFX X   0   0/zIKH  .
+
+PFX ] Y 20
+PFX ]   0 Y  .
+PFX ]   0 Z  .
+PFX ]   0 E  .
+PFX ]   0 P  .
+PFX ]   0 T  .
+PFX ]   0 G  .
+PFX ]   0 M  .
+PFX ]   0 k  .
+PFX ]   0 h  .
+PFX ]   0 da .
+PFX ]   0 d  .
+PFX ]   0 c  .
+PFX ]   0 m  .
+PFX ]   0 µ  .
+PFX ]   0 n  .
+PFX ]   0 p  .
+PFX ]   0 f  .
+PFX ]   0 a  .
+PFX ]   0 z  .
+PFX ]   0 y  .
+
+PFX [ Y 41
+PFX [   0 yotta  .
+PFX [   0 zetta  .
+PFX [   0 exa    .
+PFX [   0 peta   .
+PFX [   0 tera   .
+PFX [   0 giga   .
+PFX [   0 mega   .
+PFX [   0 kilo   .
+PFX [   0 hecto  [^a]
+PFX [   0 hect   a[^r]
+PFX [   0 deca   .
+PFX [   0 deci   .
+PFX [   0 centi  .
+PFX [   0 milli  .
+PFX [   0 micro  .
+PFX [   0 nano   .
+PFX [   0 pico   .
+PFX [   0 femto  .
+PFX [   0 atto   .
+PFX [   0 zepto  .
+PFX [   0 yocto  .
+PFX [   0 yotta- [aiyu]
+PFX [   0 zetta- [aiyu]
+PFX [   0 exa-   [aiyu]
+PFX [   0 peta-  [aiyu]
+PFX [   0 tera-  [aiyu]
+PFX [   0 giga-  [aiyu]
+PFX [   0 mega-  [aiyu]
+PFX [   0 kilo-  [oiyu]
+PFX [   0 hecto- [oiyu]
+PFX [   0 deca-  [aiu]
+PFX [   0 deci-  [aeiyou]
+PFX [   0 centi- [aeiyou]
+PFX [   0 milli- [aeiyou]
+PFX [   0 micro- [oiyu]]
+PFX [   0 nano-  [oiyu]]
+PFX [   0 pico-  [oiyu]]
+PFX [   0 femto- [oiyu]]
+PFX [   0 atto-  [oiyu]]
+PFX [   0 zepto- [oiyu]]
+PFX [   0 yocto- [oiyu]]
+
+PFX ) Y 8
+PFX )   0 Ki [Bbo]
+PFX )   0 Mi [Bbo]
+PFX )   0 Gi [Bbo]
+PFX )   0 Ti [Bbo]
+PFX )   0 Pi [Bbo]
+PFX )   0 Ei [Bbo]
+PFX )   0 Zi [Bbo]
+PFX )   0 Yi [Bbo]
+
+PFX ( Y 16
+PFX (   0 kibi   [bo][cyi]t
+PFX (   0 mebi   [bo][cyi]t
+PFX (   0 gigi   [bo][cyi]t
+PFX (   0 tebi   [bo][cyi]t
+PFX (   0 pebi   [bo][cyi]t
+PFX (   0 exbi   [bo][cyi]t
+PFX (   0 zebi   [bo][cyi]t
+PFX (   0 yobi   [bo][cyi]t
+PFX (   0 kibi-  oct
+PFX (   0 mebi-  oct
+PFX (   0 gigi-  oct
+PFX (   0 tebi-  oct
+PFX (   0 pebi-  oct
+PFX (   0 exbi-  oct
+PFX (   0 zebi-  oct
+PFX (   0 yobi-  oct
+
+PFX = Y 36
+PFX =   contra  contra- contra[aiyu]
+PFX =   extra   extra-  extra[aiyu]
+PFX =   infra   infra-  infra[aiyu]
+PFX =   intra   intra-  intra[aiyu]
+PFX =   meta    meta-   meta[aiyu]
+PFX =   para    para-   para[aiyu]
+PFX =   supra   supra-  supra[aiyu]
+PFX =   ultra   ultra-  ultra[aiyu]
+PFX =   mega    mega-   mega[aiyu]
+PFX =   bi      bi-     bi[aeiyou]
+PFX =   archi   archi-  archi[aeiyou]
+PFX =   anti    anti-   anti[aeiyou]
+PFX =   mini    mini-   mini[aeiyou]
+PFX =   multi   multi-  multi[aeiyou]
+PFX =   pluri   pluri-  pluri[aeiyou]
+PFX =   quasi   quasi-  quasi
+PFX =   semi    semi-   semi[aeiyou]
+PFX =   pre     pre-    pre[eiyu]
+PFX =   re      re-     re[eiyu]
+PFX =   tele    tele-   tele[eiyu]
+PFX =   vice    vice-   vice[eiyu]
+PFX =   auto    auto-   auto[oiyu]
+PFX =   co      co-     co[oiyu]
+PFX =   endo    endo-   endo[oiyu]
+PFX =   exo     exo-    exo[oiyu]
+PFX =   hypo    hypo-   hypo[oiyu]
+PFX =   macro   macro-  macro[oiyu]
+PFX =   micro   micro-  micro[oiyu]
+PFX =   mono    mono-   mono[oiyu]
+PFX =   neo     neo-    neo[oiyu]
+PFX =   pro     pro-    pro[oiyu]
+PFX =   proto   proto-  proto[oiyu]
+PFX =   pseudo  pseudo- pseudo[oiyu]
+PFX =   retro   retro-  retro[oiyu]
+PFX =   poly    poly-   poly[aeiyou]
+PFX =   post    post-   postt
+
+SFX a Y 16
+SFX a   a   sta/_F     ia      ds:ista
+SFX a   e   sta/_F     ie      ds:ista
+SFX a   o   sta/_F     io      ds:ista
+SFX a   0   sta/_F     i       ds:ista
+SFX a   a   ista/_F    [^i]a   ds:ista
+SFX a   e   ista/_F    [^i]e   ds:ista
+SFX a   o   ista/_F    [^i]o   ds:ista
+SFX a   0   ista/_F    [^aeio] ds:ista
+SFX a   a   stissime/_B     ia      ds:ista ds:issim
+SFX a   e   stissime/_B     ie      ds:ista ds:issim
+SFX a   o   stissime/_B     io      ds:ista ds:issim
+SFX a   0   stissime/_B     i       ds:ista ds:issim
+SFX a   a   istissime/_B    [^i]a   ds:ista ds:issim
+SFX a   e   istissime/_B    [^i]e   ds:ista ds:issim
+SFX a   o   istissime/_B    [^i]o   ds:ista ds:issim
+SFX a   0   istissime/_B    [^aeio] ds:ista ds:issim
+
+SFX b Y 10
+SFX b   r   bile/_F    ar       ds:a    ds:bil
+SFX b   er  ibile/_F   er       ds:i    ds:bil
+SFX b   r   bile/_F    ir       ds:i    ds:bil
+SFX b   -   ibile/_F   t-       ds:0    ds:tibil
+SFX b   -   ibile/_F   [sx]-    ds:0    ds:sibil
+SFX b   r   bilissime/_B   ar      ds:a    ds:bil   ds:issim
+SFX b   er  ibilissime/_B  er      ds:i    ds:bil   ds:issim
+SFX b   r   bilissime/_B   ir      ds:i    ds:bil   ds:issim
+SFX b   -   ibilissime/_B  t-      ds:0    ds:tibil ds:issim
+SFX b   -   ibilissime/_B  [sx]-   ds:0    ds:sibil ds:issim
+
+SFX c Y 5
+SFX c   r   bilitate/_S     ar      ds:a    ds:bil      ds:itate
+SFX c   er  ibilitate/_S    er      ds:i    ds:bil      ds:itate
+SFX c   r   bilitate/_S     ir      ds:i    ds:bil      ds:itate
+SFX c   -   ibilitate/_S    t-      ds:0    ds:tibil    ds:itate
+SFX c   -   ibilitate/_S    [sx]-   ds:0    ds:sibil    ds:itate
+
+SFX d Y 3
+SFX d   r   ntia/_S     ar  ds:a    ds:ntia
+SFX d   r   ntia/_S     er  ds:e    ds:ntia
+SFX d   r   entia/_S    ir  ds:i    ds:entia
+
+SFX e Y 8
+SFX e   ar   eria/_S    [^c]ar  ds:eria
+SFX e   a    eria/_S    [^c]a   ds:eria
+SFX e   o    eria/_S    [^c]o   ds:eria
+SFX e   ar   heria/_S   car     ds:eria
+SFX e   a    heria/_S   ca      ds:eria
+SFX e   o    heria/_S   co      ds:eria
+SFX e   0    ria/_S     e       ds:eria
+SFX e   0    eria/_S    [^aeor] ds:eria
+
+SFX f Y 28
+SFX f   0     o-/IKH       [lrchky]   po:adj ds:o-
+SFX f   0     o-/IKH       [^a]n      po:adj ds:o-
+SFX f   0     o-/IKH       [^eiuy]an  po:adj ds:o-
+SFX f   ian   o-/IKH       ian        po:adj ds:o-
+SFX f   an    o-/IKH       [euy]an    po:adj ds:o-
+SFX f   a     o-/IKH       a          po:adj ds:o-
+SFX f   e     o-/IKH       [^si]e     po:adj ds:o-
+SFX f   e     o-/IKH       [^e]se     po:adj ds:o-
+SFX f   ie    o-/IKH       ie         po:adj ds:o-
+SFX f   ese   o-/IKH       [^h]ese    po:adj ds:o-
+SFX f   ese   o-/IKH       [^c]hese   po:adj ds:o-
+SFX f   hese  o-/IKH       chese      po:adj ds:o-
+SFX f   i     o-/IKH       i          po:adj ds:o-
+SFX f   0     -/IKH        [dto]      po:adj ds:-
+SFX f   0     o/IKH       [lrchky]   po:adj ds:o-
+SFX f   0     o/IKH       [^a]n      po:adj ds:o-
+SFX f   0     o/IKH       [^eiuy]an  po:adj ds:o-
+SFX f   ian   o/IKH       ian        po:adj ds:o-
+SFX f   an    o/IKH       [euy]an    po:adj ds:o-
+SFX f   a     o/IKH       a          po:adj ds:o-
+SFX f   e     o/IKH       [^si]e     po:adj ds:o-
+SFX f   e     o/IKH       [^e]se     po:adj ds:o-
+SFX f   ie    o/IKH       ie         po:adj ds:o-
+SFX f   ese   o/IKH       [^h]ese    po:adj ds:o-
+SFX f   ese   o/IKH       [^c]hese   po:adj ds:o-
+SFX f   hese  o/IKH       chese      po:adj ds:o-
+SFX f   i     o/IKH       i          po:adj ds:o-
+SFX f   0     0/IKH       [dto]      po:adj ds:-
+
+SFX g Y 3
+SFX g   r    ge/_S   ar   ds:age
+SFX g   er   age/_S  er   ds:age
+SFX g   ir   age/_S  ir   ds:age
+
+SFX h Y 4
+SFX h   a   ena/_S  a   ds:ena
+SFX h   o   ena/_S  o   ds:ena
+SFX h   0   na/_S   e   ds:ena
+SFX h   i   ena/_S  i   ds:ena
+
+SFX i Y 10
+SFX i   r   tori/_B       ar       ds:a    ds:tori
+SFX i   er  itori/_B      er       ds:i    ds:tori
+SFX i   r   tori/_B       ir       ds:i    ds:tori
+SFX i   -   ori/_B        t-       ds:0    ds:tori
+SFX i   -   ori/_B        [sx]-    ds:0    ds:sori
+SFX i   r   torissime/_B   ar       ds:a    ds:tori
+SFX i   er  itorissime/_B  er       ds:i    ds:tori
+SFX i   r   torissime/_B   ir       ds:i    ds:tori
+SFX i   -   orissime/_B    t-       ds:0    ds:tori
+SFX i   -   orissime/_B    [sx]-    ds:0    ds:sori
+
+SFX j Y 5
+SFX j   r   torio/_S    ar      ds:a    ds:torio
+SFX j   er  itorio/_S   er      ds:i    ds:torio
+SFX j   r   torio/_S    ir      ds:i    ds:torio
+SFX j   -   orio/_S     t-      ds:0    ds:torio
+SFX j   -   orio/_S     [sx]-   ds:0    ds:sorio
+
+SFX k Y 5
+SFX k   0   itate/_S    [auychklmnrt]   ds:itate
+SFX k   -   itate/_S    [stx]-          ds:itate
+SFX k   e   itate/_S    [^i]e           ds:itate
+SFX k   0   etate/_S    i               ds:itate
+SFX k   0   tate/_S     ie              ds:itate
+
+SFX l Y 10
+SFX l   ple     llion/_SN       iple    ds:illion
+SFX l   uple    illion/_SN      uple    ds:illion
+SFX l   a       illion/_zSN     a       ds:illion
+SFX l   0       llion/_zSN      i       ds:illion
+SFX l   ple     lliardo/_SN     iple    ds:illiardo
+SFX l   uple    illiardo/_SN    uple    ds:illiardo
+SFX l   a       illiardo/_zSN   a       ds:illiardo
+SFX l   0       lliardo/_zSN    i       ds:illiardo
+SFX l   0       llion/_JSN      enti    ds:illion
+SFX l   0       lliardo/_JSN    enti    ds:illiardo
+
+SFX m Y 3
+SFX m   r   mento/_S    ar  ds:a    ds:mento
+SFX m   er  imento/_S   er  ds:i    ds:mento
+SFX m   r   mento/_S    ir  ds:i    ds:mento
+
+SFX n Y 5
+SFX n   r   tion/_S     ar      ds:a    ds:tion
+SFX n   er  ition/_S    er      ds:i    ds:tion
+SFX n   r   tion/_S     ir      ds:i    ds:tion
+SFX n   -   ion/_S      t-      ds:0    ds:tion
+SFX n   -   ion/_S      [sx]-   ds:0    ds:sion
+
+SFX o Y 8
+SFX o   a   smo/_S  ia      ds:ismo
+SFX o   e   smo/_S  ie      ds:ismo
+SFX o   o   smo/_S  io      ds:ismo
+SFX o   0   smo/_S  i       ds:ismo
+SFX o   a   ismo/_S [^i]a   ds:ismo
+SFX o   e   ismo/_S [^i]e   ds:ismo
+SFX o   o   ismo/_S [^i]o   ds:ismo
+SFX o   0   ismo/_S [^aeio] ds:ismo
+
+
+SFX p Y 4
+SFX p   a   uple/_O a   ds:upl
+SFX p   o   uple/_O o   ds:upl
+SFX p   e   uple/_O e   ds:upl
+SFX p   i   uple/_O i   ds:upl
+
+SFX q Y 20
+SFX q   a   c/_B   ia       ds:ic
+SFX q   e   c/_B   ie       ds:ic
+SFX q   o   c/_B   io       ds:ic
+SFX q   0   c/_B   i        ds:ic
+SFX q   a   ic/_B  [^i]a    ds:ic
+SFX q   e   ic/_B  [^isx]e  ds:ic
+SFX q   o   ic/_B  [^i]o    ds:ic
+SFX q   0   ic/_B  [^aeio]  ds:ic
+SFX q   se  tic/_B  se      ds:ic
+SFX q   xe  ctic/_B xe      ds:ic
+SFX q   a   chissime/_B     ia       ds:ic
+SFX q   e   chissime/_B     ie       ds:ic
+SFX q   o   chissime/_B     io       ds:ic
+SFX q   0   chissime/_B     i        ds:ic
+SFX q   a   ichissime/_B    [^i]a    ds:ic
+SFX q   e   ichissime/_B    [^isx]e  ds:ic
+SFX q   o   ichissime/_B    [^i]o    ds:ic
+SFX q   0   ichissime/_B    [^aeio]  ds:ic
+SFX q   se  tichissime/_B   se      ds:ic
+SFX q   xe  ctichissime/_B  xe      ds:ic
+
+SFX r Y 10
+SFX r   a   citate/_S   ia       ds:ic   ds:itate
+SFX r   e   citate/_S   ie       ds:ic   ds:itate
+SFX r   o   citate/_S   io       ds:ic   ds:itate
+SFX r   0   citate/_S   i        ds:ic   ds:itate
+SFX r   a   icitate/_S  [^i]a    ds:ic   ds:itate
+SFX r   e   icitate/_S  [^isx]e  ds:ic   ds:itate
+SFX r   o   icitate/_S  [^i]o    ds:ic   ds:itate
+SFX r   0   icitate/_S  [^aeio]  ds:ic   ds:itate
+SFX r   se  ticitate/_S  se      ds:ic   ds:itate
+SFX r   xe  cticitate/_S xe      ds:ic   ds:itate
+
+SFX s Y 16
+SFX s   a   stic/_B     ia      ds:istic
+SFX s   e   stic/_B     ie      ds:istic
+SFX s   o   stic/_B     io      ds:istic
+SFX s   0   stic/_B     i       ds:istic
+SFX s   a   istic/_B    [^i]a   ds:istic
+SFX s   e   istic/_B    [^i]e   ds:istic
+SFX s   o   istic/_B    [^i]o   ds:istic
+SFX s   0   istic/_B    [^aeio] ds:istic
+SFX s   a   stichissime/_B     ia      ds:istic
+SFX s   e   stichissime/_B     ie      ds:istic
+SFX s   o   stichissime/_B     io      ds:istic
+SFX s   0   stichissime/_B     i       ds:istic
+SFX s   a   istichissime/_B    [^i]a   ds:istic
+SFX s   e   istichissime/_B    [^i]e   ds:istic
+SFX s   o   istichissime/_B    [^i]o   ds:istic
+SFX s   0   istichissime/_B    [^aeio] ds:istic
+
+SFX t Y 9
+SFX t   r   tor/_F      ar      ds:a    ds:tor
+SFX t   er  itor/_F     er      ds:i    ds:tor
+SFX t   r   tor/_F      ir      ds:i    ds:tor
+SFX t   -   or/_F       t-      ds:0    ds:tor
+SFX t   -   or/_F       [sx]-   ds:0    ds:sor
+SFX t   r   trice/_S    ar      ds:a    ds:trice
+SFX t   er  itrice/_S   er      ds:i    ds:trice
+SFX t   r   trice/_S    ir      ds:i    ds:trice
+SFX t   -   rice/_S     t-      ds:0    ds:trice
+#SFX t  -   rice/_S     [sx]-   ds:0    ds:srice
+
+SFX u Y 5
+SFX u   r   tura/_S     ar      ds:a    ds:tura
+SFX u   er  itura/_S    er      ds:i    ds:tura
+SFX u   r   tura/_S     ir      ds:i    ds:tura
+SFX u   -   ura/_S      t-      ds:0    ds:tura
+SFX u   -   ura/_S      [sx]-   ds:0    ds:sura
+
+SFX v Y 10
+SFX v   r   tive/_B         ar      ds:a    ds:tiv
+SFX v   er  itive/_B        er      ds:i    ds:tiv
+SFX v   r   tive/_B         ir      ds:i    ds:tiv
+SFX v   -   ive/_B          t-      ds:0    ds:tiv
+SFX v   -   ive/_B          [sx]-   ds:0    ds:siv
+SFX v   r   tivissime/_B    ar      ds:a    ds:tiv  ds:issim
+SFX v   er  itivissime/_B   er      ds:i    ds:tiv  ds:issim
+SFX v   r   tivissime/_B    ir      ds:i    ds:tiv  ds:issim
+SFX v   -   ivissime/_B     t-      ds:0    ds:tiv  ds:issim
+SFX v   -   ivissime/_B     [sx]-   ds:0    ds:siv  ds:issim
+
+SFX w Y 5
+SFX w   r   tivitate/_S     ar      ds:a    ds:tiv  ds:itate
+SFX w   er  itivitate/_S    er      ds:i    ds:tiv  ds:itate
+SFX w   r   tivitate/_S     ir      ds:i    ds:tiv  ds:itate
+SFX w   -   ivitate/_S      t-      ds:0    ds:tiv  ds:itate
+SFX w   -   ivitate/_S      [sx]-   ds:0    ds:siv  ds:itate
+
+SFX x Y 19
+SFX x   0   -un/_N      .
+SFX x   0   -duo/_N     .
+SFX x   0   -tres/_N    .
+SFX x   0   -tre/_N     .
+SFX x   0   -quatro/_N  .
+SFX x   0   -cinque/_N  .
+SFX x   0   -sex/_N     .
+SFX x   0   -septe/_N   .
+SFX x   0   -octo/_N    .
+SFX x   0   -nove/_N    .
+SFX x   0   -prime/_O   .
+SFX x   0   -secunde/_O .
+SFX x   0   -tertie/_O  .
+SFX x   0   -quarte/_O  .
+SFX x   0   -quinte/_O  .
+SFX x   0   -sexte/_O   .
+SFX x   0   -septime/_O .
+SFX x   0   -octave/_O  .
+SFX x   0   -none/_O    .
+
+SFX y Y 19
+SFX y   i   esimoprime/_O   i
+SFX y   i   esimosecunde/_O i
+SFX y   i   esimotertie/_O  i
+SFX y   i   esimoquarte/_O  i
+SFX y   i   esimoquinte/_O  i
+SFX y   i   esimosexte/_O   i
+SFX y   i   esimoseptime/_O i
+SFX y   i   esimoctave/_O   i
+SFX y   i   esimonone/_O    i
+SFX y   e   oprime/_O   cime
+SFX y   e   osecunde/_O cime
+SFX y   e   otertie/_O  cime
+SFX y   e   oquarte/_O  cime
+SFX y   e   oquinte/_O  cime
+SFX y   e   osexte/_O   cime
+SFX y   e   oseptime/_O cime
+SFX y   e   octave/_O   cime
+SFX y   e   onone/_O    cime
+SFX y   e   odecime/_O  [^c]..e
+
+PFX z Y 20
+PFX z   0   un  .
+PFX z   0   duo .
+PFX z   0   tre [^coqtv]
+PFX z   0   tres    [coqtv]
+PFX z   0   quattor .
+PFX z   0   quattuor    .
+PFX z   0   quin    de
+PFX z   0   quinqua du
+PFX z   0   quinqua [^d]
+PFX z   0   se  [^qtvco]
+PFX z   0   ses [qtv]
+PFX z   0   sex [co]
+PFX z   0   septe   n
+PFX z   0   septen  [^nov]
+PFX z   0   septem  [ov]
+PFX z   0   oct o
+PFX z   0   octo    [^o]
+PFX z   0   nove    n
+PFX z   0   noven   [^nov]
+PFX z   0   novem   [ov]
+
+ICONV 349
+ICONV ’ '
+ICONV a‧    a
+ICONV b‧    b
+ICONV c‧    c
+ICONV ç‧   ç
+ICONV d‧    d
+ICONV e‧    e
+ICONV f‧    f
+ICONV g‧    g
+ICONV h‧    h
+ICONV i‧    i
+ICONV j‧    j
+ICONV k‧    k
+ICONV l‧    l
+ICONV m‧    m
+ICONV n‧    n
+ICONV ñ‧   ñ
+ICONV o‧    o
+ICONV p‧    p
+ICONV q‧    q
+ICONV r‧    r
+ICONV s‧    s
+ICONV t‧    t
+ICONV u‧    u
+ICONV v‧    v
+ICONV w‧    w
+ICONV x‧    x
+ICONV y‧    y
+ICONV z‧    z
+ICONV A‧    A
+ICONV B‧    B
+ICONV C‧    C
+ICONV Ç‧   Ç
+ICONV D‧    D
+ICONV E‧    E
+ICONV F‧    F
+ICONV G‧    G
+ICONV H‧    H
+ICONV I‧    I
+ICONV J‧    J
+ICONV K‧    K
+ICONV L‧    L
+ICONV M‧    M
+ICONV N‧    N
+ICONV Ñ‧   Ñ
+ICONV O‧    O
+ICONV P‧    P
+ICONV Q‧    Q
+ICONV R‧    R
+ICONV S‧    S
+ICONV T‧    T
+ICONV U‧    U
+ICONV V‧    V
+ICONV W‧    W
+ICONV X‧    X
+ICONV Y‧    Y
+ICONV Z‧    Z
+ICONV à‧   à
+ICONV á‧   á
+ICONV â‧   â
+ICONV ä‧   ä
+ICONV ã‧   ã
+ICONV è‧   è
+ICONV é‧   é
+ICONV ê‧   ê
+ICONV ë‧   ë
+ICONV ẽ‧  ẽ
+ICONV ì‧   ì
+ICONV í‧   í
+ICONV î‧   î
+ICONV ï‧   ï
+ICONV ĩ‧   ĩ
+ICONV ò‧   ò
+ICONV ó‧   ó
+ICONV ô‧   ô
+ICONV ö‧   ö
+ICONV õ‧   õ
+ICONV ù‧   ù
+ICONV ú‧   ú
+ICONV û‧   û
+ICONV ü‧   ü
+ICONV ũ‧   ũ
+ICONV ỳ‧  ỳ
+ICONV ý‧   ý
+ICONV ŷ‧   ŷ
+ICONV ÿ‧   ÿ
+ICONV ỹ‧  ỹ
+ICONV À‧   À
+ICONV Á‧   Á
+ICONV Â‧   Â
+ICONV Ä‧   Ä
+ICONV Ã‧   Ã
+ICONV È‧   È
+ICONV É‧   É
+ICONV Ê‧   Ê
+ICONV Ë‧   Ë
+ICONV Ẽ‧  Ẽ
+ICONV Ì‧   Ì
+ICONV Í‧   Í
+ICONV Î‧   Î
+ICONV Ï‧   Ï
+ICONV Ĩ‧   Ĩ
+ICONV Ò‧   Ò
+ICONV Ó‧   Ó
+ICONV Ô‧   Ô
+ICONV Ö‧   Ö
+ICONV Õ‧   Õ
+ICONV Ù‧   Ù
+ICONV Ú‧   Ú
+ICONV Û‧   Û
+ICONV Ü‧   Ü
+ICONV Ũ‧   Ũ
+ICONV Ỳ‧  Ỳ
+ICONV Ý‧   Ý
+ICONV Ŷ‧   Ŷ
+ICONV Ÿ‧   Ÿ
+ICONV Ỹ‧  Ỹ
+ICONV ā  a
+ICONV ă  a
+ICONV ạ a
+ICONV ą  a
+ICONV ē  e
+ICONV ĕ  e
+ICONV ẹ e
+ICONV ę  e
+ICONV ī  i
+ICONV ĭ  i
+ICONV ị i
+ICONV į  i
+ICONV ō  o
+ICONV ŏ  o
+ICONV ọ o
+ICONV ǫ  o
+ICONV ū  u
+ICONV ŭ  u
+ICONV ụ u
+ICONV ų  u
+ICONV ȳ  y
+ICONV ỵ y
+ICONV Ā  A
+ICONV Ă  A
+ICONV Ạ A
+ICONV Ą  A
+ICONV Ē  E
+ICONV Ĕ  E
+ICONV Ẹ E
+ICONV Ę  E
+ICONV Ī  I
+ICONV Ĭ  I
+ICONV Ị I
+ICONV Į  I
+ICONV Ō  O
+ICONV Ŏ  O
+ICONV Ọ O
+ICONV Ǫ  O
+ICONV Ū  U
+ICONV Ŭ  U
+ICONV Ụ U
+ICONV Ų  U
+ICONV Ȳ  Y
+ICONV Ỵ Y
+ICONV ạ a
+ICONV ẹ e
+ICONV ị i
+ICONV ọ o
+ICONV ụ u
+ICONV ỵ y
+ICONV a̱ a
+ICONV e̱ e
+ICONV i̱ i
+ICONV o̱ o
+ICONV u̱ u
+ICONV y̱ y
+ICONV a̲ a
+ICONV e̲ e
+ICONV i̲ i
+ICONV o̲ o
+ICONV u̲ u
+ICONV y̲ y
+ICONV ā a
+ICONV ē e
+ICONV ī i
+ICONV ō o
+ICONV ū u
+ICONV ȳ y
+ICONV ă a
+ICONV ĕ e
+ICONV ĭ i
+ICONV ŏ o
+ICONV ŭ u
+ICONV y̆ y
+ICONV ą a
+ICONV ę e
+ICONV į i
+ICONV ǫ o
+ICONV ų u
+ICONV y̨ y
+ICONV Ạ A
+ICONV Ẹ E
+ICONV Ị I
+ICONV Ọ O
+ICONV Ụ U
+ICONV Ỵ Y
+ICONV A̱ A
+ICONV E̱ E
+ICONV I̱ I
+ICONV O̱ O
+ICONV U̱ U
+ICONV Y̱ Y
+ICONV A̲ A
+ICONV E̲ E
+ICONV I̲ I
+ICONV O̲ O
+ICONV U̲ U
+ICONV Y̲ Y
+ICONV Ā A
+ICONV Ē E
+ICONV Ī I
+ICONV Ō O
+ICONV Ū U
+ICONV Ȳ Y
+ICONV Ă A
+ICONV Ĕ E
+ICONV Ĭ I
+ICONV Ŏ O
+ICONV Ŭ U
+ICONV Y̆ Y
+ICONV Ą A
+ICONV Ę E
+ICONV Į I
+ICONV Ǫ O
+ICONV Ų U
+ICONV Y̨ Y
+ICONV ā‧   a
+ICONV ă‧   a
+ICONV ạ‧  a
+ICONV ą‧   a
+ICONV ē‧   e
+ICONV ĕ‧   e
+ICONV ẹ‧  e
+ICONV ę‧   e
+ICONV ī‧   i
+ICONV ĭ‧   i
+ICONV ị‧  i
+ICONV į‧   i
+ICONV ō‧   o
+ICONV ŏ‧   o
+ICONV ọ‧  o
+ICONV ǫ‧   o
+ICONV ū‧   u
+ICONV ŭ‧   u
+ICONV ụ‧  u
+ICONV ų‧   u
+ICONV ȳ‧   y
+ICONV ỵ‧  y
+ICONV Ā‧   A
+ICONV Ă‧   A
+ICONV Ạ‧  A
+ICONV Ą‧   A
+ICONV Ē‧   E
+ICONV Ĕ‧   E
+ICONV Ẹ‧  E
+ICONV Ę‧   E
+ICONV Ī‧   I
+ICONV Ĭ‧   I
+ICONV Ị‧  I
+ICONV Į‧   I
+ICONV Ō‧   O
+ICONV Ŏ‧   O
+ICONV Ọ‧  O
+ICONV Ǫ‧   O
+ICONV Ū‧   U
+ICONV Ŭ‧   U
+ICONV Ụ‧  U
+ICONV Ų‧   U
+ICONV Ȳ‧   Y
+ICONV Ỵ‧  Y
+ICONV ạ‧  a
+ICONV ẹ‧  e
+ICONV ị‧  i
+ICONV ọ‧  o
+ICONV ụ‧  u
+ICONV ỵ‧  y
+ICONV a̱‧  a
+ICONV e̱‧  e
+ICONV i̱‧  i
+ICONV o̱‧  o
+ICONV u̱‧  u
+ICONV y̱‧  y
+ICONV a̲‧  a
+ICONV e̲‧  e
+ICONV i̲‧  i
+ICONV o̲‧  o
+ICONV u̲‧  u
+ICONV y̲‧  y
+ICONV ā‧  a
+ICONV ē‧  e
+ICONV ī‧  i
+ICONV ō‧  o
+ICONV ū‧  u
+ICONV ȳ‧  y
+ICONV ă‧  a
+ICONV ĕ‧  e
+ICONV ĭ‧  i
+ICONV ŏ‧  o
+ICONV ŭ‧  u
+ICONV y̆‧  y
+ICONV ą‧  a
+ICONV ę‧  e
+ICONV į‧  i
+ICONV ǫ‧  o
+ICONV ų‧  u
+ICONV y̨‧  y
+ICONV Ạ‧  A
+ICONV Ẹ‧  E
+ICONV Ị‧  I
+ICONV Ọ‧  O
+ICONV Ụ‧  U
+ICONV Ỵ‧  Y
+ICONV A̱‧  A
+ICONV E̱‧  E
+ICONV I̱‧  I
+ICONV O̱‧  O
+ICONV U̱‧  U
+ICONV Y̱‧  Y
+ICONV A̲‧  A
+ICONV E̲‧  E
+ICONV I̲‧  I
+ICONV O̲‧  O
+ICONV U̲‧  U
+ICONV Y̲‧  Y
+ICONV Ā‧  A
+ICONV Ē‧  E
+ICONV Ī‧  I
+ICONV Ō‧  O
+ICONV Ū‧  U
+ICONV Ȳ‧  Y
+ICONV Ă‧  A
+ICONV Ĕ‧  E
+ICONV Ĭ‧  I
+ICONV Ŏ‧  O
+ICONV Ŭ‧  U
+ICONV Y̆‧  Y
+ICONV Ą‧  A
+ICONV Ę‧  E
+ICONV Į‧  I
+ICONV Ǫ‧  O
+ICONV Ų‧  U
+ICONV Y̨‧  Y
+
+OCONV 1
+OCONV ' ’

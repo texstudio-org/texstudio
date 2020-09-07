@@ -1,0 +1,107 @@
+# Author: Pander <pander@users.sourceforge.net>
+# License: Apache License 2.0
+# Homepage: https://github.com/PanderMusubi/klingon
+# Version: 1.0.6
+# Date: 2019-08-21 14:48:28
+# Source: build from boQwI' version 2.0
+SET UTF-8
+TRY hgc
+WORDCHARS c’
+SFX E Y 1
+SFX E 0  .
+SFX L Y 1
+SFX L 0  .
+SFX N Y 25
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX N 0  .
+SFX O Y 1
+SFX O 0  .
+SFX V Y 36
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+SFX V 0  .
+PFX v Y 28
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .
+PFX v 0  .

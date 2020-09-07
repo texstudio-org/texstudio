@@ -1,0 +1,937 @@
+SET UTF-8
+
+MAXNGRAMSUGS 10
+MAXDIFF 8
+ONLYMAXDIFF
+NOSPLITSUGS
+FLAG UTF-8
+
+
+
+REP 145
+REP ά ά
+REP ^ἠ ἡ
+REP ^ἄ ἀ
+REP ή ῆ
+REP ^ἰ ἱ
+REP ά ᾶ
+REP ῖ ί
+REP υ ῦ
+REP υ ὐ
+REP ω ο
+REP ώ ῶ
+REP ω ώ
+REP B Β
+REP Z Ζ
+REP K Κ
+REP M Μ
+REP N Ν
+REP P Ρ
+REP T Τ
+REP Y Υ
+REP X Χ
+REP ί ῖ
+REP ῑ ῖ
+REP ι ί
+REP ι ὶ
+REP ι ῖ
+REP ωϊ ωι
+REP όι όϊ
+REP x χ
+REP εῖ ῇ
+REP ῇ εῖ
+REP εῖ ῆ
+REP ῆ εῖ
+REP ῃ ει
+REP ᾶ εῖ
+REP οἴ οἶ
+REP ο ε
+REP ὄ ὅ
+REP Ἰ Ἱ
+REP εῖ ή
+REP ή εῖ
+REP ή εί
+REP ἦ εἶ
+REP ει εί
+REP ει η
+REP εί ει
+REP ή ός
+REP η ος
+REP εῖ ᾶ
+REP εί ύ
+REP ^εἴ ἤ
+REP ιέ εῖ
+REP ά έ
+REP ἄ ά
+REP ἄ ἀ
+REP n ν
+REP η ει
+REP ε αι
+REP αι ε
+REP αι ες
+REP έ αί
+REP αί έ
+REP ού οῦ
+REP ᾶ οῦ
+REP φτ φθ
+REP φτ πτ
+REP φθ φτ
+REP στ σθ
+REP σθ στ
+REP χτ κτ
+REP ευτ ευθ
+REP εύτ εύθ
+REP έψ εύσ
+REP ἕβ εὕ
+REP ἔβ εὕ
+REP εψ ευσ
+REP άψ αύσ
+REP σ σσ
+REP ^καλλίτερ καλύτερ
+REP ο$ ον
+REP ό$ όν
+REP ὸ$ ὸν
+REP ιο$ ιον
+REP ^θέτομαι τίθεμαι
+REP όμαστε$ ώμεθα
+REP ούμαστε$ ούμεθα
+REP ουμαστε$ ούμεθα
+REP θονταν$ θετο
+REP ειους$ είους
+REP ούμουν$ ούμην
+REP ούσουν$ εῖσο
+REP οῦταν$ εῖτο
+REP ούταν$ εῖτο
+REP ούνταν$ οῦντο
+REP νταν$ ντοο
+REP άει$ ᾶ
+REP ες$ οι
+REP ιδα$ ι
+REP ιδα$ ιν
+REP ^ὑπό ὑπέ
+REP ^ἔγκ ἐνέκ
+REP ^ἠρωϊ ἡρωι
+REP ^ἐπικεφαλής$ ἐπὶ_κεφαλῆς
+REP ^ἐπικεφαλῆς$ ἐπὶ_κεφαλῆς
+REP ^επιμέρους$ ἐπὶ_μέρους
+REP ^ἐπιμέρους$ ἐπὶ_μέρους
+REP ^επιτέλους$ ἐπὶ_τέλους
+REP ^ἐπιτέλους$ ἐπὶ_τέλους
+REP ^κατεξοχήν$ κατ'_ἐξοχήν
+REP ^κατεξοχὴν$ κατ'_ἐξοχὴν
+REP ^καταρχήν$ κατ'_ἀρχήν
+REP ^καταρχὴν$ κατ'_ἀρχὴν
+REP ^καταρχάς$ κατ'_ἀρχάς
+REP ^καταρχὰς$ κατ'_ἀρχὰς
+REP ^κατευθείαν$ κατ'_εὐθεῖαν
+REP ^ἀπευθείας$ ἀπ'_εὐθείας
+REP ^απευθείας$ ἀπ'_εὐθείας
+REP ^παρότι$ παρ'_ὅτι
+REP ^παρόλο$ παρ'_ὅλο
+REP ^παρόλα$ παρ'_ὅλα
+REP ^παρόλην$ παρ'_ὅλην
+REP ^παρόλη$ παρ'_ὅλη
+REP ^καθόλα$ καθ'_ὅλα
+REP ^εξαιτίας$ ἐξ_αἰτίας
+REP ^τελοσπάντων$ τέλος_πάντων
+REP ^ἀφενός$ ἀφ'_ἑνός
+REP ^ἀφενὸς$ ἀφ'_ἑνὸς
+REP ^ἀφετέρου$ ἀφ'_ἑτέρου
+REP ^αφενός$ ἀφ'_ἑνός
+REP ^αφετέρου$ ἀφ'_ἑτέρου
+REP ^εντούτοις$ ἐν_τούτοις
+REP ^ἐντούτοις$ ἐν_τούτοις
+REP ^περεταίρω$ περαιτέρω
+REP ^καθωσπρέπει$ καθὼς_πρέπει
+REP ^ἐσαεὶ$ ἐς_ἀεί
+REP ^εσαεὶ$ ἐς_ἀεί
+REP ^ἐσαεί$ ἐς_ἀεί
+REP ^εσαεί$ ἐς_ἀεί
+REP ^νοός$ νοῦ
+REP ^νοὸς$ νοῦ
+REP ^νόες$ νοῖ
+REP ^μεγαλο μεγα
+REP ῥ ρ
+REP ῤ ρ
+REP ῤῥ ρρ
+
+TRY άόίϊΐέήύϋΰώιηυωοεαἀἐἠἰὀὠἁἑἡἱὁὑὡἄἔἤἴὄὤἅἕἥἵὅὕὥἆἦἶὦἇἧἷὗὧᾳῃῳᾷῇῷᾆᾖᾦᾇᾗᾧλςγδθφβζρξψχΑΕΗΙΥΟΩἈἘἨἸὈὨὙΡΤΘΠΣΔΦΓΞΚΛΖΧΨΒΝΜ'
+
+MAP 7
+MAP αάᾶὰἀἄἆἂἁἅἇἃᾳᾷᾆᾇΑἈἌἊἎἉἍ
+MAP ηήῆὴἠἤἦἢἡἥἧἣῃῇᾖᾗΗἨἬἪἮἩἭιίῖὶϊΐἰἴἶἲἱἵἷἳΙἸἼἺἾἹἽΪυύῦὺϋΰὐὔὖὒὑὕὗὓΥὙὝὟΫ(ει)(οι)
+MAP εέὲἐἔἒἑἕἓΕἘἜἙἝ
+MAP οόὸὀὄὂὁὅὃωώῶὼὠὤὦὢὡὥὧὣῳῷᾦᾧΟὈὉὌὍΩὨὩὮὯὬὭ
+MAP (ου)(οῦ)(ού)(οὺ)(οὐ)
+MAP σς
+MAP ρῤῥ
+
+PFX a Y 1	
+PFX a ᾐ ἠ ᾐ
+
+SFX A Y 60	
+SFX A ά ὰ ά
+SFX A ή ὴ ή
+SFX A έ ὲ έ
+SFX A ί ὶ ί
+SFX A ό ὸ ό
+SFX A ύ ὺ ύ
+SFX A ώ ὼ ώ
+SFX A ών ὼν ών
+SFX A ώς ὼς ώς
+SFX A ός ὸς ός
+SFX A όν ὸν όν
+SFX A όλ ὸλ όλ
+SFX A ότ ὸτ ότ
+SFX A όρ ὸρ όρ
+SFX A ὅν ὃν ὅν
+SFX A ίς ὶς ίς
+SFX A ίν ὶν ίν
+SFX A ίτ ὶτ ίτ
+SFX A ίχ ὶχ ίχ
+SFX A ίμ ὶμ ίμ
+SFX A ίδ ὶδ ίδ
+SFX A ίθ ὶθ ίθ
+SFX A ίκ ὶκ ίκ
+SFX A ίλ ὶλ ίλ
+SFX A ίλμ ὶλμ ίλμ
+SFX A ίπ ὶπ ίπ
+SFX A ύς ὺς ύς
+SFX A ύν ὺν ύν
+SFX A ύλ ὺλ ύλ
+SFX A ύπ ὺπ ύπ
+SFX A ύθ ὺθ ύθ
+SFX A ής ὴς ής
+SFX A ήν ὴν ήν
+SFX A ἥν ἣν ἥν
+SFX A ήλ ὴλ ήλ
+SFX A ήμ ὴμ ήμ
+SFX A άς ὰς άς
+SFX A άμ ὰμ άμ
+SFX A άλ ὰλ άλ
+SFX A άτ ὰτ άτ
+SFX A άρ ὰρ άρ
+SFX A άζ ὰζ άζ
+SFX A άπ ὰπ άπ
+SFX A άχ ὰχ άχ
+SFX A ἅς ἃς ἅς
+SFX A άν ὰν άν
+SFX A άνς ὰνς άνς
+SFX A άξ ὰξ άξ
+SFX A όξ ὸξ όξ
+SFX A όκ ὸκ όκ
+SFX A ές ὲς ές
+SFX A έστ ὲστ έστ
+SFX A έν ὲν έν
+SFX A έλ ὲλ έλ
+SFX A έρ ὲρ έρ
+SFX A έμ ὲμ έμ
+SFX A έξ ὲξ έξ
+SFX A άρ ἀρ άρ
+SFX A ήρ ὴρ ήρ
+SFX A ίρ ὶρ ίρ
+
+
+SFX C Y 17	
+SFX C ος ός ος  
+SFX C ο ό ο
+SFX C ον όν ον
+SFX C ε έ ε
+SFX C α ά α	
+SFX C ας άς ας	
+SFX C αν άν αν 
+SFX C αι αί αι
+SFX C ες ές ες
+SFX C ις ίς ις	
+SFX C η ή η
+SFX C ιν ίν ιν
+SFX C ι ί ι
+SFX C ως ώς ως
+SFX C ων ών ων
+SFX C ης ής ης
+SFX C εν έν εν
+
+SFX D Y 4	
+SFX D ῃ η ῃ
+SFX D ῇ ῆ ῇ
+SFX D ῃς ης ῃς
+SFX D ῇς ῆς ῇς
+
+
+
+
+SFX F Y 13	
+SFX F ός οῦ ός
+SFX F ός όν ός
+SFX F ός έ ός
+SFX F ός οί ός
+SFX F ός ῶν ός
+SFX F ός ούς ός
+SFX F ός ό ός
+SFX F ός ὸς ός
+SFX F ός ὸν ός
+SFX F ός ὲ ός
+SFX F ός οὶ ός
+SFX F ός οὺς ός
+SFX F ός ὸ ός
+
+SFX E Y 11	
+SFX E ός ή ός
+SFX E ός ῆς ός
+SFX E ός ήν ός
+SFX E ός αί ός
+SFX E ός ές ός
+SFX E ός άς ός
+SFX E ός ὴ ός
+SFX E ός ὴν ός
+SFX E ός αὶ ός
+SFX E ός ὲς ός
+SFX E ός ὰς ός
+
+SFX B Y 11	
+SFX B ός ά ός
+SFX B ός ᾶς ός
+SFX B ός άν ός
+SFX B ός αί ός
+SFX B ός ές ός
+SFX B ός άς ός
+SFX B ός ὰ ός
+SFX B ός ὰν ός
+SFX B ός αὶ ός
+SFX B ός ὲς ός
+SFX B ός ὰς ός
+
+SFX ε Y 2	
+SFX ε ός ά ός
+SFX ε ός ὰ ός
+
+SFX Φ Y 2	 
+SFX Φ ός ῷ ός
+SFX Φ ός οῖς ός
+
+SFX φ Y 2	 
+SFX φ ός ῇ ός
+SFX φ ός αῖς ός
+
+SFX β Y 2	 
+SFX β ός ᾷ ός
+SFX β ός αῖς ός
+
+
+
+SFX X Y 5	
+SFX X ος ον ος
+SFX X ος ο ος
+SFX X ος ε ος
+SFX X ος οι ος
+SFX X ος α ος
+
+SFX Γ Y 6	
+SFX Γ ος ός ος
+SFX Γ ος όν ος
+SFX Γ ος ό ος
+SFX Γ ος έ ος
+SFX Γ ος οί ος
+SFX Γ ος ά ος
+
+SFX Z Y 3	
+SFX Z ος ου ος
+SFX Z ος ων ος
+SFX Z ος ους ος
+
+SFX Δ Y 3	
+SFX Δ ος ού ος
+SFX Δ ος ών ος
+SFX Δ ος ούς ος
+
+SFX Θ Y 4	
+SFX Θ ος ά ος
+SFX Θ ος άς ος
+SFX Θ ος άν ος
+SFX Θ ος ές ος
+
+SFX Λ Y 4	
+SFX Λ ος ή ος
+SFX Λ ος ής ος
+SFX Λ ος ήν ος
+SFX Λ ος ές ος
+
+SFX Ξ Y 1	
+SFX Ξ ος αί ος
+
+
+SFX x Y 4	
+SFX x ου ῳ ου 
+SFX x ου ων ου 
+SFX x ου οις ου 
+SFX x ου ους ου 
+
+SFX γ Y 4	
+SFX γ ος η ος
+SFX γ ος ης ος
+SFX γ ος ην ος
+SFX γ ος ες ος
+
+SFX κ Y 3	
+SFX κ ου η ου
+SFX κ ου ης ου
+SFX κ ου ην ου
+
+SFX δ Y 3	
+SFX δ ου α ου
+SFX δ ου ας ου
+SFX δ ου αν ου	
+
+SFX ζ Y 3	
+SFX ζ ος α ος
+SFX ζ ος ας ος
+SFX ζ ος αν ος
+
+
+SFX θ Y 2
+SFX θ ος αι ος	
+SFX θ ος ες ος
+
+SFX λ Y 1
+SFX λ ος ες ος	 
+
+SFX ι Y 2	
+SFX ι ου ᾳ ου
+SFX ι ου αις ου
+
+SFX μ Y 3	
+SFX μ ου ῃ ου
+SFX μ ου αις ου
+SFX μ ου ας ου
+
+
+
+
+SFX K Y 10	
+SFX K ής ὴς ής
+SFX K ής οῦς ής
+SFX K ής εῖ ής
+SFX K ής ῆ ής
+SFX K ής ές ής
+SFX K ής ὲς ής
+SFX K ής εῖς ής
+SFX K ής ῶν ής
+SFX K ής έσι ής
+SFX K ής ῆ ής
+
+SFX J Y 8	
+SFX J ώδης ώδους ώδης
+SFX J ώδης ώδει ώδης
+SFX J ώδης ώδη ώδης
+SFX J ώδης ῶδες ώδης
+SFX J ώδης ώδεις ώδης
+SFX J ώδης ωδῶν ώδης
+SFX J ώδης ώδεσι ώδης
+SFX J ώδης ῶδες ώδης
+
+SFX f Y 6	
+SFX f ός ῶς .
+SFX f ος ως .	
+SFX f ου ως .	
+SFX f ύς έως .
+SFX f ώδης ωδῶς .
+SFX f ής ῶς .
+
+
+
+SFX I Y 27	
+SFX I ος ου .
+SFX I ος ον .
+SFX I ος ε .
+SFX I ος οι .
+SFX I ος ων .
+SFX I ος ους .
+SFX I ος ο .
+SFX I ος αι .
+SFX I ος ες .
+SFX I ος η .
+SFX I ος ης .
+SFX I ος ην .
+SFX I ος α .
+SFX I ος ός .
+SFX I ος ού .
+SFX I ος όν .
+SFX I ος έ .
+SFX I ος οί .
+SFX I ος ών .
+SFX I ος ούς .
+SFX I ος ό .
+SFX I ος αί .
+SFX I ος ές .
+SFX I ος ή .
+SFX I ος ής .
+SFX I ος ήν .
+SFX I ος ά .
+
+SFX i Y 13	
+SFX i ου ῳ
+SFX i ου ων
+SFX i ου οις
+SFX i ου ους
+SFX i ου αις
+SFX i ου ας
+SFX i ου α ρου
+SFX i ου ᾳ ρου
+SFX i ου αν ρου
+SFX i ου η του
+SFX i ου ης του
+SFX i ου ῃ του
+SFX i ου ην του
+
+
+SFX r Y 7	
+SFX r ας ου ας
+SFX r ας α ας
+SFX r ας ᾳ ας
+SFX r ας αν ας
+SFX r ας αι ας
+SFX r ας ες ας
+SFX r ας αις ας
+
+SFX s Y 3	
+SFX s ας α ας
+SFX s ας αν ας
+SFX s ας ες ας
+
+SFX u Y 6	
+SFX u ης ου ης
+SFX u ης η ης
+SFX u ης ῃ ης
+SFX u ης ην ης
+SFX u ης αις ης
+SFX u ης ας ης
+
+SFX t Y 1	
+SFX t αι ες αι
+
+SFX z Y 2	
+SFX z αι ες αι
+SFX z αι α αι
+
+SFX p Y 3	
+SFX p ης η ης
+SFX p ης ην ης
+SFX p ης ες ης
+
+SFX j Y 1	
+SFX j ης η ης
+
+SFX k Y 1	
+SFX k ες ων ες
+
+SFX M Y 18	
+SFX M ής οῦ ής
+SFX M ής ῆ ής
+SFX M ής ῇ ής
+SFX M ής ήν ής
+SFX M ής ή ής
+SFX M ής ά ής
+SFX M ής αί ής
+SFX M ής ές ής
+SFX M ής ῶν ής
+SFX M ής αῖς ής
+SFX M ής άς ής
+SFX M ής ὴς ής
+SFX M ής ὴν ής
+SFX M ής ὴ ής
+SFX M ής ὰ ής
+SFX M ής αὶ ής
+SFX M ής ὲς ής
+SFX M ής ὰς ής
+
+
+SFX l Y 9	
+SFX l α ας α
+SFX l α αν α
+SFX l α αι α
+SFX l α ες α
+SFX l α ά α
+SFX l α άς α
+SFX l α άν α
+SFX l α αί α
+SFX l α ές α
+
+SFX m Y 3	
+SFX m ης ῃ ης
+SFX m ης αις ης
+SFX m ης ας ης
+
+SFX ψ Y 7
+SFX ψ α αν α
+SFX ψ α αι α
+SFX ψ α ες α
+SFX ψ α ά α
+SFX ψ α άν α
+SFX ψ α αί α
+SFX ψ α ές α
+
+SFX n Y 4	
+SFX n α ας α
+SFX n α ᾳ α
+SFX n α αν α
+SFX n α αις α
+
+SFX h Y 9	
+SFX h α ας α
+SFX h α αν α
+SFX h α αι α
+SFX h α ες α
+SFX h α ά α
+SFX h α άς α
+SFX h α άν α
+SFX h α αί α
+SFX h α ές α
+
+SFX g Y 2	
+SFX g ας ᾳ ας
+SFX g ας αις ας
+
+SFX e Y 13	
+SFX e ά ᾶς ά
+SFX e ά ᾷ ά
+SFX e ά άν ά
+SFX e ά αί ά
+SFX e ά ές ά
+SFX e ά ῶν ά
+SFX e ά αῖς ά
+SFX e ά άς ά
+SFX e ά ὰ ά
+SFX e ά ὰν ά
+SFX e ά αὶ ά
+SFX e ά ὲς ά
+SFX e ά ὰς ά
+
+SFX d Y 5	
+SFX d η ης η
+SFX d η ῃ η
+SFX d η ην η
+SFX d η αις η
+SFX d η ας η
+
+SFX c Y 1
+SFX c αι ες αι	
+
+
+SFX L Y 13	
+SFX L ή ῆς ή
+SFX L ή ῇ ή
+SFX L ή ήν ή
+SFX L ή αί ή
+SFX L ή ές ή
+SFX L ή ῶν ή
+SFX L ή αῖς ή
+SFX L ή άς ή
+SFX L ή ὴ ή
+SFX L ή ὴν ή
+SFX L ή αὶ ή
+SFX L ή ὲς ή
+SFX L ή ὰς ή
+
+SFX b Y 7	
+SFX b ή ῆς ή
+SFX b ή ήν ή
+SFX b ή ῶν ή
+SFX b ή ές ή
+SFX b ή ὴ ή
+SFX b ή ὴν ή
+SFX b ή ὲς ή
+
+
+SFX G Y 7	
+SFX G ί ιοῦ ί
+SFX G ί άκι ί
+SFX G ί ιά ί
+SFX G ί ιῶν ί
+SFX G ί άκια ί
+SFX G ί ὶ ί
+SFX G ί ιὰ ί
+
+SFX H Y 13	
+SFX H ίον ίου ίον
+SFX H ίον ίῳ ίον
+SFX H ίον ί ίον
+SFX H ίον ιοῦ ίον
+SFX H ίον άκι ίον
+SFX H ίον ία ίον
+SFX H ίον ίων ίον
+SFX H ίον ίοις ίον
+SFX H ίον ιά ίον
+SFX H ίον ιῶν ίον
+SFX H ίον άκια ίον
+SFX H ίον ὶ ίον
+SFX H ίον ιὰ ίον
+
+SFX V Y 9	
+SFX V ις ιν ις 
+SFX V ις ι ις 
+SFX V ις η ις 
+SFX V ις ης ις
+SFX V ις ίς ις 
+SFX V ις ίν ις
+SFX V ις ί ις
+SFX V ις ή ις
+SFX V ις ής ις
+
+SFX u Y 2	
+SFX u ις ιν ις 
+SFX u ις ι ις 
+
+SFX α Y 2	
+SFX α εως η εως 
+SFX α εως ης εως
+
+SFX v Y 9	
+SFX v εως ει εως 
+SFX v εως εις εως 
+SFX v εως εων εως 
+SFX v εως εσι εως 
+SFX v εως εσιν εως 
+SFX v εως εώς εως 
+SFX v εως εών εως 
+SFX v εως εσί εως 
+SFX v εως εσίν εως 
+
+SFX ξ Y 9	
+SFX ξ τος τι τος 
+SFX ξ τος τα τος 
+SFX ξ τος σι τος 
+SFX ξ τος σιν τος 
+SFX ξ τος τός τος 
+SFX ξ τος τί τος 
+SFX ξ τος τά τος 
+SFX ξ τος σί τος 
+SFX ξ τος σίν τος 
+
+SFX σ Y 3	
+SFX σ ος α ος 
+SFX σ ος ός ος 
+SFX σ ος ά ος 
+
+SFX π Y 1	
+SFX π ι ια ι 
+
+SFX Q Y 11	
+SFX Q ων οντος ων
+SFX Q ων οντι ων
+SFX Q ων οντα ων
+SFX Q ων οντες ων
+SFX Q ων ουσι ων
+SFX Q ων ουσιν ων
+SFX Q ων ουσα ων
+SFX Q ων ουσας ων
+SFX Q ων ουσαν ων
+SFX Q ων ουσαι ων
+SFX Q ων ουσες ων
+
+SFX q Y 5	
+SFX q όντων ούσης όντων
+SFX q όντων ούσῃ όντων
+SFX q όντων ούσαις όντων
+SFX q όντων ούσας όντων
+SFX q όντων ουσῶν όντων
+
+SFX S Y 10	
+SFX S ας αντος ας
+SFX S ας αντι ας
+SFX S ας αντα ας
+SFX S ας αντες ας
+SFX S ας ασι ας
+SFX S ας ασιν ας
+SFX S ας ασα ας
+SFX S ας ασαν ας
+SFX S ας ασαι ας
+SFX S ας ασες ας
+
+SFX s Y 5	
+SFX s άντων άσης άντων
+SFX s άντων άσῃ άντων
+SFX s άντων άσαις άντων
+SFX s άντων άσας άντων
+SFX s άντων ασῶν άντων
+
+SFX U Y 20	
+SFX U ώς ὼς ώς
+SFX U ώς ότος ώς
+SFX U ώς ότι ώς
+SFX U ώς ότα ώς
+SFX U ώς ότες ώς
+SFX U ώς ότων ώς
+SFX U ώς όσι ώς
+SFX U ώς όσιν ώς
+SFX U ώς ότας ώς
+SFX U ώς υῖα ώς
+SFX U ώς υίας ώς
+SFX U ώς υίᾳ ώς
+SFX U ώς υῖαν ώς
+SFX U ώς υῖαι ώς
+SFX U ώς υιῶν ώς
+SFX U ώς υίαις ώς
+SFX U ώς υίας ώς
+SFX U ώς ός ώς
+SFX U ώς ὸς ώς
+SFX U ώς ότα ώς
+
+SFX O Y 24	
+SFX O ος ου ος
+SFX O ος ού ος
+SFX O ος ον ος
+SFX O ος όν ος
+SFX O ος ε ος
+SFX O ος έ ος
+SFX O ος οι ος
+SFX O ος οί ος
+SFX O ος ων ος
+SFX O ος ών ος
+SFX O ος ους ος
+SFX O ος ούς ος
+SFX O ος η ος
+SFX O ος ή ος
+SFX O ος ης ος
+SFX O ος ής ος
+SFX O ος αι ος
+SFX O ος αί ος
+SFX O ος ες ος
+SFX O ος ές ος
+SFX O ος ο ος
+SFX O ος ό ος
+SFX O ος α ος
+SFX O ος ά ος
+
+SFX o Y 10	
+SFX o ου ῳ ου
+SFX o ου ων ου
+SFX o ου οις ου
+SFX o ου ους ου
+SFX o ου η ου
+SFX o ου ης ου
+SFX o ου ῃ ου
+SFX o ου ην ου
+SFX o ου αις ου
+SFX o ου ας ου
+
+SFX P Y 21	
+SFX P είς εὶς είς
+SFX P είς έντος είς
+SFX P είς έντι είς
+SFX P είς έντα είς
+SFX P είς έντες είς
+SFX P είς έντων είς
+SFX P είς εῖσι είς
+SFX P είς εῖσιν είς
+SFX P είς έντας είς
+SFX P είς εῖσα είς
+SFX P είς είσης είς
+SFX P είς είσῃ είς
+SFX P είς εῖσαν είς
+SFX P είς εῖσαι είς
+SFX P είς εῖσες είς
+SFX P είς εισῶν είς
+SFX P είς είσαις είς
+SFX P είς είσας είς
+SFX P είς έν είς
+SFX P είς ὲν είς
+SFX P είς έντα είς
+
+SFX N Y 19	
+SFX N ος ου ος
+SFX N ος ῳ ος
+SFX N ος ον ος
+SFX N ος ο ος
+SFX N ος ε ος
+SFX N ος οι ος
+SFX N ος ων ος
+SFX N ος οις ος
+SFX N ος ους ος
+SFX N ος η ος
+SFX N ος ης ος
+SFX N ος ῃ ος
+SFX N ος ην ος
+SFX N ος αι ος
+SFX N ος ων ος
+SFX N ος αις ος
+SFX N ος ας ος
+SFX N ος ες ος
+SFX N ος α ος
+
+SFX W Y 17	 
+SFX W ῶν οῦντος ῶν
+SFX W ῶν οῦντι ῶν
+SFX W ῶν οῦντα ῶν
+SFX W ῶν οῦντες ῶν
+SFX W ῶν ούντων ῶν
+SFX W ῶν οῦσι ῶν
+SFX W ῶν οῦσιν ῶν
+SFX W ῶν οῦντας ῶν
+SFX W ῶν οῦσα ῶν
+SFX W ῶν ούσης ῶν
+SFX W ῶν ούσῃ ῶν
+SFX W ῶν οῦσαν ῶν
+SFX W ῶν οῦσαι ῶν
+SFX W ῶν ουσῶν ῶν
+SFX W ῶν ούσαις ῶν
+SFX W ῶν ούσας ῶν
+SFX W ῶν οῦν ῶν
+
+SFX w Y 17	
+SFX w ῶν ῶντος ῶν
+SFX w ῶν ῶντι ῶν
+SFX w ῶν ῶντα ῶν
+SFX w ῶν ῶντες ῶν
+SFX w ῶν ώντων ῶν
+SFX w ῶν ῶσι ῶν
+SFX w ῶν ῶσιν ῶν
+SFX w ῶν ῶντας ῶν
+SFX w ῶν ῶσα ῶν
+SFX w ῶν ώσης ῶν
+SFX w ῶν ώσῃ ῶν
+SFX w ῶν ῶσαν ῶν
+SFX w ῶν ῶσαι ῶν
+SFX w ῶν ουσῶν ῶν
+SFX w ῶν ώσαις ῶν
+SFX w ῶν ώσας ῶν
+SFX w ῶν ῶν ῶν
+
+SFX Σ Y 18	 
+SFX Σ ών όντος ών
+SFX Σ ών όντι ών
+SFX Σ ών όντα ών
+SFX Σ ών όντες ών
+SFX Σ ών όντων ών
+SFX Σ ών οῦσι ών
+SFX Σ ών οῦσιν ών
+SFX Σ ών όντας ών
+SFX Σ ών οῦσα ών
+SFX Σ ών ούσης ών
+SFX Σ ών ούσῃ ών
+SFX Σ ών οῦσαν ών
+SFX Σ ών οῦσαι ών
+SFX Σ ών ουσών ών
+SFX Σ ών ούσαις ών
+SFX Σ ών ούσας ών
+SFX Σ ών όν ών
+SFX Σ ών ὸν ών
+
+SFX T Y 17	
+SFX T ύς ύντος ύς
+SFX T ύς ύντι ύς
+SFX T ύς ύντα ύς
+SFX T ύς ύντες ύς
+SFX T ύς ύντων ύς
+SFX T ύς ῦσι ύς
+SFX T ύς ῦσιν ύς
+SFX T ύς ύντας ύς
+SFX T ύς ῦσα ύς
+SFX T ύς ύσης ύς
+SFX T ύς ύσῃ ύς
+SFX T ύς ῦσαν ύς
+SFX T ύς ῦσαι ύς
+SFX T ύς υσῶν ύς
+SFX T ύς ύσαις ύς
+SFX T ύς ύσας ύς
+SFX T ύς ύν ύς
+

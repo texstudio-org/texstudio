@@ -1,0 +1,110 @@
+# Author: Pander <pander@users.sourceforge.net>
+# License: Apache License 2.0
+# Homepage: https://github.com/PanderMusubi/klingon
+# Version: 1.0.6
+# Date: 2019-08-21 14:48:28
+# Source: build from boQwI' version 2.0
+SET UTF-8
+TRY a'hoIenlugtHmrqSDjpbwyvcQ
+WORDCHARS abceghjlmnopqrtuvwy'DHIQS’
+ICONV 1
+ICONV ’ '
+KEY qwertyuiop|asdfghjkl|zxcvbnm|qawsedrftgyhujikolp|azsxdcfvgbhnjmk|aze|qsd|lm|wx|aqz|qws
+SFX E Y 1
+SFX E 0 Du' .
+SFX L Y 1
+SFX L 0 mey .
+SFX N Y 25
+SFX N 0 'a' .
+SFX N 0 'e' .
+SFX N 0 DIch .
+SFX N 0 Daj .
+SFX N 0 Daq .
+SFX N 0 Hey .
+SFX N 0 Hom .
+SFX N 0 chaj .
+SFX N 0 lI' .
+SFX N 0 lIj .
+SFX N 0 logh .
+SFX N 0 ma' .
+SFX N 0 maj .
+SFX N 0 mo' .
+SFX N 0 na' .
+SFX N 0 oy .
+SFX N 0 qoq .
+SFX N 0 ra' .
+SFX N 0 raj .
+SFX N 0 vaD .
+SFX N 0 vam .
+SFX N 0 vetlh .
+SFX N 0 vo' .
+SFX N 0 wI' .
+SFX N 0 wIj .
+SFX O Y 1
+SFX O 0 pu' .
+SFX V Y 36
+SFX V 0 'a' .
+SFX V 0 'egh .
+SFX V 0 DI' .
+SFX V 0 Ha' .
+SFX V 0 Qo' .
+SFX V 0 ba' .
+SFX V 0 be' .
+SFX V 0 beH .
+SFX V 0 bej .
+SFX V 0 bogh .
+SFX V 0 choH .
+SFX V 0 chu' .
+SFX V 0 chugh .
+SFX V 0 chuq .
+SFX V 0 ghach .
+SFX V 0 jaj .
+SFX V 0 lI' .
+SFX V 0 laH .
+SFX V 0 law' .
+SFX V 0 lu' .
+SFX V 0 meH .
+SFX V 0 mo' .
+SFX V 0 moH .
+SFX V 0 nIS .
+SFX V 0 neS .
+SFX V 0 pa' .
+SFX V 0 pu' .
+SFX V 0 qa' .
+SFX V 0 qang .
+SFX V 0 qu' .
+SFX V 0 rup .
+SFX V 0 ta' .
+SFX V 0 taH .
+SFX V 0 vIS .
+SFX V 0 vIp .
+SFX V 0 wI' .
+PFX v Y 28
+PFX v 0 DI .
+PFX v 0 Da .
+PFX v 0 Du .
+PFX v 0 HI .
+PFX v 0 Sa .
+PFX v 0 Su .
+PFX v 0 bI .
+PFX v 0 bo .
+PFX v 0 che .
+PFX v 0 cho .
+PFX v 0 gho .
+PFX v 0 jI .
+PFX v 0 ju .
+PFX v 0 lI .
+PFX v 0 lu .
+PFX v 0 ma .
+PFX v 0 mu .
+PFX v 0 nI .
+PFX v 0 nu .
+PFX v 0 pI .
+PFX v 0 pe .
+PFX v 0 qa .
+PFX v 0 re .
+PFX v 0 tI .
+PFX v 0 tu .
+PFX v 0 vI .
+PFX v 0 wI .
+PFX v 0 yI .

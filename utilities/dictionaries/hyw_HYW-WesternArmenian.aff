@@ -1,0 +1,2690 @@
+SET UTF-8
+TRY անմիողտեըցկչյԱՆՄԻՈՂՏԵԸՑԿՉՅ
+FLAG long
+NEEDAFFIX 00
+WORDCHARS '՛՜՞
+IGNORE ՛՜՞
+FORBIDDENWORD XX
+
+
+PFX GU Y 2
+PFX GU	0	կը+/PR	[^աեէոօիը]
+PFX GU   0     կ'/PR    [աեէոօիը]   
+
+
+PFX CH Y 2
+PFX CH   0     չ/VA         .
+PFX CH   0     չ'/VT    . 
+
+SFX DE Y 10
+SFX DE   0       ս          [^յ]
+SFX DE   0       դ          [^յ] .
+SFX DE 	0	ը	[^աեէիոօյւ]
+SFX DE   իւ      իւը           .
+SFX DE  եւ      եւը           .
+SFX DE   աւ      աւը           .
+SFX DE   0      ն           .
+SFX DE  յ	ն	.
+SFX DE  յ	ս	.
+SFX DE  յ	դ	.
+
+# հայը
+SFX DY Y 4
+SFX DY յ	յն	.
+SFX DY յ	յս	.
+SFX DY յ	յդ	.
+SFX DY յ	յը	.
+
+# polysyllabics
+SFX PP Y 1
+SFX PP   0     ներ/DEABG2IN [^յ]
+
+# polysyllabics յ  շուկայ
+SFX PH Y 1
+SFX PH   յ     ներ/DEABG2IN	.
+
+# monosyllabic
+SFX PM Y 1
+SFX PM   0     եր/DEABG2IN          .
+
+# collectives
+SFX PZ Y 6
+SFX PZ 0	ենք/DE .
+SFX PZ 0	ենց/DE .
+SFX PZ ա	այենք/DE .
+SFX PZ ա	այենց/DE .
+SFX PZ օ	ոյենք/DE .
+SFX PZ օ	ոյենց/DE .
+
+  # ablative 
+SFX AB Y 8
+SFX AB 	0	է	.
+SFX AB 	0	էս	.
+SFX AB 	0	էդ	.
+SFX AB	0	էն	.
+SFX AB 	ութիւն	ութենէ	.
+SFX AB 	ութիւն	ութենէս	.
+SFX AB 	ութիւն	ութենէդ	.
+SFX AB	ութիւն	ութենէն	.
+
+# ablative ուընէ
+SFX AA Y 4
+SFX AA 	0	ուընէ	.
+SFX AA 	0	ուընէս	.
+SFX AA 	0	ուընէդ	.
+SFX AA	0	ուընէն	.
+
+# ablative  շաբթի
+#SFX AC Y 4
+#SFX AC 	ի	ուընէ	.
+#SFX AC 	ի	ուընէս	.
+#SFX AC 	ի	ուընէդ	.
+#SFX AC	ի	ուընէն	.
+
+
+# ayi, oyi
+SFX A4 Y 3
+SFX A4  ա	այէ/DE	.
+SFX A4  օ	ոյէ/DE	.
+SFX A4  ո	ոյէ/DE	.
+
+
+# genitive
+SFX GE Y 4
+SFX GE	0	ի	.
+SFX GE	0	իս	.
+SFX GE 	0	իդ	.
+SFX GE 	0	ին       .
+
+
+# ձիուd
+SFX G2 Y 5
+SFX G2	0	ու	.
+SFX G2	0	ուս	.
+SFX G2	0	ուդ	.
+SFX G2	0	ուն	.
+SFX G2	ի	ւոյ/DE	.
+
+# միութեան, արեան, առաւօտեան
+SFX G1 Y 2
+SFX G1   իւն	եան/DE           .
+SFX G1	0	եան/DE		.
+
+# ayi, oyi
+SFX G4 Y 3
+SFX G4  ա	այի/DE	.
+SFX G4  օ	ոյի/DE	.
+SFX G4  ո	ոյի/DE	.
+
+# հայր
+SFX G7 Y 3
+SFX G7   այր	օր/DE           .
+SFX G7   այր	օրմէ/DE           .
+SFX G7   այր	օրմով/DE           .
+
+
+# ոջ   տիրոջ, քրոջ, աներոջ
+SFX G8 	Y 12
+SFX G8  0	ոջ/DE	.
+SFX G8 ոյր	րոջ/DE	.
+SFX G8	էր	իրոջ/DE	.
+SFX G8	ին	նոջ/DE	.
+SFX G8  0	ոջմէ/DE	.
+SFX G8 ոյր	րոջմէ/DE	.
+SFX G8	էր	իրոջմէ/DE	.
+SFX G8	ին	նոջմէ/DE	.
+SFX G8  0	ոջմով/DE	.
+SFX G8 ոյր	րոջմով/DE	.
+SFX G8	էր	իրոջմով/DE	.
+SFX G8	ին	նոջմով/DE	.
+
+
+# ման
+SFX G9 	Y 1
+SFX G9  ում	ման/DE	.	
+
+# ուայ
+SFX GA Y 1
+SFX GA	0	ուան/DE	.
+
+
+# ուայ  շաբթի
+SFX GC Y 1
+SFX GC	ի	ուան/DE	.
+
+
+# ան  տուն, մուկ, 
+SFX GD Y 3
+SFX GD	ուն	ան/DE	.
+SFX GD	ուկ	կան/DE	.
+SFX GD	0	ան/DE	.
+
+
+# instrumental
+SFX IN Y 1
+SFX IN   0     ով/DE          .
+
+
+# միութեամբ, արեամբ
+SFX I1 Y 1
+SFX I1   իւն	եամբ/DE          .
+
+# լուծմամբ
+SFX I3 Y 1
+SFX I3	ում	մամբ/DE	.
+
+# եկեղեցւով
+SFX I2 Y 1
+SFX I2	ի	ւով/DE	.
+
+# ayi, oyi
+SFX I4 Y 3
+SFX I4  ա	այով/DE	.
+SFX I4  օ	ոյով/DE	.
+SFX I4  ո	ոյով/DE	.
+
+
+
+
+
+#present
+SFX	VA	Y 41
+SFX	VA	լ	մ/CHGU	.
+SFX	VA	լ	ս/CHGU	.
+SFX	VA	ել	է/CHGU	.
+SFX	VA	իլ	ի/CHGU	.
+SFX	VA	ալ	այ/CHGU	.
+SFX	VA	լ	նք/CHGU	.
+SFX	VA	ալ	աք/CHGU	.
+SFX	VA	ել	էք/CHGU	.
+SFX	VA	իլ	իք/CHGU	.
+SFX	VA	լ	ն/CHGU	.
+SFX	VA	ել	էի/CHGU	.
+SFX	VA	ել	էիր/CHGU	.
+SFX	VA	ել	էր/CHGU	.
+SFX	VA	ել	էինք/CHGU	.
+SFX	VA	ել	էիք/CHGU	.
+SFX	VA	ել	էին/CHGU	.
+SFX	VA	իլ	էի/CHGU	.
+SFX	VA	իլ	էիր/CHGU	.
+SFX	VA	իլ	էր/CHGU	.
+SFX	VA	իլ	էինք/CHGU	.
+SFX	VA	իլ	էիք/CHGU	.
+SFX	VA	իլ	էին/CHGU	.
+SFX	VA	ալ	այի/CHGU	.
+SFX	VA	ալ	այիր/CHGU	.
+SFX	VA	ալ	ար/CHGU	.
+SFX	VA	ալ	այինք/CHGU	.
+SFX	VA	ալ	այիք/CHGU	.
+SFX	VA	ալ	ային/CHGU	.
+SFX	VA	իլ	իլ/CHDE	.
+SFX	VA	ել	ել/CHDE	.
+SFX	VA	ալ	ալ/CHDE	.
+SFX	VA	իլ	ելու/CHDE	.
+SFX	VA	իլ	ելէ/CHDE	.
+SFX	VA	իլ	ելով/CHDE	.
+SFX	VA	ել	ելիք/CHDEGEABINPP	.
+SFX	VA	իլ	ելիք/CHDEGEABINPP	.
+SFX	VA	ալ	ալիք/CHDEGEABINPP	.
+SFX	VA	իլ	եր	.
+SFX	VA	ել	ելի/CHDEGEABINPP	.
+SFX	VA	իլ	ելի/CHDEGEABINPP	.
+SFX	VA	ալ	ալի/CHDEGEABINPP	.
+
+
+#thirdperson consonants չի գրեր
+SFX	VU	Y 3
+SFX	VU	ել	եր/CH	.
+SFX	VU	իլ	իր/CH	.
+SFX	VU	ալ	ար/CH	.
+
+
+#thirdperson vowel չի երթայ   չ'երթար
+SFX	VT	Y 3
+SFX	VT	ել	եր/CH	.
+SFX	VT	իլ	իր/CH	.
+SFX	VT	ալ	ար/CH	.
+
+# ալ - ել  verb class specific
+SFX	VB	Y 	246 
+SFX	VB	ել	ող/CHDEPPABGEIN .
+SFX	VB	իլ	ող/CHDEPPABGEIN .
+SFX	VB	ալ	ացող/CHDEPPABGEIN .
+SFX	VB	ել	ողներ/CHDEABG2IN .
+SFX	VB	իլ	ողներ/CHDEABG2IN .
+SFX	VB	ալ	ացողներ/CHDEABG2IN .
+SFX	VB	ել	ած/CHDEABGEIN .
+SFX	VB	ել	ածներ/CHDEABG2IN .
+SFX	VB	իլ	ած/CHDEABGEIN .
+SFX	VB	իլ	ածներ/CHDEABG2IN .
+SFX	VB	ալ	ացած/CHDEABGEIN .
+SFX	VB	ալ	ացածներ/CHDEABG2IN .
+SFX	VB	ել	ուող/CHDEABGEIN .
+SFX	VB	իլ	ուող/CHDEABGEIN .
+SFX	VB	ալ	ացուող/CHDEABGEIN .
+SFX	VB	ել	ուողներ/CHDEABG2IN .
+SFX	VB	իլ	ուողներ/CHDEABG2IN .
+SFX	VB	ալ	ացուողներ/CHDEABG2IN .
+SFX	VB	ել	ուած/CHDEABGEIN .
+SFX	VB	ել	ուածներ/CHDEABG2IN .
+SFX	VB	իլ	ուած/CHDEABGEIN .
+SFX	VB	իլ	ուածներ/CHDEABG2IN .
+SFX	VB	ել	եցուած/CHDEABGEIN .
+SFX	VB	ել	եցուածներ/CHDEABG2IN .
+SFX	VB	ալ	ացուած/CHDEABGEIN .
+SFX	VB	ալ	ացուածներ/CHDEABG2IN .
+SFX	VB	իլ	եցուած/CHDEABGEIN .
+SFX	VB	իլ	եցուածներ/CHDEABG2IN .
+SFX	VB	ել	եցնող/CHDEABGEIN .
+SFX	VB	ել	եցնողներ/CHDEABG2IN .
+SFX	VB	ալ	ացնող/CHDEABGEIN .
+SFX	VB	ալ	ացնողներ/CHDEABG2IN .
+SFX	VB	իլ	եցնող/CHDEABGEIN .
+SFX	VB	իլ	եցնողներ/CHDEABG2IN .
+SFX	VB	ել	եցուցած/CHDEABGEIN .
+SFX	VB	ել	եցուցածներ/CHDEABG2IN .	
+SFX	VB	ալ	ացուցած/CHDEABGEIN .
+SFX	VB	ալ	ացուցածներ/CHDEABG2IN .	
+SFX	VB	իլ	եցուցած/CHDEABGEIN .
+SFX	VB	իլ	եցուցածներ/CHDEABG2IN .
+SFX	VB	ալ	ացեր .
+SFX	VB	իլ	եր .
+SFX	VB	ել	եցուիլ/CHDE .
+SFX	VB	իլ	եցուիլ/CHDE .
+SFX	VB	ալ	ացուիլ/CHDE .	
+SFX	VB	ել	եցուելու/CHDE .
+SFX	VB	իլ	եցուելու/CHDE .
+SFX	VB	ալ	ացուելու/CHDE .
+SFX	VB	ել	եցուելէ/CHDE .
+SFX	VB	իլ	եցուելէ/CHDE .
+SFX	VB	ալ	ացուելէ/CHDE .
+SFX	VB	ել	եցուելով/CH .
+SFX	VB	իլ	եցուելով/CH .
+SFX	VB	ալ	ացուելով/CH .
+SFX	VB	ել	եցուցեր .	
+SFX	VB	իլ	եցուցեր .
+SFX	VB	ալ	ացուցեր .
+SFX	VB	ել	է .
+SFX	VB	իլ	է .	
+SFX	VB	ալ	ա .
+SFX	VB	ել	եցէք .	
+SFX	VB	իլ	եցէք .
+SFX	VB	ալ	ացէք .
+SFX	VB	ել	ուէ .	
+SFX	VB	իլ	ուէ.
+SFX	VB	ալ	ացուէ.
+SFX	VB	ել	ուեցէք .	
+SFX	VB	իլ	ուեցէք .
+SFX	VB	ալ	ացուեցէք .
+SFX	VB	ել	եցուր .	
+SFX	VB	իլ	եցուր .	
+SFX	VB	ալ	ացուր .
+SFX	VB	ել	եցուցէք .	
+SFX	VB	իլ	եցուցէք .	
+SFX	VB	ալ	ացուցէք .
+SFX	VB	ել	եցնել/CHG2ABINDE	.
+SFX	VB	իլ	եցնել/CHG2ABINDE	.
+SFX	VB	ալ	ացնել/CHG2ABINDE	.
+SFX	VB	ել	եցներ	.
+SFX	VB	իլ	եցներ	.
+SFX	VB	ալ	ացներ	.
+SFX	VB	ել	եցնեմ/CHGU	.
+SFX	VB	իլ	եցնեմ/CHGU	.
+SFX	VB	ալ	ացնեմ/CHGU	.
+SFX	VB	ել	եցնես/CHGU	.
+SFX	VB	իլ	եցնես/CHGU	.
+SFX	VB	ալ	ացնես/CHGU	.
+SFX	VB	ել	եցնէ/CHGU	.
+SFX	VB	իլ	եցնէ/CHGU	.
+SFX	VB	ալ	ացնէ/CHGU	.
+SFX	VB	ել	եցնենք/CHGU	.
+SFX	VB	իլ	եցնենք/CHGU	.
+SFX	VB	ալ	ացնենք/CHGU	.
+SFX	VB	ել	եցնէք/CHGU	.
+SFX	VB	իլ	եցնէք/CHGU	.
+SFX	VB	ալ	ացնէք/CHGU	.
+SFX	VB	ել	եցնեն/CHGU	.
+SFX	VB	իլ	եցնեն/CHGU	.
+SFX	VB	ալ	ացնեն/CHGU	.
+SFX	VB	ել	եցնէի/CHGU	.
+SFX	VB	իլ	եցնէի/CHGU	.
+SFX	VB	ալ	ացնէի/CHGU	.
+SFX	VB	ել	եցնէիր/CHGU	.
+SFX	VB	իլ	եցնէիր/CHGU	.
+SFX	VB	ալ	ացնէիր/CHGU	.
+SFX	VB	ել	եցնէր/CHGU	.
+SFX	VB	իլ	եցնէր/CHGU	.
+SFX	VB	ալ	ացնէր/CHGU	.
+SFX	VB	ել	եցնէինք/CHGU	.
+SFX	VB	իլ	եցնէինք/CHGU	.
+SFX	VB	ալ	ացնէինք/CHGU	.
+SFX	VB	ել	եցնէիք/CHGU	.
+SFX	VB	իլ	եցնէիք/CHGU	.
+SFX	VB	ալ	ացնէիք/CHGU	.
+SFX	VB	ել	եցնէին/CHGU	.
+SFX	VB	իլ	եցնէին/CHGU	.
+SFX	VB	ալ	ացնէին/CHGU	.
+SFX	VB	ել	եցուցի/CHGU	.
+SFX	VB	իլ	եցուցի/CHGU	.
+SFX	VB	ալ	ացուցի/CHGU	.
+SFX	VB	ել	եցուցիր/CHGU	.
+SFX	VB	իլ	եցուցիր/CHGU	.
+SFX	VB	ալ	ացուցիր/CHGU	.
+SFX	VB	ել	եցուց/CHGU	.
+SFX	VB	իլ	եցուց/CHGU	.
+SFX	VB	ալ	ացուց/CHGU	.
+SFX	VB	ել	եցուցինք/CHGU	.
+SFX	VB	իլ	եցուցինք/CHGU	.
+SFX	VB	ալ	ացուցինք/CHGU	.
+SFX	VB	ել	եցուցիք/CHGU	.
+SFX	VB	իլ	եցուցիք/CHGU	.
+SFX	VB	ալ	ացուցիք/CHGU	.
+SFX	VB	ել	եցուցին/CHGU	.
+SFX	VB	իլ	եցուցին/CHGU	.
+SFX	VB	ալ	ացուցին/CHGU	.
+SFX	VB	ել	եցնելի	.
+SFX	VB	իլ	եցնելի	.
+SFX	VB	ալ	ացնելի	.
+SFX	VB	ել	ուելի	.
+SFX	VB	ել	եցուելի	.
+SFX	VB	իլ	եցուելի	.
+SFX	VB	ալ	ացուելի	.
+SFX	VB	ել	ելիք/DEGEABINPP	.
+SFX	VB	իլ	ելիք/DEGEABINPP	.
+SFX	VB	ալ	ալիք/DEGEABINPP	.
+SFX	VB	ել	ելի/DEGEABINPP	.
+SFX	VB	իլ	ելի/DEGEABINPP	.
+SFX	VB	ալ	ալի/DEGEABINPP	.
+SFX	VB	ել	եր	.
+SFX	VB	իլ	եր	.
+SFX	VB	ալ	ար	.
+SFX	VB	ել	ուիլ/CHDE	.
+SFX	VB	ել	ուել/CHG2ABINDE	.
+SFX	VB	ել	ուիմ/CHGU	.
+SFX	VB	ել	ուիս/CHGU	.
+SFX	VB	ել	ուի/CHGU	.
+SFX	VB	ել	ուինք/CHGU	.
+SFX	VB	ել	ուիք/CHGU	.
+SFX	VB	ել	ուին/CHGU	.
+SFX	VB	ել	եցուեր .
+SFX	VB	իլ	եցուեր .
+SFX	VB	ալ	ացուեր .
+SFX	VB	ել	եցուիլ/CHDE	.
+SFX	VB	ել	եցուել/CHG2ABINDE	.
+SFX	VB	իլ	եցուիլ/CHDE	.
+SFX	VB	իլ	եցուել/CHG2ABINDE	.
+SFX	VB	ալ	ացուիլ/CHDE	.
+SFX	VB	ալ	ացուել/CHG2ABINDE	.
+SFX	VB	ել	եցուեմ/CHGU	.
+SFX	VB	իլ	եցուեմ/CHGU	.
+SFX	VB	ալ	ացուեմ/CHGU	.
+SFX	VB	ել	եցուես/CHGU	.
+SFX	VB	իլ	եցուես/CHGU	.
+SFX	VB	ալ	ացուես/CHGU	.
+SFX	VB	ել	եցուի/CHGU	.
+SFX	VB	իլ	եցուի/CHGU	.
+SFX	VB	ալ	ացուի/CHGU	.
+SFX	VB	ել	եցուենք/CHGU	.
+SFX	VB	իլ	եցուենք/CHGU	.
+SFX	VB	ալ	ացուենք/CHGU	.
+SFX	VB	ել	եցուէք/CHGU	.
+SFX	VB	իլ	եցուէք/CHGU	.
+SFX	VB	ալ	ացուէք/CHGU	.
+SFX	VB	ել	եցուեն/CHGU	.
+SFX	VB	իլ	եցուեն/CHGU	.
+SFX	VB	ալ	ացուեն/CHGU	.
+SFX	VB	ել	ուէի/CHGU	.
+SFX	VB	ել	ուէիր/CHGU	.
+SFX	VB	ել	ուէր/CHGU	.
+SFX	VB	ել	ուէինք/CHGU	.
+SFX	VB	ել	ուէիք/CHGU	.
+SFX	VB	ել	ուէին/CHGU	.
+SFX	VB	ել	եցուէի/CHGU	.
+SFX	VB	իլ	եցուէի/CHGU	.
+SFX	VB	ալ	ացուէի/CHGU	.
+SFX	VB	ել	եցուէիր/CHGU	.
+SFX	VB	իլ	եցուէիր/CHGU	.
+SFX	VB	ալ	ացուէիր/CHGU	.
+SFX	VB	ել	եցուէր/CHGU	.
+SFX	VB	իլ	եցուէր/CHGU	.
+SFX	VB	ալ	ացուէր/CHGU	.
+SFX	VB	ել	եցուէինք/CHGU	.
+SFX	VB	իլ	եցուէինք/CHGU	.
+SFX	VB	ալ	ացուէինք/CHGU	.
+SFX	VB	ել	եցուէիք/CHGU	.
+SFX	VB	իլ	եցուէիք/CHGU	.
+SFX	VB	ալ	ացուէիք/CHGU	.
+SFX	VB	ել	եցուէին/CHGU	.
+SFX	VB	իլ	եցուէին/CHGU	.
+SFX	VB	ալ	ացուէին/CHGU	.
+SFX	VB	ել	եցի/CH	.
+SFX	VB	իլ	եցայ/CH	.
+SFX	VB	ալ	ացի/CH	.
+SFX	VB	ել	եցիր/CH	.
+SFX	VB	իլ	եցար/CH	.
+SFX	VB	ալ	ացիր/CH	.
+SFX	VB	ել	եց/CH .
+SFX	VB	իլ	եցաւ/CH .
+SFX	VB	ալ	աց/CH .
+SFX	VB	ել	եցինք/CH .
+SFX	VB	իլ	եցանք/CH .
+SFX	VB	ալ	ացինք/CH .
+SFX	VB	ել	եցիք/CH .
+SFX	VB	իլ	եցաք/CH .
+SFX	VB	ալ	ացիք/CH .
+SFX	VB	ել	եցին/CH .
+SFX	VB	իլ	եցան/CH .
+SFX	VB	ալ	ացին/CH .
+SFX	VB	ել	ուեցայ/CH	.
+SFX	VB	ել	ուեցար/CH	.
+SFX	VB	ել	ուեցաւ/CH .
+SFX	VB	ել	ուեցանք/CH .
+SFX	VB	ել	ուեցաք/CH .
+SFX	VB	ել	ուեցան/CH .
+SFX	VB	իլ	ուեցայ/CH	.
+SFX	VB	իլ	ուեցար/CH	.
+SFX	VB	իլ	ուեցաւ/CH .
+SFX	VB	իլ	ուեցանք/CH .
+SFX	VB	իլ	ուեցաք/CH .
+SFX	VB	իլ	ուեցան/CH .
+SFX	VB	ալ	ացուեցայ/CH	.
+SFX	VB	ալ	ացուեցար/CH	.
+SFX	VB	ալ	ացուեցաւ/CH .
+SFX	VB	ալ	ացուեցանք/CH .
+SFX	VB	ալ	ացուեցաք/CH .
+SFX	VB	ալ	ացուեցան/CH .
+
+
+#nal ուշացայ մօտեցայ
+SFX	VC	Y	79
+SFX	VC	նալ	ցայ/CH	.
+SFX	VC	նալ	ցար/CH	.
+SFX	VC	նալ	ցաւ/CH .
+SFX	VC	նալ	ցանք/CH .
+SFX	VC	նալ	ցաք/CH .
+SFX	VC	նալ	ցան/CH .
+SFX	VC	նալ	ցուիլ/CH	.
+SFX	VC	նալ	ցուիմ/CHGU	.
+SFX	VC	նալ	ցուիս/CHGU	.
+SFX	VC	նալ	ցուի/CHGU	.
+SFX	VC	նալ	ցուինք/CHGU	.
+SFX	VC	նալ	ցուիք/CHGU	.
+SFX	VC	նալ	ցուին/CHGU	.
+SFX	VC	նալ	ցող/CHDEABGEIN .
+SFX	VC	նալ	ցողներ/CHDEABG2IN .
+SFX	VC	նալ	ցած/CHDEABGEIN .
+SFX	VC	նալ	ցածներ/CHDEABG2IN .
+SFX	VC	նալ	ցուող/CHDEABGEIN .
+SFX	VC	նալ	ցուողներ/CHDEABG2IN .
+SFX	VC	նալ	ցուած/CHDEABGEIN .
+SFX	VC	նալ	ցուածներ/CHDEABG2IN .
+SFX	VC	նալ	ցնող/CHDEABGEIN .
+SFX	VC	նալ	ցնողներ/CHDEABG2IN .
+SFX	VC	նալ	ցուցած/CHDEABGEIN .
+SFX	VC	նալ	ցուցածներ/CHDEABG2IN .	
+SFX	VC	նալ	ցեր .
+SFX	VC	նալ	ցուիլ/CHDE .	
+SFX	VC	նալ	ցուել/CHG2ABINDE .
+SFX	VC	նալ	ցուցեր  .
+SFX	VC	նալ	ցիր .	
+SFX	VC	նալ	նար .
+SFX	VC	նալ	ցէք .	
+SFX	VC	նալ	ցուէ.	
+SFX	VC	նալ	ցուեցէք .
+SFX	VC	նալ	ցուր .
+SFX	VC	նալ	ցուցէք .
+SFX	VC	նալ	ցնել/CHG2ABINDE	.
+SFX	VC	նալ	ցներ	.
+SFX	VC	նալ	ցնեմ/CHGU	.
+SFX	VC	նալ	ցնես/CHGU	.
+SFX	VC	նալ	ցնէ/CHGU	.
+SFX	VC	նալ	ցնենք/CHGU	.
+SFX	VC	նալ	ցնէք/CHGU	.
+SFX	VC	նալ	ցնեն/CHGU	.
+SFX	VC	նալ	ցնէի/CHGU	.
+SFX	VC	նալ	ցնէիր/CHGU	.
+SFX	VC	նալ	ցնէր/CHGU	.
+SFX	VC	նալ	ցնէինք/CHGU	.
+SFX	VC	նալ	ցնէիք/CHGU	.
+SFX	VC	նալ	ցնէին/CHGU	.
+SFX	VC	նալ	ցուցի/CHGU	.
+SFX	VC	նալ	ցուցիր/CHGU	.
+SFX	VC	նալ	ցուց/CHGU	.
+SFX	VC	նալ	ցուցինք/CHGU	.
+SFX	VC	նալ	ցուցիք/CHGU	.
+SFX	VC	նալ	ցուցին/CHGU	.
+SFX	VC	նալ	ցնելիք/CHGEABINPPDE	.
+SFX	VC	նալ	ցուելիք/CHGEABINPPDE	.
+SFX	VC	նալ	ցնելի/CHGEABINPPDE	.
+SFX	VC	նալ	ցուելի/CHGEABINPPDE	.
+SFX	VC	նալ	ցուեր    .
+SFX	VC	նալ	ցուիմ/CHGU	.
+SFX	VC	նալ	ցուիս/CHGU	.
+SFX	VC	նալ	ցուի/CHGU	.
+SFX	VC	նալ	ցուինք/CHGU	.
+SFX	VC	նալ	ցուիք/CHGU	.
+SFX	VC	նալ	ցուին/CHGU	.
+SFX	VC	նալ	ցուէի/CHGU	.
+SFX	VC	նալ	ցուէիր/CHGU	.
+SFX	VC	նալ	ցուէր/CHGU	.
+SFX	VC	նալ	ցուէինք/CHGU	.
+SFX	VC	նալ	ցուէիք/CHGU	.
+SFX	VC	նալ	ցուէին/CHGU	.
+SFX	VC	նալ	ցուեցայ/CH	.
+SFX	VC	նալ	ցուեցար/CH	.
+SFX	VC	նալ	ցուեցաւ/CH .
+SFX	VC	նալ	ցուեցանք/CH .
+SFX	VC	նալ	ցուեցաք/CH .
+SFX	VC	նալ	ցուեցան/CH .
+
+
+#nel qel
+SFX	VD	Y	324
+SFX	VD	նել	այ/CH	.
+SFX	VD	նել	ար/CH	.
+SFX	VD	նել	աւ/CH .
+SFX	VD	նել	անք/CH .
+SFX	VD	նել	աք/CH .
+SFX	VD	նել	ան/CH .
+SFX	VD	նիլ	այ/CH	.
+SFX	VD	նիլ	ար/CH	.
+SFX	VD	նիլ	աւ/CH .
+SFX	VD	նիլ	անք/CH .
+SFX	VD	նիլ	աք/CH .
+SFX	VD	նիլ	ան/CH .
+SFX	VD	չիլ	այ/CH	.
+SFX	VD	չիլ	ար/CH	.
+SFX	VD	չիլ	աւ/CH .
+SFX	VD	չիլ	անք/CH .
+SFX	VD	չիլ	աք/CH .
+SFX	VD	չիլ	ան/CH .
+SFX	VD	իլ	այ/CH	.
+SFX	VD	իլ	ար/CH	.
+SFX	VD	իլ	աւ/CH .
+SFX	VD	իլ	անք/CH .
+SFX	VD	իլ	աք/CH .
+SFX	VD	իլ	ան/CH .
+SFX	VD	նել	ած/CHABGEINDE .
+SFX	VD	նել	ածներ/CHABG2INDE .
+SFX	VD	նիլ	ած/CHABGEINDE .
+SFX	VD	նիլ	ածներ/CHABG2INDE .
+SFX	VD	չիլ	ած/CHABGEINDE .
+SFX	VD	չիլ	ածներ/CHABG2INDE .
+SFX	VD	իլ	ած/CHABGEINDE .
+SFX	VD	իլ	ածներ/CHABG2INDE .
+SFX	VD	իլ	ող/CHABGEINDE .
+SFX	VD	իլ	ողներ/CHABG2INDE .
+SFX	VD	նել	ցուող/CHABGEINDE .	
+SFX	VD	նել	ցուողներ/CHABG2INDE .
+SFX	VD	նիլ	ցուող/CHABGEINDE .	
+SFX	VD	նիլ	ցուողներ/CHABG2INDE .
+SFX	VD	չիլ	ցուող/CHABGEINDE .	
+SFX	VD	չիլ	ցուողներ/CHABG2INDE .
+SFX	VD	իլ	ցուող/CHABGEINDE .	
+SFX	VD	իլ	ցուողներ/CHABG2INDE .
+SFX	VD	նել	ցուած/CHABGEINDE .
+SFX	VD	նել	ցուածներ/CHABG2INDE .
+SFX	VD	նիլ	ցուած/CHABGEINDE .
+SFX	VD	նիլ	ցուածներ/CHABG2INDE .
+SFX	VD	չիլ	ցուած/CHABGEINDE .
+SFX	VD	չիլ	ցուածներ/CHABG2INDE .
+SFX	VD	իլ	ցուած/CHABGEINDE .
+SFX	VD	իլ	ցուածներ/CHABG2INDE .
+SFX	VD	նել	ցուցած/CHABGEINDE .
+SFX	VD	նել	ցուցածներ/CHABG2INDE .
+SFX	VD	նիլ	ցուցած/CHABGEINDE .
+SFX	VD	նիլ	ցուցածներ/CHABG2INDE .
+SFX	VD	չիլ	ցուցած/CHABGEINDE .
+SFX	VD	չիլ	ցուցածներ/CHABG2INDE .
+SFX	VD	իլ	ցուցած/CHABGEINDE .
+SFX	VD	իլ	ցուցածներ/CHABG2INDE .
+SFX	VD	նել	եր .	
+SFX	VD	նիլ	եր .
+SFX	VD	իլ	եր.
+SFX	VD	չիլ	եր.
+SFX	VD	նել	ցուիլ/CHDE .	
+SFX	VD	նել	ցուել/CHG2ABINDE .
+SFX	VD	նիլ	ցուիլ/CHDE .	
+SFX	VD	նիլ	ցուել/CHG2ABINDE .
+SFX	VD	իլ	ցուիլ/CHDE .
+SFX	VD	իլ	ցուել/CHG2ABINDE .
+SFX	VD	չիլ	ցուիլ/CHDE .
+SFX	VD	չիլ	ցուել/CHG2ABINDE .
+SFX	VD	նել	ցուցեր .	
+SFX	VD	նիլ	ցուցեր .
+SFX	VD	իլ	ցուցեր .
+SFX	VD	չիլ	ցուցեր .
+SFX	VD	նել	իր .	
+SFX	VD	նիլ	իր .
+SFX	VD	չիլ	իր .
+SFX	VD	իլ	իր .
+SFX	VD	նել	էք .	
+SFX	VD	նիլ	էք .
+SFX	VD	չիլ	էք .
+SFX	VD	իլ	էք .
+SFX	VD	ել	ուիլ/CHDE	.
+SFX	VD	ել	ուել/CHG2ABINDE	.
+SFX	VD	իլ	ուիլ/CHDE	.
+SFX	VD	իլ	ուել/CHG2ABINDE	.
+SFX	VD	ել	ուիմ/CHGU	.
+SFX	VD	ել	ուիս/CHGU	.
+SFX	VD	ել	ուի/CHGU	.
+SFX	VD	ել	ուինք/CHGU	.
+SFX	VD	ել	ուիք/CHGU	.
+SFX	VD	ել	ուին/CHGU	.
+SFX	VD	իլ	ուիմ/CHGU	.
+SFX	VD	իլ	ուիս/CHGU	.
+SFX	VD	իլ	ուի/CHGU	.
+SFX	VD	իլ	ուինք/CHGU	.
+SFX	VD	իլ	ուիք/CHGU	.
+SFX	VD	իլ	ուին/CHGU	.
+SFX	VD	ել	ուէի/CHGU	.
+SFX	VD	ել	ուէիր/CHGU	.
+SFX	VD	ել	ուէր/CHGU	.
+SFX	VD	ել	ուէինք/CHGU	.
+SFX	VD	ել	ուէիք/CHGU	.
+SFX	VD	ել	ուէին/CHGU	.
+SFX	VD	իլ	ուէի/CHGU	.
+SFX	VD	իլ	ուէիր/CHGU	.
+SFX	VD	իլ	ուէր/CHGU	.
+SFX	VD	իլ	ուէինք/CHGU	.
+SFX	VD	իլ	ուէիք/CHGU	.
+SFX	VD	իլ	ուէին/CHGU	.
+SFX	VD	նել	ցնող/CHDEABGEIN .
+SFX	VD	նել	ցնողներ/CHDEABG2IN .
+SFX	VD	նել	ցուցած/CHDEPPABGEIN .
+SFX	VD	նել	ցուցածներ/CHDEABG2IN .	
+SFX	VD	նիլ	ցնող/CHDEABGEIN .
+SFX	VD	նիլ	ցնողներ/CHDEABG2IN .
+SFX	VD	նիլ	ցուցած/CHDEABGEIN .
+SFX	VD	նիլ	ցուցածներ/CHDEABG2IN .
+SFX	VD	նել	ցուիլ/CHDE .	
+SFX	VD	նել	ցուել/CHG2ABINDE .
+SFX	VD	նել	ցուէ .	
+SFX	VD	նել	ցուեցէք .
+SFX	VD	նիլ	ցուէ .	
+SFX	VD	նիլ	ցուեցէք .
+SFX	VD	նել	ցուցէք .
+SFX	VD	նել	ցուր .
+SFX	VD	նել	ցուցէք .
+SFX	VD	նիլ	ցուր .
+SFX	VD	նիլ	ցրեցէք .
+SFX	VD	նել	ցնել/CHG2ABINDE	.
+SFX	VD	նել	ցներ	.
+SFX	VD	նիլ	ցներ	.
+SFX	VD	նել	ցնեմ/CHGU	.
+SFX	VD	նել	ցնես/CHGU	.
+SFX	VD	նել	ցնէ/CHGU	.
+SFX	VD	նել	ցնենք/CHGU	.
+SFX	VD	նել	ցնէք/CHGU	.
+SFX	VD	նել	ցնեն/CHGU	.
+SFX	VD	նել	ցնէի/CHGU	.
+SFX	VD	նել	ցնէիր/CHGU	.
+SFX	VD	նել	ցնէր/CHGU	.
+SFX	VD	նել	ցնէինք/CHGU	.
+SFX	VD	նել	ցնէիք/CHGU	.
+SFX	VD	նել	ցնէին/CHGU	.
+SFX	VD	նիլ	ցնեմ/CHGU	.
+SFX	VD	նիլ	ցնես/CHGU	.
+SFX	VD	նիլ	ցնէ/CHGU	.
+SFX	VD	նիլ	ցնենք/CHGU	.
+SFX	VD	նիլ	ցնէք/CHGU	.
+SFX	VD	նիլ	ցնեն/CHGU	.
+SFX	VD	նիլ	ցնէի/CHGU	.
+SFX	VD	նիլ	ցնէիր/CHGU	.
+SFX	VD	նիլ	ցնէր/CHGU	.
+SFX	VD	նիլ	ցնէինք/CHGU	.
+SFX	VD	նիլ	ցնէիք/CHGU	.
+SFX	VD	նիլ	ցնէին/CHGU	.
+SFX	VD	նել	ցուցի/CH	.
+SFX	VD	նել	ցուցիր/CH	.
+SFX	VD	նել	ցուց/CH	.
+SFX	VD	նել	ցուցինք/CH	.
+SFX	VD	նել	ցուցիք/CH	.
+SFX	VD	նել	ցուցին/CH	.
+SFX	VD	նիլ	ցուցի/CH	.
+SFX	VD	նիլ	ցուցիր/CH	.
+SFX	VD	նիլ	ցուց/CH	.
+SFX	VD	նիլ	ցուցինք/CH	.
+SFX	VD	նիլ	ցուցիք/CH	.
+SFX	VD	նիլ	ցուցին/CH	.
+SFX	VD	նել	ցնելիք/CHDEGEABINPP .
+SFX	VD	նել	ցուելիք/CHDEGEABINPP	.
+SFX	VD	նել	ցնելի/CHDEGEABINPP .
+SFX	VD	նել	ցուելի/CHDEGEABINPP	.
+SFX	VD	նիլ	ցնելիք/CHDEGEABINPP .
+SFX	VD	նիլ	ցուելիք/CHDEGEABINPP	.
+SFX	VD	նիլ	ցնելի/CHDEGEABINPP .
+SFX	VD	նիլ	ցուելի/CHDEGEABINPP	.
+SFX	VD	նել	ցուեր .
+SFX	VD	նել	ցուիլ/CHDE	.
+SFX	VD	նել	ցուեր .
+SFX	VD	նիլ	ցուեր .
+SFX	VD	նել	ցուիլ/CHDE	.
+SFX	VD	նել	ցուիլ/CHG2ABINDE	.
+SFX	VD	նիլ	ցուիլ/CHDE	.
+SFX	VD	նիլ	ցուիլ/CHG2ABINDE	.
+SFX	VD	նել	ցուիմ/CHGU	.
+SFX	VD	նել	ցուիս/CHGU	.
+SFX	VD	նել	ցուի/CHGU	.
+SFX	VD	նել	ցուինք/CHGU	.
+SFX	VD	նել	ցուիք/CHGU	.
+SFX	VD	նել	ցուին/CHGU	.
+SFX	VD	նել	ցուէի/CHGU	.
+SFX	VD	նել	ցուէիր/CHGU	.
+SFX	VD	նել	ցուէր/CHGU	.
+SFX	VD	նել	ցուէինք/CHGU	.
+SFX	VD	նել	ցուէիք/CHGU	.
+SFX	VD	նել	ցուէին/CHGU	.
+SFX	VD	նիլ	ցուիմ/CHGU	.
+SFX	VD	նիլ	ցուիս/CHGU	.
+SFX	VD	նիլ	ցուի/CHGU	.
+SFX	VD	նիլ	ցուինք/CHGU	.
+SFX	VD	նիլ	ցուիք/CHGU	.
+SFX	VD	նիլ	ցուին/CHGU	.
+SFX	VD	նիլ	ցուէի/CHGU	.
+SFX	VD	նիլ	ցուէիր/CHGU	.
+SFX	VD	նիլ	ցուէր/CHGU	.
+SFX	VD	նիլ	ցուէինք/CHGU	.
+SFX	VD	նիլ	ցուէիք/CHGU	.
+SFX	VD	նիլ	ցուէին/CHGU	.
+SFX	VD	նել	ցուեցայ/CH	.
+SFX	VD	նել	ցուեցար/CH	.
+SFX	VD	նել	ցուեցաւ/CH .
+SFX	VD	նել	ցուեցանք/CH .
+SFX	VD	նել	ցուեցաք/CH .
+SFX	VD	նել	ցուեցան/CH .
+SFX	VD	չիլ	ցնող/CHDEABGEIN .
+SFX	VD	չիլ	ցնողներ/CHDEABG2IN .
+SFX	VD	չիլ	ցրած/CHDEABGEIN .
+SFX	VD	չիլ	ցրածներ/CHDEABG2IN .	
+SFX	VD	չիլ	ցուիլ/CHG2ABINDE .	
+SFX	VD	չիլ	ցուէ .	
+SFX	VD	չիլ	ցուեցէք .
+SFX	VD	չիլ	ցուցէք .
+SFX	VD	չիլ	ցուր .
+SFX	VD	չիլ	ցրեցէք .
+SFX	VD	չիլ	ցնել/CHG2ABINDE	.
+SFX	VD	չիլ	ցներ	.
+SFX	VD	չիլ	ցնեմ/CHGU	.
+SFX	VD	չիլ	ցնես/CHGU	.
+SFX	VD	չիլ	ցնէ/CHGU	.
+SFX	VD	չիլ	ցնենք/CHGU	.
+SFX	VD	չիլ	ցնէք/CHGU	.
+SFX	VD	չիլ	ցնեն/CHGU	.
+SFX	VD	չիլ	ցնէի/CHGU	.
+SFX	VD	չիլ	ցնէիր/CHGU	.
+SFX	VD	չիլ	ցնէր/CHGU	.
+SFX	VD	չիլ	ցնէինք/CHGU	.
+SFX	VD	չիլ	ցնէիք/CHGU	.
+SFX	VD	չիլ	ցնէին/CHGU	.
+SFX	VD	չիլ	ցուցի/CH	.
+SFX	VD	չիլ	ցուցիր/CHGU	.
+SFX	VD	չիլ	ցուց/CHGU	.
+SFX	VD	չիլ	ցուցինք/CHGU	.
+SFX	VD	չիլ	ցուցիք/CHGU	.
+SFX	VD	չիլ	ցուցին/CHGU	.
+SFX	VD	չիլ	ցնելիք/CHDEGEABINPP	.
+SFX	VD	չիլ	ցուելիք/CHDEGEABINPP	.
+SFX	VD	չիլ	ցնելի/CHDEGEABINPP	.
+SFX	VD	չիլ	ցուելի/CHDEGEABINPP	.
+SFX	VD	չիլ	ցուեր .
+SFX	VD	չիլ	ցուիլ/CHDE	.
+SFX	VD	չիլ	ցուել/CHG2ABINDE	.
+SFX	VD	չիլ	ցուիմ/CHGU	.
+SFX	VD	չիլ	ցուիս/CHGU	.
+SFX	VD	չիլ	ցուի/CHGU	.
+SFX	VD	չիլ	ցուինք/CHGU	.
+SFX	VD	չիլ	ցուիք/CHGU	.
+SFX	VD	չիլ	ցուին/CHGU	.
+SFX	VD	չիլ	ցուէի/CHGU	.
+SFX	VD	չիլ	ցուէիր/CHGU	.
+SFX	VD	չիլ	ցուէր/CHGU	.
+SFX	VD	չիլ	ցուէինք/CHGU	.
+SFX	VD	չիլ	ցուէիք/CHGU	.
+SFX	VD	չիլ	ցուէին/CHGU	.
+SFX	VD	չիլ	ցուեցայ/CH	.
+SFX	VD	չիլ	ցուեցար/CH	.
+SFX	VD	չիլ	ցուեցաւ/CH .
+SFX	VD	չիլ	ցուեցանք/CH .
+SFX	VD	չիլ	ցուեցաք/CH .
+SFX	VD	չիլ	ցուեցան/CH .
+SFX	VD	իլ	ցնող/CHDEABGEIN .
+SFX	VD	իլ	ցնողներ/CHDEABG2IN .
+SFX	VD	իլ	ցրած/CHDEABGEIN .
+SFX	VD	իլ	ցրածներ/CHDEABG2IN .	
+SFX	VD	իլ	ցուիլ/CHG2ABINDE .	
+SFX	VD	իլ	ցուէ .	
+SFX	VD	իլ	ցուեցէք .
+SFX	VD	իլ	ցուցէք .
+SFX	VD	իլ	ցուր .
+SFX	VD	իլ	ցրեցէք .
+SFX	VD	իլ	ցնել/CHG2ABINDE	.
+SFX	VD	իլ	ցներ	.
+SFX	VD	իլ	ցնեմ/CHGU	.
+SFX	VD	իլ	ցնես/CHGU	.
+SFX	VD	իլ	ցնէ/CHGU	.
+SFX	VD	իլ	ցնենք/CHGU	.
+SFX	VD	իլ	ցնէք/CHGU	.
+SFX	VD	իլ	ցնեն/CHGU	.
+SFX	VD	իլ	ցնէի/CHGU	.
+SFX	VD	իլ	ցնէիր/CHGU	.
+SFX	VD	իլ	ցնէր/CHGU	.
+SFX	VD	իլ	ցնէինք/CHGU	.
+SFX	VD	իլ	ցնէիք/CHGU	.
+SFX	VD	իլ	ցնէին/CHGU	.
+SFX	VD	իլ	ցուցի/CH	.
+SFX	VD	իլ	ցուցիր/CHGU	.
+SFX	VD	իլ	ցուց/CHGU	.
+SFX	VD	իլ	ցուցինք/CHGU	.
+SFX	VD	իլ	ցուցիք/CHGU	.
+SFX	VD	իլ	ցուցին/CHGU	.
+SFX	VD	իլ	ցնելիք/CHDEGEABINPP	.
+SFX	VD	իլ	ցուելիք/CHDEGEABINPP	.
+SFX	VD	իլ	ցնելի/CHDEGEABINPP	.
+SFX	VD	իլ	ցուելի/CHDEGEABINPP	.
+SFX	VD	իլ	ցուեր .
+SFX	VD	իլ	ցուիլ/CHDE	.
+SFX	VD	իլ	ցուել/CHG2ABINDE	.
+SFX	VD	իլ	ցուիմ/CHGU	.
+SFX	VD	իլ	ցուիս/CHGU	.
+SFX	VD	իլ	ցուի/CHGU	.
+SFX	VD	իլ	ցուինք/CHGU	.
+SFX	VD	իլ	ցուիք/CHGU	.
+SFX	VD	իլ	ցուին/CHGU	.
+SFX	VD	իլ	ցուէի/CHGU	.
+SFX	VD	իլ	ցուէիր/CHGU	.
+SFX	VD	իլ	ցուէր/CHGU	.
+SFX	VD	իլ	ցուէինք/CHGU	.
+SFX	VD	իլ	ցուէիք/CHGU	.
+SFX	VD	իլ	ցուէին/CHGU	.
+SFX	VD	իլ	ցուեցայ/CH	.
+SFX	VD	իլ	ցուեցար/CH	.
+SFX	VD	իլ	ցուեցաւ/CH .
+SFX	VD	իլ	ցուեցանք/CH .
+SFX	VD	իլ	ցուեցաք/CH .
+SFX	VD	իլ	ցուեցան/CH .
+
+
+
+#tsnel վերցնել
+SFX	VE	Y	43
+SFX	VE	նել	ուցի/CH	.
+SFX	VE	նել	ուցիր/CH	.
+SFX	VE	նել	ուց/CH .
+SFX	VE	նել	ուցինք/CH .
+SFX	VE	նել	ուցիք/CH .
+SFX	VE	նել	ուցին/CH .
+SFX	VE	նել	ուիլ/CH	.
+SFX	VE	նել	ուիմ/CHGU	.
+SFX	VE	նել	ուիս/CHGU	.
+SFX	VE	նել	ուի/CHGU	.
+SFX	VE	նել	ուինք/CHGU	.
+SFX	VE	նել	ուիք/CHGU	.
+SFX	VE	նել	ուին/CHGU	.
+SFX	VE	նել	ուիլ/CHDE	.
+SFX	VE	նել	ուել/CHG2ABINDE	.
+SFX	VE	նել	ուէի/CHGU	.
+SFX	VE	նել	ուէիր/CHGU	.
+SFX	VE	նել	ուէր/CHGU	.
+SFX	VE	նել	ուէինք/CHGU	.
+SFX	VE	նել	ուէիք/CHGU	.
+SFX	VE	նել	ուէին/CHGU	.
+SFX	VE	նել	ուեցայ/CHGU	.
+SFX	VE	նել	ուեցար/CHGU	.
+SFX	VE	նել	ուեցաւ/CHGU	.
+SFX	VE	նել	ուեցանք/CHGU	.
+SFX	VE	նել	ուեցաք/CHGU	.
+SFX	VE	նել	ուեցան/CHGU	.
+SFX	VE	ել	ող/CHDEABGEIN .
+SFX	VE	ել	ողներ/CHDEABG2IN .
+SFX	VE	նել	ուցած/CHDEABGEIN .
+SFX	VE	նել	ուցածներ/CHDEABG2IN .
+SFX	VE	նել	ուող/CHDEABGEIN .
+SFX	VE	նել	ուողներ/CHDEABG2IN .
+SFX	VE	նել	ուած/CHDEABGEIN .
+SFX	VE	նել	ուածներ/CHDEABG2IN .	
+SFX	VE	նել	ուցեր .
+SFX	VE	նել	ուր .	
+SFX	VE	նել	ուցէք .	
+SFX	VE	նել	ուէ .	
+SFX	VE	նել	ուեցէք .
+SFX	VE	նել	ուելիք/CHGEABINPPDE	.
+SFX	VE	նել	ուելի/CHGEABINPPDE	.
+SFX	VE	նել	ուեր .
+
+
+	
+REP 1732
+REP	կագահանա	կ'ագահանայ
+REP	կազատվի	կ'ազատուի
+REP	կազգայնանա	կ'ազգայնանայ
+REP	կազնվանա	կ'ազնուանայ
+REP	կախպերանա	կ'ախպէրանայ
+REP	կածիկանա	կ'ածիկանայ
+REP	կածխանա	կ'ածխանայ
+REP	կածկանա	կ'ածկանայ
+REP	կակտիվանա	կ'ակտիւանայ
+REP	կահագնանա	կ'ահագնանայ
+REP	կահավորվել	կահաւորուել
+REP	կաղա	կ'աղայ
+REP	կաղբյուրանա	կ'աղբիւրանայ
+REP	կաղիանա	կ'աղիանայ
+REP	կաղոթ	կ'աղօթ
+REP	կաղոտանա	կ'աղօտանայ
+REP	կաղքատանա	կ'աղքատանայ
+REP	կաճյունանա	կ'աճիւնանայ
+REP	կամայանա	կ'ամայանայ
+REP	կամբարշտանա	կ'ամբարշտանայ
+REP	կամբարտավանանա	կ'ամբարտաւանանայ
+REP	կամբողջականանա	կ'ամբողջականանայ
+REP	կամբողջանա	կ'ամբողջանայ
+REP	կամլանա	կ'ամլանայ
+REP	կամուսնանա	կ'ամուսնանայ
+REP	կամրանա	կ'ամրանայ
+REP	կայգանա	կ'այգանայ
+REP	կայրանա	կ'այրանայ
+REP	կայրիանա	կ'այրիանայ
+REP	կանալիանա	կ'անալիանայ
+REP	կանամոթանա	կ'անամօթանայ
+REP	կանապատանա	կ'անապատանայ
+REP	կանառականա	կ'անառականայ
+REP	կանասնանա	կ'անասնանայ
+REP	կանբախտանա	կ'անբախտանայ
+REP	կանբարոյականանա	կ'անբարոյականանայ
+REP	կանգթանա	կ'անգթանայ
+REP	կանգիտանա	կ'անգիտանայ
+REP	կանգոյանա	կ'անգոյանայ
+REP	կանգունանա	կ'անգունանայ
+REP	կանդորրանա	կ'անդորրանայ
+REP	կանդրադառնա	կ'անդրադառնայ
+REP	կանեի	կ'անէի
+REP	կանեին	կ'անէին
+REP	կանեիր	կ'անէիր
+REP	կանեիք	կ'անէիք
+REP	կաներ	կ'անէր
+REP	կաներեսանա	կ'աներեսանայ
+REP	կաներեւութանա	կ'աներեւութանայ
+REP	կաներկյուղանա	կ'աներկիւղանայ
+REP	կանեք	կ'անէք
+REP	կանզգամանա	կ'անզգամանայ
+REP	կանզգայանա	կ'անզգայանայ
+REP	կանզորանա	կ'անզօրանայ
+REP	կանէանա	կ'անէանայ
+REP	կանիրավանա	կ'անիրաւանայ
+REP	կանխախտանա	կ'անխախտանայ
+REP	կանխելքանա	կ'անխելքանայ
+REP	կանծայրանա	կ'անծայրանայ
+REP	կանկարանա	կ'անկարանայ
+REP	կանկարգանա	կ'անկարգանայ
+REP	կանկեղծանա	կ'անկեղծանայ
+REP	կանհամանա	կ'անհամանայ
+REP	կանհայտանա	կ'անյայտանայ
+REP	կանհանգստանա	կ'անհանգստանայ
+REP	կանհավատարմանա	կ'անհաւատարմանայ
+REP	կանհատականանա	կ'անհատականանայ
+REP	կանհետանա	կ'անհետանայ
+REP	կանհոգանա	կ'անհոգանայ
+REP	կանձկա	կ'անձկայ
+REP	կանձկանա	կ'անձկանայ
+REP	կանձնանա	կ'անձնանայ
+REP	կանճարանա	կ'անճարանայ
+REP	կանմահանա	կ'անմահանայ
+REP	կանմարդանա	կ'անմարդանայ
+REP	կանմեղանա	կ'անմեղանայ
+REP	կանմտանա	կ'անմտանայ
+REP	կաննյութանա	կ'աննիւթանայ
+REP	կանշարժանա	կ'անշարժանայ
+REP	կանշնչանա	կ'անշնչանայ
+REP	կանշքանա	կ'անշքանայ
+REP	կանոթիանա	կ'անօթիանայ
+REP	կանողորկանա	կ'անողորկանայ
+REP	կանողոքանա	կ'անողոքանայ
+REP	կանոսրանա	կ'անօսրանայ
+REP	կանորոշանա	կ'անորոշանայ
+REP	կանուշանա	կ'անուշանայ
+REP	կանպետքանա	կ'անպէտքանայ
+REP	կանպիտանանա	կ'անպիտանանայ
+REP	կանտառանա	կ'անտառանայ
+REP	կանտեսանա	կ'անտեսանայ
+REP	կանտերանա	կ'անտէրանայ
+REP	կանրջանա	կ'անրջանայ
+REP	կանցկացվեն	կ'անցկացուեն
+REP	կանցկացվի	կ'անցկացուի
+REP	կանցկենա	կ'անցկենայ
+REP	կանցներ	կ'անցնէր
+REP	կանփայլանա	կ'անփայլանայ
+REP	կաշխարհականանա	կ'աշխարհականանայ
+REP	կաշխուժանա	կ'աշխուժանայ
+REP	կաչալրջանա	կ'աչալրջանայ
+REP	կապադասակարգայնանա	կ'ապադասակարգայնանայ
+REP	կապազգայանանա	կ'ապազգայանանայ
+REP	կապակենտրոնանա	կ'ապակենտրոնանայ
+REP	կապահովվի	կ'ապահովուի
+REP	կապամագնիսանա	կ'ապամագնիսանայ
+REP	կապապետականանա	կ'ապապետականանայ
+REP	կապառաժանա	կ'ապառաժանայ
+REP	կապուշանա	կ'ապուշանայ
+REP	կաջանա	կ'աջանայ
+REP	կառանձնանա	կ'առանձնանայ
+REP	կառաջանա	կ'առաջանայ
+REP	կառաջխաղա	կ'առաջխաղայ
+REP	կառավարվի	կառավարուի 
+REP	կառավոտանա	կ'առաւօտանայ
+REP	կառատաձեռնանա	կ'առատաձեռնանայ
+REP	կառատանա	կ'առատանայ
+REP	կառարկայանա	կ'առարկայանայ
+REP	կառաքինանա	կ'առաքինանայ
+REP	կառնականանա	կ'առնականանայ
+REP	կառնանա	կ'առնանայ
+REP	կառներ	կ'առնէր
+REP	կառողջանա	կ'առողջանայ
+REP	կառոյգանա	կ'առոյգանայ
+REP	կասեի	կ'ասէի
+REP	կասեին	կ'ասէին
+REP	կասեինք	կ'ասէինք
+REP	կասեիր	կ'ասէիր
+REP	կասեիք	կ'ասէիք
+REP	կասեր	կ'ասէր
+REP	կասեք	կ'ասէք
+REP	կասվի	կ'ասուի
+REP	կաստվածանա	կ'աստուածանայ
+REP	կավարտի	կ'աւարտի
+REP	կավարտվեն	կ'աւարտուեն
+REP	կավարտվի	կ'աւարտուի
+REP	կավելանա	կ'աւելանայ
+REP	կավելանան	կ'աւելանան
+REP	կավելացնի	կ'աւելացնի
+REP	կավերի	կ'աւերի
+REP	կատաղորեն	կատաղօրէն
+REP	կատարվեր	կատարուէր
+REP	կատոքանա	կ'ատոքանայ
+REP	կարագանա	կ'արագանայ
+REP	կարբենա	կ'արբենայ
+REP	կարդարանա	կ'արդարանայ
+REP	կարդիականանա	կ'արդիականանայ
+REP	կարդիանա	կ'արդիանայ
+REP	կարթնանա	կ'արթնանայ
+REP	կարժանանա	կ'արժանանայ
+REP	կարժենա	կ'արժենայ
+REP	կարիանա	կ'արիանայ
+REP	կարձականա	կ'արձականայ
+REP	կարձանանա	կ'արձանանայ
+REP	կարմատանա	կ'արմատանայ
+REP	կաւելանա	կ'աւելանայ
+REP	կափսոսա	կ'ափսոսայ
+REP	կաքլորանա	կ'աքլորանայ
+REP	կբազմանա	կը_բազմանայ
+REP	կբաղկանա	կը_բաղկանայ
+REP	կբաղձա	կը_բաղձայ
+REP	կբանա	կը_բանայ
+REP	կբավականանա	կը_բաւականանայ
+REP	կբավարարի	կը_բաւարարի
+REP	կբարականա	կը_բարականայ
+REP	կբարբարոսանա	կը_բարբարոսանայ
+REP	կբարդանա	կը_բարդանայ
+REP	կբարեբախտանա	կը_բարեբախտանայ
+REP	կբարեկամանա	կը_բարեկամանայ
+REP	կբարեպաշտանա	կը_բարեպաշտանայ
+REP	կբարիանա	կը_բարիանայ
+REP	կբարկանա	կը_բարկանայ
+REP	կբարձրանա	կը_բարձրանայ
+REP	կբարոյականանա	կը_բարոյականանայ
+REP	կբացվեն	կը_բացուեն
+REP	կբացվի	կը_բացուի
+REP	կբերեք	կը_բերէք
+REP	կբերվեն	կը_բերուեն
+REP	կբերվի	կը_բերուի
+REP	կբերրիանա	կը_բերրիանայ
+REP	կբեւեռանա	կը_բեւեռանայ
+REP	կբզբզա	կը_բզբզայ
+REP	կբզզա	կը_բզզայ
+REP	կբթամտանա	կը_բթամտանայ
+REP	կբթանա	կը_բթանայ
+REP	կբիրտանա	կը_բիրտանայ
+REP	կբլբլա	կը_բլբլայ
+REP	կբլդբլդա	կը_բլդբլդայ
+REP	կբլրանա	կը_բլրանայ
+REP	կբխկա	կը_բխկայ
+REP	կբխկբխկա	կը_բխկբխկայ
+REP	կբղբղա	կը_բղբղայ
+REP	կբղբղկա	կը_բղբղկայ
+REP	կբղղա	կը_բղղայ
+REP	կբյորոկրատանա	կը_բիւրօկրատանայ
+REP	կբյուրեղանա	կը_բիւրեղանայ
+REP	կբոբիկանա	կը_բոբիկանայ
+REP	կբոբկանա	կը_բոբկանայ
+REP	կբոլորականա	կը_բոլորականայ
+REP	կբոյովանա	կը_բոյովանայ
+REP	կբոռա	կը_բոռայ
+REP	կբոռբոռա	կը_բոռբոռայ
+REP	կբոռբռա	կը_բոռբռայ
+REP	կբոսորանա	կը_բոսորանայ
+REP	կբորոտանա	կը_բորոտանայ
+REP	կբոցկա	կը_բոցկայ
+REP	կբոցկլտա	կը_բոցկլտայ
+REP	կբուրժուականանա	կը_բուրժուականանայ
+REP	կբռիանա	կը_բռիանայ
+REP	կբռնանա	կը_բռնանայ
+REP	կբռռա	կը_բռռայ
+REP	կբվա	կը_բուայ
+REP	կբվվա	կը_բւուայ
+REP	կբրտանա	կը_բրտանայ
+REP	կգա	կը_գայ
+REP	կգազանանա	կը_գազանանայ
+REP	կգաղջանա	կը_գաղջանայ
+REP	կգայլանա	կը_գայլանայ
+REP	կգանգրանա	կը_գանգրանայ
+REP	կգառնանա	կը_գառնանայ
+REP	կգարնանանա	կը_գարնանանայ
+REP	կգարշանա	կը_գարշանայ
+REP	կգարունանա	կը_գարունանայ
+REP	կգարունքանա	կը_գարունքանայ
+REP	կգեղգեղա	կը_գեղգեղայ
+REP	կգեղեցկանա	կը_գեղեցկանայ
+REP	կգեղջկանա	կը_գեղջկանայ
+REP	կգեշանա	կը_գէշանայ
+REP	կգետանա	կը_գետանայ
+REP	կգերհագենա	կը_գերհագենայ
+REP	կգերհասունանա	կը_գերհասունանայ
+REP	կգերմանանա	կը_գերմանանայ
+REP	կգերտաքանա	կը_գերտաքանայ
+REP	կգթա	կը_գթայ
+REP	կգինովանա	կը_գինովանայ
+REP	կգինովնա	կը_գինովնայ
+REP	կգիշերանա	կը_գիշերանայ
+REP	կգիջանա	կը_գիջանայ
+REP	կգիտենա	կը_գիտենայ
+REP	կգիտնա	կը_գիտնայ
+REP	կգիրանա	կը_գիրանայ
+REP	կգլգլա	կը_գլգլայ
+REP	կգլխավորի	կը_գլխաւորի
+REP	կգղգղա	կը_գղգղայ
+REP	կգմփա	կը_գմփայ
+REP	կգմփգմփա	կը_գմփգմփայ
+REP	կգնա	կը_գնայ
+REP	կգնդանա	կը_գնդանայ
+REP	կգոգանա	կը_գոգանայ
+REP	կգոդանա	կը_գոդանայ
+REP	կգոդենա	կը_գոդենայ
+REP	կգոթենա	կը_գոթենայ
+REP	կգոլանա	կը_գոլանայ
+REP	կգոլորշանա	կը_գոլորշանայ
+REP	կգոլորշիանա	կը_գոլորշիանայ
+REP	կգոհանա	կը_գոհանայ
+REP	կգողանա	կը_գողանայ
+REP	կգոյականանա	կը_գոյականանայ
+REP	կգոյանա	կը_գոյեանայ
+REP	կգոնջանա	կը_գոնջանայ
+REP	կգոչգոչա	կը_գոչգոչայ
+REP	կգոռա	կը_գոռայ
+REP	կգոռգոռա	կը_գոռգոռայ
+REP	կգոռոզամտանա	կը_գոռոզամտանայ
+REP	կգոռոզանա	կը_գոռոզանայ
+REP	կգոսանա	կը_գօսանայ
+REP	կգորշանա	կը_գորշանայ
+REP	կգունեղանա	կը_գունեղանայ
+REP	կգուրգուրա	կը_գուրգուրայ
+REP	կգռգռա	կը_գռգռայ
+REP	կգռեհկանա	կը_գռեհկանայ
+REP	կգռմռա	կը_գռմռայ
+REP	կգռռա	կը_գռռայ
+REP	կգվա	կը_գուայ
+REP	կգվգվա	կը_գվգվայ
+REP	կգտներ	կը_գտնէր
+REP	կգտնեք	կը_գտնէք
+REP	կգտնվեն	կը_գտնուեն
+REP	կգտնվի	կը_գտնուի
+REP	կգրավի	կը_գրաւի
+REP	կգրգանա	կը_գրգանայ
+REP	կգրմփա	կը_գրմփայ
+REP	կդաժանանա	կը_դաժանանայ
+REP	կդալարանա	կը_դալարանայ
+REP	կդալկանա	կը_դալկանայ
+REP	կդախանա	կը_դախանայ
+REP	կդահանա	կը_դահանայ
+REP	կդանդաղանա	կը_դանդաղանայ
+REP	կդառնա	կը_դառնայ
+REP	կդառնանա	կը_դառնանայ
+REP	կդատարկանա	կը_դատարկանայ
+REP	կդեղնանա	կը_դեղնանայ
+REP	կդզդզա	կը_դզդզայ
+REP	կդժբախտանա	կը_դժբախտանայ
+REP	կդժգոհանա	կը_դժգոհանայ
+REP	կդժգունանա	կը_դժգունանայ
+REP	կդժժա	կը_դժժայ
+REP	կդժկամանա	կը_դժկամանայ
+REP	կդժվարանա	կը_դժուարանայ
+REP	կդիականա	կը_դիականայ
+REP	կդիմանա	կը_դիմանայ
+REP	կդինջանա	կը_դինջանայ
+REP	կդխկա	կը_դխկայ
+REP	կդխկդխկա	կը_դխկդխկայ
+REP	կդղրդա	կը_դղրդայ
+REP	կդմբա	կը_դմբայ
+REP	կդմբդմբա	կը_դմբդմբայ
+REP	կդմփա	կը_դմփայ
+REP	կդյուրանա	կը_դիւրանայ
+REP	կդյուցազնանա	կը_դիւցազնանայ
+REP	կդնգա	կը_դնգայ
+REP	կդնդա	կը_դնդայ
+REP	կդնդնա	կը_դնդնայ
+REP	կդողա	կը_դողայ
+REP	կդողդողա	կը_դողդողայ
+REP	կդողդոջա	կը_դողդոջայ
+REP	կդունդունա	կը_դունդունայ
+REP	կդռա	կը_դռայ
+REP	կդռդռա	կը_դռդռայ
+REP	կդռնչա	կը_դռնչայ
+REP	կդռռա	կը_դռռայ
+REP	կդրախտանա	կը_դրախտանայ
+REP	կդրխկա	կը_դրխկայ
+REP	կդրմփա	կը_դրմփայ
+REP	կդրնգա	կը_դրնգայ
+REP	կդրնդա	կը_դրնդայ
+REP	կդրվի	կը_դրուի
+REP	կեզվիտանա	կ'եզուիտանայ
+REP	կեթերանա	կ'եթերանայ
+REP	կեղբայրանա	կ'եղբայրանայ
+REP	կեղջերանա	կ'եղջերանայ
+REP	կեղջյուրանա	կ'եղջիւրանայ
+REP	կենթարկվեն	կ'ենթարկուեն
+REP	կենթարկվի	կ'ենթարկուի
+REP	կեռա	կ'եռայ
+REP	կերեխայանա	կ'երեխայանայ
+REP	կերեկոյանա	կ'երեկոյեանայ
+REP	կերեսանա	կ'երեսանայ
+REP	կերերա	կ'երերայ
+REP	կերեւա	կ'երեւայ
+REP	կերթա	կ'երթայ
+REP	կերիզանա	կ'երիզանայ
+REP	կերիտասարդանա	կ'երիտասարդանայ
+REP	կերկաթանա	կ'երկաթանայ
+REP	կերկայնանա	կ'երկայնանայ
+REP	կերկարանա	կ'երկարանայ
+REP	կերկբայանա	կ'երկբայանայ
+REP	կերջանկանա	կ'երջանկանայ
+REP	կեւրոպականանա	կ'եւրոպականանայ
+REP	կզայրանա	կը_զայրանայ
+REP	կզարգանա	կը_զարգանայ
+REP	կզարմանա	կը_զարմանայ
+REP	կզբաղվեն	կը_զբաղուեն
+REP	կզբաղվի	կը_զբաղուի
+REP	կզգա	կը_զգայ
+REP	կզգաստանա	կը_զգաստանայ
+REP	կզգոնանա	կը_զգօնանայ
+REP	կզգուշանա	կը_զգուշանայ
+REP	կզլանա	կը_զլանայ
+REP	կզխկա	կը_զխկայ
+REP	կզկռտա	կը_զկռտայ
+REP	կզղջա	կը_զղջայ
+REP	կզմփա	կը_զմփայ
+REP	կզմփզմփա	կը_զմփզմփայ
+REP	կզնգա	կը_զնգայ
+REP	կզնգզնգա	կը_զնգզնգայ
+REP	կզովանա	կը_զովանայ
+REP	կզորանա	կը_զօրանայ
+REP	կզորեղանա	կը_զօրեղանայ
+REP	կզռա	կը_զռայ
+REP	կզռզռա	կը_զռզռայ
+REP	կզվարթանա	կը_զուարթանայ
+REP	կզվարճանա	կը_զուարճանայ
+REP	կզրխկա	կը_զրխկայ
+REP	կզրկվեն	կը_զրկուեն
+REP	կզրկվի	կը_զրկուի
+REP	կզրնգա	կը_զրնգայ
+REP	կզրնգզրնգա	կը_զրնգզրնգայ
+REP	կէականանա	կ'էականանայ
+REP	կէանա	կ'էանայ
+REP	կէժանանա	կ'էժանանայ
+REP	կէլեկտրականանա	կ'էլեկտրականանայ
+REP	կէլեկտրանա	կ'էլեկտրանայ
+REP	կէշանա	կ'էշանայ
+REP	կըղձա	կ'ըղձայ
+REP	կըմբոստանա	կ'ըմբոստանայ
+REP	կընդարմանա	կ'ընդարմանայ
+REP	կընդգրկվեն	կ'ընդգրկուեն
+REP	կընդդիմանա	կ'ընդդիմանայ
+REP	կընդլայնանա	կ'ընդլայնանայ
+REP	կընդհանրանա	կ'ընդհանրանայ
+REP	կընդունվեն	կ'ընդունուեն
+REP	կընդունվի	կ'ընդունուի
+REP	կընթանա	կ'ընթանայ
+REP	կընկերանա	կ'ընկերանայ
+REP	կընկներ	կ'ընկնէր
+REP	կընտանենա	կ'ընտանենայ
+REP	կընտելանա	կը_ընտելանայ
+REP	կընտրվի	կ'ընտրուի
+REP	կթալկանա	կը_թալկանայ
+REP	կթամբալանա	կը_թամբալանայ
+REP	կթանկանա	կը_թանկանայ
+REP	կթանձրանա	կը_թանձրանայ
+REP	կթարմանա	կը_թարմանայ
+REP	կթացանա	կը_թացանայ
+REP	կթափուրանա	կը_թափուրանայ
+REP	կթեթեւանա	կը_թեթեւանայ
+REP	կթեժանա	կը_թէժանայ
+REP	կթելկտա	կը_թելկտայ
+REP	կթերահավատա	կը_թերահաւատայ
+REP	կթերանա	կը_թերանայ
+REP	կթխանա	կը_թխանայ
+REP	կթխթխկա	կը_թխթխկայ
+REP	կթխկա	կը_թխկայ
+REP	կթմբթմբա	կը_թմբթմբայ
+REP	կթմփա	կը_թմփայ
+REP	կթնգա	կը_թնգայ
+REP	կթնգթնգա	կը_թնգթնգայ
+REP	կթնդա	կը_թնդայ
+REP	կթնդանա	կը_թնդանայ
+REP	կթնթոռա	կը_թնթոռայ
+REP	կթնչա	կը_թնչայ
+REP	կթշթշա	կը_թշթշայ
+REP	կթշնամանա	կը_թշնամանայ
+REP	կթշշա	կը_թշշայ
+REP	կթշվառանա	կը_թշուառանայ
+REP	կթոնթորա	կը_թոնթորայ
+REP	կթորա	կը_թորայ
+REP	կթորթորա	կը_թորթորայ
+REP	կթուլանա	կը_թուլանայ
+REP	կթուրքանա	կը_թուրքանայ
+REP	կթպպա	կը_թպպայ
+REP	կթպրտա	կը_թպրտայ
+REP	կթսթսա	կը_թսթսայ
+REP	կթսսա	կը_թսսայ
+REP	կթվա	կը_թուայ
+REP	կթվար	կը_թվար
+REP	կթվի	կը_թուի
+REP	կթրթռա	կը_թրթռայ
+REP	կթրթփա	կը_թրթփայ
+REP	կթրխկա	կը_թրխկայ
+REP	կթրմփա	կը_թրմփայ
+REP	կթրպրտա	կը_թրպրտայ
+REP	կթփթփա	կը_թփթփայ
+REP	կթփռտա	կը_թփռտայ
+REP	կթփրտա	կը_թփրտայ
+REP	կժանտանա	կը_ժանտանայ
+REP	կժլատանա	կը_ժլատանայ
+REP	կժնգժնգա	կը_ժնգժնգայ
+REP	կժողովրդականանա	կը_ժողովրդականանայ
+REP	կժպտա	կը_ժպտայ
+REP	կժրանա	կը_ժրանայ
+REP	կիգականանա	կ'իգականանայ
+REP	կիգանա	կ'իգանայ
+REP	կիեվ	Կիեւ
+REP	կիմանա	կ'իմանայ
+REP	կիմաստնանա	կ'իմաստնանայ
+REP	կիսլամանա	կ'իսլամանայ
+REP	կիստականա	կ'իստականայ
+REP	կիրականանա	կ'իրականանայ
+REP	կիրանա	կ'իրանայ
+REP	կիրիկնանա	կ'իրիկնանայ
+REP	կլա	կը_լայ
+REP	կլալանա	կը_լալանայ
+REP	կլայնանա	կը_լայնանայ
+REP	կլավանա	կը_լաւանայ
+REP	կլեհանա	կը_լեհանայ
+REP	կլենանա	կը_լէնանայ
+REP	կլեռնանա	կը_լեռնանայ
+REP	կլերդանա	կը_լերդանայ
+REP	կլերկանա	կը_լերկանայ
+REP	կլիանա	կը_լիանայ
+REP	կլինեի	կը_լինէի
+REP	կլինեին	կը_լինէին
+REP	կլինեինք	կը_լինէինք
+REP	կլինեիր	կը_լինէիր
+REP	կլիներ	կը_լինէր
+REP	կլինեք	կը_լինէք
+REP	կլխլխա	կը_լխլխայ
+REP	կլխլխկա	կը_լխլխկայ
+REP	կլխկա	կը_լխկայ
+REP	կլխկլխկա	կը_լխկլխկայ
+REP	կլկտիանա	կը_լկտիանայ
+REP	կլղլղա	կը_լղլղայ
+REP	կլճանա	կը_լճանայ
+REP	կլնգա	կը_լնգայ
+REP	կլնգլնգա	կը_լնգլնգայ
+REP	կլողա	կը_լողայ
+REP	կլողանա	կը_լողանայ
+REP	կլոպպազանա	կը_լոպպազանայ
+REP	կլուծվեն	կը_լուծուեն
+REP	կլուծվի	կը_լուծուի
+REP	կլուսանա	կը_լուսանայ
+REP	կլպիրշանա	կը_լպիրշանայ
+REP	կլսեք	կը_լսէք
+REP	կլսվի	կը_լսուի
+REP	կլվա	կը_լուայ
+REP	կլվանա	կը_լուանայ
+REP	կլրանա	կը_լրանայ
+REP	կլրբանա	կը_լրբանայ
+REP	կլրթանա	կը_լրթանայ
+REP	կլրջանա	կը_լրջանայ
+REP	կլցվի	կը_լցուի
+REP	կլփլփա	կը_լփլփայ
+REP	կլփռտա	կը_լփռտայ
+REP	կլփրտա	կը_լփրտայ
+REP	կլքլքա	կը_լքլքայ
+REP	կխաղա	կը_խաղայ
+REP	կխաղաղանա	կը_խաղաղանայ
+REP	կխամանա	կը_խամանայ
+REP	կխամրանա	կը_խամրանայ
+REP	կխայտա	կը_խայտայ
+REP	կխավարանա	կը_խաւարանայ
+REP	կխարդախանա	կը_խարդախանայ
+REP	կխելոքանա	կը_խելօքանայ
+REP	կխեղճանա	կը_խեղճանայ
+REP	կխենթանա	կը_խենթանայ
+REP	կխեւանա	կը_խեւանայ
+REP	կխզա	կը_խզայ
+REP	կխզզա	կը_խզզայ
+REP	կխզխզա	կը_խզխզայ
+REP	կխժա	կը_խժայ
+REP	կխժբժա	կը_խժբժայ
+REP	կխժժա	կը_խժժայ
+REP	կխլանա	կը_խլանայ
+REP	կխլթխլթա	կը_խլթխլթայ
+REP	կխլշկոտա	կը_խլշկոտայ
+REP	կխլշտա	կը_խլշտայ
+REP	կխլպլտա	կը_խլպլտայ
+REP	կխլրտա	կը_խլրտայ
+REP	կխղճա	կը_խղճայ
+REP	կխմորանա	կը_խմորանայ
+REP	կխնամիանա	կը_խնամիանայ
+REP	կխնդա	կը_խնդայ
+REP	կխնդխնդա	կը_խնդխնդայ
+REP	կխնդմնդա	կը_խնդմնդայ
+REP	կխնդրեի	կը_խնդրէի
+REP	կխնթա	կը_խնթայ
+REP	կխնթխնթա	կը_խնթխնթայ
+REP	կխնկխնկա	կը_խնկխնկայ
+REP	կխշա	կը_խշայ
+REP	կխշխշա	կը_խշխշայ
+REP	կխշշա	կը_խշշայ
+REP	կխշրտա	կը_խշրտայ
+REP	կխոզանա	կը_խոզանայ
+REP	կխոխոջա	կը_խոխոջայ
+REP	կխոկա	կը_խոկայ
+REP	կխոհեմանա	կը_խոհեմանայ
+REP	կխոյանա	կը_խոյանայ
+REP	կխոնավանա	կը_խոնաւանայ
+REP	կխոնարհանա	կը_խոնարհանայ
+REP	կխոնթխոնթա	կը_խոնթխոնթայ
+REP	կխոնջանա	կը_խոնջանայ
+REP	կխոշորանա	կը_խոշորանայ
+REP	կխոպանանա	կը_խոպանանայ
+REP	կխոռոչանա	կը_խոռոչանայ
+REP	կխոսեմ	կը_խօսեմ
+REP	կխոսեն	կը_խօսեն
+REP	կխոսենք	կը_խօսենք
+REP	կխոսի	կը_խօսի
+REP	կխոստանա	կը_խոստանայ
+REP	կխորանա	կը_խորանայ
+REP	կխորդա	կը_խորդայ
+REP	կխորթանա	կը_խորթանայ
+REP	կխուժանանա	կը_խուժանանայ
+REP	կխունանա	կը_խունանայ
+REP	կխռթա	կը_խռթայ
+REP	կխռխռա	կը_խռխռայ
+REP	կխռմփա	կը_խռմփայ
+REP	կխռնչա	կը_խռնչայ
+REP	կխռշտա	կը_խռշտայ
+REP	կխռպոտանա	կը_խռպոտանայ
+REP	կխռռա	կը_խռռայ
+REP	կխռփա	կը_խռփայ
+REP	կխստանա	կը_խստանայ
+REP	կխստասրտանա	կը_խստասրտանայ
+REP	կխտանա	կը_խտանայ
+REP	կխրխնջա	կը_խրխնջայ
+REP	կխրոխտա	կը_խրոխտայ
+REP	կխրոխտանա	կը_խրոխտանայ
+REP	կծանծաղանա	կը_ծանծաղանայ
+REP	կծանոթանա	կը_ծանօթանայ
+REP	կծանրածա	կը_ծանրածայ
+REP	կծանրանա	կը_ծանրանայ
+REP	կծառանա	կը_ծառանայ
+REP	կծարավանա	կը_ծարաւանայ
+REP	կծերանա	կը_ծերանայ
+REP	կծլթա	կը_ծլթայ
+REP	կծլթծլթա	կը_ծլթծլթայ
+REP	կծլլա	կը_ծլլայ
+REP	կծլծլա	կը_ծլծլայ
+REP	կծլկթա	կը_ծլկթայ
+REP	կծլնգա	կը_ծլնգայ
+REP	կծխա	կը_ծխայ
+REP	կծխրտա	կը_ծխրտայ
+REP	կծկլթա	կը_ծկլթայ
+REP	կծկվելով	կծկուելով
+REP	կծկվեցին	կծկուեցին
+REP	կծղրտա	կը_ծղրտայ
+REP	կծմծմա	կը_ծմծմայ
+REP	կծմրա	կը_ծմրայ
+REP	կծմրկտա	կը_ծմրկտայ
+REP	կծնգա	կը_ծնգայ
+REP	կծնգծնգա	կը_ծնգծնգայ
+REP	կծնծնա	կը_ծնծնայ
+REP	կծնկանա	կը_ծնկանայ
+REP	կծնկծնկա	կը_ծնկծնկայ
+REP	կծովանա	կը_ծովանայ
+REP	կծորա	կը_ծորայ
+REP	կծուլանա	կը_ծուլանայ
+REP	կծպտա	կը_ծպտայ
+REP	կծռկտա	կը_ծռկտայ
+REP	կծվա	կը_ծուայ
+REP	կծփա	կը_ծփայ
+REP	կծփծփա	կը_ծփծփայ
+REP	կկազմակերպվեն	կը_կազմակերպուեն
+REP	կկազմակերպվի	կը_կազմակերպուի
+REP	կկաթոլիկանա	կը_կաթոլիկանայ
+REP	կկակղանա	կը_կակղանայ
+REP	կկաղա	կը_կաղայ
+REP	կկաղանա	կը_կաղանայ
+REP	կկամենա	կը_կամենայ
+REP	կկայանա	կը_կայանայ
+REP	կկայծանա	կը_կայծանայ
+REP	կկայծկլտա	կը_կայծկլտայ
+REP	կկայունանա	կը_կայունանայ
+REP	կկայտառանա	կը_կայտառանայ
+REP	կկանա	կը_կանայ
+REP	կկանխազգա	կը_կանխազգայ
+REP	կկապկանա	կը_կապկանայ
+REP	կկապուտանա	կը_կապուտանայ
+REP	կկապտանա	կը_կապտանայ
+REP	կկառուցվեն	կը_կառուցուեն
+REP	կկառուցվի	կը_կառուցուի
+REP	կկատարվեն	կը_կատարուեն
+REP	կկատարվի	կը_կատարուի
+REP	կկարգավորվի	կը_կարգաւորուի
+REP	կկարդա	կը_կարդայ
+REP	կկարենա	կը_կարենայ
+REP	կկարծրանա	կը_կարծրանայ
+REP	կկարճանա	կը_կարճանայ
+REP	կկարմրանա	կը_կարմրանայ
+REP	կկարողանա	կը_կարողանայ
+REP	կկեծանա	կը_կէծանայ
+REP	կկենա	կը_կենայ
+REP	կկենդանանա	կը_կենդանանայ
+REP	կկենտրոնանա	կը_կենտրոնանայ
+REP	կկեռանա	կը_կեռանայ
+REP	կկերկերա	կը_կերկերայ
+REP	կկզանա	կը_կզանայ
+REP	կկլանա	կը_կլանայ
+REP	կկլկլա	կը_կլկլայ
+REP	կկլկլտա	կը_կլկլտայ
+REP	կկլորանա	կը_կլորանայ
+REP	կկծծիանա	կը_կծծիանայ
+REP	կկծկծա	կը_կծկծայ
+REP	կկղզիանա	կը_կղզիանայ
+REP	կկղկղա	կը_կղկղայ
+REP	կկղղա	կը_կղղայ
+REP	կկմախքանա	կը_կմախքանայ
+REP	կկմկմա	կը_կմկմայ
+REP	կկմկնա	կը_կմկնայ
+REP	կկնձկնձա	կը_կնձկնձայ
+REP	կկնձմնձա	կը_կնձմնձայ
+REP	կկշտանա	կը_կշտանայ
+REP	կկոթողանա	կը_կոթողանայ
+REP	կկոկիկանա	կը_կոկիկանայ
+REP	կկողկողա	կը_կողկողայ
+REP	կկողկոնձա	կը_կողկոնձայ
+REP	կկոնծկոնծա	կը_կոնծկոնծայ
+REP	կկոնկրետանա	կը_կոնկրետանայ
+REP	կկոնձկոնձա	կը_կոնձկոնձայ
+REP	կկոշտանա	կը_կոշտանայ
+REP	կկոչվի	կը_կոչուի
+REP	կկոպտանա	կը_կոպտանայ
+REP	կկորանա	կը_կորանայ
+REP	կկուզանա	կը_կուզանայ
+REP	կկուզիկանա	կը_կուզիկանայ
+REP	կկուլտուրականանա	կը_կուլտուրականանայ
+REP	կկուրանա	կը_կուրանայ
+REP	կկչկչա	կը_կչկչայ
+REP	կկռա	կը_կռայ
+REP	կկռանա	կը_կռանայ
+REP	կկռթա	կը_կռթայ
+REP	կկռթկռթա	կը_կռթկռթայ
+REP	կկռկռա	կը_կռկռայ
+REP	կկռնկա	կը_կռնկայ
+REP	կկռնչա	կը_կռնչայ
+REP	կկռռա	կը_կռռայ
+REP	կկսկծա	կը_կսկծայ
+REP	կկտկտա	կը_կտկտայ
+REP	կկտտա	կը_կտտայ
+REP	կկրայնանա	կը_կրայնանայ
+REP	կկրճտա	կը_կրճտայ
+REP	կհ	կը_յ
+REP	կհագենա	կը_յագենայ
+REP	կհազա	կը_հազայ
+REP	կհազմզա	կը_հազմզայ
+REP	կհաղթենք	կը_յաղթենք
+REP	կհաղթի	կը_յաղթի
+REP	կհաղորդի	կը_հաղորդի
+REP	կհաճախանա	կը_յաճախանայ
+REP	կհաճոյանա	կը_հաճոյանայ
+REP	կհամաժողովրդականանա	կը_համաժողովրդականանայ
+REP	կհամակենտրոնանա	կը_համակենտրոնանայ
+REP	կհամարձականա	կը_համարձականայ
+REP	կհամարձակվի	կը_համարձակուի
+REP	կհամարվի	կը_համարուի
+REP	կհամբառնա	կը_համբառնայ
+REP	կհամեղանա	կը_համեղանայ
+REP	կհամեստանա	կը_համեստանայ
+REP	կհամոզվեք	կը_համոզուէք
+REP	կհամովանա	կը_համովանայ
+REP	կհամրանա	կը_համրանայ
+REP	կհայանա	կը_հայանայ
+REP	կհայտարարի	կը_յայտարարի
+REP	կհայտարարվի	կը_յայտարարուի
+REP	կհայտնեմ	կը_յայտնեմ
+REP	կհայտնի	կը_յայտնի
+REP	կհայտնվեն	կը_յայտնուեն
+REP	կհայտնվի	կը_յայտնուի
+REP	կհայրանա	կը_հայրանայ
+REP	կհանգեցնեն	կը_յանգեցնեն
+REP	կհանգեցնի	կը_յանգեցնի
+REP	կհանգստանա	կը_հանգստանայ
+REP	կհանդարտանա	կը_հանդարտանայ
+REP	կհանդգնանա	կը_յանդգնանայ
+REP	կհանդիսանա	կը_հանդիսանայ
+REP	կհանձնեմ	կը_յանձնեմ
+REP	կհանձնեն	կը_յանձնեն
+REP	կհանձնի	կը_յանձնի
+REP	կհանձնվեն	կը_յանձնուեն
+REP	կհանձնվի	կը_յանձնուի
+REP	կհանրայնանա	կը_հանրայնանայ
+REP	կհանրանա	կը_հանրանայ
+REP	կհաշմանա	կը_հաշմանայ
+REP	կհաշմանդամանա	կը_հաշմանդամանայ
+REP	կհաջողվի	կը_յաջողուի
+REP	կհասարականա	կը_հասարականայ
+REP	կհասկանա	կը_հասկանայ
+REP	կհասներ	կը_հասնէր
+REP	կհասունանա	կը_հասունանայ
+REP	կհաստանա	կը_հաստանայ
+REP	կհաստատվի	կը_հաստատուի
+REP	կհավաստիանա	կը_հաւաստիանայ
+REP	կհավատա	կը_հաւատայ
+REP	կհավաքի	կը_հաւաքի
+REP	կհավաքվեն	կը_հաւաքուեն
+REP	կհավերժանա	կը_յաւէրժանայ
+REP	կհավիտենականանա	կը_յաւիտենականանայ
+REP	կհատկացվի	կը_յատկացուի
+REP	կհարազատանա	կը_հարազատանայ
+REP	կհարբենա	կը_հարբենայ
+REP	կհարթանա	կը_հարթանայ
+REP	կհարսնանա	կը_հարսնանայ
+REP	կհարստանա	կը_հարստանայ
+REP	կհափրանա	կը_յափրանայ
+REP	կհեզանա	կը_հեզանայ
+REP	կհեթանոսանա	կը_հեթանոսանայ
+REP	կհեթեթա	կը_հեթեթայ
+REP	կհեծեծա	կը_հեծեծայ
+REP	կհեծկլտա	կը_հեծկլտայ
+REP	կհեկեկա	կը_հեկեկայ
+REP	կհեղափոխականանա	կը_յեղափոխականանայ
+REP	կհեղուկանա	կը_հեղուկանայ
+REP	կհեշտանա	կը_հեշտանայ
+REP	կհեռազգա	կը_հեռազգայ
+REP	կհեռանա	կը_հեռանայ
+REP	կհետեվեն	կը_հետեւեն
+REP	կհետեվի	կը_հետեւի
+REP	կհետիոտանա	կը_հետիոտանայ
+REP	կհերոսանա	կը_հերոսանայ
+REP	կհեւա	կը_հեւայ
+REP	կհեւհեւա	կը_հեւհեւայ
+REP	կհեքիաթանա	կը_հեքիաթանայ
+REP	կհիանա	կը_հիանայ
+REP	կհիմարանա	կը_յիմարանայ
+REP	կհիշեմ	կը_յիշեմ
+REP	կհիշեն	կը_յիշեն
+REP	կհիշես	կը_յիշես
+REP	կհիշի	կը_յիշի
+REP	կհիվանդանա	կը_հիւանդանայ
+REP	կհղանա	կը_յղանայ
+REP	կհղիանա	կը_յղիանայ
+REP	կհղփանա	կը_յղփանայ
+REP	կհմտանա	կը_հմտանայ
+REP	կհնանա	կը_հնանայ
+REP	կհոգա	կը_հոգայ
+REP	կհոգիանա	կը_հոգիանայ
+REP	կհոխորտա	կը_յոխորտայ
+REP	կհոռանա	կը_յոռանայ
+REP	կհովանա	կը_հովանայ
+REP	կհորդանա	կը_յորդանայ
+REP	կհուլանա	կը_հուլանայ
+REP	կհուռանա	կը_հուռանայ
+REP	կհուռթանա	կը_հուռթանայ
+REP	կհուսա	կը_յուսայ
+REP	կհուրհուրա	կը_հուրհուրայ
+REP	կհուրհրա	կը_հուրհրայ
+REP	կհպարտանա	կը_հպարտանայ
+REP	կհռհռա	կը_հռհռայ
+REP	կհռնդա	կը_հռնդայ
+REP	կհստականա	կը_յստականայ
+REP	կհրաժարվի	կը_հրաժարուի
+REP	կհրամայեք	կը_հրամայէք
+REP	կհրապարակվեն	կը_հրապարակուեն
+REP	կհրապարակվի	կը_հրապարակուի
+REP	կձախանա	կը_ձախանայ
+REP	կձանձրանա	կը_ձանձրանայ
+REP	կձգրտա	կը_ձգրտայ
+REP	կձեվավորվի	կը_ձեւաւորուի
+REP	կձեւանա	կը_ձեւանայ
+REP	կղժժա	կը_ղժժայ
+REP	կղժղժա	կը_ղժղժայ
+REP	կղլդղլդա	կը_ղլդղլդայ
+REP	կղունղունա	կը_ղունղունայ
+REP	կղռա	կը_ղռայ
+REP	կղռղռա	կը_ղռղռայ
+REP	կղրճտա	կը_ղրճտայ
+REP	կճահճանա	կը_ճահճանայ
+REP	կճաղատանա	կը_ճաղատանայ
+REP	կճարպկանա	կը_ճարպկանայ
+REP	կճարվի	կը_ճարուի
+REP	կճերմականա	կը_ճերմականայ
+REP	կճթճթա	կը_ճթճթայ
+REP	կճլճլա	կը_ճլճլայ
+REP	կճլմփա	կը_ճլմփայ
+REP	կճլպստա	կը_ճլպստայ
+REP	կճխա	կը_ճխայ
+REP	կճխճխա	կը_ճխճխայ
+REP	կճկճկա	կը_ճկճկայ
+REP	կճղա	կը_ճղայ
+REP	կճղճղա	կը_ճղճղայ
+REP	կճղփա	կը_ճղփայ
+REP	կճմլկոտա	կը_ճմլկոտայ
+REP	կճմճմա	կը_ճմճմայ
+REP	կճնկա	կը_ճնկայ
+REP	կճնկճնկա	կը_ճնկճնկայ
+REP	կճոխանա	կը_ճոխանայ
+REP	կճողփա	կը_ճողփայ
+REP	կճորտանա	կը_ճորտանայ
+REP	կճչա	կը_ճչայ
+REP	կճռա	կը_ճռայ
+REP	կճռճռա	կը_ճռճռայ
+REP	կճռնչա	կը_ճռնչայ
+REP	կճռռա	կը_ճռռայ
+REP	կճստա	կը_ճստայ
+REP	կճստճստա	կը_ճստճստայ
+REP	կճվա	կը_ճուայ
+REP	կճտճտա	կը_ճտճտայ
+REP	կճրթճրթա	կը_ճրթճրթայ
+REP	կճքճքա	կը_ճքճքայ
+REP	կմագնիսականանա	կը_մագնիսականանայ
+REP	կմագնիսանա	կը_մագնիսանայ
+REP	կմակբայանա	կը_մակբայանայ
+REP	կմահանա	կը_մահանայ
+REP	կմահմեդականանա	կը_մահմեդականանայ
+REP	կմաղա	կը_մաղայ
+REP	կմայրանա	կը_մայրանայ
+REP	կմանկանա	կը_մանկանայ
+REP	կմանրանա	կը_մանրանայ
+REP	կմասնագիտանա	կը_մասնագիտանայ
+REP	կմարգարեանա	կը_մարգարէանայ
+REP	կմարդանա	կը_մարդանայ
+REP	կմարդեղանա	կը_մարդեղանայ
+REP	կմարմնանա	կը_մարմնանայ
+REP	կմարտիրոսանա	կը_մարտիրոսանայ
+REP	կմգանա	կը_մգանայ
+REP	կմեծամտանա	կը_մեծամտանայ
+REP	կմեծանա	կը_մեծանայ
+REP	կմեկուսանա	կը_մեկուսանայ
+REP	կմեղկանա	կը_մեղկանայ
+REP	կմեղմանա	կը_մեղմանայ
+REP	կմեղքանա	կը_մեղքանայ
+REP	կմենանա	կը_մենանայ
+REP	կմետաղանա	կը_մետաղանայ
+REP	կմերկանա	կը_մերկանայ
+REP	կմերձենա	կը_մերձենայ
+REP	կմզմզա	կը_մզմզայ
+REP	կմթանա	կը_մթանայ
+REP	կմթնանա	կը_մթնանայ
+REP	կմիամտանա	կը_միամտանայ
+REP	կմիայնանա	կը_միայնանայ
+REP	կմիանա	կը_միանայ
+REP	կմիանձնանա	կը_միանձնանայ
+REP	կմիջազգայնանա	կը_միջազգայնանայ
+REP	կմխա	կը_մխայ
+REP	կմխմխա	կը_մխմխայ
+REP	կմկկա	կը_մկկայ
+REP	կմղկտա	կը_մղկտայ
+REP	կմղմղա	կը_մղմղայ
+REP	կմնա	կը_մնայ
+REP	կմնջանա	կը_մնջանայ
+REP	կմոխրանա	կը_մոխրանայ
+REP	կմոռանա	կը_մոռանայ
+REP	կմոտենա	կը_մօտենայ
+REP	կմուգանա	կը_մուգանայ
+REP	կմուրա	կը_մուրայ
+REP	կմուրանա	կը_մուրանայ
+REP	կմռայլանա	կը_մռայլանայ
+REP	կմռթմռթա	կը_մռթմռթայ
+REP	կմռմռա	կը_մռմռայ
+REP	կմռնչա	կը_մռնչայ
+REP	կմռռա	կը_մռռայ
+REP	կմսխա	կը_մսխայ
+REP	կմտերմանա	կը_մտերմանայ
+REP	կմտմտա	կը_մտմտայ
+REP	կմրթմրթա	կը_մրթմրթայ
+REP	կմրմնջա	կը_մրմնջայ
+REP	կմրմռա	կը_մրմռայ
+REP	կմօտենա	կը_մօտենայ
+REP	կմօտիկանա	կը_մօտիկանայ
+REP	կնազուկանա	կը_նազուկանայ
+REP	կնախազգա	կը_նախազգայ
+REP	կնախազգուշանա	կը_նախազգուշանայ
+REP	կնախզգա	կը_նախզգայ
+REP	կնամանա	կը_նամանայ
+REP	կնանրանա	կը_նանրանայ
+REP	կնեղանա	կը_նեղանայ
+REP	կներանձնանա	կը_ներանձնանայ
+REP	կներզգա	կը_ներզգայ
+REP	կներկայանա	կը_ներկայանայ
+REP	կներկայացվեն	կը_ներկայացուեն
+REP	կներկայացվի	կը_ներկայացուի
+REP	կներսողա	կը_ներսողայ
+REP	կներվայնանա	կը_ներվայնանայ
+REP	կներքեւանա	կը_ներքեւանայ
+REP	կներքինանա	կը_ներքինանայ
+REP	կնխնխա	կը_նխնխայ
+REP	կնյարդայնանա	կը_նեարդայնանայ
+REP	կնյութականանա	կը_նիւթականանայ
+REP	կնյութանա	կը_նիւթանայ
+REP	կննջա	կը_ննջայ
+REP	կնշանակվի	կը_նշանակուի
+REP	կնշվի	կը_նշուի
+REP	կնողկա	կը_նողկայ
+REP	կնոսրանա	կը_նօսրանայ
+REP	կնորանա	կը_նորանայ
+REP	կնույնանա	կը_նոյնանայ
+REP	կնսեմանա	կը_նսեմանայ
+REP	կնվա	կը_նուայ
+REP	կնվազանա	կը_նուազանայ
+REP	կնվազեն	կը_նուազեն
+REP	կնվազի	կը_նուազի
+REP	կնվաստանա	կը_նուաստանայ
+REP	կնրբանա	կը_նրբանայ
+REP	կշաղա	կը_շաղայ
+REP	կշաշանա	կը_շաշանայ
+REP	կշատանա	կը_շատանայ
+REP	կշարունակվեն	կը_շարունակուեն
+REP	կշարունակվի	կը_շարունակուի
+REP	կշաքարանա	կը_շաքարանայ
+REP	կշեկանա	կը_շէկանայ
+REP	կշենանա	կը_շէնանայ
+REP	կշերտանա	կը_շերտանայ
+REP	կշիկանա	կը_շիկանայ
+REP	կշլանա	կը_շլանայ
+REP	կշլմփա	կը_շլմփայ
+REP	կշխկա	կը_շխկայ
+REP	կշխկշխկա	կը_շխկշխկայ
+REP	կշխկրտա	կը_շխկրտայ
+REP	կշմփա	կը_շմփայ
+REP	կշնանա	կը_շնանայ
+REP	կշնգշնգա	կը_շնգշնգայ
+REP	կշնկշնկա	կը_շնկշնկայ
+REP	կշշնջա	կը_շշնջայ
+REP	կշոգիանա	կը_շոգիանայ
+REP	կշողա	կը_շողայ
+REP	կշողշողա	կը_շողշողայ
+REP	կշորորա	կը_շորորայ
+REP	կշչա	կը_շչայ
+REP	կշռայլանա	կը_շռայլանայ
+REP	կշռնդա	կը_շռնդայ
+REP	կշռնչա	կը_շռնչայ
+REP	կշռշռա	կը_շռշռայ
+REP	կշռռա	կը_շռռայ
+REP	կշվայտանա	կը_շուայտանայ
+REP	կշրըփա	կը_շրըփայ
+REP	կշրթնայնանա	կը_շրթնայնանայ
+REP	կշրխակա	կը_շրխակայ
+REP	կշրխկշրխկա	կը_շրխկշրխկայ
+REP	կշրմփա	կը_շրմփայ
+REP	կշրշա	կը_շրշայ
+REP	կշրպպա	կը_շրպպայ
+REP	կշփանա	կը_շփանայ
+REP	կշփփա	կը_շփփայ
+REP	կշքեղանա	կը_շքեղանայ
+REP	կողբա	կ'ողբայ
+REP	կողորկանա	կ'ողորկանայ
+REP	կողջանա	կ'ողջանայ
+REP	կոչնչանա	կ'ոչնչանայ
+REP	կոռնա	կ'ոռնայ
+REP	կոսկրանա	կ'ոսկրանայ
+REP	կոստոստա	կ'ոստոստայ
+REP	կորբանա	կ'որբանայ
+REP	կործկա	կ'ործկայ
+REP	կորոճա	կ'որոճայ
+REP	կորոտա	կ'որոտայ
+REP	կորսա	կ'որսայ
+REP	կուզենա	կ'ուզենայ
+REP	կուժգնանա	կ'ուժգնանայ
+REP	կուժեղանա	կ'ուժեղանայ
+REP	կուժովանա	կ'ուժովանայ
+REP	կուժովնա	կ'ուժովնայ
+REP	կուծանա	կ'ուծանայ
+REP	կուղարկվի	կ'ուղարկուի
+REP	կուղղվի	կ'ուղղուի
+REP	կույտեր	կոյտեր
+REP	կունականա	կ'ունականայ
+REP	կունայնանա	կ'ունայնանայ
+REP	կունենա	կ'ունենայ
+REP	կուշանա	կ'ուշանայ
+REP	կուռճանա	կ'ուռճանայ
+REP	կուտեի	կ'ուտէի
+REP	կուտեր	կ'ուտէր
+REP	կուտեք	կ'ուտէք
+REP	կուրախանա	կ'ուրախանայ
+REP	կուրանա	կ'ուրանայ
+REP	կուրկանա	կ'ուրկանայ
+REP	կուրորեն	կուրօրէն
+REP	կուրվականանա	կ'ուրուականանայ
+REP	կուրվանա	կ'ուրուանայ
+REP	կչալանա	կը_չալանայ
+REP	կչաղանա	կը_չաղանայ
+REP	կչարախնդա	կը_չարախնդայ
+REP	կչարանա	կը_չարանայ
+REP	կչարչիանա	կը_չարչիանայ
+REP	կչգոյանա	կը_չգոյանայ
+REP	կչեզոքանա	կը_չէզոքանայ
+REP	կչեչոտանա	կը_չեչոտանայ
+REP	կչլմփա	կը_չլմփայ
+REP	կչլմփչլմփա	կը_չլմփչլմփայ
+REP	կչխկա	կը_չխկայ
+REP	կչխկչխկա	կը_չխկչխկայ
+REP	կչխկրտա	կը_չխկրտայ
+REP	կչխչխկա	կը_չխչխկայ
+REP	կչկչկա	կը_չկչկայ
+REP	կչմչմա	կը_չմչմայ
+REP	կչմպա	կը_չմպայ
+REP	կչմփա	կը_չմփայ
+REP	կչմփչմփա	կը_չմփչմփայ
+REP	կչորանա	կը_չորանայ
+REP	կչռռա	կը_չռռայ
+REP	կչրթչրթա	կը_չրթչրթայ
+REP	կչրխկա	կը_չրխկայ
+REP	կչրխկչրխկա	կը_չրխկչրխկայ
+REP	կչփչփա	կը_չփչփայ
+REP	կչքանա	կը_չքանայ
+REP	կչքավորանա	կը_չքաւորանայ
+REP	կչքմեղանա	կը_չքմեղանայ
+REP	կպահածոյանա	կը_պահածոյանայ
+REP	կպահանջվի	կը_պահանջուի
+REP	կպահպանվի	կը_պահպանուի
+REP	կպայծառանա	կը_պայծառանայ
+REP	կպանդխտանա	կը_պանդխտանայ
+REP	կպանծա	կը_պանծայ
+REP	կպանծանա	կը_պանծանայ
+REP	կպանրանա	կը_պանրանայ
+REP	կպառավանա	կը_պառաւանայ
+REP	կպատանեկանա	կը_պատանեկանայ
+REP	կպատանիանա	կը_պատանիանայ
+REP	կպատկանա	կը_պատկանայ
+REP	կպատկերանա	կը_պատկերանայ
+REP	կպարարտանա	կը_պարարտանայ
+REP	կպարզանա	կը_պարզանայ
+REP	կպարզվի	կը_պարզուի
+REP	կպարծենա	կը_պարծենայ
+REP	կպարկեշտանա	կը_պարկեշտանայ
+REP	կպարսկանա	կը_պարսկանայ
+REP	կպեծանա	կը_պէծանայ
+REP	կպեծկլտա	կը_պէծկլտայ
+REP	կպեծպեծա	կը_պէծպէծայ
+REP	կպեծպծա	կը_պէծպծայ
+REP	կպետականանա	կը_պետականանայ
+REP	կպերճանա	կը_պերճանայ
+REP	կպզպզա	կը_պզպզայ
+REP	կպժգա	կը_պժգայ
+REP	կպլպլա	կը_պլպլայ
+REP	կպլպպստա	կը_պլպպստայ
+REP	կպլպստա	կը_պլպստայ
+REP	կպլստա	կը_պլստայ
+REP	կպղերգանա	կը_պղերգանայ
+REP	կպղպջա	կը_պղպջայ
+REP	կպճլտա	կը_պճլտայ
+REP	կպճճա	կը_պճճայ
+REP	կպնդանա	կը_պնդանայ
+REP	կպողպատանա	կը_պողպատանայ
+REP	կպոռա	կը_պոռայ
+REP	կպոռնկանա	կը_պոռնկանայ
+REP	կպոռչտա	կը_պոռչտայ
+REP	կպոռպոռա	կը_պոռպոռայ
+REP	կպսպղա	կը_պսպղայ
+REP	կպստիկանա	կը_պստիկանայ
+REP	կպտպտա	կը_պտպտայ
+REP	կպրոլետարանա	կը_պրոլետարանայ
+REP	կջահելանա	կը_ջահէլանայ
+REP	կջանա	կը_ջանայ
+REP	կջերմանա	կը_ջերմանայ
+REP	կջերմեռանդանա	կը_ջերմեռանդանայ
+REP	կջղայնանա	կը_ջղայնանայ
+REP	կջղբջղբա	կը_ջղբջղբայ
+REP	կջոջանա	կը_ջոջանայ
+REP	կջրիկանա	կը_ջրիկանայ
+REP	կռազմականանա	կը_ռազմականանայ
+REP	կռազմայնանա	կը_ռազմայնանայ
+REP	կռամկանա	կը_ռամկանայ
+REP	կռնգայնանա	կը_ռնգայնանայ
+REP	կռուսականանա	կը_ռուսականանայ
+REP	կռուսանա	կը_ռուսանայ
+REP	կսալանա	կը_սալանայ
+REP	կսակավանա	կը_սակաւանայ
+REP	կսաղանա	կը_սաղանայ
+REP	կսառնանա	կը_սառնանայ
+REP	կսաստկանա	կը_սաստկանայ
+REP	կսատանանա	կը_սատանանայ
+REP	կսարանա	կը_սարանայ
+REP	կսարսաղանա	կը_սարսաղանայ
+REP	կսարսռա	կը_սարսռայ
+REP	կսգա	կը_սգայ
+REP	կսեպանա	կը_սեպանայ
+REP	կսերմանա	կը_սերմանայ
+REP	կսերտանա	կը_սերտանայ
+REP	կսեւանա	կը_սեւանայ
+REP	կսեւնա	կը_սեւնայ
+REP	կսեփականանա	կը_սեփականանայ
+REP	կսիգանա	կը_սիգանայ
+REP	կսիլոսանա	կը_սիլոսանայ
+REP	կսիրունանա	կը_սիրունանայ
+REP	կսլանա	կը_սլանայ
+REP	կսլլա	կը_սլլայ
+REP	կսլսլա	կը_սլսլայ
+REP	կսլքտա	կը_սլքտայ
+REP	կսլքտկա	կը_սլքտկայ
+REP	կսխրանա	կը_սխրանայ
+REP	կսկսկա	կը_սկսկայ
+REP	կսկսվեն	կը_սկսուեն
+REP	կսկսվի	կը_սկսուի
+REP	կսղղա	կը_սղղայ
+REP	կսնանկանա	կը_սնանկանայ
+REP	կսնգսնգա	կը_սնգսնգայ
+REP	կսնկսնկա	կը_սնկսնկայ
+REP	կսողա	կը_սողայ
+REP	կսողսողա	կը_սողսողայ
+REP	կսոնքանա	կը_սոնքանայ
+REP	կսոսկա	կը_սոսկայ
+REP	կսովածանա	կը_սովածանայ
+REP	կսորա	կը_սորայ
+REP	կսորորա	կը_սորորայ
+REP	կսորսորա	կը_սորսորայ
+REP	կսուրա	կը_սուրայ
+REP	կսպառնա	կը_սպառնայ
+REP	կսպիանա	կը_սպիանայ
+REP	կսպիտականա	կը_սպիտականայ
+REP	կսռթսռթա	կը_սռթսռթայ
+REP	կսռռա	կը_սռռայ
+REP	կսռսռա	կը_սռսռայ
+REP	կստանա	կը_ստանայ
+REP	կստացվի	կը_ստացուի
+REP	կստեղծվեն	կը_ստեղծուեն
+REP	կստեղծվի	կը_ստեղծուի
+REP	կստերջանա	կը_ստերջանայ
+REP	կստորանա	կը_ստորանայ
+REP	կստվարանա	կը_ստուարանայ
+REP	կստրկանա	կը_ստրկանայ
+REP	կստրջանա	կը_ստրջանայ
+REP	կսրանա	կը_սրանայ
+REP	կսրբազնանա	կը_սրբազնանայ
+REP	կսրբանա	կը_սրբանայ
+REP	կսրթսրթա	կը_սրթսրթայ
+REP	կսրիկայանա	կը_սրիկայանայ
+REP	կսրսրթա	կը_սրսրթայ
+REP	կսրսփա	կը_սրսփայ
+REP	կսքանչանա	կը_սքանչանայ
+REP	կվախենա	կը_վախենայ
+REP	կվայելչանա	կը_վայելչանայ
+REP	կվայրագանա	կը_վայրագանայ
+REP	կվայրենանա	կը_վայրենանայ
+REP	կվավաշանա	կը_վաւաշանայ
+REP	կվատանա	կը_վատանայ
+REP	կվատթարանա	կը_վատթարանայ
+REP	կվարդանա	կը_վարդանայ
+REP	կվարպետանա	կը_վարպետանայ
+REP	կվեհանա	կը_վեհանայ
+REP	կվերադառնա	կը_վերադառնայ
+REP	կվերածվի	կը_վերածուի
+REP	կվերականգնվի	կը_վերականգնուի
+REP	կվերակարդա	կը_վերակարդայ
+REP	կվերակենդանանա	կը_վերակենդանանայ
+REP	կվերամբառնա	կը_վերամբառնայ
+REP	կվերամիանա	կը_վերամիանայ
+REP	կվերանա	կը_վերանայ
+REP	կվերասլանա	կը_վերասլանայ
+REP	կվերեւանա	կը_վերեւանայ
+REP	կվերզգա	կը_վերզգայ
+REP	կվերընթանա	կը_վերընթանայ
+REP	կվերկենա	կը_վերկենայ
+REP	կվերջանա	կը_վերջանայ
+REP	կվերստանա	կը_վերստանայ
+REP	կվզզա	կը_վզզայ
+REP	կվժա	կը_վժայ
+REP	կվժժա	կը_վժժայ
+REP	կվխտա	կը_վխտայ
+REP	կվճիտանա	կը_վճիտանայ
+REP	կվնգա	կը_վնգայ
+REP	կվնգստա	կը_վնգստայ
+REP	կվնգվնգա	կը_վնգվնգայ
+REP	կվշշա	կը_վշշայ
+REP	կվշտանա	կը_վշտանայ
+REP	կվռթա	կը_վռթայ
+REP	կվռթկա	կը_վռթկայ
+REP	կվռնչա	կը_վռնչայ
+REP	կվռչա	կը_վռչայ
+REP	կվսեմանա	կը_վսեմանայ
+REP	կվսսա	կը_վսսայ
+REP	կվստահանա	կը_վստահանայ
+REP	կվստվստա	կը_վստվստայ
+REP	կվտիտանա	կը_վտիտանայ
+REP	կվրացանա	կը_վրացանայ
+REP	կվրացիանա	կը_վրացիանայ
+REP	կվրնջա	կը_վրնջայ
+REP	կտա	կը_տայ
+REP	կտաղտկանա	կը_տաղտկանայ
+REP	կտաճկանա	կը_տաճկանայ
+REP	կտամկանա	կը_տամկանայ
+REP	կտաներ	կը_տանէր
+REP	կտանտա	կը_տանտայ
+REP	կտարաբախտանա	կը_տարաբախտանայ
+REP	կտարտամանա	կը_տարտամանայ
+REP	կտարփա	կը_տարփայ
+REP	կտափականա	կը_տափականայ
+REP	կտաքանա	կը_տաքանայ
+REP	կտգեղանա	կը_տգեղանայ
+REP	կտգիտանա	կը_տգիտանայ
+REP	կտեղա	կը_տեղայ
+REP	կտեղադրվեն	կը_տեղադրուեն
+REP	կտեղայնանա	կը_տեղայնանայ
+REP	կտեղափոխվի	կը_տեղափոխուի
+REP	կտեղեկանա	կը_տեղեկանայ
+REP	կտենչա	կը_տենչայ
+REP	կտեսներ	կը_տեսնէր
+REP	կտեսնեք	կը_տեսնէք
+REP	կտեսնվենք	կը_տեսնուենք
+REP	կտեվի	կը_տեւի
+REP	կտզզա	կը_տզզայ
+REP	կտզտզա	կը_տզտզայ
+REP	կտժժա	կը_տժժայ
+REP	կտժտժա	կը_տժտժայ
+REP	կտիրանա	կը_տիրանայ
+REP	կտկարանա	կը_տկարանայ
+REP	կտկլորանա	կը_տկլորանայ
+REP	կտկտկա	կը_տկտկայ
+REP	կտձեւանա	կը_տձեւանայ
+REP	կտղայանա	կը_տղայանայ
+REP	կտմբտմբա	կը_տմբտմբայ
+REP	կտնանկանա	կը_տնանկանայ
+REP	կտնկտնկա	կը_տնկտնկայ
+REP	կտնտնա	կը_տնտնայ
+REP	կտնքա	կը_տնքայ
+REP	կտնքտնքա	կը_տնքտնքայ
+REP	կտոկա	կը_տոկայ
+REP	կտռփա	կը_տռփայ
+REP	կտրտնջա	կը_տրտնջայ
+REP	կտքա	կը_տքայ
+REP	կցածանա	կը_ցածանայ
+REP	կցածրանա	կը_ցածրանայ
+REP	կցանկա	կը_ցանկայ
+REP	կցանկանա	կը_ցանկանայ
+REP	կցանցառանա	կը_ցանցառանայ
+REP	կցնծա	կը_ցնծայ
+REP	կցնցոտիանա	կը_ցնցոտիանայ
+REP	կցոլա	կը_ցոլայ
+REP	կցոլանա	կը_ցոլանայ
+REP	կցոլցլա	կը_ցոլցլայ
+REP	կցոլցոլա	կը_ցոլցոլայ
+REP	կցոլքա	կը_ցոլքայ
+REP	կցողա	կը_ցօղայ
+REP	կցուցադրվեն	կը_ցուցադրուեն
+REP	կցուցադրվի	կը_ցուցադրուի
+REP	կցոփանա	կը_ցոփանայ
+REP	կցրտանա	կը_ցրտանայ
+REP	կփակվի	կը_փակուի
+REP	կփայլկլտա	կը_փայլկլտայ
+REP	կփայլունանա	կը_փայլունանայ
+REP	կփայլփլա	կը_փայլփլայ
+REP	կփայտանա	կը_փայտանայ
+REP	կփարթամանա	կը_փարթամանայ
+REP	կփափկանա	կը_փափկանայ
+REP	կփեսայանա	կը_փեսայանայ
+REP	կփետանա	կը_փէտանայ
+REP	կփլփլա	կը_փլփլայ
+REP	կփխրունանա	կը_փխրունանայ
+REP	կփղձկա	կը_փղձկայ
+REP	կփնթիանա	կը_փնթիանայ
+REP	կփնթփնթա	կը_փնթփնթայ
+REP	կփնչա	կը_փնչայ
+REP	կփնչփնչա	կը_փնչփնչայ
+REP	կփշշա	կը_փշշայ
+REP	կփշփշա	կը_փշփշայ
+REP	կփոխվի	կը_փոխուի
+REP	կփողփողա	կը_փողփողայ
+REP	կփոմփոշանա	կը_փոմփոշանայ
+REP	կփոշիանա	կը_փոշիանայ
+REP	կփոսանա	կը_փոսանայ
+REP	կփորփոշանա	կը_փորփոշանայ
+REP	կփութա	կը_փութայ
+REP	կփուչփուչանա	կը_փուչփուչանայ
+REP	կփոփոլանա	կը_փոփոլանայ
+REP	կփոքրանա	կը_փոքրանայ
+REP	կփոքրիկանա	կը_փոքրիկանայ
+REP	կփչանա	կը_փչանայ
+REP	կփռթկա	կը_փռթկայ
+REP	կփռնգա	կը_փռնգայ
+REP	կփռնգտա	կը_փռնգտայ
+REP	կփռնչա	կը_փռնչայ
+REP	կփռշտա	կը_փռշտայ
+REP	կփռփռա	կը_փռփռայ
+REP	կփսա	կը_փսայ
+REP	կփստա	կը_փստայ
+REP	կփսփսա	կը_փսփսայ
+REP	կփրփրա	կը_փրփրայ
+REP	կփքանա	կը_փքանայ
+REP	կքաղցածանա	կը_քաղցածանայ
+REP	կքաղցրանա	կը_քաղցրանայ
+REP	կքաղքենիանա	կը_քաղքենիանայ
+REP	կքաչալանա	կը_քաչալանայ
+REP	կքաջանա	կը_քաջանայ
+REP	կքավթառանա	կը_քաւթառանայ
+REP	կքարանա	կը_քարանայ
+REP	կքարթուանա	կը_քարթուանայ
+REP	կքացախանա	կը_քացախանայ
+REP	կքեֆովնա	կը_քէֆովնայ
+REP	կքթքթա	կը_քթքթայ
+REP	կքիփանա	կը_քիփանայ
+REP	կքլթքլթա	կը_քլթքլթայ
+REP	կքլքլա	կը_քլքլայ
+REP	կքմայնանա	կը_քմայնանայ
+REP	կքնանանա	կը_քնանանայ
+REP	կքնթմնթա	կը_քնթմնթայ
+REP	կքնթփնթա	կը_քնթփնթայ
+REP	կքննարկվեն	կը_քննարկուեն
+REP	կքննարկվի	կը_քննարկուի
+REP	կքնքշանա	կը_քնքշանայ
+REP	կքոռանա	կը_քոռանայ
+REP	կքոսոտանա	կը_քոսոտանայ
+REP	կքչանա	կը_քչանայ
+REP	կքչփչա	կը_քչփչայ
+REP	կքչքչա	կը_քչքչայ
+REP	կքռքռա	կը_քռքռայ
+REP	կքսփսա	կը_քսփսայ
+REP	կքրթմնջա	կը_քրթմնջայ
+REP	կքրքջա	կը_քրքջայ
+REP	կօգտագործվեն	կ'օգտագործուեն
+REP	կօգտագործվի	կ'օգտագործուի
+REP	կօգտվեն	կ'օգտուեն
+REP	կօդընտելանա	կը_օդընտելանայ
+REP	կօզոնանա	կը_օզոնանայ
+REP	կօձանա	կը_օձանայ
+REP	կօճառանա	կը_օճառանայ
+REP	կօտարանա	կը_օտարանայ
+REP	կօրինանականանա	կը_օրինանականանայ
+REP	կօքսիդանա	կը_օքսիդանայ
+REP	կֆշշա	կը_ֆշշայ
+REP	կֆշֆշա	կը_ֆշֆշայ
+REP	կֆռռա	կը_ֆռռայ
+REP	կֆռֆռա	կը_ֆռֆռայ
+REP	կֆսսա	կը_ֆսսայ
+REP	հ	յ
+REP	համբավավոր	համբաւաւոր
+REP	համոզվեք	համոզուէք
+REP	հայտնվել	յայտնուել
+REP	հայտնվելը	յայտնուելը
+REP	հայտնվելն	յայտնուելն
+REP	հայտնվեն	յայտնուեն
+REP	հայտնվեր	յայտնուէր
+REP	հայտնվեց	յայտնուեց
+REP	հայտնվեցի	յայտնուեցի
+REP	հայտնվեցիր	յայտնուեցիր
+REP	հայտնվում	յայտնւում
+REP	հանձն	յանձն
+REP	հանձնվել	յանձնուել
+REP	հանրաքվե	հանրաքուէ
+REP	հանրաքվեի	հանրաքուէի
+REP	հանրաքվեն	հանրաքուէն
+REP	հանցավոր	յանցաւոր
+REP	հանցավորը	յանցաւորը
+REP	հանցավորի	յանցաւորի
+REP	հապավում	յապաւում
+REP	հավատացեք	հաւատացէք
+REP	հավաքեք	հաւաքէք
+REP	հավաքված	հաւաքուած
+REP	հավաքվեին	հաւաքուէին
+REP	հավաքվել	հաւաքուել
+REP	հավաքվեն	հաւաքուեն
+REP	հավաքվենք	հաւաքուենք
+REP	հավաքվեց	հաւաքուեց
+REP	հավաքվեք	հաւաքուէք
+REP	հավելյալ	յաւելեալ
+REP	հավելված	յաւելուած
+REP	հավելվածը	յաւելուածը
+REP	հավելվածի	յաւելուածի
+REP	հավետ	յաւէտ
+REP	հավերժ	յաւէրժ
+REP	հավերժի	յաւէրժի
+REP	հավիտյան	յաւիտեան
+REP	հավիտյանս	յաւիտեանս
+REP	հատկացվի	յատկացուի
+REP	հարաբերությունները	յարաբերութիւնները
+REP	հարաբերությունների	յարաբերութիւնների
+REP	հարություն	յարութիւն
+REP	հարությունյանը	յարութիւնեանը
+REP	հեղհեղուկ	յեղյեղուկ
+REP	հեվիհեվ	հեւիհեւ
+REP	հետագա	յետագայ
+REP	հետեվել	հետեւել
+REP	հետեվեք	հետեւէք
+REP	հետեվում	հետեւում
+REP	հետո	յետոյ
+REP	հետույք	յետոյք
+REP	հիշյալ	յիշեալ
+REP	հյուծվել	հիւծուել
+REP	հյուսված	հիւսուած
+REP	հյուսվածք	հիւսուածք
+REP	հյուսվել	հիւսուել
+REP	հյուսվում	հիւսւում
+REP	հյուրասեր	հիւրասէր
+REP	հնամյա	հնամեայ
+REP	հնարավորություն	հնարաւորութիւն
+REP	հնօրյա	հնօրեայ
+REP	հոգնած	յոգնած
+REP	հոգուտ	յօգուտ
+REP	հոգվո	հոգւոյ
+REP	հոդ	յօդ
+REP	հոդված	յօդուած
+REP	հոդվածին	յօդուածին
+REP	հոդվածից	յօդուածից
+REP	հոդվածն	յօդուածն
+REP	հոդվածներ	յօդուածներ
+REP	հոդվածով	յօդուածով
+REP	հոժար	յօժար
+REP	հոժարակամ	յօժարակամ
+REP	հոնք	յօնք
+REP	հոնքերի	յօնքերի
+REP	Հովհաննես	Յովհաննէս
+REP	Հովսեփ	Յովսէփ
+REP	հոտավետ	հոտաւէտ
+REP	հորինե	յօրինե
+REP	հորինվ	յօրինու
+REP	հուզված	յուզուած
+REP	հուզվել	յուզուել
+REP	հուզվելով	յուզուելով
+REP	հուզվելու	յուզուելու
+REP	հուզվեցի	յուզուեցի
+REP	հուզվեք	յուզուէք
+REP	հուզվում	յուզւում
+REP	հույժ	յոյժ
+REP	հույն	յոյն
+REP	հույս	յոյս
+REP	հույսերի	յոյսերի
+REP	հունարեն	յունարէն
+REP	հունվար	յունուար
+REP	հունվարի	յունուարի
+REP	հունվարին	յունուարին
+REP	հունվարից	յունուարից
+REP	հուշեր	յուշեր
+REP	հուսալքված	յուսալքուած
+REP	հրավեր	հրաւէր
+REP	հրավերը	հրաւէրը
+REP	հրավիրեք	հրաւիրէք
+REP	հրավիրված	հրաւիրուած
+REP	հրավիրվի	հրաւիրուի
+REP	հրդեր	հուրդներ
+REP	հրեա	հրեայ
+REP	ձեվավորելու	ձեւաւորելու
+REP	ձեվավորի	ձեւաւորի
+REP	ձեվավորման	ձեւաւորման
+REP	ձեվավորմանը	ձեւաւորմանը
+REP	ձեվավորում	ձեւաւորում
+REP	ձեվավորումը	ձեւաւորումը
+REP	ձեվավորումն	ձեւաւորումն
+REP	ձեվավորված	ձեւաւորուած
+REP	ձեվավորվել	ձեւաւորուել
+REP	ձեվավորվեց	ձեւաւորուեց
+REP	ձեվավորվեցին	ձեւաւորուեցին
+REP	ձեվավորվող	ձեւաւորուող
+REP	ձեվավորվում	ձեւաւորւում
+REP	ձեվեր	ձեւեր
+REP	ձմեռվա	ձմեռուայ
+REP	մբեր	ումբներ
+REP	մեղա	մեղայ
+REP	միավորվի	միաւորուի
+REP	Միքայել	Միքայէլ
+REP	մոտավորապես	մօտաւորապէս
+REP	մոտեցավ	մօտեցաւ
+REP	յ	հ
+REP	յա	եա
+REP	յո	եօ
+REP	յու	իւ
+REP	յուղեր	իւղեր
+REP	յուղում	իւղում
+REP	նավեր	նաւեր
+REP	նդեր	ունդներ
+REP	նդներ	ունդներ
+REP	ներ	եր
+REP	նկեր	ունկեր
+REP	նյութեր	նիւթեր
+REP	նույնպես	նոյնպէս
+REP	նվաճված	նուաճուած
+REP	նվաճվել	նուաճուել
+REP	նվեր	նուէր
+REP	նվերն	նուէրն
+REP	նվերներ	նուէրներ
+REP	նվերները	նուէրները
+REP	նվերների	նուէրների
+REP	նվիրեք	նուիրէք
+REP	նվիրված	նուիրուած
+REP	նվիրվել	նուիրուել
+REP	նվիրվեց	նուիրուեց
+REP	շահավետ	շահաւէտ
+REP	շարժվեք	շարժուէք
+REP	շվեդ	շուէդ
+REP	ո	օ
+REP	ո	ոյ
+REP	որդվո	որդւոյ
+REP	որեն	օրէն
+REP	որեվիցե	որեւիցէ
+REP	ույ	ոյ
+REP	չերեվա	չերեւայ
+REP	չհաջողվի	չյաջողուի
+REP	պատվեր	պատուէր
+REP	պատվո	պատւոյ
+REP	պոեմ	պօէմ
+REP	պոետ	պօէտ
+REP	պտեր	պիտներ
+REP	ռ	ր
+REP	ռեր	իռներ
+REP	Սամվել	Սամուէլ
+REP	սեվանա	սեւանայ
+REP	սեվեռվել	սեւեռուել
+REP	սյուներ	սիւներ
+REP	սոսափյուն	սօսափիւն
+REP	ստեղծվեր	ստեղծուէր
+REP	ստվերներ	ստուերներ
+REP	վ	ու
+REP	վ	ւ
+REP	վաղուցվա	վաղուցուայ
+REP	վաղվա	վաղուայ
+REP	վարվեք	վարուէք
+REP	վերաբերյալ	վերաբերեալ
+REP	վտեր	վիտներ
+REP	տեղվույն	տեղւոյն
+REP	տնորեն	տնօրէն
+REP	տուէք	տուէք
+REP	տվյալ	տուեալ
+REP	տվյալներով	տուեալներով
+REP	ր	ռ
+REP	ցավեր	ցաւեր
+REP	ցերեկվա	ցերեկուայ
+REP	փշատերեվ	փշատերեւ
+REP	քվեարկած	քուէարկած
+REP	քվեարկեն	քուէարկեն
+REP	քվեարկեց	քուէարկեց
+REP	քվեարկի	քուէարկի
+REP	քվեարկող	քուէարկող
+REP	օ	ո
+REP	օգտավետ	օգտաւէտ
+REP	օվկիանոս	ովկիանոս
+REP	օրոք	օրօք
+REP	և	եւ
+REP	ա	այ
+REP	Աբել	Աբէլ
+REP	ազատորեն	ազատօրէն
+REP	ազնվորեն	ազնուօրէն
+REP	ազնվությամբ	ազնուութեամբ
+REP	ազնվության	ազնուութեան
+REP	ալյումինե	ալիւմինէ
+REP	ալյուրը	ալիւրը
+REP	ակտիվորեն	ակտիւօրէն
+REP	աղավաղված	աղաւաղուած
+REP	աղավաղվել	աղաւաղուել
+REP	աղավաղվում	աղաւաղւում
+REP	աղվեսը	աղուէսը
+REP	ամառվա	ամառուայ
+REP	ամենորյա	ամենօրեայ
+REP	ամսվա	ամսուայ
+REP	այսօրվա	այսօրուայ
+REP	անլվա	անլուայ
+REP	անձնվեր	անձնուէր
+REP	անվանված	անուանուած
+REP	անվանվել	անուանուել
+REP	անվանվում	անուանւում
+REP	Աշխեն	Աշխէն
+REP	ապավեն	ապաւէն
+REP	առաջվա	առաջուայ
+REP	առավոտ	առաւօտ
+REP	առավոտվա	առաւօտուայ
+REP	առատորեն	առատօրէն
+REP	առգրավված	առգրաւուած
+REP	առգրավվել	առգրաւուել
+REP	առօրյա	առօրեայ
+REP	ավանդվել	աւանդուել
+REP	Ավանեսյան	Աւանեսեան
+REP	ավարտվ	աւարտու
+REP	ավարտվեն	աւարտուեն
+REP	ավարտվեր	աւարտուէր
+REP	ավարտվեց	աւարտուեց
+REP	ավարտվի	աւարտուի
+REP	ավարտվում	աւարտւում
+REP	ավելացավ	աւելացաւ
+REP	ավելացվել	աւելացուել
+REP	ավելացվի	աւելացուի
+REP	ավելացրեք	աւելացրէք
+REP	ավետարան	աւետարան
+REP	ավետարանը	աւետարանը
+REP	ավետարանի	աւետարանի
+REP	ավետիսյան	Աւետիսեան
+REP	ավետյանը	Աւետեանը
+REP	ավերակված	աւերակուած
+REP	ավերվել	աւերուել
+REP	ավերվեց	աւերուեց
+REP	ավերվեցին	աւերուեցին
+REP	ավերվի	աւերուի
+REP	ավերվում	աւերւում
+REP	ավյունով	աւիւնով
+REP	ավտո	աւտօ
+REP	արագորեն	արագօրէն
+REP	արդյունավետ	արդիւնաւէտ
+REP	արեվելագետ	արեւելագէտ
+REP	արժեվորել	արժեւորել
+REP	արժեքավոր	արժէքաւոր
+REP	արյունլվա	արիւնլուայ
+REP	արյունս	արիւնս
+REP	արվեստասեր	արուեստասէր
+REP	արվեստից	արուեստից
+REP	արվեր	արուէր
+REP	արտահայտվ	արտայայտու
+REP	Բաբկեն	Բաբկէն
+REP	բավարարվեն	բաւարարուեն
+REP	բավարարվենք	բաւարարուենք
+REP	բավարարվեց	բաւարարուեց
+REP	բավարարվեցին	բաւարարուեցին
+REP	բավարարվի	բաւարարուի
+REP	բավարարվում	բաւարարւում
+REP	բարելավվի	բարելաւուի
+REP	բացվեր	բացուէր
+REP	բացվեցավ	բացուեցաւ
+REP	բերէ	բեր
+REP	բյուջե	բիւջէ
+REP	բյուջեի	բիւջէի
+REP	բյուջեին	բիւջէին
+REP	բյուջեով	բիւջէով
+REP	բյուրեղյա	բիւրեղեայ
+REP	բվեճ	բուէճ
+REP	բրետ	բրէտ
+REP	գիշերվա	գիշերուայ
+REP	դառնորեն	դառնօրէն
+REP	դյուրությամբ	դիւրութեամբ
+REP	ե	է
+REP	եա	էա
+REP	եզրահանգել	եզրահանգել
+REP	եի	էի
+REP	եկեղեցվո	եկեղեցւոյ
+REP	ենթարկվեր	ենթարկուէր
+REP	ենթարկվեք	ենթարկուէք
+REP	եու	էու
+REP	եռամյա	եռամեայ
+REP	եռօրյա	եռօրեայ
+REP	եր	ներ
+REP	երանավետ	երանաւէտ
+REP	երբեվիցե	երբեւիցէ
+REP	երեկվա	երեկուայ
+REP	երեվույթը	երեւոյթը
+REP	երեվույթի	երեւոյթի
+REP	երեվույթն	երեւոյթն
+REP	երեվույթով	երեւոյթով
+REP	երկվորյակ	երկուորեակ
+REP	եք	էք
+REP	եօթը	եօթը
+REP	է	ե
+REP	էականորեն	էականօրէն
+REP	ընդունվեր	ընդունուէր
+REP	թավալվել	թաւալուել
+REP	թեթեվորեն	թեթեւօրէն
+REP	թեպետ	թէպէտ 
+REP	թեվավոր	թեւաւոր
+REP	թեվավորված	թեւաւորուած
+REP	թերահավատ	թերահաւատ
+REP	թէեվ	թէեւ
+REP	թէպէտ	թէպէտ
+REP	թվագրված	թուագրուած
+REP	թվագրվում	թուագրւում
+REP	ժամանակվա	ժամանակուայ
+REP	ժապավենը	ժապաւէնը
+REP	ժապավենի	ժապաւէնի
+REP	ժապավենով	ժապաւէնով
+REP	իծներ	ծեր
+REP	իհարկե	ի հարկէ
+REP	ինչեվիցե	ինչեւիցէ
+REP	իրիկվա	իրիկուայ
+REP	լայնորեն	լայնօրէն
+REP	լավանա	լաւանայ
+REP	լեգեոն	լեգէոն
+REP	լիազորված	լիազօրուած
+REP	լիազօր	լիազօր
+REP	լուծվեն	լուծուեն
+REP	լուսավորվի	լուսաւորուի
+REP	լվանա	լուանայ
+REP	լվացվել	լուացուել
+REP	լվացվելու	լուացուելու
+REP	լվացվի	լուացուի
+REP	լրջորեն	լրջօրէն
+REP	խառնվեք	խառնուէք
+REP	խոսվի	խօսուի
+REP	խոստովանեք	խոստովանէք
+REP	խստորեն	խստօրէն
+REP	ծանոթացավ	ծանօթացաւ
+REP	ծանոթացեք	ծանօթացէք
+REP	ծավալված	ծաւալուած
+REP	ծավալվեց	ծաւալուեց
+REP	ծավալվող	ծաւալուող
+REP	ծավալվում	ծաւալւում
+REP	ծնվեր	ծնուէր
+REP	ծուլորեն	ծուլօրէն
+REP	կ	կ'
+REP	կ	կը_
+REP	կ'	կը_
+REP	ռ	ր
+REP	կգրեին	կը_գրէին
+REP	կարտասանվի	կ'արտասանուի
+REP	տվեք	տուէք
+REP	կուգա	կու_գա
+REP	կուտա	կու_տա
+REP	կուլա	կու_լա

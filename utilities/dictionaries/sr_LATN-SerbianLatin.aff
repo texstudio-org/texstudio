@@ -1,0 +1,53 @@
+SET UTF-8
+
+LANG sr-Latn
+TRY aioenrtsvumklpjdgzbščchćnjljžfđdžAIOENRTSVUMKLPJDGZBŠČCHĆNJLJŽFĐDŽ
+KEY qwertyuiopšđž|asdfghjklčć|zxcvbnm|žšđ|ćšč|žčđ|đćž|zy|qawsedrftgyhuj|jikolpč|azsxdcfvgbh|hnjmk
+
+MAP 4
+MAP cć
+MAP cč
+MAP zž
+MAP sš
+
+REP 1
+REP dj đ
+
+ICONV 37
+ICONV ﬁ fi
+ICONV ﬂ fl
+ICONV ﬆ st
+ICONV ĳ ij
+ICONV œ oe
+ICONV ȁ a
+ICONV â a
+ICONV ȃ a
+ICONV à a
+ICONV á a
+ICONV ā a
+ICONV ȅ e
+ICONV ȇ e
+ICONV è e
+ICONV é e
+ICONV ē e
+ICONV ȉ i
+ICONV î i
+ICONV ȋ i
+ICONV ì i
+ICONV í i
+ICONV ī i
+ICONV ȍ o
+ICONV ô o
+ICONV ȏ o
+ICONV ò o
+ICONV ó o
+ICONV ō o
+ICONV ȕ u
+ICONV û u
+ICONV ȗ u
+ICONV ù u
+ICONV ú u
+ICONV ū u
+ICONV ȑ r
+ICONV ȓ r
+ICONV ŕ r
