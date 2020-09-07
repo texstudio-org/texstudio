@@ -18,6 +18,10 @@
 \setmainfont[font features%keyvals]{font}
 \setmainfont{font}[font features%keyvals]
 \setmainfont[font features%keyvals]{font}[font features%keyvals]#*
+\setromanfont{font}
+\setromanfont[font features%keyvals]{font}
+\setromanfont{font}[font features%keyvals]
+\setromanfont[font features%keyvals]{font}[font features%keyvals]#*
 \setsansfont{font}
 \setsansfont[font features%keyvals]{font}
 \setsansfont{font}[font features%keyvals]
@@ -120,7 +124,7 @@
 
 ## common keyvals list, 
 ## both cmds and keys are in alphabetic order, except for engine specific keys
-#keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setsansfont
+#keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setromanfont,\setsansfont
 Alternate
 Annotation
 AutoFakeBold
