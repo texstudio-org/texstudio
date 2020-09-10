@@ -30,7 +30,7 @@ class Poppler < Formula
 
   version '20.09.0-texworks'
 
-  TEXWORKS_SOURCE_DIR = Pathname.new(__FILE__).realpath.dirname.join('../../..')
+  TEXWORKS_SOURCE_DIR = Pathname.new(__FILE__).realpath.dirname.join('..')
   TEXWORKS_PATCH_DIR = TEXWORKS_SOURCE_DIR + 'lib-patches/'
   patch do
     url "file://" + TEXWORKS_PATCH_DIR + 'poppler-0001-Fix-bogus-memory-allocation-in-SplashFTFont-makeGlyp.patch'
