@@ -28,21 +28,17 @@ class Poppler < Formula
 #    sha256 "438fc1e448307d1bf17bdc37eb74bbc645ff526b26dd0423915b5f68af12a49d" => :sierra
 #  end
 
-  version '0.84.0-texworks'
+  version '20.09.0-texworks'
 
-  TEXWORKS_SOURCE_DIR = Pathname.new(__FILE__).realpath.dirname.join('..')
+  TEXWORKS_SOURCE_DIR = Pathname.new(__FILE__).realpath.dirname.join('../../..')
   TEXWORKS_PATCH_DIR = TEXWORKS_SOURCE_DIR + 'lib-patches/'
   patch do
     url "file://" + TEXWORKS_PATCH_DIR + 'poppler-0001-Fix-bogus-memory-allocation-in-SplashFTFont-makeGlyp.patch'
-    sha256 "e012b2498e6f37fe52d1f7382d63c6c73fd56780ff87d4012a39bb59a4f6cab0"
+    sha256 "0bbc5872165096516428a879be827d1681b0d96515e6fd4b8db9e51c2701fee4"
   end
   patch do
     url "file://" + TEXWORKS_PATCH_DIR + 'poppler-0002-Native-Mac-font-handling.patch'
-    sha256 "a009c04543124ff561b5ad7d28070d07de8eaf254318a58ea3951a0d218753e5"
-  end
-  patch do
-    url "file://" + TEXWORKS_PATCH_DIR + 'poppler-0003-Add-support-for-persistent-GlobalParams.patch'
-    sha256 "d6159cbf1af7cfb570925b172e02508a12fbe885dc09c5ff98d1c5e98e142890"
+    sha256 "8697c1983dd69bc978a8735f432ba9dfacd57b5f1faa8b29110bf66df58669b1"
   end
 # END TEXWORKS MODIFICATION
 
