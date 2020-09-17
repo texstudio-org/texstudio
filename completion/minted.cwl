@@ -59,7 +59,7 @@
 \newmintedfile{language}{options%keyvals}
 \newmintedfile{macro name}{language}{options%keyvals}
 
-#keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\nnewmintedfile
+#keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\newmintedfile
 autogobble#true,false
 baselinestretch=##L
 beameroverlays#true,false
