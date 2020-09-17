@@ -54,6 +54,7 @@
 \graph[options%keyvals]
 \matrix
 \matrix[options%keyvals]
+\scoped#*
 \calendar#*
 \datavisualization#*
 \pgfextra#*
