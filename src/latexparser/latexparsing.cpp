@@ -328,7 +328,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
 
                 }
-                if ((cd.args > 0 || cd.optionalArgs > 0 || cd.bracketArgs > 0 ) && tk.subtype != Token::def) { // don't interpret commands in definition (\newcommand{def})
+                if ((cd.args > 0 || cd.optionalArgs > 0 || cd.bracketArgs > 0 || cd.overlayArgs > 0) && tk.subtype != Token::def) { // don't interpret commands in definition (\newcommand{def})
                     cd.optionalCommandName=command;
                     commandStack.push(cd);
                 }

@@ -420,8 +420,8 @@
 \includeslide[options]{label name}
 \includeslide{label name}
 \includegraphics<overlay specification>[keyvals]{imagefile}
-\mode<mode specification>{text}
-\mode{text}
+\mode<mode specification>{text}#M
+\mode{text}#M
 \mode<mode specification>
 \mode*
 \mode
