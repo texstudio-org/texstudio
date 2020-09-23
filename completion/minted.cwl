@@ -20,7 +20,7 @@
 #include:newfloat
 #endif
 
-\begin{minted}[options%keyvals]#
+\begin{minted}[options%keyvals]#S
 \begin{minted}{language}#MV
 \begin{minted}[options%keyvals]{language}#M
 \end{minted}
