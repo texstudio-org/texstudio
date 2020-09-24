@@ -12,7 +12,7 @@ print_headline "Getting dependencies for building for ${QT} on ${TRAVIS_OS_NAME}
 if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 	if [ $QT = "qt5win" ]; then
 		MXEDIR="/opt/mxe"
-		MXETARGET="i686-w64-mingw32.static"
+		MXETARGET="x86_64-w64-mingw32.static"
 
 		echo "MXEDIR=\"${MXEDIR}\"" >> travis-ci/defs.sh
 		echo "MXETARGET=\"${MXETARGET}\"" >> travis-ci/defs.sh
