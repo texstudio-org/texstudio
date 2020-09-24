@@ -44,7 +44,7 @@ before_script:
 - export DISPLAY=:99.0
 - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
 script:
-- if [ $QT = qt5win ]; then PATH=$PATH:/opt/mxe/usr/bin; fi
+- if [ $QT = qt5win ]; then PATH=$PATH:$MXEDIR/usr/bin; fi
 - make -j 2
 - export QT_QPA_PLATFORM=minimal
 - if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi
