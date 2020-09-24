@@ -13,6 +13,9 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 	if [ $QT = "qt5win" ]; then
 		MXEDIR="/usr/lib/mxe"
 		MXETARGET="i686-w64-mingw32.static"
+		
+		print_info "Make MXE directory writable"
+        echo_and_run "sudo chmod -R a+w ${MXEDIR}"
 
 		echo "MXEDIR=\"${MXEDIR}\"" >> travis-ci/defs.sh
 		echo "MXETARGET=\"${MXETARGET}\"" >> travis-ci/defs.sh
