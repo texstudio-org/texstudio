@@ -274,7 +274,15 @@ bool Macro::load(const QString &fileName){
 bool Macro::loadFromText(const QString &text)
 {
     QHash<QString,QString>rawData;
-    QJsonDocument jsonDoc=QJsonDocument::fromJson(text.toUtf8());
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc=QJsonDocument::fromJson(text.toUtf8(),&parseError);
+    if(parseError.error!=QJsonParseError::NoError){
+        // parser could not read input
+        QMessageBox msgBox;
+        msgBox.setText(QObject::tr("Macro read-in failed\nError: ")+parseError.errorString());
+        msgBox.exec();
+        return false;
+    }
     QJsonObject dd=jsonDoc.object();
     if(dd.contains("formatVersion")){
         for(const QString& key : dd.keys()){
