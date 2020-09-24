@@ -8,31 +8,30 @@ matrix:
     os: linux
   - env: QT=qt5win
     os: linux
-    dist: xenial
-      addons:
-        apt:
-          sources:
-            - sourceline: deb https://pkg.mxe.cc/repos/apt xenial main
-              key_url: http://keyserver.ubuntu.com/pks/lookup?op=get&options=mr&search=0xC6BF758A33A3A276
-          packages:
-            - mxe-i686-w64-mingw32.static-cairo # poppler dependency
-            - mxe-i686-w64-mingw32.static-curl # poppler dependency
-            - mxe-i686-w64-mingw32.static-freetype # poppler dependency
-            - mxe-i686-w64-mingw32.static-glib # poppler dependency
-            - mxe-i686-w64-mingw32.static-hunspell
-            - mxe-i686-w64-mingw32.static-jpeg # poppler dependency
-            - mxe-i686-w64-mingw32.static-lcms # poppler dependency
-            - mxe-i686-w64-mingw32.static-libpng # poppler dependency
-            - mxe-i686-w64-mingw32.static-libwebp # poppler dependency
-            - mxe-i686-w64-mingw32.static-lua
-            - mxe-i686-w64-mingw32.static-openjpeg # poppler dependency
+    addons:
+      apt:
+        sources:
+          - sourceline: deb https://pkg.mxe.cc/repos/apt xenial main
+            key_url: http://keyserver.ubuntu.com/pks/lookup?op=get&options=mr&search=0xC6BF758A33A3A276
+        packages:
+          - mxe-i686-w64-mingw32.static-cairo # poppler dependency
+          - mxe-i686-w64-mingw32.static-curl # poppler dependency
+          - mxe-i686-w64-mingw32.static-freetype # poppler dependency
+          - mxe-i686-w64-mingw32.static-glib # poppler dependency
+          - mxe-i686-w64-mingw32.static-hunspell
+          - mxe-i686-w64-mingw32.static-jpeg # poppler dependency
+          - mxe-i686-w64-mingw32.static-lcms # poppler dependency
+          - mxe-i686-w64-mingw32.static-libpng # poppler dependency
+          - mxe-i686-w64-mingw32.static-libwebp # poppler dependency
+          - mxe-i686-w64-mingw32.static-lua
+          - mxe-i686-w64-mingw32.static-openjpeg # poppler dependency
 #            - mxe-i686-w64-mingw32.static-poppler
-            - mxe-i686-w64-mingw32.static-qtbase # poppler dependency
-            - mxe-i686-w64-mingw32.static-qtdeclarative
-            - mxe-i686-w64-mingw32.static-qtscript
-            - mxe-i686-w64-mingw32.static-qttools
-            - mxe-i686-w64-mingw32.static-tiff # poppler dependency
-            - mxe-i686-w64-mingw32.static-zlib # poppler dependency
+          - mxe-i686-w64-mingw32.static-qtbase # poppler dependency
+          - mxe-i686-w64-mingw32.static-qtdeclarative
+          - mxe-i686-w64-mingw32.static-qtscript
+          - mxe-i686-w64-mingw32.static-qttools
+          - mxe-i686-w64-mingw32.static-tiff # poppler dependency
+          - mxe-i686-w64-mingw32.static-zlib # poppler dependency
 dist: xenial
 sudo: required
 branches:
