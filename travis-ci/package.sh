@@ -131,7 +131,7 @@ if [ "${QT}" = "qt5win" ]; then
 	print_info "make installer"
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/texstudio.nsi\" \"${TRAVIS_BUILD_DIR}/\""
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/FileAssociation.nsh\" \"${TRAVIS_BUILD_DIR}/\""
-	echo_and_run "${MXEDIR}/usr/bin/i686-w64-mingw32.static-makensis texstudio.nsi"
+	echo_and_run "${MXEDIR}/usr/bin/x86_64-w64-mingw32.static-makensis texstudio.nsi"
 	print_info "Assembling package"
 	echo_and_run "mkdir -p \"package-zip/share\""
 	echo_and_run "mkdir -p \"package-zip/config\""
