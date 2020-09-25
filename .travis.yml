@@ -32,7 +32,7 @@ matrix:
           - mxe-x86-64-w64-mingw32.static-qttools
           - mxe-x86-64-w64-mingw32.static-tiff # poppler dependency
           - mxe-x86-64-w64-mingw32.static-zlib # poppler dependency
-          - mxe-x86_64-w64-mingw32.static-nsis
+          - mxe-x86-64-w64-mingw32.static-nsis
 dist: xenial
 sudo: required
 branches:
