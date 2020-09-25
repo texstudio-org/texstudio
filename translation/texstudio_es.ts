@@ -986,7 +986,7 @@ Cambie su configuración y defina las listas de orden solo en &apos;Opciones -&g
     <message>
         <location filename="../src/configdialog.ui" line="684"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Selectores de archivo (Opcional: si está presente, incluya los dos puntos finales &quot;:&quot;):&lt;/i&gt; Si no hay selector entonces seleccione archivo maestro. &lt;b&gt;c:&lt;/b&gt; seleccione archivo actual, &lt;b&gt;p{ext}:&lt;/b&gt; Encuentre un archivo con el mismo nombre y extensión al archivo maestro &lt;b&gt;ext&lt;/b&gt;. Búsqueda es hecha en la carpeta del archivo maestro y directorios PDF adicionales. &lt;br /&gt; &lt;i&gt;Partes de nombre de ruta:&lt;/i&gt;una combinación de&lt;b&gt;a&lt;/b&gt;: ruta absoluta, &lt;b&gt;m&lt;/b&gt;: nombre del archivo base sin extensión, &lt;b&gt;e&lt;/b&gt;: extensión, &lt;b&gt;r&lt;/b&gt;: ruta relativa de archivo maestro,&lt;b&gt;*&lt;/b&gt;: todos los archivos que coinciden con el siguiente patrón &lt;br/&gt; &lt;i&gt;Caracteres finales:&lt;i/&gt;&lt;b&gt;)&lt;/b&gt;: finaliza selector. Los siguientes caracteres finalizan el selector y tienen significado adicional &lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: encerrar entre comillas dobles, &lt;b&gt;.&lt;/b&gt; (punto) añadir un punto al final, (espacio): añade un espacio al final &lt;br/&gt; &lt;i&gt;Ejemplos:&lt;/i&gt; &lt;b&gt;?ame&amp;quot;&lt;/b&gt;: completa el nombre del archivo absoluto encerrado entre comillas dobles, &lt;b&gt;?e)&lt;/b&gt; sólo la extensión sin punto inicial (por ejemplo, tex), &lt;br/&gt; &lt;b&gt;?m&amp;quot;&lt;/b&gt; nombre del archivo encerrado entre comillas dobles sin extensión (idéntico a &lt;b&gt;%&lt;/b&gt; ), &lt;b&gt;?me&lt;/b&gt; nombre del archivo con la extensión (por ejemplo example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: todos los archivos .aux en el directorio actual</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="700"/>
@@ -12786,22 +12786,22 @@ begingroup(); endgroup;</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>pullback</source>
-        <translation type="unfinished"/>
+        <translation>retroceso</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>pushout</source>
-        <translation type="unfinished"/>
+        <translation>empuje</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="307"/>
         <source>pullback (universal property)</source>
-        <translation type="unfinished"/>
+        <translation>retroceso (propiedad universal)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="308"/>
         <source>pushout (universal property)</source>
-        <translation type="unfinished"/>
+        <translation>empuje (propiedad universal)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="309"/>
