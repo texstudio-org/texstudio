@@ -426,6 +426,7 @@ exists(./.git)  {
   QMAKE_CXXFLAGS_DEBUG -= -O -O1 -O2 -O3
   QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Wmissing-include-dirs -Wunknown-pragmas -Wundef -Wpointer-arith -Winline -O0
   QMAKE_CXXFLAGS += -std=c++11
+  !isEmpty(MXE): QMAKE_CXXFLAGS += -fpermissive
   !win32:!haiku: QMAKE_LFLAGS += -rdynamic # option not supported by mingw and haiku
   else {
     QMAKE_CXXFLAGS += -gstabs -g
