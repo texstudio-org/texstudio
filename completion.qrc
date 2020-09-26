@@ -108,6 +108,7 @@
 <file>completion/import.cwl</file>
 <file>completion/incgraph.cwl</file>
 <file>completion/inputenc.cwl</file>
+<file>completion/interval.cwl</file>
 <file>completion/jurabib.cwl</file>
 <file>completion/kantlipsum.cwl</file>
 <file>completion/keyval.cwl</file>
