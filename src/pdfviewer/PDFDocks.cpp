@@ -971,7 +971,7 @@ void PDFClockDock::setInterval(int interval)
 
 void PDFClockDock::setPageCount(){
 	UniversalInputDialog d;
-	QSpinBox* sb = d.addVariable(&pageCount, tr("Page count (negative subtracts))"));
+	QSpinBox* sb = d.addVariable(&pageCount, tr("Page count (negative subtracts)"));
 	sb->setMinimum(-99999);
 	sb->setMaximum(99999);
 
