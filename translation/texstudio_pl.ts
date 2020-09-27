@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pl">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -69,12 +71,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="36"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="39"/>
@@ -324,7 +326,7 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="297"/>
         <source>Article in a Reference</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="305"/>
@@ -561,7 +563,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="357"/>
         <source>External Terminal</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="419"/>
@@ -570,7 +572,7 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="430"/>
@@ -615,7 +617,7 @@ Chcesz zmienić wszystkie ścieżki poleceń dla TeXstudio z /usr/texbin/ na
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1102"/>
@@ -630,7 +632,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1523"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1525"/>
@@ -852,7 +854,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -918,7 +920,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Określa rodzaje powiadomień o aktualizacjach, które otrzymasz:
 – Wydania stabilne: wybierz, jeśli stabilność jest dla ciebie najważniejsza;
@@ -978,12 +980,12 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="674"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="684"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select master file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as master file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in master file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="700"/>
@@ -1111,12 +1113,12 @@ Zmienne zapisywane jako: $MYVAR. Wielkość liter ma znaczenie.
     <message>
         <location filename="../src/configdialog.ui" line="1040"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1043"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1080"/>
@@ -1126,7 +1128,7 @@ Zmienne zapisywane jako: $MYVAR. Wielkość liter ma znaczenie.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1161,7 +1163,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1130"/>
@@ -1218,7 +1220,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1221"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1224"/>
@@ -1312,7 +1314,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="1566"/>
         <source>Inline Checking:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1605"/>
@@ -1720,7 +1722,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="2140"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2143"/>
@@ -1730,12 +1732,12 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="2280"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2287"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2290"/>
@@ -1792,12 +1794,12 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2150"/>
         <source>Show image tooltip on image files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2157"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2317"/>
@@ -1807,17 +1809,17 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2199"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2202"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>
@@ -1847,7 +1849,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2506"/>
         <source>Keep indentation of includes in structure tree</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2516"/>
@@ -1932,7 +1934,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2685"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2692"/>
@@ -1957,7 +1959,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2722"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2729"/>
@@ -1997,7 +1999,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2783"/>
         <source>Disable fixed pitch mode</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2790"/>
@@ -2052,7 +2054,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2916"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2919"/>
@@ -2067,7 +2069,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2936"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2939"/>
@@ -2107,7 +2109,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="3018"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3021"/>
@@ -2142,12 +2144,12 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="3079"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3082"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3092"/>
@@ -2188,7 +2190,7 @@ zaznaczając je tu.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3208"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3218"/>
@@ -2357,7 +2359,7 @@ zaznaczając je tu.</translation>
         <location filename="../src/configdialog.ui" line="3571"/>
         <location filename="../src/configdialog.ui" line="3619"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3574"/>
@@ -2622,10 +2624,10 @@ zaznaczając je tu.</translation>
         <location filename="../src/configdialog.ui" line="4182"/>
         <location filename="../src/configdialog.ui" line="4249"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3998"/>
@@ -2665,22 +2667,22 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4278"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4355"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4399"/>
         <source>Use SVN</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4404"/>
         <source>Use GIT</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4412"/>
@@ -2705,17 +2707,17 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4434"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4441"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4444"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4453"/>
@@ -2726,12 +2728,12 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="4504"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Internal Terminal</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4555"/>
         <source>Shell:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -2891,7 +2893,7 @@ ustawić ten skrót?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="522"/>
         <source>SVN/GIT</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="560"/>
@@ -2906,7 +2908,7 @@ ustawić ten skrót?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="692"/>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="697"/>
@@ -3009,7 +3011,7 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1460"/>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3482,7 +3484,7 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -3680,7 +3682,7 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
         <location filename="../src/configmanager.cpp" line="1070"/>
         <location filename="../src/configmanager.cpp" line="1075"/>
         <source>Key replacement: %1 %2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1048"/>
@@ -3712,7 +3714,7 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1445"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1481"/>
@@ -3749,12 +3751,12 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
         <location filename="../src/configmanager.cpp" line="1627"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1865"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1880"/>
@@ -3999,7 +4001,7 @@ Do you want to remove them?</source>
         <location filename="../src/encodingdialog.ui" line="98"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.cpp" line="35"/>
@@ -4225,7 +4227,7 @@ Czy na pewno chcesz cofnąć wszystkie dokonane zmiany?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="292"/>
         <source>Span Two Columns</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="299"/>
@@ -4275,7 +4277,7 @@ Czy na pewno chcesz cofnąć wszystkie dokonane zmiany?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
         <source>Override Internal Layout Parameters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="440"/>
@@ -4317,40 +4319,40 @@ Czy na pewno chcesz cofnąć wszystkie dokonane zmiany?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="263"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="280"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="289"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="303"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="320"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="422"/>
@@ -4369,7 +4371,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/searchquery.cpp" line="161"/>
         <source>Label Search</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4421,7 +4423,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nazwa pliku: %1&lt;/b&gt;</translation>
     </message>
@@ -4608,14 +4610,18 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2531"/>
         <location filename="../src/latexeditorview.cpp" line="2603"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nazwa pliku: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2544"/>
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2549"/>
@@ -4640,7 +4646,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2578"/>
         <source>Citation correct (reading ...)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2584"/>
@@ -4655,12 +4661,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2587"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3005"/>
         <source>Save Preview Image</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3005"/>
@@ -4871,7 +4877,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="40"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="142"/>
@@ -4986,7 +4992,7 @@ Chcesz go nadpisać?</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="270"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="277"/>
@@ -5020,7 +5026,7 @@ Chcesz go nadpisać?</translation>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="38"/>
         <source>Stamp</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="40"/>
@@ -5035,7 +5041,7 @@ Chcesz go nadpisać?</translation>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="44"/>
         <source>Caret</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/pdfannotation.cpp" line="46"/>
@@ -5137,12 +5143,12 @@ Chcesz go nadpisać?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="915"/>
         <source>Set Interval...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="916"/>
         <source>Set Page Count...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="917"/>
@@ -5157,7 +5163,7 @@ Chcesz go nadpisać?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
         <source>Start time</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
@@ -5166,13 +5172,13 @@ Chcesz go nadpisać?</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
-        <source>Page count (negative subtracts))</source>
-        <translation type="unfinished"/>
+        <source>Page count (negative subtracts)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1005"/>
         <source>wait</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1007"/>
@@ -5415,7 +5421,7 @@ Chcesz go nadpisać?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2539"/>
         <source>Single Page Step</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2542"/>
@@ -5540,7 +5546,7 @@ Chcesz go nadpisać?</translation>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3092"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3106"/>
@@ -5587,7 +5593,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3595"/>
         <source>No SyncTeX data available</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="3597"/>
@@ -5864,7 +5870,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1117"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1136"/>
@@ -5935,12 +5941,12 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="../src/buildmanager.cpp" line="2323"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2332"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="2493"/>
@@ -6171,7 +6177,7 @@ Rozpocząć ponownie od początku?</translation>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="690"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1459"/>
         <source>Input binding</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="715"/>
@@ -6217,7 +6223,7 @@ Press &quot;Reset&quot; to reload the file from disk.
 Press &quot;Diff&quot; to show differences in the editor.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="929"/>
@@ -6238,7 +6244,7 @@ Press &quot;Ignore&quot; to ignore this warning.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1018"/>
@@ -6247,7 +6253,7 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1048"/>
@@ -6263,7 +6269,7 @@ When ignoring this warning TeXstudio will try save to the specified
 location. However if there is really not enough space, this will
 result in data loss.
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1073"/>
@@ -6287,9 +6293,9 @@ nie powiódł się.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1229"/>
@@ -6302,13 +6308,13 @@ You'll find a copy at
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1259"/>
@@ -6323,7 +6329,7 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1334"/>
@@ -6595,32 +6601,32 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4730"/>
         <source>Next placeholder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4731"/>
         <source>Previous placeholder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4732"/>
         <source>Next placeholder or one word right</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4733"/>
         <source>Previous placeholder or one word left</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4734"/>
         <source>Next placeholder or character</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4735"/>
         <source>Previous placeholder or character</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
@@ -7179,7 +7185,7 @@ Notes:
         <source>Font size relative to editor font size.
 
 Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
@@ -7207,7 +7213,7 @@ Note: If the size is larger than the line spacing, characters may be clipped.</s
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="594"/>
         <source>There are unsaved changes in this format scheme.
 Do you want them to be saved?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7272,7 +7278,7 @@ Do you want them to be saved?</source>
         <location filename="../src/usermacro.cpp" line="282"/>
         <source>Macro read-in failed
 Error: </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7334,7 +7340,7 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="317"/>
         <source>Enables the use of escape characters. These are:
  \n = new line, \r = carriage return, \t = tab, \\ = \</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="345"/>
@@ -7400,12 +7406,12 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="606"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="611"/>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7754,17 +7760,17 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
     <message>
         <location filename="../src/randomtextgenerator.ui" line="26"/>
         <source>First Order Word</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="33"/>
         <source>Second Order Words</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="43"/>
         <source>Third Order Words</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="66"/>
@@ -7785,22 +7791,22 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
         <location filename="../src/randomtextgenerator.ui" line="113"/>
         <location filename="../src/randomtextgenerator.ui" line="151"/>
         <source>Higher Order:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="130"/>
         <source>First Order Characters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="137"/>
         <source>Second Order Characters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="144"/>
         <source>Third Order Characters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="181"/>
@@ -7831,12 +7837,12 @@ Sekwencje \1 do \9 w polu zastępowanego tekstu wstawiają kolejne dopasowane gr
         <location filename="../src/randomtextgenerator.cpp" line="50"/>
         <source>Reading all words
 (This will take a while but only on the first generation)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="85"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="109"/>
@@ -7952,7 +7958,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="29"/>
         <source>Update Search</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="33"/>
@@ -8092,7 +8098,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/spellerdialog.cpp" line="218"/>
         <source>No more misspelled words</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="227"/>
@@ -8116,7 +8122,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/spellerutility.cpp" line="256"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/spellerutility.cpp" line="264"/>
@@ -8148,7 +8154,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/structuretreeview.cpp" line="39"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="40"/>
@@ -8163,7 +8169,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="../src/structuretreeview.cpp" line="43"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="45"/>
@@ -8381,7 +8387,7 @@ Czy ufasz temu skryptowi?</translation>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="40"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="41"/>
@@ -8752,7 +8758,7 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="79"/>
@@ -8778,7 +8784,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/templatemanager.cpp" line="89"/>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="138"/>
@@ -8819,7 +8825,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="53"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="119"/>
@@ -8838,7 +8844,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="86"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="151"/>
@@ -8988,7 +8994,7 @@ nie powiodło się.</translation>
         <location filename="../src/additionaltranslations.cpp" line="245"/>
         <location filename="../src/texstudio.cpp" line="287"/>
         <source>Central</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="334"/>
@@ -9018,7 +9024,7 @@ nie powiodło się.</translation>
         <location filename="../src/additionaltranslations.cpp" line="338"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="339"/>
@@ -9188,7 +9194,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="685"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="812"/>
@@ -9298,7 +9304,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="849"/>
         <source>S&amp;VN/GIT...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="850"/>
@@ -9439,27 +9445,27 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="889"/>
         <source>Select All &amp;Occurrences</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="894"/>
@@ -9509,7 +9515,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="904"/>
         <source>S&amp;ort Lines</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="905"/>
@@ -10053,7 +10059,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1087"/>
         <source>Open External &amp;Terminal</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1089"/>
@@ -10481,7 +10487,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1311"/>
         <source>Set Current Document As Explicit Root</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1314"/>
@@ -10516,7 +10522,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1322"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1323"/>
@@ -10531,12 +10537,12 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1475"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1479"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1483"/>
@@ -10546,7 +10552,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1487"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1548"/>
@@ -10590,24 +10596,24 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1656"/>
         <source>&amp;Explicit</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1657"/>
         <source>Root</source>
         <comment>explicit root document</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1658"/>
         <source>Explict root document:
 %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1949"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2025"/>
@@ -10700,7 +10706,7 @@ ten plik przed nadpisaniem.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="2688"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2787"/>
@@ -10812,42 +10818,42 @@ ten plik przed nadpisaniem.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>No Sorting</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3544"/>
         <source>Sorting</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3545"/>
         <source>Complete Lines</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3546"/>
         <source>Case Sensitive</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3547"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3771"/>
@@ -10923,7 +10929,7 @@ ten plik przed nadpisaniem.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5731"/>
-        <source>Can't detect the file name.
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nie można wykryć nazwy pliku.
 Powinieneś zapisać plik przed kompilacją.</translation>
@@ -10937,7 +10943,7 @@ Powinieneś zapisać plik przed kompilacją.</translation>
         <location filename="../src/texstudio.cpp" line="5882"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5902"/>
@@ -10948,7 +10954,7 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5908"/>
@@ -10973,12 +10979,12 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="6021"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6024"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6085"/>
@@ -11008,7 +11014,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="6265"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="6307"/>
@@ -11030,7 +11036,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="7070"/>
         <source>You have to save the file before it can be defined as root document.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="8707"/>
@@ -11168,7 +11174,7 @@ Wciśnij &quot;Anuluj&quot; żeby niczego nie robić nic.
 Please provide this file if you send a bug report.
 
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10268"/>
@@ -11196,7 +11202,7 @@ Please provide this file if you send a bug report.
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10273"/>
@@ -11248,7 +11254,7 @@ Czy chcesz by TeXstudio był wciąż włączony? Może to spowodować uszkodzeni
         <location filename="../src/texstudio.cpp" line="10555"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10565"/>
@@ -11285,14 +11291,14 @@ Czy chcesz by TeXstudio był wciąż włączony? Może to spowodować uszkodzeni
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10577"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10582"/>
@@ -11481,7 +11487,7 @@ Czy chcesz by TeXstudio był wciąż włączony? Może to spowodować uszkodzeni
 &quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
@@ -11516,7 +11522,7 @@ If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if 
 If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
@@ -11526,7 +11532,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>
         <source>Only phrase are shown which appears at least so many times in the document.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="317"/>
@@ -11534,7 +11540,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="332"/>
@@ -11598,7 +11604,7 @@ Jeśli nie, znaki kończące będą ignorowane.</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="430"/>
         <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="437"/>
@@ -11624,7 +11630,7 @@ Jeśli nie, znaki kończące będą ignorowane.</translation>
     <message>
         <location filename="../src/textanalysis.cpp" line="64"/>
         <source>Count relative</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/textanalysis.cpp" line="448"/>
@@ -11888,7 +11894,7 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="360"/>
@@ -12504,7 +12510,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Draw (Asymptote)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="270"/>

@@ -5153,7 +5153,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="916"/>
         <source>Set Page Count...</source>
-        <translation type="unfinished"/>
+        <translation>Setze Seitenzahl ...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="917"/>
@@ -5177,8 +5177,8 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
-        <source>Page count (negative subtracts))</source>
-        <translation type="unfinished"/>
+        <source>Page count (negative subtracts)</source>
+        <translation>Seitenzahl (negativ zieht ab)</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1005"/>

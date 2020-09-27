@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ja">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -74,7 +76,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="39"/>
@@ -561,7 +563,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="357"/>
         <source>External Terminal</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="419"/>
@@ -925,7 +927,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>受け取るアップデート通知の種類を定義：
 - 安定版リリース：安定性が最も重要な場合これを選択する。
@@ -1133,7 +1135,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1825,7 +1827,7 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="../src/configdialog.ui" line="2456"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2466"/>
@@ -2629,8 +2631,8 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="4182"/>
         <location filename="../src/configdialog.ui" line="4249"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>PDFライブラリのpopplerで使用される描画バックエンド。
 &apos;Splash&apos;が既定で、大抵の状況に適している。
@@ -2680,17 +2682,17 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4355"/>
         <source>Auto-recompile document on changes</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4399"/>
         <source>Use SVN</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4404"/>
         <source>Use GIT</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4412"/>
@@ -2715,7 +2717,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4434"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4441"/>
@@ -2736,7 +2738,7 @@ Note: Changing this setting will only affect documents that are opened afterward
         <location filename="../src/configdialog.ui" line="4504"/>
         <location filename="../src/configdialog.cpp" line="524"/>
         <source>Internal Terminal</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4555"/>
@@ -2901,7 +2903,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="522"/>
         <source>SVN/GIT</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="560"/>
@@ -4329,7 +4331,7 @@ Are you sure you want to undo all changes?</source>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>図の配置選択
@@ -4447,7 +4449,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ファイル名: %1&lt;/b&gt;
 </translation>
@@ -4635,14 +4637,16 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2531"/>
         <location filename="../src/latexeditorview.cpp" line="2603"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ファイル名: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2544"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>このラベルに対する%n回の参照</numerusform></translation>
+        <translation>
+            <numerusform>このラベルに対する%n回の参照</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2549"/>
@@ -5169,7 +5173,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="916"/>
         <source>Set Page Count...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="917"/>
@@ -5193,8 +5197,8 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
-        <source>Page count (negative subtracts))</source>
-        <translation type="unfinished"/>
+        <source>Page count (negative subtracts)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1005"/>
@@ -6334,7 +6338,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
         <translation>保存操作中にディスク上の元のファイルは破壊されました。
 ファイルのコピーは次の場所にあります
@@ -7332,7 +7336,7 @@ Do you want them to be saved?</source>
         <location filename="../src/usermacro.cpp" line="282"/>
         <source>Macro read-in failed
 Error: </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9368,7 +9372,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="849"/>
         <source>S&amp;VN/GIT...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="850"/>
@@ -9514,22 +9518,22 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="890"/>
         <source>Select &amp;Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Select &amp;Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Also Select Prev Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
         <source>Also Select Next Occurrence</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="894"/>
@@ -9579,7 +9583,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="904"/>
         <source>S&amp;ort Lines</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="905"/>
@@ -10123,7 +10127,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1087"/>
         <source>Open External &amp;Terminal</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1089"/>
@@ -10884,32 +10888,32 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>No Sorting</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3538"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3544"/>
         <source>Sorting</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3545"/>
         <source>Complete Lines</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3546"/>
@@ -10919,7 +10923,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3547"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3771"/>
@@ -10995,7 +10999,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5731"/>
-        <source>Can't detect the file name.
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>ファイルが見つかりません。
 コンパイル前にドキュメントを保存してください。</translation>

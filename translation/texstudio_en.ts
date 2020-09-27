@@ -5127,7 +5127,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
-        <source>Page count (negative subtracts))</source>
+        <source>Page count (negative subtracts)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

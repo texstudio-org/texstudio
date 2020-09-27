@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr_TR" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="tr_TR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -924,7 +926,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Almak istediğiniz güncelleme bildirimlerini belirleyin:
 - Kararlı Sürümler: Sizin için en önemlisi kararlılık ise bunu seçin.
@@ -1132,7 +1134,7 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harfe duyarlıdır.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2628,8 +2630,8 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
         <location filename="../src/configdialog.ui" line="4182"/>
         <location filename="../src/configdialog.ui" line="4249"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>PDF kitaplığı oluşturucu arka plan uygulaması olarak poppler kullanıyor.
 Varsayılan değer olan &apos;Splash&apos; çoğu durum için uygundur.
@@ -4328,7 +4330,7 @@ Tüm değişiklikleri geri almak istediğinize emin misiniz?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Şekil konumu ayarları
@@ -4446,7 +4448,7 @@ Yardımcı komutu desteklemiyor</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya Adı: %1&lt;/b&gt;
 </translation>
@@ -4634,7 +4636,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2531"/>
         <location filename="../src/latexeditorview.cpp" line="2603"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya Adı: %1&lt;/b&gt;
 </translation>
@@ -4642,7 +4644,9 @@ Yardımcı komutu desteklemiyor</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2544"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>bu etikete %n başvuru</numerusform><numerusform>bu etikete %n başvuru</numerusform></translation>
+        <translation>
+            <numerusform>bu etikete %n başvuru</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2549"/>
@@ -5169,7 +5173,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="916"/>
         <source>Set Page Count...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="917"/>
@@ -5193,8 +5197,8 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
-        <source>Page count (negative subtracts))</source>
-        <translation type="unfinished"/>
+        <source>Page count (negative subtracts)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1005"/>
@@ -6337,7 +6341,7 @@ dosyasına yazılamadı.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
         <translation>Disk üzerindeki özgün dosya kayıt sırasında silindi.
 Dosyanın kopyasını şu konumda bulabilirsiniz
@@ -7334,7 +7338,7 @@ Bu değişiklikleri kaydetmek ister misiniz?</translation>
         <location filename="../src/usermacro.cpp" line="282"/>
         <source>Macro read-in failed
 Error: </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -10679,7 +10683,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1949"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation>Bir SyncTeX dosyasının hatalarını ayıklamak istiyor musunuz?</translation>
+        <translation>Bir SyncTeX&#xa0;dosyasının hatalarını ayıklamak istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2025"/>
@@ -10997,7 +11001,7 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5731"/>
-        <source>Can't detect the file name.
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Dosya adı belirlenemedi.
 Bir belgeyi derlemeden önce bir kez kaydetmeniz gerekir.</translation>

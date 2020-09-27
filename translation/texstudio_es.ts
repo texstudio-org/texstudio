@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -921,7 +923,7 @@ Cambie su configuración y defina las listas de orden solo en &apos;Opciones -&g
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define los tipos de notificaciones de actualización que recibirá:
 - Versiones estables: Escoge esto si la estabilidad es lo más importante para ti.
@@ -1128,7 +1130,7 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2625,8 +2627,8 @@ aquí.</translation>
         <location filename="../src/configdialog.ui" line="4182"/>
         <location filename="../src/configdialog.ui" line="4249"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>El motor usado por la librería PDF. 
 &apos;Splash&apos; es la opción predeterminada y funciona en la mayoría de las situaciones.
@@ -4325,7 +4327,7 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferencia sobre la posición de una figura:
@@ -4443,7 +4445,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre: %1&lt;/b&gt;
 </translation>
@@ -4631,14 +4633,17 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2531"/>
         <location filename="../src/latexeditorview.cpp" line="2603"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre del archivo: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2544"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n referencia a esta etiqueta</numerusform><numerusform>%n referencias a esta etiqueta</numerusform></translation>
+        <translation>
+            <numerusform>%n referencia a esta etiqueta</numerusform>
+            <numerusform>%n referencias a esta etiqueta</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2549"/>
@@ -5189,8 +5194,12 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
+        <source>Page count (negative subtracts)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Page count (negative subtracts))</source>
-        <translation>Recuento de páginas (sustracción negativa))</translation>
+        <translation type="vanished">Recuento de páginas (sustracción negativa))</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1005"/>
@@ -6332,7 +6341,7 @@ falló.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
         <translation>El fichero original fue eliminado durante la operación de guardado. 
 Encontrará una copia en %1</translation>
@@ -10998,7 +11007,7 @@ No se pudo guardar el archivo de imagen.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5731"/>
-        <source>Can't detect the file name.
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>No se puede detectar el nombre del archivo.
 Usted tiene que guardar un documento antes de poder compilarlo.</translation>
@@ -12612,9 +12621,9 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>begingroup(); endgroup;</source>
-        <translation> 
- 
- 
+        <translation>&#xa0;
+&#xa0;
+&#xa0;
 begingroup(); endgroup;</translation>
     </message>
     <message>
