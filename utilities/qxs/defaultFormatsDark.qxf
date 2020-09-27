@@ -89,6 +89,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#0055FF</foreground>
+        <priority>5</priority>
     </format>
     <format id="verbatim" >
         <foreground>#8BE9FD</foreground>
@@ -212,7 +213,7 @@
     </format>
     
     <format id="latexSyntaxMistake" >
-        <background>#FFBF9F</background>
+        <background>#B86800</background>
     </format>
     <format id="temporaryCodeCompletion" >
         <italic>true</italic>

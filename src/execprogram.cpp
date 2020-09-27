@@ -39,65 +39,92 @@ ExecProgram::ExecProgram(const QString &progName, const QStringList &arguments, 
  * \brief Basic command-line parser
  * \details Basic command-line parser that splits a command-line into program name and arguments list.
  * The parsed program name and arguments are stored in class member variables.
- * TODO: Improve the parser. We need to add proper quotes processing based on the OS type (UNIX/Win).
+ * The program name and each argument can be in one of the folloowing forms:
+ *   A string without any whitespace, single quotes or double quotes, e.g. C:\Users\Steven\MyProgram.exe
+ *   A double-quoted string. May contain whitespace, single quotes or backslash-escaped double quotes. For example "arg1='value1'"
+ *   A single-quoted string. May contain whitespace, double quotes, backslash-escaped single quotes or. For example 'arg1="value1"' or 'arg1=\'value\''
+ * As of now backslash escaped double-quotes are unusable because the option Tools/SupportShellStyleLiteralQuotes causes BuildManager::parseExtendedCommandLine() to
+ * replace \" (backslash-escaped double-quotes) with """ (triple double-quotes)
+ * TODO: Maybe improve the parser. We need to add proper quotes processing based on the OS type (UNIX/Win).
  * \param[in] shellCommandLine Shell command line that should be parsed.
  */
 void ExecProgram::setProgramAndArguments(const QString &shellCommandLine)
 {
-	static QRegularExpression rxLeadingSpace("\\s*");
-	Q_ASSERT(rxLeadingSpace.isValid());
-	static QRegularExpression rxOneToken(
+	static const QRegularExpression rxSpaceSep("\\s+");
+	Q_ASSERT(rxSpaceSep.isValid());
+	static const QRegularExpression rxArgPiece(
 		"("
-			"[^[:space:]\"']+|"		// Non-whitespace string without any quotes
-			"\"[^\"]*\"|"			// Double-quoted string
-			"'[^']*'|"			// Single-quoted string
-			"\"[^[:space:]\"]*(?=[^\"]*$)|"	// ERROR: Non-whitespace string starting with a double-quote. No other double-quotes until the end.
-			"'[^[:space:]']*(?=[^']*$)"	// ERROR: Non-whitespace string starting with a single-quote. No other single-quotes until the end.
-		")+",
+			"[^[:space:]\"']+|"	// Non-whitespace string without any quotes
+			"\"(\\\\\"|[^\"])*\"|"	// Double-quoted string. Any internal double-quotes are escaped as \"
+			"'(\\\\'|[^'])*'"	// Single-quoted string. Any internal single-quotes are escaped as \'
+		")",
 		QRegularExpression::DontCaptureOption
 	);
-	Q_ASSERT(rxOneToken.isValid());
+	Q_ASSERT(rxArgPiece.isValid());
 
-	QStringList tokens;
-	int length = shellCommandLine.length();
-	int offset = 0;
+	int shellLineLen = shellCommandLine.length();
+	int shellLineOffset = 0;
+	QStringList arguments;
+	QString argText;
+	bool argValid = false;
 	for (;;) {
-		if (offset >= length) {
+		if (shellLineOffset >= shellLineLen) {
 			break;
 		}
-		QRegularExpressionMatch matchLeadingSpace = rxLeadingSpace.match(
+		QRegularExpressionMatch matchSpaceSep = rxSpaceSep.match(
 			shellCommandLine,
-			offset,
+			shellLineOffset,
 			QRegularExpression::NormalMatch,
 			QRegularExpression::AnchoredMatchOption
 		);
-		offset += matchLeadingSpace.capturedLength(0);
-		if (offset >= length) {
-			break;
+		if (matchSpaceSep.hasMatch()) {
+			if (argValid) {
+				arguments.push_back(argText);
+				argValid = false;
+			}
+			shellLineOffset += matchSpaceSep.capturedLength(0);
+			if (shellLineOffset >= shellLineLen) {
+				break;
+			}
 		}
-		QRegularExpressionMatch matchOneToken = rxOneToken.match(
+		QRegularExpressionMatch matchArgPiece = rxArgPiece.match(
 			shellCommandLine,
-			offset,
+			shellLineOffset,
 			QRegularExpression::NormalMatch,
 			QRegularExpression::AnchoredMatchOption
 		);
-		if (matchOneToken.hasMatch() == false) {
-			// We should never reach this point
-			Q_ASSERT(false);
-			break;
+		if (matchArgPiece.hasMatch()) {
+			int pieceLength = matchArgPiece.capturedLength(0);
+			QString pieceText = matchArgPiece.captured(0);
+			QChar firstChar = pieceText[0];
+			if ((firstChar == '\'') || (firstChar == '"')) {
+				pieceText = pieceText.mid(1, pieceLength - 2);
+				pieceText.replace(QString("\\") + firstChar, firstChar);
+			}
+			if (argValid) {
+				argText += pieceText;
+			} else {
+				argText = pieceText;
+				argValid = true;
+			}
+			shellLineOffset += pieceLength;
+		} else {
+			// Malformed command-line remainder that starts with a dangling single or
+			// double quote without a matching ending quote
+			// Just skip the offending quote
+			++shellLineOffset;
 		}
-		offset += matchOneToken.capturedLength(0);
-		QString oneToken = matchOneToken.captured(0);
-		oneToken.remove('"').remove('\'');
-		tokens.push_back(oneToken);
 	}
-	if (tokens.isEmpty()) {
+	if (argValid) {
+		arguments.push_back(argText);
+	}
+	if (arguments.isEmpty()) {
 		m_program = "";
 		m_arguments.clear();
 	} else {
-		m_program = tokens.front();
-		tokens.pop_front();
-		m_arguments = tokens;
+		m_program = arguments.front();
+		arguments.pop_front();
+		m_arguments = arguments;
 	}
 }
 

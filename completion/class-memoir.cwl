@@ -442,8 +442,6 @@ nearest
 \cplabel#*
 \createmark{arg1}{arg2}{arg3}{arg4}{arg5}#*
 \createplainmark{arg1}{arg2}{arg3}#*
-\csname#*
-\csname{arg1}#*
 \ctabsetlines#*
 \ctabular{arg1}#*
 \date#*
@@ -523,7 +521,6 @@ nearest
 \epigraphsize#*
 \epigraphwidth
 \epigraph{arg1}{arg2}#*
-\expandafter#*
 \extrafeetendmini#*
 \extrafeetendminihook#*
 \extrafeetins#*
@@ -612,7 +609,6 @@ nearest
 \iindstring#*
 \indentcaption{arg1}#*
 \indentpattern{arg1}#*
-\index#*
 \indexcolsep
 \indexintoc#*
 \indexmark#*
@@ -623,8 +619,6 @@ nearest
 \iscntrmod{arg1}{arg2}#*
 \isopage{spine%l}#*
 \iststring#*
-\it#*
-\item#*
 \itemsepi
 \itemsepii
 \itemsepiii
@@ -860,15 +854,12 @@ subparagraph
 \newoutputstream{arg1}#*
 \newpmemlabel{arg1}{arg2}#*
 \newsubfloat{arg1}#*
-\next#*
 \nexttoken#*
 \noDisplayskipStretch#*
 \nobibintoc#*
 \nobookblankpage#*
 \nobvbox#*
 \nochangemarks#*
-\noexpand#*
-\noexpand{arg1}#*
 \noglossaryintoc#*
 \noindexintoc#*
 \nonzeroparskip#*
@@ -1091,7 +1082,6 @@ subparagraph
 \restorefromonecol#*
 \restorepagenumber#*
 \restoretrivseps#*
-\rm#*
 \russianpar#*
 \savepagenumber#*
 \savetrivseps#*

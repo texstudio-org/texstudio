@@ -87,7 +87,6 @@
 \LaTeXenumerate#S
 \LaTeXitemize#S
 \bstctlcite#S
-\csname#S
 \description#S
 \endIEEEdescription#S
 \endIEEEenumerate#S
@@ -104,7 +103,6 @@
 \endenumerate#S
 \enditemize#S
 \enumerate#S
-\expandafter#S
 \itemize#S
 \makelabel#S
 \theHequation#S

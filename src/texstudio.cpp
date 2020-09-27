@@ -153,6 +153,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	bibTypeActions = nullptr;
 	highlightLanguageActions = nullptr;
 	runningPDFCommands = runningPDFAsyncCommands = 0;
+	previewEditorPending = nullptr;
+	previewIsAutoCompiling = false;
 	completerPreview = false;
 	recheckLabels = true;
 	cursorHistory = nullptr;
@@ -435,8 +437,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	if (configManager.autosaveEveryMinutes > 0) {
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
-    connect(&previewDelayTimer,SIGNAL(timeout()),this,SLOT(showPreviewQueue()));
-    previewDelayTimer.setSingleShot(true);
+	connect(&previewDelayTimer,SIGNAL(timeout()),this,SLOT(showPreviewQueue()));
+	previewDelayTimer.setSingleShot(true);
+	connect(&previewFullCompileDelayTimer,SIGNAL(timeout()),this,SLOT(recompileForPreviewNow()));
+	previewFullCompileDelayTimer.setSingleShot(true);
 
 	connect(this, SIGNAL(infoFileSaved(QString, int)), this, SLOT(checkinAfterSave(QString, int)));
 
@@ -598,7 +602,7 @@ void Texstudio::addMacrosAsTagList()
         list->addItem(item);
     }
     UtilsUi::enableTouchScrolling(list);
-    connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertFromTagList(QListWidgetItem *)));
+    connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertFromTagList(QListWidgetItem *)),Qt::UniqueConnection);
     if(addToPanel)
         leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
 }
@@ -685,7 +689,7 @@ void Texstudio::setupDockWidgets()
 
     // OUTPUT WIDGETS
     if (!outputView) {
-        outputView = new OutputViewWidget(this);
+			  outputView = new OutputViewWidget(this, configManager.terminalConfig);
         outputView->setObjectName("OutputView");
         centralVSplitter->addWidget(outputView);
         outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
@@ -882,7 +886,11 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "selection", tr("&Selection"));
 	newManagedEditorAction(submenu, "selectAll", tr("Select &All"), "selectAll", Qt::CTRL + Qt::Key_A);
-    newManagedEditorAction(submenu, "selectAllOccurences", tr("Select All &Occurrences"), "selectAllOccurences");
+	newManagedEditorAction(submenu, "selectAllOccurences", tr("Select All &Occurrences"), "selectAllOccurences");
+	newManagedEditorAction(submenu, "selectPrevOccurence", tr("Select &Prev Occurrence"), "selectPrevOccurence");
+	newManagedEditorAction(submenu, "selectNextOccurence", tr("Select &Next Occurrence"), "selectNextOccurence");
+	newManagedEditorAction(submenu, "selectPrevOccurenceKeepMirror", tr("Also Select Prev Occurrence"), "selectPrevOccurenceKeepMirror");
+	newManagedEditorAction(submenu, "selectNextOccurenceKeepMirror", tr("Also Select Next Occurrence"), "selectNextOccurenceKeepMirror");
 	newManagedEditorAction(submenu, "expandSelectionToWord", tr("Expand Selection to Word"), "selectExpandToNextWord", Qt::CTRL + Qt::Key_D);
 	newManagedEditorAction(submenu, "expandSelectionToLine", tr("Expand Selection to Line"), "selectExpandToNextLine", Qt::CTRL + Qt::Key_L);
 
@@ -893,6 +901,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "moveLineUp", tr("Move Line &Up"), SLOT(editMoveLineUp()));
 	newManagedAction(submenu, "moveLineDown", tr("Move Line &Down"), SLOT(editMoveLineDown()));
 	newManagedAction(submenu, "duplicateLine", tr("Du&plicate Line"), SLOT(editDuplicateLine()));
+	newManagedAction(submenu, "sortLines", tr("S&ort Lines"), SLOT(editSortLines()));
 	newManagedAction(submenu, "alignMirrors", tr("&Align Cursors"), SLOT(editAlignMirrors()));
 
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
@@ -1772,6 +1781,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
 	connect(edit, SIGNAL(showImgPreview(QString)), this, SLOT(showImgPreview(QString)));
 	connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
+	connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
 	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
 	connect(edit, SIGNAL(findLabelUsages(LatexDocument *, QString)), this, SLOT(findLabelUsages(LatexDocument *, QString)));
 	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
@@ -1818,7 +1828,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
 	connect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
 	//connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit,SLOT(documentContentChanged(int,int))); now directly called by patchStructure
 	connect(edit->editor->document(), SIGNAL(lineRemoved(QDocumentLineHandle *)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *)));
-	connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *)));
+    connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *,int)));
 	connect(edit->document, SIGNAL(updateCompleter()), this, SLOT(completerNeedsUpdate()));
 	connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
 	connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
@@ -2021,7 +2031,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	doc = new LatexDocument(this);
     doc->setCenterDocumentInEditor(configManager.editorConfig->centerDocumentInEditor);
-	doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+    doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
 	LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);
 	if (hidden) {
@@ -2757,7 +2767,8 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 	}
     // save hidden files (in case that they are changed via replace in all docs
     foreach (LatexDocument *d, documents.hiddenDocuments){
-        d->getEditorView()->editor->save();
+        if(d->getEditorView()->editor->isContentModified())
+            d->getEditorView()->editor->save();
     }
 
 
@@ -3521,6 +3532,23 @@ void Texstudio::editDuplicateLine()
         ed->setCursor(cursors[0]);
 }
 
+void Texstudio::editSortLines()
+{
+	if (!currentEditorView()) return;
+	QStringList sortingOptions = QStringList() << tr("Ascending") << tr("Descending") << tr("No Sorting") << tr("Random (Shuffle)");
+	static int sorting; configManager.registerOption("Editor/Sort Lines/Method", &sorting, 0);
+	static bool completelines; configManager.registerOption("Editor/Sort Lines/Complete Lines", &completelines, false);
+	static bool casesensitive; configManager.registerOption("Editor/Sort Lines/Case Sensitive", &casesensitive, false);
+	static bool removeduplicates; configManager.registerOption("Editor/Sort Lines/Remove Duplicates", &removeduplicates, false);
+	UniversalInputDialog dialog;
+	dialog.addVariable(&sorting, sortingOptions, tr("Sorting"));
+	dialog.addVariable(&completelines, tr("Complete Lines"));
+	dialog.addVariable(&casesensitive, tr("Case Sensitive"));
+	dialog.addVariable(&removeduplicates, tr("Remove Duplicates"));
+	if (dialog.exec() == QDialog::Accepted)
+		currentEditorView()->sortSelectedLines(static_cast<LatexEditorView::LineSorting>(sorting), casesensitive ? Qt::CaseSensitive : Qt::CaseInsensitive, completelines, removeduplicates);
+}
+
 void Texstudio::editAlignMirrors()
 {
 	if (!currentEditor()) return;
@@ -3571,7 +3599,8 @@ void Texstudio::editEraseWordCmdEnv()
 		tk = tl.at(tkPos);
 
 	switch (tk.type) {
-
+    case Token::commandUnknown:
+        [[gnu::fallthrough]];
 	case Token::command:
 		command = tk.getText();
 		if (command == "\\begin" || command == "\\end") {
@@ -6079,6 +6108,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 	}
 	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
+	previewIsAutoCompiling = false;
 }
 
 void Texstudio::processNotification(const QString &message)
@@ -6352,7 +6382,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
  */
 void Texstudio::onCompileError()
 {
-	if (configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
+	if (!previewIsAutoCompiling && configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
 		viewLog();
 	} else {
 		setLogMarksVisible(true);
@@ -6585,7 +6615,7 @@ void Texstudio::generalOptions()
 
         // update syntaxChecking with alls docs
         foreach (LatexDocument *doc, documents.getDocuments()) {
-            doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+            doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
         }
 
         //update highlighting ???
@@ -6595,6 +6625,13 @@ void Texstudio::generalOptions()
         updateHighlighting |= (inlineSyntaxChecking != configManager.editorConfig->inlineSyntaxChecking);
         updateHighlighting |= (realtimeChecking != configManager.editorConfig->realtimeChecking);
         updateHighlighting |= (additionalBibPaths != configManager.additionalBibPaths);
+        // recheck syntax when spellchecking and/or syntaxchecking has been effectively turned on
+        bool recheckSyntax=(configManager.editorConfig->realtimeChecking &&(configManager.editorConfig->inlineSyntaxChecking || configManager.editorConfig->inlineSpellChecking)) || ((configManager.editorConfig->inlineSyntaxChecking && !inlineSyntaxChecking)||(configManager.editorConfig->inlineSpellChecking && !inlineSpellChecking));
+
+        // activate/deactivate speller ...
+        SpellerUtility::inlineSpellChecking= configManager.editorConfig->inlineSpellChecking && configManager.editorConfig->realtimeChecking;
+
+        // dark/light-mode switch
         if(oldDarkMode != darkMode){
             // reload other formats
             QSettings *config=configManager.getSettings();
@@ -6627,6 +6664,9 @@ void Texstudio::generalOptions()
                         edView->document->updateLtxCommands();
                         edView->documentContentChanged(0, edView->document->lines());
                         edView->document->updateCompletionFiles(false, true);
+                        if(recheckSyntax){
+                            edView->reCheckSyntax(0);
+                        }
                     } else {
                         edView->clearOverlays();
                     }
@@ -8066,25 +8106,27 @@ void Texstudio::previewLatex()
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
 	}
-	if (!previewc.hasSelection()) {
-		// in environment delimiter (\begin{env} or \end{env})
-		QString command;
-		Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
-		if (tk.type != Token::none)
-			command = tk.getText();
-		if (tk.type == Token::env || tk.type == Token::beginEnv ) {
-			c.setColumnNumber(tk.start);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
-		}
-		if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
-			c.setColumnNumber(tk.start + tk.length + 1);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
-		}
-	}
-	if (!previewc.hasSelection()) {
-		// already at parenthesis
-		previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
-	}
+        if (!previewc.hasSelection()) {
+            // in environment delimiter (\begin{env} or \end{env})
+            QString command;
+            Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
+            if (tk.type != Token::none)
+                command = tk.getText();
+            if (tk.type == Token::env || tk.type == Token::beginEnv ) {
+                TokenList tl = c.line().handle()->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+                tk=Parsing::getCommandTokenFromToken(tl,tk);
+                c.setColumnNumber(tk.start);
+                previewc = currentEditorView()->parenthizedTextSelection(c);
+            }
+            if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
+                c.setColumnNumber(tk.start);
+                previewc = currentEditorView()->parenthizedTextSelection(c);
+            }
+        }
+        if (!previewc.hasSelection()) {
+            // already at parenthesis
+            previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
+        }
 	if (!previewc.hasSelection()) return;
 
 	showPreview(previewc, true);
@@ -8229,25 +8271,28 @@ void Texstudio::clearPreview()
 		endLine = startLine;
 	}
 
-	for (int i = startLine; i <= endLine; i++) {
-		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
-		edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-		edit->document()->adjustWidth(i);
-		for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
-			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
-			        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
-                // remove cookies from last previewed line
-                int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
-                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
-                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-				// remove mark
-				int sid = edit->document()->getFormatId("previewSelection");
-				if (!sid) return;
-				updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
-				currentEditorView()->autoPreviewCursor.removeAt(j);
-			}
+        for (int i = startLine; i <= endLine; i++) {
+            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
+            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+            edit->document()->adjustWidth(i);
+            for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
+                if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
+                        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
+                    // remove cookies from last previewed line
+                    int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
+                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
+                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+                    // remove mark
+                    int sid = edit->document()->getFormatId("previewSelection");
+                    if (!sid) return;
+                    updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
+                    currentEditorView()->autoPreviewCursor.removeAt(j);
+                    if(el>endLine){
+                        edit->document()->adjustWidth(el); // text line with preview picture needs to be resized
+                    }
+                }
 
-	}
+        }
 }
 
 void Texstudio::showImgPreview(const QString &fname)
@@ -8378,7 +8423,7 @@ void Texstudio::showPreview(const QDocumentCursor &previewc)
 	if (sid)
 		updateEmphasizedRegion(previewc, sid);
 
-    previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
+	  previewDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
     //QTimer::singleShot(qMax(40, configManager.autoPreviewDelay), this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
 }
 
@@ -8525,6 +8570,31 @@ void Texstudio::showPreviewQueue()
 			if (c.lineNumber() == line)
 				showPreview(c, false);
 	previewQueue.clear();
+}
+
+
+
+void Texstudio::recompileForPreview(){
+	if (documents.getCompileFileName().isEmpty()) return;
+#ifndef NO_POPPLER_PREVIEW
+	if (PDFDocument::documentList().isEmpty()) return;
+#endif
+	if (!documents.currentDocument || documents.currentDocument->mayHaveDiffMarkers) return;
+	previewEditorPending = currentEditor();
+	if (!previewEditorPending || previewEditorPending->fileName().isEmpty()) return;
+	previewFullCompileDelayTimer.start(qMax(40, configManager.autoPreviewDelay));
+}
+void Texstudio::recompileForPreviewNow(){
+	if (!previewEditorPending || previewEditorPending != currentEditor()) return;
+	if (buildManager.waitingForProcess()) {
+		if (previewEditorPending->isContentModified()) {
+			previewFullCompileDelayTimer.start(qMax(50, configManager.autoPreviewDelay));
+		}
+		return;
+	}
+	previewEditorPending->save();
+	previewIsAutoCompiling = true;
+	runCommand(BuildManager::CMD_COMPILE, nullptr, nullptr, false);
 }
 
 void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)

@@ -3,17 +3,36 @@ matrix:
   include:
   - env: QT=qt5osx
     os: osx
-    osx_image: xcode11.2
-  - env: QT=qt5
-    os: linux
-    services: xvfb
-  - env: QT=qt5NoPoppler
-    os: linux
+    osx_image: xcode11.6
   - env: QT=qt5Release
     os: linux
   - env: QT=qt5win
     os: linux
-    services: docker
+    addons:
+      apt:
+        sources:
+          - sourceline: deb https://pkg.mxe.cc/repos/apt xenial main
+            key_url: http://keyserver.ubuntu.com/pks/lookup?op=get&options=mr&search=0xC6BF758A33A3A276
+        packages:
+          - mxe-x86-64-w64-mingw32.static-cairo # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-curl # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-freetype # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-glib # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-hunspell
+          - mxe-x86-64-w64-mingw32.static-jpeg # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-lcms # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-libpng # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-libwebp # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-lua
+          - mxe-x86-64-w64-mingw32.static-openjpeg # poppler dependency
+#            - mxe-x86-64-w64-mingw32.static-poppler
+          - mxe-x86-64-w64-mingw32.static-qtbase # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-qtdeclarative
+          - mxe-x86-64-w64-mingw32.static-qtscript
+          - mxe-x86-64-w64-mingw32.static-qttools
+          - mxe-x86-64-w64-mingw32.static-tiff # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-zlib # poppler dependency
+          - mxe-x86-64-w64-mingw32.static-nsis
 dist: xenial
 sudo: required
 branches:
@@ -26,7 +45,7 @@ before_script:
 - export DISPLAY=:99.0
 - "${TRAVIS_BUILD_DIR}/travis-ci/configure.sh"
 script:
-- if [ $QT = qt5win ]; then PATH=$PATH:/opt/mxe/usr/bin; fi
+- if [ $QT = qt5win ]; then PATH=$PATH:/usr/lib/mxe/usr/bin; fi
 - make -j 2
 - export QT_QPA_PLATFORM=minimal
 - if [ $QT = qt5 ]; then ./texstudio --auto-tests; fi

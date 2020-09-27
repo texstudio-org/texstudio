@@ -34,8 +34,8 @@ public:
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
 	bool allowDragAndDrop;
-	bool mouseWheelZoom;
-	bool smoothScrolling;
+	bool mouseWheelZoom, smoothScrolling, verticalOverScroll;
+
 	bool hackAutoChoose, hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache, hackDisableAccentWorkaround, hackQImageCache;
 	int hackRenderingMode; //0: normal, 1: qt (missing), 2: single letter
 	bool showPlaceholders;
@@ -57,6 +57,8 @@ public:
 	int tripleClickSelectionIndex;
 	int contextMenuSpellcheckingEntryLocation;
 	int contextMenuKeyboardModifiers;  // actually this is a Qt::KeyboardModifiers flag (but we don't want to import the whole qt namespace here)
+
+	bool fullCompilePreview;
 
     QString regExpTodoComment;
 

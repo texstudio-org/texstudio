@@ -1,0 +1,54 @@
+name: CI
+on:
+  - push
+  - pull_request
+
+jobs:
+  build-linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        modules: 'qtscript'
+
+    - name: Dependencies
+      run: sudo apt-get install libqt5svg5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
+
+    - name: Configure
+      run: qmake texstudio.pro CONFIG+=debug
+
+    - name: Build
+      run: make -j 2
+
+    - name: Test
+      run: QT_QPA_PLATFORM=offscreen ./texstudio --auto-tests
+
+###################################
+
+  build-linux-noPoppler:
+    name: Linux-noPoppler
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        modules: 'qtscript'
+
+    - name: Dependencies
+      run: sudo apt-get install libqt5svg5-dev zlib1g-dev
+
+    - name: Configure
+      run: qmake texstudio.pro CONFIG-=debug NO_POPPLER_PREVIEW=1
+
+    - name: Build
+      run: make -j 2
+
+

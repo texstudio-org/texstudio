@@ -1084,11 +1084,17 @@ void SimulatedCPU::set_from_real()
 	    "mov %%rbp, %0\n"
 	    "mov %%rsp, %1"
 	    : "=r"(frame), "=r"(stack));
-#elif (defined(CPU_IS_ARM) || defined(CPU_IS_ARM64))
-	__asm__( //otherway around in the mov than x86?
-	    "mov %[fp], fp\n"
+#elif defined(CPU_IS_ARM)
+	__asm__(
+	    "mov %[fp], r11\n"
 	    "mov %[sp], sp\n"
-	    "mov %[lr], lr\n"
+	    "mov %[lr], r14\n"
+	    : [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
+#elif defined(CPU_IS_ARM64)
+	__asm__( 
+	    "mov %[fp], x29\n"
+	    "mov %[sp], sp\n"
+	    "mov %[lr], x30\n"
 	    : [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
 #elif defined(CPU_IS_IA64)
 	__asm__(

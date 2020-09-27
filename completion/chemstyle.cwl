@@ -15,7 +15,6 @@
 \eg
 \etal
 \etc
-\expandafter#S
 \ie
 \invacuo
 \latin#S

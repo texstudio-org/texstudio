@@ -1,8 +1,21 @@
-TeXstudio 3.00.00
+TeXstudio 3.0.2
+-----------------
+- 
+
+TeXstudio 3.0.1
+-----------------
+- fix glitch in mopdern style (#1238 , triangle missing)
+- fix equation preview (#1234)
+- fix commands with quotes (#1225 & #1169)
+- fix syntax marker in darkmode (#1224)
+
+TeXstudio 3.0.0
 -----------------
 - speed up document parsing, should result in faster document load times
 - spell checking is done asynchronously
 - custom verbatim/math env highlighting abandoned for a cwl based approach
+- better dark-mode support 
+- qt4 support abandoned
 
 TeXstudio 2.12.22
 ----------------

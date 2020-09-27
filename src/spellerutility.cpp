@@ -317,7 +317,9 @@ QStringList SpellerManager::availableDicts()
 {
 	if (dictFiles.keys().isEmpty())
 		return QStringList() << emptySpeller->name();
-    return QStringList()<< emptySpeller->name() <<dictFiles.keys();
+    QStringList dicts=dictFiles.keys();
+    dicts.sort();
+    return QStringList()<< emptySpeller->name() <<dicts;
 }
 
 bool SpellerManager::hasSpeller(const QString &name)

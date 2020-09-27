@@ -215,6 +215,7 @@
         <file>images-ng/modern/zoom-in.svgz</file>
         <file>images-ng/modern/zoom-out.svgz</file>
         <file>images-ng/math.svg</file>
+        <file>images-ng/non-math.svg</file>
         <file>images-ng/comment.svg</file>
         <file>images-ng/comment_dm.svg</file>
         <file>images-ng/non-comment.svg</file>
@@ -223,6 +224,8 @@
         <file>images-ng/command_dm.svg</file>
         <file>images-ng/all.svg</file>
         <file>images-ng/all_dm.svg</file>
+        <file>images-ng/normal-text.svg</file>
+        <file>images-ng/normal-text_dm.svg</file>
         <file>images-ng/verbatim.svg</file>
         <file>images-ng/cite.svg</file>
         <file>images-ng/cite_dm.svg</file>
@@ -237,5 +240,11 @@
         <file>images-ng/classic/newline_dm.svg</file>
         <file>images-ng/go-next-diff_dm.svg</file>
         <file>images-ng/go-previous-diff_dm.svg</file>
+        <file>images-ng/classic/close_dm.svg</file>
+        <file>images-ng/classic/enlarge-viewer_dm.svgz</file>
+        <file>images-ng/classic/shrink-viewer_dm.svgz</file>
+        <file>images-ng/classic/magnifier-button_dm.svgz</file>
+        <file>images-ng/classic/windowed-viewer_dm.svgz</file>
+        <file>images-ng/classic/hide-toolbars_dm.svgz</file>
     </qresource>
 </RCC>

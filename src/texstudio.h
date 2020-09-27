@@ -211,6 +211,7 @@ private:
 	QAction *fullscreenModeAction;
 
 	int runningPDFCommands, runningPDFAsyncCommands;
+	QEditor *previewEditorPending; bool previewIsAutoCompiling;
 
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
@@ -311,6 +312,7 @@ protected slots:
 	void editMoveLineUp();
 	void editMoveLineDown();
 	void editDuplicateLine();
+	void editSortLines();
 	void editAlignMirrors();
 	void editEraseWordCmdEnv();
 	void editGotoDefinition(QDocumentCursor c = QDocumentCursor());
@@ -538,6 +540,8 @@ protected slots:
 	void showPreviewQueue();
 	void showImgPreview(const QString &fname);
 	void showImgPreviewFinished(const QPixmap &pm, int page);
+	void recompileForPreview();
+	void recompileForPreviewNow();
 
 	void templateEdit(const QString &fname);
 
@@ -610,7 +614,7 @@ protected:
 
 	QStringList m_columnCutBuffer;
 
-    QTimer autosaveTimer,previewDelayTimer;
+	QTimer autosaveTimer,previewDelayTimer,previewFullCompileDelayTimer;
 
 	bool completionBaseCommandsUpdated;
 

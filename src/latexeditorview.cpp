@@ -652,7 +652,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 	connect(foldPanel, SIGNAL(contextMenuRequested(int, QPoint)), this, SLOT(foldContextMenuRequested(int, QPoint)));
 	connect(editor, SIGNAL(hovered(QPoint)), this, SLOT(mouseHovered(QPoint)));
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
-	connect(editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *)), this, SLOT(lineDeleted(QDocumentLineHandle *)));
+    connect(editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *,int)), this, SLOT(lineDeleted(QDocumentLineHandle *,int)));
 
 	connect(doc, SIGNAL(spellingDictChanged(QString)), this, SLOT(changeSpellingDict(QString)));
 	connect(doc, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)), this, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)));
@@ -1191,6 +1191,26 @@ bool LatexEditorView::hasBookmark(QDocumentLineHandle *dlh, int bookmarkNumber)
 	QList<int> m_marks = document->marks(dlh);
 	return m_marks.contains(rmid);
 }
+/*!
+ * \brief check if line has any bookmark (bookmarkid -1 .. 9)
+ * \param dlh
+ * \return bookmark number [-1:9] , -2 -> not found
+ */
+int LatexEditorView::hasBookmark(QDocumentLineHandle *dlh)
+{
+    if (!dlh)
+        return false;
+    int rmidLow = bookMarkId(-1);
+    int rmidUp = bookMarkId(9);
+    QList<int> m_marks = document->marks(dlh);
+    for(int id:m_marks){
+        if(id>=rmidLow && id<=rmidUp){
+            return id;
+        }
+    }
+    return -2; // none found
+}
+
 
 bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 {
@@ -1420,7 +1440,7 @@ bool LatexEditorView::setSpeller(const QString &name, bool updateComment)
     }
 	speller = su;
     if(document){
-        SpellerUtility::inlineSpellChecking=config->inlineSpellChecking;
+        SpellerUtility::inlineSpellChecking=config->inlineSpellChecking && config->realtimeChecking;
         SpellerUtility::hideNonTextSpellingErrors=config->hideNonTextSpellingErrors;
         document->setSpeller(speller);
     }
@@ -1592,6 +1612,7 @@ void LatexEditorView::updateSettings()
 	editor->setFlag(QEditor::AllowDragAndDrop, config->allowDragAndDrop);
 	editor->setFlag(QEditor::MouseWheelZoom, config->mouseWheelZoom);
 	editor->setFlag(QEditor::SmoothScrolling, config->smoothScrolling);
+	editor->setFlag(QEditor::VerticalOverScroll, config->verticalOverScroll);
 	editor->setFlag(QEditor::AutoInsertLRM, config->autoInsertLRM);
 	editor->setFlag(QEditor::BidiVisualColumnMode, config->visualColumnMode);
 	editor->setFlag(QEditor::OverwriteOpeningBracketFollowedByPlaceholder, config->overwriteOpeningBracketFollowedByPlaceholder);
@@ -1623,7 +1644,6 @@ void LatexEditorView::updateSettings()
 	QDocument::setShowSpaces(config->showWhitespace ? (QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs) : QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
-    //editor-> setCenterDocumentInEditor(config->centerDocumentInEditor);
 
 	editor->m_preEditFormat = preEditFormat;
 
@@ -1938,11 +1958,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 	}
 
+
 	// checking
 	if (!QDocument::defaultFormatScheme()) return;
-	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	const LatexDocument *ldoc = qobject_cast<const LatexDocument *>(editor->document());
 	bool latexLikeChecking = ldoc && ldoc->languageIsLatexLike();
+	if (latexLikeChecking && config->fullCompilePreview) emit showFullPreview();
+	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
 
     if (config->inlineGrammarChecking) {
@@ -2155,7 +2177,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count)
     document->reCheckSyntax(linenr,count);
 }
 
-void LatexEditorView::lineDeleted(QDocumentLineHandle *l)
+void LatexEditorView::lineDeleted(QDocumentLineHandle *l,int)
 {
 	QHash<QDocumentLineHandle *, int>::iterator it;
 	while ((it = lineToLogEntries.find(l)) != lineToLogEntries.end()) {
@@ -2163,14 +2185,9 @@ void LatexEditorView::lineDeleted(QDocumentLineHandle *l)
 		lineToLogEntries.erase(it);
 	}
 
-	//QMessageBox::information(0,QString::number(nr),"",0);
 	for (int i = changePositions.size() - 1; i >= 0; i--)
 		if (changePositions[i].dlh() == l)
-			/*if (QDocumentLine(changePositions[i].first).previous().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).previous().handle();
-			else if (QDocumentLine(changePositions[i].first).next().isValid()) changePositions[i].first=QDocumentLine(changePositions[i].first).next().handle();
-			else  */ //creating a QDocumentLine with a deleted handle is not possible (it will modify the handle reference count which will trigger another delete event, leading to an endless loop)
 			changePositions.removeAt(i);
-	//    QMessageBox::information(0,"trig",0);
 
 	emit lineHandleDeleted(l);
 	editor->document()->markViewDirty();
@@ -2309,14 +2326,73 @@ bool LatexEditorView::moveToCommandStart (QDocumentCursor &cursor, QString comma
 	return true;
 }
 
+QString LatexEditorView::findEnclosedMathText(QDocumentCursor cursor, QString command){
+    QString text;
+    QFormatRange fr = cursor.line().getOverlayAt(cursor.columnNumber(), numbersFormat);
+    if(fr.isValid()){
+        // end found
+        // test if start is in the same line
+        if(fr.offset>0){
+            // yes
+            text=cursor.line().text().mid(fr.offset,fr.length);
+        }else{
+            //start in previous lines
+            StackEnvironment env;
+            document->getEnv(cursor.lineNumber(), env);
+            if(!env.isEmpty() && env.top().name=="math"){
+                cursor.moveTo(document->indexOf(env.top().dlh,cursor.lineNumber()),env.top().startingColumn,QDocumentCursor::KeepAnchor);
+                text=cursor.selectedText();
+            }
+        }
+    }else{
+        // try again at end of command ($/$$)
+        fr = cursor.line().getOverlayAt(cursor.columnNumber()+command.length(), numbersFormat);
+        if(fr.isValid()){
+            if(fr.offset+fr.length<cursor.line().length()){
+                // within current line
+                text=cursor.line().text().mid(fr.offset,fr.length);
+            }else{
+                // exceeds current line
+                cursor.movePosition(command.length());
+                int ln=cursor.lineNumber();
+                StackEnvironment env;
+                document->getEnv(ln+1, env);
+                while(true){
+                    ++ln;
+                    QDocumentLine dln=document->line(ln);
+                    if(dln.isValid()){
+                        StackEnvironment envNext;
+                        document->getEnv(ln+1, envNext);
+                        if(env==envNext)
+                            continue;
+                        QFormatRange fr2 = dln.getOverlayAt(0, numbersFormat);
+                        cursor.moveTo(ln,fr2.length,QDocumentCursor::KeepAnchor);
+                        text=cursor.selectedText();
+                        break;
+                    }else{
+                        QDocumentLine dln=document->line(ln-1);
+                        cursor.moveTo(ln-1,dln.length(),QDocumentCursor::KeepAnchor);
+                        text=cursor.selectedText();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return text;
+}
+
 bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos)
 {
 	QStringList envAliases = document->lp.environmentAliases.values(environment);
 	bool found;
+    QString text;
 	if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]") {
 		found = moveToCommandStart(cursor, "\\");
 	} else if (command == "$" || command == "$$") {
 		found = moveToCommandStart(cursor, command);
+        // special treatment for $/$$ as it is handled in syntax checker
+        text=findEnclosedMathText(cursor,command);
 	} else {
 		found = false;
 	}
@@ -2324,7 +2400,7 @@ bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command
 		QToolTip::hideText();
 		return false;
 	}
-	QString text = parenthizedTextSelection(cursor).selectedText();
+    text = text.isEmpty() ? parenthizedTextSelection(cursor).selectedText() : text;
 	if (text.isEmpty()) {
 		QToolTip::hideText();
 		return false;
@@ -2713,6 +2789,48 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 	editor->setCursor(cur);
 }
 
+void LatexEditorView::sortSelectedLines(LineSorting sorting, Qt::CaseSensitivity caseSensitivity, bool completeLines, bool removeDuplicates){
+	if (completeLines){
+		editor->selectExpand(QDocumentCursor::LineUnderCursor);
+	}
+	QList<QDocumentCursor> cursors = editor->cursors();
+	std::sort(cursors.begin(), cursors.end());
+	for (int i=0; i < cursors.length(); i++)
+		cursors[i].setAutoUpdated(true); //auto updating is not enabled by default (but it is supposed to be, isn't it?)
+
+	QList<int> spannedLines;
+	QStringList text;
+	foreach (const QDocumentCursor& c, cursors) {
+		QStringList selectedTextLines = c.selectedText().split('\n');
+		spannedLines << selectedTextLines.length();
+		text << selectedTextLines;
+	}
+	if (text.isEmpty()) return;
+	bool additionalEmptyLine = text.last().isEmpty();
+	if (additionalEmptyLine) text.removeLast();
+
+	if (sorting == SortAscending || sorting == SortDescending)
+		text.sort(caseSensitivity);
+	else if (sorting == SortRandomShuffle)
+		std::random_shuffle(text.begin(), text.end());
+	if (sorting == SortDescending)
+		std::reverse(text.begin(), text.end());
+	if (removeDuplicates)
+		text.removeDuplicates();
+
+	if (additionalEmptyLine) text.append("");
+
+	editor->document()->beginMacro();
+	for (int i=0; i < cursors.length() - 1; i++){
+		QStringList lines;
+		for (int j=0; j < qMin(spannedLines[i], text.length()); j++)
+			lines << text.takeFirst();
+		cursors[i].replaceSelectedText(lines.join('\n'));
+	}
+	cursors.last().replaceSelectedText(text.join('\n'));
+	editor->document()->endMacro();
+}
+
 QString LatexEditorViewConfig::translateEditOperation(int key)
 {
     return QEditor::translateEditOperation(static_cast<QEditor::EditOperation>(key));
@@ -2809,25 +2927,37 @@ QDocumentCursor LatexEditorView::parenthizedTextSelection(const QDocumentCursor 
  * finds the beginning of the specified allowedFormats
  * additional formats can be allowed at the line end (e.g. comments)
  */
-QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats)
+QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> )
 {
 	QDocumentCursor c(cursor);
+
 	QVector<int> lineFormats = c.line().getFormats();
 	int col = c.columnNumber();
-	if ((col > 0 && allowedFormats.contains(lineFormats[col - 1])) // prev char or next char is allowed
-	        || (col < lineFormats.size() && allowedFormats.contains(lineFormats[col]))
-	   ) {
+    QFormatRange rng=c.line().getOverlayAt(col);
+    if (col >= 0 && allowedFormats.contains(rng.format) ) {
 		while (true) {
-			while (col > 0 && allowedFormats.contains(lineFormats[col - 1])) col--;
+            while (col > 0) {
+                rng=c.line().getOverlayAt(col-1);
+                if(allowedFormats.contains(rng.format)){
+                    col--;
+                }else{
+                    break;
+                }
+            }
 			if (col > 0) break;
 			// continue on previous line
 			c.movePosition(1, QDocumentCursor::PreviousLine);
 			c.movePosition(1, QDocumentCursor::EndOfLine);
 			lineFormats = c.line().getFormats();
 			col = c.columnNumber();
-			QString text = c.line().text();
-			while (col > 0 && (allowedLineEndFormats.contains(lineFormats[col - 1]) || text[col - 1].isSpace())) col--;
-
+            while (col > 0) {
+                rng=c.line().getOverlayAt(col-1);
+                if(allowedFormats.contains(rng.format)){
+                    col--;
+                }else{
+                    break;
+                }
+            }
 		}
 		c.setColumnNumber(col);
 		return c;

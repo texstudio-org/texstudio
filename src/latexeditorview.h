@@ -141,6 +141,7 @@ public:
 	Q_INVOKABLE void addBookmark(int lineNr, int bookmarkNumber);
 	Q_INVOKABLE bool hasBookmark(int lineNr, int bookmarkNumber);
 	bool hasBookmark(QDocumentLineHandle *dlh, int bookmarkNumber);
+    int hasBookmark(QDocumentLineHandle *dlh);
 
 	QList<QDocumentCursor> autoPreviewCursor;
 
@@ -248,7 +249,7 @@ public slots:
     void reCheckSyntax(int linenr, int count=-1);
 
 private slots:
-	void lineDeleted(QDocumentLineHandle *l);
+    void lineDeleted(QDocumentLineHandle *l,int hint=-1);
 	void textReplaceFromAction();
 	void spellCheckingAlwaysIgnore();
 	void populateSpellingMenu();
@@ -260,6 +261,10 @@ public slots:
 	void mouseHovered(QPoint pos);
 	bool closeElement();
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
+public:
+	enum LineSorting {SortAscending = 0, SortDescending, SortNone, SortRandomShuffle};
+public slots:
+	void sortSelectedLines(LineSorting sorting, Qt::CaseSensitivity caseSensitivity, bool completeLines, bool removeDuplicates);
 	void viewActivated();
 	void clearOverlays();
 	void paste();
@@ -282,6 +287,7 @@ private:
 	QString extractMath(QDocumentCursor cursor);
 	bool moveToCommandStart (QDocumentCursor &cursor, QString commandPrefix);
 	bool showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos);
+    QString findEnclosedMathText(QDocumentCursor cursor, QString command);
 
 public slots:
 	void temporaryHighlight(QDocumentCursor cur);
@@ -306,6 +312,7 @@ signals:
 	void showPreview(const QString &text);
 	void showPreview(const QDocumentCursor &c);
 	void showImgPreview(const QString &fileName);
+	void showFullPreview();
 	void openFile(const QString &name);
 	void openFile(const QString &baseName, const QString &defaultExtension);
 	void openCompleter();

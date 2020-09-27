@@ -512,7 +512,7 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument *doc): QDockWidget(doc), docume
 	minimum_width = frame_2->sizeHint().width() + leFind->sizeHint().width() + 2 * bNext->sizeHint().width() + 5 * hboxLayout->spacing();
 	//;
 
-	cbCase->setChecked(false);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(ConfigManagerInterface::getInstance(), bool, caseConfig, false, "Preview/Search Case Sensitive", cbCase);
 
 	leFind->installEventFilter(this);
 
@@ -607,7 +607,8 @@ PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc)
 	cbWords = new QCheckBox(this);
 	cbWords->setObjectName("cbWords");
 	cbWords->setText(tr("Words"));
-    cbWords->setToolTip(tr("Only searches for whole words."));
+	cbWords->setToolTip(tr("Only searches for whole words."));
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(ConfigManagerInterface::getInstance(), bool, wordConfig, false, "Preview/Whole Words", cbWords);
 
 	gridLayout1->addWidget(cbWords, 0, 2, 1, 1);
 
@@ -615,7 +616,7 @@ PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc)
 	cbSync->setObjectName("cbSync");
 	cbSync->setText(tr("Sync"));
 	cbSync->setToolTip(tr("Synchronize editor when jumping to search results."));
-	cbSync->setChecked(true);
+	CONFIG_DECLARE_OPTION_WITH_OBJECT(ConfigManagerInterface::getInstance(), bool, syncConfig, true, "Preview/Search Sync", cbSync);
 
 	gridLayout1->addWidget(cbSync, 0, 3, 1, 1);
 
@@ -900,7 +901,7 @@ void PDFOverviewDock::pageChanged(int page)
 }
 
 
-PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent)
+PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent), pageCount(0)
 {
 	setObjectName("clock");
 	setWindowTitle(getTitle());
@@ -912,6 +913,7 @@ PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent)
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 	addAction(tr("Set Interval..."),  SLOT(setInterval()));
+	addAction(tr("Set Page Count..."),  SLOT(setPageCount()));
 	addAction(tr("Restart"), SLOT(restart()));
 }
 
@@ -967,6 +969,15 @@ void PDFClockDock::setInterval(int interval)
 	update();
 }
 
+void PDFClockDock::setPageCount(){
+	UniversalInputDialog d;
+	QSpinBox* sb = d.addVariable(&pageCount, tr("Page count (negative subtracts)"));
+	sb->setMinimum(-99999);
+	sb->setMaximum(99999);
+
+	if (!d.exec()) return;
+}
+
 void PDFClockDock::paintEvent(QPaintEvent *event)
 {
 	if (!document || document->popplerDoc().isNull() || !document->widget()) {
@@ -1008,7 +1019,9 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 	// progress bar
 	r.adjust(labelWidth, 0, 0, 0);
 	p.fillRect(r.x(), 0, qMax<int>(0, r.width() * pendingSeconds / qMax(qint64(start.secsTo(end)), qint64(1))), r.height() * 3 / 4, timeBarColor);
-	p.fillRect(r.x(), r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages() - 1),  r.height() / 4, pagesBarColor);
+
+	int effectivePageCount = pageCount > 0 ? pageCount : document->widget()->realNumPages() + pageCount;
+	p.fillRect(r.x(), r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, effectivePageCount - 1),  r.height() / 4, pagesBarColor);
 }
 
 

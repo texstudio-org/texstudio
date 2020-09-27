@@ -20,9 +20,9 @@
 #include:newfloat
 #endif
 
-\begin{minted}[options%keyvals]#SV
-\begin{minted}{language}
-\begin{minted}[options%keyvals]{language}
+\begin{minted}[options%keyvals]#S
+\begin{minted}{language}#MV
+\begin{minted}[options%keyvals]{language}#M
 \end{minted}
 \mint{%<language%>}{%<code%>}
 \mint{%<language%>}|%<code%>|
@@ -59,7 +59,7 @@
 \newmintedfile{language}{options%keyvals}
 \newmintedfile{macro name}{language}{options%keyvals}
 
-#keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\nnewmintedfile
+#keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\newmintedfile
 autogobble#true,false
 baselinestretch=##L
 beameroverlays#true,false

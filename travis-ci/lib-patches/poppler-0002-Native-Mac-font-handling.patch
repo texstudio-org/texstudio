@@ -1,23 +1,23 @@
-From 0c51f67e3cb05c9ab74f78f5ca03c8e43c352b02 Mon Sep 17 00:00:00 2001
+From 918a329627efe177a48b35bd30076ed3182f1f1a Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Stefan=20L=C3=B6ffler?= <st.loeffler@gmail.com>
 Date: Thu, 11 Feb 2016 23:14:20 -0500
-Subject: [PATCH 2/3] Native Mac font handling
+Subject: [PATCH 2/2] Native Mac font handling
 
 ---
  CMakeLists.txt                 |  16 +-
  config.h.cmake                 |   3 +
- poppler/GlobalParams.cc        |  15 ++
- poppler/GlobalParams.h         |   7 +
+ poppler/GlobalParams.cc        |  16 ++
+ poppler/GlobalParams.h         |   8 +
  poppler/GlobalParamsMac.cc     | 312 +++++++++++++++++++++++++++++++++
  poppler/poppler-config.h.cmake |   5 +
- 6 files changed, 357 insertions(+), 1 deletion(-)
+ 6 files changed, 359 insertions(+), 1 deletion(-)
  create mode 100644 poppler/GlobalParamsMac.cc
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index ef987a86..b702c5e4 100644
+index b5428237..240386b6 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -96,17 +96,22 @@ if(WIN32)
+@@ -102,17 +102,22 @@ if(WIN32)
  elseif(ANDROID)
    # on android we don't have fontconfig and we don't want windows-specific code
    set(_default_fontconfiguration "generic")
@@ -41,20 +41,20 @@ index ef987a86..b702c5e4 100644
  elseif(font_configuration STREQUAL "generic")
    message(STATUS "no fontconfig or win32 specific code")
  else()
-@@ -497,6 +502,15 @@ add_library(poppler STATIC ${poppler_SRCS})
+@@ -547,6 +552,15 @@ add_library(poppler STATIC ${poppler_SRCS})
  else()
  add_library(poppler ${poppler_SRCS})
  endif()
 +if(WITH_FONTCONFIGURATION_MAC)
-+  if(NOT BUILD_SHARED_LIBS)
-+    find_library(CORE_FOUNDATION CoreFoundation)
-+    set(poppler_LIBS ${poppler_LIBS} ${CORE_FOUNDATION})
-+  endif()
-+  find_library(APPLICATION_SERVICES ApplicationServices)
-+  set(poppler_LIBS ${poppler_LIBS} ${APPLICATION_SERVICES})
++    if(NOT BUILD_SHARED_LIBS)
++        find_library(CORE_FOUNDATION CoreFoundation)
++        set(poppler_LIBS ${poppler_LIBS} ${CORE_FOUNDATION})
++    endif()
++    find_library(APPLICATION_SERVICES ApplicationServices)
++    set(poppler_LIBS ${poppler_LIBS} ${APPLICATION_SERVICES})
 +endif(WITH_FONTCONFIGURATION_MAC)
 +
- set_target_properties(poppler PROPERTIES VERSION 94.0.0 SOVERSION 94)
+ set_target_properties(poppler PROPERTIES VERSION 102.0.0 SOVERSION 102)
  if(MINGW AND BUILD_SHARED_LIBS)
      get_target_property(POPPLER_SOVERSION poppler SOVERSION)
 diff --git a/config.h.cmake b/config.h.cmake
@@ -72,77 +72,79 @@ index c92fc352..af08d974 100644
  #cmakedefine WITH_FONTCONFIGURATION_WIN32 1
  
 diff --git a/poppler/GlobalParams.cc b/poppler/GlobalParams.cc
-index ea5d8125..5b66e0fb 100644
+index 630ec4ab..2de3b619 100644
 --- a/poppler/GlobalParams.cc
 +++ b/poppler/GlobalParams.cc
-@@ -239,6 +239,9 @@ public:
+@@ -232,6 +232,9 @@ public:
  #ifdef WITH_FONTCONFIGURATION_FONTCONFIG
-   void addFcFont(SysFontInfo *si) {fonts->push_back(si);}
+     void addFcFont(SysFontInfo *si) { fonts->push_back(si); }
  #endif
 +#ifdef WITH_FONTCONFIGURATION_MAC
 +	void addMacFont(SysFontInfo *si) {fonts->push_back(si);}
 +#endif
  private:
- 
  #ifdef _WIN32
-@@ -385,6 +388,10 @@ GlobalParams::GlobalParams(const char *customPopplerDataDir)
-   : popplerDataDir(customPopplerDataDir)
+     SysFontInfo *makeWindowsFont(const char *name, int fontNum, const char *path);
+@@ -376,6 +379,11 @@ const SysFontInfo *SysFontList::find(const GooString *name, bool fixedWidth, boo
+ 
+ GlobalParams::GlobalParams(const char *customPopplerDataDir) : popplerDataDir(customPopplerDataDir)
  {
-   initBuiltinFontTables();
 +#if WITH_FONTCONFIGURATION_MAC
-+  tempFontFiles = NULL;
-+  numTempFontFiles = 0;
++    tempFontFiles = NULL;
++    numTempFontFiles = 0;
 +#endif
- 
-   // scan the encoding in reverse because we want the lowest-numbered
-   // index for each char name ('space' is encoded twice)
-@@ -553,6 +560,12 @@ GlobalParams::~GlobalParams() {
-     delete entry;
-   }
-   delete toUnicodeDirs;
++
+     // scan the encoding in reverse because we want the lowest-numbered
+     // index for each char name ('space' is encoded twice)
+     macRomanReverseMap = new NameToCharCode();
+@@ -547,6 +555,12 @@ GlobalParams::~GlobalParams()
+         delete entry;
+     }
+     delete toUnicodeDirs;
 +#if WITH_FONTCONFIGURATION_MAC
-+  while (numTempFontFiles > 0) {
-+    --numTempFontFiles;
-+    unlink(tempFontFiles[numTempFontFiles]);
-+  }
++    while (numTempFontFiles > 0) {
++        --numTempFontFiles;
++        unlink(tempFontFiles[numTempFontFiles]);
++    }
 +#endif
-   delete sysFonts;
-   delete textEncoding;
+     delete sysFonts;
+     delete textEncoding;
  
-@@ -1012,6 +1025,8 @@ fin:
- GooString *GlobalParams::findBase14FontFile(const GooString *base14Name, const GfxFont *font) {
-   return findFontFile(base14Name);
+@@ -1031,6 +1045,8 @@ GooString *GlobalParams::findBase14FontFile(const GooString *base14Name, const G
+ {
+     return findFontFile(base14Name);
  }
 +#elif WITH_FONTCONFIGURATION_MAC
 +#include "GlobalParamsMac.cc"
  #else
- GooString *GlobalParams::findBase14FontFile(const GooString *base14Name, const GfxFont *font) {
-   return findFontFile(base14Name);
+ GooString *GlobalParams::findBase14FontFile(const GooString *base14Name, const GfxFont *font)
+ {
 diff --git a/poppler/GlobalParams.h b/poppler/GlobalParams.h
-index 755cdc1a..7dafa2ea 100644
+index 4b41ee38..8aabd42b 100644
 --- a/poppler/GlobalParams.h
 +++ b/poppler/GlobalParams.h
-@@ -137,6 +137,9 @@ public:
-   UnicodeMap *getUnicodeMap(GooString *encodingName);
-   CMap *getCMap(const GooString *collection, const GooString *cMapName, Stream *stream = nullptr);
-   UnicodeMap *getTextEncoding();
+@@ -138,6 +138,10 @@ public:
+     CMap *getCMap(const GooString *collection, const GooString *cMapName, Stream *stream = nullptr);
+     const UnicodeMap *getTextEncoding();
+ 
 +#if WITH_FONTCONFIGURATION_MAC
-+  bool loadPlatformFont(const char * fontName);
++    bool loadPlatformFont(const char * fontName);
 +#endif
++
+     const UnicodeMap *getUtf8Map();
  
-   std::vector<GooString*> *getEncodingNames();
- 
-@@ -190,6 +193,10 @@ private:
+     std::vector<GooString *> *getEncodingNames();
+@@ -190,6 +194,10 @@ private:
  #ifdef _WIN32
-   // windows font substitutes (for CID fonts)
-   std::unordered_map<std::string, std::string> substFiles;
+     // windows font substitutes (for CID fonts)
+     std::unordered_map<std::string, std::string> substFiles;
 +#endif
 +#if WITH_FONTCONFIGURATION_MAC
-+  char **tempFontFiles;
-+  int numTempFontFiles;
++    char **tempFontFiles;
++    int numTempFontFiles;
  #endif
-   // font files: font name mapped to path
-   std::unordered_map<std::string, std::string> fontFiles;
+     // font files: font name mapped to path
+     std::unordered_map<std::string, std::string> fontFiles;
 diff --git a/poppler/GlobalParamsMac.cc b/poppler/GlobalParamsMac.cc
 new file mode 100644
 index 00000000..731e7247
@@ -462,7 +464,7 @@ index 00000000..731e7247
 +	return new GooString(path->second);
 +}
 diff --git a/poppler/poppler-config.h.cmake b/poppler/poppler-config.h.cmake
-index 2adf181c..4ae3eaf5 100644
+index 4e6cc522..d37f0a26 100644
 --- a/poppler/poppler-config.h.cmake
 +++ b/poppler/poppler-config.h.cmake
 @@ -53,6 +53,11 @@
@@ -478,5 +480,5 @@ index 2adf181c..4ae3eaf5 100644
  #ifndef POPPLER_HAS_CURL_SUPPORT
  #cmakedefine POPPLER_HAS_CURL_SUPPORT 1
 -- 
-2.20.1
+2.25.1
 

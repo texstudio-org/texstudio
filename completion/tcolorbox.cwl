@@ -128,13 +128,13 @@ all
 \tcbsetforeverylayer{%<options%>}
 \tcbox[%<options%>]{%<box content%>}
 \newtcolorbox{envname}{options%keyvals}#N
-\newtcolorbox[init options%keyvals]{envname}[args][default]{options%keyvals}#*N
+\newtcolorbox[init options]{envname}[args][default]{options%keyvals}#N
 \renewtcolorbox{envname}{options%keyvals}
-\renewtcolorbox[init options%keyvals]{envname}[args][default]{options%keyvals}#*
+\renewtcolorbox[init options]{envname}[args][default]{options%keyvals}
 \newtcbox{cmd}{options%keyvals}
-\newtcbox[init options%keyvals]{cmd}[args][default]{options%keyvals}#*
+\newtcbox[init options]{cmd}[args][default]{options%keyvals}
 \renewtcbox{cmd}{options%keyvals}
-\renewtcbox[init options%keyvals]{cmd}[args][default]{options%keyvals}#*
+\renewtcbox[init options]{cmd}[args][default]{options%keyvals}
 \tcolorboxenvironment{envname}{options%keyvals}#N
 
 # << Subtitle >>
@@ -186,6 +186,8 @@ all
 \tcbheightspace
 \tcbtextwidth
 \tcbtextheight
+\tcboxedtitlewidth
+\tcboxedtitleheight
 \tcbsegmentstate
 \begin{tcbclipframe}
 \end{tcbclipframe}
@@ -250,18 +252,20 @@ all
 \tcbuselistinglisting
 \tcbusetemplisting
 \newtcblisting{envname}{options%keyvals}#N
-\newtcblisting[init options%keyvals]{envname}[args][default]{options%keyvals}#*N
-\renewtcblisting{envname}{options%keyvals}
-\renewtcblisting[init options%keyvals]{envname}[args][default]{options%keyvals}#*
-\newtcbinputlisting{\name}{options%keyvals}
-\newtcbinputlisting[init options%keyvals]{\name}[args][default]{options%keyvals}#*
+\newtcblisting[init options]{envname}[args][default]{options%keyvals}#N
+\renewtcblisting{envname}{options%keyvals}#N
+\renewtcblisting[init options]{envname}[args][default]{options%keyvals}#N
+\newtcbinputlisting{cmd}{options%keyvals}
+\newtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}
+\renewtcbinputlisting{cmd}{options%keyvals}
+\renewtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}
 
 # << Theorems >>
 \newtcbtheorem{envname}{display name}{options%keyvals}{prefix}#N
-\newtcbtheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}#*N
+\newtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}#N
 \renewtcbtheorem{envname}{display name}{options%keyvals}{prefix}
-\renewtcbtheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}#*
-\tcbmaketheorem{name}{display name}{options%keyvals}{counter}{prefix}#*
+\renewtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}
+\tcbmaketheorem{envname}{display name}{options%keyvals}{counter}{prefix}#N
 \tcboxmath[options%keyvals]{mathematical box content}
 \tcbhighmath[options%keyvals]{mathematical box content}
 
@@ -321,81 +325,81 @@ all
 # << Fitting >>
 \tcboxfit{box content}
 \tcboxfit[options%keyvals]{box content}
-\newtcboxfit{\name}{options%keyvals}
-\newtcboxfit[init options%keyvals]{\name}[args][default]{options%keyvals}#*
-\renewtcboxfit{\name}{options%keyvals}
-\renewtcboxfit[init options%keyvals]{\name}[args][default]{options%keyvals}#*
+\newtcboxfit{cmd}{options%keyvals}
+\newtcboxfit[init options]{cmd}[args][default]{options%keyvals}
+\renewtcboxfit{cmd}{options%keyvals}
+\renewtcboxfit[init options]{cmd}[args][default]{options%keyvals}
 \tcbfontsize{factor}
 \tcbfitdim
 \tcbfitsteps
 
 # << xparse >>
 \DeclareTColorBox{envname}{specification}{options%keyvals}#N
-\DeclareTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}#*N
+\DeclareTColorBox[init options]{envname}{specification}{options%keyvals}#*N
 \NewTColorBox{envname}{specification}{options%keyvals}#N
-\NewTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}#*N
+\NewTColorBox[init options]{envname}{specification}{options%keyvals}#*N
 \RenewTColorBox{envname}{specification}{options%keyvals}
-\RenewTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}#*
+\RenewTColorBox[init options]{envname}{specification}{options%keyvals}#*
 \ProvideTColorBox{envname}{specification}{options%keyvals}#N
-\ProvideTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}#*N
-\DeclareTotalTColorBox{\name}{specification}{options%keyvals}{content}
-\DeclareTotalTColorBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\NewTotalTColorBox{\name}{specification}{options%keyvals}{content}
-\NewTotalTColorBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\RenewTotalTColorBox{\name}{specification}{options%keyvals}{content}
-\RenewTotalTColorBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\ProvideTotalTColorBox{\name}{specification}{options%keyvals}{content}
-\ProvideTotalTColorBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\DeclareTCBox{\name}{specification}{options%keyvals}
-\DeclareTCBox[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\NewTCBox{\name}{specification}{options%keyvals}
-\NewTCBox[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\RenewTCBox{\name}{specification}{options%keyvals}
-\RenewTCBox[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\ProvideTCBox{\name}{specification}{options%keyvals}
-\ProvideTCBox[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\DeclareTotalTCBox{\name}{specification}{options%keyvals}{content}
-\DeclareTotalTCBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\NewTotalTCBox{\name}{specification}{options%keyvals}{content}
-\NewTotalTCBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\RenewTotalTCBox{\name}{specification}{options%keyvals}{content}
-\RenewTotalTCBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\ProvideTotalTCBox{\name}{specification}{options%keyvals}{content}
-\ProvideTotalTCBox[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
+\ProvideTColorBox[init options]{envname}{specification}{options%keyvals}#*N
+\DeclareTotalTColorBox{cmd}{specification}{options%keyvals}{content}
+\DeclareTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*
+\NewTotalTColorBox{cmd}{specification}{options%keyvals}{content}
+\NewTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*
+\RenewTotalTColorBox{cmd}{specification}{options%keyvals}{content}
+\RenewTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*
+\ProvideTotalTColorBox{cmd}{specification}{options%keyvals}{content}
+\ProvideTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*
+\DeclareTCBox{cmd}{specification}{options%keyvals}
+\DeclareTCBox[init options]{cmd}{specification}{options%keyvals}#*
+\NewTCBox{cmd}{specification}{options%keyvals}
+\NewTCBox[init options]{cmd}{specification}{options%keyvals}#*
+\RenewTCBox{cmd}{specification}{options%keyvals}
+\RenewTCBox[init options]{cmd}{specification}{options%keyvals}#*
+\ProvideTCBox{cmd}{specification}{options%keyvals}
+\ProvideTCBox[init options]{cmd}{specification}{options%keyvals}#*
+\DeclareTotalTCBox{cmd}{specification}{options%keyvals}{content}
+\DeclareTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content}#*
+\NewTotalTCBox{cmd}{specification}{options%keyvals}{content}
+\NewTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content}#*
+\RenewTotalTCBox{cmd}{specification}{options%keyvals}{content}
+\RenewTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content}#*
+\ProvideTotalTCBox{cmd}{specification}{options%keyvals}{content}
+\ProvideTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content}#*
 \tcboxverb{verbatim box content}
 \tcboxverb[options%keyvals]{verbatim box content}#*
 \DeclareTCBListing{envname}{specification}{options%keyvals}#N
-\DeclareTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}#*N
+\DeclareTCBListing[init options]{envname}{specification}{options%keyvals}#*N
 \NewTCBListing{envname}{specification}{options%keyvals}#N
-\NewTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}#*N
+\NewTCBListing[init options]{envname}{specification}{options%keyvals}#*N
 \RenewTCBListing{envname}{specification}{options%keyvals}
-\RenewTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}#*
+\RenewTCBListing[init options]{envname}{specification}{options%keyvals}#*
 \ProvideTCBListing{envname}{specification}{options%keyvals}#N
-\ProvideTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}#*N
-\DeclareTCBInputListing{\name}{specification}{options%keyvals}
-\DeclareTCBInputListing[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\NewTCBInputListing{\name}{specification}{options%keyvals}
-\NewTCBInputListing[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\RenewTCBInputListing{\name}{specification}{options%keyvals}
-\RenewTCBInputListing[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\ProvideTCBInputListing{\name}{specification}{options%keyvals}
-\ProvideTCBInputListing[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\DeclareTCBoxFit{\name}{specification}{options%keyvals}
-\DeclareTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\NewTCBoxFit{\name}{specification}{options%keyvals}
-\NewTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\RenewTCBoxFit{\name}{specification}{options%keyvals}
-\RenewTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\ProvideTCBoxFit{\name}{specification}{options%keyvals}
-\ProvideTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}#*
-\DeclareTotalTCBoxFit{\name}{specification}{options%keyvals}{content}
-\DeclareTotalTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\NewTotalTCBoxFit{\name}{specification}{options%keyvals}{content}
-\NewTotalTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\RenewTotalTCBoxFit{\name}{specification}{options%keyvals}{content}
-\RenewTotalTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
-\ProvideTotalTCBoxFit{\name}{specification}{options%keyvals}{content}
-\ProvideTotalTCBoxFit[init options%keyvals]{\name}{specification}{options%keyvals}{content}#*
+\ProvideTCBListing[init options]{envname}{specification}{options%keyvals}#*N
+\DeclareTCBInputListing{cmd}{specification}{options%keyvals}
+\DeclareTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*
+\NewTCBInputListing{cmd}{specification}{options%keyvals}
+\NewTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*
+\RenewTCBInputListing{cmd}{specification}{options%keyvals}
+\RenewTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*
+\ProvideTCBInputListing{cmd}{specification}{options%keyvals}
+\ProvideTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*
+\DeclareTCBoxFit{cmd}{specification}{options%keyvals}
+\DeclareTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*
+\NewTCBoxFit{cmd}{specification}{options%keyvals}
+\NewTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*
+\RenewTCBoxFit{cmd}{specification}{options%keyvals}
+\RenewTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*
+\ProvideTCBoxFit{cmd}{specification}{options%keyvals}
+\ProvideTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*
+\DeclareTotalTCBoxFit{cmd}{specification}{options%keyvals}{content}
+\DeclareTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content}#*
+\NewTotalTCBoxFit{cmd}{specification}{options%keyvals}{content}
+\NewTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content}#*
+\RenewTotalTCBoxFit{cmd}{specification}{options%keyvals}{content}
+\RenewTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content}#*
+\ProvideTotalTCBoxFit{cmd}{specification}{options%keyvals}{content}
+\ProvideTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content}#*
 
 # << External >>
 \tcbEXTERNALIZE#*
@@ -518,7 +522,7 @@ all
 # ---------------------------------------
 # << Option Keys >> - Documentation library
 # ---------------------------------------
-#keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset
+#keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset#c
 doc name
 doc parameter
 doc description
@@ -905,25 +909,15 @@ tcb fill frame
 tcb fill interior
 tcb fill title
 attach boxed title to top left
-attach boxed title to top left=
 attach boxed title to top center
-attach boxed title to top center=
 attach boxed title to top right
-attach boxed title to top right=
 attach boxed title to bottom left
-attach boxed title to bottom left=
 attach boxed title to bottom center
-attach boxed title to bottom center=
 attach boxed title to bottom right
-attach boxed title to bottom right=
 attach boxed title to top
-attach boxed title to top=
 attach boxed title to top*
-attach boxed title to top*=
 attach boxed title to bottom
-attach boxed title to bottom=
 attach boxed title to bottom*
-attach boxed title to bottom*=
 flip title
 flip title=
 xshift=
@@ -1839,25 +1833,15 @@ tcb fill frame
 tcb fill interior
 tcb fill title
 attach boxed title to top left
-attach boxed title to top left=
 attach boxed title to top center
-attach boxed title to top center=
 attach boxed title to top right
-attach boxed title to top right=
 attach boxed title to bottom left
-attach boxed title to bottom left=
 attach boxed title to bottom center
-attach boxed title to bottom center=
 attach boxed title to bottom right
-attach boxed title to bottom right=
 attach boxed title to top
-attach boxed title to top=
 attach boxed title to top*
-attach boxed title to top*=
 attach boxed title to bottom
-attach boxed title to bottom=
 attach boxed title to bottom*
-attach boxed title to bottom*=
 flip title
 flip title=
 xshift=
@@ -2698,25 +2682,15 @@ tcb fill frame
 tcb fill interior
 tcb fill title
 attach boxed title to top left
-attach boxed title to top left=
 attach boxed title to top center
-attach boxed title to top center=
 attach boxed title to top right
-attach boxed title to top right=
 attach boxed title to bottom left
-attach boxed title to bottom left=
 attach boxed title to bottom center
-attach boxed title to bottom center=
 attach boxed title to bottom right
-attach boxed title to bottom right=
 attach boxed title to top
-attach boxed title to top=
 attach boxed title to top*
-attach boxed title to top*=
 attach boxed title to bottom
-attach boxed title to bottom=
 attach boxed title to bottom*
-attach boxed title to bottom*=
 flip title
 flip title=
 xshift=
@@ -3234,21 +3208,6 @@ verbatim
 IfNoValueTF=
 IfValueTF=
 IfBooleanTF=
-auto counter
-use counter from=
-use counter=
-use counter*=
-no counter
-number within=
-number format=
-number freestyle=
-crefname=
-Crefname=
-blend into=#figures,tables,listings
-blend before title=#colon,dash,colon hang, dash hang
-blend before title code=
-list inside=
-list type=
 #endkeyvals
 
 # ---------------------------------------
@@ -3628,25 +3587,15 @@ tcb fill frame
 tcb fill interior
 tcb fill title
 attach boxed title to top left
-attach boxed title to top left=
 attach boxed title to top center
-attach boxed title to top center=
 attach boxed title to top right
-attach boxed title to top right=
 attach boxed title to bottom left
-attach boxed title to bottom left=
 attach boxed title to bottom center
-attach boxed title to bottom center=
 attach boxed title to bottom right
-attach boxed title to bottom right=
 attach boxed title to top
-attach boxed title to top=
 attach boxed title to top*
-attach boxed title to top*=
 attach boxed title to bottom
-attach boxed title to bottom=
 attach boxed title to bottom*
-attach boxed title to bottom*=
 flip title
 flip title=
 xshift=
@@ -4165,3 +4114,46 @@ IfNoValueTF=
 IfValueTF=
 IfBooleanTF=
 #endkeyvals
+
+
+# << init options >>
+
+# NOTE: Init options, documented in Sec. 5 of package doc, always come with 
+# another more powerful and mandatory option list argument. For example,
+#     \newtcolorbox[init options]{envname}{options%keyvals}#N
+# Since currently texstudio doesn't support to mark a second keyvals field in 
+# one command, the following (relatively short) init option list is temporarily 
+# commented.
+
+# # NOTE: this is not a valid syntax of #keyvals.
+# \newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,
+# \newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,
+# \newtcbtheorem,\renewtcbtheorem,
+# \newtcboxfit,\renewtcboxfit,
+# \DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,
+# \DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,
+# \DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,
+# \DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,
+# \DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,
+# \DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,
+# \DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,
+# \DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit
+# #keyvals:
+# auto counter
+# auto counter
+# use counter from=
+# use counter=
+# use counter*=
+# no counter
+# reset counter on overlays#true,false
+# number within=
+# number format=
+# number freestyle=
+# crefname={%<singular%>}{%<plural%>}
+# Crefname={%<singular%>}{%<plural%>}
+# blend into=#figures,tables,listings
+# blend before title=#colon,dash,colon hang,dash hang
+# blend before title code=
+# list inside=
+# list type=
+# #endkeyvals

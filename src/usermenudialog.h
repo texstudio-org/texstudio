@@ -25,7 +25,7 @@ class UserMenuDialog : public QDialog
 	Q_OBJECT
 
 public:
-    UserMenuDialog(QWidget *parent = nullptr, QString name = "", QLanguageFactory *languageFactory = nullptr);
+    UserMenuDialog(QWidget *parent, QString name, QLanguageFactory *languageFactory);
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
@@ -36,6 +36,7 @@ public:
     void selectFirst();
 
 private:
+	void setLanguageFromText(void);
     QTreeWidgetItem* findCreateFolder(const QString &menu);
     QTreeWidgetItem* findCreateFolder(QTreeWidgetItem *parent, QStringList folders);
 

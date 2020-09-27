@@ -520,10 +520,10 @@
 \left\Downarrow#mM
 \left\Updownarrow#mM
 \left.#m
-\left)#m*
-\left]#mM*
-\left\rangle#mM*
-\left\rbrace#mM*
+\left)#*m
+\left]#*mM
+\left\rangle#*mM
+\left\rbrace#*mM
 \right#mK
 \right)#m
 \right]#m
@@ -543,10 +543,10 @@
 \right\Downarrow#mM
 \right\Updownarrow#mM
 \right.#m
-\right(#m*
-\right[#mM*
-\right\langle#m*
-\right\lbrace#m*
+\right(#*m
+\right[#*mM
+\right\langle#*m
+\right\lbrace#*m
 #repl:\"a ä
 #repl:\"o ö
 #repl:\"u ü

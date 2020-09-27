@@ -1,0 +1,148 @@
+# hunspell affix file for Scottish Gaelic by Kevin Scannell
+#
+# Copyright 2010 Kevin P. Scannell
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+#    02110-1301, USA.
+
+SET UTF-8
+
+TRY ahinrdescltogumbàf-AòCìBùèTpGSDMRFPILN'EOUÀéÒÌÙÈHóWVXxQyqÉKwvJÁk
+WORDCHARS -'’
+
+# stop split suggestions
+NOSPLITSUGS
+
+# replace correct accented double vowels with unaccented ones for acceptance
+ICONV 1
+ICONV ’ '
+
+# To avoid breaking h- n- t- words
+LEFTHYPHENMIN 2
+
+# BREAK 0 does not work (reported as bug), so this is a work-around
+# This also causes the - to be seen as part of the word,
+# which is necessary to support the optional - in compounded words
+BREAK 1
+BREAK =
+
+REP 48
+REP a à
+REP à a
+REP á à
+REP e è
+REP è e
+REP é è
+REP i ì
+REP ì i
+REP í ì
+REP o ò
+REP ò o
+REP ó ò
+REP u ù
+REP ù u
+REP ú ù
+REP ai ia
+REP ia ai
+REP ia ìo
+REP ìo ia
+REP ìa ia
+REP ia eu
+REP eu ia
+REP ìu iù
+REP dh gh
+REP gh dh
+REP dh th
+REP th dh
+REP bh mh
+REP mh bh
+REP l ll
+REP ll l
+REP n nn
+REP nn n
+REP r rr
+REP rr r
+REP sc sg
+REP sd st
+REP sb sp
+REP be b'_e
+REP bh'a bh'_a
+REP chionns chionn_'s
+REP fhads fhad_'s
+REP fiù's fiù_'s
+REP sgàths sgàth_'s
+REP sann 's_ann
+REP se 's_e
+REP th'a th'_a
+REP t-strì strì
+
+MAP 5
+MAP aáàAÁÀ
+MAP eéèEÉÈ
+MAP iíìIÍÌ
+MAP oóòOÓÒ
+MAP uúùUÚÙ
+
+PFX S Y 18
+PFX S   b     bh          b[^h]
+PFX S   B     Bh          B[^h]
+PFX S   c     ch          c[^h]
+PFX S   C     Ch          C[^h]
+PFX S   d     dh          d[^h]
+PFX S   D     Dh          D[^h]
+PFX S   f     fh          f[^h]
+PFX S   F     Fh          F[^h]
+PFX S   g     gh          g[^h]
+PFX S   G     Gh          G[^h]
+PFX S   m     mh          m[^h]
+PFX S   M     Mh          M[^h]
+PFX S   p     ph          p[^h]
+PFX S   P     Ph          P[^h]
+PFX S   s     sh          s[aeiouáéíóúàèìòùlnr]
+PFX S   S     Sh          S[aeiouáéíóúàèìòùlnr]
+PFX S   t     th          t[^h]
+PFX S   T     Th          T[^h]
+
+PFX H Y 1
+PFX H   0     h-          [aeiouáéíóúàèìòùAEIOUÁÉÍÓÚÀÈÌÒÙ]
+
+PFX D Y 3
+PFX D   0     d'          [aeiouáéíóúàèìòùAEIOUÁÉÍÓÚÀÈÌÒÙ]
+PFX D   0     d'          fh
+PFX D   f     d'fh        f[^h]
+
+PFX E Y 3
+PFX E   0     dh'          [aeiouáéíóúàèìòùAEIOUÁÉÍÓÚÀÈÌÒÙ]
+PFX E   0     dh'          fh
+PFX E   f     dh'fh        f[^h]
+
+PFX T Y 2
+PFX T   0     t-        [aeiouáéíóúàèìòùAEIOUÁÉÍÓÚÀÈÌÒÙ]
+PFX T   0     t-        [Ss][aeiouáéíóúàèìòùlnr]
+
+PFX N Y 1
+PFX N   0     n-        [aeiouáéíóúàèìòùAEIOUÁÉÍÓÚÀÈÌÒÙ]
+
+SFX K Y 6
+SFX K   0     -sa          [^-]
+SFX K   0     -se          [^-]
+SFX K   0     -ne          [^-]
+SFX K   0     -san      [^-]
+SFX K   0     eigin     [^e]
+SFX K   0     igin     e
+#SFX K   0     sa          [^-]
+#SFX K   0     se          [^-]
+#SFX K   0     ne          [^-]
+#SFX K   0     san      [^-]

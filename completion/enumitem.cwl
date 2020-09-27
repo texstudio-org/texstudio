@@ -1,4 +1,5 @@
 # thatlittleboy/2018-11-25 for enumitem v3.5.2
+# muzimuzhi/15 Sep 2020 for enumitem v3.9
 
 #ifOption:inline
 \begin{enumerate*}
@@ -34,12 +35,14 @@ i
 \setlist*[%<names%>, %<levels%>]{%<options%>}
 \restartlist{list name}
 
+\EnumitemId#*
 \SetLabelAlign{value}{commands}#*
 \SetEnumerateShortLabel{key%plain}{replacement}#*
 \setlistdepth{integer}
 \AddEnumerateCounter{LaTeX-cmd}{internal-cmd}{widest label}#*
 \SetEnumitemKey{key%plain}{replacement}#*
 \SetEnumitemValue{key%plain}{string-value}{replacement}#*
+\SetEnumitemSize{name}{selector}#*
 
 #keyvals:\setlist
 topsep=
@@ -59,6 +62,8 @@ font=
 format=
 align=#left,right,parleft
 labelindent=
+left=%<labelindent%>
+left=%<labelindent%> .. %<leftmargin%>
 widest
 widest=
 widest*=
@@ -75,6 +80,8 @@ before=
 before*=
 after=
 after*=
+first=
+first*=
 style=#standard,unboxed,nextline,sameline,multiline
 noitemsep
 nosep

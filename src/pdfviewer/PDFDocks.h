@@ -341,7 +341,7 @@ class PDFClockDock: public PDFDock
 	Q_OBJECT
 
 public:
-    explicit PDFClockDock(PDFDocument *parent = nullptr);
+	explicit PDFClockDock(PDFDocument *parent = nullptr);
 	virtual ~PDFClockDock();
 
 protected slots:
@@ -349,6 +349,7 @@ protected slots:
 	void restart();
 	void setInterval();
 	void setInterval(int interval);
+	void setPageCount();
 
 protected:
 	//virtual void pageChanged(int page);
@@ -356,6 +357,7 @@ protected:
 	virtual QString getTitle();
 	virtual void paintEvent(QPaintEvent *event);
 
+	int pageCount;
 	QDateTime start, end;
 	QTimer *timer;
 };

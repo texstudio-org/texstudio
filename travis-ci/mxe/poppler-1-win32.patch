@@ -15,15 +15,15 @@ diff --git a/poppler/GlobalParamsWin.cc b/poppler/GlobalParamsWin.cc
 index 1111111..2222222 100644
 --- a/poppler/GlobalParamsWin.cc
 +++ b/poppler/GlobalParamsWin.cc
-@@ -408,7 +408,7 @@ void GlobalParams::setupBaseFonts(char * dir)
+@@ -382,7 +382,7 @@ void GlobalParams::setupBaseFonts(const char *dir)
  
-         GooString  *fontName = new GooString(displayFontTab[i].name);
+         GooString *fontName = new GooString(displayFontTab[i].name);
  
 -        if (dir) {
 +        if (dir && displayFontTab[i].t1FileName) {
              GooString *fontPath = appendToPath(new GooString(dir), displayFontTab[i].t1FileName);
-             if (FileExists(fontPath->c_str()) ||
-                 FileExists(replaceSuffix(fontPath, ".pfb", ".pfa")->c_str())) {
+             if (FileExists(fontPath->c_str()) || FileExists(replaceSuffix(fontPath, ".pfb", ".pfa")->c_str())) {
+                 addFontFile(fontName, fontPath);
 
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: darealshinji <djcj@gmx.de>
@@ -41,41 +41,41 @@ index 1111111..2222222 100644
  
 -#if defined(_WIN32)
 +#if defined(_WIN32) && defined(DLL_EXPORT)
- #  define LIB_EXPORT __declspec(dllexport)
- #  define LIB_IMPORT __declspec(dllimport)
+ #    define LIB_EXPORT __declspec(dllexport)
+ #    define LIB_IMPORT __declspec(dllimport)
  #else
 diff --git a/poppler/GlobalParams.cc b/poppler/GlobalParams.cc
 index 1111111..2222222 100644
 --- a/poppler/GlobalParams.cc
 +++ b/poppler/GlobalParams.cc
-@@ -104,6 +104,7 @@ GlobalParams *globalParams = nullptr;
+@@ -104,6 +104,7 @@ std::unique_ptr<GlobalParams> globalParams;
  
  static HMODULE hmodule;
  
 +#ifdef DLL_EXPORT
  extern "C" {
-   /* Provide declaration to squelch -Wmissing-declarations warning */
-   BOOL WINAPI
-@@ -125,6 +126,7 @@ extern "C" {
+ /* Provide declaration to squelch -Wmissing-declarations warning */
+ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
+@@ -119,6 +120,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
      return TRUE;
-   }
+ }
  }
 +#endif
  
- static const char *
- get_poppler_datadir (void)
+ static const char *get_poppler_datadir(void)
+ {
 diff --git a/qt5/src/poppler-export.h b/qt5/src/poppler-export.h
 index 1111111..2222222 100644
 --- a/qt5/src/poppler-export.h
 +++ b/qt5/src/poppler-export.h
 @@ -2,7 +2,7 @@
- * This file is used to set the poppler_qt5_EXPORT macros right.
- * This is needed for setting the visibility on windows, it will have no effect on other platforms.
- */
+  * This file is used to set the poppler_qt5_EXPORT macros right.
+  * This is needed for setting the visibility on windows, it will have no effect on other platforms.
+  */
 -#if defined(_WIN32)
 +#if defined(_WIN32) && defined(DLL_EXPORT)
- # define _POPPLER_QT5_LIB_EXPORT __declspec(dllexport)
- # define _POPPLER_QT5_LIB_IMPORT __declspec(dllimport)
+ #    define _POPPLER_QT5_LIB_EXPORT __declspec(dllexport)
+ #    define _POPPLER_QT5_LIB_IMPORT __declspec(dllimport)
  #elif defined(__GNUC__)
 
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
@@ -94,10 +94,10 @@ index 1111111..2222222 100644
  #include "Page.h"
  
 -#if defined(HAVE_FCNTL_H) && defined(HAVE_SYS_MMAN_H) && defined(HAVE_SYS_STAT_H)
--#include <fcntl.h>
--#include <sys/stat.h>
--#include <sys/mman.h>
--#define CAN_CHECK_OPEN_FACES 1
+-#    include <fcntl.h>
+-#    include <sys/stat.h>
+-#    include <sys/mman.h>
+-#    define CAN_CHECK_OPEN_FACES 1
 -#endif
 -
  //------------------------------------------------------------------------
@@ -114,21 +114,23 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 1111111..2222222 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -45,9 +45,10 @@ set (CMAKE_CXX_EXTENSIONS OFF)
+@@ -48,10 +48,11 @@ set (CMAKE_CXX_EXTENSIONS OFF)
  
  # command line switches
  option(ENABLE_UNSTABLE_API_ABI_HEADERS "Install API/ABI unstable xpdf headers." OFF)
--option(BUILD_GTK_TESTS "Whether compile the GTK+ test programs." ON)
--option(BUILD_QT5_TESTS "Whether compile the Qt5 test programs." ON)
--option(BUILD_CPP_TESTS "Whether compile the CPP test programs." ON)
+-option(BUILD_GTK_TESTS "Whether to compile the GTK+ test programs." ON)
+-option(BUILD_QT5_TESTS "Whether to compile the Qt5 test programs." ON)
+-option(BUILD_QT6_TESTS "Whether to compile the Qt6 test programs." ON)
+-option(BUILD_CPP_TESTS "Whether to compile the CPP test programs." ON)
 +option(ENABLE_TESTS "Whether compile tests." ON)
-+option(BUILD_GTK_TESTS "Whether compile the GTK+ test programs." ${ENABLE_TESTS})
-+option(BUILD_QT5_TESTS "Whether compile the Qt5 test programs." ${ENABLE_TESTS})
-+option(BUILD_CPP_TESTS "Whether compile the CPP test programs." ${ENABLE_TESTS})
++option(BUILD_GTK_TESTS "Whether to compile the GTK+ test programs." ${ENABLE_TESTS})
++option(BUILD_QT5_TESTS "Whether to compile the Qt5 test programs." ${ENABLE_TESTS})
++option(BUILD_QT6_TESTS "Whether to compile the Qt6 test programs." ${ENABLE_TESTS})
++option(BUILD_CPP_TESTS "Whether to compile the CPP test programs." ${ENABLE_TESTS})
  option(ENABLE_SPLASH "Build the Splash graphics backend." ON)
  option(ENABLE_UTILS "Compile poppler command line utils." ON)
  option(ENABLE_CPP "Compile poppler cpp wrapper." ON)
-@@ -665,7 +666,9 @@ endif()
+@@ -727,7 +728,9 @@ endif()
  if(ENABLE_GLIB)
    add_subdirectory(glib)
  endif()

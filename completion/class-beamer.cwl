@@ -29,7 +29,7 @@
 #include:pdftexcmds
 #include:pdfescape
 #include:bigintcalc
-#include: bitset
+#include:bitset
 #include:uniquecounter
 #include:letltxmacro
 #include:hopatch
@@ -334,30 +334,15 @@
 \titlegraphic{text}
 \subject{text}
 \keywords{text}
-\section<mode specification>[short section name]{section name}
-\section<mode specification>{section name}
-\section[short section name]{section name}
-\section{section name}
-\section<mode specification>*[short section name]{section name}
-\section<mode specification>*{section name}
-\section*[short section name]{section name}
-\section*{section name}
-\subsection<mode specification>[short section name]{section name}
-\subsection<mode specification>{section name}
-\subsection[short section name]{section name}
-\subsection{section name}
-\subsection<mode specification>*[short section name]{section name}
-\subsection<mode specification>*{section name}
-\subsection*[short section name]{section name}
-\subsection*{section name}
-\subsubsection<mode specification>[short section name]{section name}
-\subsubsection<mode specification>{section name}
-\subsubsection[short section name]{section name}
-\subsubsection{section name}
-\subsubsection<mode specification>*[short section name]{section name}
-\subsubsection<mode specification>*{section name}
-\subsubsection*[short section name]{section name}
-\subsubsection*{section name}
+\section<mode specification>[short title]{title}
+\section<mode specification>{title}
+\section<mode specification>*{title}
+\subsection<mode specification>[short title]{title}
+\subsection<mode specification>{title}
+\subsection<mode specification>*{title}
+\subsubsection<mode specification>[short title]{title}
+\subsubsection<mode specification>{title}
+\subsubsection<mode specification>*{title}
 \AtBeginSection[special star text]{text}
 \AtBeginSection{text}
 \AtBeginSubsection[special star text]{text}
@@ -435,8 +420,8 @@
 \includeslide[options]{label name}
 \includeslide{label name}
 \includegraphics<overlay specification>[keyvals]{imagefile}
-\mode<mode specification>{text}
-\mode{text}
+\mode<mode specification>{text}#M
+\mode{text}#M
 \mode<mode specification>
 \mode*
 \mode
@@ -474,8 +459,7 @@
 \item[item label]<alert specification>
 \item[item label]
 \item
-\label<overlay specification>{label name}
-\label{key}
+\label<overlay specification>{key%labeldef}
 \resetcounteronoverlays{counter name}
 \resetcountonoverlays{count register name}
 \action<action specification>{text}

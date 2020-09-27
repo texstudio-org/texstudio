@@ -443,9 +443,9 @@ QDocument::QDocument(QObject *p)
 			this					, SIGNAL( redoAvailable(bool) ) );
 
 	connect(this							,
-			SIGNAL( lineDeleted(QDocumentLineHandle*) ),
+            SIGNAL( lineDeleted(QDocumentLineHandle*,int) ),
 			QLineMarksInfoCenter::instance(),
-			SLOT  ( lineDeleted(QDocumentLineHandle*) ) );
+            SLOT  ( lineDeleted(QDocumentLineHandle*,int) ) );
 
 }
 
@@ -657,13 +657,14 @@ void QDocument::setText(const QString& s, bool allowUndo)
 
 	m_impl->m_deleting = true;
 
-	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
-		emit lineDeleted(h);
-	//qDeleteAll(m_impl->m_lines);
-	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
+
+    for(int i=0;i<m_impl->m_lines.size();++i){
+        QDocumentLineHandle *h= m_impl->m_lines.at(i);
+        emit lineDeleted(h,i);
+    }
+
+    foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-//		emit lineRemoved(h);
-//		emit lineDeleted(h);
 		h->m_doc = nullptr;
 		h->deref();
 	}
@@ -775,7 +776,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 	bool slow = (size > 30 * 1024);
 	if (slow) emit slowOperationStarted();
 
-	if ( size < 500000 )
+    if ( size < 500000 )
 	{
 		// instant load for files smaller than 500kb
 		QByteArray d = f.readAll();
@@ -790,8 +791,7 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		int count = 0;
 		QByteArray ba;
 
-		startChunkLoading();
-		//m_lastFileState.checksum = 0;
+        startChunkLoading();
 
 		ba = f.read(100000);
 		if (codec == nullptr)
@@ -808,7 +808,6 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		delete dec;
 		stopChunkLoading();
 	}
-
 	if (slow) emit slowOperationEnded();
 
 	setCodecDirect(codec);
@@ -840,13 +839,12 @@ void QDocument::startChunkLoading()
 
 	m_impl->m_deleting = true;
 
-	//qDeleteAll(m_impl->m_lines);
-	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
-		emit lineDeleted(h);
+    for(int i=0;i<m_impl->m_lines.size();++i){
+        QDocumentLineHandle *h= m_impl->m_lines.at(i);
+        emit lineDeleted(h,i);
+    }
 	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
-//		emit lineRemoved(h);
-//		emit lineDeleted(h);
 		h->m_doc = nullptr;
 		h->deref();
  	}
@@ -3934,7 +3932,11 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				}
 			} else {
 				column += r.length;
-				rwidth = d->textWidth(lastFont, rng);
+#ifdef Q_OS_OSX
+                rwidth = p->fontMetrics().horizontalAdvance(rng);
+#else
+                rwidth = d->textWidth(lastFont, rng);
+#endif
 			}
 
 			if ( (xpos + rwidth) <= xOffset )
@@ -3961,31 +3963,34 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					pal.highlight()
 				);
 			} else {
-				if ( formats[0].foreground.isValid() ) p->setPen(formats[0].foreground);
-				else if ( formats[1].foreground.isValid() ) p->setPen(formats[1].foreground);
-				else if ( formats[2].foreground.isValid() ) p->setPen(formats[2].foreground);
-				else p->setPen(pal.text().color());
+                QColor fg(pal.text().color());
+                int priority=-100;
+                for(int i=0;i<3;i=i+1){
+                    if ( formats[i].foreground.isValid() && formats[i].priority>priority){
+                        fg=formats[i].foreground;
+                        priority=formats[i].priority;
+                    }
+                }
+                p->setPen(fg);
 
-				if ( formats[0].background.isValid() ) {
-					p->fillRect(
-						xpos, ypos,
-						rwidth,
-						QDocumentPrivate::m_lineSpacing,
-						formats[0].background
-					);
-				} else if ( formats[1].background.isValid() ) {
-					p->fillRect(
-						xpos, ypos,
-						rwidth, QDocumentPrivate::m_lineSpacing,
-						formats[1].background
-					);
-				} else if ( formats[2].background.isValid() ) {
-					p->fillRect(
-						xpos, ypos,
-						rwidth, QDocumentPrivate::m_lineSpacing,
-						formats[2].background
-					);
-				}
+                // not sure whether fg/bg should be handled separately concerning priority
+                QColor bg;
+                priority=-100;
+                for(int i=0;i<3;i=i+1){
+                if ( formats[i].background.isValid() &&  formats[i].priority>priority) {
+                    bg=formats[i].background;
+                    priority=formats[i].priority;
+                }
+                }
+                if(priority>-100){
+                    p->fillRect(
+                        xpos, ypos,
+                        rwidth,
+                        QDocumentPrivate::m_lineSpacing,
+                        bg
+                    );
+                }
+
 			}
 
 			if ( r.format & FORMAT_SPACE )
@@ -8775,7 +8780,7 @@ void QDocumentPrivate::emitLineDeleted(QDocumentLineHandle *h)
 		}
 	}
 
-	emit m_doc->lineDeleted(h);
+    emit m_doc->lineDeleted(h,-1);
 }
 
 void QDocumentPrivate::emitMarkChanged(QDocumentLineHandle *l, int m, bool on)

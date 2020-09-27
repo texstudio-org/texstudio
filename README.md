@@ -1,5 +1,5 @@
-# TeXstudio [![Build Status](https://travis-ci.org/texstudio-org/texstudio.svg?branch=master)](https://travis-ci.org/texstudio-org/texstudio) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b708b233294458288e60712d603f8bc)](https://www.codacy.com/app/sunderme/texstudio?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=texstudio-org/texstudio&amp;utm_campaign=Badge_Grade) [![Coverity Scan Build Status](https://img.shields.io/coverity/scan/5228.svg)](https://scan.coverity.com/projects/texstudio)
-
+# TeXstudio [![Build Status](https://travis-ci.org/texstudio-org/texstudio.svg?branch=master)](https://travis-ci.org/texstudio-org/texstudio) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b708b233294458288e60712d603f8bc)](https://www.codacy.com/app/sunderme/texstudio?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=texstudio-org/texstudio&amp;utm_campaign=Badge_Grade) 
+![CI](https://github.com/texstudio-org/texstudio/workflows/CI/badge.svg)
 
 TeXstudio is a fully featured LaTeX editor. Our goal is to make writing LaTeX documents as easy and comfortable as possible. Some of the outstanding features of TeXstudio are an integrated pdf viewer with (almost) word-level synchronization, live inline preview, advanced syntax-highlighting, live checking of references, citations, latex commands, spelling and grammar. Find out more at our website.
 

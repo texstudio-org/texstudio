@@ -13,6 +13,8 @@
  */
 void GitTest::basicFunctionality()
 {
+    if(!m_executeTests) // skip test in auto tests
+        return;
     if(bm->CMD_GIT.isEmpty())
         return;
     // create test dir
@@ -25,6 +27,8 @@ void GitTest::basicFunctionality()
     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream out(&data);
         out << "abc \n" << "bcd \n";
+    }else{
+        QFAIL("Generating test-file failed!");
     }
     // check status
     GIT::Status st=git.status(path);

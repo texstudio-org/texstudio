@@ -2,7 +2,7 @@
 # neeraavi 21 Mar 2007
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
-#modified muzimuzhi 18 Jan 2020, 8 May 2020
+#modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
 
 #include:nameref
 
@@ -129,8 +129,8 @@ xetex
 \hyperref[label%ref]{URL}{category}{name}{text}#M
 \hyperref[label%ref]{text}
 \hyperref{text}
-\hyperlink{name}{text}
-\hypertarget{name}{text}
+\hyperlink{target name}{link text%text}
+\hypertarget{target name}{anchor text%text}
 
 \phantomsection
 
@@ -147,6 +147,7 @@ xetex
 \subpdfbookmark{text}{name}
 \belowpdfbookmark{text}{name}
 \texorpdfstring{TEXstring}{PDFstring}
+\pdfstringdefDisableCommands{hooks}
 \hypercalcbp{dimen specification}
 
 \Acrobatmenu{menuoption}{text}
