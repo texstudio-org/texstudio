@@ -5191,7 +5191,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
         <source>Page count (negative subtracts)</source>
-        <translation type="unfinished"/>
+        <translation>Compteur de pages (soustractions négatives)</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1005"/>
