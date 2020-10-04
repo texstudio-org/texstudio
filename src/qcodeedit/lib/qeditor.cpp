@@ -3527,7 +3527,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 
 	if ( !handled)
 	{
-		QAbstractScrollArea::keyPressEvent(e);
+        QAbstractScrollArea::keyPressEvent(e);
 
 		foreach ( QEditorInputBindingInterface *b, m_bindings )
 			b->postKeyPressEvent(e, this);
