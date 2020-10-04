@@ -32,13 +32,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v2
-      with:
-        modules: 'qtscript'
-
     - name: Dependencies
-      run: sudo apt-get install libqt5svg5-dev zlib1g-dev
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtscript5-dev qttools5-dev libqt5svg5-devzlib1g-dev 
 
     - name: Configure
       run: qmake texstudio.pro CONFIG-=debug NO_POPPLER_PREVIEW=1
