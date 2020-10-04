@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Dependencies
-      run: sudo apt-get install libqt5svg5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtscript5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
 
     - name: Configure
       run: qmake texstudio.pro CONFIG+=debug
