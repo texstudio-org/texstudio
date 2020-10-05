@@ -120,5 +120,5 @@ zerofill=%<digits%>
 
 \igrsetmatchvalue{key%plain}{value}
 \igrsetmatches{list}
-\igrifmatch{key}{then}{else}
+\igrifmatch{key%plain}{then}{else}
 \igrmakezerofill{macro}{digits}
