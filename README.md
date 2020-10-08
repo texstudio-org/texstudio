@@ -128,7 +128,6 @@ In particular we are looking for people who want to try the most recent features
 User feedback is highly welcome. Depending on the type of feedback you may use different channels to communicate.
 
 *  Feature requests,bug reports and questions can be placed in the [issue tracker](https://github.com/texstudio-org/texstudio/issues).
-Please set a label whether this is a feature request/enhancement, a question or a bug report.
 In case of a bug report, please state version and operation system and a description which allows to reproduce the issue on another computer.
 
 ### Contribute
