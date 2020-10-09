@@ -121,7 +121,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-        <background>#8BE9FD</background>
+        <background>#005a04</background>
     </format>
     <format id="braceMismatch" >
         <bold>true</bold>
@@ -211,7 +211,7 @@
     <format id="grammarMistakeSpecial4" >
         <background>#C8FF61</background>
     </format>
-    
+
     <format id="latexSyntaxMistake" >
         <background>#B86800</background>
     </format>
@@ -355,7 +355,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#006400</foreground>
-    </format>	
+    </format>
 	</format>
 	    <format id="dtx:verbatim" >
         <bold>false</bold>
@@ -374,7 +374,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#CC8100</foreground>
-    </format>	
+    </format>
     <format id="dtx:commands" >
         <bold>true</bold>
         <italic>false</italic>
