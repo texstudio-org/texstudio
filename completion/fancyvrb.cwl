@@ -35,8 +35,8 @@
 \FancyVerbFormatLine#*
 \theFancyVerbLine#*
 
+\DefineVerbatimEnvironment{envname}{env type}{options%keyvals}
 \RecustomVerbatimEnvironment{envname}{env type}{options%keyvals}
-\RecustomVerbatimEnvironment{envname}{env type}{options%keyvals}#N
 \CustomVerbatimCommand{command}{cmd type}{options%keyvals}
 \RecustomVerbatimCommand{command}{cmd type}{options%keyvals}
 
@@ -74,7 +74,7 @@
 \begin{VerbatimOut}{file name}#V
 \end{VerbatimOut}
 
-#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\RecustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\begin{VerbatimOut}
+#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\begin{VerbatimOut}
 boxwidth
 baseline=#b,c,t
 commentchar=%<single char%>

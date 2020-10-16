@@ -16,12 +16,12 @@
 \pgfkeysalso{key list}#*
 \pgfqkeysalso{default path}{key list}#*
 
-\pgfkeysdef{key}{code}#*
-\pgfkeysedef{key}{code}#*
-\pgfkeysdefnargs{key}{arg count}{code}#*
-\pgfkeysedefnargs{key}{arg count}{code}#*
-\pgfkeysdefargs{key}{arg pattern}{code}#*
-\pgfkeysedefargs{key}{arg pattern}{code}#*
+\pgfkeysdef{key%plain}{code}#*
+\pgfkeysedef{key%plain}{code}#*
+\pgfkeysdefnargs{key%plain}{arg count}{code}#*
+\pgfkeysedefnargs{key%plain}{arg count}{code}#*
+\pgfkeysdefargs{key%plain}{arg pattern}{code}#*
+\pgfkeysedefargs{key%plain}{arg pattern}{code}#*
 
 \pgfkeysdefaultpath#*
 \pgfkeyscurrentpath#*
