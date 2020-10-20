@@ -1194,14 +1194,14 @@ void Texstudio::setupMenus()
 	act->trigger(); // initialize menu for specified type
 
 	//  User
-    newManagedMenu("main/macros", tr("Ma&cros"));
+        newManagedMenu("main/macros", tr("Ma&cros"));
 	updateUserMacros();
 	scriptengine::macros = &configManager.completerConfig->userMacros;
 
 	//---view---
 	menu = newManagedMenu("main/view", tr("&View"));
-    newManagedAction(menu, "prevdocument", tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageUp << MAC_OTHER(Qt::META + Qt::SHIFT + Qt::Key_Tab,Qt::CTRL + Qt::SHIFT + Qt::Key_Tab));
-    newManagedAction(menu, "nextdocument", tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageDown << MAC_OTHER(Qt::META + Qt::Key_Tab,Qt::CTRL + Qt::Key_Tab));
+        newManagedAction(menu, "prevdocument", tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageUp << MAC_OTHER(Qt::META + Qt::SHIFT + Qt::Key_Tab,Qt::CTRL + Qt::SHIFT + Qt::Key_Tab));
+        newManagedAction(menu, "nextdocument", tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::CTRL + Qt::Key_PageDown << MAC_OTHER(Qt::META + Qt::Key_Tab,Qt::CTRL + Qt::Key_Tab));
 	newManagedMenu(menu, "documents", tr("Open Documents"));
 	newManagedAction(menu, "documentlist", tr("List Of Open Documents"), SLOT(viewDocumentList()));
 	newManagedAction(menu, "documentlisthidden", tr("List Of Hidden Documents"), SLOT(viewDocumentListHidden()));
@@ -4245,29 +4245,29 @@ void Texstudio::saveSettings(const QString &configName)
 
 	config->endGroup();
 
-    // separate light/dark highlight formats
-    if(darkMode){
-        config->beginGroup("formatsDark");
+        // separate light/dark highlight formats
+        if(darkMode){
+            config->beginGroup("formatsDark");
 
-        if(asProfile){
-            // save all color info, don't remove default values
-            m_formats->save(*config, nullptr);
+            if(asProfile){
+                // save all color info, don't remove default values
+                m_formats->save(*config, nullptr);
+            }else{
+                QFormatFactory defaultFormats(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
+                m_formats->save(*config, &defaultFormats);
+            }
+            config->endGroup();
         }else{
-            QFormatFactory defaultFormats(":/qxs/defaultFormatsDark.qxf", this); //load default formats from resource file
-            m_formats->save(*config, &defaultFormats);
+            config->beginGroup("formats");
+            if(asProfile){
+                // save all color info, don't remove default values
+                m_formats->save(*config, nullptr);
+            }else{
+                QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+                m_formats->save(*config, &defaultFormats);
+            }
+            config->endGroup();
         }
-        config->endGroup();
-    }else{
-        config->beginGroup("formats");
-        if(asProfile){
-            // save all color info, don't remove default values
-            m_formats->save(*config, nullptr);
-        }else{
-            QFormatFactory defaultFormats(":/qxs/defaultFormats.qxf", this); //load default formats from resource file
-            m_formats->save(*config, &defaultFormats);
-        }
-        config->endGroup();
-    }
 
 	searchResultWidget()->saveConfig();
 
@@ -5553,11 +5553,12 @@ void Texstudio::macroDialogAccepted()
 {
 	configManager.completerConfig->userMacros.clear();
 
-    configManager.completerConfig->userMacros << userMacroDialog->getMacros();
+        configManager.completerConfig->userMacros << userMacroDialog->getMacros();
 
 	for (int i = 0; i < documents.documents.size(); i++)
 		configManager.completerConfig->userMacros << documents.documents[i]->localMacros;
 	updateUserMacros();
+        configManager.saveMacros();
 	completer->updateAbbreviations();
 	addMacrosAsTagList();
 	userMacroDialog->deleteLater();

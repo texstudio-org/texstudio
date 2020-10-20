@@ -49,6 +49,8 @@ public:
 	QSettings *saveSettings(const QString &saveName = "");
     QSettings *getSettings();
 
+    void saveMacros();
+
     bool execConfigDialog(QWidget *parentToDialog);
 
 //public configuration
