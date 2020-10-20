@@ -97,6 +97,7 @@ isEmpty(INTERNAL_TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
 !isEmpty(QJS){
     DEFINES += QJS
     QT += qml
+    QT -= script
     message(Use experimental JS engine)
 }
 
