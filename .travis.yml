@@ -33,7 +33,7 @@ matrix:
           - mxe-x86-64-w64-mingw32.static-tiff # poppler dependency
           - mxe-x86-64-w64-mingw32.static-zlib # poppler dependency
           - mxe-x86-64-w64-mingw32.static-nsis
-dist: xenial
+dist: focal
 sudo: required
 branches:
   only:
