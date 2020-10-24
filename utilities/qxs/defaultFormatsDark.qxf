@@ -336,25 +336,25 @@
   </format>
   <format id="txs-test-qdebug" >
     <foreground>#cdf260</foreground>
-    <!-- dtx -->
-    <format id="dtx:guard" >
-      <bold>false</bold>
-      <italic>false</italic>
-      <overline>false</overline>
-      <underline>false</underline>
-      <strikeout>false</strikeout>
-      <waveUnderline>false</waveUnderline>
-      <foreground>#f260a9</foreground>
-    </format>
-    <format id="dtx:macro" >
-      <bold>true</bold>
-      <italic>false</italic>
-      <overline>false</overline>
-      <underline>false</underline>
-      <strikeout>false</strikeout>
-      <waveUnderline>false</waveUnderline>
-      <foreground>#60f285</foreground>
-    </format>
+  </format>
+  <!-- dtx -->
+  <format id="dtx:guard" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#f260a9</foreground>
+  </format>
+  <format id="dtx:macro" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60f285</foreground>
   </format>
   <format id="dtx:verbatim" >
     <bold>false</bold>
