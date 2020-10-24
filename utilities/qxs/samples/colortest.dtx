@@ -1,0 +1,50 @@
+% \iffalse meta-comment
+%<*package>
+%%                        ^^A dtx:guard
+%% Copyright notice
+%%
+%</package>               ^^A dtx:macro
+% \fi
+%
+% \iffalse
+%<*batch>
+\preamble
+file for testing highlighting colors
+\endpreamble
+%</batch>
+% \fi
+%
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<*driver>
+\ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
+\ProvidesFile{colortest.dtx}%
+%</driver>
+%<package>\ProvidesPackage{none}%
+  [what changed?]
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{colortest.dtx}
+\end{document}
+%</driver>
+% \fi
+%<<verbatim
+asdf                                ^^A dtx:verbatim
+%foo
+% \section{Something}^^M^^J         ^^A dtx:specialchar
+% Hello ^^A this is a comment
+% \begin{verbatim}
+% Some verbatim text here.
+% \end{verbatim}
+% 
+% And now:
+% \begin{macro}{\foo}               ^^A dtx:commands
+% Does something really useful.
+%    \begin{macrocode}
+\newcommand*\foo{}
+%    \end{macrocode}
+% \end{macro}

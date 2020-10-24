@@ -1,0 +1,69 @@
+% !TeX spellcheck = en_US                                           % magicComment
+% English does not have "bad words", so we spellcheck in German.    % comment
+% todo: Find out what temporaryCodeCompletion is for.               % commentTodo
+\documentclass{article}
+
+\usepackage[T1]{fontenc}  % packagePresent
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{asymptote}
+\usepackage{undefined}    % packageMissing
+
+\begin{document}
+
+%% Basic highlighting
+\maketitle                % keyword
+\section{Section}         % extra-keyword
+\(\sum x + y + 123\)      % math-delimiter, math-keyword, numbers
+\begin{tabular}{r l}      % environment
+  one & two \\            % align-ampersand
+  three & four \\
+\end{tabular}             % ctrl + hover over tabular for link
+% escapeseq can be seen in colortest.js.
+\verb|verbatim|           % verbatim
+\begin{verbatim}
+  verbatim                % verbatim
+\end{verbatim}
+\begin{tikzpicture}
+  \draw rectangle (1,1);  % picture-keyword, picture
+\end{tikzpicture}
+% preedit can only be seen on OSX.
+
+%% LaTeX checking
+{match}                               % braceMatch
+\begin{center}match\end{center}       % braceMatch
+{mismatch]                            % braceMismatch
+\undefined                            % latexSyntaxMistake
+\label{sec:section}\ref{sec:section}  % referencePresent
+\ref{sec:undefined}                   % referenceMissing
+\label{sec:double}\label{sec:double}  % referenceMultiple
+\cite{undefined}                      % citationMissing
+
+%% Language checking
+% First, TeXStudio's native language checking, without LanguageTool.
+Feler                                                     % spellingMistake
+Dies ist ist eine Wortwiederholung.                       % wordRepetition
+Und eine Weile später kommt noch eine Wortwiederholung.   % wordRepititionLongRange
+Dies ist also ein total blöder Satz.                      % badWord
+
+% In order to check the LanguageTool highlighting, you need to set up that program first.
+% For the special rules, choose DE_AGREEMENT, KOMP_WIE, UPPERCASE_SENTENCE_START and EIN_PAAR.
+% After that, you should see grammarMistake, grammarMistakeSpecial1, grammarMistakeSpecial2,
+% grammarMistakeSpecial3 and grammarMistakeSpecial4.
+Dies ist eine Testtext mit ein Paar Fehlern.
+die werden von LanguageTool manchmal besser wie von TeXStudio selbst erkant.
+
+%% Line highlighting
+% After compilation, the following lines will be highlighted.
+\undefined                        % line:error
+\ref{sec:undefined}               % referenceMissing, line:warning
+\par\rule{1.05\textwidth}{2pt}    % line:badbox
+Put the cursor here.              % current
+
+%% Search
+% Run search and replace on the following line.
+Search and search and search and search and search and search and stop  % search, replacement, selection
+
+Ch-ch-ch-changes!
+
+\end{document}
