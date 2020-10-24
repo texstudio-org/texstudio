@@ -121,7 +121,7 @@
     <underline>false</underline>
     <strikeout>false</strikeout>
     <waveUnderline>false</waveUnderline>
-    <background>#07325e</background>
+    <background>#0b4c8d</background>
   </format>
   <format id="braceMismatch" >
     <bold>true</bold>
