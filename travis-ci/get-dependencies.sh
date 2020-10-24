@@ -38,9 +38,9 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 		#sudo apt-get install gdb
 		if [ $QT = "qt5" ] || [ $QT = "qt5Release" ] ; then
 			print_info "Installing packages: QT5"
-			sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
+			#sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
 		elif [ $QT = "qt5NoPoppler" ]; then
-			sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev zlib1g-dev pkg-config
+			#sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev zlib1g-dev pkg-config
 		else
 			print_error "Unsupported Qt version '${QT}'"
 			exit 1

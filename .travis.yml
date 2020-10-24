@@ -6,8 +6,22 @@ matrix:
     osx_image: xcode11.6
   - env: QT=qt5Release
     os: linux
+    dist: focal
+    addons:
+      apt:
+        packages:
+          - qtbase5-dev 
+          - qt5-default 
+          - qt5-qmake 
+          - libqt5svg5-dev 
+          - qtscript5-dev 
+          - qttools5-dev 
+          - libpoppler-qt5-dev 
+          - zlib1g-dev 
+          - pkg-config
   - env: QT=qt5win
     os: linux
+    dist: bionic
     addons:
       apt:
         sources:
@@ -33,7 +47,6 @@ matrix:
           - mxe-x86-64-w64-mingw32.static-tiff # poppler dependency
           - mxe-x86-64-w64-mingw32.static-zlib # poppler dependency
           - mxe-x86-64-w64-mingw32.static-nsis
-dist: bionic
 sudo: required
 branches:
   only:
