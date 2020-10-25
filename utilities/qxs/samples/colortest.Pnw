@@ -1,0 +1,9 @@
+\documentclass{article}
+
+\begin{document}
+
+<<caption="Pweave">>=         # pweave-delimiter
+s = "This is Pweave code."    # pweave-block
+@
+
+\end{document}
