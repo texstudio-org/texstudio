@@ -1255,28 +1255,9 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	//-------------------key replacements-----------------
 	config->setValue("User/New Key Replacements Created", true);
 
-	//user macros
-    bool newlyCreatedPath=!QDir(configBaseDir+"/macro").exists();
-    if(newlyCreatedPath){
-        newlyCreatedPath=QDir().mkpath(configBaseDir+"/macro");
-    }
+    saveMacros();
 
-	int index = 0;
-    foreach (Macro macro, completerConfig->userMacros) {
-		if (macro.name == TXS_AUTO_REPLACE_QUOTE_OPEN || macro.name == TXS_AUTO_REPLACE_QUOTE_CLOSE || macro.document)
-			continue;
-        if(newlyCreatedPath && index<10 && index!=2){
-            macro.setShortcut(QString("Shift+F%1").arg(index+1));
-        }
-        macro.save(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index++));
-	}
-    // remove unused macro files
-    // lazy approach, only first macro is removed
-    QFile fn(QString("%1macro/Macro_%2.txsMacro").arg(configBaseDir).arg(index));
-    if(fn.exists()){
-        fn.remove();
-    }
-    index=0;
+    int index=0;
 	while (config->contains(QString("Macros/%1").arg(index))) { //remove old macros which are not used any more
 		config->remove(QString("Macros/%1").arg(index));
 		index++;

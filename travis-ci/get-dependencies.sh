@@ -33,18 +33,18 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 		env PATH="${MXEDIR}/usr/bin:${MXEDIR}/usr/${MXETARGET}/qt5/bin:$PATH" PREFIX="${MXEDIR}/usr" TARGET="${MXETARGET}" JOBS="$JOBS" MXE_CONFIGURE_OPTS="--host='${MXETARGET}' --build='`${MXEDIR}/ext/config.guess`' --prefix='${MXEDIR}/usr/${MXETARGET}' --enable-static --disable-shared ac_cv_prog_HAVE_DOXYGEN='false' " TEST_FILE="poppler-test.cxx" make -f build-poppler-mxe.mk
 	else
 		print_info "Updating apt cache"
-		sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
-		sudo apt-get -qq update
-		sudo apt-get install gdb
-		if [ $QT = "qt5" ] || [ $QT = "qt5Release" ] ; then
-			print_info "Installing packages: QT5"
-			sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
-		elif [ $QT = "qt5NoPoppler" ]; then
-			sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev zlib1g-dev pkg-config
-		else
-			print_error "Unsupported Qt version '${QT}'"
-			exit 1
-		fi
+		#sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+		#sudo apt-get -qq update
+		#sudo apt-get install gdb
+		#if [ $QT = "qt5" ] || [ $QT = "qt5Release" ] ; then
+			#print_info "Installing packages: QT5"
+			#sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
+		#elif [ $QT = "qt5NoPoppler" ]; then
+			#sudo apt-get install qtbase5-dev qt5-default qt5-qmake  libqt5svg5-dev qtscript5-dev qttools5-dev zlib1g-dev pkg-config
+		#else
+			#print_error "Unsupported Qt version '${QT}'"
+			#exit 1
+		#fi
 	fi
 elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	print_info "Updating homebrew"

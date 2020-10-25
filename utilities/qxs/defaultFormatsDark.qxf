@@ -1,454 +1,452 @@
 <!DOCTYPE QXF>
 <QXF version="1.0" >
-    <format id="background" >
-        <linescolor>#44475A</linescolor>
-    </format>
-    <format id="line:error">
-		<background>#FF5555</background>
-	</format>
-    <format id="line:warning">
-		<background>#BD93F9</background>
-	</format>
-    <format id="line:badbox">
-		<background>#8BE9FD</background>
-	</format>
-    <format id="line:bookmark"></format>
-    <format id="line:bookmark0"></format>
-    <format id="line:bookmark1"></format>
-    <format id="line:bookmark2"></format>
-    <format id="line:bookmark3"></format>
-    <format id="line:bookmark4"></format>
-    <format id="line:bookmark5"></format>
-    <format id="line:bookmark6"></format>
-    <format id="line:bookmark7"></format>
-    <format id="line:bookmark8"></format>
-    <format id="line:bookmark9"></format>
-    <format id="magicComment" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#50FA7B</foreground>
-    </format>
-    <format id="commentTodo" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#6c56a4</foreground>
-    </format>
-    <format id="comment" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#6272A4</foreground>
-    </format>
-    <format id="keyword" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#8BE9FD</foreground>
-    </format>
-    <format id="extra-keyword" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#BD93F9</foreground>
-    </format>
-    <format id="math-keyword" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#FFB86C</foreground>
-    </format>
-	<format id="link" >
-        <underline>true</underline>
-        <foreground>#0000FF</foreground>
-	</format>
-    <format id="align-ampersand" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#0055FF</foreground>
-        <priority>5</priority>
-    </format>
-    <format id="verbatim" >
-        <foreground>#8BE9FD</foreground>
-    </format>
-    <format id="sweave-block" >
-        <foreground>#8BE9FD</foreground>
-    </format>
-	<format id="sweave-delimiter" >
-        <bold>true</bold>
-        <foreground>#8BE9FD</foreground>
-    </format>
-    <format id="pweave-block" >
-        <foreground>#8BE9FD</foreground>
-    </format>
-	<format id="pweave-delimiter" >
-        <bold>true</bold>
-        <foreground>#0095ff</foreground>
-    </format>
-    <format id="picture" >
-        <foreground>#FFB86C</foreground>
-    </format>
-    <format id="picture-keyword" >
-        <foreground>#FFB86C</foreground>
-    </format>
-    <format id="braceMatch" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <background>#002a87</background>
-    </format>
-    <format id="braceMismatch" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <background>#c00000</background>
-        <foreground>#FF5555</foreground>
-    </format>
-    <format id="search" >
-		<bold>false</bold>
-		<italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-		<background>#FFEF0B</background>
-		<foreground>#000000</foreground>
-    </format>
-    <format id="numbers" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#00B000</foreground>
-    </format>
-    <format id="math-delimiter" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#509600</foreground>
-    </format>
-    <format id="text" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#ffFFFFF</foreground>
-    </format>
-    <format id="escapeseq" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#ff0088</foreground>
-    </format>
-    <format id="spellingMistake" >
-        <waveUnderline>true</waveUnderline>
-        <linescolor>#FF0000</linescolor>
-    </format>
-    <format id="wordRepetition" >
-        <waveUnderline>true</waveUnderline>
-        <linescolor>#00B000</linescolor>
-    </format>
-    <format id="wordRepetitionLongRange" >
-        <waveUnderline>true</waveUnderline>
-        <linescolor>#00A000</linescolor>
-    </format>
-    <format id="badWord" >
-        <strikeout>true</strikeout>
-        <linescolor>#D600A4</linescolor>
-    </format>
-    <format id="grammarMistake" >
-        <waveUnderline>true</waveUnderline>
-        <linescolor>#0000A0</linescolor>
-    </format>
-    <format id="grammarMistakeSpecial1" >
-        <background>#00FFA0</background>
-    </format>
-    <format id="grammarMistakeSpecial2" >
-        <background>#00C0FF</background>
-    </format>
-    <format id="grammarMistakeSpecial3" >
-        <background>#00FF00</background>
-    </format>
-    <format id="grammarMistakeSpecial4" >
-        <background>#C8FF61</background>
-    </format>
-    
-    <format id="latexSyntaxMistake" >
-        <background>#B86800</background>
-    </format>
-    <format id="temporaryCodeCompletion" >
-        <italic>true</italic>
-        <foreground>#0000FF</foreground>
-    </format>
-   <format id="environment" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#206dc0</foreground>
-    </format>
-	<format id="referencePresent" >
-		<bold>false</bold>
-		<italic>false</italic>
-		<overline>false</overline>
-		<underline>false</underline>
-		<strikeout>false</strikeout>
-		<waveUnderline>false</waveUnderline>
-		<foreground>#00B000</foreground>
-	</format>
-	<format id="referenceMissing" >
-		<bold>false</bold>
-		<italic>false</italic>
-		<overline>false</overline>
-		<underline>false</underline>
-		<strikeout>false</strikeout>
-		<waveUnderline>true</waveUnderline>
-		<foreground>#00B000</foreground>
-	</format>
-	<format id="referenceMultiple" >
-		<bold>false</bold>
-		<italic>false</italic>
-		<overline>false</overline>
-		<underline>false</underline>
-		<strikeout>false</strikeout>
-		<waveUnderline>true</waveUnderline>
-		<foreground>#FF00FF</foreground>
-	</format>
-	<format id="citationPresent" >
-		<bold>false</bold>
-		<italic>false</italic>
-		<overline>false</overline>
-		<underline>false</underline>
-		<strikeout>false</strikeout>
-		<waveUnderline>false</waveUnderline>
-		<foreground>#00B000</foreground>
-	</format>
-	<format id="citationMissing" >
-		<bold>false</bold>
-		<italic>false</italic>
-		<overline>false</overline>
-		<underline>false</underline>
-		<strikeout>false</strikeout>
-		<waveUnderline>true</waveUnderline>
-		<foreground>#00B000</foreground>
-	</format>
-	<format id="packagePresent" >
-		<bold>false</bold>
-		<italic>false</italic>
-		<overline>false</overline>
-		<underline>false</underline>
-		<strikeout>false</strikeout>
-		<waveUnderline>false</waveUnderline>
-		<foreground>#00B000</foreground>
-	</format>
-	<format id="packageMissing" >
-		<bold>false</bold>
-		<italic>false</italic>
-		<overline>false</overline>
-		<underline>false</underline>
-		<strikeout>false</strikeout>
-		<waveUnderline>true</waveUnderline>
-		<foreground>#00B000</foreground>
-	</format>
-	<format id="structure" >
-		<bold>true</bold>
-	</format>
-	<format id="current" >
-		<background>#48484e</background>
-	</format>
-	<format id="selection" >
-		<background>#B2D8FF</background>
-		<wrapAround>true</wrapAround>
-	</format>
-	<format id="replacement" >
-		<background>#FFAAAA</background>
-	</format>
-	<format id="diffDelete" >
-		<strikeout>true</strikeout>
-		<background>#FFAAAA</background>
-	</format>
-	<format id="diffAdd" >
-		<background>#AAFFAA</background>
-	</format>
-	<format id="diffReplace" >
-		<background>#FFFF50</background>
-	</format>
-	<format id="previewSelection" >
-		<background>#DDFFCC</background>
-		<wrapAround>true</wrapAround>
-	</format>
-<!-- txs tests -->
-	<format id="txs-test" >
-		<bold>true</bold>
-		<foreground>#0095ff</foreground>
-	</format>
-	<format id="txs-test-summary" >
-		<bold>true</bold>
-	</format>
-	<format id="txs-test-pass" >
-        <foreground>#00B000</foreground>
-	</format>
-	<format id="txs-test-fail" >
-		<foreground>#C00000</foreground>
-	</format>
-	<format id="txs-test-warn" >
-        <foreground>#EA8800</foreground>
-	</format>
-	<format id="txs-test-qdebug" >
-        <foreground>#808000</foreground>
-<!-- dtx -->
-    <format id="dtx:guard" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#FFA500</foreground>
-    </format>
-    <format id="dtx:macro" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#006400</foreground>
-    </format>	
-	</format>
-	    <format id="dtx:verbatim" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#008080</foreground>
-    </format>
-    <format id="dtx:specialchar" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#CC8100</foreground>
-    </format>	
-    <format id="dtx:commands" >
-        <bold>true</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#10C010</foreground>
-    </format>
-<!-- Lua -->
-    <format id="lua:keyword" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#B200FF</foreground>
-    </format>
-    <format id="lua:comment" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <foreground>#808080</foreground>
-    </format>
-<!-- Asymptote -->
-    <format id="asymptote:block" >
-        <foreground>#804000</foreground>
-    </format>
-    <format id="asymptote:keyword" >
-        <foreground>#800080</foreground>
-    </format>
-    <format id="asymptote:type" >
-        <foreground>#808000</foreground>
-    </format>
-    <format id="asymptote:numbers" >
-        <foreground>#008000</foreground>
-    </format>
-    <format id="asymptote:string" >
-        <foreground>#000080</foreground>
-    </format>
-    <format id="asymptote:comment" >
-        <foreground>#808080</foreground>
-    </format>
-    <format id="qtscript:comment" >
-        <foreground>#808080</foreground>
-    </format>
-    <format id="qtscript:string" >
-        <foreground>#00B000</foreground>
-    </format>
-    <format id="qtscript:number" >
-        <foreground>#0000B0</foreground>
-    </format>
-    <format id="qtscript:keyword" >
-        <foreground>#808000</foreground>
-    </format>
-    <format id="qtscript:txs-variable" >
-        <foreground>#800000</foreground>
-    </format>
-    <format id="qtscript:txs-function" >
-		<italic>true</italic>
-        <!--<foreground>#800080</foreground>-->
-    </format>
-<!-- Preedit -->
-    <format id="preedit" >
-        <bold>false</bold>
-        <italic>false</italic>
-        <overline>false</overline>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <waveUnderline>false</waveUnderline>
-        <background>#FFFF7F</background>
-    </format>
+  <format id="background" >
+    <linescolor>#414157</linescolor>
+  </format>
+  <format id="line:error">
+    <background>#8d0b2b</background>
+  </format>
+  <format id="line:warning">
+    <background>#5e4807</background>
+  </format>
+  <format id="line:badbox">
+    <background>#07485e</background>
+  </format>
+  <format id="line:bookmark"></format>
+  <format id="line:bookmark0"></format>
+  <format id="line:bookmark1"></format>
+  <format id="line:bookmark2"></format>
+  <format id="line:bookmark3"></format>
+  <format id="line:bookmark4"></format>
+  <format id="line:bookmark5"></format>
+  <format id="line:bookmark6"></format>
+  <format id="line:bookmark7"></format>
+  <format id="line:bookmark8"></format>
+  <format id="line:bookmark9"></format>
+  <format id="magicComment" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#59a56c</foreground>
+  </format>
+  <format id="commentTodo" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#a55992</foreground>
+  </format>
+  <format id="comment" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#667299</foreground>
+  </format>
+  <format id="keyword" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60cdf2</foreground>
+  </format>
+  <format id="extra-keyword" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#a960f2</foreground>
+  </format>
+  <format id="math-keyword" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60f285</foreground>
+  </format>
+  <format id="link" >
+    <underline>true</underline>
+    <foreground>#184ef2</foreground>
+  </format>
+  <format id="align-ampersand" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#184ef2</foreground>
+    <priority>5</priority>
+  </format>
+  <format id="verbatim" >
+    <foreground>#85f260</foreground>
+  </format>
+  <format id="sweave-block" >
+    <foreground>#6085f2</foreground>
+  </format>
+  <format id="sweave-delimiter" >
+    <bold>true</bold>
+    <foreground>#a960f2</foreground>
+  </format>
+  <format id="pweave-block" >
+    <foreground>#6085f2</foreground>
+  </format>
+  <format id="pweave-delimiter" >
+    <bold>true</bold>
+    <foreground>#a960f2</foreground>
+  </format>
+  <format id="picture" >
+    <foreground>#f2f260</foreground>
+  </format>
+  <format id="picture-keyword" >
+    <foreground>#60f285</foreground>
+  </format>
+  <format id="braceMatch" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <background>#0b4c8d</background>
+  </format>
+  <format id="braceMismatch" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <background>#8d0b0b</background>
+    <foreground>#f2f218</foreground>
+  </format>
+  <format id="search" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <background>#48075e</background>
+    <foreground>#f2f218</foreground>
+  </format>
+  <format id="numbers" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#f2a960</foreground>
+  </format>
+  <format id="math-delimiter" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#85f218</foreground>
+  </format>
+  <format id="text" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+  </format>
+  <format id="escapeseq" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#f260a9</foreground>
+  </format>
+  <format id="spellingMistake" >
+    <waveUnderline>true</waveUnderline>
+    <linescolor>#f2184e</linescolor>
+  </format>
+  <format id="wordRepetition" >
+    <waveUnderline>true</waveUnderline>
+    <linescolor>#f2f218</linescolor>
+  </format>
+  <format id="wordRepetitionLongRange" >
+    <waveUnderline>true</waveUnderline>
+    <linescolor>#f2f218</linescolor>
+  </format>
+  <format id="badWord" >
+    <strikeout>true</strikeout>
+    <linescolor>#f260cd</linescolor>
+  </format>
+  <format id="grammarMistake" >
+    <waveUnderline>true</waveUnderline>
+    <linescolor>#184ef2</linescolor>
+  </format>
+  <format id="grammarMistakeSpecial1" >
+    <background>#4c8d0b</background>
+  </format>
+  <format id="grammarMistakeSpecial2" >
+    <background>#0b8d4c</background>
+  </format>
+  <format id="grammarMistakeSpecial3" >
+    <background>#0b8d8d</background>
+  </format>
+  <format id="grammarMistakeSpecial4" >
+    <background>#0b4c8d</background>
+  </format>
+
+  <format id="latexSyntaxMistake" >
+    <background>#8d4c0b</background>
+  </format>
+  <format id="temporaryCodeCompletion" >
+    <italic>true</italic>
+    <foreground>#0b2b8d</foreground>
+  </format>
+  <format id="environment" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60cdf2</foreground>
+  </format>
+  <format id="referencePresent" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="referenceMissing" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>true</waveUnderline>
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="referenceMultiple" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>true</waveUnderline>
+    <foreground>#f24e18</foreground>
+  </format>
+  <format id="citationPresent" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="citationMissing" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>true</waveUnderline>
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="packagePresent" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="packageMissing" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>true</waveUnderline>
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="structure" >
+    <bold>true</bold>
+  </format>
+  <format id="current" >
+    <background>#3c3c42</background>
+  </format>
+  <format id="selection" >
+    <background>#071d5e</background>
+    <wrapAround>true</wrapAround>
+  </format>
+  <format id="replacement" >
+    <background>#5e0733</background>
+  </format>
+  <format id="diffDelete" >
+    <strikeout>true</strikeout>
+    <background>#5e1d07</background>
+  </format>
+  <format id="diffAdd" >
+    <background>#075e33</background>
+  </format>
+  <format id="diffReplace" >
+    <background>#5e4807</background>
+  </format>
+  <format id="previewSelection" >
+    <background>#6d0b8d</background>
+    <wrapAround>true</wrapAround>
+  </format>
+  <!-- txs tests -->
+  <format id="txs-test" >
+    <bold>true</bold>
+    <foreground>#60a9f2</foreground>
+  </format>
+  <format id="txs-test-summary" >
+    <bold>true</bold>
+  </format>
+  <format id="txs-test-pass" >
+    <foreground>#85f260</foreground>
+  </format>
+  <format id="txs-test-fail" >
+    <foreground>#f26085</foreground>
+  </format>
+  <format id="txs-test-warn" >
+    <foreground>#f2a960</foreground>
+  </format>
+  <format id="txs-test-qdebug" >
+    <foreground>#cdf260</foreground>
+  </format>
+  <!-- dtx -->
+  <format id="dtx:guard" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#f260a9</foreground>
+  </format>
+  <format id="dtx:macro" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60f285</foreground>
+  </format>
+  <format id="dtx:verbatim" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#85f260</foreground>
+  </format>
+  <format id="dtx:specialchar" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#f260a9</foreground>
+  </format>
+  <format id="dtx:commands" >
+    <bold>true</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#60f285</foreground>
+  </format>
+  <!-- Lua -->
+  <format id="lua:keyword" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#f26085</foreground>
+  </format>
+  <format id="lua:comment" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <foreground>#667299</foreground>
+  </format>
+  <!-- Asymptote -->
+  <format id="asymptote:block" >
+    <foreground>#6085f2</foreground>
+  </format>
+  <format id="asymptote:keyword" >
+    <foreground>#f26085</foreground>
+  </format>
+  <format id="asymptote:type" >
+    <foreground>#f2f260</foreground>
+  </format>
+  <format id="asymptote:numbers" >
+    <foreground>#f2a960</foreground>
+  </format>
+  <format id="asymptote:string" >
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="asymptote:comment" >
+    <foreground>#667299</foreground>
+  </format>
+  <format id="qtscript:comment" >
+    <foreground>#667299</foreground>
+  </format>
+  <format id="qtscript:string" >
+    <foreground>#60f260</foreground>
+  </format>
+  <format id="qtscript:number" >
+    <foreground>#f2a960</foreground>
+  </format>
+  <format id="qtscript:keyword" >
+    <foreground>#f26085</foreground>
+  </format>
+  <format id="qtscript:txs-variable" >
+    <foreground>#6060f2</foreground>
+  </format>
+  <format id="qtscript:txs-function" >
+    <italic>true</italic>
+  </format>
+  <!-- Preedit -->
+  <format id="preedit" >
+    <bold>false</bold>
+    <italic>false</italic>
+    <overline>false</overline>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+    <waveUnderline>false</waveUnderline>
+    <background>#8d6d0b</background>
+  </format>
 </QXF>

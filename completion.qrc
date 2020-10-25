@@ -161,8 +161,8 @@
 <file>completion/parskip.cwl</file>
 <file>completion/patch-common.cwl</file>
 <file>completion/pdfpages.cwl</file>
-<file>completion/pgf.cwl</file>
 <file>completion/pgfcore.cwl</file>
+<file>completion/pgf.cwl</file>
 <file>completion/pgffor.cwl</file>
 <file>completion/pgfkeys.cwl</file>
 <file>completion/pgfmath.cwl</file>
@@ -183,9 +183,9 @@
 <file>completion/pst-fill.cwl</file>
 <file>completion/pst-node.cwl</file>
 <file>completion/pst-plot.cwl</file>
+<file>completion/pstricks.cwl</file>
 <file>completion/pst-text.cwl</file>
 <file>completion/pst-tree.cwl</file>
-<file>completion/pstricks.cwl</file>
 <file>completion/regexpatch.cwl</file>
 <file>completion/rotating.cwl</file>
 <file>completion/scraddr.cwl</file>
@@ -211,14 +211,15 @@
 <file>completion/tabulary.cwl</file>
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
+<file>completion/tdsfrmath.cwl</file>
 <file>completion/tex.cwl</file>
 <file>completion/textcomp.cwl</file>
 <file>completion/theorem.cwl</file>
 <file>completion/thmtools.cwl</file>
 <file>completion/tikz-cd.cwl</file>
-<file>completion/tikz-timing.cwl</file>
 <file>completion/tikz.cwl</file>
 <file>completion/tikzorbital.cwl</file>
+<file>completion/tikz-timing.cwl</file>
 <file>completion/titlesec.cwl</file>
 <file>completion/titletoc.cwl</file>
 <file>completion/tocbibind.cwl</file>
