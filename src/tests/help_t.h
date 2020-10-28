@@ -10,7 +10,7 @@
 class HelpTest: public QObject{
 	Q_OBJECT
 public:
-	HelpTest(bool executeAllTests=true) : allTests(executeAllTests) {}
+    HelpTest(Help *obj) : help(obj) {}
 private slots:
 	void packageDocFile_data() {
 		QTest::addColumn<QString>("package");
@@ -30,7 +30,7 @@ private slots:
 			return;
 		}
 		QStringList checkList=fileWithoutPath.split(";");
-		QString texdocPathname = Help::packageDocFile(package, true);
+        QString texdocPathname = help.packageDocFile(package, true);
 		if (texdocPathname == "") {
 			QVERIFY2(false, QString("texdoc command was not found in the search path or package \"%1\" is not installed").arg(package).toLatin1().constData());
 		}
@@ -47,7 +47,7 @@ private slots:
 	}
 
 private:
-	bool allTests;
+    Help help;
 };
 
 #endif

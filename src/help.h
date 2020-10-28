@@ -8,34 +8,25 @@ class Help : public QObject
 	Q_OBJECT
 
 public:
-	static Help *instance();
+    explicit Help(QObject *parent=nullptr);
 
-	static bool isMiktexTexdoc();
-	static bool isTexdocExpectedToFinish();
-	static QString texdocCommand();
-	static QString packageDocFile(const QString &package, bool silent = false);
+    bool isMiktexTexdoc();
+    bool isTexdocExpectedToFinish();
+    QString packageDocFile(const QString &package, bool silent = false);
 
 signals:
 	void texdocAvailableReply(const QString &package, bool available, QString errorMessage);
+    void runCommand(const QString &commandline, QString *output) const;
+    void statusMessage(const QString &message) const;
 
 public slots:
 	void execTexdocDialog(const QStringList &packages, const QString &defaultPackage);
 	void viewTexdoc(QString package);
 	void texdocAvailableRequest(const QString &package);
 
-private slots:
-	void texdocProcessFinished();
-	void texdocAvailableRequestFinished(int exitCode);
-
 private:
-	Help();
-	Help(const Help &);
-	Help &operator=(const Help &);
-	static QStringList getAdditionalCmdSearchPathList();
-
-	static Help *m_Instance;
-	static int texDocSystem;
-	static QString m_texdocCommand;
+    QString runTexdoc(QString args) const;
+    int texDocSystem;
 };
 
 

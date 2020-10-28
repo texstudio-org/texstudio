@@ -2,6 +2,7 @@
 #define TEXDOCDIALOG_H
 
 #include "mostQtHeaders.h"
+#include "help.h"
 
 
 namespace Ui {
@@ -13,7 +14,7 @@ class TexdocDialog : public QDialog
 	Q_OBJECT
 
 public:
-	explicit TexdocDialog(QWidget *parent = 0);
+    TexdocDialog(QWidget *parent,Help *obj);
 	void setPackageNames(const QStringList &packages);
 	void setPreferredPackage(const QString &package);
 
@@ -33,6 +34,7 @@ private:
 	QAbstractButton *openButton;
 	QTimer checkTimer;
 	QString lastDocRequest;
+    Help *help;
 };
 
 #endif // TEXDOCDIALOG_H

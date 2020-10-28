@@ -611,7 +611,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 //Q_DECLARE_METATYPE(LatexEditorView *)
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig, LatexDocument *doc) : QWidget(parent), document(nullptr), latexPackageList(nullptr), spellerManager(nullptr), speller(nullptr), useDefaultSpeller(true), curChangePos(-1), config(aconfig), bibReader(nullptr)
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig, LatexDocument *doc) : QWidget(parent), document(nullptr), latexPackageList(nullptr), spellerManager(nullptr), speller(nullptr), useDefaultSpeller(true), curChangePos(-1), config(aconfig), bibReader(nullptr), help(nullptr)
 {
 	Q_ASSERT(config);
 
@@ -1747,17 +1747,18 @@ void LatexEditorView::openPackageDocumentation(QString package)
 		package = "scrartcl";
 	if (package.startsWith("class-"))
 		package = package.mid(6);
-	if (!package.isEmpty()) {
+    if (!package.isEmpty() && help) {
 		if (config->texdocHelpInInternalViewer) {
-			QString docfile = Help::packageDocFile(package);
+            QString docfile = help->packageDocFile(package);
 			if (docfile.isEmpty())
 				return;
 			if (docfile.endsWith(".pdf"))
 				emit openInternalDocViewer(docfile, command);
 			else
-				Help::instance()->viewTexdoc(package); // fallback e.g. for dvi
+                help->viewTexdoc(package); // fallback e.g. for dvi
+
 		} else {
-			Help::instance()->viewTexdoc(package);
+            help->viewTexdoc(package);
 		}
 	}
 }

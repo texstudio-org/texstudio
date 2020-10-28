@@ -54,8 +54,6 @@
 #include "qmetautils.h"
 #include "updatechecker.h"
 #include "session.h"
-#include "svn.h"
-#include "help.h"
 #include "searchquery.h"
 #include "fileselector.h"
 #include "utilsUI.h"
@@ -414,6 +412,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
     connect(&git, &GIT::statusMessage, this, &Texstudio::setStatusMessageProcess);
     connect(&git, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+
+    connect(&help, &Help::statusMessage, this, &Texstudio::setStatusMessageProcess);
+    connect(&help, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
 
     connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
 
@@ -1994,10 +1995,11 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	// find closed master doc
 	if (doc) {
-	        LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
+        LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
 		edit->setLatexPackageList(&latexPackageList);
 		edit->document = doc;
 		edit->editor->setFileName(doc->getFileName());
+        edit->setHelp(&help);
 		disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
 		configureNewEditorView(edit);
 		if (edit->editor->fileInfo().suffix().toLower() != "tex")
@@ -2034,6 +2036,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
     doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
 	LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);
+    edit->setHelp(&help);
 	if (hidden) {
 		edit->editor->setLineWrapping(false); //disable linewrapping in hidden docs to speed-up updates
 		doc->clearWidthConstraint();
@@ -2236,6 +2239,7 @@ void Texstudio::fileNewInternal(QString fileName)
 	doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
 	LatexEditorView *edit = new LatexEditorView (nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);
+    edit->setHelp(&help);
 	if (configManager.newFileEncoding)
 		edit->editor->setFileCodec(configManager.newFileEncoding);
 	else
@@ -6529,7 +6533,7 @@ void Texstudio::texdocHelp()
 		packages.removeAll("tex");
 	}
 
-	Help::instance()->execTexdocDialog(packages, selection);
+    help.execTexdocDialog(packages, selection);
 }
 /*!
  * \brief show about dialog
