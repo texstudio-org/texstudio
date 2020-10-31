@@ -42,8 +42,7 @@ void Help::viewTexdoc(QString package)
 bool Help::isMiktexTexdoc()
 {
     if (!texDocSystem) {
-        QString answer;
-        emit runCommand(" --version",&answer);
+        QString answer=runTexdoc("--version");
 		texDocSystem = answer.startsWith("MiKTeX") ? 1 : 2;
 	}
 	return (texDocSystem == 1);
