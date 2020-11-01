@@ -1004,7 +1004,11 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			//// bibliography ////
 			if (lp.possibleCommands["%bibliography"].contains(cmd)) {
 				QStringList additionalBibPaths = ConfigManagerInterface::getInstance()->getOption("Files/Bib Paths").toString().split(getPathListSeparator());
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+                QStringList bibs = firstArg.split(',', Qt::SkipEmptyParts);
+#else
 				QStringList bibs = firstArg.split(',', QString::SkipEmptyParts);
+#endif
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 				foreach (const QString &elem, bibs) { //latex doesn't seem to allow any spaces in file names
 					mMentionedBibTeXFiles.insert(line(i).handle(), FileNamePair(elem, getAbsoluteFilePath(elem, "bib", additionalBibPaths)));

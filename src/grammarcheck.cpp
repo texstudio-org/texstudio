@@ -645,7 +645,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     connect(javaProcess, SIGNAL(finished(int, QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-    javaProcess->start(quoteSpaces(javaPath)+ " -cp " + quoteSpaces(ltPath) + " " + ltArguments);
+    javaProcess->start(quoteSpaces(javaPath),QStringList()<< "-cp" << quoteSpaces(ltPath) << ltArguments.split(" ")); // check sdm
     javaProcess->waitForStarted(500);
     javaProcess->waitForReadyRead(500);
     errorText=javaProcess->readAllStandardError();
@@ -692,7 +692,7 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
 
     QNetworkRequest req(server);
     req.setHeader(QNetworkRequest::ContentTypeHeader, "text/json");
-    QByteArray post;
+    QString post;
     post.reserve(text.length() + 50);
     post.append("language=" + lang + "&text=");
     post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
@@ -705,7 +705,7 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
     req.setAttribute(AttributeText, text);
     req.setAttribute(AttributeSubTicket, subticket);
 
-    nam->post(req, post);
+    nam->post(req, post.toUtf8());
 }
 /*!
  * \brief GrammarCheckLanguageToolJSON::shutdown
