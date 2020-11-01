@@ -6,22 +6,15 @@
 #include <QProcessEnvironment>
 #include <QMutex>
 
-
-Help *Help::m_Instance = nullptr;
-
-Help::Help() :
-    QObject(nullptr)
+Help::Help(QObject *parent): QObject(parent),texDocSystem(0)
 {
+
 }
 
-QStringList Help::getAdditionalCmdSearchPathList()
-{
-	return ConfigManagerInterface::getInstance()->getOption("Tools/Search Paths").toString().split(getPathListSeparator());
-}
 
 void Help::execTexdocDialog(const QStringList &packages, const QString &defaultPackage)
 {
-	TexdocDialog dialog;
+    TexdocDialog dialog(nullptr,this);
 	dialog.setPackageNames(packages);
 	if (!defaultPackage.isEmpty()) {
 		dialog.setPreferredPackage(defaultPackage);
@@ -40,32 +33,16 @@ void Help::viewTexdoc(QString package)
 		package = act->data().toString();
 	}
 	if (!package.isEmpty()) {
-		if (texdocCommand().isEmpty()) UtilsUi::txsWarning(tr("texdoc not found."));
-		QProcess *proc = new QProcess(this);
-		connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(texdocProcessFinished()));
-#ifdef Q_OS_OSX
-		QStringList paths;
-		paths.append(getEnvironmentPathList());
-		paths.append(getAdditionalCmdSearchPathList());
-
-		updatePathSettings(proc, paths.join(':'));
-#endif
-		proc->start(texdocCommand(), QStringList() << "--view" << package);
-		if (isTexdocExpectedToFinish() && !proc->waitForFinished(2000)) {
-			UtilsUi::txsWarning(QString(tr("texdoc took too long to open the documentation for the package:") + "\n%1").arg(package));
-		}
+        QString answer=runTexdoc("--view "+package);
 	}
 }
 
-int Help::texDocSystem = 0;
+
 
 bool Help::isMiktexTexdoc()
 {
-	if (!texDocSystem && !texdocCommand().isEmpty()) {
-		QProcess proc;
-		proc.start(texdocCommand(), QStringList() << "--version");
-		proc.waitForFinished(1000);
-		QString answer = QString(proc.readAll());
+    if (!texDocSystem) {
+        QString answer=runTexdoc("--version");
 		texDocSystem = answer.startsWith("MiKTeX") ? 1 : 2;
 	}
 	return (texDocSystem == 1);
@@ -85,59 +62,27 @@ bool Help::isTexdocExpectedToFinish()
 	return true;
 }
 
-QString Help::m_texdocCommand;
-
-QString Help::texdocCommand()
-{
-	if (m_texdocCommand.isEmpty()) {
-		QStringList paths;
-		paths.append(getEnvironmentPathList());
-		paths.append(getAdditionalCmdSearchPathList());
-#ifdef Q_OS_WIN
-		QString cmd = findAbsoluteFilePath("texdoc", "exe", paths, "not_found");
-#else
-		QString cmd = findAbsoluteFilePath("texdoc", "", paths, "not_found");
-#endif
-		m_texdocCommand = cmd.startsWith("not_found") ? "" : cmd;
-	}
-	return m_texdocCommand;
-}
 
 QString Help::packageDocFile(const QString &package, bool silent)
 {
-	QString cmd = texdocCommand();
+    QString cmd = BuildManager::CMD_TEXDOC;
 	if (cmd.isEmpty()) {
 		if (!silent) UtilsUi::txsWarning(tr("texdoc not found."));
 		return QString();
 	}
 	QStringList args;
-	if (Help::isMiktexTexdoc()) {
+    if (isMiktexTexdoc()) {
 		args << "--list-only";
 	} else {
 		args << "--list" << "--machine";
 	}
 	args << package;
-	QProcess proc;
 
-#ifdef Q_OS_OSX
-	QStringList paths;
-	paths.append(getEnvironmentPathList());
-	paths.append(getAdditionalCmdSearchPathList());
 
-	updatePathSettings(&proc, paths.join(':'));
-#endif
+    QString output =runTexdoc(args.join(" "));
 
-	proc.start(cmd, args);
-
-	if (!proc.waitForFinished(2000)) {
-		if (!silent) {
-			UtilsUi::txsWarning(QString(tr("texdoc did not respond to query on package:") + "\n%1").arg(package));
-		}
-		return QString();
-	}
-	QString output = proc.readAllStandardOutput();
 	QStringList allFiles;
-	if (Help::isMiktexTexdoc()) {
+    if (isMiktexTexdoc()) {
 		allFiles = output.split("\r\n");
 	} else {
 		foreach (const QString &line, output.split("\n")) {
@@ -157,7 +102,7 @@ void Help::texdocAvailableRequest(const QString &package)
 {
 	if (package.isEmpty())
 		return;
-	if (texdocCommand().isEmpty()) {
+    if (BuildManager::CMD_TEXDOC.isEmpty()) {
 		emit texdocAvailableReply(package, false, tr("texdoc not found."));
 		return;
 	}
@@ -171,26 +116,7 @@ void Help::texdocAvailableRequest(const QString &package)
 		// There seems to be no option yielding only the would be called command
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}
-	QProcess *proc = new QProcess(this);
-	proc->setProperty("package", package);
-	connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(texdocAvailableRequestFinished(int)));
-#ifdef Q_OS_OSX
-	QStringList paths;
-	paths.append(getEnvironmentPathList());
-	paths.append(getAdditionalCmdSearchPathList());
-
-	updatePathSettings(proc, paths.join(':'));
-#endif
-	proc->start(texdocCommand(), args);
-}
-
-void Help::texdocAvailableRequestFinished(int exitCode)
-{
-	Q_UNUSED(exitCode)
-	QProcess *proc = qobject_cast<QProcess *>(sender());
-	if (!proc) return;
-	QString package = proc->property("package").toString();
-	QString docCommand = proc->readAll();
+    QString docCommand=runTexdoc(args.join(" "));
     if(!isMiktexTexdoc() && !docCommand.isEmpty()){
         // analyze texdoc --list result in more detail, as it gives results even for partially matched names
         QStringList lines=docCommand.split("\n");
@@ -203,30 +129,23 @@ void Help::texdocAvailableRequestFinished(int exitCode)
         }
     }
 
-	emit texdocAvailableReply(package, !docCommand.isEmpty(), QString());
-	proc->deleteLater();
+    emit texdocAvailableReply(package, !docCommand.isEmpty(), QString());
 }
 
-void Help::texdocProcessFinished()
+/*!
+ * \brief run texdoc command
+ * \param args
+ * \return
+ */
+QString Help::runTexdoc(QString args) const
 {
-	QProcess *proc = qobject_cast<QProcess *>(sender());
-	if (proc) {
-		QString message(proc->readAllStandardError().trimmed());
-		if (!message.isEmpty())
-			UtilsUi::txsWarning(message);
-		proc->deleteLater();
-	}
+    QString output;
+    emit statusMessage(QString(" texdoc "));
+    emit runCommand(BuildManager::CMD_TEXDOC+" "+args, &output);
+    return output;
 }
 
-Help *Help::instance()
-{
-	static QMutex mutex;
-	mutex.lock();
-	if (!m_Instance)
-		m_Instance = new Help();
-	mutex.unlock();
-	return m_Instance;
-}
+
 
 
 LatexReference::LatexReference(QObject *parent) : QObject(parent) {}

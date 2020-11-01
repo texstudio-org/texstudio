@@ -1,14 +1,14 @@
 #include "texdocdialog.h"
 #include "ui_texdocdialog.h"
-#include "help.h"
 #include "latexrepository.h"
 #include "utilsUI.h"
 
-TexdocDialog::TexdocDialog(QWidget *parent) :
+TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 	QDialog(parent),
 	ui(new Ui::TexdocDialog),
 	packageNameValidator(this),
-    openButton(nullptr)
+    openButton(nullptr),
+    help(obj)
 {
 	ui->setupUi(this);
 	UtilsUi::resizeInFontHeight(this, 28, 10);
@@ -26,7 +26,7 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 	checkTimer.setSingleShot(true);
 	connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
 	connect(ui->cbPackages, SIGNAL(editTextChanged(QString)), SLOT(searchTermChanged(QString)));
-	connect(Help::instance(), SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
+    connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
 
 	updateDocAvailableInfo("", false); // initially disable warning message
 }
@@ -84,8 +84,8 @@ void TexdocDialog::checkDockAvailable()
 {
 	if (lastDocRequest.isEmpty())
 		updateDocAvailableInfo("", false);
-	else
-		Help::instance()->texdocAvailableRequest(lastDocRequest);
+    else ;
+        help->texdocAvailableRequest(lastDocRequest);
 }
 
 void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available, QString customWarning)

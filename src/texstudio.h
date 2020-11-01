@@ -47,6 +47,7 @@
 #include "diffoperations.h"
 #include "svn.h"
 #include "git.h"
+#include "help.h"
 
 #include <QProgressDialog>
 
@@ -192,6 +193,7 @@ private:
 	SpellerManager spellerManager;
 	SVN svn;
     GIT git;
+    Help help;
 	SafeThread grammarCheckThread;
 	GrammarCheck *grammarCheck;
 	Bookmarks *bookmarks;

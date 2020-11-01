@@ -19,6 +19,7 @@
 #include "bibtexreader.h"
 #include "cursorposition.h"
 #include "latexcompleter.h"
+#include "help.h"
 class QDocumentLineHandle;
 
 class LatexDocument;
@@ -165,6 +166,13 @@ public:
 
     void updatePalette(const QPalette & pal);
 
+    void setHelp(Help *obj){
+        help=obj;
+    };
+    Help* getHelp(){
+        return help;
+    }
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction,
 	        *statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -210,6 +218,8 @@ private:
 	QList<QPair<QDocumentLine, QFormatRange> > tempHighlightQueue;
 
 	QMap<QString, QString> mReplacementList;
+
+    Help *help;
 
 private slots:
 	void requestCitation(); //emits needCitation with selected text
