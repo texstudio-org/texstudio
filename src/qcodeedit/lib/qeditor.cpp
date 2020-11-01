@@ -5042,8 +5042,11 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
     if ( protectedCursor(c) || text.isEmpty())
         return;
-
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList lines = text.split('\n', Qt::KeepEmptyParts);
+#else
     QStringList lines = text.split('\n', QString::KeepEmptyParts);
+#endif
 
     bool hasSelection = c.hasSelection();
     if (hasSelection && c.selectedText() == text) {

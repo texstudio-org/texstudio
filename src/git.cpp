@@ -65,7 +65,11 @@ QStringList GIT::log(QString filename) const
     const QString path = QFileInfo(filename).absolutePath();
     QString fn = QFileInfo(filename).fileName();
     QString output = runGit("log --pretty='%h %s@@@'", quote(path),quote(fn));
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList revisions = output.split("@@@", Qt::SkipEmptyParts);
+#else
     QStringList revisions = output.split("@@@", QString::SkipEmptyParts);
+#endif
     // circumvent strange behaviour of git adding \n  now and then ...
     for(QString& elem:revisions){
         elem=elem.simplified();

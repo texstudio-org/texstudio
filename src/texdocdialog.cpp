@@ -82,10 +82,11 @@ void TexdocDialog::delayedCheckDocAvailable(const QString &package)
 
 void TexdocDialog::checkDockAvailable()
 {
-	if (lastDocRequest.isEmpty())
+    if (lastDocRequest.isEmpty()){
 		updateDocAvailableInfo("", false);
-    else ;
+    } else {
         help->texdocAvailableRequest(lastDocRequest);
+    }
 }
 
 void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available, QString customWarning)

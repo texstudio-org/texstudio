@@ -88,7 +88,11 @@ void ThesaurusDatabaseType::load(QFile &file)
 			do {
 				line = s.readLine();
 				if (line.startsWith("#") || line.startsWith("%")) continue; //comments
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+                QStringList splitted = line.split("|", Qt::SkipEmptyParts);
+#else
 				QStringList splitted = line.split("|", QString::SkipEmptyParts);
+#endif
 				if (splitted.size() < 2) continue;
 				userWords.insert(splitted[0].toLower(), splitted);
 				for (int i = 1; i < splitted.length(); i++)

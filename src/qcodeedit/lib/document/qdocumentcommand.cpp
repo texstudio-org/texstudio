@@ -525,10 +525,17 @@ QDocumentInsertCommand::QDocumentInsertCommand(	int l, int offset,
  : QDocumentCommand(Insert, doc, p)
 {
     QStringList lines;
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    if (!text.contains("\n") && text.contains("\r"))  //mac line ending
+      lines = text.split(QLatin1Char('\r'), Qt::KeepEmptyParts);
+    else
+      lines = text.split(QLatin1Char('\n'), Qt::KeepEmptyParts);
+#else
     if (!text.contains("\n") && text.contains("\r"))  //mac line ending
       lines = text.split(QLatin1Char('\r'), QString::KeepEmptyParts);
     else
       lines = text.split(QLatin1Char('\n'), QString::KeepEmptyParts);
+#endif
 
 	if ( !m_doc || text.isEmpty() )
 		qFatal("Invalid insert command");

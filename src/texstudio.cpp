@@ -4816,7 +4816,11 @@ void Texstudio::insertTextCompletion()
     QDocument *doc=currentEditor()->document();
     // generate regexp for getting fuzzy results
     // here the first letter must match, the rest can be fuzzy
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList chars=word.split("",Qt::SkipEmptyParts);
+#else
     QStringList chars=word.split("",QString::SkipEmptyParts);
+#endif
     QString regExpression=chars.join(".*");
     QRegExp rx("^"+regExpression);
 
@@ -7883,9 +7887,18 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 		for (int i = 0; i < changedWord.size(); i++)
 			if (changedWord[i].category() == QChar::Other_Control || changedWord[i].category() == QChar::Other_Format)
 				changedWord[i] = '\1';
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+        foreach (const QString &x, changedWord.split('\1', Qt::SkipEmptyParts)){
+            if (regex.isEmpty())
+                regex += QRegExp::escape(x);
+            else
+                regex += ".{0,2}" + QRegExp::escape(x);
+        }
+#else
 		foreach (const QString &x, changedWord.split('\1', QString::SkipEmptyParts))
 			if (regex.isEmpty()) regex += QRegExp::escape(x);
 			else regex += ".{0,2}" + QRegExp::escape(x);
+#endif
 		QRegExp rx = QRegExp(regex);
 		columns = indicesOf(line, rx);
 		if (columns.isEmpty()) {
@@ -7896,9 +7909,15 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 	if (columns.isEmpty()) {
 		//search again and allow additional whitespace
 		QString regex;
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+        foreach (const QString &x , changedWord.split(" ", Qt::SkipEmptyParts))
+            if (regex.isEmpty()) regex = QRegExp::escape(x);
+            else regex += "\\s+" + QRegExp::escape(x);
+#else
 		foreach (const QString &x , changedWord.split(" ", QString::SkipEmptyParts))
 			if (regex.isEmpty()) regex = QRegExp::escape(x);
 			else regex += "\\s+" + QRegExp::escape(x);
+#endif
 		QRegExp rx = QRegExp(regex);
 		columns = indicesOf(line, rx);
 		if (columns.isEmpty()) {
