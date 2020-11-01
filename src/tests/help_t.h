@@ -5,12 +5,26 @@
 #include "mostQtHeaders.h"
 #include "help.h"
 #include "testutil.h"
+#include "buildmanager.h"
 #include <QtTest/QtTest>
 
 class HelpTest: public QObject{
 	Q_OBJECT
 public:
-    HelpTest(Help *obj) : help(obj) {}
+    HelpTest(BuildManager *bm) : bm(bm) {
+        connect(&help, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommand(QString,QString*)));
+    }
+
+public slots:
+    bool runCommand(QString commandline,QString *buffer)
+    {
+        commandline.replace('@', "@@");
+        commandline.replace('%', "%%");
+        commandline.replace('?', "??");
+        // path is used to force changing into the tmp dir (otherwise git status does not work properly)
+        return bm->runCommand(commandline,QFileInfo() , QFileInfo(), 0, buffer, nullptr,buffer);
+    }
+
 private slots:
 	void packageDocFile_data() {
 		QTest::addColumn<QString>("package");
@@ -48,6 +62,7 @@ private slots:
 
 private:
     Help help;
+    BuildManager *bm;
 };
 
 #endif
