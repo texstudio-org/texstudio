@@ -498,7 +498,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	//fmConfig->setMaximumSize(490,300);
 	//fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
 	QBoxLayout *layout = new QBoxLayout(QBoxLayout::TopToBottom, ui.formatConfigBox);
-	layout->setMargin(0);
+    //layout->setMargin(0);
 	layout->insertWidget(0, fmConfig);
 
 	ui.shortcutTree->setHeaderLabels(QStringList() << tr("Command") << tr("Default Shortcut") << tr("Current Shortcut") << tr("Additional Shortcut"));
