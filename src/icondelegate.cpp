@@ -169,7 +169,7 @@ void IconDelegate::drawCheck(QPainter *painter,
 		break;
 	}
 
-	QApplication::style()->drawPrimitive(QStyle::PE_IndicatorViewItemCheck, &opt, painter);
+    QApplication::style()->drawPrimitive(QStyle::PE_IndicatorItemViewItemCheck, &opt, painter);
 }
 
 void IconDelegate::doLayout(const QStyleOptionViewItem &option,
@@ -322,7 +322,7 @@ QRect IconDelegate::check(const QStyleOptionViewItem &option,
 		QStyleOptionButton opt;
 		opt.QStyleOption::operator=(option);
 		opt.rect = bounding;
-		return QApplication::style()->subElementRect(QStyle::SE_ViewItemCheckIndicator, &opt);
+        return QApplication::style()->subElementRect(QStyle::SE_ItemViewItemCheckIndicator, &opt);
 	}
 	return QRect();
 }
