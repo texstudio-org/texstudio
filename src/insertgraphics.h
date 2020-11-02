@@ -20,7 +20,7 @@
 class InsertGraphicsConfig;
 
 
-class PlacementValidator : public QRegExpValidator
+class PlacementValidator : public QRegularExpressionValidator
 {
 	Q_OBJECT
 

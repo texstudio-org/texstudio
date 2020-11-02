@@ -36,7 +36,7 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 		opt.displayAlignment = QFlag(value.toInt());
 
 	// set text color
-	value = model->data(index, Qt::TextColorRole);
+    value = model->data(index, Qt::ForegroundRole);
 	if (value.isValid() && qvariant_cast<QColor>(value).isValid())
 		opt.palette.setColor(QPalette::Text, qvariant_cast<QColor>(value));
 
@@ -67,7 +67,7 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	if (option.showDecorationSelected && (option.state & QStyle::State_Selected)) {
 		painter->fillRect(option.rect, QColor("#cdd2d8"));
 	} else {
-		value = model->data(index, Qt::BackgroundColorRole);
+        value = model->data(index, Qt::BackgroundRole);
 		if (value.isValid() && qvariant_cast<QColor>(value).isValid())
 			painter->fillRect(option.rect, qvariant_cast<QColor>(value));
 	}
@@ -135,7 +135,7 @@ void IconDelegate::drawFocus(QPainter *painter,
 		QPalette::ColorGroup cg = (option.state & QStyle::State_Enabled)
 		                          ? QPalette::Normal : QPalette::Disabled;
 		o.backgroundColor = option.palette.color(cg, (option.state & QStyle::State_Selected)
-		                    ? QPalette::Highlight : QPalette::Background);
+                            ? QPalette::Highlight : QPalette::Window);
 		QApplication::style()->drawPrimitive(QStyle::PE_FrameFocusRect, &o, painter);
 	}
 }

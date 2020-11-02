@@ -68,7 +68,7 @@ QDocumentCursor cursorFromValue(const QJSValue &value)
 {
 	QDocumentCursor *c = qobject_cast<QDocumentCursor *> (value.toQObject());
 	if (!c) {
-		if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object"));
+        //if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object"));
 		return QDocumentCursor();
 	}
 	return *c;
@@ -176,21 +176,21 @@ void qScriptValueToStringPtr(const QJSValue &value, QString *&str)
 scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
 {
 	engine = new QJSEngine(this);
-	qmlRegisterType<QDocument>();
+    qmlRegisterType<QDocument>("com.txs.qmlcomponents", 1, 0, "QDocument");
 	//qmlRegisterType<QDocumentCursor>();
 	//qmlRegisterType<QDocumentCursor>("",0,0,"QDocumentCursor");
 	//qmlRegisterType<QFileInfo>();
-	qmlRegisterType<ProcessX>();
-	qmlRegisterType<SubScriptObject>();
-	qmlRegisterType<Texstudio>();
-	qmlRegisterType<QAction>();
-	qmlRegisterType<QMenu>();
-	qmlRegisterType<LatexEditorView>();
-	qmlRegisterType<LatexDocument>();
-	qmlRegisterType<LatexDocuments>();
+    qmlRegisterType<ProcessX>("com.txs.qmlcomponents", 1, 0, "ProcessX");
+    //qmlRegisterType<SubScriptObject>();
+    qmlRegisterType<Texstudio>("com.txs.qmlcomponents", 1, 0, "Testudio");
+    qmlRegisterType<QAction>("com.txs.qmlcomponents", 1, 0, "QAction");
+    qmlRegisterType<QMenu>("com.txs.qmlcomponents", 1, 0, "QMenu");
+    qmlRegisterType<LatexEditorView>("com.txs.qmlcomponents", 1, 0, "LatexEditorView");
+    qmlRegisterType<LatexDocument>("com.txs.qmlcomponents", 1, 0, "LatexDocument");
+    qmlRegisterType<LatexDocuments>("com.txs.qmlcomponents", 1, 0, "LatexDocuments");
 #ifndef NO_POPPLER_PREVIEW
-	qmlRegisterType<PDFDocument>();
-	qmlRegisterType<PDFWidget>();
+    qmlRegisterType<PDFDocument>("com.txs.qmlcomponents", 1, 0, "PDFDocument");
+    qmlRegisterType<PDFWidget>("com.txs.qmlcomponents", 1, 0, "PDFWidget");
 #endif
 
 	//qmlRegisterType<QList<LatexDocument *> >();
@@ -200,9 +200,9 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 
 	qRegisterMetaType<RunCommandFlags>();
 
-	qmlRegisterType<BuildManager>();
+    qmlRegisterType<BuildManager>("com.txs.qmlcomponents", 1, 0, "BuildManager");
 
-	qmlRegisterType<QKeySequence>();
+    qmlRegisterType<QKeySequence>("com.txs.qmlcomponents", 1, 0, "QKeySequence");
 	//qmlRegisterType<QUILoader>();
 }
 
@@ -404,9 +404,9 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
 	QString searchFor;
 	if (searchText.isRegExp()) {
 		flags |= QDocumentSearch::RegExp;
-		QRegExp r = searchText.toVariant().toRegExp();
+        QRegularExpression r = searchText.toVariant().toRegularExpression();
 		searchFor = r.pattern();
-		caseInsensitive = r.caseSensitivity() == Qt::CaseInsensitive;
+        //caseInsensitive = r.caseSensitivity() == Qt::CaseInsensitive;
 		//Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
 		global = searchText.property("global").toBool();
 	} else searchFor = searchText.toString();

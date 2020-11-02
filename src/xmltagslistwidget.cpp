@@ -140,7 +140,7 @@ xmlTagList XmlTagsListWidget::getTags(const QDomElement &element)
 			txt.replace("&lt;", "<");
 			txt.replace("&gt;", ">");
 		} else txt = code;
-		item.txt = txt.remove(QRegExp("%[<n>|]?"));
+        item.txt = txt.remove(QRegularExpression("%[<n>|]?"));
 		item.type = child.attribute("type").toInt();
 		tags << item;
 		child = child.nextSiblingElement("item");

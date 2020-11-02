@@ -28,6 +28,7 @@
 #include <QtCore>
 #include <QString>
 #include <QList>
+#include <QRegExp>
 #include <QMap>
 #include <QVariant>
 

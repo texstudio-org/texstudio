@@ -22,9 +22,13 @@
 	\file qformat.h
 	\brief Definition of the QFormat class
 */
-
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+template <typename T>
+class QList;
+#else
 template <typename T>
 class QVector;
+#endif
 
 struct QFormat
 {

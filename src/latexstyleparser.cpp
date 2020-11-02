@@ -137,7 +137,7 @@ void LatexStyleParser::run()
 
 
 		// if included styles call for additional generation, do it.
-		QStringList included = results.filter(QRegExp("#include:.+"));
+        QStringList included = results.filter(QRegularExpression("#include:.+"));
 		foreach (QString elem, included) {
 			elem = elem.mid(9);
 			if (!QFileInfo("cwl:" + elem + ".cwl").exists()) {
@@ -761,7 +761,7 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn) const
 		}
 	}
 	// replace tex env def by latex commands
-	QStringList zw = args.filter(QRegExp("\\\\end.+"));
+    QStringList zw = args.filter(QRegularExpression("\\\\end.+"));
 	foreach (const QString &elem, zw) {
 		QString begin = elem;
 		begin.remove(1, 3);
@@ -837,7 +837,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 	}
 
 	// replace tex env def by latex commands
-	QStringList zw = args.filter(QRegExp("\\\\end.+"));
+    QStringList zw = args.filter(QRegularExpression("\\\\end.+"));
 	foreach (const QString &elem, zw) {
 		QString begin = elem;
 		begin.remove(1, 3);

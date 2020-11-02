@@ -19,7 +19,7 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 			break;
 		}
 	}
-	packageNameValidator.setRegExp(QRegExp("[0-9a-zA-Z\\-\\.]*"));
+    packageNameValidator.setRegularExpression(QRegularExpression("[0-9a-zA-Z\\-\\.]*"));
 	ui->cbPackages->lineEdit()->setValidator(&packageNameValidator);
 	ui->cbPackages->setMaxVisibleItems(15);
 

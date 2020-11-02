@@ -3878,7 +3878,7 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		setFlag(MousePressed, false);
 
 		setClipboardSelection();
-	} else if (	e->button() == Qt::MidButton
+    } else if (	e->button() == Qt::MiddleButton
 				&& QApplication::clipboard()->supportsSelection()) {
 		setCursorPosition(mapToContents(e->pos()));
 		//setCursorPosition(viewport()->mapFromGlobal(e->globalPos()));

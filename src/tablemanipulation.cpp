@@ -47,7 +47,7 @@ void LatexTables::addRow(QDocumentCursor &c, const int numberOfColumns )
 				cur.insertText("\\\\\n");
 			} else {
 				ch.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-				if (ch.selectedText().contains(QRegExp("^\\S+$"))) {
+                if (ch.selectedText().contains(QRegularExpression("^\\S+$"))) {
 					cur.movePosition(1, QDocumentCursor::PreviousCharacter);
 					cur.insertText("\\\\\n");
 				}
@@ -153,7 +153,7 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 			int res = findNextToken(ch, tokens, true, true);
 			if (res == 0) {
 				ch.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-				if (ch.selectedText().contains(QRegExp("^\\S+$")))
+                if (ch.selectedText().contains(QRegularExpression("^\\S+$")))
 					break;
 			}
 		}
@@ -403,10 +403,10 @@ int LatexTables::getColumn(QDocumentCursor &cur)
 	QStringList tokens("\\\\");
 	int result = findNextToken(c, tokens, true, true);
 	if (result == 0) c.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-	if (c.lineNumber() == cur.lineNumber() && c.selectedText().contains(QRegExp("^\\s*$"))) {
+    if (c.lineNumber() == cur.lineNumber() && c.selectedText().contains(QRegularExpression("^\\s*$"))) {
 		c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 		QString zw = c.selectedText();
-		if (zw.contains(QRegExp("^\\s*$"))) return -1;
+        if (zw.contains(QRegularExpression("^\\s*$"))) return -1;
 	}
 
 	c.clearSelection();
@@ -589,7 +589,7 @@ void LatexTables::addHLine(QDocumentCursor &cur, const int numberOfLines, const 
 		if (remove) {
 			QDocumentCursor c2(c);
 			result = findNextToken(c, hline, true);
-			if (c.selectedText().contains(QRegExp("^\\s*\\\\hline$"))) {
+            if (c.selectedText().contains(QRegularExpression("^\\s*\\\\hline$"))) {
 				c.removeSelectedText();
 			} else {
 				c = c2;
@@ -599,7 +599,7 @@ void LatexTables::addHLine(QDocumentCursor &cur, const int numberOfLines, const 
 			QString text = c.line().text();
 			int col = c.columnNumber();
 			int pos_hline = text.indexOf(" \\hline", col);
-			if (pos_hline < 0 || !text.mid(col, pos_hline - col).contains(QRegExp("^\\s*$"))) {
+            if (pos_hline < 0 || !text.mid(col, pos_hline - col).contains(QRegularExpression("^\\s*$"))) {
 				c.insertText(" \\hline");
 				if (!c.atLineEnd()) c.insertText("\n");
 			}
@@ -977,7 +977,7 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 	// ceck for meta line commands at beginning of line
 	bool recheck = true;
     if(line.startsWith("%") && recheck){
-        int behind=line.indexOf(QRegExp("[\\n\\r]"));
+        int behind=line.indexOf(QRegularExpression("[\\n\\r]"));
         pre.append(line.left(behind));
 
         line = line.mid(behind).trimmed();

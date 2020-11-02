@@ -351,12 +351,11 @@ void enableTouchScrolling(QWidget *widget, bool enable) {
 void resizeInFontHeight(QWidget *w, int width, int height)
 {
 	int h = qApp->fontMetrics().height();
-	QDesktopWidget *dw = qApp->desktop();
-	QRect r = dw->availableGeometry(w);
-	QSize newSize = QSize(qMin(h * width, r.width()), qMin(h * height, r.height()));
-	//qDebug() << "resizeInFontHeight old size:" << w->width() / (float) h << w->height() / (float) h;
-	//qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;
-	w->resize(newSize);
+    QRect r = w->window()->screen()->availableGeometry();
+    QSize newSize = QSize(qMin(h * width, r.width()), qMin(h * height, r.height()));
+    qDebug() << "resizeInFontHeight old size:" << w->width() / (float) h << w->height() / (float) h;
+    qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;
+    w->resize(newSize);
 }
 
 /*!

@@ -73,8 +73,8 @@ QDate LocalFileTemplate::date() const
 {
 	QDate d;
 	d = QDate::fromString(metaData["Date"], Qt::ISODate);
-	if (!d.isValid())
-		d = QDate::fromString(metaData["Date"], Qt::SystemLocaleShortDate);
+    /*if (!d.isValid())
+        d = QDate::fromString(metaData["Date"], Qt::SystemLocaleShortDate);*/
 	return d;
 }
 
@@ -120,7 +120,7 @@ bool LocalLatexTemplate::readMetaData()
 		return false;
 	}
 	QTextStream in(&f);
-	in.setCodec("UTF-8");
+    //in.setCodec("UTF-8");
     QJsonDocument jsonDoc=QJsonDocument::fromJson(in.readAll().toUtf8());
     QJsonObject dd=jsonDoc.object();
     for(const QString& key : dd.keys()){
@@ -158,7 +158,7 @@ bool LocalTableTemplate::readMetaData()
 		return false;
 	}
 	jsonData = f.readLine();
-	int col = jsonData.indexOf(QRegExp("\\s*var\\s+metaData\\s+=\\s+\\{"));
+    int col = jsonData.indexOf(QRegularExpression("\\s*var\\s+metaData\\s+=\\s+\\{"));
 	if (col < 0) return false;
 	jsonData = jsonData.mid(col);
 	QString all = f.readAll();

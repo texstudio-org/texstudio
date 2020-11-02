@@ -222,7 +222,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands)
 					if (!line.isEmpty()) {
 						reference = index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
 						lastCommand = word;
-						line = line.remove(QRegExp("[.*]"));
+                        line = line.remove(QRegularExpression("[.*]"));
 						int pos = line.indexOf("%<bibid%>");
 						line = line.left(pos);
 						inReferenzExt = line.count("{");

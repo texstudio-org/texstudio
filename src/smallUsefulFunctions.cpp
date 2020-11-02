@@ -335,7 +335,7 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines)
 }
 
 // splits lines after maximal number of chars while keeping track of indentation and comments
-QStringList splitLines(const QStringList &lines, int maxCharPerLine, const QRegExp &breakChars)
+QStringList splitLines(const QStringList &lines, int maxCharPerLine, const QRegularExpression &breakChars)
 {
 	QStringList splittedLines;
 	int maxIndent = maxCharPerLine / 2 * 3;
@@ -408,7 +408,7 @@ QString trimRight(const QString &s)
 QString findToken(const QString &line, const QString &token)
 {
 	int tagStart = line.indexOf(token);
-	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+    int commentStart = line.indexOf(QRegularExpression("(^|[^\\\\])%")); // find start of comment (if any)
 	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
 		tagStart += token.length();
 		int tagEnd = line.indexOf("}", tagStart);
@@ -430,7 +430,7 @@ QString findToken(const QString &line, const QString &token)
 QString findToken(const QString &line, const QString &token, int &start)
 {
 	int tagStart = line.indexOf(token, start);
-	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+    int commentStart = line.indexOf(QRegularExpression("(^|[^\\\\])%")); // find start of comment (if any)
 	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
 		tagStart += token.length();
 		int tagEnd = line.indexOf("}", tagStart);
@@ -456,7 +456,7 @@ QString findToken(const QString &line, QRegExp &token)
 	int tagStart = 0;
 	QString s = line;
 	tagStart = token.indexIn(line);
-	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+    int commentStart = line.indexOf(QRegularExpression("(^|[^\\\\])%")); // find start of comment (if any)
 	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
 		s = s.mid(tagStart + token.cap(0).length(), s.length());
 		return s;
@@ -469,7 +469,7 @@ bool findTokenWithArg(const QString &line, const QString &token, QString &outNam
 	outName = "";
 	outArg = "";
 	int tagStart = line.indexOf(token);
-	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+    int commentStart = line.indexOf(QRegularExpression("(^|[^\\\\])%")); // find start of comment (if any)
 	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
 		tagStart += token.length();
 		int tagEnd = line.indexOf("}", tagStart);
@@ -643,7 +643,7 @@ QList<int> indicesOf(const QString &line, const QString &word, Qt::CaseSensitivi
 /*!
  * a multi-match equivalent of QString::indexOf(QRegExp)
  */
-QList<int> indicesOf(const QString &line, const QRegExp &rx)
+QList<int> indicesOf(const QString &line, const QRegularExpression &rx)
 {
 	QList<int> columns;
 	int col = 0;
@@ -839,7 +839,7 @@ QString removeAccents(const QString &s) {
 QString makeLatexLabel(const QString &s) {
 	QString sNorm = removeAccents(s).normalized(QString::NormalizationForm_KD).toLower();
 	sNorm.replace(' ', '-');
-	sNorm.remove(QRegExp("[^a-z0-9\\-]"));
+    sNorm.remove(QRegularExpression("[^a-z0-9\\-]"));
 	return sNorm;
 }
 

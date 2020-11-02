@@ -233,20 +233,21 @@ QString BuildManager::replaceEnvironmentVariables(const QString &s, const QHash<
 {
 	QString result(s);
 #ifdef Q_OS_WIN
-	QRegExp rxEnvVar("%([\\w()]+)%");  // word and brackets between %...%
+    QRegularExpression rxEnvVar("%([\\w()]+)%");  // word and brackets between %...%
 #else
-	QRegExp rxEnvVar("\\$(\\w+)");
+    QRegularExpression rxEnvVar("\\$(\\w+)");
 #endif
 	int i = 0;
 	while (i >= 0 && i < result.length()) {
-		i = result.indexOf(rxEnvVar, i);
+        QRegularExpressionMatch match;
+        i = result.indexOf(rxEnvVar, i,&match);
 		if (i >= 0) {
-			QString varName = rxEnvVar.cap(1);
+            QString varName = match.captured(1);
 			if (compareNamesToUpper) {
 				varName = varName.toUpper();
 			}
 			QString varContent = variables.value(varName, "");
-			result.replace(rxEnvVar.cap(0), varContent);
+            result.replace(match.captured(0), varContent);
 			i += varContent.length();
 		}
 	}
@@ -977,7 +978,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			static QString parameterMatching = "(=([^ ]*|\"([^\"]|\\\"([^\"])*\\\")*\"))?";
 			for (int i = 0; i < options.override.remove.size(); i++) {
 				const QString &rem = options.override.remove[i];
-				QRegExp removalRegex(" (-?" + QRegExp::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")");
+                QRegularExpression removalRegex(" (-?" + QRegExp::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")");
 				subcmd.replace(removalRegex, " ");
 			}
 			for (int i = 0; i < options.override.replace.size(); i++) {
@@ -1793,15 +1794,15 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 
 	//process preamble
 	QString preamble_mod = preamble;
-	static const QRegExp beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
+    static const QRegularExpression beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
 	if (previewRemoveBeamer && preamble_mod.contains(beamerClass)) {
 		//dvipng is very slow (>14s) and ghostscript is slow (1.4s) when handling beamer documents,
 		//after setting the class to article dvipng runs in 77ms
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0, "\\documentclass{article}\n\\usepackage{beamerarticle}");
         // remove \mode... as well (#1125)
-        QRegExp beamerMode("\\\\mode.*\n");
-        beamerMode.setMinimal(true);
+        QRegularExpression beamerMode("\\\\mode.*\n");
+        //beamerMode.setMinimal(true);
         preamble_mod.remove(beamerMode);
 	}
 
@@ -1830,7 +1831,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				REQUIRE(tf);
 				tf->open();
 				QTextStream out(tf);
-				if (outputCodec) out.setCodec(outputCodec);
+                //if (outputCodec) out.setCodec(outputCodec);
 				out << preamble_mod;
 				tf->setAutoRemove(false);
 				tf->close();
@@ -1880,7 +1881,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	tf->open();
 
 	QTextStream out(tf);
-	if (outputCodec) out.setCodec(outputCodec);
+    //if (outputCodec) out.setCodec(outputCodec);
 	if (preambleFormatFile.isEmpty()) out << preamble_mod;
 	else out << "%&" << preambleFormatFile << "\n";
 	out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";

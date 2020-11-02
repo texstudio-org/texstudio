@@ -62,8 +62,8 @@ void LatexPackage::unite(LatexPackage &add, bool forCompletion)
 	}
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
-	specialTreatmentCommands.unite(add.specialTreatmentCommands);
-	specialDefCommands.unite(add.specialDefCommands);
+    //specialTreatmentCommands.unite(add.specialTreatmentCommands);
+    //specialDefCommands.unite(add.specialDefCommands);
 	commandDescriptions.unite(add.commandDescriptions); // overloaded unit, which does not overwrite well defined CDs with poorly defined ones
 
 	//possibleCommands.unite(add.possibleCommands);
@@ -90,7 +90,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 	if (tagsfile.exists() && tagsfile.open(QFile::ReadOnly)) {
 		QString line;
 		QTextStream stream(&tagsfile);
-		stream.setCodec("UTF-8");
+        //stream.setCodec("UTF-8");
 		QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");  // expression for \cmd[opt]{arg} (cmd may be starred, [opt] can appear arbitrary often)
 		QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");            // expression for \cmd[opt]      (cmd may be starred)
 		QRegExp rxCom3("^(\\\\\\w+\\*?)");                      // expression for \cmd           (cmd may be starred)
@@ -543,7 +543,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				if (hideFromCompletion)
 					continue; // command for spell checking only (auto parser)
 				// remove special option classification e.g. %l
-				line.remove(QRegExp("%[a-zA-Z]+")); // not n
+                line.remove(QRegularExpression("%[a-zA-Z]+")); // not n
 				if (!line.contains("%")) {
 					//add placeholders to brackets like () to (%<..%>)
 					const QString brackets = "{}[]()<>";

@@ -835,9 +835,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 								if (args[i].length() == 0) continue; //invalid
 								bool hasSeparator = (args[i].length() != 1); //only single digit variables allowed. last arg also needs a sep
 								if (!hadSeparator || !hasSeparator)
-									args[i] = "{%<arg" + args[i][0] + "%>}" + args[i].mid(1);
+                                    args[i] = QString("{%<arg") + args[i][0] + QString("%>}") + args[i].mid(1);
 								else
-									args[i] = "%<arg" + args[i][0] + "%>" + args[i].mid(1); //no need to use {} for arguments that are separated anyways
+                                    args[i] = QString("%<arg") + args[i][0] + QString("%>") + args[i].mid(1); //no need to use {} for arguments that are separated anyways
 								hadSeparator  = hasSeparator;
 							}
 							name.append(args.join(""));
@@ -965,7 +965,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					QString preambel = cmd;
 					preambel.remove(0, 4);
 					preambel.prepend("beamer");
-					packagesHelper.replaceInStrings(QRegExp("^"), preambel);
+                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
 				}
 
 				QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
@@ -2699,8 +2699,8 @@ const LatexDocument *LatexDocument::getRootDocument(QSet<const LatexDocument *> 
 	visitedDocs->insert(this);
 	if (masterDocument && !visitedDocs->contains(masterDocument))
 		result = masterDocument->getRootDocument(visitedDocs);
-	if (result->getFileName().endsWith("bib"))
-		foreach (const LatexDocument *d, parent->documents) {
+    if (result->getFileName().endsWith("bib")){
+        for(const LatexDocument *d : parent->documents) {
 			QMultiHash<QDocumentLineHandle *, FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
 			QMultiHash<QDocumentLineHandle *, FileNamePair>::const_iterator itend = d->mentionedBibTeXFiles().constEnd();
 			for (; it != itend; ++it) {
@@ -2712,6 +2712,7 @@ const LatexDocument *LatexDocument::getRootDocument(QSet<const LatexDocument *> 
 			}
 			if (result == d) break;
 		}
+    }
 	if (deleteVisitedDocs)
 		delete visitedDocs;
 	return result;
@@ -2799,7 +2800,7 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 			continue;
 		}
 		if (!elem.startsWith("\\begin{") && !elem.startsWith("\\end{")) {
-			int i = elem.indexOf(QRegExp("\\W"), 1);
+            int i = elem.indexOf(QRegularExpression("\\W"), 1);
 			//int j=elem.indexOf("[");
 			if (i >= 0) elem = elem.left(i);
 			//if(j>=0 && j<i) elem=elem.left(j);

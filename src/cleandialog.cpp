@@ -23,7 +23,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
 	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;]";
-	QRegExpValidator *rxValExtensionList = new QRegExpValidator(QRegExp(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
+    QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);

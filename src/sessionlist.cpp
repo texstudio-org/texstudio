@@ -60,7 +60,7 @@ void SessionList::menuActionTriggered()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	REQUIRE(act);
-	QString filename = act->data().toString().remove(QRegExp("^session:"));
+    QString filename = act->data().toString().remove(QRegularExpression("^session:"));
 	emit loadSessionRequest(filename);
 	addFilenameToList(filename);
 }
