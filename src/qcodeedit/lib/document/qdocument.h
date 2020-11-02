@@ -30,12 +30,13 @@
 #include <QList>
 #include <QMap>
 #include <QVector>
-#include <QLinkedList>
+//#include <QLinkedList>
 #include <QFileInfo>
 #include <QObject>
 #include <QPalette>
 #include <QMetaType>
 #include <QFont>
+#include <QTextCodec>
 
 #include "qdocumentcursor.h"
 

@@ -264,6 +264,7 @@ private:
 	void doLink(const QSharedPointer<Poppler::Link> link);
 	void annotationClicked(QSharedPointer<Poppler::Annotation> annotation, int page);
 	void doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor = 1.0);
+    void doZoom(const QPointF &clickPos, int dir, qreal newScaleFactor = 1.0);
 
 	PDFScrollArea *getScrollArea() const;
 

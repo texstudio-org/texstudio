@@ -25,9 +25,15 @@ void bibtexReader::searchSection(QString file, QString bibId, int truncateLimit)
 	if (!f.open(QFile::ReadOnly)) return; //ups...
 	QTextStream stream(&f);
 	QString bibFileEncoding = ConfigManagerInterface::getInstance()->getOption("Bibliography/BibFileEncoding").toString();
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    //QStringConverter codec(bibFileEncoding.toLocal8Bit());
+    //if (!codec.is) return;
+    //stream.setEncoding()
+#else
 	QTextCodec *codec = QTextCodec::codecForName(bibFileEncoding.toLatin1());
 	if (!codec) return;
 	stream.setCodec(codec);
+#endif
 	QString line;
 	QString result;
 	int found = -1;

@@ -415,7 +415,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	systemPalette = QApplication::palette();
 	defaultStyleName = QApplication::style()->objectName();
 
-	qRegisterMetaTypeStreamOperators<StringStringMap>("StringStringMap");
+//	qRegisterMetaTypeStreamOperators<StringStringMap>("StringStringMap");
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -723,8 +723,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
 	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);
-	registerOption("Preview/RenderBackend", &pdfDocumentConfig->renderBackend, 0, &pseudoDialog->comboBoxPDFRenderBackend);
-	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
+    registerOption("Preview/RenderBackend", &pdfDocumentConfig->renderBackend, 0, &pseudoDialog->comboBoxPDFRenderBackend);
+    //registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);
 	registerOption("Preview/", &pdfDocumentConfig->disableHorizontalScrollingForFitToTextWidth, true, &pseudoDialog->checkBoxDisableHorizontalScrollingForFitToTextWidth);

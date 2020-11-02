@@ -78,6 +78,10 @@ QT += \
     widgets \
     uitools
 
+versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
+    QT += core5compat
+}
+
 !isEmpty(PHONON){
     QT += phonon4qt5
     LIBS += -lphonon4qt5

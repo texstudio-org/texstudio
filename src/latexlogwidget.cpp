@@ -77,7 +77,7 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 
 	QVBoxLayout *vLayout = new QVBoxLayout(); //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)
 	vLayout->setSpacing(0);
-	vLayout->setMargin(0);
+    //vLayout->setMargin(0);
 	vLayout->addWidget(infoLabel);
 	vLayout->addWidget(splitter);
 	setLayout(vLayout);
@@ -297,6 +297,6 @@ void LatexLogWidget::filterChanged(bool )
 	if (filterBadBoxAction && filterBadBoxAction->isChecked())
 		lst << logModel->returnString(LT_BADBOX);
 	QString rg = lst.join("|");
-	proxyModel->setFilterRegExp(rg);
+    proxyModel->setFilterRegularExpression(rg);
 	proxyModel->setFilterKeyColumn(1);
 }

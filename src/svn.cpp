@@ -90,7 +90,7 @@ QStringList SVN::log(QString filename) const
 	while (iter.hasNext()) {
 		elem = iter.next();
 		if (!keep) iter.remove();
-		keep = elem.contains(QRegExp("-{60,}"));
+        keep = elem.contains(QRegularExpression("-{60,}"));
 	}
 	return revisions;
 }

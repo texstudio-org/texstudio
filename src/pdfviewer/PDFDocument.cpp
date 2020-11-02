@@ -100,16 +100,15 @@ QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGra
 
 void zoomToScreen(QWidget *window)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-	QRect screenRect = desktop->availableGeometry(window);
+    QRect screenRect = window->screen()->availableGeometry();
 	screenRect.setTop(screenRect.top() + window->geometry().y() - window->y());
 	window->setGeometry(screenRect);
 }
 
 void zoomToHalfScreen(QWidget *window, bool rhs)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-	QRect r = desktop->availableGeometry(window);
+    QRect r = window->screen()->availableGeometry();
+
 	int wDiff = window->frameGeometry().width() - window->width();
 	int hDiff = window->frameGeometry().height() - window->height();
 
@@ -149,11 +148,10 @@ void zoomToHalfScreen(QWidget *window, bool rhs)
 
 void windowsSideBySide(QWidget *window1, QWidget *window2)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
 
 	// if the windows reside on the same screen zoom each so that it occupies
 	// half of that screen
-	if (desktop->screenNumber(window1) == desktop->screenNumber(window2)) {
+    if (window1->screen() == window2->screen()) {
 		int window1left = window1->pos().x() <= window2->pos().x();
 		zoomToHalfScreen(window1, !window1left);
 		zoomToHalfScreen(window2, window1left);
@@ -1331,7 +1329,11 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 			inhibitNextContextMenuEvent = true;
 		}
 		if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
+            doZoom(event->position(), (summedWheelDegrees > 0) ? 1 : -1);
+#else
             doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
+#endif
 			summedWheelDegrees = 0;
 		}
 		event->accept();
@@ -2090,6 +2092,61 @@ void PDFWidget::doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor) //
         if (vs != nullptr)
 			vs->setValue(vs->value() + pageToLocal.y() - localPos.y());
 	}
+}
+
+void PDFWidget::doZoom(const QPointF &clickPos, int dir, qreal newScaleFactor) // dir = 1 for in, -1 for out, 0 to use newScaleFactor
+{
+    QPointF pagePos(clickPos.x() / scaleFactor * 72.0 / dpi,
+                    clickPos.y() / scaleFactor * 72.0 / dpi);
+    scaleOption = kFixedMag;
+    emit changedScaleOption(scaleOption);
+
+    double zoomStepFactor = globalConfig->zoomStepFactor;
+    if (zoomStepFactor > 10) zoomStepFactor = 10;
+    if (zoomStepFactor < 1.001) zoomStepFactor = 1.001;
+
+
+    QPoint globalPos = mapToGlobal(clickPos.toPoint());
+    if (dir > 0 && scaleFactor < kMaxScaleFactor) {
+        scaleFactor *= zoomStepFactor;
+        if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+            scaleFactor = qRound(scaleFactor);
+        if (scaleFactor > kMaxScaleFactor)
+            scaleFactor = kMaxScaleFactor;
+    } else if (dir < 0 && scaleFactor > kMinScaleFactor) {
+        scaleFactor /= zoomStepFactor;
+        if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+            scaleFactor = qRound(scaleFactor);
+        if (scaleFactor < kMinScaleFactor)
+            scaleFactor = kMinScaleFactor;
+    } else if (dir == 0) {
+        if (newScaleFactor < kMinScaleFactor) {
+            newScaleFactor = kMinScaleFactor;
+        } else if (newScaleFactor > kMaxScaleFactor) {
+            newScaleFactor = kMaxScaleFactor;
+        }
+        if (qAbs(newScaleFactor/scaleFactor-1)<0.001) { // about equal
+            return;
+        }
+        scaleFactor = newScaleFactor;
+    }
+
+    adjustSize();
+    update();
+    updateStatusBar();
+    emit changedZoom(scaleFactor);
+    QPoint localPos = mapFromGlobal(globalPos);
+    QPoint pageToLocal(int(pagePos.x() * scaleFactor / 72.0 * dpi),
+                       int(pagePos.y() * scaleFactor / 72.0 * dpi));
+    QAbstractScrollArea	*scrollArea = getScrollArea();
+    if (scrollArea) {
+        QScrollBar *hs = scrollArea->horizontalScrollBar();
+        if (hs != nullptr)
+            hs->setValue(hs->value() + pageToLocal.x() - localPos.x());
+        QScrollBar *vs = scrollArea->verticalScrollBar();
+        if (vs != nullptr)
+            vs->setValue(vs->value() + pageToLocal.y() - localPos.y());
+    }
 }
 
 void PDFWidget::zoomIn()
@@ -3714,8 +3771,7 @@ void PDFDocument::saveGeometryToConfig()
 
 void PDFDocument::zoomToRight(QWidget *otherWindow)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-    QRect screenRect = desktop->availableGeometry(otherWindow == nullptr ? this : otherWindow);
+    QRect screenRect = otherWindow == nullptr ? this->screen()->availableGeometry() : otherWindow->screen()->availableGeometry();
 	screenRect.setTop(screenRect.top() + 22);
 	screenRect.setLeft((screenRect.left() + screenRect.right()) / 2 + 1);
 	screenRect.setBottom(screenRect.bottom() - 1);

@@ -962,7 +962,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         }
         QString regExpression=chars.join(".*");
 
-        QRegExp rx(regExpression);
+        QRegularExpression rx(regExpression);
         QList<int> scoringList;
 
         words=QtConcurrent::blockingFiltered(baselist,[rx](const CompletionWord &item){

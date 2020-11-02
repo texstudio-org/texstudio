@@ -138,7 +138,7 @@ int LatexLogModel::logLineNumberToLogEntryNumber(int logLine) const
 bool LatexLogModel::existsReRunWarning() const
 {
 	if (!found(LT_WARNING)) return false;
-	static QRegExp rReRun ("(No file.*\\.(aux|toc))|"
+    const QRegularExpression rReRun ("(No file.*\\.(aux|toc))|"
 	                       "( Rerun )");
 	foreach (const LatexLogEntry &l, log) {
 		if (l.type != LT_WARNING || l.oldline != 0) continue;

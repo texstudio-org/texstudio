@@ -266,7 +266,7 @@ bool Macro::load(const QString &fileName){
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
     QTextStream in(&file);
-    in.setCodec("UTF-8");
+    //in.setCodec("UTF-8");
     QString text=in.readAll();
     return loadFromText(text);
 }

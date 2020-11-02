@@ -626,7 +626,7 @@ QString GrammarCheckLanguageToolJSON::url()
 void GrammarCheckLanguageToolJSON::tryToStart()
 {
     if (triedToStart) {
-        if (QDateTime::currentDateTime().toTime_t() - startTime < 60 * 1000 ) {
+        if (QDateTime::currentDateTime().toSecsSinceEpoch() - startTime < 60 * 1000 ) {
             connectionAvailability = Unknown;
             ThreadBreaker::sleep(1);
         }
@@ -654,7 +654,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     }
 
     connectionAvailability = Unknown;
-    startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
+    startTime = QDateTime::currentDateTime().toSecsSinceEpoch(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
 }
 
 /*!
