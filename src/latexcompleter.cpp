@@ -2,6 +2,7 @@
 #include "latexcompleter_p.h"
 #include "latexcompleter_config.h"
 #include "help.h"
+#include "usermacro.h"
 
 #include "smallUsefulFunctions.h"
 

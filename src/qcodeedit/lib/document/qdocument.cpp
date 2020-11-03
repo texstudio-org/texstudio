@@ -747,9 +747,10 @@ QTextCodec* guessEncoding(const QByteArray& data){
 	QTextCodec* guess = nullptr;
 	int sure = 1;
 	guess = Encoding::guessEncodingBasic(data, &sure);
-	if (!guessEncodingCallbacks.empty())
+    if (!guessEncodingCallbacks.empty()){
 		foreach (const GuessEncodingCallback& callback, guessEncodingCallbacks)
 			callback(data, guess, sure);
+    }
 	if (guess!=nullptr) return guess;
 	else return QTextCodec::codecForName("UTF-8"); //default
 }
@@ -1041,7 +1042,7 @@ void QDocument::setFileName_DONOTCALLTHIS(const QString& fileName){
 */
 void QDocument::print(QPrinter *pr)
 {
-	QRect fit = pr->pageRect();
+    QRectF fit = pr->pageRect(QPrinter::DevicePixel);
 
 	if ( pr->printRange() == QPrinter::Selection )
 	{
@@ -7571,7 +7572,11 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 
 	QFont modifiedF = f;
 	// set the styling so that if the font is not found Courier one will be used
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    modifiedF.setStyleHint(QFont::Courier);
+#else
 	modifiedF.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+#endif
 
 	//disable kerning because words are drawn at once, but their width is calculated character
 	//by character (in functions which calculate the cursor position)
@@ -8233,19 +8238,19 @@ void QDocumentPrivate::flushMatches(int groupId)
 
 		if ( it != areas.end() && it != areas.begin() )
 		{
-			tmp = it - 1;
+            tmp = --it;
 			int off = tmp.key() + *tmp - l;
 
 			if ( off >= 0 && (off < n) )
 			{
 				*tmp += n - off;
-				it = areas.erase(it) - 1;
+                it = --areas.erase(it);
 			}
 		}
 
-		if ( it != areas.end() && (it + 1) != areas.end() )
+        if ( it != areas.end() && (++it) != areas.end() )
 		{
-			tmp = it + 1;
+            tmp = ++it;
 			int off = it.key() + *it - tmp.key();
 
 			if ( off >= 0 && (off < *tmp) )
@@ -8591,7 +8596,7 @@ void QDocumentPrivate::showEvent(int line, int count)
 
 void QDocumentPrivate::updateHidden(int line, int count)
 {
-	if ( m_hidden.isEmpty() || (line > (m_hidden.constEnd() - 1).key() ) )
+    if ( m_hidden.isEmpty() || (line > (--m_hidden.constEnd()).key() ) )
 		return;
 
 	QMap<int, int> prev = m_hidden;
@@ -8616,7 +8621,7 @@ void QDocumentPrivate::updateHidden(int line, int count)
 
 void QDocumentPrivate::updateWrapped(int line, int count)
 {
-	if ( m_wrapped.isEmpty() || (line > (m_wrapped.constEnd() - 1).key() ) )
+    if ( m_wrapped.isEmpty() || (line > (--m_wrapped.constEnd()).key() ) )
 		return;
 
 	QMap<int, int> prev = m_wrapped;

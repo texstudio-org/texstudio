@@ -150,7 +150,7 @@ void SmallUsefulFunctionsTest::test_splitLines()
 	QFETCH(int, maxChars);
 	QFETCH(QStringList, in);
 	QFETCH(QStringList, out);
-	QRegExp breakChars("[ \t\n\r]");
+    QRegularExpression breakChars("[ \t\n\r]");
 	QStringList splittedLines = splitLines(in, maxChars, breakChars);
 	QEQUAL(splittedLines.length(), out.length());
 	for (int i = 0; i < splittedLines.count(); i++) {
@@ -406,7 +406,7 @@ void SmallUsefulFunctionsTest::test_indicesOf_RegExp()
 	QFETCH(QString, rxString);
 	QFETCH(QList<int>, result);
 
-	QList<int> indices = indicesOf(line, QRegExp(rxString));
+    QList<int> indices = indicesOf(line, QRegularExpression(rxString));
 	QEQUAL(indices.length(), result.length());
 	for (int i = 0; i < indices.length(); i++) {
 		QEQUAL(indices[i], result[i]);

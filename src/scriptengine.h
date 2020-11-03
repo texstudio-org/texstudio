@@ -19,9 +19,11 @@
 #endif
 
 #include "qeditor.h"
+//#include "latexeditorview.h"
 class BuildManager;
 class Texstudio;
 class ScriptObject;
+
 class LatexEditorView;
 class Macro;
 class scriptengine : public QObject

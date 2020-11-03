@@ -11,10 +11,11 @@ MessageBoxCloser::MessageBoxCloser(bool mustExists, QMessageBox::StandardButton 
 void MessageBoxCloser::closeNow(){
 	deleteLater();
 	QWidget* messageWindow = QApplication::activeModalWidget();
-	if (!messageWindow)
+    if (!messageWindow){
 		foreach (QWidget *widget, QApplication::topLevelWidgets())
 			if (widget->isModal())
 				messageWindow=widget;
+    }
 	if (!messageWindow) {
 		QVERIFY2(!m_mustExists, "messagebox doesn't exists");
 		return; //keyClick crashes (assert false)  if it can't find a window

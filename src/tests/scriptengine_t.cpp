@@ -233,7 +233,7 @@ void ScriptEngineTest::getLineTokens(void)
  */
 QString ScriptEngineTest::getLineTokensText(int numTokens, ...)
 {
-	QRegExp rxEscape("([\"\\\\])");
+    QRegularExpression rxEscape("([\"\\\\])");
 
 	va_list vaList;
 	// We don't use QJsonDocument because it reorders the properties in the resulting JSON string.

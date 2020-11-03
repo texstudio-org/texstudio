@@ -34,7 +34,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QDesktopServices>
-//#include <QDesktopWidget> for Qt6
 #include <QDialog>
 #include <QDir>
 #include <QDirIterator>

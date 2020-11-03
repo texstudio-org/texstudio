@@ -35,7 +35,7 @@ class ScriptObject : public QObject
 	Q_OBJECT
 
 	Q_PROPERTY(SubScriptObject *script READ getScript DESIGNABLE false STORED false)
-	Q_PROPERTY(Texstudio *app READ getApp DESIGNABLE false STORED false)
+    //Q_PROPERTY(Texstudio *app READ getApp DESIGNABLE false STORED false)
 
 public:
 	explicit ScriptObject(const QString &script, BuildManager *buildManager, Texstudio *app);
