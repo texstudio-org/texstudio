@@ -426,10 +426,17 @@ void LatexParser::append(const LatexParser &elem)
 				environmentAliases.insert(key, value);
 		}
 	}
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    specialTreatmentCommands.insert(elem.specialTreatmentCommands);
+    specialDefCommands.insert(elem.specialDefCommands);
+    commandDefs.unite(elem.commandDefs);
+    mapSpecialArgs.insert(elem.mapSpecialArgs);
+#else
 	specialTreatmentCommands.unite(elem.specialTreatmentCommands);
 	specialDefCommands.unite(elem.specialDefCommands);
 	commandDefs.unite(elem.commandDefs);
 	mapSpecialArgs.unite(elem.mapSpecialArgs);
+#endif
 }
 
 void LatexParser::substract(const LatexParser &elem)

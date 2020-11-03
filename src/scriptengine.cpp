@@ -9,22 +9,22 @@
 #include "PDFDocument.h"
 #include "usermacro.h"
 
-Q_DECLARE_METATYPE(QDocument *)
-Q_DECLARE_METATYPE(LatexDocuments *)
+//Q_DECLARE_METATYPE(QDocument *)
+//Q_DECLARE_METATYPE(LatexDocuments *)
 Q_DECLARE_METATYPE(BuildManager *)
 Q_DECLARE_METATYPE(RunCommandFlags)
-Q_DECLARE_METATYPE(QAction *)
-Q_DECLARE_METATYPE(QMenu *)
+//Q_DECLARE_METATYPE(QAction *)
+//Q_DECLARE_METATYPE(QMenu *)
 
 Q_DECLARE_METATYPE(SubScriptObject *)
-Q_DECLARE_METATYPE(QEditor *)
+//Q_DECLARE_METATYPE(QEditor *)
 Q_DECLARE_METATYPE(QList<LatexDocument *>)
 #ifndef NO_POPPLER_PREVIEW
 Q_DECLARE_METATYPE(PDFDocument *)
 Q_DECLARE_METATYPE(PDFWidget *)
 Q_DECLARE_METATYPE(QList<PDFDocument *>)
 #endif
-Q_DECLARE_METATYPE(QString *)
+//Q_DECLARE_METATYPE(QString *)
 
 BuildManager *scriptengine::buildManager = nullptr;
 Texstudio *scriptengine::app = nullptr;
@@ -182,15 +182,15 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 	//qmlRegisterType<QFileInfo>();
     qmlRegisterType<ProcessX>("com.txs.qmlcomponents", 1, 0, "ProcessX");
     //qmlRegisterType<SubScriptObject>();
-    qmlRegisterType<Texstudio>("com.txs.qmlcomponents", 1, 0, "Testudio");
+    qmlRegisterType<Texstudio>("com.txs.qmlcomponents", 1, 0, "Texstudio");
     qmlRegisterType<QAction>("com.txs.qmlcomponents", 1, 0, "QAction");
     qmlRegisterType<QMenu>("com.txs.qmlcomponents", 1, 0, "QMenu");
-    qmlRegisterType<LatexEditorView>("com.txs.qmlcomponents", 1, 0, "LatexEditorView");
+    //qmlRegisterType<LatexEditorView>("com.txs.qmlcomponents", 1, 0, "LatexEditorView");
     qmlRegisterType<LatexDocument>("com.txs.qmlcomponents", 1, 0, "LatexDocument");
     qmlRegisterType<LatexDocuments>("com.txs.qmlcomponents", 1, 0, "LatexDocuments");
 #ifndef NO_POPPLER_PREVIEW
-    qmlRegisterType<PDFDocument>("com.txs.qmlcomponents", 1, 0, "PDFDocument");
-    qmlRegisterType<PDFWidget>("com.txs.qmlcomponents", 1, 0, "PDFWidget");
+    //qmlRegisterType<PDFDocument>("com.txs.qmlcomponents", 1, 0, "PDFDocument");
+    //qmlRegisterType<PDFWidget>("com.txs.qmlcomponents", 1, 0, "PDFWidget");
 #endif
 
 	//qmlRegisterType<QList<LatexDocument *> >();
@@ -202,7 +202,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 
     qmlRegisterType<BuildManager>("com.txs.qmlcomponents", 1, 0, "BuildManager");
 
-    qmlRegisterType<QKeySequence>("com.txs.qmlcomponents", 1, 0, "QKeySequence");
+    //qmlRegisterType<QKeySequence>("com.txs.qmlcomponents", 1, 0, "QKeySequence");
 	//qmlRegisterType<QUILoader>();
 }
 
@@ -381,12 +381,22 @@ QJSValue scriptengine::replaceSelectedText(QJSValue replacementText,QJSValue opt
 	}
 	m_editor->document()->endMacro();
 	if (macro && (cursors.size() > 0 /*|| (append && prepend) disallowed*/)) { //inserting multiple macros destroyed the new cursors, we need to insert them again
-		if (noEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && c.selectedText().isEmpty()) newMacroCursors << c;
-		if (onlyEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && !c.selectedText().isEmpty()) newMacroCursors << c;
-		if (newMacroCursors.size())
+        if (noEmpty) {
+            foreach (QDocumentCursor c, cursors){
+                if (c.isValid() && c.selectedText().isEmpty()) newMacroCursors << c;
+            }
+        }
+        if (onlyEmpty){
+            foreach (QDocumentCursor c, cursors) {
+                if (c.isValid() && !c.selectedText().isEmpty()) newMacroCursors << c;
+            }
+        }
+        if (newMacroCursors.size()){
 			m_editor->setCursor(newMacroCursors.first());
-		for (int i = 1; i < newMacroCursors.size(); i++)
+        }
+        for (int i = 1; i < newMacroCursors.size(); i++){
 			m_editor->addCursorMirror(newMacroCursors[i]);
+        }
 		m_editor->replacePlaceHolders(newMacroPlaceholder);
 	}
 	return QJSValue();

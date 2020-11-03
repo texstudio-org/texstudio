@@ -20,6 +20,10 @@
 
 #include <QDomElement>
 
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+#include <QDesktopWidget>
+#endif
+
 #include "qformatconfig.h"
 
 #include "manhattanstyle.h"
@@ -724,7 +728,12 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
 	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);
     registerOption("Preview/RenderBackend", &pdfDocumentConfig->renderBackend, 0, &pseudoDialog->comboBoxPDFRenderBackend);
-    //registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+    int dpi=QApplication::desktop()->logicalDpiX();
+#else
+    int dpi=72; // how to access main screen dpi?
+#endif
+    registerOption("Preview/DPI", &pdfDocumentConfig->dpi, dpi, &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);
 	registerOption("Preview/", &pdfDocumentConfig->disableHorizontalScrollingForFitToTextWidth, true, &pseudoDialog->checkBoxDisableHorizontalScrollingForFitToTextWidth);
@@ -967,8 +976,13 @@ QSettings *ConfigManager::readSettings(bool reread)
         tobeLoaded.append(pck.requiredPackages);
 		completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+        latexParser.specialTreatmentCommands.insert(pck.specialTreatmentCommands);
+        latexParser.specialDefCommands.insert(pck.specialDefCommands);
+#else
 		latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
         latexParser.specialDefCommands.unite(pck.specialDefCommands);
+#endif
 		latexParser.environmentAliases.unite(pck.environmentAliases);
 		latexParser.commandDefs.unite(pck.commandDescriptions);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
@@ -1666,7 +1680,11 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
             tobeLoaded.append(pck.requiredPackages);
             completerConfig->words.unite(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+            latexParser.specialTreatmentCommands.insert(pck.specialTreatmentCommands);
+#else
 			latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
+#endif
 			latexParser.environmentAliases.unite(pck.environmentAliases);
 			latexParser.commandDefs.unite(pck.commandDescriptions);
 
@@ -1926,7 +1944,11 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems)
 
 QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems, int additionalEntries, const QList<QVariant> data)
 {
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    QSet<QKeyCombination> reservedShortcuts = QSet<QKeyCombination>() << QKeyCombination(Qt::SHIFT|Qt::Key_F3);  // workaround to prevent overwriting search backward
+#else
 	QSet<int> reservedShortcuts = QSet<int>() << Qt::SHIFT+Qt::Key_F3;  // workaround to prevent overwriting search backward
+#endif
 	QMenu *menu = getManagedMenu(menuName);
     REQUIRE_RET(menu, nullptr);
 	Q_ASSERT(menu->objectName() == menuName);
@@ -1953,14 +1975,14 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		QString completeId = menu->objectName() + "/" + id;
 		Q_ASSERT(completeId == menuName + "/" + namePrefix + QString::number(i));
 		QList<QKeySequence> shortcuts;
-		if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
+/*		if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
 			shortcuts << baseShortCut + i;
 		QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, shortcuts);
 		if (hasData) {
 			act->setData(data[i]);
 		} else {
 			act->setData(i);
-		}
+        }*/
 	}
 	if (watchedMenus.contains(menuName))
 		emit watchedMenuChanged(menuName);

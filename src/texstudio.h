@@ -681,7 +681,7 @@ signals:
 	void imgPreview(const QString &fn);
 };
 
-Q_DECLARE_METATYPE(Texstudio *)
+//Q_DECLARE_METATYPE(Texstudio *)
 
 #endif
 

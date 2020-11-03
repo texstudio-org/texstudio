@@ -2180,7 +2180,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count)
 
 void LatexEditorView::lineDeleted(QDocumentLineHandle *l,int)
 {
-	QHash<QDocumentLineHandle *, int>::iterator it;
+    QMultiHash<QDocumentLineHandle *, int>::iterator it;
 	while ((it = lineToLogEntries.find(l)) != lineToLogEntries.end()) {
 		logEntryToLine.remove(it.value());
 		lineToLogEntries.erase(it);
@@ -3021,8 +3021,11 @@ void LatexEditorViewConfig::settingsChanged()
 	if (lastFontFamily == fontFamily && lastFontSize == fontSize) return;
 
 	QFont f(fontFamily, fontSize);
-
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    f.setStyleHint(QFont::Courier);
+#else
 	f.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+#endif
 
 	f.setKerning(false);
 

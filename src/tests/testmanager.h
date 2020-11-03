@@ -8,7 +8,17 @@ class LatexEditorView;
 class QCodeEdit;
 class QEditor;
 class BuildManager;
-class TestManager : public QObject, public QAbstractNativeEventFilter {
+class TestmanagerEventFilter : public QAbstractNativeEventFilter
+{
+public:
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+     virtual bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *) override;
+#else
+    virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *) override;
+#endif
+};
+
+class TestManager : public QObject /*, public QAbstractNativeEventFilter*/ {
 	Q_OBJECT
 public:
 	enum TestLevel {TL_ALL, TL_FAST,TL_AUTO/*, TL_NONE*/};

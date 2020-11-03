@@ -2,11 +2,12 @@
 #define BOOKMARKS_H
 
 #include "mostQtHeaders.h"
-
-class LatexEditorView;
-class LatexDocuments;
-class LatexDocument;
-class QDocumentLineHandle;
+#include "latexeditorview.h"
+#include "latexdocument.h"
+//class LatexEditorView;
+//class LatexDocuments;
+//class LatexDocument;
+//class QDocumentLineHandle;
 
 
 struct Bookmark {
