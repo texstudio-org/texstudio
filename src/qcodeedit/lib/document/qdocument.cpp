@@ -8229,28 +8229,29 @@ void QDocumentPrivate::flushMatches(int groupId)
 
 		//qDebug("simple:(%i, %i)", l, 1);
 
-		QMap<int, int>::iterator tmp, it = areas.find(l);
+        QMap<int, int>::iterator tmp,tmp2, it = areas.find(l);
 
 		if ( it != areas.end() )
 			continue;
 
 		it = areas.insert(m.line, n);
-
+#if QT_VERSION<QT_VERSION_CHECK(6,0,0)
 		if ( it != areas.end() && it != areas.begin() )
 		{
-            tmp = --it;
+            tmp = it - 1;
 			int off = tmp.key() + *tmp - l;
 
 			if ( off >= 0 && (off < n) )
 			{
 				*tmp += n - off;
-                it = --areas.erase(it);
+                it = areas.erase(it) - 1;
 			}
 		}
 
-        if ( it != areas.end() && (++it) != areas.end() )
+        if ( it != areas.end() && (it + 1) != areas.end() )
+
 		{
-            tmp = ++it;
+            tmp = it + 1;
 			int off = it.key() + *it - tmp.key();
 
 			if ( off >= 0 && (off < *tmp) )
@@ -8279,7 +8280,59 @@ void QDocumentPrivate::flushMatches(int groupId)
 
 		++it;
 	}
+#else
+        //TODO ?
+        if ( it != areas.end() && it != areas.begin() )
+        {
+            tmp = --it;
+            int off = tmp.key() + *tmp - l;
 
+            if ( off >= 0 && (off < n) )
+            {
+                *tmp += n - off;
+                it = areas.erase(it);
+                --it;
+            }
+        }
+
+        if ( it != areas.end()  )
+        {
+            tmp2=tmp;
+            tmp = it;
+            ++tmp;
+            if(tmp!= areas.end()){
+                int off = it.key() + *it - tmp.key();
+
+                if ( off >= 0 && (off < *tmp) )
+                {
+                    *it += *tmp;
+                    areas.erase(tmp);
+                }
+            }else{
+                tmp=tmp2;
+            }
+        }
+        //emitFormatsChange(m.line, 1);
+    }
+
+    // remove old matches
+    while ( matches.removeLength )
+    {
+        matches.removeAt(matches.removeStart);
+        --matches.removeLength;
+    }
+
+    // send update messages
+    QMap<int, int>::const_iterator it = areas.constBegin();
+
+    while ( it != areas.constEnd() )
+    {
+        //qDebug("merged:(%i, %i)", it.key(), *it);
+        emitFormatsChange(it.key(), *it);
+
+        ++it;
+    }
+#endif
 	// update storage "meta-data"
 	if ( matches.isEmpty() )
 	{

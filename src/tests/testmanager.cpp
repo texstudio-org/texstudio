@@ -90,7 +90,11 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new LatexEditorViewTest(edView)
 		<< new LatexCompleterTest(edView)
 		<< new LatexStyleParserTest(level==TL_ALL)
+       #ifdef QJS
+           // test not working for QJS
+       #else
 		<< new ScriptEngineTest(edView,level==TL_ALL)
+       #endif
 		<< new LatexEditorViewBenchmark(edView,level==TL_ALL)
 		<< new StructureViewTest(edView,edView->document,level==TL_ALL)
 		<< new TableManipulationTest(editor)

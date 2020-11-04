@@ -68,7 +68,9 @@ QDocumentCursor cursorFromValue(const QJSValue &value)
 {
 	QDocumentCursor *c = qobject_cast<QDocumentCursor *> (value.toQObject());
 	if (!c) {
-        //if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object"));
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+        if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object")); //TODO Qt6 ?
+#endif
 		return QDocumentCursor();
 	}
 	return *c;

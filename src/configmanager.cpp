@@ -1976,9 +1976,7 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		Q_ASSERT(completeId == menuName + "/" + namePrefix + QString::number(i));
 		QList<QKeySequence> shortcuts;
 #if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
-        if (baseShortCut && i < 10) {
-            //TODO generate shortcut ...
-            !reservedShortcuts.contains(baseShortCut + i))
+        if (baseShortCut && i < 10 && !reservedShortcuts.contains(static_cast<Qt::Key>(baseShortCut + i))) {
             shortcuts << baseShortCut + i;
         }
 #else
