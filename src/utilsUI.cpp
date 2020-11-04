@@ -2,6 +2,10 @@
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 #include "filedialog.h"
+#if QT_VERSION<QT_VERSION_CHECK(5,10,0)
+#include <QDesktopWidget>
+#include <QWindow>
+#endif
 
 
 extern void hideSplash();
@@ -351,7 +355,12 @@ void enableTouchScrolling(QWidget *widget, bool enable) {
 void resizeInFontHeight(QWidget *w, int width, int height)
 {
 	int h = qApp->fontMetrics().height();
-    QRect r = w->window()->screen()->availableGeometry();
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QRect r = w->screen()->availableGeometry();
+#else
+    QDesktopWidget *dw = qApp->desktop();
+    QRect r = dw->availableGeometry(w);
+#endif
     QSize newSize = QSize(qMin(h * width, r.width()), qMin(h * height, r.height()));
     qDebug() << "resizeInFontHeight old size:" << w->width() / (float) h << w->height() / (float) h;
     qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;

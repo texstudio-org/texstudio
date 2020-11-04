@@ -68,7 +68,7 @@ QDocumentCursor cursorFromValue(const QJSValue &value)
 {
 	QDocumentCursor *c = qobject_cast<QDocumentCursor *> (value.toQObject());
 	if (!c) {
-#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0) && QT_VERSION>=QT_VERSION_CHECK(5,12,0))
         if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object")); //TODO Qt6 ?
 #endif
 		return QDocumentCursor();
@@ -326,8 +326,11 @@ void scriptengine::insertSnippet(const QString& arg)
 		cs.insertAt(m_editor, &c);
 	}
 }
-
+#if (QT_VERSION>=QT_VERSION_CHECK(5,12,0))
 #define SCRIPT_REQUIRE(cond, message) if (!(cond)) { engine->throwError(scriptengine::tr(message)); return QJSValue();}
+#else
+#define SCRIPT_REQUIRE(cond, message) if (!(cond)) { qDebug()<<scriptengine::tr(message); return QJSValue();}
+#endif
 
 QJSValue scriptengine::replaceSelectedText(QJSValue replacementText,QJSValue options)
 {
