@@ -426,7 +426,7 @@ void LatexParser::append(const LatexParser &elem)
 				environmentAliases.insert(key, value);
 		}
 	}
-#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
     specialTreatmentCommands.insert(elem.specialTreatmentCommands);
     specialDefCommands.insert(elem.specialDefCommands);
     commandDefs.unite(elem.commandDefs);

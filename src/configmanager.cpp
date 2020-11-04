@@ -976,7 +976,7 @@ QSettings *ConfigManager::readSettings(bool reread)
         tobeLoaded.append(pck.requiredPackages);
 		completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
-#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
         latexParser.specialTreatmentCommands.insert(pck.specialTreatmentCommands);
         latexParser.specialDefCommands.insert(pck.specialDefCommands);
 #else
@@ -1680,7 +1680,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
             tobeLoaded.append(pck.requiredPackages);
             completerConfig->words.unite(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
-#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
             latexParser.specialTreatmentCommands.insert(pck.specialTreatmentCommands);
 #else
 			latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
@@ -1975,14 +1975,22 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		QString completeId = menu->objectName() + "/" + id;
 		Q_ASSERT(completeId == menuName + "/" + namePrefix + QString::number(i));
 		QList<QKeySequence> shortcuts;
-/*		if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+        if (baseShortCut && i < 10) {
+            //TODO generate shortcut ...
+            !reservedShortcuts.contains(baseShortCut + i))
+            shortcuts << baseShortCut + i;
+        }
+#else
+        if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
 			shortcuts << baseShortCut + i;
+#endif
 		QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, shortcuts);
 		if (hasData) {
 			act->setData(data[i]);
 		} else {
 			act->setData(i);
-        }*/
+        }
 	}
 	if (watchedMenus.contains(menuName))
 		emit watchedMenuChanged(menuName);

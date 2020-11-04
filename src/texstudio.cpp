@@ -2190,7 +2190,7 @@ void Texstudio::updateUserToolMenu()
 		ids << ci.id;
 		displayName << ci.displayName;
 	}
-        configManager.updateListMenu("main/tools/user", displayName, "cmd", true, SLOT(commandFromAction()), Qt::ALT | Qt::SHIFT | Qt::Key_F1, false, 0);
+    configManager.updateListMenu("main/tools/user", displayName, "cmd", true, SLOT(commandFromAction()), Qt::ALT | Qt::SHIFT | Qt::Key_F1, false, 0);
 	QMenu *m = getManagedMenu("main/tools/user");
 	REQUIRE(m);
 	QList<QAction *> actions = m->actions();
