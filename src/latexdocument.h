@@ -76,7 +76,9 @@ public:
 
     Q_PROPERTY(QString fileName READ getFileName)
     Q_PROPERTY(QFileInfo fileInfo READ getFileInfo)
-    //Q_PROPERTY(LatexEditorView *editorView READ getEditorView)
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+    Q_PROPERTY(LatexEditorView *editorView READ getEditorView)
+#endif
 
 	bool isHidden(); ///< true if editor is not displayed
 

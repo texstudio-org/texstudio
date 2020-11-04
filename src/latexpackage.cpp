@@ -62,8 +62,13 @@ void LatexPackage::unite(LatexPackage &add, bool forCompletion)
 	}
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
-    //specialTreatmentCommands.unite(add.specialTreatmentCommands);
-    //specialDefCommands.unite(add.specialDefCommands);
+#if (QT_VERSION<QT_VERSION_CHECK(5,15,0))
+    specialTreatmentCommands.unite(add.specialTreatmentCommands);
+    specialDefCommands.unite(add.specialDefCommands);
+#else
+    specialTreatmentCommands.insert(add.specialTreatmentCommands);
+    specialDefCommands.insert(add.specialDefCommands);
+#endif
 	commandDescriptions.unite(add.commandDescriptions); // overloaded unit, which does not overwrite well defined CDs with poorly defined ones
 
 	//possibleCommands.unite(add.possibleCommands);

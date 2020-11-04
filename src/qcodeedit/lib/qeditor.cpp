@@ -1332,7 +1332,9 @@ void QEditor::print()
 	// TODO : create a custom print dialog, page range sucks, lines range would be better
 	QPrintDialog dialog(&printer, this);
 	dialog.setWindowTitle(tr("Print Source Code"));
-    //dialog.setEnabledOptions(QPrintDialog::PrintToFile | QPrintDialog::PrintPageRange);
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+    dialog.setEnabledOptions(QPrintDialog::PrintToFile | QPrintDialog::PrintPageRange); //TODO Qt6 ??
+#endif
 
 	if ( dialog.exec() == QDialog::Accepted )
 	{
@@ -6033,8 +6035,10 @@ void QEditor::scrollContentsBy(int dx, int dy)
 
 QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
 	switch(property) {
-    /*case Qt::ImMicroFocus:
-        return cursorMircoFocusRect();*/
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+    case Qt::ImMicroFocus:
+        return cursorMircoFocusRect();
+#endif
 	case Qt::ImFont:
 		// TODO find out correct value: qtextcontol uses the following
 		//return QVariant(d->cursor.charFormat().font());

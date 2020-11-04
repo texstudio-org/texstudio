@@ -947,20 +947,27 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "gotoBookmark", tr("Goto Bookmark"));
 	QList<int> bookmarkIndicies = QList<int>() << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 0;
-        /*foreach (int i, bookmarkIndicies) {
-		QKeySequence shortcut;
-		if (i != 0)
+    foreach (int i, bookmarkIndicies) {
+        QKeySequence shortcut;
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+        if (i != 0){
+            shortcut = Qt::CTRL | static_cast<Qt::Key>(static_cast<int>(Qt::Key_0) + i);
+        }
+#else
+        if (i != 0){
             shortcut = Qt::CTRL + Qt::Key_0 + i;
-		newManagedEditorAction(submenu, QString("bookmark%1").arg(i), tr("Bookmark %1").arg(i), "jumpToBookmark", shortcut, "", QList<QVariant>() << i);
-        }*/
+        }
+#endif
+        newManagedEditorAction(submenu, QString("bookmark%1").arg(i), tr("Bookmark %1").arg(i), "jumpToBookmark", shortcut, "", QList<QVariant>() << i);
+    }
 
 
 	submenu = newManagedMenu(menu, "toggleBookmark", tr("Toggle Bookmark"));
 
 #if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
     newManagedEditorAction(submenu, QString("bookmark"), tr("Unnamed Bookmark"), "toggleBookmark", QKeyCombination(Qt::CTRL | Qt::SHIFT , Qt::Key_B), "", QList<QVariant>() << -1);
-        //foreach (int i, bookmarkIndicies)
-        //newManagedEditorAction(submenu, QString("bookmark%1").arg(i), tr("Bookmark %1").arg(i), "toggleBookmark", QKeyCombination(Qt::CTRL + Qt::SHIFT , Qt::Key_0 + i), "", QList<QVariant>() << i);
+        foreach (int i, bookmarkIndicies)
+            newManagedEditorAction(submenu, QString("bookmark%1").arg(i), tr("Bookmark %1").arg(i), "toggleBookmark", QKeyCombination(Qt::CTRL | Qt::SHIFT , static_cast<Qt::Key>(static_cast<int>(Qt::Key_0) + i)), "", QList<QVariant>() << i);
 #else
     newManagedEditorAction(submenu, QString("bookmark"), tr("Unnamed Bookmark"), "toggleBookmark", Qt::CTRL | Qt::SHIFT | Qt::Key_B, "", QList<QVariant>() << -1);
     foreach (int i, bookmarkIndicies)
@@ -9827,7 +9834,10 @@ int Texstudio::getVersion() const
 void Texstudio::simulateKeyPress(const QString &shortcut)
 {
 	QKeySequence seq = QKeySequence::fromString(shortcut, QKeySequence::PortableText);
-        /*if (seq.count() > 0) {
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    //TODO Qt6 ?
+#else
+        if (seq.count() > 0) {
         int key = seq[0] & ~Qt::KeyboardModifierMask;
 		Qt::KeyboardModifiers modifiers = static_cast<Qt::KeyboardModifiers>(seq[0]) & Qt::KeyboardModifierMask;
 		// TODO: we could additionally provide the text for the KeyEvent (necessary for actually typing characters
@@ -9835,7 +9845,8 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 		QApplication::postEvent(QApplication::focusWidget(), event);
 		event = new QKeyEvent(QEvent::KeyRelease, key, modifiers);
 		QApplication::postEvent(QApplication::focusWidget(), event);
-        }*/
+        }
+#endif
 }
 
 void Texstudio::updateTexQNFA()
