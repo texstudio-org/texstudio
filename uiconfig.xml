@@ -38,7 +38,7 @@
     <insert id="quotation" text="\begin{quotation}" insert="\begin{quotation}%\%|%\\end{quotation}"/>
     <insert id="verse" text="\begin{verse}" insert="\begin{verse}%\%|%\\end{verse}"/>
     <insert id="verbatim" text="\begin{verbatim}" insert="\begin{verbatim}%\%|%\\end{verbatim}"/>
-    <insert id="table" text="\begin{table}" insert="\begin{table}%\%|%\\caption{}%\\end{table}"/>
+    <insert id="table" text="\begin{table}" insert="\begin{table}%\\caption{}%\%|%\\end{table}"/>
     <insert id="figure" text="\begin{figure}" insert="\begin{figure}%\%|%\\caption{}%\\end{figure}"/>
     <insert id="titlepage" text="\begin{titlepage}" insert="\begin{titlepage}%\%|%\\end{titlepage}"/>
   </menu>
