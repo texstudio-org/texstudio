@@ -975,10 +975,11 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			//Regexp matching parameters
 			//Unescaped: .*(-abc(=([^ ]*|"([^"]|\"([^"])*\")*"))?).*
 			//Doesn't support nesting deeper than \"
-			static QString parameterMatching = "(=([^ ]*|\"([^\"]|\\\"([^\"])*\\\")*\"))?";
+            const QString parameterMatching = "(=([^ \"]+|\"([^\"]|\\\"([^\"])*\\\")*\"))?";
 			for (int i = 0; i < options.override.remove.size(); i++) {
 				const QString &rem = options.override.remove[i];
-                QRegularExpression removalRegex(" (-?" + QRegExp::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")");
+                qDebug()<<" (-?" + QRegularExpression::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")";
+                QRegularExpression removalRegex(" (-?" + QRegularExpression::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")");
 				subcmd.replace(removalRegex, " ");
 			}
 			for (int i = 0; i < options.override.replace.size(); i++) {
