@@ -978,7 +978,6 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
             const QString parameterMatching = "(=([^ \"]+|\"([^\"]|\\\"([^\"])*\\\")*\"))?";
 			for (int i = 0; i < options.override.remove.size(); i++) {
 				const QString &rem = options.override.remove[i];
-                qDebug()<<" (-?" + QRegularExpression::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")";
                 QRegularExpression removalRegex(" (-?" + QRegularExpression::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")");
 				subcmd.replace(removalRegex, " ");
 			}
