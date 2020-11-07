@@ -88,14 +88,16 @@ versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
     DEFINES += PHONON
 }
 
-isEmpty(INTERNAL_TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
-    INTERNAL_TERMINAL=1
-    message(Use detected qterminal)
-}
-!isEmpty(INTERNAL_TERMINAL){
-    LIBS += -lqtermwidget5
-    DEFINES += INTERNAL_TERMINAL
-    message(Use qterminal)
+!versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
+    isEmpty(INTERNAL_TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
+        INTERNAL_TERMINAL=1
+        message(Use detected qterminal)
+    }
+    !isEmpty(INTERNAL_TERMINAL){
+        LIBS += -lqtermwidget5
+        DEFINES += INTERNAL_TERMINAL
+        message(Use qterminal)
+    }
 }
 
 !isEmpty(QJS){
