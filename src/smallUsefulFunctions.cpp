@@ -613,6 +613,25 @@ QRegExp generateRegExp(const QString &text, const bool isCase, const bool isWord
 	return m_regexp;
 }
 
+QRegularExpression generateRegularExpression(const QString &text, const bool isCase, const bool isWord, const bool isRegExp)
+{
+    QRegularExpression::PatternOption po = isCase ? QRegularExpression::NoPatternOption : QRegularExpression::CaseInsensitiveOption;
+    QRegularExpression m_regexp;
+    if ( isRegExp ) {
+        m_regexp = QRegularExpression(text,  po);
+    } else if ( isWord ) {
+        //todo: screw this? it prevents searching of "world!" and similar things
+        //(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
+        m_regexp = QRegularExpression(
+                       QString("\\b%1\\b").arg(QRegularExpression::escape(text)),
+                       po
+                   );
+    } else {
+        m_regexp = QRegularExpression(QRegularExpression::escape(text), po);
+    }
+    return m_regexp;
+}
+
 QStringList regExpFindAllMatches(const QString &searchIn, const QRegExp &regexp, int cap)
 {
 	int offset = regexp.indexIn(searchIn);
@@ -624,6 +643,19 @@ QStringList regExpFindAllMatches(const QString &searchIn, const QRegExp &regexp,
 	return res;
 }
 
+
+QStringList regularExpressionFindAllMatches(const QString &searchIn, const QRegularExpression &regexp, int cap)
+{
+    QRegularExpressionMatch match = regexp.match(searchIn);
+    int offset=match.capturedStart();
+    QStringList res;
+    while (offset > -1) {
+        res << match.captured(cap);
+        match = regexp.match(searchIn,offset+match.capturedLength());
+        offset = match.capturedStart();
+    }
+    return res;
+}
 /*!
  * a multi-match equivalent of QString::indexOf(QString)
  */
