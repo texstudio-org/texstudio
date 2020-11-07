@@ -262,7 +262,7 @@ bool JlCompress::compressFiles(QString fileCompressed, QStringList files) {
 }
 
 bool JlCompress::compressDir(QString fileCompressed, QString dir, bool recursive) {
-    return compressDir(fileCompressed, dir, recursive, 0);
+    return compressDir(fileCompressed, dir, recursive, QDir::NoFilter);
 }
 
 bool JlCompress::compressDir(QString fileCompressed, QString dir,
