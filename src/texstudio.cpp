@@ -5769,6 +5769,13 @@ void Texstudio::setStatusMessageProcess(const QString &message)
 {
 	statusLabelProcess->setText(message);
 }
+/*!
+ * \brief run the command asynchronously. When finished, SLOT returnCMD is called.
+ * See Help::texdocAvailableRequest for an example.
+ * \param commandline
+ * \param returnCMD provide a SLOT which is called when finishing the process
+ * \return true when start works
+ */
 bool Texstudio::runCommandAsync(const QString &commandline, const char * returnCMD){
     QObject *obj=sender();
     QString finame = documents.getTemporaryCompileFileName();
