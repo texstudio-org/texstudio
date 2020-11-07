@@ -116,6 +116,9 @@ void Help::texdocAvailableRequest(const QString &package)
 		// There seems to be no option yielding only the would be called command
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}
+    runTexdocAsync(args.join(" "),SLOT(texdocAvailableRequestFinished(int,QProcess::ExitStatus)));
+    return;
+    //
     QString docCommand=runTexdoc(args.join(" "));
     if(!isMiktexTexdoc() && !docCommand.isEmpty()){
         // analyze texdoc --list result in more detail, as it gives results even for partially matched names
@@ -131,6 +134,38 @@ void Help::texdocAvailableRequest(const QString &package)
 
     emit texdocAvailableReply(package, !docCommand.isEmpty(), QString());
 }
+void Help::texdocAvailableRequestFinished(int,QProcess::ExitStatus status){
+
+    if(status!=QProcess::NormalExit) return; // texdoc --list failed
+
+    ProcessX *proc=qobject_cast<ProcessX *>(sender());
+    QString *buffer=proc->getStdoutBuffer();
+    QString cmdLine=proc->getCommandLine();
+    int i=cmdLine.lastIndexOf(" ");
+    QString package;
+    if(i>-1){
+        package=cmdLine.mid(i+1);
+    }
+
+
+    if(buffer==nullptr) return; // sanity check
+
+    if(!isMiktexTexdoc() && !buffer->isEmpty()){
+        // analyze texdoc --list result in more detail, as it gives results even for partially matched names
+        QStringList lines=buffer->split("\n");
+        QString line=lines.first();
+        QStringList cols=line.split("\t");
+        if(cols.count()>4){
+            if(cols.value(1).startsWith("-")){
+                buffer->clear(); // only partial, no real match
+            }
+        }
+    }
+
+    emit texdocAvailableReply(package, !buffer->isEmpty(), QString());
+
+    delete buffer;
+}
 
 /*!
  * \brief run texdoc command
@@ -143,6 +178,13 @@ QString Help::runTexdoc(QString args) const
     emit statusMessage(QString(" texdoc "));
     emit runCommand(BuildManager::CMD_TEXDOC+" "+args, &output);
     return output;
+}
+
+bool Help::runTexdocAsync(QString args,const char * finishedCMD)
+{
+    emit statusMessage(QString(" texdoc (async)"));
+    emit runCommandAsync(BuildManager::CMD_TEXDOC+" "+args, finishedCMD);
+    return true;
 }
 
 

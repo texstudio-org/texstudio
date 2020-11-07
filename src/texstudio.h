@@ -446,6 +446,7 @@ private slots:
     bool runCommand(const QString &commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr, bool saveAll=true);
     bool runCommandNoSpecialChars(QString commandline, QString *buffer = nullptr, QTextCodec *codecForBuffer = nullptr);
 	void setStatusMessageProcess(const QString &message);
+    bool runCommandAsync(const QString &commandline, const char *returnCMD);
 protected slots:
 	void processNotification(const QString &message);
     void clearLogs();

@@ -415,6 +415,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
     connect(&help, &Help::statusMessage, this, &Texstudio::setStatusMessageProcess);
     connect(&help, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+    connect(&help, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
     connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
 
@@ -5767,6 +5768,21 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
 void Texstudio::setStatusMessageProcess(const QString &message)
 {
 	statusLabelProcess->setText(message);
+}
+bool Texstudio::runCommandAsync(const QString &commandline, const char * returnCMD){
+    QObject *obj=sender();
+    QString finame = documents.getTemporaryCompileFileName();
+    ProcessX *proc = buildManager.firstProcessOfDirectExpansion(commandline, QFileInfo(finame));
+    setStatusMessageProcess(tr("  Running this command: ") + proc->getCommandLine());
+    connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), obj, returnCMD);
+    QString *buffer=new QString();
+    proc->setStdoutBuffer(buffer);
+    proc->startCommand();
+    if (!proc->waitForStarted(1000)) {
+        setStatusMessageProcess(tr("Error") + " : " + tr("could not start the command"));
+        return false;
+    }
+    return true;
 }
 
 void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &options)
