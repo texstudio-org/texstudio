@@ -11,7 +11,11 @@ Help::Help(QObject *parent): QObject(parent),texDocSystem(0)
 
 }
 
-
+/*!
+ * \brief execute a dialog to let the user choose a package to show its documentation
+ * \param packages
+ * \param defaultPackage
+ */
 void Help::execTexdocDialog(const QStringList &packages, const QString &defaultPackage)
 {
     TexdocDialog dialog(nullptr,this);
@@ -24,7 +28,10 @@ void Help::execTexdocDialog(const QStringList &packages, const QString &defaultP
 		QString package = dialog.selectedPackage();
 	}
 }
-
+/*!
+ * \brief run texdoc --view package
+ * \param package
+ */
 void Help::viewTexdoc(QString package)
 {
 	if (package.isEmpty()) {
@@ -38,7 +45,12 @@ void Help::viewTexdoc(QString package)
 }
 
 
-
+/*!
+ * \brief check if system runs miktex
+ * Tries to run texdoc --veriosn and analyzes result.
+ * Miktex starts with MikTeX ...
+ * \return
+ */
 bool Help::isMiktexTexdoc()
 {
     if (!texDocSystem) {
@@ -62,7 +74,13 @@ bool Help::isTexdocExpectedToFinish()
 	return true;
 }
 
-
+/*!
+ * \brief search for documentation files for a given package
+ * It uses texdoc to access that information.
+ * \param package
+ * \param silent
+ * \return
+ */
 QString Help::packageDocFile(const QString &package, bool silent)
 {
     QString cmd = BuildManager::CMD_TEXDOC;
@@ -97,7 +115,14 @@ QString Help::packageDocFile(const QString &package, bool silent)
 	}
 	return QString();
 }
-
+/*!
+ * \brief search for documentation files for a given package asynchrnously
+ * It uses texdoc to access that information.
+ * The results are processed in texdocAvailableRequestFinished
+ * \param package
+ * \param silent
+ * \return
+ */
 void Help::texdocAvailableRequest(const QString &package)
 {
 	if (package.isEmpty())
@@ -164,7 +189,12 @@ QString Help::runTexdoc(QString args) const
     emit runCommand(BuildManager::CMD_TEXDOC+" "+args, &output);
     return output;
 }
-
+/*!
+ * \brief run texdoc command asynchronously
+ * \param args
+ * \param finishedCMD SLOT for return path
+ * \return
+ */
 bool Help::runTexdocAsync(QString args,const char * finishedCMD)
 {
     emit statusMessage(QString(" texdoc (async)"));
