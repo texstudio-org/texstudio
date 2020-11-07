@@ -117,22 +117,7 @@ void Help::texdocAvailableRequest(const QString &package)
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}
     runTexdocAsync(args.join(" "),SLOT(texdocAvailableRequestFinished(int,QProcess::ExitStatus)));
-    return;
-    //
-    QString docCommand=runTexdoc(args.join(" "));
-    if(!isMiktexTexdoc() && !docCommand.isEmpty()){
-        // analyze texdoc --list result in more detail, as it gives results even for partially matched names
-        QStringList lines=docCommand.split("\n");
-        QString line=lines.first();
-        QStringList cols=line.split("\t");
-        if(cols.count()>4){
-            if(cols.value(1).startsWith("-")){
-                docCommand.clear(); // only partial, no real match
-            }
-        }
-    }
 
-    emit texdocAvailableReply(package, !docCommand.isEmpty(), QString());
 }
 void Help::texdocAvailableRequestFinished(int,QProcess::ExitStatus status){
 
