@@ -8284,7 +8284,8 @@ void QDocumentPrivate::flushMatches(int groupId)
         //TODO ?
         if ( it != areas.end() && it != areas.begin() )
         {
-            tmp = --it;
+            tmp = it;
+            --tmp;
             int off = tmp.key() + *tmp - l;
 
             if ( off >= 0 && (off < n) )
