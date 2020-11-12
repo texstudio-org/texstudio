@@ -1737,7 +1737,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="2280"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation>Écraser l&apos;accolade fermante suivant un paramètre fictif</translation>
+        <translation>Écraser l&apos;accolade fermante suivant un bouche-trou</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2287"/>
@@ -1804,7 +1804,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2157"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation>Écraser l&apos;accolade ouvrante suivie d&apos;un paramètre fictif</translation>
+        <translation>Écraser l&apos;accolade ouvrante suivie d&apos;un bouche-trou</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2317"/>
@@ -2069,7 +2069,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2926"/>
         <source>Arguments as Placeholders</source>
-        <translation>Arguments en tant que paramètres fictifs</translation>
+        <translation>Arguments en tant que bouche-trous</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2936"/>
@@ -3205,7 +3205,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="46"/>
         <source>\begin{&lt;environment&gt;}</source>
-        <translation>G&amp;énérique - \begin{&lt;environment&gt;}</translation>
+        <translation>G&amp;énérique - \begin{⟨environnement⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="47"/>
@@ -3445,7 +3445,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>\includeonly{filelist}</source>
-        <translation>\includeonly{liste de fichiers}</translation>
+        <translation>\includeonly{⟨liste de fichiers⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="97"/>
@@ -3465,7 +3465,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="98"/>
         <source>label</source>
-        <translation>\&amp;label{⟨clé⟩}</translation>
+        <translation>\&amp;label{⟨identifiant⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="99"/>
@@ -3670,7 +3670,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>ref</source>
-        <translation>\&amp;ref{⟨clé⟩}</translation>
+        <translation>\&amp;ref{⟨identifiant⟩}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="144"/>
@@ -6652,32 +6652,32 @@ Remarques :
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4730"/>
         <source>Next placeholder</source>
-        <translation>Paramètre fictif suivant</translation>
+        <translation>Bouche-trou suivant</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4731"/>
         <source>Previous placeholder</source>
-        <translation>Paramètre fictif précédent</translation>
+        <translation>Bouche-trou précédent</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4732"/>
         <source>Next placeholder or one word right</source>
-        <translation>Paramètre fictif suivant ou mot à droite</translation>
+        <translation>Bouche-trou suivant ou mot à droite</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4733"/>
         <source>Previous placeholder or one word left</source>
-        <translation>Paramètre fictif précédent ou mot à gauche</translation>
+        <translation>Bouche-trou précédent ou mot à gauche</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4734"/>
         <source>Next placeholder or character</source>
-        <translation>Paramètre fictif ou caractère suivant</translation>
+        <translation>Bouche-trou ou caractère suivant</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4735"/>
         <source>Previous placeholder or character</source>
-        <translation>Paramètre fictif ou caractère précédent</translation>
+        <translation>Bouche-trou ou caractère précédent</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
@@ -9969,12 +9969,12 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1036"/>
         <source>Remove Placeholders</source>
-        <translation>&amp;Supprimer les paramètres fictifs</translation>
+        <translation>&amp;Supprimer les bouche-trous</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1037"/>
         <source>Remove Current Placeholder</source>
-        <translation>Supprimer le paramètre &amp;fictif actuel</translation>
+        <translation>Supprimer le &amp;bouche-trou actuel</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1042"/>
