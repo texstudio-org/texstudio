@@ -29,9 +29,8 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
     connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
 
 	updateDocAvailableInfo("", false); // initially disable warning message
-#ifdef Q_OS_WIN
+
     if (openButton) openButton->setEnabled(true);
-#endif
 }
 
 TexdocDialog::~TexdocDialog()
@@ -85,12 +84,11 @@ void TexdocDialog::delayedCheckDocAvailable(const QString &package)
 
 void TexdocDialog::checkDockAvailable()
 {
-	if (lastDocRequest.isEmpty())
+    if (lastDocRequest.isEmpty()){
 		updateDocAvailableInfo("", false);
-    else ;
-#ifndef Q_OS_WIN
+    } else {
         help->texdocAvailableRequest(lastDocRequest);
-#endif
+    }
 }
 
 void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available, QString customWarning)
