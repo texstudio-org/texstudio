@@ -8235,7 +8235,7 @@ void QDocumentPrivate::flushMatches(int groupId)
 			continue;
 
 		it = areas.insert(m.line, n);
-#if QT_VERSION<QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
 		if ( it != areas.end() && it != areas.begin() )
 		{
             tmp = it - 1;
