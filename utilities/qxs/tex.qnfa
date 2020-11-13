@@ -136,6 +136,29 @@ environments in smallUsefulFunctions.cpp)
 	-->	
 	</list>
 	
+	<!-- ========================= FOOTNOTES ====================== -->
+	
+	<!-- Footnote highlighting code contributed by @cktai17 (https://github.com/texstudio-org/texstudio/issues/1101) -->
+	<!-- In TeXstudio / Options / Configure / Syntax Highlighting, choose your preferred colours at asymtote:block and asymtote:keyword-->
+	
+	<context id="footnote" format="asymptote:block" transparency="true">
+    		<start parenthesis="footnote:open" parenthesisWeight="20" format="keyword">\\footnote{</start>
+		<stop parenthesis="footnote:close" parenthesisWeight="20" format="keyword">}</stop>
+		<context id="substring" format="asymptote:block">
+			<start parenthesis="curly2:open">{</start>
+			<stop parenthesis="curly2:close">}</stop>
+		</context>
+		<list id="footnote/keywords" format="asymptote:keyword">
+			<word>\\Cites?</word>				
+			<word>\\cites?</word>		
+			<word>\\parencites?</word>
+			<word>\\enquote</word>
+			<word>\\textc?quote</word>
+			<word>\\textit</word>
+			<word>\\gls</word>
+		</list>
+  	</context>
+	
 	<!-- ========================= GENERAL COMMANDS ====================== -->
 
 	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
