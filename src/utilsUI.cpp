@@ -362,8 +362,8 @@ void resizeInFontHeight(QWidget *w, int width, int height)
     QRect r = dw->availableGeometry(w);
 #endif
     QSize newSize = QSize(qMin(h * width, r.width()), qMin(h * height, r.height()));
-    qDebug() << "resizeInFontHeight old size:" << w->width() / (float) h << w->height() / (float) h;
-    qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;
+    //qDebug() << "resizeInFontHeight old size:" << w->width() / (float) h << w->height() / (float) h;
+    //qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;
     w->resize(newSize);
 }
 
