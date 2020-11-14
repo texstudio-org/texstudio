@@ -69,7 +69,7 @@ QDocumentCursor cursorFromValue(const QJSValue &value)
 	QDocumentCursor *c = qobject_cast<QDocumentCursor *> (value.toQObject());
 	if (!c) {
 #if (QT_VERSION<QT_VERSION_CHECK(6,0,0) && QT_VERSION>=QT_VERSION_CHECK(5,12,0))
-        if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object")); //TODO Qt6 ?
+        //if (value.engine() ) value.engine()->throwError(scriptengine::tr("Expected cursor object")); //TODO Qt6 ?
 #endif
 		return QDocumentCursor();
 	}
@@ -307,7 +307,7 @@ void scriptengine::run()
 	if (result.isError()) {
 		QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(result.property("lineNumber").toInt()).arg(result.toString());
 		qDebug() << error;
-		QMessageBox::critical(nullptr, tr("Script-Error"), error);
+        //QMessageBox::critical(nullptr, tr("Script-Error"), error);
 	}
 
 	if (m_editor) {
