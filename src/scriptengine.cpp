@@ -179,8 +179,8 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 {
 	engine = new QJSEngine(this);
     qmlRegisterType<QDocument>("com.txs.qmlcomponents", 1, 0, "QDocument");
-	//qmlRegisterType<QDocumentCursor>();
-	//qmlRegisterType<QDocumentCursor>("",0,0,"QDocumentCursor");
+    //qmlRegisterAnonymousType<QDocumentCursor>("com.txs.qmlcomponents",1);
+    qmlRegisterType<QDocumentCursor>("com.txs.qmlcomponents",1,0,"QDocumentCursor");
 	//qmlRegisterType<QFileInfo>();
     qmlRegisterType<ProcessX>("com.txs.qmlcomponents", 1, 0, "ProcessX");
     //qmlRegisterType<SubScriptObject>();
@@ -261,7 +261,6 @@ void scriptengine::run()
 		editorValue.setProperty("save", scriptJS.property("save"));
 		editorValue.setProperty("saveCopy", scriptJS.property("saveCopy"));
 		engine->globalObject().setProperty("editor", editorValue);
-		//engine->globalObject().setProperty("editor.abc", editorValue.property("insertTab"));
 
 		cursorValue = engine->newQObject(&c);
 		engine->globalObject().setProperty("cursor", cursorValue);
@@ -326,6 +325,7 @@ void scriptengine::insertSnippet(const QString& arg)
 		cs.insertAt(m_editor, &c);
 	}
 }
+
 #if (QT_VERSION>=QT_VERSION_CHECK(5,12,0))
 #define SCRIPT_REQUIRE(cond, message) if (!(cond)) { engine->throwError(scriptengine::tr(message)); return QJSValue();}
 #else
@@ -415,14 +415,14 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
 	SCRIPT_REQUIRE(!searchText.isUndefined() , "at least one argument is required")
 	SCRIPT_REQUIRE(searchText.isString() || searchText.isRegExp(), "first argument must be a string or regexp")
 	QDocumentSearch::Options flags = QDocumentSearch::Silent;
-	bool global = false, caseInsensitive = false;
+    bool global = false, caseInsensitive = false;
 	QString searchFor;
 	if (searchText.isRegExp()) {
 		flags |= QDocumentSearch::RegExp;
         QRegularExpression r = searchText.toVariant().toRegularExpression();
 		searchFor = r.pattern();
-        //caseInsensitive = r.caseSensitivity() == Qt::CaseInsensitive;
-		//Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
+        caseInsensitive = (r.patternOptions() & QRegularExpression::CaseInsensitiveOption)!=QRegularExpression::NoPatternOption;
+        Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
 		global = searchText.property("global").toBool();
 	} else searchFor = searchText.toString();
 	QJSValue handler;
@@ -478,12 +478,11 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
 			}
 			handlerCount--;
 		} else if (a.isNumber()) flags |= QDocumentSearch::Options((int)a.toNumber());
-		else if (a.isObject()) m_scope = cursorFromValue(a);
+        else if (a.isObject()) m_scope = cursorFromValue(a);
 		else SCRIPT_REQUIRE(false, "Invalid argument")
 	}
 	SCRIPT_REQUIRE(!handler.isUndefined() || !replace, "No callback given")
 	if (!caseInsensitive) flags |= QDocumentSearch::CaseSensitive;
-
 	//search/replace
 	QDocumentSearch search(m_editor, searchFor, flags);
 	search.setScope(m_scope);
