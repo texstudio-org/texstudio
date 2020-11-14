@@ -28,12 +28,12 @@ private slots:
 		QTest::newRow("white") << rgb(255, 255, 255) << 150 << rgb(170, 170, 170);
 
 		QTest::newRow("factor150") << rgbf(.2, .6, 1.) << 150 << rgb(34, 102, 170);
-		QTest::newRow("factor120") << rgbf(.2, .6, 1.) << 120 << rgb(42, 127, 213);
+        QTest::newRow("factor120") << rgbf(.2, .6, 1.) << 120 << rgb(42, 127, 212);
 		QTest::newRow("factor100") << rgbf(.2, .6, 1.) << 100 << rgb(51, 153, 255);
 		QTest::newRow("factor90") << rgbf(.2, .6, 1.) << 90 << rgb(79, 167, 255);
 		QTest::newRow("factor80") << rgbf(.2, .6, 1.) << 80 << rgb(115, 185, 255);
 		QTest::newRow("factor70") << rgbf(.2, .6, 1.) << 70 << rgb(158, 207, 255);
-		QTest::newRow("factor60") << rgbf(.2, .6, 1.) << 60 << rgb(220, 238, 255);
+        QTest::newRow("factor60") << rgbf(.2, .6, 1.) << 60 << rgb(219, 237, 255);
 		QTest::newRow("factor50") << rgbf(.2, .6, 1.) << 50 << rgb(255, 255, 255);
 	}
 
