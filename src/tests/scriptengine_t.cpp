@@ -42,13 +42,9 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("Redo")
 		<< "editor.redo()"
 		<< "Hallo";
-	if (all) {
-		QTest::newRow("Select All/copy/paste")
+
+    QTest::newRow("Select All/copy/paste")
 		<< "editor.selectAll();editor.copy();editor.selectNothing();editor.paste()"
-		<< "HalloHallo";
-	} else
-		QTest::newRow("SKIP Select All/copy/paste ")
-		<< "editor.setText(\"HalloHallo\");"
 		<< "HalloHallo";
 
 	QTest::newRow("remove Selection")
