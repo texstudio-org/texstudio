@@ -34,7 +34,7 @@ class scriptengine : public QObject
 public:
     scriptengine(QObject *parent = nullptr);
 	~scriptengine();
-	void run();
+    void run(const bool quiet=false);
 	void setScript(const QString &script, bool allowWrite = false);
 	void setEditorView(LatexEditorView *edView);
 
