@@ -23,8 +23,8 @@
 	\brief Definition of the QFormat class
 */
 #if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
-template <typename T>
-class QList;
+//template <typename T>
+//class QList;
 #else
 template <typename T>
 class QVector;
