@@ -143,7 +143,7 @@ void ScriptEngineTest::script(){
 	scriptengine eng(nullptr);
 	eng.setEditorView(edView);
 	eng.setScript(script);
-	eng.run();
+    eng.run(true);
 
 	QEQUAL(edView->editor->document()->text(), newText);
 }
@@ -169,7 +169,7 @@ void ScriptEngineTest::scriptApp(){
     scriptengine eng(nullptr);
     eng.setEditorView(edView);
     eng.setScript(script);
-    eng.run();
+    eng.run(true);
 
     QEQUAL(edView->editor->document()->text(), newText);
 }
@@ -255,7 +255,7 @@ void ScriptEngineTest::getLineTokens(void)
 		.arg(lineNr)
 		.arg(jsonExpected)
 	);
-	eng.run();
+    eng.run(true);
 }
 
 /*!

@@ -229,7 +229,7 @@ void scriptengine::setEditorView(LatexEditorView *edView)
 	m_editorView = edView;
 }
 
-void scriptengine::run()
+void scriptengine::run(const bool quiet)
 {
 	/*delete globalObject;
 	globalObject = new ScriptObject(m_script, buildManager, app);
@@ -316,7 +316,8 @@ void scriptengine::run()
 	if (result.isError()) {
 		QString error = QString(tr("Uncaught exception at line %1: %2\n")).arg(result.property("lineNumber").toInt()).arg(result.toString());
 		qDebug() << error;
-        //QMessageBox::critical(nullptr, tr("Script-Error"), error);
+        if(!quiet)
+            QMessageBox::critical(nullptr, tr("Script-Error"), error);
 	}
 
 	if (m_editor) {
