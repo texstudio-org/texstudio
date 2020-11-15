@@ -248,8 +248,18 @@ void scriptengine::run()
 	if (m_editorView)
 		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
 
+    QJSValue scriptJS=engine->newQObject(this);
+    // add geeneral debug/warn functions
+    engine->globalObject().setProperty("alert", scriptJS.property("alert"));
+    engine->globalObject().setProperty("information", scriptJS.property("information"));
+    engine->globalObject().setProperty("critical", scriptJS.property("critical"));
+    engine->globalObject().setProperty("warning", scriptJS.property("warning"));
+    engine->globalObject().setProperty("confirm", scriptJS.property("confirm"));
+    engine->globalObject().setProperty("confirmWarning", scriptJS.property("confirmWarning"));
+    engine->globalObject().setProperty("debug", scriptJS.property("debug"));
+
+
 	if (m_editor) {
-		QJSValue scriptJS=engine->newQObject(this);
 		QJSValue editorValue = engine->newQObject(m_editor);
 		QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
 		QQmlEngine::setObjectOwnership(m_editor, QQmlEngine::CppOwnership);
@@ -516,6 +526,55 @@ QJSValue scriptengine::searchFunction(QJSValue searchFor,QJSValue arg1,QJSValue 
 QJSValue scriptengine::replaceFunction(QJSValue searchFor,QJSValue arg1,QJSValue arg2,QJSValue arg3)
 {
 	return searchReplaceFunction(searchFor,arg1,arg2,arg3, true);
+}
+
+void scriptengine::alert(const QString &message)
+{
+    UtilsUi::txsInformation(message);
+}
+
+void scriptengine::information(const QString &message)
+{
+    UtilsUi::txsInformation(message);
+}
+
+void scriptengine::critical(const QString &message)
+{
+    UtilsUi::txsCritical(message);
+}
+
+void scriptengine::warning(const QString &message)
+{
+    UtilsUi::txsWarning(message);
+}
+
+bool scriptengine::confirm(const QString &message)
+{
+    return UtilsUi::txsConfirm(message);
+}
+
+bool scriptengine::confirmWarning(const QString &message)
+{
+    return UtilsUi::txsConfirmWarning(message);
+}
+
+void scriptengine::debug(const QString &message)
+{
+    qDebug() << message;
+}
+
+void scriptengine::save(const QString fn)
+{
+    if(fn.isEmpty()){
+        m_editor->save();
+    }else{
+        m_editor->save(fn);
+    }
+}
+
+void scriptengine::saveCopy(const QString &fileName)
+{
+    m_editor->saveCopy(fileName);
 }
 
 UniversalInputDialogScript::UniversalInputDialogScript(QWidget *parent): UniversalInputDialog(parent)

@@ -23,6 +23,7 @@
 class BuildManager;
 class Texstudio;
 class ScriptObject;
+class ProcessX;
 
 class LatexEditorView;
 class Macro;
@@ -52,8 +53,21 @@ protected slots:
     QJSValue replaceSelectedText(QJSValue replacementText,QJSValue options=QJSValue());
     QJSValue searchFunction(QJSValue searchFor, QJSValue arg1=QJSValue(), QJSValue arg2=QJSValue(), QJSValue arg3=QJSValue());
     QJSValue replaceFunction(QJSValue searchFor, QJSValue arg1=QJSValue(), QJSValue arg2=QJSValue(), QJSValue arg3=QJSValue());
-    //void save();
-    //void saveCopy(const QString& fileName);
+    void alert(const QString& message);
+    void information(const QString &message);
+    void critical(const QString &message);
+    void warning(const QString &message);
+    bool confirm(const QString &message);
+    bool confirmWarning(const QString &message);
+    void debug(const QString &message);
+
+    //ProcessX *system(const QString &commandline, const QString &workingDirectory=QString());
+
+    //void writeFile(const QString &filename, const QString &content);
+    //QVariant readFile(const QString &filename);
+
+    void save(const QString fn="");
+    void saveCopy(const QString& fileName);
 #endif
 
 protected:
