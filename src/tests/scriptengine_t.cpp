@@ -148,6 +148,32 @@ void ScriptEngineTest::script(){
 	QEQUAL(edView->editor->document()->text(), newText);
 }
 
+void ScriptEngineTest::scriptApp_data(){
+    QTest::addColumn<QString>("script");
+    QTest::addColumn<QString>("newText");
+
+    QTest::newRow("app.version")
+        << "var a=app.getVersion();editor.setText(a, false)"
+        << QString::number(TXSVERSION_NUMERIC);
+    QTest::newRow("app.currentFileName")
+        << "var a=app.getCurrentFileName();editor.setText(a, false)"
+        << "";
+    QTest::newRow("fileChooser")
+        << "fileChooser.setDir(\"/\"); fileChooser.setFilter(\"*.etx\") "
+        << "";
+
+}
+void ScriptEngineTest::scriptApp(){
+    QFETCH(QString, script);
+    QFETCH(QString, newText);
+    scriptengine eng(nullptr);
+    eng.setEditorView(edView);
+    eng.setScript(script);
+    eng.run();
+
+    QEQUAL(edView->editor->document()->text(), newText);
+}
+
 void ScriptEngineTest::getLineTokens_data(void)
 {
 	QTest::addColumn<QString>("documentText");

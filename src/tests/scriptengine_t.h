@@ -17,6 +17,8 @@ class ScriptEngineTest: public QObject{
 	private slots:
 		void script_data();
 		void script();
+        void scriptApp_data();
+        void scriptApp();
 		void getLineTokens_data(void);
 		void getLineTokens(void);
 };
