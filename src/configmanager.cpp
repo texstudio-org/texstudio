@@ -1163,8 +1163,8 @@ QSettings *ConfigManager::readSettings(bool reread)
     LatexParser::getInstance().customCommands = convertStringListtoSet(config->value("customCommands").toStringList());
 
 	//--------------------appearance------------------------------------
-	QFontDatabase fdb;
-	QStringList xf = fdb.families();
+    QFontDatabase fdb;
+    QStringList xf = fdb.families();
 	//editor
 #ifdef Q_OS_WIN32
 	if (editorConfig->fontFamily.isEmpty()) {
@@ -1310,7 +1310,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 
 	config->endGroup();
 
-	config->sync();
+    config->sync(); //? why crashes here ????
 
     return config;
 }
