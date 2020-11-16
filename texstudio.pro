@@ -70,7 +70,7 @@ exists(texstudio.pri):include(texstudio.pri)
 QT += network \
     xml \
     svg \
-    script \
+    qml \
     printsupport \
     concurrent
 
@@ -98,13 +98,6 @@ versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
         DEFINES += INTERNAL_TERMINAL
         message(Use qterminal)
     }
-}
-
-!isEmpty(QJS){
-    DEFINES += QJS
-    QT += qml
-    QT -= script
-    message(Use experimental JS engine)
 }
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
