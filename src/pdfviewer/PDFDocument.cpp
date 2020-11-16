@@ -31,6 +31,9 @@
 #include <QShortcut>
 #include <QtCore/qnumeric.h>
 #include <QtCore/qmath.h>
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
+#include <QDesktopWidget>
+#endif
 
 #include "universalinputdialog.h"
 
@@ -100,14 +103,24 @@ QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGra
 
 void zoomToScreen(QWidget *window)
 {
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
+    QDesktopWidget *desktop = QApplication::desktop();
+    QRect screenRect = desktop->availableGeometry(window);
+#else
     QRect screenRect = window->screen()->availableGeometry();
+#endif
 	screenRect.setTop(screenRect.top() + window->geometry().y() - window->y());
 	window->setGeometry(screenRect);
 }
 
 void zoomToHalfScreen(QWidget *window, bool rhs)
 {
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
+    QDesktopWidget *desktop = QApplication::desktop();
+    QRect r = desktop->availableGeometry(window);
+#else
     QRect r = window->screen()->availableGeometry();
+#endif
 
 	int wDiff = window->frameGeometry().width() - window->width();
 	int hDiff = window->frameGeometry().height() - window->height();
@@ -148,10 +161,17 @@ void zoomToHalfScreen(QWidget *window, bool rhs)
 
 void windowsSideBySide(QWidget *window1, QWidget *window2)
 {
-
+#if QT_VERSION>=QT_VERSION_CHECK(5,15,0)
 	// if the windows reside on the same screen zoom each so that it occupies
 	// half of that screen
     if (window1->screen() == window2->screen()) {
+#else
+    QDesktopWidget *desktop = QApplication::desktop();
+
+    // if the windows reside on the same screen zoom each so that it occupies
+    // half of that screen
+    if (desktop->screenNumber(window1) == desktop->screenNumber(window2)) {
+#endif
 		int window1left = window1->pos().x() <= window2->pos().x();
 		zoomToHalfScreen(window1, !window1left);
 		zoomToHalfScreen(window2, window1left);
@@ -3771,7 +3791,12 @@ void PDFDocument::saveGeometryToConfig()
 
 void PDFDocument::zoomToRight(QWidget *otherWindow)
 {
+#if QT_VERSION>=QT_VERSION_CHECK(5,15,0)
     QRect screenRect = otherWindow == nullptr ? this->screen()->availableGeometry() : otherWindow->screen()->availableGeometry();
+#else
+    QDesktopWidget *desktop = QApplication::desktop();
+    QRect screenRect = desktop->availableGeometry(otherWindow == nullptr ? this : otherWindow);
+#endif
 	screenRect.setTop(screenRect.top() + 22);
 	screenRect.setLeft((screenRect.left() + screenRect.right()) / 2 + 1);
 	screenRect.setBottom(screenRect.bottom() - 1);
