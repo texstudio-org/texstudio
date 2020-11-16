@@ -2416,7 +2416,14 @@ void ProcessX::setShowStdout(bool show)
 
 QString *ProcessX::getStdoutBuffer()
 {
-	return stdoutBuffer;
+    return stdoutBuffer;
+}
+
+QString ProcessX::getStdout()
+{
+    if(stdoutBuffer)
+        return *stdoutBuffer;
+    return QString();
 }
 
 void ProcessX::setStdoutBuffer(QString *buffer)
