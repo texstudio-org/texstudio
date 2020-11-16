@@ -22,7 +22,6 @@
 //#include "latexeditorview.h"
 class BuildManager;
 class Texstudio;
-class ScriptObject;
 class ProcessX;
 
 class LatexEditorView;
@@ -44,8 +43,6 @@ public:
 	QStringList triggerMatches;
 	int triggerId;
 
-	ScriptObject *globalObject;
-
 	static QList<Macro> *macros;
 #ifdef QJS
 protected slots:
@@ -61,16 +58,25 @@ protected slots:
     bool confirmWarning(const QString &message);
     void debug(const QString &message);
 
-    //ProcessX *system(const QString &commandline, const QString &workingDirectory=QString());
+    ProcessX *system(const QString &commandline, const QString &workingDirectory=QString());
 
-    //void writeFile(const QString &filename, const QString &content);
-    //QVariant readFile(const QString &filename);
+    void writeFile(const QString &filename, const QString &content);
+    QVariant readFile(const QString &filename);
 
     void save(const QString fn="");
     void saveCopy(const QString& fileName);
 #endif
 
 protected:
+    QByteArray getScriptHash();
+    void registerAllowedWrite();
+
+    bool hasReadPrivileges();
+    bool hasWritePrivileges();
+
+    bool needReadPrivileges(const QString &fn, const QString &param);
+    bool needWritePrivileges(const QString &fn, const QString &param);
+
 #ifdef QJS
     QJSEngine *engine;
 #else
@@ -84,6 +90,8 @@ protected:
     QPointer<QEditor> m_editor;
 	QString m_script;
 	bool m_allowWrite;
+    static int writeSecurityMode,readSecurityMode;
+    static QStringList privilegedReadScripts, privilegedWriteScripts;
 };
 
 #include "universalinputdialog.h"

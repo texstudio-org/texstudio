@@ -8,6 +8,7 @@
 #include "texstudio.h"
 #include "PDFDocument.h"
 #include "usermacro.h"
+#include <QCryptographicHash>
 
 //Q_DECLARE_METATYPE(QDocument *)
 //Q_DECLARE_METATYPE(LatexDocuments *)
@@ -30,6 +31,12 @@ BuildManager *scriptengine::buildManager = nullptr;
 Texstudio *scriptengine::app = nullptr;
 
 QList<Macro> *scriptengine::macros = nullptr;
+
+int scriptengine::writeSecurityMode=2;
+int scriptengine::readSecurityMode=2;
+QStringList scriptengine::privilegedReadScripts=QStringList();
+QStringList scriptengine::privilegedWriteScripts=QStringList();
+
 #ifdef QJS
 template <typename Tp> QJSValue qScriptValueFromQObject(QJSEngine *engine, Tp const &qobject)
 {
@@ -175,7 +182,7 @@ void qScriptValueToStringPtr(const QJSValue &value, QString *&str)
  * However this may be a good starting point for Qt6
  */
 
-scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), globalObject(nullptr), m_editor(nullptr), m_allowWrite(false)
+scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), m_editor(nullptr), m_allowWrite(false)
 {
 	engine = new QJSEngine(this);
     qmlRegisterType<QDocument>("com.txs.qmlcomponents", 1, 0, "QDocument");
@@ -206,6 +213,11 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 
     //qmlRegisterType<QKeySequence>("com.txs.qmlcomponents", 1, 0, "QKeySequence");
 	//qmlRegisterType<QUILoader>();
+
+
+    // for now
+    readSecurityMode=1;
+    writeSecurityMode=1;
 }
 
 scriptengine::~scriptengine()
@@ -257,6 +269,9 @@ void scriptengine::run(const bool quiet)
     engine->globalObject().setProperty("confirm", scriptJS.property("confirm"));
     engine->globalObject().setProperty("confirmWarning", scriptJS.property("confirmWarning"));
     engine->globalObject().setProperty("debug", scriptJS.property("debug"));
+    engine->globalObject().setProperty("readFile", scriptJS.property("readFile"));
+    engine->globalObject().setProperty("writeFile", scriptJS.property("writeFile"));
+    engine->globalObject().setProperty("system", scriptJS.property("system"));
 
 
 	if (m_editor) {
@@ -576,6 +591,112 @@ void scriptengine::save(const QString fn)
 void scriptengine::saveCopy(const QString &fileName)
 {
     m_editor->saveCopy(fileName);
+}
+
+ProcessX * scriptengine::system(const QString &commandline, const QString &workingDirectory)
+{
+    if (!buildManager || !needWritePrivileges("system", commandline))
+        return nullptr;
+    ProcessX *p = nullptr;
+    if (commandline.contains(BuildManager::TXS_CMD_PREFIX) || !commandline.contains("|"))
+        p = buildManager->firstProcessOfDirectExpansion(commandline, QFileInfo());
+    else
+        p = buildManager->newProcessInternal(commandline, QFileInfo()); //use internal, so people can pass | to sh
+    if (!p) return nullptr;
+    connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), p, SLOT(deleteLater()));
+    QMetaObject::invokeMethod(reinterpret_cast<QObject *>(app), "connectSubCommand", Q_ARG(ProcessX *, p), Q_ARG(bool, true));
+    if (!workingDirectory.isEmpty())
+        p->setWorkingDirectory(workingDirectory);
+    QString *buffer=new QString;
+    p->setStdoutBuffer(buffer);
+    p->startCommand();
+    p->waitForStarted();
+    return p;
+}
+
+void scriptengine::writeFile(const QString &filename, const QString &content)
+{
+    if (!needWritePrivileges("writeFile", filename))
+        return;
+    QFile f(filename);
+    if (!f.open(QFile::WriteOnly))
+        return;
+    f.write(content.toUtf8());
+    f.close();
+}
+
+QVariant scriptengine::readFile(const QString &filename)
+{
+    if (!needReadPrivileges("readFile", filename))
+        return QVariant();
+    QFile f(filename);
+    if (!f.open(QFile::ReadOnly))
+        return QVariant();
+    QTextStream ts(&f);
+    ts.setAutoDetectUnicode(true);
+    return ts.readAll();
+}
+
+bool scriptengine::hasReadPrivileges()
+{
+    if (readSecurityMode == 0)
+        return false;
+    if (readSecurityMode == 2
+            || privilegedReadScripts.contains(getScriptHash())
+            || privilegedWriteScripts.contains(getScriptHash()))
+        return true;
+    return false;
+
+}
+
+bool scriptengine::hasWritePrivileges()
+{
+    if (writeSecurityMode == 0)
+        return false;
+    if (writeSecurityMode == 2
+            || privilegedWriteScripts.contains(getScriptHash()))
+        return true;
+    return false;
+
+}
+
+QByteArray scriptengine::getScriptHash()
+{
+    QByteArray m_scriptHash = QCryptographicHash::hash(m_script.toLatin1(), QCryptographicHash::Sha1).toHex();
+    return m_scriptHash;
+}
+
+void scriptengine::registerAllowedWrite()
+{
+    QByteArray hash = getScriptHash();
+    if (!privilegedWriteScripts.contains(hash))
+        privilegedWriteScripts.append(hash);
+}
+
+bool scriptengine::needWritePrivileges(const QString &fn, const QString &param)
+{
+    if (writeSecurityMode == 0) return false;
+    if (hasWritePrivileges()) return true;
+    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
+                                  tr("The current script has requested to enter privileged write mode and call following function:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this call"),
+                                  tr("Yes, allow all calls it will ever make"), tr("No, abort the call"), 0, 2);
+    if (t == 0) return true; //only now
+    if (t != 1) return false;
+    privilegedWriteScripts.append(getScriptHash());
+    return true;
+}
+
+bool scriptengine::needReadPrivileges(const QString &fn, const QString &param)
+{
+    if (readSecurityMode == 0) return false;
+    if (hasReadPrivileges()) return true;
+    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
+                                  tr("The current script has requested to enter privileged mode and read the following value:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this reading"),
+                                  tr("Yes, grant permanent read access to everything"), tr("No, abort the call"), 0, 2);
+    if (t == 0) return true; //only now
+    if (t != 1) return false;
+    privilegedReadScripts.append(getScriptHash());
+    return true;
 }
 
 UniversalInputDialogScript::UniversalInputDialogScript(QWidget *parent): UniversalInputDialog(parent)
