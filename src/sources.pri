@@ -66,7 +66,6 @@ HEADERS += \
     $$PWD/quickdocumentdialog.h \
     $$PWD/randomtextgenerator.h \
     $$PWD/scriptengine.h \
-    $$PWD/scriptobject.h \
     $$PWD/searchquery.h \
     $$PWD/searchresultmodel.h \
     $$PWD/searchresultwidget.h \
@@ -169,7 +168,6 @@ SOURCES += \
     $$PWD/quickdocumentdialog.cpp \
     $$PWD/randomtextgenerator.cpp \
     $$PWD/scriptengine.cpp \
-    $$PWD/scriptobject.cpp \
     $$PWD/searchquery.cpp \
     $$PWD/searchresultmodel.cpp \
     $$PWD/searchresultwidget.cpp \

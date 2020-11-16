@@ -4017,9 +4017,7 @@ void Texstudio::editTextToTitlecase(bool smart)
 	    "editor.replaceSelectedText(toTitleCase)";
 	eng->setScript(script);
 	eng->run();
-#ifndef QJS
-	if (!eng->globalObject) delete eng;
-#endif
+
 	m_cursor.endEditBlock();
 
 }
@@ -5565,10 +5563,6 @@ void Texstudio::runScript(const QString &script, const MacroExecContext &context
 
 	eng->setScript(script, allowWrite);
 	eng->run();
-#ifndef QJS
-	if (!eng->globalObject) delete eng;
-	else QObject::connect(reinterpret_cast<QObject *>(eng->globalObject), SIGNAL(destroyed()), eng, SLOT(deleteLater()));
-#endif
 }
 
 void Texstudio::editMacros()
