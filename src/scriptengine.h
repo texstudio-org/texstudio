@@ -60,8 +60,11 @@ protected slots:
     void writeFile(const QString &filename, const QString &content);
     QVariant readFile(const QString &filename);
 
+    bool setTimeout(const QString &fun,const int timeout);
+
     void save(const QString fn="");
     void saveCopy(const QString& fileName);
+    void runTimed(const QString fun);
 
 protected:
     QByteArray getScriptHash();

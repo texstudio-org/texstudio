@@ -248,7 +248,7 @@ void scriptengine::run(const bool quiet)
 	//engine->globalObject().setProperty("include", engine->newFunction(include));
 	//QJSValue script= engine->newQObject(this);
 
-	//engine->globalObject().setProperty("setTimeout", script.property("setTimeout"));
+    engine->globalObject().setProperty("setTimeout", scriptJS.property("setTimeout"));
 
 	QJSValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
 	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
@@ -645,6 +645,22 @@ bool scriptengine::needReadPrivileges(const QString &fn, const QString &param)
     if (t != 1) return false;
     privilegedReadScripts.append(getScriptHash());
     return true;
+}
+
+bool scriptengine::setTimeout(const QString &fun,const int timeout)
+{
+    QTimer *tm=new QTimer();
+    QStringList parts=fun.split(" ");
+    tm->singleShot(timeout,this,std::bind(&scriptengine::runTimed,this,parts.value(1)));
+
+    return true;
+}
+
+void scriptengine::runTimed(const QString fun)
+{
+    if(!fun.isEmpty()){
+        engine->evaluate(fun);
+    }
 }
 
 UniversalInputDialogScript::UniversalInputDialogScript(QWidget *parent): UniversalInputDialog(parent)
