@@ -419,7 +419,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	systemPalette = QApplication::palette();
 	defaultStyleName = QApplication::style()->objectName();
 
-//	qRegisterMetaTypeStreamOperators<StringStringMap>("StringStringMap");
+    qRegisterMetaType<StringStringMap>("StringStringMap");
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
