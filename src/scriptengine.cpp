@@ -396,7 +396,7 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
         QRegularExpression r = searchText.toVariant().toRegularExpression();
 		searchFor = r.pattern();
         caseInsensitive = (r.patternOptions() & QRegularExpression::CaseInsensitiveOption)!=QRegularExpression::NoPatternOption;
-        Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
+        //Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
 		global = searchText.property("global").toBool();
 	} else searchFor = searchText.toString();
 	QJSValue handler;
