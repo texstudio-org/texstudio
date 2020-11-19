@@ -419,7 +419,10 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	editor->document()->clearLanguageMatches();
 	editor->insertText(*cursor, line); //don't use cursor->insertText to keep autoindentation working
 
-    if (editBlockOpened && savedSelection.isEmpty()) cursor->endEditBlock();
+    if (editBlockOpened && savedSelection.isEmpty()){
+        cursor->endEditBlock();
+        editBlockOpened=false;
+    }
 
 	// on single line commands only: replace command
 	if (byCompleter && autoReplaceCommands && lines.size() == 1 && (line.startsWith('\\') || isKeyVal) ) {
@@ -537,6 +540,9 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	} else if (autoSelectPlaceholder != -1) {
 		editor->setPlaceHolder(autoSelectPlaceholder, true); //this moves the cursor to that placeholder
 	} else {
+        if (editBlockOpened){ //make sure to close edit block
+            cursor->endEditBlock();
+        }
 		editor->setCursor(*cursor); //place after insertion
 		return;
 	}
@@ -548,12 +554,16 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
             cursor->moveTo(oldCursor.anchorLineNumber(),oldCursor.anchorColumnNumber(),QDocumentCursor::KeepAnchor);
         cursor->insertText(savedSelection, true);
         cursor->endEditBlock(); // necessary to generate undo stack when ctrl+b on selection (bug #135)
+        editBlockOpened=false;
         if (!cursor->hasSelection() && alwaysSelect) {
             cursor->movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 		}
         editor->setCursor(*cursor);
 		if (autoSelectPlaceholder != -1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this synchronizes the placeholder mirrors with the current placeholder text
 	}
+    if (editBlockOpened){ //make sure to close edit block
+        cursor->endEditBlock();
+    }
 }
 
 void CodeSnippet::setName(const QString &newName)

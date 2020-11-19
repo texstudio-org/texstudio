@@ -1296,7 +1296,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 
 	config->endGroup();
 
-	config->sync();
+    config->sync();
 
     return config;
 }
