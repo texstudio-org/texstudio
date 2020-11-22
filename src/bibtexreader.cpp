@@ -26,9 +26,12 @@ void bibtexReader::searchSection(QString file, QString bibId, int truncateLimit)
 	QTextStream stream(&f);
 	QString bibFileEncoding = ConfigManagerInterface::getInstance()->getOption("Bibliography/BibFileEncoding").toString();
 #if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
-    //QStringConverter codec(bibFileEncoding.toLocal8Bit());
-    //if (!codec.is) return;
-    //stream.setEncoding()
+    std::optional<QStringConverter::Encoding> codec=QStringConverter::encodingForName(bibFileEncoding.toLocal8Bit());
+    if (!codec.has_value()){
+        qDebug()<<"bibtexReader::searchSection text codec not recognized in QT6:"<<bibFileEncoding;
+        return; // some warning ?
+    }
+    stream.setEncoding(codec.value());
 #else
 	QTextCodec *codec = QTextCodec::codecForName(bibFileEncoding.toLatin1());
 	if (!codec) return;
