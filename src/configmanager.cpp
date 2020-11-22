@@ -84,7 +84,7 @@ ConfigManagerInterface *ConfigManagerInterface::getInstance()
 }
 
 Q_DECLARE_METATYPE(ManagedProperty *)
-//Q_DECLARE_METATYPE(StringStringMap)
+Q_DECLARE_METATYPE(StringStringMap)
 
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(nullptr) {}
 
@@ -419,8 +419,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	systemPalette = QApplication::palette();
 	defaultStyleName = QApplication::style()->objectName();
 
-    //qRegisterMetaType<StringStringMap>("StringStringMap");
 #if QT_VERSION>=QT_VERSION_CHECK(6,0,0)
+    qRegisterMetaType<StringStringMap>("StringStringMap");
 #else
     qRegisterMetaTypeStreamOperators<StringStringMap>("StringStringMap");
 #endif
@@ -1638,7 +1638,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		// update macros menu to update quote replacement
 		if (changedProperties.contains(&replaceQuotes)) {
 			bool conflict = false;
-			if (replaceQuotes)
+            if (replaceQuotes){
 				foreach (const Macro &m, completerConfig->userMacros) {
 					if (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN ||
 					        m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE) continue;
@@ -1647,6 +1647,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 						break;
 					}
 				}
+            }
 			if (conflict)
 				if (UtilsUi::txsConfirm(tr("You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))) {
 					for (int i = completerConfig->userMacros.count() - 1; i >= 0; i--) {
