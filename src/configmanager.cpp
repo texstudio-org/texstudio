@@ -84,7 +84,7 @@ ConfigManagerInterface *ConfigManagerInterface::getInstance()
 }
 
 Q_DECLARE_METATYPE(ManagedProperty *)
-Q_DECLARE_METATYPE(StringStringMap)
+//Q_DECLARE_METATYPE(StringStringMap)
 
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(nullptr) {}
 
@@ -419,7 +419,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	systemPalette = QApplication::palette();
 	defaultStyleName = QApplication::style()->objectName();
 
-    qRegisterMetaType<StringStringMap>("StringStringMap");
+    //qRegisterMetaType<StringStringMap>("StringStringMap");
+#if QT_VERSION>=QT_VERSION_CHECK(6,0,0)
+#else
+    qRegisterMetaTypeStreamOperators<StringStringMap>("StringStringMap");
+#endif
 
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
