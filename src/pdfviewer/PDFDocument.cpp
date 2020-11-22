@@ -4258,7 +4258,7 @@ void PDFDocument::printPDF()
 		command = args.join(" ");
 	} else return;
 
-	for (int i = 0; i < printer.numCopies(); i++)
+    for (int i = 0; i < printer.copyCount(); i++)
 		emit runCommand(command, masterFile, masterFile, 0);
 }
 
