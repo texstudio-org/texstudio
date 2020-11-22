@@ -15,7 +15,7 @@ enum CompletionType {CT_COMMANDS, CT_NORMALTEXT, CT_CITATIONS, CT_CITATIONCOMMAN
 struct CodeSnippetPlaceHolder {
 	int offset /*< column position*/, length /*< lenght*/;
 	int id; ///< identification number to match mirror placeholders
-	enum Flag {AutoSelect = 1, Mirrored = 2, Mirror = 4, PreferredMultilineAutoSelect = 8, Persistent = 16, Translatable = 32};
+    enum Flag {None=0, AutoSelect = 1, Mirrored = 2, Mirror = 4, PreferredMultilineAutoSelect = 8, Persistent = 16, Translatable = 32, PreferredCutInsertion = 64};
 	int flags; ///< type of placeholder
 	int offsetEnd() const; ///< return end-column of placeholder = offset+lenght
 };

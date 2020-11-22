@@ -31,7 +31,14 @@ inline void translatePlaceholder(const QString &content, QString &curLine, CodeS
 	} else curLine += trans;
 	ph.length = trans.length();
 }
-
+/*!
+ * \brief parse the snippet string to set the correpondings placeholder
+ * Snippet have special tokens which code for "placeholder", position which can be easily selected with the cursor.
+ * \param snippet
+ * \param i
+ * \param curLine
+ * \param ph
+ */
 void parseSnippetPlaceHolder(const QString &snippet, int &i, QString &curLine, CodeSnippetPlaceHolder &ph)
 {
 	if (i >= snippet.length())
@@ -83,6 +90,7 @@ secondLevelBreak:
 		else if (t.startsWith("select")) ph.flags |= CodeSnippetPlaceHolder::AutoSelect;
 		else if (t == "persistent") ph.flags |= CodeSnippetPlaceHolder::Persistent;
 		else if (t == "translatable") ph.flags |= CodeSnippetPlaceHolder::Translatable;
+        else if (t == "cutInsert") ph.flags |= CodeSnippetPlaceHolder::PreferredCutInsertion;
 	}
 
 	translatePlaceholder(tmpPlaceHolderContent, curLine, ph, columnshift);
@@ -468,14 +476,25 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 
 	Q_ASSERT(placeHolders.size() == lines.count());
 	bool usePlaceholders = (placeholderMode == PlacehodersActive);
+    std::pair<int,int> insertCutPosition{-1,-1};
 	if (usePlaceholders) {
 		//check if there actually are placeholders to insert
 		usePlaceholders = false;
-		for (int l = 0; l < lines.count(); l++)
+        for (int l = 0; l < lines.count(); l++){
 			usePlaceholders |= placeHolders[l].size();
+            for(int j=0;j<placeHolders[l].size();++j){
+                if( (insertCutPosition.first<0) && (placeHolders[l][j].flags&CodeSnippetPlaceHolder::AutoSelect)){
+                    insertCutPosition={l,j};
+                }
+                if( (placeHolders[l][j].flags&CodeSnippetPlaceHolder::PreferredCutInsertion)){
+                    insertCutPosition={l,j};
+                }
+            }
+        }
 	}
 
 	int autoSelectPlaceholder = -1;
+    QDocumentCursor cutCursor;
 	if (usePlaceholders) {
 		if (editor->currentPlaceHolder() != -1 &&
 		        editor->getPlaceHolder(editor->currentPlaceHolder()).cursor.isWithinSelection(*cursor))
@@ -498,10 +517,16 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 							        placeHolders[lm][im].id == placeHolders[l][i].id)
 								editor->addPlaceHolderMirror(phId, getCursor(editor, placeHolders[lm][im], lm, baseLine, baseLineIndent, lastLineRemainingLength));
 				}
+                if (placeHolders[l][i].flags & CodeSnippetPlaceHolder::PreferredCutInsertion){
+                    cutCursor=ph.cursor;
+                    cutCursor.movePosition(placeHolders[l][i].length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+                }
 				if ((placeHolders[l][i].flags & CodeSnippetPlaceHolder::AutoSelect) &&
 				        ((autoSelectPlaceholder == -1) ||
-				         (multiLineSavedSelection && (placeHolders[l][i].flags & CodeSnippetPlaceHolder::PreferredMultilineAutoSelect))))
+                         (multiLineSavedSelection && (placeHolders[l][i].flags & CodeSnippetPlaceHolder::PreferredMultilineAutoSelect))))
 					autoSelectPlaceholder = editor->placeHolderCount() - 1;
+
+
 
 			}
 		}
@@ -547,19 +572,26 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 		return;
 	}
 	if (!savedSelection.isEmpty()) {
-        QDocumentCursor oldCursor = editor->cursor();
-        //editor->cursor().insertText(savedSelection, true);
-        cursor->moveTo(editor->cursor());
-        if(oldCursor.hasSelection())
-            cursor->moveTo(oldCursor.anchorLineNumber(),oldCursor.anchorColumnNumber(),QDocumentCursor::KeepAnchor);
-        cursor->insertText(savedSelection, true);
-        cursor->endEditBlock(); // necessary to generate undo stack when ctrl+b on selection (bug #135)
-        editBlockOpened=false;
-        if (!cursor->hasSelection() && alwaysSelect) {
-            cursor->movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-		}
-        editor->setCursor(*cursor);
-		if (autoSelectPlaceholder != -1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this synchronizes the placeholder mirrors with the current placeholder text
+        if(cutCursor.isValid()){
+            cursor->endEditBlock(); // necessary to generate undo stack
+            editBlockOpened=false;
+            cutCursor.selectionEnd().insertText(savedSelection); // add text and remove old placeholder content without removing said placeholder
+            cutCursor.removeSelectedText();
+        }else{
+            QDocumentCursor oldCursor = editor->cursor();
+            //editor->cursor().insertText(savedSelection, true);
+            cursor->moveTo(editor->cursor());
+            if(oldCursor.hasSelection())
+                cursor->moveTo(oldCursor.anchorLineNumber(),oldCursor.anchorColumnNumber(),QDocumentCursor::KeepAnchor);
+            cursor->insertText(savedSelection, true);
+            cursor->endEditBlock(); // necessary to generate undo stack when ctrl+b on selection (bug #135)
+            editBlockOpened=false;
+            if (!cursor->hasSelection() && alwaysSelect) {
+                cursor->movePosition(savedSelection.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+            }
+            editor->setCursor(*cursor);
+            if (autoSelectPlaceholder != -1) editor->setPlaceHolder(autoSelectPlaceholder, true); //this synchronizes the placeholder mirrors with the current placeholder text
+        }
 	}
     if (editBlockOpened){ //make sure to close edit block
         cursor->endEditBlock();
