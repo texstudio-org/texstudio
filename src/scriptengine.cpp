@@ -250,9 +250,9 @@ void scriptengine::run(const bool quiet)
 
     engine->globalObject().setProperty("setTimeout", scriptJS.property("setTimeout"));
 
-	QJSValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
-	engine->globalObject().setProperty("cursorEnums", qsMetaObject);
-	engine->globalObject().setProperty("QDocumentCursor", qsMetaObject);
+    QJSValue qsMetaObject = engine->newQMetaObject(&QDocumentCursor::staticMetaObject);
+    engine->globalObject().setProperty("cursorEnums", qsMetaObject);
+    engine->globalObject().setProperty("QDocumentCursor", qsMetaObject);
 
 	QJSValue uidClass = engine->newQMetaObject(&UniversalInputDialogScript::staticMetaObject);
 	engine->globalObject().setProperty("UniversalInputDialog", uidClass);
@@ -393,7 +393,16 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
 	QString searchFor;
 	if (searchText.isRegExp()) {
 		flags |= QDocumentSearch::RegExp;
+#if QT_VERSION<QT_VERSION_CHECK(5,14,0)
+        QRegExp r2=searchText.toVariant().toRegExp(); // toRegularExpression seems not to work <5.14
+        QRegularExpression r(r2.pattern());
+        caseInsensitive = (r2.caseSensitivity() == Qt::CaseInsensitive);
+        if(caseInsensitive){
+            r.setPatternOptions(r.patternOptions()|QRegularExpression::CaseInsensitiveOption);
+        }
+#else
         QRegularExpression r = searchText.toVariant().toRegularExpression();
+#endif
 		searchFor = r.pattern();
         caseInsensitive = (r.patternOptions() & QRegularExpression::CaseInsensitiveOption)!=QRegularExpression::NoPatternOption;
         //Q_ASSERT(caseInsensitive == searchText.property("ignoreCase").toBool()); //check assumption about javascript core
