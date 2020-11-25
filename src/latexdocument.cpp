@@ -2154,7 +2154,7 @@ void LatexDocuments::updateBibFiles(bool updateFiles)
 			BibTeXFileInfo &bibTex = bibTeXFiles[mentionedBibTeXFiles[i]];
 			// TODO: allow to use the encoding of the tex file which mentions the bib file (need to port this information from above)
 			bibTex.codec = defaultCodec;
-			bibTex.loadIfModified(fileName);
+            bibTex.loadIfModified(QFileInfo(fileName));
 
 			/*if (bibTex.loadIfModified(fileName))
 				changed = true;*/

@@ -33,7 +33,7 @@ void MakeTemplateDialog::tryAccept()
 	foreach (const QChar &c, invalidChars)
 		fn.remove(c);
 	if (fn.length() > 80) {
-		fn.remove(80);
+        fn.remove(80,fn.length()-80);
 	}
 	fn.prepend("template_");
 	QString ext = QFileInfo(m_editorFilename).completeSuffix();

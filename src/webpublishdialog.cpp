@@ -160,7 +160,7 @@ void WebPublishDialog::closeEvent(QCloseEvent *ce)
 //************************************
 void WebPublishDialog::RunCommand(const QString &cmd, const QString &file, const bool waitendprocess, const char *stdErrSlot)
 {
-	ProcessX *proc = buildManager->firstProcessOfDirectExpansion(cmd, file);
+    ProcessX *proc = buildManager->firstProcessOfDirectExpansion(cmd, QFileInfo(file));
 	this->proc = proc;
 	ui.messagetextEdit->append(tr("  Running this command: ") + proc->getCommandLine());
 	curLog = "";

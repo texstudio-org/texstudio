@@ -2685,7 +2685,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 				currentDir = configManager.lastDocument;
 			static QString saveAsDefault;
 			configManager.registerOption("Files/Save As Default", &saveAsDefault, "?a)/document");
-			currentDir = buildManager.parseExtendedCommandLine(saveAsDefault, currentDir, currentDir).value(0, currentDir);
+            currentDir = buildManager.parseExtendedCommandLine(saveAsDefault, QFileInfo(currentDir), QFileInfo(currentDir)).value(0, currentDir);
 		}
 	} else {
 		currentDir = fileName;
@@ -5343,7 +5343,7 @@ void Texstudio::quickGraphics(const QString &graphicsFile)
 
 	QFileInfo docInfo = currentEditorView()->document->getFileInfo();
 	graphicsDlg->setTexFile(docInfo);
-	graphicsDlg->setMasterTexFile(currentEditorView()->document->parent->getCompileFileName());
+    graphicsDlg->setMasterTexFile(QFileInfo(currentEditorView()->document->parent->getCompileFileName()));
 	if (!graphicsFile.isNull()) graphicsDlg->setGraphicsFile(graphicsFile);
 
 	if (graphicsDlg->exec()) {
@@ -5784,7 +5784,7 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 
 	int ln = currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0;
     // unified error/stdout into *buffer
-    return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer, codecForBuffer,buffer);
+    return buildManager.runCommand(commandline, QFileInfo(finame), QFileInfo(getCurrentFileName()), ln, buffer, codecForBuffer,buffer);
 }
 
 /*!
@@ -6181,8 +6181,8 @@ void Texstudio::openExternalTerminal(void)
 		fileCurrent = fileMain;
 	}
 	ExpandingOptions expOptions(
-		fileMain,
-		fileCurrent,
+        QFileInfo(fileMain),
+        QFileInfo(fileCurrent),
 		currentEditorView() ? currentEditorView()->editor->cursor().lineNumber() + 1 : 0
 	);
 	ExpandedCommands expCommands = buildManager.expandCommandLine(
