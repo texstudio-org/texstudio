@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="29"/>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation>TeXstudio a TeXworks PDF-megjelenítőjét használja.</translation>
+        <translation>A TeXstudio a TeXworks PDF-megjelenítőjét használja.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="30"/>
