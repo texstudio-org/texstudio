@@ -9872,10 +9872,14 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 		f.setFileName(findResourceFile("qxs/" + filename));
 	}
 	QDomDocument doc;
-	doc.setContent(&f);
+
+    if(!f.open(QFile::ReadOnly | QFile::Text))
+        return;
+
+    doc.setContent(&f);
 
 	// structure commands
-	addStructureCommandsToDom(doc, latexParser.possibleCommands);
+    addStructureCommandsToDom(doc, latexParser.possibleCommands);
 
 	QLanguageDefinition *oldLangDef = nullptr, *newLangDef = nullptr;
 	oldLangDef = m_lang.d;
