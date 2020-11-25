@@ -631,31 +631,31 @@ bool LatexStyleParser::parseLineXparseOneArg(XpArg &xpArg, const QString &argDef
 		xpArg.optional = false;
 		xpArg.delimLeft = '{';
 		xpArg.delimRight = '}';
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if ((type == 'o') || (type == 'O')) {
 		xpArg.optional = true;
 		xpArg.delimLeft = '[';
 		xpArg.delimRight = ']';
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if (type == 's') {
 		xpArg.optional = true;
-		xpArg.delimLeft = 0;
-		xpArg.delimRight = 0;
+        xpArg.delimLeft = QChar();
+        xpArg.delimRight = QChar();
 		xpArg.fixedChar = '*';
 	} else if ((type == 'r') || (type == 'R')) {
 		xpArg.optional = false;
 		xpArg.delimLeft = match.at(1);
 		xpArg.delimRight = match.at(2);
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if ((type == 'd') || (type == 'D')) {
 		xpArg.optional = true;
 		xpArg.delimLeft = match.at(1);
 		xpArg.delimRight = match.at(2);
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if (type == 't') {
 		xpArg.optional = true;
-		xpArg.delimLeft = 0;
-		xpArg.delimRight = 0;
+        xpArg.delimLeft = QChar();
+        xpArg.delimRight = QChar();
 		xpArg.fixedChar = match.at(1);
 	} else {
 		// Should never happen

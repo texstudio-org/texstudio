@@ -67,7 +67,7 @@ QString Diff::strOperation(Operation op) {
 QString Diff::toString() const {
   QString prettyText = text;
   // Replace linebreaks with Pilcrow signs.
-  prettyText.replace('\n', L'\u00b6');
+  prettyText.replace('\n', QChar(L'\u00b6'));
   return QString("Diff(") + strOperation(operation) + QString(",\"")
       + prettyText + QString("\")");
 }
