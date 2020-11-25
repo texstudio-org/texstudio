@@ -729,9 +729,9 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 	QMenu *menu = configManager.getManagedMenu(menuName);
 	if (!menu) return;
 	LatexEditorView *edView = currentEditorView();
-	foreach (const ManagedToolBar &tb, configManager.managedToolBars)
-		if (tb.toolbar && tb.actualActions.contains(menuName))
-			foreach (QObject *w, tb.toolbar->children())
+    foreach (const ManagedToolBar &tb, configManager.managedToolBars){
+        if (tb.toolbar && tb.actualActions.contains(menuName)){
+            foreach (QObject *w, tb.toolbar->children()){
 				if (w->property("menuID").toString() == menuName) {
 					QToolButton *combo = qobject_cast<QToolButton *>(w);
 					REQUIRE(combo);
@@ -776,6 +776,9 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 						}
 					}
 				}
+            }
+        }
+    }
 }
 
 // we different native shortcuts on OSX and Win/Linux
@@ -4229,7 +4232,6 @@ void Texstudio::saveSettings(const QString &configName)
 
 	config->beginGroup("texmaker");
 	QList<int> sizes;
-	QList<int>::Iterator it;
 	if (!asProfile) {
 		if (isFullScreen()) {
 			config->setValue("MainWindowState", windowstate);
