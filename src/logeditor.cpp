@@ -41,8 +41,9 @@ void LogEditor::wheelEvent(QWheelEvent *event)
 
 void LogEditor::insertLine(const QString &l)
 {
-	if (l.endsWith("\n")) append(l);
-	else append(l + "\n");
+    /*if (l.endsWith("\n")) append(l);
+    else append(l + "\n");*/
+    append(l);
 }
 
 void LogEditor::setCursorPosition(int para, int index)
