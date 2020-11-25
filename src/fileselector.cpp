@@ -176,10 +176,15 @@ QList<QPair<QString, int> > FileSelector::currentFiles()
 	int cindex = list->currentRow();
 	if (cindex < 0 || cindex >= rawFiles.count()) return result;
 	QList<int> indices;
-	if (!multiselect) indices << cindex;
-	else if (list->selectionModel())
-		foreach (const QModelIndex &index, list->selectionModel()->selectedIndexes())
-			indices << index.row();
+    if (!multiselect){
+        indices << cindex;
+    } else {
+        if (list->selectionModel()){
+            foreach (const QModelIndex &index, list->selectionModel()->selectedIndexes()){
+                indices << index.row();
+            }
+        }
+    }
 	foreach (int index, indices) {
 		QString file = list->item(index)->text();
 		int duplicate = 0;
