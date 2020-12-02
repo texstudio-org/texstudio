@@ -532,13 +532,26 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			QString word = line.mid(tk.start, tk.length);
 			QStringList forbiddenSymbols;
 			forbiddenSymbols<<"^"<<"_";
-			if(forbiddenSymbols.contains(word) && !containsEnv(*ltxCommands, "math", activeEnv)){
+            if(forbiddenSymbols.contains(word) && !containsEnv(*ltxCommands, "math", activeEnv) && tk.subtype!=Token::formula){
 				Error elem;
 				elem.range = QPair<int, int>(tk.start, tk.length);
 				elem.type = ERR_MathCommandOutsideMath;
 				newRanges.append(elem);
 			}
 		}
+        // math highlighting of formula
+        if(tk.subtype==Token::formula){
+            // highlight
+            Error elem;
+            elem.range = QPair<int, int>(tk.start, tk.length);
+            elem.type = ERR_highlight;
+            if(tk.type==Token::command){
+                elem.format=mFormatList["#math"];
+            }else{
+                elem.format=mFormatList["math"];
+            }
+            newRanges.append(elem);
+        }
         // spell checking
         if (speller->inlineSpellChecking && tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && tk.length >= 3 && speller) {
             int tkLength=tk.length;
@@ -986,7 +999,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						}
 					}
 				}
-				newRanges.append(elem);
+                if(elem.type != ERR_MathCommandOutsideMath || tk.subtype!=Token::formula){
+                    newRanges.append(elem);
+                }
 			}
 		}
 		if (tk.type == Token::specialArg) {
