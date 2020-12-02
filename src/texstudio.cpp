@@ -9853,16 +9853,16 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 
 	if (editors) {
 		documents.enablePatch(false);
-		foreach (LatexDocument *doc, documents.getDocuments()) {
-		LatexEditorView *edView=doc->getEditorView();
-		if(edView) {
-			QEditor *ed = edView->editor;
-			if (ed->languageDefinition() == oldLangDef) {
-				ed->setLanguageDefinition(newLangDef);
-                // ed->highlight(); is executed by caller !
-			}
-		}
-		}
+        foreach (LatexDocument *doc, documents.getDocuments()) {
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView) {
+                QEditor *ed = edView->editor;
+                if (ed->languageDefinition() == oldLangDef) {
+                    ed->setLanguageDefinition(newLangDef);
+                    // ed->highlight(); is executed by caller !
+                }
+            }
+        }
 		documents.enablePatch(true);
 	}
 }
