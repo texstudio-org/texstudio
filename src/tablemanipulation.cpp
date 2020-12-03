@@ -892,7 +892,15 @@ void LatexTables::alignTableCols(QDocumentCursor &cur)
 	QStringList l_defs = splitColDef(alignment);
 	simplifyColDefs(l_defs);
 	bool forceNewline = environmentsRequiringTrailingLineBreak.contains(tableType);
-	QStringList content = ltm.getAlignedLines(l_defs, "\t", forceNewline);
+    QString tab="\t";
+    ConfigManagerInterface *cfg = ConfigManager::getInstance();
+    if (cfg) {
+        if(cfg->getOption("Editor/Indent with Spaces").toBool()){
+            int tabs=cfg->getOption("Editor/TabStop",4).toInt();
+            tab.fill(' ',tabs);
+        }
+    }
+    QStringList content = ltm.getAlignedLines(l_defs, tab, forceNewline);
 
 	QString result = beginPart + '\n';
 	for (int i = 0; i < content.count(); i++) {
