@@ -137,13 +137,13 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 	cur.movePosition(2, QDocumentCursor::NextCharacter);
 	QString line;
 	bool breakLoop = false;
-	int result = 2;
+    int result = 3;
 	while (!breakLoop) {
 		for (int col = 0; col < afterColumn; col++) {
 			do {
 				result = findNextToken(cur, nTokens);
-			} while (result == 1);
-			if (result < 1) break; //end of tabular line reached
+            } while (result == 2);
+            if (result < 2) break; //end of tabular line reached
 		}
 		if (result == -1) break;
 		//if last line before end, check whether the user was too lazy to put in a linebreak
@@ -158,7 +158,7 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 			}
 		}
 		// add element
-		if (result == 2) {
+        if (result == 3) {
 			if (pasteBuffer.isEmpty()) {
 				cur.insertText(" &");
 			} else {
@@ -175,8 +175,14 @@ void LatexTables::addColumn(QDocument *doc, const int lineNumber, const int afte
 
 			}
 		}
-		if (result <= 0) {
-			int count = result == 0 ? 2 : 1;
+        if (result <= 1) {
+            int count =  1;
+            switch (result) {
+            case 0: count=2;
+                break;
+            case 1: count=15;
+                break;
+            }
 			cur.movePosition(count, QDocumentCursor::PreviousCharacter);
 			if (pasteBuffer.isEmpty()) {
 				cur.insertText("& ");
@@ -238,7 +244,7 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 	QString line;
 	bool breakLoop = false;
 	while (!breakLoop) {
-		int result = 2;
+        int result = 3;
 		int off = 0;
 		for (int col = 0; col < column; col++) {
 			if (off > 0) off--;
@@ -246,7 +252,7 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 			QDocumentCursor oldCur(cur);
 			do {
 				result = findNextToken(cur, nTokens, true);
-			} while (result == 1);
+            } while (result == 2);
 			QString selText = cur.selectedText();
 			if (selText.startsWith("\\multicolumn")) {
 				int add = getNumOfColsInMultiColumn(selText);
@@ -259,10 +265,10 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 		cur.clearSelection();
 		if (result == -1) break;
 		// add element
-		if (result > 0 || off) {
+        if (result > 1 || off) {
 			do {
 				result = findNextToken(cur, nTokens, true);
-			} while (result == 1);
+            } while (result == 2);
 			QString selText = cur.selectedText();
 			int add = 0;
 			if (selText.startsWith("\\multicolumn")) {
@@ -275,19 +281,23 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 				values.takeFirst();
 				values.prepend(QString("{%1}").arg(add - 1));
 				cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
-				if (result == 0) cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+                if (result == 0) cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+                if (result == 1) cur.movePosition(14, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				cur.insertText("\\multicolumn" + values.join(""));
 			} else {
 				//normal handling
-				if (result == 2 && column > 0) {
+                if (result == 3 && column > 0) {
 					cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				}
 				if (result == 0) {
 					cur.movePosition(2, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				}
+                if (result == 1) {
+                    cur.movePosition(15, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
+                }
 				QString zw = cur.selectedText();
 				if (cutBuffer) {
-					if (column == 0 && result != 0) zw.chop(1);
+                    if (column == 0 && result > 1) zw.chop(1);
 					cutBuffer->append(zw);
 				}
 				// detect elements which need to be kept like \hline
@@ -403,6 +413,7 @@ int LatexTables::getColumn(QDocumentCursor &cur)
     QStringList tokens{"\\\\","\\tabularnewline"};
 	int result = findNextToken(c, tokens, true, true);
 	if (result == 0) c.movePosition(2, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+    if (result == 1) c.movePosition(15, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	if (c.lineNumber() == cur.lineNumber() && c.selectedText().contains(QRegExp("^\\s*$"))) {
 		c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
 		QString zw = c.selectedText();
@@ -417,8 +428,8 @@ int LatexTables::getColumn(QDocumentCursor &cur)
 	do {
 		result = findNextToken(c, tokens);
 		if (c.lineNumber() > cur.lineNumber() || (c.lineNumber() == cur.lineNumber() && c.columnNumber() > cur.columnNumber())) break;
-		if (result == 2) col++;
-	} while (result > 0);
+        if (result == 3) col++;
+    } while (result > 1);
 	return col;
 }
 
