@@ -798,7 +798,19 @@ void TableManipulationTest::parseTableLine_data(){
 	QTest::newRow("lineBreakOption")
 		<< "Row1 \\\\[1ex] Row2"
 		<< 0 << 12
-		<< "" << "Row1" << "[1ex]";
+        << "" << "Row1" << "\\\\[1ex]";
+    QTest::newRow("lineBreakOption2")
+        << "Row1 \\\\* Row2"
+        << 0 << 8
+        << "" << "Row1" << "\\\\*";
+    QTest::newRow("lineBreakOption3")
+        << "Row1 \\tabularnewline Row2"
+        << 0 << 20
+        << "" << "Row1" << "\\tabularnewline";
+    QTest::newRow("lineBreakOption4")
+        << "Row1 \\tabularnewline[1ex] Row2"
+        << 0 << 25
+        << "" << "Row1" << "\\tabularnewline[1ex]";
 	QTest::newRow("metaCommand")
 		<< "\\hline Row1 \\\\ Row2"
 		<< 0 << 14
