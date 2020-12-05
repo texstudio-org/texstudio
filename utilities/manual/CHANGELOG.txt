@@ -5,6 +5,7 @@ TeXstudio 3.0.2
 - changed behaviour for cut buffer and Ctrl+e (insert env)  (#1342)
 - texdoc added as selectable command
 - win build now uses 64 bit and can handle larger documents
+- larger number of default dictionaries added
 
 TeXstudio 3.0.1
 -----------------
