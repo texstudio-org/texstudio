@@ -71,6 +71,11 @@ void TableManipulationTest::addCol_data(){
 		<< 1 << 1
 		<< "\\begin{tabular}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabular}\n";
 
+    QTest::newRow("add second col tnl")
+        << "\\begin{tabular}{xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{xly}\na& &b\\tabularnewline\nc& &d\\\\\ne& &f\\\\\n\\end{tabular}\n";
+
 	QTest::newRow("add third col")
 		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 2
@@ -108,6 +113,11 @@ void TableManipulationTest::addRow_data(){
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0
 		<< "\\begin{tabular}{ll}\na&b\\\\\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+    QTest::newRow("add row tnl")
+        << "\\begin{tabular}{ll}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 0
+        << "\\begin{tabular}{ll}\na&b\\tabularnewline\n & \\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("add row, cursor at end of line")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -157,6 +167,11 @@ void TableManipulationTest::remCol_data(){
 		<< "\\begin{tabular}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 1
 		<< "\\begin{tabular}{x}\na\\\\\nc\\\\\ne\\\\\n\\end{tabular}\n";
+
+    QTest::newRow("rem col 1")
+        << "\\begin{tabular}{xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 1
+        << "\\begin{tabular}{x}\na\\tabularnewline\nc\\\\\ne\\\\\n\\end{tabular}\n";
 
 	QTest::newRow("rem col 0, multicolumn")
 		<< "\\begin{tabular}{ll}\na&b\\\\\n\\multicolumn{2}{c}{txt}\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -243,6 +258,12 @@ void TableManipulationTest::remRow_data(){
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 0
 		<< "\\begin{tabular}{ll}\na&b\\\\\ne&f\\\\\n\\end{tabular}\n";
+
+    QTest::newRow("rem row, second row, tnl")
+        << "\\begin{tabular}{ll}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "\\begin{tabular}{ll}\na&b\\tabularnewline\ne&f\\\\\n\\end{tabular}\n";
+
 
 	QTest::newRow("rem row, third row")
 		<< "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
@@ -603,6 +624,11 @@ void TableManipulationTest::addHLine_data(){
 		<< 1 << 0 << -1 << false
 		<< "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
 
+    QTest::newRow("add to all tnl")
+        << "\\begin{tabular}{ll}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 1 << 0 << -1 << false
+        << "\\begin{tabular}{ll}\na&b\\\\ \\hline\nc&d\\\\ \\hline\ne&f\\\\ \\hline\n\\end{tabular}\n";
+
 	QTest::newRow("add to 2 (in single line)")
 		<< "\\begin{tabular}{ll}\na&b\\\\c&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 1 << 0 << 2 << false
@@ -716,6 +742,11 @@ void TableManipulationTest::getDef_data(){
 		<< "\\begin{tabular}{|l|l|cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 0
 		<< "|l|l|cc";
+
+    QTest::newRow("cols 4 tnl")
+        << "\\begin{tabular}{|l|l|cc}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "|l|l|cc";
 
 	QTest::newRow("cols 0")
 		<< "\\begin{tabular}{}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"

@@ -37,7 +37,7 @@ void LatexTables::addRow(QDocumentCursor &c, const int numberOfColumns )
     const QStringList tokens{"\\\\","\\tabularnewline"};
 	int result = 0;
 	if (!stopSearch) result = findNextToken(cur, tokens);
-	if (result == 0 || result == -2) {
+    if (result >= 0 || result == -2) {
 		//if last line before end, check whether the user was too lazy to put in a linebreak
 		if (result == -2) {
 			QDocumentCursor ch(cur);
@@ -79,7 +79,9 @@ void LatexTables::removeRow(QDocumentCursor &c)
 		}
 	}
 	int result = findNextToken(cur, tokens, false, true);
-	if (result == 0) cur.movePosition(2, QDocumentCursor::NextCharacter);
+    if (result >= 0){
+        cur.movePosition(tokens[result].length(), QDocumentCursor::NextCharacter);
+    }
 	if (result == -2) cur.movePosition(1, QDocumentCursor::EndOfLine);
 	bool breakLoop = false;
 	while (!(breakLoop = (findNextToken(cur, tokens, true) == -1)) && c.isWithinSelection(cur) ) {
@@ -362,11 +364,7 @@ int LatexTables::findNextToken(QDocumentCursor &cur, QStringList tokens, bool ke
 		line = LatexParser::cutComment(line);
 		if (backwards) {
 			offset = offset - line.length();
-			QString help;
-			foreach (const QChar &elem, line)
-				help.prepend(elem);
-
-			line = help;
+            std::reverse(line.begin(),line.end());
 		}
 
 		if (line.contains("\\end{") && !backwards) {
@@ -381,6 +379,10 @@ int LatexTables::findNextToken(QDocumentCursor &cur, QStringList tokens, bool ke
 		pos = -1;
 		for (int i = 0; i < tokens.count(); i++) {
 			QString elem = tokens.at(i);
+            if(backwards){
+                // reverse element as it was done with line
+                std::reverse(elem.begin(),elem.end());
+            }
 			int colNumber = cur.columnNumber();
 			if (backwards) colNumber = line.length() + offset - colNumber ;
 			int zw = line.indexOf(elem, colNumber);
