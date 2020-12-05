@@ -6,7 +6,7 @@ matrix:
     osx_image: xcode11.6
   - env: QT=qt5Release
     os: linux
-    dist: focal
+    dist: xenial
     addons:
       apt:
         packages:
