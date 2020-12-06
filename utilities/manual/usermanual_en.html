@@ -1601,7 +1601,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>title</code>, ends with <code>%title</code>, <code>short title</code> or ends with <code>%short title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section).</li>
   <li><code>bibid</code> and <code>keylists</code>: If used in a command classified as "C". See the classifier description below.</li>
   <li><code>cmd</code> and <code>command</code> or ends with <code>%cmd</code>: definition for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
-  <li><code>def</code> and <code>definition</code>: actual definition for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
+  <li><code>def</code> and <code>definition</code> or ends with <code>%definition</code>: actual definition for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
   <li><code>args</code>: number of arguments for command, e.g. \newcommand{cmd}[args]{definition}.</li>
   <li><code>package</code>: package name, e.g. \usepackage{package}</li>
   <li><code>citekey</code>: definition of new citation key name, e.g. \bibitem{citekey}</li>
