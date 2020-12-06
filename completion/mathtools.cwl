@@ -2,6 +2,7 @@
 # This file was created by Carlos Eduardo Valencia Urbina (2014-08-08). It contains most of the current commands of the mathtools package.
 # URL: http://www.ctan.org/pkg/mathtools
 # thatlittleboy/2018-05-07 edited
+# Edited by Rishi Advani (2020-12-06)
 
 #include:amsmath
 #include:graphicx
@@ -157,8 +158,8 @@ shortvdotsadjustbelow=<length>#n
 \shortintertext{text}#m\array
 \intertext{text}#m\array
 \DeclarePairedDelimiter{cmd}{left delim}{right delim}#nd
-\DeclarePairedDelimiterX{cmd}[numargs]{left delim}{right delim}{body}#md
-\DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim}{right delim}{post code}{body}#md
+\DeclarePairedDelimiterX{cmd}[numargs]{left delim}{right delim}{body}#nd
+\DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim}{right delim}{post code}{body}#nd
 \reDeclarePairedDelimiterInnerWrapper{macro name}{star or nostar}{code}#m
 \lparen#m\array
 \rparen#m\array
