@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -918,7 +916,7 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Definiert die Art der Aktualisierungbenachrichtung:
 - Stabile Versionen: Wähle diese, wenn Stabilität das wichtigste ist.
@@ -1125,7 +1123,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1304,7 +1302,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="../src/configdialog.ui" line="1554"/>
         <location filename="../src/configdialog.cpp" line="515"/>
-        <location filename="../src/configmanager.cpp" line="1465"/>
+        <location filename="../src/configmanager.cpp" line="1466"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -2621,8 +2619,8 @@ hier erzwungen werden.</translation>
         <location filename="../src/configdialog.ui" line="4182"/>
         <location filename="../src/configdialog.ui" line="4249"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Die Zeichenmethode, die von der PDF-Bibliothek poppler verwendet wird.
 &apos;Splash&apos; ist der Standard und üblicherweise ausreichend.
@@ -3005,7 +3003,7 @@ options again to only view the most common settings.</source>
         <translation>Sie haben die Anzeige der erweiterten Optionen aktiviert. Hierduch können Sie sehr viele Details von TeXstudio konfigurieren. Schalten sie diese Option wieder aus, um nur die gängigsten Einstellungen anzuzeigen.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1466"/>
+        <location filename="../src/configmanager.cpp" line="1467"/>
         <source>Basic Key Mapping</source>
         <translation>Grundlegende Tastenkürzel</translation>
     </message>
@@ -3673,150 +3671,150 @@ options again to only view the most common settings.</source>
         <translation>pageref</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>Key replacement: %1 %2</source>
         <translation>Tastenersetzung: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
         <source>before word</source>
         <translation>vor Wort</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>after word</source>
         <translation>nach Wort</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1385"/>
         <location filename="../src/configmanager.cpp" line="1386"/>
-        <location filename="../src/configmanager.cpp" line="1561"/>
-        <location filename="../src/configmanager.cpp" line="1567"/>
-        <location filename="../src/configmanager.cpp" line="1829"/>
-        <location filename="../src/configmanager.cpp" line="1834"/>
+        <location filename="../src/configmanager.cpp" line="1387"/>
+        <location filename="../src/configmanager.cpp" line="1562"/>
+        <location filename="../src/configmanager.cpp" line="1568"/>
+        <location filename="../src/configmanager.cpp" line="1830"/>
+        <location filename="../src/configmanager.cpp" line="1835"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1443"/>
+        <location filename="../src/configmanager.cpp" line="1444"/>
         <source>Menus</source>
         <translation>Menüs</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1451"/>
+        <location filename="../src/configmanager.cpp" line="1452"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menüs PDF-Betrachter</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1487"/>
-        <location filename="../src/configmanager.cpp" line="2628"/>
+        <location filename="../src/configmanager.cpp" line="1488"/>
+        <location filename="../src/configmanager.cpp" line="2629"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;kein&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1533"/>
+        <location filename="../src/configmanager.cpp" line="1534"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Menüeintrag einfügen (davor)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1536"/>
+        <location filename="../src/configmanager.cpp" line="1537"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Untermenü einfügen (davor)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1554"/>
+        <location filename="../src/configmanager.cpp" line="1555"/>
         <source>Latex/Math menus</source>
         <translation>Latex/Mathe Menüs</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1555"/>
+        <location filename="../src/configmanager.cpp" line="1556"/>
         <source>All menus</source>
         <translation>Alle Menüs</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1556"/>
+        <location filename="../src/configmanager.cpp" line="1557"/>
         <source>Special Tags</source>
         <translation>Benutzer-Makros</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1633"/>
+        <location filename="../src/configmanager.cpp" line="1634"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Sie haben die automatische Ersetzung für Anführungszeichen aktiviert. Allerdings gibt es Makros mit einem Trigger (?language:latex)(?&lt;=\s|^) oder (?language:latex)(?&lt;=\S
 Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfernt werden?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1871"/>
+        <location filename="../src/configmanager.cpp" line="1872"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TeXstudio nun erledigen?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1886"/>
+        <location filename="../src/configmanager.cpp" line="1887"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Letztes &apos;Masterdokument&apos; %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1889"/>
+        <location filename="../src/configmanager.cpp" line="1890"/>
         <source>Recent File %1</source>
         <translation>Letzte Datei %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1890"/>
+        <location filename="../src/configmanager.cpp" line="1891"/>
         <source>File list</source>
         <translation>Dateiliste</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1891"/>
+        <location filename="../src/configmanager.cpp" line="1892"/>
         <source>Open first non-open file</source>
         <translation>Öffne erste nicht geladene Datei aus Liste</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1892"/>
+        <location filename="../src/configmanager.cpp" line="1893"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Alle Dateien öffnen</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1902"/>
+        <location filename="../src/configmanager.cpp" line="1903"/>
         <source>Master Document: </source>
         <translation>Masterdokument:</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2629"/>
+        <location filename="../src/configmanager.cpp" line="2630"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Vorgabe&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2858"/>
+        <location filename="../src/configmanager.cpp" line="2859"/>
         <source>Configure</source>
         <translation>Konfigurieren</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2865"/>
+        <location filename="../src/configmanager.cpp" line="2866"/>
         <source>Select Program</source>
         <translation>Programm auswählen</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2872"/>
+        <location filename="../src/configmanager.cpp" line="2873"/>
         <source>Restore Default</source>
         <translation>Setze auf Vorgabe zurück</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2919"/>
+        <location filename="../src/configmanager.cpp" line="2920"/>
         <source>Repeat contained compilation commands</source>
         <translation>Wiederhole Kompilationskommandos</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2967"/>
+        <location filename="../src/configmanager.cpp" line="2968"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3030"/>
+        <location filename="../src/configmanager.cpp" line="3031"/>
         <source>Browse program</source>
         <translation>Wähle Programm</translation>
     </message>
@@ -4127,14 +4125,6 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
         <source>texdoc not found.</source>
         <translation>texdoc wurde nicht gefunden.</translation>
     </message>
-    <message>
-        <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="vanished">texdoc brauchte zu lang, um die Paketdokumentation zu öffnen:</translation>
-    </message>
-    <message>
-        <source>texdoc did not respond to query on package:</source>
-        <translation type="vanished">texdoc lieferte keine Informationen zum Paket:</translation>
-    </message>
 </context>
 <context>
     <name>InsertGraphics</name>
@@ -4314,7 +4304,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Platzierungsvorgaben für das Bild
@@ -4432,7 +4422,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
@@ -4619,17 +4609,14 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2532"/>
         <location filename="../src/latexeditorview.cpp" line="2604"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2545"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n Referenz zu diesem Label</numerusform>
-            <numerusform>%n Referenzen zu diesem Label</numerusform>
-        </translation>
+        <translation><numerusform>%n Referenz zu diesem Label</numerusform><numerusform>%n Referenzen zu diesem Label</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2550"/>
@@ -4822,12 +4809,12 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="121"/>
-        <location filename="../src/latexlogwidget.cpp" line="164"/>
+        <location filename="../src/latexlogwidget.cpp" line="169"/>
         <source>Log file not readable.</source>
         <translation>Logdatei ist nicht lesbar!</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="129"/>
+        <location filename="../src/latexlogwidget.cpp" line="131"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
         <translation>Die Logdatei ist sehr groß (%1 MB). Sind Sie sicher, dass sie diese laden wollen?</translation>
     </message>
@@ -5995,7 +5982,12 @@ Bitte geben Sie das Passwort ein:</translation>
         <translation>Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="125"/>
+        <location filename="../src/utilsUI.cpp" line="46"/>
+        <source>Remember choice ?</source>
+        <translation>Auswahl speichern ?</translation>
+    </message>
+    <message>
+        <location filename="../src/utilsUI.cpp" line="153"/>
         <source>none</source>
         <translation>nichts</translation>
     </message>
@@ -6324,7 +6316,7 @@ fehlgeschlagen.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Die Originaldatei wurde beim Speichern vernichtet.
 Eine Kopie findet sich unter
@@ -9128,7 +9120,7 @@ failed.</source>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2036"/>
+        <location filename="../src/configmanager.cpp" line="2037"/>
         <source>Edit &amp;Macros...</source>
         <translation>&amp;Makros bearbeiten...</translation>
     </message>
@@ -10976,7 +10968,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5737"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
 Sie müssen ein neu erstelltes Dokument abspeichern, bevor Sie es erzeugen können.</translation>
@@ -10989,12 +10981,12 @@ Sie müssen ein neu erstelltes Dokument abspeichern, bevor Sie es erzeugen könn
     <message>
         <location filename="../src/texstudio.cpp" line="5783"/>
         <source>  Running this command: </source>
-        <translation type="unfinished">Starte folgendes Programm:</translation>
+        <translation>Starte folgendes Programm:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5789"/>
         <source>could not start the command</source>
-        <translation type="unfinished">Kommando konnte nicht gestartet werden</translation>
+        <translation>Kommando konnte nicht gestartet werden</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5910"/>
@@ -11428,7 +11420,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Zeige Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="69"/>
+        <location filename="../src/utilsUI.cpp" line="97"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
         <translation>Warnung nicht wiederholen.</translation>

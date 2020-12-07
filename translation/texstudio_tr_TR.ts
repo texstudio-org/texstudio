@@ -1313,7 +1313,7 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
     <message>
         <location filename="../src/configdialog.ui" line="1554"/>
         <location filename="../src/configdialog.cpp" line="515"/>
-        <location filename="../src/configmanager.cpp" line="1465"/>
+        <location filename="../src/configmanager.cpp" line="1466"/>
         <source>Editor</source>
         <translation>Düzenleyici</translation>
     </message>
@@ -3018,7 +3018,7 @@ options again to only view the most common settings.</source>
 görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1466"/>
+        <location filename="../src/configmanager.cpp" line="1467"/>
         <source>Basic Key Mapping</source>
         <translation>Temel Tuş Eşleştirme</translation>
     </message>
@@ -3686,150 +3686,150 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <translation>sayfaref</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>Key replacement: %1 %2</source>
         <translation>Tuş değişimi: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
         <source>before word</source>
         <translation>sözcükten önce</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>after word</source>
         <translation>sözcükten sonra</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1385"/>
         <location filename="../src/configmanager.cpp" line="1386"/>
-        <location filename="../src/configmanager.cpp" line="1561"/>
-        <location filename="../src/configmanager.cpp" line="1567"/>
-        <location filename="../src/configmanager.cpp" line="1829"/>
-        <location filename="../src/configmanager.cpp" line="1834"/>
+        <location filename="../src/configmanager.cpp" line="1387"/>
+        <location filename="../src/configmanager.cpp" line="1562"/>
+        <location filename="../src/configmanager.cpp" line="1568"/>
+        <location filename="../src/configmanager.cpp" line="1830"/>
+        <location filename="../src/configmanager.cpp" line="1835"/>
         <source>default</source>
         <translation>varsayılan</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1443"/>
+        <location filename="../src/configmanager.cpp" line="1444"/>
         <source>Menus</source>
         <translation>Menüler</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1451"/>
+        <location filename="../src/configmanager.cpp" line="1452"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menüler PDF Görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1487"/>
-        <location filename="../src/configmanager.cpp" line="2628"/>
+        <location filename="../src/configmanager.cpp" line="1488"/>
+        <location filename="../src/configmanager.cpp" line="2629"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;yok&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1533"/>
+        <location filename="../src/configmanager.cpp" line="1534"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Yeni Menü Ögesi Ekle (Önce)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1536"/>
+        <location filename="../src/configmanager.cpp" line="1537"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Yeni Alt Menü Ekle (Önce)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1554"/>
+        <location filename="../src/configmanager.cpp" line="1555"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematik Menüleri</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1555"/>
+        <location filename="../src/configmanager.cpp" line="1556"/>
         <source>All menus</source>
         <translation>Tüm Menüler</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1556"/>
+        <location filename="../src/configmanager.cpp" line="1557"/>
         <source>Special Tags</source>
         <translation>Özel Kod İmleri</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1633"/>
+        <location filename="../src/configmanager.cpp" line="1634"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Otomatik tırnak değiştirmeyi etkinleştirdiniz. Bununla birlikte, yeni tırnak değiştirmeyi geçersiz kılacak (?language:latex)(?&lt;=\s|^) ya da (?language:latex)(?&lt;=\S) tetik dizgesine sahip olan makrolar var.
 Bunları kaldırmak ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1871"/>
+        <location filename="../src/configmanager.cpp" line="1872"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>İç pdf görüntüleyiciyi tüm özellikleriyle kullanabilmek için synctex etkinleştirilmelidir. TeXstudio şimdi etkinleştirsin mi?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1886"/>
+        <location filename="../src/configmanager.cpp" line="1887"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Son &apos;Ana Belge&apos; %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1889"/>
+        <location filename="../src/configmanager.cpp" line="1890"/>
         <source>Recent File %1</source>
         <translation>Son Dosya %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1890"/>
+        <location filename="../src/configmanager.cpp" line="1891"/>
         <source>File list</source>
         <translation>Dosya listesi</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1891"/>
+        <location filename="../src/configmanager.cpp" line="1892"/>
         <source>Open first non-open file</source>
         <translation>Açık olmayan ilk dosyayı aç</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1892"/>
+        <location filename="../src/configmanager.cpp" line="1893"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Bütün dosyaları aç</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1902"/>
+        <location filename="../src/configmanager.cpp" line="1903"/>
         <source>Master Document: </source>
         <translation>Ana Belge:</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2629"/>
+        <location filename="../src/configmanager.cpp" line="2630"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;varsayılan&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2858"/>
+        <location filename="../src/configmanager.cpp" line="2859"/>
         <source>Configure</source>
         <translation>Yapılandırma</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2865"/>
+        <location filename="../src/configmanager.cpp" line="2866"/>
         <source>Select Program</source>
         <translation>Program Seçin</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2872"/>
+        <location filename="../src/configmanager.cpp" line="2873"/>
         <source>Restore Default</source>
         <translation>Varsayılanları Geri Yükle</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2919"/>
+        <location filename="../src/configmanager.cpp" line="2920"/>
         <source>Repeat contained compilation commands</source>
         <translation>Katılan derleme komutlarını yinele</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2967"/>
+        <location filename="../src/configmanager.cpp" line="2968"/>
         <source>Add</source>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3030"/>
+        <location filename="../src/configmanager.cpp" line="3031"/>
         <source>Browse program</source>
         <translation>Programa gözat</translation>
     </message>
@@ -4836,12 +4836,12 @@ Yardımcı komutu desteklemiyor</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="121"/>
-        <location filename="../src/latexlogwidget.cpp" line="164"/>
+        <location filename="../src/latexlogwidget.cpp" line="169"/>
         <source>Log file not readable.</source>
         <translation>Günlük dosyası okunamadı.</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="129"/>
+        <location filename="../src/latexlogwidget.cpp" line="131"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
         <translation>Günlük dosyası çok büyük (%1 MB). Yüklemek istediğinize emin misiniz?</translation>
     </message>
@@ -6010,7 +6010,12 @@ You can now enter the password:</source>
         <translation>Bir Dosya Seçin</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="125"/>
+        <location filename="../src/utilsUI.cpp" line="46"/>
+        <source>Remember choice ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/utilsUI.cpp" line="153"/>
         <source>none</source>
         <translation>yok</translation>
     </message>
@@ -9148,7 +9153,7 @@ dosyası silinemedi.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2036"/>
+        <location filename="../src/configmanager.cpp" line="2037"/>
         <source>Edit &amp;Macros...</source>
         <translation>&amp;Makroları Düzenle...</translation>
     </message>
@@ -11449,7 +11454,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
         <translation>Bulunduğu Klasörü Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="69"/>
+        <location filename="../src/utilsUI.cpp" line="97"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
         <translation>Yeniden uyarma.</translation>

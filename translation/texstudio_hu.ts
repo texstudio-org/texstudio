@@ -1313,7 +1313,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1554"/>
         <location filename="../src/configdialog.cpp" line="515"/>
-        <location filename="../src/configmanager.cpp" line="1465"/>
+        <location filename="../src/configmanager.cpp" line="1466"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
     </message>
@@ -3010,7 +3010,7 @@ options again to only view the most common settings.</source>
         <translation>A speciális beállításokat választotta, így nagy részletességgel konfigurálhatja a TeXstudiót. A speciális beállítások kikapcsolásával csak a leggyakoribb beállításokhoz fér hozzá. </translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1466"/>
+        <location filename="../src/configmanager.cpp" line="1467"/>
         <source>Basic Key Mapping</source>
         <translation>Alapvető billentyűparancsok</translation>
     </message>
@@ -3678,150 +3678,150 @@ options again to only view the most common settings.</source>
         <translation>Oldalhivatkozás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>Key replacement: %1 %2</source>
         <translation>Kulcscsere: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
         <source>before word</source>
         <translation>szó előtt</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>after word</source>
         <translation>szó után</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1385"/>
         <location filename="../src/configmanager.cpp" line="1386"/>
-        <location filename="../src/configmanager.cpp" line="1561"/>
-        <location filename="../src/configmanager.cpp" line="1567"/>
-        <location filename="../src/configmanager.cpp" line="1829"/>
-        <location filename="../src/configmanager.cpp" line="1834"/>
+        <location filename="../src/configmanager.cpp" line="1387"/>
+        <location filename="../src/configmanager.cpp" line="1562"/>
+        <location filename="../src/configmanager.cpp" line="1568"/>
+        <location filename="../src/configmanager.cpp" line="1830"/>
+        <location filename="../src/configmanager.cpp" line="1835"/>
         <source>default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1443"/>
+        <location filename="../src/configmanager.cpp" line="1444"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1451"/>
+        <location filename="../src/configmanager.cpp" line="1452"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menük PDF-Megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1487"/>
-        <location filename="../src/configmanager.cpp" line="2628"/>
+        <location filename="../src/configmanager.cpp" line="1488"/>
+        <location filename="../src/configmanager.cpp" line="2629"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nincs&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1533"/>
+        <location filename="../src/configmanager.cpp" line="1534"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Új menüelem beszúrása (elé)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1536"/>
+        <location filename="../src/configmanager.cpp" line="1537"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Új almenü beszúrása (elé)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1554"/>
+        <location filename="../src/configmanager.cpp" line="1555"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematika menük</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1555"/>
+        <location filename="../src/configmanager.cpp" line="1556"/>
         <source>All menus</source>
         <translation>Minden menü</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1556"/>
+        <location filename="../src/configmanager.cpp" line="1557"/>
         <source>Special Tags</source>
         <translation>Speciális elemek</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1633"/>
+        <location filename="../src/configmanager.cpp" line="1634"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Engedélyezte az automatikus cserét, bár előfordulnak makrók triggerekkel, mint például (?language:latex)(?&lt;=\s|^) vagy (?language:latex)(?&lt;=\S), melyek ilyenkor megváltozhatnak.
 Szeretné azokat eltávolítani?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1871"/>
+        <location filename="../src/configmanager.cpp" line="1872"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>A belső pdf-megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1886"/>
+        <location filename="../src/configmanager.cpp" line="1887"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Legutóbbi &apos;Mesterdokumentum&apos;: %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1889"/>
+        <location filename="../src/configmanager.cpp" line="1890"/>
         <source>Recent File %1</source>
         <translation>Legutóbbi fájl %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1890"/>
+        <location filename="../src/configmanager.cpp" line="1891"/>
         <source>File list</source>
         <translation>Fájl lista</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1891"/>
+        <location filename="../src/configmanager.cpp" line="1892"/>
         <source>Open first non-open file</source>
         <translation>Megnyitja az első nem nyitott fájlt</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1892"/>
+        <location filename="../src/configmanager.cpp" line="1893"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Minden fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1902"/>
+        <location filename="../src/configmanager.cpp" line="1903"/>
         <source>Master Document: </source>
         <translation>Mesterdokumentum:</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2629"/>
+        <location filename="../src/configmanager.cpp" line="2630"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;alapértelmezett&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2858"/>
+        <location filename="../src/configmanager.cpp" line="2859"/>
         <source>Configure</source>
         <translation>Beállítás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2865"/>
+        <location filename="../src/configmanager.cpp" line="2866"/>
         <source>Select Program</source>
         <translation>Programválasztás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2872"/>
+        <location filename="../src/configmanager.cpp" line="2873"/>
         <source>Restore Default</source>
         <translation>Alapértelmezés visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2919"/>
+        <location filename="../src/configmanager.cpp" line="2920"/>
         <source>Repeat contained compilation commands</source>
         <translation>A tartalmazott fordítási parancsok ismétlése</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2967"/>
+        <location filename="../src/configmanager.cpp" line="2968"/>
         <source>Add</source>
         <translation>Hozzáadás</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3030"/>
+        <location filename="../src/configmanager.cpp" line="3031"/>
         <source>Browse program</source>
         <translation>Program megadása</translation>
     </message>
@@ -4827,12 +4827,12 @@ A varázsló nem támogatja a parancsot</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="121"/>
-        <location filename="../src/latexlogwidget.cpp" line="164"/>
+        <location filename="../src/latexlogwidget.cpp" line="169"/>
         <source>Log file not readable.</source>
         <translation>A naplófájl nem olvasható.</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="129"/>
+        <location filename="../src/latexlogwidget.cpp" line="131"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
         <translation>A naplófájl nagyon nagy (%1 MB). Biztosan be akarja tölteni?</translation>
     </message>
@@ -6000,7 +6000,12 @@ Most megadhatja a jelszót:</translation>
         <translation>Fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="125"/>
+        <location filename="../src/utilsUI.cpp" line="46"/>
+        <source>Remember choice ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/utilsUI.cpp" line="153"/>
         <source>none</source>
         <translation>nincs</translation>
     </message>
@@ -9133,7 +9138,7 @@ fájlt nem lehet eltávolítani.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2036"/>
+        <location filename="../src/configmanager.cpp" line="2037"/>
         <source>Edit &amp;Macros...</source>
         <translation>Makrók &amp;szerkesztése...</translation>
     </message>
@@ -11442,7 +11447,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
         <translation>Tartalmazó mappa megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="69"/>
+        <location filename="../src/utilsUI.cpp" line="97"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
         <translation>Ne figyelmeztessen újra.</translation>

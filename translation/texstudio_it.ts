@@ -1312,7 +1312,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="../src/configdialog.ui" line="1554"/>
         <location filename="../src/configdialog.cpp" line="515"/>
-        <location filename="../src/configmanager.cpp" line="1465"/>
+        <location filename="../src/configmanager.cpp" line="1466"/>
         <source>Editor</source>
         <translation>Editore</translation>
     </message>
@@ -3020,7 +3020,7 @@ Questo ti consentirà di configurare TeXstudio in grande dettaglio.
 Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1466"/>
+        <location filename="../src/configmanager.cpp" line="1467"/>
         <source>Basic Key Mapping</source>
         <translation>Mappatura dei tasti di base</translation>
     </message>
@@ -3688,78 +3688,78 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
         <translation>pageref</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>Key replacement: %1 %2</source>
         <translation>Sostituzione tasto: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1048"/>
-        <location filename="../src/configmanager.cpp" line="1070"/>
+        <location filename="../src/configmanager.cpp" line="1049"/>
+        <location filename="../src/configmanager.cpp" line="1071"/>
         <source>before word</source>
         <translation>prima della parola</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1054"/>
-        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1055"/>
+        <location filename="../src/configmanager.cpp" line="1076"/>
         <source>after word</source>
         <translation>dopo la parola</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1385"/>
         <location filename="../src/configmanager.cpp" line="1386"/>
-        <location filename="../src/configmanager.cpp" line="1561"/>
-        <location filename="../src/configmanager.cpp" line="1567"/>
-        <location filename="../src/configmanager.cpp" line="1829"/>
-        <location filename="../src/configmanager.cpp" line="1834"/>
+        <location filename="../src/configmanager.cpp" line="1387"/>
+        <location filename="../src/configmanager.cpp" line="1562"/>
+        <location filename="../src/configmanager.cpp" line="1568"/>
+        <location filename="../src/configmanager.cpp" line="1830"/>
+        <location filename="../src/configmanager.cpp" line="1835"/>
         <source>default</source>
         <translation>Predefinito</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1443"/>
+        <location filename="../src/configmanager.cpp" line="1444"/>
         <source>Menus</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1451"/>
+        <location filename="../src/configmanager.cpp" line="1452"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menu Visualizzatore PDF</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1487"/>
-        <location filename="../src/configmanager.cpp" line="2628"/>
+        <location filename="../src/configmanager.cpp" line="1488"/>
+        <location filename="../src/configmanager.cpp" line="2629"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;nessuno&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1533"/>
+        <location filename="../src/configmanager.cpp" line="1534"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Inserisci nuovo elemento di menù (prima)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1536"/>
+        <location filename="../src/configmanager.cpp" line="1537"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Inserisci nuovo sotto-menù (prima)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1554"/>
+        <location filename="../src/configmanager.cpp" line="1555"/>
         <source>Latex/Math menus</source>
         <translation>Menù LaTeX/matematica</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1555"/>
+        <location filename="../src/configmanager.cpp" line="1556"/>
         <source>All menus</source>
         <translation>Tutti i menù</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1556"/>
+        <location filename="../src/configmanager.cpp" line="1557"/>
         <source>Special Tags</source>
         <translation>Etichette speciali</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1633"/>
+        <location filename="../src/configmanager.cpp" line="1634"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Hai attivato la sostituzione automatica dei doppi apici.
@@ -3768,73 +3768,73 @@ o (?language:latex)(?&lt;=\S), che interferiscono con la sostituzione dei doppi 
 Desideri eliminare queste macro?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1871"/>
+        <location filename="../src/configmanager.cpp" line="1872"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Per utilizzare pienamente il visualizzatore PDF interno, è necessario attivare synctex.
 Desideri che TeXstudio lo attivi adesso?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1886"/>
+        <location filename="../src/configmanager.cpp" line="1887"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Documento principale recente %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1889"/>
+        <location filename="../src/configmanager.cpp" line="1890"/>
         <source>Recent File %1</source>
         <translation>File recente %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1890"/>
+        <location filename="../src/configmanager.cpp" line="1891"/>
         <source>File list</source>
         <translation>Lista file</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1891"/>
+        <location filename="../src/configmanager.cpp" line="1892"/>
         <source>Open first non-open file</source>
         <translation>Apri il primo file non aperto</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1892"/>
+        <location filename="../src/configmanager.cpp" line="1893"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Apri tutti i file</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1902"/>
+        <location filename="../src/configmanager.cpp" line="1903"/>
         <source>Master Document: </source>
         <translation>Documento principale: </translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2629"/>
+        <location filename="../src/configmanager.cpp" line="2630"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;predefinito&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2858"/>
+        <location filename="../src/configmanager.cpp" line="2859"/>
         <source>Configure</source>
         <translation>Configura</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2865"/>
+        <location filename="../src/configmanager.cpp" line="2866"/>
         <source>Select Program</source>
         <translation>Seleziona programma</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2872"/>
+        <location filename="../src/configmanager.cpp" line="2873"/>
         <source>Restore Default</source>
         <translation>Ripristina valori predefiniti</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2919"/>
+        <location filename="../src/configmanager.cpp" line="2920"/>
         <source>Repeat contained compilation commands</source>
         <translation>Ripeti i comandi di compilazione qui specificati</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2967"/>
+        <location filename="../src/configmanager.cpp" line="2968"/>
         <source>Add</source>
         <translation>Aggiungi</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3030"/>
+        <location filename="../src/configmanager.cpp" line="3031"/>
         <source>Browse program</source>
         <translation>Esplora programma</translation>
     </message>
@@ -4838,12 +4838,12 @@ BibTeX non ignora gli spazi finali.</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="121"/>
-        <location filename="../src/latexlogwidget.cpp" line="164"/>
+        <location filename="../src/latexlogwidget.cpp" line="169"/>
         <source>Log file not readable.</source>
         <translation>File di log non leggibile.</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="129"/>
+        <location filename="../src/latexlogwidget.cpp" line="131"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
         <translation>Il Registro è molto pesante (%1 MB) sei sicuro di volerlo aprire?</translation>
     </message>
@@ -6012,7 +6012,12 @@ Ora puoi inserire la password:</translation>
         <translation>Seleziona un file</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="125"/>
+        <location filename="../src/utilsUI.cpp" line="46"/>
+        <source>Remember choice ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/utilsUI.cpp" line="153"/>
         <source>none</source>
         <translation>nessuno</translation>
     </message>
@@ -9147,7 +9152,7 @@ Desideri comunque usare questa cartella?</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2036"/>
+        <location filename="../src/configmanager.cpp" line="2037"/>
         <source>Edit &amp;Macros...</source>
         <translation>&amp;Modifica macro...</translation>
     </message>
@@ -11448,7 +11453,7 @@ Questo potrebbe provocare una corruzione di dati.</translation>
         <translation>Mostra la Cartella Contenente</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="69"/>
+        <location filename="../src/utilsUI.cpp" line="97"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
         <translation>Non ripetere l&apos;avviso in futuro.</translation>
