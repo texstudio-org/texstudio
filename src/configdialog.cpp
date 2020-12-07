@@ -573,6 +573,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.tbRevertIcon, SIGNAL(clicked()), this, SLOT(revertClicked()));
 	connect(ui.tbRevertCentralIcon, SIGNAL(clicked()), this, SLOT(revertClicked()));
 	connect(ui.tbRevertSymbol, SIGNAL(clicked()), this, SLOT(revertClicked()));
+    connect(ui.tbRevertPDF, SIGNAL(clicked()), this, SLOT(revertClicked()));
 
 	// limit dialog size
 	QRect screen = QGuiApplication::primaryScreen()->geometry();
@@ -628,6 +629,9 @@ void ConfigDialog::revertClicked()
 		if (bt->objectName() == "tbRevertSymbol") {
 			ui.horizontalSliderSymbol->setValue(32);
 		}
+        if (bt->objectName() == "tbRevertPDF") {
+            ui.horizontalSliderPDF->setValue(16);
+        }
 	}
 }
 

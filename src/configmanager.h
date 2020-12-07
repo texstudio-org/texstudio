@@ -88,6 +88,7 @@ public:
 	QString interfaceFontFamily;
 	int guiToolbarIconSize, guiSymbolGridIconSize;
 	int guiSecondaryToolbarIconSize;
+    int guiPDFToolbarIconSize;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
 	bool mruDocumentChooser;
@@ -276,6 +277,7 @@ signals:
 	void watchedMenuChanged(const QString &menuId);
 	void iconSizeChanged(int value);
 	void secondaryIconSizeChanged(int value);
+    void pdfIconSizeChanged(int value);
 	void symbolGridIconSizeChanged(int value);
 public:
 //private:

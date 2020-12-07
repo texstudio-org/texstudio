@@ -339,6 +339,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errorprev"));
 		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errornext"));
 	}
+
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
 
@@ -374,16 +375,16 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setAcceptDrops(true);
 	//installEventFilter(this);
 
-	completer = new LatexCompleter(latexParser, this);
-	completer->setConfig(configManager.completerConfig);
-	completer->setPackageList(&latexPackageList);
-    connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
-    connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-    connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
-	//updateCompleter();
-	LatexEditorView::setCompleter(completer);
-	completer->setLatexReference(latexReference);
-	completer->updateAbbreviations();
+        completer = new LatexCompleter(latexParser, this);
+        completer->setConfig(configManager.completerConfig);
+        completer->setPackageList(&latexPackageList);
+        connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
+        connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
+        connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
+        //updateCompleter();
+        LatexEditorView::setCompleter(completer);
+        completer->setLatexReference(latexReference);
+        completer->updateAbbreviations();
 
 	TemplateManager::setConfigBaseDir(configManager.configBaseDir);
 	TemplateManager::ensureUserTemplateDirExists();
@@ -5873,6 +5874,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		REQUIRE(doc);
 		doc->autoClose = autoClose;
 		oldPDFs << doc;
+                changePDFIconSize(configManager.guiPDFToolbarIconSize);
 	}
 
 	if (pdfFile.isNull()) {
@@ -6610,9 +6612,10 @@ void Texstudio::generalOptions()
         configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegExp("^[^*]+$"));
     }
     // GUI scaling
-    connect(&configManager, SIGNAL(iconSizeChanged(int)), this, SLOT(changeIconSize(int)));
-    connect(&configManager, SIGNAL(secondaryIconSizeChanged(int)), this, SLOT(changeSecondaryIconSize(int)));
-    connect(&configManager, SIGNAL(symbolGridIconSizeChanged(int)), this, SLOT(changeSymbolGridIconSize(int)));
+    connect(&configManager, &ConfigManager::iconSizeChanged, this, &Texstudio::changeIconSize);
+    connect(&configManager, &ConfigManager::secondaryIconSizeChanged, this, &Texstudio::changeSecondaryIconSize);
+    connect(&configManager, &ConfigManager::pdfIconSizeChanged , this, &Texstudio::changePDFIconSize);
+    connect(&configManager, &ConfigManager::symbolGridIconSizeChanged, this, [=](int size) { changeSymbolGridIconSize(size); });
 
     // The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
     QWidget *parentWindow = UtilsUi::windowForObject(sender(), this);
@@ -6723,6 +6726,7 @@ void Texstudio::generalOptions()
         // scale GUI
         changeIconSize(configManager.guiToolbarIconSize);
         changeSecondaryIconSize(configManager.guiSecondaryToolbarIconSize);
+        changePDFIconSize(configManager.guiPDFToolbarIconSize);
         changeSymbolGridIconSize(configManager.guiSymbolGridIconSize, false);
         //custom toolbar
         setupToolBars();
@@ -10871,11 +10875,22 @@ void Texstudio::changeSecondaryIconSize(int value)
 			bt->setIconSize(QSize(iconWidth, iconWidth));
 		}
 	}
+}
+/*!
+ * \brief change icon size of embbedded pdf viewer toolbar
+ * \param value
+ */
+void Texstudio::changePDFIconSize(int value){
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
+    int iconWidth=qRound(value*scale);
 
 #ifndef NO_POPPLER_PREVIEW
-	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
-		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
-	}
+        foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
+                if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
+        }
 #endif
 }
 /*!

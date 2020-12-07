@@ -694,6 +694,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
 	registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
+    registerOption("GUI/PDFToobarIconSize", &guiPDFToolbarIconSize, 16);
 
 	registerOption("View/ShowStatusbar", &showStatusbar, true);
 
@@ -1579,6 +1580,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
 	connect(confDlg->ui.horizontalSliderIcon, SIGNAL(valueChanged(int)), SIGNAL(iconSizeChanged(int)));
 	connect(confDlg->ui.horizontalSliderCentraIcon, SIGNAL(valueChanged(int)), SIGNAL(secondaryIconSizeChanged(int)));
+    connect(confDlg->ui.horizontalSliderPDF, SIGNAL(valueChanged(int)), SIGNAL(pdfIconSizeChanged(int)));
 	connect(confDlg->ui.horizontalSliderSymbol, SIGNAL(valueChanged(int)), SIGNAL(symbolGridIconSizeChanged(int)));
 
 	//EXECUTE IT
@@ -1839,11 +1841,13 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		guiToolbarIconSize = confDlg->ui.horizontalSliderIcon->value();
 		guiSecondaryToolbarIconSize = confDlg->ui.horizontalSliderCentraIcon->value();
 		guiSymbolGridIconSize = confDlg->ui.horizontalSliderSymbol->value();
+        guiPDFToolbarIconSize = confDlg->ui.horizontalSliderPDF->value();
 	} else {
 		// GUI scaling
 		confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
 		confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
 		confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+        confDlg->ui.horizontalSliderPDF->setValue(guiPDFToolbarIconSize);
 
 	}
 	delete confDlg;
