@@ -154,6 +154,7 @@ public:
 
 	// LogView
 	double logViewWarnIfFileSizeLargerMB;
+    int logViewRememberChoice;
 
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK = 0, PM_PANEL, PM_TOOLTIP, PM_BOTH, PM_INLINE, PM_EMBEDDED};

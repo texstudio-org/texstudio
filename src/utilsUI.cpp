@@ -2,6 +2,7 @@
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 #include "filedialog.h"
+#include <QErrorMessage>
 
 
 extern void hideSplash();
@@ -26,6 +27,33 @@ bool txsConfirmWarning(const QString &message)
 {
 	hideSplash();
 	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
+}
+/*!
+ * \brief show confirmation with warning message box
+ * \param message
+ * \param rememberChoice if true, return true and avoid Msg. rememberChoice is overwritten by checkbox result.
+ * \return yes=true
+ */
+bool txsConfirmWarning(const QString &message,txsWarningState &rememberChoice)
+{
+    switch (rememberChoice){
+        case RememberFalse: return false ;
+        case RememberTrue: return true ;
+        default: ;
+    }
+    hideSplash();
+    QMessageBox msg(QMessageBox::Warning,TEXSTUDIO,message,QMessageBox::Yes | QMessageBox::No,QApplication::activeWindow());
+    QCheckBox *cb=new QCheckBox(QApplication::tr("Remember choice ?"));
+    msg.setCheckBox(cb);
+    bool result=(msg.exec()==QMessageBox::Yes);
+    if(msg.checkBox()->checkState()==Qt::Checked){
+        if(result){
+            rememberChoice=RememberTrue;
+        }else{
+            rememberChoice=RememberFalse;
+        }
+    }
+    return result;
 }
 /*!
  * \brief show confirmation with warning message box

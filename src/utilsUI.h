@@ -6,8 +6,11 @@
 
 namespace UtilsUi {
 
+enum txsWarningState {DontRemember,RememberFalse,RememberTrue};
+
 bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);
+bool txsConfirmWarning(const QString &message,txsWarningState &rememberChoice);
 QMessageBox::StandardButton txsConfirmWarning(const QString &message, QMessageBox::StandardButtons buttons);
 void txsInformation(const QString &message);
 void txsWarning(const QString &message);
