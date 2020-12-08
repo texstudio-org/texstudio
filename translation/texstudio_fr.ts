@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -926,7 +924,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Définit les types de notifications de mises à jour que vous recevrez :
 - versions stables : à choisir si la stabilité est le plus important pour vous ;
@@ -1135,7 +1133,7 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2631,8 +2629,8 @@ leur usage en les activant ici.</translation>
         <location filename="../src/configdialog.ui" line="4182"/>
         <location filename="../src/configdialog.ui" line="4249"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Le moteur de rendu utilisé par la bibliothèque PDF poppler.
 « Splash ».est celui par défaut et convient dans la plupart des cas.
@@ -4139,14 +4137,6 @@ Continuer tout de même ?</translation>
         <source>texdoc not found.</source>
         <translation>texdoc introuvable.</translation>
     </message>
-    <message>
-        <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="vanished">texdoc met trop de temps à ouvrir la documentation du package :</translation>
-    </message>
-    <message>
-        <source>texdoc did not respond to query on package:</source>
-        <translation type="vanished">texdoc ne répond pas à la requête sur le package :</translation>
-    </message>
 </context>
 <context>
     <name>InsertGraphics</name>
@@ -4326,7 +4316,7 @@ Continuer tout de même ?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Préférences de placement pour la figure
@@ -4444,7 +4434,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
@@ -4631,17 +4621,14 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2532"/>
         <location filename="../src/latexeditorview.cpp" line="2604"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2545"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n référence à cette étiquette</numerusform>
-            <numerusform>%n références à cette étiquette</numerusform>
-        </translation>
+        <translation><numerusform>%n référence à cette étiquette</numerusform><numerusform>%n références à cette étiquette</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2550"/>
@@ -6010,7 +5997,7 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
     <message>
         <location filename="../src/utilsUI.cpp" line="46"/>
         <source>Remember choice ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Se souvenir de ce choix ?</translation>
     </message>
     <message>
         <location filename="../src/utilsUI.cpp" line="153"/>
@@ -6341,7 +6328,7 @@ a échoué.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Le fichier original sur le disque a été détruit lors de l&apos;opération de sauvegarde.
 Une copie est disponible ici :
@@ -11005,7 +10992,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5737"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nom de fichier introuvable
 Vous devez enregistrer le document avant de le compiler.</translation>
@@ -11018,12 +11005,12 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5783"/>
         <source>  Running this command: </source>
-        <translation type="unfinished">  Lancer cette commande :</translation>
+        <translation>  Lancer cette commande :</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5789"/>
         <source>could not start the command</source>
-        <translation type="unfinished">la commande ne peut pas être lancée</translation>
+        <translation>la commande ne peut pas être lancée</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5910"/>
