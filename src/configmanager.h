@@ -89,6 +89,7 @@ public:
 	int guiToolbarIconSize, guiSymbolGridIconSize;
 	int guiSecondaryToolbarIconSize;
     int guiPDFToolbarIconSize;
+    int guiConfigShortcutColumnWidth;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
 	bool mruDocumentChooser;

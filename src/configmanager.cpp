@@ -695,6 +695,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
     registerOption("GUI/PDFToobarIconSize", &guiPDFToolbarIconSize, 16);
+    registerOption("GUI/ConfigShorcutColumnWidth", &guiConfigShortcutColumnWidth, 200);
 
 	registerOption("View/ShowStatusbar", &showStatusbar, true);
 

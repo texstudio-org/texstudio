@@ -501,8 +501,13 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	layout->setMargin(0);
 	layout->insertWidget(0, fmConfig);
 
+    ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
 	ui.shortcutTree->setHeaderLabels(QStringList() << tr("Command") << tr("Default Shortcut") << tr("Current Shortcut") << tr("Additional Shortcut"));
-	ui.shortcutTree->setColumnWidth(0, 200);
+    if(config){
+        ui.shortcutTree->setColumnWidth(0, config->getOption("GUI/ConfigShorcutColumnWidth",200).toInt());
+    }else{
+        ui.shortcutTree->setColumnWidth(0, 200);
+    }
 
 	//create icons
 	createIcon(tr("General"), getRealIcon("config_general"));
@@ -590,6 +595,10 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 
 ConfigDialog::~ConfigDialog()
 {
+    ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    if(config){
+        config->setOption("GUI/ConfigShorcutColumnWidth",ui.shortcutTree->columnWidth(0));
+    }
 }
 
 QListWidgetItem *ConfigDialog::createIcon(const QString &caption, const QIcon &icon, ContentsType contentsType)
