@@ -27,6 +27,8 @@ centercolon#true,false
 prescript-sup-format=
 prescript-sub-format=
 prescript-arg-format=
+shortvdotsadjustabove=##L
+shortvdotsadjustbelow=##L
 #endkeyvals
 \mathllap[mathstyle]{math}#*m
 \mathllap{math}#m
@@ -153,13 +155,11 @@ lr
 \shortvdotswithin*{symbol}#m\array
 \MTFlushSpaceAbove#m\array
 \MTFlushSpaceBelow#m\array
-shortvdotsadjustabove=<length>#n
-shortvdotsadjustbelow=<length>#n
 \shortintertext{text}#m\array
 \intertext{text}#m\array
-\DeclarePairedDelimiter{cmd}{left delim}{right delim}#nd
-\DeclarePairedDelimiterX{cmd}[numargs]{left delim}{right delim}{body}#nd
-\DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim}{right delim}{post code}{body}#nd
+\DeclarePairedDelimiter{cmd}{left delim%formula}{right delim%formula}#nd
+\DeclarePairedDelimiterX{cmd}[numargs]{left delim%formula}{right delim%formula}{body%formula}#nd
+\DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim%formula}{right delim%formula}{post code%formula}{body%formula}#nd
 \reDeclarePairedDelimiterInnerWrapper{macro name}{star or nostar}{code}#m
 \lparen#m\array
 \rparen#m\array
@@ -182,15 +182,5 @@ shortvdotsadjustbelow=<length>#n
 \ndownarrow#m
 \bigtimes#m
 \prescript{sup}{sub}{arg}#m
-\DeclareMathSizes{dimen}{dimen}{dimen}{dimen}#*n
 \splitfrac{numer}{denom}#m
 \splitdfrac{numer}{denom}#m
-
-
-
-
-
-
-
-
-
