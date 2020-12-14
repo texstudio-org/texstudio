@@ -1819,12 +1819,12 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="1519"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek gömülü PDF görüntüleyici araç çubuğunun ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1544"/>
         <source>Embedded PDF Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Gömülü PDF Araç Çubuğu</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2241"/>
@@ -6011,7 +6011,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/utilsUI.cpp" line="46"/>
         <source>Remember choice ?</source>
-        <translation type="unfinished"/>
+        <translation>Seçim hatırlansın mı?</translation>
     </message>
     <message>
         <location filename="../src/utilsUI.cpp" line="153"/>
