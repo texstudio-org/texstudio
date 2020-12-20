@@ -4666,7 +4666,8 @@ QPolygon QDocumentCursorHandle::documentRegion() const
 	QPoint p = documentPosition(), ap = anchorDocumentPosition();
 
 	int w = m_doc->width();
-	const int lm = m_doc->impl()->m_leftPadding;
+
+    const int lm = m_doc->impl()->m_leftMargin;
 	const int ls = m_doc->impl()->m_lineSpacing - 1;
 
 	if ( p == ap )
@@ -4685,10 +4686,10 @@ QPolygon QDocumentCursorHandle::documentRegion() const
 	} else if ( p.y() < ap.y() ) {
 		poly
 			<< p
-			<< QPoint(w, p.y());
+            << QPoint(w+lm, p.y());
 
 		if ( ap.x() < w )
-			poly << QPoint(w, ap.y()) << ap;
+            poly << QPoint(w+lm, ap.y()) << ap;
 
 		poly
 			<< QPoint(ap.x(), ap.y() + ls)
@@ -4700,10 +4701,10 @@ QPolygon QDocumentCursorHandle::documentRegion() const
 	} else {
 		poly
 			<< ap
-			<< QPoint(w, ap.y());
+            << QPoint(w+lm, ap.y());
 
 		if ( p.x() < w )
-			poly << QPoint(w, p.y()) << p;
+            poly << QPoint(w+lm, p.y()) << p;
 
 		poly
 			<< QPoint(p.x(), p.y() + ls)
@@ -6835,7 +6836,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		}
 		drawTextLine(p, cxt, lcxt);
 	}
-	p->translate(-m_leftMargin, 0);
+    p->translate(-m_leftMargin, 0);
 	//qDebug("painting done in %i ms...", t.elapsed());
 
 	drawPlaceholders(p, cxt);
@@ -7308,6 +7309,7 @@ void QDocumentPrivate::setHardLineWrap(bool wrap)
 void QDocumentPrivate::setCenterDocumentInEditor(bool center){
     m_centerDocumentInEditor=center;
 }
+
 void QDocumentPrivate::setLineWidthConstraint(bool wrap)
 {
 	m_lineWidthConstraint=wrap;
