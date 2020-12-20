@@ -7231,6 +7231,8 @@ void Texstudio::viewCloseElement()
 	if (completer && completer->isVisible() && completer->close()) {
 		return;
 	}
+    if (currentEditorView() && currentEditorView()->closeElement())
+        return;
     if (getManagedAction("main/tools/stopcompile")->isEnabled()) {
         getManagedAction("main/tools/stopcompile")->trigger();
         return;
@@ -7261,8 +7263,6 @@ void Texstudio::viewCloseElement()
 		textAnalysisDlg->close();
 		return;
 	}
-	if (currentEditorView() && currentEditorView()->closeElement())
-		return;
 	if (outputView->isVisible() && configManager.useEscForClosingLog) {
 		outputView->hide();
 		return;
