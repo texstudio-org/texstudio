@@ -1272,7 +1272,7 @@ QString getCommandLineGhostscript()
 	return "";
 }
 
-#elif defined(Q_WS_X11) || defined(Q_OS_LINUX)
+#elif defined(Q_WS_X11) || defined(Q_OS_LINUX) || defined(Q_OS_HAIKU)
 
 // xdvi %.dvi  -sourceposition @:%.tex
 // kdvi "file:%.dvi#src:@ %.tex"
