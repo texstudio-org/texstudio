@@ -1,3 +1,7 @@
+TeXstudio 3.0.3
+-----------------
+- 
+
 TeXstudio 3.0.2
 -----------------
 - handle \tabularnewline correctly (#1373)
