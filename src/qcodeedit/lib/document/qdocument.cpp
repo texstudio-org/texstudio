@@ -3394,7 +3394,7 @@ void QDocumentLineHandle::layout(int lineNr) const
 			m_layout = new QTextLayout(m_text, QDocument::font());
 		} else {
 			m_layout->setText(m_text);
-			//m_layout->setFont(config()->font());
+            m_layout->setFont(QDocument::font());
 		}
 
 		m_layout->setCacheEnabled(false);
