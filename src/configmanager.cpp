@@ -1579,6 +1579,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
 	confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
 	confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+    confDlg->ui.horizontalSliderPDF->setValue(guiPDFToolbarIconSize);
 	connect(confDlg->ui.horizontalSliderIcon, SIGNAL(valueChanged(int)), SIGNAL(iconSizeChanged(int)));
 	connect(confDlg->ui.horizontalSliderCentraIcon, SIGNAL(valueChanged(int)), SIGNAL(secondaryIconSizeChanged(int)));
     connect(confDlg->ui.horizontalSliderPDF, SIGNAL(valueChanged(int)), SIGNAL(pdfIconSizeChanged(int)));

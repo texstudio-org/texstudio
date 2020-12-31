@@ -7386,7 +7386,7 @@ void Texstudio::pdfClosed()
 QObject *Texstudio::newPdfPreviewer(bool embedded)
 {
 	PDFDocument *pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, embedded);
-	pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiSecondaryToolbarIconSize : configManager.guiToolbarIconSize);
+    pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiPDFToolbarIconSize : configManager.guiToolbarIconSize);
 	if (embedded) {
 		mainHSplitter->addWidget(pdfviewerWindow);
 		QList<int> sz = mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
