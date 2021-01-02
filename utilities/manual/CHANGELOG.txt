@@ -1,10 +1,11 @@
 TeXstudio 3.0.4
 -----------------
-- 
+- fix RTL presentation when zoomed (#1404)
+- fix pdf toolbar size setting
 
 TeXstudio 3.0.3
 -----------------
-- 
+- fix OSX build
 
 TeXstudio 3.0.2
 -----------------
