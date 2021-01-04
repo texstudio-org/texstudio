@@ -2,9 +2,9 @@
 #define UTILSVERSION_H
 
 #define TEXSTUDIO "TeXstudio"
-#define TXSVERSION "3.0.4"
+#define TXSVERSION "3.0.5"
 
-#define TXSVERSION_NUMERIC 0x030004
+#define TXSVERSION_NUMERIC 0x030005
 
 //#define IS_DEVELOPMENT_VERSION (TXSVERSION_NUMERIC & 0x000001)
 #define IS_DEVELOPMENT_VERSION 0 // odd numbers have not been used at all, git version gives a much clearer insight about the used version

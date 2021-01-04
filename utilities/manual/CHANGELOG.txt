@@ -1,3 +1,7 @@
+TeXstudio 3.0.5
+-----------------
+- fix crash when deleting all elements of a build chain (#1415)
+
 TeXstudio 3.0.4
 -----------------
 - fix RTL presentation when zoomed (#1404)
