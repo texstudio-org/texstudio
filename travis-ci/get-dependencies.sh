@@ -57,14 +57,14 @@ elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 #    brew uninstall --ignore-dependencies poppler
 #	brew install -f "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
 #	brew switch poppler 20.09.0-texworks
-## fix internal links in libpoppler-qt5 as it messes with macdeployqt
-	cd /usr/local/opt/poppler/lib
-	chmod u+w  libpoppler-qt5.dylib
-	a=`otool -L libpoppler-qt5.dylib|grep Cellar|sed -e 's/ .*//' -e 's/	//'`
-	b=`echo $a|sed -e 's#/.*/##'`
-	c=`pwd`/$b
-	install_name_tool -change $a $c libpoppler-qt5.1.dylib
-	cd
+## fix internal links in libpoppler-qt5 as it messes with macdeployqt -> fixed on homebrew side
+##	cd /usr/local/opt/poppler/lib
+##	chmod u+w  libpoppler-qt5.dylib
+##	a=`otool -L libpoppler-qt5.dylib|grep Cellar|sed -e 's/ .*//' -e 's/	//'`
+##	b=`echo $a|sed -e 's#/.*/##'`
+##	c=`pwd`/$b
+##	install_name_tool -change $a $c libpoppler-qt5.1.dylib
+##	cd
 else
 	print_error "Unsupported host/target combination '${TRAVIS_OS_NAME}'"
 	exit 1
