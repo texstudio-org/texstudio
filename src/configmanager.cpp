@@ -1380,9 +1380,11 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		else languageFiles[i] = temp;
 	}
 	if (!languageFiles.contains("en")) languageFiles.append("en");
+    languageFiles.sort(); // insert sorted
 	int langId = -1;
 	for (int i = 0; i < languageFiles.count(); i++) {
-		confDlg->ui.comboBoxLanguage->addItem(languageFiles[i]);
+        QLocale loc(languageFiles[i]);
+        confDlg->ui.comboBoxLanguage->addItem(languageFiles[i]+"  ("+QLocale::languageToString(loc.language())+")");
 		if (languageFiles[i] == language) langId = i;
 	}
 	confDlg->ui.comboBoxLanguage->addItem(tr("default"));
