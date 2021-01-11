@@ -662,11 +662,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         i = i + 1;
                         tk.length = tk2.length + 1;
                         tk.type = Token::word;
-                    }
-                    if (!lexed.isEmpty() && lexed.last().type == Token::word) {
-                        if (lexed.last().start + lexed.last().length == tk.start) {
-                            lexed.last().length += tk.length;
-                            continue;
+
+                        if (!lexed.isEmpty() && lexed.last().type == Token::word) {
+                            if (lexed.last().start + lexed.last().length == tk.start) {
+                                lexed.last().length += tk.length;
+                                continue;
+                            }
                         }
                     }
                 }
