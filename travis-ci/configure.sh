@@ -19,7 +19,8 @@ elif [ $QT = qt5Release ]; then
 	qmake texstudio.pro CONFIG-=debug
 elif [ $QT = qt5win ]; then
 	. travis-ci/get-version.sh
-	sed -i win.rc -e "s/0,[0,]*/$(tr <<<"$TXS_VERSION" . ,),0/"
+	TXS_COMMA_VERSION=$(echo $TXS_VERSION | tr . ,)
+	sed -i win.rc -e "s/0,[0,]*/$TXS_COMMA_VERSION,0/"
 	sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
 	PATH=$PATH:${MXEDIR}/usr/bin
 	$MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1
