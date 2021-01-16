@@ -89,15 +89,17 @@ void SpellerDialog::startSpelling()
 		editor->getCursorPosition(startLine, startIndex);
 		endLine = editor->document()->lines() - 1;
 		endIndex = editor->text(endLine).length();
-		latexReader.setLine(editor->document()->line(startLine).text());
-		//jump from word to word until an valid index is reached
-		while (latexReader.index < startIndex)
-			if (!latexReader.nextTextWord()) break;
-		startIndex = latexReader.wordStartIndex;
 	}
 	curLine = startLine;
-	latexReader.index = startIndex;
-	latexReader.word = "";
+    // determine tokenIndex from cursor index
+    QDocumentLineHandle *dlh=editor->document()->line(curLine).handle();
+    tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+    for(tokenListIndex=0;tokenListIndex<tl.length();++tokenListIndex){
+        Token tk=tl.at(tokenListIndex);
+        if(tk.start+tk.length>startIndex)
+            break;
+    }
+    --tokenListIndex; // index is increased as first step in SpellingNextWord()
 	show();
 	SpellingNextWord();
 }
@@ -154,9 +156,7 @@ void SpellerDialog::slotReplace()
 	if (!editor) return;
 	if (editor->cursor().hasSelection()) {
 		QString selectedword = editor->cursor().selectedText();
-		latexReader.index += ui.lineEditNew->text().size() - latexReader.word.size();
-		latexReader.word = ui.lineEditNew->text();
-		editor->insertText(latexReader.word);
+        editor->insertText(ui.lineEditNew->text());
 	}
 	SpellingNextWord();
 }
@@ -165,18 +165,21 @@ void SpellerDialog::SpellingNextWord()
 {
 	if (!editor || !m_speller) return;
 	for (; curLine <= endLine; curLine++) {
-		latexReader.line = editor->text(curLine);
-		LatexReader::NextWordFlag nwf;
-		while ((nwf = latexReader.nextWord(false)) != LatexReader::NW_NOTHING) {
-			if (curLine == endLine && latexReader.index > endIndex)
-				break; //not in checked range
-			if (nwf != LatexReader::NW_TEXT)
+        QDocumentLineHandle *dlh=editor->document()->line(curLine).handle();
+        tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+        while(tokenListIndex<tl.length()-1){
+            ++tokenListIndex;
+            Token tk=tl.at(tokenListIndex);
+            if (tk.type!=Token::word)
 				continue;
-			if (m_speller->check(latexReader.word)) continue;
-			QStringList suggWords = m_speller->suggest(latexReader.word);
+            if(tk.subtype != Token::text && tk.subtype != Token::title && tk.subtype != Token::shorttitle && tk.subtype != Token::todo && tk.subtype != Token::none)
+                continue;
+            QString word=tk.getText();
+            if (m_speller->check(word)) continue;
+            QStringList suggWords = m_speller->suggest(word);
 
-			QDocumentCursor wordSelection(editor->document(), curLine, latexReader.wordStartIndex);
-			wordSelection.movePosition(latexReader.index - latexReader.wordStartIndex, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+            QDocumentCursor wordSelection(editor->document(), curLine, tk.start);
+            wordSelection.movePosition(tk.length, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 			editor->setCursor(wordSelection);
 
 			ui.listSuggestions->setEnabled(true);
@@ -185,7 +188,7 @@ void SpellerDialog::SpellingNextWord()
 			ui.pushButtonAlwaysIgnore->setEnabled(true);
 			ui.pushButtonReplace->setEnabled(true);
 			ui.lineEditOriginal->setEnabled(true);
-			ui.lineEditOriginal->setText(latexReader.word);
+            ui.lineEditOriginal->setText(word);
 			ui.listSuggestions->clear();
 			ui.lineEditNew->clear();
 			m_statusBar->clearMessage();
@@ -195,8 +198,7 @@ void SpellerDialog::SpellingNextWord()
 			}
 			return;
 		}
-		latexReader.index = 0;
-		latexReader.word = "";
+        tokenListIndex = -1;
 	}
 
 	//no word found
