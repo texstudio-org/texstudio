@@ -18,7 +18,7 @@
 #include <QItemEditorCreatorBase>
 #include <QStyledItemDelegate>
 
-static const QRegExpValidator wordValidator(QRegExp("[^<].*"), nullptr);
+const QRegExpValidator wordValidator(QRegExp("[^<].*"), nullptr);
 
 SpellerDialog::SpellerDialog(QWidget *parent, SpellerUtility *utility)
     : QDialog(parent), m_statusBar(nullptr), m_speller(utility), editor(nullptr), editorView(nullptr)
@@ -71,6 +71,8 @@ void SpellerDialog::setEditorView(LatexEditorView *edView)
 {
     editor = edView ? edView->editor : nullptr;
 	editorView = edView;
+    if(edView)
+        mReplacementList=edView->getReplacementList();
 }
 
 void SpellerDialog::startSpelling()
@@ -175,6 +177,7 @@ void SpellerDialog::SpellingNextWord()
             if(tk.subtype != Token::text && tk.subtype != Token::title && tk.subtype != Token::shorttitle && tk.subtype != Token::todo && tk.subtype != Token::none)
                 continue;
             QString word=tk.getText();
+            word = latexToPlainWordwithReplacementList(word, mReplacementList);
             if (m_speller->check(word)) continue;
             QStringList suggWords = m_speller->suggest(word);
 

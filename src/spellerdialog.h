@@ -43,6 +43,7 @@ private :
     int tokenListIndex;
 	int startLine, startIndex, curLine, endLine, endIndex;
 	bool ignoreListChanged;
+    QMap<QString, QString> mReplacementList;
 
 protected:
 	void closeEvent(QCloseEvent *);
