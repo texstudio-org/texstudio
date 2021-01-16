@@ -662,7 +662,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             // command highlighing
             // this looks slow
             // TODO: optimize !
-            for(const Environment &env:qAsConst(activeEnv)){
+            for(const Environment &env:activeEnv){
                 if(!env.dlh)
                     continue; //ignore "normal" env
                 if(env.name=="document")
@@ -804,9 +804,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				QSet<QString> translationMap=ltxCommands->possibleCommands.value("%columntypes");
 				QStringList res = LatexTables::splitColDef(option);
 				QStringList res2;
-                for(const auto &elem: qAsConst(res)){
+                for(const auto &elem: res){
 					bool add=true;
-                    for(const auto &i:qAsConst(translationMap)){
+                    for(const auto &i:translationMap){
 						if(i.left(1)==elem && add){
 							res2 << LatexTables::splitColDef(i.mid(1));
 							add=false;
@@ -944,7 +944,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             // command highlighing
             // this looks slow
             // TODO: optimize !
-            for(const Environment &env:qAsConst(activeEnv)){
+            for(const Environment &env:activeEnv){
                 if(!env.dlh)
                     continue; //ignore "normal" env
                 if(env.name=="document")
@@ -1171,7 +1171,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 	}
     if(!activeEnv.isEmpty()){
         //check active env for env highlighting (math,verbatim)
-        for(const Environment &env: qAsConst(activeEnv)){
+        for(const Environment &env: activeEnv){
             QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
             altEnvs<<env.name;
             for(const QString &key: mFormatList.keys()){
