@@ -69,6 +69,7 @@
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
 #include "execprogram.h"
+#include "toctreeview.h"
 
 #include <QScreen>
 
@@ -214,6 +215,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	leftPanel = nullptr;
 	sidePanel = nullptr;
 	structureTreeView = nullptr;
+	tocTreeView = nullptr;
 	outputView = nullptr;
 
 	qRegisterMetaType<LatexParser>();
@@ -664,6 +666,11 @@ void Texstudio::setupDockWidgets()
 
         leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
+	if (!tocTreeView) {
+		tocTreeView = new TocTreeView(configManager, this);
+		tocTreeView->refresh(documents.masterDocument);
+		leftPanel->addWidget(tocTreeView, "tocTreeView", tr("Table of Content"), getRealIconFile("structure"));
+	} else leftPanel->setWidgetText(tocTreeView, tr("Table of Content"));
     if (!leftPanel->widget("bookmarks")) {
         QListWidget *bookmarksWidget = bookmarks->widget();
         bookmarks->setDarkMode(darkMode);
@@ -4423,6 +4430,7 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	}
 
 	//structureTreeView->reset();
+	tocTreeView->refresh(doc->getMasterDocument());
 }
 
 void Texstudio::clickedOnStructureEntry(const QModelIndex &index)

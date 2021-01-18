@@ -63,6 +63,7 @@ class LatexReference;
 class SymbolListModel;
 class SymbolWidget;
 class StructureTreeView;
+class TocTreeView;
 
 Q_DECLARE_METATYPE(QSet<QString>)
 
@@ -152,7 +153,8 @@ private:
 	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
 
-	StructureTreeView *structureTreeView;
+	StructureTreeView* structureTreeView;
+	TocTreeView* tocTreeView;
 	LatexParser latexParser;
 public:
 	LatexDocuments documents;

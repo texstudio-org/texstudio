@@ -91,6 +91,9 @@ HEADERS += \
     $$PWD/textanalysis.h \
     $$PWD/thesaurusdialog.h \
     $$PWD/titledpanel.h \
+    $$PWD/tocitemdata.h \
+    $$PWD/tocitemtree.h \
+    $$PWD/toctreeview.h \
     $$PWD/toolwidgets.h \
     $$PWD/txstabwidget.h \
     $$PWD/unicodeinsertion.h \
@@ -194,6 +197,9 @@ SOURCES += \
     $$PWD/textanalysis.cpp \
     $$PWD/thesaurusdialog.cpp \
     $$PWD/titledpanel.cpp \
+    $$PWD/tocitemdata.cpp \
+    $$PWD/tocitemtree.cpp \
+    $$PWD/toctreeview.cpp \
     $$PWD/toolwidgets.cpp \
     $$PWD/txstabwidget.cpp \
     $$PWD/unicodeinsertion.cpp \
