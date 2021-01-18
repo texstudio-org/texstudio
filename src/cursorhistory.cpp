@@ -58,8 +58,13 @@ bool CursorHistory::insertPos(QDocumentCursor cur, bool deleteBehindCurrent)
 		}
 	}
 
-    ++currentEntry;
-	history.insert(currentEntry, pos);
+	if (history.size() > 0) {
+		++currentEntry;
+		history.insert(currentEntry, pos);
+	}
+	else {
+		history.insert(history.begin(), pos);
+	}
 	updateNavActions();
 	return true;
 }
