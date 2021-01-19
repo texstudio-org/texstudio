@@ -1566,7 +1566,7 @@ void Helper::renderTabBarTab(QPainter *painter, const QRect &rect, const QColor 
     painter->setRenderHint(QPainter::Antialiasing, false);
 
     QRectF frameRect(rect);
-    qreal adjustment;
+    qreal adjustment = 0;
 
     // pen
     if (outline.isValid()) {
