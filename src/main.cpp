@@ -145,6 +145,10 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 			else if ((cmdArgument == "--debug-logfile") && (++i < args.count()))
 				debugLoggerStart(args[i]);
 #endif
+#ifdef Q_OS_WIN32
+			else if (cmdArgument == "--miktex" && (++i < args.count()))
+				ConfigManager::miktexSearchDir = args[i]; 
+#endif
 			else
 				cmdLine << cmdArgument;
 		} else
@@ -170,6 +174,9 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
                             << "  --version                 show version number\n"
 #ifdef DEBUG_LOGGER
 							<< "  --debug-logfile pathname  write debug messages to pathname\n"
+#endif
+#ifdef Q_OS_WIN32
+							<< "  --miktex DIR               search for latex like MiKTeX in given directory\n"
 #endif
 							;
 		return true;

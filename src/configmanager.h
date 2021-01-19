@@ -245,6 +245,9 @@ public:
 	static QString configDirOverride;
     static bool dontRestoreSession;
     static int RUNAWAYLIMIT;
+#ifdef Q_OS_WIN32
+	static QString miktexSearchDir;
+#endif
 private:
 	void setupDirectoryStructure();
 	void moveCwls();
