@@ -9,6 +9,7 @@
 #include "userquickdialog.h"
 
 #ifdef Q_OS_WIN32
+#include "configmanager.h"
 #include "windows.h"
 #endif
 
@@ -800,6 +801,7 @@ QString getMiKTeXBinPathInternal()
 		static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin"
 															<< "C:\\tex\\texmf\\miktex\\bin"
 															<< "C:\\miktex\\bin"
+															<< ConfigManager::miktexSearchDir
 															<< QString(qgetenv("LOCALAPPDATA")) + "\\Programs\\MiKTeX 2.9\\miktex\\bin";
 		foreach (const QString &path, candidates)
 			if (QDir(path).exists()) {
