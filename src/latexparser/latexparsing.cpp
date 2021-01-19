@@ -932,7 +932,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
         }
         dlh=doc->line(lineNr).handle();
         if(dlh)
-            tl= dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
         cnt++;
     }
 
@@ -1115,7 +1115,7 @@ TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention
 		TokenList tl;
 		while (index + 1 < document->lines()) {
 			QDocumentLineHandle *dlh = document->line(index + 1).handle();
-			tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 			if (!tl.isEmpty())
 				break;
 			index++;

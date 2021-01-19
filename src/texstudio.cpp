@@ -8640,7 +8640,7 @@ void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)
 	// TODO: The search of the line should also be switched to the token system
 
 	QDocumentLineHandle *dlh = currentEditor()->document()->line(m).handle();
-	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	QString label = Parsing::getArg(tl, Token::label);
 	if (!label.isEmpty()) {
 		currentEditor()->write(refCmd + "{" + label + "}");
@@ -10688,7 +10688,7 @@ void Texstudio::closeEnvironment()
 	// the below method is not exact and will fail on certain edge cases
 	// for the time being this is good enough. An alternative approach may use the token system:
 	//   QDocumentLineHandle *dlh = edView->document->line(cursor.lineNumber()).handle();
-	//   TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    //   TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	if (cursor.columnNumber() > 0) {
 		QString text = cursor.line().text();
 		QRegExp rxBegin = QRegExp("\\\\begin\\{([^}]+)\\}");
@@ -10720,7 +10720,7 @@ void Texstudio::closeEnvironment()
 		return;
 	StackEnvironment env_end;
 	QDocumentLineHandle *dlh = edView->document->line(lineCount - 1).handle();
-	QVariant envVar = dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+    QVariant envVar = dlh->getCookieLocked(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 	if (envVar.isValid())
 		env_end = envVar.value<StackEnvironment>();
 	else
