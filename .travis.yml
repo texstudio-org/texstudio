@@ -28,24 +28,22 @@ matrix:
           - sourceline: deb https://pkg.mxe.cc/repos/apt xenial main
             key_url: http://keyserver.ubuntu.com/pks/lookup?op=get&options=mr&search=0xC6BF758A33A3A276
         packages:
-          - mxe-x86-64-w64-mingw32.static-cairo # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-curl # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-freetype # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-glib # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-hunspell
-          - mxe-x86-64-w64-mingw32.static-jpeg # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-lcms # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-libpng # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-libwebp # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-lua
-          - mxe-x86-64-w64-mingw32.static-openjpeg # poppler dependency
-#            - mxe-x86-64-w64-mingw32.static-poppler
-          - mxe-x86-64-w64-mingw32.static-qtbase # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-qtdeclarative
-          - mxe-x86-64-w64-mingw32.static-qtscript
-          - mxe-x86-64-w64-mingw32.static-qttools
-          - mxe-x86-64-w64-mingw32.static-tiff # poppler dependency
-          - mxe-x86-64-w64-mingw32.static-zlib # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-cairo # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-curl # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-freetype # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-glib # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-jpeg # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-lcms # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-libpng # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-libwebp # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-openjpeg # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-poppler
+          - mxe-x86-64-w64-mingw32.shared-qtbase # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-qtdeclarative
+          - mxe-x86-64-w64-mingw32.shared-qtscript
+          - mxe-x86-64-w64-mingw32.shared-qttools
+          - mxe-x86-64-w64-mingw32.shared-tiff # poppler dependency
+          - mxe-x86-64-w64-mingw32.shared-zlib # poppler dependency
           - mxe-x86-64-w64-mingw32.static-nsis
 sudo: required
 branches:
