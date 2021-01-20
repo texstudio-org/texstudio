@@ -1323,6 +1323,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "checkinstall", tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
 	newManagedAction(menu, "checkcwls", tr("Check Active Completion Files"), SLOT(checkCWLs()));
     newManagedAction(menu, "checklt", tr("Check LanguageTool"), SLOT(checkLanguageTool()));
+	newManagedAction(menu, "bugreport", tr("Bugs Report/Feature Request"), SLOT(openBugsAndFeatures()));
 	newManagedAction(menu, "appinfo", tr("About TeXstudio..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 
 	//additional elements for development
@@ -10959,6 +10960,10 @@ void Texstudio::paletteChanged(const QPalette &palette){
         QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(edView->codeeditor->panels("Search")[0]);
         searchpanel->updateIcon();
     }
+}
+
+void Texstudio::openBugsAndFeatures() {
+	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
 }
 
 /*! @} */

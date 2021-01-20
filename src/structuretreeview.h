@@ -62,6 +62,9 @@ protected slots:
 	void editIndentSection();
 	void editUnIndentSection();
 
+	void copyFileName();
+	void copyFilePath();
+
 protected:
 	LatexDocument *contextEntryToDoc();
 
