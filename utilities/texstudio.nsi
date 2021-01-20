@@ -46,6 +46,16 @@ SetOutPath $INSTDIR
 # define what to install and place it in the output path
 File texstudio.exe
 
+File *.dll
+
+SetOutPath $INSTDIR\platforms
+
+File platforms\*
+
+SetOutPath $INSTDIR\imageformats
+
+File imageformats\*
+
 SetOutPath $INSTDIR\translations
 
 File translation\*.qm

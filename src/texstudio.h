@@ -674,6 +674,8 @@ public slots:
 	void slowOperationStarted();
 	void slowOperationEnded();
 
+	void openBugsAndFeatures();
+
 signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
 	void infoNewFromTemplate(); ///< signal that a new file from template has been generated. Used for scritps as trigger.

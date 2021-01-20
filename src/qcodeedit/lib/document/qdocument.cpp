@@ -3643,6 +3643,8 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 
 /*! \return the height of the associated PICTURE_COOKIE or 0.
  * The height is a multiple of QDocumentPrivate::m_lineSpacing
+ *
+ * Access is not using a mutex. Locking needs to be done before calling this.
  */
 int QDocumentLineHandle::getPictureCookieHeight() const{
 	if (!hasCookie(QDocumentLine::PICTURE_COOKIE)) return 0;
