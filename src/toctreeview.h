@@ -15,11 +15,10 @@ public:
 	void refresh(LatexDocument* main);
 
 signals:
-
-protected slots:
+	void gotoFileLine(QString section, QString file, int line);
 
 protected:
-private:
+	virtual void mouseDoubleClickEvent(QMouseEvent* event);
 
 private:
 	const ConfigManager &configManager;

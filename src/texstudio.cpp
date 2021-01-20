@@ -668,6 +668,7 @@ void Texstudio::setupDockWidgets()
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
 	if (!tocTreeView) {
 		tocTreeView = new TocTreeView(configManager, this);
+		connect(tocTreeView, SIGNAL(gotoFileLine(QString, QString, int)), this, SLOT(tocItemDoubleClicked(QString, QString, int)));
 		tocTreeView->refresh(documents.masterDocument);
 		leftPanel->addWidget(tocTreeView, "tocTreeView", tr("Table of Content"), getRealIconFile("structure"));
 	} else leftPanel->setWidgetText(tocTreeView, tr("Table of Content"));
@@ -10972,6 +10973,11 @@ void Texstudio::paletteChanged(const QPalette &palette){
 
 void Texstudio::openBugsAndFeatures() {
 	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
+}
+
+void Texstudio::tocItemDoubleClicked(QString section, QString file, int line)
+{
+	gotoLine(line, file);
 }
 
 /*! @} */

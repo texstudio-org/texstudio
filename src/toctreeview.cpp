@@ -7,6 +7,7 @@
 #include "editors.h"
 #include "latexeditorview.h"
 #include "tocitemtree.h"
+#include "tocitemdata.h"
 
 TocTreeView::TocTreeView(const ConfigManager &config, QWidget *parent) :
 	QTreeView(parent),
@@ -25,4 +26,11 @@ void TocTreeView::refresh(LatexDocument* main)
 {
 	if (main == nullptr) return;
 	setModel(new QTocItemTree(main->getFileInfo().absoluteFilePath()));
+	expandAll();
+}
+
+void TocTreeView::mouseDoubleClickEvent(QMouseEvent* event)
+{
+	QTocItemData* item = static_cast<QTocItemData*>(this->currentIndex().internalPointer());
+	emit gotoFileLine(item->getText(), item->getFile(), item->getLine());
 }

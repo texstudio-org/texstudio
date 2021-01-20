@@ -15,6 +15,7 @@ QList<QList<QVariant>> parseFileToc(QString filePath)
 	QString text;
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		QTextStream stream(&file);
+		stream.setCodec("UTF-8");
 		while (!stream.atEnd())
 			text.append(stream.readLine() + "\n");
 	}
@@ -50,7 +51,7 @@ QList<QList<QVariant>> parseFileToc(QString filePath)
 			item.push_back(content);
 			item.push_back(filePath);
 			item.push_back(il[i][0].toString());
-			item.push_back(l + 1);
+			item.push_back(l);
 			result.push_back(item);
 		}
 	}

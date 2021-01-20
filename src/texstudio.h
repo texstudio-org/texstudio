@@ -676,6 +676,8 @@ public slots:
 
 	void openBugsAndFeatures();
 
+	void tocItemDoubleClicked(QString section, QString file, int line);
+
 signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
 	void infoNewFromTemplate(); ///< signal that a new file from template has been generated. Used for scritps as trigger.
