@@ -1,6 +1,5 @@
 #include "tocitemtree.h"
 #include "tocitemdata.h"
-#include "tocitemstruct.h"
 
 QTocItemTree::QTocItemTree(QList<TocItem> data, QObject* parent) :
 	QAbstractItemModel(parent)

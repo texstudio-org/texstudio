@@ -2,8 +2,7 @@
 #define TOCITEMDATA_H
 
 #include "mostQtHeaders.h"
-
-class TocItem;
+#include "tocitemstruct.h"
 
 class QTocItemData
 {

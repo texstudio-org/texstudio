@@ -2,9 +2,9 @@
 #define TOCITEMTREE_H
 
 #include "mostQtHeaders.h"
+#include "tocitemstruct.h"
 
 class QTocItemData;
-class TocItem;
 
 class QTocItemTree : public QAbstractItemModel
 {

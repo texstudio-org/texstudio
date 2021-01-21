@@ -2,10 +2,10 @@
 #define TOCTREEVIEW_H
 
 #include "mostQtHeaders.h"
+#include "tocitemstruct.h"
 
 class ConfigManager;
 class LatexDocuments;
-class TocItem;
 
 class TocTreeView : public QTreeView
 {

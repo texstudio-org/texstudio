@@ -1,5 +1,4 @@
 #include "tocitemdata.h"
-#include "tocitemstruct.h"
 
 QTocItemData::QTocItemData(const QString& head)
 	: m_parentItem(0)

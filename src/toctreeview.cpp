@@ -8,7 +8,6 @@
 #include "latexeditorview.h"
 #include "tocitemtree.h"
 #include "tocitemdata.h"
-#include "tocitemstruct.h"
 
 TocTreeView::TocTreeView(const ConfigManager& config, LatexDocuments* docs, QWidget* parent) :
 	QTreeView(parent),
