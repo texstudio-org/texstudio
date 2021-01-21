@@ -123,7 +123,6 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "cp /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/Qt5Network.dll ."
 	echo_and_run "cp /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/Qt5Svg.dll ."
 	echo_and_run "cp /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/Qt5Widgets.dll ."
-	echo_and_run "cp /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/Qt5Xml ."
 	echo_and_run "cp /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/Qt5Xml.dll ."
 	echo_and_run "cp /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/Qt5Script.dll ."
 	echo_and_run "cp /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/Qt5PrintSupport.dll ."

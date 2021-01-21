@@ -55,6 +55,8 @@ void StructureTreeView::showContextMenu(const QPoint &point)
 		menu.addAction(tr("Expand all documents"), this, SLOT(expandAllDocuments()));
 		menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));
 		menu.addSeparator();
+		menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()));
+		menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()));
 		menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()));
 		menu.exec(mapToGlobal(point));
 		return;
@@ -428,4 +430,22 @@ void StructureTreeView::editUnIndentSection()
 		edView->editor->setCursor(cursor);
 		edView->editor->insertText(line);
 	}
+}
+
+void StructureTreeView::copyFileName()
+{
+	LatexDocument* document = contextEntryToDoc();
+	if (!document) return;
+	QClipboard* clipboard = QGuiApplication::clipboard();
+	if (!clipboard) return;
+	clipboard->setText(document->getFileInfo().fileName());
+}
+
+void StructureTreeView::copyFilePath()
+{
+	LatexDocument* document = contextEntryToDoc();
+	if (!document) return;
+	QClipboard* clipboard = QGuiApplication::clipboard();
+	if (!clipboard) return;
+	clipboard->setText(document->getFileInfo().absoluteFilePath());
 }
