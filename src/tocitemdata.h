@@ -3,13 +3,13 @@
 
 #include "mostQtHeaders.h"
 
-QList<QList<QVariant>> parseFileToc(QString filePath);
+struct TocItem;
 
 class QTocItemData
 {
 public:
-	explicit QTocItemData(const QString& head, const QString& file);
-	explicit QTocItemData(const QList<QVariant>& data, QTocItemData* parentItem = 0);
+	explicit QTocItemData(const QString& head);
+	explicit QTocItemData(const TocItem& data, QTocItemData* parentItem = 0);
 	~QTocItemData();
 
 	void appendChild(QTocItemData* child);
@@ -21,8 +21,8 @@ public:
 	QTocItemData* parentItem();
 	QString getText();
 	QString getFile();
-	QString getType();
 	int getLine();
+	int getLevel();
 
 private:
 	QList<QTocItemData*> m_childItems;
@@ -31,8 +31,8 @@ private:
 
 	QString m_text;
 	QString m_file;
-	QString m_type;
 	int m_line;
+	int m_level;
 };
 
 #endif // TOCITEMDATA_H

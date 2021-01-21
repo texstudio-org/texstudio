@@ -92,6 +92,7 @@ HEADERS += \
     $$PWD/thesaurusdialog.h \
     $$PWD/titledpanel.h \
     $$PWD/tocitemdata.h \
+	$$PWD/tocitemstruct.h \
     $$PWD/tocitemtree.h \
     $$PWD/toctreeview.h \
     $$PWD/toolwidgets.h \

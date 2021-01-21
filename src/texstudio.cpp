@@ -667,9 +667,10 @@ void Texstudio::setupDockWidgets()
         leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
 	if (!tocTreeView) {
-		tocTreeView = new TocTreeView(configManager, this);
+		tocTreeView = new TocTreeView(configManager, &documents, this);
+		connect(documents.model, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&, const QVector<int> &)), tocTreeView, SLOT(parentDataChanged(const QModelIndex&, const QModelIndex&, const QVector<int> &)));
 		connect(tocTreeView, SIGNAL(gotoFileLine(QString, QString, int)), this, SLOT(tocItemDoubleClicked(QString, QString, int)));
-		tocTreeView->refresh(documents.masterDocument);
+		tocTreeView->updateTOC();
 		leftPanel->addWidget(tocTreeView, "tocTreeView", tr("Table of Content"), getRealIconFile("structure"));
 	} else leftPanel->setWidgetText(tocTreeView, tr("Table of Content"));
     if (!leftPanel->widget("bookmarks")) {
@@ -4432,7 +4433,7 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	}
 
 	//structureTreeView->reset();
-	tocTreeView->refresh(doc->getMasterDocument());
+	tocTreeView->updateTOC();
 }
 
 void Texstudio::clickedOnStructureEntry(const QModelIndex &index)

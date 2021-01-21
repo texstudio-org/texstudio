@@ -3,16 +3,22 @@
 
 #include "mostQtHeaders.h"
 
-class LatexDocument;
 class ConfigManager;
+class LatexDocuments;
+struct TocItem;
 
 class TocTreeView : public QTreeView
 {
 	Q_OBJECT
 public:
-	explicit TocTreeView(const ConfigManager &config, QWidget *parent = Q_NULLPTR);
+	explicit TocTreeView(const ConfigManager &config, LatexDocuments* docs, QWidget *parent = Q_NULLPTR);
 
-	void refresh(LatexDocument* main);
+	void updateTOC();
+
+	void updateData();
+
+private:
+	QList<TocItem> buildToc(QString file);
 
 signals:
 	void gotoFileLine(QString section, QString file, int line);
@@ -20,9 +26,13 @@ signals:
 protected:
 	virtual void mouseDoubleClickEvent(QMouseEvent* event);
 
-private:
-	const ConfigManager &configManager;
+public slots:
+	void parentDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles = QVector<int>());
 
+private:
+	QMap<QString, QList<TocItem>> openDocs;
+	QMap<QString, QList<TocItem>> closedDocs;
+	LatexDocuments* documents;
 };
 
 #endif // TOCTREEVIEW_H

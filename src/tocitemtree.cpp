@@ -1,29 +1,29 @@
 #include "tocitemtree.h"
 #include "tocitemdata.h"
+#include "tocitemstruct.h"
 
-QTocItemTree::QTocItemTree(const QString& data, QObject* parent) :
+QTocItemTree::QTocItemTree(QList<TocItem> data, QObject* parent) :
 	QAbstractItemModel(parent)
 {
-	rootItem = new QTocItemData(tr("Table of content"), data);
+	rootItem = new QTocItemData(tr("Table of content"));
 	QTocItemData* pSection = rootItem;
 	QTocItemData* pSubSection = rootItem;
 	QTocItemData* pSubSubSection = rootItem;
-	QList<QList<QVariant>> list = parseFileToc(data);
-	for (int i = 0; i < list.size(); i++) {
-		if (list[i][2].toString() == "section")
+	for (int i = 0; i < data.size(); i++) {
+		if (data[i].level == 2)
 		{
-			pSection = new QTocItemData(list[i], rootItem);
+			pSection = new QTocItemData(data[i], rootItem);
 			rootItem->appendChild(pSection);
 			pSubSection = pSection;
 		}
-		else if (list[i][2].toString() == "subsection")
+		else if (data[i].level == 3)
 		{
-			pSubSection = new QTocItemData(list[i], pSection);
+			pSubSection = new QTocItemData(data[i], pSection);
 			pSection->appendChild(pSubSection);
 		}
-		else if (list[i][2].toString() == "subsubsection")
+		else if (data[i].level == 4)
 		{
-			pSubSubSection = new QTocItemData(list[i], pSubSection);
+			pSubSubSection = new QTocItemData(data[i], pSubSection);
 			pSubSection->appendChild(pSubSubSection);
 		}
 	}

@@ -4,12 +4,13 @@
 #include "mostQtHeaders.h"
 
 class QTocItemData;
+struct TocItem;
 
 class QTocItemTree : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
-	explicit QTocItemTree(const QString& mainFile, QObject* parent = 0);
+	explicit QTocItemTree(QList<TocItem> data, QObject* parent = 0);
 	~QTocItemTree();
 
 	QVariant data(const QModelIndex& index, int role) const override;
