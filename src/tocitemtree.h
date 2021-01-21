@@ -4,7 +4,7 @@
 #include "mostQtHeaders.h"
 
 class QTocItemData;
-struct TocItem;
+class TocItem;
 
 class QTocItemTree : public QAbstractItemModel
 {

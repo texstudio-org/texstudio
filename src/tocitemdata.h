@@ -3,7 +3,7 @@
 
 #include "mostQtHeaders.h"
 
-struct TocItem;
+class TocItem;
 
 class QTocItemData
 {

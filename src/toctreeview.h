@@ -5,7 +5,7 @@
 
 class ConfigManager;
 class LatexDocuments;
-struct TocItem;
+class TocItem;
 
 class TocTreeView : public QTreeView
 {

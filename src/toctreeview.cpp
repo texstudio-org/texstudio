@@ -10,10 +10,6 @@
 #include "tocitemdata.h"
 #include "tocitemstruct.h"
 
-bool operator==(const struct TocItem& lh, const struct TocItem& rh) {
-	return lh.title == rh.title && lh.file == rh.file && lh.line == rh.line && lh.level == rh.level;
-}
-
 TocTreeView::TocTreeView(const ConfigManager& config, LatexDocuments* docs, QWidget* parent) :
 	QTreeView(parent),
 	documents(docs)
