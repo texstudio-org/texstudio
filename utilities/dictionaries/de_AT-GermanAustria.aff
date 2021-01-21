@@ -1,9 +1,9 @@
-# this is the affix file of the de_AT Hunspell dictionary
+﻿# this is the affix file of the de_AT Hunspell dictionary
 # derived from the igerman98 dictionary
 #
-# Version: 20161207
+# Version: 20161207+frami20170109
 #
-# Copyright (C) 1998-2015 Bjoern Jacke <bjoern@j3e.de>
+# Copyright (C) 1998-2016 Björn Jacke <bjoern@j3e.de>
 #
 # License: GPLv2, GPLv3
 # There should be a copy of both of this licenses included
@@ -572,7 +572,7 @@ NOSUGGEST n
 WORDCHARS ß-.
 
 # - setting this to 2 decreases performance by 1/10 but is needed for "öl" and "ei"
-# - setting this to 1 for handling Fuge-elements with dashes (Arbeits-) dash will
+# - setting this to 1 for handling Fuge-elements with dashes (Arbeits-) dash will 
 #   be a special word but - is handled as a affix now
 COMPOUNDMIN 2
 
