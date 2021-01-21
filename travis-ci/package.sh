@@ -160,7 +160,7 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "mkdir -p \"package-zip/share\""
 	echo_and_run "mkdir -p \"package-zip/config\""
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio.exe\" \"package-zip/\""
-	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/*.dll\" \"package-zip/\""
+	cp "${TRAVIS_BUILD_DIR}/*.dll" package-zip
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/platforms\" \"package-zip/\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/imageformats\" \"package-zip/\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/translation\" \"package-zip/translations\""
@@ -170,7 +170,7 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/latex2e.html\" \"package-zip/help\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/dictionaries\" \"package-zip/dictionaries\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/TexTablet\" \"package-zip/TexTablet\""
-        echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/travis-ci/mxe/fonts\" \"package-zip/share/\""
+    echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/travis-ci/mxe/fonts\" \"package-zip/share/\""
 
 	
 	print_info "Fetching poppler data"
