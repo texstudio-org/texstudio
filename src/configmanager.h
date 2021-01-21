@@ -246,7 +246,7 @@ public:
     static bool dontRestoreSession;
     static int RUNAWAYLIMIT;
 #ifdef Q_OS_WIN32
-	static QString miktexSearchDir;
+	static QString latexSearchDir;
 #endif
 private:
 	void setupDirectoryStructure();

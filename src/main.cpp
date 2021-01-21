@@ -146,8 +146,10 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 				debugLoggerStart(args[i]);
 #endif
 #ifdef Q_OS_WIN32
-			else if (cmdArgument == "--miktex" && (++i < args.count()))
-				ConfigManager::miktexSearchDir = args[i]; 
+			else if (cmdArgument == "--latex" && (++i < args.count())) {
+				ConfigManager::latexSearchDir = args[i];
+				if (ConfigManager::latexSearchDir.endsWith("\\")) ConfigManager::latexSearchDir.resize(ConfigManager::latexSearchDir.length() - 1);
+			}
 #endif
 			else
 				cmdLine << cmdArgument;
@@ -176,7 +178,7 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 							<< "  --debug-logfile pathname  write debug messages to pathname\n"
 #endif
 #ifdef Q_OS_WIN32
-							<< "  --miktex DIR               search for latex like MiKTeX in given directory\n"
+							<< "  --latex DIR               search for latex like MiKTeX/TeXLive in given directory\n"
 #endif
 							;
 		return true;

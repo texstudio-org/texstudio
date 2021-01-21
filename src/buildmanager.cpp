@@ -774,6 +774,14 @@ QString findSubDir(const QStringList &searchPaths, const QString &subDirFilter, 
  */
 QString getMiKTeXBinPathInternal()
 {
+	// Check explicit path
+	if (!ConfigManager::latexSearchDir.isEmpty()) {
+		if (QFileInfo::exists(ConfigManager::latexSearchDir + "\\texmfs\\install\\miktex\\bin\\x64\\pdftex.exe")) return ConfigManager::latexSearchDir + "\\texmfs\\install\\miktex\\bin\\x64\\";
+		if (QFileInfo::exists(ConfigManager::latexSearchDir + "\\texmfs\\install\\miktex\\bin\\pdftex.exe")) return ConfigManager::latexSearchDir + "\\texmfs\\install\\miktex\\bin\\";
+		if (QFileInfo::exists(ConfigManager::latexSearchDir + "\\x64\\pdftex.exe") && ConfigManager::latexSearchDir.endsWith("\\miktex\\bin")) return ConfigManager::latexSearchDir + "\\x64\\";
+		if (QFileInfo::exists(ConfigManager::latexSearchDir + "\\pdftex.exe") && ConfigManager::latexSearchDir.endsWith("\\miktex\\bin")) return ConfigManager::latexSearchDir;
+	}
+
 	// search the registry
 	QString mikPath = getUninstallString("MiKTeX 2.9");
 	// Note: this does currently not work for MikTeX 64bit because of registry redirection (also we would have to parse the
@@ -801,7 +809,6 @@ QString getMiKTeXBinPathInternal()
 		static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin"
 															<< "C:\\tex\\texmf\\miktex\\bin"
 															<< "C:\\miktex\\bin"
-															<< ConfigManager::miktexSearchDir
 															<< QString(qgetenv("LOCALAPPDATA")) + "\\Programs\\MiKTeX 2.9\\miktex\\bin";
 		foreach (const QString &path, candidates)
 			if (QDir(path).exists()) {
@@ -839,11 +846,18 @@ QString getMiKTeXBinPath()
  */
 QString getTeXLiveWinBinPathInternal()
 {
+	// Check explicit path
+	if (!ConfigManager::latexSearchDir.isEmpty()) {
+		if (QFileInfo::exists(ConfigManager::latexSearchDir + "\\release-texlive.txt") && QFileInfo::exists(ConfigManager::latexSearchDir + "\\bin\\win32\\pdftex.exe")) return ConfigManager::latexSearchDir + "\\bin\\win32\\";
+		if (QFileInfo::exists(ConfigManager::latexSearchDir + "\\..\\..\\release-texlive.txt") && QFileInfo::exists(ConfigManager::latexSearchDir + "\\pdftex.exe")) return ConfigManager::latexSearchDir;
+	}
+
 	//check for uninstall entry
 	foreach (const QString &baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
 		QSettings reg(baseKey + "\\Software", QSettings::NativeFormat);
 		QString uninstall;
-		for (int v = 2017; v > 2008; v--) {
+		QDate date = QDate::currentDate();
+		for (int v = date.year(); v > 2008; v--) {
 			uninstall = reg.value(QString("microsoft/windows/currentversion/uninstall/TeXLive%1/UninstallString").arg(v), "").toString();
 			if (!uninstall.isEmpty()) {
 				int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);

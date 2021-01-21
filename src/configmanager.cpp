@@ -347,7 +347,7 @@ QString ConfigManager::configDirOverride;
 bool ConfigManager::dontRestoreSession=false;
 int ConfigManager::RUNAWAYLIMIT=30;
 #ifdef Q_OS_WIN32
-QString ConfigManager::miktexSearchDir = "<search>";
+QString ConfigManager::latexSearchDir;
 #endif
 
 QString getText(QWidget *w)
