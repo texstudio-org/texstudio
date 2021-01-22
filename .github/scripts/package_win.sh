@@ -48,6 +48,7 @@ tar -x -C package-zip/share/ -f ./${POPPLERDATA_FILE} && mv package-zip/share/${
 
 	
 cd package-zip && zip -r ./texstudio-win-${VERSION_NAME}.zip *
+cd ..
 sha256sum ./texstudio_installer.exe
 sha256sum ./texstudio.exe
 sha256sum ./texstudio-win-${VERSION_NAME}.zip
