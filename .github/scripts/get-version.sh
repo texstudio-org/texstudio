@@ -5,7 +5,7 @@ echo "TXS_VERSION = ${TXS_VERSION}"
 export GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
 echo "GIT_HASH = ${GIT_HASH}"
 
-export GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
+GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
 echo "GIT_DATE = ${GIT_DATE}"
 
 export DATE_HASH=$(date -u +"%Y%m%d%H%M")
