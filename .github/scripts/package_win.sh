@@ -12,7 +12,7 @@ cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/imageformats/ .
 echo "make installer"
 cp ./utilities/texstudio.nsi .
 cp ./utilities/FileAssociation.nsh .
-${MXEDIR}/usr/bin/x86_64-w64-mingw32.static-makensis texstudio.nsi
+/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.static-makensis texstudio.nsi
 echo "Assembling package"
 mkdir -p "package-zip/share"
 mkdir -p "package-zip/config"
