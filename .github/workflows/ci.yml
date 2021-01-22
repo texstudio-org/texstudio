@@ -67,7 +67,13 @@ jobs:
              mxe-x86-64-w64-mingw32.static-nsis
 
     - name: Configure
-      run: qmake texstudio.pro CONFIG-=debug
+      run: |
+        MXEDIR="/usr/lib/mxe"
+        MXETARGET="x86_64-w64-mingw32.shared"
+        CC="${MXETARGET}-gcc"
+        CXX="${MXETARGET}-g++"
+        PATH=$PATH:${MXEDIR}/usr/bin
+        $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1
 
     - name: Build
       run: make -j 2
@@ -97,7 +103,7 @@ jobs:
       run: make -j 2
       
     - name: Package
-      run: .github/scripts/package-linux.sh
+      run: ./.github/scripts/package-linux.sh
         
       
 ############################
