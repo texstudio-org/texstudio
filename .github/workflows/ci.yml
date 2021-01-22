@@ -70,8 +70,6 @@ jobs:
       run: |
         MXEDIR="/usr/lib/mxe"
         MXETARGET="x86_64-w64-mingw32.shared"
-        CC="${MXETARGET}-gcc"
-        CXX="${MXETARGET}-g++"
         PATH=$PATH:${MXEDIR}/usr/bin
         $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1
 
