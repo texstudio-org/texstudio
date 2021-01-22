@@ -131,7 +131,7 @@ jobs:
         brew install poppler qt5
 
     - name: Configure
-      run: qmake texstudio.pro
+      run: /usr/local/bin/qmake texstudio.pro
       working-directory: build
 
     - name: Build
@@ -140,7 +140,7 @@ jobs:
 
     - name: Package
       run: |
-        macdeployqt texstudio.app -dmg
+        /usr/local/bin/macdeployqt texstudio.app -dmg
         sha256sum texstudio.dmg
    
 
