@@ -88,7 +88,7 @@ jobs:
       run: sudo apt-get update
 
     - name: Dependencies
-      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtscript5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev pkg-info zlib1g-dev 
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtscript5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev pkg-config zlib1g-dev 
 
     - name: Configure
       run: qmake texstudio.pro CONFIG-=debug
