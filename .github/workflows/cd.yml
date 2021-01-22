@@ -94,7 +94,7 @@ jobs:
         POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf72872"
         ./.github/scripts/get-version.sh
         ./.github/scripts/package_linux.sh
-        echo '::set-output name=VERSION_NAME::${VERSION_NAME}'
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
     - name: Deploy to Bintray
       if: github.event_name == 'push'
