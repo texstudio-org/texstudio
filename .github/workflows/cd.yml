@@ -94,6 +94,19 @@ jobs:
         ./.github/scripts/get-version.sh
         ./.github/scripts/package_linux.sh
         
+    - name: Deploy to Bintray
+      if: github.event_name == 'push'
+      uses: ./.github/actions/deploy-bintray
+      with:
+        file: texstudio-${VERSION}-x86_64.AppImage
+        subject: sunderme
+        repo: texstudio
+        pkg: texstudio-linux
+        version: ${VERSION_NAME}
+        username: sunderme
+        key: ${{ secrets.bintrayAccess }}
+
+        
       
 ############################
       
