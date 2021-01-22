@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-linux:
-    name: Linux
+    name: Linux-autoTests
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -15,10 +15,10 @@ jobs:
       run: sudo apt-get update
 
     - name: Dependencies
-      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtscript5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev zlib1g-dev pkg-config
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtscript5-dev qttools5-dev libqt5svg5-dev zlib1g-dev pkg-config
 
     - name: Configure
-      run: qmake texstudio.pro CONFIG+=debug
+      run: qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1
 
     - name: Build
       run: make -j 2
@@ -29,7 +29,7 @@ jobs:
 ###################################
 
   build-linux-noPoppler:
-    name: Linux-noPoppler
+    name: win build (mxe)
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -46,5 +46,34 @@ jobs:
 
     - name: Build
       run: make -j 2
+      
+############################
+      
+  macosx-bintray:
+    name: Mac OS X (Bintray)
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
+        brew install poppler qt5
+
+    - name: Configure
+      run: qmake texstudio.pro
+      working-directory: build
+
+    - name: Build
+      run: make -j
+      working-directory: build
+
+    - name: Package
+      run: |
+        macdeployqt texstudio.app -dmg
+        sha256sum texstudio.dmg
+   
 
 
