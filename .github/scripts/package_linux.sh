@@ -3,6 +3,8 @@
 # Exit on errors
 set -e
 
+.github/scripts/get-version.sh
+
 echo "Running linuxdeployqt"
 
 make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/

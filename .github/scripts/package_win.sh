@@ -4,6 +4,8 @@
 set -e
 
 echo "package build into zip for win"
+echo "get version"
+.github/scripts/get-version.sh
 echo "copy dlls and qt5 plugins"
 /usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-peldd texstudio.exe -a -w d3d11.dll -w dxgi.dll|grep dll|xargs cp -t .
 pwd
@@ -51,7 +53,7 @@ cd package-zip && zip -r ./texstudio-win-${VERSION_NAME}.zip *
 cd ..
 sha256sum ./texstudio_installer.exe
 sha256sum ./texstudio.exe
-sha256sum ./texstudio-win-${VERSION_NAME}.zip
+sha256sum ./package-zip/texstudio-win-${VERSION_NAME}.zip
 cp ./texstudio-win-${VERSION_NAME}.zip ./texstudio-${TXS_VERSION}-win-portable-qt5.zip
 cp ./texstudio_installer.exe ./texstudio-${TXS_VERSION}-win-qt5.exe
 
