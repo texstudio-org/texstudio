@@ -4,8 +4,7 @@
 set -e
 
 echo "package build into zip for win"
-echo "get version"
-.github/scripts/get-version.sh
+
 echo "copy dlls and qt5 plugins"
 /usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-peldd texstudio.exe -a -w d3d11.dll -w dxgi.dll|grep dll|xargs cp -t .
 pwd
