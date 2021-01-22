@@ -4,34 +4,34 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
-include(synctex/synctex.pri)
-
-HEADERS += \
-    $$PWD/PDFDocument.h \
-    $$PWD/PDFDocks.h \
-    $$PWD/pdfrenderengine.h \
-    $$PWD/pdfrendermanager.h \
-    $$PWD/PDFDocument_config.h \
-    $$PWD/pdfannotationdlg.h \
-    $$PWD/pdfannotation.h \
-    $$PWD/qsynctex.h
-
-SOURCES += \
-    $$PWD/PDFDocument.cpp \
-    $$PWD/PDFDocks.cpp \
-    $$PWD/pdfrenderengine.cpp \
-    $$PWD/pdfrendermanager.cpp \
-    $$PWD/pdfannotationdlg.cpp \
-    $$PWD/pdfannotation.cpp \
-    $$PWD/qsynctex.cpp
-
-FORMS += \
-    $$PWD/pdfannotationdlg.ui
-
-
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
+
+    include(synctex/synctex.pri)
+
+    HEADERS += \
+        $$PWD/PDFDocument.h \
+        $$PWD/PDFDocks.h \
+        $$PWD/pdfrenderengine.h \
+        $$PWD/pdfrendermanager.h \
+        $$PWD/PDFDocument_config.h \
+        $$PWD/pdfannotationdlg.h \
+        $$PWD/pdfannotation.h \
+        $$PWD/qsynctex.h
+
+    SOURCES += \
+        $$PWD/PDFDocument.cpp \
+        $$PWD/PDFDocks.cpp \
+        $$PWD/pdfrenderengine.cpp \
+        $$PWD/pdfrendermanager.cpp \
+        $$PWD/pdfannotationdlg.cpp \
+        $$PWD/pdfannotation.cpp \
+        $$PWD/qsynctex.cpp
+
+    FORMS += \
+        $$PWD/pdfannotationdlg.ui
+
     win32:isEmpty(MXE) {
         INCLUDEPATH  += ./src/pdfviewer/include_win32_qt5
         win32-msvc*: {
