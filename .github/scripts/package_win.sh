@@ -3,6 +3,8 @@
 # Exit on errors
 set -e
 
+. .github/scripts/get-version.sh
+ 
 echo "package build into zip for win"
 
 echo "copy dlls and qt5 plugins"
