@@ -60,8 +60,20 @@ jobs:
         MXEDIR="/usr/lib/mxe"
         MXETARGET="x86_64-w64-mingw32.shared"
         PATH=$PATH:${MXEDIR}/usr/bin
-        ./.github/scripts/get-version.sh
+        . ./.github/scripts/get-version.sh
         .github/scripts/package_win.sh
+        
+    - name: Deploy to Bintray
+      if: github.event_name == 'push'
+      uses: ./.github/actions/deploy-bintray
+      with:
+        file: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
+        subject: sunderme
+        repo: texstudio
+        pkg: texstudio-linux
+        version: ${{ steps.package.outputs.VERSION_NAME}}
+        username: sunderme
+        key: ${{ secrets.bintrayAccess }}
       
 ###################################
 
@@ -92,19 +104,20 @@ jobs:
         POPPLERDATA_FILE="poppler-data-${POPPLERDATA_VERSION}.tar.gz"
         POPPLERDATA_URL="https://poppler.freedesktop.org/${POPPLERDATA_FILE}"
         POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf72872"
-        ./.github/scripts/get-version.sh
-        ./.github/scripts/package_linux.sh
+        . ./.github/scripts/get-version.sh
+        . ./.github/scripts/package_linux.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=VERSION::${VERSION}"
         
     - name: Deploy to Bintray
       if: github.event_name == 'push'
       uses: ./.github/actions/deploy-bintray
       with:
-        file: TeXstudio-linux-${VERSION}-x86_64.AppImage
+        file: TeXstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
         subject: sunderme
         repo: texstudio
         pkg: texstudio-linux
-        version: ${{ steps.package.outputs.VERSION_NAME}}
+        version: ${{ steps.package.outputs.VERSION_NAME }}
         username: sunderme
         key: ${{ secrets.bintrayAccess }}
 
@@ -133,7 +146,7 @@ jobs:
         ls /usr/local/opt
         ls /usr/local/opt/qt
         ls /usr/local/opt/qt/bin
-        /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
+        #/usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
       working-directory: build
 
     - name: Build
@@ -144,7 +157,7 @@ jobs:
       run: |
         /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
         sha256sum texstudio.dmg
-        ./.github/scripts/get-version.sh
+        . ./.github/scripts/get-version.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
     - name: Deploy to Bintray
