@@ -130,8 +130,7 @@ jobs:
 
     - name: Configure
       run: |
-        ll /usr/local/opt/qt/bin
-        /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
+        /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
       working-directory: build
 
     - name: Build
@@ -140,9 +139,22 @@ jobs:
 
     - name: Package
       run: |
-        /usr/local/opt/qt/bin/macdeployqt texstudio.app -dmg
+        /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
         sha256sum texstudio.dmg
         ./.github/scripts/get-version.sh
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        
+    - name: Deploy to Bintray
+      if: github.event_name == 'push'
+      uses: ./.github/actions/deploy-bintray
+      with:
+        file: texstudio.dmg
+        subject: sunderme
+        repo: texstudio
+        pkg: texstudio-osx
+        version: ${{ steps.package.outputs.VERSION_NAME}}
+        username: sunderme
+        key: ${{ secrets.bintrayAccess }}
    
 
 
