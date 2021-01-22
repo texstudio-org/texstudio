@@ -5,7 +5,7 @@ set -e
 
 echo "package build into zip for win"
 echo "copy dlls and qt5 plugins"
-/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-peldd texstudio.exe -a -w d3d11.dll -w dxgi.dll|grep dll|xargs cp -t "${TRAVIS_BUILD_DIR}"
+/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-peldd texstudio.exe -a -w d3d11.dll -w dxgi.dll|grep dll|xargs cp -t .
 pwd
 cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/platforms .
 cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/imageformats/ .
@@ -46,7 +46,7 @@ cd package-zip && zip -r ./texstudio-win-${VERSION_NAME}.zip *
 sha256sum ./texstudio_installer.exe
 sha256sum ./texstudio.exe
 sha256sum ./texstudio-win-${VERSION_NAME}.zip
-cp ./texstudio-win-${VERSION_NAME}.zip ./texstudio-${TRAVIS_TAG}-win-portable-qt5.zip
-cp ./texstudio_installer.exe ./texstudio-${TRAVIS_TAG}-win-qt5.exe
+cp ./texstudio-win-${VERSION_NAME}.zip ./texstudio-${TXS_VERSION}-win-portable-qt5.zip
+cp ./texstudio_installer.exe ./texstudio-${TXS_VERSION}-win-qt5.exe
 
 
