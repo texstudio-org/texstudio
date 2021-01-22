@@ -60,7 +60,6 @@ jobs:
         MXEDIR="/usr/lib/mxe"
         MXETARGET="x86_64-w64-mingw32.shared"
         PATH=$PATH:${MXEDIR}/usr/bin
-        .github/scripts/get-version.sh
         .github/scripts/package_win.sh
       
 ###################################
@@ -92,7 +91,6 @@ jobs:
         POPPLERDATA_FILE="poppler-data-${POPPLERDATA_VERSION}.tar.gz"
         POPPLERDATA_URL="https://poppler.freedesktop.org/${POPPLERDATA_FILE}"
         POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf72872"
-        ./.github/scripts/get-version.sh
         ./.github/scripts/package_linux.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
@@ -130,7 +128,10 @@ jobs:
 
     - name: Configure
       run: |
-        /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
+        ls /usr/local/opt
+        ls /usr/local/opt/qt
+        ls /usr/local/opt/qt/bin
+        /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
       working-directory: build
 
     - name: Build
