@@ -10,13 +10,14 @@ echo "GIT_DATE = ${GIT_DATE}"
 
 DATE_HASH=$(date -u +"%Y%m%d%H%M")
 echo "DATE_HASH = ${DATE_HASH}"
-
-if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+OS_NAME=$(uname)
+echo ${OS_NAME}
+if [ "${OS_NAME}" = "Linux" ]; then
 	RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
-elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+elif [ "${OS_NAME}" = "OSX" ]; then
 	RELEASE_DATE=$(date -ujf "%Y-%m-%d %H:%M:%S %z" "${GIT_DATE}" "+%Y-%m-%dT%H:%M:%S%z")
 else
-	print_error "Unsupported operating system '${TRAVIS_OS_NAME}'"
+	echo "Unsupported operating system '${OS_NAME}'"
 	exit 1
 fi
 echo "RELEASE_DATE = ${RELEASE_DATE}"
