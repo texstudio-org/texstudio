@@ -39,12 +39,12 @@ echo "Fetching poppler data"
 	wget --no-check-certificate "${POPPLERDATA_URL}"
 	CHKSUM=$(openssl dgst -sha256 "${POPPLERDATA_FILE}" 2> /dev/null)
 	if [ "${CHKSUM}" != "SHA256(${POPPLERDATA_FILE})= ${POPPLERDATA_SHA256}" ]; then
-		print_error "Wrong checksum"
-		print_error "${CHKSUM}"
-		print_error "(expected: ${POPPLERDATA_SHA256})"
+		echo "Wrong checksum"
+		echo "${CHKSUM}"
+		echo "(expected: ${POPPLERDATA_SHA256})"
 		exit 1
 	fi
-tar -x -C \"package-zip/share/\" -f ./${POPPLERDATA_FILE}\" && mv \"package-zip/share/${POPPLERDATA_SUBDIR} package-zip/share/poppler
+tar -x -C package-zip/share/ -f ./${POPPLERDATA_FILE} && mv package-zip/share/${POPPLERDATA_SUBDIR} package-zip/share/poppler
 
 	
 cd package-zip && zip -r ./texstudio-win-${VERSION_NAME}.zip *
