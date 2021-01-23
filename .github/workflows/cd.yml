@@ -65,11 +65,23 @@ jobs:
         .github/scripts/package_win.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
-    - name: Deploy to Bintray
+    - name: Deploy zip to Bintray
       if: github.event_name == 'push'
       uses: ./.github/actions/deploy-bintray
       with:
         file: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
+        subject: sunderme
+        repo: texstudio
+        pkg: texstudio-win
+        version: ${{ steps.package.outputs.VERSION_NAME }}
+        username: sunderme
+        key: ${{ secrets.bintrayAPI }}
+        
+    - name: Deploy exe to Bintray
+      if: github.event_name == 'push'
+      uses: ./.github/actions/deploy-bintray
+      with:
+        file: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
         subject: sunderme
         repo: texstudio
         pkg: texstudio-win
@@ -154,13 +166,14 @@ jobs:
       run: |
         /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
         . ./.github/scripts/get-version.sh
+        mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
     - name: Deploy to Bintray
       if: github.event_name == 'push'
       uses: ./.github/actions/deploy-bintray
       with:
-        file: texstudio.dmg
+        file: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
         subject: sunderme
         repo: texstudio
         pkg: texstudio-osx
