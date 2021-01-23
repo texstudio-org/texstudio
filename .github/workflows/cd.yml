@@ -72,10 +72,10 @@ jobs:
         file: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
         subject: sunderme
         repo: texstudio
-        pkg: texstudio-linux
+        pkg: texstudio-win
         version: ${{ steps.package.outputs.VERSION_NAME }}
         username: sunderme
-        key: ${{ secrets.bintrayAccess }}
+        key: ${{ secrets.BINTRAYACCESS }}
       
 ###################################
 
@@ -153,7 +153,6 @@ jobs:
       id: package
       run: |
         /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
-        sha256sum texstudio.dmg
         . ./.github/scripts/get-version.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
