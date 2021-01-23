@@ -123,20 +123,17 @@ jobs:
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=VERSION::${VERSION}"
         
-    - name: Deploy to Bintray
-      if: github.event_name == 'push'
-      uses: ./.github/actions/deploy-bintray
+    - name: Upload to Bintray
+      uses: bpicode/github-action-upload-bintray@master
       with:
         file: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
-        subject: sunderme
-        repo: texstudio
-        pkg: texstudio-linux
+        api_user: sunderme
+        api_key: ${{ secrets.bintrayAPI }}
+        repository_user: sunderme
+        repository: texstudio
+        package: texstudio-linux
         version: ${{ steps.package.outputs.VERSION_NAME }}
-        username: sunderme
-        key: ${{ secrets.bintrayAPI }}
-
-        
-      
+     
 ############################
       
   macosx-bintray:
