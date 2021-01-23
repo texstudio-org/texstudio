@@ -158,7 +158,7 @@ jobs:
       run: /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
 
     - name: Build
-      run: make -j
+      run: make -j 2
 
     - name: Package
       id: package
