@@ -56,6 +56,7 @@ jobs:
         make -j 2
       
     - name: Package
+      id: package
       run: |
         MXEDIR="/usr/lib/mxe"
         MXETARGET="x86_64-w64-mingw32.shared"
@@ -72,7 +73,7 @@ jobs:
         subject: sunderme
         repo: texstudio
         pkg: texstudio-linux
-        version: ${{ steps.package.outputs.VERSION_NAME}}
+        version: ${{ steps.package.outputs.VERSION_NAME }}
         username: sunderme
         key: ${{ secrets.bintrayAccess }}
       
@@ -149,6 +150,7 @@ jobs:
       run: make -j
 
     - name: Package
+      id: package
       run: |
         /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
         sha256sum texstudio.dmg
