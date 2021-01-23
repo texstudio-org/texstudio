@@ -62,6 +62,7 @@ jobs:
         PATH=$PATH:${MXEDIR}/usr/bin
         . ./.github/scripts/get-version.sh
         .github/scripts/package_win.sh
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
     - name: Deploy to Bintray
       if: github.event_name == 'push'
@@ -142,16 +143,10 @@ jobs:
         brew install poppler qt5
 
     - name: Configure
-      run: |
-        ls /usr/local/opt
-        ls /usr/local/opt/qt
-        ls /usr/local/opt/qt/bin
-        #/usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
-      working-directory: build
+      run: /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
 
     - name: Build
       run: make -j
-      working-directory: build
 
     - name: Package
       run: |
