@@ -133,6 +133,8 @@ jobs:
         repository: texstudio
         package: texstudio-linux
         version: ${{ steps.package.outputs.VERSION_NAME }}
+        publish: true
+        calculate_metadata: false
      
 ############################
       
