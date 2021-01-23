@@ -127,7 +127,7 @@ jobs:
       if: github.event_name == 'push'
       uses: ./.github/actions/deploy-bintray
       with:
-        file: TeXstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
+        file: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
         subject: sunderme
         repo: texstudio
         pkg: texstudio-linux

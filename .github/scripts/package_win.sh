@@ -57,5 +57,6 @@ sha256sum ./texstudio.exe
 sha256sum ./package-zip/texstudio-win-${VERSION_NAME}.zip
 cp ./package-zip/texstudio-win-${VERSION_NAME}.zip ./texstudio-${TXS_VERSION}-win-portable-qt5.zip
 cp ./texstudio_installer.exe ./texstudio-win-${TXS_VERSION}.exe
+cp ./texstudio_installer.exe ./texstudio-win-${VERSION_NAME}.exe
 
 
