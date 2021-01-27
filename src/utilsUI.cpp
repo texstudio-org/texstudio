@@ -152,7 +152,7 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 		if (list.isEmpty())
 			combo->setDefaultAction(new QAction("<" + QApplication::tr("none") + ">", combo));
 		else
-			combo->setDefaultAction(mMenu->actions().first());
+            combo->setDefaultAction(mMenu->actions().at(0));
 	}
 
 	combo->setMinimumWidth(max);
@@ -234,7 +234,7 @@ QColor colorFromRGBAstr(const QString &hex, QColor fallback)
 		c = c.mid(1);
 	if (c.length() != 8) return fallback;
 	bool r, g, b, a;
-	QColor color(c.mid(0, 2).toInt(&r, 16), c.mid(2, 2).toInt(&g, 16), c.mid(4, 2).toInt(&b, 16), c.mid(6, 2).toInt(&a, 16));
+	QColor color(c.mid(0, 2).toInt(&r, 16), c.midRef(2, 2).toInt(&g, 16), c.midRef(4, 2).toInt(&b, 16), c.midRef(6, 2).toInt(&a, 16));
 	if (r && g && b && a)
 		return color;
 	return fallback;
