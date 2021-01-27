@@ -106,6 +106,8 @@ if [ "${QT}" = "qt5win" ]; then
 	print_info "package build into zip for win"
 	print_info "copy dlls and qt5 plugins"
 	/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-peldd texstudio.exe -a -w d3d11.dll -w dxgi.dll|grep dll|xargs cp -t "${TRAVIS_BUILD_DIR}"
+	echo_and_run "cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/platforms \"${TRAVIS_BUILD_DIR}/\""
+	echo_and_run "cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/imageformats/ \"${TRAVIS_BUILD_DIR}/\""
 	print_info "make installer"
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/texstudio.nsi\" \"${TRAVIS_BUILD_DIR}/\""
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/FileAssociation.nsh\" \"${TRAVIS_BUILD_DIR}/\""

@@ -1320,54 +1320,65 @@ void PDFWidget::jumpToSource()
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->angleDelta().isNull()) return;
-    double numDegrees = event->angleDelta().y() / 8.0;
-	if ((summedWheelDegrees < 0) != (numDegrees < 0)) summedWheelDegrees = 0;
-	// we may accumulate rotation and handle it in larger chunks
-	summedWheelDegrees += numDegrees;
-	const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
+    if(event->angleDelta().y()==0){
+        // horizontal scroll
+        double numDegrees = event->angleDelta().x() / 8.0;
+        const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
+        QScrollBar *scrollBar = getScrollArea()->horizontalScrollBar();
+        if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
+            scrollBar->setValue(scrollBar->value() - qRound(scrollBar->singleStep() * numDegrees / degreesPerStep));
+        }
+    }else{
+        // vertical scroll
+        double numDegrees = event->angleDelta().y() / 8.0;
+        if ((summedWheelDegrees < 0) != (numDegrees < 0)) summedWheelDegrees = 0;
+        // we may accumulate rotation and handle it in larger chunks
+        summedWheelDegrees += numDegrees;
+        const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
 
-	if (event->modifiers() == Qt::ControlModifier || event->buttons() == Qt::RightButton) {
-		if (event->buttons() == Qt::RightButton) {
-			inhibitNextContextMenuEvent = true;
-		}
-		if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
-            doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
-			summedWheelDegrees = 0;
-		}
-		event->accept();
-	} else	{
-		static QTime lastScrollTime = QTime::currentTime();
-        QScrollBar *scrollBar = (event->angleDelta().y() == 0) // -> horizontal scroll
-		                        ? getScrollArea()->horizontalScrollBar()
-		                        : getScrollArea()->verticalScrollBar();
-		bool mayChangePage = !getScrollArea()->getContinuous();
-		if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
-			int oldValue = scrollBar->value();
-			const int scrollPerWheelStep = scrollBar->singleStep() * QApplication::wheelScrollLines();
-			scrollBar->setValue(scrollBar->value() - qRound(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
-			int delta = oldValue - scrollBar->value();
-			if (delta != 0) {
-				lastScrollTime = QTime::currentTime();
-				summedWheelDegrees -= delta * degreesPerStep / scrollPerWheelStep;
-				mayChangePage = false;
-			} else
-				mayChangePage &= (scrollBar->value() == scrollBar->minimum()) || (scrollBar->value() == scrollBar->maximum());
-			if (QTime::currentTime() < lastScrollTime.addMSecs(500) && qAbs(summedWheelDegrees) < 180)
-				mayChangePage = false;
-		}
-		if (mayChangePage) {
-            if (event->angleDelta().y() > 0 && realPageIndex > 0) {
-				goPrev();
-				scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
-            } else if (event->angleDelta().y() < 0 && realPageIndex < realNumPages() - 1) {
-				goNext();
-				scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
-			}
-			lastScrollTime = QTime::currentTime();
-			summedWheelDegrees = 0;
-		}
-		event->accept();
-	}
+        if (event->modifiers() == Qt::ControlModifier || event->buttons() == Qt::RightButton) {
+            if (event->buttons() == Qt::RightButton) {
+                inhibitNextContextMenuEvent = true;
+            }
+            if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
+                doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
+                summedWheelDegrees = 0;
+            }
+            event->accept();
+        } else	{
+            static QTime lastScrollTime = QTime::currentTime();
+            QScrollBar *scrollBar = (event->angleDelta().y() == 0) // -> horizontal scroll
+                                    ? getScrollArea()->horizontalScrollBar()
+                                    : getScrollArea()->verticalScrollBar();
+            bool mayChangePage = !getScrollArea()->getContinuous();
+            if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
+                int oldValue = scrollBar->value();
+                const int scrollPerWheelStep = scrollBar->singleStep() * QApplication::wheelScrollLines();
+                scrollBar->setValue(scrollBar->value() - qRound(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
+                int delta = oldValue - scrollBar->value();
+                if (delta != 0) {
+                    lastScrollTime = QTime::currentTime();
+                    summedWheelDegrees -= delta * degreesPerStep / scrollPerWheelStep;
+                    mayChangePage = false;
+                } else
+                    mayChangePage &= (scrollBar->value() == scrollBar->minimum()) || (scrollBar->value() == scrollBar->maximum());
+                if (QTime::currentTime() < lastScrollTime.addMSecs(500) && qAbs(summedWheelDegrees) < 180)
+                    mayChangePage = false;
+            }
+            if (mayChangePage) {
+                if (event->angleDelta().y() > 0 && realPageIndex > 0) {
+                    goPrev();
+                    scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
+                } else if (event->angleDelta().y() < 0 && realPageIndex < realNumPages() - 1) {
+                    goNext();
+                    scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
+                }
+                lastScrollTime = QTime::currentTime();
+                summedWheelDegrees = 0;
+            }
+            event->accept();
+        }
+    }
 }
 
 void PDFWidget::setTool(int tool)
