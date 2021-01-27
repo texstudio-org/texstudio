@@ -49,7 +49,7 @@ CMD_DEFINE(TERMINAL_EXTERNAL, terminal-external)
 //! Otherwise surpising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
 const QStringList atomicCommands = QStringList() << "txs:///latex" << "txs:///pdflatex" << "txs:///xelatex"<< "txs:///lualatex" << "txs:///latexmk";
 
-QString searchBaseCommand(const QString &cmd, QString options);
+QString searchBaseCommand(const QString &cmd, QString options, QString texPath="");
 QString getCommandLineViewDvi();
 QString getCommandLineViewPs();
 QString getCommandLineViewPdfExternal();
@@ -57,7 +57,7 @@ QString getCommandLineGhostscript();
 
 CommandInfo::CommandInfo(): user(false), meta(false), rerunCompiler(false), guessFunc(nullptr) {}
 
-QString CommandInfo::guessCommandLine() const
+QString CommandInfo::guessCommandLine(const QString texpath) const
 {
 	if (guessFunc) {
 		QString temp = (*guessFunc)();
@@ -66,7 +66,7 @@ QString CommandInfo::guessCommandLine() const
 
 	if (!baseName.isEmpty()) {
 		//search it
-		QString bestCommand = searchBaseCommand(baseName, defaultArgs);
+        QString bestCommand = searchBaseCommand(baseName, defaultArgs,texpath);
 		if (!bestCommand.isEmpty()) return bestCommand;
 	}
 
@@ -901,11 +901,14 @@ QString findGhostscriptDLL()   //called dll, may also find an exe
 }
 #endif
 
-QString searchBaseCommand(const QString &cmd, QString options)
+QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
 {
 	foreach(QString command, cmd.split(";")) {
 		QString fileName = command   ON_WIN(+ ".exe");
 		if (!options.startsWith(" ")) options = " " + options;
+        if (!texPath.isEmpty() && QFileInfo::exists(addPathDelimeter(texPath) + fileName)) {
+            return addPathDelimeter(texPath)+fileName+options; // found in texpath
+        }
 		if (!BuildManager::findFileInPath(fileName).isEmpty())
 			return fileName + options; //found in path
 		else {
@@ -1426,7 +1429,7 @@ void BuildManager::readSettings(QSettings &settings)
 				cmd.commandLine = cmd.metaSuggestionList[deprecatedQuickmode];
 			continue;
 		}
-		cmd.commandLine = cmd.guessCommandLine();
+        cmd.commandLine = cmd.guessCommandLine();
 	}
 	if (commands.value("quick").commandLine.isEmpty()) {
 		//Choose suggestion that actually exists
@@ -1512,7 +1515,18 @@ void BuildManager::saveSettings(QSettings &settings)
 	}
 	autoRerunCommands = rerunCmds.join("|");
 	settings.endGroup();
-	settings.endGroup();
+    settings.endGroup();
+}
+/*!
+ * \brief reset command lines for all commands to default with texPath as default path
+ * \param texPath
+ */
+void BuildManager::resetDefaultCommands(const QString texPath)
+{
+    for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it) {
+        CommandInfo &cmd = it.value();
+        cmd.commandLine=cmd.guessCommandLine(texPath);
+    }
 }
 
 void BuildManager::checkLatexConfiguration(bool &noWarnAgain)

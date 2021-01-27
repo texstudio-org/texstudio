@@ -6811,6 +6811,10 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		if (args[i] == "--insert-cite" && i + 1 < args.size()) {
 			cite = args[++i];
 		}
+        if (args[i] == "--texpath" && i + 1 < args.size()) {
+            QString texPath=args[++i];
+            buildManager.resetDefaultCommands(texPath);
+        }
 #ifndef NO_POPPLER_PREVIEW
 		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
 		if (args[i] == "--page") page = args[++i].toInt() - 1;
