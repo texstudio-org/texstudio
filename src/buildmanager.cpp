@@ -925,7 +925,8 @@ QString searchBaseCommand(const QString &cmd, QString options)
 			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/" << "/Library/TeX/texbin/" << "/Library/TeX/local/bin/" ;
 			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
 
-			for (int i = 2013; i >= 2007; i--) {
+            QDate date = QDate::currentDate();
+            for (int v = date.year(); v > 2008; v--) {
 				//paths << QString("/usr/texbin MACTEX/TEXLIVE%1").arg(i); from texmaker comment
 				paths << QString("/usr/local/texlive/%1/bin/x86_64-darwin/").arg(i);
 				paths << QString("/usr/local/texlive/%1/bin/i386-darwin/").arg(i);
