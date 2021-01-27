@@ -738,7 +738,6 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 					QToolButton *combo = qobject_cast<QToolButton *>(w);
 					REQUIRE(combo);
 
-					QFontMetrics fontMetrics(tb.toolbar->font());
 					QStringList actionTexts;
 					QList<QIcon> actionIcons;
 					int defaultIndex = -1;
@@ -1247,10 +1246,10 @@ void Texstudio::setupMenus()
 	for (int i = 4; i < 8; i++)
 		newManagedAction(submenu, QString("%1").arg(i), tr("Grammar Mistake Special %1").arg(i - 3), "toggleGrammar", 0, "", QList<QVariant>() << i);
 	for (int i = 0; i < submenu->actions().size(); i++)
-		if (!submenu->actions()[i]->isCheckable()) {
-			submenu->actions()[i]->setCheckable(true);
-            configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], LinkOptions());
-			LatexEditorView::setGrammarOverlayDisabled(i, !submenu->actions()[i]->isChecked());
+        if (!submenu->actions().at(i)->isCheckable()) {
+            submenu->actions().at(i)->setCheckable(true);
+            configManager.linkOptionToObject(&showGrammarType[i], submenu->actions().at(i), LinkOptions());
+            LatexEditorView::setGrammarOverlayDisabled(i, !submenu->actions().at(i)->isChecked());
 		}
 
 	menu->addSeparator();
@@ -1943,9 +1942,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
-		PDFDocument::documentList().first()->loadFile(f_real);
-		PDFDocument::documentList().first()->show();
-		PDFDocument::documentList().first()->setFocus();
+        PDFDocument::documentList().at(0)->loadFile(f_real);
+        PDFDocument::documentList().at(0)->show();
+        PDFDocument::documentList().at(0)->setFocus();
 		return nullptr;
 	}
 	if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
@@ -2613,7 +2612,7 @@ void Texstudio::fileSave(const bool saveSilently)
 	if (!currentEditor())
 		return;
 
-	if (currentEditor()->fileName() == "" || !QFileInfo(currentEditor()->fileName()).exists()) {
+    if (currentEditor()->fileName() == "" || !QFileInfo::exists(currentEditor()->fileName())) {
 		removeDiffMarkers();// clean document from diff markers first
 		fileSaveAs(currentEditor()->fileName(), saveSilently);
 	} else {
@@ -4108,7 +4107,6 @@ void Texstudio::readSettings(bool reread)
     }
     config->beginGroup("Editor Key Mapping New");
     QStringList sl = config->childKeys();
-    QSet<int>manipulatedOps;
     if (!sl.empty()) {
         foreach (const QString &key, sl) {
             if (key.isEmpty()) continue;
@@ -4120,15 +4118,6 @@ void Texstudio::readSettings(bool reread)
                     configManager.editorKeys.remove(realKey);
                 }
             } else {
-                /*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
-                                    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
-                                    if (!defaultKeys.isEmpty()) {
-                                        foreach(const QString elem,defaultKeys){
-                                            configManager.editorKeys.remove(elem);
-                                        }
-                                        manipulatedOps.insert(operationID);
-                                    }
-                                }*/
                 // replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
                 configManager.editorKeys.insert(key, operationID);
             }
