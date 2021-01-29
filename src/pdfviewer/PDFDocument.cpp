@@ -1320,15 +1320,16 @@ void PDFWidget::jumpToSource()
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->angleDelta().isNull()) return;
-    if(event->angleDelta().y()==0){
+    if(event->angleDelta().x()!=0){
         // horizontal scroll
         double numDegrees = event->angleDelta().x() / 8.0;
         const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
         QScrollBar *scrollBar = getScrollArea()->horizontalScrollBar();
         if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
-            scrollBar->setValue(scrollBar->value() - qRound(scrollBar->singleStep() * numDegrees / degreesPerStep));
+            scrollBar->setValue(scrollBar->value() - qRound(scrollBar->singleStep() * QApplication::wheelScrollLines() * numDegrees / degreesPerStep));
         }
-    }else{
+    }
+    if(event->angleDelta().y()!=0){
         // vertical scroll
         double numDegrees = event->angleDelta().y() / 8.0;
         if ((summedWheelDegrees < 0) != (numDegrees < 0)) summedWheelDegrees = 0;

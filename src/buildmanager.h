@@ -64,7 +64,7 @@ struct CommandInfo {
 	QStringList metaSuggestionList;
 	QStringList simpleDescriptionList;
 
-	QString guessCommandLine() const;
+    QString guessCommandLine(const QString texpath="") const;
 	//sets a command (accepts tr("<unknown>"))
 	void setCommandLine(const QString &newCmd);
 
@@ -135,8 +135,9 @@ public:
 	bool hasCommandLine(const QString &program);
 
 	void registerOptions(ConfigManagerInterface &cmi);
-	void readSettings(QSettings &settings);
+    void readSettings(QSettings &settings);
 	void saveSettings(QSettings &settings);
+    void resetDefaultCommands(const QString texPath);
 
 	void checkLatexConfiguration(bool &noWarnAgain);
 
