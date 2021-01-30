@@ -2308,6 +2308,9 @@ void Texstudio::fileMakeTemplate()
 			UtilsUi::txsInformation(tr("Could not write template data:") + "\n" + fn);
 			return;
 		} else {
+#ifdef Q_OS_WIN
+			txt.replace("\r\n", "\n"); //on Windows QTextStream corrupts line endings by replacing "\n" with "\r\n", so "\r\n" becomes "\r\r\n"
+#endif
 			QTextStream out(&file_txt);
 			out.setCodec("UTF-8");
 			out << txt;
