@@ -1,11 +1,11 @@
 # xeCJK package
 # Darcy Hu <hot123tea123@gmail.com> 2016
-#modified zepinglee 26 Jan 2021
+#modified zepinglee 30 Jan 2021
 
 #include:fontspec
 
 ## 3.1
-\xeCJKsetup{keyvals}
+\xeCJKsetup{options%keyvals}
 #keyvals:\xeCJKsetup
 xeCJKactive=#true,false
 #
@@ -122,10 +122,10 @@ LoadFandol=#true,false
 \normalspacechars{char list}#*
 
 ## 3.5
-\xeCJKsetwidth{标点列表}{length}#*
-\xeCJKsetwidth*{标点列表}{length}#*
+\xeCJKsetwidth{punt list}{length}#*
+\xeCJKsetwidth*{punt list}{length}#*
 
-\xeCJKsetkern{前标点}{后标点}{length}#*
+\xeCJKsetkern{first punct}{second punct}{length}#*
 
 \xeCJKDeclarePunctStyle{style}{keyvals}#*
 \xeCJKEditPunctStyle{style}{keyvals}#*

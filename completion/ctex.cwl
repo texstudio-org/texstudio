@@ -1,6 +1,6 @@
 # ctex package
 # Darcy Hu <hot123tea123@gmail.com> 2016
-#modified zepinglee 26 Jan 2021
+#modified zepinglee 30 Jan 2021
 
 #include:zhnumber
 
@@ -14,7 +14,7 @@
 \yahei#*
 \pingfang#*
 
-\ctexset{keyvals}
+\ctexset{options%keyvals}
 #keyvals:\ctexset
 fontset=#adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none
 #
@@ -22,7 +22,7 @@ fontset=#adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none
 punct=#quanjiao,banjiao,kaiming,CCT,plain
 space=#true,false,auto
 autoindent=
-linestretch=#*
+linestretch=
 #
 # Sec. 6.1
 today=#small,big,old
@@ -263,11 +263,11 @@ resetalternatefont=
 \CTEXtheparagraph#*
 \CTEXthesubparagraph#*
 
-\CTEXifnmae{有名字时的内容}{无名字时的内容}#*
+\CTEXifnmae{contents with name}{contents with name}#*
 
 ## Sec. 8.1
-\zihao{字号}
-\ziju{中文字符宽度的倍数}
+\zihao{number}
+\ziju{factor}
 \ccwd
 
 ## Sec. 8.2

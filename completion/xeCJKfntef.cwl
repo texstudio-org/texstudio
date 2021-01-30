@@ -1,55 +1,109 @@
 # xeCJKfntef package
 # Darcy Hu <hot123tea123@gmail.com> 2016
-#modified zepinglee 26 Jan 2021
+#modified zepinglee 30 Jan 2021
 
-\CJKunderline{内容}
-\CJKunderline*{内容}
-\CJKunderline-{内容}
-\CJKunderline[keyvals]{内容}#*
-\CJKunderline*[keyvals]{内容}#*
-\CJKunderline-[keyvals]{内容}#*
+\CJKunderline{contents}
+\CJKunderline*{contents}
+\CJKunderline-{contents}
+\CJKunderline[options%keyvals]{contents}
+\CJKunderline*[options%keyvals]{contents}
+\CJKunderline-[options%keyvals]{contents}
 
-\CJKunderdblline{内容}
-\CJKunderdblline*{内容}
-\CJKunderdblline-{内容}
-\CJKunderdblline[keyvals]{内容}#*
-\CJKunderdblline*[keyvals]{内容}#*
-\CJKunderdblline-[keyvals]{内容}#*
+\CJKunderdblline{contents}
+\CJKunderdblline*{contents}
+\CJKunderdblline-{contents}
+\CJKunderdblline[options%keyvals]{contents}
+\CJKunderdblline*[options%keyvals]{contents}
+\CJKunderdblline-[options%keyvals]{contents}
 
-\CJKunderwave{内容}
-\CJKunderwave*{内容}
-\CJKunderwave-{内容}
-\CJKunderwave[keyvals]{内容}#*
-\CJKunderwave*[keyvals]{内容}#*
-\CJKunderwave-[keyvals]{内容}#*
+\CJKunderwave{contents}
+\CJKunderwave*{contents}
+\CJKunderwave-{contents}
+\CJKunderwave[options%keyvals]{contents}
+\CJKunderwave*[options%keyvals]{contents}
+\CJKunderwave-[options%keyvals]{contents}
 
-\CJKsout{内容}
-\CJKsout*{内容}
-\CJKsout-{内容}
-\CJKsout[keyvals]{内容}#*
-\CJKsout*[keyvals]{内容}#*
-\CJKsout-[keyvals]{内容}#*
+\CJKsout{contents}
+\CJKsout*{contents}
+\CJKsout-{contents}
+\CJKsout[options%keyvals]{contents}
+\CJKsout*[options%keyvals]{contents}
+\CJKsout-[options%keyvals]{contents}
 
-\CJKxout{内容}
-\CJKxout*{内容}
-\CJKxout-{内容}
-\CJKxout[keyvals]{内容}#*
-\CJKxout*[keyvals]{内容}#*
-\CJKxout-[keyvals]{内容}#*
+\CJKxout{contents}
+\CJKxout*{contents}
+\CJKxout-{contents}
+\CJKxout[options%keyvals]{contents}
+\CJKxout*[options%keyvals]{contents}
+\CJKxout-[options%keyvals]{contents}
 
-\CJKunderdot{内容}
-\CJKunderdot[keyvals]{内容}
+\CJKunderdot{contents}
+\CJKunderdot[options%keyvals]{contents}
 
-\CJKunderanyline{深度%l}{下划内容}{文本内容}#*
-\CJKunderanyline[keyvals]{深度%l}{下划内容}{文本内容}#*
-\CJKunderanyline*{深度%l}{下划内容}{文本内容}#*
-\CJKunderanyline-[keyvals]{深度%l}{下划内容}{文本内容}#*
+\xeCJKsetup{options%keyvals}
+#keyvals:\xeCJKsetup
+underline
+underdblline
+underwave
+sout
+xout
+underdot
+#endkeyvals
 
-\CJKunderanysymbol{深度%l}{符号}{文本内容}#*
-\CJKunderanysymbol[keyvals]{深度%l}{符号}{文本内容}#*
-\xeCJKfntefon{keyvals}#*
-\xeCJKfntefon*{keyvals}#*
-\xeCJKfntefon-{keyvals}#*
-\begin{CJKfiletwosides}{宽度%l}#*
-\begin{CJKfiletwosides}[pos]{宽度%l}#*
+#keyvals:\CJKunderline,\CJKunderdblline,\CJKunderwave,\CJKsout,\CJKxout,\CJKunderdot,\CJKunderline*,\CJKunderdblline*,\CJKunderwave*,\CJKsout*,\CJKxout*,\CJKunderdot*,\CJKunderline-,\CJKunderdblline-,\CJKunderwave-,\CJKsout-,\CJKxout-,\CJKunderdot-
+skip=#true,false
+subtract=#true,false
+hidden=#true,false
+format=
+textformat=
+symbol=
+thickness=
+depth=
+boxdepth=
+sep=
+gap=
+height=
+#endkeyvals
+
+\CJKunderanyline{depth%l}{underlined contents}{text}
+\CJKunderanyline*{depth%l}{underlined contents}{text}
+\CJKunderanyline-{depth%l}{underlined contents}{text}
+\CJKunderanyline[options%keyvals]{depth%l}{underlined contents}{text}
+\CJKunderanyline*[options%keyvals]{depth%l}{underlined contents}{text}
+\CJKunderanyline-[options%keyvals]{depth%l}{underlined contents}{text}
+
+#keyvals:\CJKunderanyline,\CJKunderanyline*,\CJKunderanyline-
+textformat=
+skip=#true,false
+hidden=#true,false
+subtract=#true,false
+sep=
+boxdepth=
+#endkeyvals
+
+\CJKunderanysymbol{depth%l}{symbol}{contents}
+\CJKunderanysymbol[options%keyvals]{depth%l}{symbol}{contents}
+
+#keyvals:\CJKunderanysymbol,\CJKunderanysymbol*,\CJKunderanysymbol-
+textformat=
+skip=#true,false
+boxdepth=
+#endkeyvals
+
+\xeCJKfntefon
+\xeCJKfntefon*
+\xeCJKfntefon-
+\xeCJKfntefon[options%keyvals]
+\xeCJKfntefon*[options%keyvals]
+\xeCJKfntefon-[options%keyvals]
+
+#keyvals:\xeCJKfntefon,\xeCJKfntefon*,\xeCJKfntefon-
+textformat=
+skip=#true,false
+hidden=#true,false
+subtract=#true,false
+#endkeyvals
+
+\begin{CJKfiletwosides}{width%l}
+\begin{CJKfiletwosides}[position]{width%l}
 \end{CJKfiletwosides}
