@@ -190,9 +190,6 @@ int main(int argc, char **argv)
 #if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
 	QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
 #endif
-
-	QThreadPool::globalInstance()->setMaxThreadCount(1);
-
 	// This is a dummy constructor so that the programs loads fast.
 	TexstudioApp a(appId, argc, argv);
 	bool startAlways = false;
