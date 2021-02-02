@@ -2607,7 +2607,7 @@ void PDFDocument::setupMenus(bool embedded)
     actionContinuous->setChecked(true);
 	menuView->addAction(menuGrid->menuAction());
 	menuView->addSeparator();
-    actionFull_Screen=configManager->newManagedAction(menuroot,menuView, "fullscreen", tr("Full &Screen"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::ControlModifier+Qt::ShiftModifier+Qt::Key_F);
+    actionFull_Screen=configManager->newManagedAction(menuroot,menuView, "fullscreen", tr("Full &Screen"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_F));
     actionPresentation=configManager->newManagedAction(menuroot,menuView, "presentation", tr("Presentation"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::Key_F5);
     actionExternalViewer=configManager->newManagedAction(menuroot,menuView, "external", tr("External Viewer"), this, SLOT(runExternalViewer()), QList<QKeySequence>(),"acroread");
     actionEnlargeViewer=configManager->newManagedAction(menuroot,menuView, "enlarge", tr("Enlarge Viewer"), this, SLOT(enlarge()), QList<QKeySequence>(),"enlarge-viewer");
@@ -2639,7 +2639,7 @@ void PDFDocument::setupMenus(bool embedded)
     actionSide_by_Side=configManager->newManagedAction(menuroot,menuWindow, "sideBySide", tr("&Side by Side"), this, SLOT(sideBySide()), QList<QKeySequence>());
 	menuWindow->addSeparator();
     actionGo_to_Source=configManager->newManagedAction(menuroot,menuWindow, "gotoSource", tr("&Go to Source"), this, SLOT(goToSource()), QList<QKeySequence>()<<Qt::ControlModifier+Qt::Key_Apostrophe);
-    actionFocus_Editor=configManager->newManagedAction(menuroot,menuWindow, "focusEditor", tr("Focus Editor"), this, SIGNAL(focusEditor()), QList<QKeySequence>()<<Qt::ControlModifier+Qt::AltModifier+Qt::Key_Left);
+    actionFocus_Editor=configManager->newManagedAction(menuroot,menuWindow, "focusEditor", tr("Focus Editor"), this, SIGNAL(focusEditor()), QList<QKeySequence>()<<QKeySequence(Qt::ControlModifier|Qt::AltModifier|Qt::Key_Left));
 	menuWindow->addSeparator();
     actionNew_Window=configManager->newManagedAction(menuroot,menuWindow, "newWindow", tr("New Window"), this, SIGNAL(triggeredClone()), QList<QKeySequence>());
     actionFind=configManager->newManagedAction(menuroot,menuEdit_2, "find", tr("&Find"), this, SLOT(doFindDialog()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_F);
@@ -2692,7 +2692,9 @@ void PDFDocument::init(bool embedded)
 
 
 	setAttribute(Qt::WA_DeleteOnClose, true);
+#if QT_VERSION_MAJOR<6
 	setAttribute(Qt::WA_MacNoClickThrough, true);
+#endif
 
 	//load icons
 	setWindowIcon(QIcon(":/images/previewicon.png"));

@@ -184,13 +184,13 @@ QVariant PDFAnnotationModel::data ( const QModelIndex &index, int role) const
 	case CT_MODIFICATON_DATE:
 		switch (role) {
 		case Qt::DisplayRole:
-			return ann->popplerAnnotation()->modificationDate().toString(Qt::DefaultLocaleShortDate);
+            return ann->popplerAnnotation()->modificationDate().toString();// Qt::DefaultLocaleShortDate); TODO
 		}
 		break;
 	case CT_CREATION_DATE:
 		switch (role) {
 		case Qt::DisplayRole:
-			return ann->popplerAnnotation()->creationDate().toString(Qt::DefaultLocaleShortDate);
+            return ann->popplerAnnotation()->creationDate().toString(); //Qt::DefaultLocaleShortDate); TODO
 		}
         break;
 	case CT_PAGE:

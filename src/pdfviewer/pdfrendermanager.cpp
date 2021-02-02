@@ -191,7 +191,11 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 	Poppler::Document::RenderBackend backend = Poppler::Document::SplashBackend;
 	if (ConfigManagerInterface::getInstance()->getOption("Preview/RenderBackend").toInt() == 1) {
+#if QT_VERSION_MAJOR>5
+        backend = Poppler::Document::QPainterBackend;
+#else
 		backend = Poppler::Document::ArthurBackend;
+#endif
 	}
 	
 	docPtr->setRenderBackend(backend);
@@ -325,7 +329,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 	}
 	if (enqueueCmd) {
 		if (scale > 1.01 || scale < 0.99) { // always rerender, only not if it is already equivalent
-			QMutableMapIterator<int, RecInfo> i(lstOfReceivers);
+            QMutableMultiMapIterator<int, RecInfo> i(lstOfReceivers);
 			while (i.hasNext()) {
 				i.next();
 				if (mCurrentTicket != i.key()) {
