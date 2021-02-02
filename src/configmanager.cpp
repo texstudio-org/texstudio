@@ -702,6 +702,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
 	registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
+    registerOption("GUI/PDFToobarIconSize", &guiPDFToolbarIconSize, 16);
+    registerOption("GUI/ConfigShorcutColumnWidth", &guiConfigShortcutColumnWidth, 200);
 
 	registerOption("View/ShowStatusbar", &showStatusbar, true);
 
@@ -757,6 +759,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	// LogView
 	registerOption("LogView/WarnIfFileSizeLargerMB", &logViewWarnIfFileSizeLargerMB, 2.0);
+    registerOption("LogView/RememberChoiceLargeFile", &logViewRememberChoice, 0);
 
 #ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);
@@ -1314,7 +1317,8 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 
 	config->endGroup();
 
-    config->sync(); //? why crashes here ????
+    config->sync();
+
 
     return config;
 }
@@ -1395,9 +1399,11 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		else languageFiles[i] = temp;
 	}
 	if (!languageFiles.contains("en")) languageFiles.append("en");
+    languageFiles.sort(); // insert sorted
 	int langId = -1;
 	for (int i = 0; i < languageFiles.count(); i++) {
-		confDlg->ui.comboBoxLanguage->addItem(languageFiles[i]);
+        QLocale loc(languageFiles[i]);
+        confDlg->ui.comboBoxLanguage->addItem(languageFiles[i]+"  ("+QLocale::languageToString(loc.language())+")");
 		if (languageFiles[i] == language) langId = i;
 	}
 	confDlg->ui.comboBoxLanguage->addItem(tr("default"));
@@ -1594,8 +1600,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
 	confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
 	confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+    confDlg->ui.horizontalSliderPDF->setValue(guiPDFToolbarIconSize);
 	connect(confDlg->ui.horizontalSliderIcon, SIGNAL(valueChanged(int)), SIGNAL(iconSizeChanged(int)));
 	connect(confDlg->ui.horizontalSliderCentraIcon, SIGNAL(valueChanged(int)), SIGNAL(secondaryIconSizeChanged(int)));
+    connect(confDlg->ui.horizontalSliderPDF, SIGNAL(valueChanged(int)), SIGNAL(pdfIconSizeChanged(int)));
 	connect(confDlg->ui.horizontalSliderSymbol, SIGNAL(valueChanged(int)), SIGNAL(symbolGridIconSizeChanged(int)));
 
 	//EXECUTE IT
@@ -1861,11 +1869,13 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		guiToolbarIconSize = confDlg->ui.horizontalSliderIcon->value();
 		guiSecondaryToolbarIconSize = confDlg->ui.horizontalSliderCentraIcon->value();
 		guiSymbolGridIconSize = confDlg->ui.horizontalSliderSymbol->value();
+        guiPDFToolbarIconSize = confDlg->ui.horizontalSliderPDF->value();
 	} else {
 		// GUI scaling
 		confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
 		confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
 		confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+        confDlg->ui.horizontalSliderPDF->setValue(guiPDFToolbarIconSize);
 
 	}
 	delete confDlg;

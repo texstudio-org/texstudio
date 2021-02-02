@@ -636,6 +636,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 		if (suffix == "%todo") return Token::todo;
 		if (suffix == "%l") return Token::width;
 		if (suffix == "%cmd") return Token::def;
+        if (suffix == "%definition") return Token::definition;
 		if (suffix == "%formula") return Token::formula;
 		if (suffix == "%keyvals") return Token::keyValArg;
 		if ((suffix == "%envname") && definition.contains('N')) return Token::newTheorem;

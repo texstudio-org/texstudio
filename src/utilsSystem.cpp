@@ -1,5 +1,6 @@
 #include "utilsSystem.h"
 #include "unixutils.h"
+#include "smallUsefulFunctions.h"
 
 #ifdef Q_OS_MAC
 #include <CoreFoundation/CFURL.h>
@@ -672,13 +673,24 @@ void showInGraphicalShell(QWidget *parent, const QString &pathIn)
 	const QString folder = fileInfo.isDir() ? fileInfo.absoluteFilePath() : fileInfo.filePath();
 	QSettings dummySettings;
 	const QString app = UnixUtils::fileBrowser(&dummySettings);
-	QProcess browserProc;
-	const QString browserArgs = UnixUtils::substituteFileBrowserParameters(app, folder);
-    bool success = browserProc.startDetached(browserArgs,QStringList());
+    QProcess browserProc;
+    const QString browserArg = UnixUtils::substituteFileBrowserParameters(app, folder);
+#if QT_VERSION>=QT_VERSION_CHECK(5,15,0)
+    QStringList args=QProcess::splitCommand(browserArg);
+#else
+    QStringList args=browserArg.split(" "); // this assumes that the command is not using quotes with spaces in the command path, better solution from qt5.15 ...
+#endif
+    if(args.isEmpty())
+        return;
+    QString cmd=args.takeFirst();
+    for(QString &elem:args){
+        elem=removeQuote(elem);
+    }
+    bool success = browserProc.startDetached(cmd,args);
 	const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
 	success = success && error.isEmpty();
 	if (!success)
-		QMessageBox::critical(parent, app, error);
+        QMessageBox::critical(parent, app, error);
 #endif
 }
 

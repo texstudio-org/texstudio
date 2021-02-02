@@ -88,6 +88,8 @@ public:
 	QString interfaceFontFamily;
 	int guiToolbarIconSize, guiSymbolGridIconSize;
 	int guiSecondaryToolbarIconSize;
+    int guiPDFToolbarIconSize;
+    int guiConfigShortcutColumnWidth;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
 	bool mruDocumentChooser;
@@ -154,6 +156,7 @@ public:
 
 	// LogView
 	double logViewWarnIfFileSizeLargerMB;
+    int logViewRememberChoice;
 
 	//preview
 	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK = 0, PM_PANEL, PM_TOOLTIP, PM_BOTH, PM_INLINE, PM_EMBEDDED};
@@ -275,6 +278,7 @@ signals:
 	void watchedMenuChanged(const QString &menuId);
 	void iconSizeChanged(int value);
 	void secondaryIconSizeChanged(int value);
+    void pdfIconSizeChanged(int value);
 	void symbolGridIconSizeChanged(int value);
 public:
 //private:

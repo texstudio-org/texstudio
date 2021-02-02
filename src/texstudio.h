@@ -430,6 +430,7 @@ protected slots:
 
 	void changeIconSize(int value);
 	void changeSecondaryIconSize(int value);
+    void changePDFIconSize(int value);
 	void changeSymbolGridIconSize(int value, bool changePanel = true);
 
 public slots:
@@ -670,6 +671,8 @@ public slots:
 
 	void slowOperationStarted();
 	void slowOperationEnded();
+
+	void openBugsAndFeatures();
 
 signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.

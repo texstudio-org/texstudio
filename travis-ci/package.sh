@@ -22,31 +22,7 @@ POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf7
 
 # Gather information
 
-# GNU extensions for sed are not supported; on Linux, --posix mimics this behaviour
-TXS_VERSION=$(sed -ne 's/^#define TXSVERSION "\(.*\)".*$/\1/p' src/utilsVersion.h)
-echo "TXS_VERSION = ${TXS_VERSION}"
-
-GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
-echo "GIT_HASH = ${GIT_HASH}"
-
-GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
-echo "GIT_DATE = ${GIT_DATE}"
-
-DATE_HASH=$(date -u +"%Y%m%d%H%M")
-echo "DATE_HASH = ${DATE_HASH}"
-
-if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-	RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
-elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-	RELEASE_DATE=$(date -ujf "%Y-%m-%d %H:%M:%S %z" "${GIT_DATE}" "+%Y-%m-%dT%H:%M:%S%z")
-else
-	print_error "Unsupported operating system '${TRAVIS_OS_NAME}'"
-	exit 1
-fi
-echo "RELEASE_DATE = ${RELEASE_DATE}"
-
-VERSION_NAME="${TXS_VERSION}-${DATE_HASH}-git_${GIT_HASH}"
-echo "VERSION_NAME = ${VERSION_NAME}"
+. travis-ci/get-version.sh
 
 
 if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
@@ -128,6 +104,10 @@ fi
 
 if [ "${QT}" = "qt5win" ]; then
 	print_info "package build into zip for win"
+	print_info "copy dlls and qt5 plugins"
+	/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-peldd texstudio.exe -a -w d3d11.dll -w dxgi.dll|grep dll|xargs cp -t "${TRAVIS_BUILD_DIR}"
+	echo_and_run "cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/platforms \"${TRAVIS_BUILD_DIR}/\""
+	echo_and_run "cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/imageformats/ \"${TRAVIS_BUILD_DIR}/\""
 	print_info "make installer"
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/texstudio.nsi\" \"${TRAVIS_BUILD_DIR}/\""
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/FileAssociation.nsh\" \"${TRAVIS_BUILD_DIR}/\""
@@ -136,6 +116,9 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "mkdir -p \"package-zip/share\""
 	echo_and_run "mkdir -p \"package-zip/config\""
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/texstudio.exe\" \"package-zip/\""
+	cp "${TRAVIS_BUILD_DIR}/*.dll" package-zip
+	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/platforms\" \"package-zip/\""
+	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/imageformats\" \"package-zip/\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/translation\" \"package-zip/translations\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/templates\" \"package-zip\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/manual\" \"package-zip/help\""
@@ -143,7 +126,7 @@ if [ "${QT}" = "qt5win" ]; then
 	echo_and_run "cp \"${TRAVIS_BUILD_DIR}/utilities/latex2e.html\" \"package-zip/help\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/dictionaries\" \"package-zip/dictionaries\""
 	echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/utilities/TexTablet\" \"package-zip/TexTablet\""
-        echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/travis-ci/mxe/fonts\" \"package-zip/share/\""
+    echo_and_run "cp -r \"${TRAVIS_BUILD_DIR}/travis-ci/mxe/fonts\" \"package-zip/share/\""
 
 	
 	print_info "Fetching poppler data"

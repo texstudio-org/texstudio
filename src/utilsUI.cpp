@@ -2,10 +2,14 @@
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 #include "filedialog.h"
+
 #if QT_VERSION<QT_VERSION_CHECK(5,14,0)
 #include <QDesktopWidget>
 #include <QWindow>
 #endif
+
+#include <QErrorMessage>
+
 
 
 extern void hideSplash();
@@ -30,6 +34,33 @@ bool txsConfirmWarning(const QString &message)
 {
 	hideSplash();
 	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
+}
+/*!
+ * \brief show confirmation with warning message box
+ * \param message
+ * \param rememberChoice if true, return true and avoid Msg. rememberChoice is overwritten by checkbox result.
+ * \return yes=true
+ */
+bool txsConfirmWarning(const QString &message,txsWarningState &rememberChoice)
+{
+    switch (rememberChoice){
+        case RememberFalse: return false ;
+        case RememberTrue: return true ;
+        default: ;
+    }
+    hideSplash();
+    QMessageBox msg(QMessageBox::Warning,TEXSTUDIO,message,QMessageBox::Yes | QMessageBox::No,QApplication::activeWindow());
+    QCheckBox *cb=new QCheckBox(QApplication::tr("Remember choice ?"));
+    msg.setCheckBox(cb);
+    bool result=(msg.exec()==QMessageBox::Yes);
+    if(msg.checkBox()->checkState()==Qt::Checked){
+        if(result){
+            rememberChoice=RememberTrue;
+        }else{
+            rememberChoice=RememberFalse;
+        }
+    }
+    return result;
 }
 /*!
  * \brief show confirmation with warning message box
@@ -128,7 +159,7 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 		if (list.isEmpty())
 			combo->setDefaultAction(new QAction("<" + QApplication::tr("none") + ">", combo));
 		else
-			combo->setDefaultAction(mMenu->actions().first());
+            combo->setDefaultAction(mMenu->actions().at(0));
 	}
 
 	combo->setMinimumWidth(max);
@@ -210,7 +241,7 @@ QColor colorFromRGBAstr(const QString &hex, QColor fallback)
 		c = c.mid(1);
 	if (c.length() != 8) return fallback;
 	bool r, g, b, a;
-	QColor color(c.mid(0, 2).toInt(&r, 16), c.mid(2, 2).toInt(&g, 16), c.mid(4, 2).toInt(&b, 16), c.mid(6, 2).toInt(&a, 16));
+	QColor color(c.mid(0, 2).toInt(&r, 16), c.midRef(2, 2).toInt(&g, 16), c.midRef(4, 2).toInt(&b, 16), c.midRef(6, 2).toInt(&a, 16));
 	if (r && g && b && a)
 		return color;
 	return fallback;

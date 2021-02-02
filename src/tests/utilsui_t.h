@@ -43,9 +43,10 @@ private slots:
 		QFETCH(unsigned int, expectediRgb);
 
 		QColor resultColor = UtilsUi::mediumLightColor(QColor(static_cast<QRgb>(iRgb)), factor);
-		QEQUAL(resultColor.red(), qRed(static_cast<QRgb>(expectediRgb)));
-		QEQUAL(resultColor.green(), qGreen(static_cast<QRgb>(expectediRgb)));
-		QEQUAL(resultColor.blue(), qBlue(static_cast<QRgb>(expectediRgb)));
+        // tolerant comparison as the result changes with QT5.14
+        QVERIFY2(abs(resultColor.red()-qRed(static_cast<QRgb>(expectediRgb)))<=1,qPrintable(QString("red unexpected %1 %2").arg(resultColor.red()).arg(qRed(static_cast<QRgb>(expectediRgb)))));
+        QVERIFY2(abs(resultColor.green()-qGreen(static_cast<QRgb>(expectediRgb)))<=1,qPrintable(QString("green unexpected %1 %2").arg(resultColor.green()).arg(qGreen(static_cast<QRgb>(expectediRgb)))));
+        QVERIFY2(abs(resultColor.blue()-qBlue(static_cast<QRgb>(expectediRgb)))<=1,qPrintable(QString("blue unexpected %1 %2").arg(resultColor.blue()).arg(qBlue(static_cast<QRgb>(expectediRgb)))));
 	}
 
 private:

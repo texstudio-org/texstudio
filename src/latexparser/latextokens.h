@@ -31,7 +31,7 @@ public:
 		beamertheme, packageoption, color, verbatimStart, verbatimStop,
 		verbatim, symbol, punctuation, number, generalArg,
 		defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
-		specialArg, newTheorem, newBibItem, formula, overlay,
+        formula, specialArg, newTheorem, newBibItem, overlay,
 		overlayRegion, _end = 255
 	};
 };

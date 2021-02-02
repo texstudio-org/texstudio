@@ -662,11 +662,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         i = i + 1;
                         tk.length = tk2.length + 1;
                         tk.type = Token::word;
-                    }
-                    if (!lexed.isEmpty() && lexed.last().type == Token::word) {
-                        if (lexed.last().start + lexed.last().length == tk.start) {
-                            lexed.last().length += tk.length;
-                            continue;
+
+                        if (!lexed.isEmpty() && lexed.last().type == Token::word) {
+                            if (lexed.last().start + lexed.last().length == tk.start) {
+                                lexed.last().length += tk.length;
+                                continue;
+                            }
                         }
                     }
                 }
@@ -931,7 +932,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
         }
         dlh=doc->line(lineNr).handle();
         if(dlh)
-            tl= dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
         cnt++;
     }
 
@@ -1114,7 +1115,7 @@ TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention
 		TokenList tl;
 		while (index + 1 < document->lines()) {
 			QDocumentLineHandle *dlh = document->line(index + 1).handle();
-			tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 			if (!tl.isEmpty())
 				break;
 			index++;

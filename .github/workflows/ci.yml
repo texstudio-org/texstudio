@@ -5,40 +5,27 @@ on:
 
 jobs:
   build-linux:
-    name: Linux
+    name: Linux-autoTests
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      
+    - name: Updates
+      run: sudo apt-get update
 
     - name: Dependencies
-      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev zlib1g-dev pkg-config qtdeclarative5-dev
+
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtscript5-dev qttools5-dev libqt5svg5-dev zlib1g-dev pkg-config
 
     - name: Configure
-      run: qmake texstudio.pro CONFIG+=debug QJS=1
+      run: qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1
+
 
     - name: Build
       run: make -j 2
 
     - name: Test
       run: QT_QPA_PLATFORM=offscreen ./texstudio --auto-tests
-
-###################################
-
-  build-linux-noPoppler:
-    name: Linux-noPoppler
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Dependencies
-      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qttools5-dev libqt5svg5-dev zlib1g-dev  qtdeclarative5-dev
-
-    - name: Configure
-      run: qmake texstudio.pro CONFIG-=debug NO_POPPLER_PREVIEW=1 QJS=1
-
-    - name: Build
-      run: make -j 2
 
 

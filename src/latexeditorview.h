@@ -164,6 +164,9 @@ public:
 	bool getSearchIsWords();
 
 	void updateReplamentList(const LatexParser &cmds, bool forceUpdate = false);
+    QMap<QString,QString> getReplacementList(){
+        return mReplacementList;
+    }
 
     void updatePalette(const QPalette & pal);
 

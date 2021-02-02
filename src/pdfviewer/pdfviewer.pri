@@ -7,6 +7,7 @@ DEPENDPATH += $$PWD
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
+
     include(synctex/synctex.pri)
 
     HEADERS += \
@@ -28,9 +29,9 @@ isEmpty(NO_POPPLER_PREVIEW) {
         $$PWD/pdfannotation.cpp \
         $$PWD/qsynctex.cpp
 
-    FORMS += \
-       $$PWD/pdfannotationdlg.ui
 
+    FORMS += \
+        $$PWD/pdfannotationdlg.ui
 
     win32:isEmpty(MXE) {
         INCLUDEPATH  += ./src/pdfviewer/include_win32_qt5

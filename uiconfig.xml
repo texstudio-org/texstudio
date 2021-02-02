@@ -30,7 +30,7 @@
   </menu>
 
   <menu id="environment" text="&amp;Environments">
-    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%:id:1%>}%\%&lt;content%>%\\end{%&lt;environment-name%:id:1,mirror%>}" shortcut="Ctrl+E"/>
+    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%:id:1%>}%\%&lt;content%:cutInsert%>%\\end{%&lt;environment-name%:id:1,mirror%>}" shortcut="Ctrl+E"/>
     <insert id="center" text="\begin{center}" insert="\begin{center}%\%|%\\end{center}" icon="format-justify-center"/>
     <insert id="flushleft" text="\begin{flushleft}" insert="\begin{flushleft}%\%|%\\end{flushleft}" icon="format-justify-left"/>
     <insert id="flushright" text="\begin{flushright}" insert="\begin{flushright}%\%|%\\end{flushright}" icon="format-justify-right"/>

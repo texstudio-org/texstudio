@@ -1986,12 +1986,12 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			temp.text = line.text();
             // blank irrelevant content, i.e. commands, non-text, comments, verbatim
             QDocumentLineHandle *dlh = line.handle();
-            TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
             if(tl.isEmpty()){
                 // special treatment of in verbatim env, as no tokens are generated
                 temp.text.fill(' ',temp.text.length());
             }
-            foreach(Token tk,tl){
+            foreach(const Token &tk,tl){
                 if(tk.type==Token::word && (tk.subtype==Token::none||tk.subtype==Token::text))
                     continue;
                 if(tk.type==Token::punctuation && (tk.subtype==Token::none||tk.subtype==Token::text))
@@ -2074,7 +2074,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
         }
 
 		// alternative context detection
-		TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		for (int tkNr = 0; tkNr < tl.length(); tkNr++) {
 			Token tk = tl.at(tkNr);
 			if (tk.subtype == Token::verbatim)

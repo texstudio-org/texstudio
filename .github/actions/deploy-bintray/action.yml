@@ -1,0 +1,53 @@
+name: 'Deploy to Bintray'
+author: 'Stefan Löffler'
+description: 'Deploys artifacts to Bintray'
+
+inputs:
+  file:
+    description: 'File to upload to Bintray'
+    required: true
+  subject:
+    description: 'The Bintray subject to deply to (organization/user name)'
+    required: true
+  repo:
+    description: 'The Bintray repository to deploy to'
+    required: true
+  pkg:
+    description: 'The Bintray package to deploy to'
+    required: true
+  version:
+    description: 'The Bintray version to deploy to (will be created if it does not exist)'
+    required: true
+  username:
+    description: 'The Bintray username to use for authentication'
+    required: true
+  key:
+    description: 'The Bintray API key to use for authentication'
+    required: true
+  releaseDate:
+    description: 'The ISO8601 date to set the version release date to (e.g., 1900-12-31T23:59:59+01:00; as produced by `git show -s --format=''%cI''`)'
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - run: |
+        if [ "$RUNNER_OS" == "Windows" ]; then
+          python '${{ github.action_path }}/upload2bintray.py' ${{ inputs.file }}
+        else
+          python3 ${{ github.action_path }}/upload2bintray.py ${{ inputs.file }}
+        fi
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      env:
+        BINTRAY_SUBJECT: ${{ inputs.subject }}
+        BINTRAY_REPO: ${{ inputs.repo }}
+        BINTRAY_PACKAGE: ${{ inputs.pkg }}
+        BINTRAY_VERSION: ${{ inputs.version }}
+        BINTRAY_USER: ${{ inputs.username }}
+        BINTRAY_KEY: ${{ inputs.key }}
+        BINTRAY_RELEASE_DATE: ${{ inputs.releaseDate }}
+
+branding:
+  color: 'green'
+  icon: 'upload'

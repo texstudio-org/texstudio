@@ -53,11 +53,11 @@
 \newminted{language}{options%keyvals}
 \newminted[envname]{language}{options%keyvals}
 \newmint{language}{options%keyvals}
-\newmint{macro name}{language}{options%keyvals}
+\newmint[macro name]{language}{options%keyvals}
 \newmintinline{language}{options%keyvals}
-\newmintinline{macro name}{language}{options%keyvals}
+\newmintinline[macro name]{language}{options%keyvals}
 \newmintedfile{language}{options%keyvals}
-\newmintedfile{macro name}{language}{options%keyvals}
+\newmintedfile[macro name]{language}{options%keyvals}
 
 #keyvals:\begin{minted},\mint,\mintinline,\inputminted,\setminted,\setmintedinline,\newminted,\newmint,\newmintinline,\newmintedfile
 autogobble#true,false

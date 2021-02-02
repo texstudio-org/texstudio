@@ -339,6 +339,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errorprev"));
 		logPage->addToolbarAction(getManagedAction("main/edit2/goto/errornext"));
 	}
+
 	setupToolBars();
 	connect(&configManager, SIGNAL(watchedMenuChanged(QString)), SLOT(updateToolBarMenu(QString)));
 
@@ -374,16 +375,16 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setAcceptDrops(true);
 	//installEventFilter(this);
 
-	completer = new LatexCompleter(latexParser, this);
-	completer->setConfig(configManager.completerConfig);
-	completer->setPackageList(&latexPackageList);
-    connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
-    connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-    connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
-	//updateCompleter();
-	LatexEditorView::setCompleter(completer);
-	completer->setLatexReference(latexReference);
-	completer->updateAbbreviations();
+        completer = new LatexCompleter(latexParser, this);
+        completer->setConfig(configManager.completerConfig);
+        completer->setPackageList(&latexPackageList);
+        connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
+        connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
+        connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
+        //updateCompleter();
+        LatexEditorView::setCompleter(completer);
+        completer->setLatexReference(latexReference);
+        completer->updateAbbreviations();
 
 	TemplateManager::setConfigBaseDir(configManager.configBaseDir);
 	TemplateManager::ensureUserTemplateDirExists();
@@ -737,7 +738,6 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 					QToolButton *combo = qobject_cast<QToolButton *>(w);
 					REQUIRE(combo);
 
-					QFontMetrics fontMetrics(tb.toolbar->font());
 					QStringList actionTexts;
 					QList<QIcon> actionIcons;
 					int defaultIndex = -1;
@@ -1287,10 +1287,10 @@ void Texstudio::setupMenus()
 	for (int i = 4; i < 8; i++)
 		newManagedAction(submenu, QString("%1").arg(i), tr("Grammar Mistake Special %1").arg(i - 3), "toggleGrammar", 0, "", QList<QVariant>() << i);
 	for (int i = 0; i < submenu->actions().size(); i++)
-		if (!submenu->actions()[i]->isCheckable()) {
-			submenu->actions()[i]->setCheckable(true);
-            configManager.linkOptionToObject(&showGrammarType[i], submenu->actions()[i], LinkOptions());
-			LatexEditorView::setGrammarOverlayDisabled(i, !submenu->actions()[i]->isChecked());
+        if (!submenu->actions().at(i)->isCheckable()) {
+            submenu->actions().at(i)->setCheckable(true);
+            configManager.linkOptionToObject(&showGrammarType[i], submenu->actions().at(i), LinkOptions());
+            LatexEditorView::setGrammarOverlayDisabled(i, !submenu->actions().at(i)->isChecked());
 		}
 
 	menu->addSeparator();
@@ -1363,6 +1363,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "checkinstall", tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
 	newManagedAction(menu, "checkcwls", tr("Check Active Completion Files"), SLOT(checkCWLs()));
     newManagedAction(menu, "checklt", tr("Check LanguageTool"), SLOT(checkLanguageTool()));
+	newManagedAction(menu, "bugreport", tr("Bugs Report/Feature Request"), SLOT(openBugsAndFeatures()));
 	newManagedAction(menu, "appinfo", tr("About TeXstudio..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 
 	//additional elements for development
@@ -1982,9 +1983,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
-		PDFDocument::documentList().first()->loadFile(f_real);
-		PDFDocument::documentList().first()->show();
-		PDFDocument::documentList().first()->setFocus();
+        PDFDocument::documentList().at(0)->loadFile(f_real);
+        PDFDocument::documentList().at(0)->show();
+        PDFDocument::documentList().at(0)->setFocus();
 		return nullptr;
 	}
 	if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
@@ -2350,6 +2351,9 @@ void Texstudio::fileMakeTemplate()
 			UtilsUi::txsInformation(tr("Could not write template data:") + "\n" + fn);
 			return;
 		} else {
+#ifdef Q_OS_WIN
+			txt.replace("\r\n", "\n"); //on Windows QTextStream corrupts line endings by replacing "\n" with "\r\n", so "\r\n" becomes "\r\r\n"
+#endif
 			QTextStream out(&file_txt);
             //out.setCodec("UTF-8");
 			out << txt;
@@ -2654,7 +2658,7 @@ void Texstudio::fileSave(const bool saveSilently)
 	if (!currentEditor())
 		return;
 
-	if (currentEditor()->fileName() == "" || !QFileInfo(currentEditor()->fileName()).exists()) {
+    if (currentEditor()->fileName() == "" || !QFileInfo::exists(currentEditor()->fileName())) {
 		removeDiffMarkers();// clean document from diff markers first
 		fileSaveAs(currentEditor()->fileName(), saveSilently);
 	} else {
@@ -4147,7 +4151,6 @@ void Texstudio::readSettings(bool reread)
     }
     config->beginGroup("Editor Key Mapping New");
     QStringList sl = config->childKeys();
-    QSet<int>manipulatedOps;
     if (!sl.empty()) {
         foreach (const QString &key, sl) {
             if (key.isEmpty()) continue;
@@ -4159,15 +4162,6 @@ void Texstudio::readSettings(bool reread)
                     configManager.editorKeys.remove(realKey);
                 }
             } else {
-                /*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
-                                    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
-                                    if (!defaultKeys.isEmpty()) {
-                                        foreach(const QString elem,defaultKeys){
-                                            configManager.editorKeys.remove(elem);
-                                        }
-                                        manipulatedOps.insert(operationID);
-                                    }
-                                }*/
                 // replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
                 configManager.editorKeys.insert(key, operationID);
             }
@@ -5913,6 +5907,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		REQUIRE(doc);
 		doc->autoClose = autoClose;
 		oldPDFs << doc;
+                changePDFIconSize(configManager.guiPDFToolbarIconSize);
 	}
 
 	if (pdfFile.isNull()) {
@@ -6650,9 +6645,10 @@ void Texstudio::generalOptions()
         configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegularExpression("^[^*]+$"));
     }
     // GUI scaling
-    connect(&configManager, SIGNAL(iconSizeChanged(int)), this, SLOT(changeIconSize(int)));
-    connect(&configManager, SIGNAL(secondaryIconSizeChanged(int)), this, SLOT(changeSecondaryIconSize(int)));
-    connect(&configManager, SIGNAL(symbolGridIconSizeChanged(int)), this, SLOT(changeSymbolGridIconSize(int)));
+    connect(&configManager, &ConfigManager::iconSizeChanged, this, &Texstudio::changeIconSize);
+    connect(&configManager, &ConfigManager::secondaryIconSizeChanged, this, &Texstudio::changeSecondaryIconSize);
+    connect(&configManager, &ConfigManager::pdfIconSizeChanged , this, &Texstudio::changePDFIconSize);
+    connect(&configManager, &ConfigManager::symbolGridIconSizeChanged, this, [=](int size) { changeSymbolGridIconSize(size); });
 
     // The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
     QWidget *parentWindow = UtilsUi::windowForObject(sender(), this);
@@ -6763,6 +6759,7 @@ void Texstudio::generalOptions()
         // scale GUI
         changeIconSize(configManager.guiToolbarIconSize);
         changeSecondaryIconSize(configManager.guiSecondaryToolbarIconSize);
+        changePDFIconSize(configManager.guiPDFToolbarIconSize);
         changeSymbolGridIconSize(configManager.guiSymbolGridIconSize, false);
         //custom toolbar
         setupToolBars();
@@ -6846,6 +6843,10 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		if (args[i] == "--insert-cite" && i + 1 < args.size()) {
 			cite = args[++i];
 		}
+        if (args[i] == "--texpath" && i + 1 < args.size()) {
+            QString texPath=args[++i];
+            buildManager.resetDefaultCommands(texPath);
+        }
 #ifndef NO_POPPLER_PREVIEW
 		if (args[i] == "--pdf-viewer-only") pdfViewerOnly = true;
 		if (args[i] == "--page") page = args[++i].toInt() - 1;
@@ -7267,6 +7268,8 @@ void Texstudio::viewCloseElement()
 	if (completer && completer->isVisible() && completer->close()) {
 		return;
 	}
+    if (currentEditorView() && currentEditorView()->closeElement())
+        return;
     if (getManagedAction("main/tools/stopcompile")->isEnabled()) {
         getManagedAction("main/tools/stopcompile")->trigger();
         return;
@@ -7297,8 +7300,6 @@ void Texstudio::viewCloseElement()
 		textAnalysisDlg->close();
 		return;
 	}
-	if (currentEditorView() && currentEditorView()->closeElement())
-		return;
 	if (outputView->isVisible() && configManager.useEscForClosingLog) {
 		outputView->hide();
 		return;
@@ -7422,7 +7423,7 @@ void Texstudio::pdfClosed()
 QObject *Texstudio::newPdfPreviewer(bool embedded)
 {
 	PDFDocument *pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, embedded);
-	pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiSecondaryToolbarIconSize : configManager.guiToolbarIconSize);
+    pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiPDFToolbarIconSize : configManager.guiToolbarIconSize);
 	if (embedded) {
 		mainHSplitter->addWidget(pdfviewerWindow);
 		QList<int> sz = mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
@@ -8692,7 +8693,7 @@ void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)
 	// TODO: The search of the line should also be switched to the token system
 
 	QDocumentLineHandle *dlh = currentEditor()->document()->line(m).handle();
-	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	QString label = Parsing::getArg(tl, Token::label);
 	if (!label.isEmpty()) {
 		currentEditor()->write(refCmd + "{" + label + "}");
@@ -9917,16 +9918,16 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 
 	if (editors) {
 		documents.enablePatch(false);
-		foreach (LatexDocument *doc, documents.getDocuments()) {
-		LatexEditorView *edView=doc->getEditorView();
-		if(edView) {
-			QEditor *ed = edView->editor;
-			if (ed->languageDefinition() == oldLangDef) {
-				ed->setLanguageDefinition(newLangDef);
-                // ed->highlight(); is executed by caller !
-			}
-		}
-		}
+        foreach (LatexDocument *doc, documents.getDocuments()) {
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView) {
+                QEditor *ed = edView->editor;
+                if (ed->languageDefinition() == oldLangDef) {
+                    ed->setLanguageDefinition(newLangDef);
+                    // ed->highlight(); is executed by caller !
+                }
+            }
+        }
 		documents.enablePatch(true);
 	}
 }
@@ -10748,7 +10749,7 @@ void Texstudio::closeEnvironment()
 	// the below method is not exact and will fail on certain edge cases
 	// for the time being this is good enough. An alternative approach may use the token system:
 	//   QDocumentLineHandle *dlh = edView->document->line(cursor.lineNumber()).handle();
-	//   TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    //   TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	if (cursor.columnNumber() > 0) {
 		QString text = cursor.line().text();
         QRegularExpression rxBegin = QRegularExpression("\\\\begin\\{([^}]+)\\}");
@@ -10781,7 +10782,7 @@ void Texstudio::closeEnvironment()
 		return;
 	StackEnvironment env_end;
 	QDocumentLineHandle *dlh = edView->document->line(lineCount - 1).handle();
-	QVariant envVar = dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+    QVariant envVar = dlh->getCookieLocked(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 	if (envVar.isValid())
 		env_end = envVar.value<StackEnvironment>();
 	else
@@ -10936,11 +10937,22 @@ void Texstudio::changeSecondaryIconSize(int value)
 			bt->setIconSize(QSize(iconWidth, iconWidth));
 		}
 	}
+}
+/*!
+ * \brief change icon size of embbedded pdf viewer toolbar
+ * \param value
+ */
+void Texstudio::changePDFIconSize(int value){
+    // adapt icon size to dpi
+    double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    double scale=dpi/96;
+
+    int iconWidth=qRound(value*scale);
 
 #ifndef NO_POPPLER_PREVIEW
-	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
-		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
-	}
+        foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
+                if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(iconWidth);
+        }
 #endif
 }
 /*!
@@ -11009,6 +11021,10 @@ void Texstudio::paletteChanged(const QPalette &palette){
         QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(edView->codeeditor->panels("Search")[0]);
         searchpanel->updateIcon();
     }
+}
+
+void Texstudio::openBugsAndFeatures() {
+	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
 }
 
 /*! @} */

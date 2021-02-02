@@ -1,12 +1,13 @@
-# Affix file for British English MySpell dictionary.
+﻿# Affix file for British English MySpell dictionary.
 # Also suitable as basis for Commonwealth and European English.
 # Built from scratch for MySpell. Released under LGPL.
 #
 # Sources used to verify the spelling of the words which
 # Marco Pinto included in the dictionary:
-#   1) Oxford Dictionaries;    4) Wiktionary (used with caution);
-#   2) Collins Dictionary;     5) Wikipedia (used with caution);   
-#   3) Macmillan Dictionary;   6) Physical dictionaries.
+#   1) Oxford Dictionaries;    5) Merriam-Webster Dictionary (used with caution ⚠);
+#   2) Collins Dictionary;     6) Wiktionary (used with caution ⚠);
+#   3) Macmillan Dictionary;   7) Wikipedia (used with caution ⚠);
+#   4) Cambridge Dictionary;   8) Physical dictionaries.
 #
 # Main difficulties developing this dictionary:
 #   1) Proper names;
@@ -14,7 +15,7 @@
 #   3) Plurals.
 #
 # David Bartlett, Andrew Brown, Marco A.G.Pinto.
-# V 2.66, 2018-11-01
+# V 2.90, 2020-11-01
 
 SET UTF-8
 
@@ -98,8 +99,8 @@ PFX e 0 out .
 PFX f Y 2
 PFX f 0 under [^r] 
 PFX f 0 under- r 
-PFX O Y 1
-PFX O 0 non- . 
+PFX ^ Y 1
+PFX ^ 0 non- . 
 PFX 4 Y 1
 PFX 4 0 trans . 
 
@@ -151,7 +152,7 @@ SFX u 0 ativeness [^aeiou]l
 SFX u 0 iveness [st] 
 SFX u y icativeness y 
 SFX u 0 ativeness [^abdeilosty] 
-SFX N Y 26
+SFX N Y 34
 SFX N b ption b 
 SFX N d sion d 
 SFX N be ption be 
@@ -160,11 +161,19 @@ SFX N de sion de
 SFX N ke cation ke 
 SFX N e ption ume 
 SFX N e mation [^u]me 
-SFX N e ion [^o]se 
+SFX N e ion [^i]cise 
+SFX N e ion [tfl]use 
+SFX N e ion [rsn]se 
+SFX N e ion ulse 
+SFX N e ion [v]ise 
 SFX N e ition ose 
 SFX N e ation [iou]te 
 SFX N e ion [^iou]te 
+SFX N e ation [^emnx][rc]ise 
+SFX N e ation [btv][e][rc]ise 
 SFX N e ation [^bcdkmst]e 
+SFX N e ation [^uriolsna][^bcdkmztrlvgu]e 
+SFX N e ation [^crbv][mi][^bcdkmztrlvgun]e 
 SFX N el ulsion el 
 SFX N 0 lation [aiou]l 
 SFX N 0 ation [^aeiou]l 
@@ -178,7 +187,7 @@ SFX N 0 ion [^m]it
 SFX N 0 ation [^i]t 
 SFX N y ication y 
 SFX N 0 ation [^bdelmrstxy] 
-SFX n Y 28
+SFX n Y 42
 SFX n 0 tion a 
 SFX n e tion ce 
 SFX n ke cation ke 
@@ -194,19 +203,33 @@ SFX n y ation py
 SFX n y ication [^p]y 
 SFX n 0 ation [^aelry] 
 SFX n 0 tions a 
+SFX n 0 tion's a
 SFX n e tions ce 
+SFX n e tion's ce 
 SFX n ke cations ke 
+SFX n ke cation's ke 
 SFX n e ations [iou]te 
+SFX n e ation's [iou]te 
 SFX n e ions [^iou]te 
+SFX n e ion's [^iou]te 
 SFX n e ations [^ckt]e 
+SFX n e ation's [^ckt]e 
 SFX n el ulsions el 
+SFX n el ulsion's el 
 SFX n 0 lations [aiou]l 
+SFX n 0 lation's [aiou]l 
 SFX n 0 ations [^aeiou]l 
+SFX n 0 ation's [^aeiou]l 
 SFX n er rations er 
+SFX n er ration's er 
 SFX n 0 ations [^e]r 
+SFX n 0 ation's [^e]r 
 SFX n y ations py 
+SFX n y ation's py 
 SFX n y ications [^p]y 
+SFX n y ication's [^p]y 
 SFX n 0 ations [^aelry] 
+SFX n 0 ation's [^aelry] 
 SFX X Y 26
 SFX X b ptions b 
 SFX X d sions d 
@@ -425,7 +448,7 @@ SFX h 0 edly [aeiou]y
 SFX h 0 edly [aeio][aeiou][bcdfgklmnprstvz] 
 SFX h 0 edly [^aeiou][bcdfgklmnprstvz] 
 SFX h 0 edly [^ebcdfgklmnprstvyz] 
-SFX i Y 22
+SFX i Y 66
 SFX i 0 dness e 
 SFX i 0 bedness [^aeio][aeiou]b 
 SFX i 0 kedness [^aeio][aeiou]c 
@@ -448,6 +471,50 @@ SFX i 0 edness [aeiou]y
 SFX i 0 edness [aeio][aeiou][bcdfgklmnprstvz] 
 SFX i 0 edness [^aeiou][bcdfgklmnprstvz] 
 SFX i 0 edness [^ebcdfgklmnprstvyz] 
+SFX i 0 dnesses e 
+SFX i 0 bednesses [^aeio][aeiou]b 
+SFX i 0 kednesses [^aeio][aeiou]c 
+SFX i 0 dednesses [^aeio][aeiou]d 
+SFX i 0 fednesses [^aeio][aeiou]f 
+SFX i 0 gednesses [^aeio][aeiou]g 
+SFX i 0 kednesses [^aeio][aeiou]k 
+SFX i 0 lednesses [^aeio][aeiou]l 
+SFX i 0 mednesses [^aeio][aeiou]m 
+SFX i 0 nednesses [^aeio][aiou]n 
+SFX i 0 pednesses [^aeio][aeiou]p 
+SFX i 0 rednesses [^aeio][aiou]r 
+SFX i 0 sednesses [^aeio][aeiou]s 
+SFX i 0 tednesses [^aeio][aiou]t 
+SFX i 0 vednesses [^aeio][aeiou]v 
+SFX i 0 zednesses [^aeio][aeiou]z 
+SFX i 0 ednesses [^aeio]e[nrt] 
+SFX i y iednesses [^aeiou]y 
+SFX i 0 ednesses [aeiou]y 
+SFX i 0 ednesses [aeio][aeiou][bcdfgklmnprstvz] 
+SFX i 0 ednesses [^aeiou][bcdfgklmnprstvz] 
+SFX i 0 ednesses [^ebcdfgklmnprstvyz] 
+SFX i 0 dness's e 
+SFX i 0 bedness's [^aeio][aeiou]b 
+SFX i 0 kedness's [^aeio][aeiou]c 
+SFX i 0 dedness's [^aeio][aeiou]d 
+SFX i 0 fedness's [^aeio][aeiou]f 
+SFX i 0 gedness's [^aeio][aeiou]g 
+SFX i 0 kedness's [^aeio][aeiou]k 
+SFX i 0 ledness's [^aeio][aeiou]l 
+SFX i 0 medness's [^aeio][aeiou]m 
+SFX i 0 nedness's [^aeio][aiou]n 
+SFX i 0 pedness's [^aeio][aeiou]p 
+SFX i 0 redness's [^aeio][aiou]r 
+SFX i 0 sedness's [^aeio][aeiou]s 
+SFX i 0 tedness's [^aeio][aiou]t 
+SFX i 0 vedness's [^aeio][aeiou]v 
+SFX i 0 zedness's [^aeio][aeiou]z 
+SFX i 0 edness's [^aeio]e[nrt] 
+SFX i y iedness's [^aeiou]y 
+SFX i 0 edness's [aeiou]y 
+SFX i 0 edness's [aeio][aeiou][bcdfgklmnprstvz] 
+SFX i 0 edness's [^aeiou][bcdfgklmnprstvz] 
+SFX i 0 edness's [^ebcdfgklmnprstvyz] 
 SFX T Y 42
 SFX T 0 r e 
 SFX T 0 st e
@@ -599,13 +666,16 @@ SFX S 0 s [ae]u
 SFX S 0 x [ae]u 
 SFX S 0 s [^ae]u 
 SFX S 0 s [^hsuxyz]
-SFX P Y 6
+SFX P Y 9
 SFX P y iness [^aeiou]y 
 SFX P 0 ness [aeiou]y 
 SFX P 0 ness [^y] 
+SFX P y inesses [^aeiou]y 
+SFX P 0 nesses [aeiou]y 
+SFX P 0 nesses [^y] 
 SFX P y iness's [^aeiou]y 
 SFX P 0 ness's [aeiou]y 
-SFX P 0 ness's [^y] 
+SFX P 0 ness's [^y]  
 SFX m Y 20
 SFX m 0 sman [bdknmt] 
 SFX m 0 sman [aeiou][bdklmnt]e 
@@ -627,7 +697,7 @@ SFX m 0 smen's [aeiou][bdklmnt]e
 SFX m 0 men's [^aeiou][bdklmnt]e 
 SFX m 0 men's [^bdklmnt]e 
 SFX m 0 men's [^bdeknmt] 
-SFX 5 Y 16
+SFX 5 Y 20
 SFX 5 0 swoman [bdknmt] 
 SFX 5 0 swoman [aeiou][bdklmnt]e 
 SFX 5 0 woman [^aeiou][bdklmnt]e 
@@ -644,6 +714,10 @@ SFX 5 0 woman's [^aeiou][bdklmnt]e
 SFX 5 0 woman's [^bdklmnt]e 
 SFX 5 0 woman's [^bdeknmt] 
 SFX 5 0 women's [^bdeknmt] 
+SFX 5 0 swomen's [bdknmt] 
+SFX 5 0 swomen's [aeiou][bdklmnt]e 
+SFX 5 0 women's [^aeiou][bdklmnt]e 
+SFX 5 0 women's [^bdklmnt]e 
 SFX 6 Y 3
 SFX 6 y iful [^aeiou]y 
 SFX 6 0 ful [aeiou]y 
@@ -1006,30 +1080,38 @@ SFX L 0 ament's m
 SFX L y iment's [^aeiou]y 
 SFX L 0 ment's [aeiou]y 
 SFX L 0 ment's [^my] 
-SFX Z Y 22
-SFX Z e y [^aeiouy]e 
-SFX Z 0 y [aeiouy]e 
-SFX Z 0 ey [aiouy] 
-SFX Z 0 by [^aeio][aeiou]b 
-SFX Z 0 ky [^aeio][aeiou]c 
-SFX Z 0 dy [^aeio][aeiou]d 
-SFX Z 0 fy [^aeio][aeiou]f 
-SFX Z 0 gy [^aeio][aeiou]g 
-SFX Z 0 ky [^aeio][aeiou]k 
-SFX Z 0 ly [^aeio][aeiou]l 
-SFX Z 0 my [^aeio][aeiou]m 
-SFX Z 0 ny [^aeio][aiou]n 
-SFX Z 0 py [^aeio][aeiou]p 
-SFX Z 0 ry [^aeio][aiou]r 
-SFX Z 0 sy [^aeio][aeiou]s 
-SFX Z 0 ty [^aeio][aiou]t 
-SFX Z 0 vy [^aeio][aeiou]v 
-SFX Z 0 zy [^aeio][aeiou]z 
-SFX Z 0 y [^aeio]e[nrt] 
-SFX Z 0 y [aeio][aeiou][bcdfgklmnprstvz] 
-SFX Z 0 y [^aeiou][bcdfgklmnprstvz] 
-SFX Z 0 y [^aebcdfgiklmnoprstuvyz] 
-SFX 2 Y 21
+SFX Z Y 30
+SFX Z ic y dic
+SFX Z e y [^aeiouy]e
+SFX Z 0 y [aeiouy]e
+SFX Z 0 ey [aiouy]
+SFX Z 0 by [^aeio][aeiou]b
+SFX Z 0 ky [^adeio][aeiou]c
+SFX Z 0 dy [^aegio][aeiou]d
+SFX Z 0 fy [^aeio][aeiou]f
+SFX Z 0 gy [^aeio][aeiou]g
+SFX Z 0 ky [^aeio][aeiou]k
+SFX Z 0 ly [^aeio][aeiou]l
+SFX Z 0 my [^aeio][aeiou]m
+SFX Z 0 ny [^aeio][aiou]n
+SFX Z 0 py [^aeio][aeiou]p
+SFX Z 0 ry [^aegilost][aiou]r
+SFX Z 0 ry lur
+SFX Z 0 ry tar
+SFX Z 0 y [^aceiglmopt][a]r
+SFX Z 0 y [gl][a]r
+SFX Z 0 y [st]or
+SFX Z 0 y ged
+SFX Z 0 sy [^aeio][aeiou]s
+SFX Z 0 ty [^aeio][aiou]t
+SFX Z 0 vy [^aeio][aeiou]v
+SFX Z 0 zy [^aeio][aeiou]z
+SFX Z 0 y [^aeio]e[nrt]
+SFX Z 0 y [aeio][aeiou][bcdfgklmnprtvz]
+SFX Z 0 y [^aeiou][bcdfgklmnprstvz]
+SFX Z 0 y [^aebcdfgiklmnoprstuvyz]
+SFX Z 0 ity ous
+SFX 2 Y 63
 SFX 2 e iness [^aeiouy]e 
 SFX 2 0 iness [aeiouy]e 
 SFX 2 0 biness [^aeio][aeiou]b 
@@ -1050,7 +1132,49 @@ SFX 2 0 ziness [^aeio][aeiou]z
 SFX 2 0 iness [^aeio]e[nrt] 
 SFX 2 0 iness [aeio][aeiou][bcdfgklmnprstvz] 
 SFX 2 0 iness [^aeiou][bcdfgklmnprstvz] 
-SFX 2 0 iness [^ebcdfgklmnprstvz] 
+SFX 2 0 iness [^ebcdfgklmnprstvz]
+SFX 2 e inesses [^aeiouy]e 
+SFX 2 0 inesses [aeiouy]e 
+SFX 2 0 binesses [^aeio][aeiou]b 
+SFX 2 0 kinesses [^aeio][aeiou]c 
+SFX 2 0 dinesses [^aeio][aeiou]d 
+SFX 2 0 finesses [^aeio][aeiou]f 
+SFX 2 0 ginesses [^aeio][aeiou]g 
+SFX 2 0 kinesses [^aeio][aeiou]k 
+SFX 2 0 linesses [^aeio][aeiou]l 
+SFX 2 0 minesses [^aeio][aeiou]m 
+SFX 2 0 ninesses [^aeio][aiou]n 
+SFX 2 0 pinesses [^aeio][aeiou]p 
+SFX 2 0 rinesses [^aeio][aiou]r 
+SFX 2 0 sinesses [^aeio][aeiou]s 
+SFX 2 0 tinesses [^aeio][aiou]t 
+SFX 2 0 vinesses [^aeio][aeiou]v 
+SFX 2 0 zinesses [^aeio][aeiou]z 
+SFX 2 0 inesses [^aeio]e[nrt] 
+SFX 2 0 inesses [aeio][aeiou][bcdfgklmnprstvz] 
+SFX 2 0 inesses [^aeiou][bcdfgklmnprstvz] 
+SFX 2 0 inesses [^ebcdfgklmnprstvz]
+SFX 2 e iness's [^aeiouy]e 
+SFX 2 0 iness's [aeiouy]e 
+SFX 2 0 biness's [^aeio][aeiou]b 
+SFX 2 0 kiness's [^aeio][aeiou]c 
+SFX 2 0 diness's [^aeio][aeiou]d 
+SFX 2 0 finess's [^aeio][aeiou]f 
+SFX 2 0 giness's [^aeio][aeiou]g 
+SFX 2 0 kiness's [^aeio][aeiou]k 
+SFX 2 0 liness's [^aeio][aeiou]l 
+SFX 2 0 miness's [^aeio][aeiou]m 
+SFX 2 0 niness's [^aeio][aiou]n 
+SFX 2 0 piness's [^aeio][aeiou]p 
+SFX 2 0 riness's [^aeio][aiou]r 
+SFX 2 0 siness's [^aeio][aeiou]s 
+SFX 2 0 tiness's [^aeio][aiou]t 
+SFX 2 0 viness's [^aeio][aeiou]v 
+SFX 2 0 ziness's [^aeio][aeiou]z 
+SFX 2 0 iness's [^aeio]e[nrt] 
+SFX 2 0 iness's [aeio][aeiou][bcdfgklmnprstvz] 
+SFX 2 0 iness's [^aeiou][bcdfgklmnprstvz] 
+SFX 2 0 iness's [^ebcdfgklmnprstvz]
 SFX z Y 24
 SFX z e ily [^aeiouy]e 
 SFX z 0 ily [aeiouy]e 
@@ -1074,7 +1198,7 @@ SFX z 0 vily [^aeio][aeiou]v
 SFX z 0 zily [^aeio][aeiou]z 
 SFX z 0 ily [^aeio]e[nrt] 
 SFX z 0 ily [aeio][aeiou][bcdfgklmnprstvyz] 
-SFX z 0 ily [^aeiou][bcdfgklmnprstvyz] 
+SFX z 0 ily [^aeiou][bcdfgklmnprstvz] 
 SFX z 0 ily [^ebcdfgklmnprstvyz] 
 SFX y Y 15
 SFX y e ory te 
@@ -1092,19 +1216,29 @@ SFX y 0 ry [^i]on
 SFX y 0 nery [aiu]n 
 SFX y 0 ry [^aiou]n 
 SFX y 0 ry [^ehmstn] 
-SFX O Y 12
-SFX O 0 l a 
-SFX O e al [^bcgv]e 
-SFX O e ial [bcgv]e 
-SFX O 0 ial [bcrx] 
-SFX O um al um 
-SFX O 0 al [^u]m 
-SFX O y al ty 
-SFX O y ial [^t]y 
-SFX O 0 ual [px]t 
-SFX O 0 tal [iu]t 
-SFX O 0 al [^ipux]t 
-SFX O 0 al [^aebcrtxmy] 
+SFX O Y 22
+SFX O 0 al ch[ei]
+SFX O 0 al te
+SFX O 0 al [eimru][bfn]
+SFX O 0 al ss
+SFX O 0 al it
+SFX O 0 al [nt]ant
+SFX O 0 al [ghiorstx][ao]n
+SFX O 0 al [eo]nt
+SFX O 0 al as
+SFX O 0 l a
+SFX O 0 al [cos]t
+SFX O 0 ial eon
+SFX O 0 al [cdghmpwx]
+SFX O 0 ial r
+SFX O e ial [ai]ge
+SFX O e ial ice
+SFX O 0 tal ut
+SFX O e inal ude
+SFX O e al [mnrsv]e
+SFX O e al [aioy][dp]e
+SFX O e al uge
+SFX O y ial y
 SFX o Y 12
 SFX o 0 lly a 
 SFX o e ally [^bcgv]e 
@@ -1118,28 +1252,32 @@ SFX o 0 ually [px]t
 SFX o 0 tally [iu]t 
 SFX o 0 ally [^ipux]t 
 SFX o 0 ally [^aebcrtxmy] 
-SFX W Y 21
+SFX W Y 25
 SFX W ce tific ce 
 SFX W e atic me 
 SFX W se tic se 
 SFX W le ic ble 
 SFX W e ic [^b]le 
 SFX W e ic [^clms]e 
-SFX W 0 lic [ay]l 
+SFX W 0 lic [^x][ay]l 
+SFX W 0 ic [x][ay]l 
 SFX W 0 ic [^ay]l 
 SFX W us ic us 
 SFX W 0 tic [^u]s 
-SFX W er ric er 
+SFX W er ric [^hm]er 
 SFX W 0 ic [^e]r 
 SFX W 0 atic [aeiou]m 
 SFX W 0 ic [^aeiou]m 
 SFX W 0 tic ma 
-SFX W a ic [^m]a 
+SFX W a ic [^im]a 
+SFX W a c [i]a 
 SFX W y etic thy 
 SFX W y ic [^t]hy 
 SFX W y tic sy 
 SFX W y ic [^hs]y 
-SFX W 0 ic [^aelmrsy] 
+SFX W 0 ic [^aeilmrsy] 
+SFX W 0 ic [hm]er 
+SFX W 0 c [dghlmsz]i 
 SFX w Y 9
 SFX w e ical e 
 SFX w er rical er 
@@ -1160,25 +1298,47 @@ SFX 1 0 tically ma
 SFX 1 a ically [^m]a 
 SFX 1 y ically y 
 SFX 1 0 ically [^aemry] 
-SFX 3 Y 21
+SFX 3 Y 27
 SFX 3 e ist [^aceiou]e 
 SFX 3 ce tist ce 
 SFX 3 0 ist [aeiou]e 
+SFX 3 y ist apy
+SFX 3 y ist ropy
 SFX 3 y ist [^aeioubp]y 
-SFX 3 0 ist [aeioubp]y 
+SFX 3 0 ist [^r][^a][aeioubp]y 
 SFX 3 o ist o 
-SFX 3 0 ists [^eoy] 
+SFX 3 0 ist [^eoy] 
 SFX 3 e ists [^aceiou]e 
 SFX 3 ce tists ce 
 SFX 3 0 ists [aeiou]e 
+SFX 3 y ists apy 
+SFX 3 y ists ropy 
 SFX 3 y ists [^aeioubp]y 
-SFX 3 0 ists [aeioubp]y 
+SFX 3 0 ists [^r][^a][aeioubp]y 
 SFX 3 o ists o 
 SFX 3 0 ists [^eoy] 
 SFX 3 e ist's [^aceiou]e 
 SFX 3 ce tist's ce 
 SFX 3 0 ist's [aeiou]e 
+SFX 3 y ist's apy 
+SFX 3 y ist's ropy 
 SFX 3 y ist's [^aeioubp]y 
-SFX 3 0 ist's [aeioubp]y 
+SFX 3 0 ist's [^r][^a][aeioubp]y 
 SFX 3 o ist's o 
 SFX 3 0 ist's [^eoy] 
+SFX = Y 15
+SFX = y ilessness [^aeiou]y
+SFX = y ilessness's [^aeiou]y
+SFX = y ilessnesses [^aeiou]y
+SFX = 0 lessness [aeiou]y
+SFX = 0 lessness's [aeiou]y
+SFX = 0 lessnesses [aeiou]y
+SFX = 0 essness ll
+SFX = 0 essness's ll
+SFX = 0 essnesses ll
+SFX = 0 lessness [^l]l
+SFX = 0 lessness's [^l]l
+SFX = 0 lessnesses [^l]l
+SFX = 0 lessness [^ly]
+SFX = 0 lessness's [^ly]
+SFX = 0 lessnesses [^ly]
