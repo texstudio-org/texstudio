@@ -3086,7 +3086,7 @@ retryNow:
         renderManager = nullptr;
 	}
 
-	renderManager = new PDFRenderManager(this);
+    renderManager = new PDFRenderManager(this,globalConfig->limitThreadNumber);
 	renderManager->setCacheSize(globalConfig->cacheSizeMB);
 	renderManager->setLoadStrategy(int(globalConfig->loadStrategy));
 	PDFRenderManager::Error error = PDFRenderManager::NoError;

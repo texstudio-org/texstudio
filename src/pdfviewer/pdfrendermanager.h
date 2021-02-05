@@ -98,7 +98,7 @@ class PDFRenderManager : public QObject
 	Q_OBJECT
 
 public:
-	explicit PDFRenderManager(QObject *parent, int limitQueues = -1);
+    explicit PDFRenderManager(QObject *parent, int limitQueues = 0);
 	~PDFRenderManager();
 
 	static const int BufferedLoad = 0;

@@ -67,7 +67,13 @@ void CachePixmap::setRes(qreal res, int x, int y)
 	this->y = y;
 	this->resolution = res;
 }
-
+/*!
+ * \brief PDFRenderManager::PDFRenderManager
+ * \param parent
+ * \param limitQueues limit the number of parallel threads to render pdf.
+ * Negative number means limit number to abs() if that number is smaler than cores, positive number sets it to the given value.
+ *
+ */
 PDFRenderManager::PDFRenderManager(QObject *parent, int limitQueues) :
 	QObject(parent), cachedNumPages(0), loadStrategy(HybridLoad)
 {
@@ -78,6 +84,9 @@ PDFRenderManager::PDFRenderManager(QObject *parent, int limitQueues) :
 		queueAdministration->num_renderQueues = 2;
 		if (QThread::idealThreadCount() > 2)
 			queueAdministration->num_renderQueues = QThread::idealThreadCount();
+        if(limitQueues < 0 && queueAdministration->num_renderQueues>-limitQueues){
+            queueAdministration->num_renderQueues = -limitQueues;
+        }
 	}
 	for (int i = 0; i < queueAdministration->num_renderQueues; i++) {
         auto *renderQueue = new PDFRenderEngine(nullptr, queueAdministration);
