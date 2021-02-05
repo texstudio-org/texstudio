@@ -67,27 +67,17 @@ jobs:
         
     - name: Deploy zip to Bintray
       if: github.event_name == 'push'
-      uses: ./.github/actions/deploy-bintray
+      uses: actions/upload-artifact@v2
       with:
-        file: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
-        subject: sunderme
-        repo: texstudio
-        pkg: texstudio-win
-        version: ${{ steps.package.outputs.VERSION_NAME }}
-        username: sunderme
-        key: ${{ secrets.bintrayAPI }}
+      	name: texstudio-win-zip
+        path: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
         
-    - name: Deploy exe to Bintray
+    - name: Deploy as Artifact
       if: github.event_name == 'push'
-      uses: ./.github/actions/deploy-bintray
+      uses: actions/upload-artifact@v2
       with:
-        file: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
-        subject: sunderme
-        repo: texstudio
-        pkg: texstudio-win
-        version: ${{ steps.package.outputs.VERSION_NAME }}
-        username: sunderme
-        key: ${{ secrets.bintrayAPI }}
+      	name: texstudio-win-exe
+        path: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
       
 ###################################
 
@@ -124,17 +114,10 @@ jobs:
         echo "::set-output name=VERSION::${VERSION}"
         
     - name: Upload to Bintray
-      uses: bpicode/github-action-upload-bintray@master
+      uses: actions/upload-artifact@v2
       with:
-        file: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
-        api_user: sunderme
-        api_key: ${{ secrets.bintrayAPI }}
-        repository_user: sunderme
-        repository: texstudio
-        package: texstudio-linux
-        version: ${{ steps.package.outputs.VERSION_NAME }}
-        publish: 1
-        calculate_metadata: false
+      	name: texstudio-linux
+        path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
      
 ############################
       
@@ -170,15 +153,10 @@ jobs:
         
     - name: Deploy to Bintray
       if: github.event_name == 'push'
-      uses: ./.github/actions/deploy-bintray
+      uses: actions/upload-artifact@v2
       with:
-        file: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
-        subject: sunderme
-        repo: texstudio
-        pkg: texstudio-osx
-        version: ${{ steps.package.outputs.VERSION_NAME}}
-        username: sunderme
-        key: ${{ secrets.bintrayAPI }}
+      	name: texstudio-osx
+        path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
    
 
 
