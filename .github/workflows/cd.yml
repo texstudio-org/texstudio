@@ -69,14 +69,14 @@ jobs:
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
-      	name: texstudio-win-zip
+        name: texstudio-win-zip
         path: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
         
     - name: Deploy as Artifact
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
-      	name: texstudio-win-exe
+        name: texstudio-win-exe
         path: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
       
 ###################################
@@ -116,7 +116,7 @@ jobs:
     - name: Upload to Bintray
       uses: actions/upload-artifact@v2
       with:
-      	name: texstudio-linux
+        name: texstudio-linux
         path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
      
 ############################
@@ -155,7 +155,7 @@ jobs:
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
-      	name: texstudio-osx
+        name: texstudio-osx
         path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
    
 
