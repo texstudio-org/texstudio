@@ -37,7 +37,6 @@
 #include "PDFDocks.h"
 #include "PDFDocument.h"
 #include "universalinputdialog.h"
-#include "poppler-version.h"
 
 /*!
  * \brief constructor

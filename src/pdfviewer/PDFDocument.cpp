@@ -49,7 +49,6 @@
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
-#include "poppler-version.h"
 
 #define SYNCTEX_GZ_EXT	".synctex.gz"
 #define SYNCTEX_EXT		".synctex"
