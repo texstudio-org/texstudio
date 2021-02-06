@@ -120,7 +120,7 @@ static void fillToc(const QDomNode &parent, QTreeWidget *tree, QTreeWidgetItem *
 			fillToc(node, tree, newitem);
 	}
 }
-#if POPPLER_VERSION_MAJOR>0 || POPPLER_VERSION_MINOR>=74
+#ifdef HAS_POPPLER_74
 static void fillOutline(const QVector<Poppler::OutlineItem>toc, QTreeWidget *tree, QTreeWidgetItem *parentItem)
 {
     QTreeWidgetItem *newitem = nullptr;
@@ -184,7 +184,7 @@ void PDFOutlineDock::fillInfo()
 {
 	tree->clear();
 	if (!document || document->popplerDoc().isNull()) return;
-#if POPPLER_VERSION_MAJOR>0 || POPPLER_VERSION_MINOR>=74
+#ifdef HAS_POPPLER_74
     QVector<Poppler::OutlineItem>toc=document->popplerDoc()->outline();
     if(!toc.isEmpty()){
         fillOutline(toc, tree, nullptr);
