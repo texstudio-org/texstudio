@@ -49,6 +49,7 @@
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
+#include "poppler-version.h"
 
 #define SYNCTEX_GZ_EXT	".synctex.gz"
 #define SYNCTEX_EXT		".synctex"
@@ -1067,9 +1068,17 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination &dest)
 void PDFWidget::goToDestination(const QString &destName)
 {
 	if (document.isNull()) return;
-	const Poppler::LinkDestination *dest = document->linkDestination(destName);
-	if (dest)
+#if POPPLER_VERSION_MAJOR>0 || POPPLER_VERSION_MINOR>=74
+    const Poppler::LinkDestination dest=Poppler::LinkDestination(destName);
+    goToDestination(dest);
+#else
+    const Poppler::LinkDestination *dest = document->linkDestination(destName);
+    if (dest){
 		goToDestination(*dest);
+    }
+#endif
+
+
 }
 
 void PDFWidget::goToPageRelativePosition(int page, double xinpdf, double yinpdf)
