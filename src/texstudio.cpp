@@ -11021,12 +11021,14 @@ void Texstudio::updateTOC(){
  */
 bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector) {
     bool elementsAdded=false;
+    QString docName=se->document->getName();
     for(StructureEntry* elem:se->children){
         if(elem->type == StructureEntry::SE_SECTION){
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             elementsAdded=true;
             item->setText(0,elem->title);
+            item->setToolTip(0,tr("Document: ")+docName);
             item->setIcon(0,documents.model->iconSection.value(elem->level));
             rootVector[elem->level]->addChild(item);
             // fill rootVector with item for subsequent lower level elements (which are children of item then)
@@ -11049,6 +11051,7 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             if(!ea){
                 QTreeWidgetItem * item=new QTreeWidgetItem();
                 item->setText(0,elem->title);
+                item->setToolTip(0,tr("Document: ")+docName);
                 item->setIcon(0,documents.model->iconInclude);
                 rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
             }
