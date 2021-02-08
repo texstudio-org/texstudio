@@ -668,6 +668,9 @@ void Texstudio::setupDockWidgets()
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem *,int)), this, SLOT(gotoLine(QTreeWidgetItem *,int)));
+        connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem *)), this, SLOT(syncExpanded(QTreeWidgetItem *)));
+        connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), this, SLOT(syncCollapsed(QTreeWidgetItem *)));
+        connect(topTOCTreeWidget, QTreeWidget::);
         topTOCTreeWidget->setHeaderHidden(true);
         leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("structure"));
     } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
@@ -11022,7 +11025,7 @@ void Texstudio::updateTOC(){
 bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector) {
     bool elementsAdded=false;
     QString docName=se->document->getName();
-    for(StructureEntry* elem:se->children){
+    foreach(StructureEntry* elem,se->children){
         if(elem->type == StructureEntry::SE_SECTION){
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
@@ -11031,6 +11034,7 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             item->setToolTip(0,tr("Document: ")+docName);
             item->setIcon(0,documents.model->iconSection.value(elem->level));
             rootVector[elem->level]->addChild(item);
+            item->setExpanded(elem->expanded);
             // fill rootVector with item for subsequent lower level elements (which are children of item then)
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
@@ -11059,6 +11063,25 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
         }
     }
     return elementsAdded;
+}
+/*!
+ * \brief sync expanded state to structure entry
+ * \param item
+ */
+void Texstudio::syncExpanded(QTreeWidgetItem *item){
+    StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if(!se) return;
+    se->expanded=true;
+}
+
+/*!
+ * \brief sync collapsed state to structure entry
+ * \param item
+ */
+void Texstudio::syncCollapsed(QTreeWidgetItem *item){
+    StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if(!se) return;
+    se->expanded=false;
 }
 
 /*! @} */

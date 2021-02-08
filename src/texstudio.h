@@ -222,6 +222,8 @@ private:
     bool parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector);
 private slots:
     void updateTOC();
+    void syncExpanded(QTreeWidgetItem *item);
+    void syncCollapsed(QTreeWidgetItem *item);
 
 	void relayToEditorSlot();
 	void relayToOwnSlot();

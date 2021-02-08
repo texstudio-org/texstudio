@@ -26,6 +26,7 @@ struct StructureEntry {
 	QString tooltip; ///< optional because most tooltips are automatically generated.
 	int level; ///< only used for section types!
 	bool valid; ///< currently only used for includes and magic comments
+    bool expanded; ///< remember collapsed/expanded for toplevel TOC
 	QList<StructureEntry *> children; ///< children
 	StructureEntry *parent; ///< parent for easier tree structure parsing
 	LatexDocument *document;
