@@ -1,6 +1,14 @@
 TeXstudio 3.0.5
 -----------------
 - fix crash when deleting all elements of a build chain (#1415)
+- fix large tooltips on win with ADWAITA style
+- number of pdf rendering threads limited to 8 (or to set value, see #1463)
+- add command line option --texpath to force a tex path
+- fix touchpad scroll in x direction
+- fix a seldom crash
+- adapt speller dialog to find the same errors as the online checker
+- fix replace in global search
+
 
 TeXstudio 3.0.4
 -----------------
