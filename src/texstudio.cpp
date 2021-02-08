@@ -1947,29 +1947,29 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 #endif
 
 #ifndef NO_POPPLER_PREVIEW
-	if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
-		if (PDFDocument::documentList().isEmpty())
-			newPdfPreviewer();
-        PDFDocument::documentList().at(0)->loadFile(f_real);
-        PDFDocument::documentList().at(0)->show();
-        PDFDocument::documentList().at(0)->setFocus();
-		return nullptr;
-	}
-	if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
-	        f_real.endsWith(".synctex", Qt::CaseInsensitive))
-	        && UtilsUi::txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
-		fileNewInternal();
-		currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
-		return currentEditorView();
-	}
+        if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
+            if (PDFDocument::documentList().isEmpty())
+                newPdfPreviewer();
+            PDFDocument::documentList().at(0)->loadFile(f_real);
+            PDFDocument::documentList().at(0)->show();
+            PDFDocument::documentList().at(0)->setFocus();
+            return nullptr;
+        }
+        if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
+             f_real.endsWith(".synctex", Qt::CaseInsensitive))
+                && UtilsUi::txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
+            fileNewInternal();
+            currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
+            return currentEditorView();
+        }
 #endif
 
-	if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
-	        UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-		outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
-		setLogMarksVisible(true);
-		return nullptr;
-	}
+        if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
+                UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
+            outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
+            setLogMarksVisible(true);
+            return nullptr;
+        }
 
 	if (!hidden)
 		raise();
@@ -1981,59 +1981,59 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 		doc = documents.findDocumentFromName(f_real);
 		if (doc) existingView = doc->getEditorView();
 	}
-	if (existingView) {
-		if (hidden)
-			return existingView;
-		if (asProject) documents.setMasterDocument(existingView->document);
-		if (existingView->document->isHidden()) {
-            // clear baseStructure outside treeview context
-            foreach(StructureEntry *elem,existingView->document->baseStructure->children){
-                delete elem;
+        if (existingView) {
+            if (hidden)
+                return existingView;
+            if (asProject) documents.setMasterDocument(existingView->document);
+            if (existingView->document->isHidden()) {
+                // clear baseStructure outside treeview context
+                foreach(StructureEntry *elem,existingView->document->baseStructure->children){
+                    delete elem;
+                }
+                existingView->document->baseStructure->children.clear();
+                //
+                existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
+                documents.deleteDocument(existingView->document, true);
+                existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
+                existingView->editor->setHidden(false);
+                documents.addDocument(existingView->document, false);
+                editors->addEditor(existingView);
+                if(asProject)
+                    editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
+                updateStructure(false, existingView->document, true);
+                existingView->editor->setFocus();
+                updateCaption();
+                return existingView;
             }
-            existingView->document->baseStructure->children.clear();
-            //
-			existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
-			documents.deleteDocument(existingView->document, true);
-			existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
-			existingView->editor->setHidden(false);
-			documents.addDocument(existingView->document, false);
-			editors->addEditor(existingView);
-            if(asProject)
-                editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
-			updateStructure(false, existingView->document, true);
-			existingView->editor->setFocus();
-			updateCaption();
-			return existingView;
-		}
-		editors->setCurrentEditor(existingView);
-		return existingView;
-	}
+            editors->setCurrentEditor(existingView);
+            return existingView;
+        }
 
 	// find closed master doc
-	if (doc) {
-        LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
-		edit->setLatexPackageList(&latexPackageList);
-		edit->document = doc;
-		edit->editor->setFileName(doc->getFileName());
-        edit->setHelp(&help);
-		disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
-		configureNewEditorView(edit);
-		if (edit->editor->fileInfo().suffix().toLower() != "tex")
-			m_languages->setLanguage(edit->editor, f_real);
-		if (!edit->editor->languageDefinition())
-			guessLanguageFromContent(m_languages, edit->editor);
+        if (doc) {
+            LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
+            edit->setLatexPackageList(&latexPackageList);
+            edit->document = doc;
+            edit->editor->setFileName(doc->getFileName());
+            edit->setHelp(&help);
+            disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
+            configureNewEditorView(edit);
+            if (edit->editor->fileInfo().suffix().toLower() != "tex")
+                m_languages->setLanguage(edit->editor, f_real);
+            if (!edit->editor->languageDefinition())
+                guessLanguageFromContent(m_languages, edit->editor);
 
-		doc->setLineEnding(edit->editor->document()->originalLineEnding());
-		doc->setEditorView(edit); //update file name (if document didn't exist)
+            doc->setLineEnding(edit->editor->document()->originalLineEnding());
+            doc->setEditorView(edit); //update file name (if document didn't exist)
 
-		configureNewEditorViewEnd(edit, !hidden, hidden);
+            configureNewEditorViewEnd(edit, !hidden, hidden);
 
-        if (!hidden) {
-			showStructure();
-			bookmarks->restoreBookmarks(edit);
-		}
-		return edit;
-	}
+            if (!hidden) {
+                showStructure();
+                bookmarks->restoreBookmarks(edit);
+            }
+            return edit;
+        }
 
 	//load it otherwise
 	if (!QFile::exists(f_real)) return nullptr;
