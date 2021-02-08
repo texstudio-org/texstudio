@@ -65,6 +65,7 @@ jobs:
         .github/scripts/package_win.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
     - name: Deploy zip to Bintray
       if: github.event_name == 'push'
@@ -85,8 +86,8 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          texstudio-${{ steps.package.outputs.TXS_VERSION }}-win-qt5.exe
-          texstudio-${{ steps.package.outputs.TXS_VERSION }}-win-portable-qt5.zip
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt5.exe
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt5.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         
@@ -125,6 +126,7 @@ jobs:
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=VERSION::${VERSION}"
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"        
         
     - name: Upload to Github Artifacts
       uses: actions/upload-artifact@v2
@@ -136,7 +138,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: texstudio-${{ steps.package.outputs.TXS_VERSION }}-x86_64.AppImage
+        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-x86_64.AppImage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
    
@@ -170,10 +172,11 @@ jobs:
       run: |
         /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
         . ./.github/scripts/get-version.sh
-        cp texstudio.dmg texstudio-${TXS_VERSION}-osx.dmg
+        cp texstudio.dmg texstudio-${GIT_VERSION}-osx.dmg
         mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
     - name: Deploy to Github artifacts
       if: github.event_name == 'push'
@@ -186,7 +189,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: texstudio-${{ steps.package.outputs.TXS_VERSION }}-osx.dmg
+        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
    
