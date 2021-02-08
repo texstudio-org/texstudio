@@ -64,6 +64,7 @@ jobs:
         . ./.github/scripts/get-version.sh
         .github/scripts/package_win.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         
     - name: Deploy zip to Bintray
       if: github.event_name == 'push'
@@ -83,18 +84,13 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
+        files: |
+          texstudio-win-${{ steps.package.outputs.TXS_VERSION }}.exe
+          texstudio-${{ steps.package.outputs.TXS_VERSION }}-win-portable-qt5.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         
-    - name: Release zip
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-      
+     
 ###################################
 
   build-linux-release:
@@ -128,6 +124,7 @@ jobs:
         . ./.github/scripts/package_linux.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=VERSION::${VERSION}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         
     - name: Upload to Github Artifacts
       uses: actions/upload-artifact@v2
@@ -139,7 +136,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
+        files: texstudio-${{ steps.package.outputs.TXS_VERSION }}-x86_64.AppImage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
    
@@ -173,8 +170,10 @@ jobs:
       run: |
         /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
         . ./.github/scripts/get-version.sh
+        cp texstudio.dmg texstudio-osx-${TXS_VERSION}.dmg
         mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         
     - name: Deploy to Github artifacts
       if: github.event_name == 'push'
@@ -187,7 +186,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
+        files: texstudio-osx-${{ steps.package.outputs.TXS_VERSION }}.dmg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
    
