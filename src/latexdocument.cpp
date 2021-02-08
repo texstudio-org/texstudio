@@ -1180,10 +1180,11 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		delete se;
 	}
 	StructureEntry *newSection = nullptr;
-	if (!isHidden()) {
-		LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
 
-		const QList<StructureEntry *> categories =
+	if (!isHidden()) {
+        LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
+
+        const QList<StructureEntry *> categories =
 		    QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
 
 		for (int i = categories.size() - 1; i >= 0; i--) {
@@ -1210,7 +1211,22 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 		}
 
-	}
+    }else{
+        // in hidden case, just translate flatstructure to baseStructure/hier and ignore the rest
+        // this is necessary for toplevel TOC
+        QVector<StructureEntry *>rootVector(lp.MAX_STRUCTURE_LEVEL,baseStructure);
+        foreach(StructureEntry *elem,flatStructure){
+            if(elem->type==StructureEntry::SE_SECTION){
+                rootVector[elem->level]->children.append(elem);
+                for(int i=elem->level+1;i<lp.MAX_STRUCTURE_LEVEL;i++){
+                    rootVector[i]=elem;
+                }
+            }
+            if(elem->type==StructureEntry::SE_INCLUDE){
+                rootVector[lp.MAX_STRUCTURE_LEVEL-1]->children.append(elem);
+            }
+        }
+    }
 	emit structureUpdated(this, newSection);
 	bool updateLtxCommands = false;
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {

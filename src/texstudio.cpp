@@ -214,6 +214,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	leftPanel = nullptr;
 	sidePanel = nullptr;
 	structureTreeView = nullptr;
+    topTOCTreeWidget = nullptr;
 	outputView = nullptr;
 
 	qRegisterMetaType<LatexParser>();
@@ -664,6 +665,12 @@ void Texstudio::setupDockWidgets()
 
         leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
+    if(!topTOCTreeWidget){
+        topTOCTreeWidget = new QTreeWidget();
+        connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem *,int)), this, SLOT(gotoLine(QTreeWidgetItem *,int)));
+        topTOCTreeWidget->setHeaderHidden(true);
+        leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("structure"));
+    } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if (!leftPanel->widget("bookmarks")) {
         QListWidget *bookmarksWidget = bookmarks->widget();
         bookmarks->setDarkMode(darkMode);
@@ -1032,6 +1039,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(closeEnvironment()), Qt::ALT + Qt::Key_Return);
 
 	menu->addSeparator();
+    newManagedAction(menu, "updateTOC", tr("update TOC"), SLOT(updateTOC()));
 	newManagedAction(menu, "reparse", tr("Refresh Structure"), SLOT(updateStructure()));
 	act = newManagedAction(menu, "refreshQNFA", tr("Refresh Language Model"), SLOT(updateTexQNFA()));
 	act->setStatusTip(tr("Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic."));
@@ -1978,6 +1986,12 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 			return existingView;
 		if (asProject) documents.setMasterDocument(existingView->document);
 		if (existingView->document->isHidden()) {
+            // clear baseStructure outside treeview context
+            foreach(StructureEntry *elem,existingView->document->baseStructure->children){
+                delete elem;
+            }
+            existingView->document->baseStructure->children.clear();
+            //
 			existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
 			documents.deleteDocument(existingView->document, true);
 			existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
@@ -7768,7 +7782,23 @@ void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
 	LatexEditorView *edView = doc->getEditorView();
 	if (edView) {
 		gotoLine(line, col, edView);
-	}
+    }
+}
+
+/*!
+ * \brief jump to line given by TOC entry (topTOCTreeWidget)
+ * \param item
+ * \param col
+ */
+void Texstudio::gotoLine(QTreeWidgetItem *item, int)
+{
+    StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if(!se) return;
+
+    LatexEditorView *edView = se->document->getEditorView();
+    if (edView) {
+        gotoLine(se->getRealLineNumber(), 0, edView);
+    }
 }
 
 void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
@@ -9368,7 +9398,7 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	QStringList curPaths;
 	if (documents.masterDocument)
 		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
-	if (doc->getMasterDocument())
+    if (doc->getRootDocument())
 		curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
 	curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
 	if (defaultExt == "bib") {
@@ -10960,6 +10990,72 @@ void Texstudio::paletteChanged(const QPalette &palette){
 
 void Texstudio::openBugsAndFeatures() {
 	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
+}
+/*!
+ * \brief Collect structure info from all subfiles and create a toplevel TOC
+ *
+ */
+void Texstudio::updateTOC(){
+    QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
+    if(!root){
+        root=new QTreeWidgetItem();
+    }else{
+        root->takeChildren();
+    }
+    QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
+    // fill TOC, starting by current master/top
+    LatexDocument *doc=documents.getRootDocumentForDoc();
+    if(!doc) return; // no root document
+    root->setText(0,doc->getFileInfo().fileName());
+
+    StructureEntry *base=doc->baseStructure;
+    parseStruct(base,rootVector);
+    topTOCTreeWidget->insertTopLevelItem(0,root);
+    root->setExpanded(true);
+}
+/*!
+ * \brief parse children of a structure entry se to collect TOC data
+ * \param se
+ * \param rootVector
+ * \return section elements found (true/false)
+ */
+bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector) {
+    bool elementsAdded=false;
+    for(StructureEntry* elem:se->children){
+        if(elem->type == StructureEntry::SE_SECTION){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            elementsAdded=true;
+            item->setText(0,elem->title);
+            item->setIcon(0,documents.model->iconSection.value(elem->level));
+            rootVector[elem->level]->addChild(item);
+            // fill rootVector with item for subsequent lower level elements (which are children of item then)
+            for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
+                rootVector[i]=item;
+            }
+            parseStruct(elem,rootVector);
+        }
+        if(elem->type == StructureEntry::SE_INCLUDE){
+            LatexDocument *doc=elem->document;
+            QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
+            doc=documents.findDocumentFromName(fn);
+            if(!doc){
+                documents.findDocumentFromName(fn+".tex");
+            }
+            bool ea=false;
+            if(doc){
+                ea=parseStruct(doc->baseStructure,rootVector);
+            }
+            if(!ea){
+                QTreeWidgetItem * item=new QTreeWidgetItem();
+                item->setText(0,elem->title);
+                item->setIcon(0,documents.model->iconInclude);
+                rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
+            }
+            elementsAdded=true;
+        }
+    }
+    return elementsAdded;
 }
 
 /*! @} */

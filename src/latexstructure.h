@@ -88,8 +88,7 @@ class LatexDocumentsModel: public QAbstractItemModel
 
 private:
 	LatexDocuments &documents;
-	QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude, iconWarning;
-	QVector<QIcon> iconSection;
+
 	QModelIndex mHighlightIndex;
 	bool m_singleMode;
 
@@ -116,6 +115,10 @@ public:
 	void moveDocs(int from, int to);
 
     void setHighlightedEntry(StructureEntry *entry);
+
+    // give access to toplevelTOC
+    QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude, iconWarning;
+    QVector<QIcon> iconSection;
 
 private slots:
     void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
