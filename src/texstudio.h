@@ -113,6 +113,7 @@ protected:
 private slots:
 	void updateToolBarMenu(const QString &menuName);
 	void showTestProgress(const QString &message);
+    void leftPanelChanged(QWidget* widget);
 private:
     bool executeTests(const QStringList &args); ///< execute self-tests. Only works for debug-builds.
 	void generateAddtionalTranslations();

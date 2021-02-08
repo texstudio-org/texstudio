@@ -387,6 +387,7 @@ CustomWidgetList::CustomWidgetList(QWidget *parent):
 
 	stack = new QStackedWidget(this);
 	stack->setFrameShape(QFrame::NoFrame);
+    connect(stack,&QStackedWidget::currentChanged,this,&CustomWidgetList::notifyChangedWidget);
 	hlayout->addWidget(stack);
 }
 
@@ -463,7 +464,13 @@ void CustomWidgetList::customContextMenuRequested(const QPoint &localPosition)
 		QMenu menu;
 		menu.addActions(actions());
 		menu.exec(mapToGlobal(localPosition));
-	}
+    }
+}
+
+void CustomWidgetList::notifyChangedWidget(int index)
+{
+    QWidget *widget=stack->widget(index);
+    emit currentWidgetChanged(widget);
 }
 
 void CustomWidgetList::showWidgets()

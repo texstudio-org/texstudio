@@ -644,6 +644,7 @@ void Texstudio::setupDockWidgets()
             hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
         }
         connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
+        connect(leftPanel, SIGNAL(currentWidgetChanged(QWidget*)), this, SLOT(leftPanelChanged(QWidget*)));
     }
 
     if (!structureTreeView) {
@@ -6978,7 +6979,19 @@ bool Texstudio::executeTests(const QStringList &args)
 void Texstudio::showTestProgress(const QString &message)
 {
 	outputView->insertMessageLine(message);
-	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
+    QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
+}
+/*!
+ * \brief notfication when left panel was switched
+ * Mainly used to notice when global TOC becomes visible
+ * \param widget
+ */
+void Texstudio::leftPanelChanged(QWidget *widget)
+{
+       if(widget==topTOCTreeWidget){
+           // update TOC when the TOC first becomes visisble
+           updateTOC();
+       }
 }
 /*!
  * \brief generate translations for definition files

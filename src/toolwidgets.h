@@ -153,6 +153,7 @@ public:
 signals:
 	void widgetContextMenuRequested(QWidget *widget, const QPoint &globalPosition);
 	void titleChanged(const QString &);
+    void currentWidgetChanged(QWidget* widget);
 
 public slots:
 	void showWidgets();
@@ -162,6 +163,7 @@ private slots:
 	void showPageFromAction();
 	void toggleWidgetFromAction(bool on);
 	void customContextMenuRequested(const QPoint &localPosition);
+    void notifyChangedWidget(int index);
 
 private:
 	void showWidget(const QString &id);
