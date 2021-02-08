@@ -520,12 +520,6 @@ QString CustomWidgetList::hiddenWidgets() const
 	return hiddenWidgetsIds.join("|");
 }
 
-/*'void CustomWidgetList::addWidgetOld(QWidget* widget, const QString& text, const QIcon& icon){
-}
-void CustomWidgetList::addWidgetNew(QWidget* widget, const QString& text, const QIcon& icon){
-	stack->addWidget(*list);
-	toolbar->addAction(icon,text);
-}*/
 
 QWidget *CustomWidgetList::widget(int i) const
 {

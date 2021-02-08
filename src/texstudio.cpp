@@ -670,7 +670,6 @@ void Texstudio::setupDockWidgets()
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem *,int)), this, SLOT(gotoLine(QTreeWidgetItem *,int)));
         connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem *)), this, SLOT(syncExpanded(QTreeWidgetItem *)));
         connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), this, SLOT(syncCollapsed(QTreeWidgetItem *)));
-        connect(topTOCTreeWidget, QTreeWidget::);
         topTOCTreeWidget->setHeaderHidden(true);
         leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("structure"));
     } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
@@ -10999,6 +10998,7 @@ void Texstudio::openBugsAndFeatures() {
  *
  */
 void Texstudio::updateTOC(){
+    if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
     if(!root){
         root=new QTreeWidgetItem();
