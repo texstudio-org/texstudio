@@ -78,6 +78,22 @@ jobs:
       with:
         name: texstudio-win-exe
         path: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
+        
+    - name: Release exe
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+        
+    - name: Release zip
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
       
 ###################################
 
@@ -113,11 +129,20 @@ jobs:
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=VERSION::${VERSION}"
         
-    - name: Upload to Bintray
+    - name: Upload to Github Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: texstudio-linux
         path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
+        
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+   
      
 ############################
       
@@ -151,12 +176,20 @@ jobs:
         mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         
-    - name: Deploy to Bintray
+    - name: Deploy to Github artifacts
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
         name: texstudio-osx
         path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
+        
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
    
 
 
