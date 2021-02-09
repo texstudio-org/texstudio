@@ -85,6 +85,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
+        prerelease: true
         files: |
           texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt5.exe
           texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt5.zip
@@ -138,6 +139,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
+        prerelease: true      
         files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-x86_64.AppImage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
@@ -189,6 +191,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
+        prerelease: true      
         files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
