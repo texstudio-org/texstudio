@@ -10,8 +10,6 @@ labels: 'type:bug'
 - Qt: <!-- SEE THE ABOUT SCREEN IN TXS -->
 - OS: <!-- Windows(7,8,10), Mac, Linux (Distribution), ... -->
 - TeX distribution: <!-- miktex, texlive, ... -->
-- TeXstudio installed from: <!-- source or binary -->
-- Compiler version (if compiling from source): <!-- name and version of used compiler -->
 
 ### Expected behavior
 
