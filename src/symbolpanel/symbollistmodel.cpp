@@ -283,7 +283,7 @@ void SymbolListModel::removeFavorite(const QString &id)
  */
 QIcon SymbolListModel::getIcon(const SymbolItem &item) const
 {
-#if defined( Q_OS_MAC ) && (QT_VERSION < QT_VERSION_CHECK(5,14,0))
+#if (defined( Q_OS_MAC ) && (QT_VERSION < QT_VERSION_CHECK(5,14,0))) || defined( MXE )
     bool use_fallback=true;
 #else
     bool use_fallback=false;

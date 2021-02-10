@@ -78,6 +78,10 @@ QT += \
     widgets \
     uitools
 
+!isEmpty(MXE){
+    DEFINES += MXE
+}
+
 !isEmpty(PHONON){
     QT += phonon4qt5
     LIBS += -lphonon4qt5
