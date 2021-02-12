@@ -47,7 +47,7 @@ jobs:
         MXETARGET="x86_64-w64-mingw32.shared"
         PATH=$PATH:${MXEDIR}/usr/bin
         . ./.github/scripts/get-version.sh
-        sed -i win.rc -e "s/0,[0,]*/$(tr <<<"$TXS_VERSION" . ,),0/"
+        sed -i win.rc -e "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
         sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
         $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1
 
