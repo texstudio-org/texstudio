@@ -19,6 +19,6 @@ IDI_ICON1               ICON    DISCARDABLE     "texstudio.ico"
     }
     BLOCK "VarFileInfo"
     {
-        VALUE "Translation", 0x0000 0x04B0
+        VALUE "Translation", 0x0000, 0x04B0
     }
 }
