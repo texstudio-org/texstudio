@@ -214,6 +214,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	leftPanel = nullptr;
 	sidePanel = nullptr;
 	structureTreeView = nullptr;
+    topTOCTreeWidget = nullptr;
 	outputView = nullptr;
 
 	qRegisterMetaType<LatexParser>();
@@ -643,6 +644,7 @@ void Texstudio::setupDockWidgets()
             hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
         }
         connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
+        connect(leftPanel, SIGNAL(currentWidgetChanged(QWidget*)), this, SLOT(leftPanelChanged(QWidget*)));
     }
 
     if (!structureTreeView) {
@@ -664,6 +666,14 @@ void Texstudio::setupDockWidgets()
 
         leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
+    if(!topTOCTreeWidget){
+        topTOCTreeWidget = new QTreeWidget();
+        connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem *,int)), this, SLOT(gotoLine(QTreeWidgetItem *,int)));
+        connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem *)), this, SLOT(syncExpanded(QTreeWidgetItem *)));
+        connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), this, SLOT(syncCollapsed(QTreeWidgetItem *)));
+        topTOCTreeWidget->setHeaderHidden(true);
+        leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("structure"));
+    } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if (!leftPanel->widget("bookmarks")) {
         QListWidget *bookmarksWidget = bookmarks->widget();
         bookmarks->setDarkMode(darkMode);
@@ -1032,6 +1042,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(closeEnvironment()), Qt::ALT + Qt::Key_Return);
 
 	menu->addSeparator();
+    newManagedAction(menu, "updateTOC", tr("update TOC"), SLOT(updateTOC()));
 	newManagedAction(menu, "reparse", tr("Refresh Structure"), SLOT(updateStructure()));
 	act = newManagedAction(menu, "refreshQNFA", tr("Refresh Language Model"), SLOT(updateTexQNFA()));
 	act->setStatusTip(tr("Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic."));
@@ -1939,29 +1950,29 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 #endif
 
 #ifndef NO_POPPLER_PREVIEW
-	if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
-		if (PDFDocument::documentList().isEmpty())
-			newPdfPreviewer();
-        PDFDocument::documentList().at(0)->loadFile(f_real);
-        PDFDocument::documentList().at(0)->show();
-        PDFDocument::documentList().at(0)->setFocus();
-		return nullptr;
-	}
-	if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
-	        f_real.endsWith(".synctex", Qt::CaseInsensitive))
-	        && UtilsUi::txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
-		fileNewInternal();
-		currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
-		return currentEditorView();
-	}
+        if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
+            if (PDFDocument::documentList().isEmpty())
+                newPdfPreviewer();
+            PDFDocument::documentList().at(0)->loadFile(f_real);
+            PDFDocument::documentList().at(0)->show();
+            PDFDocument::documentList().at(0)->setFocus();
+            return nullptr;
+        }
+        if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
+             f_real.endsWith(".synctex", Qt::CaseInsensitive))
+                && UtilsUi::txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
+            fileNewInternal();
+            currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
+            return currentEditorView();
+        }
 #endif
 
-	if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
-	        UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-		outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
-		setLogMarksVisible(true);
-		return nullptr;
-	}
+        if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
+                UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
+            outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
+            setLogMarksVisible(true);
+            return nullptr;
+        }
 
 	if (!hidden)
 		raise();
@@ -1973,53 +1984,59 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 		doc = documents.findDocumentFromName(f_real);
 		if (doc) existingView = doc->getEditorView();
 	}
-	if (existingView) {
-		if (hidden)
-			return existingView;
-		if (asProject) documents.setMasterDocument(existingView->document);
-		if (existingView->document->isHidden()) {
-			existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
-			documents.deleteDocument(existingView->document, true);
-			existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
-			existingView->editor->setHidden(false);
-			documents.addDocument(existingView->document, false);
-			editors->addEditor(existingView);
-            if(asProject)
-                editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
-			updateStructure(false, existingView->document, true);
-			existingView->editor->setFocus();
-			updateCaption();
-			return existingView;
-		}
-		editors->setCurrentEditor(existingView);
-		return existingView;
-	}
+        if (existingView) {
+            if (hidden)
+                return existingView;
+            if (asProject) documents.setMasterDocument(existingView->document);
+            if (existingView->document->isHidden()) {
+                // clear baseStructure outside treeview context
+                foreach(StructureEntry *elem,existingView->document->baseStructure->children){
+                    delete elem;
+                }
+                existingView->document->baseStructure->children.clear();
+                //
+                existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
+                documents.deleteDocument(existingView->document, true);
+                existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
+                existingView->editor->setHidden(false);
+                documents.addDocument(existingView->document, false);
+                editors->addEditor(existingView);
+                if(asProject)
+                    editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
+                updateStructure(false, existingView->document, true);
+                existingView->editor->setFocus();
+                updateCaption();
+                return existingView;
+            }
+            editors->setCurrentEditor(existingView);
+            return existingView;
+        }
 
 	// find closed master doc
-	if (doc) {
-        LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
-		edit->setLatexPackageList(&latexPackageList);
-		edit->document = doc;
-		edit->editor->setFileName(doc->getFileName());
-        edit->setHelp(&help);
-		disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
-		configureNewEditorView(edit);
-		if (edit->editor->fileInfo().suffix().toLower() != "tex")
-			m_languages->setLanguage(edit->editor, f_real);
-		if (!edit->editor->languageDefinition())
-			guessLanguageFromContent(m_languages, edit->editor);
+        if (doc) {
+            LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
+            edit->setLatexPackageList(&latexPackageList);
+            edit->document = doc;
+            edit->editor->setFileName(doc->getFileName());
+            edit->setHelp(&help);
+            disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
+            configureNewEditorView(edit);
+            if (edit->editor->fileInfo().suffix().toLower() != "tex")
+                m_languages->setLanguage(edit->editor, f_real);
+            if (!edit->editor->languageDefinition())
+                guessLanguageFromContent(m_languages, edit->editor);
 
-		doc->setLineEnding(edit->editor->document()->originalLineEnding());
-		doc->setEditorView(edit); //update file name (if document didn't exist)
+            doc->setLineEnding(edit->editor->document()->originalLineEnding());
+            doc->setEditorView(edit); //update file name (if document didn't exist)
 
-		configureNewEditorViewEnd(edit, !hidden, hidden);
+            configureNewEditorViewEnd(edit, !hidden, hidden);
 
-        if (!hidden) {
-			showStructure();
-			bookmarks->restoreBookmarks(edit);
-		}
-		return edit;
-	}
+            if (!hidden) {
+                showStructure();
+                bookmarks->restoreBookmarks(edit);
+            }
+            return edit;
+        }
 
 	//load it otherwise
 	if (!QFile::exists(f_real)) return nullptr;
@@ -6962,7 +6979,19 @@ bool Texstudio::executeTests(const QStringList &args)
 void Texstudio::showTestProgress(const QString &message)
 {
 	outputView->insertMessageLine(message);
-	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
+    QApplication::processEvents(QEventLoop::ExcludeUserInputEvents | QEventLoop::ExcludeSocketNotifiers);
+}
+/*!
+ * \brief notfication when left panel was switched
+ * Mainly used to notice when global TOC becomes visible
+ * \param widget
+ */
+void Texstudio::leftPanelChanged(QWidget *widget)
+{
+       if(widget==topTOCTreeWidget){
+           // update TOC when the TOC first becomes visisble
+           updateTOC();
+       }
 }
 /*!
  * \brief generate translations for definition files
@@ -7768,7 +7797,23 @@ void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
 	LatexEditorView *edView = doc->getEditorView();
 	if (edView) {
 		gotoLine(line, col, edView);
-	}
+    }
+}
+
+/*!
+ * \brief jump to line given by TOC entry (topTOCTreeWidget)
+ * \param item
+ * \param col
+ */
+void Texstudio::gotoLine(QTreeWidgetItem *item, int)
+{
+    StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if(!se) return;
+
+    LatexEditorView *edView = se->document->getEditorView();
+    if (edView) {
+        gotoLine(se->getRealLineNumber(), 0, edView);
+    }
 }
 
 void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
@@ -9368,7 +9413,7 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	QStringList curPaths;
 	if (documents.masterDocument)
 		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
-	if (doc->getMasterDocument())
+    if (doc->getRootDocument())
 		curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
 	curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
 	if (defaultExt == "bib") {
@@ -10960,6 +11005,96 @@ void Texstudio::paletteChanged(const QPalette &palette){
 
 void Texstudio::openBugsAndFeatures() {
 	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
+}
+/*!
+ * \brief Collect structure info from all subfiles and create a toplevel TOC
+ *
+ */
+void Texstudio::updateTOC(){
+    if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
+    QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
+    if(!root){
+        root=new QTreeWidgetItem();
+    }else{
+        root->takeChildren();
+    }
+    QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
+    // fill TOC, starting by current master/top
+    LatexDocument *doc=documents.getRootDocumentForDoc();
+    if(!doc) return; // no root document
+    root->setText(0,doc->getFileInfo().fileName());
+
+    StructureEntry *base=doc->baseStructure;
+    parseStruct(base,rootVector);
+    topTOCTreeWidget->insertTopLevelItem(0,root);
+    root->setExpanded(true);
+}
+/*!
+ * \brief parse children of a structure entry se to collect TOC data
+ * \param se
+ * \param rootVector
+ * \return section elements found (true/false)
+ */
+bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector) {
+    bool elementsAdded=false;
+    QString docName=se->document->getName();
+    foreach(StructureEntry* elem,se->children){
+        if(elem->type == StructureEntry::SE_SECTION){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            elementsAdded=true;
+            item->setText(0,elem->title);
+            item->setToolTip(0,tr("Document: ")+docName);
+            item->setIcon(0,documents.model->iconSection.value(elem->level));
+            rootVector[elem->level]->addChild(item);
+            item->setExpanded(elem->expanded);
+            // fill rootVector with item for subsequent lower level elements (which are children of item then)
+            for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
+                rootVector[i]=item;
+            }
+            parseStruct(elem,rootVector);
+        }
+        if(elem->type == StructureEntry::SE_INCLUDE){
+            LatexDocument *doc=elem->document;
+            QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
+            doc=documents.findDocumentFromName(fn);
+            if(!doc){
+                documents.findDocumentFromName(fn+".tex");
+            }
+            bool ea=false;
+            if(doc){
+                ea=parseStruct(doc->baseStructure,rootVector);
+            }
+            if(!ea){
+                QTreeWidgetItem * item=new QTreeWidgetItem();
+                item->setText(0,elem->title);
+                item->setToolTip(0,tr("Document: ")+docName);
+                item->setIcon(0,documents.model->iconInclude);
+                rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
+            }
+            elementsAdded=true;
+        }
+    }
+    return elementsAdded;
+}
+/*!
+ * \brief sync expanded state to structure entry
+ * \param item
+ */
+void Texstudio::syncExpanded(QTreeWidgetItem *item){
+    StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if(!se) return;
+    se->expanded=true;
+}
+
+/*!
+ * \brief sync collapsed state to structure entry
+ * \param item
+ */
+void Texstudio::syncCollapsed(QTreeWidgetItem *item){
+    StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if(!se) return;
+    se->expanded=false;
 }
 
 /*! @} */
