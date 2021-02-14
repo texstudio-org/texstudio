@@ -1685,6 +1685,8 @@ void Texstudio::currentEditorChanged()
 	editorSpellerChanged(currentEditorView()->getSpeller());
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
 	currentEditorView()->checkRTLLTRLanguageSwitching();
+    // update global toc
+    updateTOC();
 }
 
 /*!
