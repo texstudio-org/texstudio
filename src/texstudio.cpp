@@ -672,7 +672,7 @@ void Texstudio::setupDockWidgets()
         connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem *)), this, SLOT(syncExpanded(QTreeWidgetItem *)));
         connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), this, SLOT(syncCollapsed(QTreeWidgetItem *)));
         topTOCTreeWidget->setHeaderHidden(true);
-        leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("structure"));
+        leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("toc"));
     } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if (!leftPanel->widget("bookmarks")) {
         QListWidget *bookmarksWidget = bookmarks->widget();
