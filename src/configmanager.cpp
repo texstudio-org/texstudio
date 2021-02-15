@@ -1840,6 +1840,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 		//language
 		if (language == tr("default")) language = "";
+        int i=language.indexOf("  (");
+        if(i>0){
+            language=language.left(i);
+        }
 		if (language != lastLanguage) loadTranslations(language);
 
 		// GUI scaling
