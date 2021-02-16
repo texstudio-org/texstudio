@@ -1,6 +1,7 @@
 TeXstudio 3.1.0
 -----------------
-- 
+- fix changing GUI language
+- global TOC added which needs to be updated for now (WIP)
 
 TeXstudio 3.0.5
 -----------------
