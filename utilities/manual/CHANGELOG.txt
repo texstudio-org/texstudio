@@ -1,3 +1,7 @@
+TeXstudio 3.1.1
+-----------------
+- 
+
 TeXstudio 3.1.0
 -----------------
 - fix changing GUI language
