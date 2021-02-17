@@ -225,6 +225,13 @@ private slots:
     void updateTOC();
     void syncExpanded(QTreeWidgetItem *item);
     void syncCollapsed(QTreeWidgetItem *item);
+    void customMenuTOC(const QPoint &pos);
+    void editSectionCopy();
+    void editSectionCut();
+    void editSectionPasteAfter();
+    void editSectionPasteBefore();
+    void editIndentSection();
+    void editUnIndentSection();
 
 	void relayToEditorSlot();
 	void relayToOwnSlot();

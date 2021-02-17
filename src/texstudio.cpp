@@ -671,7 +671,9 @@ void Texstudio::setupDockWidgets()
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem *,int)), this, SLOT(gotoLine(QTreeWidgetItem *,int)));
         connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem *)), this, SLOT(syncExpanded(QTreeWidgetItem *)));
         connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), this, SLOT(syncCollapsed(QTreeWidgetItem *)));
+        connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuTOC);
         topTOCTreeWidget->setHeaderHidden(true);
+        topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("toc"));
     } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if (!leftPanel->widget("bookmarks")) {
@@ -11098,5 +11100,217 @@ void Texstudio::syncCollapsed(QTreeWidgetItem *item){
     if(!se) return;
     se->expanded=false;
 }
+
+void Texstudio::customMenuTOC(const QPoint &pos){
+    QTreeWidgetItem *item = topTOCTreeWidget->itemAt(pos);
+    StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if (!contextEntry) return;
+    if (contextEntry->type == StructureEntry::SE_SECTION) {
+        QMenu menu(this);
+
+        StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(contextEntry);
+        if (labelEntry) {
+            menu.addAction(tr("Insert Label"), structureTreeView, SLOT(insertTextFromAction()))->setData(labelEntry->title); // a bit indirect approach, the code should be refactored ...
+            foreach (QString refCmd, configManager.referenceCommandsInContextMenu.split(",")) {
+                refCmd = refCmd.trimmed();
+                if (!refCmd.startsWith('\\')) continue;
+                menu.addAction(QString(tr("Insert %1 to Label", "autoreplaced, e.g.: Insert \\ref to Label").arg(refCmd)), this, SLOT(insertTextFromAction()))->setData(QString("%1{%2}").arg(refCmd).arg(labelEntry->title));
+            }
+            menu.addSeparator();
+        } else {
+            menu.addAction(tr("Create Label"), structureTreeView, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(contextEntry));
+            menu.addSeparator();
+        }
+
+        menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
+        menu.addAction(tr("Cut"), this, SLOT(editSectionCut()));
+        menu.addAction(tr("Paste Before"), this, SLOT(editSectionPasteBefore()));
+        menu.addAction(tr("Paste After"), this, SLOT(editSectionPasteAfter()));
+        menu.addSeparator();
+        menu.addAction(tr("Indent Section"), this, SLOT(editIndentSection()));
+        menu.addAction(tr("Unindent Section"), this, SLOT(editUnIndentSection()));
+
+        menu.exec(topTOCTreeWidget->mapToGlobal(pos));
+        return;
+    }
+}
+
+/*!
+ * context menu action: Select the selected section and copy it to the clipboard.
+ * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
+ */
+void Texstudio::editSectionCopy()
+{
+    // called by action
+    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if(!entry) return;
+    LatexEditorView *edView = entry->document->getEditorView();
+    if(!edView) return;
+    editors->setCurrentEditor(edView);
+    QDocumentSelection sel = entry->document->sectionSelection(entry);
+
+    edView->editor->setCursorPosition(sel.startLine, 0);
+    QDocumentCursor cur = edView->editor->cursor();
+    //m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+    cur.setSilent(true);
+    cur.movePosition(sel.endLine - sel.startLine - 1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+    cur.movePosition(0, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+    edView->editor->setCursor(cur);
+    edView->editor->copy();
+}
+
+/*!
+ * context menu action: Cut the selected section to the clipboard.
+ * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
+ */
+void Texstudio::editSectionCut()
+{
+    // called by action
+    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if (!entry) return;
+    LatexEditorView *edView = entry->document->getEditorView();
+    if (!edView) return;
+    editors->setCurrentEditor(edView);
+    QDocumentSelection sel = entry->document->sectionSelection(entry);
+
+    edView->editor->setCursorPosition(sel.startLine, 0);
+    QDocumentCursor cur = edView->editor->cursor();
+    //m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+    cur.setSilent(true);
+    cur.movePosition(sel.endLine - sel.startLine - 1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+    cur.movePosition(0, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+    edView->editor->setCursor(cur);
+    edView->editor->cut();
+}
+
+/*!
+ * context menu action: Paste the clipboard contents before the selected section.
+ * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
+ */
+void Texstudio::editSectionPasteBefore()
+{
+    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if (!entry) return;
+    LatexEditorView *edView = entry->document->getEditorView();
+    if (!edView) return;
+    editors->setCurrentEditor(edView);
+
+    int line = entry->getRealLineNumber();
+    edView->editor->setCursorPosition(line, 0);
+    edView->editor->insertText("\n");
+    edView->editor->setCursorPosition(line, 0);
+    edView->paste();
+}
+
+/*!
+ * context menu action: Paste the clipboard contents after the selected section.
+ * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
+ */
+void Texstudio::editSectionPasteAfter()
+{
+    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if (!entry) return;
+    LatexEditorView *edView = entry->document->getEditorView();
+    if (!edView) return;
+    editors->setCurrentEditor(edView);
+    QDocumentSelection sel = entry->document->sectionSelection(entry);
+
+    int line = sel.endLine;
+    if (line >= edView->editor->document()->lines()) {
+        edView->editor->setCursorPosition(line - 1, 0);
+        QDocumentCursor c = edView->editor->cursor();
+        c.movePosition(1, QDocumentCursor::End, QDocumentCursor::MoveAnchor);
+        edView->editor->setCursor(c);
+        edView->editor->insertText("\n");
+    } else {
+        edView->editor->setCursorPosition(line, 0);
+        edView->editor->insertText("\n");
+        edView->editor->setCursorPosition(line, 0);
+    }
+    edView->paste();
+}
+
+/*!
+ * context menu action: Indent the selected section.
+ * This replaces the sections and all its sub-sections with a lower heading, e.g.
+ *     \section -> \subsection
+ *     \chapter -> \section
+ * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
+ */
+void Texstudio::editIndentSection()
+{
+    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if (!entry) return;
+    LatexEditorView *edView = entry->document->getEditorView();
+    if (!edView) return;
+    editors->setCurrentEditor(edView);
+    QDocumentSelection sel = entry->document->sectionSelection(entry);
+
+    QStringList sectionOrder;
+    sectionOrder << "\\subparagraph" << "\\paragraph" << "\\subsubsection" << "\\subsection" << "\\section" << "\\chapter";
+
+    // replace sections
+    QString line;
+    QDocumentCursor cursor = edView->editor->cursor();
+    for (int l = sel.startLine; l < sel.endLine; l++) {
+        edView->editor->setCursorPosition(l, 0);
+        cursor = edView->editor->cursor();
+        line = edView->editor->cursor().line().text();
+        QString m_old = "";
+        foreach (const QString &elem, sectionOrder) {
+            if (m_old != "") line.replace(elem, m_old);
+            m_old = elem;
+        }
+
+        cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+        edView->editor->setCursor(cursor);
+        edView->editor->insertText(line);
+    }
+}
+
+/*!
+ * context menu action: Unindent the selected section.
+ * This replaces the sections and all its sub-sections with a higher heading, e.g.
+ *     \subsection -> \section
+ *     \section -> \chapter
+ * TODO: the logic should probably be moved to LatexDocument or LatexEditorView
+ */
+void Texstudio::editUnIndentSection()
+{
+    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+    if (!entry) return;
+    LatexEditorView *edView = entry->document->getEditorView();
+    if (!edView) return;
+    editors->setCurrentEditor(edView);
+    QDocumentSelection sel = entry->document->sectionSelection(entry);
+
+    QStringList sectionOrder;
+    sectionOrder << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection" << "\\paragraph" << "\\subparagraph" ;
+
+    // replace sections
+    QString line;
+    QDocumentCursor cursor = edView->editor->cursor();
+    for (int l = sel.startLine; l < sel.endLine; l++) {
+        edView->editor->setCursorPosition(l, 0);
+        cursor = edView->editor->cursor();
+        line = edView->editor->cursor().line().text();
+        QString m_old = "";
+        foreach (const QString &elem, sectionOrder) {
+            if (m_old != "") line.replace(elem, m_old);
+            m_old = elem;
+        }
+
+        cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+        edView->editor->setCursor(cursor);
+        edView->editor->insertText(line);
+    }
+}
+
 
 /*! @} */
