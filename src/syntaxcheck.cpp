@@ -583,7 +583,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
             if (speller->hideNonTextSpellingErrors && (containsEnv(*ltxCommands, "math", activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv))){
                 word.clear();
-                tk.subtype=Token::formula;
+                tk.ignoreSpelling=true;
+            }else{
+                tk.ignoreSpelling=false;
             }
             if (!word.isEmpty() && !speller->check(word) ) {
                 if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
