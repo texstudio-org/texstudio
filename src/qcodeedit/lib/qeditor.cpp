@@ -2774,8 +2774,8 @@ void QEditor::commentSelection()
 			insertAtLineStart(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
-			if ( s.end == 0 && s.startLine < s.endLine )
-				s.endLine--; //only change last line if there is selected text
+            if ( s.end == 0 && s.startLine < s.endLine )
+                s.endLine--; //only change last line if there is selected text
 			QDocumentCursor c(m_doc, s.startLine);
 			c.setSilent(true);
 			c.beginEditBlock();
@@ -2859,8 +2859,8 @@ void QEditor::toggleCommentSelection()
 	foreach (const QDocumentCursor &cursor, cursors()) {
 		if (cursor.hasSelection()) {
 			QDocumentCursor cur = cursor.selectionStart();
-			for (int i = 0; i < cursor.endLineNumber() - cursor.startLineNumber() + 1; i++) {
-				if (!cur.line().startsWith(commentMark)) {
+            for (int i = cursor.startLineNumber(); i <= cursor.endLineNumber() ; ++i) {
+                if (!cur.line().startsWith(commentMark) && (i<cursor.endLineNumber() || !cur.line().text().isEmpty())) { //special treatmenat of last line if empty
 					allCommented = false;
 					break;
 				}
