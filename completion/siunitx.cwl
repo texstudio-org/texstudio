@@ -102,6 +102,8 @@
 \kV#*
 \kW#*
 \kWh#*
+\L
+\l
 \liter
 \litre
 \m#*
@@ -165,6 +167,7 @@
 \pg#*
 \pico
 \planckbar
+\pm#*
 \pmol#*
 \ps#*
 \pV#*
@@ -206,6 +209,7 @@
 \tothe{%<power%>}
 \uA#*
 \ug#*
+\uJ#*
 \uL#*
 \ul#*
 \um#*
