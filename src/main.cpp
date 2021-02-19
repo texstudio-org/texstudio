@@ -188,11 +188,11 @@ int main(int argc, char **argv)
 {
 	QString appId = generateAppId();
 #if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#else
+#else*/
     QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
-#endif
+//#endif
 #endif
 	// This is a dummy constructor so that the programs loads fast.
 	TexstudioApp a(appId, argc, argv);
