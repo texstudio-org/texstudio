@@ -1855,6 +1855,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
 	connect(edit, SIGNAL(thesaurus(int, int)), this, SLOT(editThesaurus(int, int)));
 	connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
 	connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
+    connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOC()));
     edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
 	if (!hidden) {
