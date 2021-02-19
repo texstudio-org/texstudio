@@ -1542,6 +1542,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	act = new QAction(tr("Insert New Sub Menu (before)"), confDlg->ui.menuTree);
 	connect(act, SIGNAL(triggered()), SLOT(menuTreeNewMenuItem()));
 	confDlg->ui.menuTree->addAction(act);
+    act = new QAction(tr("Revert/Remove User Menu Item"), confDlg->ui.menuTree);
+    connect(act, SIGNAL(triggered()), SLOT(menuTreeRevertItem()));
+    confDlg->ui.menuTree->addAction(act);
 	confDlg->ui.menuTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
 	ComboBoxDelegate *cbd = new ComboBoxDelegate(confDlg->ui.menuTree);
@@ -3349,6 +3352,36 @@ void ConfigManager::menuTreeNewMenuItem()
 	menuTreeNewItem(true);
 }
 
+void ConfigManager::menuTreeRevertItem(){
+    QAction *a = qobject_cast<QAction *>(sender());
+    REQUIRE(a);
+    QTreeWidget *tw = qobject_cast<QTreeWidget *>(a->parentWidget());
+    REQUIRE(tw);
+    QTreeWidgetItem *item = tw->currentItem();
+    REQUIRE(item);
+    if (!item->parent()) return;
+    QString ID = item->data(0, Qt::UserRole).toString();
+    qDebug()<<item->text(0)<<ID;
+    if(ID.contains("UII")){
+        //user defined menu/item
+        QTreeWidgetItem *parent=item->parent();
+        parent->removeChild(item);
+        manipulatedMenuTree.remove(ID);
+    }else{ //revert
+        QFont bold = item->font(0);
+        if(bold.bold()){
+            // was manipulated
+            item->setText(1,tr("text is restored after restart"));
+            bold.setBold(false);
+            bold.setItalic(true);
+            for (int i = 0; i < 3; i++) item->setFont(i, bold);
+            manipulatedMenus.remove(ID);
+            changedItemsList.removeOne(item);
+        }
+    }
+
+}
+
 void ConfigManager::toggleVisibleTreeItems(bool show)
 {
 	REQUIRE(!superAdvancedItems.isEmpty());
@@ -3362,6 +3395,7 @@ void ConfigManager::toggleVisibleTreeItems(bool show)
 
 void ConfigManager::treeWidgetToManagedLatexMenuTo()
 {
+    manipulatedMenus.clear();
 	foreach (QTreeWidgetItem *item, changedItemsList) {
 		QString id = item->data(0, Qt::UserRole).toString();
 		if (id == "") continue;

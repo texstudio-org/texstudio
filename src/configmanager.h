@@ -351,6 +351,7 @@ private slots:
 	void menuTreeItemChanged(QTreeWidgetItem *item, int l);
 	void menuTreeNewItem(bool menu = false);
 	void menuTreeNewMenuItem();
+    void menuTreeRevertItem();
 	void toggleVisibleTreeItems(bool show);
 	void activateInternalViewer(bool activated);
 
