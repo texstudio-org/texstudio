@@ -1181,52 +1181,36 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	}
 	StructureEntry *newSection = nullptr;
 
-	if (!isHidden()) {
-        LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
+    // always generate complete structure, also for hidden, as needed for globalTOC
+    LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
 
-        const QList<StructureEntry *> categories =
-		    QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
+    const QList<StructureEntry *> categories =
+            QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
 
-		for (int i = categories.size() - 1; i >= 0; i--) {
-			StructureEntry *cat = categories[i];
-			if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
-			if (cat->children.isEmpty()) removeElementWithSignal(cat);
-			else insertElementWithSignal(baseStructure, 0, cat);
-		}
+    for (int i = categories.size() - 1; i >= 0; i--) {
+        StructureEntry *cat = categories[i];
+        if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
+        if (cat->children.isEmpty()) removeElementWithSignal(cat);
+        else insertElementWithSignal(baseStructure, 0, cat);
+    }
 
-		//update appendix change
-		if (oldLine != mAppendixLine) {
-			updateContext(oldLine, mAppendixLine, StructureEntry::InAppendix);
-		}
-		//update end document change
-		if (oldLineBeyond != mBeyondEnd) {
-			updateContext(oldLineBeyond, mBeyondEnd, StructureEntry::BeyondEnd);
-		}
+    //update appendix change
+    if (oldLine != mAppendixLine) {
+        updateContext(oldLine, mAppendixLine, StructureEntry::InAppendix);
+    }
+    //update end document change
+    if (oldLineBeyond != mBeyondEnd) {
+        updateContext(oldLineBeyond, mBeyondEnd, StructureEntry::BeyondEnd);
+    }
 
-		// rehighlight current cursor position
-		if (edView) {
-			int i = edView->editor->cursor().lineNumber();
-			if (i >= 0) {
-				newSection = findSectionForLine(i);
-			}
-		}
-
-    }else{
-        // in hidden case, just translate flatstructure to baseStructure/hier and ignore the rest
-        // this is necessary for toplevel TOC
-        QVector<StructureEntry *>rootVector(lp.MAX_STRUCTURE_LEVEL,baseStructure);
-        foreach(StructureEntry *elem,flatStructure){
-            if(elem->type==StructureEntry::SE_SECTION){
-                rootVector[elem->level]->children.append(elem);
-                for(int i=elem->level+1;i<lp.MAX_STRUCTURE_LEVEL;i++){
-                    rootVector[i]=elem;
-                }
-            }
-            if(elem->type==StructureEntry::SE_INCLUDE){
-                rootVector[lp.MAX_STRUCTURE_LEVEL-1]->children.append(elem);
-            }
+    // rehighlight current cursor position
+    if (edView) {
+        int i = edView->editor->cursor().lineNumber();
+        if (i >= 0) {
+            newSection = findSectionForLine(i);
         }
     }
+
 	emit structureUpdated(this, newSection);
 	bool updateLtxCommands = false;
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {

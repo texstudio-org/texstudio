@@ -1994,10 +1994,10 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
             if (asProject) documents.setMasterDocument(existingView->document);
             if (existingView->document->isHidden()) {
                 // clear baseStructure outside treeview context
-                foreach(StructureEntry *elem,existingView->document->baseStructure->children){
+                /*foreach(StructureEntry *elem,existingView->document->baseStructure->children){
                     delete elem;
                 }
-                existingView->document->baseStructure->children.clear();
+                existingView->document->baseStructure->children.clear();*/
                 //
                 existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
                 documents.deleteDocument(existingView->document, true);
