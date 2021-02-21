@@ -470,7 +470,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
  */
 Texstudio::~Texstudio()
 {
-        structureTreeView->setModel(nullptr);
+    structureTreeView->setModel(nullptr);
 	iconCache.clear();
 	QDocument::setDefaultFormatScheme(m_formatsOldDefault); //prevents crash when deleted latexeditorview accesses the default format scheme, as m_format is going to be deleted
 
@@ -11064,7 +11064,7 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
             doc=documents.findDocumentFromName(fn);
             if(!doc){
-                documents.findDocumentFromName(fn+".tex");
+                doc=documents.findDocumentFromName(fn+".tex");
             }
             bool ea=false;
             if(doc){
