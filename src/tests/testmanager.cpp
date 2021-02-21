@@ -17,6 +17,7 @@
 #include "latexeditorview_t.h"
 #include "latexeditorview_bm.h"
 #include "latexstyleparser_t.h"
+#include "pdfrenderengine_stress_t.h"
 #include "scriptengine_t.h"
 #include "structureview_t.h"
 #include "tablemanipulation_t.h"
@@ -90,6 +91,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new LatexEditorViewTest(edView)
 		<< new LatexCompleterTest(edView)
 		<< new LatexStyleParserTest(level==TL_ALL)
+		<< new PDFRenderEngineStressTest()
 		<< new ScriptEngineTest(edView,level==TL_ALL)
 		<< new LatexEditorViewBenchmark(edView,level==TL_ALL)
 		<< new StructureViewTest(edView,edView->document,level==TL_ALL)

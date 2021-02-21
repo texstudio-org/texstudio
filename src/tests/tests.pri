@@ -14,6 +14,7 @@
 		src/tests/latexoutputfilter_t.cpp \
 		src/tests/latexparser_t.cpp \
 		src/tests/latexparsing_t.cpp \
+		src/tests/pdfrenderengine_stress_t.cpp \
 		src/tests/qcetestutil.cpp \
 		src/tests/qdocumentcursor_t.cpp \
 		src/tests/qdocumentline_t.cpp \
@@ -44,6 +45,7 @@
 		src/tests/latexparser_t.h \
 		src/tests/latexparsing_t.h \
 		src/tests/latexstyleparser_t.h \
+		src/tests/pdfrenderengine_stress_t.h \
 		src/tests/scriptengine_t.h \
 		src/tests/qeditor_t.h \
 		src/tests/buildmanager_t.h \
