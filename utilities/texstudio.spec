@@ -1,6 +1,6 @@
 Name: texstudio
 Summary: LaTeX editor
-Version: 3.1.1
+Version: 3.1.2
 License: GPL
 Group: Applications/Publishing
 Source: texstudio.svn.sourceforge.net/svnroot/texstudio/trunk
