@@ -1776,57 +1776,57 @@ LatexEditorView *Texstudio::currentEditorView() const
  */
 QEditor *Texstudio::currentEditor() const
 {
-	LatexEditorView *edView = currentEditorView();
-	if (!edView) return nullptr;
-	return edView->editor;
+    LatexEditorView *edView = currentEditorView();
+    if (!edView) return nullptr;
+    return edView->editor;
 }
 
 void Texstudio::configureNewEditorView(LatexEditorView *edit)
 {
-	REQUIRE(m_languages);
-	REQUIRE(edit->codeeditor);
-	m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
+    REQUIRE(m_languages);
+    REQUIRE(edit->codeeditor);
+    m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
 
-	connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
-	connect(edit->editor, SIGNAL(requestClose()), &documents, SLOT(requestedClose()));
-	connect(edit->editor, SIGNAL(redoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
-	connect(edit->editor->document(), SIGNAL(lineEndingChanged(int)), this, SLOT(newDocumentLineEnding()));
-	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
-	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
-	connect(edit->editor, SIGNAL(emitWordDoubleClicked()), this, SLOT(cursorHovered()));
-	connect(edit, SIGNAL(showMarkTooltipForLogMessage(QList<int>)), this, SLOT(showMarkTooltipForLogMessage(QList<int>)));
-	connect(edit, SIGNAL(needCitation(const QString &)), this, SLOT(insertBibEntry(const QString &)));
-	connect(edit, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-	connect(edit, SIGNAL(showImgPreview(QString)), this, SLOT(showImgPreview(QString)));
-	connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
-	connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
-	connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
-	connect(edit, SIGNAL(findLabelUsages(LatexDocument *, QString)), this, SLOT(findLabelUsages(LatexDocument *, QString)));
-	connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
-	connect(edit, SIGNAL(openFile(QString)), this, SLOT(openExternalFile(QString)));
-	connect(edit, SIGNAL(openFile(QString, QString)), this, SLOT(openExternalFile(QString, QString)));
-	connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)), bookmarks, SLOT(bookmarkDeleted(QDocumentLineHandle *)));
-	connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle *, int)), bookmarks, SLOT(bookmarkAdded(QDocumentLineHandle *, int)));
-	connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
-	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
-	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
-	connect(edit, SIGNAL(openCompleter()), this, SLOT(normalCompletion()));
-	connect(edit, SIGNAL(openInternalDocViewer(QString, QString)), this, SLOT(openInternalDocViewer(QString, QString)));
-	connect(edit, SIGNAL(showExtendedSearch()), this, SLOT(showExtendedSearch()));
-	connect(edit, SIGNAL(execMacro(Macro, MacroExecContext)), this, SLOT(execMacro(Macro, MacroExecContext)));
+    connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
+    connect(edit->editor, SIGNAL(requestClose()), &documents, SLOT(requestedClose()));
+    connect(edit->editor, SIGNAL(redoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
+    connect(edit->editor->document(), SIGNAL(lineEndingChanged(int)), this, SLOT(newDocumentLineEnding()));
+    connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+    connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
+    connect(edit->editor, SIGNAL(emitWordDoubleClicked()), this, SLOT(cursorHovered()));
+    connect(edit, SIGNAL(showMarkTooltipForLogMessage(QList<int>)), this, SLOT(showMarkTooltipForLogMessage(QList<int>)));
+    connect(edit, SIGNAL(needCitation(const QString &)), this, SLOT(insertBibEntry(const QString &)));
+    connect(edit, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
+    connect(edit, SIGNAL(showImgPreview(QString)), this, SLOT(showImgPreview(QString)));
+    connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
+    connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
+    connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
+    connect(edit, SIGNAL(findLabelUsages(LatexDocument *, QString)), this, SLOT(findLabelUsages(LatexDocument *, QString)));
+    connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
+    connect(edit, SIGNAL(openFile(QString)), this, SLOT(openExternalFile(QString)));
+    connect(edit, SIGNAL(openFile(QString, QString)), this, SLOT(openExternalFile(QString, QString)));
+    connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)), bookmarks, SLOT(bookmarkDeleted(QDocumentLineHandle *)));
+    connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle *, int)), bookmarks, SLOT(bookmarkAdded(QDocumentLineHandle *, int)));
+    connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
+    connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
+    connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
+    connect(edit, SIGNAL(openCompleter()), this, SLOT(normalCompletion()));
+    connect(edit, SIGNAL(openInternalDocViewer(QString, QString)), this, SLOT(openInternalDocViewer(QString, QString)));
+    connect(edit, SIGNAL(showExtendedSearch()), this, SLOT(showExtendedSearch()));
+    connect(edit, SIGNAL(execMacro(Macro, MacroExecContext)), this, SLOT(execMacro(Macro, MacroExecContext)));
 
-	connect(edit->editor, SIGNAL(fileReloaded()), this, SLOT(fileReloaded()));
-	connect(edit->editor, SIGNAL(fileInConflictShowDiff()), this, SLOT(fileInConflictShowDiff()));
-	connect(edit->editor, SIGNAL(fileAutoReloading(QString)), this, SLOT(fileAutoReloading(QString)));
+    connect(edit->editor, SIGNAL(fileReloaded()), this, SLOT(fileReloaded()));
+    connect(edit->editor, SIGNAL(fileInConflictShowDiff()), this, SLOT(fileInConflictShowDiff()));
+    connect(edit->editor, SIGNAL(fileAutoReloading(QString)), this, SLOT(fileAutoReloading(QString)));
 
-	if (Guardian::instance()) { // Guardian is not yet there when this is called at program startup
-		connect(edit->editor, SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
-		connect(edit->editor, SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
-	}
-	connect(edit, SIGNAL(linesChanged(QString, const void *, QList<LineInfo>, int)), grammarCheck, SLOT(check(QString, const void *, QList<LineInfo>, int)));
+    if (Guardian::instance()) { // Guardian is not yet there when this is called at program startup
+        connect(edit->editor, SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
+        connect(edit->editor, SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
+    }
+    connect(edit, SIGNAL(linesChanged(QString, const void *, QList<LineInfo>, int)), grammarCheck, SLOT(check(QString, const void *, QList<LineInfo>, int)));
 
-	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(editorSpellerChanged(QString)));
-	connect(edit->editor, SIGNAL(focusReceived()), edit, SIGNAL(focusReceived()));
+    connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(editorSpellerChanged(QString)));
+    connect(edit->editor, SIGNAL(focusReceived()), edit, SIGNAL(focusReceived()));
 }
 
 /*!
@@ -1837,33 +1837,33 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
  */
 void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFromDoc, bool hidden)
 {
-	REQUIRE(edit->document);
+    REQUIRE(edit->document);
     // set speller here as document is needed
     edit->setSpellerManager(&spellerManager);
     edit->setSpeller("<default>");
-	//patch Structure
-	//disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int))); // force order of contentsChange update
-	connect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
-	//connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit,SLOT(documentContentChanged(int,int))); now directly called by patchStructure
-	connect(edit->editor->document(), SIGNAL(lineRemoved(QDocumentLineHandle *)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *)));
+    //patch Structure
+    //disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int))); // force order of contentsChange update
+    connect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
+    //connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit,SLOT(documentContentChanged(int,int))); now directly called by patchStructure
+    connect(edit->editor->document(), SIGNAL(lineRemoved(QDocumentLineHandle *)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *)));
     connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *,int)));
-	connect(edit->document, SIGNAL(updateCompleter()), this, SLOT(completerNeedsUpdate()));
-	connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
-	connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
-	connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
-	connect(edit->document, SIGNAL(encodingChanged()), this, SLOT(updateStatusBarEncoding()));
-	connect(edit, SIGNAL(thesaurus(int, int)), this, SLOT(editThesaurus(int, int)));
-	connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
-	connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
+    connect(edit->document, SIGNAL(updateCompleter()), this, SLOT(completerNeedsUpdate()));
+    connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
+    connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
+    connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
+    connect(edit->document, SIGNAL(encodingChanged()), this, SLOT(updateStatusBarEncoding()));
+    connect(edit, SIGNAL(thesaurus(int, int)), this, SLOT(editThesaurus(int, int)));
+    connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
+    connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
     connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOC()));
     edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
-	if (!hidden) {
-		int index = reloadFromDoc ? documents.documents.indexOf(edit->document, 0) : -1; // index: we still assume here that the order of documents and editors is synchronized
-		editors->insertEditor(edit, index);
-		edit->editor->setFocus();
-		updateCaption();
-	}
+    if (!hidden) {
+        int index = reloadFromDoc ? documents.documents.indexOf(edit->document, 0) : -1; // index: we still assume here that the order of documents and editors is synchronized
+        editors->insertEditor(edit, index);
+        edit->editor->setFocus();
+        updateCaption();
+    }
 }
 /*!
  * \brief get editor which handles FileName
@@ -1948,143 +1948,143 @@ void guessLanguageFromContent(QLanguageFactory *m_languages, QEditor *e)
  */
 LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden, bool recheck, bool dontAsk)
 {
-	QString f_real = f;
+    QString f_real = f;
 #ifdef Q_OS_WIN32
-	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
-	if (regcheck.exactMatch(f)) f_real = regcheck.cap(1);
+    QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
+    if (regcheck.exactMatch(f)) f_real = regcheck.cap(1);
 #endif
 
 #ifndef NO_POPPLER_PREVIEW
-        if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
-            if (PDFDocument::documentList().isEmpty())
-                newPdfPreviewer();
-            PDFDocument::documentList().at(0)->loadFile(f_real);
-            PDFDocument::documentList().at(0)->show();
-            PDFDocument::documentList().at(0)->setFocus();
-            return nullptr;
-        }
-        if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
-             f_real.endsWith(".synctex", Qt::CaseInsensitive))
-                && UtilsUi::txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
-            fileNewInternal();
-            currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
-            return currentEditorView();
-        }
+    if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
+        if (PDFDocument::documentList().isEmpty())
+            newPdfPreviewer();
+        PDFDocument::documentList().at(0)->loadFile(f_real);
+        PDFDocument::documentList().at(0)->show();
+        PDFDocument::documentList().at(0)->setFocus();
+        return nullptr;
+    }
+    if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
+         f_real.endsWith(".synctex", Qt::CaseInsensitive))
+            && UtilsUi::txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
+        fileNewInternal();
+        currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
+        return currentEditorView();
+    }
 #endif
 
-        if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
-                UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-            outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
-            setLogMarksVisible(true);
-            return nullptr;
-        }
+    if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
+            UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
+        outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
+        setLogMarksVisible(true);
+        return nullptr;
+    }
 
-	if (!hidden)
-		raise();
+    if (!hidden)
+        raise();
 
-	//test is already opened
-	LatexEditorView *existingView = getEditorViewFromFileName(f_real);
-	LatexDocument *doc=nullptr;
-	if (!existingView) {
-		doc = documents.findDocumentFromName(f_real);
-		if (doc) existingView = doc->getEditorView();
-	}
-        if (existingView) {
-            if (hidden)
-                return existingView;
-            if (asProject) documents.setMasterDocument(existingView->document);
-            if (existingView->document->isHidden()) {
-                // clear baseStructure outside treeview context
-                /*foreach(StructureEntry *elem,existingView->document->baseStructure->children){
+    //test is already opened
+    LatexEditorView *existingView = getEditorViewFromFileName(f_real);
+    LatexDocument *doc=nullptr;
+    if (!existingView) {
+        doc = documents.findDocumentFromName(f_real);
+        if (doc) existingView = doc->getEditorView();
+    }
+    if (existingView) {
+        if (hidden)
+            return existingView;
+        if (asProject) documents.setMasterDocument(existingView->document);
+        if (existingView->document->isHidden()) {
+            // clear baseStructure outside treeview context
+            /*foreach(StructureEntry *elem,existingView->document->baseStructure->children){
                     delete elem;
                 }
                 existingView->document->baseStructure->children.clear();*/
-                //
-                existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
-                documents.deleteDocument(existingView->document, true);
-                existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
-                existingView->editor->setHidden(false);
-                documents.addDocument(existingView->document, false);
-                editors->addEditor(existingView);
-                if(asProject)
-                    editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
-                updateStructure(false, existingView->document, true);
-                existingView->editor->setFocus();
-                updateCaption();
-                return existingView;
-            }
-            editors->setCurrentEditor(existingView);
+            //
+            existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
+            documents.deleteDocument(existingView->document, true);
+            existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
+            existingView->editor->setHidden(false);
+            documents.addDocument(existingView->document, false);
+            editors->addEditor(existingView);
+            if(asProject)
+                editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
+            updateStructure(false, existingView->document, true);
+            existingView->editor->setFocus();
+            updateCaption();
             return existingView;
         }
+        editors->setCurrentEditor(existingView);
+        return existingView;
+    }
 
-	// find closed master doc
-        if (doc) {
-            LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
-            edit->setLatexPackageList(&latexPackageList);
-            edit->document = doc;
-            edit->editor->setFileName(doc->getFileName());
-            edit->setHelp(&help);
-            disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
-            configureNewEditorView(edit);
-            if (edit->editor->fileInfo().suffix().toLower() != "tex")
-                m_languages->setLanguage(edit->editor, f_real);
-            if (!edit->editor->languageDefinition())
-                guessLanguageFromContent(m_languages, edit->editor);
+    // find closed master doc
+    if (doc) {
+        LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
+        edit->setLatexPackageList(&latexPackageList);
+        edit->document = doc;
+        edit->editor->setFileName(doc->getFileName());
+        edit->setHelp(&help);
+        disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
+        configureNewEditorView(edit);
+        if (edit->editor->fileInfo().suffix().toLower() != "tex")
+            m_languages->setLanguage(edit->editor, f_real);
+        if (!edit->editor->languageDefinition())
+            guessLanguageFromContent(m_languages, edit->editor);
 
-            doc->setLineEnding(edit->editor->document()->originalLineEnding());
-            doc->setEditorView(edit); //update file name (if document didn't exist)
+        doc->setLineEnding(edit->editor->document()->originalLineEnding());
+        doc->setEditorView(edit); //update file name (if document didn't exist)
 
-            configureNewEditorViewEnd(edit, !hidden, hidden);
+        configureNewEditorViewEnd(edit, !hidden, hidden);
 
-            if (!hidden) {
-                showStructure();
-                bookmarks->restoreBookmarks(edit);
-            }
-            return edit;
+        if (!hidden) {
+            showStructure();
+            bookmarks->restoreBookmarks(edit);
         }
+        return edit;
+    }
 
-	//load it otherwise
-	if (!QFile::exists(f_real)) return nullptr;
-	QFile file(f_real);
-	if (!file.open(QIODevice::ReadOnly)) {
-		if (!hidden && !dontAsk)
-			QMessageBox::warning(this, tr("Error"), tr("You do not have read permission to the file %1.").arg(f_real));
-		return nullptr;
-	}
-	file.close();
+    //load it otherwise
+    if (!QFile::exists(f_real)) return nullptr;
+    QFile file(f_real);
+    if (!file.open(QIODevice::ReadOnly)) {
+        if (!hidden && !dontAsk)
+            QMessageBox::warning(this, tr("Error"), tr("You do not have read permission to the file %1.").arg(f_real));
+        return nullptr;
+    }
+    file.close();
 
-	bool bibTeXmodified = documents.bibTeXFilesModified;
+    bool bibTeXmodified = documents.bibTeXFilesModified;
 
-	doc = new LatexDocument(this);
+    doc = new LatexDocument(this);
     doc->setCenterDocumentInEditor(configManager.editorConfig->centerDocumentInEditor);
     doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking && configManager.editorConfig->realtimeChecking);
-	LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
-	edit->setLatexPackageList(&latexPackageList);
+    LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
+    edit->setLatexPackageList(&latexPackageList);
     edit->setHelp(&help);
-	if (hidden) {
-		edit->editor->setLineWrapping(false); //disable linewrapping in hidden docs to speed-up updates
-		doc->clearWidthConstraint();
-	}
-	configureNewEditorView(edit);
+    if (hidden) {
+        edit->editor->setLineWrapping(false); //disable linewrapping in hidden docs to speed-up updates
+        doc->clearWidthConstraint();
+    }
+    configureNewEditorView(edit);
 
-	edit->document = documents.findDocument(f_real);
-	if (!edit->document) {
-		edit->document = doc;
-		edit->document->setEditorView(edit);
-		documents.addDocument(edit->document, hidden);
-	} else edit->document->setEditorView(edit);
+    edit->document = documents.findDocument(f_real);
+    if (!edit->document) {
+        edit->document = doc;
+        edit->document->setEditorView(edit);
+        documents.addDocument(edit->document, hidden);
+    } else edit->document->setEditorView(edit);
 
-	if (configManager.recentFileHighlightLanguage.contains(f_real))
-		m_languages->setLanguage(edit->editor, configManager.recentFileHighlightLanguage.value(f_real));
-	else if (edit->editor->fileInfo().suffix().toLower() != "tex")
-		m_languages->setLanguage(edit->editor, f_real);
+    if (configManager.recentFileHighlightLanguage.contains(f_real))
+        m_languages->setLanguage(edit->editor, configManager.recentFileHighlightLanguage.value(f_real));
+    else if (edit->editor->fileInfo().suffix().toLower() != "tex")
+        m_languages->setLanguage(edit->editor, f_real);
 
-	edit->editor->load(f_real, QDocument::defaultCodec());
+    edit->editor->load(f_real, QDocument::defaultCodec());
 
-	if (!edit->editor->languageDefinition())
-		guessLanguageFromContent(m_languages, edit->editor);
+    if (!edit->editor->languageDefinition())
+        guessLanguageFromContent(m_languages, edit->editor);
 
-	edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
+    edit->editor->document()->setLineEndingDirect(edit->editor->document()->originalLineEnding());
 
     edit->document->setEditorView(edit); //update file name (if document didn't exist)
 
