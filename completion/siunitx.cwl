@@ -102,8 +102,8 @@
 \kV#*
 \kW#*
 \kWh#*
-\L
-\l
+\L#*
+\l#*
 \liter
 \litre
 \m#*
@@ -115,6 +115,7 @@
 \MeV#*
 \meV#*
 \mg#*
+\mJ#*
 \MHz#*
 \mHz#*
 \micro
