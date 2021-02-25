@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -921,7 +919,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Définit les types de notifications de mises à jour que vous recevrez :
 - versions stables : à choisir si la stabilité est le plus important pour vous ;
@@ -1130,7 +1128,7 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2637,8 +2635,8 @@ leur usage en les activant ici.</translation>
         <location filename="../src/configdialog.ui" line="4221"/>
         <location filename="../src/configdialog.ui" line="4288"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Le moteur de rendu utilisé par la bibliothèque PDF poppler.
 « Splash ».est celui par défaut et convient dans la plupart des cas.
@@ -3749,7 +3747,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1545"/>
         <source>Revert/Remove User Menu Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Rétablir/supprimer un élément du menu utilisateur</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1563"/>
@@ -3846,7 +3844,7 @@ Voulez-vous supprimer ces macros ?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="3374"/>
         <source>text is restored after restart</source>
-        <translation type="unfinished"></translation>
+        <translation>le texte est restauré après le redémarrage</translation>
     </message>
 </context>
 <context>
@@ -4334,7 +4332,7 @@ Continuer tout de même ?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Préférences de placement pour la figure
@@ -4452,7 +4450,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
@@ -4639,17 +4637,14 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2532"/>
         <location filename="../src/latexeditorview.cpp" line="2604"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2545"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n référence à cette étiquette</numerusform>
-            <numerusform>%n références à cette étiquette</numerusform>
-        </translation>
+        <translation><numerusform>%n référence à cette étiquette</numerusform><numerusform>%n références à cette étiquette</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2550"/>
@@ -6349,7 +6344,7 @@ a échoué.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Le fichier original sur le disque a été détruit lors de l&apos;opération de sauvegarde.
 Une copie est disponible ici :
@@ -9270,7 +9265,7 @@ n&apos;a pas pu être supprimé.</translation>
         <location filename="../src/texstudio.cpp" line="677"/>
         <location filename="../src/texstudio.cpp" line="678"/>
         <source>TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>TdM</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="697"/>
@@ -9985,7 +9980,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1047"/>
         <source>update TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>mise à jour de la TdM</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1048"/>
@@ -11040,7 +11035,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5753"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nom de fichier introuvable
 Vous devez enregistrer le document avant de le compiler.</translation>
@@ -11474,48 +11469,48 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <location filename="../src/texstudio.cpp" line="11052"/>
         <location filename="../src/texstudio.cpp" line="11077"/>
         <source>Document: </source>
-        <translation type="unfinished"></translation>
+        <translation>Document : </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11115"/>
         <source>Insert Label</source>
-        <translation type="unfinished">Insérer le label</translation>
+        <translation>Insérer le label</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11119"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
-        <translation type="unfinished">Insérer %1 du label</translation>
+        <translation>Insérer %1 du label</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11123"/>
         <source>Create Label</source>
-        <translation type="unfinished">Créer un label</translation>
+        <translation>Créer un label</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11128"/>
         <source>Cut</source>
-        <translation type="unfinished">Couper</translation>
+        <translation>Couper</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11129"/>
         <source>Paste Before</source>
-        <translation type="unfinished">Coller avant</translation>
+        <translation>Coller avant</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11130"/>
         <source>Paste After</source>
-        <translation type="unfinished">Coller après</translation>
+        <translation>Coller après</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11132"/>
         <source>Indent Section</source>
-        <translation type="unfinished">Indenter Section</translation>
+        <translation>Indenter Section</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11133"/>
         <source>Unindent Section</source>
-        <translation type="unfinished">Désindenter Section</translation>
+        <translation>Désindenter Section</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="648"/>
