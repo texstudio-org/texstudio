@@ -220,7 +220,7 @@ private:
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
 
-    bool parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector);
+    bool parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector,QSet<LatexDocument*> visited=QSet<LatexDocument*>());
 private slots:
     void updateTOC();
     void syncExpanded(QTreeWidgetItem *item);

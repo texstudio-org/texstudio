@@ -11040,7 +11040,7 @@ void Texstudio::updateTOC(){
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector) {
+bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector,QSet<LatexDocument*> visited) {
     bool elementsAdded=false;
     QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
@@ -11067,8 +11067,9 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
                 doc=documents.findDocumentFromName(fn+".tex");
             }
             bool ea=false;
-            if(doc){
-                ea=parseStruct(doc->baseStructure,rootVector);
+            if(doc &&!visited.contains(doc)){
+                visited.insert(doc);
+                ea=parseStruct(doc->baseStructure,rootVector,visited);
             }
             if(!ea){
                 QTreeWidgetItem * item=new QTreeWidgetItem();
