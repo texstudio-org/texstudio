@@ -11145,6 +11145,14 @@ void Texstudio::customMenuTOC(const QPoint &pos){
         menu.exec(topTOCTreeWidget->mapToGlobal(pos));
         return;
     }
+    if (contextEntry->type == StructureEntry::SE_INCLUDE) {
+        QMenu menu;
+        menu.addAction(tr("Open Document"), structureTreeView, SLOT(openExternalFileFromAction()))->setData(QVariant::fromValue(contextEntry));
+        menu.addAction(tr("Go to Definition"), structureTreeView, SLOT(gotoLineFromAction()))->setData(QVariant::fromValue(contextEntry));
+
+        menu.exec(topTOCTreeWidget->mapToGlobal(pos));
+        return;
+    }
 }
 
 /*!
