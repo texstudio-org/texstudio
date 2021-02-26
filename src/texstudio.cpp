@@ -7815,9 +7815,18 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!se) return;
 
-    LatexEditorView *edView = se->document->getEditorView();
-    if (edView) {
-        gotoLine(se->getRealLineNumber(), 0, edView);
+    if(se->type == StructureEntry::SE_SECTION){
+        LatexEditorView *edView = se->document->getEditorView();
+        if (edView) {
+            gotoLine(se->getRealLineNumber(), 0, edView);
+        }
+    }else{
+        // unresolved include, go to open file
+        if(se->type==StructureEntry::SE_INCLUDE){
+            QString name=se->title;
+            name.replace("\\string~",QDir::homePath());
+            openExternalFile(name);
+        }
     }
 }
 
@@ -11073,6 +11082,7 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             }
             if(!ea){
                 QTreeWidgetItem * item=new QTreeWidgetItem();
+                item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
                 item->setText(0,elem->title);
                 item->setToolTip(0,tr("Document: ")+docName);
                 item->setIcon(0,documents.model->iconInclude);
