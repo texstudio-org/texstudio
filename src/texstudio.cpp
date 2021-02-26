@@ -668,9 +668,9 @@ void Texstudio::setupDockWidgets()
     } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
-        connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem *,int)), this, SLOT(gotoLine(QTreeWidgetItem *,int)));
-        connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem *)), this, SLOT(syncExpanded(QTreeWidgetItem *)));
-        connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem *)), this, SLOT(syncCollapsed(QTreeWidgetItem *)));
+        connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
+        connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(syncExpanded(QTreeWidgetItem*)));
+        connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(syncCollapsed(QTreeWidgetItem*)));
         connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuTOC);
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -2008,7 +2008,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
             editors->addEditor(existingView);
             if(asProject)
                 editors->moveEditor(existingView,Editors::AbsoluteFront); // somewhat redundant, but we run into that problem with issue #899
-            updateStructure(false, existingView->document, true);
+            //updateStructure(false, existingView->document, true);
             existingView->editor->setFocus();
             updateCaption();
             return existingView;
