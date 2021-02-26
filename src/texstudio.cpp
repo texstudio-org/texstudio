@@ -9427,13 +9427,13 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	QStringList curPaths;
 	if (documents.masterDocument)
 		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
-    if (doc->getRootDocument())
-		curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
-	curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
-	if (defaultExt == "bib") {
-		curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
-	}
-	bool loaded = false;
+        if (doc->getRootDocument())
+            curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
+        curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
+        if (defaultExt == "bib") {
+            curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
+        }
+        bool loaded = false;
 	for (int i = 0; i < curPaths.count(); i++) {
 		const QString &curPath = ensureTrailingDirSeparator(curPaths.value(i));
 		if ((loaded = load(getAbsoluteFilePath(curPath + name, defaultExt))))

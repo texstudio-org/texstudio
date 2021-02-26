@@ -110,8 +110,8 @@ void LatexDocument::setFileNameInternal(const QString &fileName, const QFileInfo
 {
 	Q_ASSERT(fileName.isEmpty() || pairedFileInfo.isAbsolute());
 	this->fileName = fileName;
-	QFileInfo info = getNonSymbolicFileInfo(pairedFileInfo);
-	this->fileInfo = info;
+    //QFileInfo info = getNonSymbolicFileInfo(pairedFileInfo);
+    this->fileInfo = pairedFileInfo;
 }
 
 LatexEditorView *LatexDocument::getEditorView() const
