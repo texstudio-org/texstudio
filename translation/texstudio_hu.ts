@@ -3837,7 +3837,7 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="3374"/>
         <source>text is restored after restart</source>
-        <translation type="unfinished"/>
+        <translation>szöveg helyreállítva újraindítás után</translation>
     </message>
 </context>
 <context>
@@ -9251,7 +9251,7 @@ fájlt nem lehet eltávolítani.</translation>
         <location filename="../src/texstudio.cpp" line="677"/>
         <location filename="../src/texstudio.cpp" line="678"/>
         <source>TOC</source>
-        <translation type="unfinished"/>
+        <translation>Tartalomjegyzék</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="697"/>
