@@ -12,7 +12,7 @@ print_headline "Getting dependencies for building for ${QT} on ${TRAVIS_OS_NAME}
 if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 	if [ $QT = "qt5win" ]; then
 		MXEDIR="/usr/lib/mxe"
-		MXETARGET="x86_64-w64-mingw32.static"
+		MXETARGET="x86_64-w64-mingw32.shared"
 		
 		print_info "Make MXE directory writable"
         echo_and_run "sudo chmod -R a+w ${MXEDIR}"
@@ -29,8 +29,8 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 
 		cd travis-ci/mxe
 
-		print_info "Building poppler (using ${JOBS} jobs)"
-		env PATH="${MXEDIR}/usr/bin:${MXEDIR}/usr/${MXETARGET}/qt5/bin:$PATH" PREFIX="${MXEDIR}/usr" TARGET="${MXETARGET}" JOBS="$JOBS" MXE_CONFIGURE_OPTS="--host='${MXETARGET}' --build='`${MXEDIR}/ext/config.guess`' --prefix='${MXEDIR}/usr/${MXETARGET}' --enable-static --disable-shared ac_cv_prog_HAVE_DOXYGEN='false' " TEST_FILE="poppler-test.cxx" make -f build-poppler-mxe.mk
+		#print_info "Building poppler (using ${JOBS} jobs)"
+		#env PATH="${MXEDIR}/usr/bin:${MXEDIR}/usr/${MXETARGET}/qt5/bin:$PATH" PREFIX="${MXEDIR}/usr" TARGET="${MXETARGET}" JOBS="$JOBS" MXE_CONFIGURE_OPTS="--host='${MXETARGET}' --build='`${MXEDIR}/ext/config.guess`' --prefix='${MXEDIR}/usr/${MXETARGET}' --enable-static --disable-shared ac_cv_prog_HAVE_DOXYGEN='false' " TEST_FILE="poppler-test.cxx" make -f build-poppler-mxe.mk
 	else
 		print_info "Updating apt cache"
 		#sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
@@ -49,14 +49,6 @@ if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
 elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
 	print_info "Updating homebrew"
 	brew update > brew_update.log || { print_error "Updating homebrew failed"; cat brew_update.log; exit 1; }
-# apparently brew comes now with preinstalled qt & poppler
-#	print_info "Brewing packages: qt5 poppler"
-#	brew install qt5
-#	brew uninstall poppler
-#	brew unlink python@2
-    brew uninstall --ignore-dependencies poppler
-	brew install -f "${TRAVIS_BUILD_DIR}/travis-ci/mac/poppler.rb"
-	brew switch poppler 20.09.0-texworks
 else
 	print_error "Unsupported host/target combination '${TRAVIS_OS_NAME}'"
 	exit 1

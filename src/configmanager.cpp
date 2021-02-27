@@ -694,6 +694,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
 	registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
+    registerOption("GUI/PDFToobarIconSize", &guiPDFToolbarIconSize, 16);
+    registerOption("GUI/ConfigShorcutColumnWidth", &guiConfigShortcutColumnWidth, 200);
 
 	registerOption("View/ShowStatusbar", &showStatusbar, true);
 
@@ -724,6 +726,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
 	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);
 	registerOption("Preview/RenderBackend", &pdfDocumentConfig->renderBackend, 0, &pseudoDialog->comboBoxPDFRenderBackend);
+    registerOption("Preview/LimitRenderQueues", &pdfDocumentConfig->limitThreadNumber, -8); // hidden config to limit renderQueues i.e. parallel threads to render PDF. Default set numberOfThreads=qMin(8, number of cores)
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);
@@ -744,6 +747,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	// LogView
 	registerOption("LogView/WarnIfFileSizeLargerMB", &logViewWarnIfFileSizeLargerMB, 2.0);
+    registerOption("LogView/RememberChoiceLargeFile", &logViewRememberChoice, 0);
 
 #ifndef QT_NO_DEBUG
 	registerOption("Debug/Last Application Modification", &debugLastFileModification);
@@ -1296,7 +1300,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 
 	config->endGroup();
 
-	config->sync();
+    config->sync();
 
     return config;
 }
@@ -1377,9 +1381,11 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		else languageFiles[i] = temp;
 	}
 	if (!languageFiles.contains("en")) languageFiles.append("en");
+    languageFiles.sort(); // insert sorted
 	int langId = -1;
 	for (int i = 0; i < languageFiles.count(); i++) {
-		confDlg->ui.comboBoxLanguage->addItem(languageFiles[i]);
+        QLocale loc(languageFiles[i]);
+        confDlg->ui.comboBoxLanguage->addItem(languageFiles[i]+"  ("+QLocale::languageToString(loc.language())+")");
 		if (languageFiles[i] == language) langId = i;
 	}
 	confDlg->ui.comboBoxLanguage->addItem(tr("default"));
@@ -1536,6 +1542,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	act = new QAction(tr("Insert New Sub Menu (before)"), confDlg->ui.menuTree);
 	connect(act, SIGNAL(triggered()), SLOT(menuTreeNewMenuItem()));
 	confDlg->ui.menuTree->addAction(act);
+    act = new QAction(tr("Revert/Remove User Menu Item"), confDlg->ui.menuTree);
+    connect(act, SIGNAL(triggered()), SLOT(menuTreeRevertItem()));
+    confDlg->ui.menuTree->addAction(act);
 	confDlg->ui.menuTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
 	ComboBoxDelegate *cbd = new ComboBoxDelegate(confDlg->ui.menuTree);
@@ -1576,8 +1585,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
 	confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
 	confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+    confDlg->ui.horizontalSliderPDF->setValue(guiPDFToolbarIconSize);
 	connect(confDlg->ui.horizontalSliderIcon, SIGNAL(valueChanged(int)), SIGNAL(iconSizeChanged(int)));
 	connect(confDlg->ui.horizontalSliderCentraIcon, SIGNAL(valueChanged(int)), SIGNAL(secondaryIconSizeChanged(int)));
+    connect(confDlg->ui.horizontalSliderPDF, SIGNAL(valueChanged(int)), SIGNAL(pdfIconSizeChanged(int)));
 	connect(confDlg->ui.horizontalSliderSymbol, SIGNAL(valueChanged(int)), SIGNAL(symbolGridIconSizeChanged(int)));
 
 	//EXECUTE IT
@@ -1791,6 +1802,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		for (int i = 0; i < editorKeys->childCount(); i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
 			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2), SHORTCUT_FORMAT);
+            qDebug()<<editorKeys->child(i)->text(2)<<editOperation;
 			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
 				this->editorKeys.insert(kSeq.toString(), editOperation);
 		}
@@ -1832,17 +1844,23 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 		//language
 		if (language == tr("default")) language = "";
+        int i=language.indexOf("  (");
+        if(i>0){
+            language=language.left(i);
+        }
 		if (language != lastLanguage) loadTranslations(language);
 
 		// GUI scaling
 		guiToolbarIconSize = confDlg->ui.horizontalSliderIcon->value();
 		guiSecondaryToolbarIconSize = confDlg->ui.horizontalSliderCentraIcon->value();
 		guiSymbolGridIconSize = confDlg->ui.horizontalSliderSymbol->value();
+        guiPDFToolbarIconSize = confDlg->ui.horizontalSliderPDF->value();
 	} else {
 		// GUI scaling
 		confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
 		confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
 		confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+        confDlg->ui.horizontalSliderPDF->setValue(guiPDFToolbarIconSize);
 
 	}
 	delete confDlg;
@@ -3335,6 +3353,36 @@ void ConfigManager::menuTreeNewMenuItem()
 	menuTreeNewItem(true);
 }
 
+void ConfigManager::menuTreeRevertItem(){
+    QAction *a = qobject_cast<QAction *>(sender());
+    REQUIRE(a);
+    QTreeWidget *tw = qobject_cast<QTreeWidget *>(a->parentWidget());
+    REQUIRE(tw);
+    QTreeWidgetItem *item = tw->currentItem();
+    REQUIRE(item);
+    if (!item->parent()) return;
+    QString ID = item->data(0, Qt::UserRole).toString();
+    qDebug()<<item->text(0)<<ID;
+    if(ID.contains("UII")){
+        //user defined menu/item
+        QTreeWidgetItem *parent=item->parent();
+        parent->removeChild(item);
+        manipulatedMenuTree.remove(ID);
+    }else{ //revert
+        QFont bold = item->font(0);
+        if(bold.bold()){
+            // was manipulated
+            item->setText(1,tr("text is restored after restart"));
+            bold.setBold(false);
+            bold.setItalic(true);
+            for (int i = 0; i < 3; i++) item->setFont(i, bold);
+            manipulatedMenus.remove(ID);
+            changedItemsList.removeOne(item);
+        }
+    }
+
+}
+
 void ConfigManager::toggleVisibleTreeItems(bool show)
 {
 	REQUIRE(!superAdvancedItems.isEmpty());
@@ -3348,6 +3396,7 @@ void ConfigManager::toggleVisibleTreeItems(bool show)
 
 void ConfigManager::treeWidgetToManagedLatexMenuTo()
 {
+    manipulatedMenus.clear();
 	foreach (QTreeWidgetItem *item, changedItemsList) {
 		QString id = item->data(0, Qt::UserRole).toString();
 		if (id == "") continue;

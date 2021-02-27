@@ -98,7 +98,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new UpdateCheckerTest(level==TL_ALL)
 		<< new UtilsUITest(level==TL_ALL)
 		<< new VersionTest(level==TL_ALL)
-        << new HelpTest(edView->getHelp())
+        << new HelpTest(buildManager)
         << new UserMacroTest()
         << new GitTest(buildManager,level!=TL_AUTO);
 	bool allPassed=true;

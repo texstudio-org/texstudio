@@ -144,7 +144,7 @@ void LatexParsingTest::test_simpleLexing() {
     QDocument *doc = new QDocument();
     QDocumentLineHandle *dlh = new QDocumentLineHandle(line, doc);
     Parsing::simpleLexLatexLine(dlh);
-    TokenList tl = dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
+    TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
     for(int i=0; i<tl.length(); i++) {
         Token tk = tl.at(i);
         COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
@@ -355,7 +355,7 @@ void LatexParsingTest::test_latexLexing() {
     TokenList tl;
     for(int i=0; i<doc->lines(); i++){
         QDocumentLineHandle *dlh = doc->line(i).handle();
-        tl.append(dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>());
+        tl.append(dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>());
     }
 	qDebug() << "XXX";
 	for(int i=0; i<tl.length(); i++){

@@ -89,6 +89,8 @@ void UserQuickDialog::actionDelete()
 	if (current < 0) return;
 	delete ui.listWidget->currentItem();
 
+    if(ui.listWidget->count()==0) return; //empty, no item left for selection
+
 	if (current == ui.listWidget->count()) {
 		ui.listWidget->setCurrentItem(ui.listWidget->item(current - 1));
 		ui.listWidget->item(current - 1)->setSelected(true);

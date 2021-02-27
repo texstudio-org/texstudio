@@ -11,7 +11,11 @@ Help::Help(QObject *parent): QObject(parent),texDocSystem(0)
 
 }
 
-
+/*!
+ * \brief execute a dialog to let the user choose a package to show its documentation
+ * \param packages
+ * \param defaultPackage
+ */
 void Help::execTexdocDialog(const QStringList &packages, const QString &defaultPackage)
 {
     TexdocDialog dialog(nullptr,this);
@@ -24,7 +28,10 @@ void Help::execTexdocDialog(const QStringList &packages, const QString &defaultP
 		QString package = dialog.selectedPackage();
 	}
 }
-
+/*!
+ * \brief run texdoc --view package
+ * \param package
+ */
 void Help::viewTexdoc(QString package)
 {
 	if (package.isEmpty()) {
@@ -38,7 +45,12 @@ void Help::viewTexdoc(QString package)
 }
 
 
-
+/*!
+ * \brief check if system runs miktex
+ * Tries to run texdoc --veriosn and analyzes result.
+ * Miktex starts with MikTeX ...
+ * \return
+ */
 bool Help::isMiktexTexdoc()
 {
     if (!texDocSystem) {
@@ -62,7 +74,13 @@ bool Help::isTexdocExpectedToFinish()
 	return true;
 }
 
-
+/*!
+ * \brief search for documentation files for a given package
+ * It uses texdoc to access that information.
+ * \param package
+ * \param silent
+ * \return
+ */
 QString Help::packageDocFile(const QString &package, bool silent)
 {
     QString cmd = BuildManager::CMD_TEXDOC;
@@ -97,7 +115,14 @@ QString Help::packageDocFile(const QString &package, bool silent)
 	}
 	return QString();
 }
-
+/*!
+ * \brief search for documentation files for a given package asynchrnously
+ * It uses texdoc to access that information.
+ * The results are processed in texdocAvailableRequestFinished
+ * \param package
+ * \param silent
+ * \return
+ */
 void Help::texdocAvailableRequest(const QString &package)
 {
 	if (package.isEmpty())
@@ -116,20 +141,40 @@ void Help::texdocAvailableRequest(const QString &package)
 		// There seems to be no option yielding only the would be called command
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}
-    QString docCommand=runTexdoc(args.join(" "));
-    if(!isMiktexTexdoc() && !docCommand.isEmpty()){
+    runTexdocAsync(args.join(" "),SLOT(texdocAvailableRequestFinished(int,QProcess::ExitStatus)));
+
+}
+void Help::texdocAvailableRequestFinished(int,QProcess::ExitStatus status){
+
+    if(status!=QProcess::NormalExit) return; // texdoc --list failed
+
+    ProcessX *proc=qobject_cast<ProcessX *>(sender());
+    QString *buffer=proc->getStdoutBuffer();
+    QString cmdLine=proc->getCommandLine();
+    int i=cmdLine.lastIndexOf(" ");
+    QString package;
+    if(i>-1){
+        package=cmdLine.mid(i+1);
+    }
+
+
+    if(buffer==nullptr) return; // sanity check
+
+    if(!isMiktexTexdoc() && !buffer->isEmpty()){
         // analyze texdoc --list result in more detail, as it gives results even for partially matched names
-        QStringList lines=docCommand.split("\n");
+        QStringList lines=buffer->split("\n");
         QString line=lines.first();
         QStringList cols=line.split("\t");
         if(cols.count()>4){
             if(cols.value(1).startsWith("-")){
-                docCommand.clear(); // only partial, no real match
+                buffer->clear(); // only partial, no real match
             }
         }
     }
 
-    emit texdocAvailableReply(package, !docCommand.isEmpty(), QString());
+    emit texdocAvailableReply(package, !buffer->isEmpty(), QString());
+
+    delete buffer;
 }
 
 /*!
@@ -143,6 +188,18 @@ QString Help::runTexdoc(QString args) const
     emit statusMessage(QString(" texdoc "));
     emit runCommand(BuildManager::CMD_TEXDOC+" "+args, &output);
     return output;
+}
+/*!
+ * \brief run texdoc command asynchronously
+ * \param args
+ * \param finishedCMD SLOT for return path
+ * \return
+ */
+bool Help::runTexdocAsync(QString args,const char * finishedCMD)
+{
+    emit statusMessage(QString(" texdoc (async)"));
+    emit runCommandAsync(BuildManager::CMD_TEXDOC+" "+args, finishedCMD);
+    return true;
 }
 
 

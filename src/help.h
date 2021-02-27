@@ -17,15 +17,18 @@ public:
 signals:
 	void texdocAvailableReply(const QString &package, bool available, QString errorMessage);
     void runCommand(const QString &commandline, QString *output) const;
+    void runCommandAsync(const QString &commandline, const char * returnCmd) const;
     void statusMessage(const QString &message) const;
 
 public slots:
 	void execTexdocDialog(const QStringList &packages, const QString &defaultPackage);
 	void viewTexdoc(QString package);
 	void texdocAvailableRequest(const QString &package);
+    void texdocAvailableRequestFinished(int,QProcess::ExitStatus status);
 
 private:
     QString runTexdoc(QString args) const;
+    bool runTexdocAsync(QString args,const char * finishedCMD);
     int texDocSystem;
 };
 

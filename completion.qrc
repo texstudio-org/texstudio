@@ -58,6 +58,7 @@
 <file>completion/coordsys.cwl</file>
 <file>completion/cquthesis.cwl</file>
 <file>completion/csquotes.cwl</file>
+<file>completion/ctex.cwl</file>
 <file>completion/currvita.cwl</file>
 <file>completion/cyrillic.cwl</file>
 <file>completion/datatool-base.cwl</file>
@@ -236,6 +237,8 @@
 <file>completion/virginialake.cwl</file>
 <file>completion/wasysym.cwl</file>
 <file>completion/xcolor.cwl</file>
+<file>completion/xeCJK.cwl</file>
+<file>completion/xeCJKfntef.cwl</file>
 <file>completion/xepersian.cwl</file>
 <file>completion/xetex.cwl</file>
 <file>completion/xfrac.cwl</file>
@@ -250,6 +253,7 @@
 <file>completion/yathesis.cwl</file>
 <file>completion/yfonts.cwl</file>
 <file>completion/zhlipsum.cwl</file>
+<file>completion/zhnumber.cwl</file>
 <file>completion/cwlAliases.dat</file>
 </qresource>
 </RCC>

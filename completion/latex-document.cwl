@@ -394,6 +394,7 @@
 \symbol{n}
 \tablename
 \tableofcontents
+\tabularnewline#t
 \textasciicircum
 \textasciitilde
 \textasteriskcentered

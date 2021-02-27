@@ -18,7 +18,7 @@
 \ClassWarning{class name}{warning text}#*
 \ClassWarningNoLine{class name}{warning text}#*
 \CurrentOption#*
-\DeclareFixedFont{cmd}{encoding}{family}{series}{shape}{size}#*
+\DeclareFixedFont{cmd}{encoding}{family}{series}{shape}{size}#*d
 \DeclareFontEncoding{encoding}{text-settings}{math-settings}#*
 \DeclareFontEncodingDefaults{text-settings}{math-settings}#*
 \DeclareFontFamily{encoding}{family}{loading-settings}#*
@@ -43,10 +43,10 @@
 \DeclareSymbolFont{sym-font}{encoding}{family}{series}{shape}#*
 \DeclareSymbolFontAlphabet{math-alph}{sym-font}#*
 \DeclareTextAccent{def}{encoding}{character}#*
-\DeclareTextCommand{cmd}{encoding}[num][default]{definition}#*
+\DeclareTextCommand{cmd}{encoding%definition}[num][default]{definition}#*d
 \DeclareTextComposite{def}{encoding}{character}{character}#*
-\DeclareTextCompositeCommand{cmd}{encoding}{letter}{definition}#*
-\DeclareTextFontCommand{cmd}{font-switches}#*
+\DeclareTextCompositeCommand{cmd}{encoding%definition}{letter%definition}{definition}#*d
+\DeclareTextFontCommand{cmd}{font-switches%definition}#*d
 \DeclareTextSymbol{def}{encoding}{code}#*
 \ExecuteOptions{optionlist}#*
 \IfFileExists{file}{then}{else}#*

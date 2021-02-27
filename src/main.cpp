@@ -167,6 +167,7 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 							<< "  --pdf-viewer-only         run as a standalone pdf viewer without an editor\n"
 							<< "  --page PAGENUM            display a certain page in the pdf viewer\n"
                             << "  --no-session              do not load/save the session at startup/close\n"
+                            << "  --texpath PATH            force resetting command defaults with PATH as first search path"
                             << "  --version                 show version number\n"
 #ifdef DEBUG_LOGGER
 							<< "  --debug-logfile pathname  write debug messages to pathname\n"
@@ -187,7 +188,11 @@ int main(int argc, char **argv)
 {
 	QString appId = generateAppId();
 #if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
-	QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+    if(qEnvironmentVariableIntValue("TEXSTUDIO_HIDPI_SCALE")>0){
+        QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    } else {
+        QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+    }
 #endif
 	// This is a dummy constructor so that the programs loads fast.
 	TexstudioApp a(appId, argc, argv);

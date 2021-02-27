@@ -31,7 +31,7 @@ public:
 		beamertheme, packageoption, color, verbatimStart, verbatimStop,
 		verbatim, symbol, punctuation, number, generalArg,
 		defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
-		specialArg, newTheorem, newBibItem, formula, overlay,
+        formula, specialArg, newTheorem, newBibItem, overlay,
 		overlayRegion, _end = 255
 	};
 };
@@ -79,6 +79,7 @@ public:
 	TokenType type;
 	/// subtype is used to determine the type of argument
 	TokenType subtype;
+    bool ignoreSpelling;
 	int argLevel; ///< number of argument (>0) or option (<0, =-numberOfOption)
 	static const QHash<TokenType, int> leftDelimWidth;  ///< width of the left delimiter in the token (if applicable)
 	static const QHash<TokenType, int> rightDelimWidth;  ///< width of the right delimiter in the token (if applicable)

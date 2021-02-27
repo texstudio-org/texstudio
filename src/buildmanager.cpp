@@ -49,7 +49,7 @@ CMD_DEFINE(TERMINAL_EXTERNAL, terminal-external)
 //! Otherwise surpising side effects can happen, see https://sourceforge.net/p/texstudio/bugs/2119/
 const QStringList atomicCommands = QStringList() << "txs:///latex" << "txs:///pdflatex" << "txs:///xelatex"<< "txs:///lualatex" << "txs:///latexmk";
 
-QString searchBaseCommand(const QString &cmd, QString options);
+QString searchBaseCommand(const QString &cmd, QString options, QString texPath="");
 QString getCommandLineViewDvi();
 QString getCommandLineViewPs();
 QString getCommandLineViewPdfExternal();
@@ -57,7 +57,7 @@ QString getCommandLineGhostscript();
 
 CommandInfo::CommandInfo(): user(false), meta(false), rerunCompiler(false), guessFunc(nullptr) {}
 
-QString CommandInfo::guessCommandLine() const
+QString CommandInfo::guessCommandLine(const QString texpath) const
 {
 	if (guessFunc) {
 		QString temp = (*guessFunc)();
@@ -66,7 +66,7 @@ QString CommandInfo::guessCommandLine() const
 
 	if (!baseName.isEmpty()) {
 		//search it
-		QString bestCommand = searchBaseCommand(baseName, defaultArgs);
+        QString bestCommand = searchBaseCommand(baseName, defaultArgs,texpath);
 		if (!bestCommand.isEmpty()) return bestCommand;
 	}
 
@@ -841,7 +841,8 @@ QString getTeXLiveWinBinPathInternal()
 	foreach (const QString &baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
 		QSettings reg(baseKey + "\\Software", QSettings::NativeFormat);
 		QString uninstall;
-		for (int v = 2017; v > 2008; v--) {
+        QDate date = QDate::currentDate();
+        for (int v = date.year(); v > 2008; v--) {
 			uninstall = reg.value(QString("microsoft/windows/currentversion/uninstall/TeXLive%1/UninstallString").arg(v), "").toString();
 			if (!uninstall.isEmpty()) {
 				int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);
@@ -901,11 +902,14 @@ QString findGhostscriptDLL()   //called dll, may also find an exe
 }
 #endif
 
-QString searchBaseCommand(const QString &cmd, QString options)
+QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
 {
 	foreach(QString command, cmd.split(";")) {
 		QString fileName = command   ON_WIN(+ ".exe");
 		if (!options.startsWith(" ")) options = " " + options;
+        if (!texPath.isEmpty() && QFileInfo::exists(addPathDelimeter(texPath) + fileName)) {
+            return addPathDelimeter(texPath)+fileName+options; // found in texpath
+        }
 		if (!BuildManager::findFileInPath(fileName).isEmpty())
 			return fileName + options; //found in path
 		else {
@@ -925,7 +929,8 @@ QString searchBaseCommand(const QString &cmd, QString options)
 			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/" << "/Library/TeX/texbin/" << "/Library/TeX/local/bin/" ;
 			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
 
-			for (int i = 2013; i >= 2007; i--) {
+            QDate date = QDate::currentDate();
+            for (int i = date.year(); i > 2008; i--) {
 				//paths << QString("/usr/texbin MACTEX/TEXLIVE%1").arg(i); from texmaker comment
 				paths << QString("/usr/local/texlive/%1/bin/x86_64-darwin/").arg(i);
 				paths << QString("/usr/local/texlive/%1/bin/i386-darwin/").arg(i);
@@ -1272,7 +1277,7 @@ QString getCommandLineGhostscript()
 	return "";
 }
 
-#elif defined(Q_WS_X11) || defined(Q_OS_LINUX)
+#elif defined(Q_WS_X11) || defined(Q_OS_LINUX) || defined(Q_OS_HAIKU)
 
 // xdvi %.dvi  -sourceposition @:%.tex
 // kdvi "file:%.dvi#src:@ %.tex"
@@ -1425,7 +1430,7 @@ void BuildManager::readSettings(QSettings &settings)
 				cmd.commandLine = cmd.metaSuggestionList[deprecatedQuickmode];
 			continue;
 		}
-		cmd.commandLine = cmd.guessCommandLine();
+        cmd.commandLine = cmd.guessCommandLine();
 	}
 	if (commands.value("quick").commandLine.isEmpty()) {
 		//Choose suggestion that actually exists
@@ -1511,7 +1516,18 @@ void BuildManager::saveSettings(QSettings &settings)
 	}
 	autoRerunCommands = rerunCmds.join("|");
 	settings.endGroup();
-	settings.endGroup();
+    settings.endGroup();
+}
+/*!
+ * \brief reset command lines for all commands to default with texPath as default path
+ * \param texPath
+ */
+void BuildManager::resetDefaultCommands(const QString texPath)
+{
+    for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it) {
+        CommandInfo &cmd = it.value();
+        cmd.commandLine=cmd.guessCommandLine(texPath);
+    }
 }
 
 void BuildManager::checkLatexConfiguration(bool &noWarnAgain)

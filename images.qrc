@@ -246,5 +246,6 @@
         <file>images-ng/classic/magnifier-button_dm.svgz</file>
         <file>images-ng/classic/windowed-viewer_dm.svgz</file>
         <file>images-ng/classic/hide-toolbars_dm.svgz</file>
+        <file>images-ng/toc.svg</file>
     </qresource>
 </RCC>

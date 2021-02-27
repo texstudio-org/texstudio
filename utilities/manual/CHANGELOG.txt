@@ -1,10 +1,50 @@
-TeXstudio 3.0.2
+TeXstudio 3.1.2
 -----------------
 - 
 
+TeXstudio 3.1.1
+-----------------
+- fix crashes concerning opening included files
+- let global TOC update as you type
+
+TeXstudio 3.1.0
+-----------------
+- fix changing GUI language
+- global TOC added which needs to be updated for now (WIP)
+
+TeXstudio 3.0.5
+-----------------
+- fix crash when deleting all elements of a build chain (#1415)
+- fix large tooltips on win with ADWAITA style
+- number of pdf rendering threads limited to 8 (or to set value, see #1463)
+- add command line option --texpath to force a tex path
+- fix touchpad scroll in x direction
+- fix a seldom crash
+- adapt speller dialog to find the same errors as the online checker
+- fix replace in global search
+
+
+TeXstudio 3.0.4
+-----------------
+- fix RTL presentation when zoomed (#1404)
+- fix pdf toolbar size setting
+
+TeXstudio 3.0.3
+-----------------
+- fix OSX build
+
+TeXstudio 3.0.2
+-----------------
+- handle \tabularnewline correctly (#1373)
+- fix text insertion on selected text (#1359&#1354)
+- changed behaviour for cut buffer and Ctrl+e (insert env)  (#1342)
+- texdoc added as selectable command
+- win build now uses 64 bit and can handle larger documents
+- larger number of default dictionaries added
+
 TeXstudio 3.0.1
 -----------------
-- fix glitch in mopdern style (#1238 , triangle missing)
+- fix glitch in modern style (#1238 , triangle missing)
 - fix equation preview (#1234)
 - fix commands with quotes (#1225 & #1169)
 - fix syntax marker in darkmode (#1224)

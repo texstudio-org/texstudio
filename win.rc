@@ -1,1 +1,24 @@
 IDI_ICON1               ICON    DISCARDABLE     "texstudio.ico"
+
+
+1 VERSIONINFO
+    FILEVERSION    0,0,0,0
+    PRODUCTVERSION 0,0,0,0
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "000004B0"
+        {
+            VALUE "CompanyName",        "TeXstudio\0"
+            VALUE "FileDescription",    "LaTeX editor\0"
+            VALUE "FileVersion",        "git\0"
+            VALUE "OriginalFilename",   "texstudio.exe\0"
+            VALUE "ProductName",        "TeXstudio\0"
+            VALUE "ProductVersion",     "git\0"
+        }
+    }
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x0000, 0x04B0
+    }
+}
