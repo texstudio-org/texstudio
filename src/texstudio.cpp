@@ -159,6 +159,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	recentSessionList = nullptr;
 	editors = nullptr;
 	m_languages = nullptr; //initial state to avoid crash on OSX
+    currentSection=nullptr;
 
 	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
 
@@ -8747,6 +8748,11 @@ void Texstudio::cursorPositionChanged()
 	StructureEntry *newSection = currentEditorView()->document->findSectionForLine(currentLine);
 
 	model->setHighlightedEntry(newSection);
+    if(newSection!=currentSection){
+        StructureEntry *old=currentSection;
+        currentSection=newSection;
+        updateCurrentPosInTOC(nullptr,old);
+    }
 	if (!mDontScrollToItem)
 		structureTreeView->scrollTo(model->highlightedEntry());
 	syncPDFViewer(currentEditor()->cursor(), false);
@@ -11042,6 +11048,32 @@ void Texstudio::updateTOC(){
     parseStruct(base,rootVector);
     topTOCTreeWidget->insertTopLevelItem(0,root);
     root->setExpanded(true);
+    updateCurrentPosInTOC();
+}
+/*!
+ * \brief update marking of current position in global TOC
+ */
+void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root,StructureEntry *old)
+{
+    if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
+    const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
+    if(!root){
+        root=topTOCTreeWidget->topLevelItem(0);
+    }
+    if(!root) return;
+    for(int i=0;i<root->childCount();++i){
+        QTreeWidgetItem *item=root->child(i);
+        StructureEntry *se = item->data(0,Qt::UserRole).value<StructureEntry *>();
+        if(old && se==old){
+            item->setBackground(0,palette().brush(QPalette::Base));
+        }
+        if(se==currentSection){
+            item->setBackgroundColor(0,activeItemColor);
+            if (!mDontScrollToItem)
+                topTOCTreeWidget->scrollToItem(item);
+        }
+        updateCurrentPosInTOC(item,old);
+    }
 }
 /*!
  * \brief parse children of a structure entry se to collect TOC data
@@ -11049,8 +11081,13 @@ void Texstudio::updateTOC(){
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector,QSet<LatexDocument*> visited) {
+bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited) {
     bool elementsAdded=false;
+    bool deleteVisitedDocs=false;
+    if (!visited) {
+        visited = new QSet<LatexDocument *>();
+        deleteVisitedDocs = true;
+    }
     QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
         if(elem->type == StructureEntry::SE_SECTION){
@@ -11066,7 +11103,7 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
             }
-            parseStruct(elem,rootVector);
+            parseStruct(elem,rootVector,visited);
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
@@ -11076,8 +11113,8 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
                 doc=documents.findDocumentFromName(fn+".tex");
             }
             bool ea=false;
-            if(doc &&!visited.contains(doc)){
-                visited.insert(doc);
+            if(doc &&!visited->contains(doc)){
+                visited->insert(doc);
                 ea=parseStruct(doc->baseStructure,rootVector,visited);
             }
             if(!ea){
@@ -11090,6 +11127,10 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             }
             elementsAdded=true;
         }
+    }
+    if(deleteVisitedDocs){
+        delete visited;
+        visited=nullptr;
     }
     return elementsAdded;
 }
