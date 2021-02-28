@@ -11049,8 +11049,13 @@ void Texstudio::updateTOC(){
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootVector,QSet<LatexDocument*> visited) {
+bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited) {
     bool elementsAdded=false;
+    bool deleteVisitedDocs=false;
+    if (!visited) {
+        visited = new QSet<LatexDocument *>();
+        deleteVisitedDocs = true;
+    }
     QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
         if(elem->type == StructureEntry::SE_SECTION){
@@ -11066,7 +11071,7 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
             }
-            parseStruct(elem,rootVector);
+            parseStruct(elem,rootVector,visited);
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
@@ -11076,8 +11081,8 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
                 doc=documents.findDocumentFromName(fn+".tex");
             }
             bool ea=false;
-            if(doc &&!visited.contains(doc)){
-                visited.insert(doc);
+            if(doc &&!visited->contains(doc)){
+                visited->insert(doc);
                 ea=parseStruct(doc->baseStructure,rootVector,visited);
             }
             if(!ea){
@@ -11090,6 +11095,10 @@ bool Texstudio::parseStruct(StructureEntry* se,QVector<QTreeWidgetItem *> &rootV
             }
             elementsAdded=true;
         }
+    }
+    if(deleteVisitedDocs){
+        delete visited;
+        visited=nullptr;
     }
     return elementsAdded;
 }
