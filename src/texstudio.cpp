@@ -11115,6 +11115,7 @@ void Texstudio::syncCollapsed(QTreeWidgetItem *item){
 
 void Texstudio::customMenuTOC(const QPoint &pos){
     QTreeWidgetItem *item = topTOCTreeWidget->itemAt(pos);
+    if(!item) return;
     StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!contextEntry) return;
     if (contextEntry->type == StructureEntry::SE_SECTION) {
