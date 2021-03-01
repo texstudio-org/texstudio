@@ -1,4 +1,4 @@
-#########################################################################################
+cd#########################################################################################
 # pkgAtLeastVersion(widget_name, widget_version)
 # Custom test that checks if widget_name is installed and at least version widget_version
 #########################################################################################
@@ -121,6 +121,7 @@ RESOURCES += texstudio.qrc \
 
 TRANSLATIONS += translation/texstudio_ar.ts \
     translation/texstudio_br.ts \
+    translation/texstudio_ca.ts \
     translation/texstudio_cs.ts \
     translation/texstudio_de.ts \
     translation/texstudio_el.ts \
@@ -129,10 +130,12 @@ TRANSLATIONS += translation/texstudio_ar.ts \
     translation/texstudio_fr.ts \
     translation/texstudio_hu.ts \
     translation/texstudio_id_ID.ts \
+    translation/texstudio_ie.ts \
     translation/texstudio_it.ts \
     translation/texstudio_ja.ts \
     translation/texstudio_ko.ts \
     translation/texstudio_ko_KR.ts \
+    translation/texstudio_nb_NO.ts \
     translation/texstudio_nl.ts \
     translation/texstudio_pl.ts \
     translation/texstudio_pt.ts \
@@ -204,6 +207,7 @@ unix {
         utilities/latex2e.css \
         translation/texstudio_ar.qm \
         translation/texstudio_br.qm \
+        translation/texstudio_ca.qm \
         translation/texstudio_cs.qm \
         translation/texstudio_de.qm \
         translation/texstudio_el.qm \
@@ -212,10 +216,12 @@ unix {
         translation/texstudio_fr.qm \
         translation/texstudio_hu.qm \
         translation/texstudio_id_ID.qm \
+        translation/texstudio_ie.qm \
         translation/texstudio_it.qm \
         translation/texstudio_ja.qm \
         translation/texstudio_ko.qm \
         translation/texstudio_ko_KR.qm \
+        translation/texstudio_nb_NO.qm \
         translation/texstudio_nl.qm \
         translation/texstudio_pl.qm \
         translation/texstudio_pt.qm \
