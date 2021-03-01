@@ -9966,7 +9966,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1048"/>
         <source>update TOC</source>
-        <translation type="unfinished"/>
+        <translation>Tartalomjegyzék frissítése</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1049"/>
