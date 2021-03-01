@@ -7606,23 +7606,23 @@ typedef QPair<int, int> PairIntInt;
 
 void Texstudio::updateCompleter(LatexEditorView *edView)
 {
-	CodeSnippetList words;
+    CodeSnippetList words;
 
-	if (configManager.parseBibTeX) documents.updateBibFiles();
+    if (configManager.parseBibTeX) documents.updateBibFiles();
 
-	if (!edView)
-		edView = currentEditorView();
+    if (!edView)
+        edView = currentEditorView();
 
-	QList<LatexDocument *> docs;
-	LatexParser ltxCommands = LatexParser::getInstance();
+    QList<LatexDocument *> docs;
+    LatexParser ltxCommands = LatexParser::getInstance();
     LatexCompleterConfig *config = completer->getConfig();
 
-	if (edView && edView->document) {
-		// determine from which docs data needs to be collected
-		docs = edView->document->getListOfDocs();
+    if (edView && edView->document) {
+        // determine from which docs data needs to be collected
+        docs = edView->document->getListOfDocs();
 
-		// collect user commands and references
-		foreach (LatexDocument *doc, docs) {
+        // collect user commands and references
+        foreach (LatexDocument *doc, docs) {
             QList<CodeSnippet> userList=doc->userCommandList();
             if(config){
                 CodeSnippetList::iterator it;
@@ -7637,97 +7637,97 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                 }
             }
             words.unite(userList);
-			words.unite(doc->additionalCommandsList());
+            words.unite(doc->additionalCommandsList());
 
-			ltxCommands.append(doc->ltxCommands);
-		}
-	}
+            ltxCommands.append(doc->ltxCommands);
+        }
+    }
 
-	// collect user commands and references
-	QSet<QString> collected_labels;
+    // collect user commands and references
+    QSet<QString> collected_labels;
     foreach (const LatexDocument *doc, docs) {
         collected_labels.unite(convertStringListtoSet(doc->labelItems()));
-		foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
-			QString temp = refCommand + "{%1}";
-			foreach (const QString &l, doc->labelItems())
-				words.insert(temp.arg(l));
-		}
+        foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
+            QString temp = refCommand + "{%1}";
+            foreach (const QString &l, doc->labelItems())
+                words.insert(temp.arg(l));
+        }
     }
     if (configManager.parseBibTeX) {
-		QSet<QString> bibIds;
+        QSet<QString> bibIds;
 
-		QStringList collected_mentionedBibTeXFiles;
-		foreach (const LatexDocument *doc, docs) {
-			collected_mentionedBibTeXFiles << doc->listOfMentionedBibTeXFiles();
-		}
+        QStringList collected_mentionedBibTeXFiles;
+        foreach (const LatexDocument *doc, docs) {
+            collected_mentionedBibTeXFiles << doc->listOfMentionedBibTeXFiles();
+        }
 
-		for (int i = 0; i < collected_mentionedBibTeXFiles.count(); i++) {
-			if (!documents.bibTeXFiles.contains(collected_mentionedBibTeXFiles[i])) {
-				qDebug("BibTeX-File %s not loaded", collected_mentionedBibTeXFiles[i].toLatin1().constData());
-				continue; //wtf?s
-			}
-			BibTeXFileInfo &bibTex = documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
+        for (int i = 0; i < collected_mentionedBibTeXFiles.count(); i++) {
+            if (!documents.bibTeXFiles.contains(collected_mentionedBibTeXFiles[i])) {
+                qDebug("BibTeX-File %s not loaded", collected_mentionedBibTeXFiles[i].toLatin1().constData());
+                continue; //wtf?s
+            }
+            BibTeXFileInfo &bibTex = documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
 
-			// add citation to completer for direct citation completion
-			bibIds.unite(bibTex.ids);
-		}
-		//handle bibitem definitions
-		foreach (const LatexDocument *doc, docs) {
+            // add citation to completer for direct citation completion
+            bibIds.unite(bibTex.ids);
+        }
+        //handle bibitem definitions
+        foreach (const LatexDocument *doc, docs) {
             bibIds.unite(convertStringListtoSet(doc->bibItems()));
-		}
-		//automatic use of cite commands
-		QStringList citationCommands;
-		foreach (const QString &citeCommand, latexParser.possibleCommands["%cite"]) {
-			QString temp = '@' + citeCommand + "{@}";
-			citationCommands.append(temp);
-			//words.insert(temp);
-			/*foreach (const QString &value, bibIds)
-			    words.insert(temp.arg(value));*/
-		}
-		foreach (QString citeCommand, latexParser.possibleCommands["%citeExtended"]) {
-			QString temp = '@' + citeCommand.replace("%<bibid%>", "@");
-			citationCommands.append(temp);
-			//temp=citeCommand.replace("%<bibid%>","@");
-			//words.insert(temp);
-		}
+        }
+        //automatic use of cite commands
+        QStringList citationCommands;
+        foreach (const QString &citeCommand, latexParser.possibleCommands["%cite"]) {
+            QString temp = '@' + citeCommand + "{@}";
+            citationCommands.append(temp);
+            //words.insert(temp);
+            /*foreach (const QString &value, bibIds)
+                            words.insert(temp.arg(value));*/
+        }
+        foreach (QString citeCommand, latexParser.possibleCommands["%citeExtended"]) {
+            QString temp = '@' + citeCommand.replace("%<bibid%>", "@");
+            citationCommands.append(temp);
+            //temp=citeCommand.replace("%<bibid%>","@");
+            //words.insert(temp);
+        }
         completer->setAdditionalWords(convertStringListtoSet(citationCommands), CT_CITATIONCOMMANDS);
-		completer->setAdditionalWords(bibIds, CT_CITATIONS);
-	}
+        completer->setAdditionalWords(bibIds, CT_CITATIONS);
+    }
 
-	completer->setAdditionalWords(collected_labels, CT_LABELS);
+    completer->setAdditionalWords(collected_labels, CT_LABELS);
 
-	completionBaseCommandsUpdated = false;
-
-
-	completer->setAdditionalWords(words, CT_COMMANDS);
-
-	// add keyval completion, add special lists
-	foreach (const QString &elem, ltxCommands.possibleCommands.keys()) {
-		if (elem.startsWith("key%")) {
-			QString name = elem.mid(4);
-			if (name.endsWith("#c"))
-				name.chop(2);
-			if (!name.isEmpty()) {
-				completer->setKeyValWords(name, ltxCommands.possibleCommands[elem]);
-			}
-		}
-		if (elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem)) {
-			completer->setKeyValWords(elem, ltxCommands.possibleCommands[elem]);
-		}
-	}
-	// add context completion
-	if (config) {
-		foreach (const QString &elem, config->specialCompletionKeys) {
-			completer->setContextWords(ltxCommands.possibleCommands[elem], elem);
-		}
-	}
+    completionBaseCommandsUpdated = false;
 
 
-	if (edView) edView->viewActivated();
+    completer->setAdditionalWords(words, CT_COMMANDS);
 
-	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
+    // add keyval completion, add special lists
+    foreach (const QString &elem, ltxCommands.possibleCommands.keys()) {
+        if (elem.startsWith("key%")) {
+            QString name = elem.mid(4);
+            if (name.endsWith("#c"))
+                name.chop(2);
+            if (!name.isEmpty()) {
+                completer->setKeyValWords(name, ltxCommands.possibleCommands[elem]);
+            }
+        }
+        if (elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem)) {
+            completer->setKeyValWords(elem, ltxCommands.possibleCommands[elem]);
+        }
+    }
+    // add context completion
+    if (config) {
+        foreach (const QString &elem, config->specialCompletionKeys) {
+            completer->setContextWords(ltxCommands.possibleCommands[elem], elem);
+        }
+    }
 
-	mCompleterNeedsUpdate = false;
+
+    if (edView) edView->viewActivated();
+
+    GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
+
+    mCompleterNeedsUpdate = false;
 }
 
 void Texstudio::outputPageChanged(const QString &id)
@@ -7742,67 +7742,67 @@ void Texstudio::outputPageChanged(const QString &id)
 
 void Texstudio::jumpToSearchResult(QDocument *doc, int lineNumber, const SearchQuery *query)
 {
-	REQUIRE(qobject_cast<LatexDocument *>(doc));
-	if (currentEditor() && currentEditor()->document() == doc && currentEditor()->cursor().lineNumber() == lineNumber) {
-		QDocumentCursor c = currentEditor()->cursor();
-		int col = c.columnNumber();
-		col = query->getNextSearchResultColumn(c.line().text() , col + 1);
-		gotoLine(lineNumber, col);
-	} else {
-		gotoLine(lineNumber, doc->getFileName().size() ? doc->getFileName() : qobject_cast<LatexDocument *>(doc)->getTemporaryFileName());
-		int col = query->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text(), 0);
-		gotoLine(lineNumber, col);
-		outputView->showPage(outputView->SEARCH_RESULT_PAGE);
-	}
-	QDocumentCursor highlight = currentEditor()->cursor();
-	highlight.movePosition(query->searchExpression().length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-	currentEditorView()->temporaryHighlight(highlight);
+    REQUIRE(qobject_cast<LatexDocument *>(doc));
+    if (currentEditor() && currentEditor()->document() == doc && currentEditor()->cursor().lineNumber() == lineNumber) {
+        QDocumentCursor c = currentEditor()->cursor();
+        int col = c.columnNumber();
+        col = query->getNextSearchResultColumn(c.line().text() , col + 1);
+        gotoLine(lineNumber, col);
+    } else {
+        gotoLine(lineNumber, doc->getFileName().size() ? doc->getFileName() : qobject_cast<LatexDocument *>(doc)->getTemporaryFileName());
+        int col = query->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text(), 0);
+        gotoLine(lineNumber, col);
+        outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+    }
+    QDocumentCursor highlight = currentEditor()->cursor();
+    highlight.movePosition(query->searchExpression().length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+    currentEditorView()->temporaryHighlight(highlight);
 }
 
 void Texstudio::gotoLine(int line, int col, LatexEditorView *edView, QEditor::MoveFlags mflags, bool setFocus)
 {
-	bool changeCurrentEditor = (edView != currentEditorView());
-	if (!edView)
-		edView = currentEditorView(); // default
+    bool changeCurrentEditor = (edView != currentEditorView());
+    if (!edView)
+        edView = currentEditorView(); // default
 
-	if (!edView || line < 0) return;
+    if (!edView || line < 0) return;
 
-	saveCurrentCursorToHistory();
+    saveCurrentCursorToHistory();
 
-	if (changeCurrentEditor) {
-		if (editors->containsEditor(edView)) {
-			editors->setCurrentEditor(edView);
-			mflags &= ~QEditor::Animated;
-		} else {
-			load(edView->getDocument()->getFileName());
-		}
-	}
-	edView->editor->setCursorPosition(line, col, false);
-	edView->editor->ensureCursorVisible(mflags);
-	if (setFocus) {
-		edView->editor->setFocus();
-	}
+    if (changeCurrentEditor) {
+        if (editors->containsEditor(edView)) {
+            editors->setCurrentEditor(edView);
+            mflags &= ~QEditor::Animated;
+        } else {
+            load(edView->getDocument()->getFileName());
+        }
+    }
+    edView->editor->setCursorPosition(line, col, false);
+    edView->editor->ensureCursorVisible(mflags);
+    if (setFocus) {
+        edView->editor->setFocus();
+    }
 }
 
 bool Texstudio::gotoLine(int line, const QString &fileName)
 {
-	LatexEditorView *edView = getEditorViewFromFileName(fileName, true);
-	QEditor::MoveFlags mflags = QEditor::Navigation;
-	if (!edView) {
-		if (!load(fileName)) return false;
-		mflags &= ~QEditor::Animated;
-	}
-	gotoLine(line, 0, edView, mflags);
-	return true;
+    LatexEditorView *edView = getEditorViewFromFileName(fileName, true);
+    QEditor::MoveFlags mflags = QEditor::Navigation;
+    if (!edView) {
+        if (!load(fileName)) return false;
+        mflags &= ~QEditor::Animated;
+    }
+    gotoLine(line, 0, edView, mflags);
+    return true;
 }
 
 void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
 {
-	if (!doc) return;
+    if (!doc) return;
 
-	LatexEditorView *edView = doc->getEditorView();
-	if (edView) {
-		gotoLine(line, col, edView);
+    LatexEditorView *edView = doc->getEditorView();
+    if (edView) {
+        gotoLine(line, col, edView);
     }
 }
 
