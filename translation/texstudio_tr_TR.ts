@@ -3748,7 +3748,7 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/configmanager.cpp" line="1545"/>
         <source>Revert/Remove User Menu Item</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı Menü Ögesini Geri Al/Kaldır</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1563"/>
@@ -3845,7 +3845,7 @@ Bunları kaldırmak ister misiniz?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="3375"/>
         <source>text is restored after restart</source>
-        <translation type="unfinished"/>
+        <translation>metin yeniden başlatmadan sonra geri yüklendi</translation>
     </message>
 </context>
 <context>
@@ -9266,7 +9266,7 @@ dosyası silinemedi.</translation>
         <location filename="../src/texstudio.cpp" line="678"/>
         <location filename="../src/texstudio.cpp" line="679"/>
         <source>TOC</source>
-        <translation type="unfinished"/>
+        <translation>İçindekiler tablosu</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="698"/>
@@ -9981,7 +9981,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1048"/>
         <source>update TOC</source>
-        <translation type="unfinished"/>
+        <translation>İçindekiler tablosunu güncelle</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1049"/>
@@ -11469,7 +11469,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
         <location filename="../src/texstudio.cpp" line="11123"/>
         <location filename="../src/texstudio.cpp" line="11149"/>
         <source>Document: </source>
-        <translation type="unfinished"/>
+        <translation>Belge:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11192"/>
