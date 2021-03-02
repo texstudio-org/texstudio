@@ -164,7 +164,16 @@ jobs:
         # but prevents the homebrew install from succeeding
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
-        brew install poppler qt5
+        brew install qt5
+        brew install --only-dependencies poppler
+        wget https://poppler.freedesktop.org/poppler-21.03.0.tar.xz
+        tar xvf poppler-21.03.0.tar.xz
+        cd poppler-21.03.0
+        mkdir build
+        cd build
+        cmake ..
+        make -j 2
+        make install
 
     - name: Configure
       run: /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
