@@ -167,7 +167,7 @@ jobs:
         brew install poppler qt5
 
     - name: Configure
-      run: /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
+      run: /usr/local/opt/qt/bin/qmake-qt5 texstudio.pro CONFIG-=debug
 
     - name: Build
       run: make -j 2
