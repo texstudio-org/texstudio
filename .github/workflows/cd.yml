@@ -165,8 +165,7 @@ jobs:
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
         # install poppler with qt5
-        brew extract --version=21.03.0 poppler homebrew/cask
-        brew install poppler@21.03.0
+        brew install poppler
 
     - name: Configure
       run: /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
