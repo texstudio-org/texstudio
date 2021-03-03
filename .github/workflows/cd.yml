@@ -70,14 +70,14 @@ jobs:
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
-    - name: Deploy zip to Bintray
+    - name: Upload zip to GitHub Artifacts
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
         name: texstudio-win-zip
         path: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
         
-    - name: Deploy as Artifact
+    - name: Upload to GitHub Artifacts
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
@@ -150,8 +150,8 @@ jobs:
      
 ############################
       
-  macosx-bintray:
-    name: Mac OS X (Bintray)
+  macosx:
+    name: Mac OS X
     runs-on: macos-latest
 
     steps:
@@ -185,7 +185,7 @@ jobs:
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
-    - name: Deploy to Github artifacts
+    - name: Upload to Github artifacts
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
