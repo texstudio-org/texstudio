@@ -1,6 +1,7 @@
 name: CD
 on:
   - push
+  - pull_request
 
 jobs:
   build-linux-win:
@@ -133,6 +134,7 @@ jobs:
         echo "::set-output name=GIT_VERSION::${GIT_VERSION}"        
         
     - name: Upload to Github Artifacts
+      if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
         name: texstudio-linux
