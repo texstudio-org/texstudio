@@ -223,7 +223,7 @@ private:
     bool parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited=nullptr, QList<QTreeWidgetItem *> *todoList=nullptr);
 private slots:
     void updateTOC();
-    void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr);
+    void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr,StructureEntry *selected=nullptr);
     void syncExpanded(QTreeWidgetItem *item);
     void syncCollapsed(QTreeWidgetItem *item);
     void customMenuTOC(const QPoint &pos);

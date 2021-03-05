@@ -11034,9 +11034,19 @@ void Texstudio::updateTOC(){
     if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
     QTreeWidgetItem *itemTODO=nullptr;
+    StructureEntry *selectedEntry=nullptr;
     if(!root){
         root=new QTreeWidgetItem();
     }else{
+        // get current selected item, check only first and deduce structureEntry
+        QList<QTreeWidgetItem*> selected=topTOCTreeWidget->selectedItems();
+        if(!selected.isEmpty()){
+            QTreeWidgetItem *item=selected.first();
+            if(item){
+                selectedEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+            }
+        }
+        // remove all item in topTOC but keep itemTODO
         QList<QTreeWidgetItem*> items=root->takeChildren();
         if(items.size()>0 && items.at(0)->data(0,Qt::UserRole+1).toString()=="TODO"){
             itemTODO=items.takeAt(0);
@@ -11063,12 +11073,13 @@ void Texstudio::updateTOC(){
         root->insertChild(0,itemTODO);
     }
     root->setExpanded(true);
-    updateCurrentPosInTOC();
+    root->setSelected(false);
+    updateCurrentPosInTOC(nullptr,nullptr,selectedEntry);
 }
 /*!
  * \brief update marking of current position in global TOC
  */
-void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root,StructureEntry *old)
+void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected)
 {
     if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
@@ -11079,6 +11090,9 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root,StructureEntry *old)
     for(int i=0;i<root->childCount();++i){
         QTreeWidgetItem *item=root->child(i);
         StructureEntry *se = item->data(0,Qt::UserRole).value<StructureEntry *>();
+        if(selected && selected==se){
+            item->setSelected(true);
+        }
         if(old && se==old){
             item->setBackground(0,palette().brush(QPalette::Base));
         }
