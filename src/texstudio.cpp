@@ -11094,9 +11094,12 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
             item->setSelected(true);
         }
         if(old && se==old){
-            item->setBackground(0,palette().brush(QPalette::Base));
+            QBrush bck=item->data(0,Qt::UserRole+1).value<QColor>();
+            item->setBackground(0,bck);
+            //item->setBackground(0,palette().brush(QPalette::Base));
         }
         if(currentSection && (se==currentSection)){
+            item->setData(0,Qt::UserRole+1,item->background(0).color());
             item->setBackgroundColor(0,activeItemColor);
             if (!mDontScrollToItem)
                 topTOCTreeWidget->scrollToItem(item);
@@ -11110,13 +11113,33 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList) {
+bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,int currentColor) {
     bool elementsAdded=false;
     bool deleteVisitedDocs=false;
     if (!visited) {
         visited = new QSet<LatexDocument *>();
         deleteVisitedDocs = true;
     }
+    QColor colors[6];
+    const char nrColors=6;
+    if(darkMode){
+        for(int i=0;i<nrColors;++i){
+            if(configManager.globalTOCbackgroundOptions==1){
+                int hue=140;
+                colors[i]=QColor::fromHsv(i%2==0 ? hue:hue+30,240-60*(i/2),180);
+            }else{
+                int hue=240;
+                colors[i]=QColor::fromHsv(i%2==0 ? hue:hue-30,240-30*(i/2),120);
+            }
+        }
+    }else{
+        for(int i=0;i<nrColors;++i){
+            int hue=configManager.globalTOCbackgroundOptions==1 ? 140 : 240;
+            colors[i]=QColor::fromHsv(i%2==0 ? hue:hue-30,70-35*(i/2),240);
+        }
+    }
+
+    char offset=0;
     QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
         if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)&&(elem->title=="TODO")){
@@ -11136,13 +11159,16 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
             item->setText(0,elem->title);
             item->setToolTip(0,tr("Document: ")+docName);
             item->setIcon(0,documents.model->iconSection.value(elem->level));
+            if(configManager.globalTOCbackgroundOptions>0){
+                item->setBackgroundColor(0,colors[currentColor]);
+            }
             rootVector[elem->level]->addChild(item);
             item->setExpanded(elem->expanded);
             // fill rootVector with item for subsequent lower level elements (which are children of item then)
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
             }
-            parseStruct(elem,rootVector,visited,todoList);
+            parseStruct(elem,rootVector,visited,todoList,currentColor);
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
@@ -11154,7 +11180,7 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
             bool ea=false;
             if(doc &&!visited->contains(doc)){
                 visited->insert(doc);
-                ea=parseStruct(doc->baseStructure,rootVector,visited,todoList);
+                ea=parseStruct(doc->baseStructure,rootVector,visited,todoList,(currentColor+1+offset)%nrColors);
             }
             if(!ea){
                 QTreeWidgetItem * item=new QTreeWidgetItem();
@@ -11162,7 +11188,12 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
                 item->setText(0,elem->title);
                 item->setToolTip(0,tr("Document: ")+docName);
                 item->setIcon(0,documents.model->iconInclude);
+                if(configManager.globalTOCbackgroundOptions>0){
+                    item->setBackgroundColor(0,colors[currentColor]);
+                }
                 rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
+            }else{
+                offset=(offset+1)&1; //toggle between 0 & 1
             }
             elementsAdded=true;
         }

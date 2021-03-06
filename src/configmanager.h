@@ -102,6 +102,7 @@ public:
 	bool showCommentedElementsInStructure;
 	bool markStructureElementsBeyondEnd;
 	bool markStructureElementsInAppendix;
+    int globalTOCbackgroundOptions;
 	QString referenceCommandsInContextMenu;
 
 	//update
