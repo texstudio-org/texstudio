@@ -11033,8 +11033,8 @@ void Texstudio::openBugsAndFeatures() {
 void Texstudio::updateTOC(){
     if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
-    QTreeWidgetItem *itemTODO=nullptr;
     StructureEntry *selectedEntry=nullptr;
+    bool itemExpanded=false;
     if(!root){
         root=new QTreeWidgetItem();
     }else{
@@ -11047,11 +11047,12 @@ void Texstudio::updateTOC(){
             }
         }
         // remove all item in topTOC but keep itemTODO
-        QList<QTreeWidgetItem*> items=root->takeChildren();
-        if(items.size()>0 && items.at(0)->data(0,Qt::UserRole+1).toString()=="TODO"){
-            itemTODO=items.takeAt(0);
-            itemTODO->takeChildren(); //reuse to keep expanded
+        QTreeWidgetItem *itemTODO=root->child(0);
+        if(itemTODO->data(0,Qt::UserRole+1).toString()=="TODO"){
+            itemExpanded=itemTODO->isExpanded();
         }
+        QList<QTreeWidgetItem*> items=root->takeChildren();
+        qDeleteAll(items);
     }
     QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
     // fill TOC, starting by current master/top
@@ -11064,13 +11065,12 @@ void Texstudio::updateTOC(){
     parseStruct(base,rootVector,nullptr,&todoList);
     topTOCTreeWidget->insertTopLevelItem(0,root);
     if(!todoList.isEmpty()){
-        if(!itemTODO){
-            itemTODO=new QTreeWidgetItem();
-            itemTODO->setText(0,tr("TODO"));
-            itemTODO->setData(0,Qt::UserRole+1,"TODO");
-        }
+        QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
+        itemTODO->setText(0,tr("TODO"));
+        itemTODO->setData(0,Qt::UserRole+1,"TODO");
         itemTODO->insertChildren(0,todoList);
         root->insertChild(0,itemTODO);
+        itemTODO->setExpanded(itemExpanded);
     }
     root->setExpanded(true);
     root->setSelected(false);
