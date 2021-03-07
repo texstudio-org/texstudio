@@ -3250,6 +3250,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 		if (manipulatedMenus.contains(menu->objectName())) {
 			QFont bold = menuitem->font(0);
 			bold.setBold(true);
+            changedItemsList.append(menuitem); // rescan item when determing the changed menus
 			for (int j = 0; j < 3; j++) menuitem->setFont(j, bold);
 		}
 		if (!relevantMenus.contains(menu->objectName())) advanced = true;
@@ -3286,6 +3287,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 			if (manipulatedMenus.contains(acts[i]->objectName())) {
 				QFont bold = twi->font(0);
 				bold.setBold(true);
+                changedItemsList.append(twi);
 				for (int j = 0; j < 3; j++) twi->setFont(j, bold);
 			}
 		}
@@ -3369,6 +3371,7 @@ void ConfigManager::menuTreeRevertItem(){
         QTreeWidgetItem *parent=item->parent();
         parent->removeChild(item);
         manipulatedMenuTree.remove(ID);
+        changedItemsList.removeOne(item);
     }else{ //revert
         QFont bold = item->font(0);
         if(bold.bold()){
