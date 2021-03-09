@@ -1803,7 +1803,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		for (int i = 0; i < editorKeys->childCount(); i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
 			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2), SHORTCUT_FORMAT);
-            qDebug()<<editorKeys->child(i)->text(2)<<editOperation;
 			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
 				this->editorKeys.insert(kSeq.toString(), editOperation);
 		}
@@ -3365,7 +3364,6 @@ void ConfigManager::menuTreeRevertItem(){
     REQUIRE(item);
     if (!item->parent()) return;
     QString ID = item->data(0, Qt::UserRole).toString();
-    qDebug()<<item->text(0)<<ID;
     if(ID.contains("UII")){
         //user defined menu/item
         QTreeWidgetItem *parent=item->parent();
