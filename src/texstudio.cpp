@@ -3475,9 +3475,7 @@ void Texstudio::editPasteImage(QImage image)
 		filenameSuggestion = rootDir + "/screenshot001.png";
 	}
 	QStringList filters;
-	foreach (const QByteArray fmt, QImageWriter::supportedImageFormats()) {
-		filters << "*." + fmt;
-	}
+    filters << "*.png";
 	QString filter = tr("Image Formats (%1)").arg(filters.join(" "));
 	filenameSuggestion = getNonextistentFilename(filenameSuggestion, rootDir);
 	QString filename = FileDialog::getSaveFileName(this, tr("Save Image"), filenameSuggestion, filter, &filter);
