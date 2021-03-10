@@ -4,6 +4,7 @@
 <file>completion/acro.cwl</file>
 <file>completion/acronym.cwl</file>
 <file>completion/afterpage.cwl</file>
+<file>completion/algcompatible.cwl</file>
 <file>completion/algorithm2e.cwl</file>
 <file>completion/algorithm.cwl</file>
 <file>completion/algorithmicx.cwl</file>
@@ -92,6 +93,7 @@
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
 <file>completion/glossaries.cwl</file>
+<file>completion/glossaries-extra.cwl</file>
 <file>completion/glosstex.cwl</file>
 <file>completion/graphbox.cwl</file>
 <file>completion/graphicx.cwl</file>
