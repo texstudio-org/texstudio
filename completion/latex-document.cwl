@@ -29,6 +29,7 @@
 \begin{enumerate}\item
 \begin{equation}#\math
 \begin{eqnarray}#\math,array
+\begin{eqnarray*}#\math,array
 \begin{figure}
 \begin{figure}[placement]
 \begin{figure*}
@@ -91,6 +92,7 @@
 \end{enumerate}
 \end{equation}
 \end{eqnarray}
+\end{eqnarray*}
 \end{figure}
 \end{figure*}
 \end{filecontents}
