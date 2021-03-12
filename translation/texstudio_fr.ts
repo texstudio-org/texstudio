@@ -375,7 +375,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="82"/>
         <location filename="../src/buildmanager.cpp" line="104"/>
-        <location filename="../src/buildmanager.cpp" line="1993"/>
+        <location filename="../src/buildmanager.cpp" line="2009"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unknown&gt;</translation>
     </message>
@@ -594,23 +594,23 @@ Voulez-vous que TeXstudio remplace tous les chemins des commandes de
         <translation>Certaines de vos commandes se réfèrent au dossier /usr/texbin/</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="956"/>
+        <location filename="../src/buildmanager.cpp" line="961"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>La commande a été développée en %1 niveaux. Voulez-vous continuer le développement « %2 » ?</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1009"/>
+        <location filename="../src/buildmanager.cpp" line="1014"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation>Vous avez utilisé l&apos;un des modificateurs txs:///command[... ou txs:///command{..., mais ne sont supportés que ceux de la forme txs:///command/[... ou txs:///command/{... avec un slash en suffixe pour garder la syntaxe plus pure.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1020"/>
-        <location filename="../src/buildmanager.cpp" line="1021"/>
+        <location filename="../src/buildmanager.cpp" line="1025"/>
+        <location filename="../src/buildmanager.cpp" line="1026"/>
         <source>Command %1 not defined</source>
         <translation>Commande %1 non définie</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1069"/>
+        <location filename="../src/buildmanager.cpp" line="1074"/>
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
@@ -619,78 +619,78 @@ Please change your configuration and define command lists only at &apos;Options 
 Veuillez modifier votre configuration et définir les listes de commandes uniquement dans Options → Configurer TeXstudio → Construire et non dans Options → Configurer TeXstudio → Commandes.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1103"/>
+        <location filename="../src/buildmanager.cpp" line="1108"/>
         <source>Failed to understand command %1</source>
         <translation>Commande %1 incompréhensible</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1520"/>
+        <location filename="../src/buildmanager.cpp" line="1536"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
         <translation>Aucune distribution TeX n&apos;a été trouvée sur votre système. Par conséquent, les commandes correspondantes ne sont pas configurées. Cela signifie que vous ne pouvez pas compiler vos documents pour obtenir le format de sortie désiré (p. ex. pdf).</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1524"/>
+        <location filename="../src/buildmanager.cpp" line="1540"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
         <translation>Les distributions LaTeX populaires sous Windows sont %1 et %2.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1526"/>
+        <location filename="../src/buildmanager.cpp" line="1542"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
         <translation>Si vous avez l&apos;intention de travailler avec LaTeX, vous voudrez certainement installer l&apos;une de celles-ci.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1529"/>
+        <location filename="../src/buildmanager.cpp" line="1545"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
         <translation>Une distribution TeX populaire sous OSX est %1.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1531"/>
+        <location filename="../src/buildmanager.cpp" line="1547"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
         <translation>Si vous avez l&apos;intention de travailler avec LaTeX, vous voudrez certainement l&apos;installer.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1534"/>
+        <location filename="../src/buildmanager.cpp" line="1550"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
         <translation>Si vous avez l&apos;intention de travailler avec LaTeX, vous voudrez certainement installer une distribution TeX.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1547"/>
+        <location filename="../src/buildmanager.cpp" line="1563"/>
         <source>Error: No command given</source>
         <translation>Erreur : aucune commande passée</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1578"/>
+        <location filename="../src/buildmanager.cpp" line="1594"/>
         <source>Error: No command expanded</source>
         <translation>Erreur : pas de commande développée</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1580"/>
-        <location filename="../src/buildmanager.cpp" line="1593"/>
+        <location filename="../src/buildmanager.cpp" line="1596"/>
+        <location filename="../src/buildmanager.cpp" line="1609"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Assurez-vous d&apos;avoir installé une distribution TeX&lt;/b&gt; par exemple MiKTeX ou TeX Live, et d&apos;avoir correctement configuré les chemins vers cette distribution sur la page de configuration des commandes de TeXstudio.&lt;br&gt; Un éditeur (La)TeX tel que TeXstudio ne peut fonctionner sans les commandes LaTeX fournies par une telle distribution.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1589"/>
+        <location filename="../src/buildmanager.cpp" line="1605"/>
         <source>Error: One command expansion invalid.</source>
         <translation>Erreur : un développement de commande invalide.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1590"/>
+        <location filename="../src/buildmanager.cpp" line="1606"/>
         <source>Parent Command</source>
         <translation>Commande parente</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1591"/>
+        <location filename="../src/buildmanager.cpp" line="1607"/>
         <source>Primary Command</source>
         <translation>Commande primaire</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="1962"/>
+        <location filename="../src/buildmanager.cpp" line="1978"/>
         <source>Internal Pdf Viewer</source>
         <translation>Afficheur Pdf interne</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2226"/>
+        <location filename="../src/buildmanager.cpp" line="2242"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>Vous avez utilisé une commande dde:// avec un double slash, ce qui est déconseillé. Veuillez la changer en une commande avec triple slash en ajoutant un slash.</translation>
     </message>
@@ -798,7 +798,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="300"/>
-        <location filename="../src/configdialog.ui" line="3572"/>
+        <location filename="../src/configdialog.ui" line="3592"/>
         <source>Language:</source>
         <translation>Langue :</translation>
     </message>
@@ -810,7 +810,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="345"/>
         <location filename="../src/configdialog.ui" line="1775"/>
-        <location filename="../src/configdialog.ui" line="4577"/>
+        <location filename="../src/configdialog.ui" line="4597"/>
         <source>Font Size:</source>
         <translation>Taille de police :</translation>
     </message>
@@ -836,7 +836,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="244"/>
-        <location filename="../src/configdialog.ui" line="4549"/>
+        <location filename="../src/configdialog.ui" line="4569"/>
         <source>Color Scheme:</source>
         <translation>Thème de couleurs :</translation>
     </message>
@@ -1039,7 +1039,7 @@ Veuillez modifier votre configuration et définir les listes de commandes unique
     <message>
         <location filename="../src/configdialog.ui" line="863"/>
         <location filename="../src/configdialog.ui" line="2263"/>
-        <location filename="../src/configdialog.ui" line="3840"/>
+        <location filename="../src/configdialog.ui" line="3860"/>
         <source>Never</source>
         <translation>Jamais</translation>
     </message>
@@ -1308,7 +1308,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="../src/configdialog.ui" line="1593"/>
         <location filename="../src/configdialog.cpp" line="520"/>
-        <location filename="../src/configmanager.cpp" line="1470"/>
+        <location filename="../src/configmanager.cpp" line="1472"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
     </message>
@@ -1339,7 +1339,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1678"/>
-        <location filename="../src/configdialog.ui" line="4563"/>
+        <location filename="../src/configdialog.ui" line="4583"/>
         <source>Font Family:</source>
         <translation>Famille de fonte :</translation>
     </message>
@@ -1380,8 +1380,8 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1756"/>
-        <location filename="../src/configdialog.ui" line="3925"/>
-        <location filename="../src/configdialog.ui" line="4088"/>
+        <location filename="../src/configdialog.ui" line="3945"/>
+        <location filename="../src/configdialog.ui" line="4108"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1868,173 +1868,188 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
         <translation>Afficher les éléments commentés</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="2563"/>
+        <source>No Color Background</source>
+        <translation>Pas de couleur de fond</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2568"/>
+        <source>Green Background</source>
+        <translation>Fond en vert</translation>
+    </message>
+    <message>
         <location filename="../src/configdialog.ui" line="2573"/>
+        <source>Blue Background</source>
+        <translation>Fond en bleu</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2593"/>
         <source>Bibliography</source>
         <translation>Bibliographie</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2579"/>
+        <location filename="../src/configdialog.ui" line="2599"/>
         <source>bib File Encoding:</source>
         <translation>Codage d&apos;entrée du fichier bib :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2586"/>
+        <location filename="../src/configdialog.ui" line="2606"/>
         <source>Parse BibTeX</source>
         <translation>Analyser BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2599"/>
+        <location filename="../src/configdialog.ui" line="2619"/>
         <source>Table Autoformating</source>
         <translation>Auto-formatage du tableau</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2605"/>
+        <location filename="../src/configdialog.ui" line="2625"/>
         <source>One Line Per Cell</source>
         <translation>Une ligne par cellule</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2613"/>
+        <location filename="../src/configdialog.ui" line="2633"/>
         <source>Behind Line Break</source>
         <translation>Avant un changement de ligne</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2618"/>
+        <location filename="../src/configdialog.ui" line="2638"/>
         <source>Separate Line (No Indent)</source>
         <translation>Séparer les lignes (pas de retrait)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2623"/>
+        <location filename="../src/configdialog.ui" line="2643"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Séparer les lignes (retrait jusqu&apos;à la 1re colonne)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2631"/>
+        <location filename="../src/configdialog.ui" line="2651"/>
         <source>Special Commands Position:</source>
         <translation>Position des commandes spéciales :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2641"/>
+        <location filename="../src/configdialog.ui" line="2661"/>
         <source>Special Commands:</source>
         <translation>Commandes spéciales :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2651"/>
+        <location filename="../src/configdialog.ui" line="2671"/>
         <source>Additional Search Paths</source>
         <translation>Chemins de recherche additionnels</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2660"/>
+        <location filename="../src/configdialog.ui" line="2680"/>
         <source>Bib Files:</source>
         <translation>Fichiers bibliographiques :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2673"/>
+        <location filename="../src/configdialog.ui" line="2693"/>
         <source>Image Files:</source>
         <translation>Fichiers images :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2711"/>
+        <location filename="../src/configdialog.ui" line="2731"/>
         <source>Bi-Di</source>
         <translation>Écriture bidirectionnelle (BiDi)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2717"/>
+        <location filename="../src/configdialog.ui" line="2737"/>
         <source>Automatically insert LRM characters</source>
         <translation>Insérer automatiquement des marques gauche-à-droite</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2724"/>
+        <location filename="../src/configdialog.ui" line="2744"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Mode de curseur en colonne visuelle (déplacement du curseur selon la direction des touches de flèches dans les textes de droite à gauche)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2731"/>
+        <location filename="../src/configdialog.ui" line="2751"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Changer automatiquement de disposition de clavier :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2738"/>
+        <location filename="../src/configdialog.ui" line="2758"/>
         <source>depending on character direction</source>
         <translation>selon la direction des caractères</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2745"/>
+        <location filename="../src/configdialog.ui" line="2765"/>
         <source>depending on text/math mode</source>
         <translation>selon le mode texte/maths</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2755"/>
+        <location filename="../src/configdialog.ui" line="2775"/>
         <source>Hacks/Workarounds</source>
         <translation>Contournements</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2761"/>
+        <location filename="../src/configdialog.ui" line="2781"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Désactiver l&apos;astuce pour les caractères accentués (Mac OS X seulement)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2768"/>
+        <location filename="../src/configdialog.ui" line="2788"/>
         <source>Try to automatically choose best display options</source>
         <translation>Essayer de choisir automatiquement les meilleures options d&apos;affichage</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2786"/>
+        <location filename="../src/configdialog.ui" line="2806"/>
         <source>Render Mode:</source>
         <translation>Mode de rendu :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2794"/>
+        <location filename="../src/configdialog.ui" line="2814"/>
         <source>QCE (recommended)</source>
         <translation>QCE (recommandé)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2799"/>
+        <location filename="../src/configdialog.ui" line="2819"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2804"/>
+        <location filename="../src/configdialog.ui" line="2824"/>
         <source>Single Letter</source>
         <translation>Lettre unique</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2812"/>
+        <location filename="../src/configdialog.ui" line="2832"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Si le cache des lignes rendues est activé, les lignes rendues sont enregistrées dans un cache si bien qu&apos;elles n&apos;ont plus à être à nouveau rendue. Conduit à une amélioreation de la vitesse (notammment sur Mac) au prix d&apos;un usage plus élevé de la mémoire.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2815"/>
+        <location filename="../src/configdialog.ui" line="2835"/>
         <source>Disable cache of rendered lines</source>
         <translation>Désactive le cache des lignes rendues</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2822"/>
+        <location filename="../src/configdialog.ui" line="2842"/>
         <source>Disable fixed pitch mode</source>
         <translation>Désactiver le mode à hauteur fixe</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2829"/>
+        <location filename="../src/configdialog.ui" line="2849"/>
         <source>Disable cache of character width</source>
         <translation>Désactiver la taille du cache de caractère</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2836"/>
+        <location filename="../src/configdialog.ui" line="2856"/>
         <source>Use QImage as cache type</source>
         <translation>Utiliser QImage en tant que type de cache</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2899"/>
+        <location filename="../src/configdialog.ui" line="2919"/>
         <source>Formats</source>
         <translation>Formats</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2922"/>
+        <location filename="../src/configdialog.ui" line="2942"/>
         <location filename="../src/configdialog.cpp" line="523"/>
         <source>Completion</source>
         <translation>Complétion</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2928"/>
+        <location filename="../src/configdialog.ui" line="2948"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2053,118 +2068,118 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2938"/>
+        <location filename="../src/configdialog.ui" line="2958"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Remplacement automatique des macros LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2945"/>
+        <location filename="../src/configdialog.ui" line="2965"/>
         <source>Insert Arguments</source>
         <translation>Insérer les arguments</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2955"/>
+        <location filename="../src/configdialog.ui" line="2975"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Affiche une info-bulle avec texte cible pour labels/bibitems, prévisualisation de couleurs ou d&apos;images</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2958"/>
+        <location filename="../src/configdialog.ui" line="2978"/>
         <source>ToolTip-Preview</source>
         <translation>Info-bulles de prévisualisation</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2965"/>
+        <location filename="../src/configdialog.ui" line="2985"/>
         <source>Arguments as Placeholders</source>
         <translation>Arguments en tant que bouche-trous</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2975"/>
+        <location filename="../src/configdialog.ui" line="2995"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>Affiche une info-bulle avec une description de la commande sélectionnée par complétion</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2978"/>
+        <location filename="../src/configdialog.ui" line="2998"/>
         <source>ToolTip-Help</source>
         <translation>Info-bulles d&apos;aide</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2988"/>
+        <location filename="../src/configdialog.ui" line="3008"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Démarre la complétion dès que « \ » est saisi. Autrement, la complétion peut toujours être démarée manuellement au moyen de Ctrl+Espace.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2991"/>
+        <location filename="../src/configdialog.ui" line="3011"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Complétion automatique pour les macros LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3000"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Taille de la barre de l&apos;onglet en haut ou en bas de la complétion</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3003"/>
+        <location filename="../src/configdialog.ui" line="3023"/>
         <source>Tab Bar Size</source>
         <translation>Taille de la barre de l&apos;onglet</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3013"/>
+        <location filename="../src/configdialog.ui" line="3033"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>Taille de la barre de l&apos;onglet en haut ou en bas de la complétion</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3047"/>
+        <location filename="../src/configdialog.ui" line="3067"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Compléter le texte sélectionné si un caractère de ponctuation est saisi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3057"/>
+        <location filename="../src/configdialog.ui" line="3077"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Si toutes les suggestions de complétion ont les mêmes caractères suivants, vous pouvez utiliser la touche « Tab » pour les insérer automatiquement.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3060"/>
+        <location filename="../src/configdialog.ui" line="3080"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Complétion automatique des préfixes communs</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3072"/>
+        <location filename="../src/configdialog.ui" line="3092"/>
         <source>Preferred Commands Set:</source>
         <translation>Ensemble de commandes préférées :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3080"/>
+        <location filename="../src/configdialog.ui" line="3100"/>
         <source>Typical</source>
         <translation>Typique</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3085"/>
+        <location filename="../src/configdialog.ui" line="3105"/>
         <source>Most Used</source>
         <translation>Les plus utilisées</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3090"/>
+        <location filename="../src/configdialog.ui" line="3110"/>
         <source>Fuzzy</source>
         <translation>Flou</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3095"/>
+        <location filename="../src/configdialog.ui" line="3115"/>
         <source>All</source>
         <translation>Toutes</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3118"/>
+        <location filename="../src/configdialog.ui" line="3138"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Si une commande mathématique est entrée via complétion en dehors d&apos;un environnement mathématique, $$ est inséré automatiquement.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3121"/>
+        <location filename="../src/configdialog.ui" line="3141"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Insertion automatique des délimiteurs mathématiques là où nécessaire</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3131"/>
-        <location filename="../src/configdialog.ui" line="3146"/>
+        <location filename="../src/configdialog.ui" line="3151"/>
+        <location filename="../src/configdialog.ui" line="3166"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2179,461 +2194,461 @@ voulez inclure des fichiers de complétion personnalisés, vous pouvez forcer
 leur usage en les activant ici.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3139"/>
+        <location filename="../src/configdialog.ui" line="3159"/>
         <source>Permanently active completion files:</source>
         <translation>Activer de façon permanente les fichiers de complétion actifs</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3207"/>
+        <location filename="../src/configdialog.ui" line="3227"/>
         <source>Spell Check</source>
         <translation>Vérification de l&apos;orthographe</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3213"/>
+        <location filename="../src/configdialog.ui" line="3233"/>
         <source>Default Language:</source>
         <translation>Langue par défaut :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3240"/>
+        <location filename="../src/configdialog.ui" line="3260"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Répertoires des dictionnaires :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3247"/>
+        <location filename="../src/configdialog.ui" line="3267"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>Dossiers contenant des dictionnaires Hunspell, séparés par des points-virgules. Les mots clés spéciaux [txs-settings-dir] et [txs-app-dir] seront transformés en les dossiers respectifs. </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3257"/>
+        <location filename="../src/configdialog.ui" line="3277"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3264"/>
+        <location filename="../src/configdialog.ui" line="3284"/>
         <source>Thesaurus Database:</source>
         <translation>Base de donnée du thésaurus :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3294"/>
+        <location filename="../src/configdialog.ui" line="3314"/>
         <source>TextLabel</source>
         <translation>Étiquette de texte</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3307"/>
+        <location filename="../src/configdialog.ui" line="3327"/>
         <source>Import Dictionary...</source>
         <translation>Importer le dictionnaire...</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3317"/>
+        <location filename="../src/configdialog.ui" line="3337"/>
         <source>Internal Grammar Check</source>
         <translation>Vérification interne de la grammaire</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3323"/>
+        <location filename="../src/configdialog.ui" line="3343"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Les mots répétés au sein d&apos;un même paragraphe vont être surlignés.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3326"/>
+        <location filename="../src/configdialog.ui" line="3346"/>
         <source>Check for Word Repetitions</source>
         <translation>Vérifier la répétition de mots</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3333"/>
+        <location filename="../src/configdialog.ui" line="3353"/>
         <source>Words Between Repetitions:</source>
         <translation>Nombre de mots entre les répétitions :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3343"/>
+        <location filename="../src/configdialog.ui" line="3363"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Les mots identiques sont considérés comme répétés s&apos;il n&apos;y a pas plus que ce nombre de mots entre eux.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3353"/>
+        <location filename="../src/configdialog.ui" line="3373"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Les mots identiques plus longs sont considérés comme répétés sur de longues plages s&apos;il n&apos;y a pas plus que ce nombre de mots entre eux.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3363"/>
+        <location filename="../src/configdialog.ui" line="3383"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Seuls les mots de cette longueur sont vérifiés pour les longues plages de répétition.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3373"/>
+        <location filename="../src/configdialog.ui" line="3393"/>
         <source>Long Range Repetitions:</source>
         <translation>Longue plage de répétitions :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3383"/>
+        <location filename="../src/configdialog.ui" line="3403"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>Longueur minimum des mots en cas de longue répétition :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3393"/>
+        <location filename="../src/configdialog.ui" line="3413"/>
         <source>Wordlist Directory:</source>
         <translation>Répertoire de la liste de mots :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3400"/>
+        <location filename="../src/configdialog.ui" line="3420"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Certains mots informels seront surlignés.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3403"/>
+        <location filename="../src/configdialog.ui" line="3423"/>
         <source>Check for Bad Words</source>
         <translation>Vérifier les mots incorrects</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3410"/>
+        <location filename="../src/configdialog.ui" line="3430"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Répertoire contenant les listes de mots « mauvais » ou pouvant être répétés.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3437"/>
+        <location filename="../src/configdialog.ui" line="3457"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3443"/>
+        <location filename="../src/configdialog.ui" line="3463"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>Chemin de l&apos;archive java de LanguageTool.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3450"/>
+        <location filename="../src/configdialog.ui" line="3470"/>
         <source>LT Path:</source>
         <translation>Chemin LT :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3457"/>
+        <location filename="../src/configdialog.ui" line="3477"/>
         <source>Start LanguageTool if not running</source>
         <translation>Lancer LanguageTool s&apos;il ne l&apos;est pas</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3464"/>
+        <location filename="../src/configdialog.ui" line="3484"/>
         <source>Server URL: </source>
         <translation>URL du serveur :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3471"/>
+        <location filename="../src/configdialog.ui" line="3491"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Liste de règles LanguageTool (séparées par des virgules) qui ne seront pas considérées comme des erreurs.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3495"/>
+        <location filename="../src/configdialog.ui" line="3515"/>
         <source>Ignored Rules:</source>
         <translation>Règles ignorées :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3502"/>
-        <location filename="../src/configdialog.ui" line="3512"/>
         <location filename="../src/configdialog.ui" line="3522"/>
-        <location filename="../src/configdialog.ui" line="3552"/>
+        <location filename="../src/configdialog.ui" line="3532"/>
+        <location filename="../src/configdialog.ui" line="3542"/>
+        <location filename="../src/configdialog.ui" line="3572"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Liste de règles LanguageTool (séparées par des virgules) qui seront surlignées dans un format spécial.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3532"/>
+        <location filename="../src/configdialog.ui" line="3552"/>
         <source>Special Rules 3:</source>
         <translation>Règles spéciales 3 :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3542"/>
+        <location filename="../src/configdialog.ui" line="3562"/>
         <source>Special Rules 2:</source>
         <translation>Règles spéciales 2 :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3562"/>
+        <location filename="../src/configdialog.ui" line="3582"/>
         <source>Special Rules 1:</source>
         <translation>Règles spéciales 1 :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3579"/>
+        <location filename="../src/configdialog.ui" line="3599"/>
         <source>Special Rules 4:</source>
         <translation>Règles spéciales 4 :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3589"/>
+        <location filename="../src/configdialog.ui" line="3609"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>Sera déduite de celle du correcteur orthographique employé dans le document.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3596"/>
+        <location filename="../src/configdialog.ui" line="3616"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>Exécutable java, utilisé pour démarrer LanguageTool s&apos;il n&apos;est pas lancé.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3603"/>
+        <location filename="../src/configdialog.ui" line="3623"/>
         <source>Java:</source>
         <translation>Java :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3610"/>
-        <location filename="../src/configdialog.ui" line="3658"/>
+        <location filename="../src/configdialog.ui" line="3630"/>
+        <location filename="../src/configdialog.ui" line="3678"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>Arguments passés au lancement de LanguageTool. Cette option n&apos;a d&apos;effet que si LanguageTool est lancé via TeXstudio (c.-à-d. pas pour un serveur déjà lancé).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3613"/>
+        <location filename="../src/configdialog.ui" line="3633"/>
         <source>LT Arguments:</source>
         <translation>Arguments LT !</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3637"/>
-        <location filename="../src/configdialog.ui" line="3665"/>
+        <location filename="../src/configdialog.ui" line="3657"/>
+        <location filename="../src/configdialog.ui" line="3685"/>
         <source>Restore Default</source>
         <translation>Restaurer la configuration par défaut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3651"/>
+        <location filename="../src/configdialog.ui" line="3671"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>URL de connexion à LanguageTool. </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3742"/>
+        <location filename="../src/configdialog.ui" line="3762"/>
         <source>Segment Preview</source>
         <translation>Aperçu de la portion</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3748"/>
+        <location filename="../src/configdialog.ui" line="3768"/>
         <source>Command:</source>
         <translation>Commande :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3759"/>
+        <location filename="../src/configdialog.ui" line="3779"/>
         <source>Preview with dvipng</source>
         <translation>Aperçu avec dvipng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3764"/>
+        <location filename="../src/configdialog.ui" line="3784"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Aperçu avec « dvipng --follow » (en parallèle)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3769"/>
+        <location filename="../src/configdialog.ui" line="3789"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Aperçu avec dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3774"/>
+        <location filename="../src/configdialog.ui" line="3794"/>
         <source>Preview with pdflatex</source>
         <translation>Aperçu avec pdflatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3782"/>
+        <location filename="../src/configdialog.ui" line="3802"/>
         <source>Display Mode:</source>
         <translation>Mode « display » :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3796"/>
+        <location filename="../src/configdialog.ui" line="3816"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Afficher l&apos;aperçu en info-bulle si le panneau est caché</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3801"/>
+        <location filename="../src/configdialog.ui" line="3821"/>
         <source>Always show preview in preview panel</source>
         <translation>Toujours afficher l&apos;aperçu dans le panneau d&apos;aperçu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3806"/>
+        <location filename="../src/configdialog.ui" line="3826"/>
         <source>Always show preview as tool tip</source>
         <translation>Toujours afficher l&apos;aperçu en info-bulle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3811"/>
+        <location filename="../src/configdialog.ui" line="3831"/>
         <source>Always show both</source>
         <translation>Toujours afficher les deux</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3816"/>
+        <location filename="../src/configdialog.ui" line="3836"/>
         <source>Inline</source>
         <translation>En ligne</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3821"/>
+        <location filename="../src/configdialog.ui" line="3841"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Afficher dans le PDF embarqué</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3829"/>
+        <location filename="../src/configdialog.ui" line="3849"/>
         <source>Update the preview on text change</source>
         <translation>Mettre à jour l&apos;aperçu en cas de modification du texte</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3832"/>
+        <location filename="../src/configdialog.ui" line="3852"/>
         <source>Auto Update:</source>
         <translation>Mise à jour automatique :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3845"/>
+        <location filename="../src/configdialog.ui" line="3865"/>
         <source>Previously previewed text</source>
         <translation>Texte prévisualisé précédent</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3853"/>
+        <location filename="../src/configdialog.ui" line="3873"/>
         <source>Auto Update Delay:</source>
         <translation>Délai de la mise à jour automatique :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3876"/>
+        <location filename="../src/configdialog.ui" line="3896"/>
         <source>Replace beamer class by article</source>
         <translation>Remplacer la classe beamer par la classe article</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3889"/>
+        <location filename="../src/configdialog.ui" line="3909"/>
         <source>Precompile Preamble</source>
         <translation>Précompilation du préambule</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3902"/>
+        <location filename="../src/configdialog.ui" line="3922"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Afficher l&apos;aperçu en info-bulle pour les formules dans l&apos;éditeur</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3912"/>
-        <location filename="../src/configdialog.ui" line="4101"/>
+        <location filename="../src/configdialog.ui" line="3932"/>
+        <location filename="../src/configdialog.ui" line="4121"/>
         <source>Scaling:</source>
         <translation>Mise à l&apos;échelle :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4007"/>
+        <location filename="../src/configdialog.ui" line="4027"/>
         <location filename="../src/configdialog.cpp" line="526"/>
         <source>Internal PDF Viewer</source>
         <translation>Afficheur PDF interne</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4108"/>
+        <location filename="../src/configdialog.ui" line="4128"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Spécifier en tant que valeur hexadécimale RGBA. Nota : la transparence est requise parce que, du fait de limitations techniques, le surlignement est dessiné par dessus le texte.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4111"/>
+        <location filename="../src/configdialog.ui" line="4131"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4125"/>
+        <location filename="../src/configdialog.ui" line="4145"/>
         <source>Original Size</source>
         <translation>Taille originale</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4130"/>
+        <location filename="../src/configdialog.ui" line="4150"/>
         <source>Fit to Window Width</source>
         <translation>Ajuster à la largeur de la fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4135"/>
+        <location filename="../src/configdialog.ui" line="4155"/>
         <source>Fit to Window Size</source>
         <translation>Ajuster aux dimensions de la fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4140"/>
+        <location filename="../src/configdialog.ui" line="4160"/>
         <source>Scaled Size</source>
         <translation>Mise à l&apos;échelle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4145"/>
+        <location filename="../src/configdialog.ui" line="4165"/>
         <source>Fit to Text Width</source>
         <translation>Ajuster à la largeur du texte</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4375"/>
+        <location filename="../src/configdialog.ui" line="4395"/>
         <source>Infinite</source>
         <translation>Infinie</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4271"/>
+        <location filename="../src/configdialog.ui" line="4291"/>
         <source>Scale Option:</source>
         <translation>Option d&apos;échelle :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4030"/>
+        <location filename="../src/configdialog.ui" line="4050"/>
         <source>Magnifier Size:</source>
         <translation>Facteur de zoom :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4261"/>
+        <location filename="../src/configdialog.ui" line="4281"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4164"/>
+        <location filename="../src/configdialog.ui" line="4184"/>
         <source>Square</source>
         <translation>Carré</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4169"/>
+        <location filename="../src/configdialog.ui" line="4189"/>
         <source>Circle</source>
         <translation>Cercle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4174"/>
+        <location filename="../src/configdialog.ui" line="4194"/>
         <source>Circle without shadow</source>
         <translation>Cercle sans ombre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4020"/>
+        <location filename="../src/configdialog.ui" line="4040"/>
         <source>Highlight Duration</source>
         <translation>Durée du surlignement</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4182"/>
+        <location filename="../src/configdialog.ui" line="4202"/>
         <source>Screen Resolution:</source>
         <translation>Résolution de l&apos;écran :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4251"/>
+        <location filename="../src/configdialog.ui" line="4271"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>Désactiver le défilement horizontal pour « Ajuster à la largeur du texte »</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4013"/>
+        <location filename="../src/configdialog.ui" line="4033"/>
         <source>Border</source>
         <translation>Bordure</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4244"/>
+        <location filename="../src/configdialog.ui" line="4264"/>
         <source>Magnifier Shape:</source>
         <translation>Forme du zoom :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4368"/>
+        <location filename="../src/configdialog.ui" line="4388"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Masquer automatiquement les barres d&apos;outils en mode embarqué</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4153"/>
+        <location filename="../src/configdialog.ui" line="4173"/>
         <source>Highlight Color</source>
         <translation>Couleur du surlignement</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4333"/>
+        <location filename="../src/configdialog.ui" line="4353"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Définit comment un PDF est chargé :&lt;/p&gt;&lt;p&gt;&lt;b&gt;En mémoire tampon :&lt;/b&gt; Charge le fichier en mémoire tampon et contrôle s&apos;il est complet puis passe les données à poppler. Cela avait été au départ introduit pour accélérer les anciennes versions de poppler (&amp;lt;0.24) qui ne sécurisaient pas les unités d&apos;exécutions (« threads »). Il a été signalé que poppler pouvait s&apos;arrêter brutalement lors du chargement de gros fichiers. Cette option est donc déconseillée.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct :&lt;/b&gt; Utilise le chargement de fichiers natif de poppler. C&apos;est le plus rapide mais ne permet pas de détecter des fichiers incomplets.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybride (recommandé) :&lt;/b&gt; Charge d&apos;abord le fichier en mémoire tampon contrôle s&apos;il est complet. Utilise cette mémoire tampon pour de petits documents (&amp;lt; 50MB). Les gros fichiers sont chargés en utilisant le chargement de fichiers natif de poppler. Cela combine le contrôle des fichiers tout en évitant des problèmes avec les gros fichiers PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4343"/>
+        <location filename="../src/configdialog.ui" line="4363"/>
         <source>Buffered</source>
         <translation>En mémoire tampon</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4348"/>
+        <location filename="../src/configdialog.ui" line="4368"/>
         <source>Direct</source>
         <translation>Direct</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4353"/>
+        <location filename="../src/configdialog.ui" line="4373"/>
         <source>Hybrid</source>
         <translation>Hybride</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4278"/>
+        <location filename="../src/configdialog.ui" line="4298"/>
         <source>Cache Size:</source>
         <translation>Taille du cache:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4221"/>
-        <location filename="../src/configdialog.ui" line="4288"/>
+        <location filename="../src/configdialog.ui" line="4241"/>
+        <location filename="../src/configdialog.ui" line="4308"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2644,108 +2659,108 @@ S&apos;il y a des problèmes de rendu, vous pouvez essayer le moteur alternatif 
 Remarque : modifier ce paramètre n&apos;affectera que les documents ouverts ensuite.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4037"/>
+        <location filename="../src/configdialog.ui" line="4057"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4189"/>
+        <location filename="../src/configdialog.ui" line="4209"/>
         <source>Synchronized Files Types:</source>
         <translation>Types de fichiers synchronisés :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4294"/>
+        <location filename="../src/configdialog.ui" line="4314"/>
         <source>Render Backend:</source>
         <translation>Moteur de rendu :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4059"/>
+        <location filename="../src/configdialog.ui" line="4079"/>
         <source>Load Strategy:</source>
         <translation>Stratégie de chargement :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4199"/>
+        <location filename="../src/configdialog.ui" line="4219"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4361"/>
+        <location filename="../src/configdialog.ui" line="4381"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Remarque : le mode fenêtré/embarqué est configuré au niveau de Production → Afficheur PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4069"/>
+        <location filename="../src/configdialog.ui" line="4089"/>
         <source>Paper Color</source>
         <translation>Couleur du papier</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4317"/>
+        <location filename="../src/configdialog.ui" line="4337"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Couleur de fond par défaut. À spécifier par une valeur RVB hexadécimale. Note : cela n’affectera que les fichiers PDF chargés après le changement de cette option. La couleur du papier des fichiers PDF déjà ouverts ne sera pas modifiée.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4394"/>
+        <location filename="../src/configdialog.ui" line="4414"/>
         <source>Auto-recompile document on changes</source>
         <translation>Recompilation automatique du document en cas de modifications</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4438"/>
+        <location filename="../src/configdialog.ui" line="4458"/>
         <source>Use SVN</source>
         <translation>Utiliser SVN</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4443"/>
+        <location filename="../src/configdialog.ui" line="4463"/>
         <source>Use GIT</source>
         <translation>Utiliser Git</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4451"/>
+        <location filename="../src/configdialog.ui" line="4471"/>
         <source>Select how txs checks in saved files</source>
         <translation>Sélectionner comment TeXstudio vérifie dans les fichiers enregistrés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4455"/>
+        <location filename="../src/configdialog.ui" line="4475"/>
         <source>No automatic check-in after save</source>
         <translation>Pas de vérification automatique après l&apos;enregistrement</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4460"/>
+        <location filename="../src/configdialog.ui" line="4480"/>
         <source>Check-in after File/Save only</source>
         <translation>Vérification seulement après Fichier/Enregistrer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4465"/>
+        <location filename="../src/configdialog.ui" line="4485"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Vérification après toutes les opérations d&apos;enregistrement, c.-à-d. aussi avant les compilations.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4473"/>
+        <location filename="../src/configdialog.ui" line="4493"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Utiliser les révisions SVN/Git pour « défaire » avant la dernière version sauvée</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4480"/>
+        <location filename="../src/configdialog.ui" line="4500"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>En cas de « svn add », exécuter « svn propset svn:keywords &quot;Date Author Revision HeadURL&quot; »</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4483"/>
+        <location filename="../src/configdialog.ui" line="4503"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Remplacer Keywords par Properties (en cas de « svn add »)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4492"/>
+        <location filename="../src/configdialog.ui" line="4512"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Profondeur de recherche dans les répertoires SVN :</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4543"/>
+        <location filename="../src/configdialog.ui" line="4563"/>
         <location filename="../src/configdialog.cpp" line="529"/>
         <source>Internal Terminal</source>
         <translation>Terminal interne</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4594"/>
+        <location filename="../src/configdialog.ui" line="4614"/>
         <source>Shell:</source>
         <translation>Interpréteur de commandes (« shell ») :</translation>
     </message>
@@ -3021,7 +3036,7 @@ configuration fine de TXS. Pour ne voir que les réglages
 de base, il suffit de désactiver ces options avancées.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1471"/>
+        <location filename="../src/configmanager.cpp" line="1473"/>
         <source>Basic Key Mapping</source>
         <translation>Assignation de touches de base</translation>
     </message>
@@ -3689,152 +3704,162 @@ de base, il suffit de désactiver ces options avancées.</translation>
         <translation>\&amp;pageref{⟨identifiant⟩}</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1051"/>
-        <location filename="../src/configmanager.cpp" line="1057"/>
-        <location filename="../src/configmanager.cpp" line="1073"/>
-        <location filename="../src/configmanager.cpp" line="1078"/>
+        <location filename="../src/configmanager.cpp" line="1053"/>
+        <location filename="../src/configmanager.cpp" line="1059"/>
+        <location filename="../src/configmanager.cpp" line="1075"/>
+        <location filename="../src/configmanager.cpp" line="1080"/>
         <source>Key replacement: %1 %2</source>
         <translation>Touche de remplacement : %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1051"/>
-        <location filename="../src/configmanager.cpp" line="1073"/>
+        <location filename="../src/configmanager.cpp" line="1053"/>
+        <location filename="../src/configmanager.cpp" line="1075"/>
         <source>before word</source>
         <translation>avant le mot</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1057"/>
-        <location filename="../src/configmanager.cpp" line="1078"/>
+        <location filename="../src/configmanager.cpp" line="1059"/>
+        <location filename="../src/configmanager.cpp" line="1080"/>
         <source>after word</source>
         <translation>après le mot</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1390"/>
-        <location filename="../src/configmanager.cpp" line="1391"/>
-        <location filename="../src/configmanager.cpp" line="1566"/>
-        <location filename="../src/configmanager.cpp" line="1572"/>
-        <location filename="../src/configmanager.cpp" line="1836"/>
-        <location filename="../src/configmanager.cpp" line="1841"/>
+        <location filename="../src/configmanager.cpp" line="1392"/>
+        <location filename="../src/configmanager.cpp" line="1393"/>
+        <location filename="../src/configmanager.cpp" line="1571"/>
+        <location filename="../src/configmanager.cpp" line="1577"/>
+        <location filename="../src/configmanager.cpp" line="1842"/>
+        <location filename="../src/configmanager.cpp" line="1847"/>
         <source>default</source>
         <translation>par défaut</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1448"/>
+        <location filename="../src/configmanager.cpp" line="1450"/>
         <source>Menus</source>
         <translation>Menus</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1456"/>
+        <location filename="../src/configmanager.cpp" line="1458"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menus afficheur PDF</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1492"/>
-        <location filename="../src/configmanager.cpp" line="2637"/>
+        <location filename="../src/configmanager.cpp" line="1494"/>
+        <location filename="../src/configmanager.cpp" line="2647"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;aucun&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1538"/>
+        <location filename="../src/configmanager.cpp" line="1540"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Insérer (avant) une nouvelle entrée de menu</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1541"/>
+        <location filename="../src/configmanager.cpp" line="1543"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Insérer (avant) un nouveau sous-menu</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1559"/>
+        <location filename="../src/configmanager.cpp" line="1546"/>
+        <source>Revert/Remove User Menu Item</source>
+        <translation>Rétablir/supprimer un élément du menu utilisateur</translation>
+    </message>
+    <message>
+        <location filename="../src/configmanager.cpp" line="1564"/>
         <source>Latex/Math menus</source>
         <translation>Menus LaTeX/maths</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1560"/>
+        <location filename="../src/configmanager.cpp" line="1565"/>
         <source>All menus</source>
         <translation>Tous les menus</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1561"/>
+        <location filename="../src/configmanager.cpp" line="1566"/>
         <source>Special Tags</source>
         <translation>Étiquette spéciale</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1640"/>
+        <location filename="../src/configmanager.cpp" line="1645"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Vous avez activé le remplacement automatique des guillemets. Cependant, des macros avec caractères déclencheurs (?&lt;=\s|^) ou (?&lt;=\S) vont contourner ce remplacement.
 Voulez-vous supprimer ces macros ?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1880"/>
+        <location filename="../src/configmanager.cpp" line="1890"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Pour profiter plienement de l&apos;afficheur PDFintégré, synctex doit être activé. TeXstudio doit-il le faire maintenant ?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1895"/>
+        <location filename="../src/configmanager.cpp" line="1905"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>« Document maître » récent %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1898"/>
+        <location filename="../src/configmanager.cpp" line="1908"/>
         <source>Recent File %1</source>
         <translation>Fichier récent %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1899"/>
+        <location filename="../src/configmanager.cpp" line="1909"/>
         <source>File list</source>
         <translation>Liste des fichiers</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1900"/>
+        <location filename="../src/configmanager.cpp" line="1910"/>
         <source>Open first non-open file</source>
         <translation>Ouvrir le premier fichier non ouvert</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1901"/>
+        <location filename="../src/configmanager.cpp" line="1911"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Ouvrir tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1911"/>
+        <location filename="../src/configmanager.cpp" line="1921"/>
         <source>Master Document: </source>
         <translation>Document maître : </translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2638"/>
+        <location filename="../src/configmanager.cpp" line="2648"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;défaut&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2867"/>
+        <location filename="../src/configmanager.cpp" line="2877"/>
         <source>Configure</source>
         <translation>Configurer</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2874"/>
+        <location filename="../src/configmanager.cpp" line="2884"/>
         <source>Select Program</source>
         <translation>Sélectionner le programme</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2881"/>
+        <location filename="../src/configmanager.cpp" line="2891"/>
         <source>Restore Default</source>
         <translation>Restaurer la configuration par défaut</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2928"/>
+        <location filename="../src/configmanager.cpp" line="2938"/>
         <source>Repeat contained compilation commands</source>
         <translation>Répéter les compilations</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2976"/>
+        <location filename="../src/configmanager.cpp" line="2986"/>
         <source>Add</source>
         <translation>Ajouter</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3039"/>
+        <location filename="../src/configmanager.cpp" line="3049"/>
         <source>Browse program</source>
         <translation>Localiser le programme</translation>
+    </message>
+    <message>
+        <location filename="../src/configmanager.cpp" line="3376"/>
+        <source>text is restored after restart</source>
+        <translation>le texte est restauré après le redémarrage</translation>
     </message>
 </context>
 <context>
@@ -5116,37 +5141,37 @@ Voulez-vous l&apos;écraser ?</translation>
 <context>
     <name>PDFBaseSearchDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="425"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="457"/>
         <source>Search</source>
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="492"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="524"/>
         <source>Enables case sensitive search.</source>
         <translation>Activer la recherche sensible à la casse.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="503"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="535"/>
         <source>Text or pattern to search for</source>
         <translation>Texte ou motif à chercher</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="504"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="536"/>
         <source>Find next occurrence</source>
         <translation>Chercher l&apos;occurrence suivante</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="505"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="537"/>
         <source>Find previous occurrence</source>
         <translation>Chercher l&apos;occurrence précédente</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="507"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="539"/>
         <source> Find :</source>
         <translation>Chercher :</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="509"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="541"/>
         <source>Case</source>
         <translation>Sensible à la casse</translation>
     </message>
@@ -5154,52 +5179,52 @@ Voulez-vous l&apos;écraser ?</translation>
 <context>
     <name>PDFClockDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="915"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="947"/>
         <source>Set Interval...</source>
         <translation>Fixer l&apos;intervalle</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="916"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="948"/>
         <source>Set Page Count...</source>
         <translation>Configuration du compteur de pages</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="917"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="949"/>
         <source>Restart</source>
         <translation>Relancer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="932"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="964"/>
         <source>Clock</source>
         <translation>Horloge</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="986"/>
         <source>Start time</source>
         <translation>Heure de début</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="955"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="987"/>
         <source>New clock interval (in minutes)</source>
         <translation>Nouvel intervalle de temps (en minutes)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="974"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1006"/>
         <source>Page count (negative subtracts)</source>
         <translation>Compteur de pages (soustractions négatives)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1005"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1037"/>
         <source>wait</source>
         <translation>attendre</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1007"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1039"/>
         <source>%1 sec</source>
         <translation>%1 sec</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1009"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1041"/>
         <source>%1 min</source>
         <translation>%1 min</translation>
     </message>
@@ -5207,440 +5232,440 @@ Voulez-vous l&apos;écraser ?</translation>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2403"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2423"/>
         <source>Toolbar</source>
         <translation>Barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2457"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2477"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2458"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2478"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2459"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2479"/>
         <source>&amp;View</source>
         <translation>Afficha&amp;ge</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2460"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2480"/>
         <source>Grid</source>
         <translation>Grille</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2461"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2481"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2462"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2482"/>
         <source>&amp;Configure</source>
         <translation>&amp;Configurer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2463"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2483"/>
         <source>&amp;Help</source>
         <translation>Ai&amp;de</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2469"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2489"/>
         <source>User &amp;Manual...</source>
         <translation>&amp;Manuel...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2472"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2492"/>
         <source>About</source>
         <translation>À propos</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2473"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2493"/>
         <source>&amp;Open...</source>
         <translation>&amp;Ouvrir...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2474"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2494"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation>Séparer &amp;&amp; fusionner</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2475"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2495"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2477"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2497"/>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Quitter TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2478"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2498"/>
         <source>&amp;Configure TeXstudio</source>
         <translation>&amp;Configurer TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2480"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2500"/>
         <source>Scrolling follows cursor</source>
         <translation>Le défilement suit le curseur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2482"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2502"/>
         <source>Cursor follows scrolling</source>
         <translation>Le curseur suit le défilement</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2484"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2504"/>
         <source>Synchronize multiple views</source>
         <translation>Synchroniser les vues multiples</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2486"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2506"/>
         <source>Ignore for synchronization</source>
         <translation>Omettre pour la synchronisation</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2489"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2509"/>
         <source>Invert Colors</source>
         <translation>Inverser les couleurs</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2491"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2511"/>
         <source>Grayscale</source>
         <translation>Échelle de gris</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2494"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2514"/>
         <source>&amp;Magnify</source>
         <translation>Agrandir</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2495"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2515"/>
         <source>&amp;Scroll</source>
         <translation>Défiler</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2497"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2517"/>
         <source>&amp;First Page</source>
         <translation>Pre&amp;mière page</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2498"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2518"/>
         <source>Back</source>
         <translation>Arrière</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2499"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2519"/>
         <source>&amp;Previous Page</source>
         <translation>Page P&amp;récédente</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2500"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2520"/>
         <source>&amp;Next Page</source>
         <translation>Page &amp;Suivante</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2501"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2521"/>
         <source>Forward</source>
         <translation>Avant</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2502"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2522"/>
         <source>&amp;Last Page</source>
         <translation>&amp;Dernière page</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2504"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2524"/>
         <source>&amp;Go to Page...</source>
         <translation>&amp;Atteindre la page...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2506"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2526"/>
         <source>Zoom &amp;In</source>
         <translation>Zoom a&amp;vant</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2507"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2527"/>
         <source>Zoom &amp;Out</source>
         <translation>Zoom &amp;arrière</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2508"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2528"/>
         <source>&amp;Actual Size</source>
         <translation>Dim&amp;ensions en cours</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2509"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2529"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Ajuster à la &amp;largeur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2511"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2531"/>
         <source>Fit to &amp;Text Width</source>
         <translation>Ajuster à la largeur du &amp;texte</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2513"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2533"/>
         <source>Fit to &amp;Window</source>
         <translation>Ajuster à la &amp;fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2515"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2535"/>
         <source>&amp;Continuous</source>
         <translation>&amp;Continu</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2520"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2540"/>
         <source>Full &amp;Screen</source>
         <translation>&amp;Plein Écran</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2521"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2541"/>
         <source>Presentation</source>
         <translation>Présentation</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2522"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2542"/>
         <source>External Viewer</source>
         <translation>Afficheur externe</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2523"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2543"/>
         <source>Enlarge Viewer</source>
         <translation>Agrandir l&apos;afficheur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2524"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2544"/>
         <source>Shrink Viewer</source>
         <translation>Réduire l&apos;afficheur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2525"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2545"/>
         <source>Windowed/Embedded</source>
         <translation>Fénêtré/Embarqué</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2526"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2546"/>
         <source>Auto-hide Toolbar</source>
         <translation>Cacher automatiquement la barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2536"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2556"/>
         <source>Custom...</source>
         <translation>Personnalisation...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2539"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2559"/>
         <source>Single Page Step</source>
         <translation>Saut par pages uniques</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2542"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2544"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2562"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2564"/>
         <source>&amp;Close something</source>
         <translation>&amp;Fermer quelque chose</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2547"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2567"/>
         <source>Stac&amp;k</source>
         <translation>Pi&amp;le</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2548"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2568"/>
         <source>&amp;Tile</source>
         <translation>A&amp;juster</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2549"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2569"/>
         <source>&amp;Side by Side</source>
         <translation>&amp;Côte à Côte</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2551"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2571"/>
         <source>&amp;Go to Source</source>
         <translation>&amp;Aller au fichier source</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2552"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2572"/>
         <source>Focus Editor</source>
         <translation>Focus sur l&apos;éditeur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2554"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2574"/>
         <source>New Window</source>
         <translation>Nouvelle fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2555"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2575"/>
         <source>&amp;Find</source>
         <translation>&amp;Chercher</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2556"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2576"/>
         <source>Find &amp;again</source>
         <translation>Poursuivre la &amp;recherche</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2558"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2578"/>
         <source>Quick Build</source>
         <translation>Production rapide</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2593"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2613"/>
         <source>Show</source>
         <translation>Montrer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2619"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2639"/>
         <source>Windowed Viewer</source>
         <translation>Afficheur fenêtré</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2622"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2642"/>
         <source>Embedded Viewer</source>
         <translation>Afficheur embarqué</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2681"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2701"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>sur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2704"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2724"/>
         <source>Scale</source>
         <translation>Échelle</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2722"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2742"/>
         <source>Zoom Out</source>
         <translation>Zoom arrière</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2732"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2752"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2741"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2761"/>
         <source>Zoom In</source>
         <translation>Zoom avant</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2769"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2772"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2789"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2792"/>
         <source>Annotations</source>
         <translation>Annotations</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2892"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2912"/>
         <source>Page Down</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2896"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2916"/>
         <source>Page Up</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3106"/>
         <source>Retry</source>
         <translation>Réessayer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4250"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3109"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4270"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3092"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3112"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
 ne semble pas être un document PDF valide. Le fichier est soit corrompu, soit en train d&apos;être créé. Contrôle toutes les deux secondes.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3106"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3126"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>Le fichier « %1 » n&apos;a pas été trouvé ; peut-être a-t-il été supprimé.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3109"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3129"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Échec du chargement du fichier « %1 »; ce n&apos;est peut-être pas un PDF valide.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3112"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3132"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>Échec du chargement du fichier « %1 » dû à une mauvaise allocation de mémoire ; peut-être n&apos;est-il pas un PDF valide.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3115"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3135"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>Échec du chargement du fichier « %1 » dû à une exception ; peut-être n&apos;est-il pas un PDF valide.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3118"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3138"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>Le fichier PDF « %1 » est verrouillé.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3120"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3140"/>
         <source>PDF password</source>
         <translation>Mot de passe PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3120"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3140"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>Le fichier PDF « %1 » est verrouillé.
 Vous pouvez maintenant saisir le mot de passe :</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3469"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3489"/>
         <source>Searching for</source>
         <translation>Cherche</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3595"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3615"/>
         <source>No SyncTeX data available</source>
         <translation>Pas de données SyncTeX disponible</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3597"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3617"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX : « %1 »</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3688"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3708"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3766"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3786"/>
         <source>Page %1 of %2</source>
         <translation>Page %1 sur %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3767"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3787"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>Pages %1 à %2 de %3</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3792"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3812"/>
         <source>Open PDF</source>
         <translation>Ouvrir le PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4072"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4092"/>
         <source>Print</source>
         <translation>Imprimer</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4251"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4271"/>
         <source>Close Message</source>
         <translation>Fermer le message</translation>
     </message>
@@ -5648,42 +5673,42 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
 <context>
     <name>PDFFontsDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="373"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="405"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="373"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="405"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="373"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="405"/>
         <source>Subset</source>
         <translation>Sous ensemble</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="373"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="405"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="390"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="422"/>
         <source>[none]</source>
         <translation>[aucun]</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="395"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="427"/>
         <source>yes</source>
         <translation>oui</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="395"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="427"/>
         <source>no</source>
         <translation>non</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="396"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="428"/>
         <source>[embedded]</source>
         <translation>[encapsulé]</translation>
     </message>
@@ -5747,7 +5772,7 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
 <context>
     <name>PDFOutlineDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="168"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="200"/>
         <source>No TOC</source>
         <translation>Pas de table des matières</translation>
     </message>
@@ -5768,22 +5793,22 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
 <context>
     <name>PDFSearchDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="609"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="641"/>
         <source>Words</source>
         <translation>Mots</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="610"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="642"/>
         <source>Only searches for whole words.</source>
         <translation>Chercher seulement les mots entiers.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="617"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="649"/>
         <source>Sync</source>
         <translation>Synchronisation</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="618"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="650"/>
         <source>Synchronize editor when jumping to search results.</source>
         <translation>Synchroniser l&apos;éditeur lors du saut vers les résultats de recherche.</translation>
     </message>
@@ -5882,42 +5907,42 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
         <translation>Ajuster à la fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1117"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1125"/>
         <source>Opening external files is currently only supported for PDFs.</source>
         <translation>L&apos;ouverture de fichiers externes n&apos;est actuellement supportée que pour les fichiers PDF.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1136"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1144"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1136"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1144"/>
         <source>Could not open link:</source>
         <translation>Impossible d&apos;ouvrir le lien :</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1247"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1255"/>
         <source>Go to Source</source>
         <translation>Aller au fichier source</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1920"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1940"/>
         <source>Go to Page</source>
         <translation>Atteindre la page</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1921"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1941"/>
         <source>Page number:</source>
         <translation>Numéros de page :</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2256"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2276"/>
         <source>Calculating text width</source>
         <translation>Calcul de la largeur du texte</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2256"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2276"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -5953,42 +5978,42 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2324"/>
+        <location filename="../src/buildmanager.cpp" line="2340"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>La redirection de sortie standard (« stdout ») « %1 » n&apos;est pas supportée. Veuillez consulter le manuel pour plus de détails.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2333"/>
+        <location filename="../src/buildmanager.cpp" line="2349"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>La redirection de sortie standard (« stdout ») « %1 » n&apos;est pas supportée. Veuillez consulter le manuel pour plus de détails.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2494"/>
+        <location filename="../src/buildmanager.cpp" line="2510"/>
         <source>Process started: %1</source>
         <translation>Processus en cours : %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2500"/>
+        <location filename="../src/buildmanager.cpp" line="2516"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Erreur : impossible de lancer la commande %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2503"/>
+        <location filename="../src/buildmanager.cpp" line="2519"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Assurez-vous d&apos;avoir installé une distribution LaTeX&lt;/b&gt; par exemple MiKTeX ou TeX Live, et d&apos;avoir correctement configuré les chemins vers cette distribution sur la page de configuration des commandes de TeXstudio.&lt;br&gt; Un éditeur (La)TeX tel que TeXstudio ne peut fonctionner sans les commandes LaTeX fournies par une telle distribution.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2507"/>
+        <location filename="../src/buildmanager.cpp" line="2523"/>
         <source>Error: Command crashed: %1</source>
         <translation>Erreur : échec de la commande %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2514"/>
+        <location filename="../src/buildmanager.cpp" line="2530"/>
         <source>Process exited with error(s)</source>
         <translation>Processus terminé avec une ou plusieurs erreurs</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2517"/>
+        <location filename="../src/buildmanager.cpp" line="2533"/>
         <source>Process exited normally</source>
         <translation>Processus terminé normalement</translation>
     </message>
@@ -9067,7 +9092,7 @@ n&apos;a pas pu être supprimé.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="245"/>
-        <location filename="../src/texstudio.cpp" line="285"/>
+        <location filename="../src/texstudio.cpp" line="287"/>
         <source>Central</source>
         <translation>Centrale</translation>
     </message>
@@ -9156,1579 +9181,1590 @@ n&apos;a pas pu être supprimé.</translation>
         <translation>&amp;XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2045"/>
+        <location filename="../src/configmanager.cpp" line="2055"/>
         <source>Edit &amp;Macros...</source>
         <translation>Éditer les &amp;macros...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="354"/>
-        <location filename="../src/texstudio.cpp" line="6140"/>
+        <location filename="../src/texstudio.cpp" line="356"/>
+        <location filename="../src/texstudio.cpp" line="6155"/>
         <source>Ready</source>
         <translation>Prêt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="424"/>
+        <location filename="../src/texstudio.cpp" line="426"/>
         <source>TeX files</source>
         <translation>Fichiers TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="425"/>
+        <location filename="../src/texstudio.cpp" line="427"/>
         <source>LilyPond files</source>
         <translation>Fichiers LilypPond</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="426"/>
+        <location filename="../src/texstudio.cpp" line="428"/>
         <source>Plaintext files</source>
         <translation>Fichiers texte brut</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="427"/>
+        <location filename="../src/texstudio.cpp" line="429"/>
         <source>Pweave files</source>
         <translation>Fichiers pweave</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="428"/>
+        <location filename="../src/texstudio.cpp" line="430"/>
         <source>Sweave files</source>
         <translation>Fichiers sweave</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="429"/>
+        <location filename="../src/texstudio.cpp" line="431"/>
         <source>Asymptote files</source>
         <translation>Fichiers Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="430"/>
+        <location filename="../src/texstudio.cpp" line="432"/>
         <source>PDF files</source>
         <translation>Fichiers PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="431"/>
-        <location filename="../src/texstudio.cpp" line="9422"/>
-        <location filename="../src/texstudio.cpp" line="9429"/>
+        <location filename="../src/texstudio.cpp" line="433"/>
+        <location filename="../src/texstudio.cpp" line="9483"/>
+        <location filename="../src/texstudio.cpp" line="9490"/>
         <source>All files</source>
         <translation>Tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="610"/>
+        <location filename="../src/texstudio.cpp" line="612"/>
         <source>Macros</source>
         <translation>Macros</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="626"/>
+        <location filename="../src/texstudio.cpp" line="628"/>
         <source>Side Panel</source>
         <translation>Panneau latéral</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="665"/>
-        <location filename="../src/texstudio.cpp" line="666"/>
+        <location filename="../src/texstudio.cpp" line="668"/>
+        <location filename="../src/texstudio.cpp" line="669"/>
         <source>Structure</source>
-        <translation>S&amp;tructure</translation>
+        <translation>Structure</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="672"/>
-        <location filename="../src/texstudio.cpp" line="673"/>
+        <location filename="../src/texstudio.cpp" line="685"/>
+        <location filename="../src/texstudio.cpp" line="686"/>
         <source>Bookmarks</source>
         <translation>Marque-pages</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="679"/>
-        <location filename="../src/texstudio.cpp" line="680"/>
+        <location filename="../src/texstudio.cpp" line="692"/>
+        <location filename="../src/texstudio.cpp" line="693"/>
         <source>Symbols</source>
         <translation>Symboles</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="682"/>
+        <location filename="../src/texstudio.cpp" line="695"/>
         <source>Left/Right Brackets</source>
         <translation>Délimiteurs gauche/droite</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="684"/>
+        <location filename="../src/texstudio.cpp" line="697"/>
         <source>MetaPost Commands</source>
         <translation>Macros Metapost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="683"/>
+        <location filename="../src/texstudio.cpp" line="696"/>
         <source>PSTricks Commands</source>
         <translation>Commandes PSTricks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="685"/>
+        <location filename="../src/texstudio.cpp" line="678"/>
+        <location filename="../src/texstudio.cpp" line="679"/>
+        <source>TOC</source>
+        <translation>TdM</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="698"/>
         <source>TikZ Commands</source>
         <translation>Commandes TikZ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="686"/>
+        <location filename="../src/texstudio.cpp" line="699"/>
         <source>Asymptote Commands</source>
         <translation>Macros Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="687"/>
+        <location filename="../src/texstudio.cpp" line="700"/>
         <source>Beamer Commands</source>
         <translation>Cadres Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="688"/>
+        <location filename="../src/texstudio.cpp" line="701"/>
         <source>XY Commands</source>
         <translation>Commandes XY</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="815"/>
+        <location filename="../src/texstudio.cpp" line="827"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="817"/>
+        <location filename="../src/texstudio.cpp" line="829"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="818"/>
+        <location filename="../src/texstudio.cpp" line="830"/>
         <source>New From &amp;Template...</source>
         <translation>Nouveau à partir d&apos;un &amp;modèle...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="819"/>
+        <location filename="../src/texstudio.cpp" line="831"/>
         <source>&amp;Open...</source>
         <translation>&amp;Ouvrir...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="821"/>
+        <location filename="../src/texstudio.cpp" line="833"/>
         <source>Open &amp;Recent</source>
         <translation>Fichiers &amp;récemment utilisés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="823"/>
+        <location filename="../src/texstudio.cpp" line="835"/>
         <source>Session</source>
         <translation>&amp;Session</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="824"/>
+        <location filename="../src/texstudio.cpp" line="836"/>
         <source>Load Session...</source>
         <translation>&amp;Charger une session...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="825"/>
+        <location filename="../src/texstudio.cpp" line="837"/>
         <source>Save Session...</source>
         <translation>&amp;Enregistrer une session...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="826"/>
+        <location filename="../src/texstudio.cpp" line="838"/>
         <source>Restore Previous Session</source>
         <translation>&amp;Restaurer la session précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="835"/>
+        <location filename="../src/texstudio.cpp" line="847"/>
         <source>&amp;Save</source>
         <translation>Enregi&amp;strer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="836"/>
+        <location filename="../src/texstudio.cpp" line="848"/>
         <source>Save &amp;As...</source>
         <translation>&amp;Enregistrer sous...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="837"/>
+        <location filename="../src/texstudio.cpp" line="849"/>
         <source>Save A&amp;ll</source>
         <translation>Enregistrer tous &amp;les fichiers</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="838"/>
+        <location filename="../src/texstudio.cpp" line="850"/>
         <source>&amp;Make Template...</source>
         <translation>&amp;Créer un modèle (à partir du fichier en cours)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="841"/>
+        <location filename="../src/texstudio.cpp" line="853"/>
         <source>Fifi&amp;x</source>
         <translation>Fifi&amp;x</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="842"/>
+        <location filename="../src/texstudio.cpp" line="854"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>&amp;Enregistrer le fichier renommé/déplacé</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="843"/>
+        <location filename="../src/texstudio.cpp" line="855"/>
         <source>Save copied file...</source>
         <translation>Enregistrer le fichier &amp;copié</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="844"/>
+        <location filename="../src/texstudio.cpp" line="856"/>
         <source>&amp;Delete file</source>
         <translation>&amp;Supprimer le fichier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="845"/>
+        <location filename="../src/texstudio.cpp" line="857"/>
         <source>Set &amp;permissions...</source>
         <translation>Configurer les &amp;permissions...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="847"/>
+        <location filename="../src/texstudio.cpp" line="859"/>
         <source>&amp;Revert to saved...</source>
         <translation>&amp;Revenir au fichier enregistré...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="849"/>
+        <location filename="../src/texstudio.cpp" line="861"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>&amp;Copier le nom du fichier dans le presse-papier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="850"/>
+        <location filename="../src/texstudio.cpp" line="862"/>
         <source>Copy master filename to clipboard</source>
         <translation>Copier le nom du fichier &amp;maître dans le presse-papier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="852"/>
+        <location filename="../src/texstudio.cpp" line="864"/>
         <source>S&amp;VN/GIT...</source>
         <translation>S&amp;VN/Git...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="853"/>
+        <location filename="../src/texstudio.cpp" line="865"/>
         <source>Check &amp;in...</source>
         <translation>Propa&amp;ger (SVN)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="854"/>
+        <location filename="../src/texstudio.cpp" line="866"/>
         <source>SVN &amp;update...</source>
         <translation>&amp;Mise à jour SVN...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="855"/>
+        <location filename="../src/texstudio.cpp" line="867"/>
         <source>SVN update &amp;work directory</source>
         <translation>Répertoire de &amp;mise-à-jour SVN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="856"/>
+        <location filename="../src/texstudio.cpp" line="868"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>Afficher les ré&amp;visions antérieures (SVN)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="857"/>
+        <location filename="../src/texstudio.cpp" line="869"/>
         <source>Lock &amp;PDF</source>
         <translation>&amp;Verrouiller le PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="858"/>
+        <location filename="../src/texstudio.cpp" line="870"/>
         <source>Check in P&amp;DF</source>
         <translation>&amp;Contrôler le PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="859"/>
+        <location filename="../src/texstudio.cpp" line="871"/>
         <source>Show difference between two files</source>
         <translation>Montrer la &amp;différence entre deux fichiers</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="860"/>
+        <location filename="../src/texstudio.cpp" line="872"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Montrer la différence entre deux fichiers relativement au fichier de &amp;base</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="861"/>
+        <location filename="../src/texstudio.cpp" line="873"/>
         <source>Check SVN Conflict</source>
         <translation>Contrôler les con&amp;flits SVN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="862"/>
+        <location filename="../src/texstudio.cpp" line="874"/>
         <source>Try to merge differences</source>
         <translation>&amp;Tenter de fusionner les différences</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="863"/>
+        <location filename="../src/texstudio.cpp" line="875"/>
         <source>Remove Difference-Markers</source>
         <translation>&amp;Supprimer les balises de différences</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="864"/>
+        <location filename="../src/texstudio.cpp" line="876"/>
         <source>Declare Conflict Resolved</source>
         <translation>Déclarer le conflit comme &amp;résolu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="865"/>
+        <location filename="../src/texstudio.cpp" line="877"/>
         <source>Jump to next difference</source>
         <translation>Atteindre la différence s&amp;uivante</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="866"/>
+        <location filename="../src/texstudio.cpp" line="878"/>
         <source>Jump to previous difference</source>
         <translation>Atteindre la différence &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="869"/>
-        <location filename="../src/texstudio.cpp" line="9623"/>
+        <location filename="../src/texstudio.cpp" line="881"/>
+        <location filename="../src/texstudio.cpp" line="9684"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="870"/>
+        <location filename="../src/texstudio.cpp" line="882"/>
         <source>Clos&amp;e All</source>
         <translation>F&amp;ermer tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="873"/>
+        <location filename="../src/texstudio.cpp" line="885"/>
         <source>Print Source Code...</source>
         <translation>Imprimer le code source...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="876"/>
+        <location filename="../src/texstudio.cpp" line="888"/>
         <source>Exit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="879"/>
+        <location filename="../src/texstudio.cpp" line="891"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="880"/>
+        <location filename="../src/texstudio.cpp" line="892"/>
         <source>&amp;Undo</source>
         <translation>&amp;Défaire</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="881"/>
+        <location filename="../src/texstudio.cpp" line="893"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="883"/>
+        <location filename="../src/texstudio.cpp" line="895"/>
         <source>Debug undo stack</source>
         <translation>Déboguer la pile des annulations</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="886"/>
+        <location filename="../src/texstudio.cpp" line="898"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="887"/>
+        <location filename="../src/texstudio.cpp" line="899"/>
         <source>C&amp;ut</source>
         <translation>Co&amp;uper</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="888"/>
+        <location filename="../src/texstudio.cpp" line="900"/>
         <source>&amp;Paste</source>
         <translation>C&amp;oller</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="890"/>
+        <location filename="../src/texstudio.cpp" line="902"/>
         <source>&amp;Selection</source>
         <translation>&amp;Sélection</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="891"/>
+        <location filename="../src/texstudio.cpp" line="903"/>
         <source>Select &amp;All</source>
         <translation>&amp;Tout sélectionner</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="892"/>
+        <location filename="../src/texstudio.cpp" line="904"/>
         <source>Select All &amp;Occurrences</source>
         <translation>&amp;Sélectionner toutes les occurrences</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="893"/>
+        <location filename="../src/texstudio.cpp" line="905"/>
         <source>Select &amp;Prev Occurrence</source>
         <translation>Sélection l&apos;occurrence &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="894"/>
+        <location filename="../src/texstudio.cpp" line="906"/>
         <source>Select &amp;Next Occurrence</source>
         <translation>Sélection l&apos;occurrence suiva&amp;nte</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="895"/>
+        <location filename="../src/texstudio.cpp" line="907"/>
         <source>Also Select Prev Occurrence</source>
         <translation>Sélection aussi l&apos;occurrence précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="896"/>
+        <location filename="../src/texstudio.cpp" line="908"/>
         <source>Also Select Next Occurrence</source>
         <translation>Sélection aussi l&apos;occurrence suivante</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="897"/>
+        <location filename="../src/texstudio.cpp" line="909"/>
         <source>Expand Selection to Word</source>
         <translation>Étendre la sélection au &amp;mot</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="898"/>
+        <location filename="../src/texstudio.cpp" line="910"/>
         <source>Expand Selection to Line</source>
         <translation>Étendre la sélection à la &amp;ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="900"/>
+        <location filename="../src/texstudio.cpp" line="912"/>
         <source>&amp;Line Operations</source>
         <translation>Opérations sur les &amp;lignes</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="901"/>
+        <location filename="../src/texstudio.cpp" line="913"/>
         <source>Delete &amp;Line</source>
         <translation>Supprimer la &amp;ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="902"/>
+        <location filename="../src/texstudio.cpp" line="914"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>Supprimer jusqu&apos;à la &amp;fin de la ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="903"/>
+        <location filename="../src/texstudio.cpp" line="915"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>Supprimer depuis le &amp;début de la ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="904"/>
+        <location filename="../src/texstudio.cpp" line="916"/>
         <source>Move Line &amp;Up</source>
         <translation>Déplacer à la ligne &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="905"/>
+        <location filename="../src/texstudio.cpp" line="917"/>
         <source>Move Line &amp;Down</source>
         <translation>Déplacer à la ligne &amp;suivante</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="906"/>
+        <location filename="../src/texstudio.cpp" line="918"/>
         <source>Du&amp;plicate Line</source>
         <translation>Dupli&amp;quer la ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="907"/>
+        <location filename="../src/texstudio.cpp" line="919"/>
         <source>S&amp;ort Lines</source>
         <translation>Cla&amp;ssement des lignes</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="908"/>
+        <location filename="../src/texstudio.cpp" line="920"/>
         <source>&amp;Align Cursors</source>
         <translation>&amp;Aligner les curseurs</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="910"/>
+        <location filename="../src/texstudio.cpp" line="922"/>
         <source>&amp;Text Operations</source>
         <translation>Opérations sur le &amp;texte</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="911"/>
+        <location filename="../src/texstudio.cpp" line="923"/>
         <source>To Lowercase</source>
         <translation>en bas-de-casse (&amp;minuscules)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="912"/>
+        <location filename="../src/texstudio.cpp" line="924"/>
         <source>To Uppercase</source>
         <translation>en &amp;capitales</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="913"/>
+        <location filename="../src/texstudio.cpp" line="925"/>
         <source>To Titlecase (strict)</source>
         <translation>en « titre anglais » (&amp;strict)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="914"/>
+        <location filename="../src/texstudio.cpp" line="926"/>
         <source>To Titlecase (smart)</source>
         <translation>en « titre anglais » (&amp;intelligent)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="918"/>
+        <location filename="../src/texstudio.cpp" line="930"/>
         <source>&amp;Searching</source>
         <translation>C&amp;hercher/remplacer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="919"/>
+        <location filename="../src/texstudio.cpp" line="931"/>
         <source>&amp;Find</source>
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
+        <location filename="../src/texstudio.cpp" line="932"/>
         <source>Find &amp;Next</source>
         <translation>&amp;Chercher suivant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="921"/>
+        <location filename="../src/texstudio.cpp" line="933"/>
         <source>Find &amp;Prev</source>
         <translation>Chercher &amp;précédent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="922"/>
+        <location filename="../src/texstudio.cpp" line="934"/>
         <source>Continue F&amp;ind</source>
         <translation>Cont&amp;inuer à chercher</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="923"/>
+        <location filename="../src/texstudio.cpp" line="935"/>
         <source>&amp;Count</source>
         <translation>Nombre d&apos;&amp;occurrences</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="924"/>
+        <location filename="../src/texstudio.cpp" line="936"/>
         <source>&amp;Select all matches...</source>
         <translation>&amp;Sélectionner toutes les occurrences...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="926"/>
+        <location filename="../src/texstudio.cpp" line="938"/>
         <source>&amp;Replace</source>
         <translation>Re&amp;mplacer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="927"/>
+        <location filename="../src/texstudio.cpp" line="939"/>
         <source>Replace Next</source>
         <translation>&amp;Remplacer suivant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="928"/>
+        <location filename="../src/texstudio.cpp" line="940"/>
         <source>Replace Prev</source>
         <translation>Remplacer &amp;précédent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="929"/>
+        <location filename="../src/texstudio.cpp" line="941"/>
         <source>Replace &amp;All</source>
         <translation>Remplacer &amp;tout</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="932"/>
+        <location filename="../src/texstudio.cpp" line="944"/>
         <source>Go to</source>
         <translation>&amp;Atteindre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="934"/>
+        <location filename="../src/texstudio.cpp" line="946"/>
         <source>Line</source>
         <translation>Ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="935"/>
+        <location filename="../src/texstudio.cpp" line="947"/>
         <source>Previous Change</source>
         <translation>Modification &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="936"/>
+        <location filename="../src/texstudio.cpp" line="948"/>
         <source>Next Change</source>
         <translation>Modification &amp;suivante</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="938"/>
+        <location filename="../src/texstudio.cpp" line="950"/>
         <source>Previous mark</source>
         <translation>Marque &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="939"/>
+        <location filename="../src/texstudio.cpp" line="951"/>
         <source>Next mark</source>
         <translation>Marque &amp;suivante</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="942"/>
+        <location filename="../src/texstudio.cpp" line="954"/>
         <source>Go Back</source>
         <translation>Position &amp;précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="943"/>
+        <location filename="../src/texstudio.cpp" line="955"/>
         <source>Go Forward</source>
         <translation>Position &amp;suivante</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/texstudio.cpp" line="958"/>
         <source>Goto Bookmark</source>
         <translation>Atteindre le &amp;marque-page</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="952"/>
-        <location filename="../src/texstudio.cpp" line="959"/>
+        <location filename="../src/texstudio.cpp" line="964"/>
+        <location filename="../src/texstudio.cpp" line="971"/>
         <source>Bookmark %1</source>
         <translation>Marque-page &amp;%1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="956"/>
+        <location filename="../src/texstudio.cpp" line="968"/>
         <source>Toggle Bookmark</source>
         <translation>Cr&amp;éer/Supprimer un marque-page</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
+        <location filename="../src/texstudio.cpp" line="969"/>
         <source>Unnamed Bookmark</source>
         <translation>&amp;Marque-page sans nom</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
+        <location filename="../src/texstudio.cpp" line="975"/>
         <source>Line Ending</source>
         <translation>T&amp;ype de fin de ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="965"/>
+        <location filename="../src/texstudio.cpp" line="977"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>&amp;DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="969"/>
+        <location filename="../src/texstudio.cpp" line="981"/>
         <source>Unix (LF)</source>
         <translation>&amp;Unix/Linux(LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
+        <location filename="../src/texstudio.cpp" line="985"/>
         <source>Old Mac (CR)</source>
         <translation>Mac ancien (CR)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="979"/>
+        <location filename="../src/texstudio.cpp" line="991"/>
         <source>Setup Encoding...</source>
         <translation>Codage d&apos;&amp;entrée...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="980"/>
+        <location filename="../src/texstudio.cpp" line="992"/>
         <source>Insert Unicode Character...</source>
         <translation>&amp;Insérer un caractère unicode...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="985"/>
+        <location filename="../src/texstudio.cpp" line="997"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idéfix</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="986"/>
+        <location filename="../src/texstudio.cpp" line="998"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Effacer &amp;mot/commande/environnement</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Coller en La&amp;TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="990"/>
+        <location filename="../src/texstudio.cpp" line="1002"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>Co&amp;nvertir en LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="991"/>
+        <location filename="../src/texstudio.cpp" line="1003"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>Pré&amp;visualiser sélection/parenthèses</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="992"/>
+        <location filename="../src/texstudio.cpp" line="1004"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>Purger l&apos;aperçu en &amp;ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="995"/>
+        <location filename="../src/texstudio.cpp" line="1007"/>
         <source>Toggle &amp;Comment</source>
         <translation>(Dé)&amp;Commenter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="996"/>
+        <location filename="../src/texstudio.cpp" line="1008"/>
         <source>&amp;Comment</source>
         <translation>&amp;Commenter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
+        <location filename="../src/texstudio.cpp" line="1009"/>
         <source>&amp;Uncomment</source>
         <translation>D&amp;écommenter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="998"/>
+        <location filename="../src/texstudio.cpp" line="1010"/>
         <source>&amp;Indent</source>
         <translation>&amp;Indenter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="999"/>
+        <location filename="../src/texstudio.cpp" line="1011"/>
         <source>Unin&amp;dent</source>
         <translation>&amp;Désindenter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="1012"/>
         <source>Hard Line &amp;Break...</source>
         <translation>&amp;Retours à la ligne...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1001"/>
+        <location filename="../src/texstudio.cpp" line="1013"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>Répét&amp;er les changements de lignes</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1004"/>
+        <location filename="../src/texstudio.cpp" line="1016"/>
         <source>&amp;Go to</source>
         <translation>&amp;Atteindre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1006"/>
+        <location filename="../src/texstudio.cpp" line="1018"/>
         <source>Previous Error</source>
         <translation>E&amp;rreur précédente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1006"/>
-        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/texstudio.cpp" line="1018"/>
+        <location filename="../src/texstudio.cpp" line="1019"/>
         <source>No LaTeX errors detected !</source>
         <translation>Aucune erreur LaTeX détectée !</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/texstudio.cpp" line="1019"/>
         <source>Next Error</source>
         <translation>&amp;Erreur suivante</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1008"/>
+        <location filename="../src/texstudio.cpp" line="1020"/>
         <source>Previous Warning</source>
         <translation>A&amp;vertissement précédent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1008"/>
-        <location filename="../src/texstudio.cpp" line="1009"/>
+        <location filename="../src/texstudio.cpp" line="1020"/>
+        <location filename="../src/texstudio.cpp" line="1021"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Aucun avertissement LaTeX détecté !</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1009"/>
+        <location filename="../src/texstudio.cpp" line="1021"/>
         <source>Next Warning</source>
         <translation>&amp;Avertissement suivant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
+        <location filename="../src/texstudio.cpp" line="1022"/>
         <source>Previous Bad Box</source>
         <translation>Dé&amp;passement de marge précédent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
-        <location filename="../src/texstudio.cpp" line="1011"/>
+        <location filename="../src/texstudio.cpp" line="1022"/>
+        <location filename="../src/texstudio.cpp" line="1023"/>
         <source>No bad boxes detected !</source>
         <translation>Aucun dépassement de marge détecté !</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1011"/>
+        <location filename="../src/texstudio.cpp" line="1023"/>
         <source>Next Bad Box</source>
         <translation>&amp;Dépassement de marge suivant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1013"/>
+        <location filename="../src/texstudio.cpp" line="1025"/>
         <source>Definition</source>
         <translation>Dé&amp;finition</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1016"/>
+        <location filename="../src/texstudio.cpp" line="1028"/>
         <source>Re&amp;name Environment</source>
         <translation>Re&amp;nommer environnement</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1018"/>
+        <location filename="../src/texstudio.cpp" line="1030"/>
         <source>Parenthesis</source>
         <translation>Parent&amp;hèses</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1019"/>
+        <location filename="../src/texstudio.cpp" line="1031"/>
         <source>Jump to Match</source>
         <translation>Atteindre le &amp;délimiteur apparié</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1020"/>
+        <location filename="../src/texstudio.cpp" line="1032"/>
         <source>Select Inner</source>
         <translation>Sélectionner l&apos;&amp;intérieur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1021"/>
+        <location filename="../src/texstudio.cpp" line="1033"/>
         <source>Select Outer</source>
         <translation>Sélectionner l&apos;&amp;extérieur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1022"/>
+        <location filename="../src/texstudio.cpp" line="1034"/>
         <source>Select Command</source>
         <translation>Sélectionner la &amp;commande</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1023"/>
+        <location filename="../src/texstudio.cpp" line="1035"/>
         <source>Select Line</source>
         <translation>Sélectionner ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1024"/>
+        <location filename="../src/texstudio.cpp" line="1036"/>
         <source>Select Inverting</source>
         <translation>Sélectionner l&apos;in&amp;verse</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1027"/>
+        <location filename="../src/texstudio.cpp" line="1039"/>
         <source>Find Mismatch</source>
         <translation>Chercher les discord&amp;ances</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1029"/>
+        <location filename="../src/texstudio.cpp" line="1041"/>
         <source>Complete</source>
         <translation>Com&amp;pléter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1030"/>
+        <location filename="../src/texstudio.cpp" line="1042"/>
         <source>Normal</source>
         <translation>&amp;Normal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1031"/>
+        <location filename="../src/texstudio.cpp" line="1043"/>
         <source>\begin{ Completion</source>
         <translation>\&amp;begin{complétion</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1032"/>
+        <location filename="../src/texstudio.cpp" line="1044"/>
         <source>Normal Text</source>
         <translation>&amp;Texte normal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1033"/>
+        <location filename="../src/texstudio.cpp" line="1045"/>
         <source>Close latest open environment</source>
         <translation>&amp;Fermer le dernier environnement ouvert</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1036"/>
+        <location filename="../src/texstudio.cpp" line="1048"/>
+        <source>update TOC</source>
+        <translation>mise à jour de la TdM</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1049"/>
         <source>Refresh Structure</source>
         <translation>Ra&amp;fraîchir la structure</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1037"/>
+        <location filename="../src/texstudio.cpp" line="1050"/>
         <source>Refresh Language Model</source>
         <translation>Rafraîchir le m&amp;odèle de langage</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1038"/>
+        <location filename="../src/texstudio.cpp" line="1051"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation>Force la mise à jour du modèle de langage dynamique utilisé pour la coloration syntaxique et le pliage de code.Probablement inutile car les mises à jour sont en général automatiques.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1039"/>
+        <location filename="../src/texstudio.cpp" line="1052"/>
         <source>Remove Placeholders</source>
         <translation>&amp;Supprimer les bouche-trous</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1040"/>
+        <location filename="../src/texstudio.cpp" line="1053"/>
         <source>Remove Current Placeholder</source>
         <translation>Supprimer le &amp;bouche-trou actuel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1045"/>
+        <location filename="../src/texstudio.cpp" line="1058"/>
         <source>&amp;Tools</source>
         <translation>&amp;Outils</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1047"/>
+        <location filename="../src/texstudio.cpp" line="1060"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Production &amp;&amp; visualisation</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1048"/>
+        <location filename="../src/texstudio.cpp" line="1061"/>
         <source>&amp;Compile</source>
         <translation>&amp;Compilation</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1049"/>
+        <location filename="../src/texstudio.cpp" line="1062"/>
         <source>Stop Compile</source>
         <translation>Arrêter la compilation</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1053"/>
-        <location filename="../src/texstudio.cpp" line="1205"/>
+        <location filename="../src/texstudio.cpp" line="1066"/>
+        <location filename="../src/texstudio.cpp" line="1218"/>
         <source>&amp;View</source>
         <translation>Afficha&amp;ge</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1054"/>
-        <location filename="../src/texstudio.cpp" line="1152"/>
+        <location filename="../src/texstudio.cpp" line="1067"/>
+        <location filename="../src/texstudio.cpp" line="1165"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliographie</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1055"/>
+        <location filename="../src/texstudio.cpp" line="1068"/>
         <source>&amp;Glossary</source>
         <translation>&amp;Glossaire</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1056"/>
+        <location filename="../src/texstudio.cpp" line="1069"/>
         <source>&amp;Index</source>
         <translation>&amp;Index</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1059"/>
+        <location filename="../src/texstudio.cpp" line="1072"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>Com&amp;pilations</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1060"/>
+        <location filename="../src/texstudio.cpp" line="1073"/>
         <source>&amp;Latexmk</source>
         <translation>Latexm&amp;k</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1062"/>
-        <location filename="../src/texstudio.cpp" line="1110"/>
+        <location filename="../src/texstudio.cpp" line="1075"/>
+        <location filename="../src/texstudio.cpp" line="1123"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1063"/>
+        <location filename="../src/texstudio.cpp" line="1076"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1067"/>
+        <location filename="../src/texstudio.cpp" line="1080"/>
         <source>DVI-&gt;PS</source>
         <translation>D&amp;VI → PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1068"/>
+        <location filename="../src/texstudio.cpp" line="1081"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S → PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1069"/>
+        <location filename="../src/texstudio.cpp" line="1082"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I → PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1071"/>
+        <location filename="../src/texstudio.cpp" line="1084"/>
         <source>View &amp;DVI</source>
         <translation>Voir &amp;DVI</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1072"/>
+        <location filename="../src/texstudio.cpp" line="1085"/>
         <source>Vie&amp;w PS</source>
         <translation>Afficher P&amp;S</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1073"/>
+        <location filename="../src/texstudio.cpp" line="1086"/>
         <source>View PD&amp;F</source>
         <translation>Afficher PD&amp;F</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1075"/>
+        <location filename="../src/texstudio.cpp" line="1088"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1076"/>
+        <location filename="../src/texstudio.cpp" line="1089"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1077"/>
+        <location filename="../src/texstudio.cpp" line="1090"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1079"/>
+        <location filename="../src/texstudio.cpp" line="1092"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1080"/>
+        <location filename="../src/texstudio.cpp" line="1093"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;Texindy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1081"/>
+        <location filename="../src/texstudio.cpp" line="1094"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1083"/>
+        <location filename="../src/texstudio.cpp" line="1096"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1084"/>
+        <location filename="../src/texstudio.cpp" line="1097"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1086"/>
+        <location filename="../src/texstudio.cpp" line="1099"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>&amp;Utilisateur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1089"/>
+        <location filename="../src/texstudio.cpp" line="1102"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>&amp;Supprimer les fichiers auxiliaires...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1090"/>
+        <location filename="../src/texstudio.cpp" line="1103"/>
         <source>Open External &amp;Terminal</source>
         <translation>Ouvrir le &amp;terminal externe</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1092"/>
+        <location filename="../src/texstudio.cpp" line="1105"/>
         <source>View &amp;Log</source>
         <translation>Afficher le fichier de &amp;log</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1093"/>
+        <location filename="../src/texstudio.cpp" line="1106"/>
         <source>Show Log Markers</source>
         <translation>Afficher les &amp;marqueurs du fichier de log</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1097"/>
+        <location filename="../src/texstudio.cpp" line="1110"/>
         <source>C&amp;onvert to Html...</source>
         <translation>Convertir en &amp;html...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1098"/>
+        <location filename="../src/texstudio.cpp" line="1111"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>C&amp;onvertir le fichier source en html...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1100"/>
+        <location filename="../src/texstudio.cpp" line="1113"/>
         <source>A&amp;nalyse Text...</source>
         <translation>A&amp;nalyser le texte...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1101"/>
+        <location filename="../src/texstudio.cpp" line="1114"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Générer du texte aléatoi&amp;re...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1103"/>
+        <location filename="../src/texstudio.cpp" line="1116"/>
         <source>Check Spelling...</source>
         <translation>Vérifier l&apos;ortho&amp;graphe...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1104"/>
+        <location filename="../src/texstudio.cpp" line="1117"/>
         <source>Thesaurus...</source>
         <translation>Th&amp;ésaurus...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1105"/>
+        <location filename="../src/texstudio.cpp" line="1118"/>
         <source>Find Word Repetitions...</source>
         <translation>Chercher les &amp;répétitions de mots...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1112"/>
+        <location filename="../src/texstudio.cpp" line="1125"/>
         <source>Insert \ref to Next Label</source>
         <translation>&amp;Insérer \ref pour label suivant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1113"/>
+        <location filename="../src/texstudio.cpp" line="1126"/>
         <source>Insert \ref to Previous Label</source>
         <translation>Insérer \ref pour label pr&amp;écédent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1114"/>
+        <location filename="../src/texstudio.cpp" line="1127"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>&amp;Manipuler des tableaux</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1115"/>
+        <location filename="../src/texstudio.cpp" line="1128"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>Ajouter une &amp;ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1116"/>
+        <location filename="../src/texstudio.cpp" line="1129"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>Ajouter une &amp;colonne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1117"/>
+        <location filename="../src/texstudio.cpp" line="1130"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>Supprimer une &amp;ligne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1118"/>
+        <location filename="../src/texstudio.cpp" line="1131"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>Supprimer une &amp;colonne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1119"/>
+        <location filename="../src/texstudio.cpp" line="1132"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>Cou&amp;per une colonne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/texstudio.cpp" line="1133"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Co&amp;ller une colonne</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1121"/>
+        <location filename="../src/texstudio.cpp" line="1134"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>Ajouter un filet &amp;horizontal - \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1122"/>
+        <location filename="../src/texstudio.cpp" line="1135"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>Supprimer un filet &amp;horizontal - \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1123"/>
+        <location filename="../src/texstudio.cpp" line="1136"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>Reconstruire le tableau d&apos;après le &amp;modèle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1124"/>
+        <location filename="../src/texstudio.cpp" line="1137"/>
         <source>Align Columns</source>
         <translation>&amp;Aligner les colonnes</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1125"/>
+        <location filename="../src/texstudio.cpp" line="1138"/>
         <source>Add magic comments ...</source>
         <translation>Ajouter un commentaire magi&amp;que...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1126"/>
+        <location filename="../src/texstudio.cpp" line="1139"/>
         <source>Insert root document name as TeX comment</source>
         <translation>... spécifiant le document &amp;maître du fichier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1127"/>
-        <location filename="../src/texstudio.cpp" line="1454"/>
+        <location filename="../src/texstudio.cpp" line="1140"/>
+        <location filename="../src/texstudio.cpp" line="1467"/>
         <source>Insert language as TeX comment</source>
         <translation>... spécifiant la &amp;langue du fichier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1128"/>
+        <location filename="../src/texstudio.cpp" line="1141"/>
         <source>Insert document coding as TeX comment</source>
         <translation>... spécifiant le &amp;codage d&apos;entrée du fichier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1129"/>
+        <location filename="../src/texstudio.cpp" line="1142"/>
         <source>Insert program as TeX comment</source>
         <translation>Insérer le programme en tant que commentaire TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1130"/>
+        <location filename="../src/texstudio.cpp" line="1143"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation>Insérer la bibliographie en tant que commentaire TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1132"/>
+        <location filename="../src/texstudio.cpp" line="1145"/>
         <source>&amp;Math</source>
         <translation>&amp;Maths</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1136"/>
+        <location filename="../src/texstudio.cpp" line="1149"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Assistants</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1137"/>
+        <location filename="../src/texstudio.cpp" line="1150"/>
         <source>Quick &amp;Start...</source>
         <translation>&amp;Nouveau document...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1138"/>
+        <location filename="../src/texstudio.cpp" line="1151"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>&amp;Diaporama Beamer...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1139"/>
+        <location filename="../src/texstudio.cpp" line="1152"/>
         <source>Quick &amp;Letter...</source>
         <translation>&amp;Lettre...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1142"/>
+        <location filename="../src/texstudio.cpp" line="1155"/>
         <source>Quick &amp;Tabular...</source>
         <translation>&amp;Tableau...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1143"/>
+        <location filename="../src/texstudio.cpp" line="1156"/>
         <source>Quick T&amp;abbing...</source>
         <translation>T&amp;abulation...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1144"/>
+        <location filename="../src/texstudio.cpp" line="1157"/>
         <source>Quick &amp;Array...</source>
         <translation>&amp;Matrice...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1145"/>
+        <location filename="../src/texstudio.cpp" line="1158"/>
         <source>Insert &amp;Graphic...</source>
         <translation>&amp;Graphique...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1148"/>
+        <location filename="../src/texstudio.cpp" line="1161"/>
         <source>Math Assistant...</source>
         <translation>&amp;Mathématique...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/texstudio.cpp" line="1190"/>
         <source>&amp;Clean</source>
         <translation>Netto&amp;yer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1179"/>
+        <location filename="../src/texstudio.cpp" line="1192"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>&amp;Insérer une référence bibliographique...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1181"/>
+        <location filename="../src/texstudio.cpp" line="1194"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1185"/>
-        <location filename="../src/texstudio.cpp" line="1195"/>
+        <location filename="../src/texstudio.cpp" line="1198"/>
+        <location filename="../src/texstudio.cpp" line="1208"/>
         <source>BibTeX</source>
         <translation>&amp;BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1190"/>
-        <location filename="../src/texstudio.cpp" line="1196"/>
+        <location filename="../src/texstudio.cpp" line="1203"/>
+        <location filename="../src/texstudio.cpp" line="1209"/>
         <source>BibLaTeX</source>
         <translation>Biblatex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1200"/>
+        <location filename="../src/texstudio.cpp" line="1213"/>
         <source>Ma&amp;cros</source>
         <translation>Ma&amp;cros</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
+        <location filename="../src/texstudio.cpp" line="1219"/>
         <source>Previous Document</source>
         <translation>Document précédent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1207"/>
+        <location filename="../src/texstudio.cpp" line="1220"/>
         <source>Next Document</source>
         <translation>Document &amp;suivant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1208"/>
+        <location filename="../src/texstudio.cpp" line="1221"/>
         <source>Open Documents</source>
         <translation>Documents &amp;ouverts</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1209"/>
+        <location filename="../src/texstudio.cpp" line="1222"/>
         <source>List Of Open Documents</source>
         <translation>&amp;Liste des documents ouverts</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1210"/>
+        <location filename="../src/texstudio.cpp" line="1223"/>
         <source>List Of Hidden Documents</source>
         <translation>Liste des fichiers &amp;cachés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1212"/>
+        <location filename="../src/texstudio.cpp" line="1225"/>
         <source>Focus Editor</source>
         <translation>Focus sur l&apos;&amp;éditeur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1213"/>
+        <location filename="../src/texstudio.cpp" line="1226"/>
         <source>Focus Viewer</source>
         <translation>Focus sur l&apos;&amp;afficheur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1216"/>
+        <location filename="../src/texstudio.cpp" line="1229"/>
         <source>Show</source>
         <translation>Montrer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1219"/>
+        <location filename="../src/texstudio.cpp" line="1232"/>
         <source>Statusbar</source>
         <translation>Barre d&apos;état</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1223"/>
+        <location filename="../src/texstudio.cpp" line="1236"/>
         <source>Show embedded PDF large</source>
         <translation>Afficher le PDF embarqué en &amp;grand</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1224"/>
+        <location filename="../src/texstudio.cpp" line="1237"/>
         <source>Show embedded PDF small</source>
         <translation>Afficher le PDF embarqué en &amp;petit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1226"/>
+        <location filename="../src/texstudio.cpp" line="1239"/>
         <source>Close Element</source>
         <translation>Fermer l&apos;élément</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1229"/>
+        <location filename="../src/texstudio.cpp" line="1242"/>
         <source>Collapse</source>
         <translation>&amp;Réduire</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1230"/>
-        <location filename="../src/texstudio.cpp" line="1235"/>
+        <location filename="../src/texstudio.cpp" line="1243"/>
+        <location filename="../src/texstudio.cpp" line="1248"/>
         <source>Everything</source>
         <translation>&amp;Tout</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1231"/>
-        <location filename="../src/texstudio.cpp" line="1236"/>
+        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/texstudio.cpp" line="1249"/>
         <source>Nearest Block</source>
         <translation>&amp;Bloc le plus proche</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1233"/>
-        <location filename="../src/texstudio.cpp" line="1238"/>
+        <location filename="../src/texstudio.cpp" line="1246"/>
+        <location filename="../src/texstudio.cpp" line="1251"/>
         <source>Level %1</source>
         <translation>Niveau &amp;%1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1234"/>
+        <location filename="../src/texstudio.cpp" line="1247"/>
         <source>Expand</source>
         <translation>&amp;Développer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/texstudio.cpp" line="1253"/>
         <source>Grammar errors</source>
         <translation>&amp;Erreurs grammaticales</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1243"/>
+        <location filename="../src/texstudio.cpp" line="1256"/>
         <source>Word Repetition</source>
         <translation>&amp;Répétition de mots</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/texstudio.cpp" line="1257"/>
         <source>Long-range Word Repetition</source>
         <translation>&amp;Longue plage de répétition de mots</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/texstudio.cpp" line="1258"/>
         <source>Bad words</source>
         <translation>&amp;Mots incorrects</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1246"/>
+        <location filename="../src/texstudio.cpp" line="1259"/>
         <source>Grammar Mistake</source>
         <translation>&amp;Erreur grammaticale</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1248"/>
+        <location filename="../src/texstudio.cpp" line="1261"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Erreur grammaticale spéciale &amp;%1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1257"/>
+        <location filename="../src/texstudio.cpp" line="1270"/>
         <source>Editor Zoom</source>
         <translation>&amp;Zoom de l&apos;éditeur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1258"/>
+        <location filename="../src/texstudio.cpp" line="1271"/>
         <source>Zoom In</source>
         <translation>Zoom avant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1259"/>
+        <location filename="../src/texstudio.cpp" line="1272"/>
         <source>Zoom Out</source>
         <translation>Zoom &amp;arrière</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1260"/>
+        <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Reset Zoom</source>
         <translation>&amp;Réinitialiser le zoom</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1262"/>
+        <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Full &amp;Screen</source>
         <translation>Plei&amp;n écran</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1269"/>
+        <location filename="../src/texstudio.cpp" line="1282"/>
         <source>Highlighting</source>
         <translation>S&amp;urlignement</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1293"/>
+        <location filename="../src/texstudio.cpp" line="1306"/>
         <source>&amp;Options</source>
         <translation>Op&amp;tions</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1294"/>
+        <location filename="../src/texstudio.cpp" line="1307"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;Configurer TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1297"/>
+        <location filename="../src/texstudio.cpp" line="1310"/>
         <source>Load &amp;Profile...</source>
         <translation>Charger un &amp;profil...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1298"/>
+        <location filename="../src/texstudio.cpp" line="1311"/>
         <source>S&amp;ave Profile...</source>
         <translation>&amp;Enregistrer le profil actif...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1299"/>
+        <location filename="../src/texstudio.cpp" line="1312"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>&amp;Sauver la configuration en cours</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1300"/>
+        <location filename="../src/texstudio.cpp" line="1313"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>&amp;Restaurer la configuration par défaut...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1303"/>
+        <location filename="../src/texstudio.cpp" line="1316"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>Document &amp;maître</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1306"/>
+        <location filename="../src/texstudio.cpp" line="1319"/>
         <source>Detect &amp;Automatically</source>
         <translation>Détecter &amp;automatiquement</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1314"/>
+        <location filename="../src/texstudio.cpp" line="1327"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>&amp;Déclarer le document en cours comme document maître explicite</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1317"/>
+        <location filename="../src/texstudio.cpp" line="1330"/>
         <source>&amp;Help</source>
         <translation>Ai&amp;de</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1318"/>
+        <location filename="../src/texstudio.cpp" line="1331"/>
         <source>LaTeX Reference...</source>
         <translation>&amp;Aide LaTeX...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1319"/>
+        <location filename="../src/texstudio.cpp" line="1332"/>
         <source>User Manual...</source>
         <translation>&amp;Manuel de TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1320"/>
+        <location filename="../src/texstudio.cpp" line="1333"/>
         <source>Packages Help...</source>
         <translation>Aide sur les &amp;packages...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1323"/>
+        <location filename="../src/texstudio.cpp" line="1336"/>
         <source>Check LaTeX Installation</source>
         <translation>&amp;Vérifier l&apos;installation LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1324"/>
+        <location filename="../src/texstudio.cpp" line="1337"/>
         <source>Check Active Completion Files</source>
         <translation>Vérifier les fichiers de &amp;complétion actifs</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1325"/>
+        <location filename="../src/texstudio.cpp" line="1338"/>
         <source>Check LanguageTool</source>
         <translation>Vérifier LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1326"/>
+        <location filename="../src/texstudio.cpp" line="1339"/>
         <source>Bugs Report/Feature Request</source>
         <translation>Rapport de bogue/Demande de fonctionnalité</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1327"/>
+        <location filename="../src/texstudio.cpp" line="1340"/>
         <source>About TeXstudio...</source>
         <translation>À propos de &amp;TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="1458"/>
         <source>Default</source>
         <translation>Par défaut</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1479"/>
+        <location filename="../src/texstudio.cpp" line="1492"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>Connecté à LanguageTool à %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1483"/>
+        <location filename="../src/texstudio.cpp" line="1496"/>
         <source>No LanguageTool server found at %1</source>
         <translation>Aucun serveur LanguageTool n&apos;a été trouvé à %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1487"/>
+        <location filename="../src/texstudio.cpp" line="1500"/>
         <source>LanguageTool status unknown</source>
         <translation>État de LanguageTool inconnu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1491"/>
+        <location filename="../src/texstudio.cpp" line="1504"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation>La vérification grammaticale a été désactivée par l&apos;utilisateur !</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1552"/>
+        <location filename="../src/texstudio.cpp" line="1565"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1564"/>
-        <location filename="../src/texstudio.cpp" line="1565"/>
-        <location filename="../src/texstudio.cpp" line="5686"/>
-        <location filename="../src/texstudio.cpp" line="5689"/>
-        <location filename="../src/texstudio.cpp" line="5690"/>
+        <location filename="../src/texstudio.cpp" line="1577"/>
+        <location filename="../src/texstudio.cpp" line="1578"/>
+        <location filename="../src/texstudio.cpp" line="5701"/>
+        <location filename="../src/texstudio.cpp" line="5704"/>
+        <location filename="../src/texstudio.cpp" line="5705"/>
         <source>Encoding</source>
         <translation>Codage d&apos;entrée</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1587"/>
+        <location filename="../src/texstudio.cpp" line="1600"/>
         <source>More Encodings...</source>
         <translation>Plus de codages d&apos;entrée...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1595"/>
+        <location filename="../src/texstudio.cpp" line="1608"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Insérer le codage d&apos;entrée en tant que commentaire TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1609"/>
+        <location filename="../src/texstudio.cpp" line="1622"/>
         <source>Go to bookmark</source>
         <translation>Atteindre le marque-page</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1654"/>
+        <location filename="../src/texstudio.cpp" line="1667"/>
         <source>Automatic</source>
         <translation>Automatique</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1655"/>
+        <location filename="../src/texstudio.cpp" line="1668"/>
         <source>Automatic root document detection active</source>
         <translation>Détection automatique du document maître active</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1660"/>
+        <location filename="../src/texstudio.cpp" line="1673"/>
         <source>&amp;Explicit</source>
         <translation>&amp;Explicite</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1661"/>
+        <location filename="../src/texstudio.cpp" line="1674"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Maître</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1662"/>
+        <location filename="../src/texstudio.cpp" line="1675"/>
         <source>Explict root document:
 %1</source>
         <translation>Document maître explicite :
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1953"/>
+        <location filename="../src/texstudio.cpp" line="1969"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Voulez-vous déboguer un fichier SyncTeX ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2030"/>
-        <location filename="../src/texstudio.cpp" line="3811"/>
-        <location filename="../src/texstudio.cpp" line="5739"/>
-        <location filename="../src/texstudio.cpp" line="5791"/>
-        <location filename="../src/texstudio.cpp" line="6338"/>
-        <location filename="../src/texstudio.cpp" line="6519"/>
-        <location filename="../src/texstudio.cpp" line="6521"/>
-        <location filename="../src/texstudio.cpp" line="6531"/>
-        <location filename="../src/texstudio.cpp" line="6533"/>
-        <location filename="../src/texstudio.cpp" line="10072"/>
+        <location filename="../src/texstudio.cpp" line="2052"/>
+        <location filename="../src/texstudio.cpp" line="3836"/>
+        <location filename="../src/texstudio.cpp" line="5754"/>
+        <location filename="../src/texstudio.cpp" line="5806"/>
+        <location filename="../src/texstudio.cpp" line="6353"/>
+        <location filename="../src/texstudio.cpp" line="6534"/>
+        <location filename="../src/texstudio.cpp" line="6536"/>
+        <location filename="../src/texstudio.cpp" line="6546"/>
+        <location filename="../src/texstudio.cpp" line="6548"/>
+        <location filename="../src/texstudio.cpp" line="10133"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2030"/>
+        <location filename="../src/texstudio.cpp" line="2052"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Vous n&apos;avez pas le droit de lecture sur le fichier %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2088"/>
+        <location filename="../src/texstudio.cpp" line="2110"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Un fichier de restauration après un arrêt brutal, issu de %1, a été trouvé pour « %2 ».
 Voulez-vous le restaurer ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2094"/>
+        <location filename="../src/texstudio.cpp" line="2116"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>Échec de l&apos;ouverture du fichier de restauration « %1 ».</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2221"/>
+        <location filename="../src/texstudio.cpp" line="2243"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -10737,45 +10773,45 @@ Veuillez vous procurer la bibliothèque d&apos;exécution ad hoc (fichiers .dll 
 Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2309"/>
+        <location filename="../src/texstudio.cpp" line="2331"/>
         <source>Could not write template data:</source>
         <translation>Impossible d&apos;écrire les données du modèle :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2335"/>
+        <location filename="../src/texstudio.cpp" line="2360"/>
         <source>Could not write template meta data:</source>
         <translation>Impossible d&apos;écrire les métadonnées du modèle :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2384"/>
-        <location filename="../src/texstudio.cpp" line="2446"/>
+        <location filename="../src/texstudio.cpp" line="2409"/>
+        <location filename="../src/texstudio.cpp" line="2471"/>
         <source>File not found:</source>
         <translation>Fichier introuvable :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2388"/>
-        <location filename="../src/texstudio.cpp" line="2450"/>
+        <location filename="../src/texstudio.cpp" line="2413"/>
+        <location filename="../src/texstudio.cpp" line="2475"/>
         <source>You do not have read permission to this file:</source>
         <translation>Vous n&apos;avez pas les droits nécessaires pour lire ce fichier :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2567"/>
-        <location filename="../src/texstudio.cpp" line="9902"/>
+        <location filename="../src/texstudio.cpp" line="2592"/>
+        <location filename="../src/texstudio.cpp" line="9963"/>
         <source>Open Files</source>
         <translation>Ouvrir fichiers</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2601"/>
+        <location filename="../src/texstudio.cpp" line="2626"/>
         <source>Loading of last session failed.</source>
         <translation>Le chargement de la dernière session a échoué.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2660"/>
+        <location filename="../src/texstudio.cpp" line="2685"/>
         <source>Save As</source>
         <translation>&amp;Enregistrer sous</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2677"/>
+        <location filename="../src/texstudio.cpp" line="2702"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -10788,260 +10824,261 @@ avec ce nom est ouvert dans TeXstudio. Vous devez enregistrer
 ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2695"/>
+        <location filename="../src/texstudio.cpp" line="2720"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Le PDF ne peut plus être synchronisé avec le source TeX parce que le fichier source a été renommé suite à une opération « Enregistrer sous ». Vous devriez recompiler le fichier renommé et afficher son PDF résultant.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2794"/>
+        <location filename="../src/texstudio.cpp" line="2819"/>
         <source>Rename/Move</source>
         <translation>Renommer/Déplacer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2794"/>
+        <location filename="../src/texstudio.cpp" line="2819"/>
+        <location filename="../src/texstudio.cpp" line="11249"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2809"/>
+        <location filename="../src/texstudio.cpp" line="2834"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Voulez-vous réellement supprimer le fichier « %1 » ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2818"/>
+        <location filename="../src/texstudio.cpp" line="2843"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Voulez-vous réellement revenir au fichier « %1 » ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2845"/>
+        <location filename="../src/texstudio.cpp" line="2870"/>
         <source>Numeric permissions</source>
         <translation>Permissions (numériques)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2846"/>
+        <location filename="../src/texstudio.cpp" line="2871"/>
         <source>Verbose permissions</source>
         <translation>Permissions (symboliques)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2893"/>
-        <location filename="../src/texstudio.cpp" line="2958"/>
+        <location filename="../src/texstudio.cpp" line="2918"/>
+        <location filename="../src/texstudio.cpp" line="2983"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>Le document &quot;%1&quot; a été modifié. Voulez-vous l&apos;enregistrer avant de fermer ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2895"/>
-        <location filename="../src/texstudio.cpp" line="2960"/>
+        <location filename="../src/texstudio.cpp" line="2920"/>
+        <location filename="../src/texstudio.cpp" line="2985"/>
         <source>Save and Close</source>
         <translation>Enregistrer et Fermer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2895"/>
-        <location filename="../src/texstudio.cpp" line="2960"/>
+        <location filename="../src/texstudio.cpp" line="2920"/>
+        <location filename="../src/texstudio.cpp" line="2985"/>
         <source>Close without Saving</source>
         <translation>Fermer sans enregistrer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2895"/>
-        <location filename="../src/texstudio.cpp" line="2960"/>
+        <location filename="../src/texstudio.cpp" line="2920"/>
+        <location filename="../src/texstudio.cpp" line="2985"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3039"/>
-        <location filename="../src/texstudio.cpp" line="3089"/>
-        <location filename="../src/texstudio.cpp" line="3169"/>
+        <location filename="../src/texstudio.cpp" line="3064"/>
+        <location filename="../src/texstudio.cpp" line="3114"/>
+        <location filename="../src/texstudio.cpp" line="3194"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe plus. Voulez-vous le supprimer de la liste des fichiers récents ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3182"/>
+        <location filename="../src/texstudio.cpp" line="3207"/>
         <source>Loading of session failed.</source>
         <translation>Le chargement de la session a échoué.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3199"/>
+        <location filename="../src/texstudio.cpp" line="3224"/>
         <source>Load Session</source>
         <translation>Charger une session</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3199"/>
-        <location filename="../src/texstudio.cpp" line="3217"/>
+        <location filename="../src/texstudio.cpp" line="3224"/>
+        <location filename="../src/texstudio.cpp" line="3242"/>
         <source>TeXstudio Session</source>
         <translation>Session TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3217"/>
+        <location filename="../src/texstudio.cpp" line="3242"/>
         <source>Save Session</source>
         <translation>Enregistrer une session</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3220"/>
+        <location filename="../src/texstudio.cpp" line="3245"/>
         <source>Saving of session failed.</source>
         <translation>L&apos;enregistrement de la session a échoué.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3305"/>
+        <location filename="../src/texstudio.cpp" line="3330"/>
         <source>The following files could not be loaded:</source>
         <translation>Les fichiers suivants ne peuvent pas être chargés :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3456"/>
+        <location filename="../src/texstudio.cpp" line="3481"/>
         <source>Image Formats (%1)</source>
         <translation>Formats d&apos;image (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3458"/>
+        <location filename="../src/texstudio.cpp" line="3483"/>
         <source>Save Image</source>
         <translation>Enregistrer l&apos;image</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3463"/>
+        <location filename="../src/texstudio.cpp" line="3488"/>
         <source>Could not save the image file.</source>
         <translation>L&apos;image n&apos;a pas pu être enregistrée.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3545"/>
+        <location filename="../src/texstudio.cpp" line="3570"/>
         <source>Ascending</source>
         <translation>Croissant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3545"/>
+        <location filename="../src/texstudio.cpp" line="3570"/>
         <source>Descending</source>
         <translation>Décroissant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3545"/>
+        <location filename="../src/texstudio.cpp" line="3570"/>
         <source>No Sorting</source>
         <translation>Pas de classement</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3545"/>
+        <location filename="../src/texstudio.cpp" line="3570"/>
         <source>Random (Shuffle)</source>
         <translation>Aléatoire (mélange)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3551"/>
+        <location filename="../src/texstudio.cpp" line="3576"/>
         <source>Sorting</source>
         <translation>Classement</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3552"/>
+        <location filename="../src/texstudio.cpp" line="3577"/>
         <source>Complete Lines</source>
         <translation>Toutes les lignes</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3553"/>
+        <location filename="../src/texstudio.cpp" line="3578"/>
         <source>Case Sensitive</source>
         <translation>Sensible à la casse</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3554"/>
+        <location filename="../src/texstudio.cpp" line="3579"/>
         <source>Remove Duplicates</source>
         <translation>Suppression des doublons</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3778"/>
+        <location filename="../src/texstudio.cpp" line="3803"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Forcer des changements de ligne après le nombre de caractères suivant:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3779"/>
+        <location filename="../src/texstudio.cpp" line="3804"/>
         <source>Smart scope selecting</source>
         <translation>Sélection intelligente</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3780"/>
+        <location filename="../src/texstudio.cpp" line="3805"/>
         <source>Join lines before wrapping</source>
         <translation>Joindre les lignes avant les retours à la ligne automatique</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3794"/>
-        <location filename="../src/texstudio.cpp" line="6233"/>
-        <location filename="../src/texstudio.cpp" line="6268"/>
+        <location filename="../src/texstudio.cpp" line="3819"/>
+        <location filename="../src/texstudio.cpp" line="6248"/>
+        <location filename="../src/texstudio.cpp" line="6283"/>
         <source>No document open</source>
         <translation>Aucun document ouvert</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3800"/>
+        <location filename="../src/texstudio.cpp" line="3825"/>
         <source>No dictionary available.</source>
         <translation>Pas de dictionnaire disponible.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3811"/>
+        <location filename="../src/texstudio.cpp" line="3836"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Aucun thésaurus trouvé</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4318"/>
+        <location filename="../src/texstudio.cpp" line="4333"/>
         <source>Unable to write to settings file %1</source>
         <translation>Impossible d&apos;écrire dans le fichier de configuration %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5399"/>
+        <location filename="../src/texstudio.cpp" line="5414"/>
         <source>Quick Start</source>
         <translation>Assistant nouveau document</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5421"/>
+        <location filename="../src/texstudio.cpp" line="5436"/>
         <source>Quick Beamer Presentation</source>
         <translation>Assistant présentation Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5458"/>
+        <location filename="../src/texstudio.cpp" line="5473"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Fichier en cours&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5490"/>
+        <location filename="../src/texstudio.cpp" line="5505"/>
         <source>Type: %1</source>
         <translation>Type : %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5536"/>
+        <location filename="../src/texstudio.cpp" line="5551"/>
         <source>Edit User &amp;Tags</source>
         <translation>Éditer les &amp;macros utilisateur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5595"/>
+        <location filename="../src/texstudio.cpp" line="5610"/>
         <source>Labels:</source>
         <translation>Labels :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5684"/>
+        <location filename="../src/texstudio.cpp" line="5699"/>
         <source>Encoding Aliases: </source>
         <translation>Alias de ce codage d&apos;entrée : </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5739"/>
+        <location filename="../src/texstudio.cpp" line="5754"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nom de fichier introuvable
 Vous devez enregistrer le document avant de le compiler.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5746"/>
+        <location filename="../src/texstudio.cpp" line="5761"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Nom de fichier introuvable</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5785"/>
+        <location filename="../src/texstudio.cpp" line="5800"/>
         <source>  Running this command: </source>
         <translation>  Lancer cette commande :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5791"/>
+        <location filename="../src/texstudio.cpp" line="5806"/>
         <source>could not start the command</source>
         <translation>la commande ne peut pas être lancée</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5913"/>
+        <location filename="../src/texstudio.cpp" line="5928"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Vous cherchez à ouvrir la visionneuse pdf interne.
 Cependant, cette version de TeXstudio a été compilée sans le support de cette fonction.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5933"/>
+        <location filename="../src/texstudio.cpp" line="5948"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11058,200 +11095,200 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
 (c) Non, ne pas utiliser la compilation « %3 » et lancer la compilation par défaut « %2 »</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5939"/>
+        <location filename="../src/texstudio.cpp" line="5954"/>
         <source>(a) allow for this document</source>
         <translation>(a) Autoriser pour ce document</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5940"/>
+        <location filename="../src/texstudio.cpp" line="5955"/>
         <source>(b) allow for all documents</source>
         <translation>(b) autoriser pour tous les documents</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5941"/>
+        <location filename="../src/texstudio.cpp" line="5956"/>
         <source>(c) use the default command</source>
         <translation>(c) utiliser la compilation par défaut</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6017"/>
+        <location filename="../src/texstudio.cpp" line="6032"/>
         <source>Unknown internal command: %1</source>
         <translation>Commande interne %1 inconnue</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6052"/>
+        <location filename="../src/texstudio.cpp" line="6067"/>
         <source>%!TeX program used: %1</source>
         <translation>Programme %!TeX utilisé : %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6055"/>
+        <location filename="../src/texstudio.cpp" line="6070"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>Programme %!TeX non-reconnu  ! (%1) Utilisation du programme par défaut.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6116"/>
+        <location filename="../src/texstudio.cpp" line="6131"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>La compilation du document est impossible car il se trouve dans un répertoire où vous n&apos;avez pas le droit d&apos;écrire.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6118"/>
+        <location filename="../src/texstudio.cpp" line="6133"/>
         <source>Could not start %1.</source>
         <translation>Démarrage de %1 impossible.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6147"/>
+        <location filename="../src/texstudio.cpp" line="6162"/>
         <source>Error:</source>
         <translation>Erreur :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6223"/>
+        <location filename="../src/texstudio.cpp" line="6238"/>
         <source>No open project or tex file to clean.</source>
         <translation>Aucun projet ou fichier .tex ouvert à nettoyer.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6272"/>
+        <location filename="../src/texstudio.cpp" line="6287"/>
         <source>Text Analysis</source>
         <translation>Analyse du texte</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6296"/>
+        <location filename="../src/texstudio.cpp" line="6311"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Le générateur de texte aléatoire construit de nouveaux textes à partir de mots existants si bien qu&apos;il est nécessaire d&apos;ouvrir des fichiers texte.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6338"/>
+        <location filename="../src/texstudio.cpp" line="6353"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Le log est disponible après sauvegarde et compilation</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6519"/>
-        <location filename="../src/texstudio.cpp" line="6531"/>
+        <location filename="../src/texstudio.cpp" line="6534"/>
+        <location filename="../src/texstudio.cpp" line="6546"/>
         <source>File not found</source>
         <translation>Fichier introuvable</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6521"/>
-        <location filename="../src/texstudio.cpp" line="6533"/>
+        <location filename="../src/texstudio.cpp" line="6536"/>
+        <location filename="../src/texstudio.cpp" line="6548"/>
         <source>Could not open browser</source>
         <translation>Impossible d&apos;ouvrir le navigateur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7103"/>
+        <location filename="../src/texstudio.cpp" line="7134"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Vous devez enregistrer ce fichier avant de pouvoir le définir comme document maître.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8740"/>
+        <location filename="../src/texstudio.cpp" line="8801"/>
         <source>commit comment:</source>
         <translation>Commentaire d&apos;envoi :</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8743"/>
+        <location filename="../src/texstudio.cpp" line="8804"/>
         <source>check in whole directory ?</source>
         <translation>Contrôler tout le répertoire ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9097"/>
+        <location filename="../src/texstudio.cpp" line="9158"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Attention: dialogue fermé automatiquement si le texte est modifié !</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9396"/>
+        <location filename="../src/texstudio.cpp" line="9457"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>Impossible d&apos;ouvrir le fichier « %1».</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9398"/>
+        <location filename="../src/texstudio.cpp" line="9459"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.
 Voulez-vous le créer ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9422"/>
+        <location filename="../src/texstudio.cpp" line="9483"/>
         <source>Save Profile</source>
         <translation>Enregistrer le profil actif</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9422"/>
-        <location filename="../src/texstudio.cpp" line="9429"/>
+        <location filename="../src/texstudio.cpp" line="9483"/>
+        <location filename="../src/texstudio.cpp" line="9490"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Profil TXS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9429"/>
+        <location filename="../src/texstudio.cpp" line="9490"/>
         <source>Load Profile</source>
         <translation>Charger un profil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9482"/>
+        <location filename="../src/texstudio.cpp" line="9543"/>
         <source>Failed to read profile file %1.</source>
         <translation>La lecture du fichier de profile %1 a échoué.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9605"/>
+        <location filename="../src/texstudio.cpp" line="9666"/>
         <source>Problem</source>
         <translation>Problème</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9605"/>
+        <location filename="../src/texstudio.cpp" line="9666"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>La recherche de répétitions fonctionne seulement avec la vérification orthographique activée !</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9610"/>
+        <location filename="../src/texstudio.cpp" line="9671"/>
         <source>Find Word Repetitions</source>
         <translation>Chercher les répétitions de mots</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9619"/>
+        <location filename="../src/texstudio.cpp" line="9680"/>
         <source>&amp;Find Next</source>
         <translation>Chercher &amp;suivant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9621"/>
+        <location filename="../src/texstudio.cpp" line="9682"/>
         <source>&amp;Find Previous</source>
         <translation>Chercher &amp;précédent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9672"/>
+        <location filename="../src/texstudio.cpp" line="9733"/>
         <source>Reached beginning of text.</source>
         <translation>Le début du texte a été atteint.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9672"/>
+        <location filename="../src/texstudio.cpp" line="9733"/>
         <source>Reached end of text.</source>
         <translation>La fin du texte a été atteinte.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9902"/>
-        <location filename="../src/texstudio.cpp" line="10112"/>
-        <location filename="../src/texstudio.cpp" line="10115"/>
+        <location filename="../src/texstudio.cpp" line="9963"/>
+        <location filename="../src/texstudio.cpp" line="10173"/>
+        <location filename="../src/texstudio.cpp" line="10176"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Fichiers LaTeX (*.tex);;Tous les fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10072"/>
+        <location filename="../src/texstudio.cpp" line="10133"/>
         <source>You do not have read permission to this file.</source>
         <translation>Vous n&apos;avez pas les droits nécessaires pour lire ce fichier.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10112"/>
+        <location filename="../src/texstudio.cpp" line="10173"/>
         <source>Open Compare File</source>
         <translation>Ouvrir le fichier de comparaison</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10115"/>
+        <location filename="../src/texstudio.cpp" line="10176"/>
         <source>Open Base File</source>
         <translation>Ouvrir le fichier de base</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10196"/>
+        <location filename="../src/texstudio.cpp" line="10257"/>
         <source>SVN Conflict!</source>
         <translation>Conflit SVN !</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10197"/>
+        <location filename="../src/texstudio.cpp" line="10258"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11261,14 +11298,14 @@ Cliquer sur « OK » pour afficher les différences plutôt que la source géné
 Cliquer sur « Annuler » pour ne rien faire.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10294"/>
-        <location filename="../src/texstudio.cpp" line="10385"/>
-        <location filename="../src/texstudio.cpp" line="10391"/>
+        <location filename="../src/texstudio.cpp" line="10355"/>
+        <location filename="../src/texstudio.cpp" line="10446"/>
+        <location filename="../src/texstudio.cpp" line="10452"/>
         <source>TeXstudio Emergency</source>
         <translation>Urgence TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10298"/>
+        <location filename="../src/texstudio.cpp" line="10359"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11279,7 +11316,7 @@ Please provide this file if you send a bug report.
 Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10301"/>
+        <location filename="../src/texstudio.cpp" line="10362"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11288,19 +11325,19 @@ Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
 %2Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10302"/>
+        <location filename="../src/texstudio.cpp" line="10363"/>
         <source>Yes, try to recover</source>
         <translation>Oui, tenter de recouvrer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10303"/>
-        <location filename="../src/texstudio.cpp" line="10308"/>
-        <location filename="../src/texstudio.cpp" line="10387"/>
+        <location filename="../src/texstudio.cpp" line="10364"/>
+        <location filename="../src/texstudio.cpp" line="10369"/>
+        <location filename="../src/texstudio.cpp" line="10448"/>
         <source>No, kill the program</source>
         <translation>Non, fermer le programme</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10305"/>
+        <location filename="../src/texstudio.cpp" line="10366"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -11309,17 +11346,17 @@ Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
 %1Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10306"/>
+        <location filename="../src/texstudio.cpp" line="10367"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Oui, arrêter la boucle et tenter de récupérer les données</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10307"/>
+        <location filename="../src/texstudio.cpp" line="10368"/>
         <source>Yes, continue the loop</source>
         <translation>Oui, continuer la boucle</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10386"/>
+        <location filename="../src/texstudio.cpp" line="10447"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11328,55 +11365,55 @@ Le processus a été stoppé.
 Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10387"/>
+        <location filename="../src/texstudio.cpp" line="10448"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10391"/>
+        <location filename="../src/texstudio.cpp" line="10452"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>J&apos;essaie de m&apos;arrêter, mais il ne se passe rien.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10423"/>
+        <location filename="../src/texstudio.cpp" line="10484"/>
         <source>System Report</source>
         <translation>rapport-systeme</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10559"/>
+        <location filename="../src/texstudio.cpp" line="10620"/>
         <source>LT Report</source>
         <translation>Rapport LT</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10585"/>
+        <location filename="../src/texstudio.cpp" line="10646"/>
         <source>process failed to start
 </source>
         <translation>échec du démarrage du processus
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10588"/>
+        <location filename="../src/texstudio.cpp" line="10649"/>
         <source>process crashed
 </source>
         <translation>le processus a planté
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10598"/>
+        <location filename="../src/texstudio.cpp" line="10659"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>La vérification en temps réel est activée.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10600"/>
+        <location filename="../src/texstudio.cpp" line="10661"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Le vérification en temps réel est désactivée !!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10603"/>
+        <location filename="../src/texstudio.cpp" line="10664"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -11385,7 +11422,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10605"/>
+        <location filename="../src/texstudio.cpp" line="10666"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -11394,7 +11431,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10608"/>
+        <location filename="../src/texstudio.cpp" line="10669"/>
         <source>Tries to start automatically.
 
 </source>
@@ -11403,7 +11440,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10610"/>
+        <location filename="../src/texstudio.cpp" line="10671"/>
         <source>Autostart disabled.
 
 </source>
@@ -11412,36 +11449,99 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10615"/>
+        <location filename="../src/texstudio.cpp" line="10676"/>
         <source>LT current status: </source>
         <translation>État actuel de LT : </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10618"/>
+        <location filename="../src/texstudio.cpp" line="10679"/>
         <source>working</source>
         <translation>en fonctionnement</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10621"/>
+        <location filename="../src/texstudio.cpp" line="10682"/>
         <source>error</source>
         <translation>erreur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10625"/>
+        <location filename="../src/texstudio.cpp" line="10686"/>
         <source>unknown</source>
         <translation>inconnu</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10628"/>
+        <location filename="../src/texstudio.cpp" line="10689"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL : %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10933"/>
+        <location filename="../src/texstudio.cpp" line="10994"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Erreur lors de la communication avec LT : %1</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11069"/>
+        <source>TODO</source>
+        <translation>À FAIRE</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11152"/>
+        <location filename="../src/texstudio.cpp" line="11160"/>
+        <location filename="../src/texstudio.cpp" line="11189"/>
+        <source>Document: </source>
+        <translation>Document : </translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11237"/>
+        <source>Insert Label</source>
+        <translation>Insérer le label</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11241"/>
+        <source>Insert %1 to Label</source>
+        <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
+        <translation>Insérer %1 du label</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11245"/>
+        <source>Create Label</source>
+        <translation>Créer un label</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11250"/>
+        <source>Cut</source>
+        <translation>Couper</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11251"/>
+        <source>Paste Before</source>
+        <translation>Coller avant</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11252"/>
+        <source>Paste After</source>
+        <translation>Coller après</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11254"/>
+        <source>Indent Section</source>
+        <translation>Indenter Section</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11255"/>
+        <source>Unindent Section</source>
+        <translation>Désindenter Section</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11262"/>
+        <source>Open Document</source>
+        <translation>Ouvrir le document</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11263"/>
+        <source>Go to Definition</source>
+        <translation>Aller à la définition</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="648"/>

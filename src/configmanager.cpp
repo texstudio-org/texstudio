@@ -449,6 +449,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Structure/MarkStructureElementsBeyondEnd", &markStructureElementsBeyondEnd, true, &pseudoDialog->checkBoxMarkStructureElementsBeyondEnd);
 	registerOption("Structure/MarkStructureElementsInAppendix", &markStructureElementsInAppendix, true, &pseudoDialog->checkBoxMarkStructureElementsInAppendix);
 	registerOption("StructureView/ReferenceCommandsInContextMenu", &referenceCommandsInContextMenu, "\\ref", &pseudoDialog->leReferenceCommandsInContextMenu);
+    registerOption("StructureView/BackgroundColorInGlobalTOC", &globalTOCbackgroundOptions, 1, &pseudoDialog->comboBoxTOCBackgroundColor);
 
 	//beginRegisterGroup("texmaker");
 	//files
@@ -733,13 +734,14 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
 	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);
-    registerOption("Preview/RenderBackend", &pdfDocumentConfig->renderBackend, 0, &pseudoDialog->comboBoxPDFRenderBackend);
+	registerOption("Preview/RenderBackend", &pdfDocumentConfig->renderBackend, 0, &pseudoDialog->comboBoxPDFRenderBackend);
+    registerOption("Preview/LimitRenderQueues", &pdfDocumentConfig->limitThreadNumber, -8); // hidden config to limit renderQueues i.e. parallel threads to render PDF. Default set numberOfThreads=qMin(8, number of cores)
 #if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
     int dpi=QApplication::desktop()->logicalDpiX();
 #else
     int dpi=72; // how to access main screen dpi?
 #endif
-    registerOption("Preview/DPI", &pdfDocumentConfig->dpi, dpi, &pseudoDialog->spinBoxPreviewDPI);
+	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, dpi, &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);
 	registerOption("Preview/", &pdfDocumentConfig->disableHorizontalScrollingForFitToTextWidth, true, &pseudoDialog->checkBoxDisableHorizontalScrollingForFitToTextWidth);
@@ -1170,8 +1172,8 @@ QSettings *ConfigManager::readSettings(bool reread)
     LatexParser::getInstance().customCommands = convertStringListtoSet(config->value("customCommands").toStringList());
 
 	//--------------------appearance------------------------------------
-    QFontDatabase fdb;
-    QStringList xf = fdb.families();
+	QFontDatabase fdb;
+	QStringList xf = fdb.families();
 	//editor
 #ifdef Q_OS_WIN32
 	if (editorConfig->fontFamily.isEmpty()) {
@@ -1294,7 +1296,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->beginWriteArray("keysetting");
 	for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
 		config->setArrayIndex(i);
-        if(managedMenuNewShortcuts[i].first.startsWith("main/macros/")){
+        if(managedMenuNewShortcuts[i].first.startsWith("main/macros/") && managedMenuNewShortcuts[i].first!="main/macros/manage~0"){
             continue;
         }
 		config->setValue("id", managedMenuNewShortcuts[i].first);
@@ -1318,7 +1320,6 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->endGroup();
 
     config->sync();
-
 
     return config;
 }
@@ -1560,6 +1561,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	act = new QAction(tr("Insert New Sub Menu (before)"), confDlg->ui.menuTree);
 	connect(act, SIGNAL(triggered()), SLOT(menuTreeNewMenuItem()));
 	confDlg->ui.menuTree->addAction(act);
+    act = new QAction(tr("Revert/Remove User Menu Item"), confDlg->ui.menuTree);
+    connect(act, SIGNAL(triggered()), SLOT(menuTreeRevertItem()));
+    confDlg->ui.menuTree->addAction(act);
 	confDlg->ui.menuTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
 	ComboBoxDelegate *cbd = new ComboBoxDelegate(confDlg->ui.menuTree);
@@ -1646,7 +1650,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		// update macros menu to update quote replacement
 		if (changedProperties.contains(&replaceQuotes)) {
 			bool conflict = false;
-            if (replaceQuotes){
+			if (replaceQuotes)
 				foreach (const Macro &m, completerConfig->userMacros) {
 					if (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN ||
 					        m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE) continue;
@@ -1655,7 +1659,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 						break;
 					}
 				}
-            }
 			if (conflict)
 				if (UtilsUi::txsConfirm(tr("You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))) {
 					for (int i = completerConfig->userMacros.count() - 1; i >= 0; i--) {
@@ -1863,6 +1866,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 		//language
 		if (language == tr("default")) language = "";
+        int i=language.indexOf("  (");
+        if(i>0){
+            language=language.left(i);
+        }
 		if (language != lastLanguage) loadTranslations(language);
 
 		// GUI scaling
@@ -1998,12 +2005,12 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
         if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
 			shortcuts << baseShortCut + i;
 #endif
-		QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, shortcuts);
+        QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, &shortcuts);
 		if (hasData) {
 			act->setData(data[i]);
 		} else {
 			act->setData(i);
-        }
+		}
 	}
 	if (watchedMenus.contains(menuName))
 		emit watchedMenuChanged(menuName);
@@ -2071,7 +2078,7 @@ void ConfigManager::updateUserMacroMenu()
             }
 
             QString id = "tag" + QString::number(i);
-            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), shortcuts);
+            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), &shortcuts);
             act->setData(i++);
         }
     }
@@ -2231,15 +2238,31 @@ QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const 
     return act;
 }
 
-//creates a new action or reuses an existing one (an existing one that is currently not in any menu, but has been in the given menu)
-QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile)
+/*!
+ * \brief creates a new action or reuses an existing one (an existing one that is currently not in any menu, but has been in the given menu)
+ * \param menu
+ * \param id
+ * \param text for menu entry
+ * \param slotName
+ * \param shortCuts implemented as pointer to distinguish between no shortcuts wanted (empty list) and no shortcuts set (nullptr)
+ * \param iconFile
+ * \return generated or reused action
+ */
+QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> *shortCuts, const QString &iconFile)
 {
 	QAction *old = menuParent->findChild<QAction *>(menu->objectName() + "/" + id);
-	if (!old)
-		return newManagedAction(menu, id, text, slotName, shortCuts, iconFile);
+    if (!old){
+        QList<QKeySequence> sc;
+        if(shortCuts){
+            sc=*shortCuts;
+        }
+        return newManagedAction(menu, id, text, slotName, sc, iconFile);
+    }
 	menu->addAction(old);
 	old->setText(text);
-    old->setShortcuts(shortCuts);
+    if(shortCuts){
+        old->setShortcuts(*shortCuts);
+    }
 	if (watchedMenus.contains(menu->objectName()))
 		emit watchedMenuChanged(menu->objectName());
 	return old;
@@ -3274,6 +3297,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 		if (manipulatedMenus.contains(menu->objectName())) {
 			QFont bold = menuitem->font(0);
 			bold.setBold(true);
+            changedItemsList.append(menuitem); // rescan item when determing the changed menus
 			for (int j = 0; j < 3; j++) menuitem->setFont(j, bold);
 		}
 		if (!relevantMenus.contains(menu->objectName())) advanced = true;
@@ -3310,6 +3334,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 			if (manipulatedMenus.contains(acts[i]->objectName())) {
 				QFont bold = twi->font(0);
 				bold.setBold(true);
+                changedItemsList.append(twi);
 				for (int j = 0; j < 3; j++) twi->setFont(j, bold);
 			}
 		}
@@ -3378,6 +3403,36 @@ void ConfigManager::menuTreeNewMenuItem()
 	menuTreeNewItem(true);
 }
 
+void ConfigManager::menuTreeRevertItem(){
+    QAction *a = qobject_cast<QAction *>(sender());
+    REQUIRE(a);
+    QTreeWidget *tw = qobject_cast<QTreeWidget *>(a->parentWidget());
+    REQUIRE(tw);
+    QTreeWidgetItem *item = tw->currentItem();
+    REQUIRE(item);
+    if (!item->parent()) return;
+    QString ID = item->data(0, Qt::UserRole).toString();
+    if(ID.contains("UII")){
+        //user defined menu/item
+        QTreeWidgetItem *parent=item->parent();
+        parent->removeChild(item);
+        manipulatedMenuTree.remove(ID);
+        changedItemsList.removeOne(item);
+    }else{ //revert
+        QFont bold = item->font(0);
+        if(bold.bold()){
+            // was manipulated
+            item->setText(1,tr("text is restored after restart"));
+            bold.setBold(false);
+            bold.setItalic(true);
+            for (int i = 0; i < 3; i++) item->setFont(i, bold);
+            manipulatedMenus.remove(ID);
+            changedItemsList.removeOne(item);
+        }
+    }
+
+}
+
 void ConfigManager::toggleVisibleTreeItems(bool show)
 {
 	REQUIRE(!superAdvancedItems.isEmpty());
@@ -3391,6 +3446,7 @@ void ConfigManager::toggleVisibleTreeItems(bool show)
 
 void ConfigManager::treeWidgetToManagedLatexMenuTo()
 {
+    manipulatedMenus.clear();
 	foreach (QTreeWidgetItem *item, changedItemsList) {
 		QString id = item->data(0, Qt::UserRole).toString();
 		if (id == "") continue;

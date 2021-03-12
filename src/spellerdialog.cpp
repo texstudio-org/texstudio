@@ -178,7 +178,7 @@ void SpellerDialog::SpellingNextWord()
                 continue;
             QString word=tk.getText();
             word = latexToPlainWordwithReplacementList(word, mReplacementList);
-            if (m_speller->check(word)) continue;
+            if (tk.ignoreSpelling || m_speller->check(word)) continue;
             QStringList suggWords = m_speller->suggest(word);
 
             QDocumentCursor wordSelection(editor->document(), curLine, tk.start);

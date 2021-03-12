@@ -188,7 +188,11 @@ int main(int argc, char **argv)
 {
 	QString appId = generateAppId();
 #if QT_VERSION >= QT_VERSION_CHECK(5,6,0)
-	QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+    if(qEnvironmentVariableIntValue("TEXSTUDIO_HIDPI_SCALE")>0){
+        QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    } else {
+        QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+    }
 #endif
 	// This is a dummy constructor so that the programs loads fast.
 	TexstudioApp a(appId, argc, argv);

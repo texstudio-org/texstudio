@@ -8,6 +8,9 @@ echo "GIT_HASH = ${GIT_HASH}"
 GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
 echo "GIT_DATE = ${GIT_DATE}"
 
+GIT_VERSION=$(git --git-dir=".git" describe --tags --abbrev=0 --always)
+echo "GIT_VERSION = ${GIT_VERSION}"
+
 DATE_HASH=$(date -u +"%Y%m%d%H%M")
 echo "DATE_HASH = ${DATE_HASH}"
 OS_NAME=$(uname)

@@ -1085,9 +1085,17 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination &dest)
 void PDFWidget::goToDestination(const QString &destName)
 {
 	if (document.isNull()) return;
-	const Poppler::LinkDestination *dest = document->linkDestination(destName);
-	if (dest)
+#ifdef HAS_POPPLER_74
+    const Poppler::LinkDestination dest=Poppler::LinkDestination(destName);
+    goToDestination(dest);
+#else
+    const Poppler::LinkDestination *dest = document->linkDestination(destName);
+    if (dest){
 		goToDestination(*dest);
+    }
+#endif
+
+
 }
 
 void PDFWidget::goToPageRelativePosition(int page, double xinpdf, double yinpdf)
@@ -3166,7 +3174,7 @@ retryNow:
         renderManager = nullptr;
 	}
 
-	renderManager = new PDFRenderManager(this);
+    renderManager = new PDFRenderManager(this,globalConfig->limitThreadNumber);
 	renderManager->setCacheSize(globalConfig->cacheSizeMB);
 	renderManager->setLoadStrategy(int(globalConfig->loadStrategy));
 	PDFRenderManager::Error error = PDFRenderManager::NoError;

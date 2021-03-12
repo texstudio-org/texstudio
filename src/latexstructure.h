@@ -26,6 +26,7 @@ struct StructureEntry {
 	QString tooltip; ///< optional because most tooltips are automatically generated.
 	int level; ///< only used for section types!
 	bool valid; ///< currently only used for includes and magic comments
+    bool expanded; ///< remember collapsed/expanded for toplevel TOC
 	QList<StructureEntry *> children; ///< children
 	StructureEntry *parent; ///< parent for easier tree structure parsing
 	LatexDocument *document;
@@ -88,8 +89,7 @@ class LatexDocumentsModel: public QAbstractItemModel
 
 private:
 	LatexDocuments &documents;
-	QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude, iconWarning;
-	QVector<QIcon> iconSection;
+
 	QModelIndex mHighlightIndex;
 	bool m_singleMode;
 
@@ -116,6 +116,10 @@ public:
 	void moveDocs(int from, int to);
 
     void setHighlightedEntry(StructureEntry *entry);
+
+    // give access to toplevelTOC
+    QIcon iconDocument, iconMasterDocument, iconBibTeX, iconInclude, iconWarning;
+    QVector<QIcon> iconSection;
 
 private slots:
     void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);

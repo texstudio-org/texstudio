@@ -102,6 +102,7 @@ public:
 	bool showCommentedElementsInStructure;
 	bool markStructureElementsBeyondEnd;
 	bool markStructureElementsInAppendix;
+    int globalTOCbackgroundOptions;
 	QString referenceCommandsInContextMenu;
 
 	//update
@@ -234,7 +235,7 @@ public:
 	QAction *newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString &iconFile = "");
     QAction *newManagedAction(QObject *rootMenu,QWidget *menu, const QString &id, const QString &text, QObject *obj,const char *slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString &iconFile = "");
 	QAction *newManagedAction(QWidget *menu, const QString &id, QAction *act);
-	QAction *newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString &iconFile = "");
+    QAction *newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> *shortCuts = nullptr, const QString &iconFile = "");
 	QAction *getManagedAction(const QString &id);
     QList<QAction *> getManagedActions(const QString &id);
 	QList<QAction *> getManagedActions(const QStringList &ids, const QString &commonPrefix = "");
@@ -351,6 +352,7 @@ private slots:
 	void menuTreeItemChanged(QTreeWidgetItem *item, int l);
 	void menuTreeNewItem(bool menu = false);
 	void menuTreeNewMenuItem();
+    void menuTreeRevertItem();
 	void toggleVisibleTreeItems(bool show);
 	void activateInternalViewer(bool activated);
 

@@ -119,6 +119,31 @@ static void fillToc(const QDomNode &parent, QTreeWidget *tree, QTreeWidgetItem *
 			fillToc(node, tree, newitem);
 	}
 }
+#ifdef HAS_POPPLER_74
+static void fillOutline(const QVector<Poppler::OutlineItem>toc, QTreeWidget *tree, QTreeWidgetItem *parentItem)
+{
+    QTreeWidgetItem *newitem = nullptr;
+    foreach(Poppler::OutlineItem e,toc) {
+        if (!parentItem)
+            newitem = new QTreeWidgetItem(tree, newitem);
+        else
+            newitem = new QTreeWidgetItem(parentItem, newitem);
+        newitem->setText(0, e.name());
+
+        bool isOpen = e.isOpen();
+
+        if (isOpen)
+            tree->expandItem(newitem);
+
+        if (e.destination()){
+            newitem->setText(1, e.destination()->toString());
+        }
+
+        if (e.hasChildren())
+            fillOutline(e.children(), tree, newitem);
+    }
+}
+#endif
 /*! \class PDFOutlineDock
  *
  * \brief sidepanel for preview
@@ -158,21 +183,27 @@ void PDFOutlineDock::fillInfo()
 {
 	tree->clear();
 	if (!document || document->popplerDoc().isNull()) return;
-#if QT_VERSION_MAJOR<6
+
+
+
+#ifdef HAS_POPPLER_74
+    QVector<Poppler::OutlineItem>toc=document->popplerDoc()->outline();
+    if(!toc.isEmpty()){
+        fillOutline(toc, tree, nullptr);
+        connect(tree, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(followTocSelection()));
+#else
 	const QDomDocument *toc = document->popplerDoc()->toc();
 	if (toc) {
         fillToc(*toc, tree, nullptr);
 		connect(tree, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(followTocSelection()));
 		delete toc;
-	} else {
 #endif
+	} else {
 		QTreeWidgetItem *item = new QTreeWidgetItem();
 		item->setText(0, tr("No TOC"));
 		item->setFlags(item->flags() & ~Qt::ItemIsEnabled);
 		tree->addTopLevelItem(item);
-#if QT_VERSION_MAJOR<6
 	}
-#endif
 }
 
 void PDFOutlineDock::documentClosed()

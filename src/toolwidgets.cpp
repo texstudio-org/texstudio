@@ -426,6 +426,7 @@ CustomWidgetList::CustomWidgetList(QWidget *parent):
 
 	stack = new QStackedWidget(this);
 	stack->setFrameShape(QFrame::NoFrame);
+    connect(stack,&QStackedWidget::currentChanged,this,&CustomWidgetList::notifyChangedWidget);
 	hlayout->addWidget(stack);
 }
 
@@ -502,7 +503,13 @@ void CustomWidgetList::customContextMenuRequested(const QPoint &localPosition)
 		QMenu menu;
 		menu.addActions(actions());
 		menu.exec(mapToGlobal(localPosition));
-	}
+    }
+}
+
+void CustomWidgetList::notifyChangedWidget(int index)
+{
+    QWidget *widget=stack->widget(index);
+    emit currentWidgetChanged(widget);
 }
 
 void CustomWidgetList::showWidgets()
@@ -559,12 +566,6 @@ QString CustomWidgetList::hiddenWidgets() const
 	return hiddenWidgetsIds.join("|");
 }
 
-/*'void CustomWidgetList::addWidgetOld(QWidget* widget, const QString& text, const QIcon& icon){
-}
-void CustomWidgetList::addWidgetNew(QWidget* widget, const QString& text, const QIcon& icon){
-	stack->addWidget(*list);
-	toolbar->addAction(icon,text);
-}*/
 
 QWidget *CustomWidgetList::widget(int i) const
 {

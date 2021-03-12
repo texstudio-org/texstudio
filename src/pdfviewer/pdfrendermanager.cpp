@@ -67,7 +67,13 @@ void CachePixmap::setRes(qreal res, int x, int y)
 	this->y = y;
 	this->resolution = res;
 }
-
+/*!
+ * \brief PDFRenderManager::PDFRenderManager
+ * \param parent
+ * \param limitQueues limit the number of parallel threads to render pdf.
+ * Negative number means limit number to abs() if that number is smaler than cores, positive number sets it to the given value.
+ *
+ */
 PDFRenderManager::PDFRenderManager(QObject *parent, int limitQueues) :
 	QObject(parent), cachedNumPages(0), loadStrategy(HybridLoad)
 {
@@ -78,6 +84,9 @@ PDFRenderManager::PDFRenderManager(QObject *parent, int limitQueues) :
 		queueAdministration->num_renderQueues = 2;
 		if (QThread::idealThreadCount() > 2)
 			queueAdministration->num_renderQueues = QThread::idealThreadCount();
+        if(limitQueues < 0 && queueAdministration->num_renderQueues>-limitQueues){
+            queueAdministration->num_renderQueues = -limitQueues;
+        }
 	}
 	for (int i = 0; i < queueAdministration->num_renderQueues; i++) {
         auto *renderQueue = new PDFRenderEngine(nullptr, queueAdministration);
@@ -329,7 +338,11 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 	}
 	if (enqueueCmd) {
 		if (scale > 1.01 || scale < 0.99) { // always rerender, only not if it is already equivalent
+#if QT_VERSION>QT_VERSION_CHECK(6,0,0)
             QMutableMultiMapIterator<int, RecInfo> i(lstOfReceivers);
+#else
+            QMutableMapIterator<int, RecInfo> i(lstOfReceivers);
+#endif
 			while (i.hasNext()) {
 				i.next();
 				if (mCurrentTicket != i.key()) {
@@ -367,7 +380,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 	//	lstOfReceivers.insert(mCurrentTicket,info);
 	//}
 	delete page;
-	return img;
+    return std::move(img);
 }
 
 void PDFRenderManager::addToCache(QImage img, int pageNr, int ticket)

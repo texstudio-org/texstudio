@@ -1,6 +1,7 @@
 name: CD
 on:
   - push
+  - pull_request
 
 jobs:
   build-linux-win:
@@ -46,6 +47,9 @@ jobs:
         MXEDIR="/usr/lib/mxe"
         MXETARGET="x86_64-w64-mingw32.shared"
         PATH=$PATH:${MXEDIR}/usr/bin
+        . ./.github/scripts/get-version.sh
+        sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+        sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
         $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1
 
     - name: Build
@@ -64,31 +68,35 @@ jobs:
         . ./.github/scripts/get-version.sh
         .github/scripts/package_win.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
-    - name: Deploy zip to Bintray
+    - name: Upload zip to GitHub Artifacts
       if: github.event_name == 'push'
-      uses: ./.github/actions/deploy-bintray
+      uses: actions/upload-artifact@v2
       with:
-        file: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
-        subject: sunderme
-        repo: texstudio
-        pkg: texstudio-win
-        version: ${{ steps.package.outputs.VERSION_NAME }}
-        username: sunderme
-        key: ${{ secrets.bintrayAPI }}
+        name: texstudio-win-zip
+        path: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
         
-    - name: Deploy exe to Bintray
+    - name: Upload to GitHub Artifacts
       if: github.event_name == 'push'
-      uses: ./.github/actions/deploy-bintray
+      uses: actions/upload-artifact@v2
       with:
-        file: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
-        subject: sunderme
-        repo: texstudio
-        pkg: texstudio-win
-        version: ${{ steps.package.outputs.VERSION_NAME }}
-        username: sunderme
-        key: ${{ secrets.bintrayAPI }}
-      
+        name: texstudio-win-exe
+        path: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
+        
+    - name: Release exe
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        files: |
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt5.exe
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt5.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+        
+     
 ###################################
 
   build-linux-release:
@@ -122,24 +130,30 @@ jobs:
         . ./.github/scripts/package_linux.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=VERSION::${VERSION}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"        
         
-    - name: Upload to Bintray
-      uses: bpicode/github-action-upload-bintray@master
+    - name: Upload to Github Artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v2
       with:
-        file: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
-        api_user: sunderme
-        api_key: ${{ secrets.bintrayAPI }}
-        repository_user: sunderme
-        repository: texstudio
-        package: texstudio-linux
-        version: ${{ steps.package.outputs.VERSION_NAME }}
-        publish: 1
-        calculate_metadata: false
+        name: texstudio-linux
+        path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
+        
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-x86_64.AppImage
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+   
      
 ############################
       
-  macosx-bintray:
-    name: Mac OS X (Bintray)
+  macosx:
+    name: Mac OS X
     runs-on: macos-latest
 
     steps:
@@ -152,10 +166,11 @@ jobs:
         # but prevents the homebrew install from succeeding
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
-        brew install poppler qt5
+        # install poppler with qt5
+        brew install poppler
 
     - name: Configure
-      run: /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
+      run: /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
 
     - name: Build
       run: make -j 2
@@ -165,20 +180,27 @@ jobs:
       run: |
         /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
         . ./.github/scripts/get-version.sh
+        cp texstudio.dmg texstudio-${GIT_VERSION}-osx.dmg
         mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
-    - name: Deploy to Bintray
+    - name: Upload to Github artifacts
       if: github.event_name == 'push'
-      uses: ./.github/actions/deploy-bintray
+      uses: actions/upload-artifact@v2
       with:
-        file: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
-        subject: sunderme
-        repo: texstudio
-        pkg: texstudio-osx
-        version: ${{ steps.package.outputs.VERSION_NAME}}
-        username: sunderme
-        key: ${{ secrets.bintrayAPI }}
+        name: texstudio-osx
+        path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
+        
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
    
 
 

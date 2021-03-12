@@ -110,8 +110,8 @@ void LatexDocument::setFileNameInternal(const QString &fileName, const QFileInfo
 {
 	Q_ASSERT(fileName.isEmpty() || pairedFileInfo.isAbsolute());
 	this->fileName = fileName;
-	QFileInfo info = getNonSymbolicFileInfo(pairedFileInfo);
-	this->fileInfo = info;
+    //QFileInfo info = getNonSymbolicFileInfo(pairedFileInfo);
+    this->fileInfo = pairedFileInfo;
 }
 
 LatexEditorView *LatexDocument::getEditorView() const
@@ -1184,37 +1184,37 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		delete se;
 	}
 	StructureEntry *newSection = nullptr;
-	if (!isHidden()) {
-		LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
 
-		const QList<StructureEntry *> categories =
-		    QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
+    // always generate complete structure, also for hidden, as needed for globalTOC
+    LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
 
-		for (int i = categories.size() - 1; i >= 0; i--) {
-			StructureEntry *cat = categories[i];
-			if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
-			if (cat->children.isEmpty()) removeElementWithSignal(cat);
-			else insertElementWithSignal(baseStructure, 0, cat);
-		}
+    const QList<StructureEntry *> categories =
+            QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
 
-		//update appendix change
-		if (oldLine != mAppendixLine) {
-			updateContext(oldLine, mAppendixLine, StructureEntry::InAppendix);
-		}
-		//update end document change
-		if (oldLineBeyond != mBeyondEnd) {
-			updateContext(oldLineBeyond, mBeyondEnd, StructureEntry::BeyondEnd);
-		}
+    for (int i = categories.size() - 1; i >= 0; i--) {
+        StructureEntry *cat = categories[i];
+        if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
+        if (cat->children.isEmpty()) removeElementWithSignal(cat);
+        else insertElementWithSignal(baseStructure, 0, cat);
+    }
 
-		// rehighlight current cursor position
-		if (edView) {
-			int i = edView->editor->cursor().lineNumber();
-			if (i >= 0) {
-				newSection = findSectionForLine(i);
-			}
-		}
+    //update appendix change
+    if (oldLine != mAppendixLine) {
+        updateContext(oldLine, mAppendixLine, StructureEntry::InAppendix);
+    }
+    //update end document change
+    if (oldLineBeyond != mBeyondEnd) {
+        updateContext(oldLineBeyond, mBeyondEnd, StructureEntry::BeyondEnd);
+    }
 
-	}
+    // rehighlight current cursor position
+    if (edView) {
+        int i = edView->editor->cursor().lineNumber();
+        if (i >= 0) {
+            newSection = findSectionForLine(i);
+        }
+    }
+
 	emit structureUpdated(this, newSection);
 	bool updateLtxCommands = false;
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {

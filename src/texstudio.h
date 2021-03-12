@@ -113,6 +113,7 @@ protected:
 private slots:
 	void updateToolBarMenu(const QString &menuName);
 	void showTestProgress(const QString &message);
+    void leftPanelChanged(QWidget* widget);
 private:
     bool executeTests(const QStringList &args); ///< execute self-tests. Only works for debug-builds.
 	void generateAddtionalTranslations();
@@ -153,6 +154,7 @@ private:
 	QString hiddenLeftPanelWidgets;
 
 	StructureTreeView *structureTreeView;
+    QTreeWidget *topTOCTreeWidget;
 	LatexParser latexParser;
 public:
 	LatexDocuments documents;
@@ -217,7 +219,21 @@ private:
 
 	void updateUserToolMenu();
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
+
+    bool parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited=nullptr, QList<QTreeWidgetItem *> *todoList=nullptr, int currentColor=0);
 private slots:
+    void updateTOC();
+    void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr,StructureEntry *selected=nullptr);
+    void syncExpanded(QTreeWidgetItem *item);
+    void syncCollapsed(QTreeWidgetItem *item);
+    void customMenuTOC(const QPoint &pos);
+    void editSectionCopy();
+    void editSectionCut();
+    void editSectionPasteAfter();
+    void editSectionPasteBefore();
+    void editIndentSection();
+    void editUnIndentSection();
+
 	void relayToEditorSlot();
 	void relayToOwnSlot();
 	void autoRunScripts();
@@ -521,6 +537,7 @@ protected slots:
     void gotoLine(int line, int col = 0, LatexEditorView *edView = nullptr, QEditor::MoveFlags mflags = QEditor::Navigation, bool setFocus = true); // line is 0 based
 	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name
 	void gotoLine(LatexDocument *doc, int line, int col=0);
+    void gotoLine(QTreeWidgetItem * item,int col);
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	QDocumentCursor getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry);
 	bool gotoLogEntryAt(int newLineNumber);
@@ -652,6 +669,8 @@ protected:
 	QSet<QString> latexPackageList, currentPackageList;
 
 	QMap<QString, QString> *mReplacementList;
+
+    StructureEntry *currentSection;
 
 public:
     Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText)

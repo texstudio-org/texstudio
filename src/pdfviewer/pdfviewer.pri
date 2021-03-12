@@ -68,9 +68,11 @@ isEmpty(NO_POPPLER_PREVIEW) {
 	LIBS += -L/usr/local/Cellar/poppler/0.61.0-texworks/lib
 
         system($${PKG_CONFIG_EXE} --atleast-version=0.31 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_31
+        system($${PKG_CONFIG_EXE} --atleast-version=0.74 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_74
     }
     LIBS *= -lz
 } else {
     DEFINES += NO_POPPLER_PREVIEW
     message("Internal pdf previewer disabled as you wish.")
 }
+
