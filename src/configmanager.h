@@ -6,7 +6,6 @@
 #include "buildmanager.h"
 #include "configmanagerinterface.h"
 #include "smallUsefulFunctions.h"
-#include <optional>
 
 class ConfigDialog;
 class LatexCompleterConfig;
