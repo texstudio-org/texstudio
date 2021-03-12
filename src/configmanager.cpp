@@ -1973,7 +1973,7 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		QList<QKeySequence> shortcuts;
 		if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
 			shortcuts << baseShortCut + i;
-		QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, shortcuts);
+        QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, &shortcuts);
 		if (hasData) {
 			act->setData(data[i]);
 		} else {
@@ -2046,7 +2046,7 @@ void ConfigManager::updateUserMacroMenu()
             }
 
             QString id = "tag" + QString::number(i);
-            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), shortcuts);
+            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), &shortcuts);
             act->setData(i++);
         }
     }
@@ -2206,15 +2206,31 @@ QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const 
     return act;
 }
 
-//creates a new action or reuses an existing one (an existing one that is currently not in any menu, but has been in the given menu)
-QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile)
+/*!
+ * \brief creates a new action or reuses an existing one (an existing one that is currently not in any menu, but has been in the given menu)
+ * \param menu
+ * \param id
+ * \param text for menu entry
+ * \param slotName
+ * \param shortCuts implemented as pointer to distinguish between no shortcuts wanted (empty list) and no shortcuts set (nullptr)
+ * \param iconFile
+ * \return generated or reused action
+ */
+QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> *shortCuts, const QString &iconFile)
 {
 	QAction *old = menuParent->findChild<QAction *>(menu->objectName() + "/" + id);
-	if (!old)
-		return newManagedAction(menu, id, text, slotName, shortCuts, iconFile);
+    if (!old){
+        QList<QKeySequence> sc;
+        if(shortCuts){
+            sc=*shortCuts;
+        }
+        return newManagedAction(menu, id, text, slotName, sc, iconFile);
+    }
 	menu->addAction(old);
 	old->setText(text);
-    old->setShortcuts(shortCuts);
+    if(shortCuts){
+        old->setShortcuts(*shortCuts);
+    }
 	if (watchedMenus.contains(menu->objectName()))
 		emit watchedMenuChanged(menu->objectName());
 	return old;
