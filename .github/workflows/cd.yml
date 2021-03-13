@@ -50,7 +50,7 @@ jobs:
         . ./.github/scripts/get-version.sh
         sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
         sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
-        $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1
+        $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
 
     - name: Build
       run: |
