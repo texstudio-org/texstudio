@@ -41,7 +41,7 @@ echo "Fetching poppler data"
 	fi
 tar -x -C package-zip/share/ -f ./${POPPLERDATA_FILE} && mv package-zip/share/${POPPLERDATA_SUBDIR} package-zip/share/poppler
 
-archivgen txs.7z package-zip/*
+archivegen txs.7z package-zip/*
 mkdir -p packages/org.txs.texstudio/data
 mkdir -p packages/org.txs.texstudio/meta
 cp utilities/license.txt packages/org.txs.texstudio/meta
