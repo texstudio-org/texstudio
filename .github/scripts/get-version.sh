@@ -15,10 +15,10 @@ DATE_HASH=$(date -u +"%Y%m%d%H%M")
 echo "DATE_HASH = ${DATE_HASH}"
 OS_NAME=$(uname)
 echo ${OS_NAME}
-if [ "${OS_NAME}" = "Linux" ]; then
-	RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
-else
+if [ "${OS_NAME}" = "Darwin" ]; then
 	RELEASE_DATE=$(date -ujf "%Y-%m-%d %H:%M:%S %z" "${GIT_DATE}" "+%Y-%m-%dT%H:%M:%S%z")
+else
+	RELEASE_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%z" --date="${GIT_DATE}")
 fi
 echo "RELEASE_DATE = ${RELEASE_DATE}"
 
