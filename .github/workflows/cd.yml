@@ -4,6 +4,34 @@ on:
   - pull_request
 
 jobs:
+  build-win:
+    name: win build (msys2)
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git make mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt5 mingw-w64-x86_64-poppler mingw-w64-x86_64-qt-installer-framework
+      - name: Configure
+        run: qmake texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+      - name: Build
+        run: make -j 2
+      - name: Package
+        run: |
+          .github/scripts/package_msys.sh
+          binarycreator -f -c utilities/config.xml -p packages/ texstudio-installer.exe
+      - name: Upload Installer to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: texstudio-msys
+          path: texstudio-installer.exe
+
   build-linux-win:
     name: win build (mxe)
     runs-on: ubuntu-latest
