@@ -5,4 +5,5 @@
     <Title>LaTeX Editor</Title>
     <Publisher>texstudio-org</Publisher>
     <TargetDir>@ApplicationsDir@/texstudio</TargetDir>
+    <RemoveTargetDir>false</RemoveTargetDir>
 </Installer>
