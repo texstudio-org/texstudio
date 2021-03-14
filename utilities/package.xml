@@ -9,4 +9,5 @@
     </Licenses>
     <Default>script</Default>
     <Script>installscript.qs</Script>
+    <SortingPriority>60</SortingPriority>
 </Package>

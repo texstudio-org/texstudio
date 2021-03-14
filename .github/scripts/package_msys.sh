@@ -20,7 +20,6 @@ cp -r ./templates package-zip
 cp -r ./utilities/manual package-zip/help
 cp ./utilities/latex2e.css package-zip/help
 cp ./utilities/latex2e.html package-zip/help
-cp -r ./utilities/dictionaries package-zip/dictionaries
 cp -r ./utilities/TexTablet package-zip/TexTablet
 cp -r ./travis-ci/mxe/fonts package-zip/share/
 
@@ -40,14 +39,31 @@ echo "Fetching poppler data"
 		exit 1
 	fi
 tar -x -C package-zip/share/ -f ./${POPPLERDATA_FILE} && mv package-zip/share/${POPPLERDATA_SUBDIR} package-zip/share/poppler
+cd package-zip
+archivegen txs.7z *
+## manage sub-packages languages
+cp -r ../utilities/dictionaries dictionaries
+for i in `ls dictionaries/*.dic`
+do
+	zw=$(echo $i| cut -f 2 -d / |cut -f 1 -d .);
+	mkdir -p ../packages/dictionaries.$zw/data
+	mkdir -p ../packages/dictionaries.$zw/meta
+	archivegen dict.7z dictionaries/$zw.*
+	mv dict.7z ../packages/dictionaries.$zw/data
+	cp ../utilities/package_dict.xml ../packages/dictionaries.$zw/meta/package.xml
+	sed -i "s/lang/${zw}/g" ../packages/dictionaries.$zw/meta/package.xml
+done
 
-archivegen txs.7z package-zip/*
-mkdir -p packages/org.txs.texstudio/data
-mkdir -p packages/org.txs.texstudio/meta
-cp utilities/license.txt packages/org.txs.texstudio/meta
-mv txs.7z packages/org.txs.texstudio/data
-cp utilities/installscript.qs packages/org.txs.texstudio/meta
-cp utilities/package.xml packages/org.txs.texstudio/meta
+cd ..
+mkdir -p packages/dictionaries/data
+mkdir -p packages/dictionaries/meta
+cp utilities/package_dictionaries.xml packages/dictionaries/meta/package.xml
+mkdir -p packages/texstudio/data
+mkdir -p packages/texstudio/meta
+cp utilities/license.txt packages/texstudio/meta
+mv txs.7z packages/texstudio/data
+cp utilities/installscript.qs packages/texstudio/meta
+cp utilities/package.xml packages/texstudio/meta
 
 
 
