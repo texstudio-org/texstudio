@@ -253,8 +253,10 @@ ${unregisterExtension} ".tex" "tex File"
 RMDir /r $INSTDIR\translations
 RMDir /r $INSTDIR\templates
 RMDir /r $INSTDIR\help
-RMDir /r $INSTDIR\share\poppler
-RMDir    $INSTDIR\share
+RMDir /r $INSTDIR\share
+RMDir /r $INSTDIR\imageformats
+RMDir /r $INSTDIR\platforms
+RMDir /r $INSTDIR\platforms
 RMDir /r $INSTDIR\TexTablet
 RMDir /r $INSTDIR\dictionaries
 Delete $INSTDIR\*
