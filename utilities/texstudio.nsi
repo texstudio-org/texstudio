@@ -26,6 +26,8 @@ InstallDir "$PROGRAMFILES\texstudio"
 # Get installation folder from registry if available
 InstallDirRegKey HKCU "Software\${APPNAME}" ""
 
+ManifestDPIAware true
+
 ;--------------------------------
 ;Interface Settings
 
