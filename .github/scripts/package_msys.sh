@@ -42,6 +42,11 @@ tar -x -C package-zip/share/ -f ./${POPPLERDATA_FILE} && mv package-zip/share/${
 cd package-zip
 archivegen txs.7z *
 ## manage sub-packages languages
+charexists() {
+  char="$1"; shift
+  case "$*" in *"$char"*) return;; esac; return 1
+}
+
 cp -r ../utilities/dictionaries dictionaries
 for i in `ls dictionaries/*.dic`
 do
@@ -52,6 +57,7 @@ do
 	mv dict.7z ../packages/dictionaries.$zw/data
 	cp ../utilities/package_dict.xml ../packages/dictionaries.$zw/meta/package.xml
 	sed -i "s/lang/${zw}/g" ../packages/dictionaries.$zw/meta/package.xml
+	charexists "-" $zw &&  sed -i "s/true/false/g" ../packages/dictionaries.$zw/meta/package.xml
 done
 
 cd ..
