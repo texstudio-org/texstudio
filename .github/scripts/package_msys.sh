@@ -13,6 +13,10 @@ cp texstudio.exe package-zip/
 cd package-zip
 windeployqt texstudio.exe
 ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
+# force ssl/crypto copy
+ldd texstudio.exe | awk '{print $3}'| grep libcrypto | xargs -I{} cp -u {} .
+ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .
+# check copied dlls
 ldd texstudio.exe
 cd ..
 echo "make installer"
