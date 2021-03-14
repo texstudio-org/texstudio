@@ -67,7 +67,7 @@ cp utilities/package_dictionaries.xml packages/dictionaries/meta/package.xml
 mkdir -p packages/texstudio/data
 mkdir -p packages/texstudio/meta
 cp utilities/license.txt packages/texstudio/meta
-mv txs.7z packages/texstudio/data
+mv package-zip/txs.7z packages/texstudio/data
 cp utilities/installscript.qs packages/texstudio/meta
 cp utilities/package.xml packages/texstudio/meta
 
