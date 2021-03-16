@@ -156,6 +156,10 @@ SetOutPath $INSTDIR\imageformats
 
 File imageformats\*
 
+SetOutPath $INSTDIR\styles
+
+File styles\*
+
 SetOutPath $INSTDIR\translations
 
 File translation\*.qm
@@ -256,7 +260,7 @@ RMDir /r $INSTDIR\help
 RMDir /r $INSTDIR\share
 RMDir /r $INSTDIR\imageformats
 RMDir /r $INSTDIR\platforms
-RMDir /r $INSTDIR\platforms
+RMDir /r $INSTDIR\styles
 RMDir /r $INSTDIR\TexTablet
 RMDir /r $INSTDIR\dictionaries
 Delete $INSTDIR\*
