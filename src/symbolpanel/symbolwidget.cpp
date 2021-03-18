@@ -28,7 +28,7 @@ SymbolWidget::SymbolWidget(SymbolListModel *model, bool &insertUnicode, QWidget 
 void SymbolWidget::setupData(SymbolListModel *model)
 {
 	categories = QStringList() << "operators" << "relation" << "arrows" << "delimiters" << "greek"
-							   << "cyrillic" << "misc-math" << "misc-text" << "wasysym" << "special";
+                               << "cyrillic" << "misc-math" << "misc-text" << "wasysym" << "fontawesome5" << "special";
 	categoryNames["operators"] = tr("Operators", "Operator category");
 	categoryNames["relation"] = tr("Relations", "Operator category");
 	categoryNames["arrows"] = tr("Arrows", "Operator category");
@@ -38,6 +38,7 @@ void SymbolWidget::setupData(SymbolListModel *model)
 	categoryNames["misc-math"] = tr("Misc. Math", "Operator category");
 	categoryNames["misc-text"] = tr("Misc. Text", "Operator category");
 	categoryNames["wasysym"] = tr("wasysym", "Operator category");
+    categoryNames["fontawesome5"] = tr("fontawesome5", "Operator category");
 	categoryNames["special"] = tr("Special", "Operator category");
 
 	Q_ASSERT(categories.count() == categoryNames.count());
