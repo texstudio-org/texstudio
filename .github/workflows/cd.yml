@@ -6,6 +6,7 @@ on:
 jobs:
   build-win:
     name: win build (msys2)
+    if: false
     runs-on: windows-latest
     defaults:
       run:
