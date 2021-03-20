@@ -1419,6 +1419,7 @@ void PDFWidget::syncCurrentPage(bool activate)
 
 void PDFWidget::updateCursor()
 {
+    qDebug()<<usingTool<<currentTool;
 	if (usingTool != kNone)
 		return;
 
@@ -1442,6 +1443,9 @@ void PDFWidget::updateCursor()
 	case kSelectImage:
 		setCursor(Qt::CrossCursor);
 		break;
+    default:
+        setCursor(Qt::ArrowCursor);
+        break;
 	}
 }
 
