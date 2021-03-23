@@ -11,6 +11,7 @@ echo "copy dlls and qt5 plugins"
 /usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-peldd texstudio.exe -a -w d3d11.dll -w dxgi.dll|grep dll|xargs cp -t .
 pwd
 cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/platforms .
+cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/styles .
 cp -r /usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/plugins/imageformats/ .
 echo "make installer"
 cp ./utilities/texstudio.nsi .

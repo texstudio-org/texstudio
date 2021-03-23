@@ -1,8 +1,38 @@
 name: CD
 on:
   - push
+  - pull_request
 
 jobs:
+  build-win:
+    name: win build (msys2)
+    if: false
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git make mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt5 mingw-w64-x86_64-poppler mingw-w64-x86_64-qt-installer-framework
+      - name: Configure
+        run: qmake texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+      - name: Build
+        run: make -j 2
+      - name: Package
+        run: |
+          .github/scripts/package_msys.sh
+          binarycreator -f -c utilities/config.xml -p packages/ texstudio-installer.exe
+      - name: Upload Installer to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: texstudio-msys
+          path: texstudio-installer.exe
+
   build-linux-win:
     name: win build (mxe)
     runs-on: ubuntu-latest
@@ -49,7 +79,7 @@ jobs:
         . ./.github/scripts/get-version.sh
         sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
         sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
-        $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1
+        $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
 
     - name: Build
       run: |
@@ -70,14 +100,14 @@ jobs:
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
-    - name: Deploy zip to Bintray
+    - name: Upload zip to GitHub Artifacts
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
         name: texstudio-win-zip
         path: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
         
-    - name: Deploy as Artifact
+    - name: Upload to GitHub Artifacts
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
@@ -133,6 +163,7 @@ jobs:
         echo "::set-output name=GIT_VERSION::${GIT_VERSION}"        
         
     - name: Upload to Github Artifacts
+      if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
         name: texstudio-linux
@@ -150,8 +181,8 @@ jobs:
      
 ############################
       
-  macosx-bintray:
-    name: Mac OS X (Bintray)
+  macosx:
+    name: Mac OS X
     runs-on: macos-latest
 
     steps:
@@ -164,10 +195,11 @@ jobs:
         # but prevents the homebrew install from succeeding
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
-        brew install poppler qt5
+        # install poppler with qt5
+        brew install poppler
 
     - name: Configure
-      run: /usr/local/opt/qt/bin/qmake texstudio.pro CONFIG-=debug
+      run: /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
 
     - name: Build
       run: make -j 2
@@ -183,7 +215,7 @@ jobs:
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
         
-    - name: Deploy to Github artifacts
+    - name: Upload to Github artifacts
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:

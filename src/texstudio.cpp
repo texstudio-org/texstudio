@@ -3475,9 +3475,7 @@ void Texstudio::editPasteImage(QImage image)
 		filenameSuggestion = rootDir + "/screenshot001.png";
 	}
 	QStringList filters;
-	foreach (const QByteArray fmt, QImageWriter::supportedImageFormats()) {
-		filters << "*." + fmt;
-	}
+    filters << "*.png";
 	QString filter = tr("Image Formats (%1)").arg(filters.join(" "));
 	filenameSuggestion = getNonextistentFilename(filenameSuggestion, rootDir);
 	QString filename = FileDialog::getSaveFileName(this, tr("Save Image"), filenameSuggestion, filter, &filter);
@@ -11033,15 +11031,26 @@ void Texstudio::openBugsAndFeatures() {
 void Texstudio::updateTOC(){
     if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root=topTOCTreeWidget->topLevelItem(0);
-    QTreeWidgetItem *itemTODO=nullptr;
+    StructureEntry *selectedEntry=nullptr;
+    bool itemExpanded=false;
     if(!root){
         root=new QTreeWidgetItem();
     }else{
-        QList<QTreeWidgetItem*> items=root->takeChildren();
-        if(items.size()>0 && items.at(0)->data(0,Qt::UserRole+1).toString()=="TODO"){
-            itemTODO=items.takeAt(0);
-            itemTODO->takeChildren(); //reuse to keep expanded
+        // get current selected item, check only first and deduce structureEntry
+        QList<QTreeWidgetItem*> selected=topTOCTreeWidget->selectedItems();
+        if(!selected.isEmpty()){
+            QTreeWidgetItem *item=selected.first();
+            if(item){
+                selectedEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+            }
         }
+        // remove all item in topTOC but keep itemTODO
+        QTreeWidgetItem *itemTODO=root->child(0);
+        if(itemTODO->data(0,Qt::UserRole+1).toString()=="TODO"){
+            itemExpanded=itemTODO->isExpanded();
+        }
+        QList<QTreeWidgetItem*> items=root->takeChildren();
+        qDeleteAll(items);
     }
     QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
     // fill TOC, starting by current master/top
@@ -11054,21 +11063,21 @@ void Texstudio::updateTOC(){
     parseStruct(base,rootVector,nullptr,&todoList);
     topTOCTreeWidget->insertTopLevelItem(0,root);
     if(!todoList.isEmpty()){
-        if(!itemTODO){
-            itemTODO=new QTreeWidgetItem();
-            itemTODO->setText(0,tr("TODO"));
-            itemTODO->setData(0,Qt::UserRole+1,"TODO");
-        }
+        QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
+        itemTODO->setText(0,tr("TODO"));
+        itemTODO->setData(0,Qt::UserRole+1,"TODO");
         itemTODO->insertChildren(0,todoList);
         root->insertChild(0,itemTODO);
+        itemTODO->setExpanded(itemExpanded);
     }
     root->setExpanded(true);
-    updateCurrentPosInTOC();
+    root->setSelected(false);
+    updateCurrentPosInTOC(nullptr,nullptr,selectedEntry);
 }
 /*!
  * \brief update marking of current position in global TOC
  */
-void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root,StructureEntry *old)
+void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected)
 {
     if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
@@ -11079,10 +11088,16 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root,StructureEntry *old)
     for(int i=0;i<root->childCount();++i){
         QTreeWidgetItem *item=root->child(i);
         StructureEntry *se = item->data(0,Qt::UserRole).value<StructureEntry *>();
+        if(selected && selected==se){
+            item->setSelected(true);
+        }
         if(old && se==old){
-            item->setBackground(0,palette().brush(QPalette::Base));
+            QBrush bck=item->data(0,Qt::UserRole+1).value<QColor>();
+            item->setBackground(0,bck);
+            //item->setBackground(0,palette().brush(QPalette::Base));
         }
         if(currentSection && (se==currentSection)){
+            item->setData(0,Qt::UserRole+1,item->background(0).color());
             item->setBackgroundColor(0,activeItemColor);
             if (!mDontScrollToItem)
                 topTOCTreeWidget->scrollToItem(item);
@@ -11096,13 +11111,33 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root,StructureEntry *old)
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList) {
+bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,int currentColor) {
     bool elementsAdded=false;
     bool deleteVisitedDocs=false;
     if (!visited) {
         visited = new QSet<LatexDocument *>();
         deleteVisitedDocs = true;
     }
+    QColor colors[6];
+    const char nrColors=6;
+    if(darkMode){
+        for(int i=0;i<nrColors;++i){
+            if(configManager.globalTOCbackgroundOptions==1){
+                int hue=140;
+                colors[i]=QColor::fromHsv(i%2==0 ? hue:hue+30,240-60*(i/2),180);
+            }else{
+                int hue=240;
+                colors[i]=QColor::fromHsv(i%2==0 ? hue:hue-30,240-30*(i/2),120);
+            }
+        }
+    }else{
+        for(int i=0;i<nrColors;++i){
+            int hue=configManager.globalTOCbackgroundOptions==1 ? 140 : 240;
+            colors[i]=QColor::fromHsv(i%2==0 ? hue:hue-30,70-35*(i/2),240);
+        }
+    }
+
+    char offset=0;
     QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
         if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)&&(elem->title=="TODO")){
@@ -11122,13 +11157,16 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
             item->setText(0,elem->title);
             item->setToolTip(0,tr("Document: ")+docName);
             item->setIcon(0,documents.model->iconSection.value(elem->level));
+            if(configManager.globalTOCbackgroundOptions>0){
+                item->setBackgroundColor(0,colors[currentColor]);
+            }
             rootVector[elem->level]->addChild(item);
             item->setExpanded(elem->expanded);
             // fill rootVector with item for subsequent lower level elements (which are children of item then)
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
             }
-            parseStruct(elem,rootVector,visited,todoList);
+            parseStruct(elem,rootVector,visited,todoList,currentColor);
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
@@ -11140,7 +11178,7 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
             bool ea=false;
             if(doc &&!visited->contains(doc)){
                 visited->insert(doc);
-                ea=parseStruct(doc->baseStructure,rootVector,visited,todoList);
+                ea=parseStruct(doc->baseStructure,rootVector,visited,todoList,(currentColor+1+offset)%nrColors);
             }
             if(!ea){
                 QTreeWidgetItem * item=new QTreeWidgetItem();
@@ -11148,7 +11186,12 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
                 item->setText(0,elem->title);
                 item->setToolTip(0,tr("Document: ")+docName);
                 item->setIcon(0,documents.model->iconInclude);
+                if(configManager.globalTOCbackgroundOptions>0){
+                    item->setBackgroundColor(0,colors[currentColor]);
+                }
                 rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
+            }else{
+                offset=(offset+1)&1; //toggle between 0 & 1
             }
             elementsAdded=true;
         }

@@ -442,7 +442,9 @@ exists(./.git)  {
   else {
     QMAKE_CXXFLAGS += -gstabs -g
     QMAKE_LFLAGS -= -Wl,-s
-    QMAKE_LFLAGS_RELEASE -= -Wl,-s
+    isEmpty(STRIP){
+        QMAKE_LFLAGS_RELEASE -= -Wl,-s
+    }
   }
 } else {
   DEFINES += _CRT_SECURE_NO_WARNINGS

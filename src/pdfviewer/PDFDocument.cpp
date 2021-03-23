@@ -1442,6 +1442,9 @@ void PDFWidget::updateCursor()
 	case kSelectImage:
 		setCursor(Qt::CrossCursor);
 		break;
+    default:
+        setCursor(Qt::ArrowCursor);
+        break;
 	}
 }
 

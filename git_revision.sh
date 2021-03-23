@@ -12,4 +12,4 @@ version=$(git describe --tags)
 if [ -n "$version" ] || [ ! -f git_revision.cpp ]; then
     echo "const char * TEXSTUDIO_GIT_REVISION = \"$version\";" > $PRO_DIR/src/git_revision.cpp
 fi
-$QMAKE_CXX -c $PRO_DIR/src/git_revision.cpp -o $BUILD_DIR/git_revision.o
+$QMAKE_CXX -c "$PRO_DIR/src/git_revision.cpp" -o "$BUILD_DIR/git_revision.o"

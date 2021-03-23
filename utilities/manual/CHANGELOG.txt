@@ -1,6 +1,11 @@
 TeXstudio 3.1.2
 -----------------
-- 
+- completed global TOC (background color coded, can be adjusted in config)
+- fontawesome5 symbol pane
+- slightly modernised windows installer
+- smaller windows binaries
+- fix menu changes by user
+- fix root document detection when symbolic links of symbolic links are involved (#1505)
 
 TeXstudio 3.1.1
 -----------------

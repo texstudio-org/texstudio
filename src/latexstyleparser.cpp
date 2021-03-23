@@ -378,7 +378,7 @@ bool LatexStyleParser::parseLineEnv(QStringList &results, const QString &line)
 
 bool LatexStyleParser::parseLineInput(QStringList &results, const QString &line, QStringList &parsedPackages, const QString &fileName) const
 {
-	static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
+    static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._-]+)");
 
 	if (rxInput.indexIn(line) == -1) {
 		return false;

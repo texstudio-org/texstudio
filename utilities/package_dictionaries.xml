@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>Dictionaries</DisplayName>
+    <Description>Dictionaries for spell checking</Description>
+    <Version>1.0.0</Version>
+    <ReleaseDate>2020-03-14</ReleaseDate>
+    <SortingPriority>40</SortingPriority>
+    <Default>true</Default>
+</Package>

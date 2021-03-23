@@ -1526,6 +1526,7 @@ void BuildManager::resetDefaultCommands(const QString texPath)
 {
     for (CommandMapping::iterator it = commands.begin(), end = commands.end(); it != end; ++it) {
         CommandInfo &cmd = it.value();
+        if(cmd.meta) continue; // don't reset meta commands
         cmd.commandLine=cmd.guessCommandLine(texPath);
     }
 }

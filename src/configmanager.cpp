@@ -441,6 +441,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Structure/MarkStructureElementsBeyondEnd", &markStructureElementsBeyondEnd, true, &pseudoDialog->checkBoxMarkStructureElementsBeyondEnd);
 	registerOption("Structure/MarkStructureElementsInAppendix", &markStructureElementsInAppendix, true, &pseudoDialog->checkBoxMarkStructureElementsInAppendix);
 	registerOption("StructureView/ReferenceCommandsInContextMenu", &referenceCommandsInContextMenu, "\\ref", &pseudoDialog->leReferenceCommandsInContextMenu);
+    registerOption("StructureView/BackgroundColorInGlobalTOC", &globalTOCbackgroundOptions, 1, &pseudoDialog->comboBoxTOCBackgroundColor);
 
 	//beginRegisterGroup("texmaker");
 	//files
@@ -1277,7 +1278,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	config->beginWriteArray("keysetting");
 	for (int i = 0; i < managedMenuNewShortcuts.size(); ++i) {
 		config->setArrayIndex(i);
-        if(managedMenuNewShortcuts[i].first.startsWith("main/macros/")){
+        if(managedMenuNewShortcuts[i].first.startsWith("main/macros/") && managedMenuNewShortcuts[i].first!="main/macros/manage~0"){
             continue;
         }
 		config->setValue("id", managedMenuNewShortcuts[i].first);
@@ -1802,7 +1803,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		for (int i = 0; i < editorKeys->childCount(); i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
 			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2), SHORTCUT_FORMAT);
-            qDebug()<<editorKeys->child(i)->text(2)<<editOperation;
 			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
 				this->editorKeys.insert(kSeq.toString(), editOperation);
 		}
@@ -1973,7 +1973,7 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		QList<QKeySequence> shortcuts;
 		if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
 			shortcuts << baseShortCut + i;
-		QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, shortcuts);
+        QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, &shortcuts);
 		if (hasData) {
 			act->setData(data[i]);
 		} else {
@@ -2046,7 +2046,7 @@ void ConfigManager::updateUserMacroMenu()
             }
 
             QString id = "tag" + QString::number(i);
-            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), shortcuts);
+            QAction *act = newOrLostOldManagedAction(menu, id, m.name , SLOT(insertUserTag()), &shortcuts);
             act->setData(i++);
         }
     }
@@ -2206,15 +2206,31 @@ QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const 
     return act;
 }
 
-//creates a new action or reuses an existing one (an existing one that is currently not in any menu, but has been in the given menu)
-QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile)
+/*!
+ * \brief creates a new action or reuses an existing one (an existing one that is currently not in any menu, but has been in the given menu)
+ * \param menu
+ * \param id
+ * \param text for menu entry
+ * \param slotName
+ * \param shortCuts implemented as pointer to distinguish between no shortcuts wanted (empty list) and no shortcuts set (nullptr)
+ * \param iconFile
+ * \return generated or reused action
+ */
+QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> *shortCuts, const QString &iconFile)
 {
 	QAction *old = menuParent->findChild<QAction *>(menu->objectName() + "/" + id);
-	if (!old)
-		return newManagedAction(menu, id, text, slotName, shortCuts, iconFile);
+    if (!old){
+        QList<QKeySequence> sc;
+        if(shortCuts){
+            sc=*shortCuts;
+        }
+        return newManagedAction(menu, id, text, slotName, sc, iconFile);
+    }
 	menu->addAction(old);
 	old->setText(text);
-    old->setShortcuts(shortCuts);
+    if(shortCuts){
+        old->setShortcuts(*shortCuts);
+    }
 	if (watchedMenus.contains(menu->objectName()))
 		emit watchedMenuChanged(menu->objectName());
 	return old;
@@ -3249,6 +3265,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 		if (manipulatedMenus.contains(menu->objectName())) {
 			QFont bold = menuitem->font(0);
 			bold.setBold(true);
+            changedItemsList.append(menuitem); // rescan item when determing the changed menus
 			for (int j = 0; j < 3; j++) menuitem->setFont(j, bold);
 		}
 		if (!relevantMenus.contains(menu->objectName())) advanced = true;
@@ -3285,6 +3302,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 			if (manipulatedMenus.contains(acts[i]->objectName())) {
 				QFont bold = twi->font(0);
 				bold.setBold(true);
+                changedItemsList.append(twi);
 				for (int j = 0; j < 3; j++) twi->setFont(j, bold);
 			}
 		}
@@ -3362,12 +3380,12 @@ void ConfigManager::menuTreeRevertItem(){
     REQUIRE(item);
     if (!item->parent()) return;
     QString ID = item->data(0, Qt::UserRole).toString();
-    qDebug()<<item->text(0)<<ID;
     if(ID.contains("UII")){
         //user defined menu/item
         QTreeWidgetItem *parent=item->parent();
         parent->removeChild(item);
         manipulatedMenuTree.remove(ID);
+        changedItemsList.removeOne(item);
     }else{ //revert
         QFont bold = item->font(0);
         if(bold.bold()){

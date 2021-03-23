@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -898,7 +898,7 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>774</width>
+                   <width>209</width>
                    <height>79</height>
                   </rect>
                  </property>
@@ -2001,9 +2001,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>734</width>
-            <height>1824</height>
+            <y>-843</y>
+            <width>746</width>
+            <height>1826</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2556,6 +2556,25 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
+              <item row="8" column="2">
+               <widget class="QComboBox" name="comboBoxTOCBackgroundColor">
+                <item>
+                 <property name="text">
+                  <string>No Color Background</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Green Background</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Blue Background</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
              </layout>
              <zorder>checkBoxIndentIncludesInStructureTree</zorder>
              <zorder>label_64</zorder>
@@ -2565,6 +2584,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
              <zorder>label_83</zorder>
              <zorder>leRegExpTODO</zorder>
              <zorder>checkBoxShowCommentedElementsInStructure</zorder>
+             <zorder>comboBoxTOCBackgroundColor</zorder>
             </widget>
            </item>
            <item>
