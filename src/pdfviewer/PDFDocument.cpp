@@ -1419,7 +1419,6 @@ void PDFWidget::syncCurrentPage(bool activate)
 
 void PDFWidget::updateCursor()
 {
-    qDebug()<<usingTool<<currentTool;
 	if (usingTool != kNone)
 		return;
 
