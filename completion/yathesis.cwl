@@ -376,7 +376,7 @@ name=
 \stoplocaltocs
 \nextwithlocaltoc
 \nextwithoutlocaltoc
-\leadchapter{texte}
+\leadchapter{texte%text}
 #
 # Customization
 #
