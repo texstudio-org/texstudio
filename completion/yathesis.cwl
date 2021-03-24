@@ -190,7 +190,7 @@ female
 #
 # Misc
 \ordernumber[⟨numéro d'ordre⟩]#n
-\ordernumber#n*
+\ordernumber#*n
 #
 # Keywords
 \keywords{⟨mots clés dans la langue principale⟩%text}{⟨mots clés dans la langue secondaire⟩%text}#n
