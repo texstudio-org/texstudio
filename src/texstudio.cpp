@@ -4705,6 +4705,7 @@ void Texstudio::normalCompletion()
 	case Token::keyValArg:
 	case Token::keyVal_key:
 	case Token::keyVal_val: {
+        if (mCompleterNeedsUpdate) updateCompleter();
 		QString word = c.line().text();
 		int col = c.columnNumber();
         command = Parsing::getCommandFromToken(tk);
