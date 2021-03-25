@@ -4724,7 +4724,7 @@ void Texstudio::normalCompletion()
 			// command/arg structure ? (yathesis)
 			TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 			QString subcommand;
-			int add = (type == Token::keyVal_val) ? 2 : 1;
+            int add = (type == Token::keyVal_val) ? 1 : 0;
 			if (tk.type == Token::braces || tk.type == Token::squareBracket)
 				add = 0;
 			for (int k = tl.indexOf(tk) + 1; k < tl.length(); k++) {
