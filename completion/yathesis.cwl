@@ -190,7 +190,7 @@ female
 #
 # Misc
 \ordernumber[⟨numéro d'ordre⟩]#n
-\ordernumber#n*
+\ordernumber#*n
 #
 # Keywords
 \keywords{⟨mots clés dans la langue principale⟩%text}{⟨mots clés dans la langue secondaire⟩%text}#n
@@ -207,7 +207,7 @@ frametitle=#shadowbox,ovalbox,none,fbox,{⟨autre⟩}
 #
 # Preliminary part
 #
-\colophontext{⟨texte⟩%text}#n*
+\colophontext{⟨texte⟩%text}#*n
 \disclaimertext{⟨clause⟩%text}#n
 \makedisclaimer#n
 \makedisclaimer*#n
@@ -223,13 +223,13 @@ frametitle=#shadowbox,ovalbox,none,fbox,{⟨autre⟩}
 \makefrontepigraphs#n
 \makefrontepigraphs*#n
 \begin{abstract}#n
-\begin{abstract}[⟨titre alternatif⟩%text]#n*
+\begin{abstract}[⟨titre alternatif⟩%text]#*n
 \end{abstract}#n
 \makeabstract#n
 \newglssymbol{⟨label⟩%labeldef}{⟨symbole⟩}{⟨nom⟩}{⟨description⟩%text}#n
 \newglssymbol[⟨classement⟩]{⟨label⟩%labeldef}{⟨symbole⟩}{⟨nom⟩}{⟨description⟩%text}#n
-\tableofcontents#n*
-\tableofcontents[⟨précisions⟩%keyvals]#n*
+\tableofcontents#*n
+\tableofcontents[⟨précisions⟩%keyvals]#*n
 #
 #keyvals:\tableofcontents
 depth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
@@ -286,4 +286,4 @@ style=#yadsymbolstyle,⟨autre⟩
 #
 # Customization
 #
-\expression{⟨label⟩%labeldef}{⟨valeur en français⟩%text}{⟨valeur en anglais⟩%text}#n*
+\expression{⟨label⟩%labeldef}{⟨valeur en français⟩%text}{⟨valeur en anglais⟩%text}#*n
