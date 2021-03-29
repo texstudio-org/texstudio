@@ -9772,7 +9772,7 @@ void Texstudio::packageScanCompleted(QString name)
 		if (doc->containsPackage(baseName)) {
             //find proper key
             QStringList keys=documents.cachedPackages.keys();
-            keys=keys.filter("#"+baseName+".cwl");
+            keys=keys.filter(name+".cwl");
             foreach(const QString &key,keys){
                 documents.cachedPackages.remove(key); // TODO: check is this still correct if keys are complex?
             }
