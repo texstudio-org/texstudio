@@ -9770,7 +9770,12 @@ void Texstudio::packageScanCompleted(QString name)
 	}
 	foreach (LatexDocument *doc, documents.documents) {
 		if (doc->containsPackage(baseName)) {
-			documents.cachedPackages.remove(name + ".cwl"); // TODO: check is this still correct if keys are complex?
+            //find proper key
+            QStringList keys=documents.cachedPackages.keys();
+            keys=keys.filter("#"+baseName+".cwl");
+            foreach(const QString &key,keys){
+                documents.cachedPackages.remove(key); // TODO: check is this still correct if keys are complex?
+            }
 			doc->updateCompletionFiles(false);
 		}
 	}
