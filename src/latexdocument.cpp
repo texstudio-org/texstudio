@@ -3123,9 +3123,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 	if (updateAll) {
 		foreach (LatexDocument *elem, listOfDocs) {
             elem->setLtxCommands(lp);
-            if(elem!=this){
-                elem->reCheckSyntax();
-            }
+            elem->reCheckSyntax();
 		}
 		// check if other document have this doc as child as well (reused doc...)
 		LatexDocuments *docs = parent;
