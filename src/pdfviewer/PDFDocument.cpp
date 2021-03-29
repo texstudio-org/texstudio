@@ -1162,7 +1162,7 @@ void PDFWidget::doLink(const QSharedPointer<Poppler::Link> link)
 
 void PDFWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
-	if (event->button() != Qt::LeftButton) {
+    if ((event->button() != Qt::LeftButton) || (currentTool == kPresentation)) {
 		QWidget::mouseDoubleClickEvent(event);
 		return;
 	}
