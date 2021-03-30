@@ -9754,6 +9754,11 @@ void Texstudio::importPackage(QString name)
 	}
 	name.chop(4);
 	name.append(".sty");
+    // remove option# from name
+    int i=name.indexOf("#");
+    if(i>-1){
+        name=name.mid(i+1);
+    }
 	latexStyleParser->addFile(name + dirName);
 	name.chop(4);
 	name.append(".cls"); // try also cls
