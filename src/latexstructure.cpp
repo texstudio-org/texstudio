@@ -134,9 +134,9 @@ StructureEntry *StructureEntryIterator::next()
 
 
 
-LatexDocumentsModel::LatexDocumentsModel(LatexDocuments &docs): documents(docs),
+LatexDocumentsModel::LatexDocumentsModel(LatexDocuments &docs): documents(docs), m_singleMode(false),
 	iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
-	iconWarning(getRealIconCached("warning")), m_singleMode(false)
+    iconWarning(getRealIconCached("warning"))
 {
 	mHighlightIndex = QModelIndex();
 
