@@ -837,6 +837,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 			if (elem.startsWith("{changing ")  && !elem.contains("@")) {
 				QString zw = elem.mid(10);
 				zw.chop(11);
+                zw=zw.simplified();
 				if (!args.contains(zw + "#S"))
 					args << zw + "#S";
 			}
