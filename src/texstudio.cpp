@@ -6760,7 +6760,8 @@ void Texstudio::generalOptions()
         QEditor::setEditOperations(configManager.editorKeys, false); // true -> false, otherwise edit operation can't be removed, e.g. tab for indentSelection
         foreach (LatexEditorView *edView, editors->editors()) {
             QEditor *ed = edView->editor;
-            edView->updatePalette(QApplication::palette());
+            if(configManager.interfaceStyle!="Francesco (dark)")
+                edView->updatePalette(QApplication::palette());
             ed->document()->markFormatCacheDirty();
             ed->update();
         }
