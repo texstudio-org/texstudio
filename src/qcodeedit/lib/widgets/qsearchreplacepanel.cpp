@@ -895,11 +895,17 @@ void QSearchReplacePanel::cFind_textEdited(const QString& text)
 void QSearchReplacePanel::on_cFind_returnPressed(bool backward)
 {
 	cFind->lineEdit()->setStyleSheet(QString());
+    if(cFind->completer()->popup()->isVisible()){
+        cFind->completer()->popup()->close();
+    }
 	findReplace(backward);
 
 }
 void QSearchReplacePanel::on_cReplace_returnPressed(bool backward){
 	cFind->lineEdit()->setStyleSheet(QString());
+    if(cReplace->completer()->popup()->isVisible()){
+        cReplace->completer()->popup()->close();
+    }
 	findReplace(backward,true);
 }
 
