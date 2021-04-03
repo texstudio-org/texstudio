@@ -1574,7 +1574,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 #ifdef ADWAITA
     availableStyles << "Adwaita (txs)" << "Adwaita Dark (txs)";
 #endif
-    availableStyles << "Francesco (dark)" << tr("default");
+    availableStyles << "Jellybeans Dark" << tr("default");
     confDlg->ui.comboBoxInterfaceStyle->addItems(availableStyles);
 	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
@@ -1839,7 +1839,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 			if (changedProperties.contains(&modernStyle))
 				UtilsUi::txsInformation("Some elements cannot be adapted to the new style while the application is running. Please restart to get a consistent experience.");
 			if (interfaceStyle == tr("default")) interfaceStyle = "";
-            if(displayedInterfaceStyle=="Francesco (dark)" && interfaceStyle!=displayedInterfaceStyle){
+            if(displayedInterfaceStyle=="Jellybeans Dark" && interfaceStyle!=displayedInterfaceStyle){
                 qApp->setStyleSheet("");
             }
 			setInterfaceStyle();
@@ -2719,7 +2719,7 @@ void ConfigManager::setInterfaceStyle()
         return;
     }
 #endif
-    if(newStyle=="Francesco (dark)"){
+    if(newStyle=="Jellybeans Dark"){
         QFile file(":/utilities/stylesheet_francesco.qss");
         file.open(QFile::ReadOnly);
         QString styleSheet = QString::fromLatin1(file.readAll());
