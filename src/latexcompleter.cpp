@@ -1521,23 +1521,25 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 	}
 
 	//disable auto close char while completer is open
-	editorAutoCloseChars = editor->flag(QEditor::AutoCloseChars);
-	editor->setFlag(QEditor::AutoCloseChars, false);
+    if(!alreadyActive)
+        editorAutoCloseChars = editor->flag(QEditor::AutoCloseChars); // don't change again from open completer (and therin changed flag, see #1347)
 
-	completerInputBinding->setMostUsed(config->preferedCompletionTab, true);
-	bool handled = false;
-	if (forcedGraphic) {
-		if (!dirReader) {
-			dirReader = new directoryReader(this);
+    editor->setFlag(QEditor::AutoCloseChars, false);
+
+    completerInputBinding->setMostUsed(config->preferedCompletionTab, true);
+    bool handled = false;
+    if (forcedGraphic) {
+        if (!dirReader) {
+            dirReader = new directoryReader(this);
             connect(dirReader, &directoryReader::directoryLoaded, this, &LatexCompleter::directoryLoaded);
-			connect(this, SIGNAL(setDirectoryForCompletion(QString)), dirReader, SLOT(readDirectory(QString)));
-			dirReader->start();
-		}
-		QSet<QString> files;
-		listModel->setBaseWords(files, CT_NORMALTEXT);
-		listModel->baselist = listModel->wordsText;
-		handled = true;
-	}
+            connect(this, SIGNAL(setDirectoryForCompletion(QString)), dirReader, SLOT(readDirectory(QString)));
+            dirReader->start();
+        }
+        QSet<QString> files;
+        listModel->setBaseWords(files, CT_NORMALTEXT);
+        listModel->baselist = listModel->wordsText;
+        handled = true;
+    }
 	if (forcedCite) {
 		listModel->baselist = listModel->wordsCitations;
 		handled = true;
