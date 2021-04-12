@@ -24,6 +24,7 @@ cp texstudio.exe package-zip/
 cp *.dll package-zip
 cp -r platforms package-zip/
 cp -r ./imageformats package-zip/
+cp -r ./styles package-zip/
 cp -r ./translation package-zip/translations
 cp -r ./templates package-zip
 cp -r ./utilities/manual package-zip/help
