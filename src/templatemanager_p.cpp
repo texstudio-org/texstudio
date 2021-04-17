@@ -162,7 +162,7 @@ bool LocalTableTemplate::readMetaData()
 	if (col < 0) return false;
 	jsonData = jsonData.mid(col);
 	QString all = f.readAll();
-    col=all.indexOf("}");
+    col=all.indexOf("\n}\n"); // simplified, search for }, first in line
     if(col>=0){
         all=all.left(col);
     }
