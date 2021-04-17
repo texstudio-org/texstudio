@@ -158,13 +158,16 @@ bool LocalTableTemplate::readMetaData()
 		return false;
 	}
 	jsonData = f.readLine();
-	int col = jsonData.indexOf(QRegExp("\\s*var\\s+metaData\\s+=\\s+\\{"));
+    int col = jsonData.indexOf(QRegularExpression("\\s*var\\s+metaData\\s+=\\s+\\{"));
 	if (col < 0) return false;
 	jsonData = jsonData.mid(col);
 	QString all = f.readAll();
-	jsonData.append(all); // works with minimalJsonParse because it stops after the first top level {}
-	// should check when switching to a real JSON parser. However with this it is
-	// easy to extract var metaData = {}
+    col=all.indexOf("}");
+    if(col>=0){
+        all=all.left(col);
+    }
+    jsonData="{\n"+all+"\n}\n";
+
 
     QJsonDocument jsonDoc=QJsonDocument::fromJson(jsonData.toUtf8());
     QJsonObject dd=jsonDoc.object();
