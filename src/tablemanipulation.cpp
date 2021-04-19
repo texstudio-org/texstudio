@@ -306,7 +306,7 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 				QString keep;
 				if (column == 0) {
 					QStringList elementsToKeep;
-					elementsToKeep << "\\hline" << "\\endhead" << "\\endfoot" << "\\endfirsthead" << "\\endlastfoot";
+                    elementsToKeep << "\\hline" << "\\endhead" << "\\endfoot" << "\\endfirsthead" << "\\endlastfoot"<<"\\toprule"<<"\\bottomrule"<<"\\midrule";
 					for (int i = 0; i < zw.length(); i++) {
 						if (zw.at(i) == '\n') {
 							if (!keep.endsWith('\n'))
