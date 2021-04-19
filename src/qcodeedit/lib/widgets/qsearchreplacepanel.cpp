@@ -326,7 +326,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     lReplacementText = new QLabel(this);
     lReplacementText->setTextFormat(Qt::PlainText);
     lReplacementText->setMinimumHeight(buttonSize.height());
-    int numButtonSpread = 5;
+    int numButtonSpread = 6;
     int lReplacementSize = numButtonSpread * buttonSize.width() + (numButtonSpread-1) * flowLayout2->horizontalSpacing();
     // fixed size needed: unrestricted width would lead to shifting replace buttons
     lReplacementText->setMinimumWidth(lReplacementSize);
