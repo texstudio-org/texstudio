@@ -2567,6 +2567,16 @@ void Texstudio::alignTableCols()
 	int col = cur.columnNumber();
 	if (!cur.isValid())
 		return;
+    LatexDocument *doc=currentEditorView()->getDocument();
+    LatexParser lp=doc->lp;
+    QStringList keys=lp.environmentAliases.uniqueKeys();
+    QSet<QString> results;
+    foreach(const QString &elem,keys){
+        if(lp.environmentAliases.values(elem).contains("array")){
+            results<<elem;
+        }
+    }
+    LatexTables::mathTables.unite(results);
 	LatexTables::alignTableCols(cur);
 	cur.setLineNumber(linenr);
 	cur.setColumnNumber(col);

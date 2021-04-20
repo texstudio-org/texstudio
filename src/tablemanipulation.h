@@ -33,7 +33,7 @@ public:
 
 	static QStringList tabularNames;
 	static QStringList tabularNamesWithOneOption;
-	static QStringList mathTables;
+    static QSet<QString> mathTables;
 };
 
 
