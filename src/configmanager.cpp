@@ -631,6 +631,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	TEMP(3);
 	TEMP(4);
 #undef TEMP
+    // add basic path info into grammarcheckconfig to avoid further use of globals
+    grammarCheckerConfig->appDir=removePathDelim(QCoreApplication::applicationDirPath());
+    grammarCheckerConfig->configDir=removePathDelim(configBaseDir);
 
 	//other dialogs
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
