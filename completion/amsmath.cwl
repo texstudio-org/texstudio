@@ -124,7 +124,7 @@
 \tag*{label}#m
 \tbinom{above}{below}#m
 \text{text}#m
-\tfrac{%<num%:translatabe%>}{%<den%:translatable%>}#m
+\tfrac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \underleftarrow{argument}#m
 \underleftrightarrow{argument}#m
 \underrightarrow{argument}#m
