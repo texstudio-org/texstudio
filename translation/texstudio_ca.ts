@@ -614,7 +614,9 @@ Voleu que el TeXstudio modifiqui els camins de totes les ordres de /usr/texbin/ 
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>S&apos;espera que l&apos;ordre % 1 sigui atòmica. No obstant això, actualment es defineix com una cadena d&apos;ordres que conté % 2 ordres. Això està més enllà de l&apos;especificació i pot provocar efectes secundaris sorprenents.
+
+Si us plau, canvieu la configuració i definiu ordres de llistes només a &apos;Opcions -&gt; Configura TeXstudio -&gt; Compila&apos; no a &apos;Opcions -&gt; Configura el TeXstudio -&gt; Ordres&apos;.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1108"/>
@@ -1160,7 +1162,7 @@ Llavors podreu seleccionar una drecera nova de qualsevol de les maneres següent
     <message>
         <location filename="../src/configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;element Tancar s&apos;aplica a una llista fixa d&apos;elements GUI (no tots es mostren aquí). El primer element visible es tancarà. Amb aquesta configuració podeu excloure que alguns elements es tanquin.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1130"/>
@@ -1816,37 +1818,37 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="1544"/>
         <source>Embedded PDF Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Barra d&apos;eines de PDF incrustada</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2241"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation>Ordre de Latex per a cites publicades:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2495"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Desplaçament vertical (desplaçament per sota del final del fitxer)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2505"/>
         <source>Structure Panel</source>
-        <translation type="unfinished"/>
+        <translation>Tauler d’estructures</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2511"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"/>
+        <translation>Marca els elements de l&apos;estructura més enllà de \end{document}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2518"/>
         <source>Reference commands in context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Ordres de referència al menú contextual:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2525"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"/>
+        <translation>Marca els elements de l’estructura a l’apèndix</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2532"/>
