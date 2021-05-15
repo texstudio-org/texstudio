@@ -3334,6 +3334,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				}
 				cursorMoveOperation(cur, op);
 				leftLine = cur.lineNumber() != curLine;
+                if( op == CursorEndOfLine || op == CursorStartOfLine)
+                    leftLine = true;
 			}
 
 			if ( leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))
