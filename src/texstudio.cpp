@@ -11826,9 +11826,9 @@ void Texstudio::DataTeX_Preferences()
 
 void Texstudio::BackUp_DataBase_Folders()
 {
-    BackUp * backup = new BackUp(this);
-    backup->show();
-    backup->activateWindow();
+    //BackUp * backup = new BackUp(this);
+    //backup->show();
+    //backup->activateWindow();
 }
 
 void Texstudio::createPdf(QString fullFilePath)
