@@ -2937,6 +2937,10 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		column += columnDelta;
 		rx += xDelta;
 	}
+    if(rx<x) {
+        // don't trigger hover if cursor is beyond text end
+        cpos=-1;
+    }
 	return cpos;
 }
 
