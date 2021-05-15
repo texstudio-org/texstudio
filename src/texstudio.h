@@ -50,6 +50,8 @@
 #include "help.h"
 
 #include <QProgressDialog>
+#include <QtSql>
+#include <QSqlDatabase>
 
 /*!
  * \file texstudio.h
@@ -92,6 +94,8 @@ public slots:
 	void fuzzBackForward();
     void setBuildButtonsDisabled(bool c);
 
+    static void createPdf(QString fullFilePath);
+    static void SaveContentToDatabase(QString fileName,QString content);
 
 protected:
 	//these are just wrappers around configManager so we don't have to type so much (todo??? move them to configmanager.h and use a singleton design???)
@@ -187,6 +191,16 @@ private:
 	ConfigManager configManager;
 public:
 	BuildManager buildManager;
+
+    static QSqlDatabase DataTeX_Settings;
+    static QSqlDatabase CurrentTexFilesDataBase;
+    static QSqlDatabase CurrentNotesFolderDataBase;
+    static QString CurrentDataBasePath;
+    static QString CurrentNotesFolderPath;
+    static QString CurrentPreamble;
+    static QString CurrentPreamble_Content;
+    static QString CurrentPdfLatexBuildCommand;
+
 private:
 	QStringList struct_level;
 
@@ -603,6 +617,19 @@ protected slots:
 
 	void openInternalDocViewer(QString package, const QString command = "");
 
+    //DataTeX
+    void NewBaseFile();
+    void EditNewBaseFile(QString fileName,QMap<QString,QString> metapairs,QStringList SectionList);
+    void SolutionFile();
+    void InsertFiles();
+    void AddFilesToEditor(QStringList files);
+    void EditDataBase();
+    void PersonalNotes();
+    void CreateNewSheet(QString fileName);
+    void DataBaseFields();
+    void DataTeX_Preferences();
+    void BackUp_DataBase_Folders();
+
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);
@@ -701,6 +728,8 @@ signals:
 	void infoFileClosed(); ///< signal that a file has been closed. Used for scritps as trigger.
 	void infoAfterTypeset(); ///< signal that a file has been compiled. Used for scritps as trigger.
 	void imgPreview(const QString &fn);
+    //DataTex
+    void DataTeXFileSaved(QString fileName,QString content);
 };
 
 Q_DECLARE_METATYPE(Texstudio *)

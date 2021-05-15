@@ -35,7 +35,7 @@ QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, B
 
 // *INDENT-OFF* (astyle-config)
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
-CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(LATEXMK, latexmk)
+CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(PYTHONTEX, pythontex) CMD_DEFINE(LATEXMK, latexmk)
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
 CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(BIBTEX8, bibtex8) CMD_DEFINE(BIBER, biber) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin) CMD_DEFINE(GIT, git) CMD_DEFINE(TEXDOC, texdoc)
 CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(GLOSSARY, glossary) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
@@ -294,6 +294,7 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("pdflatex",    "pdflatex",     "PdfLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "Tools/Pdflatex");
 	registerCommand("xelatex",     "xelatex",      "XeLaTeX",     "-synctex=1 -interaction=nonstopmode %.tex", "");
 	registerCommand("lualatex",    "lualatex",     "LuaLaTeX",    "-synctex=1 -interaction=nonstopmode %.tex", "");
+    	registerCommand("pythontex",   "pythontex",    "PythonTeX",    "%.tex","Tools/PythonTex");
 	registerCommand("view-dvi",    "",             tr("DVI Viewer"), "%.dvi", "Tools/Dvi", &getCommandLineViewDvi);
 	registerCommand("view-ps",     "",             tr("PS Viewer"), "%.ps", "Tools/Ps", &getCommandLineViewPs);
 	registerCommand("view-pdf-external", "",        tr("External PDF Viewer"), "%.pdf", "Tools/Pdf", &getCommandLineViewPdfExternal);
@@ -315,8 +316,8 @@ void BuildManager::initDefaultCommandNames()
 
 
 	QStringList descriptionList;
-	descriptionList << tr("Compile & View") << tr("PS Chain") << tr("DVI Chain") << tr("PDF Chain") << tr("DVI->PDF Chain") << tr("DVI->PS->PDF Chain") << tr("Asymptote DVI Chain") << tr("Asymptote PDF Chain");
-	registerCommand("quick", tr("Build & View"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick", true, descriptionList);
+    descriptionList << tr("Compile & View") << tr("PS Chain") << tr("DVI Chain") << tr("PDF Chain") << tr("DVI->PDF Chain") << tr("DVI->PS->PDF Chain") << tr("Asymptote DVI Chain") << tr("Asymptote PDF Chain")<<tr("PythonTeX PDF Chain");
+    registerCommand("quick", tr("Build & View"), QStringList() << "txs:///compile | txs:///view" << "txs:///ps-chain" << "txs:///dvi-chain" << "txs:///pdf-chain" << "txs:///dvi-pdf-chain" << "txs:///dvi-ps-pdf-chain" << "txs:///asy-dvi-chain"<<"txs:///python-pdf-chain" << "txs:///asy-pdf-chain" /* too long breaks design<< "latex -interaction=nonstopmode %.tex|bibtex %.aux|latex -interaction=nonstopmode %.tex|latex -interaction=nonstopmode %.tex| txs:///view-dvi"*/, "Tools/Userquick", true, descriptionList);
 
 	descriptionList.clear();
 	descriptionList << tr("PdfLaTeX") << tr("LaTeX") << tr("XeLaTeX") << tr("LuaLaTeX") << tr("Latexmk");
@@ -344,7 +345,7 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("dvi-ps-pdf-chain", tr("DVI->PS->PDF Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///ps2pdf | txs:///view-pdf");
 	registerCommand("asy-dvi-chain", tr("Asymptote DVI Chain"), QStringList() << "txs:///latex | txs:///asy | txs:///latex | txs:///view-dvi");
 	registerCommand("asy-pdf-chain", tr("Asymptote PDF Chain"), QStringList() << "txs:///pdflatex | txs:///asy | txs:///pdflatex | txs:///view-pdf");
-
+    	registerCommand("python-pdf-chain", tr("PythonTeX PDF Chain"), QStringList() << "txs:///pdflatex | txs:///pythontex | txs:///pdflatex | txs:///view-pdf");
 	registerCommand("pre-compile", tr("Precompile"), QStringList() << "", "Tools/Precompile");
 	registerCommand("internal-pre-compile", tr("Internal Precompile"), QStringList() << "txs:///pre-compile | txs:///conditionally-recompile-bibliography");
 	registerCommand("recompile-bibliography", tr("Recompile Bibliography"), QStringList() << "txs:///compile | txs:///bibliography | txs:///compile");

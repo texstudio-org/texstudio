@@ -70,6 +70,17 @@
 #include "symbolwidget.h"
 #include "execprogram.h"
 
+#include "newdatabasefile.h"
+#include "solvedatabaseexercise.h"
+#include "addfiletoeditor.h"
+#include "editdatabasefiles.h"
+#include "notesdocuments.h"
+#include "datatables.h"
+#include "paths.h"
+#include "backup.h"
+#include "sqlfunctions.h"
+#include <QProcess>
+
 #include <QScreen>
 
 #ifndef QT_NO_DEBUG
@@ -115,6 +126,15 @@ const QString APPICON(":appicon");
 bool programStopped = false;
 Texstudio *txsInstance = nullptr;
 QCache<QString, QIcon> iconCache;
+
+QSqlDatabase Texstudio::DataTeX_Settings = QSqlDatabase::addDatabase("QSQLITE","Settings");
+QString Texstudio::CurrentDataBasePath;
+QString Texstudio::CurrentNotesFolderPath;
+QSqlDatabase Texstudio::CurrentTexFilesDataBase;
+QSqlDatabase Texstudio::CurrentNotesFolderDataBase;
+QString Texstudio::CurrentPreamble;
+QString Texstudio::CurrentPreamble_Content;
+QString Texstudio::CurrentPdfLatexBuildCommand;
 
 // workaround needed on OSX due to https://bugreports.qt.io/browse/QTBUG-49576
 void hideSplash()
@@ -448,6 +468,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	previewFullCompileDelayTimer.setSingleShot(true);
 
 	connect(this, SIGNAL(infoFileSaved(QString, int)), this, SLOT(checkinAfterSave(QString, int)));
+    //DataTex
+    connect(this, SIGNAL(DataTeXFileSaved(QString,QString)), this, SLOT(SaveContentToDatabase(QString,QString)));
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -465,6 +487,79 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		fileRestoreSession(false, false);
 	}
 	splashscreen = nullptr;
+
+    //----------------DataTeX Settings---------------------------------------
+
+    QStringList MetadataNames;
+    MetadataNames <<tr("Name")<<tr("Field")<<tr("Chapter")<<tr("Section")<<tr("Exercise Type")
+            <<tr("File Type")<<tr("Difficulty")<<tr("Path")<<tr("Date")
+           <<tr("Solved")<<tr("Bibliography")<<tr("File Content");
+    QStringList Bibliography;
+    Bibliography <<tr("Citation Key")<<tr("Document Type")<<tr("Title")<<tr("Author")<<tr("Editor")
+            <<tr("Publisher")<<tr("Year")<<tr("Month")<<tr("ISBN")
+           <<tr("ISSN")<<tr("Pages")<<tr("Series")<<tr("Volume")
+          <<tr("Journal")<<tr("School/Institute")<<tr("Number/Issue")
+         <<tr("Address")<<tr("DOI")<<tr("URL")<<tr("Edition");
+
+    QString DataTex_Settings_Path = configManager.configBaseDir+"TexStudio_Data_Settings.db";
+    if(!QFileInfo::exists(DataTex_Settings_Path)){
+        QFile Settings(":/src/DataTeX/TexStudio_Data_Settings.db");
+        Settings.copy(DataTex_Settings_Path);
+        QFile(DataTex_Settings_Path).setPermissions(QFileDevice::ReadOwner | QFileDevice::WriteOwner);
+        Texstudio::DataTeX_Settings.setDatabaseName(DataTex_Settings_Path);
+        Texstudio::DataTeX_Settings.open();
+        QStringList MetadataList;
+        QStringList BibliographyList;
+        QSqlQuery WriteBasicMetadata(Texstudio::DataTeX_Settings);
+        WriteBasicMetadata.exec("SELECT \"Id\" FROM \"Metadata\" ORDER BY rowid");
+        while(WriteBasicMetadata.next()){
+            MetadataList.append(WriteBasicMetadata.value(0).toString());
+        }
+        for(int i=0;i<MetadataList.count();i++){
+            QString query = "UPDATE \"Metadata\" SET \"Name\" = '"
+                            +MetadataNames.at(i)+"' WHERE \"Id\" = '"+MetadataList.at(i)+"'";
+            QSqlQuery WriteMetaNames(Texstudio::DataTeX_Settings);
+            WriteMetaNames.exec(query);
+        }
+
+        WriteBasicMetadata.exec("SELECT \"Id\" FROM \"Bibliography\" ORDER BY rowid");
+        while(WriteBasicMetadata.next()){
+            BibliographyList.append(WriteBasicMetadata.value(0).toString());
+        }
+        for(int i=0;i<Bibliography.count();i++){
+            QString query = "UPDATE \"Bibliography\" SET \"Name\" = '"
+                            +Bibliography.at(i)+"' WHERE \"Id\" = '"+BibliographyList.at(i)+"'";
+            QSqlQuery WriteMetaNames(Texstudio::DataTeX_Settings);
+            WriteMetaNames.exec(query);
+        }
+        Texstudio::DataTeX_Settings.close();
+    }
+
+    QFile(DataTex_Settings_Path).setPermissions(QFileDevice::ReadOwner | QFileDevice::WriteOwner);
+    Texstudio::DataTeX_Settings.setDatabaseName(DataTex_Settings_Path);
+    Texstudio::DataTeX_Settings.open();
+
+    Texstudio::CurrentDataBasePath =
+            SqlFunctions::GetCurrentDataBase(Texstudio::DataTeX_Settings,SqlFunctions::SelectCurrentDataBase);
+    Texstudio::CurrentNotesFolderPath =
+            SqlFunctions::GetCurrentDataBase(Texstudio::DataTeX_Settings,SqlFunctions::SelectCurrentNotesFolderBase);
+    Texstudio::CurrentTexFilesDataBase = QSqlDatabase::addDatabase("QSQLITE","CurrentBase");
+    Texstudio::CurrentNotesFolderDataBase = QSqlDatabase::addDatabase("QSQLITE","CurrentNotesFolder");
+
+    Texstudio::CurrentTexFilesDataBase.setDatabaseName(CurrentDataBasePath);
+    Texstudio::CurrentTexFilesDataBase.open();
+    Texstudio::CurrentNotesFolderDataBase.setDatabaseName(CurrentNotesFolderPath);
+    Texstudio::CurrentNotesFolderDataBase.open();
+    QStringList list1 = SqlFunctions::Get_StringList_From_Query(SqlFunctions::GetPreamble,Texstudio::DataTeX_Settings);
+    if(list1.count()==0){
+        Texstudio::CurrentPreamble = "";}
+    else{Texstudio::CurrentPreamble = list1.at(0);}
+    QStringList list2 = SqlFunctions::Get_StringList_From_Query(QString(SqlFunctions::GetPreamble_Content)
+                                                               .arg(Texstudio::CurrentPreamble)
+                                                               ,Texstudio::CurrentTexFilesDataBase);
+    if(list2.count()==0){Texstudio::CurrentPreamble_Content = "";}
+    else{Texstudio::CurrentPreamble_Content = list2.at(0);}
+    Texstudio::CurrentPdfLatexBuildCommand = buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX).getProgramName();
 }
 /*!
  * \brief destructor
@@ -1076,6 +1171,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "pdflatex", tr("&PDFLaTeX"), SLOT(commandFromAction()), QKeySequence(), "compile-pdf")->setData(BuildManager::CMD_PDFLATEX);
 	newManagedAction(submenu, "xelatex", "&XeLaTeX", SLOT(commandFromAction()), QKeySequence(), "compile-xelatex")->setData(BuildManager::CMD_XELATEX);
 	newManagedAction(submenu, "lualatex", "L&uaLaTeX", SLOT(commandFromAction()), QKeySequence(), "compile-lua")->setData(BuildManager::CMD_LUALATEX);
+        newManagedAction(submenu, "pythontex", "P&ythonTeX", SLOT(commandFromAction()), QKeySequence(), "compile-pythontex")->setData(BuildManager::CMD_PYTHONTEX);
 	submenu->addSeparator();
 	newManagedAction(submenu, "dvi2ps", tr("DVI->PS"), SLOT(commandFromAction()), QKeySequence(), "convert-dvips")->setData(BuildManager::CMD_DVIPS);
 	newManagedAction(submenu, "ps2pdf", tr("P&S->PDF"), SLOT(commandFromAction()), QKeySequence(), "convert-pspdf")->setData(BuildManager::CMD_PS2PDF);
@@ -1144,6 +1240,27 @@ void Texstudio::setupMenus()
 
 	menu = newManagedMenu("main/math", tr("&Math"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(insertFromAction())));
+
+    //------------------DataTeX actions---------------------------------
+    menu = newManagedMenu("main/database", tr("&DataTeX"));
+    newManagedAction(menu, "newbasefile", tr("New database file"), SLOT(NewBaseFile()),filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_N),":/images-ng/tex.svg");
+    newManagedAction(menu, "solve", tr("Create solution for database exercise file..."), SLOT(SolutionFile()),filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_S),":/images-ng/new.png");
+    newManagedAction(menu, "insertfile", tr("Insert file from database"), SLOT(InsertFiles())
+                     ,filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_I),":/images-ng/add-button.png");
+    menu->addSeparator();
+    newManagedAction(menu, "databasefiles", tr("Preview and edit database files..."), SLOT(EditDataBase())
+                     ,filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_E),":/images-ng/database-edit.svg");
+    newManagedAction(menu, "notes", tr("Create folders and personal notes documents"), SLOT(PersonalNotes())
+                     ,filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_P),":/images-ng/pdf.svg");
+    menu->addSeparator();
+    newManagedAction(menu, "tables", tr("Database entries"), SLOT(DataBaseFields())
+                     ,filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_T),":/images-ng/table.svg");
+    newManagedAction(menu, "paths", tr("DataTeX settings"), SLOT(DataTeX_Preferences())
+                     ,filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_D),":/images-ng/settingspath.png");
+    newManagedAction(menu, "backup", tr("BackUp database"), SLOT(BackUp_DataBase_Folders())
+                     ,filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_B),":/images-ng/hdd.svg");
+
+
 	//wizards
 
 	menu = newManagedMenu("main/wizards", tr("&Wizards"));
@@ -2660,6 +2777,11 @@ void Texstudio::fileSave(const bool saveSilently)
 		emit infoFileSaved(currentEditor()->fileName(), checkIn);
 	}
 	updateCaption();
+
+    //DataTeX
+    if(currentEditor()->fileName().contains("DTX-")){
+        emit DataTeXFileSaved(currentEditor()->fileName(),currentEditor()->document()->text());
+    }
 }
 /*!
  * \brief save current editor content to new filename
@@ -2806,6 +2928,11 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 
 			emit infoFileSaved(edView->editor->fileName());
 		}
+
+        //DataTeX
+        if(edView->editor->fileName().contains("DTX-")){
+            emit DataTeXFileSaved(edView->editor->fileName(),edView->editor->document()->text());
+        }
 	}
     // save hidden files (in case that they are changed via replace in all docs
     foreach (LatexDocument *d, documents.hiddenDocuments){
@@ -11464,5 +11591,309 @@ void Texstudio::editUnIndentSection()
     }
 }
 
+//-----------------------DataTeX Functions-----------------------------------------------------------------
+
+void Texstudio::NewBaseFile()
+{
+    if (Texstudio::CurrentDataBasePath.isEmpty() || Texstudio::CurrentDataBasePath.isNull()){
+        QMessageBox::StandardButton resBtn = QMessageBox::warning( this,
+                     "Σφάλμα",tr("Create a LaTeX Database.\nDo you wish to open DataTeX Settings?"),
+                     QMessageBox::No | QMessageBox::Yes,QMessageBox::Yes);
+        if (resBtn == QMessageBox::Yes) {
+            DataTeX_Preferences();
+        }
+    }
+    else {
+    NewDatabaseFile * neweidosArxeiou = new NewDatabaseFile(this);
+    connect(neweidosArxeiou,SIGNAL(acceptSignal(QString,QMap<QString,QString>,QStringList)),this,
+            SLOT(EditNewBaseFile(QString,QMap<QString,QString>,QStringList)));
+    neweidosArxeiou->show();
+    neweidosArxeiou->activateWindow();
+    }
+}
+
+void Texstudio::EditNewBaseFile(QString fileName,QMap<QString,QString> metapairs,QStringList SectionList)
+{
+    QString meta_Ids = metapairs.keys().join("\",\"");
+    QString meta_Values = metapairs.values().join("\",\"");
+    QStringList WriteValues;
+    foreach(QString section,SectionList){
+        WriteValues.append("(\""+meta_Values+"\",\""+section+"\")");
+    }
+    QSqlQuery writeExercise(Texstudio::CurrentTexFilesDataBase);
+    writeExercise.prepare("INSERT INTO \"Database_Files\" "
+        "(\""+meta_Ids+"\",\"Section\")"
+        "VALUES "+WriteValues.join(",")+";");
+    writeExercise.exec();
+    qDebug()<<WriteValues<<meta_Ids;
+    QString text;
+    text = "%# Database File : "+QFileInfo(fileName).baseName()+"\n\n";
+    text += "%# End of file "+QFileInfo(fileName).baseName();
+    QFile file(fileName);
+    file.open(QIODevice::ReadWrite);
+    QTextStream writeContent(&file);
+    writeContent.flush();
+    writeContent << text;
+    file.close();
+    load(fileName);
+}
+
+void Texstudio::SaveContentToDatabase(QString fileName, QString content)
+{
+    QSqlQuery WriteContent(Texstudio::CurrentTexFilesDataBase);
+    WriteContent.prepare("UPDATE \"Database_Files\" SET \"File_Content\" = :content WHERE \"Id\" = :file");
+    WriteContent.bindValue(":file",QFileInfo(fileName).baseName());
+    WriteContent.bindValue(":content",content);
+    WriteContent.exec();
+
+    QSqlQuery WriteContent_2(Texstudio::CurrentNotesFolderDataBase);
+    WriteContent_2.prepare("UPDATE \"Documents\" SET \"Content\" = :content WHERE \"Id\" = :file");
+    WriteContent_2.bindValue(":file",QFileInfo(fileName).baseName());
+    WriteContent_2.bindValue(":content",content);
+    WriteContent_2.exec();
+}
+
+void Texstudio::SolutionFile()
+{
+    if (Texstudio::CurrentDataBasePath.isEmpty() || Texstudio::CurrentDataBasePath.isNull()){
+        QMessageBox::StandardButton resBtn = QMessageBox::warning( this,
+                     "Σφάλμα",tr("Create a LaTeX Database.\nDo you wish to open DataTeX Settings?"),
+                     QMessageBox::No | QMessageBox::Yes,QMessageBox::Yes);
+        if (resBtn == QMessageBox::Yes) {
+            DataTeX_Preferences();
+        }
+    }
+    else {
+    SolveDatabaseExercise * newsoldialog = new SolveDatabaseExercise(this);
+    connect(newsoldialog,SIGNAL(SolutionFile(QString,QMap<QString,QString>,QStringList)),this,
+            SLOT(EditNewBaseFile(QString,QMap<QString,QString>,QStringList)));
+    newsoldialog->show();
+    newsoldialog->activateWindow();
+    }
+}
+
+void Texstudio::InsertFiles()
+{
+    if (Texstudio::CurrentDataBasePath.isEmpty() || Texstudio::CurrentDataBasePath.isNull()){
+        QMessageBox::StandardButton resBtn = QMessageBox::warning( this,
+                     "Σφάλμα",tr("Create a LaTeX Database.\nDo you wish to open DataTeX Settings?"),
+                     QMessageBox::No | QMessageBox::Yes,QMessageBox::Yes);
+        if (resBtn == QMessageBox::Yes) {
+            DataTeX_Preferences();
+        }
+    }
+    else {
+        if (!currentEditorView())
+            return;
+        QString currentTexFile = QFileInfo(currentEditor()->fileName()).fileName();
+        AddFileToEditor * inserttexfile = new AddFileToEditor(this,currentTexFile);
+        connect(inserttexfile,SIGNAL(files(QStringList)),this,SLOT(AddFilesToEditor(QStringList)));
+        inserttexfile->show();
+        inserttexfile->activateWindow();
+    }
+}
+
+void Texstudio::AddFilesToEditor(QStringList files)
+{
+    if ( !currentEditorView() )	return;
+    foreach(QString file,files){
+        QFile File(file);
+        QString content;
+        File.open (QIODevice::ReadOnly | QIODevice::Text);
+        int line_count=-1;
+        QTextStream in(&File);
+        while( !in.atEnd()){
+            line_count++;
+        QString line = in.readLine()+"\n";
+        content.append(line);
+        }
+        File.close();
+    insertTag(content+"\n",content.length(),line_count+2);
+    }
+}
+
+void Texstudio::EditDataBase()
+{
+    if (Texstudio::CurrentDataBasePath.isEmpty() || Texstudio::CurrentDataBasePath.isNull()){
+        QMessageBox::StandardButton resBtn = QMessageBox::warning( this,
+                     "Σφάλμα",tr("Create a LaTeX Database.\nDo you wish to open DataTeX Settings?"),
+                     QMessageBox::No | QMessageBox::Yes,QMessageBox::Yes);
+        if (resBtn == QMessageBox::Yes) {
+            DataTeX_Preferences();
+        }
+    }
+    else {
+        QStringList BibNames;
+        QStringList BibDescriptions;
+        foreach (const BibTeXType &bt, BibTeXDialog::getPossibleEntryTypes(BibTeXDialog::BIBLATEX)) {
+            BibNames.append(bt.name);
+            QString description = bt.description;
+            description.remove("&");
+            BibDescriptions.append(description);
+        }
+        EditDataBaseFiles * editfiles = new EditDataBaseFiles(this,BibNames,BibDescriptions);
+        editfiles->show();
+        editfiles->activateWindow();
+    }
+}
+
+void Texstudio::PersonalNotes()
+{
+    if (Texstudio::CurrentDataBasePath.isEmpty() || Texstudio::CurrentDataBasePath.isNull() ||
+            Texstudio::CurrentNotesFolderPath.isEmpty() || Texstudio::CurrentNotesFolderPath.isNull()){
+        QMessageBox::StandardButton resBtn = QMessageBox::warning( this,
+                     "Σφάλμα",tr("Create a LaTeX Database and a Notes Database.\nDo you wish to open DataTeX Settings?"),
+                     QMessageBox::No | QMessageBox::Yes,QMessageBox::Yes);
+        if (resBtn == QMessageBox::Yes) {
+            DataTeX_Preferences();
+        }
+    }
+    else {
+    NotesDocuments * notes = new NotesDocuments(this);
+    connect(notes,SIGNAL(openpdf(QString)),this,SLOT(CreateNewSheet(QString)));
+    connect(notes,SIGNAL(OpenSolutionFile(QString)),this,SLOT(load(QString)));
+    connect(notes,SIGNAL(insertfiles()),this,SLOT(InsertFiles()));
+    notes->show();
+    notes->activateWindow();
+    }
+}
+
+int CountLines(QString filePath)
+{
+    QFile file(filePath);
+    int line_count=0;
+    file.open(QIODevice::ReadOnly); //| QIODevice::Text)
+    QTextStream in(&file);
+    while( !in.atEnd())
+    {
+        QString line;
+        line=in.readLine()+"\n";
+        line_count++;
+    }
+    file.close();
+    return line_count;
+}
+
+void Texstudio::CreateNewSheet(QString fileName)
+{
+    QString text;
+    QString filepath = QFileInfo(fileName).absolutePath();
+    QStringList list = filepath.split("/");
+    QString filetype = list.last();
+
+    text = "%# Database Document : "+QFileInfo(fileName).baseName()+"-----------------\n";
+    text += "%@ Document type: "+filetype+"\n";
+    text += "%#--------------------------------------------------\n";
+    text += CurrentPreamble_Content+"\n";
+    text += "\\begin{document}\n\n";
+    text +=  "\\end{document}";
+    QFile file(fileName);
+    file.open(QIODevice::ReadWrite);
+    QTextStream writeContent(&file);
+    writeContent.flush();
+    writeContent << text;
+    file.close();
+    int lines = CountLines(fileName);
+    load(fileName);
+    currentEditor()->setCursorPosition(lines-2,0);
+}
+
+void Texstudio::DataBaseFields()
+{
+    if (Texstudio::CurrentDataBasePath.isEmpty() || Texstudio::CurrentDataBasePath.isNull() ||
+            Texstudio::CurrentNotesFolderPath.isEmpty() || Texstudio::CurrentNotesFolderPath.isNull()){
+        QMessageBox::StandardButton resBtn = QMessageBox::warning( this,
+                     "Σφάλμα",tr("Create a LaTeX Database and a Notes Database.\nDo you wish to open DataTeX Settings?"),
+                     QMessageBox::No | QMessageBox::Yes,QMessageBox::Yes);
+        if (resBtn == QMessageBox::Yes) {
+            DataTeX_Preferences();
+        }
+    }
+    else {
+    DataTables * fieldstable = new DataTables(this);
+    fieldstable->show();
+    fieldstable->activateWindow();
+    }
+}
+
+void Texstudio::DataTeX_Preferences()
+{
+    QString path = configManager.configBaseDir;
+    Paths * folderpaths = new Paths(this,path);
+    folderpaths->show();
+    folderpaths->activateWindow();
+}
+
+void Texstudio::BackUp_DataBase_Folders()
+{
+    BackUp * backup = new BackUp(this);
+    backup->show();
+    backup->activateWindow();
+}
+
+void Texstudio::createPdf(QString fullFilePath)
+{
+    QString outputDir = QFileInfo(fullFilePath).absolutePath();
+    QString outputFile = QFileInfo(fullFilePath).baseName();
+    QString realContent = QString();
+    QString sheetFileContent = Texstudio::CurrentPreamble_Content+ "\n";
+    sheetFileContent += "\n\\begin{document}\n";
+    QFile askhsh(fullFilePath);
+    askhsh.open(QFile::ReadOnly | QFile::Text);
+    QTextStream exoStream(&askhsh);
+    exoStream.flush();
+    realContent = exoStream.readAll();
+
+    sheetFileContent += "\n"+realContent+"\n";
+    sheetFileContent += "\n \\end{document}";
+
+    QString sheetFile = outputDir + QDir::separator() + outputFile +"-preview.tex";
+    QFile file(sheetFile);
+    file.open(QFile::WriteOnly | QFile::Text);
+    QTextStream out(&file);
+    out.flush();
+    out << sheetFileContent;
+    file.close();
+    QProcess compileProcess;
+    QString processBin = Texstudio::CurrentPdfLatexBuildCommand.remove("\"");//"pdflatex";
+    qDebug()<<Texstudio::CurrentPdfLatexBuildCommand;
+
+#ifndef Q_OS_WIN
+    QStringList env = QProcess::systemEnvironment();
+    int j = env.indexOf(QRegExp("^PATH=(.*)"));
+    int limit = env.at(j).indexOf("=");
+    QString value = env.at(j).right(env.at(j).size()-limit-1).trimmed();
+    value = "PATH=" + value + ":" + QFileInfo(processBin).path() + ":";
+    env.replace(j,value);
+    compileProcess.setEnvironment(env);
+#endif
+    compileProcess.setWorkingDirectory(outputDir);
+    QStringList args;
+    QString newTexFile = QFileInfo(fullFilePath).absolutePath()+QDir::separator()+outputFile +"-preview.tex";
+    QString oldpdf = QFileInfo(fullFilePath).absolutePath()+QDir::separator()+outputFile +".pdf";
+    if (QFileInfo::exists(oldpdf)){QFile(oldpdf).remove();}
+
+//#ifdef Q_OS_WIN
+
+//#else
+
+//#endif
+            args << "-interaction=nonstopmode"<< "--shell-escape" << newTexFile;
+            compileProcess.start(processBin,args);
+            compileProcess.waitForFinished(-1);
+            QString errorOutput = QString(compileProcess.readAllStandardOutput());
+    QStringList extensions;
+    extensions << ".log" << ".aux" << ".tex" << "-old.pdf" << ".out";
+    QString trashFile;
+    foreach (QString ext,extensions)
+    {
+        trashFile = QFileInfo(fullFilePath).path() + QDir::separator() + QFileInfo(fullFilePath).baseName() + "-preview" + ext;
+        if (QFileInfo::exists(trashFile)) QFile(trashFile).remove();
+    }
+    QString PdfOutput = QFileInfo(fullFilePath).path() + QDir::separator()+ QFileInfo(fullFilePath).baseName()+".pdf";
+    QString pdffile = newTexFile.replace(".tex",".pdf");
+    QFile renamePdf(pdffile);
+    renamePdf.rename(pdffile,PdfOutput);
+}
 
 /*! @} */
