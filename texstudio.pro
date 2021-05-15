@@ -51,7 +51,273 @@ defineTest(versionGreaterOrEqual) {
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
-DISTFILES = texstudio.astylerc
+DISTFILES = texstudio.astylerc \
+    pdf.js/build/pdf.js \
+    pdf.js/build/pdf.js.map \
+    pdf.js/build/pdf.worker.js \
+    pdf.js/build/pdf.worker.js.map \
+    pdf.js/web/cmaps/78-EUC-H.bcmap \
+    pdf.js/web/cmaps/78-EUC-V.bcmap \
+    pdf.js/web/cmaps/78-H.bcmap \
+    pdf.js/web/cmaps/78-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/78-RKSJ-V.bcmap \
+    pdf.js/web/cmaps/78-V.bcmap \
+    pdf.js/web/cmaps/78ms-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/78ms-RKSJ-V.bcmap \
+    pdf.js/web/cmaps/83pv-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/90ms-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/90ms-RKSJ-V.bcmap \
+    pdf.js/web/cmaps/90msp-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/90msp-RKSJ-V.bcmap \
+    pdf.js/web/cmaps/90pv-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/90pv-RKSJ-V.bcmap \
+    pdf.js/web/cmaps/Add-H.bcmap \
+    pdf.js/web/cmaps/Add-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/Add-RKSJ-V.bcmap \
+    pdf.js/web/cmaps/Add-V.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-0.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-1.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-2.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-3.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-4.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-5.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-6.bcmap \
+    pdf.js/web/cmaps/Adobe-CNS1-UCS2.bcmap \
+    pdf.js/web/cmaps/Adobe-GB1-0.bcmap \
+    pdf.js/web/cmaps/Adobe-GB1-1.bcmap \
+    pdf.js/web/cmaps/Adobe-GB1-2.bcmap \
+    pdf.js/web/cmaps/Adobe-GB1-3.bcmap \
+    pdf.js/web/cmaps/Adobe-GB1-4.bcmap \
+    pdf.js/web/cmaps/Adobe-GB1-5.bcmap \
+    pdf.js/web/cmaps/Adobe-GB1-UCS2.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-0.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-1.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-2.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-3.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-4.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-5.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-6.bcmap \
+    pdf.js/web/cmaps/Adobe-Japan1-UCS2.bcmap \
+    pdf.js/web/cmaps/Adobe-Korea1-0.bcmap \
+    pdf.js/web/cmaps/Adobe-Korea1-1.bcmap \
+    pdf.js/web/cmaps/Adobe-Korea1-2.bcmap \
+    pdf.js/web/cmaps/Adobe-Korea1-UCS2.bcmap \
+    pdf.js/web/cmaps/B5-H.bcmap \
+    pdf.js/web/cmaps/B5-V.bcmap \
+    pdf.js/web/cmaps/B5pc-H.bcmap \
+    pdf.js/web/cmaps/B5pc-V.bcmap \
+    pdf.js/web/cmaps/CNS-EUC-H.bcmap \
+    pdf.js/web/cmaps/CNS-EUC-V.bcmap \
+    pdf.js/web/cmaps/CNS1-H.bcmap \
+    pdf.js/web/cmaps/CNS1-V.bcmap \
+    pdf.js/web/cmaps/CNS2-H.bcmap \
+    pdf.js/web/cmaps/CNS2-V.bcmap \
+    pdf.js/web/cmaps/ETHK-B5-H.bcmap \
+    pdf.js/web/cmaps/ETHK-B5-V.bcmap \
+    pdf.js/web/cmaps/ETen-B5-H.bcmap \
+    pdf.js/web/cmaps/ETen-B5-V.bcmap \
+    pdf.js/web/cmaps/ETenms-B5-H.bcmap \
+    pdf.js/web/cmaps/ETenms-B5-V.bcmap \
+    pdf.js/web/cmaps/EUC-H.bcmap \
+    pdf.js/web/cmaps/EUC-V.bcmap \
+    pdf.js/web/cmaps/Ext-H.bcmap \
+    pdf.js/web/cmaps/Ext-RKSJ-H.bcmap \
+    pdf.js/web/cmaps/Ext-RKSJ-V.bcmap \
+    pdf.js/web/cmaps/Ext-V.bcmap \
+    pdf.js/web/cmaps/GB-EUC-H.bcmap \
+    pdf.js/web/cmaps/GB-EUC-V.bcmap \
+    pdf.js/web/cmaps/GB-H.bcmap \
+    pdf.js/web/cmaps/GB-V.bcmap \
+    pdf.js/web/cmaps/GBK-EUC-H.bcmap \
+    pdf.js/web/cmaps/GBK-EUC-V.bcmap \
+    pdf.js/web/cmaps/GBK2K-H.bcmap \
+    pdf.js/web/cmaps/GBK2K-V.bcmap \
+    pdf.js/web/cmaps/GBKp-EUC-H.bcmap \
+    pdf.js/web/cmaps/GBKp-EUC-V.bcmap \
+    pdf.js/web/cmaps/GBT-EUC-H.bcmap \
+    pdf.js/web/cmaps/GBT-EUC-V.bcmap \
+    pdf.js/web/cmaps/GBT-H.bcmap \
+    pdf.js/web/cmaps/GBT-V.bcmap \
+    pdf.js/web/cmaps/GBTpc-EUC-H.bcmap \
+    pdf.js/web/cmaps/GBTpc-EUC-V.bcmap \
+    pdf.js/web/cmaps/GBpc-EUC-H.bcmap \
+    pdf.js/web/cmaps/GBpc-EUC-V.bcmap \
+    pdf.js/web/cmaps/H.bcmap \
+    pdf.js/web/cmaps/HKdla-B5-H.bcmap \
+    pdf.js/web/cmaps/HKdla-B5-V.bcmap \
+    pdf.js/web/cmaps/HKdlb-B5-H.bcmap \
+    pdf.js/web/cmaps/HKdlb-B5-V.bcmap \
+    pdf.js/web/cmaps/HKgccs-B5-H.bcmap \
+    pdf.js/web/cmaps/HKgccs-B5-V.bcmap \
+    pdf.js/web/cmaps/HKm314-B5-H.bcmap \
+    pdf.js/web/cmaps/HKm314-B5-V.bcmap \
+    pdf.js/web/cmaps/HKm471-B5-H.bcmap \
+    pdf.js/web/cmaps/HKm471-B5-V.bcmap \
+    pdf.js/web/cmaps/HKscs-B5-H.bcmap \
+    pdf.js/web/cmaps/HKscs-B5-V.bcmap \
+    pdf.js/web/cmaps/Hankaku.bcmap \
+    pdf.js/web/cmaps/Hiragana.bcmap \
+    pdf.js/web/cmaps/KSC-EUC-H.bcmap \
+    pdf.js/web/cmaps/KSC-EUC-V.bcmap \
+    pdf.js/web/cmaps/KSC-H.bcmap \
+    pdf.js/web/cmaps/KSC-Johab-H.bcmap \
+    pdf.js/web/cmaps/KSC-Johab-V.bcmap \
+    pdf.js/web/cmaps/KSC-V.bcmap \
+    pdf.js/web/cmaps/KSCms-UHC-H.bcmap \
+    pdf.js/web/cmaps/KSCms-UHC-HW-H.bcmap \
+    pdf.js/web/cmaps/KSCms-UHC-HW-V.bcmap \
+    pdf.js/web/cmaps/KSCms-UHC-V.bcmap \
+    pdf.js/web/cmaps/KSCpc-EUC-H.bcmap \
+    pdf.js/web/cmaps/KSCpc-EUC-V.bcmap \
+    pdf.js/web/cmaps/Katakana.bcmap \
+    pdf.js/web/cmaps/LICENSE \
+    pdf.js/web/cmaps/NWP-H.bcmap \
+    pdf.js/web/cmaps/NWP-V.bcmap \
+    pdf.js/web/cmaps/RKSJ-H.bcmap \
+    pdf.js/web/cmaps/RKSJ-V.bcmap \
+    pdf.js/web/cmaps/Roman.bcmap \
+    pdf.js/web/cmaps/UniCNS-UCS2-H.bcmap \
+    pdf.js/web/cmaps/UniCNS-UCS2-V.bcmap \
+    pdf.js/web/cmaps/UniCNS-UTF16-H.bcmap \
+    pdf.js/web/cmaps/UniCNS-UTF16-V.bcmap \
+    pdf.js/web/cmaps/UniCNS-UTF32-H.bcmap \
+    pdf.js/web/cmaps/UniCNS-UTF32-V.bcmap \
+    pdf.js/web/cmaps/UniCNS-UTF8-H.bcmap \
+    pdf.js/web/cmaps/UniCNS-UTF8-V.bcmap \
+    pdf.js/web/cmaps/UniGB-UCS2-H.bcmap \
+    pdf.js/web/cmaps/UniGB-UCS2-V.bcmap \
+    pdf.js/web/cmaps/UniGB-UTF16-H.bcmap \
+    pdf.js/web/cmaps/UniGB-UTF16-V.bcmap \
+    pdf.js/web/cmaps/UniGB-UTF32-H.bcmap \
+    pdf.js/web/cmaps/UniGB-UTF32-V.bcmap \
+    pdf.js/web/cmaps/UniGB-UTF8-H.bcmap \
+    pdf.js/web/cmaps/UniGB-UTF8-V.bcmap \
+    pdf.js/web/cmaps/UniJIS-UCS2-H.bcmap \
+    pdf.js/web/cmaps/UniJIS-UCS2-HW-H.bcmap \
+    pdf.js/web/cmaps/UniJIS-UCS2-HW-V.bcmap \
+    pdf.js/web/cmaps/UniJIS-UCS2-V.bcmap \
+    pdf.js/web/cmaps/UniJIS-UTF16-H.bcmap \
+    pdf.js/web/cmaps/UniJIS-UTF16-V.bcmap \
+    pdf.js/web/cmaps/UniJIS-UTF32-H.bcmap \
+    pdf.js/web/cmaps/UniJIS-UTF32-V.bcmap \
+    pdf.js/web/cmaps/UniJIS-UTF8-H.bcmap \
+    pdf.js/web/cmaps/UniJIS-UTF8-V.bcmap \
+    pdf.js/web/cmaps/UniJIS2004-UTF16-H.bcmap \
+    pdf.js/web/cmaps/UniJIS2004-UTF16-V.bcmap \
+    pdf.js/web/cmaps/UniJIS2004-UTF32-H.bcmap \
+    pdf.js/web/cmaps/UniJIS2004-UTF32-V.bcmap \
+    pdf.js/web/cmaps/UniJIS2004-UTF8-H.bcmap \
+    pdf.js/web/cmaps/UniJIS2004-UTF8-V.bcmap \
+    pdf.js/web/cmaps/UniJISPro-UCS2-HW-V.bcmap \
+    pdf.js/web/cmaps/UniJISPro-UCS2-V.bcmap \
+    pdf.js/web/cmaps/UniJISPro-UTF8-V.bcmap \
+    pdf.js/web/cmaps/UniJISX0213-UTF32-H.bcmap \
+    pdf.js/web/cmaps/UniJISX0213-UTF32-V.bcmap \
+    pdf.js/web/cmaps/UniJISX02132004-UTF32-H.bcmap \
+    pdf.js/web/cmaps/UniJISX02132004-UTF32-V.bcmap \
+    pdf.js/web/cmaps/UniKS-UCS2-H.bcmap \
+    pdf.js/web/cmaps/UniKS-UCS2-V.bcmap \
+    pdf.js/web/cmaps/UniKS-UTF16-H.bcmap \
+    pdf.js/web/cmaps/UniKS-UTF16-V.bcmap \
+    pdf.js/web/cmaps/UniKS-UTF32-H.bcmap \
+    pdf.js/web/cmaps/UniKS-UTF32-V.bcmap \
+    pdf.js/web/cmaps/UniKS-UTF8-H.bcmap \
+    pdf.js/web/cmaps/UniKS-UTF8-V.bcmap \
+    pdf.js/web/cmaps/V.bcmap \
+    pdf.js/web/cmaps/WP-Symbol.bcmap \
+    pdf.js/web/debugger.js \
+    pdf.js/web/images/annotation-check.svg \
+    pdf.js/web/images/annotation-comment.svg \
+    pdf.js/web/images/annotation-help.svg \
+    pdf.js/web/images/annotation-insert.svg \
+    pdf.js/web/images/annotation-key.svg \
+    pdf.js/web/images/annotation-newparagraph.svg \
+    pdf.js/web/images/annotation-noicon.svg \
+    pdf.js/web/images/annotation-note.svg \
+    pdf.js/web/images/annotation-paragraph.svg \
+    pdf.js/web/images/findbarButton-next-rtl.png \
+    pdf.js/web/images/findbarButton-next-rtl@2x.png \
+    pdf.js/web/images/findbarButton-next.png \
+    pdf.js/web/images/findbarButton-next@2x.png \
+    pdf.js/web/images/findbarButton-previous-rtl.png \
+    pdf.js/web/images/findbarButton-previous-rtl@2x.png \
+    pdf.js/web/images/findbarButton-previous.png \
+    pdf.js/web/images/findbarButton-previous@2x.png \
+    pdf.js/web/images/grab.cur \
+    pdf.js/web/images/grabbing.cur \
+    pdf.js/web/images/loading-icon.gif \
+    pdf.js/web/images/loading-small.png \
+    pdf.js/web/images/loading-small@2x.png \
+    pdf.js/web/images/secondaryToolbarButton-documentProperties.png \
+    pdf.js/web/images/secondaryToolbarButton-documentProperties@2x.png \
+    pdf.js/web/images/secondaryToolbarButton-firstPage.png \
+    pdf.js/web/images/secondaryToolbarButton-firstPage@2x.png \
+    pdf.js/web/images/secondaryToolbarButton-handTool.png \
+    pdf.js/web/images/secondaryToolbarButton-handTool@2x.png \
+    pdf.js/web/images/secondaryToolbarButton-lastPage.png \
+    pdf.js/web/images/secondaryToolbarButton-lastPage@2x.png \
+    pdf.js/web/images/secondaryToolbarButton-rotateCcw.png \
+    pdf.js/web/images/secondaryToolbarButton-rotateCcw@2x.png \
+    pdf.js/web/images/secondaryToolbarButton-rotateCw.png \
+    pdf.js/web/images/secondaryToolbarButton-rotateCw@2x.png \
+    pdf.js/web/images/secondaryToolbarButton-selectTool.png \
+    pdf.js/web/images/secondaryToolbarButton-selectTool@2x.png \
+    pdf.js/web/images/shadow.png \
+    pdf.js/web/images/texture.png \
+    pdf.js/web/images/toolbarButton-bookmark.png \
+    pdf.js/web/images/toolbarButton-bookmark@2x.png \
+    pdf.js/web/images/toolbarButton-download.png \
+    pdf.js/web/images/toolbarButton-download@2x.png \
+    pdf.js/web/images/toolbarButton-menuArrows.png \
+    pdf.js/web/images/toolbarButton-menuArrows@2x.png \
+    pdf.js/web/images/toolbarButton-openFile.png \
+    pdf.js/web/images/toolbarButton-openFile@2x.png \
+    pdf.js/web/images/toolbarButton-pageDown-rtl.png \
+    pdf.js/web/images/toolbarButton-pageDown-rtl@2x.png \
+    pdf.js/web/images/toolbarButton-pageDown.png \
+    pdf.js/web/images/toolbarButton-pageDown@2x.png \
+    pdf.js/web/images/toolbarButton-pageUp-rtl.png \
+    pdf.js/web/images/toolbarButton-pageUp-rtl@2x.png \
+    pdf.js/web/images/toolbarButton-pageUp.png \
+    pdf.js/web/images/toolbarButton-pageUp@2x.png \
+    pdf.js/web/images/toolbarButton-presentationMode.png \
+    pdf.js/web/images/toolbarButton-presentationMode@2x.png \
+    pdf.js/web/images/toolbarButton-print.png \
+    pdf.js/web/images/toolbarButton-print@2x.png \
+    pdf.js/web/images/toolbarButton-search.png \
+    pdf.js/web/images/toolbarButton-search@2x.png \
+    pdf.js/web/images/toolbarButton-secondaryToolbarToggle-rtl.png \
+    pdf.js/web/images/toolbarButton-secondaryToolbarToggle-rtl@2x.png \
+    pdf.js/web/images/toolbarButton-secondaryToolbarToggle.png \
+    pdf.js/web/images/toolbarButton-secondaryToolbarToggle@2x.png \
+    pdf.js/web/images/toolbarButton-sidebarToggle-rtl.png \
+    pdf.js/web/images/toolbarButton-sidebarToggle-rtl@2x.png \
+    pdf.js/web/images/toolbarButton-sidebarToggle.png \
+    pdf.js/web/images/toolbarButton-sidebarToggle@2x.png \
+    pdf.js/web/images/toolbarButton-viewAttachments.png \
+    pdf.js/web/images/toolbarButton-viewAttachments@2x.png \
+    pdf.js/web/images/toolbarButton-viewOutline-rtl.png \
+    pdf.js/web/images/toolbarButton-viewOutline-rtl@2x.png \
+    pdf.js/web/images/toolbarButton-viewOutline.png \
+    pdf.js/web/images/toolbarButton-viewOutline@2x.png \
+    pdf.js/web/images/toolbarButton-viewThumbnail.png \
+    pdf.js/web/images/toolbarButton-viewThumbnail@2x.png \
+    pdf.js/web/images/toolbarButton-zoomIn.png \
+    pdf.js/web/images/toolbarButton-zoomIn@2x.png \
+    pdf.js/web/images/toolbarButton-zoomOut.png \
+    pdf.js/web/images/toolbarButton-zoomOut@2x.png \
+    pdf.js/web/images/treeitem-collapsed-rtl.png \
+    pdf.js/web/images/treeitem-collapsed-rtl@2x.png \
+    pdf.js/web/images/treeitem-collapsed.png \
+    pdf.js/web/images/treeitem-collapsed@2x.png \
+    pdf.js/web/images/treeitem-expanded.png \
+    pdf.js/web/images/treeitem-expanded@2x.png \
+    pdf.js/web/locale/fr/viewer.properties \
+    pdf.js/web/locale/locale.properties \
+    pdf.js/web/viewer.css \
+    pdf.js/web/viewer.html \
+    pdf.js/web/viewer.js \
+    pdf.js/web/viewer.js.map
 win32 {
 	!versionGreaterOrEqual($$QT_VERSION, "5.10.0") {
 		error(Windows builds require Qt version 5.10.0 or newer)
@@ -72,7 +338,11 @@ QT += network \
     svg \
     script \
     printsupport \
-    concurrent
+    concurrent \
+    webenginewidgets
+
+QT += sql
+QT += pdf pdfwidgets
 
 QT += \
     widgets \
@@ -371,6 +641,8 @@ include(src/qcodeedit/qcodeedit.pri)
 
 include(src/latexparser/latexparser.pri)
 
+include(src/DataTeX/datatex.pri)
+
 include(src/symbolpanel/symbolpanel.pri)
 
 isEmpty(USE_SYSTEM_QUAZIP) {
@@ -419,7 +691,7 @@ exists(./.git)  {
   win32:isEmpty(MXE): {
     message(GIT)
     system(\"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
-    SOURCES += src/git_revision.cpp
+    SOURCES +=
   } else {
     message(GIT)
     QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
@@ -430,13 +702,13 @@ exists(./.git)  {
     win32:isEmpty(MXE): system(echo const char * TEXSTUDIO_GIT_REVISION = 0; > src\git_revision.cpp)
     else: system(echo \"const char * TEXSTUDIO_GIT_REVISION = 0;\" > src/git_revision.cpp)
   }
-  SOURCES += src/git_revision.cpp
+  SOURCES +=
 }
 
 !win32-msvc*: {
   QMAKE_CXXFLAGS_DEBUG -= -O -O1 -O2 -O3
   QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Wmissing-include-dirs -Wunknown-pragmas -Wundef -Wpointer-arith -Winline -O0
-  QMAKE_CXXFLAGS += -std=c++11 -fno-omit-frame-pointer
+  QMAKE_CXXFLAGS += -std=c++11
   !isEmpty(MXE): QMAKE_CXXFLAGS += -fpermissive
   !win32:!haiku: QMAKE_LFLAGS += -rdynamic # option not supported by mingw and haiku
   else {
@@ -453,3 +725,9 @@ exists(./.git)  {
 *-g++:equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 13) {
   QMAKE_CXXFLAGS += -Wno-deprecated-copy
 }
+
+FORMS +=
+
+HEADERS +=
+
+SOURCES +=
