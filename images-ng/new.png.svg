@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   width="105"
+   height="128"
+   viewBox="0 0 105 128"
+   sodipodi:docname="new.png.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"
+   inkscape:export-filename="/home/spyros/texstudio-3.0.1/images-ng/new.png"
+   inkscape:export-xdpi="112.45031"
+   inkscape:export-ydpi="112.45031">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="699"
+     id="namedview4"
+     showgrid="false"
+     inkscape:zoom="2.0820313"
+     inkscape:cx="96.910456"
+     inkscape:cy="73.839483"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g10"
+     inkscape:document-rotation="0" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g10">
+    <g
+       id="g834"
+       transform="matrix(1.1949107,0,0,1.1949107,-17.120132,-0.24846425)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.76211;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 99.497985,20.409602 82.243864,3.1558143 H 17.889061 V 104.83357 l 81.608924,-0.0811 z"
+         id="path843"
+         sodipodi:nodetypes="cccccc" />
+      <image
+         width="51.116219"
+         height="51.116219"
+         preserveAspectRatio="none"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAEiElE QVR4nO2cv4sVVxiGn7smbqKFFkLARkiqEAhkxT6BIEJQgpgmhZImNkL+ghT5A+zyg0TXIoWCndEU bla00CIEQtIrCgETWTQQ/BVRtJiduLnu7p0zc875zrnf+8Dp7mXnm+c979zZO7sjRMm8AbwLvAe8 A+wANgNPgFvAdeBn4CKwADwyOUoRlVngII3YpwFrCTgKvJb/kEUs9gHXCBM/vu4CX9AESVTCS8AJ hokfX78Bb+UcQvRjE3CWuPLbdR/4MN8oIpTNwCXSyG/XY+BwpnlEAJuAC6SVv3IdyTOW6MKrwCL5 5LdNsD/HcGJ9ZoHz5JXfrnvAm+lHFGuxATiNjfx2/QpsTD2oeJENwEls5bfr88SzilX4Gnvx7foH 2AZNKkUengAHaH7pY80sTRAWrQ/EG7uBB9g3wFPgL+DltOOK1dhDOSHYo0tAfq4CvwAfYX85uGn8 811TQhNcSj2kN2aA1wNebx2CGz3nFKswA8wDt4G5gPdZhuBBz1nFGCPgG56f2L+BXQHvt7o7UAAi 0O788ZNbQxPc6TWx+I/xnT++Sm+C3/sMLRomya8hBN/3mFvQXX7pIfgkfHSx1jV/0irxM8GO4Omd E7rzS26CK8HTO2eo/NJC8HHoCfBM39ov9XJwFT0V1JlYO7+kJtgbeA7cMgMcJ758yyaYDzwHbkm1 8y2b4Az2X0FXQeqdb9EEPwGvhJ0Gn4yweYAzZRMs0PwxipiAlfyUITiP5Hcid+3nuBz8iGq/E9Y7 P0UT/ID+SUQnSpMfIwSn0CPfnSil9mNeDr5anktMoNSdP7QJRAdqka8QJKA2+QpBRGqVrxBEoHb5 CsEAZoBj2MuLtW4T9hdIrpmWnb9ynUC3ep2QfMdIvmMk3zHTKH8eye+E5DtG8h0zovkWzFqY5Bsg +Y6RfMdIvmMk3zGS7xjJd4zkO0byHSP5jpF8x0i+YyTfMZLvGMl3jOQ7RvIdI/mOkXzHSL5jJN8x ku8YyXeM5DtG8h0j+Y6ZRvnHkfxOSL5jJN8xI+BL7IVJvgGS7xjJd4zkO2cOeIS9tFjrO5pQiwA+ AB5iL08735DaQyD5Eag1BJIfkdpCIPkJqCUEkh/AXuDtgNfvp+y7g2/Rp/0gzgF3gJ0B7ym1CbTz A9nKc5G1h0Dye3CI/5/EWkMg+T05x4sns7YQSH5PVtZ/rSGQ/AGM139tITiG5A9itfqvJQSSP5D1 6r/0EEh+BCbVf6khkPxIdKn/0kIg+ZEIqf9SQiD5EQmtf+sQSH5k+tS/VQgkPzJD6j93CCQ/AUPr P1cIJD8RMeo/dQgkPxEx6z9VCCQ/IbHrP3YIJD8xKeo/VggkPzEp6398LRH2jOEceoYvOanrf2gT iMTkqH+FoFBy1r9CUCC5618hKAyL+lcIDFl5O7UVeN/qQJb5F7gCbDc+DpdY1f9j4DLwKbAl+ZRi TXLWfyv9M2BbjuHE+uT49C/pBZOq/iW9EmLWv6RXRoz6l/SK6Vv/kj4lnKW79IfLrz9I0xxiCriJ drprltBOd81h4E/gDyTdHc8AdHAtNamCUKwAAAAASUVORK5CYII= "
+         id="image30"
+         x="43.297897"
+         y="48.919472" />
+    </g>
+  </g>
+</svg>
