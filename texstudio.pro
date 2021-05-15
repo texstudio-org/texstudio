@@ -375,6 +375,8 @@ include(src/qcodeedit/qcodeedit.pri)
 
 include(src/latexparser/latexparser.pri)
 
+include(src/DataTeX/datatex.pri)
+
 include(src/symbolpanel/symbolpanel.pri)
 
 isEmpty(USE_SYSTEM_QUAZIP) {
