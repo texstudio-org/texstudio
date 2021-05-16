@@ -75,7 +75,7 @@ public:
 		int wrappedLineForCursor(int cpos) const;
 		int wrappedLineForCursorNoLock(int cpos) const;
 
-		int documentOffsetToCursor(int x, int y) const;
+        int documentOffsetToCursor(int x, int y, bool disallowPositionBeyondLine = false) const;
 		void cursorToDocumentOffset(int cpos, int& x, int& y) const;
 
 		QPoint cursorToDocumentOffset(int cpos) const;

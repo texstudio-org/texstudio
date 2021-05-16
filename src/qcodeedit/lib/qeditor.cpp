@@ -2395,11 +2395,11 @@ QDocumentLine QEditor::lineAtPosition(const QPoint& p) const
 /*!
 	\return The cursor object nearest to the given viewport position
 */
-QDocumentCursor QEditor::cursorForPosition(const QPoint& p) const
+QDocumentCursor QEditor::cursorForPosition(const QPoint& p, bool disallowPositionBeyondLine) const
 {
 	//qDebug("cursor for : (%i, %i)", p.x(), p.y());
 
-	return m_doc ? m_doc->cursorAt(p) : QDocumentCursor();
+    return m_doc ? m_doc->cursorAt(p,disallowPositionBeyondLine) : QDocumentCursor();
 }
 
 /*!

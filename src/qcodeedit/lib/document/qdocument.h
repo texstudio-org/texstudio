@@ -246,8 +246,8 @@ class QCE_EXPORT QDocument : public QObject
         void removeMark(QDocumentLineHandle *dlh, int mid);
 
 		QDocumentLine lineAt(const QPoint& p) const;
-		void cursorForDocumentPosition(const QPoint& p, int& line, int& column) const;
-		QDocumentCursor cursorAt(const QPoint& p) const;
+        void cursorForDocumentPosition(const QPoint& p, int& line, int& column, bool disallowPositionBeyondLine = false) const;
+        QDocumentCursor cursorAt(const QPoint& p, bool disallowPositionBeyondLine = false) const;
 
 		QDocumentLine line(int line) const;
 		QDocumentLine line(QDocumentConstIterator iterator) const;
