@@ -72,11 +72,10 @@ QT += network \
     svg \
     script \
     printsupport \
-    concurrent \
-    webenginewidgets
+    concurrent 
 
 QT += sql
-QT += pdf pdfwidgets
+
 
 QT += \
     widgets \
