@@ -75,7 +75,8 @@ QT += network \
     concurrent 
 
 QT += sql
-
+QT += pdf \
+    pdfwidgets
 
 QT += \
     widgets \
