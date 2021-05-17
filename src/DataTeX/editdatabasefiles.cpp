@@ -1,6 +1,5 @@
 #include "editdatabasefiles.h"
 #include "ui_editdatabasefiles.h"
-#include <QtWebEngineWidgets/QWebEngineView>
 #include <QTableWidget>
 #include <QDesktopServices>
 #include "texstudio.h"
