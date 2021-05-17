@@ -84,5 +84,8 @@
         <file>tags/beamer_tags.xml</file>
         <file alias="qxs/defaultFormatsDark.qxf">utilities/qxs/defaultFormatsDark.qxf</file>
         <file>utilities/stylesheet_francesco.qss</file>
+        <file>src/DataTeX/NotesDatabase.sql</file>
+        <file>src/DataTeX/FilesDatabase.sql</file>
+        <file>src/DataTeX/TexStudio_Data_Settings.db</file>
     </qresource>
 </RCC>

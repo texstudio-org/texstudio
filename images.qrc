@@ -287,5 +287,15 @@
         <file>images/rc/up_arrow_disabled.png</file>
         <file>images/rc/Vmovetoolbar.png</file>
         <file>images/rc/Vsepartoolbar.png</file>
+        <file>images-ng/add-button.png</file>
+        <file>images-ng/minus.png</file>
+        <file>images-ng/settingspath.png</file>
+        <file>images-ng/pdf.svg</file>
+        <file>images-ng/new.png.svg</file>
+        <file>images-ng/tex.svg</file>
+        <file>images-ng/database-edit.svg</file>
+        <file>images-ng/table.svg</file>
+        <file>images-ng/hdd.svg</file>
+        <file>images-ng/datatex.png</file>
     </qresource>
 </RCC>
