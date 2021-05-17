@@ -13,7 +13,6 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QWidget>
-#include <QtWebEngineWidgets/QWebEngineView>
 #include <QProcess>
 #include "texstudio.h"
 
