@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <QWidget>
 #include <QFile>
-#include <QtWebEngineWidgets/QWebEngineView>
 #include <QListWidgetItem>
 #include <QTableWidget>
 #include <QFile>
