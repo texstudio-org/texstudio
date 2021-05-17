@@ -7,8 +7,6 @@
 #include <QSqlQueryModel>
 #include <QLabel>
 #include <QHBoxLayout>
-#include <QtWebEngineWidgets/QWebEngineView>
-
 #include <QApplication>
 #include <QSplitter>
 #include <QTreeView>
