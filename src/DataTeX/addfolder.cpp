@@ -23,7 +23,6 @@
 #include <QCloseEvent>
 #include <QTabWidget>
 #include <QTableWidgetItem>
-#include "shmeiwseis.h"
 
 addfolder::addfolder(QWidget *parent)
     : QDialog(parent)
