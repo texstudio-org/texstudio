@@ -10,9 +10,9 @@
 #include <QSqlQueryModel>
 #include "sqlfunctions.h"
 #include "texstudio.h"
-#include <QtPdf>
-#include <QPdfDocument>
-#include "pdfviewer.h"
+//#include <QtPdf>
+//#include <QPdfDocument>
+//#include "pdfviewer.h"
 
 namespace Ui {
 class AddFileToEditor;
@@ -112,7 +112,7 @@ private:
     QList<QCheckBox *> checklist;
     QString CurrentDatabaseFile;
 
-    PdfViewer *view;
+//    PdfViewer *view;
 
 signals:
 

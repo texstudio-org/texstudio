@@ -74,17 +74,16 @@ SolveDatabaseExercise::SolveDatabaseExercise(QWidget *parent) :
 
    connect(ui->ExerciseTable->selectionModel(), &QItemSelectionModel::selectionChanged,
            this, &SolveDatabaseExercise::on_ExerciseTable_itemSelectionChanged);
-   view = new PdfViewer(this);
-   view->setMinimumWidth(700);
-   ui->gridLayout_4->addWidget(view);
-   view->show();
+//   view = new PdfViewer(this);
+//   view->setMinimumWidth(700);
+//   ui->gridLayout_4->addWidget(view);
+//   view->show();
 }
 
 SolveDatabaseExercise::~SolveDatabaseExercise()
 {
     delete ui;
-//    currentbase.close();
-    delete view;
+//    delete view;
 }
 
 QString SolveDatabaseExercise::getFileType()
@@ -315,7 +314,7 @@ void SolveDatabaseExercise::loadImageFile(QString exoFile)
     if (exoFile.isEmpty()) {
         return;}
     QString pdfFile = "file:///"+exoFile.replace(".tex",".pdf");
-    view->open(QUrl(pdfFile));
+//    view->open(QUrl(pdfFile));
 }
 
 void SolveDatabaseExercise::on_ExerciseRadio_toggled(bool checked)

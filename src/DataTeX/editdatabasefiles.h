@@ -23,7 +23,7 @@
 #include <QDialogButtonBox>
 #include <QTextEdit>
 #include <QListWidget>
-#include "pdfviewer.h"
+//#include "pdfviewer.h"
 #include "bibtexdialog.h"
 
 namespace Ui {
@@ -94,7 +94,7 @@ private slots:
 
 private:
     Ui::EditDataBaseFiles *ui;
-    PdfViewer *view;
+//    PdfViewer *view;
     QSqlTableModel * tableModel;
     QDialog * MetadataDialog;
     QMap<QString,QString> MetadataMap;

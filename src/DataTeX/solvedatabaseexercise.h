@@ -12,9 +12,9 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QRadioButton>
-#include <QtPdf>
-#include <QPdfDocument>
-#include "pdfviewer.h"
+//#include <QtPdf>
+//#include <QPdfDocument>
+//#include "pdfviewer.h"
 
 namespace Ui {
 class SolveDatabaseExercise;
@@ -73,7 +73,7 @@ private:
     QString Hint;
     QString SolutionType;
     QString HintType;
-    PdfViewer *view;
+//    PdfViewer *view;
 
 signals:
 

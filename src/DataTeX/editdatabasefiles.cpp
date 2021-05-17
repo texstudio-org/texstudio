@@ -123,9 +123,9 @@ EditDataBaseFiles::EditDataBaseFiles(QWidget *parent,QStringList BibNames,QStrin
         BibLineEditList.at(item)->setReadOnly(true);
     }
 
-    view = new PdfViewer(this);
-    ui->gridLayout->addWidget(view);
-    view->show();
+//    view = new PdfViewer(this);
+//    ui->gridLayout->addWidget(view);
+//    view->show();
 }
 
 void EditDataBaseFiles::ShowDataBaseFiles()
@@ -155,7 +155,7 @@ void EditDataBaseFiles::updateTableView(QTableView * table,QString QueryText)
 EditDataBaseFiles::~EditDataBaseFiles()
 {
     delete ui;
-    delete view;
+//    delete view;
 }
 
 void EditDataBaseFiles::FilesTable_selectionchanged()
@@ -246,7 +246,7 @@ void EditDataBaseFiles::loadImageFile(QString exoFile)
     if (exoFile.isEmpty()) {
         return;}
     QString pdfFile = "file:///"+exoFile.replace(".tex",".pdf");
-    view->open(QUrl(pdfFile));
+//    view->open(QUrl(pdfFile));
 }
 
 void EditDataBaseFiles::FileEdit_Changed()

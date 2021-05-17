@@ -118,16 +118,16 @@ AddFileToEditor::AddFileToEditor(QWidget *parent,QString currentTexFile) :
 
     ui->CurrentFileLabel->setText(tr("Insert files to document : ")+CurrentDatabaseFile);
 
-    view = new PdfViewer(this);
-    view->setMinimumWidth(620);
-    ui->gridLayout_17->addWidget(view,1,0);
-    view->show();
+//    view = new PdfViewer(this);
+//    view->setMinimumWidth(620);
+//    ui->gridLayout_17->addWidget(view,1,0);
+//    view->show();
 }
 
 AddFileToEditor::~AddFileToEditor()
 {
     delete ui;
-    delete view;
+//    delete view;
 }
 
 void AddFileToEditor::on_FieldListTheory_itemClicked(QListWidgetItem *item)
@@ -203,7 +203,7 @@ void AddFileToEditor::loadImageFile(QString exoFile)
     if (exoFile.isEmpty()) {
         return;}
     QString pdfFile = "file:///"+exoFile.replace(".tex",".pdf");
-    view->open(QUrl(pdfFile));
+//    view->open(QUrl(pdfFile));
 }
 
 void AddFileToEditor::on_FieldListExercises_itemClicked(QListWidgetItem *item)

@@ -14,10 +14,10 @@ HEADERS += \
     $$PWD/paths.h \
     $$PWD/notesdocuments.h \
     $$PWD/solvedatabaseexercise.h \
-    $$PWD/sqlfunctions.h \
-    $$PWD/pdfviewer.h \
-    $$PWD/pageselector.h \
-    $$PWD/zoomselector.h
+    $$PWD/sqlfunctions.h
+#    $$PWD/pdfviewer.h \
+#    $$PWD/pageselector.h \
+#    $$PWD/zoomselector.h
 
 SOURCES += \
     $$PWD/addfiletoeditor.cpp \
@@ -32,10 +32,10 @@ SOURCES += \
     $$PWD/paths.cpp \
     $$PWD/notesdocuments.cpp \
     $$PWD/solvedatabaseexercise.cpp \
-    $$PWD/sqlfunctions.cpp \
-    $$PWD/pdfviewer.cpp \
-    $$PWD/pageselector.cpp \
-    $$PWD/zoomselector.cpp
+    $$PWD/sqlfunctions.cpp
+#    $$PWD/pdfviewer.cpp \
+#    $$PWD/pageselector.cpp \
+#    $$PWD/zoomselector.cpp
 
 FORMS += \
     $$PWD/addfiletoeditor.ui \
@@ -48,5 +48,5 @@ FORMS += \
     $$PWD/notefolder.ui \
     $$PWD/paths.ui \
     $$PWD/notesdocuments.ui \
-    $$PWD/solvedatabaseexercise.ui \
-    $$PWD/pdfviewer.ui
+    $$PWD/solvedatabaseexercise.ui
+#    $$PWD/pdfviewer.ui
