@@ -22,7 +22,6 @@
 #include <QCloseEvent>
 #include <QTabWidget>
 #include <QTableWidgetItem>
-#include "excel.h"
 
 QFile TomeasFileLine(QDir::currentPath().remove("bin")+"Tomeas.csv");
 
