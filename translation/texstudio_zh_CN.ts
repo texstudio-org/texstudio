@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -86,7 +84,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="40"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation>这个软件根据自由软件基金会发布的通用公共许可证（第二版）授权给用户。</translation>
+        <translation>这个软件根据自由软件基金会第二版发布的通用公共许可证授权给用户。</translation>
     </message>
 </context>
 <context>
@@ -920,7 +918,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>设置您想收到的升级通知种类：
 - 稳定版本：如果稳定性对您最重要请选择这项
@@ -1128,7 +1126,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1779,8 +1777,8 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="2301"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation>当使用在源代码中使用万国码字符时，LaTeX仍然需要
-渲染字符。因为LaTeX起初并不支持万国码，您需要自行在文档中包含合适的万国码安装包。</translation>
+        <translation>当使用在源代码中使用Unicode字符时，LaTeX仍然需要
+渲染字符。因为LaTeX起初并不支持Unicode，您需要自行在文档中包含合适的Unicode安装包。</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2305"/>
@@ -1870,17 +1868,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2563"/>
         <source>No Color Background</source>
-        <translation type="unfinished"></translation>
+        <translation>无背景色</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2568"/>
         <source>Green Background</source>
-        <translation type="unfinished"></translation>
+        <translation>绿色背景</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
         <source>Blue Background</source>
-        <translation type="unfinished"></translation>
+        <translation>蓝背景色</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2593"/>
@@ -2651,8 +2649,8 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="4241"/>
         <location filename="../src/configdialog.ui" line="4308"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>PDF library poppler使用后台渲染。
 &apos;Splash&apos; 时默认并且在大多数情况下合适的。
@@ -2852,7 +2850,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="492"/>
         <source>Asymptote</source>
-        <translation>渐近</translation>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="493"/>
@@ -3362,7 +3360,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="73"/>
         <source>Emphasis - \emph</source>
-        <translation>重点 - \emph</translation>
+        <translation>强调 - \emph</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
@@ -3382,7 +3380,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="77"/>
         <source>Typewriter - \texttt</source>
-        <translation>打字机字体 - \texttt</translation>
+        <translation>打字机体 - \texttt</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="78"/>
@@ -3392,7 +3390,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="79"/>
         <source>Sans Serif - \textsf</source>
-        <translation>无衬线 - \textsf</translation>
+        <translation>无衬线体 - \textsf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="80"/>
@@ -3547,42 +3545,42 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>env align (amsmath)</source>
-        <translation>env align (amsmath)</translation>
+        <translation>align 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env align* (amsmath)</source>
-        <translation>env align* (amsmath)</translation>
+        <translation>align* 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env alignat (amsmath)</source>
-        <translation>env alignat (amsmath)</translation>
+        <translation>alignat 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>env alignat* (amsmath)</source>
-        <translation>env alignat* (amsmath)</translation>
+        <translation>alignat* 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env flalign (amsmath)</source>
-        <translation>env flalign (amsmath)</translation>
+        <translation>flalign 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env flalign* (amsmath)</source>
-        <translation>env flalign* (amsmath)</translation>
+        <translation>flalign* 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env gather (amsmath)</source>
-        <translation>env gather (amsmath)</translation>
+        <translation>gather 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env gather* (amsmath)</source>
-        <translation>env gather* (amsmath)</translation>
+        <translation>gather* 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
@@ -3597,7 +3595,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env cases (amsmath)</source>
-        <translation>env cases (amsmath)</translation>
+        <translation>cases 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
@@ -3607,7 +3605,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>Roman - \mathrm{}</source>
-        <translation>罗马字体 - \mathrm{}</translation>
+        <translation>罗马体 - \mathrm{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
@@ -3622,17 +3620,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation>无衬线f - \mathsf{}</translation>
+        <translation>无衬线体 - \mathsf{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation>打字机字体 - \mathtt{}</translation>
+        <translation>打字机体 - \mathtt{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation>书法字体 - \mathcal{}</translation>
+        <translation>书法体 - \mathcal{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
@@ -3697,7 +3695,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>eqref</source>
-        <translation>方程引用</translation>
+        <translation>公式引用</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
@@ -3763,7 +3761,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1546"/>
         <source>Revert/Remove User Menu Item</source>
-        <translation type="unfinished"></translation>
+        <translation>撤销/移除用户菜单项</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1564"/>
@@ -3860,7 +3858,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/configmanager.cpp" line="3376"/>
         <source>text is restored after restart</source>
-        <translation type="unfinished"></translation>
+        <translation>文件已经在重启后重新加载</translation>
     </message>
 </context>
 <context>
@@ -4345,7 +4343,7 @@ Are you sure you want to undo all changes?</source>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>图片的位置属性：
@@ -4463,7 +4461,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;文件名：%1&lt;/b&gt;
 </translation>
@@ -4651,7 +4649,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2532"/>
         <location filename="../src/latexeditorview.cpp" line="2604"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;文件：%1&lt;/b&gt;
 </translation>
@@ -4659,9 +4657,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2545"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>为 %n 添加标签 </numerusform>
-        </translation>
+        <translation><numerusform>为 %n 添加标签 </numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2550"/>
@@ -6357,7 +6353,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>硬盘上原始文件在保存过程中已损坏
 您将找到一份复件在
@@ -6852,7 +6848,7 @@ Notes:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>align-ampersand</source>
-        <translation>对其符号</translation>
+        <translation>对齐符号</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="169"/>
@@ -9277,7 +9273,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="678"/>
         <location filename="../src/texstudio.cpp" line="679"/>
         <source>TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>目录</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="698"/>
@@ -9623,7 +9619,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="920"/>
         <source>&amp;Align Cursors</source>
-        <translation>对齐光标(&amp;A)</translation>
+        <translation>对齐光标</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="922"/>
@@ -9992,7 +9988,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1048"/>
         <source>update TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>更新目录</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1049"/>
@@ -11048,7 +11044,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5754"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>无法检测文件名, 编译器请先保存.</translation>
     </message>
@@ -11487,7 +11483,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/texstudio.cpp" line="11160"/>
         <location filename="../src/texstudio.cpp" line="11189"/>
         <source>Document: </source>
-        <translation type="unfinished"></translation>
+        <translation>文件：</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11237"/>
