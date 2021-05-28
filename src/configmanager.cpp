@@ -1806,7 +1806,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		for (int i = 0; i < editorKeys->childCount(); i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
 			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2), SHORTCUT_FORMAT);
-			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
+            if (!kSeq.isEmpty() && !kSeq.toString().isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
 				this->editorKeys.insert(kSeq.toString(), editOperation);
 		}
 
