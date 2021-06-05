@@ -16,7 +16,7 @@ jobs:
 
     - name: Dependencies
 
-      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev libqt5qml5 qttools5-dev libqt5svg5-dev zlib1g-dev pkg-config
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtdeclarative5-dev qttools5-dev libqt5svg5-dev zlib1g-dev pkg-config
 
     - name: Configure
       run: qmake texstudio.pro CONFIG+=debug NO_POPPLER_PREVIEW=1
