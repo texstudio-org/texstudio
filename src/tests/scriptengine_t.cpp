@@ -124,7 +124,7 @@ void ScriptEngineTest::script_data(){
     QTest::newRow("Search/Replace Test function replacing 2")
             << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\", false); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
             << "H>al<lo1\nH>am<lo2\nH>al<lo3";
-
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
     QTest::newRow("replaceSelectedText 1")
 		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.setCursor(editor.document().cursor(1,2,1,4)); editor.addCursorMirror(editor.document().cursor(2,2,2,4));  editor.replaceSelectedText('xYz'); "
 		<< "Hallo1\nHaxYzo2\nHaxYzo3";
@@ -136,6 +136,7 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("replaceSelectedText 3")
 		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.setCursor(editor.document().cursor(1,2,1,4)); editor.addCursorMirror(editor.document().cursor(2,2,2,4));  editor.replaceSelectedText('x%<Y%>z', {'macro': true}); "
 		<< "Hallo1\nHaxllzo2\nHaxllzo3";
+#endif
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);
