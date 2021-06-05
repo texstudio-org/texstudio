@@ -169,7 +169,7 @@
 
   <separator/>
   
-  <menu id="review" text="Review remarks">
+  <menu id="review" text="Review remarks (easyReview)">
     <insert id="alert" text="\alert{}" insert="\alert{%&lt;text%>}" info="\alert{text}"/>
     <insert id="comment" text="\comment{}{}" insert="\comment{%&lt;text%>}{%&lt;comment%>}" info="\comment{text}{comment}"/>
     <insert id="add" text="\add{}" insert="\add{%&lt;text%>}" info="\add{text}"/>
