@@ -566,6 +566,8 @@ void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
     server=url;
 
     ltPath = config.languageToolAutorun ? config.languageToolPath : "";
+    ltPath.replace("[txs-settings-dir]", config.configDir);
+    ltPath.replace("[txs-app-dir]", config.appDir);
     if (!ltPath.endsWith("jar")) {
         QStringList jars;
         jars << "/LanguageTool.jar" << "/languagetool-server.jar" << "/languagetool-standalone.jar";

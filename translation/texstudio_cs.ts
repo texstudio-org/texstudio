@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -922,7 +920,7 @@ Změňte, prosím, své nastavení a stanovte seznamy příkazů pouze ve Volby 
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Určuje druh oznámení o aktualizaci, jejž budete přijímat:
 - Stálá vydání: Vyberte, pokud je pro vás stálost důležitá.
@@ -1129,7 +1127,7 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1174,7 +1172,7 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
     <message>
         <location filename="../src/configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation>Zavřít pohled na zápis</translation>
+        <translation>Zavřít zobrazení zápisu</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
@@ -1279,7 +1277,7 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
         <location filename="../src/configdialog.ui" line="1485"/>
         <location filename="../src/configdialog.ui" line="1551"/>
         <source>Reset</source>
-        <translation>Nastavit znovu</translation>
+        <translation>Obnovit výchozí</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1492"/>
@@ -1816,12 +1814,12 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="../src/configdialog.ui" line="1519"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tímto se změní velikost nástrojových pruhů vloženého prohlížeče PDF (pro zobrazení ve vysokém rozlišení).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1544"/>
         <source>Embedded PDF Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástrojový pruh vloženého PDF</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2241"/>
@@ -1831,7 +1829,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="../src/configdialog.ui" line="2495"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"></translation>
+        <translation>Přílišné svislé posunutí (posunování za koncem souboru)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2505"/>
@@ -1871,17 +1869,17 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="../src/configdialog.ui" line="2563"/>
         <source>No Color Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez barevného pozadí</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2568"/>
         <source>Green Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Zelené pozadí</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
         <source>Blue Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Modré pozadí</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2593"/>
@@ -2534,12 +2532,12 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4150"/>
         <source>Fit to Window Width</source>
-        <translation>Umístit do šířky okna</translation>
+        <translation>Přizpůsobit šířce okna</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4155"/>
         <source>Fit to Window Size</source>
-        <translation>Umístit do velikosti okna</translation>
+        <translation>Přizpůsobit velikosti okna</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4160"/>
@@ -2650,8 +2648,8 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
         <location filename="../src/configdialog.ui" line="4241"/>
         <location filename="../src/configdialog.ui" line="4308"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Vykreslovací jádro používané knihovnou PDF poppler.
 Stříknutí (Splash) je výchozí a ve většině případů vhodný.
@@ -3123,12 +3121,12 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math Font St&amp;yles</source>
-        <translation>&amp;Styly matematických znaků</translation>
+        <translation>Matematické &amp;styly písem</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math Stacking symbols</source>
-        <translation>Navršené symboly</translation>
+        <translation>Matematické skládání symbolů</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="28"/>
@@ -3283,12 +3281,12 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="57"/>
         <source>\begin{itemize}</source>
-        <translation>Položkový seznam - \begin{itemize}</translation>
+        <translation>Odrážkový seznam - \begin{itemize}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="58"/>
         <source>\begin{enumerate}</source>
-        <translation>Výčtový seznam - \begin{enumerate}</translation>
+        <translation>Číslovaný seznam - \begin{enumerate}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="59"/>
@@ -3538,7 +3536,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>env equation</source>
-        <translation>Prostředí &quot;Rovnice&quot;</translation>
+        <translation>Prostředí &quot;equation&quot;</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
@@ -3764,7 +3762,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1546"/>
         <source>Revert/Remove User Menu Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrátit/Odstranit položku uživatelské nabídky</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1564"/>
@@ -3861,7 +3859,7 @@ hcete je odstranit?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="3376"/>
         <source>text is restored after restart</source>
-        <translation type="unfinished"></translation>
+        <translation>text je obnoven po restartu</translation>
     </message>
 </context>
 <context>
@@ -3957,12 +3955,12 @@ hcete je odstranit?</translation>
     <message>
         <location filename="../src/editors.cpp" line="393"/>
         <source>Move to other view</source>
-        <translation>Přejít do jiného pohledu</translation>
+        <translation>Přejít do jiného zobrazení</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="399"/>
         <source>Move all to other view</source>
-        <translation>Přesunout vše do jiného pohledu</translation>
+        <translation>Přesunout vše do jiného zobrazení</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="404"/>
@@ -4221,7 +4219,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <location filename="../src/insertgraphics.ui" line="219"/>
         <source>Place in Figure Environment</source>
-        <translation>Umístit do prostředí obrázků</translation>
+        <translation>Umístit do prostředí obrázku</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="228"/>
@@ -4348,7 +4346,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Nastavení umístění obrázku
@@ -4446,7 +4444,7 @@ Průvodce nepodporuje příkaz </translation>
         <location filename="../src/latexcompleter.cpp" line="1312"/>
         <location filename="../src/latexcompleter.cpp" line="1322"/>
         <source>press shift+space to change view</source>
-        <translation>Stisknout  klávesu Shift+mezerník pro změnu pohledu</translation>
+        <translation>Stisknout  klávesu Shift+mezerník pro změnu zobrazení</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1479"/>
@@ -4465,7 +4463,7 @@ Průvodce nepodporuje příkaz </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1830"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
@@ -4596,7 +4594,7 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="520"/>
         <source>Go to Definition</source>
-        <translation>Jít na definici</translation>
+        <translation>Jít na vymezení</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="526"/>
@@ -4652,18 +4650,14 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2532"/>
         <location filename="../src/latexeditorview.cpp" line="2604"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2545"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n odkaz k tomuto štítku</numerusform>
-            <numerusform>%n odkazy k tomuto štítku</numerusform>
-            <numerusform>%n odkazů k tomuto štítku</numerusform>
-        </translation>
+        <translation><numerusform>%n odkaz k tomuto štítku</numerusform><numerusform>%n odkazy k tomuto štítku</numerusform><numerusform>%n odkazů k tomuto štítku</numerusform><numerusform>%n odkazů k tomuto štítku</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2550"/>
@@ -4733,12 +4727,12 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3177"/>
         <source>Collapse All</source>
-        <translation>Složit vše</translation>
+        <translation>Sbalit vše</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3181"/>
         <source>Collapse Level %1</source>
-        <translation>Složit úroveň %1</translation>
+        <translation>Sbalit úroveň %1</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3186"/>
@@ -5190,7 +5184,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="948"/>
         <source>Set Page Count...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit počet stran...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="949"/>
@@ -5215,7 +5209,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1006"/>
         <source>Page count (negative subtracts)</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet stran (záporné odečtení)</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="1037"/>
@@ -5253,7 +5247,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2479"/>
         <source>&amp;View</source>
-        <translation>&amp;Pohled</translation>
+        <translation>&amp;Zobrazení</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2480"/>
@@ -5323,7 +5317,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2504"/>
         <source>Synchronize multiple views</source>
-        <translation>Seřídit více pohledů</translation>
+        <translation>Seřídit více zobrazení</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2506"/>
@@ -5348,7 +5342,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2515"/>
         <source>&amp;Scroll</source>
-        <translation>&amp;Projíždět</translation>
+        <translation>&amp;Posunovat</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2517"/>
@@ -5403,7 +5397,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2529"/>
         <source>Fit to Wi&amp;dth</source>
-        <translation>Umístit do šíř&amp;ky</translation>
+        <translation>Přizpůsobit šíř&amp;ce</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2531"/>
@@ -5413,7 +5407,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2533"/>
         <source>Fit to &amp;Window</source>
-        <translation>Umístit do &amp;okna</translation>
+        <translation>Přizpůsobit &amp;oknu</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2535"/>
@@ -5903,12 +5897,12 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="580"/>
         <source>Fit to Width</source>
-        <translation>Umístit do šířky</translation>
+        <translation>Přizpůsobit šířce</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="583"/>
         <source>Fit to Window</source>
-        <translation>Umístit do okna</translation>
+        <translation>Přizpůsobit oknu</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1125"/>
@@ -5966,7 +5960,7 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="128"/>
         <source>Reset Zoom</source>
-        <translation>Nastavit zvětšení znovu</translation>
+        <translation>Obnovit výchozí zvětšení</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="129"/>
@@ -6032,7 +6026,7 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <location filename="../src/utilsUI.cpp" line="46"/>
         <source>Remember choice ?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pamatovat si volbu?</translation>
     </message>
     <message>
         <location filename="../src/utilsUI.cpp" line="153"/>
@@ -6118,7 +6112,7 @@ Má se dále hledat od začátku?</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
         <source>&amp;View</source>
-        <translation>&amp;Pohled</translation>
+        <translation>&amp;Zobrazení</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="195"/>
@@ -6362,7 +6356,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1102"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Původní soubor na disku byl při ukládání zničen.
 Kopii najdete v
@@ -7360,7 +7354,8 @@ Chcete, aby byly uloženy?</translation>
         <location filename="../src/usermacro.cpp" line="282"/>
         <source>Macro read-in failed
 Error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Čtení makra selhalo
+Chyba: </translation>
     </message>
 </context>
 <context>
@@ -8066,7 +8061,7 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="64"/>
         <source>Collapse All</source>
-        <translation>Složit vše</translation>
+        <translation>Sbalit vše</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="67"/>
@@ -8290,7 +8285,7 @@ Důvěřujete tomuto skriptu?</translation>
         <location filename="../src/structuretreeview.cpp" line="54"/>
         <location filename="../src/structuretreeview.cpp" line="104"/>
         <source>Collapse Subitems</source>
-        <translation>Složit podpoložky</translation>
+        <translation>Sbalit podpoložky</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="55"/>
@@ -8305,12 +8300,12 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <location filename="../src/structuretreeview.cpp" line="58"/>
         <source>Copy filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat název souboru</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="59"/>
         <source>Copy file path</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat cestu souboru</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="67"/>
@@ -8378,7 +8373,7 @@ Důvěřujete tomuto skriptu?</translation>
         <location filename="../src/structuretreeview.cpp" line="111"/>
         <location filename="../src/structuretreeview.cpp" line="118"/>
         <source>Go to Definition</source>
-        <translation>Jít na definici</translation>
+        <translation>Jít na vymezení</translation>
     </message>
     <message>
         <location filename="../src/structuretreeview.cpp" line="117"/>
@@ -9285,7 +9280,7 @@ se nepodařilo odstranit.</translation>
         <location filename="../src/texstudio.cpp" line="678"/>
         <location filename="../src/texstudio.cpp" line="679"/>
         <source>TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>OBSAH</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="698"/>
@@ -9626,7 +9621,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="919"/>
         <source>S&amp;ort Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Ř&amp;adit řádky</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="920"/>
@@ -10000,7 +9995,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1048"/>
         <source>update TOC</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat obsah</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1049"/>
@@ -10473,7 +10468,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1242"/>
         <source>Collapse</source>
-        <translation>Složit</translation>
+        <translation>Sbalit</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1243"/>
@@ -10546,7 +10541,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Reset Zoom</source>
-        <translation>Nastavit zvětšení znovu</translation>
+        <translation>Obnovit výchozí zvětšení</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
@@ -10643,7 +10638,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1339"/>
         <source>Bugs Report/Feature Request</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpráva o chybách/Žádost o funkce</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1340"/>
@@ -10944,32 +10939,32 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3570"/>
         <source>Ascending</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzestupně</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3570"/>
         <source>Descending</source>
-        <translation type="unfinished"></translation>
+        <translation>Sestupně</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3570"/>
         <source>No Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez řazení</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3570"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhodně (zamíchat)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3576"/>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Řazení</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3577"/>
         <source>Complete Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Doplnit řádky</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3578"/>
@@ -10979,7 +10974,7 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3579"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit zdvojené</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3803"/>
@@ -11055,7 +11050,7 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5754"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nelze zjistit název souboru.
 Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation>
@@ -11484,7 +11479,7 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
         <location filename="../src/texstudio.cpp" line="11160"/>
         <location filename="../src/texstudio.cpp" line="11189"/>
         <source>Document: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument: </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11237"/>
@@ -11535,7 +11530,7 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     <message>
         <location filename="../src/texstudio.cpp" line="11263"/>
         <source>Go to Definition</source>
-        <translation>Jít na definici</translation>
+        <translation>Jít na vymezení</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="648"/>

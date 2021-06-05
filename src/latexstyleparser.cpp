@@ -49,10 +49,16 @@ void LatexStyleParser::run()
 		}
 		if (fn.contains('#')) {
 			QStringList lst = fn.split('#');
-			if (!lst.isEmpty())
+            if (!lst.isEmpty()){
 				topPackage = lst.takeFirst();
-			if (!lst.isEmpty())
+            }
+            if (!lst.isEmpty()){
 				fn = lst.last();
+                if(topPackage.isEmpty()){
+                    topPackage = fn;
+                    topPackage.chop(4);
+                }
+            }
 		} else {
 			topPackage = fn;
 			topPackage.chop(4);
@@ -143,8 +149,9 @@ void LatexStyleParser::run()
 			if (!QFileInfo("cwl:" + elem + ".cwl").exists()) {
 				QString hlp = kpsewhich(elem + ".sty");
 				if (!hlp.isEmpty()) {
-					if (!topPackage.isEmpty())
+                    if (!topPackage.isEmpty()){
 						elem = topPackage + "#" + elem + ".sty";
+                    }
 					addFile(elem);
 				}
 			}
@@ -164,7 +171,7 @@ void LatexStyleParser::run()
 					}
 				}
 				if (!topPackage.isEmpty() && topPackage != baseName)
-					baseName = topPackage + "#" + baseName;
+                    baseName = topPackage + "#" + baseName;
 				emit scanCompleted(baseName);
 			}
 		}
@@ -378,7 +385,7 @@ bool LatexStyleParser::parseLineEnv(QStringList &results, const QString &line)
 
 bool LatexStyleParser::parseLineInput(QStringList &results, const QString &line, QStringList &parsedPackages, const QString &fileName) const
 {
-	static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
+    static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._-]+)");
 
 	if (rxInput.indexIn(line) == -1) {
 		return false;
@@ -830,6 +837,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 			if (elem.startsWith("{changing ")  && !elem.contains("@")) {
 				QString zw = elem.mid(10);
 				zw.chop(11);
+                zw=zw.simplified();
 				if (!args.contains(zw + "#S"))
 					args << zw + "#S";
 			}

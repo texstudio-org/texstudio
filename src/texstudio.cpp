@@ -1049,7 +1049,8 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "warningprev", tr("Previous Warning"), "gotoNearLogEntry", QKeySequence(), "", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !")); //, ":/images/errorprev.png");
 	newManagedAction(submenu, "warningnext", tr("Next Warning"), "gotoNearLogEntry", QKeySequence(), "", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !")); //, ":/images/errornext.png");
     newManagedAction(submenu, "badboxprev", tr("Previous Bad Box"), "gotoNearLogEntry", MAC_OTHER(0, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Up)), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !")); //, ":/images/errorprev.png");
-    newManagedAction(submenu, "badboxnext", tr("Next Bad Box"), "gotoNearLogEntry", MAC_OTHER(0, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Down)), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !")); //, ":/images/errornext.png");
+    newManagedAction(submenu, "badboxnext", tr("Next Bad Box"), "gotoNearLogEntry", MAC_OTHER(0, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Down)), "", QList<QVariant>() << LT_BADBOX << false << tr("No bad boxes detected !")); //, ":/images/errornext.png");
+
 	submenu->addSeparator();
     newManagedAction(submenu, "definition", tr("Definition"), SLOT(editGotoDefinition()), filterLocaleShortcut(QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_F)));
 
@@ -2610,6 +2611,16 @@ void Texstudio::alignTableCols()
 	int col = cur.columnNumber();
 	if (!cur.isValid())
 		return;
+    LatexDocument *doc=currentEditorView()->getDocument();
+    LatexParser lp=doc->lp;
+    QStringList keys=lp.environmentAliases.uniqueKeys();
+    QSet<QString> results;
+    foreach(const QString &elem,keys){
+        if(lp.environmentAliases.values(elem).contains("array")){
+            results<<elem;
+        }
+    }
+    LatexTables::mathTables.unite(results);
 	LatexTables::alignTableCols(cur);
 	cur.setLineNumber(linenr);
 	cur.setColumnNumber(col);
@@ -4745,6 +4756,7 @@ void Texstudio::normalCompletion()
 	case Token::keyValArg:
 	case Token::keyVal_key:
 	case Token::keyVal_val: {
+        if (mCompleterNeedsUpdate) updateCompleter();
 		QString word = c.line().text();
 		int col = c.columnNumber();
         command = Parsing::getCommandFromToken(tk);
@@ -4763,7 +4775,7 @@ void Texstudio::normalCompletion()
 			// command/arg structure ? (yathesis)
 			TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 			QString subcommand;
-			int add = (type == Token::keyVal_val) ? 2 : 1;
+            int add = (type == Token::keyVal_val) ? 1 : 0;
 			if (tk.type == Token::braces || tk.type == Token::squareBracket)
 				add = 0;
 			for (int k = tl.indexOf(tk) + 1; k < tl.length(); k++) {
@@ -6799,7 +6811,8 @@ void Texstudio::generalOptions()
         QEditor::setEditOperations(configManager.editorKeys, false); // true -> false, otherwise edit operation can't be removed, e.g. tab for indentSelection
         foreach (LatexEditorView *edView, editors->editors()) {
             QEditor *ed = edView->editor;
-            edView->updatePalette(QApplication::palette());
+            if(configManager.interfaceStyle!="Orion Dark")
+                edView->updatePalette(QApplication::palette());
             ed->document()->markFormatCacheDirty();
             ed->update();
         }
@@ -9809,6 +9822,11 @@ void Texstudio::importPackage(QString name)
 	}
 	name.chop(4);
 	name.append(".sty");
+    // remove option# from name
+    int i=name.indexOf("#");
+    if(i>-1){
+        name=name.mid(i+1);
+    }
 	latexStyleParser->addFile(name + dirName);
 	name.chop(4);
 	name.append(".cls"); // try also cls
@@ -9825,7 +9843,12 @@ void Texstudio::packageScanCompleted(QString name)
 	}
 	foreach (LatexDocument *doc, documents.documents) {
 		if (doc->containsPackage(baseName)) {
-			documents.cachedPackages.remove(name + ".cwl"); // TODO: check is this still correct if keys are complex?
+            //find proper key
+            QStringList keys=documents.cachedPackages.keys();
+            keys=keys.filter(name+".cwl");
+            foreach(const QString &key,keys){
+                documents.cachedPackages.remove(key); // TODO: check is this still correct if keys are complex?
+            }
 			doc->updateCompletionFiles(false);
 		}
 	}

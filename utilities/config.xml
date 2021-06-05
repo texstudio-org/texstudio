@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>texstudio</Name>
+    <Version>3.1.2</Version>
+    <Title>LaTeX Editor</Title>
+    <Publisher>texstudio-org</Publisher>
+    <TargetDir>@ApplicationsDir@/texstudio</TargetDir>
+    <RemoveTargetDir>false</RemoveTargetDir>
+</Installer>

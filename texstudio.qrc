@@ -83,5 +83,6 @@
         <file>images/beamer/Warsaw.png</file>
         <file>tags/beamer_tags.xml</file>
         <file alias="qxs/defaultFormatsDark.qxf">utilities/qxs/defaultFormatsDark.qxf</file>
+        <file>utilities/stylesheet_francesco.qss</file>
     </qresource>
 </RCC>

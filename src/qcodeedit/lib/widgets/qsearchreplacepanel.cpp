@@ -72,300 +72,301 @@ QStringList findHistory, replaceHistory;
 QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
   : QPanel(p),m_search(nullptr),m_lastDirection(false),useLineForSearch(false),searchOnlyInSelection(false)
 {
-	setObjectName("searchPanel");
-	
-	ConfigManagerInterface* conf = ConfigManagerInterface::getInstance();
-	//setupUi(this);
-	// do it completely programatic
-	//this->resize(801, 21);
-	QVBoxLayout *vboxLayout=new QVBoxLayout(this);
-	QWidget *searchWidget=new QWidget(nullptr);
-	//searchWidget->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::MinimumExpanding);
-	vboxLayout->addWidget(searchWidget);
-	FlowLayoutX *flowLayout=new FlowLayoutX(searchWidget,1,1,1);
+    setObjectName("searchPanel");
 
-	QSize buttonSize(22,22);
+    ConfigManagerInterface* conf = ConfigManagerInterface::getInstance();
+    //setupUi(this);
+    // do it completely programatic
+    //this->resize(801, 21);
+    QVBoxLayout *vboxLayout=new QVBoxLayout(this);
+    QWidget *searchWidget=new QWidget(nullptr);
+    //searchWidget->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::MinimumExpanding);
+    vboxLayout->addWidget(searchWidget);
+    FlowLayoutX *flowLayout=new FlowLayoutX(searchWidget,1,1,1);
 
-	// find section
-	bClose = new QToolButton(this);
-	bClose->setAutoRaise(true);
-	bClose->setObjectName(("bClose"));
-	bClose->setMinimumSize(buttonSize);
-	bClose->setMaximumSize(buttonSize);
-	QIcon closeIcon = getRealIconCached("close-tab");
-	closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
-	bClose->setIcon(closeIcon);
-	flowLayout->addWidget(bClose);
+    QSize buttonSize(22,22);
 
-	QLabel* lbFind = new QLabel(this);
-	lbFind->setObjectName(("lbFind"));
-	lbFind->setMinimumHeight(buttonSize.height());
-	flowLayout->addWidget(lbFind);
+    // find section
+    bClose = new QToolButton(this);
+    bClose->setAutoRaise(true);
+    bClose->setObjectName(("bClose"));
 
-	cFind = new QComboBox(this);
-	cFind->setEditable(true);
-	cFind->lineEdit()->setClearButtonEnabled(true);
-	cFind->completer()->setCompletionMode(QCompleter::PopupCompletion);
-	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
-	cFind->setObjectName(("cFind"));
-	QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Fixed);
-	sizePolicy4.setHorizontalStretch(2);
-	cFind->setSizePolicy(sizePolicy4);
-	cFind->setMinimumSize(QSize(120, 22));
-	conf->registerOption("Search/Find History", &findHistory, QStringList());
-	conf->linkOptionToObject(&findHistory, cFind, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
-	flowLayout->addWidget(cFind);
+    QIcon closeIcon = getRealIconCached("close-tab");
+    closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
+    bClose->setIcon(closeIcon);
+    flowLayout->addWidget(bClose);
 
-	buttonSize.setHeight(cFind->height());
-	buttonSize.setWidth(cFind->height());
+    QLabel* lbFind = new QLabel(this);
+    lbFind->setObjectName(("lbFind"));
+    lbFind->setMinimumHeight(buttonSize.height());
+    flowLayout->addWidget(lbFind);
 
+    cFind = new QComboBox(this);
+    cFind->setEditable(true);
+    cFind->lineEdit()->setClearButtonEnabled(true);
+    cFind->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
+    cFind->setObjectName(("cFind"));
+    QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    sizePolicy4.setHorizontalStretch(2);
+    cFind->setSizePolicy(sizePolicy4);
+    cFind->setMinimumSize(QSize(120, 22));
+    conf->registerOption("Search/Find History", &findHistory, QStringList());
+    conf->linkOptionToObject(&findHistory, cFind, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
+    flowLayout->addWidget(cFind);
 
-	bNext = new QToolButton(this);
-	bNext->setObjectName(("bNext"));
-	bNext->setMinimumSize(buttonSize);
-	bNext->setMaximumSize(buttonSize);
-	bNext->setIcon(getRealIconCached("down"));
-	bNext->setIconSize(buttonSize);
-	flowLayout->addWidget(bNext);
-
-	bPrevious = new QToolButton(this);
-	bPrevious->setObjectName(("bPrevious"));
-	bPrevious->setMinimumSize(buttonSize);
-	bPrevious->setMaximumSize(buttonSize);
-	bPrevious->setIcon(getRealIconCached("up"));
-	bPrevious->setIconSize(buttonSize);
-	flowLayout->addWidget(bPrevious);
-
-	bCount = new QToolButton(this);
-	bCount->setObjectName(("bCount"));
-	bCount->setMinimumSize(buttonSize);
-	bCount->setMaximumSize(buttonSize);
-	bCount->setIcon(getRealIconCached("count"));
-	bCount->setIconSize(buttonSize);
-	flowLayout->addWidget(bCount);
-
-	QLabel *spacer = new QLabel("  ");
-	flowLayout->addWidget(spacer);
-
-	//cbCase = new QCheckBox();
-	cbCase = new QToolButton(this);
-	cbCase->setCheckable(true);
-	cbCase->setObjectName(("cbCase"));
-	cbCase->setToolTip(tr("Enables case sensitive search."));
-	cbCase->setMinimumSize(buttonSize);
-	cbCase->setMaximumSize(buttonSize);
-	cbCase->setIcon(getRealIconCached("case"));
-	cbCase->setIconSize(buttonSize);
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, false, "Search/Case Sensitive", cbCase);
-	flowLayout->addWidget(cbCase);
-
-	cbWords = new QToolButton(this);
-	cbWords->setCheckable(true);
-	cbWords->setToolTip(tr("Only searches for whole words."));
-	cbWords->setObjectName(("cbWords"));
-	cbWords->setMinimumSize(buttonSize);
-	cbWords->setMaximumSize(buttonSize);
-	cbWords->setIcon(getRealIconCached("word"));
-	cbWords->setIconSize(buttonSize);
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
-	flowLayout->addWidget(cbWords);
-
-	cbRegExp = new QToolButton(this);
-	cbRegExp->setCheckable(true);
-	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
-	cbRegExp->setObjectName(("cbRegExp"));
-	cbRegExp->setMinimumSize(buttonSize);
-	cbRegExp->setMaximumSize(buttonSize);
-	cbRegExp->setIcon(getRealIconCached("regex"));
-	cbRegExp->setIconSize(buttonSize);
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
-	flowLayout->addWidget(cbRegExp);
-
-	cbHighlight = new QToolButton(this);
-	cbHighlight->setCheckable(true);
-	cbHighlight->setObjectName(("cbHighlight"));
-	cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
-	cbHighlight->setIcon(getRealIconCached("highlight"));
-	cbHighlight->setMinimumSize(buttonSize);
-	cbHighlight->setMaximumSize(buttonSize);
-	cbHighlight->setIconSize(buttonSize);
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
-	flowLayout->addWidget(cbHighlight);
-
-	cbCursor = new QToolButton(this);
-	cbCursor->setCheckable(true);
-	cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
-	cbCursor->setObjectName(("cbCursor"));
-	cbCursor->setMinimumSize(buttonSize);
-	cbCursor->setMaximumSize(buttonSize);
-	cbCursor->setIcon(getRealIconCached("cursor"));
-	cbCursor->setIconSize(buttonSize);
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
-	flowLayout->addWidget(cbCursor);
-
-	cbSelection = new QToolButton(this);
-	cbSelection->setCheckable(true);
-	cbSelection->setToolTip(tr("Only searches in the selected text."));
-	cbSelection->setObjectName(("cbSelection"));
-	cbSelection->setMinimumSize(buttonSize);
-	cbSelection->setMaximumSize(buttonSize);
-	cbSelection->setIcon(getRealIconCached("selection"));
-	cbSelection->setIconSize(buttonSize);
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
-	flowLayout->addWidget(cbSelection);
-
-	cbFilter = new QToolButton(this);
-	cbFilter->setToolTip(tr("Only searches in selected text type (math, commands, etc.)"));
-	cbFilter->setObjectName(("cbFilter"));
-	cbFilter->setMinimumSize(buttonSize);
-	cbFilter->setMaximumSize(buttonSize);
-	QMenu *menu=new QMenu();
-	menu->addAction(getRealIconCached("all"),"all",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("math"),"math",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("non-math"),"non-math",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("verbatim"),"verbatim",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("comment"),"comment",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("non-comment"),"non-comment",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("command"),"keyword",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("label"),"label",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("cite"),"citation",this,SLOT(filterChanged()));
-	menu->addAction(getRealIconCached("normal-text"),"normal text",this,SLOT(filterChanged()));
-	cbFilter->setMenu(menu);
-	cbFilter->setPopupMode(QToolButton::InstantPopup);
-	cbFilter->setIcon(getRealIconCached("all"));
-	cbFilter->setIconSize(buttonSize);
-	flowLayout->addWidget(cbFilter);
-
-	bExtend  = new QToolButton(this);
-	bExtend->setToolTip(tr("Extended Search"));
-	bExtend->setObjectName(("bExtend"));
-	bExtend->setMinimumSize(buttonSize);
-	bExtend->setMaximumSize(buttonSize);
-	bExtend->setIcon(getRealIconCached("extend"));
-	bExtend->setIconSize(buttonSize);
-	flowLayout->addWidget(bExtend);
-	connect(bExtend, SIGNAL(clicked()), this, SIGNAL(showExtendedSearch()));
-
-	// replace section
-	replaceWidget=new QWidget(this);
-	vboxLayout->addWidget(replaceWidget);
-	FlowLayoutX *flowLayout2=new FlowLayoutX(replaceWidget,1,1,1);
-	QWidget *closeButtonPlaceHolder = new QWidget();  // takes exactly the same amount of space as the close button in the find panel
-	closeButtonPlaceHolder->setMinimumSize(buttonSize);
-	closeButtonPlaceHolder->setMaximumSize(buttonSize);
-	flowLayout2->addWidget(closeButtonPlaceHolder);
-
-	QLabel *lbReplace = new QLabel(this);
-	lbReplace->setObjectName("lbReplace");
-	lbReplace->setMinimumHeight(buttonSize.height());
-	flowLayout2->addWidget(lbReplace);
-
-	cReplace = new QComboBox(this);
-	cReplace->setEditable(true);
-	cReplace->lineEdit()->setClearButtonEnabled(true);
-	cReplace->completer()->setCompletionMode(QCompleter::PopupCompletion);
-	cReplace->completer()->setCaseSensitivity(Qt::CaseSensitive);
-	cReplace->setObjectName(("cReplace"));
-	cReplace->setEnabled(true);
-	QSizePolicy sizePolicy7(QSizePolicy::Minimum, QSizePolicy::Fixed);
-	sizePolicy7.setHorizontalStretch(2);
-	sizePolicy7.setVerticalStretch(0);
-	sizePolicy7.setHeightForWidth(cReplace->sizePolicy().hasHeightForWidth());
-	cReplace->setSizePolicy(sizePolicy4);
-	cReplace->setMinimumSize(QSize(120, 22));
-	//	cReplace->setMaximumSize(QSize(1200, 16777215));
-	conf->registerOption("Search/Replace History", &replaceHistory, QStringList());
-	conf->linkOptionToObject(&replaceHistory, cReplace, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
-	flowLayout2->addWidget(cReplace);
-
-	bReplaceNext = new QToolButton(this);
-	bReplaceNext->setObjectName(("bReplaceNext"));
-	bReplaceNext->setMinimumSize(buttonSize);
-	bReplaceNext->setMaximumSize(buttonSize);
-	bReplaceNext->setIcon(getRealIconCached("replacedown"));
-	flowLayout2->addWidget(bReplaceNext);
-
-	bReplacePrevious = new QToolButton(this);
-	bReplacePrevious->setObjectName(("bReplacePrevious"));
-	bReplacePrevious->setMinimumSize(buttonSize);
-	bReplacePrevious->setMaximumSize(buttonSize);
-	bReplacePrevious->setIcon(getRealIconCached("replaceup"));
-	flowLayout2->addWidget(bReplacePrevious);
-
-	bReplaceAll = new QToolButton(this);
-	bReplaceAll->setObjectName(("bReplaceAll"));
-	bReplaceAll->setMinimumSize(buttonSize);
-	bReplaceAll->setMaximumSize(buttonSize);
-	bReplaceAll->setIcon(getRealIconCached("replaceall"));
-	flowLayout2->addWidget(bReplaceAll);
-
-	QLabel *spacer2 = new QLabel("  ");
-	flowLayout2->addWidget(spacer2);
-
-	cbPrompt = new QToolButton(this);
-	cbPrompt->setCheckable(true);
-	cbPrompt->setToolTip(tr("Ask before any match is replaced."));
-	cbPrompt->setObjectName(("cbPrompt"));
-	cbPrompt->setMinimumSize(buttonSize);
-	cbPrompt->setMaximumSize(buttonSize);
-	cbPrompt->setIcon(getRealIconCached("prompt"));
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, askConfig, false, "Search/Ask before Replace", cbPrompt);
-	flowLayout2->addWidget(cbPrompt);
-
-	cbEscapeSeq = new QToolButton(this);
-	cbEscapeSeq->setCheckable(true);
-	cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\"));
-	cbEscapeSeq->setObjectName(("cbEscapeSeq"));
-	cbEscapeSeq->setMinimumSize(buttonSize);
-	cbEscapeSeq->setMaximumSize(buttonSize);
-	cbEscapeSeq->setIcon(getRealIconCached("escape"));
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, escapeConfig, false, "Search/Escape Sequence", cbEscapeSeq);
-	flowLayout2->addWidget(cbEscapeSeq);
-
-	lReplacementText = new QLabel(this);
-	lReplacementText->setTextFormat(Qt::PlainText);
-	lReplacementText->setMinimumHeight(buttonSize.height());
-	int numButtonSpread = 5;
-	int lReplacementSize = numButtonSpread * buttonSize.width() + (numButtonSpread-1) * flowLayout2->horizontalSpacing();
-	// fixed size needed: unrestricted width would lead to shifting replace buttons
-	lReplacementText->setMinimumWidth(lReplacementSize);
-	lReplacementText->setMaximumWidth(lReplacementSize);
-	flowLayout2->addWidget(lReplacementText);
+    buttonSize.setHeight(cFind->height());
+    buttonSize.setWidth(cFind->height());
 
 
-	//retranslateUi(this);
-	QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
+    bNext = new QToolButton(this);
+    bNext->setObjectName(("bNext"));
+    bNext->setMinimumSize(buttonSize);
+    bNext->setMaximumSize(buttonSize);
+    bNext->setIcon(getRealIconCached("down"));
+    bNext->setIconSize(buttonSize);
+    flowLayout->addWidget(bNext);
 
-	// connect by name
-	QMetaObject::connectSlotsByName(this);
-	connect(cFind->lineEdit(),SIGNAL(textEdited(QString)),SLOT(cFind_textEdited(QString)));
-	connect(cReplace->lineEdit(),SIGNAL(textEdited(QString)),SLOT(cReplace_textEdited(QString)));
+    bPrevious = new QToolButton(this);
+    bPrevious->setObjectName(("bPrevious"));
+    bPrevious->setMinimumSize(buttonSize);
+    bPrevious->setMaximumSize(buttonSize);
+    bPrevious->setIcon(getRealIconCached("up"));
+    bPrevious->setIconSize(buttonSize);
+    flowLayout->addWidget(bPrevious);
 
-	// set texts
-	bClose->setToolTip(tr("Close search/replace panel"));
-	cFind->setToolTip(tr("Text or pattern to search for"));
-	bNext->setToolTip(tr("Find next"));
-	bPrevious->setToolTip(tr("Find previous"));
-	bCount->setToolTip(tr("Count occurrences"));
-	cReplace->setToolTip(tr("Replacement text"));
-	bReplaceNext->setToolTip(tr("Replace and find next"));
-	bReplacePrevious->setToolTip(tr("Replace and find previous"));
-	bReplaceAll->setToolTip(tr("Replace all"));
+    bCount = new QToolButton(this);
+    bCount->setObjectName(("bCount"));
+    bCount->setMinimumSize(buttonSize);
+    bCount->setMaximumSize(buttonSize);
+    bCount->setIcon(getRealIconCached("count"));
+    bCount->setIconSize(buttonSize);
+    flowLayout->addWidget(bCount);
 
-	lbFind->setText(tr("Find:"));
-	lbReplace->setText(tr("Replace:"));
-	int wd=qMax(lbFind->sizeHint().width(),lbReplace->sizeHint().width());
-	lbFind->setMinimumWidth(wd);
-	lbReplace->setMinimumWidth(wd);
-	lbFind->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
-	lbReplace->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+    QLabel *spacer = new QLabel("  ");
+    flowLayout->addWidget(spacer);
+
+    //cbCase = new QCheckBox();
+    cbCase = new QToolButton(this);
+    cbCase->setCheckable(true);
+    cbCase->setObjectName(("cbCase"));
+    cbCase->setToolTip(tr("Enables case sensitive search."));
+    cbCase->setMinimumSize(buttonSize);
+    cbCase->setMaximumSize(buttonSize);
+    cbCase->setIcon(getRealIconCached("case"));
+    cbCase->setIconSize(buttonSize);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, false, "Search/Case Sensitive", cbCase);
+    flowLayout->addWidget(cbCase);
+
+    cbWords = new QToolButton(this);
+    cbWords->setCheckable(true);
+    cbWords->setToolTip(tr("Only searches for whole words."));
+    cbWords->setObjectName(("cbWords"));
+    cbWords->setMinimumSize(buttonSize);
+    cbWords->setMaximumSize(buttonSize);
+    cbWords->setIcon(getRealIconCached("word"));
+    cbWords->setIconSize(buttonSize);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
+    flowLayout->addWidget(cbWords);
+
+    cbRegExp = new QToolButton(this);
+    cbRegExp->setCheckable(true);
+    cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
+    cbRegExp->setObjectName(("cbRegExp"));
+    cbRegExp->setMinimumSize(buttonSize);
+    cbRegExp->setMaximumSize(buttonSize);
+    cbRegExp->setIcon(getRealIconCached("regex"));
+    cbRegExp->setIconSize(buttonSize);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
+    flowLayout->addWidget(cbRegExp);
+
+    cbHighlight = new QToolButton(this);
+    cbHighlight->setCheckable(true);
+    cbHighlight->setObjectName(("cbHighlight"));
+    cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
+    cbHighlight->setIcon(getRealIconCached("highlight"));
+    cbHighlight->setMinimumSize(buttonSize);
+    cbHighlight->setMaximumSize(buttonSize);
+    cbHighlight->setIconSize(buttonSize);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
+    flowLayout->addWidget(cbHighlight);
+
+    cbCursor = new QToolButton(this);
+    cbCursor->setCheckable(true);
+    cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
+    cbCursor->setObjectName(("cbCursor"));
+    cbCursor->setMinimumSize(buttonSize);
+    cbCursor->setMaximumSize(buttonSize);
+    cbCursor->setIcon(getRealIconCached("cursor"));
+    cbCursor->setIconSize(buttonSize);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
+    flowLayout->addWidget(cbCursor);
+
+    cbSelection = new QToolButton(this);
+    cbSelection->setCheckable(true);
+    cbSelection->setToolTip(tr("Only searches in the selected text."));
+    cbSelection->setObjectName(("cbSelection"));
+    cbSelection->setMinimumSize(buttonSize);
+    cbSelection->setMaximumSize(buttonSize);
+    cbSelection->setIcon(getRealIconCached("selection"));
+    cbSelection->setIconSize(buttonSize);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
+    flowLayout->addWidget(cbSelection);
+
+    cbFilter = new QToolButton(this);
+    cbFilter->setToolTip(tr("Only searches in selected text type (math, commands, etc.)"));
+    cbFilter->setObjectName(("cbFilter"));
+    cbFilter->setMinimumSize(buttonSize);
+    cbFilter->setMaximumSize(buttonSize);
+    QMenu *menu=new QMenu();
+    menu->addAction(getRealIconCached("all"),"all",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("math"),"math",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("non-math"),"non-math",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("verbatim"),"verbatim",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("comment"),"comment",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("non-comment"),"non-comment",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("command"),"keyword",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("label"),"label",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("cite"),"citation",this,SLOT(filterChanged()));
+    menu->addAction(getRealIconCached("normal-text"),"normal text",this,SLOT(filterChanged()));
+    cbFilter->setMenu(menu);
+    cbFilter->setPopupMode(QToolButton::InstantPopup);
+    cbFilter->setIcon(getRealIconCached("all"));
+    cbFilter->setIconSize(buttonSize);
+    flowLayout->addWidget(cbFilter);
+
+    bExtend  = new QToolButton(this);
+    bExtend->setToolTip(tr("Extended Search"));
+    bExtend->setObjectName(("bExtend"));
+    bExtend->setMinimumSize(buttonSize);
+    bExtend->setMaximumSize(buttonSize);
+    bExtend->setIcon(getRealIconCached("extend"));
+    bExtend->setIconSize(buttonSize);
+    flowLayout->addWidget(bExtend);
+    connect(bExtend, SIGNAL(clicked()), this, SIGNAL(showExtendedSearch()));
+
+    // replace section
+    replaceWidget=new QWidget(this);
+    vboxLayout->addWidget(replaceWidget);
+    FlowLayoutX *flowLayout2=new FlowLayoutX(replaceWidget,1,1,1);
+    QWidget *closeButtonPlaceHolder = new QWidget();  // takes exactly the same amount of space as the close button in the find panel
+    closeButtonPlaceHolder->setMinimumSize(buttonSize);
+    closeButtonPlaceHolder->setMaximumSize(buttonSize);
+    bClose->setMinimumSize(buttonSize);
+    bClose->setMaximumSize(buttonSize);
+    flowLayout2->addWidget(closeButtonPlaceHolder);
+
+    QLabel *lbReplace = new QLabel(this);
+    lbReplace->setObjectName("lbReplace");
+    lbReplace->setMinimumHeight(buttonSize.height());
+    flowLayout2->addWidget(lbReplace);
+
+    cReplace = new QComboBox(this);
+    cReplace->setEditable(true);
+    cReplace->lineEdit()->setClearButtonEnabled(true);
+    cReplace->completer()->setCompletionMode(QCompleter::PopupCompletion);
+    cReplace->completer()->setCaseSensitivity(Qt::CaseSensitive);
+    cReplace->setObjectName(("cReplace"));
+    cReplace->setEnabled(true);
+    QSizePolicy sizePolicy7(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    sizePolicy7.setHorizontalStretch(2);
+    sizePolicy7.setVerticalStretch(0);
+    sizePolicy7.setHeightForWidth(cReplace->sizePolicy().hasHeightForWidth());
+    cReplace->setSizePolicy(sizePolicy7);
+    cReplace->setMinimumSize(QSize(120, 22));
+    //	cReplace->setMaximumSize(QSize(1200, 16777215));
+    conf->registerOption("Search/Replace History", &replaceHistory, QStringList());
+    conf->linkOptionToObject(&replaceHistory, cReplace, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
+    flowLayout2->addWidget(cReplace);
+
+    bReplaceNext = new QToolButton(this);
+    bReplaceNext->setObjectName(("bReplaceNext"));
+    bReplaceNext->setMinimumSize(buttonSize);
+    bReplaceNext->setMaximumSize(buttonSize);
+    bReplaceNext->setIcon(getRealIconCached("replacedown"));
+    flowLayout2->addWidget(bReplaceNext);
+
+    bReplacePrevious = new QToolButton(this);
+    bReplacePrevious->setObjectName(("bReplacePrevious"));
+    bReplacePrevious->setMinimumSize(buttonSize);
+    bReplacePrevious->setMaximumSize(buttonSize);
+    bReplacePrevious->setIcon(getRealIconCached("replaceup"));
+    flowLayout2->addWidget(bReplacePrevious);
+
+    bReplaceAll = new QToolButton(this);
+    bReplaceAll->setObjectName(("bReplaceAll"));
+    bReplaceAll->setMinimumSize(buttonSize);
+    bReplaceAll->setMaximumSize(buttonSize);
+    bReplaceAll->setIcon(getRealIconCached("replaceall"));
+    flowLayout2->addWidget(bReplaceAll);
+
+    QLabel *spacer2 = new QLabel("  ");
+    flowLayout2->addWidget(spacer2);
+
+    cbPrompt = new QToolButton(this);
+    cbPrompt->setCheckable(true);
+    cbPrompt->setToolTip(tr("Ask before any match is replaced."));
+    cbPrompt->setObjectName(("cbPrompt"));
+    cbPrompt->setMinimumSize(buttonSize);
+    cbPrompt->setMaximumSize(buttonSize);
+    cbPrompt->setIcon(getRealIconCached("prompt"));
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, askConfig, false, "Search/Ask before Replace", cbPrompt);
+    flowLayout2->addWidget(cbPrompt);
+
+    cbEscapeSeq = new QToolButton(this);
+    cbEscapeSeq->setCheckable(true);
+    cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\"));
+    cbEscapeSeq->setObjectName(("cbEscapeSeq"));
+    cbEscapeSeq->setMinimumSize(buttonSize);
+    cbEscapeSeq->setMaximumSize(buttonSize);
+    cbEscapeSeq->setIcon(getRealIconCached("escape"));
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, escapeConfig, false, "Search/Escape Sequence", cbEscapeSeq);
+    flowLayout2->addWidget(cbEscapeSeq);
+
+    lReplacementText = new QLabel(this);
+    lReplacementText->setTextFormat(Qt::PlainText);
+    lReplacementText->setMinimumHeight(buttonSize.height());
+    int numButtonSpread = 6;
+    int lReplacementSize = numButtonSpread * buttonSize.width() + (numButtonSpread-1) * flowLayout2->horizontalSpacing();
+    // fixed size needed: unrestricted width would lead to shifting replace buttons
+    lReplacementText->setMinimumWidth(lReplacementSize);
+    lReplacementText->setMaximumWidth(lReplacementSize);
+    flowLayout2->addWidget(lReplacementText);
 
 
-	cFind->installEventFilter(this);
-	cReplace->installEventFilter(this);
-	Q_ASSERT(cFind->completer()->popup());
-	cFind->completer()->popup()->installEventFilter(this);
-	cReplace->completer()->popup()->installEventFilter(this);
+    //retranslateUi(this);
+    QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
+
+    // connect by name
+    QMetaObject::connectSlotsByName(this);
+    connect(cFind->lineEdit(),SIGNAL(textEdited(QString)),SLOT(cFind_textEdited(QString)));
+    connect(cReplace->lineEdit(),SIGNAL(textEdited(QString)),SLOT(cReplace_textEdited(QString)));
+
+    // set texts
+    bClose->setToolTip(tr("Close search/replace panel"));
+    cFind->setToolTip(tr("Text or pattern to search for"));
+    bNext->setToolTip(tr("Find next"));
+    bPrevious->setToolTip(tr("Find previous"));
+    bCount->setToolTip(tr("Count occurrences"));
+    cReplace->setToolTip(tr("Replacement text"));
+    bReplaceNext->setToolTip(tr("Replace and find next"));
+    bReplacePrevious->setToolTip(tr("Replace and find previous"));
+    bReplaceAll->setToolTip(tr("Replace all"));
+
+    lbFind->setText(tr("Find:"));
+    lbReplace->setText(tr("Replace:"));
+    int wd=qMax(lbFind->sizeHint().width(),lbReplace->sizeHint().width());
+    lbFind->setMinimumWidth(wd);
+    lbReplace->setMinimumWidth(wd);
+    lbFind->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+    lbReplace->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+
+
+    cFind->installEventFilter(this);
+    cReplace->installEventFilter(this);
+    Q_ASSERT(cFind->completer()->popup());
+    cFind->completer()->popup()->installEventFilter(this);
+    cReplace->completer()->popup()->installEventFilter(this);
 }
 
 /*!
@@ -532,9 +533,9 @@ void QSearchReplacePanel::closeElement(bool closeTogether){
 		}
 	}*/
 	if (cFind->completer()->popup()->isVisible() && cFind->completer()->popup()->hasFocus())
-		cFind->setFocus();
+        cFind->completer()->popup()->close();
 	else if (cReplace->completer()->popup()->isVisible() && cReplace->completer()->popup()->hasFocus())
-		cReplace->setFocus();
+        cReplace->completer()->popup()->close();
 	else if (isReplaceModeActive() && !closeTogether)
 		display(1,false);
 	else
@@ -895,11 +896,17 @@ void QSearchReplacePanel::cFind_textEdited(const QString& text)
 void QSearchReplacePanel::on_cFind_returnPressed(bool backward)
 {
 	cFind->lineEdit()->setStyleSheet(QString());
+    if(cFind->completer()->popup()->isVisible()){
+        cFind->completer()->popup()->close();
+    }
 	findReplace(backward);
 
 }
 void QSearchReplacePanel::on_cReplace_returnPressed(bool backward){
 	cFind->lineEdit()->setStyleSheet(QString());
+    if(cReplace->completer()->popup()->isVisible()){
+        cReplace->completer()->popup()->close();
+    }
 	findReplace(backward,true);
 }
 

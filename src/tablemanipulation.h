@@ -31,9 +31,9 @@ public:
 	static QString getTableText(QDocumentCursor &cur);
 	static void alignTableCols(QDocumentCursor &cur);
 
-	static QStringList tabularNames;
-	static QStringList tabularNamesWithOneOption;
-	static QStringList mathTables;
+    static QSet<QString> tabularNames;
+    static QSet<QString> tabularNamesWithOneOption;
+    static QSet<QString> mathTables;
 };
 
 

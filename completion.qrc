@@ -38,6 +38,7 @@
 <file>completion/cancel.cwl</file>
 <file>completion/caption.cwl</file>
 <file>completion/cases.cwl</file>
+<file>completion/changes.cwl</file>
 <file>completion/chemformula.cwl</file>
 <file>completion/chemmacros.cwl</file>
 <file>completion/chemstyle.cwl</file>
@@ -67,6 +68,7 @@
 <file>completion/diagxy.cwl</file>
 <file>completion/doi.cwl</file>
 <file>completion/dsfont.cwl</file>
+<file>completion/easyReview.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/enumerate.cwl</file>
 <file>completion/enumitem.cwl</file>

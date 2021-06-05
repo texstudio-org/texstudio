@@ -139,30 +139,30 @@ lr
 \end{spreadlines}
 \end{lgathered}
 \end{rgathered}
-\newgathered{name}{pre line}{post line}{after}#m\array
-\renewgathered{name}{pre line}{post line}{after}#m\array
+\newgathered{name}{pre line}{post line}{after}#m
+\renewgathered{name}{pre line}{post line}{after}#m
 \begin{multlined}[pos][width]#m\array
 \endlinechar#m
 \end{multlined}
 \shoveleft[dimen]{arg}#m
 \shoveright[dimen]{arg}#m
-\MoveEqLeft[number]#m\array
-\Aboxed{left hand side & right hand side}#m\array
+\MoveEqLeft[number]#m
+\Aboxed{left hand side & right hand side}#m
 \ArrowBetweenLines[symbol]#/alignat,alignat*
 \ArrowBetweenLines*[symbol]#/alignat,alignat*
-\vdotswithin{symbol}#m\array
-\shortvdotswithin{symbol}#m\array
-\shortvdotswithin*{symbol}#m\array
-\MTFlushSpaceAbove#m\array
-\MTFlushSpaceBelow#m\array
-\shortintertext{text}#m\array
-\intertext{text}#m\array
+\vdotswithin{symbol}#m
+\shortvdotswithin{symbol}#m
+\shortvdotswithin*{symbol}#m
+\MTFlushSpaceAbove#m
+\MTFlushSpaceBelow#m
+\shortintertext{text}#m
+\intertext{text}#m
 \DeclarePairedDelimiter{cmd}{left delim%formula}{right delim%formula}#nd
 \DeclarePairedDelimiterX{cmd}[numargs]{left delim%formula}{right delim%formula}{body%formula}#nd
 \DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim%formula}{right delim%formula}{post code%formula}{body%formula}#nd
 \reDeclarePairedDelimiterInnerWrapper{macro name}{star or nostar}{code}#m
-\lparen#m\array
-\rparen#m\array
+\lparen#m
+\rparen#m
 \vcentcolon#m
 \ordinarycolon#m
 \coloneqq#m

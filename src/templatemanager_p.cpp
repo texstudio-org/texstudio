@@ -162,9 +162,12 @@ bool LocalTableTemplate::readMetaData()
 	if (col < 0) return false;
 	jsonData = jsonData.mid(col);
 	QString all = f.readAll();
-	jsonData.append(all); // works with minimalJsonParse because it stops after the first top level {}
-	// should check when switching to a real JSON parser. However with this it is
-	// easy to extract var metaData = {}
+    col=all.indexOf("\n}\n"); // simplified, search for }, first in line
+    if(col>=0){
+        all=all.left(col);
+    }
+    jsonData="{\n"+all+"\n}\n";
+
 
     QJsonDocument jsonDoc=QJsonDocument::fromJson(jsonData.toUtf8());
     QJsonObject dd=jsonDoc.object();

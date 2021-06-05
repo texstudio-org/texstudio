@@ -623,7 +623,7 @@ public slots:
 
 	public:
 		QDocumentLine lineAtPosition(const QPoint& p) const;
-		QDocumentCursor cursorForPosition(const QPoint& p) const;
+        QDocumentCursor cursorForPosition(const QPoint& p, bool disallowPositionBeyondLine = false) const;
 		
 		void setClipboardSelection();
 		void setCursorPosition(const QPoint& p, bool moveView = true);

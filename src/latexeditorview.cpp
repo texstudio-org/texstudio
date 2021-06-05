@@ -2417,7 +2417,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 
 	if (pos.x() < 0) return; // hover event on panel
 	QDocumentCursor cursor;
-	cursor = editor->cursorForPosition(editor->mapToContents(pos));
+    cursor = editor->cursorForPosition(editor->mapToContents(pos),true);
 	QString line = cursor.line().text();
 	QDocumentLine l = cursor.line();
 

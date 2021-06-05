@@ -1,6 +1,20 @@
-TeXstudio 3.1.2
+TeXstudio 3.1.3
 -----------------
 - 
+
+TeXstudio 3.1.2
+-----------------
+- completed global TOC (background color coded, can be adjusted in config)
+- fontawesome5 symbol pane
+- another dark theme style (Orion Dark)
+- slightly modernised windows installer
+- smaller windows binaries
+- fix menu changes by user
+- fix root document detection when symbolic links of symbolic links are involved (#1505)
+- fix disabled parentheses autocompletion after certain completer actions (#1347)
+- results from styleparser gets immediately updated
+
+
 
 TeXstudio 3.1.1
 -----------------

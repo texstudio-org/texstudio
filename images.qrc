@@ -6,6 +6,9 @@
         <file>images-ng/alignCols.svgz</file>
         <file>images-ng/annotation_caret.svg</file>
         <file>images-ng/annotation_highlight.svg</file>
+        <file>images-ng/annotation_add.svg</file>
+        <file>images-ng/annotation_del.svg</file>
+        <file>images-ng/annotation_replace.svg</file>
         <file>images-ng/annotation_text.svg</file>
         <file>images-ng/application-exit.svgz</file>
         <file>images-ng/asymptote.svg</file>
@@ -247,5 +250,45 @@
         <file>images-ng/classic/windowed-viewer_dm.svgz</file>
         <file>images-ng/classic/hide-toolbars_dm.svgz</file>
         <file>images-ng/toc.svg</file>
+        <file>images/rc/branch_closed-on.png</file>
+        <file>images/rc/branch_closed.png</file>
+        <file>images/rc/branch_open-on.png</file>
+        <file>images/rc/branch_open.png</file>
+        <file>images/rc/checkbox_checked.png</file>
+        <file>images/rc/checkbox_checked_disabled.png</file>
+        <file>images/rc/checkbox_checked_focus.png</file>
+        <file>images/rc/checkbox_indeterminate.png</file>
+        <file>images/rc/checkbox_indeterminate_disabled.png</file>
+        <file>images/rc/checkbox_indeterminate_focus.png</file>
+        <file>images/rc/checkbox_unchecked.png</file>
+        <file>images/rc/checkbox_unchecked_disabled.png</file>
+        <file>images/rc/checkbox_unchecked_focus.png</file>
+        <file>images/rc/close-hover.png</file>
+        <file>images/rc/close-pressed.png</file>
+        <file>images/rc/close.png</file>
+        <file>images/rc/down_arrow.png</file>
+        <file>images/rc/down_arrow_disabled.png</file>
+        <file>images/rc/Hmovetoolbar.png</file>
+        <file>images/rc/Hsepartoolbar.png</file>
+        <file>images/rc/left_arrow.png</file>
+        <file>images/rc/left_arrow_disabled.png</file>
+        <file>images/rc/radio_checked.png</file>
+        <file>images/rc/radio_checked_disabled.png</file>
+        <file>images/rc/radio_checked_focus.png</file>
+        <file>images/rc/radio_unchecked.png</file>
+        <file>images/rc/radio_unchecked_disabled.png</file>
+        <file>images/rc/radio_unchecked_focus.png</file>
+        <file>images/rc/right_arrow.png</file>
+        <file>images/rc/right_arrow_disabled.png</file>
+        <file>images/rc/sizegrip.png</file>
+        <file>images/rc/stylesheet-branch-end.png</file>
+        <file>images/rc/stylesheet-branch-more.png</file>
+        <file>images/rc/stylesheet-vline.png</file>
+        <file>images/rc/transparent.png</file>
+        <file>images/rc/undock.png</file>
+        <file>images/rc/up_arrow.png</file>
+        <file>images/rc/up_arrow_disabled.png</file>
+        <file>images/rc/Vmovetoolbar.png</file>
+        <file>images/rc/Vsepartoolbar.png</file>
     </qresource>
 </RCC>

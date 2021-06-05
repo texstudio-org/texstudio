@@ -6,10 +6,10 @@
 #include "scriptengine.h"
 #include "configmanager.h"
 
-QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu"
+QSet<QString> LatexTables::tabularNames = QSet<QString>() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu"
                                         << "IEEEeqnarray" << "xtabular" << "xtabular*" << "mpxtabular" << "mpxtabular*";
-QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx" << "tabulary";
-QStringList LatexTables::mathTables = QStringList() << "align" << "align*" << "array" << "matrix" << "matrix*" << "bmatrix" << "bmatrix*"
+QSet<QString> LatexTables::tabularNamesWithOneOption = QSet<QString>() << "tabular*" << "tabularx" << "tabulary";
+QSet<QString> LatexTables::mathTables = QSet<QString>() << "align" << "align*" << "array" << "matrix" << "matrix*" << "bmatrix" << "bmatrix*"
                                       << "Bmatrix" << "Bmatrix*" << "pmatrix" << "pmatrix*" << "vmatrix" << "vmatrix*"
                                       << "Vmatrix" << "Vmatrix*" << "split" << "multline" << "multline*"
                                       << "gather" << "gather*" << "flalign" << "flalign*" << "alignat" << "alignat*"
@@ -554,7 +554,7 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur)
 		if (!env.startsWith("{") || !env.endsWith("}")) return -1;
 		env = env.mid(1);
 		env.chop(1);
-		if (tabularNames.contains(env, Qt::CaseSensitive) || tabularNamesWithOneOption.contains(env, Qt::CaseSensitive)) {
+        if (tabularNames.contains(env) || tabularNamesWithOneOption.contains(env)) {
 			int result = findNextToken(c, QStringList());
 			if (result != -2) return false;
 			if (c.lineNumber() > cur.lineNumber()) return true;

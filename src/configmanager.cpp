@@ -433,6 +433,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" << "separator" << "main/latex/fontsizes"));
 	managedToolBars.append(ManagedToolBar("Table", QStringList() << "main/latex/tabularmanipulation/addRow" << "main/latex/tabularmanipulation/addColumn" << "main/latex/tabularmanipulation/pasteColumn" << "main/latex/tabularmanipulation/removeRow" << "main/latex/tabularmanipulation/removeColumn" << "main/latex/tabularmanipulation/cutColumn" << "main/latex/tabularmanipulation/alignColumns"));
 	managedToolBars.append(ManagedToolBar("Diff", QStringList() << "main/file/svn/prevdiff" << "main/file/svn/nextdiff"  ));
+    managedToolBars.append(ManagedToolBar("Review", QStringList() << "main/latex/review/alert" << "main/latex/review/comment" << "main/latex/review/add" << "main/latex/review/delete" << "main/latex/review/replace" ));
 	managedToolBars.append(ManagedToolBar("Central", QStringList() << "main/edit/goto/goback" << "main/edit/goto/goforward" << "separator" << "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright" << "separator" <<
 	                                      "main/latex/spacing/newline" << "separator" <<
 	                                      "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt"));
@@ -639,6 +640,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	TEMP(3);
 	TEMP(4);
 #undef TEMP
+    // add basic path info into grammarcheckconfig to avoid further use of globals
+    grammarCheckerConfig->appDir=removePathDelim(QCoreApplication::applicationDirPath());
+    grammarCheckerConfig->configDir=removePathDelim(configBaseDir);
 
 	//other dialogs
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
@@ -1592,7 +1596,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 #ifdef ADWAITA
     availableStyles << "Adwaita (txs)" << "Adwaita Dark (txs)";
 #endif
-    availableStyles << tr("default");
+    availableStyles << "Orion Dark" << tr("default");
     confDlg->ui.comboBoxInterfaceStyle->addItems(availableStyles);
 	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
@@ -1825,7 +1829,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		for (int i = 0; i < editorKeys->childCount(); i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
 			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2), SHORTCUT_FORMAT);
-			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
+            if (!kSeq.isEmpty() && !kSeq.toString().isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
 				this->editorKeys.insert(kSeq.toString(), editOperation);
 		}
 
@@ -1861,6 +1865,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 			if (changedProperties.contains(&modernStyle))
 				UtilsUi::txsInformation("Some elements cannot be adapted to the new style while the application is running. Please restart to get a consistent experience.");
 			if (interfaceStyle == tr("default")) interfaceStyle = "";
+            if(displayedInterfaceStyle=="Orion Dark" && interfaceStyle!=displayedInterfaceStyle){
+                qApp->setStyleSheet("");
+            }
 			setInterfaceStyle();
 		}
 
@@ -2739,12 +2746,24 @@ void ConfigManager::setInterfaceStyle()
     if(newStyle=="Adwaita (txs)"){
         QApplication::setStyle(new Adwaita::Style(false));
         handled=true;
+        return;
     }
     if(newStyle=="Adwaita Dark (txs)"){
         QApplication::setStyle(new Adwaita::Style(true));
+        darkMode=true;
         handled=true;
+        return;
     }
 #endif
+    if(newStyle=="Orion Dark"){
+        QFile file(":/utilities/stylesheet_francesco.qss");
+        file.open(QFile::ReadOnly);
+        QString styleSheet = QString::fromLatin1(file.readAll());
+        qApp->setStyleSheet(styleSheet);
+        darkMode=true;
+        handled=true;
+        return;
+    }
     if(!handled){
         if (!QStyleFactory::keys().contains(newStyle)) newStyle = defaultStyleName;
 

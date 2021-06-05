@@ -168,6 +168,16 @@
   </menu>
 
   <separator/>
+  
+  <menu id="review" text="Review remarks (easyReview)">
+    <insert id="alert" text="\alert{}" insert="\alert{%&lt;text%>}" info="\alert{text}" icon="annotation_highlight"/>
+    <insert id="comment" text="\comment{}{}" insert="\comment{%&lt;text%>}{%&lt;comment%>}" info="\comment{text}{comment}" icon="annotation_text"/>
+    <insert id="add" text="\add{}" insert="\add{%&lt;text%>}" info="\add{text}" icon="annotation_add"/>
+    <insert id="delete" text="\remove{}" insert="\remove{%&lt;text%>}" info="\remove{text}" icon="annotation_del"/>
+    <insert id="replace" text="\replace{}{}" insert="\replace{%&lt;text%>}{%&lt;replacement%>}" info="\replace{text}{replacement}" icon="annotation_replace"/>
+    <insert id="reviewon" text="\setreviewson" insert="\setreviewson" info="Turn on review comments in pdf"/>
+    <insert id="reviewoff" text="\setreviewsoff" insert="\setreviewsoff" info="Turn off review comments in pdf"/>
+  </menu>
 
   <menu id="references" text="Cross References">
     <insert id="label" text="label" insert="\label{%&lt;key%>}" info="\label{key}"/>

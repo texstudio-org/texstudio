@@ -20,6 +20,8 @@ public:
 	QString languageToolIgnoredRules;
 
 	QString specialIds1, specialIds2, specialIds3, specialIds4;
+
+    QString appDir,configDir;
 };
 
 Q_DECLARE_METATYPE(GrammarCheckerConfig)

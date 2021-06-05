@@ -2397,11 +2397,11 @@ QDocumentLine QEditor::lineAtPosition(const QPoint& p) const
 /*!
 	\return The cursor object nearest to the given viewport position
 */
-QDocumentCursor QEditor::cursorForPosition(const QPoint& p) const
+QDocumentCursor QEditor::cursorForPosition(const QPoint& p, bool disallowPositionBeyondLine) const
 {
 	//qDebug("cursor for : (%i, %i)", p.x(), p.y());
 
-	return m_doc ? m_doc->cursorAt(p) : QDocumentCursor();
+    return m_doc ? m_doc->cursorAt(p,disallowPositionBeyondLine) : QDocumentCursor();
 }
 
 /*!
@@ -3336,6 +3336,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				}
 				cursorMoveOperation(cur, op);
 				leftLine = cur.lineNumber() != curLine;
+                if( op == CursorEndOfLine || op == CursorStartOfLine)
+                    leftLine = true;
 			}
 
 			if ( leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))

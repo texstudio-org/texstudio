@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>TexStudio</DisplayName>
+    <Description>TeXstudio LaTeX editor</Description>
+    <Version>3.1.2</Version>
+    <ReleaseDate>2020-03-13</ReleaseDate>
+    <Licenses>
+        <License name="GPL-2" file="license.txt" />
+    </Licenses>
+    <Default>true</Default>
+    <Script>installscript.qs</Script>
+    <SortingPriority>60</SortingPriority>
+</Package>

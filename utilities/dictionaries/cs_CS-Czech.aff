@@ -1,5 +1,49 @@
 SET UTF-8
-TRY aáeéěiíoóuúůyýbcčdďlmnňfjkprřsštťvghqwx
+
+#TRY aáeéěiíoóuúůyýbcčdďlmnňfjkprřsštťvghqwxzžAÁEÉĚIÍOÓUÚŮYÝBCČDĎLMNŇFJKPRŘSŠTŤVGHQWXZŽ
+TRY qwertzuiopú)|asdfghjklů§|yxcvbnm,.-|+ěščřžýáíé=|qaw|say|wse|dsx|sy|edr|fdc|dx|rft|gfv|fc|tgz|hgb|gv|zhu|jhn|hb|uji|kjm|jn|iko|lkm
+#případně přidat další trojkombinace s českými písmeny s diakritikou
+
+MAP 16
+MAP aá
+MAP cč
+MAP dď
+MAP eéě
+MAP ií
+MAP nň
+MAP oó
+MAP rř
+MAP sš
+MAP tť
+MAP uůú
+MAP yý
+MAP zž
+MAP lľĺ
+MAP ﬁ(fi)
+MAP ﬂ(fl)
+
+REP 15
+REP m rn
+REP rn m
+REP f ř
+REP s z
+REP z s
+REP č ě
+REP ě č
+REP d' ď
+REP i í
+REP í i
+REP U ll
+REP nashledanou na_shledanou
+REP narozdíl na_rozdíl
+REP mimojiné mimo_jiné
+REP třičtvrtě tři_čtvrtě
+
+# Zakázaná slova: vzniknou na základě pravidel, ale z nějakého důvodu jsou nepřijatelná
+FORBIDDENWORD q
+
+# Slova, která jsou pravopisně v pořádku, ale která nemají být nabízena jako oprava, např. vulgarismy
+NOSUGGEST w
 
 PFX N Y 1
 PFX N   0           ne         .
@@ -12,8 +56,9 @@ PFX W   0           ne         .
 PFX W   0           nej        .
 PFX W   0           nejne      .
 
-PFX F Y 10
+PFX F Y 11
 PFX F   0           jedna      .
+PFX F   0           jedena      .
 PFX F   0           dvaa       .
 PFX F   0           třia       .
 PFX F   0           čtyřia     .
@@ -24,7 +69,7 @@ PFX F   0           sedma      .
 PFX F   0           osma       .
 PFX F   0           devěta     .
 
-SFX P Y 124
+SFX P Y 139
 SFX P   0           a          [^aeokl]
 SFX P   0           u          [^aeoklu]
 SFX P   0           ovi        [^aeokl]
@@ -35,11 +80,11 @@ SFX P   0           em         [^aeokl]
 SFX P   0           ů          [^aeokl]
 SFX P   0           ům         [^aeokl]
 SFX P   0           y          [^aeokl]
-SFX P   0           ech        [^aeoklghu]
+SFX P   0           ech        [^aeoklgh]
 SFX P   g           zích       g
 SFX P   h           zích       [^c]h
 SFX P   ch          ších       ch
-SFX P   0           ích        u
+SFX P   0           ův/Y       [^aeoklc]
 SFX P   0           a          [^eě]k
 SFX P   0           u          [^eě]k
 SFX P   0           ovi        [^eě]k
@@ -48,6 +93,7 @@ SFX P   0           ů          [^eě]k
 SFX P   0           ům         [^eě]k
 SFX P   k           cích       [^eě]k
 SFX P   0           y          [^eě]k
+SFX P   0           ův/Y       [^eě]k
 SFX P   ek          ka         ek
 SFX P   ek          ku         ek
 SFX P   ek          kovi       ek
@@ -56,6 +102,7 @@ SFX P   ek          ků         ek
 SFX P   ek          kům        ek
 SFX P   ek          cích       ek
 SFX P   ek          ky         ek
+SFX P   ek          kův/Y      ek
 SFX P   0           a          [^dtn]ěk
 SFX P   0           u          [^dtn]ěk
 SFX P   0           ovi        [^dtn]ěk
@@ -64,6 +111,7 @@ SFX P   0           ků         [^dtn]ěk
 SFX P   0           kům        [^dtn]ěk
 SFX P   0           cích       [^dtn]ěk
 SFX P   0           ky         [^dtn]ěk
+SFX P   0           kův/Y      [^dtn]ěk
 SFX P   děk         ďka        děk
 SFX P   děk         ďku        děk
 SFX P   děk         ďkovi      děk
@@ -72,6 +120,7 @@ SFX P   děk         ďků        děk
 SFX P   děk         ďkům       děk
 SFX P   děk         ďcích      děk
 SFX P   děk         ďky        děk
+SFX P   děk         ďkův/Y     děk
 SFX P   něk         ňka        něk
 SFX P   něk         ňku        něk
 SFX P   něk         ňkovi      něk
@@ -80,6 +129,7 @@ SFX P   něk         ňků        něk
 SFX P   něk         ňkům       něk
 SFX P   něk         ňcích      něk
 SFX P   něk         ňky        něk
+SFX P   něk         ňkův/Y     něk
 SFX P   těk         ťka        těk
 SFX P   těk         ťku        těk
 SFX P   těk         ťkovi      těk
@@ -88,6 +138,7 @@ SFX P   těk         ťků        těk
 SFX P   těk         ťkům       těk
 SFX P   těk         ťcích      těk
 SFX P   těk         ťky        těk
+SFX P   těk         ťkův/Y     těk
 SFX P   0           a          [bdtšžiou]el
 SFX P   0           u          [bdtšžiou]el
 SFX P   0           ovi        [bdtšžiou]el
@@ -97,6 +148,7 @@ SFX P   0           ů          [bdtšžiou]el
 SFX P   0           ům         [bdtšžiou]el
 SFX P   0           y          [bdtšžiou]el
 SFX P   0           ech        [bdtšžiou]el
+SFX P   0           ův/Y       [bdtšžiou]el
 SFX P   el          la         [^bdtšžiou]el
 SFX P   el          lu         [^bdtšžiou]el
 SFX P   el          lovi       [^bdtšžiou]el
@@ -107,6 +159,7 @@ SFX P   el          lů         [^bdtšžiou]el
 SFX P   el          lům        [^bdtšžiou]el
 SFX P   el          ly         [^bdtšžiou]el
 SFX P   el          lech       [^bdtšžiou]el
+SFX P   el          lův/Y      [^bdtšžiou]el
 SFX P   0           a          [^e]l
 SFX P   0           u          [^e]l
 SFX P   0           ovi        [^e]l
@@ -116,6 +169,7 @@ SFX P   0           ů          [^e]l
 SFX P   0           ům         [^e]l
 SFX P   0           y          [^e]l
 SFX P   0           ech        [^e]l
+SFX P   0           ův/Y       [^e]l
 SFX P   o           a          o
 SFX P   o           u          o
 SFX P   o           ovi        o
@@ -125,6 +179,7 @@ SFX P   o           ům         o
 SFX P   o           y          o
 SFX P   o           ech        [^gk]o
 SFX P   o           ách        [gk]o
+SFX P   o           ův/Y       o
 SFX P   a           y          [^cčďijňřšťž]a
 SFX P   a           i          [cčijřšž]a
 SFX P   ďa          di         ďa
@@ -136,11 +191,16 @@ SFX P   a           o          a
 SFX P   a           ou         a
 SFX P   a           ů          a
 SFX P   a           ům         a
-SFX P   a           ech        [^kďňť]a
+SFX P   a           ech        [^cčďghkňšťž]a
 SFX P   ka          cích       ka
-SFX P   ďa          děch       ďa
-SFX P   ňa          něch       ňa
-SFX P   ťa          těch       ťa
+SFX P   ga          zích       ga
+SFX P   cha         ších       cha
+SFX P   ha          zích       [^c]ha
+SFX P   a           ích        [ščžci]a
+SFX P   ďa          dích       ďa
+SFX P   ňa          ních       ňa
+SFX P   ťa          tích       ťa
+SFX P   a           ův/Y       a
 SFX P   e           a          e
 SFX P   e           u          e
 SFX P   e           ovi        e
@@ -186,7 +246,7 @@ SFX V   0           ové        leň
 SFX V   eň          ňové       [^l]eň
 SFX V   0           ové        [^e]ň
 
-SFX U Y 61
+SFX U Y 69
 SFX U   ec          ce         ec
 SFX U   ec          ci         ec
 SFX U   ec          če         ec
@@ -194,12 +254,14 @@ SFX U   ec          cem        ec
 SFX U   ec          ců         ec
 SFX U   ec          cům        ec
 SFX U   ec          cích       ec
+SFX U   ec          cův/Y      ec
 SFX U   0           e          [^e]c
 SFX U   0           i          [^e]c
 SFX U   0           em         [^e]c
 SFX U   0           ů          [^e]c
 SFX U   0           ům         [^e]c
 SFX U   0           ích        [^e]c
+SFX U   0           ův/Y       [^e]c
 SFX U   0           e          [^acďeňť]
 SFX U   0           i          [^acďeňťi]
 SFX U   0           ovi        [^acďeňť]
@@ -209,6 +271,7 @@ SFX U   0           ům         [^aceň]
 SFX U   0           ích        [^acďeňťsx]
 SFX U   0           ech        [sx]
 SFX U   0           y          x
+SFX U   0           ův/Y       [^caňe]
 SFX U   a           e          a
 SFX U   a           ovi        a
 SFX U   a           em         a
@@ -217,6 +280,7 @@ SFX U   a           ů          a
 SFX U   a           ům         a
 SFX U   a           i          a
 SFX U   a           ích        a
+SFX U   a           ův/Y       a
 SFX U   ď           dě         ď
 SFX U   ď           di         ď
 SFX U   ď           děm        ď
@@ -227,18 +291,21 @@ SFX U   ň           něm        leň
 SFX U   0           ů          leň
 SFX U   0           ům         leň
 SFX U   ň           ních       leň
+SFX U   0           ův/Y       leň
 SFX U   eň          ně         [^l]eň
 SFX U   eň          ni         [^l]eň
 SFX U   eň          něm        [^l]eň
 SFX U   eň          ňů         [^l]eň
 SFX U   eň          ňům        [^l]eň
 SFX U   eň          ních       [^l]eň
+SFX U   eň          ňův/Y      [^l]eň
 SFX U   ň           ně         [^e]ň
 SFX U   ň           ni         [^e]ň
 SFX U   ň           něm        [^e]ň
 SFX U   0           ů          [^e]ň
 SFX U   0           ům         [^e]ň
 SFX U   ň           ních       [^e]ň
+SFX U   0           ův/Y       [^e]ň
 SFX U   ť           tě         ť
 SFX U   ť           ti         ť
 SFX U   ť           těm        ť
@@ -248,8 +315,9 @@ SFX U   0           m          e
 SFX U   e           ů          e
 SFX U   e           ům         e
 SFX U   e           ích        e
+SFX U   e           ův/Y       e
 
-SFX D Y 55
+SFX D Y 68
 SFX D   es          a          es
 SFX D   es          u          es
 SFX D   es          ovi        es
@@ -263,6 +331,19 @@ SFX D   es          y          [^i]es
 SFX D   es          ích        ies
 SFX D   es          ách        kes
 SFX D   es          i          ies
+SFX D   és          a          és
+SFX D   és          u          és
+SFX D   és          ovi        és
+SFX D   és          e          [^ghk]és
+SFX D   és          em         és
+SFX D   és          ové        és
+SFX D   és          ů          és
+SFX D   és          ům         és
+SFX D   és          ech        [^ighk]és
+SFX D   és          y          [^i]és
+SFX D   és          ích        iés
+SFX D   és          ách        kés
+SFX D   és          i          iés
 SFX D   os          a          os
 SFX D   os          u          os
 SFX D   os          ovi        os
@@ -271,8 +352,8 @@ SFX D   os          em         os
 SFX D   os          ové        os
 SFX D   os          ů          os
 SFX D   os          ům         os
-SFX D   us          ech        [^ighk]os
-SFX D   us          y          [^i]os
+SFX D   os          ech        [^ighk]os
+SFX D   os          y          [^i]os
 SFX D   os          ích        ios
 SFX D   os          ách        kos
 SFX D   os          i          ios
@@ -292,19 +373,19 @@ SFX D   us          i          [ei]us
 SFX D   0           é          [^eou]s
 SFX D   0           é          [^asy]
 SFX D   a           é          a
+SFX D   ky          ek         [aeiouyáéíóúůýě][lr]ky
+SFX D   y           0          [^aeiouyáéíóúůýě][lr]ky
 SFX D   ky          ek         [čdntv]ky
-SFX D   y           ů          [^čdntv]ky
-SFX D   ny          n          any
-SFX D   y           ů          [^kn]y
-SFX D   y           ám         [čdntv]ky
-SFX D   y           ům         [^čdntv]ky
-SFX D   y           ům         [^k]y
+SFX D   y           0          [^čdntvrl]ky
+SFX D   ly          el         [dkpz]ly
+SFX D   y           0          [^dkpz]ly
+SFX D   y           0          [^kl]y
+SFX D   y           ům         y
 SFX D   y           ách        [gh]y
-SFX D   y           ách        [čdntv]ky
-SFX D   ky          cích       [^čdntv]ky
-SFX D   y           ech        [^ghk]y
+SFX D   y           ách        ky
+SFX D   y           ách        ry
+SFX D   y           ech        [^ghkr]y
 SFX D   y           ích        [sz]y
-SFX D   y           ami        [čdntv]ky
 
 SFX H Y 24
 SFX H   0           u          [^ey]
@@ -389,14 +470,15 @@ SFX L   0           ů          [^e]n
 SFX L   0           ům         [^e]n
 SFX L   0           ech        [^e]n
 
-SFX S Y 60
-SFX S   0           e          [^eíěcňťn]
-SFX S   0           i          [^eíěcňťn]
-SFX S   0           em         [^eíěcňťn]
-SFX S   0           ů          [^eíěcňn]
-SFX S   0           ům         [^eíěcňn]
+SFX S Y 45
+SFX S   0           e          [^eíěcňť]
+SFX S   0           i          [^eíěcňť]
+SFX S   0           em         [^eíěcňť]
+SFX S   0           ů          [^eíěcň]
+SFX S   0           ům         [^eíěcň]
 SFX S   0           ích        [^eíěcňťnlsz]
-SFX S   0           ech        [sz]
+SFX S   0           y          n
+SFX S   0           ech        [nsz]
 SFX S   0           ech        íl
 SFX S   0           ích        [^í]l
 SFX S   ec          ce         ec
@@ -427,22 +509,6 @@ SFX S   0           ů          [^e]ň
 SFX S   0           ům         [^e]ň
 SFX S   ň           něm        [^e]ň
 SFX S   ň           ních       [^e]ň
-SFX S   en          ne         [^mn]en
-SFX S   en          nu         [^mn]en
-SFX S   en          ni         [^mn]en
-SFX S   en          nem        [^mn]en
-SFX S   en          ny         [^mn]en
-SFX S   en          nů         [^mn]en
-SFX S   en          nům        [^mn]en
-SFX S   en          nech       [^mn]en
-SFX S   0           e          [mn]en
-SFX S   0           u          [mn]en
-SFX S   0           i          [mn]en
-SFX S   0           em         [mn]en
-SFX S   0           y          [mn]en
-SFX S   0           ů          [mn]en
-SFX S   0           ům         [mn]en
-SFX S   0           ech        [mn]en
 SFX S   0           m          í
 SFX S   0           ch         í
 SFX S   0           mi         í
@@ -596,7 +662,7 @@ SFX Q   es          em         es
 SFX Q   es          y          es
 SFX Q   es          ů          es
 SFX Q   es          ům         es
-SFX Q   os          ech        [^ghk]es
+SFX Q   es          ech        [^ghk]es
 SFX Q   ges         zích       ges
 SFX Q   ches        ších       ches
 SFX Q   hes         zích       [^c]hes
@@ -774,7 +840,7 @@ SFX Z   ď           dím        ď
 SFX Z   ď           dích       ď
 SFX Z   ď           děmi       ď
 
-SFX C Y 106
+SFX C Y 109
 SFX C   ce          c          ice
 SFX C   e           í          [^i]ce
 SFX C   e           í          [čijlř]e
@@ -788,6 +854,9 @@ SFX C   ě           ím         ě
 SFX C   ě           ích        ě
 SFX C   0           mi         ě
 SFX C   0           m          í
+SFX C   eč          če         eč
+SFX C   eč          či         eč
+SFX C   eč          čí         eč
 SFX C   o           a          o
 SFX C   o           u          o
 SFX C   o           em         o
@@ -898,7 +967,7 @@ SFX M   o           ích        [eiy]o
 SFX M   o           i          [žščřjeiy]o
 SFX M   a           ům         a
 SFX M   a           ách        [ghk]a
-SFX M   o           ech        [^ghkei]a
+SFX M   a           ech        [^ghkei]a
 SFX M   a           y          [^žščřcji]a
 SFX M   on          a          on
 SFX M   on          u          on
@@ -936,7 +1005,7 @@ SFX M   ě           í          mě
 SFX M   ě           ím         ě
 SFX M   ě           ích        ě
 
-SFX K Y 84
+SFX K Y 85
 SFX K   0           te         [eě]
 SFX K   0           ti         [eě]
 SFX K   0           tem        [eě]
@@ -974,11 +1043,11 @@ SFX K   0           tech       a
 SFX K   0           ty         a
 SFX K   0           i          [^aeěíýďňťs]
 SFX K   0           í          [^aeěíýďňťs]
-SFX K   0           em         [^aeěíýďňťsmcšp]
-SFX K   0           ech        [^aeěíýďňťsmcšp]
-SFX K   0           mi         [^aeěíýďňťsmc]
-SFX K   0           ích        [pš]
-SFX K   0           ím         [pš]
+SFX K   0           em         [^aeěíýďňťsmcpšv]
+SFX K   0           ech        [^aeěíýďňťsmcpšv]
+SFX K   0           mi         [^aeěíýďňťsmcv]
+SFX K   0           ích        [pšv]
+SFX K   0           ím         [pšv]
 SFX K   0           ích        oc
 SFX K   0           ím         oc
 SFX K   0           ech        moc
@@ -999,6 +1068,7 @@ SFX K   ť           tím        ť
 SFX K   ť           tích       ť
 SFX K   ť           těmi       [^ě]ť
 SFX K   0           mi         ěť
+SFX K   0           ěmi        v
 SFX K   es          si         es
 SFX K   es          sí         es
 SFX K   es          sím        es
@@ -1196,16 +1266,13 @@ SFX R   ko          ce         ko
 SFX R   o           e          [cčjlřsšzž]o
 SFX R   ro          ře         ro
 
-SFX J Y 180
+SFX J Y 189
 SFX J   at          ám         at
 SFX J   at          áš         at
 SFX J   at          á          at
 SFX J   at          áme        at
 SFX J   at          áte        at
 SFX J   t           jí         at
-SFX J   t           je         at
-SFX J   t           jíc        at
-SFX J   t           jíce       at
 SFX J   at          ej         at
 SFX J   at          ejte       at
 SFX J   at          ejme       at
@@ -1220,9 +1287,6 @@ SFX J   t           0          [^l]át
 SFX J   t           me         [^l]át
 SFX J   t           te         [^l]át
 SFX J   át          ají        [^l]át
-SFX J   át          aje        [^l]át
-SFX J   át          ajíc       [^l]át
-SFX J   át          ajíce      [^l]át
 SFX J   át          ej         [^l]át
 SFX J   át          ejte       [^l]át
 SFX J   át          ejme       [^l]át
@@ -1232,9 +1296,6 @@ SFX J   át          ane        lát
 SFX J   át          aneme      lát
 SFX J   át          anete      lát
 SFX J   át          anou       lát
-SFX J   át          ana        lát
-SFX J   át          anouc      lát
-SFX J   át          anouce     lát
 SFX J   át          aň         lát
 SFX J   át          aňme       lát
 SFX J   át          aňte       lát
@@ -1254,9 +1315,6 @@ SFX J   et          í          et
 SFX J   et          íme        et
 SFX J   et          íte        et
 SFX J   t           jí         [eě]t
-SFX J   t           je         [eě]t
-SFX J   t           jíc        [eě]t
-SFX J   t           jíce       [eě]t
 SFX J   t           j          [eě]t
 SFX J   t           jme        [eě]t
 SFX J   t           jte        [eě]t
@@ -1271,13 +1329,7 @@ SFX J   t           0          ít
 SFX J   t           me         ít
 SFX J   t           te         ít
 SFX J   ít          ějí        [bdfmnptvw]ít
-SFX J   ít          ěje        [bdfmnptvw]ít
-SFX J   ít          ějíc       [bdfmnptvw]ít
-SFX J   ít          ějíce      [bdfmnptvw]ít
 SFX J   ít          ejí        [^bdfmnptvwčř]ít
-SFX J   ít          eje        [^bdfmnptvwčř]ít
-SFX J   ít          ejíc       [^bdfmnptvwčř]ít
-SFX J   ít          ejíce      [^bdfmnptvwčř]ít
 SFX J   ít          i          ít
 SFX J   ít          ěme        [bdfmnptvw]ít
 SFX J   ít          eme        [^bdfmnptvw]ít
@@ -1303,12 +1355,9 @@ SFX J   m           0          ám
 SFX J   0           e          ám
 SFX J   m           te         ám
 SFX J   ám          ají        ám
-SFX J   ám          aje        ám
-SFX J   ám          ajíc       ám
-SFX J   ám          ajíce      ám
-SFX J   ém          ej         ám
-SFX J   ém          ejme       ám
-SFX J   ém          ejte       ám
+SFX J   ám          ej         ám
+SFX J   ám          ejme       ám
+SFX J   ám          ejte       ám
 SFX J   m           š          ím
 SFX J   m           0          ím
 SFX J   0           e          ím
@@ -1366,9 +1415,6 @@ SFX J   out         e          out
 SFX J   out         eme        out
 SFX J   out         ete        out
 SFX J   t           0          out
-SFX J   out         a          out
-SFX J   t           c          out
-SFX J   t           ce         out
 SFX J   out         i          out
 SFX J   out         ěme        out
 SFX J   out         ěte        out
@@ -1377,8 +1423,42 @@ SFX J   out         ula        out
 SFX J   out         ulo        out
 SFX J   out         uli        out
 SFX J   out         uly        out
+SFX J   t           ls         at #přidané hovorové tvary minulého času
+SFX J   t           las        at
+SFX J   t           los        at
+SFX J   át          als        [^lž]át
+SFX J   át          alas       [^lž]át
+SFX J   át          alos       [^lž]át
+SFX J   t           ls         [lž]át
+SFX J   t           las        [lž]át
+SFX J   t           los        [lž]át
+SFX J   ít          ěls        [bdfmnptvw]ít
+SFX J   ít          ělas       [bdfmnptvw]ít
+SFX J   ít          ělos       [bdfmnptvw]ít
+SFX J   ít          els        [^bdfmnptvwč]ít
+SFX J   ít          elas       [^bdfmnptvwč]ít
+SFX J   ít          elos       [^bdfmnptvwč]ít
+SFX J   ít          ils        čít
+SFX J   ít          ilas       čít
+SFX J   ít          ilos       čít
+SFX J   t           ls         [^áíus]t
+SFX J   t           las        [^áíus]t
+SFX J   t           los        [^áíus]t
+SFX J   ást         adls       ást
+SFX J   ást         adlas      ást
+SFX J   ást         adlos      ást
+SFX J   íst         ědls       [dnt]íst
+SFX J   íst         ědlas      [dnt]íst
+SFX J   íst         ědlos      [dnt]íst
+SFX J   out         uls        out
+SFX J   out         ulas       out
+SFX J   out         ulos       out
+SFX J   íst         edls       [^dnt]íst
+SFX J   íst         edlas      [^dnt]íst
+SFX J   íst         edlos      [^dnt]íst
 
-SFX A Y 764
+
+SFX A Y 761
 SFX A   íst         tu         číst
 SFX A   íst         teš        číst
 SFX A   íst         te         číst
@@ -1393,9 +1473,6 @@ SFX A   íst         etla       číst
 SFX A   íst         etlo       číst
 SFX A   íst         etli       číst
 SFX A   íst         etly       číst
-SFX A   íst         ta         číst
-SFX A   íst         touc       číst
-SFX A   íst         touce      číst
 SFX A   íst         ětu        [dnt]íst
 SFX A   íst         ěteš       [dnt]íst
 SFX A   íst         ěte        [dnt]íst
@@ -1410,9 +1487,6 @@ SFX A   íst         ětla       [dnt]íst
 SFX A   íst         ětlo       [dnt]íst
 SFX A   íst         ětli       [dnt]íst
 SFX A   íst         ětly       [dnt]íst
-SFX A   íst         ěta        [dnt]íst
-SFX A   íst         ětouc      [dnt]íst
-SFX A   íst         ětouce     [dnt]íst
 SFX A   íst         edu        [^čdnt]íst
 SFX A   íst         edeš       [^čdnt]íst
 SFX A   íst         ede        [^čdnt]íst
@@ -1427,9 +1501,6 @@ SFX A   íst         edla       [^čdnt]íst
 SFX A   íst         edlo       [^čdnt]íst
 SFX A   íst         edli       [^čdnt]íst
 SFX A   íst         edly       [^čdnt]íst
-SFX A   íst         eda        [^čdnt]íst
-SFX A   íst         edouc      [^čdnt]íst
-SFX A   íst         edouce     [^čdnt]íst
 SFX A   ést         esu        nést
 SFX A   ést         eseš       nést
 SFX A   ést         ese        nést
@@ -1444,9 +1515,6 @@ SFX A   ést         esla       nést
 SFX A   ést         eslo       nést
 SFX A   ést         esli       nést
 SFX A   ést         esly       nést
-SFX A   ést         esa        nést
-SFX A   ést         esouc      nést
-SFX A   ést         esouce     nést
 SFX A   ést         etu        [^n]ést
 SFX A   ést         eteš       [^n]ést
 SFX A   ést         ete        [^n]ést
@@ -1461,9 +1529,6 @@ SFX A   ést         etla       [^n]ést
 SFX A   ést         etlo       [^n]ést
 SFX A   ést         etli       [^n]ést
 SFX A   ést         etly       [^n]ést
-SFX A   ést         eta        [^n]ést
-SFX A   ést         etouc      [^n]ést
-SFX A   ést         etouce     [^n]ést
 SFX A   ást         adu        ást
 SFX A   ást         adeš       ást
 SFX A   ást         ade        ást
@@ -1478,9 +1543,6 @@ SFX A   ást         adla       ást
 SFX A   ást         adlo       ást
 SFX A   ást         adli       ást
 SFX A   ást         adly       ást
-SFX A   ást         ada        ást
-SFX A   ást         adouc      ást
-SFX A   ást         adouce     ást
 SFX A   ézt         ezu        ézt
 SFX A   ézt         ezeš       ézt
 SFX A   ézt         eze        ézt
@@ -1495,9 +1557,6 @@ SFX A   ézt         ezla       ézt
 SFX A   ézt         ezlo       ézt
 SFX A   ézt         ezli       ézt
 SFX A   ézt         ezly       ézt
-SFX A   ézt         eza        ézt
-SFX A   ézt         ezouc      ézt
-SFX A   ézt         ezouce     ézt
 SFX A   rát         eru        rát
 SFX A   rát         ereš       rát
 SFX A   rát         ere        rát
@@ -1507,9 +1566,6 @@ SFX A   rát         erou       rát
 SFX A   rát         er         rát
 SFX A   rát         erme       rát
 SFX A   rát         erte       rát
-SFX A   rát         era        rát
-SFX A   rát         erouc      rát
-SFX A   rát         erouce     rát
 SFX A   lát         elu        lát
 SFX A   lát         eleš       lát
 SFX A   lát         ele        lát
@@ -1519,9 +1575,6 @@ SFX A   lát         elou       lát
 SFX A   lát         el         lát
 SFX A   lát         elme       lát
 SFX A   lát         elte       lát
-SFX A   lát         ela        lát
-SFX A   lát         elouc      lát
-SFX A   lát         elouce     lát
 SFX A   át          u          [^lr]át
 SFX A   át          eš         [^lr]át
 SFX A   át          e          [^lr]át
@@ -1536,8 +1589,6 @@ SFX A   át          ala        át
 SFX A   át          alo        át
 SFX A   át          ali        át
 SFX A   át          aly        át
-SFX A   t           i          ct
-SFX A   i           t          ci
 SFX A   éct         eču        éc[it]
 SFX A   éct         eku        éc[it]
 SFX A   éct         ečeš       éc[it]
@@ -1557,9 +1608,6 @@ SFX A   éct         ekla       [^l]éc[it]
 SFX A   éct         eklo       [^l]éc[it]
 SFX A   éct         ekli       [^l]éc[it]
 SFX A   éct         ekly       [^l]éc[it]
-SFX A   éct         eka        [^l]éc[it]
-SFX A   éct         ekouc      [^l]éc[it]
-SFX A   éct         ekouce     [^l]éc[it]
 SFX A   ouct        uču        ouc[it]
 SFX A   ouct        uku        ouc[it]
 SFX A   ouct        učeš       ouc[it]
@@ -1579,9 +1627,6 @@ SFX A   ct          kla        ouc[it]
 SFX A   ct          klo        ouc[it]
 SFX A   ct          kli        ouc[it]
 SFX A   ct          kly        ouc[it]
-SFX A   ouct        uka        ouc[it]
-SFX A   ouct        ukouc      ouc[it]
-SFX A   ouct        ukouce     ouc[it]
 SFX A   ci          hu         oc[it]
 SFX A   oci         ůžu        oc[it]
 SFX A   oci         ůžeš       oc[it]
@@ -1595,20 +1640,17 @@ SFX A   ci          hla        oc[it]
 SFX A   ci          hlo        oc[it]
 SFX A   ci          hli        oc[it]
 SFX A   ci          hly        oc[it]
-SFX A   ci          ha         oc[it]
-SFX A   ci          houc       oc[it]
-SFX A   ci          houce      oc[it]
 SFX A   ovat        uji        ovat
+SFX A   ovat        uju        ovat
 SFX A   ovat        uješ       ovat
 SFX A   ovat        uje        ovat
 SFX A   ovat        ujeme      ovat
 SFX A   ovat        ujete      ovat
 SFX A   ovat        ují        ovat
+SFX A   ovat        ujou       ovat
 SFX A   ovat        uj         ovat
 SFX A   ovat        ujte       ovat
 SFX A   ovat        ujme       ovat
-SFX A   ovat        ujíc       ovat
-SFX A   ovat        ujíce      ovat
 SFX A   at          u          [^o]vat
 SFX A   at          eš         [^o]vat
 SFX A   at          e          [^o]vat
@@ -1618,9 +1660,6 @@ SFX A   at          ou         [^o]vat
 SFX A   at          0          avat
 SFX A   at          me         avat
 SFX A   at          te         avat
-SFX A   t           je         avat
-SFX A   t           jíc        avat
-SFX A   t           jíce       avat
 SFX A   at          i          [^aio]vat
 SFX A   at          ěme        [^aio]vat
 SFX A   at          ěte        [^aio]vat
@@ -1642,11 +1681,7 @@ SFX A   ízat        ižte       ízat
 SFX A   at          ej         uzat
 SFX A   at          ejme       uzat
 SFX A   at          ejte       uzat
-SFX A   zat         žíc        [^áíu]zat
-SFX A   zat         žíce       [^áíu]zat
 SFX A   t           je         [yu]zat
-SFX A   t           jíc        [yu]zat
-SFX A   t           jíce       [yu]zat
 SFX A   sat         šu         sat
 SFX A   sat         šeš        sat
 SFX A   sat         še         sat
@@ -1656,8 +1691,6 @@ SFX A   sat         šou        sat
 SFX A   sat         š          sat
 SFX A   sat         šme        sat
 SFX A   sat         šte        sat
-SFX A   sat         šíc        sat
-SFX A   sat         šíce       sat
 SFX A   rat         eru        rat
 SFX A   rat         ereš       rat
 SFX A   rat         ere        rat
@@ -1667,9 +1700,6 @@ SFX A   rat         erou       rat
 SFX A   rat         er         rat
 SFX A   rat         erme       rat
 SFX A   rat         erte       rat
-SFX A   rat         era        rat
-SFX A   rat         erouc      rat
-SFX A   rat         erouce     rat
 SFX A   akat        áču        akat
 SFX A   akat        áčeš       akat
 SFX A   akat        áče        akat
@@ -1679,8 +1709,6 @@ SFX A   akat        áčou       akat
 SFX A   akat        ač         akat
 SFX A   akat        ačme       akat
 SFX A   akat        ačte       akat
-SFX A   akat        ačíc       akat
-SFX A   akat        ačíce      akat
 SFX A   kat         ču         [^a]kat
 SFX A   kat         češ        [^a]kat
 SFX A   kat         če         [^a]kat
@@ -1702,9 +1730,6 @@ SFX A   at          te         [aeiyě][^krsvz]at
 SFX A   at          0          [^o]u[^rsvz]at
 SFX A   at          me         [^o]u[^rsvz]at
 SFX A   at          te         [^o]u[^rsvz]at
-SFX A   t           je         [^rvz]at
-SFX A   t           jíc        [^rvz]at
-SFX A   t           jíce       [^rvz]at
 SFX A   at          i          [csz][bmp]at
 SFX A   at          ěme        [csz][bmp]at
 SFX A   at          ěte        [csz][bmp]at
@@ -1728,10 +1753,6 @@ SFX A   it          íš         it
 SFX A   it          í          it
 SFX A   it          íme        it
 SFX A   it          íte        it
-SFX A   it          ě          [dtnbfpmv]it
-SFX A   it          e          [^dtnbfpmv]it
-SFX A   it          íc         it
-SFX A   it          íce        it
 SFX A   it          0          [^o]učit
 SFX A   it          me         [^o]učit
 SFX A   it          te         [^o]učit
@@ -1756,9 +1777,9 @@ SFX A   oulit       ulte       oulit
 SFX A   ounit       ouni       ounit
 SFX A   ounit       ouněme     ounit
 SFX A   ounit       ouněte     ounit
-SFX A   oužit       up         oupit
-SFX A   oužit       upme       oupit
-SFX A   oužit       upte       oupit
+SFX A   oupit       up         oupit
+SFX A   oupit       upme       oupit
+SFX A   oupit       upte       oupit
 SFX A   ouřit       uř         ouřit
 SFX A   ouřit       uřme       ouřit
 SFX A   ouřit       uřte       ouřit
@@ -1768,6 +1789,9 @@ SFX A   ousit       uste       ousit
 SFX A   outit       uť         outit
 SFX A   outit       uťme       outit
 SFX A   outit       uťte       outit
+SFX A   tit         ť          [^o]utit
+SFX A   tit         ťme        [^o]utit
+SFX A   tit         ťte        [^o]utit
 SFX A   oužit       už         oužit
 SFX A   oužit       užme       oužit
 SFX A   oužit       užte       oužit
@@ -1933,6 +1957,9 @@ SFX A   ánit        aňte       ánit
 SFX A   t           0          štit
 SFX A   it          ěme        štit
 SFX A   it          ěte        štit
+SFX A   t           0          htit
+SFX A   it          ěme        htit
+SFX A   it          ěte        htit
 SFX A   tit         ť          [^ií]stit
 SFX A   tit         ťme        [^ií]stit
 SFX A   tit         ťte        [^ií]stit
@@ -1985,10 +2012,6 @@ SFX A   ít          ěme        [bdfmnptvw]ít
 SFX A   ít          ěte        [bdfmnptvw]ít
 SFX A   ít          eme        [^bdfmnptvwč]ít
 SFX A   ít          ete        [^bdfmnptvwč]ít
-SFX A   ít          ě          [bdfmnptvw]ít
-SFX A   ít          e          [^bdfmnptvwč]ít
-SFX A   t           c          [^čř]ít
-SFX A   t           ce         [^čř]ít
 SFX A   ít          il         [^čř]ít
 SFX A   ít          ila        [^čř]ít
 SFX A   ít          ilo        [^čř]ít
@@ -2070,9 +2093,6 @@ SFX A   et          íš         et
 SFX A   et          í          et
 SFX A   et          íme        et
 SFX A   et          íte        et
-SFX A   t           0          et
-SFX A   et          íc         et
-SFX A   et          íce        et
 SFX A   et          i          [^aeiouyáéíóúýůěrl][^aeiouyáéíóúýůě]et
 SFX A   t           me         [^aeiouyáéíóúýůěrl][^aeiouyáéíóúýůě]et
 SFX A   0           e          [^aeiouyáéíóúýůěrl][^aeiouyáéíóúýůě]et
@@ -2082,18 +2102,12 @@ SFX A   t           jte        [áéíóúýů][^aeiouyáéíóúýůě]et
 SFX A   et          0          [aeiouyěrl][^aeiouyáéíóúýůě]et
 SFX A   et          me         [aeiouyěrl][^aeiouyáéíóúýůě]et
 SFX A   et          te         [aeiouyěrl][^aeiouyáéíóúýůě]et
-SFX A   t           0          ět
-SFX A   ět          íc         ět
-SFX A   ět          íce        ět
 SFX A   out         u          nout
 SFX A   out         eš         nout
 SFX A   out         e          nout
 SFX A   out         eme        nout
 SFX A   out         ete        nout
 SFX A   t           0          nout
-SFX A   out         a          nout
-SFX A   t           c          nout
-SFX A   t           ce         nout
 SFX A   nout        ň          [^aeiouyáéíóúýůě][rl]nout
 SFX A   nout        ňme        [^aeiouyáéíóúýůě][rl]nout
 SFX A   nout        ňte        [^aeiouyáéíóúýůě][rl]nout
@@ -2116,10 +2130,12 @@ SFX A   nout        la         [aeiouyáéíóúýůě]rnout
 SFX A   nout        lo         [aeiouyáéíóúýůě]rnout
 SFX A   nout        li         [aeiouyáéíóúýůě]rnout
 SFX A   nout        ly         [aeiouyáéíóúýůě]rnout
-SFX A   nout        l          [aeiouyáéíóúýůěr][^aeiouyáéíóúýůěrl][^aeiouy
-SFX A   nout        l          [aeiouyáéíóúýůěr][^aeiouyáéíóúýůěrl]nout
 SFX A   out         ul         [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
-SFX A   nout        l          l[^aeiouyáéíóúýůěrl]nout
+SFX A   out         ula        [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
+SFX A   out         ulo        [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
+SFX A   out         uli        [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
+SFX A   out         uly        [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
+SFX A   nout        l          [^aeiouyáéíóúýůěrl]nout
 SFX A   nout        la         [^aeiouyáéíóúýůěrl]nout
 SFX A   nout        lo         [^aeiouyáéíóúýůěrl]nout
 SFX A   nout        li         [^aeiouyáéíóúýůěrl]nout
@@ -2143,6 +2159,68 @@ SFX A   0           i          [^o]ut
 SFX A   0           y          [^o]ut
 SFX A   0           i          [^coy]t
 SFX A   t           i          ct
+SFX A   i           t          ci
+SFX A   íst         etls       číst #přidané hovorové tvary minulého času
+SFX A   íst         etlas      číst
+SFX A   íst         etlos      číst
+SFX A   íst         ětls       [dnt]íst
+SFX A   íst         ětlas      [dnt]íst
+SFX A   íst         ětlos      [dnt]íst
+SFX A   íst         edls       [^čdnt]íst
+SFX A   íst         edlas      [^čdnt]íst
+SFX A   íst         edlos      [^čdnt]íst
+SFX A   ést         esls       nést
+SFX A   ést         eslas      nést
+SFX A   ést         eslos      nést
+SFX A   ést         etls       [^n]ést
+SFX A   ést         etlas      [^n]ést
+SFX A   ést         etlos      [^n]ést
+SFX A   ást         adls       ást
+SFX A   ást         adlas      ást
+SFX A   ást         adlos      ást
+SFX A   ézt         ezls       ézt
+SFX A   ézt         ezlas      ézt
+SFX A   ézt         ezlos      ézt
+SFX A   át          als        át
+SFX A   át          alas       át
+SFX A   át          alos       át
+SFX A   éct         ekls       [^l]éc[it]
+SFX A   éct         eklas      [^l]éc[it]
+SFX A   éct         eklos      [^l]éc[it]
+SFX A   ct          kls        ouc[it]
+SFX A   ct          klas       ouc[it]
+SFX A   ct          klos       ouc[it]
+SFX A   ci          hls        oc[it]
+SFX A   ci          hlas       oc[it]
+SFX A   ci          hlos       oc[it]
+SFX A   t           ls         [^áíouyýcsz]t
+SFX A   t           las        [^áíouyýcsz]t
+SFX A   t           los        [^áíouyýcsz]t
+SFX A   ít          ils        [^čř]ít
+SFX A   ít          ilas       [^čř]ít
+SFX A   ít          ilos       [^čř]ít
+SFX A   ít          els        řít
+SFX A   ít          elas       řít
+SFX A   ít          elos       řít
+SFX A   ít          als        čít
+SFX A   ít          alas       čít
+SFX A   ít          alos       čít
+SFX A   out         uls        [^aeiouyáéíóúýůě][rl]nout
+SFX A   out         ulas       [^aeiouyáéíóúýůě][rl]nout
+SFX A   out         ulos       [^aeiouyáéíóúýůě][rl]nout
+SFX A   nout        ls         [aeiouyáéíóúýůě]rnout
+SFX A   nout        las        [aeiouyáéíóúýůě]rnout
+SFX A   nout        los        [aeiouyáéíóúýůě]rnout
+SFX A   out         uls        [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
+SFX A   out         ulas       [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
+SFX A   out         ulos       [^aeiouyáéíóúýůě]l[^aeiouyáéíóúýůěrl]nout
+SFX A   nout        ls         [^aeiouyáéíóúýůěrl]nout
+SFX A   nout        las        [^aeiouyáéíóúýůěrl]nout
+SFX A   nout        los        [^aeiouyáéíóúýůěrl]nout
+SFX A   out         uls        [aeiouyáéíóúýůěl]nout
+SFX A   out         ulas       [aeiouyáéíóúýůěl]nout
+SFX A   out         ulos       [aeiouyáéíóúýůěl]nout
+
 
 SFX T Y 114
 SFX T   t           n          [^aiouyíýcsz]t
@@ -2260,7 +2338,7 @@ SFX T   ýt          yti        ýt
 SFX T   ýt          yty        ýt
 SFX T   ýt          ytu        ýt
 
-SFX B Y 257
+SFX B Y 266
 SFX B   e           eš         e
 SFX B   e           u          [^cj]e
 SFX B   e           i          ce
@@ -2329,10 +2407,10 @@ SFX B   ňu          ně         ňu
 SFX B   ňu          něme       ňu
 SFX B   ňu          něte       ňu
 SFX B   u           i          lžu
-SFX B   u           i          [^aeiouyáéíóúýůě][^aeiouyáéíóúýůěž]u
-SFX B   u           ěme        [^aeiouyáéíóúýůě][bdfmnptvw]u
+SFX B   u           i          [^aeiouyáéíóúýůě][^aeiouyáéíóúýůětž]u
+SFX B   u           ěme        [^aeiouyáéíóúýůě][bdfmnpvw]u
 SFX B   u           eme        [^aeiouyáéíóúýůě][cčghjklrřsšz]u
-SFX B   u           ěte        [^aeiouyáéíóúýůě][bdfmnptvw]u
+SFX B   u           ěte        [^aeiouyáéíóúýůě][bdfmnpvw]u
 SFX B   u           ete        [^aeiouyáéíóúýůě][cčghjklrřsšz]u
 SFX B   du          ď          [aeiouyáéíóúýůě]du
 SFX B   du          ďme        [aeiouyáéíóúýůě]du
@@ -2350,11 +2428,12 @@ SFX B   íšu         iš         íšu
 SFX B   íšu         išme       íšu
 SFX B   íšu         ište       íšu
 SFX B   i           eš         [^t]i
-SFX B   i           eš         [^t]i
+SFX B   i           u          [^t]i
 SFX B   i           e          [^t]i
 SFX B   i           eme        [^t]i
 SFX B   i           ete        [^t]i
 SFX B   i           í          [^t]i
+SFX B   i           ou         [^t]i
 SFX B   i           0          ji
 SFX B   i           me         ji
 SFX B   i           te         ji
@@ -2375,11 +2454,13 @@ SFX B   ojím        ůjme       ojím
 SFX B   ojím        ůjte       ojím
 SFX B   0           i          [aáěíuý]t
 SFX B   ít          iji        ít
+SFX B   ít          iju        ít
 SFX B   ít          iješ       ít
 SFX B   ít          ije        ít
 SFX B   ít          ijeme      ít
 SFX B   ít          ijete      ít
 SFX B   ít          ijí        ít
+SFX B   ít          ijou       ít
 SFX B   ít          ij         ít
 SFX B   ít          ijme       ít
 SFX B   ít          ijte       ít
@@ -2388,30 +2469,22 @@ SFX B   ít          ila        ít
 SFX B   ít          ilo        ít
 SFX B   ít          ili        ít
 SFX B   ít          ily        ít
-SFX B   t           ji         ět
-SFX B   t           ješ        ět
-SFX B   t           je         ět
-SFX B   t           jeme       ět
-SFX B   t           jete       ět
-SFX B   t           jí         ět
-SFX B   t           j          ět
-SFX B   t           jme        ět
-SFX B   t           jte        ět
-SFX B   t           ji         et
-SFX B   t           ješ        et
-SFX B   t           je         et
-SFX B   t           jeme       et
-SFX B   t           jete       et
-SFX B   t           jí         et
-SFX B   t           j          et
-SFX B   t           jme        et
-SFX B   t           jte        et
+SFX B   ět          ím         ět
+SFX B   ět          íš         ět
+SFX B   ět          í          ět
+SFX B   ět          íme        ět
+SFX B   ět          íte        ět
+SFX B   ět          0          ět
+SFX B   ět          me         ět
+SFX B   ět          te         ět
 SFX B   ýt          yji        ýt
+SFX B   ýt          yju        ýt
 SFX B   ýt          yješ       ýt
 SFX B   ýt          yje        ýt
 SFX B   ýt          yjeme      ýt
 SFX B   ýt          yjete      ýt
 SFX B   ýt          yjí        ýt
+SFX B   ýt          yjou       ýt
 SFX B   ýt          yj         ýt
 SFX B   ýt          yjme       ýt
 SFX B   ýt          yjte       ýt
@@ -2421,27 +2494,27 @@ SFX B   ýt          ylo        ýt
 SFX B   ýt          yli        ýt
 SFX B   ýt          yly        ýt
 SFX B   át          aji        [^bpvmnřd]át
+SFX B   át          aju        [^bpvmnřd]át
 SFX B   át          aješ       [^bpvmnřd]át
 SFX B   át          aje        [^bpvmnřd]át
 SFX B   át          ajeme      [^bpvmnřd]át
 SFX B   át          ajete      [^bpvmnřd]át
 SFX B   át          ají        [^bpvmnřd]át
+SFX B   át          ajou       [^bpvmnřd]át
 SFX B   át          aj         [^bpvmnřd]át
 SFX B   át          ajme       [^bpvmnřd]át
 SFX B   át          ajte       [^bpvmnřd]át
-SFX B   át          ajíc       [^bpvmnřd]át
-SFX B   át          ajíce      [^bpvmnřd]át
 SFX B   át          ěji        [bpvmn]át
+SFX B   át          ěju        [bpvmn]át
 SFX B   át          ěješ       [bpvmn]át
 SFX B   át          ěje        [bpvmn]át
 SFX B   át          ějeme      [bpvmn]át
 SFX B   át          ějete      [bpvmn]át
 SFX B   át          ějí        [bpvmn]át
+SFX B   át          ějou       [bpvmn]át
 SFX B   át          ěj         [bpvmn]át
 SFX B   át          ějme       [bpvmn]át
 SFX B   át          ějte       [bpvmn]át
-SFX B   át          ějíc       [bpvmn]át
-SFX B   át          ějíce      [bpvmn]át
 SFX B   0           i          dát
 SFX B   t           m          dát
 SFX B   t           š          dát
@@ -2453,22 +2526,24 @@ SFX B   át          ej         dát
 SFX B   át          ejme       dát
 SFX B   át          ejte       dát
 SFX B   át          eji        řát
+SFX B   át          eju        řát
 SFX B   át          eješ       řát
 SFX B   át          eje        řát
 SFX B   át          ejeme      řát
 SFX B   át          ejete      řát
 SFX B   át          ejí        řát
+SFX B   át          ejou       řát
 SFX B   át          ej         řát
 SFX B   át          ejme       řát
 SFX B   át          ejte       řát
-SFX B   át          ejíc       řát
-SFX B   át          ejíce      řát
 SFX B   out         uji        [^m]out
+SFX B   out         uju        [^m]out
 SFX B   out         uješ       [^m]out
 SFX B   out         uje        [^m]out
 SFX B   out         ujeme      [^m]out
 SFX B   out         ujete      [^m]out
 SFX B   out         ují        [^m]out
+SFX B   out         ujou       [^m]out
 SFX B   out         uj         [^m]out
 SFX B   out         ujme       [^m]out
 SFX B   out         ujte       [^m]out
@@ -2518,8 +2593,21 @@ SFX B   t           la         [aáeě]t
 SFX B   t           lo         [aáeě]t
 SFX B   t           li         [aáeě]t
 SFX B   t           ly         [aáeě]t
+SFX B   ít          ils        ít #přidané hovorové tvary minulého času
+SFX B   ít          ilas       ít
+SFX B   ít          ilos       ít
+SFX B   ýt          yls        ýt
+SFX B   ýt          ylas       ýt
+SFX B   ýt          ylos       ýt
+SFX B   out         uls        [^m]out
+SFX B   out         ulas       [^m]out
+SFX B   out         ulos       [^m]out
+SFX B   t           ls         [aáeě]t
+SFX B   t           las        [aáeě]t
+SFX B   t           los        [aáeě]t
 
-SFX O Y 55
+
+SFX O Y 64
 SFX O   en          na         [os]ten
 SFX O   en          no         [os]ten
 SFX O   en          ni         [os]ten
@@ -2575,24 +2663,223 @@ SFX O   0           i          [^e]v
 SFX O   0           y          [^e]v
 SFX O   0           u          [^e]v
 SFX O   ý           o          ý
+SFX O   0           s          [^e]l #přidané hovorové tvary minulého času
+SFX O   0           as         [^e]l
+SFX O   0           os         [^e]l
+SFX O   0           s          [^š]el
+SFX O   0           as         [^š]el
+SFX O   0           os         [^š]el
+SFX O   0           s          šel
+SFX O   el          las        šel
+SFX O   el          los        šel
 
-SFX X Y 19
+
+SFX X Y 27
 SFX X   a           ouc        a
+SFX X   a           oucí/Y     a
 SFX X   a           ouce       a
 SFX X   e           íc         e
+SFX X   e           ící/Y      e
 SFX X   e           íce        e
 SFX X   ě           íc         ě
+SFX X   ě           ící/Y      ě
 SFX X   ě           íce        ě
 SFX X   0           ši         [dv]
+SFX X   0           ší/Y       [dv]
 SFX X   0           še         [dv]
 SFX X   0           ši         et
+SFX X   0           ší/Y       et
 SFX X   0           še         et
 SFX X   out         uv         out
 SFX X   out         uvši       out
+SFX X   out         uvší/Y     out
 SFX X   out         uvše       out
 SFX X   t           v          [ai]t
 SFX X   t           vši        [ai]t
+SFX X   t           vší/Y      [ai]t
 SFX X   t           vše        [ai]t
 SFX X   ýt          yv         ýt
 SFX X   ýt          yvši       ýt
+SFX X   ýt          yvší/Y     ýt
 SFX X   ýt          yvše       ýt
+
+SFX y Y 80
+SFX y   ý           ejší/E   [lsz]ý
+SFX y   rý          řejší/E  rý
+SFX y   hý          žejší/E  [^c]hý
+SFX y   chý         šejší/E  chý
+SFX y   ý           ější/E   [bdmnptv]ý
+SFX y   cký         čtější/E cký
+SFX y   ský         štější/E ský
+SFX y   í           ější/E   ní
+SFX y   ký          čejší/E  [^cs]ký
+SFX y   í           ejší/E   [^n]í
+SFX y   ý           ejšího/E   [lsz]ý
+SFX y   rý          řejšího/E  rý
+SFX y   hý          žejšího/E  [^c]hý
+SFX y   chý         šejšího/E  chý
+SFX y   ý           ějšího/E   [bdmnptv]ý
+SFX y   cký         čtějšího/E cký
+SFX y   ský         štějšího/E ský
+SFX y   ký          čejšího/E  [^cs]ký
+SFX y   í           ejšího/E   [^n]í
+SFX y   í           ějšího/E   ní
+SFX y   ý           ejšímu/E   [lsz]ý
+SFX y   rý          řejšímu/E  rý
+SFX y   hý          žejšímu/E  [^c]hý
+SFX y   chý         šejšímu/E  chý
+SFX y   ý           ějšímu/E   [bdmnptv]ý
+SFX y   cký         čtějšímu/E cký
+SFX y   ský         štějšímu/E ský
+SFX y   í           ějšímu/E   ní
+SFX y   ký          čejšímu/E  [^cs]ký
+SFX y   í           ejšímu/E   [^n]í
+SFX y   ý           ejším/E   [lsz]ý
+SFX y   rý          řejším/E  rý
+SFX y   hý          žejším/E  [^c]hý
+SFX y   chý         šejším/E  chý
+SFX y   ý           ějším/E   [bdmnptv]ý
+SFX y   cký         čtějším/E cký
+SFX y   ský         štějším/E ský
+SFX y   í           ějším/E   ní
+SFX y   ký          čejším/E  [^cs]ký
+SFX y   í           ejším/E   [^n]í
+SFX y   ý           ejších/E   [lsz]ý
+SFX y   rý          řejších/E  rý
+SFX y   hý          žejších/E  [^c]hý
+SFX y   chý         šejších/E  chý
+SFX y   ý           ějších/E   [bdmnptv]ý
+SFX y   cký         čtějších/E cký
+SFX y   ský         štějších/E ský
+SFX y   í           ějších/E   ní
+SFX y   ký          čejších/E  [^cs]ký
+SFX y   í           ejších/E   [^n]í
+SFX y   ý           ejšími/E   [lsz]ý
+SFX y   rý          řejšími/E  rý
+SFX y   hý          žejšími/E  [^c]hý
+SFX y   chý         šejšími/E  chý
+SFX y   ý           ějšími/E   [bdmnptv]ý
+SFX y   cký         čtějšími/E cký
+SFX y   ský         štějšími/E ský
+SFX y   í           ějšími/E   ní
+SFX y   ký          čejšími/E  [^cs]ký
+SFX y   í           ejšími/E   [^n]í
+SFX y   ý           ejšíma/E   [lsz]ý
+SFX y   rý          řejšíma/E  rý
+SFX y   hý          žejšíma/E  [^c]hý
+SFX y   chý         šejšíma/E  chý
+SFX y   ý           ějšíma/E   [bdmnptv]ý
+SFX y   cký         čtějšíma/E cký
+SFX y   ský         štějšíma/E ský
+SFX y   í           ějšíma/E   ní
+SFX y   ký          čejšíma/E  [^cs]ký
+SFX y   í           ejšíma/E   [^n]í
+SFX y   ý           eji/E     [lsz]ý
+SFX y   rý          řeji/E    rý
+SFX y   hý          žeji/E    [^c]hý
+SFX y   chý         šeji/E    chý
+SFX y   ý           ěji/E     [bdmnptv]ý
+SFX y   cký         čtěji/E   cký
+SFX y   ský         štěji/E   ský
+SFX y   í           ěji/E     ní
+SFX y   ký          čeji/E  [^cs]ký
+SFX y   í           eji/E   [^n]í
+
+CIRCUMFIX Ů
+
+PFX Ú Y 44
+PFX Ú A a/Ů A
+PFX Ú Á á/Ů Á
+PFX Ú Ä ä/Ů Ä
+PFX Ú Å å/Ů Å
+PFX Ú B b/Ů B
+PFX Ú C c/Ů C
+PFX Ú Č č/Ů Č
+PFX Ú D d/Ů D
+PFX Ú Ď ď/Ů Ď
+PFX Ú E e/Ů E
+PFX Ú É é/Ů É
+PFX Ú F f/Ů F
+PFX Ú G g/Ů G
+PFX Ú H h/Ů H
+PFX Ú I i/Ů I
+PFX Ú Í í/Ů Í
+PFX Ú J j/Ů J
+PFX Ú K k/Ů K
+PFX Ú L l/Ů L
+PFX Ú Ľ ľ/Ů Ľ
+PFX Ú M m/Ů M
+PFX Ú N n/Ů N
+PFX Ú Ň ň/Ů Ň
+PFX Ú O o/Ů O
+PFX Ú Ó ó/Ů Ó
+PFX Ú Ö ö/Ů Ö
+PFX Ú P p/Ů P
+PFX Ú Q q/Ů Q
+PFX Ú R r/Ů R
+PFX Ú Ř ř/Ů Ř
+PFX Ú S s/Ů S
+PFX Ú Š š/Ů Š
+PFX Ú T t/Ů T
+PFX Ú Ť ť/Ů Ť
+PFX Ú U u/Ů U
+PFX Ú Ú ú/Ů Ú
+PFX Ú Ü ü/Ů Ü
+PFX Ú V v/Ů V
+PFX Ú W w/Ů W
+PFX Ú X x/Ů X
+PFX Ú Y y/Ů Y
+PFX Ú Ý ý/Ů Ý
+PFX Ú Z z/Ů Z
+PFX Ú Ž ž/Ů Ž
+
+SFX ý Y 12
+SFX ý   0           ský/ÚŮ     .
+SFX ý   0           ská/ÚŮ     .
+SFX ý   0           ské/ÚŮ     .
+SFX ý   0           ského/ÚŮ   .
+SFX ý   0           skému/ÚŮ   .
+SFX ý   0           ském/ÚŮ    .
+SFX ý   0           ským/ÚŮ    .
+SFX ý   0           skou/ÚŮ    .
+SFX ý   0           ští/ÚŮ     .
+SFX ý   0           ských/ÚŮ   .
+SFX ý   0           skými/ÚŮ   .
+SFX ý   0           skýma/ÚŮ   .
+
+SFX í Y 23
+SFX í   a           e          ia
+SFX í   a           i          ia
+SFX í   a           í          ia
+SFX í   0           a          c
+SFX í   0           ovi        c
+SFX í   0           u          c
+SFX í   0           em         c
+SFX í   c           ka         c
+SFX í   c           kovi       c
+SFX í   c           ku         c
+SFX í   c           kem        c
+SFX í   0           a          [^i]e
+SFX í   0           ovi        [^i]e
+SFX í   0           m          [^i]e
+SFX í   0           ho         y
+SFX í   0           mu         y
+SFX í   0           m          y
+SFX í   0           ho         i
+SFX í   0           mu         i
+SFX í   0           m          i
+SFX í   0           ho         é
+SFX í   0           mu         é
+SFX í   0           m          é
+
+SFX é Y 10
+SFX é   y           ého        y
+SFX é   y           ému        y
+SFX é   y           ým         y
+SFX é   y           ý          y
+SFX é   y           ém         y
+SFX é   i           ého        i
+SFX é   i           ému        i
+SFX é   i           ým         i
+SFX é   i           ý          i
+SFX é   i           ém         i

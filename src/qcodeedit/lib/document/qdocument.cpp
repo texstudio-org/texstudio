@@ -1717,7 +1717,7 @@ QDocumentConstIterator QDocument::iterator(const QDocumentLine& l) const
 	\param line where the line number will be stored
 	\param column where the column (text position within line) will be stored
 */
-void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& column) const
+void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& column, bool disallowPositionBeyondLine) const
 {
 	if ( !m_impl )
 		return;
@@ -1730,7 +1730,7 @@ void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& colum
 		return;
 
 	//qDebug("%i %i", line, wrap);
-	column = l.documentOffsetToCursor(p.x(), wrap * QDocumentPrivate::m_lineSpacing);
+    column = l.documentOffsetToCursor(p.x(), wrap * QDocumentPrivate::m_lineSpacing,disallowPositionBeyondLine);
 
 	//qDebug("(%i, %i) -> (%i [+%i], %i)", p.x(), p.y(), line, wrap, column);
 }
@@ -1738,11 +1738,11 @@ void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& colum
 /*!
 	\return The cursor nearest to a document (x, y) position
 */
-QDocumentCursor QDocument::cursorAt(const QPoint& p) const
+QDocumentCursor QDocument::cursorAt(const QPoint& p, bool disallowPositionBeyondLine) const
 {
 	int ln = -1, col = -1;
 
-	cursorForDocumentPosition(p, ln, col);
+    cursorForDocumentPosition(p, ln, col,disallowPositionBeyondLine);
 
 	return QDocumentCursor(const_cast<QDocument*>(this), ln, col);
 }
@@ -2825,7 +2825,7 @@ int QDocumentLineHandle::wrappedLineForCursorNoLock(int cpos) const
  * i.e. x = leftMargin + leftPadding + charWidth results in column 1
  * Positions smaller than leftMargin + leftPadding always result in column 0
  */
-int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
+int QDocumentLineHandle::documentOffsetToCursor(int x, int y, bool disallowPositionBeyondLine) const
 {
 	//qDebug("documentOffsetToCursor(%i, %i)", x, y);
 	QReadLocker locker(&mLock);
@@ -2938,6 +2938,10 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		column += columnDelta;
 		rx += xDelta;
 	}
+    if(disallowPositionBeyondLine && rx<x) {
+        // don't trigger hover if cursor is beyond text end
+        cpos=-1;
+    }
 	return cpos;
 }
 

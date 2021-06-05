@@ -297,9 +297,9 @@ int QDocumentLine::wrappedLineForCursor(int cpos) const
 	The (x, y) coordinates given by this function are relative to the absolute
 	position of the line, which can be obtained from the document.
 */
-int QDocumentLine::documentOffsetToCursor(int x, int y) const
+int QDocumentLine::documentOffsetToCursor(int x, int y, bool disallowPositionBeyondLine) const
 {
-	return m_handle ? m_handle->documentOffsetToCursor(x, y) : -1;
+    return m_handle ? m_handle->documentOffsetToCursor(x, y,disallowPositionBeyondLine) : -1;
 }
 
 /*!
