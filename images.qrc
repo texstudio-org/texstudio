@@ -6,6 +6,9 @@
         <file>images-ng/alignCols.svgz</file>
         <file>images-ng/annotation_caret.svg</file>
         <file>images-ng/annotation_highlight.svg</file>
+        <file>images-ng/annotation_add.svg</file>
+        <file>images-ng/annotation_del.svg</file>
+        <file>images-ng/annotation_replace.svg</file>
         <file>images-ng/annotation_text.svg</file>
         <file>images-ng/application-exit.svgz</file>
         <file>images-ng/asymptote.svg</file>
