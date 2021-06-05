@@ -183,6 +183,9 @@ void PDFOutlineDock::fillInfo()
 {
 	tree->clear();
 	if (!document || document->popplerDoc().isNull()) return;
+
+
+
 #ifdef HAS_POPPLER_74
     QVector<Poppler::OutlineItem>toc=document->popplerDoc()->outline();
     if(!toc.isEmpty()){
@@ -267,7 +270,7 @@ void PDFInfoDock::fillInfo()
 		const int id = keys.indexOf(date);
 		if (id != -1) {
 			list->addItem(date + ":");
-			list->addItem(doc->date(date).toLocalTime().toString(Qt::SystemLocaleDate));
+            list->addItem(doc->date(date).toLocalTime().toString());//Qt::SystemLocaleDate)); TODO
 			++i;
 			keys.removeAt(id);
 		}
@@ -334,7 +337,7 @@ QVariant PDFOverviewModel::data ( const QModelIndex &index, int role) const
 			cache[index.row()] = document->renderManager->renderToImage(index.row(), const_cast<QObject *>(o), "updateImage", -1, -1, -1, -1, -1, -1, false).scaled(128, 128, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		}
 		return cache[index.row()];
-	case Qt::BackgroundColorRole:
+    case Qt::BackgroundRole:
 		return QColor(Qt::gray);
 	}
 	return QVariant();

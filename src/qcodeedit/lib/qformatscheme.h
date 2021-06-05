@@ -34,7 +34,7 @@
 struct QFormat;
 class QString;
 class QSettings;
-class QStringList;
+//class QStringList;
 class QDomElement;
 
 class QCE_EXPORT QFormatScheme : public QObject

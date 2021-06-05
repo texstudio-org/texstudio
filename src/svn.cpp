@@ -78,15 +78,19 @@ SVN::Status SVN::status(QString filename) const
  */
 QStringList SVN::log(QString filename) const
 {
-	QString output = runSvn("log", quote(filename));
+    QString output = runSvn("log", quote(filename));
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList revisions = output.split("\n", Qt::SkipEmptyParts);
+#else
 	QStringList revisions = output.split("\n", QString::SkipEmptyParts);
+#endif
 	QMutableStringListIterator iter(revisions);
 	bool keep = false;
 	QString elem;
 	while (iter.hasNext()) {
 		elem = iter.next();
 		if (!keep) iter.remove();
-		keep = elem.contains(QRegExp("-{60,}"));
+        keep = elem.contains(QRegularExpression("-{60,}"));
 	}
 	return revisions;
 }

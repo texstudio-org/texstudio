@@ -123,7 +123,7 @@ void SearchQuery::replaceAll()
                 QDocumentLineHandle *dlh = search.lines.value(i, nullptr);
 				if (dlh) {
 					if (isReg) {
-						QRegExp rx(searchExpression(), isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);
+                        QRegularExpression rx(searchExpression(), isCase ? QRegularExpression::NoPatternOption : QRegularExpression::CaseInsensitiveOption);
 						QString txt = dlh->text();
 						QString newText = txt;
 						newText.replace(rx, replaceText);

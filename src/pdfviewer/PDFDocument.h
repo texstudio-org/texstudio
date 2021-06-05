@@ -32,8 +32,11 @@
 #include <QTapGesture>
 #include <QProgressDialog>
 #include <QPainterPath>
-
+#if QT_VERSION_MAJOR>5
+#include "poppler-qt6.h"
+#else
 #include "poppler-qt5.h"
+#endif
 #include "qsynctex.h"
 
 #include "pdfrendermanager.h"
@@ -264,6 +267,7 @@ private:
 	void doLink(const QSharedPointer<Poppler::Link> link);
 	void annotationClicked(QSharedPointer<Poppler::Annotation> annotation, int page);
 	void doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor = 1.0);
+    void doZoom(const QPointF &clickPos, int dir, qreal newScaleFactor = 1.0);
 
 	PDFScrollArea *getScrollArea() const;
 

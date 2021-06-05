@@ -5,7 +5,11 @@
 
 #include "smallUsefulFunctions.h"
 
+#if QT_VERSION_MAJOR>5
+#include "poppler-qt6.h"
+#else
 #include "poppler-qt5.h"
+#endif
 
 #include <QThread>
 #include <QSemaphore>

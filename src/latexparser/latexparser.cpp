@@ -76,7 +76,7 @@ int LatexParser::commentStart(const QString &text)
 	if (text.startsWith("%")) return 0;
 	QString test = text;
 	test.replace("\\\\", "  ");
-	int cs = test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
+    int cs = test.indexOf(QRegularExpression("[^\\\\]%")); // find start of comment (if any)
     if (cs > -1) {
         return cs + 1;
     } else return -1;
@@ -97,7 +97,7 @@ bool LatexParser::resolveCommandOptions(const QString &line, int column, QString
 	int stop = -1;
 	int type;
 	// check if between command and options is located text or other command
-	int abort = line.indexOf(QRegExp("(\\s|\\\\)"), start + 1);
+    int abort = line.indexOf(QRegularExpression("(\\s|\\\\)"), start + 1);
 	while (start < line.length()) {
 		// find first available bracket after position start
 		int found = -1;
@@ -123,7 +123,7 @@ bool LatexParser::resolveCommandOptions(const QString &line, int column, QString
 		}
 		// check wether a word letter appears before (next command text ...)
 		if (stop > -1) {
-			stop = line.indexOf(QRegExp("\\S+"), start);
+            stop = line.indexOf(QRegularExpression("\\S+"), start);
 		}
 		if (stop < found && stop > -1) break;
 		// find apropriate closing bracket.
@@ -426,10 +426,17 @@ void LatexParser::append(const LatexParser &elem)
 				environmentAliases.insert(key, value);
 		}
 	}
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
+    specialTreatmentCommands.insert(elem.specialTreatmentCommands);
+    specialDefCommands.insert(elem.specialDefCommands);
+    commandDefs.unite(elem.commandDefs);
+    mapSpecialArgs.insert(elem.mapSpecialArgs);
+#else
 	specialTreatmentCommands.unite(elem.specialTreatmentCommands);
 	specialDefCommands.unite(elem.specialDefCommands);
 	commandDefs.unite(elem.commandDefs);
 	mapSpecialArgs.unite(elem.mapSpecialArgs);
+#endif
 }
 
 void LatexParser::substract(const LatexParser &elem)

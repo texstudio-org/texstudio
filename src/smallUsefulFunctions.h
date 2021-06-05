@@ -60,7 +60,7 @@ QString textToLatex(const QString &text);
 QString latexToText(QString s);
 
 QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines);
-QStringList splitLines(const QStringList &lines, int maxCharPerLine, const QRegExp &breakChars);
+QStringList splitLines(const QStringList &lines, int maxCharPerLine, const QRegularExpression &breakChars);
 
 /// compares two strings locale aware
 bool localeAwareLessThan(const QString &s1, const QString &s2);
@@ -91,7 +91,7 @@ QRegExp generateRegExp(const QString &text, const bool isCase, const bool isWord
 
 QStringList regExpFindAllMatches(const QString &searchIn, const QRegExp &regexp, int cap = 0);
 QList<int> indicesOf(const QString &line, const QString &word, Qt::CaseSensitivity cs = Qt::CaseSensitive);
-QList<int> indicesOf(const QString &line, const QRegExp &rx);
+QList<int> indicesOf(const QString &line, const QRegularExpression &rx);
 
 /// add Environment to QNFA DOM
 void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QString &EnvironMode, bool completeParentheses=true);

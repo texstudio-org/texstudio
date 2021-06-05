@@ -143,7 +143,7 @@ void LatexStyleParser::run()
 
 
 		// if included styles call for additional generation, do it.
-		QStringList included = results.filter(QRegExp("#include:.+"));
+        QStringList included = results.filter(QRegularExpression("#include:.+"));
 		foreach (QString elem, included) {
 			elem = elem.mid(9);
 			if (!QFileInfo("cwl:" + elem + ".cwl").exists()) {
@@ -638,31 +638,31 @@ bool LatexStyleParser::parseLineXparseOneArg(XpArg &xpArg, const QString &argDef
 		xpArg.optional = false;
 		xpArg.delimLeft = '{';
 		xpArg.delimRight = '}';
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if ((type == 'o') || (type == 'O')) {
 		xpArg.optional = true;
 		xpArg.delimLeft = '[';
 		xpArg.delimRight = ']';
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if (type == 's') {
 		xpArg.optional = true;
-		xpArg.delimLeft = 0;
-		xpArg.delimRight = 0;
+        xpArg.delimLeft = QChar();
+        xpArg.delimRight = QChar();
 		xpArg.fixedChar = '*';
 	} else if ((type == 'r') || (type == 'R')) {
 		xpArg.optional = false;
 		xpArg.delimLeft = match.at(1);
 		xpArg.delimRight = match.at(2);
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if ((type == 'd') || (type == 'D')) {
 		xpArg.optional = true;
 		xpArg.delimLeft = match.at(1);
 		xpArg.delimRight = match.at(2);
-		xpArg.fixedChar = 0;
+        xpArg.fixedChar = QChar();
 	} else if (type == 't') {
 		xpArg.optional = true;
-		xpArg.delimLeft = 0;
-		xpArg.delimRight = 0;
+        xpArg.delimLeft = QChar();
+        xpArg.delimRight = QChar();
 		xpArg.fixedChar = match.at(1);
 	} else {
 		// Should never happen
@@ -768,7 +768,7 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn) const
 		}
 	}
 	// replace tex env def by latex commands
-	QStringList zw = args.filter(QRegExp("\\\\end.+"));
+    QStringList zw = args.filter(QRegularExpression("\\\\end.+"));
 	foreach (const QString &elem, zw) {
 		QString begin = elem;
 		begin.remove(1, 3);
@@ -845,7 +845,7 @@ QStringList LatexStyleParser::readPackageTracing(QString fn) const
 	}
 
 	// replace tex env def by latex commands
-	QStringList zw = args.filter(QRegExp("\\\\end.+"));
+    QStringList zw = args.filter(QRegularExpression("\\\\end.+"));
 	foreach (const QString &elem, zw) {
 		QString begin = elem;
 		begin.remove(1, 3);

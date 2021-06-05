@@ -233,20 +233,21 @@ QString BuildManager::replaceEnvironmentVariables(const QString &s, const QHash<
 {
 	QString result(s);
 #ifdef Q_OS_WIN
-	QRegExp rxEnvVar("%([\\w()]+)%");  // word and brackets between %...%
+    QRegularExpression rxEnvVar("%([\\w()]+)%");  // word and brackets between %...%
 #else
-	QRegExp rxEnvVar("\\$(\\w+)");
+    QRegularExpression rxEnvVar("\\$(\\w+)");
 #endif
 	int i = 0;
 	while (i >= 0 && i < result.length()) {
-		i = result.indexOf(rxEnvVar, i);
+        QRegularExpressionMatch match;
+        i = result.indexOf(rxEnvVar, i,&match);
 		if (i >= 0) {
-			QString varName = rxEnvVar.cap(1);
+            QString varName = match.captured(1);
 			if (compareNamesToUpper) {
 				varName = varName.toUpper();
 			}
 			QString varContent = variables.value(varName, "");
-			result.replace(rxEnvVar.cap(0), varContent);
+            result.replace(match.captured(0), varContent);
 			i += varContent.length();
 		}
 	}
@@ -979,10 +980,10 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			//Regexp matching parameters
 			//Unescaped: .*(-abc(=([^ ]*|"([^"]|\"([^"])*\")*"))?).*
 			//Doesn't support nesting deeper than \"
-			static QString parameterMatching = "(=([^ ]*|\"([^\"]|\\\"([^\"])*\\\")*\"))?";
+            const QString parameterMatching = "(=([^ \"]+|\"([^\"]|\\\"([^\"])*\\\")*\"))?";
 			for (int i = 0; i < options.override.remove.size(); i++) {
 				const QString &rem = options.override.remove[i];
-				QRegExp removalRegex(" (-?" + QRegExp::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")");
+                QRegularExpression removalRegex(" (-?" + QRegularExpression::escape(rem) + (rem.contains("=") ? "" : parameterMatching) + ")");
 				subcmd.replace(removalRegex, " ");
 			}
 			for (int i = 0; i < options.override.replace.size(); i++) {
@@ -1810,15 +1811,15 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 
 	//process preamble
 	QString preamble_mod = preamble;
-	static const QRegExp beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
+    static const QRegularExpression beamerClass("^(\\s*%[^\\n]*\\n)*\\s*\\\\documentclass(\\[[^\\]]*\\])?\\{beamer\\}"); //detect the usage of the beamer class
 	if (previewRemoveBeamer && preamble_mod.contains(beamerClass)) {
 		//dvipng is very slow (>14s) and ghostscript is slow (1.4s) when handling beamer documents,
 		//after setting the class to article dvipng runs in 77ms
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0, "\\documentclass{article}\n\\usepackage{beamerarticle}");
         // remove \mode... as well (#1125)
-        QRegExp beamerMode("\\\\mode.*\n");
-        beamerMode.setMinimal(true);
+        QRegularExpression beamerMode("\\\\mode.*\n");
+        //beamerMode.setMinimal(true);
         preamble_mod.remove(beamerMode);
 	}
 
@@ -1847,7 +1848,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				REQUIRE(tf);
 				tf->open();
 				QTextStream out(tf);
-				if (outputCodec) out.setCodec(outputCodec);
+                //if (outputCodec) out.setCodec(outputCodec);
 				out << preamble_mod;
 				tf->setAutoRemove(false);
 				tf->close();
@@ -1858,9 +1859,9 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				previewFileNames.append(fi.absoluteFilePath());
 				ProcessX *p = nullptr;
 				if (dvi2pngMode == DPM_EMBEDDED_PDF) {
-					p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %3 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName()).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %3 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName()).arg(preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				} else {
-					p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName()).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName()).arg(preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				}
 
 				REQUIRE(p);
@@ -1897,7 +1898,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	tf->open();
 
 	QTextStream out(tf);
-	if (outputCodec) out.setCodec(outputCodec);
+    //if (outputCodec) out.setCodec(outputCodec);
 	if (preambleFormatFile.isEmpty()) out << preamble_mod;
 	else out << "%&" << preambleFormatFile << "\n";
 	out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";
@@ -1929,7 +1930,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 		p1->waitForStarted();
 		// dvi -> png
 		//follow mode is a tricky features which allows dvipng to run while tex isn't finished
-		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvipng/[--follow]", ffn);
+        ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvipng/[--follow]", QFileInfo(ffn));
 		if (!p2) return; // command failed, not set ?
 		p1->setProperty("proc",QVariant::fromValue(p2));
 		connect(p1,SIGNAL(finished(int, QProcess::ExitStatus)),this,SLOT(PreviewLatexCompleted(int)));
@@ -2094,7 +2095,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		// dvi -> png
-		ProcessX *p2 = firstProcessOfDirectExpansion(CMD_DVIPNG, p1->getFile(),QFileInfo(),0,true);
+        ProcessX *p2 = firstProcessOfDirectExpansion(CMD_DVIPNG, QFileInfo(p1->getFile()),QFileInfo(),0,true);
 		if (!p2) return; //dvipng does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
@@ -2105,7 +2106,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		// dvi -> ps
-		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvips/[-E]", p1->getFile(),QFileInfo(),0,true);
+        ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvips/[-E]", QFileInfo(p1->getFile()),QFileInfo(),0,true);
 		if (!p2) return; //dvips does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
@@ -2117,11 +2118,11 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p1) return;
 		QString processedFile = p1->getFile();
 		if (processedFile.endsWith(".tex"))
-			processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", processedFile).first());
+            processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).first());
 			// TODO: fromNativeSeparators is a workaround to fix bug
 			// yields different dir separators depending on the context. This should be fixed (which direction?).
 			// Test (on win): switch preview between dvipng and pdflatex
-		QString fn = parseExtendedCommandLine("?am).pdf", processedFile).first();
+        QString fn = parseExtendedCommandLine("?am).pdf", QFileInfo(processedFile)).first();
 		if (QFileInfo(fn).exists()) {
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 		}
@@ -2135,8 +2136,8 @@ void BuildManager::dvi2psPreviewCompleted(int status)
 	ProcessX *p2 = qobject_cast<ProcessX *> (sender());
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
-	QString filePs = parseExtendedCommandLine("?am.ps", p2->getFile()).first();
-	ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]", filePs,QFileInfo(),0,true);
+    QString filePs = parseExtendedCommandLine("?am.ps", QFileInfo(p2->getFile())).first();
+    ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]", QFileInfo(filePs),QFileInfo(),0,true);
 	if (!p3) return; //gs does not work
 	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
 	connect(p3, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
@@ -2158,8 +2159,8 @@ void BuildManager::conversionPreviewCompleted(int status)
 	if (!p2) return;
 	// put image in preview
 	QString processedFile = p2->getFile();
-	if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex", processedFile).first();
-	QString fn = parseExtendedCommandLine("?am)1.png", processedFile).first();
+    if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).first();
+    QString fn = parseExtendedCommandLine("?am)1.png", QFileInfo(processedFile)).first();
 	if (QFileInfo(fn).exists())
 		emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 }
@@ -2187,7 +2188,7 @@ void BuildManager::runInternalCommandThroughProcessX()
 	ProcessX *p = qobject_cast<ProcessX *>(sender());
 	REQUIRE(p);
 	REQUIRE(p->getCommandLine().startsWith(TXS_CMD_PREFIX));
-	testAndRunInternalCommand(p->getCommandLine(), p->getFile());
+    testAndRunInternalCommand(p->getCommandLine(), QFileInfo(p->getFile()));
 }
 
 bool BuildManager::testAndRunInternalCommand(const QString &cmd, const QFileInfo &mainFile)
@@ -2351,7 +2352,7 @@ ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const Q
 	}
 	connect(this, SIGNAL(started()), SLOT(onStarted()));
 	connect(this, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(onFinished(int)));
-	connect(this, SIGNAL(error(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
+    connect(this, SIGNAL(errorOccurred(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
 }
 
 /*!
@@ -2432,7 +2433,14 @@ void ProcessX::setShowStdout(bool show)
 
 QString *ProcessX::getStdoutBuffer()
 {
-	return stdoutBuffer;
+    return stdoutBuffer;
+}
+
+QString ProcessX::getStdout()
+{
+    if(stdoutBuffer)
+        return *stdoutBuffer;
+    return QString();
 }
 
 void ProcessX::setStdoutBuffer(QString *buffer)

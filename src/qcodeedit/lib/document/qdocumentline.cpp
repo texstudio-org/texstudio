@@ -101,6 +101,7 @@ bool QDocumentLine::operator != (const QDocumentLine& l) const
 	//return lineNumber() != l.lineNumber();
 }
 
+
 /*!
 	\brief copy operator
 	

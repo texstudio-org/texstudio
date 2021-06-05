@@ -40,7 +40,7 @@
 #define QCE_EXPORT  
 
 class QString;
-class QStringList;
+//class QStringList;
 
 namespace QCE
 {

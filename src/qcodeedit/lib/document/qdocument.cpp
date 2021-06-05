@@ -747,9 +747,10 @@ QTextCodec* guessEncoding(const QByteArray& data){
 	QTextCodec* guess = nullptr;
 	int sure = 1;
 	guess = Encoding::guessEncodingBasic(data, &sure);
-	if (!guessEncodingCallbacks.empty())
+    if (!guessEncodingCallbacks.empty()){
 		foreach (const GuessEncodingCallback& callback, guessEncodingCallbacks)
 			callback(data, guess, sure);
+    }
 	if (guess!=nullptr) return guess;
 	else return QTextCodec::codecForName("UTF-8"); //default
 }
@@ -1041,7 +1042,7 @@ void QDocument::setFileName_DONOTCALLTHIS(const QString& fileName){
 */
 void QDocument::print(QPrinter *pr)
 {
-	QRect fit = pr->pageRect();
+    QRectF fit = pr->pageRect(QPrinter::DevicePixel);
 
 	if ( pr->printRange() == QPrinter::Selection )
 	{
@@ -7579,7 +7580,11 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 
 	QFont modifiedF = f;
 	// set the styling so that if the font is not found Courier one will be used
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    modifiedF.setStyleHint(QFont::Courier);
+#else
 	modifiedF.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+#endif
 
 	//disable kerning because words are drawn at once, but their width is calculated character
 	//by character (in functions which calculate the cursor position)
@@ -7699,7 +7704,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 				containsAsianChars = true; //character which can have a different width even in fixed pitch fonts
 			else if (cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining)
 				containsSurrogates = true; //strange characters (e.g.  0xbcd, 0x1d164)
-			else if (c < 0x20)
+            else if (c < QChar(0x20))
 				containsAsianChars = true;
 		}
 		if (!containsAsianChars && !containsSurrogates)
@@ -8232,28 +8237,29 @@ void QDocumentPrivate::flushMatches(int groupId)
 
 		//qDebug("simple:(%i, %i)", l, 1);
 
-		QMap<int, int>::iterator tmp, it = areas.find(l);
+        QMap<int, int>::iterator tmp,tmp2, it = areas.find(l);
 
 		if ( it != areas.end() )
 			continue;
 
 		it = areas.insert(m.line, n);
-
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
 		if ( it != areas.end() && it != areas.begin() )
 		{
-			tmp = it - 1;
+            tmp = it - 1;
 			int off = tmp.key() + *tmp - l;
 
 			if ( off >= 0 && (off < n) )
 			{
 				*tmp += n - off;
-				it = areas.erase(it) - 1;
+                it = areas.erase(it) - 1;
 			}
 		}
 
-		if ( it != areas.end() && (it + 1) != areas.end() )
+        if ( it != areas.end() && (it + 1) != areas.end() )
+
 		{
-			tmp = it + 1;
+            tmp = it + 1;
 			int off = it.key() + *it - tmp.key();
 
 			if ( off >= 0 && (off < *tmp) )
@@ -8282,7 +8288,60 @@ void QDocumentPrivate::flushMatches(int groupId)
 
 		++it;
 	}
+#else
+        //TODO ?
+        if ( it != areas.end() && it != areas.begin() )
+        {
+            tmp = it;
+            --tmp;
+            int off = tmp.key() + *tmp - l;
 
+            if ( off >= 0 && (off < n) )
+            {
+                *tmp += n - off;
+                it = areas.erase(it);
+                --it;
+            }
+        }
+
+        if ( it != areas.end()  )
+        {
+            tmp2=tmp;
+            tmp = it;
+            ++tmp;
+            if(tmp!= areas.end()){
+                int off = it.key() + *it - tmp.key();
+
+                if ( off >= 0 && (off < *tmp) )
+                {
+                    *it += *tmp;
+                    areas.erase(tmp);
+                }
+            }else{
+                tmp=tmp2;
+            }
+        }
+        //emitFormatsChange(m.line, 1);
+    }
+
+    // remove old matches
+    while ( matches.removeLength )
+    {
+        matches.removeAt(matches.removeStart);
+        --matches.removeLength;
+    }
+
+    // send update messages
+    QMap<int, int>::const_iterator it = areas.constBegin();
+
+    while ( it != areas.constEnd() )
+    {
+        //qDebug("merged:(%i, %i)", it.key(), *it);
+        emitFormatsChange(it.key(), *it);
+
+        ++it;
+    }
+#endif
 	// update storage "meta-data"
 	if ( matches.isEmpty() )
 	{
@@ -8599,7 +8658,7 @@ void QDocumentPrivate::showEvent(int line, int count)
 
 void QDocumentPrivate::updateHidden(int line, int count)
 {
-	if ( m_hidden.isEmpty() || (line > (m_hidden.constEnd() - 1).key() ) )
+    if ( m_hidden.isEmpty() || (line > (--m_hidden.constEnd()).key() ) )
 		return;
 
 	QMap<int, int> prev = m_hidden;
@@ -8624,7 +8683,7 @@ void QDocumentPrivate::updateHidden(int line, int count)
 
 void QDocumentPrivate::updateWrapped(int line, int count)
 {
-	if ( m_wrapped.isEmpty() || (line > (m_wrapped.constEnd() - 1).key() ) )
+    if ( m_wrapped.isEmpty() || (line > (--m_wrapped.constEnd()).key() ) )
 		return;
 
 	QMap<int, int> prev = m_wrapped;

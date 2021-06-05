@@ -29,6 +29,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
         $$PWD/pdfannotation.cpp \
         $$PWD/qsynctex.cpp
 
+
     FORMS += \
         $$PWD/pdfannotationdlg.ui
 
@@ -74,3 +75,4 @@ isEmpty(NO_POPPLER_PREVIEW) {
     DEFINES += NO_POPPLER_PREVIEW
     message("Internal pdf previewer disabled as you wish.")
 }
+

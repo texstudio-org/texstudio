@@ -31,6 +31,9 @@
 #include <QShortcut>
 #include <QtCore/qnumeric.h>
 #include <QtCore/qmath.h>
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
+#include <QDesktopWidget>
+#endif
 
 #include "universalinputdialog.h"
 
@@ -100,16 +103,25 @@ QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGra
 
 void zoomToScreen(QWidget *window)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-	QRect screenRect = desktop->availableGeometry(window);
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
+    QDesktopWidget *desktop = QApplication::desktop();
+    QRect screenRect = desktop->availableGeometry(window);
+#else
+    QRect screenRect = window->screen()->availableGeometry();
+#endif
 	screenRect.setTop(screenRect.top() + window->geometry().y() - window->y());
 	window->setGeometry(screenRect);
 }
 
 void zoomToHalfScreen(QWidget *window, bool rhs)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-	QRect r = desktop->availableGeometry(window);
+#if QT_VERSION<QT_VERSION_CHECK(5,15,0)
+    QDesktopWidget *desktop = QApplication::desktop();
+    QRect r = desktop->availableGeometry(window);
+#else
+    QRect r = window->screen()->availableGeometry();
+#endif
+
 	int wDiff = window->frameGeometry().width() - window->width();
 	int hDiff = window->frameGeometry().height() - window->height();
 
@@ -149,11 +161,17 @@ void zoomToHalfScreen(QWidget *window, bool rhs)
 
 void windowsSideBySide(QWidget *window1, QWidget *window2)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
-
+#if QT_VERSION>=QT_VERSION_CHECK(5,15,0)
 	// if the windows reside on the same screen zoom each so that it occupies
 	// half of that screen
-	if (desktop->screenNumber(window1) == desktop->screenNumber(window2)) {
+    if (window1->screen() == window2->screen()) {
+#else
+    QDesktopWidget *desktop = QApplication::desktop();
+
+    // if the windows reside on the same screen zoom each so that it occupies
+    // half of that screen
+    if (desktop->screenNumber(window1) == desktop->screenNumber(window2)) {
+#endif
 		int window1left = window1->pos().x() <= window2->pos().x();
 		zoomToHalfScreen(window1, !window1left);
 		zoomToHalfScreen(window2, window1left);
@@ -1328,6 +1346,7 @@ void PDFWidget::jumpToSource()
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->angleDelta().isNull()) return;
+
     if(event->angleDelta().x()!=0){
         // horizontal scroll
         double numDegrees = event->angleDelta().x() / 8.0;
@@ -1350,7 +1369,11 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
                 inhibitNextContextMenuEvent = true;
             }
             if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
-                doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
+            doZoom(event->position(), (summedWheelDegrees > 0) ? 1 : -1);
+#else
+            doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
+#endif
                 summedWheelDegrees = 0;
             }
             event->accept();
@@ -2115,6 +2138,61 @@ void PDFWidget::doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor) //
 	}
 }
 
+void PDFWidget::doZoom(const QPointF &clickPos, int dir, qreal newScaleFactor) // dir = 1 for in, -1 for out, 0 to use newScaleFactor
+{
+    QPointF pagePos(clickPos.x() / scaleFactor * 72.0 / dpi,
+                    clickPos.y() / scaleFactor * 72.0 / dpi);
+    scaleOption = kFixedMag;
+    emit changedScaleOption(scaleOption);
+
+    double zoomStepFactor = globalConfig->zoomStepFactor;
+    if (zoomStepFactor > 10) zoomStepFactor = 10;
+    if (zoomStepFactor < 1.001) zoomStepFactor = 1.001;
+
+
+    QPoint globalPos = mapToGlobal(clickPos.toPoint());
+    if (dir > 0 && scaleFactor < kMaxScaleFactor) {
+        scaleFactor *= zoomStepFactor;
+        if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+            scaleFactor = qRound(scaleFactor);
+        if (scaleFactor > kMaxScaleFactor)
+            scaleFactor = kMaxScaleFactor;
+    } else if (dir < 0 && scaleFactor > kMinScaleFactor) {
+        scaleFactor /= zoomStepFactor;
+        if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+            scaleFactor = qRound(scaleFactor);
+        if (scaleFactor < kMinScaleFactor)
+            scaleFactor = kMinScaleFactor;
+    } else if (dir == 0) {
+        if (newScaleFactor < kMinScaleFactor) {
+            newScaleFactor = kMinScaleFactor;
+        } else if (newScaleFactor > kMaxScaleFactor) {
+            newScaleFactor = kMaxScaleFactor;
+        }
+        if (qAbs(newScaleFactor/scaleFactor-1)<0.001) { // about equal
+            return;
+        }
+        scaleFactor = newScaleFactor;
+    }
+
+    adjustSize();
+    update();
+    updateStatusBar();
+    emit changedZoom(scaleFactor);
+    QPoint localPos = mapFromGlobal(globalPos);
+    QPoint pageToLocal(int(pagePos.x() * scaleFactor / 72.0 * dpi),
+                       int(pagePos.y() * scaleFactor / 72.0 * dpi));
+    QAbstractScrollArea	*scrollArea = getScrollArea();
+    if (scrollArea) {
+        QScrollBar *hs = scrollArea->horizontalScrollBar();
+        if (hs != nullptr)
+            hs->setValue(hs->value() + pageToLocal.x() - localPos.x());
+        QScrollBar *vs = scrollArea->verticalScrollBar();
+        if (vs != nullptr)
+            vs->setValue(vs->value() + pageToLocal.y() - localPos.y());
+    }
+}
+
 void PDFWidget::zoomIn()
 {
 	QWidget *parent = parentWidget();
@@ -2540,7 +2618,7 @@ void PDFDocument::setupMenus(bool embedded)
     actionContinuous->setChecked(true);
 	menuView->addAction(menuGrid->menuAction());
 	menuView->addSeparator();
-    actionFull_Screen=configManager->newManagedAction(menuroot,menuView, "fullscreen", tr("Full &Screen"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::ControlModifier+Qt::ShiftModifier+Qt::Key_F);
+    actionFull_Screen=configManager->newManagedAction(menuroot,menuView, "fullscreen", tr("Full &Screen"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<QKeySequence(Qt::ControlModifier|Qt::ShiftModifier|Qt::Key_F));
     actionPresentation=configManager->newManagedAction(menuroot,menuView, "presentation", tr("Presentation"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::Key_F5);
     actionExternalViewer=configManager->newManagedAction(menuroot,menuView, "external", tr("External Viewer"), this, SLOT(runExternalViewer()), QList<QKeySequence>(),"acroread");
     actionEnlargeViewer=configManager->newManagedAction(menuroot,menuView, "enlarge", tr("Enlarge Viewer"), this, SLOT(enlarge()), QList<QKeySequence>(),"enlarge-viewer");
@@ -2572,7 +2650,7 @@ void PDFDocument::setupMenus(bool embedded)
     actionSide_by_Side=configManager->newManagedAction(menuroot,menuWindow, "sideBySide", tr("&Side by Side"), this, SLOT(sideBySide()), QList<QKeySequence>());
 	menuWindow->addSeparator();
     actionGo_to_Source=configManager->newManagedAction(menuroot,menuWindow, "gotoSource", tr("&Go to Source"), this, SLOT(goToSource()), QList<QKeySequence>()<<Qt::ControlModifier+Qt::Key_Apostrophe);
-    actionFocus_Editor=configManager->newManagedAction(menuroot,menuWindow, "focusEditor", tr("Focus Editor"), this, SIGNAL(focusEditor()), QList<QKeySequence>()<<Qt::ControlModifier+Qt::AltModifier+Qt::Key_Left);
+    actionFocus_Editor=configManager->newManagedAction(menuroot,menuWindow, "focusEditor", tr("Focus Editor"), this, SIGNAL(focusEditor()), QList<QKeySequence>()<<QKeySequence(Qt::ControlModifier|Qt::AltModifier|Qt::Key_Left));
 	menuWindow->addSeparator();
     actionNew_Window=configManager->newManagedAction(menuroot,menuWindow, "newWindow", tr("New Window"), this, SIGNAL(triggeredClone()), QList<QKeySequence>());
     actionFind=configManager->newManagedAction(menuroot,menuEdit_2, "find", tr("&Find"), this, SLOT(doFindDialog()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_F);
@@ -2625,7 +2703,9 @@ void PDFDocument::init(bool embedded)
 
 
 	setAttribute(Qt::WA_DeleteOnClose, true);
+#if QT_VERSION_MAJOR<6
 	setAttribute(Qt::WA_MacNoClickThrough, true);
+#endif
 
 	//load icons
 	setWindowIcon(QIcon(":/images/previewicon.png"));
@@ -3737,8 +3817,12 @@ void PDFDocument::saveGeometryToConfig()
 
 void PDFDocument::zoomToRight(QWidget *otherWindow)
 {
-	QDesktopWidget *desktop = QApplication::desktop();
+#if QT_VERSION>=QT_VERSION_CHECK(5,15,0)
+    QRect screenRect = otherWindow == nullptr ? this->screen()->availableGeometry() : otherWindow->screen()->availableGeometry();
+#else
+    QDesktopWidget *desktop = QApplication::desktop();
     QRect screenRect = desktop->availableGeometry(otherWindow == nullptr ? this : otherWindow);
+#endif
 	screenRect.setTop(screenRect.top() + 22);
 	screenRect.setLeft((screenRect.left() + screenRect.right()) / 2 + 1);
 	screenRect.setBottom(screenRect.bottom() - 1);
@@ -4200,7 +4284,7 @@ void PDFDocument::printPDF()
 		command = args.join(" ");
 	} else return;
 
-	for (int i = 0; i < printer.numCopies(); i++)
+    for (int i = 0; i < printer.copyCount(); i++)
 		emit runCommand(command, masterFile, masterFile, 0);
 }
 

@@ -20,9 +20,9 @@
 
 
 PlacementValidator::PlacementValidator(QObject *parent)
-	: QRegExpValidator(parent)
+    : QRegularExpressionValidator(parent)
 {
-	setRegExp(QRegExp("t?b?p?h?H?!?"));
+    setRegularExpression(QRegularExpression("t?b?p?h?H?!?"));
 }
 
 void PlacementValidator::fixup(QString &input) const
@@ -37,7 +37,7 @@ void PlacementValidator::fixup(QString &input) const
 QValidator::State PlacementValidator::validate(QString &input, int &pos) const
 {
 	fixup(input);
-	return QRegExpValidator::validate(input, pos);
+    return QRegularExpressionValidator::validate(input, pos);
 }
 
 QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "";

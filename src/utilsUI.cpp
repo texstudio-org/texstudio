@@ -2,7 +2,14 @@
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 #include "filedialog.h"
+
+#if QT_VERSION<QT_VERSION_CHECK(5,14,0)
+#include <QDesktopWidget>
+#include <QWindow>
+#endif
+
 #include <QErrorMessage>
+
 
 
 extern void hideSplash();
@@ -234,7 +241,7 @@ QColor colorFromRGBAstr(const QString &hex, QColor fallback)
 		c = c.mid(1);
 	if (c.length() != 8) return fallback;
 	bool r, g, b, a;
-	QColor color(c.mid(0, 2).toInt(&r, 16), c.midRef(2, 2).toInt(&g, 16), c.midRef(4, 2).toInt(&b, 16), c.midRef(6, 2).toInt(&a, 16));
+    QColor color(c.mid(0, 2).toInt(&r, 16), c.mid(2, 2).toInt(&g, 16), c.mid(4, 2).toInt(&b, 16), c.mid(6, 2).toInt(&a, 16));
 	if (r && g && b && a)
 		return color;
 	return fallback;
@@ -379,12 +386,16 @@ void enableTouchScrolling(QWidget *widget, bool enable) {
 void resizeInFontHeight(QWidget *w, int width, int height)
 {
 	int h = qApp->fontMetrics().height();
-	QDesktopWidget *dw = qApp->desktop();
-	QRect r = dw->availableGeometry(w);
-	QSize newSize = QSize(qMin(h * width, r.width()), qMin(h * height, r.height()));
-	//qDebug() << "resizeInFontHeight old size:" << w->width() / (float) h << w->height() / (float) h;
-	//qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;
-	w->resize(newSize);
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QRect r = w->screen()->availableGeometry();
+#else
+    QDesktopWidget *dw = qApp->desktop();
+    QRect r = dw->availableGeometry(w);
+#endif
+    QSize newSize = QSize(qMin(h * width, r.width()), qMin(h * height, r.height()));
+    //qDebug() << "resizeInFontHeight old size:" << w->width() / (float) h << w->height() / (float) h;
+    //qDebug() << "resizeInFontHeight new size:" << newSize.width() / (float) h << newSize.height() / (float) h;
+    w->resize(newSize);
 }
 
 /*!

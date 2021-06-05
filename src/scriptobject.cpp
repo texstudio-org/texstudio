@@ -87,7 +87,7 @@ void ScriptObject::crash_loop()
 {
 	if (!confirmWarning("Do you want to let txs freeze with an endless loop?")) return;
 //#ifndef QT_NO_DEBUG // only used in the Q_ASSERT statements: prevent unused variable warning in release build
-	register int a = 1, b = 2, c = 3, d = 4;
+    /*register*/ int a = 1, b = 2, c = 3, d = 4;
 //#endif
 	while (true) {
 		void *x = malloc(16);
@@ -144,7 +144,7 @@ QVariant ScriptObject::readFile(const QString &filename)
 		return QVariant();
 	QTextStream ts(&f);
 	ts.setAutoDetectUnicode(true);
-	ts.setCodec(QTextCodec::codecForName("UTF-8"));
+    //ts.setCodec(QTextCodec::codecForName("UTF-8"));
 	return ts.readAll();
 }
 

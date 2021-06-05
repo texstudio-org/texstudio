@@ -116,11 +116,11 @@ class QCE_EXPORT QDocumentLine
 		bool operator == (const QDocumentLine& l) const;
 		bool operator != (const QDocumentLine& l) const;
 		
-		bool operator < (const QDocumentLine& l) const;
+        /*bool operator < (const QDocumentLine& l) const;
 		bool operator >= (const QDocumentLine& l) const;
 		
 		bool operator > (const QDocumentLine& l) const;
-		bool operator <= (const QDocumentLine& l) const;
+        bool operator <= (const QDocumentLine& l) const;*/
 			
 		QDocumentLine& operator = (const QDocumentLine& l);
 

@@ -1332,7 +1332,9 @@ void QEditor::print()
 	// TODO : create a custom print dialog, page range sucks, lines range would be better
 	QPrintDialog dialog(&printer, this);
 	dialog.setWindowTitle(tr("Print Source Code"));
-	dialog.setEnabledOptions(QPrintDialog::PrintToFile | QPrintDialog::PrintPageRange);
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+    dialog.setEnabledOptions(QPrintDialog::PrintToFile | QPrintDialog::PrintPageRange); //TODO Qt6 ??
+#endif
 
 	if ( dialog.exec() == QDialog::Accepted )
 	{
@@ -1576,7 +1578,7 @@ void QEditor::load(const QString& file, QTextCodec* codec)
 	if ( m_lineEndingsActions )
 	{
 		// TODO : update Conservative to report original line endings
-		static const QRegExp rx(" \\[\\w+\\]");
+        const QRegularExpression rx(" \\[\\w+\\]");
 		QAction *a = m_lineEndingsActions->actions().at(0);
 
 		if ( a )
@@ -3880,7 +3882,7 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		setFlag(MousePressed, false);
 
 		setClipboardSelection();
-	} else if (	e->button() == Qt::MidButton
+    } else if (	e->button() == Qt::MiddleButton
 				&& QApplication::clipboard()->supportsSelection()) {
 		setCursorPosition(mapToContents(e->pos()));
 		//setCursorPosition(viewport()->mapFromGlobal(e->globalPos()));
@@ -4014,7 +4016,7 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 	else
 		return;
 
-	QDocumentCursor c = cursorForPosition(mapToContents(e->pos()));
+    QDocumentCursor c = cursorForPosition(mapToContents(e->pos()));
 
 	if ( c.isValid() )
 	{
@@ -5044,8 +5046,11 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
     if ( protectedCursor(c) || text.isEmpty())
         return;
-
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList lines = text.split('\n', Qt::KeepEmptyParts);
+#else
     QStringList lines = text.split('\n', QString::KeepEmptyParts);
+#endif
 
     bool hasSelection = c.hasSelection();
     if (hasSelection && c.selectedText() == text) {
@@ -6032,8 +6037,10 @@ void QEditor::scrollContentsBy(int dx, int dy)
 
 QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
 	switch(property) {
-	case Qt::ImMicroFocus:
-		return cursorMircoFocusRect();
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
+    case Qt::ImMicroFocus:
+        return cursorMircoFocusRect();
+#endif
 	case Qt::ImFont:
 		// TODO find out correct value: qtextcontol uses the following
 		//return QVariant(d->cursor.charFormat().font());

@@ -12,7 +12,7 @@ int gitRevisionToInt(const char *)
 QList<int> Version::parseVersionNumber(const QString &versionNumber)
 {
 	QList<int> result;
-	QRegExp terminatingChars("[\\s-]");
+    QRegularExpression terminatingChars("[\\s-]");
 	int len = versionNumber.indexOf(terminatingChars);
 	QStringList parts = versionNumber.left(len).split('.');
 	if (parts.isEmpty())

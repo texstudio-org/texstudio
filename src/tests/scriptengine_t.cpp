@@ -42,13 +42,9 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("Redo")
 		<< "editor.redo()"
 		<< "Hallo";
-	if (all) {
-		QTest::newRow("Select All/copy/paste")
+
+    QTest::newRow("Select All/copy/paste")
 		<< "editor.selectAll();editor.copy();editor.selectNothing();editor.paste()"
-		<< "HalloHallo";
-	} else
-		QTest::newRow("SKIP Select All/copy/paste ")
-		<< "editor.setText(\"HalloHallo\");"
 		<< "HalloHallo";
 
 	QTest::newRow("remove Selection")
@@ -71,53 +67,65 @@ void ScriptEngineTest::script_data(){
 	QTest::newRow("Search/Replace Test 1")
 		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"b\"); "
 		<< "Hbllo1\nHallo2\nHallo3";
-	QTest::newRow("Search/Replace Test 2")
-		<< "editor.replace(\"ll\", \"tt\", editor.document().cursor(1,0,1,6)); "
-		<< "Hbllo1\nHatto2\nHallo3";
-	//QTest::newRow("Search/Replace Test 2a")
-	//    << "var c2=new QDocumentCursor(editor.document(),1,0,1,6); editor.replace(\"ll\", \"tt\", c2); "
-	//   << "Hbllo1\nHatto2\nHallo3";
-	QTest::newRow("Search/Replace Test 3")
+    //QTest::newRow("Search/Replace Test 2")
+    //    << "editor.replace(\"ll\", \"tt\", editor.document().cursor(1,0,1,6)); "
+    //	<< "Hbllo1\nHatto2\nHallo3";
+    //QTest::newRow("Search/Replace Test 2")
+    //        << "editor.replace(\"ll\", \"tt\", QDocumentCursor(editor.document(),1,0,1,6)); "
+    //        << "Hbllo1\nHatto2\nHallo3";
+    QTest::newRow("Search/Replace Test 2a")
+        << "var c2=new QDocumentCursor(editor.document(),1,0,1,6); editor.replace(\"ll\", \"tt\", c2); "
+       << "Hbllo1\nHatto2\nHallo3";
+
+    QTest::newRow("Search/Replace Test 3")
 		<< "editor.replace(/b..o/, function(c){return editor.search(c.selectedText());}); "
 		<< "H11\nHatto2\nHallo3";
-	QTest::newRow("Search/Replace Test 4 (no conversion)")
+
+    QTest::newRow("Search/Replace Test 4 (no conversion)")
 		<< "editor.replace(/[0-9]*/, function(c){return 17+c.selectedText();}); "
 		<<  "H1711\nHatto2\nHallo3";
-	QTest::newRow("Search/Replace Test 5")
+
+    QTest::newRow("Search/Replace Test 5")
 		<< "editor.replace(/[0-9]*/, function(c){return 17+1*c.selectedText();}); "
 		<< "H1728\nHatto2\nHallo3";
 
-	if (all) {
-		QTest::newRow("Search/Replace Test 1g")
-			<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", \"b\"); "
-			<< "Hbllo1\nHbllo2\nHbllo3";
-		QTest::newRow("Search/Replace Test 2g")
-			<< "editor.replace(\"ll\", \"g\", \"tt\", editor.document().cursor(1,0,1,6)); "
-			<< "Hbllo1\nHbtto2\nHbllo3";
-		QTest::newRow("Search/Replace Test 3gg")
-			<< "editor.replace(/b..o/g, function(c){return editor.search(c.selectedText(),\"g\");}); "
-			<< "H21\nH12\nH13";
-		QTest::newRow("Search/Replace Test 4g (no conversion)")
-			<< "editor.replace(/[0-9]*/g, function(c){return 17+c.selectedText();}); "
-			<<  "H1721\nH1712\nH1713";
-		QTest::newRow("Search/Replace Test 5g")
-			<< "editor.replace(/[0-9]*/g, function(c){return 17+1*c.selectedText();}); "
-			<< "H1738\nH1729\nH1730";
-		QTest::newRow("Search/Replace Test 6g")
-			<< "editor.replace(/h/g, 'test'); "
-			<< "H1738\nH1729\nH1730";
-		QTest::newRow("Search/Replace Test 7gi")
-			<< "editor.replace(/h/gi, 'test'); "
-			<< "test1738\ntest1729\ntest1730";
-		QTest::newRow("Search/Replace Test function replacing")
-			  << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
-			<< "H>a<llo1\nH>a<llo2\nH>a<llo3";
-		QTest::newRow("Search/Replace Test function replacing 2")
-			  << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\", false); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
-			<< "H>al<lo1\nH>am<lo2\nH>al<lo3";
-	}
+    QTest::newRow("Search/Replace Test 1g")
+            << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", \"b\"); "
+            << "Hbllo1\nHbllo2\nHbllo3";
 
-	QTest::newRow("replaceSelectedText 1")
+    QTest::newRow("Search/Replace Test 2g")
+            << "var c2=new QDocumentCursor(editor.document(),1,0,1,6); editor.replace(\"ll\", \"g\", \"tt\", c2); "
+            << "Hbllo1\nHbtto2\nHbllo3";
+
+    QTest::newRow("Search/Replace Test 3gg")
+            << "editor.replace(/b..o/g, function(c){return editor.search(c.selectedText(),\"g\");}); "
+            << "H21\nH12\nH13";
+
+    QTest::newRow("Search/Replace Test 4g (no conversion)")
+            << "editor.replace(/[0-9]*/g, function(c){return 17+c.selectedText();}); "
+            <<  "H1721\nH1712\nH1713";
+
+    QTest::newRow("Search/Replace Test 5g")
+            << "editor.replace(/[0-9]*/g, function(c){return 17+1*c.selectedText();}); "
+            << "H1738\nH1729\nH1730";
+
+    QTest::newRow("Search/Replace Test 6g")
+            << "editor.replace(/h/g, 'test'); "
+            << "H1738\nH1729\nH1730";
+
+    QTest::newRow("Search/Replace Test 7gi")
+            << "editor.replace(/h/gi, 'test'); "
+            << "test1738\ntest1729\ntest1730";
+
+    QTest::newRow("Search/Replace Test function replacing")
+            << "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+            << "H>a<llo1\nH>a<llo2\nH>a<llo3";
+
+    QTest::newRow("Search/Replace Test function replacing 2")
+            << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\", false); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
+            << "H>al<lo1\nH>am<lo2\nH>al<lo3";
+
+    QTest::newRow("replaceSelectedText 1")
 		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.setCursor(editor.document().cursor(1,2,1,4)); editor.addCursorMirror(editor.document().cursor(2,2,2,4));  editor.replaceSelectedText('xYz'); "
 		<< "Hallo1\nHaxYzo2\nHaxYzo3";
 
@@ -135,9 +143,35 @@ void ScriptEngineTest::script(){
 	scriptengine eng(nullptr);
 	eng.setEditorView(edView);
 	eng.setScript(script);
-	eng.run();
+    eng.run(true);
 
 	QEQUAL(edView->editor->document()->text(), newText);
+}
+
+void ScriptEngineTest::scriptApp_data(){
+    QTest::addColumn<QString>("script");
+    QTest::addColumn<QString>("newText");
+
+    QTest::newRow("app.version")
+        << "var a=app.getVersion();editor.setText(a, false)"
+        << QString::number(TXSVERSION_NUMERIC);
+    QTest::newRow("app.currentFileName")
+        << "var a=app.getCurrentFileName();editor.setText(a, false)"
+        << "";
+    QTest::newRow("fileChooser")
+        << "fileChooser.setDir(\"/\"); fileChooser.setFilter(\"*.etx\") "
+        << "";
+
+}
+void ScriptEngineTest::scriptApp(){
+    QFETCH(QString, script);
+    QFETCH(QString, newText);
+    scriptengine eng(nullptr);
+    eng.setEditorView(edView);
+    eng.setScript(script);
+    eng.run(true);
+
+    QEQUAL(edView->editor->document()->text(), newText);
 }
 
 void ScriptEngineTest::getLineTokens_data(void)
@@ -221,7 +255,7 @@ void ScriptEngineTest::getLineTokens(void)
 		.arg(lineNr)
 		.arg(jsonExpected)
 	);
-	eng.run();
+    eng.run(true);
 }
 
 /*!
@@ -233,7 +267,7 @@ void ScriptEngineTest::getLineTokens(void)
  */
 QString ScriptEngineTest::getLineTokensText(int numTokens, ...)
 {
-	QRegExp rxEscape("([\"\\\\])");
+    QRegularExpression rxEscape("([\"\\\\])");
 
 	va_list vaList;
 	// We don't use QJsonDocument because it reorders the properties in the resulting JSON string.

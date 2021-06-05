@@ -272,7 +272,8 @@ public:
 	const QString &getCommandLine();
 	bool showStdout() const;
 	void setShowStdout(bool show);
-	QString *getStdoutBuffer();
+    QString *getStdoutBuffer();
+    Q_INVOKABLE QString getStdout();
 	void setStdoutBuffer(QString *buffer);
     void setStderrBuffer(QString *buffer);
 	void setStdoutCodec(QTextCodec *codec);

@@ -319,11 +319,12 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	}
 
 	//find filechooser escape %(   %)
-	QRegExp rx("%\\((.+)%\\)");
-	int pos = rx.indexIn(line, 0);
+    QRegularExpression rx("%\\((.+)%\\)");
+    QRegularExpressionMatch match = rx.match(line);
+    int pos = match.capturedStart();
 	if (pos > -1) {
         FileChooser sfDlg(nullptr, QApplication::tr("Select a File"));
-		sfDlg.setFilter(rx.cap(1));
+        sfDlg.setFilter(match.captured(1));
 		LatexDocument *doc = qobject_cast<LatexDocument *>(cursor->document());
 		QString path = doc->parent->getCompileFileName();
 		path = getPathfromFilename(path);
@@ -364,7 +365,7 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	// on multi line commands, replace environments only
 	if (autoReplaceCommands && byCompleter && lines.size() > 1 && line.contains("\\begin{")) {
 		QString curLine = cursor->line().text();
-		int wordBreak = curLine.indexOf(QRegExp("\\W"), cursor->columnNumber());
+        int wordBreak = curLine.indexOf(QRegularExpression("\\W"), cursor->columnNumber());
 		int closeCurl = curLine.indexOf("}", cursor->columnNumber());
 		int openCurl = curLine.indexOf("{", cursor->columnNumber());
 		int openBracket = curLine.indexOf("[", cursor->columnNumber());
@@ -436,7 +437,7 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	if (byCompleter && autoReplaceCommands && lines.size() == 1 && (line.startsWith('\\') || isKeyVal) ) {
 		if (cursor->nextChar().isLetterOrNumber() || cursor->nextChar() == QChar('{') || cursor->nextChar() == QChar('=')) {
 			QString curLine = cursor->line().text();
-			int wordBreak = curLine.indexOf(QRegExp("\\W"), cursor->columnNumber());
+            int wordBreak = curLine.indexOf(QRegularExpression("\\W"), cursor->columnNumber());
 			int wordBreakEqual = curLine.indexOf("=", cursor->columnNumber());
 			int closeCurl = curLine.indexOf("}", cursor->columnNumber());
 			int openCurl = curLine.indexOf("{", cursor->columnNumber());

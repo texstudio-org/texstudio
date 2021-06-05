@@ -34,7 +34,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QDesktopServices>
-#include <QDesktopWidget>
 #include <QDialog>
 #include <QDir>
 #include <QDirIterator>
@@ -64,7 +63,7 @@
 #include <QLabel>
 #include <QLayout>
 #include <QLineEdit>
-#include <QLinkedList>
+//#include <QLinkedList>
 #include <QList>
 #include <QListView>
 #include <QListWidget>
@@ -91,6 +90,7 @@
 #include <QProcess>
 #include <QPushButton>
 #include <QRegExp>
+#include <QRegularExpression>
 #include <QResizeEvent>
 #include <QScreen>
 #include <QScrollArea>

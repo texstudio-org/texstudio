@@ -11,10 +11,12 @@
 #include "syntaxcheck.h"
 #include "grammarcheck.h"
 #include "latexpackage.h"
+//#include "latexeditorview.h"
 
-class QDocumentLineHandle;
+//class QDocumentLineHandle;
 class LatexEditorView;
 class QDocumentCursor;
+class Macro;
 
 
 struct FileNamePair {
@@ -74,7 +76,9 @@ public:
 
     Q_PROPERTY(QString fileName READ getFileName)
     Q_PROPERTY(QFileInfo fileInfo READ getFileInfo)
+#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
     Q_PROPERTY(LatexEditorView *editorView READ getEditorView)
+#endif
 
 	bool isHidden(); ///< true if editor is not displayed
 
@@ -299,7 +303,7 @@ signals:
 	void encodingChanged();
 	void bookmarkLineUpdated(int lineNr);
 };
-Q_DECLARE_METATYPE(LatexDocument *)
+//Q_DECLARE_METATYPE(LatexDocument *)
 
 
 

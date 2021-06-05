@@ -130,7 +130,7 @@ TitledPanel::TitledPanel(QWidget *parent) :
 
 	vLayout = new QVBoxLayout(this);
 	vLayout->setSpacing(0);
-	vLayout->setMargin(0);
+    //vLayout->setMargin(0);
 	vLayout->addWidget(stack);
 	setLayout(vLayout);
 

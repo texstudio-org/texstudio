@@ -160,7 +160,7 @@ void WebPublishDialog::closeEvent(QCloseEvent *ce)
 //************************************
 void WebPublishDialog::RunCommand(const QString &cmd, const QString &file, const bool waitendprocess, const char *stdErrSlot)
 {
-	ProcessX *proc = buildManager->firstProcessOfDirectExpansion(cmd, file);
+    ProcessX *proc = buildManager->firstProcessOfDirectExpansion(cmd, QFileInfo(file));
 	this->proc = proc;
 	ui.messagetextEdit->append(tr("  Running this command: ") + proc->getCommandLine());
 	curLog = "";
@@ -445,13 +445,13 @@ void WebPublishDialog::ps2gif(QString input, QString output, int id_page, int w,
 			QString line;
 			while (!psts.atEnd()) {
 				line = psts.readLine();
-				if (line.indexOf(QRegExp("^%%BoundingBox:\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d+)/)"), 0) != -1) {
+                if (line.indexOf(QRegularExpression("^%%BoundingBox:\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d+)/)"), 0) != -1) {
 					outts << "%%BoundingBox: 0 0 " + QString::number(w) + " " + QString::number(h) + "\n";
-				} else if ((!flag) && ((line.indexOf(QRegExp("^%%EndSetup"), 0) > -1) || (line.indexOf(QRegExp("^%%Page:"), 0) > -1))) {
+                } else if ((!flag) && ((line.indexOf(QRegularExpression("^%%EndSetup"), 0) > -1) || (line.indexOf(QRegularExpression("^%%Page:"), 0) > -1))) {
 					outts << line + "\n";
 					outts << QString::number(x1) + " neg " + QString::number(y1) + " neg translate\n";
 					flag = true;
-				} else if (line.indexOf(QRegExp("/uscale\\s+([0-9eE\\.\\-]+)\\s+N"), 0) != -1) {
+                } else if (line.indexOf(QRegularExpression("/uscale\\s+([0-9eE\\.\\-]+)\\s+N"), 0) != -1) {
 					outts << "/uscale " + QString::number(scale) + " N\n";
 				} else {
 					outts << line + "\n";
@@ -491,17 +491,17 @@ void WebPublishDialog::writepages(QString mode)
 			return;
 		} else {
 			QTextStream outts(&outf);
-			outts.setCodec(codec);
+            //outts.setCodec(codec);
 			QFile texf(workdir + "/" + base + ".tex");
 			if (!texf.open(QIODevice::ReadOnly)) {
 				fatalerror(workdir + "/" + base + ".tex " + tr("not found") + ".");
 				return;
 			} else {
 				QTextStream texts(&texf);
-				texts.setCodec(codec);
+                //texts.setCodec(codec);
 				while (!texts.atEnd()) {
 					line = texts.readLine();
-					if (!match && (line.indexOf(QRegExp("^\\\\begin\\{document\\}"), 0) != -1)) {
+                    if (!match && (line.indexOf(QRegularExpression("^\\\\begin\\{document\\}"), 0) != -1)) {
 						outts << "\\newbox\\bwk\\edef\\tempd#1pt{#1\\string p\\string t}\\tempd\\def\\nbextr#1pt{#1}\n";
 						outts << "\\def\\npts#1{\\expandafter\\nbextr\\the#1\\space}\n";
 						outts << "\\def\\ttwplink#1#2{\\special{ps:" + colorlink + " setrgbcolor}#2\\special{ps:0 0 0 setrgbcolor}\\setbox\\bwk=\\hbox{#2}\\special{ps:( linkto #1)\\space\\npts{\\wd\\bwk} \\npts{\\dp\\bwk} -\\npts{\\ht\\bwk} true\\space Cpos}}\n";
@@ -529,7 +529,7 @@ void WebPublishDialog::writepages(QString mode)
 					return;
 				} else {
 					QTextStream auxts(&auxf);
-					auxts.setCodec(codec);
+                    //auxts.setCodec(codec);
 					QRegExp rx("\\\\newlabel\\{(.*)\\}\\{\\{.*\\}\\{(\\d+)\\}\\}");
 					while (!auxts.atEnd()) {
 						QString line = auxts.readLine();
@@ -550,18 +550,18 @@ void WebPublishDialog::writepages(QString mode)
 			return;
 		} else {
 			QTextStream outts(&outf);
-			outts.setCodec(codec);
+            //outts.setCodec(codec);
 			QFile texf(workdir + "/" + base + ".tex");
 			if (!texf.open(QIODevice::ReadOnly)) {
 				fatalerror(workdir + "/" + base + ".tex " + tr("not found") + ".");
 				return;
 			} else {
 				QTextStream texts(&texf);
-				texts.setCodec(codec);
+                //texts.setCodec(codec);
 				match = false;
 				while (!texts.atEnd()) {
 					line = texts.readLine();
-					if (line.indexOf(QRegExp("^\\\\begin\\{document\\}"), 0) > -1) {
+                    if (line.indexOf(QRegularExpression("^\\\\begin\\{document\\}"), 0) > -1) {
 						match = true;
 					}
 					if (!match) {
@@ -583,15 +583,15 @@ void WebPublishDialog::writepages(QString mode)
 					return;
 				} else {
 					QTextStream auxts(&auxf);
-					auxts.setCodec(codec);
+                    //auxts.setCodec(codec);
 					QRegExp rx("\\\\@writefile\\{toc\\}.*(" + depth + ").*\\{(\\d+)\\}\\}");
 					while (!auxts.atEnd()) {
 						line = auxts.readLine();
 						if (rx.indexIn(line) > -1) {
 							captured2 = rx.cap(2);
 							id_page = captured2.toInt(&ok);
-							line.remove(QRegExp("\\\\@writefile\\{toc\\}"));
-							if (line.indexOf(QRegExp("\\\\numberline"), 0) > -1) {
+                            line.remove(QRegularExpression("\\\\@writefile\\{toc\\}"));
+                            if (line.indexOf(QRegularExpression("\\\\numberline"), 0) > -1) {
 								id_page = id_page + config->startindex - 1;
 								outts << "\\ttwplink{page" + QString::number(id_page) + ".html}";
 							} else {

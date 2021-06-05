@@ -628,7 +628,7 @@ QString GrammarCheckLanguageToolJSON::url()
 void GrammarCheckLanguageToolJSON::tryToStart()
 {
     if (triedToStart) {
-        if (QDateTime::currentDateTime().toTime_t() - startTime < 60 * 1000 ) {
+        if (QDateTime::currentDateTime().toSecsSinceEpoch() - startTime < 60 * 1000 ) {
             connectionAvailability = Unknown;
             ThreadBreaker::sleep(1);
         }
@@ -647,7 +647,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     connect(javaProcess, SIGNAL(finished(int, QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-    javaProcess->start(quoteSpaces(javaPath)+ " -cp " + quoteSpaces(ltPath) + " " + ltArguments);
+    javaProcess->start(quoteSpaces(javaPath),QStringList()<< "-cp" << quoteSpaces(ltPath) << ltArguments.split(" ")); // check sdm
     javaProcess->waitForStarted(500);
     javaProcess->waitForReadyRead(500);
     errorText=javaProcess->readAllStandardError();
@@ -656,7 +656,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     }
 
     connectionAvailability = Unknown;
-    startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
+    startTime = QDateTime::currentDateTime().toSecsSinceEpoch(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
 }
 
 /*!
@@ -694,7 +694,7 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
 
     QNetworkRequest req(server);
     req.setHeader(QNetworkRequest::ContentTypeHeader, "text/json");
-    QByteArray post;
+    QString post;
     post.reserve(text.length() + 50);
     post.append("language=" + lang + "&text=");
     post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
@@ -707,7 +707,7 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
     req.setAttribute(AttributeText, text);
     req.setAttribute(AttributeSubTicket, subticket);
 
-    nam->post(req, post);
+    nam->post(req, post.toUtf8());
 }
 /*!
  * \brief GrammarCheckLanguageToolJSON::shutdown

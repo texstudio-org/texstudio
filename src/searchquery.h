@@ -4,8 +4,10 @@
 #include "mostQtHeaders.h"
 #include "searchresultmodel.h"
 #include "qdocument.h"
+#include "qdocumentline_p.h"
 
 class LatexDocument;
+//class QDocumentLineHandle;
 
 
 class SearchQuery : public QObject {

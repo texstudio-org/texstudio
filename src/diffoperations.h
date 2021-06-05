@@ -2,8 +2,9 @@
 #define DIFFOPERATIONS_H
 
 #include "diff/diff_match_patch.h"
+#include "latexdocument.h"
 
-class QDocumentLineHandle;
+//class QDocumentLineHandle;
 
 class DiffOp
 {
@@ -33,7 +34,7 @@ public:
 typedef QList<DiffOp> DiffList;
 Q_DECLARE_METATYPE(DiffList)
 
-class LatexDocument;
+//class LatexDocument;
 class QDocumentCursor;
 
 void diffDocs(LatexDocument *doc, LatexDocument *doc2, bool dontAddLines = false);

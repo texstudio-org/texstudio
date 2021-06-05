@@ -215,7 +215,7 @@ void LatexReference::setFile(QString filename)
 	QFile f(filename);
 	if (!f.open(QFile::ReadOnly | QFile::Text)) return;
 	QTextStream stream(&f);
-	stream.setCodec("UTF-8");
+    //stream.setCodec("UTF-8");
 	m_htmltext = stream.readAll();
 	makeIndex();
 }
@@ -271,7 +271,7 @@ QString LatexReference::getSectionText(const QString &command)
  */
 QString LatexReference::getPartialText(const QString &command)
 {
-	static QRegExp startTag("<(dt|/div)>");
+    static QRegularExpression startTag("<(dt|/div)>");
 	QString endTag;
 	int endOffset = 0;
 
@@ -279,8 +279,9 @@ QString LatexReference::getPartialText(const QString &command)
 	if (anchor.name.isNull()) return QString();
 	if (anchor.start_pos < 0) {
 		anchor.start_pos = m_htmltext.indexOf(QString("<a name=\"%1\">").arg(anchor.name));
-		anchor.start_pos = m_htmltext.lastIndexOf(startTag, anchor.start_pos);
-		if (startTag.cap(1) == "dt") {
+        QRegularExpressionMatch match;
+        anchor.start_pos = m_htmltext.lastIndexOf(startTag, anchor.start_pos,&match);
+        if (match.captured(1) == "dt") {
 			endTag = "</dd>";
 			endOffset = endTag.length();
 		} else {
@@ -312,19 +313,20 @@ void LatexReference::makeIndex()
 	int length = end < 0 ? -1 : end - start + endTag.length();
 	QString indexText = m_htmltext.mid(start, length);
 
-	QRegExp rx("<a href=\"#([^\"]+)\"><code>([^\\s<]+)[^\n]*<a href=\"#([^\"]+)\">([^<]+)</a>");
+    QRegularExpression rx("<a href=\"#([^\"]+)\"><code>([^\\s<]+)[^\n]*<a href=\"#([^\"]+)\">([^<]+)</a>");
 	int pos = 0;
 	while (pos >= 0) {
-		pos = indexText.indexOf(rx, pos);
+        QRegularExpressionMatch match;
+        pos = indexText.indexOf(rx, pos,&match);
 		if (pos < 0) break;
-		QString anchorName(rx.cap(1));
-		QString word(rx.cap(2));
-		QString sectionAnchorName(rx.cap(3));
-		QString sectionTitle(rx.cap(4));
+        QString anchorName(match.captured(1));
+        QString word(match.captured(2));
+        QString sectionAnchorName(match.captured(3));
+        QString sectionTitle(match.captured(4));
 		if (word.startsWith('\\')) { // a command
 			if (word == "\\begin" || word == "\\") {
 				// don't add these words to the index because they give a mess in the tooltips
-				pos += rx.matchedLength();
+                pos += match.capturedLength();
 				continue;
 			}
 			m_anchors.insert(word, Anchor(anchorName));
@@ -336,7 +338,7 @@ void LatexReference::makeIndex()
 			// TODO: anything useful in the rest?
 			//qDebug() << word << anchorName << sectionAnchorName << sectionTitle;
 		}
-		pos += rx.matchedLength();
+        pos += match.capturedLength();
 	}
 	//qDebug() << "Found entries in index:" << m_anchors.count();
 }

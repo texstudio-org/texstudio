@@ -20,9 +20,10 @@
 #include "cursorposition.h"
 #include "latexcompleter.h"
 #include "help.h"
-class QDocumentLineHandle;
+#include "latexdocument.h"
+//class QDocumentLineHandle;
 
-class LatexDocument;
+//class LatexDocument;
 class QCodeEdit;
 class QEditor;
 class QLineMarkPanel;
@@ -355,7 +356,7 @@ private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
 	void foldContextMenuRequested(int lineNumber, QPoint globalPos);
 };
-Q_DECLARE_METATYPE(LatexEditorView *)
+//Q_DECLARE_METATYPE(LatexEditorView *)
 
 
 class BracketInvertAffector: public PlaceHolder::Affector

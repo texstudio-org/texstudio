@@ -36,9 +36,15 @@ PreviewWidget::PreviewWidget(QWidget *parent): QScrollArea(parent)
 
 void PreviewWidget::scaleImage(double factor)
 {
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
+    REQUIRE(!preViewer->pixmap(Qt::ReturnByValue).isNull());
+    pvscaleFactor *= factor;
+    preViewer->resize(pvscaleFactor * preViewer->pixmap(Qt::ReturnByValue).size());
+#else
 	REQUIRE(preViewer->pixmap());
 	pvscaleFactor *= factor;
 	preViewer->resize(pvscaleFactor * preViewer->pixmap()->size());
+#endif
 
 	adjustScrollBar(horizontalScrollBar(), factor);
 	adjustScrollBar(verticalScrollBar(), factor);
@@ -59,8 +65,32 @@ void PreviewWidget::previewLatex(const QPixmap &previewImage)
 void PreviewWidget::fitImage(bool fit)
 {
 	mFit = fit;
-	ConfigManagerInterface::getInstance()->setOption("Preview/PreviewPanelFit", mFit);
-	REQUIRE(preViewer->pixmap());
+    ConfigManagerInterface::getInstance()->setOption("Preview/PreviewPanelFit", mFit);
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
+    REQUIRE(!preViewer->pixmap(Qt::ReturnByValue).isNull());
+    if (fit) {
+        // needs to be improved
+        QSize m_size = size() - QSize(2, 2);
+        QSize m_labelSize = preViewer->size();
+        qreal ratio = 1.0 * m_labelSize.height() / m_labelSize.width();
+        qreal ratioPreviewer = 1.0 * m_size.height() / m_size.width();
+        int h, w;
+        if (ratioPreviewer > ratio) {
+            h = qRound(ratio * m_size.width());
+            w = m_size.width();
+            pvscaleFactor = 1.0 * w / preViewer->pixmap(Qt::ReturnByValue).size().width();
+        } else {
+            h = m_size.height();
+            w = qRound(m_size.height() / ratio);
+            pvscaleFactor = 1.0 * h / preViewer->pixmap(Qt::ReturnByValue).size().height();
+        }
+        preViewer->resize(w, h);
+        //setWidgetResizable(true);
+    } else {
+        resetZoom();
+    }
+#else
+    REQUIRE(preViewer->pixmap());
 	if (fit) {
 		// needs to be improved
 		QSize m_size = size() - QSize(2, 2);
@@ -82,6 +112,7 @@ void PreviewWidget::fitImage(bool fit)
 	} else {
 		resetZoom();
 	}
+#endif
 }
 
 void PreviewWidget::centerImage(bool center)
@@ -110,7 +141,11 @@ void PreviewWidget::resetZoom()
 
 void PreviewWidget::wheelEvent(QWheelEvent *event)
 {
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
+    if (preViewer->pixmap(Qt::ReturnByValue).isNull() ) return;
+#else
     if (!preViewer->pixmap()) return;
+#endif
 	if (event->modifiers() == Qt::ControlModifier) {
         float numDegrees = event->angleDelta().y() / 8.0f;
 		float numSteps = numDegrees / 15.0f;
@@ -121,7 +156,11 @@ void PreviewWidget::wheelEvent(QWheelEvent *event)
 
 void PreviewWidget::contextMenu(QPoint point)
 {
+#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
+    if (preViewer->pixmap(Qt::ReturnByValue).isNull() ) return;
+#else
 	if (!preViewer->pixmap()) return;
+#endif
 	QMenu menu;
 	menu.addAction(tr("Zoom In"), this, SLOT(zoomIn()));
 	menu.addAction(tr("Zoom Out"), this, SLOT(zoomOut()));
@@ -147,7 +186,7 @@ TerminalWidget::TerminalWidget(QWidget *parent, InternalTerminalConfig *terminal
 	//setBackgroundRole(QPalette::Base);
 	layout = new QHBoxLayout(this);
 	layout->setSpacing(0);
-	layout->setMargin(0);
+    //layout->setMargin(0);
 	setLayout(layout);
 	installEventFilter(this);
 }
@@ -376,7 +415,7 @@ CustomWidgetList::CustomWidgetList(QWidget *parent):
 
 	QHBoxLayout *hlayout = new QHBoxLayout(this);
 	hlayout->setSpacing(0);
-	hlayout->setMargin(0);
+    //hlayout->setMargin(0);
 
 	toolbar = new QToolBar("LogToolBar", this);
 	toolbar->setFloatable(false);

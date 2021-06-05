@@ -1,4 +1,4 @@
-cd#########################################################################################
+#########################################################################################
 # pkgAtLeastVersion(widget_name, widget_version)
 # Custom test that checks if widget_name is installed and at least version widget_version
 #########################################################################################
@@ -70,13 +70,18 @@ exists(texstudio.pri):include(texstudio.pri)
 QT += network \
     xml \
     svg \
-    script \
+    qml \
     printsupport \
     concurrent
 
 QT += \
     widgets \
     uitools
+
+
+versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
+    QT += core5compat
+}
 
 !isEmpty(MXE){
     DEFINES += MXE
@@ -88,21 +93,16 @@ QT += \
     DEFINES += PHONON
 }
 
-isEmpty(INTERNAL_TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
-    INTERNAL_TERMINAL=1
-    message(Use detected qterminal)
-}
-!isEmpty(INTERNAL_TERMINAL){
-    LIBS += -lqtermwidget5
-    DEFINES += INTERNAL_TERMINAL
-    message(Use qterminal)
-}
-
-!isEmpty(QJS){
-    DEFINES += QJS
-    QT += qml
-    QT -= script
-    message(Use experimental JS engine)
+!versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
+    isEmpty(INTERNAL_TERMINAL):pkgAtLeastVersion("qtermwidget5", "0.9.0") {
+        INTERNAL_TERMINAL=1
+        message(Use detected qterminal)
+    }
+    !isEmpty(INTERNAL_TERMINAL){
+        LIBS += -lqtermwidget5
+        DEFINES += INTERNAL_TERMINAL
+        message(Use qterminal)
+    }
 }
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
@@ -436,7 +436,8 @@ exists(./.git)  {
 !win32-msvc*: {
   QMAKE_CXXFLAGS_DEBUG -= -O -O1 -O2 -O3
   QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Wmissing-include-dirs -Wunknown-pragmas -Wundef -Wpointer-arith -Winline -O0
-  QMAKE_CXXFLAGS += -std=c++11 -fno-omit-frame-pointer
+
+  QMAKE_CXXFLAGS += -fno-omit-frame-pointer
   !isEmpty(MXE): QMAKE_CXXFLAGS += -fpermissive
   !win32:!haiku: QMAKE_LFLAGS += -rdynamic # option not supported by mingw and haiku
   else {

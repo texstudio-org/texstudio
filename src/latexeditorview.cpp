@@ -617,7 +617,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 
 	QVBoxLayout *mainlay = new QVBoxLayout(this);
 	mainlay->setSpacing(0);
-	mainlay->setMargin(0);
+    //mainlay->setMargin(0);
 
 	codeeditor = new QCodeEdit(false, this, doc);
 	editor = codeeditor->editor();
@@ -1253,7 +1253,7 @@ bool LatexEditorView::gotoLineHandleAndSearchCommand(const QDocumentLineHandle *
 	int col = 0;
 	foreach (const QString &cmd, searchFor) {
 		col = lineText.indexOf(cmd + "{" + id);
-		if (col < 0) col = lineText.indexOf(QRegExp(QRegExp::escape(cmd) + "\\[[^\\]{}()\\\\]+\\]\\{" + QRegExp::escape(id))); //for \command[options]{id}
+        if (col < 0) col = lineText.indexOf(QRegularExpression(QRegularExpression::escape(cmd) + "\\[[^\\]{}()\\\\]+\\]\\{" + QRegularExpression::escape(id))); //for \command[options]{id}
 		if (col >= 0) {
 			col += cmd.length() + 1;
 			break;
@@ -2180,7 +2180,7 @@ void LatexEditorView::reCheckSyntax(int linenr, int count)
 
 void LatexEditorView::lineDeleted(QDocumentLineHandle *l,int)
 {
-	QHash<QDocumentLineHandle *, int>::iterator it;
+    QMultiHash<QDocumentLineHandle *, int>::iterator it;
 	while ((it = lineToLogEntries.find(l)) != lineToLogEntries.end()) {
 		logEntryToLine.remove(it.value());
 		lineToLogEntries.erase(it);
@@ -2680,7 +2680,7 @@ bool LatexEditorView::closeElement()
 
 void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines)
 {
-	QRegExp breakChars("[ \t\n\r]");
+    QRegularExpression breakChars("[ \t\n\r]");
 	QDocumentCursor cur = editor->cursor();
 	QDocument *doc = editor->document();
 	int startLine = 0;
@@ -3021,8 +3021,11 @@ void LatexEditorViewConfig::settingsChanged()
 	if (lastFontFamily == fontFamily && lastFontSize == fontSize) return;
 
 	QFont f(fontFamily, fontSize);
-
+#if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
+    f.setStyleHint(QFont::Courier);
+#else
 	f.setStyleHint(QFont::Courier, QFont::ForceIntegerMetrics);
+#endif
 
 	f.setKerning(false);
 

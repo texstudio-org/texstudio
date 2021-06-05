@@ -121,7 +121,8 @@ private slots:
 		QFETCH(QString, file);
 		QFETCH(QString, expected);
 		QStringList expectedcommands = expected.split("|");
-		ExpandingOptions options(file,file,42);
+        QFileInfo fi{file};
+        ExpandingOptions options(fi,fi,42);
 		ExpandedCommands result = bm->expandCommandLine(commandLine, options);
 		QEQUAL(result.commands.size(), expectedcommands.size());
 		for (int i=0;i<expectedcommands.size();i++)

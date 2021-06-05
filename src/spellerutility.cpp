@@ -71,7 +71,11 @@ bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
 		emit dictionaryLoaded();
 		return true;
 	}
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    ignoredWordList = QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n", Qt::SkipEmptyParts);
+#else
 	ignoredWordList = QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n", QString::SkipEmptyParts);
+#endif
 	// add words in user dic
 	QByteArray encodedString;
 	QString spell_encoding = QString(pChecker->get_dic_encoding());

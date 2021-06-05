@@ -297,11 +297,9 @@ QPalette panelPalette(const QPalette &oldPalette)
 	QPalette pal = oldPalette;
 	pal.setBrush(QPalette::All, QPalette::WindowText, color);
 	pal.setBrush(QPalette::All, QPalette::ButtonText, color);
-	pal.setBrush(QPalette::All, QPalette::Foreground, color);
 	color.setAlpha(100);
 	pal.setBrush(QPalette::Disabled, QPalette::WindowText, color);
 	pal.setBrush(QPalette::Disabled, QPalette::ButtonText, color);
-	pal.setBrush(QPalette::Disabled, QPalette::Foreground, color);
 	return pal;
 }
 

@@ -2,6 +2,7 @@
 #include "latexcompleter_p.h"
 #include "latexcompleter_config.h"
 #include "help.h"
+#include "usermacro.h"
 
 #include "smallUsefulFunctions.h"
 
@@ -952,13 +953,17 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         // generate regexp
         //QTime tm;
         //tm.start();
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+        QStringList chars=word.split("",Qt::SkipEmptyParts);
+#else
         QStringList chars=word.split("",QString::SkipEmptyParts);
+#endif
         if(chars.value(0)==QChar('\\')){
             chars.takeFirst();
         }
         QString regExpression=chars.join(".*");
 
-        QRegExp rx(regExpression);
+        QRegularExpression rx(regExpression);
         QList<int> scoringList;
 
         words=QtConcurrent::blockingFiltered(baselist,[rx](const CompletionWord &item){

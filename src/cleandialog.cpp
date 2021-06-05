@@ -23,7 +23,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
 	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;]";
-	QRegExpValidator *rxValExtensionList = new QRegExpValidator(QRegExp(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
+    QRegularExpressionValidator *rxValExtensionList = new QRegularExpressionValidator(QRegularExpression(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
 	int dummyPos;
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
@@ -99,7 +99,11 @@ void CleanDialog::onReject() {
 void CleanDialog::updateFilesToRemove() {
 	scopeID = ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
 	Scope scope = (Scope) scopeID;
-	QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+    QStringList extList(ui->leExtensions->text().split(',', Qt::SkipEmptyParts));
+#else
+    QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
+#endif
 	QStringList forbiddenExtensions = QStringList() << "tex" << "lytex";
 	QStringList found;
 	foreach (const QString &ext, forbiddenExtensions) {
