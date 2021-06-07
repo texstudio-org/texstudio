@@ -17,7 +17,6 @@
 \becquerel
 \bel
 \bit
-\bohr
 \byte
 \candela
 \celsius
