@@ -2379,7 +2379,10 @@ void Texstudio::fileMakeTemplate()
 			txt.replace("\r\n", "\n"); //on Windows QTextStream corrupts line endings by replacing "\n" with "\r\n", so "\r\n" becomes "\r\r\n"
 #endif
 			QTextStream out(&file_txt);
-            //out.setCodec("UTF-8");
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+            out.setCodec("UTF-8");
+#endif
+
 			out << txt;
 			file_txt.close();
 		}
@@ -2404,7 +2407,9 @@ void Texstudio::fileMakeTemplate()
 			UtilsUi::txsInformation(tr("Could not write template meta data:") + "\n" + fn);
 		} else {
 			QTextStream out(&file);
-            //out.setCodec("UTF-8");
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+            out.setCodec("UTF-8");
+#endif
 			out << templateDialog.generateMetaData();
 			file.close();
 		}
@@ -2465,7 +2470,9 @@ void Texstudio::fileNewFromTemplate()
 		QString mTemplate;
 		bool loadAsSnippet = false;
 		QTextStream in(&file);
-        //in.setCodec(QTextCodec::codecForName("UTF-8"));
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+        in.setCodec("UTF-8");
+#endif
 		QString line = in.readLine();
         if (line.contains(QRegularExpression("^%\\s*!TXS\\s+template"))) {
 			loadAsSnippet = true;

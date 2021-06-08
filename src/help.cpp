@@ -215,7 +215,9 @@ void LatexReference::setFile(QString filename)
 	QFile f(filename);
 	if (!f.open(QFile::ReadOnly | QFile::Text)) return;
 	QTextStream stream(&f);
-    //stream.setCodec("UTF-8");
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    stream.setCodec("UTF-8");
+#endif
 	m_htmltext = stream.readAll();
 	makeIndex();
 }

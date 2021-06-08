@@ -41,7 +41,9 @@ void ThesaurusDatabaseType::saveUser()
 	QFile f(userFileName);
 	if (!f.open(QFile::WriteOnly)) return;
 	QTextStream s(&f);
-    //s.setCodec(QTextCodec::codecForName("UTF-8"));
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    s.setCodec("UTF-8");
+#endif
 	for (QMap<QString, QStringList>::const_iterator it = userWords.constBegin(), end = userWords.constEnd(); it != end; ++it ) {
 		if (it.value().size() < 2) continue;
 		s << it.value().join("|") << "\n";
@@ -57,7 +59,10 @@ void ThesaurusDatabaseType::load(QFile &file)
 	QString line;
     QString key;
 	line = stream.readLine();
-    //stream.setCodec(qPrintable(line));
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    stream.setCodec(qPrintable(line));
+#endif
+
 	buffer = new QString();
 	buffer->reserve(file.size());
 	do {
@@ -84,7 +89,10 @@ void ThesaurusDatabaseType::load(QFile &file)
 		QFile f(userFileName);
 		if (f.open(QIODevice::ReadOnly)) {
 			QTextStream s(&f);
-            //s.setCodec(QTextCodec::codecForName("UTF-8"));
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+            s.setCodec(QTextCodec::codecForName("UTF-8"));
+#endif
+
 			do {
 				line = s.readLine();
 				if (line.startsWith("#") || line.startsWith("%")) continue; //comments

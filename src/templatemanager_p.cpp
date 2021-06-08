@@ -120,7 +120,9 @@ bool LocalLatexTemplate::readMetaData()
 		return false;
 	}
 	QTextStream in(&f);
-    //in.setCodec("UTF-8");
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    in.setCodec("UTF-8");
+#endif
     QJsonDocument jsonDoc=QJsonDocument::fromJson(in.readAll().toUtf8());
     QJsonObject dd=jsonDoc.object();
     for(const QString& key : dd.keys()){
