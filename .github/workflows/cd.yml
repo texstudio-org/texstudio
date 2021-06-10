@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
       - name: Fetch tag annotations
         # https://github.com/actions/checkout/issues/290
-        run: git fetch --force origin ${{ github.ref }}:${{ github.ref }}
+        run: git fetch --tags --force
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -48,7 +48,7 @@ jobs:
         fetch-depth: 0
 
     - name: Fetch tag annotations
-      run: git fetch --force origin ${{ github.ref }}:${{ github.ref }}
+      run: git fetch --tags --force
 
     - name: Add mxe.cc repo
       run: |
@@ -147,7 +147,7 @@ jobs:
         fetch-depth: 0
 
     - name: Fetch tag annotations
-      run: git fetch --force origin ${{ github.ref }}:${{ github.ref }}
+      run: git fetch --tags --force
 
     - name: Updates
       run: sudo apt-get update
@@ -206,7 +206,7 @@ jobs:
         fetch-depth: 0
 
     - name: Fetch tag annotations
-      run: git fetch --force origin ${{ github.ref }}:${{ github.ref }}
+      run: git fetch --tags --force
 
     - name: Install Dependencies
       run: |
