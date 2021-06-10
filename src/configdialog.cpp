@@ -497,7 +497,11 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	//fmConfig->setMaximumSize(490,300);
 	//fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
 	QBoxLayout *layout = new QBoxLayout(QBoxLayout::TopToBottom, ui.formatConfigBox);
-    //layout->setMargin(0);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    layout->setMargin(0);
+#else
+    layout->setContentsMargins(0,0,0,0);
+#endif
 	layout->insertWidget(0, fmConfig);
 
     ConfigManager *config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());

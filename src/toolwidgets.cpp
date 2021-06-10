@@ -186,7 +186,11 @@ TerminalWidget::TerminalWidget(QWidget *parent, InternalTerminalConfig *terminal
 	//setBackgroundRole(QPalette::Base);
 	layout = new QHBoxLayout(this);
 	layout->setSpacing(0);
-    //layout->setMargin(0);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    layout->setMargin(0);
+#else
+    layout->setContentMargins(0,0,0,0);
+#endif
 	setLayout(layout);
 	installEventFilter(this);
 }
@@ -415,7 +419,11 @@ CustomWidgetList::CustomWidgetList(QWidget *parent):
 
 	QHBoxLayout *hlayout = new QHBoxLayout(this);
 	hlayout->setSpacing(0);
-    //hlayout->setMargin(0);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    hlayout->setMargin(0);
+#else
+    hlayout->setContentsMargins(0,0,0,0);
+#endif
 
 	toolbar = new QToolBar("LogToolBar", this);
 	toolbar->setFloatable(false);

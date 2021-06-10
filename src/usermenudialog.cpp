@@ -87,7 +87,12 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	searchReplacePanel->display(0, false);
 	Q_UNUSED(searchReplacePanelAction)
 
-    //ui.tagEdit->layout()->setMargin(0);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    ui.tagEdit->layout()->setMargin(0);
+#else
+    ui.tagEdit->layout()->setContentsMargins(0,0,0,0);
+#endif
+
 	ui.tagEdit->layout()->addWidget(codeedit->editor());
 
     // limit height of description editor

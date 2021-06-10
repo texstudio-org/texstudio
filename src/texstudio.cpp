@@ -312,7 +312,11 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	QLayout *centralLayout = new QHBoxLayout(centralFrame);
 	centralLayout->setSpacing(0);
-    //centralLayout->setMargin(0);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    centralLayout->setMargin(0);
+#else
+    centralLayout->setContentsMargins(0,0,0,0);
+#endif
 	centralLayout->addWidget(centralToolBar);
 	centralLayout->addWidget(editors);
 

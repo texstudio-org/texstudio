@@ -77,7 +77,11 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 
 	QVBoxLayout *vLayout = new QVBoxLayout(); //contains the widgets for the normal mode (OutputTable + OutputLogTextEdit)
 	vLayout->setSpacing(0);
-    //vLayout->setMargin(0);
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+    vLayout->setMargin(0);
+#else
+    vLayout->setContentsMargins(0,0,0,0);
+#endif
 	vLayout->addWidget(infoLabel);
 	vLayout->addWidget(splitter);
 	setLayout(vLayout);
