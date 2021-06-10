@@ -145,7 +145,10 @@ fi
 
 if [ "$SYSTEM" = 2 ]; then
 	echo "Starting compilation"
-	$QMAKE -spec macx-clang $TXSCOMPILEOPTIONS texstudio.pro
+	case $(uname -m) in
+    		x86_64) $QMAKE -spec macx-clang $TXSCOMPILEOPTIONS texstudio.pro ;;
+    		arm64)  $QMAKE -spec macx-clang-arm64 $TXSCOMPILEOPTIONS texstudio.pro ;;
+	esac
 	make
 	echo "Compilation done"
 	if [ "$DO_INSTALL" = yes ]; then
