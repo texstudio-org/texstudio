@@ -13,6 +13,11 @@ jobs:
         shell: msys2 {0}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Fetch tag annotations
+        # https://github.com/actions/checkout/issues/290
+        run: git fetch --tags --force
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
@@ -39,7 +44,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
     - name: Add mxe.cc repo
       run: |
         sudo apt-key adv \
@@ -133,7 +143,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
     - name: Updates
       run: sudo apt-get update
 
@@ -187,6 +202,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
 
     - name: Install Dependencies
       run: |
