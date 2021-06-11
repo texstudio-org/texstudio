@@ -226,9 +226,9 @@ QString textToLatex(const QString &text)
 	QList<QPair<QString, QString> > replaceList;
 	// replacements for resevered characters according to
 	// http://en.wikibooks.org/wiki/LaTeX/Basics#Reserved_Characters
+	replaceList.append(QPair<QString, QString> ("\\", "\\textbackslash "));
 	replaceList.append(QPair<QString, QString> ("{", "\\{"));
 	replaceList.append(QPair<QString, QString> ("}", "\\}"));
-	replaceList.append(QPair<QString, QString> ("\\", "\\textbackslash{}"));
 	replaceList.append(QPair<QString, QString> ("#", "\\#"));
 	replaceList.append(QPair<QString, QString> ("$", "\\$"));
 	replaceList.append(QPair<QString, QString> ("%", "\\%"));
