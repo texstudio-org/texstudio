@@ -226,9 +226,9 @@ QString textToLatex(const QString &text)
 	QList<QPair<QString, QString> > replaceList;
 	// replacements for resevered characters according to
 	// http://en.wikibooks.org/wiki/LaTeX/Basics#Reserved_Characters
-	replaceList.append(QPair<QString, QString> ("\\", "\\textbackslash{}"));
 	replaceList.append(QPair<QString, QString> ("{", "\\{"));
 	replaceList.append(QPair<QString, QString> ("}", "\\}"));
+	replaceList.append(QPair<QString, QString> ("\\", "\\textbackslash{}"));
 	replaceList.append(QPair<QString, QString> ("#", "\\#"));
 	replaceList.append(QPair<QString, QString> ("$", "\\$"));
 	replaceList.append(QPair<QString, QString> ("%", "\\%"));
@@ -236,10 +236,50 @@ QString textToLatex(const QString &text)
 	replaceList.append(QPair<QString, QString> ("~", "\\~{}"));
 	replaceList.append(QPair<QString, QString> ("_", "\\_"));
 	replaceList.append(QPair<QString, QString> ("^", "\\^{}"));
+	replaceList.append(QPair<QString, QString> ("\u0393", "$\\Gamma$"));
+	replaceList.append(QPair<QString, QString> ("\u0394", "$\\Delta$"));
+	replaceList.append(QPair<QString, QString> ("\u0398", "$\\Theta$"));
+	replaceList.append(QPair<QString, QString> ("\u039B", "$\\Lambda$"));
+	replaceList.append(QPair<QString, QString> ("\u039E", "$\\Xi$"));
+	replaceList.append(QPair<QString, QString> ("\u03A0", "$\\Pi$"));
+	replaceList.append(QPair<QString, QString> ("\u03A3", "$\\Sigma$"));
+	replaceList.append(QPair<QString, QString> ("\u03A6", "$\\Phi$"));
+	replaceList.append(QPair<QString, QString> ("\u03A8", "$\\Psi$"));
+	replaceList.append(QPair<QString, QString> ("\u03A9", "$\\Omega$"));
+	replaceList.append(QPair<QString, QString> ("\u03B1", "$\\alpha$"));
+	replaceList.append(QPair<QString, QString> ("\u03B2", "$\\beta$"));
+	replaceList.append(QPair<QString, QString> ("\u03B3", "$\\gamma$"));
+	replaceList.append(QPair<QString, QString> ("\u03B4", "$\\delta$"));
+	replaceList.append(QPair<QString, QString> ("\u03B5", "$\\varepsilon$"));
+	replaceList.append(QPair<QString, QString> ("\u03B6", "$\\zeta$"));
+	replaceList.append(QPair<QString, QString> ("\u03B7", "$\\eta$"));
+	replaceList.append(QPair<QString, QString> ("\u03B8", "$\\theta$"));
+	replaceList.append(QPair<QString, QString> ("\u03B9", "$\\iota$"));
+	replaceList.append(QPair<QString, QString> ("\u03BA", "$\\kappa$"));
+	replaceList.append(QPair<QString, QString> ("\u03BB", "$\\lambda$"));
+	replaceList.append(QPair<QString, QString> ("\u03BC", "$\\mu$"));
+	replaceList.append(QPair<QString, QString> ("\u03BD", "$\\nu$"));
+	replaceList.append(QPair<QString, QString> ("\u03BE", "$\\xi$"));
+	replaceList.append(QPair<QString, QString> ("\u03C0", "$\\pi$"));
+	replaceList.append(QPair<QString, QString> ("\u03C1", "$\\rho$"));
+	replaceList.append(QPair<QString, QString> ("\u03C2", "$\\varsigma$"));
+	replaceList.append(QPair<QString, QString> ("\u03C3", "$\\sigma$"));
+	replaceList.append(QPair<QString, QString> ("\u03C4", "$\\tau$"));
+	replaceList.append(QPair<QString, QString> ("\u03C5", "$\\upsilon$"));
+	replaceList.append(QPair<QString, QString> ("\u03C6", "$\\varphi$"));
+	replaceList.append(QPair<QString, QString> ("\u03C7", "$\\chi$"));
+	replaceList.append(QPair<QString, QString> ("\u03C8", "$\\psi$"));
+	replaceList.append(QPair<QString, QString> ("\u03C9", "$\\omega$"));
+	replaceList.append(QPair<QString, QString> ("\u03D1", "$\\vartheta$"));
+	replaceList.append(QPair<QString, QString> ("\u03D2", "$\\Upsilon$"));
+	replaceList.append(QPair<QString, QString> ("\u03D6", "$\\varpi$"));
+	replaceList.append(QPair<QString, QString> ("\u03F5", "$\\epsilon$"));
 
 	QString result = text;
 	for (QList<QPair<QString, QString> >::const_iterator it = replaceList.begin(); it != replaceList.end(); ++it)
 		result.replace(it->first, it->second);
+
+	result.replace(QRegularExpression("\"(.*?)\""), "``\\1''");
 
 	return result;
 }
