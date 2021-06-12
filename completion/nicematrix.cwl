@@ -9,21 +9,29 @@
 
 \NiceMatrixOptions{keyvals}
 
-\begin{NiceTabular}[keyvals]{preamble}[keyvals]#\tabular
+\begin{NiceTabular}[keyvals]{preamble}#\tabular
+\begin{NiceTabular}[keyvals]{preamble}[keyvals]#S\tabular
 \end{NiceTabular}
-\begin{NiceTabular*}[keyvals]{preamble}[keyvals]#\tabular
+\begin{NiceTabular*}[keyvals]{preamble}#\tabular
+\begin{NiceTabular*}[keyvals]{preamble}[keyvals]#S\tabular
 \end{NiceTabular*}
-\begin{NiceArray}[keyvals]{preamble}[keyvals]#m\array
+\begin{NiceArray}[keyvals]{preamble}#m\array
+\begin{NiceArray}[keyvals]{preamble}[keyvals]#S\array
 \end{NiceArray}
-\begin{pNiceArray}[keyvals]{preamble}[keyvals]#m\array
+\begin{pNiceArray}[keyvals]{preamble}#m\array
+\begin{pNiceArray}[keyvals]{preamble}[keyvals]#S\array
 \end{pNiceArray}
-\begin{bNiceArray}[keyvals]{preamble}[keyvals]#m\array
+\begin{bNiceArray}[keyvals]{preamble}#m\array
+\begin{bNiceArray}[keyvals]{preamble}[keyvals]#S\array
 \end{bNiceArray}
-\begin{BNiceArray}[keyvals]{preamble}[keyvals]#m\array
+\begin{BNiceArray}[keyvals]{preamble}#m\array
+\begin{BNiceArray}[keyvals]{preamble}[keyvals]#S\array
 \end{BNiceArray}
-\begin{vNiceArray}[keyvals]{preamble}[keyvals]#m\array
+\begin{vNiceArray}[keyvals]{preamble}#m\array
+\begin{vNiceArray}[keyvals]{preamble}[keyvals]#S\array
 \end{vNiceArray}
-\begin{VNiceArray}[keyvals]{preamble}[keyvals]#m\array
+\begin{VNiceArray}[keyvals]{preamble}#m\array
+\begin{VNiceArray}[keyvals]{preamble}[keyvals]#S\array
 \end{VNiceArray}
 \begin{NiceMatrix}[keyvals]#m\array
 \end{NiceMatrix}
