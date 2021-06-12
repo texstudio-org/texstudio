@@ -43,6 +43,8 @@ private slots:
 	void test_indicesOf_RegExp();
 	void test_indexMin_data();
 	void test_indexMin();
+    void test_textToLatex_data();
+    void test_textToLatex();
 };
 
 #endif  // QT_NO_DEBUG

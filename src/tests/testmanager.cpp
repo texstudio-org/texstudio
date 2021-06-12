@@ -75,7 +75,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
 		<< new SmallUsefulFunctionsTest()
-		<< new LatexParserTest()
+        << new LatexParserTest()
 		<< new LatexParsingTest()
 		<< new EncodingTest()
 		<< new ExecProgramTest()
