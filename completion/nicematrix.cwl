@@ -155,7 +155,7 @@ margin=##L
 extra-left-margin=##L
 extra-right-margin=##L
 extra-margin=##L
-parallelize-diags=#true,false
+parallelize-diags#true,false
 exterior-arraycolsep
 letter-for-dotted-lines=
 delimiters/max-width
