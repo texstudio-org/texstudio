@@ -226,8 +226,10 @@ QString textToLatex(const QString &text)
 	QList<QPair<QString, QString> > replaceList;
 	// replacements for resevered characters according to
 	// http://en.wikibooks.org/wiki/LaTeX/Basics#Reserved_Characters
-	replaceList.append(QPair<QString, QString> ("{", "\\{"));
-	replaceList.append(QPair<QString, QString> ("}", "\\}"));
+    QString result = text;
+    result.replace("{", "\\{");
+    result.replace("}", "\\}");
+    result.replace(QRegularExpression("\\\\(?![{}])"),"\\textbackslash{}");
 	replaceList.append(QPair<QString, QString> ("#", "\\#"));
 	replaceList.append(QPair<QString, QString> ("$", "\\$"));
 	replaceList.append(QPair<QString, QString> ("%", "\\%"));
@@ -236,11 +238,11 @@ QString textToLatex(const QString &text)
 	replaceList.append(QPair<QString, QString> ("_", "\\_"));
 	replaceList.append(QPair<QString, QString> ("^", "\\^{}"));
 
-	QString result = text;
+
 	for (QList<QPair<QString, QString> >::const_iterator it = replaceList.begin(); it != replaceList.end(); ++it)
 		result.replace(it->first, it->second);
 
-    result.replace(QRegularExpression("\\\\(?![{}])"),"\\textbackslash{}");
+
 
 	return result;
 }

@@ -434,3 +434,23 @@ void SmallUsefulFunctionsTest::test_indexMin()
 	QFETCH(int, result);
 	QEQUAL(indexMin(i, j), result);
 }
+
+void SmallUsefulFunctionsTest::test_textToLatex_data()
+{
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<QString>("latex");
+
+    QTest::newRow("no special") << "ab" << "ab";
+    QTest::newRow("backslash") << "\\ab" << "\\textbackslash{}ab";
+    QTest::newRow("backslash 2") << "\\" << "\\textbackslash{}";
+    QTest::newRow("braces") << "{ab}" << "\\{ab\\}";
+    QTest::newRow("special chars") << "#$%&~_^" << "\\#\\$\\%\\&\\~{}\\_\\^{}";
+}
+
+void SmallUsefulFunctionsTest::test_textToLatex()
+{
+    QFETCH(QString, text);
+    QFETCH(QString, latex);
+    QString result=textToLatex(text);
+    QEQUAL(result, latex);
+}
