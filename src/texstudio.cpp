@@ -11145,7 +11145,7 @@ void Texstudio::updateTOC(){
         }
         // remove all item in topTOC but keep itemTODO
         QTreeWidgetItem *itemTODO=root->child(0);
-        if(itemTODO->data(0,Qt::UserRole+1).toString()=="TODO"){
+        if(itemTODO && itemTODO->data(0,Qt::UserRole+1).toString()=="TODO"){
             itemExpanded=itemTODO->isExpanded();
         }
         QList<QTreeWidgetItem*> items=root->takeChildren();
