@@ -226,16 +226,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             } else
                 continue;
         }
-	    // non-verbatim handling
-	    if (tk.type == Token::comment){
-            lineLength=tk.start; // limit linelength to comment start
-            commentStart=tk.start;
-            break; // stop at comment start
-	    }
+        // non-verbatim handling
         // special definition handling, is not interpreted !!
-        if(!stack.isEmpty() && stack.top().subtype==Token::definition){
+        if(!stack.isEmpty() && (stack.top().subtype==Token::definition||stack.top().subtype==Token::url) ){
+            EnumsTokenType::TokenType tokenType=stack.top().subtype;
             if(tk.type==Token::openBrace){
-                tk.subtype=Token::definition;
+                tk.subtype=tokenType;
                 tk.level = level; // push old level on stack in order to restore that level later and to distinguish between arguments and arbitrary braces
                 tk.argLevel = ConfigManager::RUNAWAYLIMIT; // run-away prevention
                 stack.push(tk);
@@ -246,8 +242,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }else{
                 if(tk.type==Token::closeBrace){
                     Token tk1=stack.pop();
-                    if(!stack.isEmpty() && stack.top().subtype==Token::definition){ // check if more than openBrace/defintion are on the stack, if yes , just pop it and continue in definition mode
-                        tk.subtype=Token::definition;
+                    if(!stack.isEmpty() && stack.top().subtype==tokenType){ // check if more than openBrace/defintion are on the stack, if yes , just pop it and continue in definition mode
+                        tk.subtype=tokenType;
                         lexed << tk;
                         level=tk1.level; // restore original level
                         continue; // still definition mode
@@ -258,6 +254,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     continue; // ignore tokens in definition
                 }
             }
+        }
+        // handle comments after definition/url as % may appear there ...
+        if (tk.type == Token::comment){
+            lineLength=tk.start; // limit linelength to comment start
+            commentStart=tk.start;
+            break; // stop at comment start
         }
         // continue normal operation
 	    if (tk.type == Token::command) {
