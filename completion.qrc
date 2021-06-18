@@ -92,6 +92,7 @@
 <file>completion/fontawesome5.cwl</file>
 <file>completion/fontawesome.cwl</file>
 <file>completion/fontspec.cwl</file>
+<file>completion/fp.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
 <file>completion/glossaries.cwl</file>
@@ -162,6 +163,7 @@
 <file>completion/nicefrac.cwl</file>
 <file>completion/nicematrix.cwl</file>
 <file>completion/nomencl.cwl</file>
+<file>completion/numprint.cwl</file>
 <file>completion/overpic.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/parskip.cwl</file>
@@ -228,6 +230,10 @@
 <file>completion/tikz-timing.cwl</file>
 <file>completion/titlesec.cwl</file>
 <file>completion/titletoc.cwl</file>
+<file>completion/tkz-base.cwl</file>
+<file>completion/tkz-euclide.cwl</file>
+<file>completion/tkz-fct.cwl</file>
+<file>completion/tkz-kiviat.cwl</file>
 <file>completion/tocbibind.cwl</file>
 <file>completion/tocloft.cwl</file>
 <file>completion/todonotes.cwl</file>
@@ -246,6 +252,7 @@
 <file>completion/xeCJKfntef.cwl</file>
 <file>completion/xepersian.cwl</file>
 <file>completion/xetex.cwl</file>
+<file>completion/xfp.cwl</file>
 <file>completion/xfrac.cwl</file>
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
