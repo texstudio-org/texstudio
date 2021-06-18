@@ -531,7 +531,7 @@ void InsertGraphicsConfig::readSettings(QSettings &settings)
 	center = settings.value("/center", true).toBool();
 	useFigure = settings.value("/useFigure", true).toBool();
 	captionBelow = settings.value("/captionBelow", true).toBool();
-	placement = settings.value("/placement", "").toString();
+	placement = settings.value("/placement", "!th").toString();
 	spanTwoCols = settings.value("/spanTwoCols", false).toBool();
 	settings.endGroup();
 }
