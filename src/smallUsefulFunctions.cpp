@@ -242,7 +242,7 @@ QString textToLatex(const QString &text)
 	for (QList<QPair<QString, QString> >::const_iterator it = replaceList.begin(); it != replaceList.end(); ++it)
 		result.replace(it->first, it->second);
 
-
+	result.replace(QRegularExpression("\"(.*?)\""), "``\\1''");
 
 	return result;
 }

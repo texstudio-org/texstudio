@@ -138,7 +138,7 @@ void QEditorTest::foldedText_data(){
 	QTest::addColumn<QString>("newEditorText");
 	QTest::addColumn<QList<int> >("newHiddenLines");
 
-	QTest::newRow("simple folded comment")
+    /*QTest::newRow("simple folded comment")
 		<< "0\n1{\n2abc\n3}\n4\n"
 		<<  (QList<int>() << 1)
 		<<  (QList<int>() << 2 << 3)
@@ -154,7 +154,7 @@ void QEditorTest::foldedText_data(){
 		<< 0 << 1 << 4 << 1
 		<< "uncomment"
 		<< "0\n1{\n2abc\n3}\n4\n"
-		<< (QList<int>() << 2 << 3);
+        << (QList<int>() << 2 << 3);*/
 
 	QTest::newRow("simple folded indent")
 		<< "0\n1{\n2abc\n3}\n4\n"
@@ -174,7 +174,7 @@ void QEditorTest::foldedText_data(){
 		<< "0\n1{\n2abc\n3}\n4\n"
 		<< (QList<int>() << 2 << 3);
 
-	QTest::newRow("inner folded uncomment")
+    /*QTest::newRow("inner folded uncomment")
 		<< "{\n1{\n%2abc\n3}\n4\n5}\n6\n"
 		<<  (QList<int>() << 1)
 		<<  (QList<int>() << 2 << 3)
@@ -217,7 +217,7 @@ void QEditorTest::foldedText_data(){
 		<< 6 << 0 << 7 << 1
 		<< "comment"
 		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n%\\section{4}\n%4\n"
-		<< (QList<int>() << 1 << 3 << 5 << 6 << 7 << 8);
+        << (QList<int>() << 1 << 3 << 5 << 6 << 7 << 8);*/
 
 	QTest::newRow("last section folded indent")
 		<< "\\section{1}\n1\n\\section{2}\n2\n\\section{3}\n3\n\\section{4}\n4\n"
@@ -414,7 +414,7 @@ void QEditorTest::activeFolding_data(){
 		<< "remove line\n2{\n3\n4}\n5\n"
 		<< (QList<int> () << 2 << 3);
 
-	QTest::newRow("comment opened folding")
+    /*QTest::newRow("comment opened folding")
 		<< "0\n1\n2{\n3\n4}\n5\n"
 		<< (QList<int> () << 2)
 		<< (QList<int> () << 3 << 4)
@@ -448,7 +448,7 @@ void QEditorTest::activeFolding_data(){
 		<< 4 << 1 << 4 << 1
 		<< "%"
 		<< "0\n1\n2{\n3\n4%}\n5\n"
-		<< (QList<int> () << 3 << 4 << 5 << 6);
+        << (QList<int> () << 3 << 4 << 5 << 6);*/
 
 	QTest::newRow("line removing block merging")
 		<< "0\n1\n2{\n3\n4}\n5\n6{\n7\n8}\n"

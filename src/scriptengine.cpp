@@ -219,6 +219,9 @@ void scriptengine::run(const bool quiet)
     engine->globalObject().setProperty("debug", scriptJS.property("debug"));
     engine->globalObject().setProperty("readFile", scriptJS.property("readFile"));
     engine->globalObject().setProperty("writeFile", scriptJS.property("writeFile"));
+    engine->globalObject().setProperty("hasPersistent", scriptJS.property("hasPersistent"));
+    engine->globalObject().setProperty("setPersistent", scriptJS.property("setPersistent"));
+    engine->globalObject().setProperty("getPersistent", scriptJS.property("getPersistent"));
     engine->globalObject().setProperty("system", scriptJS.property("system"));
 
 
@@ -654,6 +657,23 @@ bool scriptengine::needReadPrivileges(const QString &fn, const QString &param)
     if (t != 1) return false;
     privilegedReadScripts.append(getScriptHash());
     return true;
+}
+
+bool scriptengine::hasPersistent(const QString &name)
+{
+    return ConfigManagerInterface::getInstance()->existsOption(name);
+}
+
+void scriptengine::setPersistent(const QString &name, const QVariant &value)
+{
+    if (!needWritePrivileges("setPersistent", name + "=" + value.toString())) return;
+    ConfigManagerInterface::getInstance()->setOption(name, value);
+}
+
+QVariant scriptengine::getPersistent(const QString &name)
+{
+    if (!needReadPrivileges("getPersistent", name)) return QVariant();
+    return ConfigManagerInterface::getInstance()->getOption(name);
 }
 
 bool scriptengine::setTimeout(const QString &fun,const int timeout)

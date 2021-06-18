@@ -60,6 +60,10 @@ protected slots:
     void writeFile(const QString &filename, const QString &content);
     QVariant readFile(const QString &filename);
 
+    bool hasPersistent(const QString &name);
+    void setPersistent(const QString &name, const QVariant &value);
+    QVariant getPersistent(const QString &name);
+
     bool setTimeout(const QString &fun,const int timeout);
 
     void save(const QString fn="");

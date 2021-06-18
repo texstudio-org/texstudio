@@ -139,6 +139,10 @@ void SyntaxCheck::run()
                 fmt= elem.type == ERR_highlight ? elem.format : fmt;
                 newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, fmt));
             }
+            // add comment hightlight if present
+            if(commentStart.first>=0){
+                newLine.dlh->addOverlayNoLock(QFormatRange(commentStart.first, newLine.dlh->length()-commentStart.first, mFormatList["comment"]));
+            }
 			// active envs
 			QVariant oldEnvVar = newLine.dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
 			StackEnvironment oldEnv;

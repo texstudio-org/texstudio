@@ -66,11 +66,12 @@ environments in smallUsefulFunctions.cpp)
 		<start>%&amp;</start>
 		<stop exclusive="false">\n</stop>
 	</context>
-	
+	<!--
 	<context id="comment/single" format="comment" stayOnLine="true" ambiguous="true">
 		<start>%</start>
 		<stop exclusive="false">\n</stop>
 	</context>
+	-->
 	
 	<context id="comment/env" format="comment">
 		<start parenthesis="commentenv:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword" >\\begin{comment}</start>
