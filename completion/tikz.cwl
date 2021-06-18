@@ -17,7 +17,7 @@
 \tikzchildanchor#*
 \pgfmatrixcolumnsep#*
 \pgfmatrixrowsep#*
-\tikzstyle{style} = {definition}#s#%tikzstyle
+\tikzstyle{style} = [definition]#s#%tikzstyle
 \begin{tikzpicture}
 \begin{tikzpicture}[options%keyvals]#\picture
 \end{tikzpicture}
