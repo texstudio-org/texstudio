@@ -222,6 +222,7 @@ void scriptengine::run(const bool quiet)
     engine->globalObject().setProperty("hasPersistent", scriptJS.property("hasPersistent"));
     engine->globalObject().setProperty("setPersistent", scriptJS.property("setPersistent"));
     engine->globalObject().setProperty("getPersistent", scriptJS.property("getPersistent"));
+    engine->globalObject().setProperty("registerAsBackgroundScript", scriptJS.property("registerAsBackgroundScript"));
     engine->globalObject().setProperty("system", scriptJS.property("system"));
 
 
@@ -674,6 +675,17 @@ QVariant scriptengine::getPersistent(const QString &name)
 {
     if (!needReadPrivileges("getPersistent", name)) return QVariant();
     return ConfigManagerInterface::getInstance()->getOption(name);
+}
+
+void scriptengine::registerAsBackgroundScript(const QString &name)
+{
+    static QMap<QString, QPointer<scriptengine> > backgroundScripts;
+
+    QString realName = name.isEmpty() ? getScriptHash() : name;
+    if (!backgroundScripts.value(realName, QPointer<scriptengine>(nullptr)).isNull())
+        delete backgroundScripts.value(realName, QPointer<scriptengine>(nullptr)).data();
+    backgroundScripts.insert(realName, this);
+    //backgroundScript = true;
 }
 
 bool scriptengine::setTimeout(const QString &fun,const int timeout)
