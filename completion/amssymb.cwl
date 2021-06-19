@@ -92,6 +92,8 @@
 \lesseqqgtr#m
 \lessgtr#m
 \lesssim#m
+\lhd#m
+\llcorner#m
 \Lleftarrow#m
 \lll#m
 \lnapprox#m
@@ -101,11 +103,13 @@
 \looparrowleft#m
 \looparrowright#m
 \lozenge#m
+\lrcorner#m
 \Lsh#m
 \ltimes#m
 \lvertneqq#m
 \maltese#m
 \measuredangle#m
+\mho#m
 \multimap#m
 \ncong#m
 \nexists#m
@@ -151,7 +155,7 @@
 \precneqq#m
 \precnsim#m
 \precsim#m
-psamsfonts#m
+\rhd#m
 \rightarrowtail#m
 \rightleftarrows#m
 \rightrightarrows#m
@@ -167,6 +171,8 @@ psamsfonts#m
 \smallsetminus#m
 \smallsmile#m
 \sphericalangle#m
+\sqsubset#m
+\sqsupset#m
 \square#m
 \Subset#m
 \subseteqq#m
@@ -191,6 +197,10 @@ psamsfonts#m
 \trianglerighteq#m
 \twoheadleftarrow#m
 \twoheadrightarrow#m
+\ulcorner#m
+\unlhd#m
+\unrhd#m
+\urcorner#m
 \upharpoonleft#m
 \upharpoonright#m
 \upuparrows#m
