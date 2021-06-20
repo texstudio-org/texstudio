@@ -64,6 +64,8 @@ protected slots:
     void setPersistent(const QString &name, const QVariant &value);
     QVariant getPersistent(const QString &name);
 
+    void registerAsBackgroundScript(const QString &name = "");
+
     bool setTimeout(const QString &fun,const int timeout);
 
     void save(const QString fn="");
