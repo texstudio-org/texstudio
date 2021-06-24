@@ -217,3 +217,5 @@ mask=%<mask name%>
 \pgfdeclarepatterninherentlycolored#*
 \pgfpatternreleasename{arg1}#*
 \pgfsetfillpattern{arg1}#*
+\begin{pgfinterruptboundingbox}#*
+\end{pgfinterruptboundingbox}#*
