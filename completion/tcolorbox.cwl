@@ -522,7 +522,7 @@ all
 # ---------------------------------------
 # << Option Keys >> - Documentation library
 # ---------------------------------------
-#keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset#c
+#keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset
 doc name
 doc parameter
 doc description
@@ -591,7 +591,7 @@ after example
 # ---------------------------------------
 # << Option Keys >> - Standard + External + Doc
 # ---------------------------------------
-#keyvals:\tcbset#c
+#keyvals:\tcbset
 title=
 notitle
 adjusted title=
@@ -1435,7 +1435,6 @@ verbatim
 IfNoValueTF=
 IfValueTF=
 IfBooleanTF=
-
 external/runner=
 external/prefix=
 external/externalize
