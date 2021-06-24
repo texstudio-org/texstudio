@@ -11,6 +11,7 @@
 <file>completion/algpseudocode.cwl</file>
 <file>completion/allrunes.cwl</file>
 <file>completion/alltt.cwl</file>
+<file>completion/alterqcm.cwl</file>
 <file>completion/amsbsy.cwl</file>
 <file>completion/amsfonts.cwl</file>
 <file>completion/amsmath.cwl</file>
@@ -21,6 +22,8 @@
 <file>completion/array.cwl</file>
 <file>completion/attachfile.cwl</file>
 <file>completion/babel.cwl</file>
+<file>completion/baskervaldx.cwl</file>
+<file>completion/baskervillef.cwl</file>
 <file>completion/beamerfoils.cwl</file>
 <file>completion/beamerprosper.cwl</file>
 <file>completion/beamerseminar.cwl</file>
@@ -53,6 +56,7 @@
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/cleveref.cwl</file>
+<file>completion/cochineal.cwl</file>
 <file>completion/color.cwl</file>
 <file>completion/colortbl.cwl</file>
 <file>completion/commath.cwl</file>
@@ -74,6 +78,7 @@
 <file>completion/enumitem.cwl</file>
 <file>completion/epigraph.cwl</file>
 <file>completion/epstopdf.cwl</file>
+<file>completion/erewhon.cwl</file>
 <file>completion/etoolbox.cwl</file>
 <file>completion/eurosym.cwl</file>
 <file>completion/fancybox.cwl</file>
@@ -86,12 +91,15 @@
 <file>completion/fancyunits-per.cwl</file>
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
+<file>completion/fbb.cwl</file>
 <file>completion/fhgtechdoku_additional.cwl</file>
 <file>completion/fixme.cwl</file>
 <file>completion/float.cwl</file>
 <file>completion/fontawesome5.cwl</file>
 <file>completion/fontawesome.cwl</file>
 <file>completion/fontspec.cwl</file>
+<file>completion/fourier.cwl</file>
+<file>completion/fourier-orns.cwl</file>
 <file>completion/fp.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
@@ -101,6 +109,7 @@
 <file>completion/graphbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/harvard.cwl</file>
+<file>completion/heuristica.cwl</file>
 <file>completion/hlist.cwl</file>
 <file>completion/hyperref.cwl</file>
 <file>completion/IEEEtrantools.cwl</file>
@@ -125,6 +134,9 @@
 <file>completion/layout.cwl</file>
 <file>completion/letltxmacro.cwl</file>
 <file>completion/libertine.cwl</file>
+<file>completion/libertinus-otf.cwl</file>
+<file>completion/libertinust1math.cwl</file>
+<file>completion/libertinus-type1.cwl</file>
 <file>completion/lipsum.cwl</file>
 <file>completion/listings.cwl</file>
 <file>completion/logsys.cwl</file>
@@ -159,9 +171,15 @@
 <file>completion/natbib.cwl</file>
 <file>completion/needspace.cwl</file>
 <file>completion/newclude.cwl</file>
+<file>completion/newpxmath.cwl</file>
+<file>completion/newtxmath.cwl</file>
+<file>completion/newtxsf.cwl</file>
+<file>completion/newtxtext.cwl</file>
+<file>completion/newtxtt.cwl</file>
 <file>completion/ngerman.cwl</file>
 <file>completion/nicefrac.cwl</file>
 <file>completion/nicematrix.cwl</file>
+<file>completion/nl-interval.cwl</file>
 <file>completion/nomencl.cwl</file>
 <file>completion/numprint.cwl</file>
 <file>completion/overpic.cwl</file>
@@ -174,6 +192,7 @@
 <file>completion/pgffor.cwl</file>
 <file>completion/pgfkeys.cwl</file>
 <file>completion/pgfmath.cwl</file>
+<file>completion/pgfornament.cwl</file>
 <file>completion/pgfplots.cwl</file>
 <file>completion/pgfplotstable.cwl</file>
 <file>completion/pgfrcs.cwl</file>
@@ -196,6 +215,7 @@
 <file>completion/pst-tree.cwl</file>
 <file>completion/regexpatch.cwl</file>
 <file>completion/rotating.cwl</file>
+<file>completion/scholax.cwl</file>
 <file>completion/scraddr.cwl</file>
 <file>completion/scrdate.cwl</file>
 <file>completion/scrlfile.cwl</file>
@@ -207,6 +227,8 @@
 <file>completion/simpleinvoice.cwl</file>
 <file>completion/siunitx.cwl</file>
 <file>completion/siunitx-special.cwl</file>
+<file>completion/stickstootext.cwl</file>
+<file>completion/stix2.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigure.cwl</file>
@@ -231,9 +253,13 @@
 <file>completion/titlesec.cwl</file>
 <file>completion/titletoc.cwl</file>
 <file>completion/tkz-base.cwl</file>
+<file>completion/tkz-berge.cwl</file>
 <file>completion/tkz-euclide.cwl</file>
 <file>completion/tkz-fct.cwl</file>
+<file>completion/tkz-graph.cwl</file>
 <file>completion/tkz-kiviat.cwl</file>
+<file>completion/tkz-linknodes.cwl</file>
+<file>completion/tkz-tab.cwl</file>
 <file>completion/tocbibind.cwl</file>
 <file>completion/tocloft.cwl</file>
 <file>completion/todonotes.cwl</file>
@@ -247,6 +273,7 @@
 <file>completion/verse.cwl</file>
 <file>completion/virginialake.cwl</file>
 <file>completion/wasysym.cwl</file>
+<file>completion/xcharter.cwl</file>
 <file>completion/xcolor.cwl</file>
 <file>completion/xeCJK.cwl</file>
 <file>completion/xeCJKfntef.cwl</file>

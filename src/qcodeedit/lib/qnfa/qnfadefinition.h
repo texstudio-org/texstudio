@@ -76,6 +76,7 @@ public:
 	virtual int tokenize(QDocument *d, int line, int count);
 
 	virtual QString singleLineComment() const;
+    virtual void setSingleLineComment(const QString text);
 
 	virtual QString defaultLineMark() const;
 

@@ -10008,6 +10008,10 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 
 	// update editors using the language
 	QNFADefinition::load(doc, &m_lang, m_formats);
+    // add single line comments
+    QNFADefinition *nd=dynamic_cast<QNFADefinition *>(m_lang.d);
+    nd->setSingleLineComment("%");
+
 	m_languages->addLanguage(m_lang);
 
 	newLangDef = m_lang.d;

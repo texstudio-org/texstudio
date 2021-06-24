@@ -336,6 +336,11 @@ QString QNFADefinition::singleLineComment() const
 	return m_singleLineComment;
 }
 
+void QNFADefinition::setSingleLineComment(const QString text)
+{
+    m_singleLineComment=text;
+}
+
 const QStringList& QNFADefinition::openingParenthesis() const
 {
 	return m_openingParenthesisList;
