@@ -153,7 +153,7 @@ line width=##L
 shift=
 #endkeyvals
 
-\tkzDefPoint[local options]{x1/y1/name1,x2/y2/name2,...}#/tikzpicture
+\tkzDefPoints[local options]{x1/y1/name1,x2/y2/name2,...}#/tikzpicture
 
 \tkzDefShiftPoint[point](x,y){name}#/tikzpicture
 \tkzDefShiftPoint[point](angle:radius){name}#/tikzpicture
