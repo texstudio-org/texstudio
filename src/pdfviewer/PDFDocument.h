@@ -80,7 +80,7 @@ protected:
 private:
 	int oldshape;
 	int page;
-	int overScale;
+    qreal   overScale;
 	qreal	scaleFactor;
 	qreal	parentDpi;
 	QPixmap	image;
