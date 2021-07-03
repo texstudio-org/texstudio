@@ -232,16 +232,21 @@ private slots:
     void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr,StructureEntry *selected=nullptr);
     void syncExpanded(QTreeWidgetItem *item);
     void syncCollapsed(QTreeWidgetItem *item);
-    void customMenuTOC(const QPoint &pos);
     void editSectionCopy();
     void editSectionCut();
     void editSectionPasteAfter();
     void editSectionPasteBefore();
     void editIndentSection();
     void editUnIndentSection();
+    void gotoLineFromAction();
+    void openAllRelatedDocuments();
+    void closeAllRelatedDocuments();
+    void toggleMasterDocument();
+    void closeDocument();
 
     void updateStructureLocally();
     void customMenuStructure(const QPoint &pos);
+    void createLabelFromAction();
 
 	void relayToEditorSlot();
 	void relayToOwnSlot();
@@ -317,6 +322,7 @@ private slots:
 	void declareConflictResolved();
 protected slots:
     void openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = nullptr); // signaled by latexViewer to open specific file
+    void openExternalFileFromAction();
 
 	void editUndo(); ///< undo changes in text editor
 	void editRedo(); ///< redo changes in text editor
@@ -402,6 +408,7 @@ protected slots:
 	void insertXmlTagFromToolButtonAction();
 	void callToolButtonAction();
 	void insertFromAction();
+    void insertTextFromAction();
     void insertFromTagList(QListWidgetItem *item);
 	void insertBib();
 	void closeEnvironment();
