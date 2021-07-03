@@ -81,8 +81,6 @@ environments in smallUsefulFunctions.cpp)
 	
 	<!-- ========================= MATH MODE ====================== -->
 
-	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
-	
 	<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
 	<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
 	<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>

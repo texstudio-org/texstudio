@@ -844,7 +844,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				}
 			}
             // special treatment for & in math
-            if(word=="&" && containsEnv(*ltxCommands, "math", activeEnv)){
+            if(word=="&" && (containsEnv(*ltxCommands, "math", activeEnv)||topEnv("tabular", activeEnv))){
                 Error elem;
                 elem.range = QPair<int, int>(tk.start, tk.length);
                 elem.type = ERR_highlight;
