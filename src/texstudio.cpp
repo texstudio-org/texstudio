@@ -1102,7 +1102,7 @@ void Texstudio::setupMenus()
     newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(closeEnvironment()), QKeySequence(Qt::ALT | Qt::Key_Return));
 
 	menu->addSeparator();
-    newManagedAction(menu, "updateTOC", tr("update TOC"), SLOT(updateTOC()));
+    newManagedAction(menu, "updateTOC", tr("update TOC"), SLOT(updateTOCs()));
 	newManagedAction(menu, "reparse", tr("Refresh Structure"), SLOT(updateStructure()));
 	act = newManagedAction(menu, "refreshQNFA", tr("Refresh Language Model"), SLOT(updateTexQNFA()));
 	act->setStatusTip(tr("Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic."));
@@ -1746,8 +1746,7 @@ void Texstudio::currentEditorChanged()
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
 	currentEditorView()->checkRTLLTRLanguageSwitching();
     // update global toc
-    updateTOC();
-    updateStructureLocally();
+    updateTOCs();
 }
 
 /*!
@@ -1914,8 +1913,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     connect(edit, SIGNAL(thesaurus(int, int)), this, SLOT(editThesaurus(int, int)));
     connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
     connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
-    connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOC()));
-    connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateStructurLocally()));
+    connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOCs()));
     edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
     if (!hidden) {
@@ -11140,10 +11138,20 @@ void Texstudio::paletteChanged(const QPalette &palette){
         searchpanel->updateIcon();
     }
 }
-
+/*!
+ * \brief open webpage with txs issue submit
+ */
 void Texstudio::openBugsAndFeatures() {
 	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
 }
+/*!
+    \brief call updateTOC & updateStructureLocally as only one call works with a signal
+ */
+void Texstudio::updateTOCs(){
+    updateTOC();
+    updateStructureLocally();
+}
+
 /*!
  * \brief Collect structure info from all subfiles and create a toplevel TOC
  *
