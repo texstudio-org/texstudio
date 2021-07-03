@@ -74,7 +74,6 @@ HEADERS += \
     $$PWD/smallUsefulFunctions.h \
     $$PWD/spellerdialog.h \
     $$PWD/spellerutility.h \
-    $$PWD/structuretreeview.h \
     $$PWD/styleanimator.h \
     $$PWD/stylehelper.h \
     $$PWD/svn.h \
@@ -176,7 +175,6 @@ SOURCES += \
     $$PWD/smallUsefulFunctions.cpp \
     $$PWD/spellerdialog.cpp \
     $$PWD/spellerutility.cpp \
-    $$PWD/structuretreeview.cpp \
     $$PWD/styleanimator.cpp \
     $$PWD/stylehelper.cpp \
     $$PWD/svn.cpp \

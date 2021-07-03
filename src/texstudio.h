@@ -153,10 +153,12 @@ private:
 	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
 
-	StructureTreeView *structureTreeView;
+    //StructureTreeView *structureTreeView;
     QTreeWidget *structureTreeWidget;
     QTreeWidget *topTOCTreeWidget;
 	LatexParser latexParser;
+
+    QVector<QIcon> iconSection;
 public:
 	LatexDocuments documents;
 
@@ -376,8 +378,6 @@ protected slots:
 	void editorTabMoved(int from, int to);
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 
-	void getExpandedStructureEntries(const QModelIndex &index, QSet<QString> &expandedEntryTags, QString baseTag = QString());
-	void expandStructureEntries(const QModelIndex index, const QSet<QString> &expandedEntryTags, QString baseTag = QString());
     void updateStructure(bool initial = false, LatexDocument *doc = nullptr, bool hidden = false);
 	void showStructure();
 	void clickedOnStructureEntry(const QModelIndex &index);
