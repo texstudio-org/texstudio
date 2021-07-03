@@ -7824,7 +7824,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
 {
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!se) return;
-    const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO};
+    const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO,StructureEntry::SE_LABEL,StructureEntry::SE_MAGICCOMMENT};
     if(lineTypes.contains(se->type)){
         LatexEditorView *edView = se->document->getEditorView();
         if (edView) {
