@@ -1539,7 +1539,7 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 
 #ifdef Q_OS_WIN
 		message += "<br><br>"
-		           + tr("Popular LaTeX distributions on Windows are %1 and %2.").arg("<a href='http://miktex.org/'>MiTeX</a>").arg("<a href='https://www.tug.org/texlive/'>TeX Live</a>")
+		           + tr("Popular LaTeX distributions on Windows are %1 and %2.").arg("<a href='http://miktex.org/'>MiKTeX</a>").arg("<a href='https://www.tug.org/texlive/'>TeX Live</a>")
 		           + "<br><br>"
 		           + tr("If you intend to work with LaTeX, you'll most certainly want to install one of those.");
 #elif defined(Q_OS_MAC)
