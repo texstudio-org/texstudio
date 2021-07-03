@@ -11199,10 +11199,16 @@ void Texstudio::updateTOC(){
  */
 void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected)
 {
-    if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
+    if(!topTOCTreeWidget->isVisible() && !structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
+    bool tocMode=true;
     if(!root){
-        root=topTOCTreeWidget->topLevelItem(0);
+        if(topTOCTreeWidget->isVisible()){
+            root=topTOCTreeWidget->topLevelItem(0);
+        }else{
+            root=structureTreeWidget->topLevelItem(0);
+            tocMode=false;
+        }
     }
     if(!root) return;
     for(int i=0;i<root->childCount();++i){
@@ -11212,15 +11218,23 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
             item->setSelected(true);
         }
         if(old && se==old){
-            QBrush bck=item->data(0,Qt::UserRole+1).value<QColor>();
-            item->setBackground(0,bck);
-            //item->setBackground(0,palette().brush(QPalette::Base));
+            if(tocMode){
+                QBrush bck=item->data(0,Qt::UserRole+1).value<QColor>();
+                item->setBackground(0,bck);
+            }else{
+                item->setBackground(0,palette().brush(QPalette::Base));
+            }
         }
         if(currentSection && (se==currentSection)){
             item->setData(0,Qt::UserRole+1,item->background(0).color());
             item->setBackground(0,activeItemColor);
-            if (!mDontScrollToItem)
-                topTOCTreeWidget->scrollToItem(item);
+            if (!mDontScrollToItem){
+                if(tocMode){
+                    topTOCTreeWidget->scrollToItem(item);
+                }else{
+                    structureTreeWidget->scrollToItem(item);
+                }
+            }
         }
         updateCurrentPosInTOC(item,old);
     }
@@ -11796,4 +11810,5 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
         }
     }
 }
+
 /*! @} */
