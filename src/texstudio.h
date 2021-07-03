@@ -154,6 +154,7 @@ private:
 	QString hiddenLeftPanelWidgets;
 
 	StructureTreeView *structureTreeView;
+    QTreeWidget *structureTreeWidget;
     QTreeWidget *topTOCTreeWidget;
 	LatexParser latexParser;
 public:
@@ -221,6 +222,7 @@ private:
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
 
     bool parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited=nullptr, QList<QTreeWidgetItem *> *todoList=nullptr, int currentColor=0);
+    void parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList=nullptr, QList<QTreeWidgetItem *> *labelList=nullptr, QList<QTreeWidgetItem *> *magicList=nullptr);
 private slots:
     void updateTOC();
     void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr,StructureEntry *selected=nullptr);
@@ -233,6 +235,9 @@ private slots:
     void editSectionPasteBefore();
     void editIndentSection();
     void editUnIndentSection();
+
+    void updateStructureLocally();
+    void customMenuStructure(const QPoint &pos);
 
 	void relayToEditorSlot();
 	void relayToOwnSlot();
