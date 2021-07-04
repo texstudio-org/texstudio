@@ -8624,7 +8624,16 @@ void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelT
 	LabelSearchQuery *query = new LabelSearchQuery(labelText);
 	searchResultWidget()->setQuery(query);
 	query->run(contextDoc);
-	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+    outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+}
+
+void Texstudio::findLabelUsagesFromAction()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    QString labelText = action->data().toString();
+    LatexDocument *doc = action->property("doc").value<LatexDocument *>();
+    findLabelUsages(doc, labelText);
 }
 
 SearchResultWidget *Texstudio::searchResultWidget()
@@ -11215,7 +11224,7 @@ void Texstudio::customMenuStructure(const QPoint &pos){
         menu.addSeparator();
         menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()));
+        //menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()));
         menu.exec(w->mapToGlobal(pos));
         return;
     }

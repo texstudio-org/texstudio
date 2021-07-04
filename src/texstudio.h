@@ -360,6 +360,7 @@ protected slots:
 	void editInsertRefToPrevLabel(const QString &refCmd = "\\ref");
 	void runSearch(SearchQuery *query);
 	void findLabelUsages(LatexDocument *doc, const QString &labelText);
+    void findLabelUsagesFromAction();
 	SearchResultWidget *searchResultWidget();
 
 	void findWordRepetions();
