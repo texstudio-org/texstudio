@@ -661,8 +661,8 @@ void Texstudio::setupDockWidgets()
     if(!structureTreeWidget){
         structureTreeWidget = new QTreeWidget();
         connect(structureTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
-        connect(structureTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(syncExpanded(QTreeWidgetItem*)));
-        connect(structureTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(syncCollapsed(QTreeWidgetItem*)));
+        connect(topTOCTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
+        connect(topTOCTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
         connect(structureTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
         structureTreeWidget->setHeaderHidden(true);
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -671,8 +671,8 @@ void Texstudio::setupDockWidgets()
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
-        connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(syncExpanded(QTreeWidgetItem*)));
-        connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(syncCollapsed(QTreeWidgetItem*)));
+        connect(topTOCTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
+        connect(topTOCTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
         connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -7712,6 +7712,11 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
         }
     }else{
         // unresolved include, go to open file
+        if(se->type == StructureEntry::SE_DOCUMENT_ROOT){
+            LatexEditorView *edView = se->document->getEditorView();
+            if (!edView) return;
+            editors->setCurrentEditor(edView);
+        }
         if(se->type==StructureEntry::SE_INCLUDE){
             QString name=se->title;
             name.replace("\\string~",QDir::homePath());
