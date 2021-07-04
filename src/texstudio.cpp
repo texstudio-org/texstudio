@@ -4505,62 +4505,6 @@ void Texstudio::structureContextMenuToggleMasterDocument(LatexDocument *document
 	else setExplicitRootDocument(document);
 }
 
-void Texstudio::createLabelForStructureEntry(const StructureEntry *entry)
-{
-	if (!entry || !entry->document) return;
-
-	// find editor and line nr
-	int lineNr = entry->getRealLineNumber();
-
-	mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
-	LatexEditorView *edView = entry->document->getEditorView();
-	QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
-	if (!edView) {
-		edView = load(entry->document->getFileName());
-		if (!edView) return;
-		mflags &= ~QEditor::Animated;
-		//entry is now invalid
-	}
-	REQUIRE(edView->getDocument());
-
-	if (lineNr < 0) return; //not found. (document was closed)
-
-	// find column position after structure command
-	QString lineText = edView->getDocument()->line(lineNr).text();
-	int pos = -1;
-	for (int i = 0; i < latexParser.structureDepth(); i++) {
-		foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
-			pos = lineText.indexOf(cmd);
-			if (pos >= 0) {
-				pos += cmd.length();
-				// workaround for starred commands: \section*{Cap}
-				// (may have been matched by unstarred version because there is no order in possibleCommands)
-				if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
-				break;
-			}
-		}
-		if (pos >= 0) break;
-	}
-	if (pos < 0) return; // could not find associated command
-
-	// advance pos behind options, and use title to guess a label
-	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
-	QString label = "sec:";
-	if (args.length() > 0) {
-		QString title(args.at(0).value);
-		if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
-			label += makeLatexLabel(title);
-		}
-	}
-
-	gotoLine(lineNr, pos, edView, mflags);
-
-	insertTag(QString("\\label{%1}").arg(label), 7);
-	QDocumentCursor cur(edView->editor->cursor());
-	cur.movePosition(label.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-	edView->editor->setCursor(cur);
-}
-
 void Texstudio::editRemovePlaceHolders()
 {
 	if (!currentEditor()) return;
@@ -11358,7 +11302,58 @@ void Texstudio::createLabelFromAction()
     QAction *action = qobject_cast<QAction *>(sender());
     if (!action) return;
     StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
-    createLabelForStructureEntry(entry);
+    if (!entry || !entry->document) return;
+
+    // find editor and line nr
+    int lineNr = entry->getRealLineNumber();
+
+    mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
+    LatexEditorView *edView = entry->document->getEditorView();
+    QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
+    if (!edView) {
+        edView = load(entry->document->getFileName());
+        if (!edView) return;
+        mflags &= ~QEditor::Animated;
+        //entry is now invalid
+    }
+    REQUIRE(edView->getDocument());
+
+    if (lineNr < 0) return; //not found. (document was closed)
+
+    // find column position after structure command
+    QString lineText = edView->getDocument()->line(lineNr).text();
+    int pos = -1;
+    for (int i = 0; i < latexParser.structureDepth(); i++) {
+        foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
+            pos = lineText.indexOf(cmd);
+            if (pos >= 0) {
+                pos += cmd.length();
+                // workaround for starred commands: \section*{Cap}
+                // (may have been matched by unstarred version because there is no order in possibleCommands)
+                if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
+                break;
+            }
+        }
+        if (pos >= 0) break;
+    }
+    if (pos < 0) return; // could not find associated command
+
+    // advance pos behind options, and use title to guess a label
+    QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
+    QString label = "sec:";
+    if (args.length() > 0) {
+        QString title(args.at(0).value);
+        if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
+            label += makeLatexLabel(title);
+        }
+    }
+
+    gotoLine(lineNr, pos, edView, mflags);
+
+    insertTag(QString("\\label{%1}").arg(label), 7);
+    QDocumentCursor cur(edView->editor->cursor());
+    cur.movePosition(label.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+    edView->editor->setCursor(cur);
 }
 
 void Texstudio::closeDocument()

@@ -388,7 +388,6 @@ protected slots:
 	void showStructure();
 	void clickedOnStructureEntry(const QModelIndex &index);
 	void structureContextMenuToggleMasterDocument(LatexDocument *document);
-	void createLabelForStructureEntry(const StructureEntry *entry);
 
 	void editRemovePlaceHolders();
 	void editRemoveCurrentPlaceHolder();
