@@ -661,8 +661,8 @@ void Texstudio::setupDockWidgets()
     if(!structureTreeWidget){
         structureTreeWidget = new QTreeWidget();
         connect(structureTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
-        connect(topTOCTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
-        connect(topTOCTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
+        connect(structureTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
+        connect(structureTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
         connect(structureTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
         structureTreeWidget->setHeaderHidden(true);
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
