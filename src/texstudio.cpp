@@ -11009,7 +11009,12 @@ void Texstudio::updateTOC(){
     QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
     // fill TOC, starting by current master/top
     LatexDocument *doc=documents.getRootDocumentForDoc();
-    if(!doc) return; // no root document
+    if(!doc){
+        // no root document
+        // clear TOC completely
+        topTOCTreeWidget->clear();
+        return;
+    }
     root->setText(0,doc->getFileInfo().fileName());
 
     StructureEntry *base=doc->baseStructure;
@@ -11608,7 +11613,12 @@ void Texstudio::updateStructureLocally(){
     QTreeWidgetItem *root= nullptr;
 
     LatexDocument *doc=documents.getCurrentDocument();
-    if(!doc) return; // no root document
+    if(!doc){
+        // no root document
+        // clear TOC completely
+        topTOCTreeWidget->clear();
+        return;
+    }
 
     if(configManager.structureShowSingleDoc){
         root= structureTreeWidget->topLevelItem(0);
