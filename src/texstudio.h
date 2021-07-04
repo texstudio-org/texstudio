@@ -630,9 +630,6 @@ protected:
 #ifdef Q_OS_WIN
     bool eventFilter(QObject *obj, QEvent *event);
 #endif
-#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
-	bool eventFilter(QObject *obj, QEvent *event);
-#endif
 
 	bool mCompleterNeedsUpdate;
 

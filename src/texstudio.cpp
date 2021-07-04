@@ -7448,49 +7448,6 @@ bool Texstudio::eventFilter(QObject *, QEvent *event)
 }
 #endif
 
-#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
-// workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
-bool Texstudio::eventFilter(QObject *obj, QEvent *event)
-{
-    if (obj->objectName() == "ConfigDialogWindow" || obj->objectName() == "ShortcutComboBox" || obj->objectName() == "QPushButton" || obj->objectName().startsWith("QMessageBox"))
-		return false; // don't handle keys from shortcutcombo (config)
-	if (event->type() == QEvent::KeyPress) {
-		//qDebug()<<obj->objectName();
-		//qDebug()<<obj->metaObject()->className();
-		QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-		QString modifier = QString::null;
-
-		if (keyEvent->modifiers() & Qt::ShiftModifier)
-			modifier += "Shift+";
-		if (keyEvent->modifiers() & Qt::ControlModifier)
-			modifier += "Ctrl+";
-		if (keyEvent->modifiers() & Qt::AltModifier)
-			modifier += "Alt+";
-		if (keyEvent->modifiers() & Qt::MetaModifier)
-			modifier += "Meta+";
-
-		QString key = QKeySequence(keyEvent->key()).toString();
-
-		QKeySequence result(modifier + key);
-
-		if ((keyEvent->key() == 0) || ((keyEvent->modifiers() == 0) && (key != "Esc")) || (keyEvent->modifiers()&Qt::MetaModifier) || (keyEvent->modifiers() & Qt::ControlModifier) || (keyEvent->modifiers() & Qt::KeypadModifier))
-			return false; // no need to handle these
-
-		if (configManager.specialShortcuts.contains(result)) {
-            QList<QAction *>acts = configManager.specialShortcuts.values(result);
-            foreach(QAction *act,acts){
-                if (act && act->parent()->children().contains(obj)){
-                    act->trigger();
-                    return true;
-                }
-            }
-		}
-		return false;
-	}
-	return false;
-}
-#endif
-
 typedef QPair<int, int> PairIntInt;
 
 void Texstudio::updateCompleter(LatexEditorView *edView)
