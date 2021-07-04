@@ -164,9 +164,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	readSettings();
 
-#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
-	QCoreApplication::instance()->installEventFilter(this);
-#endif
 #ifdef Q_OS_WIN
     // work-around for ´+t bug
     QCoreApplication::instance()->installEventFilter(this);
@@ -677,6 +674,7 @@ void Texstudio::setupDockWidgets()
         connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+        topTOCTreeWidget->installEventFilter(this);
         leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("toc"));
     } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if (!leftPanel->widget("bookmarks")) {
