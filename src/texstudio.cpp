@@ -1744,9 +1744,9 @@ void Texstudio::currentEditorChanged()
  */
 void Texstudio::editorTabMoved(int from, int to)
 {
-	//documents.aboutToUpdateLayout();
 	documents.move(from, to);
-	//documents.updateLayout();
+    // update structure
+    updateStructureLocally();
 }
 
 void Texstudio::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo)
@@ -2995,6 +2995,7 @@ repeatAfterFileSavingFailed:
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
+    updateTOCs();
 
 #ifndef NO_POPPLER_PREVIEW
 	//close associated embedded pdf viewer
@@ -3074,6 +3075,7 @@ void Texstudio::closeAllFiles()
 #endif
 	documents.setMasterDocument(nullptr);
 	updateCaption();
+    updateTOCs();
 }
 
 bool Texstudio::canCloseNow(bool saveSettings)
@@ -11610,23 +11612,34 @@ void Texstudio::updateStructureLocally(){
 
     if(configManager.structureShowSingleDoc){
         root= structureTreeWidget->topLevelItem(0);
+        if(structureTreeWidget->topLevelItemCount()>1){
+            for(int i=1;structureTreeWidget->topLevelItemCount()>1;){
+                QTreeWidgetItem *item=structureTreeWidget->takeTopLevelItem(i);
+                delete item;
+            }
+        }
     }else{
         for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
-            root = structureTreeWidget->topLevelItem(i);
-            StructureEntry *contextEntry = root->data(0,Qt::UserRole).value<StructureEntry *>();
+            QTreeWidgetItem *item = structureTreeWidget->topLevelItem(i);
+            StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
             if (!contextEntry) continue;
             if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
-                if(contextEntry->document == doc)
-                    break;
-                QFont font=root->font(0);
-                font.setBold(false);
-                root->setFont(0,font);
-                if(doc->isHidden()){
-                    structureTreeWidget->removeItemWidget(root,0);
-                    --i;
+                if(contextEntry->document == doc){
+                    root=item;
+                }else{
+                    QFont font=item->font(0);
+                    font.setBold(false);
+                    item->setFont(0,font);
+                    if(!documents.documents.contains(contextEntry->document) || documents.hiddenDocuments.contains(contextEntry->document)){
+                        structureTreeWidget->takeTopLevelItem(i);
+                        --i;
+                    }
                 }
+            }else{
+                // remove invalid
+                structureTreeWidget->takeTopLevelItem(i);
+                --i;
             }
-            root = nullptr; // only break from loop means that correct entry has been found
         }
     }
     StructureEntry *selectedEntry=nullptr;
@@ -11852,6 +11865,17 @@ void Texstudio::copyFilePath()
     QClipboard* clipboard = QGuiApplication::clipboard();
     if (!clipboard) return;
     clipboard->setText(document->getFileInfo().absoluteFilePath());
+}
+
+/*!
+ * \brief toggle single/multiple documents view in structureWidget
+ */
+
+void Texstudio::toggleSingleDocMode()
+{
+    bool mode = configManager.structureShowSingleDoc;
+    configManager.structureShowSingleDoc= !mode;
+    updateStructureLocally();
 }
 
 
