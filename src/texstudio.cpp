@@ -666,6 +666,7 @@ void Texstudio::setupDockWidgets()
         connect(structureTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
         structureTreeWidget->setHeaderHidden(true);
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+        structureTreeWidget->installEventFilter(this);
         leftPanel->addWidget(structureTreeWidget, "structureTreeWidget", tr("Structure"), getRealIconFile("structure"));
     } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if(!topTOCTreeWidget){
@@ -7448,6 +7449,88 @@ bool Texstudio::eventFilter(QObject *, QEvent *event)
 }
 #endif
 
+bool Texstudio::eventFilter(QObject *obj, QEvent *event)
+{
+    static const QColor beyondEndColor(255, 170, 0);
+    static const QColor inAppendixColor(200, 230, 200);
+    static const QColor missingFileColor(Qt::red);
+
+    if (event->type() == QEvent::ToolTip) {
+        if(obj==structureTreeWidget){
+            QHelpEvent *helpEvent = dynamic_cast<QHelpEvent *>(event);
+            QTreeWidgetItem *item=structureTreeWidget->itemAt(helpEvent->pos());
+            if(item){
+                StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                if(!entry)
+                    return false;
+                QString text;
+                if (!entry->tooltip.isNull()) {
+                    text=entry->tooltip;
+                }
+                if (entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+                    text=QDir::toNativeSeparators(entry->document->getFileName());
+                }
+                if (entry->type == StructureEntry::SE_SECTION) {
+
+                    QString htmlTitle = entry->title.toHtmlEscaped();
+
+                    htmlTitle.replace(' ', "&nbsp;");  // repleacement: prevent line break
+                    QString tooltip("<html><b>" + htmlTitle + "</b>");
+                    if (entry->getCachedLineNumber() > -1)
+                        tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+                    StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
+                    if (se)
+                        tooltip.append("<br><i>" + tr("Label") + "</i>: " + se->title);
+                    if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
+                    if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+                    // show preview if file is loaded
+                    if(LatexDocument *doc=entry->document){
+                        int l=entry->getRealLineNumber();
+                        tooltip += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                    }
+                    tooltip.append("</html>");
+                    text=tooltip;
+                }
+                if (entry->type == StructureEntry::SE_INCLUDE) {
+
+                    QString htmlTitle = entry->title.toHtmlEscaped();
+
+                    htmlTitle.replace(' ', "&nbsp;").replace('-', "&#8209;");  // repleacement: prevent line break
+                    QString tooltip("<html><b>" + htmlTitle + "</b>");
+                    if (entry->getCachedLineNumber() > -1)
+                        tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+                    if (!entry->valid){
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(missingFileColor.name(), tr("File not found.")));
+                    }else{
+                        // show preview if file is loaded
+                        if(LatexDocument *doc=entry->document){
+                            QString fileName=entry->title;
+                            fileName=doc->getAbsoluteFilePath(fileName,".tex");
+                            LatexDocument *incDoc = documents.findDocument(fileName);
+                            if(incDoc){
+                                tooltip += incDoc->exportAsHtml(incDoc->cursor(0, 0,qMin(5,incDoc->lines()-1)), true, true, 60);
+                            }
+                        }
+                    }
+                    text=tooltip;
+                }
+                if (text.isEmpty() && entry->getCachedLineNumber() > -1)
+                    text=entry->title + QString(tr(" (Line %1)").arg(entry->getRealLineNumber() + 1));
+                if(!text.isEmpty()){
+                    QToolTip::showText(helpEvent->globalPos(),text);
+                    event->accept();
+                    return true;
+                }
+            }
+        }
+
+
+    }
+    return false;
+}
+
 typedef QPair<int, int> PairIntInt;
 
 void Texstudio::updateCompleter(LatexEditorView *edView)
@@ -11745,28 +11828,24 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             item->setText(0,elem->title);
-            item->setToolTip(0,tr("Document: ")+docName);
             todoList->append(item);
         }
         if(labelList && (elem->type == StructureEntry::SE_LABEL)){
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             item->setText(0,elem->title);
-            item->setToolTip(0,tr("Document: ")+docName);
             labelList->append(item);
         }
         if(magicList && (elem->type == StructureEntry::SE_MAGICCOMMENT)){
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             item->setText(0,elem->title);
-            item->setToolTip(0,tr("Document: ")+docName);
             magicList->append(item);
         }
         if(elem->type == StructureEntry::SE_SECTION){
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             item->setText(0,elem->title);
-            item->setToolTip(0,tr("Document: ")+docName);
             item->setIcon(0,iconSection.value(elem->level));
             rootVector[elem->level]->addChild(item);
             item->setExpanded(elem->expanded);
@@ -11789,7 +11868,6 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
             if(!doc){
                 item->setForeground(0,Qt::red);
             }
-            item->setToolTip(0,tr("Document: ")+docName);
             item->setIcon(0,QIcon(":/images/include.png"));
             rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
         }

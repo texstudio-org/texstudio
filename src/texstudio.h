@@ -631,6 +631,8 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
 #endif
 
+    bool eventFilter(QObject *obj, QEvent *event);
+
 	bool mCompleterNeedsUpdate;
 
 	int currentLine;
