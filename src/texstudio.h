@@ -627,9 +627,6 @@ protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
-#ifdef Q_OS_WIN
-    bool eventFilter(QObject *obj, QEvent *event);
-#endif
 
     bool eventFilter(QObject *obj, QEvent *event);
 

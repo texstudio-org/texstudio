@@ -7455,8 +7455,20 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
     static const QColor inAppendixColor(200, 230, 200);
     static const QColor missingFileColor(Qt::red);
 
+#ifdef Q_OS_WIN
+    // workaround for ´+t bug
+    if (event->type() == QEvent::ShortcutOverride) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        QString key = keyEvent->text();
+        if(keyEvent->modifiers()==Qt::NoModifier && key.length()==1 && (key=="´"||key.at(0).isLetter())){
+            event->accept();
+            return true;
+        }
+    }
+#endif
+
     if (event->type() == QEvent::ToolTip) {
-        if(obj==structureTreeWidget){
+        if(obj==structureTreeWidget || obj==topTOCTreeWidget){
             QHelpEvent *helpEvent = dynamic_cast<QHelpEvent *>(event);
             QTreeWidgetItem *item=structureTreeWidget->itemAt(helpEvent->pos());
             if(item){
@@ -7481,6 +7493,26 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
                     StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
                     if (se)
                         tooltip.append("<br><i>" + tr("Label") + "</i>: " + se->title);
+                    if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
+                    if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+                    // show preview if file is loaded
+                    if(LatexDocument *doc=entry->document){
+                        int l=entry->getRealLineNumber();
+                        tooltip += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                    }
+                    tooltip.append("</html>");
+                    text=tooltip;
+                }
+                if (entry->type == StructureEntry::SE_LABEL) {
+
+                    QString htmlTitle = entry->title.toHtmlEscaped();
+
+                    htmlTitle.replace(' ', "&nbsp;");  // repleacement: prevent line break
+                    QString tooltip("<html><b>" + htmlTitle + "</b>");
+                    if (entry->getCachedLineNumber() > -1)
+                        tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
                     if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
                         tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
                     if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
