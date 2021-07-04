@@ -4498,58 +4498,11 @@ void Texstudio::clickedOnStructureEntry(const QModelIndex &index)
 	}
 }
 
-void Texstudio::structureContextMenuCloseDocument(LatexDocument *document)
-{
-	if (!document) return;
-	if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
-	else if (document == documents.masterDocument) structureContextMenuToggleMasterDocument(document);
-}
-
 void Texstudio::structureContextMenuToggleMasterDocument(LatexDocument *document)
 {
 	if (!document) return;
 	if (document == documents.masterDocument) setAutomaticRootDetection();
 	else setExplicitRootDocument(document);
-}
-
-void Texstudio::structureContextMenuOpenAllRelatedDocuments(LatexDocument *document)
-{
-	if (!document) return;
-
-	QSet<QString> checkedFiles, filesToCheck;
-	filesToCheck.insert(document->getFileName());
-
-	while (!filesToCheck.isEmpty()) {
-		QString f = *filesToCheck.begin();
-		filesToCheck.erase(filesToCheck.begin());
-		if (checkedFiles.contains(f)) continue;
-		checkedFiles.insert(f);
-		document = documents.findDocument(f);
-		if (!document) {
-			LatexEditorView *lev = load(f);
-			document = lev ? lev->document : nullptr;
-		}
-		if (!document) continue;
-		foreach (const QString &fn, document->includedFilesAndParent()) {
-			QString t = document->findFileName(fn);
-			if (!t.isEmpty()) filesToCheck.insert(t);
-		}
-	}
-}
-
-void Texstudio::structureContextMenuCloseAllRelatedDocuments(LatexDocument *document)
-{
-	if (!document) return;
-
-	QList<LatexDocument *> l = document->getListOfDocs();
-
-    if (!saveFilesForClosing(l)) return;
-	foreach (LatexDocument *d, l) {
-		if (documents.documents.contains(d))
-			documents.deleteDocument(d); //this might hide the document
-		if (documents.hiddenDocuments.contains(d))
-			documents.deleteDocument(d, d->isHidden(), d->isHidden());
-	}
 }
 
 void Texstudio::createLabelForStructureEntry(const StructureEntry *entry)
@@ -11414,7 +11367,8 @@ void Texstudio::closeDocument()
     if (!action) return;
     LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
     if (!document) return;
-    structureContextMenuCloseDocument(document);
+    if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
+    else if (document == documents.masterDocument) structureContextMenuToggleMasterDocument(document);
 }
 
 void Texstudio::toggleMasterDocument()
@@ -11815,7 +11769,25 @@ void Texstudio::openAllRelatedDocuments()
     if (!action) return;
     LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
     if (!document) return;
-    structureContextMenuOpenAllRelatedDocuments(document);
+    QSet<QString> checkedFiles, filesToCheck;
+    filesToCheck.insert(document->getFileName());
+
+    while (!filesToCheck.isEmpty()) {
+        QString f = *filesToCheck.begin();
+        filesToCheck.erase(filesToCheck.begin());
+        if (checkedFiles.contains(f)) continue;
+        checkedFiles.insert(f);
+        document = documents.findDocument(f);
+        if (!document) {
+            LatexEditorView *lev = load(f);
+            document = lev ? lev->document : nullptr;
+        }
+        if (!document) continue;
+        foreach (const QString &fn, document->includedFilesAndParent()) {
+            QString t = document->findFileName(fn);
+            if (!t.isEmpty()) filesToCheck.insert(t);
+        }
+    }
 }
 
 void Texstudio::closeAllRelatedDocuments()
@@ -11824,7 +11796,15 @@ void Texstudio::closeAllRelatedDocuments()
     if (!action) return;
     LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
     if (!document) return;
-    structureContextMenuCloseAllRelatedDocuments(document);
+    QList<LatexDocument *> l = document->getListOfDocs();
+
+    if (!saveFilesForClosing(l)) return;
+    foreach (LatexDocument *d, l) {
+        if (documents.documents.contains(d))
+            documents.deleteDocument(d); //this might hide the document
+        if (documents.hiddenDocuments.contains(d))
+            documents.deleteDocument(d, d->isHidden(), d->isHidden());
+    }
 }
 
 /*! @} */

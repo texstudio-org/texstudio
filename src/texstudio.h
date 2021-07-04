@@ -387,10 +387,7 @@ protected slots:
     void updateStructure(bool initial = false, LatexDocument *doc = nullptr, bool hidden = false);
 	void showStructure();
 	void clickedOnStructureEntry(const QModelIndex &index);
-	void structureContextMenuCloseDocument(LatexDocument *document);
 	void structureContextMenuToggleMasterDocument(LatexDocument *document);
-	void structureContextMenuOpenAllRelatedDocuments(LatexDocument *document);
-	void structureContextMenuCloseAllRelatedDocuments(LatexDocument *document);
 	void createLabelForStructureEntry(const StructureEntry *entry);
 
 	void editRemovePlaceHolders();
