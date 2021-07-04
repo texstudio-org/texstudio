@@ -385,7 +385,6 @@ protected slots:
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 
     void updateStructure(bool initial = false, LatexDocument *doc = nullptr, bool hidden = false);
-	void showStructure();
 	void clickedOnStructureEntry(const QModelIndex &index);
 	void structureContextMenuToggleMasterDocument(LatexDocument *document);
 

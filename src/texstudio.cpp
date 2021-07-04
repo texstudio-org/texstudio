@@ -703,6 +703,9 @@ void Texstudio::setupDockWidgets()
     addMacrosAsTagList();
 
     leftPanel->showWidgets();
+    // restore selected view in sidepanel
+    int viewNr=configManager.getOption("GUI/sidePanel/currentPage", 0).toInt();
+    leftPanel->setCurrentWidget(leftPanel->widget(viewNr));
 
     // OUTPUT WIDGETS
     if (!outputView) {
@@ -2080,7 +2083,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         configureNewEditorViewEnd(edit, !hidden, hidden);
 
         if (!hidden) {
-            showStructure();
             bookmarks->restoreBookmarks(edit);
         }
         return edit;
@@ -2163,8 +2165,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	updateStructure(true, doc, true);
 
-	if (!hidden)
-		showStructure();
 	bookmarks->restoreBookmarks(edit);
 
     if (asProject) documents.setMasterDocument(edit->document);
@@ -4286,6 +4286,7 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 		config->setValue("GUI/sidePanel/visible", sidePanel->isVisible());
+        config->setValue("GUI/sidePanel/currentPage", leftPanel->currentIndex());
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
@@ -4393,21 +4394,6 @@ void Texstudio::restoreDefaultSettings()
 }
 
 ////////////////// STRUCTURE ///////////////////
-void Texstudio::showStructure()
-{
-    leftPanel->setCurrentWidget(structureTreeWidget);
-}
-
-/*
- * creates a (hopefully) unique string for a StructureEntry
- */
-QString makeTag(StructureEntry *se, QString baseTag)
-{
-	return QString("%1:::%2**%3**%4**%5").arg(baseTag).arg(se->type).arg(se->title).arg(se->type == StructureEntry::SE_SECTION ? long(se->getLineHandle()) : 0).arg(se->columnNumber);
-}
-
-
-
 void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 {
 	// collect user define tex commands for completer
