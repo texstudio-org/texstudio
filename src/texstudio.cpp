@@ -4144,8 +4144,6 @@ void Texstudio::readSettings(bool reread)
         setStyleSheet(ownStyle);
     }
 
-    //documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
-
     spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
     spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
     spellerManager.setDefaultSpeller(configManager.spellLanguage);
@@ -4303,9 +4301,6 @@ void Texstudio::saveSettings(const QString &configName)
 	// TODO: parse old "Symbols/Favorite IDs"
 
 	config->setValue("Symbols/hiddenlists", leftPanel->hiddenWidgets());
-
-    //config->setValue("StructureView/SingleDocMode", documents.model->getSingleDocMode());
-
 
 	QHash<QString, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
@@ -11204,11 +11199,11 @@ void Texstudio::customMenuStructure(const QPoint &pos){
             menu.addAction(tr("Close all related documents"), this, SLOT(closeAllRelatedDocuments()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         } else
             menu.addAction(tr("Remove explicit root document role"), this, SLOT(toggleMasterDocument()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        /*if (documents.model->getSingleDocMode()) {
+        if (configManager.structureShowSingleDoc) {
             menu.addAction(tr("Show all open documents in this tree"), this, SLOT(toggleSingleDocMode()));
         } else {
             menu.addAction(tr("Show only current document in this tree"), this, SLOT(toggleSingleDocMode()));
-        }*/
+        }
         /*menu.addSeparator();
         menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
@@ -11218,8 +11213,8 @@ void Texstudio::customMenuStructure(const QPoint &pos){
         menu.addAction(tr("Expand all documents"), this, SLOT(expandAllDocuments()));
         menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));*/
         menu.addSeparator();
-        menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()));
-        menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()));
+        menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()));
         menu.exec(w->mapToGlobal(pos));
         return;
@@ -11787,5 +11782,38 @@ void Texstudio::closeAllRelatedDocuments()
             documents.deleteDocument(d, d->isHidden(), d->isHidden());
     }
 }
+
+/*!
+ * \brief copy file name of document to clipboard
+ *
+ * Called from structure view
+ */
+void Texstudio::copyFileName()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    if (!clipboard) return;
+    clipboard->setText(document->getFileInfo().fileName());
+}
+
+/*!
+ * \brief copy file path of document to clipboard
+ *
+ * Called from structure view
+ */
+void Texstudio::copyFilePath()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    if (!clipboard) return;
+    clipboard->setText(document->getFileInfo().absoluteFilePath());
+}
+
 
 /*! @} */

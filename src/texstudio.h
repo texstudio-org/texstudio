@@ -243,6 +243,8 @@ private slots:
     void closeAllRelatedDocuments();
     void toggleMasterDocument();
     void closeDocument();
+    void copyFileName();
+    void copyFilePath();
 
     void updateStructureLocally();
     void customMenuStructure(const QPoint &pos);

@@ -104,6 +104,7 @@ public:
 	bool markStructureElementsInAppendix;
     int globalTOCbackgroundOptions;
 	QString referenceCommandsInContextMenu;
+    bool structureShowSingleDoc;
 
 	//update
 	bool autoUpdateCheck;
