@@ -7431,22 +7431,6 @@ void Texstudio::changeEvent(QEvent *e)
 	}
 }
 
-#ifdef Q_OS_WIN
-// workaround for ´+t bug
-bool Texstudio::eventFilter(QObject *, QEvent *event)
-{
-    if (event->type() == QEvent::ShortcutOverride) {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        QString key = keyEvent->text();
-        if(keyEvent->modifiers()==Qt::NoModifier && key.length()==1 && (key=="´"||key.at(0).isLetter())){
-            event->accept();
-            return true;
-        }
-    }
-    return false;
-}
-#endif
-
 bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 {
     static const QColor beyondEndColor(255, 170, 0);
