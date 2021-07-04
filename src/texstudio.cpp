@@ -11632,7 +11632,11 @@ void Texstudio::updateStructureLocally(){
         for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
             QTreeWidgetItem *item = structureTreeWidget->topLevelItem(i);
             StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-            if (!contextEntry) continue;
+            if (!contextEntry){
+                structureTreeWidget->takeTopLevelItem(i);
+                --i;
+                continue;
+            }
             if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
                 if(contextEntry->document == doc){
                     root=item;
@@ -11649,6 +11653,31 @@ void Texstudio::updateStructureLocally(){
                 // remove invalid
                 structureTreeWidget->takeTopLevelItem(i);
                 --i;
+            }
+        }
+        // reorder documents
+        for(int i=0;i<documents.documents.length();++i){
+            bool found=false;
+            int j=i;
+            for(;j<structureTreeWidget->topLevelItemCount();++j){
+                QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
+                StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                if(contextEntry->document == documents.documents.value(i)){
+                    found=true;
+                    break;
+                }
+            }
+            if(found && i<j){
+                QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
+                structureTreeWidget->insertTopLevelItem(i,item);
+            }
+            if(!found){
+                QTreeWidgetItem *item=new QTreeWidgetItem();
+                LatexDocument *doc=documents.documents.value(i);
+                StructureEntry *base=doc->baseStructure;
+
+                item->setText(0,doc->getFileInfo().fileName());
+                item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
             }
         }
     }
