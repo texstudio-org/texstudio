@@ -11678,6 +11678,10 @@ void Texstudio::updateStructureLocally(){
 
                 item->setText(0,doc->getFileInfo().fileName());
                 item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+                structureTreeWidget->insertTopLevelItem(i,item);
+                if(doc==documents.getCurrentDocument()){
+                    root=item;
+                }
             }
         }
     }
