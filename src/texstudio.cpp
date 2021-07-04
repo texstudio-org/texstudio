@@ -11603,13 +11603,40 @@ void Texstudio::gotoLineFromAction()
  */
 void Texstudio::updateStructureLocally(){
     if(!structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
-    QTreeWidgetItem *root=structureTreeWidget->topLevelItem(0);
+    QTreeWidgetItem *root= nullptr;
+
+    LatexDocument *doc=documents.getCurrentDocument();
+    if(!doc) return; // no root document
+
+    if(configManager.structureShowSingleDoc){
+        root= structureTreeWidget->topLevelItem(0);
+    }else{
+        for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
+            root = structureTreeWidget->topLevelItem(i);
+            StructureEntry *contextEntry = root->data(0,Qt::UserRole).value<StructureEntry *>();
+            if (!contextEntry) continue;
+            if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+                if(contextEntry->document == doc)
+                    break;
+                QFont font=root->font(0);
+                font.setBold(false);
+                root->setFont(0,font);
+                if(doc->isHidden()){
+                    structureTreeWidget->removeItemWidget(root,0);
+                    --i;
+                }
+            }
+            root = nullptr; // only break from loop means that correct entry has been found
+        }
+    }
     StructureEntry *selectedEntry=nullptr;
     bool itemExpandedLABEL=false;
     bool itemExpandedTODO=false;
     bool itemExpandedMAGIC=false;
+    bool addToTopLevel=false;
     if(!root){
         root=new QTreeWidgetItem();
+        addToTopLevel=true;
     }else{
         // get current selected item, check only first and deduce structureEntry
         QList<QTreeWidgetItem*> selected=structureTreeWidget->selectedItems();
@@ -11637,19 +11664,22 @@ void Texstudio::updateStructureLocally(){
     }
     QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
     // fill TOC, starting by current master/top
-    LatexDocument *doc=documents.getCurrentDocument();
-    if(!doc) return; // no root document
+
+
+    StructureEntry *base=doc->baseStructure;
+
     root->setText(0,doc->getFileInfo().fileName());
+    root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
     QFont font=root->font(0);
     font.setBold(true);
     root->setFont(0,font);
 
-    StructureEntry *base=doc->baseStructure;
     QList<QTreeWidgetItem*> todoList;
     QList<QTreeWidgetItem*> labelList;
     QList<QTreeWidgetItem*> magicList;
     parseStructLocally(base,rootVector,&todoList,&labelList,&magicList);
-    structureTreeWidget->insertTopLevelItem(0,root);
+    if(addToTopLevel)
+        structureTreeWidget->addTopLevelItem(root);
     if(!magicList.isEmpty()){
         QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
         itemTODO->setText(0,tr("MAGIC_COMMENTS"));
