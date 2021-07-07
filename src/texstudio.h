@@ -224,7 +224,7 @@ private:
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
 
     bool parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited=nullptr, QList<QTreeWidgetItem *> *todoList=nullptr, int currentColor=0);
-    void parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList=nullptr, QList<QTreeWidgetItem *> *labelList=nullptr, QList<QTreeWidgetItem *> *magicList=nullptr);
+    void parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList=nullptr, QList<QTreeWidgetItem *> *labelList=nullptr, QList<QTreeWidgetItem *> *magicList=nullptr, QList<QTreeWidgetItem *> *biblioList=nullptr);
 private slots:
     void updateTOCs();
 
@@ -389,7 +389,6 @@ protected slots:
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 
     void updateStructure(bool initial = false, LatexDocument *doc = nullptr, bool hidden = false);
-	void clickedOnStructureEntry(const QModelIndex &index);
 	void structureContextMenuToggleMasterDocument(LatexDocument *document);
 
 	void editRemovePlaceHolders();

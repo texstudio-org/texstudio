@@ -209,7 +209,7 @@ void scriptengine::run(const bool quiet)
 		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
 
     QJSValue scriptJS=engine->newQObject(this);
-    // add geeneral debug/warn functions
+    // add general debug/warn functions
     engine->globalObject().setProperty("alert", scriptJS.property("alert"));
     engine->globalObject().setProperty("information", scriptJS.property("information"));
     engine->globalObject().setProperty("critical", scriptJS.property("critical"));

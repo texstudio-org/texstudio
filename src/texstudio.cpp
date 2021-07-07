@@ -4419,67 +4419,6 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	//structureTreeView->reset();
 }
 
-void Texstudio::clickedOnStructureEntry(const QModelIndex &index)
-{
-	const StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(index);
-	if (!entry) return;
-	if (!entry->document) return;
-
-	if (QApplication::mouseButtons() == Qt::RightButton) return; // avoid jumping to line if contextmenu is called
-
-	LatexDocument *doc = entry->document;
-	switch (entry->type) {
-	case StructureEntry::SE_DOCUMENT_ROOT:
-		if (entry->document->getEditorView())
-			editors->setCurrentEditor(entry->document->getEditorView());
-		else
-			load(entry->document->getFileName());
-		break;
-
-	case StructureEntry::SE_OVERVIEW:
-		break;
-	case StructureEntry::SE_MAGICCOMMENT:
-		if (entry->valid) {
-			QString s = entry->title;
-			QString name;
-			QString val;
-			doc->splitMagicComment(s, name, val);
-			if ((name.toLower() == "texroot") || (name.toLower() == "root")) {
-				QString fname = doc->findFileName(val);
-				load(fname);
-			}
-		}
-        break;
-	case StructureEntry::SE_SECTION:
-	case StructureEntry::SE_TODO:
-	case StructureEntry::SE_LABEL: {
-		int lineNr = -1;
-		mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
-		LatexEditorView *edView = entry->document->getEditorView();
-		QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
-		if (!entry->document->getEditorView()) {
-			lineNr = entry->getRealLineNumber();
-			edView = load(entry->document->getFileName());
-			if (!edView) return;
-			mflags &= ~QEditor::Animated;
-			//entry is now invalid
-		} else lineNr = LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
-		gotoLine(lineNr, 0, edView, mflags);
-		break;
-	}
-
-	case StructureEntry::SE_INCLUDE:
-	case StructureEntry::SE_BIBTEX: {
-		saveCurrentCursorToHistory();
-		QString defaultExt = entry->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
-        QString name=entry->title;
-        name.replace("\\string~",QDir::homePath());
-        openExternalFile(name, defaultExt, entry->document);
-		break;
-	}
-	}
-}
-
 void Texstudio::structureContextMenuToggleMasterDocument(LatexDocument *document)
 {
 	if (!document) return;
@@ -7771,10 +7710,12 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
             if (!edView) return;
             editors->setCurrentEditor(edView);
         }
-        if(se->type==StructureEntry::SE_INCLUDE){
+        if(se->type==StructureEntry::SE_INCLUDE || se->type==StructureEntry::SE_BIBTEX){
+            saveCurrentCursorToHistory();
+            QString defaultExt = se->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
             QString name=se->title;
             name.replace("\\string~",QDir::homePath());
-            openExternalFile(name);
+            openExternalFile(name,defaultExt,se->document);
         }
     }
 }
@@ -11748,6 +11689,7 @@ void Texstudio::updateStructureLocally(){
     bool itemExpandedLABEL=false;
     bool itemExpandedTODO=false;
     bool itemExpandedMAGIC=false;
+    bool itemExpandedBIBLIO=false;
     bool addToTopLevel=false;
     if(!root){
         root=new QTreeWidgetItem();
@@ -11773,6 +11715,9 @@ void Texstudio::updateStructureLocally(){
             if(item->data(0,Qt::UserRole+1).toString()=="MAGIC"){
                 itemExpandedMAGIC=item->isExpanded();
             }
+            if(item->data(0,Qt::UserRole+1).toString()=="BIBLIO"){
+                itemExpandedBIBLIO=item->isExpanded();
+            }
         }
         QList<QTreeWidgetItem*> items=root->takeChildren();
         qDeleteAll(items);
@@ -11792,9 +11737,19 @@ void Texstudio::updateStructureLocally(){
     QList<QTreeWidgetItem*> todoList;
     QList<QTreeWidgetItem*> labelList;
     QList<QTreeWidgetItem*> magicList;
-    parseStructLocally(base,rootVector,&todoList,&labelList,&magicList);
+    QList<QTreeWidgetItem*> biblioList;
+    parseStructLocally(base,rootVector,&todoList,&labelList,&magicList,&biblioList);
     if(addToTopLevel)
         structureTreeWidget->addTopLevelItem(root);
+
+    if(!biblioList.isEmpty()){
+        QTreeWidgetItem *itemBIBLIO=new QTreeWidgetItem();
+        itemBIBLIO->setText(0,tr("BIBLIOGRAPHY"));
+        itemBIBLIO->setData(0,Qt::UserRole+1,"BIBLIO");
+        itemBIBLIO->insertChildren(0,biblioList);
+        root->insertChild(0,itemBIBLIO);
+        itemBIBLIO->setExpanded(itemExpandedBIBLIO);
+    }
     if(!magicList.isEmpty()){
         QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
         itemTODO->setText(0,tr("MAGIC_COMMENTS"));
@@ -11819,6 +11774,7 @@ void Texstudio::updateStructureLocally(){
         root->insertChild(0,itemLABEL);
         itemLABEL->setExpanded(itemExpandedLABEL);
     }
+
     root->setExpanded(true);
     root->setSelected(false);
     updateCurrentPosInTOC(nullptr,nullptr,selectedEntry);
@@ -11831,12 +11787,12 @@ void Texstudio::updateStructureLocally(){
  * \param se root structureentry
  * \param rootVector
  */
-void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList) {
+void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
 
     QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
         if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)){
-            parseStructLocally(elem,rootVector,todoList,labelList,magicList);
+            parseStructLocally(elem,rootVector,todoList,labelList,magicList,biblioList);
         }
         if(todoList && (elem->type == StructureEntry::SE_TODO)){
             QTreeWidgetItem * item=new QTreeWidgetItem();
@@ -11855,6 +11811,12 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             item->setText(0,elem->title);
             magicList->append(item);
+        }
+        if(biblioList && (elem->type == StructureEntry::SE_BIBTEX)){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            biblioList->append(item);
         }
         if(elem->type == StructureEntry::SE_SECTION){
             QTreeWidgetItem * item=new QTreeWidgetItem();
