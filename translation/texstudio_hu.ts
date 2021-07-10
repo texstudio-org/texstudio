@@ -8271,7 +8271,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="41"/>
         <source>fontawesome5</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>fontawesome5</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="42"/>
