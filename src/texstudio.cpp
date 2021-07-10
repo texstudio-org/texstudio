@@ -7414,10 +7414,12 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
                     StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
                     if (se)
                         tooltip.append("<br><i>" + tr("Label") + "</i>: " + se->title);
-                    if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
+                    if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd)){
                         tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
-                    if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
-                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+                    }else{
+                        if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
+                            tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+                    }
                     // show preview if file is loaded
                     if(LatexDocument *doc=entry->document){
                         int l=entry->getRealLineNumber();
