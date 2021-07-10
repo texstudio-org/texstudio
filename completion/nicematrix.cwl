@@ -55,7 +55,7 @@
 \hdottedline#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 \hdashline#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
-\CodeBefore#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+\CodeBefore[keyvals]#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 \Body#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 \cellcolor[opt_color_model]{color}{i-j,k-l,...}#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 \rectanglecolor[opt_color_model]{color}{i-j}{k-l}#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
@@ -89,12 +89,12 @@
 
 \rotate#/NiceTabular,NiceTabular*,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
-\AutoNiceMatrix{i-j}{pattern}#m
-\pAutoNiceMatrix{i-j}{pattern}#m
-\bAutoNiceMatrix{i-j}{pattern}#m
-\BAutoNiceMatrix{i-j}{pattern}#m
-\vAutoNiceMatrix{i-j}{pattern}#m
-\VAutoNiceMatrix{i-j}{pattern}#m
+\AutoNiceMatrix[keyvals]{i-j}{pattern}#m
+\pAutoNiceMatrix[keyvals]{i-j}{pattern}#m
+\bAutoNiceMatrix[keyvals]{i-j}{pattern}#m
+\BAutoNiceMatrix[keyvals]{i-j}{pattern}#m
+\vAutoNiceMatrix[keyvals]{i-j}{pattern}#m
+\VAutoNiceMatrix[keyvals]{i-j}{pattern}#m
 
 \begin{NiceArrayWithDelims}%<delim1%>%<delim2%>{preamble}[keyvals]#m
 \end{NiceArrayWithDelims}
@@ -118,6 +118,7 @@ vlines=
 hlines
 hlines=
 hvlines
+hvlines-except-borders
 corners
 corners=#NW,SW,NE,SE
 letter-for-dotted-lines
@@ -186,6 +187,13 @@ borders=#left,right,top,bottom
 hvlines
 t
 b
+L
+R
+C
+#endkeyvals
+
+#keyvals:\CodeBefore
+create-cell-nodes
 #endkeyvals
 
 #keyvals:\rowcolors
@@ -235,3 +243,8 @@ hvlines
 name=
 #endkeyvals
 
+#keyvals:\AutoNiceMatrix,\pAutoNiceMatrix,\bAutoNiceMatrix,\BAutoNiceMatrix,\vAutoNiceMatrix,\VAutoNiceMatrix
+l
+r
+c
+#endkeyvals
