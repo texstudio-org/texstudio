@@ -40,9 +40,11 @@ i
 \SetEnumerateShortLabel{key%plain}{replacement}#*
 \setlistdepth{integer}
 \AddEnumerateCounter{LaTeX-cmd}{internal-cmd}{widest label}#*
+\AddEnumerateCounter*{LaTeX-cmd}{internal-cmd}{integer}#*
 \SetEnumitemKey{key%plain}{replacement}#*
 \SetEnumitemValue{key%plain}{string-value}{replacement}#*
 \SetEnumitemSize{name}{selector}#*
+\DrawEnumitemLabel#*
 
 #keyvals:\setlist
 topsep=
