@@ -606,6 +606,11 @@ QWidget *CustomWidgetList::currentWidget() const
 	return stack->currentWidget();
 }
 
+int CustomWidgetList::currentIndex() const
+{
+    return stack->currentIndex();
+}
+
 QString CustomWidgetList::widgetId(QWidget *widget) const
 {
 	if (!widget) return "";

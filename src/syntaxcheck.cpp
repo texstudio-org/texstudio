@@ -208,6 +208,9 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 		if (elem.range.first > pos) break;
 		result = elem.type;
 	}
+    if(result==ERR_highlight){
+        result=ERR_none; // filter out accidental highlight detection (test only)
+    }
 	// now generate Error message
 
 	QStringList messages;  // indices have to match ErrorType
@@ -904,7 +907,13 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						elem.range = QPair<int, int>(tk.start, tk.length);
 						elem.type = ERR_tooManyCols;
 						newRanges.append(elem);
-					}
+                    }else{
+                        Error elem;
+                        elem.range = QPair<int, int>(tk.start, tk.length);
+                        elem.type = ERR_highlight;
+                        elem.format=mFormatList.value("align-ampersand");
+                        newRanges.append(elem);
+                    }
 					continue;
 				}
 

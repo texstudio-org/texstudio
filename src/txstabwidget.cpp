@@ -19,14 +19,13 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	connect(tb, SIGNAL(middleMouseButtonPressed(int)), this, SLOT(onTabCloseRequest(int)));
 	setTabBar(tb);
 
-	if (hasAtLeastQt(4, 5)) {
-		setDocumentMode(true);
-		const QTabBar *tb = tabBar();
-		connect(tb, SIGNAL(tabMoved(int, int)), this, SIGNAL(tabMoved(int, int)));
-		connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
-		setProperty("tabsClosable", true);
-		setProperty("movable", true);
-	}
+    setDocumentMode(true);
+    const QTabBar *tb2 = tabBar();
+    connect(tb2, SIGNAL(tabMoved(int, int)), this, SIGNAL(tabMoved(int, int)));
+    connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
+    setProperty("tabsClosable", true);
+    setProperty("movable", true);
+
 	connect(this, SIGNAL(currentChanged(int)), this, SIGNAL(currentEditorChanged()));
 }
 

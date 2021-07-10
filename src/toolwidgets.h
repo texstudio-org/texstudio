@@ -149,6 +149,7 @@ public:
 	QList<QWidget *> getWidgets() const;
 	void setCurrentWidget(QWidget *widget);
 	QWidget *currentWidget() const;
+    int currentIndex() const;
 
 signals:
 	void widgetContextMenuRequested(QWidget *widget, const QPoint &globalPosition);

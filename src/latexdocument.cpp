@@ -1716,7 +1716,7 @@ void LatexDocument::updateRefsLabels(const QString &ref)
 
 
 
-LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(nullptr), currentDocument(nullptr), bibTeXFilesModified(false)
+LatexDocuments::LatexDocuments(): masterDocument(nullptr), currentDocument(nullptr), bibTeXFilesModified(false)
 {
 	showLineNumbersInStructure = false;
 	indentationInStructure = -1;
@@ -1725,11 +1725,6 @@ LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterD
 	markStructureElementsInAppendix = true;
 	indentIncludesInStructure = false;
 	m_patchEnabled = true;
-}
-
-LatexDocuments::~LatexDocuments()
-{
-	delete model;
 }
 
 void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
@@ -1749,15 +1744,6 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 		documents.append(document);
 	}
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
-	connect(document, SIGNAL(structureLost(LatexDocument *)), model, SLOT(structureLost(LatexDocument *)));
-	connect(document, SIGNAL(structureUpdated(LatexDocument *, StructureEntry *)), model, SLOT(structureUpdated(LatexDocument *, StructureEntry *)));
-	//connect(document, SIGNAL(setHighlightedEntry(StructureEntry *)), model, SLOT(setHighlightedEntry(StructureEntry *)));
-	connect(document, SIGNAL(toBeChanged()), model, SIGNAL(layoutAboutToBeChanged()));
-	connect(document, SIGNAL(removeElement(StructureEntry *, int)), model, SLOT(removeElement(StructureEntry *, int)));
-	connect(document, SIGNAL(removeElementFinished()), model, SLOT(removeElementFinished()));
-	connect(document, SIGNAL(addElement(StructureEntry *, int)), model, SLOT(addElement(StructureEntry *, int)));
-	connect(document, SIGNAL(addElementFinished()), model, SLOT(addElementFinished()));
-	connect(document, SIGNAL(updateElement(StructureEntry *)), model, SLOT(updateElement(StructureEntry *)));
 	document->parent = this;
 	if (masterDocument) {
 		// repaint all docs
@@ -1766,8 +1752,6 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 			if (edView) edView->documentContentChanged(0, edView->editor->document()->lines());
 		}
 	}
-	if (!hidden)
-		model->structureUpdated(document, nullptr);
 }
 
 void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool purge)
@@ -1857,21 +1841,12 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 		int row = documents.indexOf(document);
 		//qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
-		if (model->getSingleDocMode()) {
-			row = 0;
-		}
-		if (row >= 0 ) { //&& !model->getSingleDocMode()){
-			model->resetHighlight();
-			model->removeElement(document->baseStructure, row); //remove from root
-		}
+
 		documents.removeAll(document);
 		if (document == currentDocument) {
                     currentDocument = nullptr;
 		}
-		if (row >= 0 ) { //&& !model->getSingleDocMode()){
-			model->removeElementFinished();
-		}
-		//model->resetAll();
+
 		if (n > 1) { // don't remove document, stays hidden instead
 			hideDocInEditor(document->getEditorView());
                         if(masterDocument && documents.count()==1){
@@ -1892,7 +1867,6 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 			return;
 		}
 		document->setFileName(document->getFileName());
-		model->resetAll();
 		document->clearAppendix();
 		delete view;
 		if (document == currentDocument)
@@ -1940,7 +1914,6 @@ void LatexDocuments::setMasterDocument(LatexDocument *document)
                         if (edView) edView->documentContentChanged(0, doc->lines());
 		}
 	}
-	model->resetAll();
 	emit masterDocumentChanged(masterDocument);
 }
 /*!
@@ -1973,10 +1946,7 @@ QList<LatexDocument *> LatexDocuments::getDocuments() const
 
 void LatexDocuments::move(int from, int to)
 {
-	model->layoutAboutToBeChanged();
-	model->moveDocs(from, to);
 	documents.move(from, to);
-	model->layoutChanged();
 }
 /*!
  * \brief get file name of current document
@@ -2051,7 +2021,6 @@ LatexDocument *LatexDocuments::findDocumentFromName(const QString &fileName) con
  */
 void LatexDocuments::reorder(const QList<LatexDocument *> &order)
 {
-	model->layoutAboutToBeChanged();
 	if (order.size() != documents.size()) qDebug() << "Warning: Size of list of documents for reordering differs from current documents";
 	foreach (LatexDocument *doc, order) {
 		int n = documents.removeAll(doc);
@@ -2059,7 +2028,6 @@ void LatexDocuments::reorder(const QList<LatexDocument *> &order)
 		if (n < 1) qDebug() << "Warning: encountered a document that is not listed in LatexDocuments";
 		documents.append(doc);
 	}
-	model->layoutChanged();
 }
 
 LatexDocument *LatexDocuments::findDocument(const QDocument *qDoc) const
@@ -2621,16 +2589,6 @@ QString LatexDocument::findFileName(QString fname)
 	if (result.isEmpty() && QFile(getAbsoluteFilePath(curPath + fname, "")).exists())
 		result = QFileInfo(getAbsoluteFilePath(curPath + fname, "")).absoluteFilePath();
 	return result;
-}
-
-void LatexDocuments::updateStructure()
-{
-	foreach (const LatexDocument *doc, documents) {
-		model->updateElement(doc->baseStructure);
-	}
-	if (model->getSingleDocMode()) {
-		model->structureUpdated(currentDocument, nullptr);
-	}
 }
 
 void LatexDocuments::bibTeXFilesNeedUpdate()

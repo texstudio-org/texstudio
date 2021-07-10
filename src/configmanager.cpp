@@ -451,6 +451,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Structure/MarkStructureElementsInAppendix", &markStructureElementsInAppendix, true, &pseudoDialog->checkBoxMarkStructureElementsInAppendix);
 	registerOption("StructureView/ReferenceCommandsInContextMenu", &referenceCommandsInContextMenu, "\\ref", &pseudoDialog->leReferenceCommandsInContextMenu);
     registerOption("StructureView/BackgroundColorInGlobalTOC", &globalTOCbackgroundOptions, 1, &pseudoDialog->comboBoxTOCBackgroundColor);
+    registerOption("StructureView/SingleDocMode", &structureShowSingleDoc, false);
 
 	//beginRegisterGroup("texmaker");
 	//files

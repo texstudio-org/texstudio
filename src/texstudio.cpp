@@ -65,7 +65,6 @@
 #include "latexparser/latexparser.h"
 #include "latexparser/latexparsing.h"
 #include "latexstructure.h"
-#include "structuretreeview.h"
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
 #include "execprogram.h"
@@ -165,9 +164,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	readSettings();
 
-#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
-	QCoreApplication::instance()->installEventFilter(this);
-#endif
 #ifdef Q_OS_WIN
     // work-around for ´+t bug
     QCoreApplication::instance()->installEventFilter(this);
@@ -214,7 +210,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	leftPanel = nullptr;
 	sidePanel = nullptr;
-	structureTreeView = nullptr;
+    //structureTreeView = nullptr;
+    structureTreeWidget = nullptr;
     topTOCTreeWidget = nullptr;
 	outputView = nullptr;
 
@@ -475,7 +472,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
  */
 Texstudio::~Texstudio()
 {
-    structureTreeView->setModel(nullptr);
+    //structureTreeView->setModel(nullptr);
 	iconCache.clear();
 	QDocument::setDefaultFormatScheme(m_formatsOldDefault); //prevents crash when deleted latexeditorview accesses the default format scheme, as m_format is going to be deleted
 
@@ -652,33 +649,32 @@ void Texstudio::setupDockWidgets()
         connect(leftPanel, SIGNAL(currentWidgetChanged(QWidget*)), this, SLOT(leftPanelChanged(QWidget*)));
     }
 
-    if (!structureTreeView) {
-        structureTreeView = new StructureTreeView(editors, documents, configManager, this);
-        structureTreeView->setModel(documents.model);
+    // load icons for structure view
+    QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph" << "subparagraph";
+    iconSection.resize(structureIconNames.length());
+    for (int i = 0; i < structureIconNames.length(); i++)
+        iconSection[i] = getRealIconCached(structureIconNames[i]);
 
-        connect(structureTreeView, SIGNAL(requestCloseDocument(LatexDocument*)), this, SLOT(structureContextMenuCloseDocument(LatexDocument*)));
-        connect(structureTreeView, SIGNAL(requestToggleMasterDocument(LatexDocument*)), this, SLOT(structureContextMenuToggleMasterDocument(LatexDocument*)));
-        connect(structureTreeView, SIGNAL(requestOpenAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuOpenAllRelatedDocuments(LatexDocument*)));
-        connect(structureTreeView, SIGNAL(requestCloseAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuCloseAllRelatedDocuments(LatexDocument*)));
-        connect(structureTreeView, SIGNAL(requestGotoLine(LatexDocument*,int,int)), this, SLOT(gotoLine(LatexDocument*,int,int)));
-        connect(structureTreeView, SIGNAL(requestOpenExternalFile(QString)), this, SLOT(openExternalFile(QString)));
-        connect(structureTreeView, SIGNAL(insertText(QString)), this, SLOT(insertText(QString)));
-        connect(structureTreeView, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
-        connect(structureTreeView, SIGNAL(createLabelForStructureEntry(const StructureEntry*)), this, SLOT(createLabelForStructureEntry(const StructureEntry*)));
-
-        //disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
-        connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
-
-        leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
-    } else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
+    if(!structureTreeWidget){
+        structureTreeWidget = new QTreeWidget();
+        connect(structureTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
+        connect(structureTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
+        connect(structureTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
+        connect(structureTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
+        structureTreeWidget->setHeaderHidden(true);
+        structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+        structureTreeWidget->installEventFilter(this);
+        leftPanel->addWidget(structureTreeWidget, "structureTreeWidget", tr("Structure"), getRealIconFile("structure"));
+    } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
-        connect(topTOCTreeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(syncExpanded(QTreeWidgetItem*)));
-        connect(topTOCTreeWidget, SIGNAL(itemCollapsed(QTreeWidgetItem*)), this, SLOT(syncCollapsed(QTreeWidgetItem*)));
-        connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuTOC);
+        connect(topTOCTreeWidget, &QTreeWidget::itemExpanded, this, &Texstudio::syncExpanded);
+        connect(topTOCTreeWidget, &QTreeWidget::itemCollapsed, this, &Texstudio::syncCollapsed);
+        connect(topTOCTreeWidget, &QTreeWidget::customContextMenuRequested, this, &Texstudio::customMenuStructure);
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+        topTOCTreeWidget->installEventFilter(this);
         leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("toc"));
     } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
     if (!leftPanel->widget("bookmarks")) {
@@ -706,6 +702,9 @@ void Texstudio::setupDockWidgets()
     addMacrosAsTagList();
 
     leftPanel->showWidgets();
+    // restore selected view in sidepanel
+    int viewNr=configManager.getOption("GUI/sidePanel/currentPage", 0).toInt();
+    leftPanel->setCurrentWidget(leftPanel->widget(viewNr));
 
     // OUTPUT WIDGETS
     if (!outputView) {
@@ -1091,7 +1090,7 @@ void Texstudio::setupMenus()
     newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(closeEnvironment()), QKeySequence(Qt::ALT | Qt::Key_Return));
 
 	menu->addSeparator();
-    newManagedAction(menu, "updateTOC", tr("update TOC"), SLOT(updateTOC()));
+    newManagedAction(menu, "updateTOC", tr("update TOC"), SLOT(updateTOCs()));
 	newManagedAction(menu, "reparse", tr("Refresh Structure"), SLOT(updateStructure()));
 	act = newManagedAction(menu, "refreshQNFA", tr("Refresh Language Model"), SLOT(updateTexQNFA()));
 	act->setStatusTip(tr("Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic."));
@@ -1677,8 +1676,7 @@ void Texstudio::updateCaption()
 	if (!currentEditorView()) documents.currentDocument = nullptr;
 	else {
 		documents.currentDocument = currentEditorView()->document;
-		documents.updateStructure();
-		structureTreeView->setExpanded(documents.model->index(documents.currentDocument->baseStructure), true);
+        //structureTreeView->setExpanded(documents.model->index(documents.currentDocument->baseStructure), true);
 	}
 	if (completer && completer->isVisible()) completer->close();
 	QString title;
@@ -1735,7 +1733,7 @@ void Texstudio::currentEditorChanged()
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
 	currentEditorView()->checkRTLLTRLanguageSwitching();
     // update global toc
-    updateTOC();
+    updateTOCs();
 }
 
 /*!
@@ -1745,9 +1743,9 @@ void Texstudio::currentEditorChanged()
  */
 void Texstudio::editorTabMoved(int from, int to)
 {
-	//documents.aboutToUpdateLayout();
 	documents.move(from, to);
-	//documents.updateLayout();
+    // update structure
+    updateStructureLocally();
 }
 
 void Texstudio::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo)
@@ -1902,7 +1900,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     connect(edit, SIGNAL(thesaurus(int, int)), this, SLOT(editThesaurus(int, int)));
     connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
     connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
-    connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOC()));
+    connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOCs()));
     edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
     if (!hidden) {
@@ -2084,7 +2082,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         configureNewEditorViewEnd(edit, !hidden, hidden);
 
         if (!hidden) {
-            showStructure();
             bookmarks->restoreBookmarks(edit);
         }
         return edit;
@@ -2167,8 +2164,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	updateStructure(true, doc, true);
 
-	if (!hidden)
-		showStructure();
 	bookmarks->restoreBookmarks(edit);
 
     if (asProject) documents.setMasterDocument(edit->document);
@@ -2871,7 +2866,6 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 
 	if (currentEditorView() != currentEdView)
 		editors->setCurrentEditor(currentEdView);
-	documents.updateStructure(); //remove italics status from previous unsaved files
 	updateUndoRedoStatus();
 }
 
@@ -3000,6 +2994,7 @@ repeatAfterFileSavingFailed:
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
+    updateTOCs();
 
 #ifndef NO_POPPLER_PREVIEW
 	//close associated embedded pdf viewer
@@ -3079,6 +3074,7 @@ void Texstudio::closeAllFiles()
 #endif
 	documents.setMasterDocument(nullptr);
 	updateCaption();
+    updateTOCs();
 }
 
 bool Texstudio::canCloseNow(bool saveSettings)
@@ -4149,8 +4145,6 @@ void Texstudio::readSettings(bool reread)
         setStyleSheet(ownStyle);
     }
 
-    documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
-
     spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
     spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
     spellerManager.setDefaultSpeller(configManager.spellLanguage);
@@ -4291,6 +4285,7 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 		config->setValue("GUI/sidePanel/visible", sidePanel->isVisible());
+        config->setValue("GUI/sidePanel/currentPage", leftPanel->currentIndex());
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
@@ -4307,9 +4302,6 @@ void Texstudio::saveSettings(const QString &configName)
 	// TODO: parse old "Symbols/Favorite IDs"
 
 	config->setValue("Symbols/hiddenlists", leftPanel->hiddenWidgets());
-
-	config->setValue("StructureView/SingleDocMode", documents.model->getSingleDocMode());
-
 
 	QHash<QString, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
@@ -4398,71 +4390,6 @@ void Texstudio::restoreDefaultSettings()
 }
 
 ////////////////// STRUCTURE ///////////////////
-void Texstudio::showStructure()
-{
-	leftPanel->setCurrentWidget(structureTreeView);
-}
-
-/*
- * creates a (hopefully) unique string for a StructureEntry
- */
-QString makeTag(StructureEntry *se, QString baseTag)
-{
-	return QString("%1:::%2**%3**%4**%5").arg(baseTag).arg(se->type).arg(se->title).arg(se->type == StructureEntry::SE_SECTION ? long(se->getLineHandle()) : 0).arg(se->columnNumber);
-}
-
-/*
- * adds unique tags for all expanded StructureEntries in structureTreeView to expandedEntryTags
- */
-void Texstudio::getExpandedStructureEntries(const QModelIndex &index, QSet<QString> &expandedEntryTags, QString baseTag)
-{
-	QTreeView *view = structureTreeView;
-	QAbstractItemModel *model = view->model();
-	if (model->hasChildren(index))	{
-		int nRows = model->rowCount(index);
-		int nCols = model->columnCount(index);
-		for (int row = 0; row < nRows; row++ ) {
-			for (int col = 0; col < nCols; col++ ) {
-				QModelIndex childIdx = model->index(row, col, index);
-				if (!childIdx.isValid())
-					continue;
-				StructureEntry *se = LatexDocumentsModel::indexToStructureEntry(childIdx);
-				QString tag = makeTag(se, baseTag);
-				if (view->isExpanded(childIdx)) {
-					expandedEntryTags.insert(tag);
-				}
-				getExpandedStructureEntries(childIdx, expandedEntryTags, tag);
-			}
-		}
-	}
-}
-
-/*
- * expands all StructureEntries in structureTreeView whoes unique tags are included in expandedEntryTags
- */
-void Texstudio::expandStructureEntries(const QModelIndex index, const QSet<QString> &expandedEntryTags, QString baseTag)
-{
-	QTreeView *view = structureTreeView;
-	QAbstractItemModel *model = view->model();
-	if (model->hasChildren(index))	{
-		int nRows = model->rowCount(index);
-		int nCols = model->columnCount(index);
-		for (int row = 0; row < nRows; row++ ) {
-			for (int col = 0; col < nCols; col++ ) {
-				QModelIndex childIdx = model->index(row, col, index);
-				if (!childIdx.isValid())
-					continue;
-				StructureEntry *se = LatexDocumentsModel::indexToStructureEntry(childIdx);
-				QString tag = makeTag(se, baseTag);
-				if (expandedEntryTags.contains(tag)) {
-					view->setExpanded(childIdx, true);
-				}
-				expandStructureEntries(childIdx, expandedEntryTags, tag);
-			}
-		}
-	}
-}
-
 void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 {
 	// collect user define tex commands for completer
@@ -4482,16 +4409,7 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 		configManager.completerConfig->userMacros << doc->localMacros;
 		if(!doc->localMacros.isEmpty() || !previouslyEmpty)
 			updateUserMacros();
-	} else {
-		// updateStructure() rebuilds the complete structure model. Therefore, all expansion states in the view are lost
-		// to work around this, we save the a tag (unique idetifier) of all expanded entries and restore the expansion state after update
-		QSet<QString> expandedEntryTags;
-		getExpandedStructureEntries(structureTreeView->rootIndex(), expandedEntryTags);
-		structureTreeView->setUpdatesEnabled(false);
-		doc->updateStructure();
-		expandStructureEntries(structureTreeView->rootIndex(), expandedEntryTags);
-		structureTreeView->setUpdatesEnabled(true);
-	}
+    }
 
 	if (!hidden) {
 		updateCompleter(doc->getEditorView());
@@ -4501,175 +4419,11 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	//structureTreeView->reset();
 }
 
-void Texstudio::clickedOnStructureEntry(const QModelIndex &index)
-{
-	const StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(index);
-	if (!entry) return;
-	if (!entry->document) return;
-
-	if (QApplication::mouseButtons() == Qt::RightButton) return; // avoid jumping to line if contextmenu is called
-
-	LatexDocument *doc = entry->document;
-	switch (entry->type) {
-	case StructureEntry::SE_DOCUMENT_ROOT:
-		if (entry->document->getEditorView())
-			editors->setCurrentEditor(entry->document->getEditorView());
-		else
-			load(entry->document->getFileName());
-		break;
-
-	case StructureEntry::SE_OVERVIEW:
-		break;
-	case StructureEntry::SE_MAGICCOMMENT:
-		if (entry->valid) {
-			QString s = entry->title;
-			QString name;
-			QString val;
-			doc->splitMagicComment(s, name, val);
-			if ((name.toLower() == "texroot") || (name.toLower() == "root")) {
-				QString fname = doc->findFileName(val);
-				load(fname);
-			}
-		}
-        break;
-	case StructureEntry::SE_SECTION:
-	case StructureEntry::SE_TODO:
-	case StructureEntry::SE_LABEL: {
-		int lineNr = -1;
-		mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
-		LatexEditorView *edView = entry->document->getEditorView();
-		QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
-		if (!entry->document->getEditorView()) {
-			lineNr = entry->getRealLineNumber();
-			edView = load(entry->document->getFileName());
-			if (!edView) return;
-			mflags &= ~QEditor::Animated;
-			//entry is now invalid
-		} else lineNr = LatexDocumentsModel::indexToStructureEntry(index)->getRealLineNumber();
-		gotoLine(lineNr, 0, edView, mflags);
-		break;
-	}
-
-	case StructureEntry::SE_INCLUDE:
-	case StructureEntry::SE_BIBTEX: {
-		saveCurrentCursorToHistory();
-		QString defaultExt = entry->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
-        QString name=entry->title;
-        name.replace("\\string~",QDir::homePath());
-        openExternalFile(name, defaultExt, entry->document);
-		break;
-	}
-	}
-}
-
-void Texstudio::structureContextMenuCloseDocument(LatexDocument *document)
-{
-	if (!document) return;
-	if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
-	else if (document == documents.masterDocument) structureContextMenuToggleMasterDocument(document);
-}
-
 void Texstudio::structureContextMenuToggleMasterDocument(LatexDocument *document)
 {
 	if (!document) return;
 	if (document == documents.masterDocument) setAutomaticRootDetection();
 	else setExplicitRootDocument(document);
-}
-
-void Texstudio::structureContextMenuOpenAllRelatedDocuments(LatexDocument *document)
-{
-	if (!document) return;
-
-	QSet<QString> checkedFiles, filesToCheck;
-	filesToCheck.insert(document->getFileName());
-
-	while (!filesToCheck.isEmpty()) {
-		QString f = *filesToCheck.begin();
-		filesToCheck.erase(filesToCheck.begin());
-		if (checkedFiles.contains(f)) continue;
-		checkedFiles.insert(f);
-		document = documents.findDocument(f);
-		if (!document) {
-			LatexEditorView *lev = load(f);
-			document = lev ? lev->document : nullptr;
-		}
-		if (!document) continue;
-		foreach (const QString &fn, document->includedFilesAndParent()) {
-			QString t = document->findFileName(fn);
-			if (!t.isEmpty()) filesToCheck.insert(t);
-		}
-	}
-}
-
-void Texstudio::structureContextMenuCloseAllRelatedDocuments(LatexDocument *document)
-{
-	if (!document) return;
-
-	QList<LatexDocument *> l = document->getListOfDocs();
-
-    if (!saveFilesForClosing(l)) return;
-	foreach (LatexDocument *d, l) {
-		if (documents.documents.contains(d))
-			documents.deleteDocument(d); //this might hide the document
-		if (documents.hiddenDocuments.contains(d))
-			documents.deleteDocument(d, d->isHidden(), d->isHidden());
-	}
-}
-
-void Texstudio::createLabelForStructureEntry(const StructureEntry *entry)
-{
-	if (!entry || !entry->document) return;
-
-	// find editor and line nr
-	int lineNr = entry->getRealLineNumber();
-
-	mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
-	LatexEditorView *edView = entry->document->getEditorView();
-	QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
-	if (!edView) {
-		edView = load(entry->document->getFileName());
-		if (!edView) return;
-		mflags &= ~QEditor::Animated;
-		//entry is now invalid
-	}
-	REQUIRE(edView->getDocument());
-
-	if (lineNr < 0) return; //not found. (document was closed)
-
-	// find column position after structure command
-	QString lineText = edView->getDocument()->line(lineNr).text();
-	int pos = -1;
-	for (int i = 0; i < latexParser.structureDepth(); i++) {
-		foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
-			pos = lineText.indexOf(cmd);
-			if (pos >= 0) {
-				pos += cmd.length();
-				// workaround for starred commands: \section*{Cap}
-				// (may have been matched by unstarred version because there is no order in possibleCommands)
-				if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
-				break;
-			}
-		}
-		if (pos >= 0) break;
-	}
-	if (pos < 0) return; // could not find associated command
-
-	// advance pos behind options, and use title to guess a label
-	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
-	QString label = "sec:";
-	if (args.length() > 0) {
-		QString title(args.at(0).value);
-		if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
-			label += makeLatexLabel(title);
-		}
-	}
-
-	gotoLine(lineNr, pos, edView, mflags);
-
-	insertTag(QString("\\label{%1}").arg(label), 7);
-	QDocumentCursor cur(edView->editor->cursor());
-	cur.movePosition(label.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-	edView->editor->setCursor(cur);
 }
 
 void Texstudio::editRemovePlaceHolders()
@@ -5254,7 +5008,14 @@ void Texstudio::insertFromAction()
 		execMacro(Macro::fromTypedTag(action->data().toString()), MacroExecContext(), true);
 		generateMirror();
 		outputView->setMessage(CodeSnippet(action->whatsThis(), false).lines.join("\n"));
-	}
+    }
+}
+
+void Texstudio::insertTextFromAction()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    insertText(action->data().toString());
 }
 
 void Texstudio::insertFromTagList(QListWidgetItem *item)
@@ -7051,7 +6812,7 @@ void Texstudio::showTestProgress(const QString &message)
 }
 /*!
  * \brief notfication when left panel was switched
- * Mainly used to notice when global TOC becomes visible
+ * Mainly used to notice when global TOC/structureWidget becomes visible
  * \param widget
  */
 void Texstudio::leftPanelChanged(QWidget *widget)
@@ -7059,6 +6820,10 @@ void Texstudio::leftPanelChanged(QWidget *widget)
        if(widget==topTOCTreeWidget){
            // update TOC when the TOC first becomes visisble
            updateTOC();
+       }
+       if(widget==structureTreeWidget){
+           // update StructureWidget when the structure first becomes visisble
+           updateStructureLocally();
        }
 }
 /*!
@@ -7605,10 +7370,14 @@ void Texstudio::changeEvent(QEvent *e)
 	}
 }
 
-#ifdef Q_OS_WIN
-// workaround for ´+t bug
-bool Texstudio::eventFilter(QObject *, QEvent *event)
+bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 {
+    static const QColor beyondEndColor(255, 170, 0);
+    static const QColor inAppendixColor(200, 230, 200);
+    static const QColor missingFileColor(Qt::red);
+
+#ifdef Q_OS_WIN
+    // workaround for ´+t bug
     if (event->type() == QEvent::ShortcutOverride) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         QString key = keyEvent->text();
@@ -7617,52 +7386,103 @@ bool Texstudio::eventFilter(QObject *, QEvent *event)
             return true;
         }
     }
-    return false;
-}
 #endif
 
-#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
-// workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
-bool Texstudio::eventFilter(QObject *obj, QEvent *event)
-{
-    if (obj->objectName() == "ConfigDialogWindow" || obj->objectName() == "ShortcutComboBox" || obj->objectName() == "QPushButton" || obj->objectName().startsWith("QMessageBox"))
-		return false; // don't handle keys from shortcutcombo (config)
-	if (event->type() == QEvent::KeyPress) {
-		//qDebug()<<obj->objectName();
-		//qDebug()<<obj->metaObject()->className();
-		QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-		QString modifier = QString::null;
+    if (event->type() == QEvent::ToolTip) {
+        if(obj==structureTreeWidget || obj==topTOCTreeWidget){
+            QHelpEvent *helpEvent = dynamic_cast<QHelpEvent *>(event);
+            QTreeWidgetItem *item=structureTreeWidget->itemAt(helpEvent->pos());
+            if(item){
+                StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                if(!entry)
+                    return false;
+                QString text;
+                if (!entry->tooltip.isNull()) {
+                    text=entry->tooltip;
+                }
+                if (entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+                    text=QDir::toNativeSeparators(entry->document->getFileName());
+                }
+                if (entry->type == StructureEntry::SE_SECTION) {
 
-		if (keyEvent->modifiers() & Qt::ShiftModifier)
-			modifier += "Shift+";
-		if (keyEvent->modifiers() & Qt::ControlModifier)
-			modifier += "Ctrl+";
-		if (keyEvent->modifiers() & Qt::AltModifier)
-			modifier += "Alt+";
-		if (keyEvent->modifiers() & Qt::MetaModifier)
-			modifier += "Meta+";
+                    QString htmlTitle = entry->title.toHtmlEscaped();
 
-		QString key = QKeySequence(keyEvent->key()).toString();
+                    htmlTitle.replace(' ', "&nbsp;");  // repleacement: prevent line break
+                    QString tooltip("<html><b>" + htmlTitle + "</b>");
+                    if (entry->getCachedLineNumber() > -1)
+                        tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+                    StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
+                    if (se)
+                        tooltip.append("<br><i>" + tr("Label") + "</i>: " + se->title);
+                    if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
+                    if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+                    // show preview if file is loaded
+                    if(LatexDocument *doc=entry->document){
+                        int l=entry->getRealLineNumber();
+                        tooltip += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                    }
+                    tooltip.append("</html>");
+                    text=tooltip;
+                }
+                if (entry->type == StructureEntry::SE_LABEL) {
 
-		QKeySequence result(modifier + key);
+                    QString htmlTitle = entry->title.toHtmlEscaped();
 
-		if ((keyEvent->key() == 0) || ((keyEvent->modifiers() == 0) && (key != "Esc")) || (keyEvent->modifiers()&Qt::MetaModifier) || (keyEvent->modifiers() & Qt::ControlModifier) || (keyEvent->modifiers() & Qt::KeypadModifier))
-			return false; // no need to handle these
+                    htmlTitle.replace(' ', "&nbsp;");  // repleacement: prevent line break
+                    QString tooltip("<html><b>" + htmlTitle + "</b>");
+                    if (entry->getCachedLineNumber() > -1)
+                        tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+                    if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
+                    if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+                    // show preview if file is loaded
+                    if(LatexDocument *doc=entry->document){
+                        int l=entry->getRealLineNumber();
+                        tooltip += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                    }
+                    tooltip.append("</html>");
+                    text=tooltip;
+                }
+                if (entry->type == StructureEntry::SE_INCLUDE) {
 
-		if (configManager.specialShortcuts.contains(result)) {
-            QList<QAction *>acts = configManager.specialShortcuts.values(result);
-            foreach(QAction *act,acts){
-                if (act && act->parent()->children().contains(obj)){
-                    act->trigger();
+                    QString htmlTitle = entry->title.toHtmlEscaped();
+
+                    htmlTitle.replace(' ', "&nbsp;").replace('-', "&#8209;");  // repleacement: prevent line break
+                    QString tooltip("<html><b>" + htmlTitle + "</b>");
+                    if (entry->getCachedLineNumber() > -1)
+                        tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+                    if (!entry->valid){
+                        tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(missingFileColor.name(), tr("File not found.")));
+                    }else{
+                        // show preview if file is loaded
+                        if(LatexDocument *doc=entry->document){
+                            QString fileName=entry->title;
+                            fileName=doc->getAbsoluteFilePath(fileName,".tex");
+                            LatexDocument *incDoc = documents.findDocument(fileName);
+                            if(incDoc){
+                                tooltip += incDoc->exportAsHtml(incDoc->cursor(0, 0,qMin(5,incDoc->lines()-1)), true, true, 60);
+                            }
+                        }
+                    }
+                    text=tooltip;
+                }
+                if (text.isEmpty() && entry->getCachedLineNumber() > -1)
+                    text=entry->title + QString(tr(" (Line %1)").arg(entry->getRealLineNumber() + 1));
+                if(!text.isEmpty()){
+                    QToolTip::showText(helpEvent->globalPos(),text);
+                    event->accept();
                     return true;
                 }
             }
-		}
-		return false;
-	}
-	return false;
+        }
+
+
+    }
+    return false;
 }
-#endif
 
 typedef QPair<int, int> PairIntInt;
 
@@ -7877,7 +7697,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
 {
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!se) return;
-    const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO};
+    const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO,StructureEntry::SE_LABEL,StructureEntry::SE_MAGICCOMMENT};
     if(lineTypes.contains(se->type)){
         LatexEditorView *edView = se->document->getEditorView();
         if (edView) {
@@ -7885,10 +7705,17 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
         }
     }else{
         // unresolved include, go to open file
-        if(se->type==StructureEntry::SE_INCLUDE){
+        if(se->type == StructureEntry::SE_DOCUMENT_ROOT){
+            LatexEditorView *edView = se->document->getEditorView();
+            if (!edView) return;
+            editors->setCurrentEditor(edView);
+        }
+        if(se->type==StructureEntry::SE_INCLUDE || se->type==StructureEntry::SE_BIBTEX){
+            saveCurrentCursorToHistory();
+            QString defaultExt = se->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
             QString name=se->title;
             name.replace("\\string~",QDir::homePath());
-            openExternalFile(name);
+            openExternalFile(name,defaultExt,se->document);
         }
     }
 }
@@ -8799,7 +8626,16 @@ void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelT
 	LabelSearchQuery *query = new LabelSearchQuery(labelText);
 	searchResultWidget()->setQuery(query);
 	query->run(contextDoc);
-	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+    outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+}
+
+void Texstudio::findLabelUsagesFromAction()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    QString labelText = action->data().toString();
+    LatexDocument *doc = action->property("doc").value<LatexDocument *>();
+    findLabelUsages(doc, labelText);
 }
 
 SearchResultWidget *Texstudio::searchResultWidget()
@@ -8820,19 +8656,14 @@ void Texstudio::cursorPositionChanged()
 	if (currentLine == i) return;
 	currentLine = i;
 
-	LatexDocumentsModel *model = qobject_cast<LatexDocumentsModel *>(structureTreeView->model());
-	if (!model) return; //shouldn't happen
-
 	StructureEntry *newSection = currentEditorView()->document->findSectionForLine(currentLine);
 
-	model->setHighlightedEntry(newSection);
     if(newSection!=currentSection){
         StructureEntry *old=currentSection;
         currentSection=newSection;
         updateCurrentPosInTOC(nullptr,old);
     }
-	if (!mDontScrollToItem)
-		structureTreeView->scrollTo(model->highlightedEntry());
+
 	syncPDFViewer(currentEditor()->cursor(), false);
 }
 
@@ -9546,7 +9377,17 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 				doc->patchStructure(lineNr, 1);
 			}
 		}
-	}
+    }
+}
+
+
+void Texstudio::openExternalFileFromAction()
+{
+    QAction *act = qobject_cast<QAction *>(sender());
+    QString name = act->data().toString();
+    name.replace("\\string~",QDir::homePath());
+    if (!name.isEmpty())
+        openExternalFile(name);
 }
 
 void Texstudio::cursorHovered()
@@ -11123,10 +10964,20 @@ void Texstudio::paletteChanged(const QPalette &palette){
         searchpanel->updateIcon();
     }
 }
-
+/*!
+ * \brief open webpage with txs issue submit
+ */
 void Texstudio::openBugsAndFeatures() {
 	QDesktopServices::openUrl(QUrl("https://github.com/texstudio-org/texstudio/issues/"));
 }
+/*!
+    \brief call updateTOC & updateStructureLocally as only one call works with a signal
+ */
+void Texstudio::updateTOCs(){
+    updateTOC();
+    updateStructureLocally();
+}
+
 /*!
  * \brief Collect structure info from all subfiles and create a toplevel TOC
  *
@@ -11158,7 +11009,12 @@ void Texstudio::updateTOC(){
     QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
     // fill TOC, starting by current master/top
     LatexDocument *doc=documents.getRootDocumentForDoc();
-    if(!doc) return; // no root document
+    if(!doc){
+        // no root document
+        // clear TOC completely
+        topTOCTreeWidget->clear();
+        return;
+    }
     root->setText(0,doc->getFileInfo().fileName());
 
     StructureEntry *base=doc->baseStructure;
@@ -11182,10 +11038,15 @@ void Texstudio::updateTOC(){
  */
 void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected)
 {
-    if(!topTOCTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
+    if(!topTOCTreeWidget->isVisible() && !structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
+    bool tocMode=topTOCTreeWidget->isVisible();
     if(!root){
-        root=topTOCTreeWidget->topLevelItem(0);
+        if(topTOCTreeWidget->isVisible()){
+            root=topTOCTreeWidget->topLevelItem(0);
+        }else{
+            root=structureTreeWidget->topLevelItem(0);
+        }
     }
     if(!root) return;
     for(int i=0;i<root->childCount();++i){
@@ -11195,15 +11056,23 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
             item->setSelected(true);
         }
         if(old && se==old){
-            QBrush bck=item->data(0,Qt::UserRole+1).value<QColor>();
-            item->setBackground(0,bck);
-            //item->setBackground(0,palette().brush(QPalette::Base));
+            if(tocMode){
+                QBrush bck=item->data(0,Qt::UserRole+1).value<QColor>();
+                item->setBackground(0,bck);
+            }else{
+                item->setBackground(0,palette().brush(QPalette::Base));
+            }
         }
         if(currentSection && (se==currentSection)){
             item->setData(0,Qt::UserRole+1,item->background(0).color());
             item->setBackground(0,activeItemColor);
-            if (!mDontScrollToItem)
-                topTOCTreeWidget->scrollToItem(item);
+            if (!mDontScrollToItem){
+                if(tocMode){
+                    topTOCTreeWidget->scrollToItem(item);
+                }else{
+                    structureTreeWidget->scrollToItem(item);
+                }
+            }
         }
         updateCurrentPosInTOC(item,old);
     }
@@ -11259,7 +11128,7 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
             elementsAdded=true;
             item->setText(0,elem->title);
             item->setToolTip(0,tr("Document: ")+docName);
-            item->setIcon(0,documents.model->iconSection.value(elem->level));
+            item->setIcon(0,iconSection.value(elem->level));
             if(configManager.globalTOCbackgroundOptions>0){
                 item->setBackground(0,colors[currentColor]);
             }
@@ -11288,7 +11157,7 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
                 item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
                 item->setText(0,elem->title);
                 item->setToolTip(0,tr("Document: ")+docName);
-                item->setIcon(0,documents.model->iconInclude);
+                item->setIcon(0,QIcon(":/images/include.png"));
                 if(configManager.globalTOCbackgroundOptions>0){
                     item->setBackground(0,colors[currentColor]);
                 }
@@ -11325,17 +11194,65 @@ void Texstudio::syncCollapsed(QTreeWidgetItem *item){
     se->expanded=false;
 }
 
-void Texstudio::customMenuTOC(const QPoint &pos){
-    QTreeWidgetItem *item = topTOCTreeWidget->itemAt(pos);
+
+
+/*!
+ * \brief custom context menu for structureWidget
+ * \param pos mouse position when clicked
+ */
+void Texstudio::customMenuStructure(const QPoint &pos){
+    QTreeWidget* w = structureTreeWidget->isVisible() ? structureTreeWidget : topTOCTreeWidget ;
+    QTreeWidgetItem *item = w->itemAt(pos);
     if(!item) return;
     StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!contextEntry) return;
+    if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+        QMenu menu;
+        if (contextEntry->document != documents.masterDocument) {
+            menu.addAction(tr("Close document"), this, SLOT(closeDocument()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+            menu.addAction(tr("Set as explicit root document"), this, SLOT(toggleMasterDocument()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+            menu.addAction(tr("Open all related documents"), this, SLOT(openAllRelatedDocuments()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+            menu.addAction(tr("Close all related documents"), this, SLOT(closeAllRelatedDocuments()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        } else
+            menu.addAction(tr("Remove explicit root document role"), this, SLOT(toggleMasterDocument()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        if (configManager.structureShowSingleDoc) {
+            menu.addAction(tr("Show all open documents in this tree"), this, SLOT(toggleSingleDocMode()));
+        } else {
+            menu.addAction(tr("Show only current document in this tree"), this, SLOT(toggleSingleDocMode()));
+        }
+        /*menu.addSeparator();
+        menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        menu.addSeparator();
+        menu.addAction(tr("Expand Subitems"), this, SLOT(expandSubitems()));
+        menu.addAction(tr("Collapse Subitems"), this, SLOT(collapseSubitems()));
+        menu.addAction(tr("Expand all documents"), this, SLOT(expandAllDocuments()));
+        menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));*/
+        menu.addSeparator();
+        menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        //menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()));
+        menu.exec(w->mapToGlobal(pos));
+        return;
+    }
+    if (contextEntry->type == StructureEntry::SE_LABEL) {
+        QMenu menu;
+        menu.addAction(tr("Insert"), this, SLOT(insertTextFromAction()))->setData(contextEntry->title);
+        menu.addAction(tr("Insert as %1").arg("\\ref{...}"), this, SLOT(insertTextFromAction()))->setData(QString("\\ref{%1}").arg(contextEntry->title));
+        menu.addAction(tr("Insert as %1").arg("\\pageref{...}"), this, SLOT(insertTextFromAction()))->setData(QString("\\pageref{%1}").arg(contextEntry->title));
+        menu.addSeparator();
+        QAction *act = menu.addAction(tr("Find Usages"), this, SLOT(findLabelUsagesFromAction()));
+        act->setData(contextEntry->title);
+        act->setProperty("doc", QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        menu.exec(w->mapToGlobal(pos));
+        return;
+    }
     if (contextEntry->type == StructureEntry::SE_SECTION) {
         QMenu menu(this);
 
         StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(contextEntry);
         if (labelEntry) {
-            menu.addAction(tr("Insert Label"), structureTreeView, SLOT(insertTextFromAction()))->setData(labelEntry->title); // a bit indirect approach, the code should be refactored ...
+            menu.addAction(tr("Insert Label"), this, SLOT(insertTextFromAction()))->setData(labelEntry->title); // a bit indirect approach, the code should be refactored ...
             foreach (QString refCmd, configManager.referenceCommandsInContextMenu.split(",")) {
                 refCmd = refCmd.trimmed();
                 if (!refCmd.startsWith('\\')) continue;
@@ -11343,7 +11260,7 @@ void Texstudio::customMenuTOC(const QPoint &pos){
             }
             menu.addSeparator();
         } else {
-            menu.addAction(tr("Create Label"), structureTreeView, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(contextEntry));
+            menu.addAction(tr("Create Label"), this, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(contextEntry));
             menu.addSeparator();
         }
 
@@ -11355,17 +11272,104 @@ void Texstudio::customMenuTOC(const QPoint &pos){
         menu.addAction(tr("Indent Section"), this, SLOT(editIndentSection()));
         menu.addAction(tr("Unindent Section"), this, SLOT(editUnIndentSection()));
 
-        menu.exec(topTOCTreeWidget->mapToGlobal(pos));
+        menu.exec(w->mapToGlobal(pos));
         return;
     }
     if (contextEntry->type == StructureEntry::SE_INCLUDE) {
         QMenu menu;
-        menu.addAction(tr("Open Document"), structureTreeView, SLOT(openExternalFileFromAction()))->setData(QVariant::fromValue(contextEntry));
-        menu.addAction(tr("Go to Definition"), structureTreeView, SLOT(gotoLineFromAction()))->setData(QVariant::fromValue(contextEntry));
+        menu.addAction(tr("Open Document"), this, SLOT(openExternalFileFromAction()))->setData(QVariant::fromValue(contextEntry));
+        menu.addAction(tr("Go to Definition"), this, SLOT(gotoLineFromAction()))->setData(QVariant::fromValue(contextEntry));
 
-        menu.exec(topTOCTreeWidget->mapToGlobal(pos));
+        menu.exec(w->mapToGlobal(pos));
         return;
     }
+    if (contextEntry->type == StructureEntry::SE_MAGICCOMMENT) {
+        QMenu menu;
+        menu.addAction(tr("Go to Definition"), this, SLOT(gotoLineFromAction()))->setData(QVariant::fromValue(contextEntry));
+        menu.exec(w->mapToGlobal(pos));
+        return;
+    }
+
+}
+/*!
+ * \brief create label from structure/toc context menu
+ */
+void Texstudio::createLabelFromAction()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+    if (!entry || !entry->document) return;
+
+    // find editor and line nr
+    int lineNr = entry->getRealLineNumber();
+
+    mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
+    LatexEditorView *edView = entry->document->getEditorView();
+    QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
+    if (!edView) {
+        edView = load(entry->document->getFileName());
+        if (!edView) return;
+        mflags &= ~QEditor::Animated;
+        //entry is now invalid
+    }
+    REQUIRE(edView->getDocument());
+
+    if (lineNr < 0) return; //not found. (document was closed)
+
+    // find column position after structure command
+    QString lineText = edView->getDocument()->line(lineNr).text();
+    int pos = -1;
+    for (int i = 0; i < latexParser.structureDepth(); i++) {
+        foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
+            pos = lineText.indexOf(cmd);
+            if (pos >= 0) {
+                pos += cmd.length();
+                // workaround for starred commands: \section*{Cap}
+                // (may have been matched by unstarred version because there is no order in possibleCommands)
+                if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
+                break;
+            }
+        }
+        if (pos >= 0) break;
+    }
+    if (pos < 0) return; // could not find associated command
+
+    // advance pos behind options, and use title to guess a label
+    QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
+    QString label = "sec:";
+    if (args.length() > 0) {
+        QString title(args.at(0).value);
+        if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
+            label += makeLatexLabel(title);
+        }
+    }
+
+    gotoLine(lineNr, pos, edView, mflags);
+
+    insertTag(QString("\\label{%1}").arg(label), 7);
+    QDocumentCursor cur(edView->editor->cursor());
+    cur.movePosition(label.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+    edView->editor->setCursor(cur);
+}
+
+void Texstudio::closeDocument()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
+    else if (document == documents.masterDocument) structureContextMenuToggleMasterDocument(document);
+}
+
+void Texstudio::toggleMasterDocument()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    structureContextMenuToggleMasterDocument(document);
 }
 
 /*!
@@ -11375,7 +11379,13 @@ void Texstudio::customMenuTOC(const QPoint &pos){
 void Texstudio::editSectionCopy()
 {
     // called by action
-    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    QTreeWidgetItem *item = nullptr;
+    if(topTOCTreeWidget->isVisible()){
+        item = topTOCTreeWidget->currentItem();
+    }else{
+        item = structureTreeWidget->currentItem();
+    }
+    if(!item) return;
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
@@ -11400,7 +11410,13 @@ void Texstudio::editSectionCopy()
 void Texstudio::editSectionCut()
 {
     // called by action
-    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    QTreeWidgetItem *item = nullptr;
+    if(topTOCTreeWidget->isVisible()){
+        item = topTOCTreeWidget->currentItem();
+    }else{
+        item = structureTreeWidget->currentItem();
+    }
+    if(!item) return;
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
@@ -11424,7 +11440,13 @@ void Texstudio::editSectionCut()
  */
 void Texstudio::editSectionPasteBefore()
 {
-    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    QTreeWidgetItem *item = nullptr;
+    if(topTOCTreeWidget->isVisible()){
+        item = topTOCTreeWidget->currentItem();
+    }else{
+        item = structureTreeWidget->currentItem();
+    }
+    if(!item) return;
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
@@ -11444,7 +11466,13 @@ void Texstudio::editSectionPasteBefore()
  */
 void Texstudio::editSectionPasteAfter()
 {
-    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    QTreeWidgetItem *item = nullptr;
+    if(topTOCTreeWidget->isVisible()){
+        item = topTOCTreeWidget->currentItem();
+    }else{
+        item = structureTreeWidget->currentItem();
+    }
+    if(!item) return;
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
@@ -11476,7 +11504,13 @@ void Texstudio::editSectionPasteAfter()
  */
 void Texstudio::editIndentSection()
 {
-    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    QTreeWidgetItem *item = nullptr;
+    if(topTOCTreeWidget->isVisible()){
+        item = topTOCTreeWidget->currentItem();
+    }else{
+        item = structureTreeWidget->currentItem();
+    }
+    if(!item) return;
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
@@ -11515,7 +11549,13 @@ void Texstudio::editIndentSection()
  */
 void Texstudio::editUnIndentSection()
 {
-    QTreeWidgetItem *item = topTOCTreeWidget->currentItem();
+    QTreeWidgetItem *item = nullptr;
+    if(topTOCTreeWidget->isVisible()){
+        item = topTOCTreeWidget->currentItem();
+    }else{
+        item = structureTreeWidget->currentItem();
+    }
+    if(!item) return;
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
@@ -11543,6 +11583,358 @@ void Texstudio::editUnIndentSection()
         edView->editor->setCursor(cursor);
         edView->editor->insertText(line);
     }
+}
+
+/*! \brief move cursor to position given in calling action (TOC/structure context menu)
+ *
+ */
+void Texstudio::gotoLineFromAction()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    StructureEntry *entry = qvariant_cast<StructureEntry *>(action->data());
+
+    if (!entry || !entry->document) return;
+    LatexDocument *doc = entry->document;
+    QDocumentLineHandle *dlh = entry->getLineHandle();
+    int lineNr = -1;
+    if ((lineNr = doc->indexOf(dlh)) >= 0) {
+        gotoLine(entry->document, lineNr, 0);
+    }
+}
+
+/*!
+ * \brief Collect structure info from file and create a TOC
+ * This approach avoid the model/view which repeatedly led to crashes because the view component caches info from the actual model and is not kept up-to-date properly
+ *
+ */
+void Texstudio::updateStructureLocally(){
+    if(!structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
+    QTreeWidgetItem *root= nullptr;
+
+    LatexDocument *doc=documents.getCurrentDocument();
+    if(!doc){
+        // no root document
+        // clear TOC completely
+        topTOCTreeWidget->clear();
+        return;
+    }
+
+    if(configManager.structureShowSingleDoc){
+        root= structureTreeWidget->topLevelItem(0);
+        if(structureTreeWidget->topLevelItemCount()>1){
+            for(int i=1;structureTreeWidget->topLevelItemCount()>1;){
+                QTreeWidgetItem *item=structureTreeWidget->takeTopLevelItem(i);
+                delete item;
+            }
+        }
+    }else{
+        for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
+            QTreeWidgetItem *item = structureTreeWidget->topLevelItem(i);
+            StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+            if (!contextEntry){
+                structureTreeWidget->takeTopLevelItem(i);
+                --i;
+                continue;
+            }
+            if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+                if(contextEntry->document == doc){
+                    root=item;
+                }else{
+                    QFont font=item->font(0);
+                    font.setBold(false);
+                    item->setFont(0,font);
+                    if(!documents.documents.contains(contextEntry->document) || documents.hiddenDocuments.contains(contextEntry->document)){
+                        structureTreeWidget->takeTopLevelItem(i);
+                        --i;
+                    }
+                }
+            }else{
+                // remove invalid
+                structureTreeWidget->takeTopLevelItem(i);
+                --i;
+            }
+        }
+        // reorder documents
+        for(int i=0;i<documents.documents.length();++i){
+            bool found=false;
+            int j=i;
+            for(;j<structureTreeWidget->topLevelItemCount();++j){
+                QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
+                StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                if(contextEntry->document == documents.documents.value(i)){
+                    found=true;
+                    break;
+                }
+            }
+            if(found && i<j){
+                QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
+                structureTreeWidget->insertTopLevelItem(i,item);
+            }
+            if(!found){
+                QTreeWidgetItem *item=new QTreeWidgetItem();
+                LatexDocument *doc=documents.documents.value(i);
+                StructureEntry *base=doc->baseStructure;
+
+                item->setText(0,doc->getFileInfo().fileName());
+                item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+                structureTreeWidget->insertTopLevelItem(i,item);
+                if(doc==documents.getCurrentDocument()){
+                    root=item;
+                }
+            }
+        }
+    }
+    StructureEntry *selectedEntry=nullptr;
+    bool itemExpandedLABEL=false;
+    bool itemExpandedTODO=false;
+    bool itemExpandedMAGIC=false;
+    bool itemExpandedBIBLIO=false;
+    bool addToTopLevel=false;
+    if(!root){
+        root=new QTreeWidgetItem();
+        addToTopLevel=true;
+    }else{
+        // get current selected item, check only first and deduce structureEntry
+        QList<QTreeWidgetItem*> selected=structureTreeWidget->selectedItems();
+        if(!selected.isEmpty()){
+            QTreeWidgetItem *item=selected.first();
+            if(item){
+                selectedEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+            }
+        }
+        // remove all item in topTOC but keep itemTODO
+        for(int i=0;i<root->childCount();++i){
+            QTreeWidgetItem *item=root->child(i);
+            if(item->data(0,Qt::UserRole+1).toString()=="TODO"){
+                itemExpandedTODO=item->isExpanded();
+            }
+            if(item->data(0,Qt::UserRole+1).toString()=="LABEL"){
+                itemExpandedLABEL=item->isExpanded();
+            }
+            if(item->data(0,Qt::UserRole+1).toString()=="MAGIC"){
+                itemExpandedMAGIC=item->isExpanded();
+            }
+            if(item->data(0,Qt::UserRole+1).toString()=="BIBLIO"){
+                itemExpandedBIBLIO=item->isExpanded();
+            }
+        }
+        QList<QTreeWidgetItem*> items=root->takeChildren();
+        qDeleteAll(items);
+    }
+    QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
+    // fill TOC, starting by current master/top
+
+
+    StructureEntry *base=doc->baseStructure;
+
+    root->setText(0,doc->getFileInfo().fileName());
+    root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+    QFont font=root->font(0);
+    font.setBold(true);
+    root->setFont(0,font);
+
+    QList<QTreeWidgetItem*> todoList;
+    QList<QTreeWidgetItem*> labelList;
+    QList<QTreeWidgetItem*> magicList;
+    QList<QTreeWidgetItem*> biblioList;
+    parseStructLocally(base,rootVector,&todoList,&labelList,&magicList,&biblioList);
+    if(addToTopLevel)
+        structureTreeWidget->addTopLevelItem(root);
+
+    if(!biblioList.isEmpty()){
+        QTreeWidgetItem *itemBIBLIO=new QTreeWidgetItem();
+        itemBIBLIO->setText(0,tr("BIBLIOGRAPHY"));
+        itemBIBLIO->setData(0,Qt::UserRole+1,"BIBLIO");
+        itemBIBLIO->insertChildren(0,biblioList);
+        root->insertChild(0,itemBIBLIO);
+        itemBIBLIO->setExpanded(itemExpandedBIBLIO);
+    }
+    if(!magicList.isEmpty()){
+        QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
+        itemTODO->setText(0,tr("MAGIC_COMMENTS"));
+        itemTODO->setData(0,Qt::UserRole+1,"MAGIC");
+        itemTODO->insertChildren(0,magicList);
+        root->insertChild(0,itemTODO);
+        itemTODO->setExpanded(itemExpandedMAGIC);
+    }
+    if(!todoList.isEmpty()){
+        QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
+        itemTODO->setText(0,tr("TODO"));
+        itemTODO->setData(0,Qt::UserRole+1,"TODO");
+        itemTODO->insertChildren(0,todoList);
+        root->insertChild(0,itemTODO);
+        itemTODO->setExpanded(itemExpandedTODO);
+    }
+    if(!labelList.isEmpty()){
+        QTreeWidgetItem *itemLABEL=new QTreeWidgetItem();
+        itemLABEL->setText(0,tr("LABELS"));
+        itemLABEL->setData(0,Qt::UserRole+1,"LABEL");
+        itemLABEL->insertChildren(0,labelList);
+        root->insertChild(0,itemLABEL);
+        itemLABEL->setExpanded(itemExpandedLABEL);
+    }
+
+    root->setExpanded(true);
+    root->setSelected(false);
+    updateCurrentPosInTOC(nullptr,nullptr,selectedEntry);
+}
+
+/*!
+ * \brief parse children of a structure entry se to collect structure data
+ * This function parses only the specific document, not any sub-files (unlike parseStruct).
+ * For this also labels and magic comments are presented.
+ * \param se root structureentry
+ * \param rootVector
+ */
+void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
+
+    QString docName=se->document->getName();
+    foreach(StructureEntry* elem,se->children){
+        if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)){
+            parseStructLocally(elem,rootVector,todoList,labelList,magicList,biblioList);
+        }
+        if(todoList && (elem->type == StructureEntry::SE_TODO)){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            todoList->append(item);
+        }
+        if(labelList && (elem->type == StructureEntry::SE_LABEL)){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            labelList->append(item);
+        }
+        if(magicList && (elem->type == StructureEntry::SE_MAGICCOMMENT)){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            magicList->append(item);
+        }
+        if(biblioList && (elem->type == StructureEntry::SE_BIBTEX)){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            biblioList->append(item);
+        }
+        if(elem->type == StructureEntry::SE_SECTION){
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            item->setIcon(0,iconSection.value(elem->level));
+            rootVector[elem->level]->addChild(item);
+            item->setExpanded(elem->expanded);
+            // fill rootVector with item for subsequent lower level elements (which are children of item then)
+            for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
+                rootVector[i]=item;
+            }
+            parseStructLocally(elem,rootVector,todoList,labelList,magicList);
+        }
+        if(elem->type == StructureEntry::SE_INCLUDE){
+            LatexDocument *doc=elem->document;
+            QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
+            doc=documents.findDocumentFromName(fn);
+            if(!doc){
+                doc=documents.findDocumentFromName(fn+".tex");
+            }
+            QTreeWidgetItem * item=new QTreeWidgetItem();
+            item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
+            item->setText(0,elem->title);
+            if(!doc){
+                item->setForeground(0,Qt::red);
+            }
+            item->setIcon(0,QIcon(":/images/include.png"));
+            rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
+        }
+    }
+}
+
+void Texstudio::openAllRelatedDocuments()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    QSet<QString> checkedFiles, filesToCheck;
+    filesToCheck.insert(document->getFileName());
+
+    while (!filesToCheck.isEmpty()) {
+        QString f = *filesToCheck.begin();
+        filesToCheck.erase(filesToCheck.begin());
+        if (checkedFiles.contains(f)) continue;
+        checkedFiles.insert(f);
+        document = documents.findDocument(f);
+        if (!document) {
+            LatexEditorView *lev = load(f);
+            document = lev ? lev->document : nullptr;
+        }
+        if (!document) continue;
+        foreach (const QString &fn, document->includedFilesAndParent()) {
+            QString t = document->findFileName(fn);
+            if (!t.isEmpty()) filesToCheck.insert(t);
+        }
+    }
+}
+
+void Texstudio::closeAllRelatedDocuments()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    QList<LatexDocument *> l = document->getListOfDocs();
+
+    if (!saveFilesForClosing(l)) return;
+    foreach (LatexDocument *d, l) {
+        if (documents.documents.contains(d))
+            documents.deleteDocument(d); //this might hide the document
+        if (documents.hiddenDocuments.contains(d))
+            documents.deleteDocument(d, d->isHidden(), d->isHidden());
+    }
+}
+
+/*!
+ * \brief copy file name of document to clipboard
+ *
+ * Called from structure view
+ */
+void Texstudio::copyFileName()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    if (!clipboard) return;
+    clipboard->setText(document->getFileInfo().fileName());
+}
+
+/*!
+ * \brief copy file path of document to clipboard
+ *
+ * Called from structure view
+ */
+void Texstudio::copyFilePath()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    if (!clipboard) return;
+    clipboard->setText(document->getFileInfo().absoluteFilePath());
+}
+
+/*!
+ * \brief toggle single/multiple documents view in structureWidget
+ */
+
+void Texstudio::toggleSingleDocMode()
+{
+    bool mode = configManager.structureShowSingleDoc;
+    configManager.structureShowSingleDoc= !mode;
+    updateStructureLocally();
 }
 
 

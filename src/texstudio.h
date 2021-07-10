@@ -153,9 +153,12 @@ private:
 	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
 
-	StructureTreeView *structureTreeView;
+    //StructureTreeView *structureTreeView;
+    QTreeWidget *structureTreeWidget;
     QTreeWidget *topTOCTreeWidget;
 	LatexParser latexParser;
+
+    QVector<QIcon> iconSection;
 public:
 	LatexDocuments documents;
 
@@ -221,18 +224,32 @@ private:
 	void linkToEditorSlot(QAction *act, const char *slot, const QList<QVariant> &args);
 
     bool parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited=nullptr, QList<QTreeWidgetItem *> *todoList=nullptr, int currentColor=0);
+    void parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList=nullptr, QList<QTreeWidgetItem *> *labelList=nullptr, QList<QTreeWidgetItem *> *magicList=nullptr, QList<QTreeWidgetItem *> *biblioList=nullptr);
 private slots:
+    void updateTOCs();
+
     void updateTOC();
     void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr,StructureEntry *selected=nullptr);
     void syncExpanded(QTreeWidgetItem *item);
     void syncCollapsed(QTreeWidgetItem *item);
-    void customMenuTOC(const QPoint &pos);
     void editSectionCopy();
     void editSectionCut();
     void editSectionPasteAfter();
     void editSectionPasteBefore();
     void editIndentSection();
     void editUnIndentSection();
+    void gotoLineFromAction();
+    void openAllRelatedDocuments();
+    void closeAllRelatedDocuments();
+    void toggleMasterDocument();
+    void closeDocument();
+    void copyFileName();
+    void copyFilePath();
+    void toggleSingleDocMode();
+
+    void updateStructureLocally();
+    void customMenuStructure(const QPoint &pos);
+    void createLabelFromAction();
 
 	void relayToEditorSlot();
 	void relayToOwnSlot();
@@ -308,6 +325,7 @@ private slots:
 	void declareConflictResolved();
 protected slots:
     void openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = nullptr); // signaled by latexViewer to open specific file
+    void openExternalFileFromAction();
 
 	void editUndo(); ///< undo changes in text editor
 	void editRedo(); ///< redo changes in text editor
@@ -343,6 +361,7 @@ protected slots:
 	void editInsertRefToPrevLabel(const QString &refCmd = "\\ref");
 	void runSearch(SearchQuery *query);
 	void findLabelUsages(LatexDocument *doc, const QString &labelText);
+    void findLabelUsagesFromAction();
 	SearchResultWidget *searchResultWidget();
 
 	void findWordRepetions();
@@ -369,16 +388,8 @@ protected slots:
 	void editorTabMoved(int from, int to);
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 
-	void getExpandedStructureEntries(const QModelIndex &index, QSet<QString> &expandedEntryTags, QString baseTag = QString());
-	void expandStructureEntries(const QModelIndex index, const QSet<QString> &expandedEntryTags, QString baseTag = QString());
     void updateStructure(bool initial = false, LatexDocument *doc = nullptr, bool hidden = false);
-	void showStructure();
-	void clickedOnStructureEntry(const QModelIndex &index);
-	void structureContextMenuCloseDocument(LatexDocument *document);
 	void structureContextMenuToggleMasterDocument(LatexDocument *document);
-	void structureContextMenuOpenAllRelatedDocuments(LatexDocument *document);
-	void structureContextMenuCloseAllRelatedDocuments(LatexDocument *document);
-	void createLabelForStructureEntry(const StructureEntry *entry);
 
 	void editRemovePlaceHolders();
 	void editRemoveCurrentPlaceHolder();
@@ -395,6 +406,7 @@ protected slots:
 	void insertXmlTagFromToolButtonAction();
 	void callToolButtonAction();
 	void insertFromAction();
+    void insertTextFromAction();
     void insertFromTagList(QListWidgetItem *item);
 	void insertBib();
 	void closeEnvironment();
@@ -614,12 +626,8 @@ protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
-#ifdef Q_OS_WIN
+
     bool eventFilter(QObject *obj, QEvent *event);
-#endif
-#if (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
-	bool eventFilter(QObject *obj, QEvent *event);
-#endif
 
 	bool mCompleterNeedsUpdate;
 

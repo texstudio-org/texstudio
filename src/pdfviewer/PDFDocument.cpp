@@ -632,7 +632,7 @@ PDFWidget::~PDFWidget()
  */
 void PDFWidget::delayedUpdate() {
 
-    int overScale = devicePixelRatio();
+    qreal overScale = devicePixelRatio();
 
     qreal newDpi = dpi * scaleFactor;
     QRect newRect = rect();
@@ -723,7 +723,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	drawFrame(&painter);
 
 	qreal newDpi = dpi * scaleFactor;
-	int overScale = painter.device()->devicePixelRatio();
+
+    qreal overScale = painter.device()->devicePixelRatio();
 
 	QRect newRect = rect();
 	PDFDocument *doc = getPDFDocument();

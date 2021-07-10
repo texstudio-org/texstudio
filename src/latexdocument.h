@@ -320,14 +320,14 @@ class LatexDocuments: public QObject
 	Q_OBJECT
 
 public:
-	LatexDocumentsModel *model; ///< reference to latexmodel which generates the structure information for treeview
+    //LatexDocumentsModel *model; ///< reference to latexmodel which generates the structure information for treeview
 	LatexDocument *masterDocument; ///< master/root document if it is set (in automatic mode ==NULL)
 	LatexDocument *currentDocument; ///< current edited document
 	QList<LatexDocument *> documents; ///< list of open documents
 	QList<LatexDocument *> hiddenDocuments; ///< list of open documents with no visible editor
 
 	LatexDocuments();
-	~LatexDocuments();
+
 	void addDocument(LatexDocument *document, bool hidden = false);
 	void deleteDocument(LatexDocument *document, bool hidden = false, bool purge = false);
 	void move(int from, int to);
@@ -366,7 +366,6 @@ public:
 	//QSet<QString> allBibTeXIds;
 	void updateBibFiles(bool updateFiles = true);
 
-	void updateStructure();
 	void updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs = true, bool updateCompleterNow = false);
 
 	bool showLineNumbersInStructure;
