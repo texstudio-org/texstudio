@@ -11056,15 +11056,16 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
             item->setSelected(true);
         }
         if(old && se==old){
-            if(tocMode){
-                QBrush bck=item->data(0,Qt::UserRole+1).value<QColor>();
+            bool hasColor=item->data(0,Qt::UserRole+1).isValid();
+            QBrush bck=item->data(0,Qt::UserRole+1).value<QBrush>();
+            if(tocMode || hasColor){
                 item->setBackground(0,bck);
             }else{
                 item->setBackground(0,palette().brush(QPalette::Base));
             }
         }
         if(currentSection && (se==currentSection)){
-            item->setData(0,Qt::UserRole+1,item->background(0).color());
+            item->setData(0,Qt::UserRole+1,item->background(0));
             item->setBackground(0,activeItemColor);
             if (!mDontScrollToItem){
                 if(tocMode){
@@ -11788,6 +11789,8 @@ void Texstudio::updateStructureLocally(){
  * \param rootVector
  */
 void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
+    static const QColor beyondEndColor(255, 170, 0);
+    static const QColor inAppendixColor(200, 230, 200);
 
     QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
@@ -11825,6 +11828,8 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
             item->setIcon(0,iconSection.value(elem->level));
             rootVector[elem->level]->addChild(item);
             item->setExpanded(elem->expanded);
+            if (documents.markStructureElementsInAppendix && elem->hasContext(StructureEntry::InAppendix)) item->setBackground(0,inAppendixColor);
+            if (documents.markStructureElementsBeyondEnd && elem->hasContext(StructureEntry::BeyondEnd)) item->setBackground(0,beyondEndColor);
             // fill rootVector with item for subsequent lower level elements (which are children of item then)
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
