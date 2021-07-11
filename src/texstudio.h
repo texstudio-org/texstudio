@@ -246,6 +246,7 @@ private slots:
     void copyFileName();
     void copyFilePath();
     void toggleSingleDocMode();
+    StructureEntry *labelForStructureEntry(const StructureEntry *entry);
 
     void updateStructureLocally();
     void customMenuStructure(const QPoint &pos);

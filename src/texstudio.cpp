@@ -7411,7 +7411,7 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
                     QString tooltip("<html><b>" + htmlTitle + "</b>");
                     if (entry->getCachedLineNumber() > -1)
                         tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
-                    StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
+                    StructureEntry *se = labelForStructureEntry(entry);
                     if (se)
                         tooltip.append("<br><i>" + tr("Label") + "</i>: " + se->title);
                     if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd)){
@@ -11253,7 +11253,7 @@ void Texstudio::customMenuStructure(const QPoint &pos){
     if (contextEntry->type == StructureEntry::SE_SECTION) {
         QMenu menu(this);
 
-        StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(contextEntry);
+        StructureEntry *labelEntry = labelForStructureEntry(contextEntry);
         if (labelEntry) {
             menu.addAction(tr("Insert Label"), this, SLOT(insertTextFromAction()))->setData(labelEntry->title); // a bit indirect approach, the code should be refactored ...
             foreach (QString refCmd, configManager.referenceCommandsInContextMenu.split(",")) {
@@ -11944,5 +11944,31 @@ void Texstudio::toggleSingleDocMode()
     updateStructureLocally();
 }
 
+/*!
+ Returns an associated SE_LABEL entry for a structure element if one exists, otherwise 0.
+ TODO: currently association is checked, by checking, if the label is on the same line or on the next.
+ This is not necessarily correct. It fails if:
+  - there are multiple labels on one line (always the first label is chosen)
+  - the label is more than one line after the entry (label not detected)
+*/
+StructureEntry* Texstudio::labelForStructureEntry(const StructureEntry *entry)
+{
+    REQUIRE_RET(entry && entry->document, nullptr );
+    QDocumentLineHandle *dlh = entry->getLineHandle();
+    if (!dlh) return nullptr;
+    QDocumentLineHandle *nextDlh = entry->document->line(entry->getRealLineNumber() + 1).handle();
+    StructureEntryIterator iter(entry->document->baseStructure);
+
+    while (iter.hasNext()) {
+        StructureEntry *se = iter.next();
+        if (se->type == StructureEntry::SE_LABEL) {
+            QDocumentLineHandle *labelDlh = se->getLineHandle();
+            if (labelDlh == dlh || labelDlh == nextDlh) {
+                return se;
+            }
+        }
+    }
+    return nullptr;
+}
 
 /*! @} */
