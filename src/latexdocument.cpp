@@ -1847,18 +1847,18 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
                     currentDocument = nullptr;
 		}
 
-		if (n > 1) { // don't remove document, stays hidden instead
-			hideDocInEditor(document->getEditorView());
-                        if(masterDocument && documents.count()==1){
-                            // special check if masterDocument, but document is not visible
-                            LatexDocument *doc=documents.first();
-                            if(!doc->getEditorView()){
-                                // no view left -> purge
-                                deleteDocument(masterDocument);
-                            }
-                        }
-			return;
-		}
+        if (n > 1) { // don't remove document, stays hidden instead
+            hideDocInEditor(document->getEditorView());
+            if(masterDocument && documents.count()==1){
+                // special check if masterDocument, but document is not visible
+                LatexDocument *doc=documents.first();
+                if(!doc->getEditorView()){
+                    // no view left -> purge
+                    deleteDocument(masterDocument);
+                }
+            }
+            return;
+        }
 		delete view;
 		delete document;
 	} else {
