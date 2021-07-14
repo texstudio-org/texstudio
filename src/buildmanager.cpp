@@ -399,7 +399,7 @@ QString BuildManager::guessTerminalExternal(void)
 
 void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands)
 {
-#ifdef Q_OS_MAC
+#if defined(Q_OS_MAC) && QT_VERSION_MAJOR<6
 	if (QSysInfo::MacintoshVersion == QSysInfo::MV_10_11) {
 
 		ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
