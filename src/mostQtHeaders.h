@@ -10,7 +10,7 @@
 #ifdef __cplusplus 
 
 #include "modifiedQObject.h"
-
+#include <memory>
 #include <QAbstractItemDelegate>
 #include <QAbstractItemModel>
 #include <QAbstractListModel>
