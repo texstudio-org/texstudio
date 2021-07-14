@@ -2816,8 +2816,11 @@ void LatexEditorView::sortSelectedLines(LineSorting sorting, Qt::CaseSensitivity
 
 	if (sorting == SortAscending || sorting == SortDescending)
 		text.sort(caseSensitivity);
-	else if (sorting == SortRandomShuffle)
-		std::random_shuffle(text.begin(), text.end());
+    else if (sorting == SortRandomShuffle){
+        std::random_device rd;
+        std::mt19937 g(rd());
+        std::shuffle(text.begin(), text.end(),g);
+    }
 	if (sorting == SortDescending)
 		std::reverse(text.begin(), text.end());
 	if (removeDuplicates)
