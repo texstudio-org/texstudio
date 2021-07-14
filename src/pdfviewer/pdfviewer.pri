@@ -46,7 +46,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
         macx { # PATH to pkgconfig needs to be present in build PATH
             QT_CONFIG -= no-pkg-config
         }
-        poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
+        poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION} poppler-cpp
 
         CONFIG += link_pkgconfig
 
