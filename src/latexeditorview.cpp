@@ -52,6 +52,8 @@
 
 #include "bidiextender.h"
 
+#include <random>
+
 //------------------------------Default Input Binding--------------------------------
 /*!
  * \brief default keyboard binding for normal operation
