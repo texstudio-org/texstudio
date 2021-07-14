@@ -107,20 +107,22 @@ void PDFAnnotations::update()
 	if (!m_doc || !m_doc->widget()) return;
 
 	for (int pageNum = 0; pageNum < m_doc->widget()->realNumPages(); pageNum++) {
-		Poppler::Page *page = m_doc->popplerDoc()->page(pageNum);
+        std::unique_ptr<Poppler::Page> page{m_doc->popplerDoc()->page(pageNum)};
 		if (!page) break;
 		PDFAnnotationList annInPage;
-		foreach (Poppler::Annotation *pa, page->annotations()) {
+        for (auto &pa: page->annotations()) {
 			if (excludedTypes.contains(pa->subType())) {
-				delete pa;
 				continue;
 			}
-			PDFAnnotation *ann = new PDFAnnotation(QSharedPointer<Poppler::Annotation>(pa), pageNum, this);
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+            PDFAnnotation *ann = new PDFAnnotation(QSharedPointer<Poppler::Annotation>(pa.release()), pageNum, this);
+#else
+            PDFAnnotation *ann = new PDFAnnotation(QSharedPointer<Poppler::Annotation>(pa), pageNum, this);
+#endif
 			m_annotations.append(ann);
 			annInPage.append(ann);
 		}
 		m_annotationsInPage.append(annInPage);
-		delete page;
 	}
 }
 

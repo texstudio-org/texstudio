@@ -37,6 +37,7 @@
 #else
 #include "poppler-qt5.h"
 #endif
+#include "poppler-version.h"
 #include "qsynctex.h"
 
 #include "pdfrendermanager.h"

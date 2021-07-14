@@ -910,24 +910,33 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 		QPointF scaledPos;
 		int pageNr;
 		mapToScaledPosition(event->pos(), pageNr, scaledPos);
+
 		if (pageNr >= 0 && pageNr < realNumPages()) {
-			QScopedPointer<Poppler::Page> page(document->page(pageNr));
+            std::unique_ptr<Poppler::Page> page(document->page(pageNr));
 			if (page) {
 				// check for click in link
-				foreach (Poppler::Link *link, page->links()) {
+                for(auto &link: page->links()) {
 					if (link->linkArea().contains(scaledPos)) {
-						clickedLink = QSharedPointer<Poppler::Link>(link);
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+                        clickedLink = QSharedPointer<Poppler::Link>(link.release());
+#else
+                        clickedLink = QSharedPointer<Poppler::Link>(link);
+#endif
 						continue;  // no break because we have to delete all other links
 					}
-					delete link;
+                    //delete link;
 				}
 				if (!clickedLink) {
-					foreach (Poppler::Annotation *annon, page->annotations()) {
+                    for (auto &annon: page->annotations()) {
 						if (annon->boundary().contains(scaledPos)) {
-							clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+                            clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon.release());
+#else
+                            clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
+#endif
 							continue;  // no break because we have to delete all other links
 						}
-						delete annon;
+                        //delete annon;
 					}
 				}
 				if (!clickedLink && !clickedAnnotation) {
@@ -946,23 +955,26 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 						break;
 					}
 				}
-			}
-		}
+            }
+        }
 	} else {
 		QPointF scaledPos;
 		int pageNr;
 		mapToScaledPosition(event->pos(), pageNr, scaledPos);
 		if (pageNr >= 0 && pageNr < realNumPages()) {
-			QScopedPointer<Poppler::Page> page(document->page(pageNr));
-			if (page) {
-				foreach (Poppler::Annotation *annon, page->annotations()) {
+            std::unique_ptr<Poppler::Page> page(document->page(pageNr));
+            if (page) {
+                for (auto &annon: page->annotations()) {
 					if (annon->boundary().contains(scaledPos)) {
-						clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+                        clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon.release());
+#else
+                        clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
+#endif
 						continue; // no break because we have to delete all other links
 					}
-					delete annon;
 				}
-			}
+            }
 		}
 	}
 	event->accept();
@@ -1508,24 +1520,31 @@ void PDFWidget::updateCursor(const QPoint &pos)
 	int pageNr;
 	mapToScaledPosition(pos, pageNr, scaledPos);
 	if (pageNr < 0 || pageNr >= realNumPages()) return;
-	QScopedPointer<Poppler::Page> page(document->page(pageNr));
+    std::unique_ptr<Poppler::Page> page(document->page(pageNr));
 	if (!page)
 		return;
 
 	// check for link
 	bool done = false;
-	QList<Poppler::Link *> links = page->links();
-	foreach (Poppler::Link *link, links) {
+    for (auto &link: page->links()) {
 		// poppler's linkArea is relative to the page rect
 		if (link->linkArea().contains(scaledPos)) {
 			setCursor(Qt::PointingHandCursor);
 			QString tooltip;
 			if (link->linkType() == Poppler::Link::Browse) {
-				const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link);
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+                const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link.get());
+#else
+                const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link);
+#endif
                 Q_ASSERT(browse != nullptr);
 				tooltip = browse->url();
 			} else if (link->linkType() == Poppler::Link::Goto) {
-				const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link);
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+                const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link.get());
+#else
+                const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link);
+#endif
 				if (go->isExternal()) {
 					tooltip = go->fileName();
 				}
@@ -1538,11 +1557,9 @@ void PDFWidget::updateCursor(const QPoint &pos)
 			break;
 		}
 	}
-	while (!links.isEmpty()) delete links.takeFirst();
 	if (done) return;
 
-	QList<Poppler::Annotation *> annotations = page->annotations();
-	foreach (Poppler::Annotation *annot, annotations) {
+    for (auto &annot: page->annotations()) {
 		if (annot->boundary().contains(scaledPos)) {
 			switch (annot->subType()) {
 			case Poppler::Annotation::AMovie:
@@ -1563,7 +1580,6 @@ void PDFWidget::updateCursor(const QPoint &pos)
 			done = true;
 		}
 	}
-	while (!annotations.isEmpty()) delete annotations.takeFirst();
 	if (done) return;
 
 	updateCursor();
@@ -2297,7 +2313,7 @@ QRect PDFWidget::pageRect(int page) const
 	QRect grect;
 	if (realPageIndex == 0) grect = gridPageRect(page + getPageOffset());
 	else grect = gridPageRect(page - realPageIndex);
-	QScopedPointer<Poppler::Page> popplerPage(document->page(page));
+    std::unique_ptr<Poppler::Page> popplerPage(document->page(page));
 	if (!popplerPage)
 		return grect;
     int realSizeW =  qRound(dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().width());
@@ -2319,7 +2335,7 @@ QSizeF PDFWidget::maxPageSizeF() const
 	if (!maxPageSize.isValid()) {
 		for (int page = 0; page < docPages; page++) {
 			//if (page < 0 || page >= numPages()) continue;
-			QScopedPointer<Poppler::Page> popplerPage(document->page(page));
+            std::unique_ptr<Poppler::Page> popplerPage(document->page(page));
 			if (!popplerPage) break;
 			if (popplerPage->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(popplerPage->pageSizeF().width());
 			if (popplerPage->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(popplerPage->pageSizeF().height());
@@ -2363,16 +2379,14 @@ QRectF PDFWidget::horizontalTextRangeF()
 			progress.setValue(page); //this is like the fire nation
 			if (horizontalTextRange.isValid()) return horizontalTextRange;
 			if (progress.wasCanceled() || !document || !pdfdocument) break;
-			Poppler::Page *popplerPage = document->page(page);
+            std::unique_ptr<Poppler::Page> popplerPage{  document->page(page) };
 
 			if (!popplerPage) break;
-			foreach (Poppler::TextBox *textbox, popplerPage->textList()) {
+            for(auto &textbox: popplerPage->textList()) {
 				QRectF bb = textbox->boundingBox();
 				if (textXmin > bb.left()) textXmin = bb.left();
 				if (textXmax < bb.right()) textXmax = bb.right();
-				delete textbox;
 			}
-			delete popplerPage;
 		}
 		if (textXmax > textXmin) {
 			horizontalTextRange = QRectF(textXmin, 0, textXmax - textXmin, 1);
@@ -2587,7 +2601,7 @@ void PDFDocument::setupMenus(bool embedded)
     actionSynchronize_multiple_views->setCheckable(true);
     actionNoSynchronization=configManager->newManagedAction(menuroot,menuEdit, "noSynchronization", tr("Ignore for synchronization"), this, "", QList<QKeySequence>());
     actionNoSynchronization->setCheckable(true);
-  menuEdit->addSeparator();
+    menuEdit->addSeparator();
     actionInvertColors=configManager->newManagedAction(menuroot,menuEdit, "invertColors", tr("Invert Colors"), pdfWidget, SLOT(update()), QList<QKeySequence>());
     actionInvertColors->setCheckable(true);
     actionGrayscale=configManager->newManagedAction(menuroot,menuEdit, "grayscale", tr("Grayscale"), pdfWidget, SLOT(update()), QList<QKeySequence>());
@@ -3572,7 +3586,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 			statusBar()->showMessage(tr("Searching for") + QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx), 1000);
 
-			QScopedPointer<Poppler::Page> page(document->page(pageIdx));
+            std::unique_ptr<Poppler::Page> page(document->page(pageIdx));
 			if (!page)
 				return;
 
@@ -3725,7 +3739,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 
 		QString word;
 		if (!document.isNull() && pageIndex >= 0 && pageIndex < pdfWidget->realNumPages()) {
-			QScopedPointer<Poppler::Page> popplerPage(document->page(pageIndex));
+            std::unique_ptr<Poppler::Page> popplerPage(document->page(pageIndex));
 			if (popplerPage) {
 				word = popplerPage->text(QRectF(pos, pos).adjusted(-35, -10, 35, 10));
 				if (word.contains("\n")) word = word.split("\n")[word.split("\n").size() / 2];

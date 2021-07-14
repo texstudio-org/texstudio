@@ -115,7 +115,7 @@ void PDFRenderManager::stopRendering()
 	}
 	queueAdministration->stopped = true;
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
-	document.clear();
+    document.reset();
 	cachedNumPages = 0;
 }
 
@@ -147,10 +147,10 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	QFile f(fileName);
 	if (!f.open(QFile::ReadOnly)) {
 		error = FileOpenFailed;
-		return QSharedPointer<Poppler::Document>();
+        return QSharedPointer<Poppler::Document>();
 	}
 
-	Poppler::Document *docPtr;
+    std::unique_ptr<Poppler::Document> docPtr;
 
 	HiddenByteArray ownerPassword; //for permission settings (not needed?)
 	HiddenByteArray userPassword(userPasswordStr);
@@ -158,42 +158,54 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	try {
 
 		if (loadStrategy == DirectLoad) {
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
             docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
+#else
+            docPtr = std::unique_ptr<Poppler::Document>(Poppler::Document::load(fileName, ownerPassword, userPassword));
+#endif
 		} else {
 			// load data into buffer and check for completeness
 			queueAdministration->documentData = f.readAll();
 			if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
 			        !foreceLoad) {
 				error = FileIncomplete;
-				return QSharedPointer<Poppler::Document>();
+                return QSharedPointer<Poppler::Document>();
 			}
 			// create document
 			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000)) {
 				if (queueAdministration->documentData.size() < 1024)
 					queueAdministration->documentData.append(QByteArray(1024 - queueAdministration->documentData.size(), (char) 0));
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
 				docPtr = Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword);
+#else
+                docPtr = std::unique_ptr<Poppler::Document>(Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword));
+#endif
 			} else {
+#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
 				docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
+#else
+                docPtr = std::unique_ptr<Poppler::Document>(Poppler::Document::load(fileName, ownerPassword, userPassword));
+#endif
 			}
 		}
 	} catch (std::bad_alloc &) {
 		error = PopplerErrorBadAlloc;
-		return QSharedPointer<Poppler::Document>();
+        return QSharedPointer<Poppler::Document>();
 	} catch (...) {
 		error = PopplerErrorException;
-		return QSharedPointer<Poppler::Document>();
+        return QSharedPointer<Poppler::Document>();
 	}
 
 	if (!docPtr) {
 		error = PopplerError;
-		return QSharedPointer<Poppler::Document>();
+        return QSharedPointer<Poppler::Document>();
 	}
 
 	if (docPtr->isLocked()) {
-		delete docPtr;
+        //delete docPtr;
         docPtr = nullptr;
 		error = FileLocked;
-		return QSharedPointer<Poppler::Document>();
+        return QSharedPointer<Poppler::Document>();
 	}
 
 	cachedNumPages = docPtr->numPages();
@@ -216,7 +228,7 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 		docPtr->setPaperColor(paperColor);
 	}
 
-	document = QSharedPointer<Poppler::Document>(docPtr);
+    document = QSharedPointer<Poppler::Document>(docPtr.release());
 
 	for (int i = 0; i < queueAdministration->num_renderQueues; i++) {
 
@@ -232,12 +244,12 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 	error = NoError;
 
-	return document;
+    return document;
 }
 
 QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *rec, double xres, double yres, int x, int y, int w, int h, bool cache, bool priority, int delayTimeout, Poppler::Page::Rotation rotate)
 {
-	if (document.isNull()) return QPixmap();
+    if (document.isNull()) return QPixmap();
 	if (pageNr < 0 || pageNr >= cachedNumPages) return QPixmap();
 	RecInfo info;
 	info.obj = obj;
@@ -258,7 +270,7 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 	if (!priority && renderedPages.contains(pageNr))
 		enqueueCmd = false;
 	// return best guess/cached at once, refine later
-	Poppler::Page *page = document->page(pageNr);
+    std::unique_ptr<Poppler::Page> page(document->page(pageNr));
 	if (!page)
 		return QPixmap();
 	CachePixmap img;
@@ -379,7 +391,6 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 	}//else{
 	//	lstOfReceivers.insert(mCurrentTicket,info);
 	//}
-	delete page;
     return std::move(img);
 }
 

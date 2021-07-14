@@ -10,6 +10,7 @@
 #else
 #include "poppler-qt5.h"
 #endif
+#include "poppler-version.h"
 
 #include <QThread>
 #include <QSemaphore>
