@@ -216,7 +216,6 @@ private:
 
 	void initDefaultCommandNames();
 	static QString guessTerminalExternal(void);
-	void checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands);
 
     CommandInfo &registerCommand(const QString &id, const QString &basename, const QString &displayName, const QString &args, const QString &oldConfig = "", GuessCommandLineFunc guessFunc = nullptr, bool user = false);
 	CommandInfo &registerCommand(const QString &id, const QString &displayname, const QStringList &alternatives, const QString &oldConfig = "", const bool metaCommand = true, const QStringList simpleDescriptions = QStringList());

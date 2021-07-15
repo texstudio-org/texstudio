@@ -395,74 +395,6 @@ QString BuildManager::guessTerminalExternal(void)
 	return QString("<unknown>");
 }
 
-void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands)
-{
-#if defined(Q_OS_MAC) && QT_VERSION_MAJOR<6
-	if (QSysInfo::MacintoshVersion == QSysInfo::MV_10_11) {
-
-		ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
-		if (!config->getOption("Tools/CheckOSXElCapitanDeprecatedPaths", true).toBool()) {
-			return;
-		}
-		bool oldPathsFound = false;
-		foreach (const QString &id, commands) {
-			QString cmd = settings.value(id).toString();
-			if (cmd.contains("/usr/texbin/")) {
-				oldPathsFound = true;
-				break;
-			}
-		}
-		if (!oldPathsFound) {
-			return;
-		}
-		QString newPath = "/Library/TeX/texbin/";
-		QString info(tr("OSX 10.11 does not allow applications to write there anymore. Therefore,\n"
-		                "recent versions of MacTeX changed the bin path to /Library/TeX/texbin/\n"
-		                "\n"
-		                "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
-		                "%1?"));
-		if (QDir("/Library/TeX/texbin/").exists()) {
-			info = info.arg("/Library/TeX/texbin/");
-		} else if (QDir("/usr/local/texbin/").exists()) {
-			info = info.arg("/usr/local/texbin/");
-			newPath = "/usr/local/texbin/";
-		} else {
-			info = tr("OSX 10.11 does not allow applications to write there anymore. You may\n"
-			          "need to update MacTeX to version 2015.\n"
-			          "\n"
-			          "Afterwards, MacTeX programs will be located at /Library/TeX/texbin/\n"
-			          "\n"
-			          "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
-			          "/Library/TeX/texbin/?");
-		}
-		QMessageBox msgBox(QApplication::activeWindow());
-		msgBox.setWindowTitle(TEXSTUDIO);
-		msgBox.setIcon(QMessageBox::Warning);
-		msgBox.setText(tr("Some of your commands are refering to locations in /usr/texbin/"));
-		msgBox.setInformativeText(info);
-		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-		msgBox.setDefaultButton(QMessageBox::Yes);
-		emit hideSplash();  // make sure the message box not hidden by the splash screen
-		int ret = msgBox.exec();
-		if (ret == QMessageBox::Yes) {
-			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
-			foreach (const QString &id, commands) {
-				QString cmd = settings.value(id).toString();
-				if (cmd.contains("/usr/texbin/")) {
-					cmd.replace("/usr/texbin/", newPath);
-				}
-				settings.setValue(id, cmd);
-			}
-		} else if (ret == QMessageBox::No) {
-			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
-		}
-	}
-#else
-	Q_UNUSED(settings)
-	Q_UNUSED(commands)
-#endif
-}
-
 CommandInfo &BuildManager::registerCommand(const QString &id, const QString &basename, const QString &displayName, const QString &args, const QString &oldConfig, const GuessCommandLineFunc guessFunc, bool user )
 {
 	CommandInfo ci;
@@ -1380,8 +1312,6 @@ void BuildManager::readSettings(QSettings &settings)
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
 	QStringList cmds = settings.childKeys();
-
-	checkOSXElCapitanDeprecatedPaths(settings, cmds);
 
 	foreach (const QString &id, cmds) {
 		QString cmd = settings.value(id).toString();
