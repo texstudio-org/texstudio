@@ -127,7 +127,7 @@ xmlTagList XmlTagsListWidget::getTags(const QDomElement &element)
 	tagList.title = element.attribute("title");
 	tagList.id = element.attribute("id");
 	QDomElement child = element.firstChildElement("item");
-	QString txt, code, type;
+    QString txt, code;
 	while (!child.isNull()) {
 		code = child.attribute("tag");
 		code.replace("\\\\", "\\");
@@ -168,8 +168,8 @@ void XmlTagsListWidget::addListWidgetItems(const xmlTagList &tagList)
 	QListWidgetItem *item = new QListWidgetItem(this);
 	QString itemText = tr(qPrintable(tagList.title));
 	item->setText(itemText);
-	item->setBackground(QBrush(QColor("#447BCD")));
-	item->setForeground(QBrush(QColor("#ffffff")));
+    item->setBackground(QBrush(QColor(0x44,0x7B,0xCD)));
+    item->setForeground(QBrush(QColor(0xff,0xff,0xff)));
 	item->setFont(titleFont);
 	for (int i = 0; i < tagList.tags.size(); ++i) {
 		QListWidgetItem *item = new QListWidgetItem(this);
