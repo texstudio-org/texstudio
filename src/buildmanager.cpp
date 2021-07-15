@@ -1902,7 +1902,6 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 
 	QTextStream out(tf);
     if (outputCodec) {
-        out.setCodec(outputCodec);
         if (preambleFormatFile.isEmpty()) out << outputCodec->fromUnicode(preamble_mod);
         else out << outputCodec->fromUnicode("%&" + preambleFormatFile + "\n");
         out << outputCodec->fromUnicode("\n\\begin{document}\n" + source.text + "\n\\end{document}\n");
