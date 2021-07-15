@@ -3194,7 +3194,7 @@ void ConfigManager::removeCommand()
 	}
 
 	QWidget *nameWidget = userGridLayout->itemAtPosition(rows - 1, 0)->widget();
-	QString cmdID(getCmdID(nameWidget));
+    //QString cmdID(getCmdID(nameWidget));
 
 	int index = userGridLayout->indexOf(nameWidget);
 	while (index + 1 < userGridLayout->count()) {

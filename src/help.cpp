@@ -25,7 +25,6 @@ void Help::execTexdocDialog(const QStringList &packages, const QString &defaultP
 	}
 	if (dialog.exec()) {
 		viewTexdoc(dialog.selectedPackage());
-		QString package = dialog.selectedPackage();
 	}
 }
 /*!
@@ -43,7 +42,6 @@ void Help::viewTexdoc(QString package)
         QString answer=runTexdoc("--view "+package);
 	}
 }
-
 
 /*!
  * \brief check if system runs miktex
