@@ -20,8 +20,6 @@
 #define ON_NIX(x) x
 #endif
 
-const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-viewer";
-
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
@@ -1414,15 +1412,6 @@ void BuildManager::readSettings(QSettings &settings)
 			if (cmd.id == "quick") {
 				if (deprecatedQuickmode == 8)
 					cmd.commandLine = import;
-			} else if (cmd.id == "view-pdf-external") {
-				if (import.startsWith(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER)) {
-					import.remove(0, DEPRECACTED_TMX_INTERNAL_PDF_VIEWER.length() + 1);
-					cmd.commandLine = import;
-                    //commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
-				} else {
-					cmd.commandLine = import;
-                    //commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
-				}
 			} else cmd.commandLine = import;
 		}
 		if (!cmd.commandLine.isEmpty()) continue;
@@ -1456,30 +1445,7 @@ void BuildManager::readSettings(QSettings &settings)
 		}
 		deprecatedQuickmode = -2;
 	}
-	//import old
-	for (int i = 0; i < qMin(deprecatedUserToolNames.size(), deprecatedUserToolCommands.size()); i++)
-		if (!deprecatedUserToolNames[i].endsWith("!!!CONVERTED!!!")) {
-			QString cmd = deprecatedUserToolCommands[i];
-			cmd.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
-			CommandInfo &ci = registerCommand(QString("user%1").arg(i), "", deprecatedUserToolNames[i], "", "", nullptr, true);
-			ci.commandLine = cmd;
-			userToolOrder << ci.id;
-			userToolDisplayNames << ci.displayName;
-			deprecatedUserToolNames[i] = deprecatedUserToolNames[i] + "!!!CONVERTED!!!";
-		}
-	//import very old
-	for (int i = 1; i <= 5; i++) {
-		QString temp = settings.value(QString("User/Tool%1").arg(i), "").toString();
-		if (!temp.isEmpty()) {
-			temp.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
-			CommandInfo &ci = registerCommand(QString("userold%1").arg(i), "", settings.value(QString("User/ToolName%1").arg(i)).toString(), "", "", nullptr, true);
-			ci.commandLine  = temp;
-			userToolOrder << ci.id;
-			userToolDisplayNames << ci.displayName;
-			settings.remove(QString("User/Tool%1").arg(i));
-			settings.remove(QString("User/ToolName%1").arg(i));
-		}
-	}
+
 	int md = dvi2pngMode;
 #ifdef NO_POPPLER_PREVIEW
 	if (md == DPM_EMBEDDED_PDF)
@@ -1930,7 +1896,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	}
 	if (!p1) return; // command failed, not set ?
 	addLaTeXInputPaths(p1, addPaths);
-	connect(p1, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(latexPreviewCompleted(int)));
+    connect(p1, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
 	QTimer::singleShot(previewCompileTimeOut, p1, SLOT(kill()));
 
@@ -1941,9 +1907,9 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
         ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvipng/[--follow]", QFileInfo(ffn));
 		if (!p2) return; // command failed, not set ?
 		p1->setProperty("proc",QVariant::fromValue(p2));
-		connect(p1,SIGNAL(finished(int, QProcess::ExitStatus)),this,SLOT(PreviewLatexCompleted(int)));
+        connect(p1,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(PreviewLatexCompleted(int)));
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
-		connect(p2, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
+        connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
 }
@@ -2131,7 +2097,7 @@ void BuildManager::latexPreviewCompleted(int status)
 			// yields different dir separators depending on the context. This should be fixed (which direction?).
 			// Test (on win): switch preview between dvipng and pdflatex
         QString fn = parseExtendedCommandLine("?am).pdf", QFileInfo(processedFile)).constFirst();
-		if (QFileInfo(fn).exists()) {
+        if (QFileInfo::exists(fn)) {
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 		}
 	}
