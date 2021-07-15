@@ -468,7 +468,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
 
-	ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>").arg("<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
+    ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>","<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 	//pagequick
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
@@ -541,8 +541,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	Q_ASSERT(ui.pagesWidget->count() == ui.contentsWidget->count());
 
 	connect(ui.contentsWidget,
-	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem *)));
+            SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),
+            this, SLOT(changePage(QListWidgetItem*,QListWidgetItem*)));
 	ui.contentsWidget->setCurrentRow(lastUsedPage);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));

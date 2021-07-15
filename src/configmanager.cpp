@@ -861,7 +861,6 @@ QSettings *ConfigManager::readSettings(bool reread)
 		managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
 
 	//language
-	QString locale = language;
 	appTranslator = new QTranslator(this);
 	basicTranslator = new QTranslator(this);
 	loadTranslations(language);
@@ -1543,7 +1542,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	ShortcutDelegate delegate;
 	delegate.treeWidget = confDlg->ui.shortcutTree;
 	confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work
-    delegate.connect(confDlg->ui.shortcutTree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), &delegate, SLOT(treeWidgetItemClicked(QTreeWidgetItem*, int)));
+    delegate.connect(confDlg->ui.shortcutTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)), &delegate, SLOT(treeWidgetItemClicked(QTreeWidgetItem*,int)));
 
 	//custom menus
 	confDlg->menuParent = menuParent;
