@@ -3597,7 +3597,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 				p.addRect(lastSearchResult.selRect);
 
 				if (hasSyncData() && sync)
-					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
+                    syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
 				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p,true);
@@ -3782,7 +3782,7 @@ void PDFDocument::setCurrentFile(const QString &fileName)
 	curFileUnnormalized = fileName;
 	curFile = QFileInfo(fileName).canonicalFilePath();
 	QString niceFile = QFileInfo(curFile).fileName();
-	setWindowTitle(tr("%1[*] - %2").arg(niceFile).arg(tr(TEXSTUDIO)));
+    setWindowTitle(tr("%1[*] - %2").arg(niceFile,tr(TEXSTUDIO)));
 }
 
 PDFDocument *PDFDocument::findDocument(const QString &fileName)
@@ -4363,7 +4363,7 @@ void PDFDocument::setToolbarsVisible(bool visible)
 void PDFDocument::splitMergeTool()
 {
     PDFSplitMergeTool *psmt = new PDFSplitMergeTool(nullptr, fileName());
-	connect(psmt, SIGNAL(runCommand(QString, QFileInfo, QFileInfo, int)), SIGNAL(runCommand(QString, QFileInfo, QFileInfo, int)));
+    connect(psmt, SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)), SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)));
 	psmt->show();
 }
 
