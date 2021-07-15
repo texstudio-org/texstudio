@@ -59,11 +59,11 @@ void Editors::addTabWidget(TxsTabWidget *w)
 		if (w->isEmpty()) w->hide();
 	}
 	connect(w, SIGNAL(currentEditorChanged()), changes, SLOT(currentEditorChange()));
-	connect(w, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)), this, SLOT(onEditorChangeByTabClick(LatexEditorView *, LatexEditorView *)));
+    connect(w, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView*, LatexEditorView*)), this, SLOT(onEditorChangeByTabClick(LatexEditorView*, LatexEditorView*)));
 	connect(w, SIGNAL(activationRequested()), SLOT(activateTabWidgetFromSender()));
-	connect(w, SIGNAL(closeEditorRequested(LatexEditorView*)), SLOT(requestCloseEditor(LatexEditorView *)));
+    connect(w, SIGNAL(closeEditorRequested(LatexEditorView*)), SLOT(requestCloseEditor(LatexEditorView*)));
 	connect(w, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(tabBarContextMenu(QPoint)));
-	connect(w, SIGNAL(tabMoved(int, int)), SIGNAL(editorsReordered()));
+    connect(w, SIGNAL(tabMoved(int,int)), SIGNAL(editorsReordered()));
 }
 
 void Editors::addEditor(LatexEditorView *edView, bool asCurrent)

@@ -15,7 +15,7 @@
 CursorHistory::CursorHistory(LatexDocuments *docs) :
     QObject(docs), m_backAction(nullptr), m_forwardAction(nullptr), m_maxLength(30), m_insertionEnabled(true)
 {
-	connect(docs, SIGNAL(aboutToDeleteDocument(LatexDocument *)), this, SLOT(aboutToDeleteDoc(LatexDocument *)));
+    connect(docs, SIGNAL(aboutToDeleteDocument(LatexDocument*)), this, SLOT(aboutToDeleteDoc(LatexDocument*)));
 	currentEntry = history.end();
 }
 

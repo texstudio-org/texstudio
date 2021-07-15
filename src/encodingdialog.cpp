@@ -33,7 +33,7 @@ EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 	encodings->resizeRowsToContents();
 	encodings->setFocus();
 	label->setText(tr("Select Encoding for") + " \"" + QDir::toNativeSeparators(edit->fileName()) + "\"");
-	if (!QFileInfo(edit->fileName()).exists()) reload->setEnabled(false);
+    if (!QFileInfo::exists(edit->fileName())) reload->setEnabled(false);
 }
 
 void EncodingDialog::changeEvent(QEvent *e)
