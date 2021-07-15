@@ -959,12 +959,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             // command highlighing
             // this looks slow
             // TODO: optimize !
-            for(const Environment &env:activeEnv){
+            foreach(const Environment &env,activeEnv){
                 if(!env.dlh)
                     continue; //ignore "normal" env
                 if(env.name=="document")
                     continue; //ignore "document" env
-                for(const QString &key: mFormatList.keys()){
+                foreach(const QString &key, mFormatList.keys()){
                     if(key.at(0)=='#'){
                         QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
                         altEnvs<<env.name;
