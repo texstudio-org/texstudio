@@ -593,6 +593,14 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 tk.ignoreSpelling=true;
             }else{
                 tk.ignoreSpelling=false;
+                if(containsEnv(*ltxCommands, "math", activeEnv)){
+                    // in math env, highlight as math-text !
+                    Error elem;
+                    elem.type = ERR_highlight;
+                    elem.format=mFormatList["#mathText"];
+                    elem.range = QPair<int, int>(tk.start, tk.length);
+                    newRanges.append(elem);
+                }
             }
             if (!word.isEmpty() && !speller->check(word) ) {
                 if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
