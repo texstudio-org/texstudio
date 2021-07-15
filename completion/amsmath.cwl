@@ -47,8 +47,8 @@
 \cfrac[align]{%<num%:translatable%>}{%<den%:translatable%>}#m
 \cfrac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \dbinom{above}{below}#m
-\ddddot{text}#m
-\dddot{text}#m
+\ddddot{arg}#m
+\dddot{arg}#m
 \DeclareMathOperator{command}{definition}#nd
 \DeclareMathOperator*{command}{definition}#nd
 \dfrac{%<num%:translatable%>}{%<den%:translatable%>}#m
