@@ -1682,7 +1682,7 @@ QStringList LatexDocument::bibItems() const
 QList<CodeSnippet> LatexDocument::userCommandList() const
 {
 	QList<CodeSnippet> csl;
-	foreach (UserCommandPair cmd, mUserCommandList.values()) {
+    foreach (UserCommandPair cmd, mUserCommandList) {
 		csl.append(cmd.snippet);
 	}
     std::sort(csl.begin(),csl.end());
@@ -2897,7 +2897,7 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
  */
 void LatexDocument::updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting,QString prefix)
 {
-    QString line(QString("% %1 %2 = %3").arg(prefix).arg(name).arg(val));
+    QString line(QString("% %1 %2 = %3").arg(prefix,name,val));
 
 	StructureEntry *se = getMagicCommentEntry(name);
     QDocumentLineHandle *dlh = se ? se->getLineHandle() : nullptr;
@@ -2966,7 +2966,7 @@ bool LatexDocument::containsPackage(const QString &name)
 QStringList LatexDocument::containedPackages()
 {
 	QStringList packages;
-	foreach(QString elem, mUsepackageList.values()) {
+    foreach(QString elem, mUsepackageList) {
 		int i = elem.indexOf('#');
 		if (i >= 0) {
 			elem = elem.mid(i + 1);
