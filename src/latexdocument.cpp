@@ -1838,9 +1838,10 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 			}
 		}
 
-		int row = documents.indexOf(document);
+        /*int row = documents.indexOf(document);
 		//qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
+        */
 
 		documents.removeAll(document);
 		if (document == currentDocument) {
