@@ -1673,7 +1673,7 @@ int PDFWidget::getPageIndex()
 
 void PDFWidget::reloadPage(bool sync)
 {
-	QList<int> oldpages = pages;
+    //QList<int> oldpages = pages;
 	pages.clear();
     if (magnifier != nullptr)
 		magnifier->setPage(-1, 0, QRect());
@@ -2443,7 +2443,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
 
 
     watcher = new QFileSystemWatcher(this);
-    connect(watcher, SIGNAL(fileChanged(const QString &)), this, SLOT(reloadWhenIdle()));
+    connect(watcher, SIGNAL(fileChanged(const QString&)), this, SLOT(reloadWhenIdle()));
 
     if (!embedded) {
         int &x = globalConfig->windowLeft;
@@ -2902,7 +2902,7 @@ void PDFDocument::init(bool embedded)
 	connect(actionShrinkViewer, SIGNAL(triggered()), this , SLOT(shrink()));
 
 
-    connect(pdfWidget, SIGNAL(changedPage(int, bool)), this, SLOT(enablePageActions(int, bool)));
+    connect(pdfWidget, SIGNAL(changedPage(int,bool)), this, SLOT(enablePageActions(int,bool)));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
 	connect(actionFit_to_Text_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitTextWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
@@ -2931,7 +2931,7 @@ void PDFDocument::init(bool embedded)
     //connect(actionPresentation, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
 	connect(pdfWidget, SIGNAL(changedZoom(qreal)), this, SLOT(enableZoomActions(qreal)));
 	connect(pdfWidget, SIGNAL(changedScaleOption(autoScaleOption)), this, SLOT(adjustScaleActions(autoScaleOption)));
-	connect(pdfWidget, SIGNAL(syncClick(int, const QPointF &, bool)), this, SLOT(syncClick(int, const QPointF &, bool)));
+    connect(pdfWidget, SIGNAL(syncClick(int,const QPointF&,bool)), this, SLOT(syncClick(int,const QPointF&,bool)));
 
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
         new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()), Q_NULLPTR, Qt::WidgetShortcut);
@@ -2966,7 +2966,7 @@ void PDFDocument::init(bool embedded)
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
+    connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
 	dw = dwInfo = new PDFInfoDock(this);
 	dw->hide();
@@ -2974,12 +2974,12 @@ void PDFDocument::init(bool embedded)
 	menuShow->addAction(dw->toggleViewAction());
 	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
+    connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
 	dw = dwSearch = new PDFSearchDock(this);
 	if (embedded)
 		dw->hide();
-	connect(dwSearch, SIGNAL(search(bool, bool)),  SLOT(search(bool, bool)));
+    connect(dwSearch, SIGNAL(search(bool,bool)),  SLOT(search(bool,bool)));
     connect(dwSearch, SIGNAL(visibilityChanged(bool)),  SLOT(clearHightlight(bool)));
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
@@ -3004,8 +3004,8 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
-	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
+    connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+    connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(update()));
 
 	actionPage_Down = new QAction(tr("Page Down"), this);
 	actionPage_Down->setShortcut(QKeySequence::MoveToNextPage);
