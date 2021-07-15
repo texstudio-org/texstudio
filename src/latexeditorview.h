@@ -277,7 +277,11 @@ public slots:
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
 public:
 	enum LineSorting {SortAscending = 0, SortDescending, SortNone, SortRandomShuffle};
-public slots:
+
+    void checkForLinkOverlay(QDocumentCursor cursor);
+    bool hasLinkOverlay() const { return linkOverlay.isValid(); }
+    const LinkOverlay &getLinkOverlay() const { return linkOverlay; }
+
 	void sortSelectedLines(LineSorting sorting, Qt::CaseSensitivity caseSensitivity, bool completeLines, bool removeDuplicates);
 	void viewActivated();
 	void clearOverlays();
@@ -289,10 +293,6 @@ public slots:
 	QList<QPair<int, int> > getSelectedLineBlocks();
 	static QMultiMap<int, QDocumentCursor* > getSelectedLines(QList<QDocumentCursor>& cursors);
 	void alignMirrors();
-
-	void checkForLinkOverlay(QDocumentCursor cursor);
-	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
-	const LinkOverlay &getLinkOverlay() const { return linkOverlay; }
 
 private:
 	void setLinkOverlay(const LinkOverlay &overlay);

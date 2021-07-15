@@ -301,7 +301,7 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 				emit edView->gotoDefinition(cursor);
 				return true;
 			case LinkOverlay::FileOverlay:
-				edView->openFile(lo.text());
+                emit edView->openFile(lo.text());
 				return true;
 			case LinkOverlay::UrlOverlay:
 				if (!QDesktopServices::openUrl(lo.text())) {
@@ -312,7 +312,7 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 				edView->openPackageDocumentation(lo.text());
 				return true;
 			case LinkOverlay::BibFileOverlay:
-				edView->openFile(lo.text(), "bib");
+                emit edView->openFile(lo.text(), "bib");
 				return true;
 			case LinkOverlay::CiteOverlay:
 				emit edView->gotoDefinition(cursor);
@@ -653,16 +653,16 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 	connect(searchReplacePanel, SIGNAL(showExtendedSearch()), this, SIGNAL(showExtendedSearch()));
 
 	connect(lineMarkPanel, SIGNAL(lineClicked(int)), this, SLOT(lineMarkClicked(int)));
-	connect(lineMarkPanel, SIGNAL(toolTipRequested(int, int)), this, SLOT(lineMarkToolTip(int, int)));
-	connect(lineMarkPanel, SIGNAL(contextMenuRequested(int, QPoint)), this, SLOT(lineMarkContextMenuRequested(int, QPoint)));
-	connect(foldPanel, SIGNAL(contextMenuRequested(int, QPoint)), this, SLOT(foldContextMenuRequested(int, QPoint)));
+    connect(lineMarkPanel, SIGNAL(toolTipRequested(int,int)), this, SLOT(lineMarkToolTip(int,int)));
+    connect(lineMarkPanel, SIGNAL(contextMenuRequested(int,QPoint)), this, SLOT(lineMarkContextMenuRequested(int,QPoint)));
+    connect(foldPanel, SIGNAL(contextMenuRequested(int,QPoint)), this, SLOT(foldContextMenuRequested(int,QPoint)));
 	connect(editor, SIGNAL(hovered(QPoint)), this, SLOT(mouseHovered(QPoint)));
 	//connect(editor->document(),SIGNAL(contentsChange(int, int)),this,SLOT(documentContentChanged(int, int)));
-    connect(editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *,int)), this, SLOT(lineDeleted(QDocumentLineHandle *,int)));
+    connect(editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle*,int)), this, SLOT(lineDeleted(QDocumentLineHandle*,int)));
 
 	connect(doc, SIGNAL(spellingDictChanged(QString)), this, SLOT(changeSpellingDict(QString)));
-	connect(doc, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)), this, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)));
-	connect(doc, SIGNAL(bookmarkAdded(QDocumentLineHandle *, int)), this, SIGNAL(bookmarkAdded(QDocumentLineHandle *, int)));
+    connect(doc, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)), this, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)));
+    connect(doc, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)), this, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)));
 
 	//editor->setFlag(QEditor::CursorJumpPastWrap,false);
 	editor->disableAccentHack(config->hackDisableAccentWorkaround);
@@ -698,7 +698,7 @@ void LatexEditorView::updateReplamentList(const LatexParser &cmds, bool forceUpd
 {
 	QMap<QString, QString> replacementList;
 	bool differenceExists = false;
-	foreach (QString elem, cmds.possibleCommands["%replace"].values()) {
+    foreach (QString elem, cmds.possibleCommands["%replace"]) {
 		int i = elem.indexOf(" ");
 		if (i > 0) {
 			replacementList.insert(elem.left(i), elem.mid(i + 1));
@@ -2224,7 +2224,7 @@ void LatexEditorView::addReplaceActions(QMenu *menu, const QStringList &replacem
 {
 	if (!menu) return;
     QAction *before = nullptr;
-	if (!menu->actions().isEmpty()) before = menu->actions()[0];
+    if (!menu->actions().isEmpty()) before = menu->actions().constFirst();
 
 	foreach (const QString &text, replacements) {
 		QAction *replaceAction = new QAction(this);
@@ -2530,7 +2530,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				mText = tr("label defined multiple times!");
 			} else {
 				QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(value);
-				QDocumentLineHandle *mLine = result.keys().first();
+                QDocumentLineHandle *mLine = result.keys().constFirst();
 				int l = mLine->document()->indexOf(mLine);
 				LatexDocument *doc = qobject_cast<LatexDocument *> (editor->document());
 				if (mLine->document() != editor->document()) {
@@ -2560,7 +2560,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				type = tr("Beamer Theme");
 				type.replace(' ', "&nbsp;");
 			}
-			QString text = QString("%1:&nbsp;<b>%2</b>").arg(type).arg(value);
+            QString text = QString("%1:&nbsp;<b>%2</b>").arg(type,value);
 			if (latexPackageList->contains(preambel + value)) {
 				QString description = LatexRepository::instance()->shortDescription(value);
 				if (!description.isEmpty()) text += "<br>" + description;
@@ -2598,9 +2598,9 @@ void LatexEditorView::mouseHovered(QPoint pos)
 					// by bibitem defined citation
 					tooltip.clear();
 					QMultiHash<QDocumentLineHandle *, int> result = document->getBibItems(bibID);
-					if (result.keys().isEmpty())
+                    if (result.isEmpty())
 						return;
-					QDocumentLineHandle *mLine = result.keys().first();
+                    QDocumentLineHandle *mLine = result.keys().constFirst();
 					if (!mLine)
 						return;
 					int l = mLine->document()->indexOf(mLine);
@@ -2616,7 +2616,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 					if (!bibReader) {
 						bibReader = new bibtexReader(this);
 						connect(bibReader, SIGNAL(sectionFound(QString)), this, SLOT(bibtexSectionFound(QString)));
-						connect(this, SIGNAL(searchBibtexSection(QString, QString)), bibReader, SLOT(searchSection(QString, QString)));
+                        connect(this, SIGNAL(searchBibtexSection(QString,QString)), bibReader, SLOT(searchSection(QString,QString)));
 						bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
 					}
 					QString file = document->findFileFromBibId(bibID);

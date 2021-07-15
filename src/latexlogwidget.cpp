@@ -37,7 +37,7 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	errorTable->setColumnWidth(2, UtilsUi::getFmWidth(fm, "WarningW"));
 	errorTable->setColumnWidth(3, UtilsUi::getFmWidth(fm, "Line WWWWW"));
 	errorTable->setColumnWidth(4, 20 * UtilsUi::getFmWidth(fm, "w"));
-	connect(errorTable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(clickedOnLogModelIndex(const QModelIndex &)));
+    connect(errorTable, SIGNAL(clicked(const QModelIndex&)), this, SLOT(clickedOnLogModelIndex(const QModelIndex&)));
 
 	errorTable->horizontalHeader()->setStretchLastSection(true);
 	errorTable->setMinimumHeight(5 * rowHeight);
