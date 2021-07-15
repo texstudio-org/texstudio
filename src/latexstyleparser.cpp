@@ -371,7 +371,7 @@ bool LatexStyleParser::parseLineEnv(QStringList &results, const QString &line)
 	if (name.contains("@")) {
 		return true;
 	}
-	QString optionStr = rxEnv.cap(2);
+    //QString optionStr = rxEnv.cap(2);
 	//qDebug()<< name << ":"<< optionStr;
 	QString zw = "\\begin{" + name + "}#S";
 	if (!results.contains(zw))
@@ -532,7 +532,7 @@ bool LatexStyleParser::parseLineXparseCommand(QStringList &results, const QStrin
 	if (parseLineXparseArgs(xpArgs, line, pos + pRx->matchedLength()) == false) {
 		return false;
 	}
-	parseLineXparseOutputCwl(results, name, xpArgs.begin(), xpArgs.end(), 1);
+    parseLineXparseOutputCwl(results, name, xpArgs.constBegin(), xpArgs.constEnd(), 1);
 	return true;
 }
 
@@ -552,7 +552,7 @@ bool LatexStyleParser::parseLineXparseEnv(QStringList &results, const QString &l
 	if (parseLineXparseArgs(xpArgs, line, pos + rxComEnv.matchedLength()) == false) {
 		return false;
 	}
-	parseLineXparseOutputCwl(results, "\\begin{" + name + "}", xpArgs.begin(), xpArgs.end(), 1);
+    parseLineXparseOutputCwl(results, "\\begin{" + name + "}", xpArgs.constBegin(), xpArgs.constEnd(), 1);
 	QString zw = "\\end{" + name + "}#S";
 	if (!results.contains(zw)) {
 		results << zw;
