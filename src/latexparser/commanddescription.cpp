@@ -14,7 +14,7 @@ QString tokenTypesToString(const QList<Token::TokenType>& types)
 
 QString CommandDescription::toDebugString() const
 {
-    return QString("%1:%2:%3").arg(tokenTypesToString(optTypes)).arg(tokenTypesToString(argTypes)).arg(tokenTypesToString(bracketTypes));
+    return QString("%1:%2:%3").arg(tokenTypesToString(optTypes),tokenTypesToString(argTypes),tokenTypesToString(bracketTypes));
 }
 
 bool CommandDescription::operator==(const CommandDescription &v) const
