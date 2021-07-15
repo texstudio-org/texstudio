@@ -384,7 +384,7 @@ void ThesaurusDialog::addUserWordClicked()
 	else {
 		QString oldWord = searchWrdLe->text();
 		if (!sl.contains(oldWord)) {
-			if (UtilsUi::txsConfirm(tr("Do you want to add \"%1\" as synonym for \"%2\" or \"%3\"?").arg(oldWord).arg(word).arg(category))) {
+            if (UtilsUi::txsConfirm(tr("Do you want to add \"%1\" as synonym for \"%2\" or \"%3\"?").arg(oldWord,word,category))) {
 				sl.append(oldWord);
 				thesaurus->userCategories.insert(oldWord.toLower(), category);
 			}
