@@ -230,7 +230,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	grammarCheck = new GrammarCheck();
 	grammarCheck->moveToThread(&grammarCheckThread);
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
-	connect(grammarCheck, SIGNAL(checked(const void *, const void *, int, QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void *, const void *, int, QList<GrammarError>)));
+    connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
     connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
 	if (configManager.autoLoadChildren)
 		connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
@@ -270,8 +270,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	documents.markStructureElementsBeyondEnd = configManager.markStructureElementsBeyondEnd;
 	documents.markStructureElementsInAppendix = configManager.markStructureElementsInAppendix;
 	documents.showLineNumbersInStructure = configManager.showLineNumbersInStructure;
-	connect(&documents, SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
-	connect(&documents, SIGNAL(aboutToDeleteDocument(LatexDocument *)), SLOT(aboutToDeleteDocument(LatexDocument *)));
+    connect(&documents, SIGNAL(masterDocumentChanged(LatexDocument*)), SLOT(masterDocumentChanged(LatexDocument*)));
+    connect(&documents, SIGNAL(aboutToDeleteDocument(LatexDocument*)), SLOT(aboutToDeleteDocument(LatexDocument*)));
 
 	centralFrame = new QFrame(this);
 	centralFrame->setLineWidth(0);
@@ -297,12 +297,12 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	TxsTabWidget *rightEditors = new TxsTabWidget(this);
 	editors->addTabWidget(rightEditors);
 
-	connect(&documents, SIGNAL(docToHide(LatexEditorView *)), editors, SLOT(removeEditor(LatexEditorView *)));
+    connect(&documents, SIGNAL(docToHide(LatexEditorView*)), editors, SLOT(removeEditor(LatexEditorView*)));
 	connect(editors, SIGNAL(currentEditorChanged()), SLOT(currentEditorChanged()));
 	connect(editors, SIGNAL(listOfEditorsChanged()), SLOT(updateOpenDocumentMenu()));
 	connect(editors, SIGNAL(editorsReordered()), SLOT(onEditorsReordered()));
 	connect(editors, SIGNAL(closeCurrentEditorRequested()), this, SLOT(fileClose()));
-	connect(editors, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)), this, SLOT(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)));
+    connect(editors, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView*,LatexEditorView*)), this, SLOT(editorAboutToChangeByTabClick(LatexEditorView*,LatexEditorView*)));
 
 	cursorHistory = new CursorHistory(&documents);
 	bookmarks = new Bookmarks(&documents, this);
@@ -448,7 +448,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	connect(&previewFullCompileDelayTimer,SIGNAL(timeout()),this,SLOT(recompileForPreviewNow()));
 	previewFullCompileDelayTimer.setSingleShot(true);
 
-	connect(this, SIGNAL(infoFileSaved(QString, int)), this, SLOT(checkinAfterSave(QString, int)));
+    connect(this, SIGNAL(infoFileSaved(QString,int)), this, SLOT(checkinAfterSave(QString,int)));
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -575,7 +575,7 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 		list = new XmlTagsListWidget(this, ":/tags/" + tagFile);
 		list->setObjectName("tags/" + tagFile.left(tagFile.indexOf("_tags.xml")));
 		UtilsUi::enableTouchScrolling(list);
-		connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertXmlTag(QListWidgetItem *)));
+        connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertXmlTag(QListWidgetItem*)));
 		leftPanel->addWidget(list, id, text, iconName);
 		//(*list)->setProperty("mType",2);
 	} else leftPanel->setWidgetText(list, text);
@@ -608,7 +608,7 @@ void Texstudio::addMacrosAsTagList()
         list->addItem(item);
     }
     UtilsUi::enableTouchScrolling(list);
-    connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertFromTagList(QListWidgetItem *)),Qt::UniqueConnection);
+    connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertFromTagList(QListWidgetItem*)),Qt::UniqueConnection);
     if(addToPanel)
         leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
 }
@@ -681,7 +681,7 @@ void Texstudio::setupDockWidgets()
         QListWidget *bookmarksWidget = bookmarks->widget();
         bookmarks->setDarkMode(darkMode);
         connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
-        connect(bookmarks, SIGNAL(gotoLineRequest(int, int, LatexEditorView *)), this, SLOT(gotoLine(int, int, LatexEditorView *)));
+        connect(bookmarks, SIGNAL(gotoLineRequest(int,int,LatexEditorView*)), this, SLOT(gotoLine(int,int,LatexEditorView*)));
         leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
     } else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 
@@ -719,20 +719,20 @@ void Texstudio::setupDockWidgets()
         connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
         connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
         connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
-        connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument *, int, const SearchQuery *)), this, SLOT(jumpToSearchResult(QDocument *, int, const SearchQuery *)));
-        connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery *)), this, SLOT(runSearch(SearchQuery *)));
+        connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument*,int,const SearchQuery*)), this, SLOT(jumpToSearchResult(QDocument*,int,const SearchQuery*)));
+        connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery*)), this, SLOT(runSearch(SearchQuery*)));
 
-        connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable(const QString &, const PreviewSource &)));
+        connect(&buildManager, SIGNAL(previewAvailable(const QString&,const PreviewSource&)), this, SLOT(previewAvailable(const QString&,const PreviewSource&)));
         connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
         connect(&buildManager, SIGNAL(clearLogs()), SLOT(clearLogs()));
 
-        connect(&buildManager, SIGNAL(beginRunningCommands(QString, bool, bool, bool)), SLOT(beginRunningCommand(QString, bool, bool, bool)));
-        connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
-        connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
-        connect(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), SLOT(endRunningCommand(QString, bool, bool, bool)));
-        connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult *)), SLOT(viewLogOrReRun(LatexCompileResult *)));
-        connect(&buildManager, SIGNAL(runInternalCommand(QString, QFileInfo, QString)), SLOT(runInternalCommand(QString, QFileInfo, QString)));
-        connect(&buildManager, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequested(QString, QString *, bool *)));
+        connect(&buildManager, SIGNAL(beginRunningCommands(QString,bool,bool,bool)), SLOT(beginRunningCommand(QString,bool,bool,bool)));
+        connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)));
+        connect(&buildManager, SIGNAL(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)), SLOT(endRunningSubCommand(ProcessX*,QString,QString,RunCommandFlags)));
+        connect(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool,bool)), SLOT(endRunningCommand(QString,bool,bool,bool)));
+        connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(viewLogOrReRun(LatexCompileResult*)));
+        connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo,QString)), SLOT(runInternalCommand(QString,QFileInfo,QString)));
+        connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequested(QString,QString*,bool*)));
 
         addAction(outputView->toggleViewAction());
         QAction *temp = new QAction(this);
@@ -1328,7 +1328,7 @@ void Texstudio::setupMenus()
 	if (!highlightLanguageActions) {
 		highlightLanguageActions = new QActionGroup(this);
 		highlightLanguageActions->setExclusive(true);
-		connect(highlightLanguageActions, SIGNAL(triggered(QAction *)), this, SLOT(viewSetHighlighting(QAction *)));
+        connect(highlightLanguageActions, SIGNAL(triggered(QAction*)), this, SLOT(viewSetHighlighting(QAction*)));
 		connect(hlMenu, SIGNAL(aboutToShow()), this, SLOT(showHighlightingMenu()));
 		int id = 0;
 		foreach (const QString &s, m_languages->languages()) {
@@ -1840,25 +1840,25 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
     connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
     connect(edit->editor, SIGNAL(emitWordDoubleClicked()), this, SLOT(cursorHovered()));
     connect(edit, SIGNAL(showMarkTooltipForLogMessage(QList<int>)), this, SLOT(showMarkTooltipForLogMessage(QList<int>)));
-    connect(edit, SIGNAL(needCitation(const QString &)), this, SLOT(insertBibEntry(const QString &)));
+    connect(edit, SIGNAL(needCitation(const QString&)), this, SLOT(insertBibEntry(const QString&)));
     connect(edit, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
     connect(edit, SIGNAL(showImgPreview(QString)), this, SLOT(showImgPreview(QString)));
     connect(edit, SIGNAL(showPreview(QDocumentCursor)), this, SLOT(showPreview(QDocumentCursor)));
     connect(edit, SIGNAL(showFullPreview()), this, SLOT(recompileForPreview()));
     connect(edit, SIGNAL(gotoDefinition(QDocumentCursor)), this, SLOT(editGotoDefinition(QDocumentCursor)));
-    connect(edit, SIGNAL(findLabelUsages(LatexDocument *, QString)), this, SLOT(findLabelUsages(LatexDocument *, QString)));
+    connect(edit, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
     connect(edit, SIGNAL(syncPDFRequested(QDocumentCursor)), this, SLOT(syncPDFViewer(QDocumentCursor)));
     connect(edit, SIGNAL(openFile(QString)), this, SLOT(openExternalFile(QString)));
-    connect(edit, SIGNAL(openFile(QString, QString)), this, SLOT(openExternalFile(QString, QString)));
-    connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle *)), bookmarks, SLOT(bookmarkDeleted(QDocumentLineHandle *)));
-    connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle *, int)), bookmarks, SLOT(bookmarkAdded(QDocumentLineHandle *, int)));
+    connect(edit, SIGNAL(openFile(QString,QString)), this, SLOT(openExternalFile(QString,QString)));
+    connect(edit, SIGNAL(bookmarkRemoved(QDocumentLineHandle*)), bookmarks, SLOT(bookmarkDeleted(QDocumentLineHandle*)));
+    connect(edit, SIGNAL(bookmarkAdded(QDocumentLineHandle*,int)), bookmarks, SLOT(bookmarkAdded(QDocumentLineHandle*,int)));
     connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
     connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
     connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
     connect(edit, SIGNAL(openCompleter()), this, SLOT(normalCompletion()));
-    connect(edit, SIGNAL(openInternalDocViewer(QString, QString)), this, SLOT(openInternalDocViewer(QString, QString)));
+    connect(edit, SIGNAL(openInternalDocViewer(QString,QString)), this, SLOT(openInternalDocViewer(QString,QString)));
     connect(edit, SIGNAL(showExtendedSearch()), this, SLOT(showExtendedSearch()));
-    connect(edit, SIGNAL(execMacro(Macro, MacroExecContext)), this, SLOT(execMacro(Macro, MacroExecContext)));
+    connect(edit, SIGNAL(execMacro(Macro,MacroExecContext)), this, SLOT(execMacro(Macro,MacroExecContext)));
 
     connect(edit->editor, SIGNAL(fileReloaded()), this, SLOT(fileReloaded()));
     connect(edit->editor, SIGNAL(fileInConflictShowDiff()), this, SLOT(fileInConflictShowDiff()));
@@ -1868,7 +1868,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
         connect(edit->editor, SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
         connect(edit->editor, SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
     }
-    connect(edit, SIGNAL(linesChanged(QString, const void *, QList<LineInfo>, int)), grammarCheck, SLOT(check(QString, const void *, QList<LineInfo>, int)));
+    connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int)));
 
     connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(editorSpellerChanged(QString)));
     connect(edit->editor, SIGNAL(focusReceived()), edit, SIGNAL(focusReceived()));
@@ -1888,16 +1888,16 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     edit->setSpeller("<default>");
     //patch Structure
     //disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int))); // force order of contentsChange update
-    connect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
+    connect(edit->editor->document(), SIGNAL(contentsChange(int,int)), edit->document, SLOT(patchStructure(int,int)));
     //connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit,SLOT(documentContentChanged(int,int))); now directly called by patchStructure
-    connect(edit->editor->document(), SIGNAL(lineRemoved(QDocumentLineHandle *)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *)));
-    connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle *,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle *,int)));
+    connect(edit->editor->document(), SIGNAL(lineRemoved(QDocumentLineHandle*)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*)));
+    connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle*,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int)));
     connect(edit->document, SIGNAL(updateCompleter()), this, SLOT(completerNeedsUpdate()));
     connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
     connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
     connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
     connect(edit->document, SIGNAL(encodingChanged()), this, SLOT(updateStatusBarEncoding()));
-    connect(edit, SIGNAL(thesaurus(int, int)), this, SLOT(editThesaurus(int, int)));
+    connect(edit, SIGNAL(thesaurus(int,int)), this, SLOT(editThesaurus(int,int)));
     connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
     connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
     connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOCs()));
@@ -2150,7 +2150,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	if (!hidden) {
 		if (QFile::exists(f_real + ".recover.bak~")
 		        && QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
-			if (UtilsUi::txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString()).arg(f_real))) {
+            if (UtilsUi::txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString(),f_real))) {
 				QFile f(f_real + ".recover.bak~");
 				if (f.open(QFile::ReadOnly)) {
 					QByteArray ba = f.readAll();
@@ -2284,7 +2284,7 @@ void Texstudio::autoRunScripts()
 	int minor = vers.at(1).toInt();
 	if (!hasAtLeastQt(major, minor))
 		UtilsUi::txsWarning(tr("%1 has been compiled with Qt %2, but is running with Qt %3.\nPlease get the correct runtime library (e.g. .dll or .so files).\nOtherwise there might be random errors and crashes.")
-		           .arg(TEXSTUDIO).arg(QT_VERSION_STR).arg(qVersion()));
+                   .arg(TEXSTUDIO,QT_VERSION_STR,qVersion()));
 	runScripts(Macro::ST_TXS_START);
 }
 
@@ -3150,7 +3150,7 @@ void Texstudio::fileRecentList()
 
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 
-	connect(fileSelector.data(), SIGNAL(fileChoosen(QString, int, int, int)), SLOT(fileDocumentOpenFromChoosen(QString, int, int, int)));
+    connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
 	fileSelector.data()->setVisible(true);
 }
 
@@ -3164,7 +3164,7 @@ void Texstudio::viewDocumentListHidden()
 		hiddenDocs << d->getFileName();
 	fileSelector.data()->init(hiddenDocs, 0);
 
-	connect(fileSelector.data(), SIGNAL(fileChoosen(QString, int, int, int)), SLOT(fileDocumentOpenFromChoosen(QString, int, int, int)));
+    connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
 	fileSelector.data()->setVisible(true);
 }
 
@@ -3215,7 +3215,7 @@ void Texstudio::viewDocumentList()
 	}
 
 	fileSelector.data()->init(names, curIndex);
-	connect(fileSelector.data(), SIGNAL(fileChoosen(QString, int, int, int)), SLOT(viewDocumentOpenFromChoosen(QString, int, int, int)));
+    connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(viewDocumentOpenFromChoosen(QString,int,int,int)));
 	fileSelector.data()->setVisible(true);
 }
 
@@ -3780,7 +3780,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 	case Token::labelRefList: {
 		QMultiHash<QDocumentLineHandle *, int> defs = doc->getLabels(tk.getText());
 		if (defs.isEmpty()) return;
-		QDocumentLineHandle *target = defs.keys().first();
+        QDocumentLineHandle *target = defs.keys().constFirst();
 		LatexEditorView *edView = getEditorViewFromHandle(target);
 		if (!edView) return;
 		if (edView != currentEditorView()) {
@@ -3794,7 +3794,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		// try local \bibitems
 		QMultiHash<QDocumentLineHandle *, int> defs = doc->getBibItems(bibID);
 		if (!defs.isEmpty()) {
-			QDocumentLineHandle *target = defs.keys().first();
+            QDocumentLineHandle *target = defs.keys().constFirst();
 			bool found = currentEditorView()->gotoLineHandleAndSearchBibItem(target, bibID);
 			if (found) break;
 		}
@@ -4245,7 +4245,7 @@ void Texstudio::saveSettings(const QString &configName)
 #ifndef NO_POPPLER_PREVIEW
 	//pdf viewer embedded open ?
 	if (!PDFDocument::documentList().isEmpty()) {
-		PDFDocument *doc = PDFDocument::documentList().first();
+        PDFDocument *doc = PDFDocument::documentList().constFirst();
 		if (doc->embeddedMode) {
 			QList<int> sz = mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
 			int sum = 0;
@@ -4263,7 +4263,6 @@ void Texstudio::saveSettings(const QString &configName)
 	QSettings *config = configManager.saveSettings(configName);
 
 	config->beginGroup("texmaker");
-	QList<int> sizes;
 	if (!asProfile) {
 		if (isFullScreen()) {
 			config->setValue("MainWindowState", windowstate);
