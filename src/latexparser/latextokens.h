@@ -16,7 +16,7 @@ class QDocument;
 class EnumsTokenType
 {
 	Q_GADGET
-	Q_ENUMS(TokenType)
+    Q_ENUMS(TokenType)
 
 public:
 	enum TokenType {

@@ -18,17 +18,17 @@ public:
 	static QString quote(QString filename);
 	static QString makeCmd(QString action, QString args);
 
-	void commit(QString filename, QString message) const;
-	Status status(QString filename) const;
-	QStringList log(QString filename) const;
-	void createRepository(QString filename) const;
+    void commit(QString filename, QString message);
+    Status status(QString filename);
+    QStringList log(QString filename);
+    void createRepository(QString filename);
 
-    QString runGit(QString action, QString args) const;
-    QString runGit(QString action, QString path,QString args) const;
+    QString runGit(QString action, QString args);
+    QString runGit(QString action, QString path,QString args);
 
 signals:
-	void runCommand(const QString &commandline, QString *output) const;
-	void statusMessage(const QString &message) const;
+    void runCommand(const QString &commandline, QString *output);
+    void statusMessage(const QString &message);
 
 };
 

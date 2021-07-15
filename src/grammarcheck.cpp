@@ -38,7 +38,7 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 
         backend = new GrammarCheckLanguageToolJSON(this);
 
-        connect(backend, SIGNAL(checked(uint, int, QList<GrammarError>)), this, SLOT(backendChecked(uint, int, QList<GrammarError>)));
+        connect(backend, SIGNAL(checked(uint,int,QList<GrammarError>)), this, SLOT(backendChecked(uint,int,QList<GrammarError>)));
         connect(backend, SIGNAL(errorMessage(QString)),this,SIGNAL(errorMessage(QString)));
         connect(backend, SIGNAL(languageToolStatusChanged()),this,SLOT(updateLTStatus()));
     }
@@ -644,7 +644,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
         return;
     }
     javaProcess = new QProcess();
-    connect(javaProcess, SIGNAL(finished(int, QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
+    connect(javaProcess, SIGNAL(finished(int,QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
     javaProcess->start(quoteSpaces(javaPath),QStringList()<< "-cp" << quoteSpaces(ltPath) << ltArguments.split(" ")); // check sdm
@@ -671,7 +671,7 @@ void GrammarCheckLanguageToolJSON::check(uint ticket, uint subticket, const QStr
 {
     if (!nam) {
         nam = new QNetworkAccessManager();
-        connect(nam, SIGNAL(finished(QNetworkReply *)), SLOT(finished(QNetworkReply *)));
+        connect(nam, SIGNAL(finished(QNetworkReply*)), SLOT(finished(QNetworkReply*)));
     }
 
     REQUIRE(nam);

@@ -55,7 +55,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
     updateSettings();
 	SynChecker.start();
 
-    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle *, bool, int, int)), SLOT(checkNextLine(QDocumentLineHandle *, bool, int, int)), Qt::QueuedConnection);
+    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);
 }
 
 LatexDocument::~LatexDocument()
@@ -147,7 +147,7 @@ const QMultiHash<QDocumentLineHandle *, FileNamePair> &LatexDocument::mentionedB
 QStringList LatexDocument::listOfMentionedBibTeXFiles() const
 {
 	QStringList result;
-	foreach (const FileNamePair &fnp, mMentionedBibTeXFiles.values())
+    foreach (const FileNamePair &fnp, mMentionedBibTeXFiles)
 		result << fnp.absolute;
 	return result;
 }

@@ -34,7 +34,7 @@ QString GIT::makeCmd(QString action, QString args)
  * \param filename
  * \param message commit message
  */
-void GIT::commit(QString filename, QString message) const
+void GIT::commit(QString filename, QString message)
 {
     runGit("commit", "-m " + enquoteStr(message) + " " + quote(filename));
 }
@@ -44,7 +44,7 @@ void GIT::commit(QString filename, QString message) const
  * \param filename
  * \return
  */
-GIT::Status GIT::status(QString filename) const
+GIT::Status GIT::status(QString filename)
 {
     QString output = runGit("status -s", quote(filename));
     if (output.isEmpty()) return GIT::CheckedIn;
@@ -60,7 +60,7 @@ GIT::Status GIT::status(QString filename) const
  * \param filename
  * \return
  */
-QStringList GIT::log(QString filename) const
+QStringList GIT::log(QString filename)
 {
     const QString path = QFileInfo(filename).absolutePath();
     QString fn = QFileInfo(filename).fileName();
@@ -80,7 +80,7 @@ QStringList GIT::log(QString filename) const
  * \brief create a GIT repository
  * \param filename
  */
-void GIT::createRepository(QString filename) const
+void GIT::createRepository(QString filename)
 {
     const QString path = QFileInfo(filename).absolutePath();
     //setStatusMessageProcess(QString(" GIT create repo "));
@@ -92,7 +92,7 @@ void GIT::createRepository(QString filename) const
  * \param args
  * \return
  */
-QString GIT::runGit(QString action, QString args) const
+QString GIT::runGit(QString action, QString args)
 {
 	QString output;
     emit statusMessage(QString(" GIT %1 ").arg(action));
@@ -108,7 +108,7 @@ QString GIT::runGit(QString action, QString args) const
  * \return
  * This variant is specifically useful for git log as it can't handle absolute file paths
  */
-QString GIT::runGit(QString action,QString path, QString args) const
+QString GIT::runGit(QString action,QString path, QString args)
 {
     QString output;
     emit statusMessage(QString(" GIT %1 ").arg(action));

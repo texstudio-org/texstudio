@@ -16,9 +16,9 @@ public:
 
 signals:
 	void texdocAvailableReply(const QString &package, bool available, QString errorMessage);
-    void runCommand(const QString &commandline, QString *output) const;
-    void runCommandAsync(const QString &commandline, const char * returnCmd) const;
-    void statusMessage(const QString &message) const;
+    void runCommand(const QString &commandline, QString *output);
+    void runCommandAsync(const QString &commandline, const char * returnCmd);
+    void statusMessage(const QString &message);
 
 public slots:
 	void execTexdocDialog(const QStringList &packages, const QString &defaultPackage);
@@ -27,7 +27,7 @@ public slots:
     void texdocAvailableRequestFinished(int,QProcess::ExitStatus status);
 
 private:
-    QString runTexdoc(QString args) const;
+    QString runTexdoc(QString args);
     bool runTexdocAsync(QString args,const char * finishedCMD);
     int texDocSystem;
 };
