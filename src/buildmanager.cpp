@@ -20,7 +20,7 @@
 #define ON_NIX(x) x
 #endif
 
-static const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-viewer";
+const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-viewer";
 
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
@@ -89,7 +89,7 @@ void CommandInfo::setCommandLine(const QString &cmdString)
 		        ((unquote == baseName) ||
 		         (   (unquote.endsWith(QDir::separator() + baseName) || unquote.endsWith("/" + baseName))
 		             && (!unquote.contains(" ") || (!unquote.contains('"') && unquote != trimmed)) //spaces mean options, if not everything is quoted
-		             && (QFileInfo(unquote).exists())
+                     && (QFileInfo::exists(unquote))
 		         )
 		        )) {
 			commandLine = cmdString + " " + defaultArgs;

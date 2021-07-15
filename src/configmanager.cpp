@@ -3588,7 +3588,7 @@ void ConfigManager::linkOptionToObject(const void *optionStorage, QObject *objec
 	}
 	property->writeToObject(object);
 	object->setProperty("managedProperty", QVariant::fromValue<ManagedProperty *>(property));
-	connect(object, SIGNAL(destroyed(QObject *)), SLOT(managedOptionObjectDestroyed(QObject *)));
+    connect(object, SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
 	if (qobject_cast<QAction *>(object) || qobject_cast<QCheckBox *>(object) || qobject_cast<QToolButton *>(object))
 		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionBoolToggled()));
 }
