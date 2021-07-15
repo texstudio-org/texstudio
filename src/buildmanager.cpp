@@ -1848,8 +1848,11 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				REQUIRE(tf);
 				tf->open();
 				QTextStream out(tf);
-                //if (outputCodec) out.setCodec(outputCodec);
-				out << preamble_mod;
+                if (outputCodec) {
+                    out << outputCodec->fromUnicode(preamble_mod);
+                }else{
+                    out << preamble_mod;
+                }
 				tf->setAutoRemove(false);
 				tf->close();
 
@@ -1898,10 +1901,16 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	tf->open();
 
 	QTextStream out(tf);
-    //if (outputCodec) out.setCodec(outputCodec);
-	if (preambleFormatFile.isEmpty()) out << preamble_mod;
-	else out << "%&" << preambleFormatFile << "\n";
-	out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";
+    if (outputCodec) {
+        out.setCodec(outputCodec);
+        if (preambleFormatFile.isEmpty()) out << outputCodec->fromUnicode(preamble_mod);
+        else out << outputCodec->fromUnicode("%&" + preambleFormatFile + "\n");
+        out << outputCodec->fromUnicode("\n\\begin{document}\n" + source.text + "\n\\end{document}\n");
+    }else{
+        if (preambleFormatFile.isEmpty()) out << preamble_mod;
+        else out << "%&" << preambleFormatFile << "\n";
+        out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";
+    }
 	// prepare commands/filenames
 	QFileInfo fi(*tf);
 	QString ffn = fi.absoluteFilePath();
