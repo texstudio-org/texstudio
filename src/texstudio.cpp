@@ -4307,7 +4307,7 @@ void Texstudio::saveSettings(const QString &configName)
 	config->beginGroup("Editor Key Mapping New");
 	if (!keys.empty() || !config->childKeys().empty()) {
 		config->remove("");
-		QHash<QString, int>::const_iterator i = keys.begin();
+        QHash<QString, int>::const_iterator i = keys.constBegin();
 		while (i != keys.constEnd()) {
 			if (!i.key().isEmpty()) //avoid crash
 				config->setValue(i.key(), i.value());
@@ -5619,7 +5619,7 @@ bool Texstudio::runCommandAsync(const QString &commandline, const char * returnC
     QString finame = documents.getTemporaryCompileFileName();
     ProcessX *proc = buildManager.firstProcessOfDirectExpansion(commandline, QFileInfo(finame));
     setStatusMessageProcess(tr("  Running this command: ") + proc->getCommandLine());
-    connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), obj, returnCMD);
+    connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), obj, returnCMD);
     QString *buffer=new QString();
     proc->setStdoutBuffer(buffer);
     proc->startCommand();
@@ -5771,7 +5771,7 @@ bool Texstudio::checkProgramPermission(const QString &program, const QString &cm
 	                                "(a) Yes, allow the new command for this document (only if you trust this document)\n"
 	                                "(b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)\n"
 	                                "(c) No, do not use the command \"%3\" and run the default \"%2\" command"
-	                               ).arg(master ? master->getFileName() : "").arg(cmdId).arg(program),
+                                   ).arg(master ? master->getFileName() : "",cmdId,program),
 	                             tr("(a) allow for this document"),
 	                             tr("(b) allow for all documents"),
 	                             tr("(c) use the default command"), 0, 2);
@@ -5813,7 +5813,7 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 			bool bibFilesChanged = false;
 			foreach (const QString &bf, bibFiles) {
 				//qDebug() << bf << ": "<<QFileInfo(bf).lastModified()<<" "<<bblLastModified;
-				if (QFileInfo(bf).exists() && QFileInfo(bf).lastModified() > bblLastModified) {
+                if (QFileInfo::exists(bf) && QFileInfo(bf).lastModified() > bblLastModified) {
 					bibFilesChanged = true;
 					break;
 				}
@@ -5938,7 +5938,7 @@ void Texstudio::connectSubCommand(ProcessX *p, bool showStdoutLocally)
 void Texstudio::beginRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags)
 {
 	if (commandMain != subCommand)
-		setStatusMessageProcess(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName).arg(buildManager.getCommandInfo(subCommand).displayName));
+        setStatusMessageProcess(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName,buildManager.getCommandInfo(subCommand).displayName));
 	if (flags & RCF_COMPILES_TEX)
 		clearLogEntriesInEditors();
 	//outputView->resetMessages();
@@ -6887,7 +6887,7 @@ void Texstudio::generateAddtionalTranslations()
         // Tags
         QDir dir("tags");
         QStringList l_fn=dir.entryList({"*.xml"});
-        for(QString fn: l_fn){
+        for(const QString &fn: l_fn){
             QFile xmlFile3("tags/"+fn);
             xmlFile3.open(QIODevice::ReadOnly);
             xml.setContent(&xmlFile3);
@@ -7266,9 +7266,9 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
 	connect(pdfviewerWindow, SIGNAL(documentClosed()), SLOT(pdfClosed()));
 	connect(pdfviewerWindow, SIGNAL(triggeredQuit()), SLOT(fileExit()));
 	connect(pdfviewerWindow, SIGNAL(triggeredConfigure()), SLOT(generalOptions()));
-	connect(pdfviewerWindow, SIGNAL(syncSource(const QString &, int, bool, QString)), SLOT(syncFromViewer(const QString &, int, bool, QString)));
+    connect(pdfviewerWindow, SIGNAL(syncSource(const QString&,int,bool,QString)), SLOT(syncFromViewer(const QString&,int,bool,QString)));
 	connect(pdfviewerWindow, SIGNAL(focusEditor()), SLOT(focusEditor()));
-	connect(pdfviewerWindow, SIGNAL(runCommand(const QString &, const QFileInfo &, const QFileInfo &, int)), &buildManager, SLOT(runCommand(const QString &, const QFileInfo &, const QFileInfo &, int)));
+    connect(pdfviewerWindow, SIGNAL(runCommand(const QString&,const QFileInfo&,const QFileInfo&,int)), &buildManager, SLOT(runCommand(const QString&,const QFileInfo&,const QFileInfo&,int)));
 	connect(pdfviewerWindow, SIGNAL(triggeredClone()), SLOT(newPdfPreviewer()));
 
 	PDFDocument *from = qobject_cast<PDFDocument *>(sender());
@@ -7279,8 +7279,8 @@ QObject *Texstudio::newPdfPreviewer(bool embedded)
 
 	foreach (PDFDocument *doc, PDFDocument::documentList()) {
 		if (doc == pdfviewerWindow) continue;
-		connect(doc, SIGNAL(syncView(QString, QFileInfo, int)), pdfviewerWindow, SLOT(syncFromView(QString, QFileInfo, int)));
-		connect(pdfviewerWindow, SIGNAL(syncView(QString, QFileInfo, int)), doc, SLOT(syncFromView(QString, QFileInfo, int)));
+        connect(doc, SIGNAL(syncView(QString,QFileInfo,int)), pdfviewerWindow, SLOT(syncFromView(QString,QFileInfo,int)));
+        connect(pdfviewerWindow, SIGNAL(syncView(QString,QFileInfo,int)), doc, SLOT(syncFromView(QString,QFileInfo,int)));
 	}
 	return pdfviewerWindow;
 }
@@ -9068,7 +9068,7 @@ void Texstudio::showOldRevisions()
 	lay->addWidget(cmbLog);
     connect(svndlg, &QDialog::finished, this, &Texstudio::svnDialogClosed);
 	connect(cmbLog, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeToRevision(QString)));
-	connect(currentEditor(), SIGNAL(textEdited(QKeyEvent *)), svndlg, SLOT(close()));
+    connect(currentEditor(), SIGNAL(textEdited(QKeyEvent*)), svndlg, SLOT(close()));
 	currentEditor()->setProperty("Revision", log.first());
 	svndlg->setAttribute(Qt::WA_DeleteOnClose, true);
 	svndlg->show();
@@ -10252,7 +10252,7 @@ void Texstudio::recoverFromCrash()
 			ThreadBreaker::sleep(1);
 			if (t &&  t == killAtCrashedThread) {
                 name += QString(" forced kill in %1").arg(reinterpret_cast<long int>(t), sizeof(long int) * 2, 16, QChar('0'));
-                name += QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_GIT_REVISION).arg(COMPILED_DEBUG_OR_RELEASE);
+                name += QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_GIT_REVISION,COMPILED_DEBUG_OR_RELEASE);
 				backtraceFilename = print_backtrace(name);
 				exit(1);
 			}
@@ -10273,7 +10273,7 @@ void Texstudio::recoverFromCrash()
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 
 	if (nestedCrashes <= 2) {
-        backtraceFilename = print_backtrace(name + QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_GIT_REVISION).arg(COMPILED_DEBUG_OR_RELEASE));
+        backtraceFilename = print_backtrace(name + QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_GIT_REVISION,COMPILED_DEBUG_OR_RELEASE));
 	}
 
 	//hide editor views in case the error occured during drawing
@@ -10297,7 +10297,7 @@ void Texstudio::recoverFromCrash()
 		backtraceMsg = tr("A backtrace was written to\n%1\nPlease provide this file if you send a bug report.\n\n").arg(QDir::toNativeSeparators(backtraceFilename));
 	}
 	if (!wasLoop) {
-		mb->setText(tr( "TeXstudio has CRASHED due to a %1.\n\n%2Do you want to keep TeXstudio running? This may cause data corruption.").arg(name).arg(backtraceMsg));
+        mb->setText(tr( "TeXstudio has CRASHED due to a %1.\n\n%2Do you want to keep TeXstudio running? This may cause data corruption.").arg(name,backtraceMsg));
 		mb->setDefaultButton(mb->addButton(tr("Yes, try to recover"), QMessageBox::AcceptRole));
 		mb->addButton(tr("No, kill the program"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
 	} else {
@@ -10382,7 +10382,7 @@ void Texstudio::threadCrashed()
 	fprintf(stderr, "crashed with signal %s in thread %s\n", qPrintable(signal), qPrintable(threadName));
 
 	int btn = QMessageBox::warning(this, tr("TeXstudio Emergency"),
-	                               tr("TeXstudio has CRASHED due to a %1 in thread %2.\nThe thread has been stopped.\nDo you want to keep TeXstudio running? This may cause data corruption.").arg(signal).arg(threadId),
+                                   tr("TeXstudio has CRASHED due to a %1 in thread %2.\nThe thread has been stopped.\nDo you want to keep TeXstudio running? This may cause data corruption.").arg(signal,threadId),
 	                               tr("Yes"), tr("No, kill the program"));
 	if (btn) {
 		killAtCrashedThread = thread;
