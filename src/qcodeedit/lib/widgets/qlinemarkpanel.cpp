@@ -127,8 +127,6 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 
-	QString txt;
-	const QFontMetrics sfm(fontMetrics());
 	QLineMarksInfoCenter *mic = QLineMarksInfoCenter::instance();
 
 	n = d->lineNumber(contentsY);
@@ -185,7 +183,6 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 	}
 	//qDebug("</session>");
 
-	//setFixedWidth(sfm.width(txt) + 5);
 	return true;
 }
 

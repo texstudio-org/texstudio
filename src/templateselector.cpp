@@ -73,7 +73,7 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 
 	ui.templatesTree->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(ui.templatesTree, SIGNAL(customContextMenuRequested(QPoint)), SLOT(templatesTreeContextMenu(QPoint)));
-	connect(ui.templatesTree, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), SLOT(showInfo(QTreeWidgetItem *, QTreeWidgetItem *)));
+    connect(ui.templatesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(showInfo(QTreeWidgetItem*,QTreeWidgetItem*)));
 
 	ui.lePath->setText(getUserDocumentFolder());
 
