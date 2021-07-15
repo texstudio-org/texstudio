@@ -244,7 +244,7 @@ void TerminalWidget::initQTermWidget()
 	qTermWidget->setTerminalSizeHint(false);
 	qTermWidget->startShellProgram();
 	layout->addWidget(qTermWidget,0);
-	connect( qTermWidget, SIGNAL( finished( ) ), this, SLOT( qTermWidgetFinished( ) ) );
+    connect( qTermWidget, SIGNAL(finished()), this, SLOT(qTermWidgetFinished()) );
 	updateSettings(true);
 }
 

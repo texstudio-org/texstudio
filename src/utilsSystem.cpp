@@ -279,7 +279,7 @@ QString getRealIconFile(const QString &icon)
     }
 
 	foreach (const QString &name, iconNames) {
-		if (QFileInfo(name).exists())
+        if (QFileInfo::exists(name))
 			return name;
 	}
 
@@ -359,7 +359,7 @@ bool systemUsesDarkMode(const QPalette &pal)
 
 bool isFileRealWritable(const QString &filename)
 {
-    if(QFileInfo(filename).exists()){
+    if(QFileInfo::exists(filename)){
         return QFileInfo(filename).isWritable();
     }
 
@@ -381,7 +381,7 @@ bool isFileRealWritable(const QString &filename)
  */
 bool isExistingFileRealWritable(const QString &filename)
 {
-	return QFileInfo(filename).exists() && isFileRealWritable(filename);
+    return QFileInfo::exists(filename) && isFileRealWritable(filename);
 }
 
 /*!
