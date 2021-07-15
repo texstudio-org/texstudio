@@ -273,7 +273,7 @@ BuildManager::BuildManager(): processWaitedFor(nullptr)
 #endif
 {
 	initDefaultCommandNames();
-	connect(this, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequestedDefault(QString, QString *, bool *)));
+    connect(this, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequestedDefault(QString,QString*,bool*)));
 }
 
 BuildManager::~BuildManager()
@@ -687,7 +687,7 @@ QString BuildManager::findFileInPath(QString fileName)
 {
 	foreach (QString path, getEnvironmentPathList()) {
 		path = addPathDelimeter(path);
-		if (QFileInfo(path + fileName).exists()) return (path + fileName);
+        if (QFileInfo::exists(path + fileName)) return (path + fileName);
 	}
 	return "";
 }
@@ -1638,7 +1638,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 		p->subCommandName = cur.parentCommand;
 		p->subCommandPrimary = expandedCommands.primaryCommand;
 		p->subCommandFlags = cur.flags;
-		connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(emitEndRunningSubCommandFromProcessX(int)));
+        connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), SLOT(emitEndRunningSubCommandFromProcessX(int)));
 
 
 		p->setStdoutBuffer(buffer);
@@ -1647,7 +1647,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 
 		emit beginRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 
-		if (!waitForCommand) connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), p, SLOT(deleteLater()));
+        if (!waitForCommand) connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), p, SLOT(deleteLater()));
 
 		p->startCommand();
 		if (!p->waitForStarted(1000)) return false;
@@ -1722,7 +1722,7 @@ ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &
 	ProcessX *proc = new ProcessX(this, cmd, mainFile.absoluteFilePath());
 	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
 	if (singleInstance) {
-		connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
+        connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
 		runningCommands.insert(cmd, proc);
 	}
 	if (!mainFile.fileName().isEmpty())
@@ -1871,8 +1871,8 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				addLaTeXInputPaths(p, addPaths);
 				p->setProperty("preamble", preamble_mod);
 				p->setProperty("preambleFile", preambleFormatFile);
-				connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(preamblePrecompileCompleted(int)));
-				connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), p, SLOT(deleteLater()));
+                connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(preamblePrecompileCompleted(int)));
+                connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), p, SLOT(deleteLater()));
 				tf->setParent(p); //free file when process is deleted
 
 				p->startCommand();
@@ -2107,7 +2107,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p2) return; //dvipng does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
-		connect(p2, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
+        connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
 	if (dvi2pngMode == DPM_DVIPS_GHOSTSCRIPT) {
@@ -2118,7 +2118,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p2) return; //dvips does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
-		connect(p2, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(dvi2psPreviewCompleted(int)));
+        connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();
 	}
 	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
@@ -2126,11 +2126,11 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p1) return;
 		QString processedFile = p1->getFile();
 		if (processedFile.endsWith(".tex"))
-            processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).first());
+            processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).constFirst());
 			// TODO: fromNativeSeparators is a workaround to fix bug
 			// yields different dir separators depending on the context. This should be fixed (which direction?).
 			// Test (on win): switch preview between dvipng and pdflatex
-        QString fn = parseExtendedCommandLine("?am).pdf", QFileInfo(processedFile)).first();
+        QString fn = parseExtendedCommandLine("?am).pdf", QFileInfo(processedFile)).constFirst();
 		if (QFileInfo(fn).exists()) {
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 		}
@@ -2144,11 +2144,11 @@ void BuildManager::dvi2psPreviewCompleted(int status)
 	ProcessX *p2 = qobject_cast<ProcessX *> (sender());
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
-    QString filePs = parseExtendedCommandLine("?am.ps", QFileInfo(p2->getFile())).first();
+    QString filePs = parseExtendedCommandLine("?am.ps", QFileInfo(p2->getFile())).constFirst();
     ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]", QFileInfo(filePs),QFileInfo(),0,true);
 	if (!p3) return; //gs does not work
 	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
-	connect(p3, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
+    connect(p3, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
 }
 void BuildManager::PreviewLatexCompleted(int status){
@@ -2167,9 +2167,9 @@ void BuildManager::conversionPreviewCompleted(int status)
 	if (!p2) return;
 	// put image in preview
 	QString processedFile = p2->getFile();
-    if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).first();
-    QString fn = parseExtendedCommandLine("?am)1.png", QFileInfo(processedFile)).first();
-	if (QFileInfo(fn).exists())
+    if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).constFirst();
+    QString fn = parseExtendedCommandLine("?am)1.png", QFileInfo(processedFile)).constFirst();
+    if (QFileInfo::exists(fn))
 		emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 }
 
@@ -2347,7 +2347,7 @@ ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const Q
 	} else if (stdoutRedirection == "txs:///messages") {
 		stdoutEnabledOverrideOn = true;
 	} else if (!stdoutRedirection.isEmpty()) {
-		parent->processNotification(tr("The specified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
+        emit parent->processNotification(tr("The specified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
 	}
 	if (stderrRedirection == "/dev/null" || stderrRedirection == "nul") {
 		stderrEnabled = false;
@@ -2356,10 +2356,10 @@ ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const Q
 	} else if (stderrRedirection == "&1") {
 		stderrEnabled = stdoutEnabled || stdoutEnabledOverrideOn;
 	} else if (!stderrRedirection.isEmpty()) {
-		parent->processNotification(tr("The specified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
+        emit parent->processNotification(tr("The specified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
 	}
 	connect(this, SIGNAL(started()), SLOT(onStarted()));
-	connect(this, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(onFinished(int)));
+    connect(this, SIGNAL(finished(int,QProcess::ExitStatus)), SLOT(onFinished(int)));
     connect(this, SIGNAL(errorOccurred(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
 }
 
