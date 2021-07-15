@@ -1098,7 +1098,7 @@ void PDFWidget::goToDestination(const Poppler::LinkDestination &dest)
 void PDFWidget::goToDestination(const QString &destName)
 {
 	if (document.isNull()) return;
-#ifdef HAS_POPPLER_74
+#if POPPLER_VERSION_MAJOR>0 || POPPLER_VERSION_MINOR>=74
     const Poppler::LinkDestination dest=Poppler::LinkDestination(destName);
     goToDestination(dest);
 #else
