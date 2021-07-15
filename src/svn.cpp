@@ -44,7 +44,7 @@ QString SVN::makeAdminCmd(QString action, QString args)
  * \param filename
  * \param message commit message
  */
-void SVN::commit(QString filename, QString message) const
+void SVN::commit(QString filename, QString message)
 {
 	runSvn("commit", "-m " + enquoteStr(message) + " " + quote(filename));
 }
@@ -52,7 +52,7 @@ void SVN::commit(QString filename, QString message) const
  * \brief svn lock filename
  * \param filename
  */
-void SVN::lock(QString filename) const
+void SVN::lock(QString filename)
 {
 	runSvn("lock", quote(filename));
 }
@@ -61,7 +61,7 @@ void SVN::lock(QString filename) const
  * \param filename
  * \return
  */
-SVN::Status SVN::status(QString filename) const
+SVN::Status SVN::status(QString filename)
 {
 	QString output = runSvn("status", quote(filename));
 	if (output.isEmpty()) return SVN::CheckedIn;
@@ -76,7 +76,7 @@ SVN::Status SVN::status(QString filename) const
  * \param filename
  * \return
  */
-QStringList SVN::log(QString filename) const
+QStringList SVN::log(QString filename)
 {
     QString output = runSvn("log", quote(filename));
 #if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
@@ -98,7 +98,7 @@ QStringList SVN::log(QString filename) const
  * \brief create a svn repository with trunk/branches/tags in directory filename
  * \param filename
  */
-void SVN::createRepository(QString filename) const
+void SVN::createRepository(QString filename)
 {
 	QString path = QFileInfo(filename).absolutePath();
 	//setStatusMessageProcess(QString(" svn create repo "));
@@ -114,7 +114,7 @@ void SVN::createRepository(QString filename) const
  * \param args
  * \return
  */
-QString SVN::runSvn(QString action, QString args) const
+QString SVN::runSvn(QString action, QString args)
 {
 	QString output;
 	emit statusMessage(QString(" svn %1 ").arg(action));
@@ -127,7 +127,7 @@ QString SVN::runSvn(QString action, QString args) const
  * \param args
  * \return
  */
-QString SVN::runSvnAdmin(QString action, QString args) const
+QString SVN::runSvnAdmin(QString action, QString args)
 {
 	QString output;
 	emit statusMessage(QString(" svn admin %1 ").arg(action));

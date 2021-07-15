@@ -19,18 +19,18 @@ public:
 	static QString makeCmd(QString action, QString args);
 	static QString makeAdminCmd(QString action, QString args);
 
-	void commit(QString filename, QString message) const;
-	void lock(QString filename) const;
-	Status status(QString filename) const;
-	QStringList log(QString filename) const;
-	void createRepository(QString filename) const;
+    void commit(QString filename, QString message);
+    void lock(QString filename);
+    Status status(QString filename);
+    QStringList log(QString filename);
+    void createRepository(QString filename);
 
-	QString runSvn(QString action, QString args) const;
-	QString runSvnAdmin(QString action, QString args) const;
+    QString runSvn(QString action, QString args);
+    QString runSvnAdmin(QString action, QString args);
 
 signals:
-	void runCommand(const QString &commandline, QString *output) const;
-	void statusMessage(const QString &message) const;
+    void runCommand(const QString &commandline, QString *output);
+    void statusMessage(const QString &message);
 
 };
 
