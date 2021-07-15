@@ -11789,7 +11789,6 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
     static const QColor beyondEndColor(255, 170, 0);
     static const QColor inAppendixColor(200, 230, 200);
 
-    QString docName=se->document->getName();
     foreach(StructureEntry* elem,se->children){
         if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)){
             parseStructLocally(elem,rootVector,todoList,labelList,magicList,biblioList);
