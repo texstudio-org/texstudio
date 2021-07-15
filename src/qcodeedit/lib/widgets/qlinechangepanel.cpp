@@ -79,8 +79,6 @@ bool QLineChangePanel::paint(QPainter *p, QEditor *e)
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 
-	QString txt;
-
 	QDocument *d = e->document();
 	n = d->lineNumber(contentsY);
 	posY = 2 + d->y(n) - contentsY;

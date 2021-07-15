@@ -143,7 +143,7 @@ void QCallTip::keyPressEvent(QKeyEvent *e)
 		return;
 	}
 
-	QString prefix, text = e->text();
+    QString text = e->text();
 
 	switch ( e->key() )
 	{
