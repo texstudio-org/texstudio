@@ -190,7 +190,7 @@ void PDFOutlineDock::fillInfo()
     QVector<Poppler::OutlineItem>toc=document->popplerDoc()->outline();
     if(!toc.isEmpty()){
         fillOutline(toc, tree, nullptr);
-        connect(tree, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(followTocSelection()));
+        connect(tree, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(followTocSelection()));
 #else
 	const QDomDocument *toc = document->popplerDoc()->toc();
 	if (toc) {
@@ -908,7 +908,7 @@ void PDFOverviewDock::changeLanguage()
 void PDFOverviewDock::fillInfo()
 {
 	qobject_cast<PDFOverviewModel *>(list->model())->setDocument(document);
-	connect(list->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(followTocSelection()));
+    connect(list->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(followTocSelection()));
 }
 
 void PDFOverviewDock::documentClosed()

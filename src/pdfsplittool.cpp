@@ -285,7 +285,7 @@ void PDFSplitMergeTool::go()
 	else if (ui->backendPDFLatex->isChecked()) sm = new PDFSplitMergePDFPages();
 	if (!sm)
 		return;
-	connect(sm, SIGNAL(runCommand(QString, QFileInfo, QFileInfo, int)), SIGNAL(runCommand(QString, QFileInfo, QFileInfo, int)));
+    connect(sm, SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)), SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)));
 	QList < QPair< QString, QList < PageRange> > > splits;
 	for (int i = 0; i < ui->inputFileLayout->count(); i++) {
 		QLayout *l = ui->inputFileLayout->itemAt(i)->layout();
