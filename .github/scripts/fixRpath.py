@@ -45,6 +45,10 @@ def fixRPATH(path,libPath):
         #print("working on %s" % fn)
         if os.path.isdir(path+'/'+fn) and 'framework' in fn:
             fixRPATH(path+'/'+fn,libPath)
+        else:
+            if os.path.isdir(path+'/'+fn) and libPath==path:
+                fixRPATH(path+'/'+fn,libPath)
+
         if os.path.isfile(path+'/'+fn):
             print("checking file %s" % fn)
             deps=get_dependencies(path+'/'+fn)
@@ -77,3 +81,4 @@ if __name__ == "__main__":
 
     qtpath = os.path.normpath(args.qtpath)
     fixRPATH(qtpath,qtpath)
+    fixRPATH(qtpath+'/../share/qt/plugins',qtpath)
