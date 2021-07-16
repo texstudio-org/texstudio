@@ -218,7 +218,7 @@ jobs:
         brew install poppler
 
     - name: Configure
-      run: /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
+      run: /usr/local/opt/qt6/bin/qmake texstudio.pro CONFIG-=debug
 
     - name: Build
       run: make -j 2
@@ -226,7 +226,7 @@ jobs:
     - name: Package
       id: package
       run: |
-        /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
+        /usr/local/opt/qt6/bin/macdeployqt texstudio.app -dmg
         . ./.github/scripts/get-version.sh
         cp texstudio.dmg texstudio-${GIT_VERSION}-osx.dmg
         mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
