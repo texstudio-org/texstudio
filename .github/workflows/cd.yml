@@ -223,6 +223,11 @@ jobs:
     - name: Build
       run: make -j 2
 
+    - name: Workarounds
+      run: |
+        ln -s /usr/local/opt/qt/lib
+        python2 ./.github/scripts/fixRpath.py /usr/local/opt/qt/lib
+
     - name: Package
       id: package
       run: |
