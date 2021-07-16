@@ -214,7 +214,7 @@ jobs:
         # but prevents the homebrew install from succeeding
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
-        # install poppler with qt5
+        # install poppler with qt6
         brew install poppler
 
     - name: Configure
