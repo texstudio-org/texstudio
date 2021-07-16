@@ -50,6 +50,7 @@ def fixRPATH(path,libPath):
             deps=get_dependencies(path+'/'+fn)
             for lnk in deps:
                 if lnk.startswith('@rpath'):
+                    os.chmod(path+'/'+fn,0o644)
                     newLnk=lnk.replace('@rpath',libPath)
                     print("fix %s" % lnk)
                     print("with %s" % newLnk)
