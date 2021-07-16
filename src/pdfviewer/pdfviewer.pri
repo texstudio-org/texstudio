@@ -64,8 +64,6 @@ isEmpty(NO_POPPLER_PREVIEW) {
             error("pkg-config not found. This tool is required if building with poppler. Please install it.")
         }
 
-	# work-around for travis osx build
-	LIBS += -L/usr/local/Cellar/poppler/0.61.0-texworks/lib
 
     }
     LIBS *= -lz
