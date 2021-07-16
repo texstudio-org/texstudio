@@ -226,6 +226,8 @@ jobs:
     - name: Workarounds
       run: |
         python2 ./.github/scripts/fixRpath.py /usr/local/opt/qt/lib
+        mkdir -p texstudio.app/Contents/PlugIns/imageformats
+        cp /usr/local/opt/qt/share/qt/plugins/imageformats/libqsvg.dylib texstudio.app/Contents/PlugIns/imageformats
 
     - name: Package
       id: package
