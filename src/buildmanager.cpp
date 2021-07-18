@@ -1901,8 +1901,11 @@ QStringList BuildManager::getCommandsOrder()
 {
 	QStringList order = commandSortingsOrder;
 	order << userToolOrder;
-	foreach (const QString &more, commands.keys())
-		if (!order.contains(more)) order << more;
+    //foreach (const QString &more, commands.keys())
+    for(auto it=commands.keyBegin();it!=commands.keyEnd();++it){
+        if (!order.contains(*it))
+            order << *it;
+    }
 	return order;
 }
 
