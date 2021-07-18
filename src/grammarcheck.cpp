@@ -638,7 +638,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     startTime = 0;
     if (ltPath == "")
         return;
-    if(!QFileInfo(ltPath).exists()){
+    if(!QFileInfo::exists(ltPath)){
         errorText=QString("LT path \" %1 \" not found !").arg(ltPath);
         emit errorMessage(errorText);
         return;
