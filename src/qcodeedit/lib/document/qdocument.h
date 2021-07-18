@@ -370,6 +370,8 @@ class QCE_EXPORT QDocument : public QObject
             m_proposedPostion=c;
         }
 
+        QString debugUndoStack(int limit = 10000) const;
+
 	public slots:
 		void clear();
 
@@ -377,8 +379,6 @@ class QCE_EXPORT QDocument : public QObject
 		void redo();
 
 		void clearUndo();
-		QString debugUndoStack(int limit = 10000) const;
-
 		void setClean();
 
 		void highlight();

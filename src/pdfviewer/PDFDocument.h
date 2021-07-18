@@ -428,9 +428,9 @@ public slots:
 	void doFindAgain();
 	void goToSource();
 	void toggleFullScreen(const bool fullscreen);
-	int syncFromSource(const QString &sourceFile, int lineNo, int column, DisplayFlags displayFlags);  // lineNo, column are 0-based
+    int syncFromSource(const QString &sourceFile, int lineNo, int column, PDFDocument::DisplayFlags displayFlags);  // lineNo, column are 0-based
 	void syncFromView(const QString &pdfFile, const QFileInfo &masterFile, int page);
-	void loadFile(const QString &fileName, QFileInfo masterFile = QFileInfo(), DisplayFlags displayFlags = DisplayFlagsEnum(Raise | Focus));
+    void loadFile(const QString &fileName, QFileInfo masterFile = QFileInfo(), PDFDocument::DisplayFlags displayFlags = DisplayFlagsEnum(Raise | Focus));
 	void printPDF();
 	void setAutoHideToolbars(bool enabled);
 	void hideToolbars();
@@ -465,7 +465,7 @@ private slots:
 	void tileWindows();
 	void stackWindows();
 	void unminimize();
-	void updateDisplayState(DisplayFlags displayFlags);
+    void updateDisplayState(PDFDocument::DisplayFlags displayFlags);
 	void arrangeWindows(bool tile);
 	void updateToolBarForOrientation(Qt::Orientation orientation);
 

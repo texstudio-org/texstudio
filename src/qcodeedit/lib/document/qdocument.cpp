@@ -1980,7 +1980,7 @@ void QDocument::expandParents(int l){
 	while (line(l).isHidden()) {
 		QMap<int,int>::const_iterator it=m_impl->m_hidden.upperBound(prevLine);
 		prevLine=-1;
-		for (;it!=m_impl->m_hidden.end();++it){
+        for (;it!=m_impl->m_hidden.constEnd();++it){
 			if (it.key()<l && it.key()+ it.value()>=l){
 				prevLine=it.key();
 				expand(it.key());
@@ -7597,7 +7597,7 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 	*m_font = modifiedF;
 
 
-	QFontMetrics fm(*m_font);
+    //QFontMetrics fm(*m_font);
 	updateStaticCaches(nullptr);
 
 	foreach ( QDocumentPrivate *d, m_documents )

@@ -90,7 +90,7 @@ PDFRenderManager::PDFRenderManager(QObject *parent, int limitQueues) :
 	}
 	for (int i = 0; i < queueAdministration->num_renderQueues; i++) {
         auto *renderQueue = new PDFRenderEngine(nullptr, queueAdministration);
-		connect(renderQueue, SIGNAL(sendImage(QImage, int, int)), this, SLOT(addToCache(QImage, int, int)));
+        connect(renderQueue, SIGNAL(sendImage(QImage,int,int)), this, SLOT(addToCache(QImage,int,int)));
 		queueAdministration->renderQueues.append(renderQueue);
 	}
 	currentTicket = 0;

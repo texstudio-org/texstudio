@@ -3124,7 +3124,7 @@ void PDFDocument::syncFromView(const QString &pdfFile, const QFileInfo &masterFi
  *        with extension .tex
  * \param displayFlags
  */
-void PDFDocument::loadFile(const QString &fileName, QFileInfo masterFile, DisplayFlags displayFlags)
+void PDFDocument::loadFile(const QString &fileName, QFileInfo masterFile, PDFDocument::DisplayFlags displayFlags)
 {
 	if (masterFile.fileName().isEmpty()) {
 		masterFile.setFile(replaceFileExtension(fileName, ".tex"));
@@ -3449,7 +3449,7 @@ void PDFDocument::unminimize()
 	}
 }
 
-void PDFDocument::updateDisplayState(DisplayFlags displayFlags)
+void PDFDocument::updateDisplayState(PDFDocument::DisplayFlags displayFlags)
 {
 	displayFlags &= (embeddedMode) ? FilterEmbedded : FilterWindowed;
 	QWidget *activeWindow = QApplication::activeWindow();
@@ -3748,7 +3748,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
  * \param displayFlags  window and widget actions such as changing focus, and raising a window.
  * \return 0-based page number or -1 if the syncing was not successful.
  */
-int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int column, DisplayFlags displayFlags)
+int PDFDocument::syncFromSource(const QString &sourceFile, int lineNo, int column, PDFDocument::DisplayFlags displayFlags)
 {
 	QSynctex::TeXSyncPoint sourcePoint(sourceFile, lineNo + 1, column + 1);  // synctex uses 1-based line and column
 	lastSyncPoint = sourcePoint;
