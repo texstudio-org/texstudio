@@ -1758,9 +1758,9 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				previewFileNames.append(fi.absoluteFilePath());
 				ProcessX *p = nullptr;
 				if (dvi2pngMode == DPM_EMBEDDED_PDF) {
-                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %3 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName()).arg(preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %2 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				} else {
-                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName()).arg(preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %2 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				}
 
 				REQUIRE(p);
