@@ -106,7 +106,7 @@ void QuickBeamerDialog::Init()
 	ui.comboBoxTheme->addItem( "Szeged" );
 	ui.comboBoxTheme->addItem( "Warsaw" );
 
-	connect(ui.comboBoxTheme, SIGNAL(currentIndexChanged( const QString & ) ), this, SLOT( updatePreview(const QString &) ));
+    connect(ui.comboBoxTheme, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(updatePreview(const QString&)));
 	ui.comboBoxTheme->setCurrentIndex(0);
 	updatePreview("default");
 
