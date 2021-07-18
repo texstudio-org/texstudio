@@ -557,7 +557,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.pbToToolbar, SIGNAL(clicked()), this, SLOT(toToolbarClicked()));
 	connect(ui.pbFromToolbar, SIGNAL(clicked()), this, SLOT(fromToolbarClicked()));
 	ui.listCustomToolBar->setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(ui.listCustomToolBar, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
+    connect(ui.listCustomToolBar, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenu(QPoint)));
 	connect(ui.listCustomToolBar, SIGNAL(doubleClicked(QModelIndex)), SLOT(fromToolbarClicked()));
 
 	connect(ui.comboBoxActions, SIGNAL(currentIndexChanged(int)), SLOT(actionsChanged(int)));
@@ -1051,7 +1051,7 @@ void ConfigDialog::checkToolbarMoved()
 
 }
 
-void ConfigDialog::customContextMenuRequested(const QPoint &p)
+void ConfigDialog::customContextMenu(const QPoint &p)
 {
 	QMenu menu;
 	menu.addAction(tr("Load Other Icon"), this, SLOT(loadOtherIcon()));
