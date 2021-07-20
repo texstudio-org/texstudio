@@ -1959,6 +1959,9 @@ QString Texstudio::getRelativeFileName(const QString &file, QString basepath, bo
 {
 	return getRelativeBaseNameToPath(file, basepath, true, keepSuffix);
 }
+bool Texstudio::fileExists(const QString &file){
+    return QFileInfo::exists(file);
+}
 
 bool Texstudio::activateEditorForFile(QString f, bool checkTemporaryNames, bool setFocus)
 {
