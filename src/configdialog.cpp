@@ -468,7 +468,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
 
-	ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>").arg("<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
+    ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>","<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 	//pagequick
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
@@ -479,7 +479,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 
     fmConfig = new QFormatConfig(ui.formatConfigBox, qApp->styleSheet().isEmpty());
 	fmConfig->setToolTip(tr("Here the syntax highlighting for various commands, environments and selections can be changed."));
-	fmConfig->addCategory(tr("Basic highlighting")) << "normal" << "background" << "comment" << "magicComment" << "commentTodo" << "keyword" << "extra-keyword" << "math-delimiter" << "math-keyword" << "numbers" << "text" << "align-ampersand" << "environment" << "structure" << "link" << "escapeseq" << "verbatim" << "picture" << "picture-keyword" << "preedit";
+    fmConfig->addCategory(tr("Basic highlighting")) << "normal" << "background" << "comment" << "magicComment" << "commentTodo" << "keyword" << "extra-keyword" << "math-delimiter" << "math-keyword" << "math-text" << "numbers" << "text" << "align-ampersand" << "environment" << "structure" << "link" << "escapeseq" << "verbatim" << "picture" << "picture-keyword" << "preedit";
 	fmConfig->addCategory(tr("LaTeX checking")) << "braceMatch" << "braceMismatch" << "latexSyntaxMistake" << "referencePresent" << "referenceMissing" << "referenceMultiple" << "citationPresent" << "citationMissing" << "packagePresent" << "packageMissing" << "temporaryCodeCompletion";
 	fmConfig->addCategory(tr("Language checking")) << "spellingMistake" << "wordRepetition" << "wordRepetitionLongRange" << "badWord" << "grammarMistake" << "grammarMistakeSpecial1" << "grammarMistakeSpecial2" << "grammarMistakeSpecial3" << "grammarMistakeSpecial4";
 	fmConfig->addCategory(tr("Line highlighting"))     << "line:error" << "line:warning" << "line:badbox" << "line:bookmark" << "line:bookmark0" << "line:bookmark1" << "line:bookmark2" << "line:bookmark3" << "line:bookmark4" << "line:bookmark5" << "line:bookmark6"  << "line:bookmark7" << "line:bookmark8" << "line:bookmark9" << "current";
@@ -541,8 +541,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	Q_ASSERT(ui.pagesWidget->count() == ui.contentsWidget->count());
 
 	connect(ui.contentsWidget,
-	        SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-	        this, SLOT(changePage(QListWidgetItem *, QListWidgetItem *)));
+            SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),
+            this, SLOT(changePage(QListWidgetItem*,QListWidgetItem*)));
 	ui.contentsWidget->setCurrentRow(lastUsedPage);
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(toggled(bool)), this, SLOT(advancedOptionsToggled(bool)));
 	connect(ui.checkBoxShowAdvancedOptions, SIGNAL(clicked(bool)), this, SLOT(advancedOptionsClicked(bool)));
@@ -557,7 +557,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.pbToToolbar, SIGNAL(clicked()), this, SLOT(toToolbarClicked()));
 	connect(ui.pbFromToolbar, SIGNAL(clicked()), this, SLOT(fromToolbarClicked()));
 	ui.listCustomToolBar->setContextMenuPolicy(Qt::CustomContextMenu);
-	connect(ui.listCustomToolBar, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
+    connect(ui.listCustomToolBar, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenu(QPoint)));
 	connect(ui.listCustomToolBar, SIGNAL(doubleClicked(QModelIndex)), SLOT(fromToolbarClicked()));
 
 	connect(ui.comboBoxActions, SIGNAL(currentIndexChanged(int)), SLOT(actionsChanged(int)));
@@ -1051,7 +1051,7 @@ void ConfigDialog::checkToolbarMoved()
 
 }
 
-void ConfigDialog::customContextMenuRequested(const QPoint &p)
+void ConfigDialog::customContextMenu(const QPoint &p)
 {
 	QMenu menu;
 	menu.addAction(tr("Load Other Icon"), this, SLOT(loadOtherIcon()));

@@ -177,6 +177,7 @@ protected:
     //* default implementation. Does not change anything
     QRect defaultSubElementRect(const QStyleOption *option, const QWidget *widget) const
     {
+        Q_UNUSED(widget)
         return option->rect;
     }
 
@@ -221,6 +222,8 @@ protected:
     //@{
     QSize defaultSizeFromContents(const QStyleOption *option, const QSize &size, const QWidget *widget) const
     {
+        Q_UNUSED(option)
+        Q_UNUSED(widget)
         return size;
     }
 
@@ -246,6 +249,9 @@ protected:
 
     bool emptyPrimitive(const QStyleOption *option, QPainter *painter, const QWidget *widget) const
     {
+        Q_UNUSED(option)
+        Q_UNUSED(painter)
+        Q_UNUSED(widget)
         return true;
     }
 
@@ -304,6 +310,9 @@ protected:
 
     bool emptyControl(const QStyleOption *option, QPainter *painter, const QWidget *widget) const
     {
+        Q_UNUSED(option)
+        Q_UNUSED(painter)
+        Q_UNUSED(widget)
         return true;
     }
 

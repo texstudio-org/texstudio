@@ -20,8 +20,6 @@
 #define ON_NIX(x) x
 #endif
 
-static const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-viewer";
-
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
@@ -89,7 +87,7 @@ void CommandInfo::setCommandLine(const QString &cmdString)
 		        ((unquote == baseName) ||
 		         (   (unquote.endsWith(QDir::separator() + baseName) || unquote.endsWith("/" + baseName))
 		             && (!unquote.contains(" ") || (!unquote.contains('"') && unquote != trimmed)) //spaces mean options, if not everything is quoted
-		             && (QFileInfo(unquote).exists())
+                     && (QFileInfo::exists(unquote))
 		         )
 		        )) {
 			commandLine = cmdString + " " + defaultArgs;
@@ -273,7 +271,7 @@ BuildManager::BuildManager(): processWaitedFor(nullptr)
 #endif
 {
 	initDefaultCommandNames();
-	connect(this, SIGNAL(commandLineRequested(QString, QString *, bool *)), SLOT(commandLineRequestedDefault(QString, QString *, bool *)));
+    connect(this, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequestedDefault(QString,QString*,bool*)));
 }
 
 BuildManager::~BuildManager()
@@ -395,74 +393,6 @@ QString BuildManager::guessTerminalExternal(void)
 	}
 #endif
 	return QString("<unknown>");
-}
-
-void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands)
-{
-#ifdef Q_OS_MAC
-	if (QSysInfo::MacintoshVersion == QSysInfo::MV_10_11) {
-
-		ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
-		if (!config->getOption("Tools/CheckOSXElCapitanDeprecatedPaths", true).toBool()) {
-			return;
-		}
-		bool oldPathsFound = false;
-		foreach (const QString &id, commands) {
-			QString cmd = settings.value(id).toString();
-			if (cmd.contains("/usr/texbin/")) {
-				oldPathsFound = true;
-				break;
-			}
-		}
-		if (!oldPathsFound) {
-			return;
-		}
-		QString newPath = "/Library/TeX/texbin/";
-		QString info(tr("OSX 10.11 does not allow applications to write there anymore. Therefore,\n"
-		                "recent versions of MacTeX changed the bin path to /Library/TeX/texbin/\n"
-		                "\n"
-		                "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
-		                "%1?"));
-		if (QDir("/Library/TeX/texbin/").exists()) {
-			info = info.arg("/Library/TeX/texbin/");
-		} else if (QDir("/usr/local/texbin/").exists()) {
-			info = info.arg("/usr/local/texbin/");
-			newPath = "/usr/local/texbin/";
-		} else {
-			info = tr("OSX 10.11 does not allow applications to write there anymore. You may\n"
-			          "need to update MacTeX to version 2015.\n"
-			          "\n"
-			          "Afterwards, MacTeX programs will be located at /Library/TeX/texbin/\n"
-			          "\n"
-			          "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
-			          "/Library/TeX/texbin/?");
-		}
-		QMessageBox msgBox(QApplication::activeWindow());
-		msgBox.setWindowTitle(TEXSTUDIO);
-		msgBox.setIcon(QMessageBox::Warning);
-		msgBox.setText(tr("Some of your commands are refering to locations in /usr/texbin/"));
-		msgBox.setInformativeText(info);
-		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-		msgBox.setDefaultButton(QMessageBox::Yes);
-		emit hideSplash();  // make sure the message box not hidden by the splash screen
-		int ret = msgBox.exec();
-		if (ret == QMessageBox::Yes) {
-			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
-			foreach (const QString &id, commands) {
-				QString cmd = settings.value(id).toString();
-				if (cmd.contains("/usr/texbin/")) {
-					cmd.replace("/usr/texbin/", newPath);
-				}
-				settings.setValue(id, cmd);
-			}
-		} else if (ret == QMessageBox::No) {
-			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
-		}
-	}
-#else
-	Q_UNUSED(settings)
-	Q_UNUSED(commands)
-#endif
 }
 
 CommandInfo &BuildManager::registerCommand(const QString &id, const QString &basename, const QString &displayName, const QString &args, const QString &oldConfig, const GuessCommandLineFunc guessFunc, bool user )
@@ -687,7 +617,7 @@ QString BuildManager::findFileInPath(QString fileName)
 {
 	foreach (QString path, getEnvironmentPathList()) {
 		path = addPathDelimeter(path);
-		if (QFileInfo(path + fileName).exists()) return (path + fileName);
+        if (QFileInfo::exists(path + fileName)) return (path + fileName);
 	}
 	return "";
 }
@@ -1383,8 +1313,6 @@ void BuildManager::readSettings(QSettings &settings)
 	settings.beginGroup("Commands");
 	QStringList cmds = settings.childKeys();
 
-	checkOSXElCapitanDeprecatedPaths(settings, cmds);
-
 	foreach (const QString &id, cmds) {
 		QString cmd = settings.value(id).toString();
 		CommandMapping::iterator it = commands.find(id);
@@ -1414,15 +1342,6 @@ void BuildManager::readSettings(QSettings &settings)
 			if (cmd.id == "quick") {
 				if (deprecatedQuickmode == 8)
 					cmd.commandLine = import;
-			} else if (cmd.id == "view-pdf-external") {
-				if (import.startsWith(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER)) {
-					import.remove(0, DEPRECACTED_TMX_INTERNAL_PDF_VIEWER.length() + 1);
-					cmd.commandLine = import;
-                    //commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
-				} else {
-					cmd.commandLine = import;
-                    //commands.find("view-pdf").value().commandLine = CMD_VIEW_PDF_INTERNAL + " --embedded";
-				}
 			} else cmd.commandLine = import;
 		}
 		if (!cmd.commandLine.isEmpty()) continue;
@@ -1456,30 +1375,7 @@ void BuildManager::readSettings(QSettings &settings)
 		}
 		deprecatedQuickmode = -2;
 	}
-	//import old
-	for (int i = 0; i < qMin(deprecatedUserToolNames.size(), deprecatedUserToolCommands.size()); i++)
-		if (!deprecatedUserToolNames[i].endsWith("!!!CONVERTED!!!")) {
-			QString cmd = deprecatedUserToolCommands[i];
-			cmd.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
-			CommandInfo &ci = registerCommand(QString("user%1").arg(i), "", deprecatedUserToolNames[i], "", "", nullptr, true);
-			ci.commandLine = cmd;
-			userToolOrder << ci.id;
-			userToolDisplayNames << ci.displayName;
-			deprecatedUserToolNames[i] = deprecatedUserToolNames[i] + "!!!CONVERTED!!!";
-		}
-	//import very old
-	for (int i = 1; i <= 5; i++) {
-		QString temp = settings.value(QString("User/Tool%1").arg(i), "").toString();
-		if (!temp.isEmpty()) {
-			temp.replace(DEPRECACTED_TMX_INTERNAL_PDF_VIEWER, CMD_VIEW_PDF_INTERNAL);
-			CommandInfo &ci = registerCommand(QString("userold%1").arg(i), "", settings.value(QString("User/ToolName%1").arg(i)).toString(), "", "", nullptr, true);
-			ci.commandLine  = temp;
-			userToolOrder << ci.id;
-			userToolDisplayNames << ci.displayName;
-			settings.remove(QString("User/Tool%1").arg(i));
-			settings.remove(QString("User/ToolName%1").arg(i));
-		}
-	}
+
 	int md = dvi2pngMode;
 #ifdef NO_POPPLER_PREVIEW
 	if (md == DPM_EMBEDDED_PDF)
@@ -1638,7 +1534,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 		p->subCommandName = cur.parentCommand;
 		p->subCommandPrimary = expandedCommands.primaryCommand;
 		p->subCommandFlags = cur.flags;
-		connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(emitEndRunningSubCommandFromProcessX(int)));
+        connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), SLOT(emitEndRunningSubCommandFromProcessX(int)));
 
 
 		p->setStdoutBuffer(buffer);
@@ -1647,7 +1543,7 @@ bool BuildManager::runCommandInternal(const ExpandedCommands &expandedCommands, 
 
 		emit beginRunningSubCommand(p, expandedCommands.primaryCommand, cur.parentCommand, cur.flags);
 
-		if (!waitForCommand) connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), p, SLOT(deleteLater()));
+        if (!waitForCommand) connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), p, SLOT(deleteLater()));
 
 		p->startCommand();
 		if (!p->waitForStarted(1000)) return false;
@@ -1722,7 +1618,7 @@ ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &
 	ProcessX *proc = new ProcessX(this, cmd, mainFile.absoluteFilePath());
 	connect(proc, SIGNAL(processNotification(QString)), SIGNAL(processNotification(QString)));
 	if (singleInstance) {
-		connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
+        connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), SLOT(singleInstanceCompleted(int))); //will free proc after the process has ended
 		runningCommands.insert(cmd, proc);
 	}
 	if (!mainFile.fileName().isEmpty())
@@ -1848,8 +1744,11 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				REQUIRE(tf);
 				tf->open();
 				QTextStream out(tf);
-                //if (outputCodec) out.setCodec(outputCodec);
-				out << preamble_mod;
+                if (outputCodec) {
+                    out << outputCodec->fromUnicode(preamble_mod);
+                }else{
+                    out << preamble_mod;
+                }
 				tf->setAutoRemove(false);
 				tf->close();
 
@@ -1859,17 +1758,17 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				previewFileNames.append(fi.absoluteFilePath());
 				ProcessX *p = nullptr;
 				if (dvi2pngMode == DPM_EMBEDDED_PDF) {
-                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %3 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName()).arg(preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %2 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				} else {
-                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName()).arg(preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %2 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				}
 
 				REQUIRE(p);
 				addLaTeXInputPaths(p, addPaths);
 				p->setProperty("preamble", preamble_mod);
 				p->setProperty("preambleFile", preambleFormatFile);
-				connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(preamblePrecompileCompleted(int)));
-				connect(p, SIGNAL(finished(int, QProcess::ExitStatus)), p, SLOT(deleteLater()));
+                connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(preamblePrecompileCompleted(int)));
+                connect(p, SIGNAL(finished(int,QProcess::ExitStatus)), p, SLOT(deleteLater()));
 				tf->setParent(p); //free file when process is deleted
 
 				p->startCommand();
@@ -1898,10 +1797,15 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	tf->open();
 
 	QTextStream out(tf);
-    //if (outputCodec) out.setCodec(outputCodec);
-	if (preambleFormatFile.isEmpty()) out << preamble_mod;
-	else out << "%&" << preambleFormatFile << "\n";
-	out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";
+    if (outputCodec) {
+        if (preambleFormatFile.isEmpty()) out << outputCodec->fromUnicode(preamble_mod);
+        else out << outputCodec->fromUnicode("%&" + preambleFormatFile + "\n");
+        out << outputCodec->fromUnicode("\n\\begin{document}\n" + source.text + "\n\\end{document}\n");
+    }else{
+        if (preambleFormatFile.isEmpty()) out << preamble_mod;
+        else out << "%&" << preambleFormatFile << "\n";
+        out << "\n\\begin{document}\n" << source.text << "\n\\end{document}\n";
+    }
 	// prepare commands/filenames
 	QFileInfo fi(*tf);
 	QString ffn = fi.absoluteFilePath();
@@ -1922,7 +1826,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	}
 	if (!p1) return; // command failed, not set ?
 	addLaTeXInputPaths(p1, addPaths);
-	connect(p1, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(latexPreviewCompleted(int)));
+    connect(p1, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
 	QTimer::singleShot(previewCompileTimeOut, p1, SLOT(kill()));
 
@@ -1933,9 +1837,9 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
         ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvipng/[--follow]", QFileInfo(ffn));
 		if (!p2) return; // command failed, not set ?
 		p1->setProperty("proc",QVariant::fromValue(p2));
-		connect(p1,SIGNAL(finished(int, QProcess::ExitStatus)),this,SLOT(PreviewLatexCompleted(int)));
+        connect(p1,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(PreviewLatexCompleted(int)));
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
-		connect(p2, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
+        connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
 }
@@ -1997,8 +1901,11 @@ QStringList BuildManager::getCommandsOrder()
 {
 	QStringList order = commandSortingsOrder;
 	order << userToolOrder;
-	foreach (const QString &more, commands.keys())
-		if (!order.contains(more)) order << more;
+    //foreach (const QString &more, commands.keys())
+    for(auto it=commands.keyBegin();it!=commands.keyEnd();++it){
+        if (!order.contains(*it))
+            order << *it;
+    }
 	return order;
 }
 
@@ -2099,7 +2006,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p2) return; //dvipng does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
-		connect(p2, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
+        connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
 		p2->startCommand();
 	}
 	if (dvi2pngMode == DPM_DVIPS_GHOSTSCRIPT) {
@@ -2110,7 +2017,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p2) return; //dvips does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
-		connect(p2, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(dvi2psPreviewCompleted(int)));
+        connect(p2, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();
 	}
 	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
@@ -2118,12 +2025,12 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p1) return;
 		QString processedFile = p1->getFile();
 		if (processedFile.endsWith(".tex"))
-            processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).first());
+            processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).constFirst());
 			// TODO: fromNativeSeparators is a workaround to fix bug
 			// yields different dir separators depending on the context. This should be fixed (which direction?).
 			// Test (on win): switch preview between dvipng and pdflatex
-        QString fn = parseExtendedCommandLine("?am).pdf", QFileInfo(processedFile)).first();
-		if (QFileInfo(fn).exists()) {
+        QString fn = parseExtendedCommandLine("?am).pdf", QFileInfo(processedFile)).constFirst();
+        if (QFileInfo::exists(fn)) {
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 		}
 	}
@@ -2136,11 +2043,11 @@ void BuildManager::dvi2psPreviewCompleted(int status)
 	ProcessX *p2 = qobject_cast<ProcessX *> (sender());
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
-    QString filePs = parseExtendedCommandLine("?am.ps", QFileInfo(p2->getFile())).first();
+    QString filePs = parseExtendedCommandLine("?am.ps", QFileInfo(p2->getFile())).constFirst();
     ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]", QFileInfo(filePs),QFileInfo(),0,true);
 	if (!p3) return; //gs does not work
 	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
-	connect(p3, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
+    connect(p3, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
 }
 void BuildManager::PreviewLatexCompleted(int status){
@@ -2159,9 +2066,9 @@ void BuildManager::conversionPreviewCompleted(int status)
 	if (!p2) return;
 	// put image in preview
 	QString processedFile = p2->getFile();
-    if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).first();
-    QString fn = parseExtendedCommandLine("?am)1.png", QFileInfo(processedFile)).first();
-	if (QFileInfo(fn).exists())
+    if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).constFirst();
+    QString fn = parseExtendedCommandLine("?am)1.png", QFileInfo(processedFile)).constFirst();
+    if (QFileInfo::exists(fn))
 		emit previewAvailable(fn, previewFileNameToSource[processedFile]);
 }
 
@@ -2339,7 +2246,7 @@ ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const Q
 	} else if (stdoutRedirection == "txs:///messages") {
 		stdoutEnabledOverrideOn = true;
 	} else if (!stdoutRedirection.isEmpty()) {
-		parent->processNotification(tr("The specified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
+        emit parent->processNotification(tr("The specified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
 	}
 	if (stderrRedirection == "/dev/null" || stderrRedirection == "nul") {
 		stderrEnabled = false;
@@ -2348,10 +2255,10 @@ ProcessX::ProcessX(BuildManager *parent, const QString &assignedCommand, const Q
 	} else if (stderrRedirection == "&1") {
 		stderrEnabled = stdoutEnabled || stdoutEnabledOverrideOn;
 	} else if (!stderrRedirection.isEmpty()) {
-		parent->processNotification(tr("The specified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
+        emit parent->processNotification(tr("The specified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
 	}
 	connect(this, SIGNAL(started()), SLOT(onStarted()));
-	connect(this, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(onFinished(int)));
+    connect(this, SIGNAL(finished(int,QProcess::ExitStatus)), SLOT(onFinished(int)));
     connect(this, SIGNAL(errorOccurred(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
 }
 

@@ -130,7 +130,7 @@ private slots:
 	void toToolbarClicked();
 	void fromToolbarClicked();
 	void checkToolbarMoved();
-	void customContextMenuRequested(const QPoint &p);
+    void customContextMenu(const QPoint &p);
 	void loadOtherIcon();
 	void insertSeparator();
 	void populatePossibleActions(QTreeWidgetItem *parent, const QMenu *menu, bool keepHierarchy);

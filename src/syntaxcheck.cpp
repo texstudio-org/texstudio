@@ -486,7 +486,7 @@ bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList &tl, TokenStack stack, int ticket,int commentStart)
 {
 	// do syntax check on that line
-	int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
+    //int cols = containsEnv(*ltxCommands, "tabular", activeEnv);
 
     // special treatment for empty lines with $/$$ math environmens
     // latex treats them as error, so do we
@@ -588,11 +588,19 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-            if (speller->hideNonTextSpellingErrors && (containsEnv(*ltxCommands, "math", activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv))){
+            if (speller->hideNonTextSpellingErrors && (containsEnv(*ltxCommands, "math", activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv)) && tk.subtype!=Token::text){
                 word.clear();
                 tk.ignoreSpelling=true;
             }else{
                 tk.ignoreSpelling=false;
+                if(containsEnv(*ltxCommands, "math", activeEnv)){
+                    // in math env, highlight as math-text !
+                    Error elem;
+                    elem.type = ERR_highlight;
+                    elem.format=mFormatList["#mathText"];
+                    elem.range = QPair<int, int>(tk.start, tk.length);
+                    newRanges.append(elem);
+                }
             }
             if (!word.isEmpty() && !speller->check(word) ) {
                 if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
@@ -671,12 +679,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             // command highlighing
             // this looks slow
             // TODO: optimize !
-            for(const Environment &env:activeEnv){
+            foreach(const Environment &env,activeEnv){
                 if(!env.dlh)
                     continue; //ignore "normal" env
                 if(env.name=="document")
                     continue; //ignore "document" env
-                for(const QString &key: mFormatList.keys()){
+                foreach(const QString &key, mFormatList.keys()){
                     if(key.at(0)=='#'){
                         QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
                         altEnvs<<env.name;
@@ -716,12 +724,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 							}
 						}
 						// get new cols
-						cols = containsEnv(*ltxCommands, "tabular", activeEnv);
+                        //cols = containsEnv(*ltxCommands, "tabular", activeEnv);
 					}
                     // handle higlighting
                     QStringList altEnvs = ltxCommands->environmentAliases.values(env);
                     altEnvs<<env;
-                    for(const QString &key: mFormatList.keys()){
+                    foreach(const QString &key, mFormatList.keys()){
                         if(altEnvs.contains(key)){
                             Error elem;
                             int start= closingEnv.dlh==dlh ? closingEnv.startingColumn : 0;
@@ -813,9 +821,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				QSet<QString> translationMap=ltxCommands->possibleCommands.value("%columntypes");
 				QStringList res = LatexTables::splitColDef(option);
 				QStringList res2;
-                for(const auto &elem: res){
+                foreach(const auto &elem, res){
 					bool add=true;
-                    for(const auto &i:translationMap){
+                    foreach(const auto &i, translationMap){
 						if(i.left(1)==elem && add){
 							res2 << LatexTables::splitColDef(i.mid(1));
 							add=false;
@@ -825,7 +833,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						res2<<elem;
 					}
 				}
-				cols = res2.count();
+                int cols = res2.count();
 				tp.id = cols;
 			}
 			activeEnv.push(tp);
@@ -959,12 +967,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             // command highlighing
             // this looks slow
             // TODO: optimize !
-            for(const Environment &env:activeEnv){
+            foreach(const Environment &env,activeEnv){
                 if(!env.dlh)
                     continue; //ignore "normal" env
                 if(env.name=="document")
                     continue; //ignore "document" env
-                for(const QString &key: mFormatList.keys()){
+                foreach(const QString &key, mFormatList.keys()){
                     if(key.at(0)=='#'){
                         QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
                         altEnvs<<env.name;
@@ -1038,7 +1046,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 			// search stored keyvals
 			QString elem;
-			foreach (elem, ltxCommands->possibleCommands.keys()) {
+            foreach(elem, ltxCommands->possibleCommands.keys()) {
 				if (elem.startsWith("key%") && elem.mid(4) == command)
 					break;
 				if (elem.startsWith("key%") && elem.mid(4, command.length()) == command && elem.mid(4 + command.length(), 1) == "/" && !elem.endsWith("#c")) {
@@ -1113,7 +1121,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			}
 			// find if values are defined
 			QString elem;
-			foreach (elem, ltxCommands->possibleCommands.keys()) {
+            foreach(elem, ltxCommands->possibleCommands.keys()) {
 				if (elem.startsWith("key%") && elem.mid(4) == command)
 					break;
 				if (elem.startsWith("key%") && elem.mid(4, command.length()) == command && elem.mid(4 + command.length(), 1) == "/" && !elem.endsWith("#c")) {
@@ -1186,10 +1194,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 	}
     if(!activeEnv.isEmpty()){
         //check active env for env highlighting (math,verbatim)
-        for(const Environment &env: activeEnv){
+        foreach(const Environment &env, activeEnv){
             QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
             altEnvs<<env.name;
-            for(const QString &key: mFormatList.keys()){
+            foreach(const QString &key, mFormatList.keys()){
                 if(altEnvs.contains(key)){
                     Error elem;
                     int start= env.dlh==dlh ? env.startingColumn : 0;

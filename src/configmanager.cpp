@@ -861,7 +861,6 @@ QSettings *ConfigManager::readSettings(bool reread)
 		managedProperties[i].valueFromQVariant(config->value(managedProperties[i].name, managedProperties[i].def));
 
 	//language
-	QString locale = language;
 	appTranslator = new QTranslator(this);
 	basicTranslator = new QTranslator(this);
 	loadTranslations(language);
@@ -877,7 +876,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 		// non-exeistent or invalid settings for dictionary
 		// try restore from old format where there was only one dictionary - spell_dic can be removed later when users have migrated to the new version
 		QString dic = spell_dic;
-		if (!QFileInfo(dic).exists()) {
+        if (!QFileInfo::exists(dic)) {
 			// fallback to defaults
 			QStringList temp;
 			QStringList fallBackPaths;
@@ -913,7 +912,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	if (grammarCheckerConfig->wordlistsDir.isEmpty()) {
 		QString sw = findResourceFile("de.stopWords", true, QStringList(), parseDirList(spellDictDir));
 		if (sw == "") sw = findResourceFile("en.stopWords", true, QStringList(), QStringList() << parseDirList(spellDictDir));
-		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QDir::toNativeSeparators(QFileInfo(sw).absolutePath());
+        if (QFileInfo::exists(sw)) grammarCheckerConfig->wordlistsDir = QDir::toNativeSeparators(QFileInfo(sw).absolutePath());
 	}
 
 	if (thesaurus_database == "<dic not found>") {
@@ -1073,13 +1072,13 @@ QSettings *ConfigManager::readSettings(bool reread)
                 }
                 for (int i = 0; i < keyReplace.size(); i++) {
                     completerConfig->userMacros.append(Macro(
-                                                           tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")),
+                                                           tr("Key replacement: %1 %2").arg(keyReplace[i],tr("before word")),
                                                            keyReplaceBeforeWord[i].replace("%", "%%"),
                                                            "",
                                                            "(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i])
                                                            ));
                     completerConfig->userMacros.append(Macro(
-                                                           tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")),
+                                                           tr("Key replacement: %1 %2").arg(keyReplace[i],tr("after word")),
                                                            keyReplaceAfterWord[i].replace("%", "%%"),
                                                            "",
                                                            "(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i])
@@ -1095,12 +1094,12 @@ QSettings *ConfigManager::readSettings(bool reread)
                 while (userTriggers.size() < userTags.size()) userTriggers << "";
 
                 for (int i = 0; i < keyReplace.size(); i++) {
-                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("before word")));
+                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i],tr("before word")));
                     userTags.append(keyReplaceBeforeWord[i].replace("%", "%%"));
                     userAbbrevs.append("");
                     userTriggers.append("(?language:latex)(?<=\\s|^)" + QRegExp::escape(keyReplace[i]));
 
-                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i]).arg(tr("after word")));
+                    userNames.append(tr("Key replacement: %1 %2").arg(keyReplace[i],tr("after word")));
                     userTags.append(keyReplaceAfterWord[i].replace("%", "%%"));
                     userAbbrevs.append("");
                     userTriggers.append("(?language:latex)(?<=\\S)" + QRegExp::escape(keyReplace[i]));
@@ -1543,7 +1542,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	ShortcutDelegate delegate;
 	delegate.treeWidget = confDlg->ui.shortcutTree;
 	confDlg->ui.shortcutTree->setItemDelegate(&delegate); //setting in the config dialog doesn't work
-	delegate.connect(confDlg->ui.shortcutTree, SIGNAL(itemClicked(QTreeWidgetItem *, int)), &delegate, SLOT(treeWidgetItemClicked(QTreeWidgetItem *, int)));
+    delegate.connect(confDlg->ui.shortcutTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)), &delegate, SLOT(treeWidgetItemClicked(QTreeWidgetItem*,int)));
 
 	//custom menus
 	confDlg->menuParent = menuParent;
@@ -1559,7 +1558,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	}
 	connect(confDlg->ui.checkBoxShowAllMenus, SIGNAL(toggled(bool)), SLOT(toggleVisibleTreeItems(bool)));
 	toggleVisibleTreeItems(false);
-	connect(confDlg->ui.menuTree, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(menuTreeItemChanged(QTreeWidgetItem *, int)));
+    connect(confDlg->ui.menuTree, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(menuTreeItemChanged(QTreeWidgetItem*,int)));
 	QAction *act = new QAction(tr("Insert New Menu Item (before)"), confDlg->ui.menuTree);
 	connect(act, SIGNAL(triggered()), SLOT(menuTreeNewItem()));
 	confDlg->ui.menuTree->addAction(act);
@@ -2483,8 +2482,8 @@ void ConfigManager::modifyMenuContent(QStringList &ids, const QString &id)
 	if (index < 0) return;
 	ids.removeAt(index);
 
-	QMap<QString, QVariant>::const_iterator i = manipulatedMenus.find(id);
-	if (i == manipulatedMenus.end()) return;
+    QMap<QString, QVariant>::const_iterator i = manipulatedMenus.constFind(id);
+    if (i == manipulatedMenus.constEnd()) return;
 
 
 	QStringList m = i.value().toStringList();
@@ -2788,87 +2787,87 @@ void ConfigManager::setInterfaceStyle()
     QPalette pal = systemPalette;
     if (useTexmakerPalette) { //modify palette like texmaker does it
         if(darkMode){
-            pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
-            pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
-            pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
+            pal.setColor(QPalette::Active, QPalette::Highlight, QColor(0x44,0x90,0xd8));
+            pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor(0x44,0x90,0xd8));
+            pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor(0x44,0x90,0xd8));
 
-            pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#FFFFFF"));
-            pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
-            pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
+            pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor(0xFF,0xFF,0xFF));
+            pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor(0xff,0xff,0xff));
+            pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(0xff,0xff,0xff));
 
-            pal.setColor(QPalette::Active, QPalette::Base, QColor("#303030"));
-            pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#303030"));
-            pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#303030"));
+            pal.setColor(QPalette::Active, QPalette::Base, QColor(0x30,0x30,0x30));
+            pal.setColor(QPalette::Inactive, QPalette::Base, QColor(0x30,0x30,0x30));
+            pal.setColor(QPalette::Disabled, QPalette::Base, QColor(0x30,0x30,0x30));
 
-            pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#e0e0e0"));
-            pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#e0e0e0"));
-            pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#e0e0e0"));
+            pal.setColor(QPalette::Active, QPalette::WindowText, QColor(0xe0,0xe0,0xe0));
+            pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor(0xe0,0xe0,0xe0));
+            pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor(0xe0,0xe0,0xe0));
 
-            pal.setColor( QPalette::Active, QPalette::Text, QColor("#ffffff") );
-            pal.setColor( QPalette::Inactive, QPalette::Text, QColor("#ffffff") );
-            pal.setColor( QPalette::Disabled, QPalette::Text, QColor("#ffffff") );
+            pal.setColor( QPalette::Active, QPalette::Text, QColor(0xff,0xff,0xff) );
+            pal.setColor( QPalette::Inactive, QPalette::Text, QColor(0xff,0xff,0xff) );
+            pal.setColor( QPalette::Disabled, QPalette::Text, QColor(0xff,0xff,0xff) );
 
-            pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#f0f0f0"));
-            pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#ffffff"));
-            pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#ffffff"));
+            pal.setColor(QPalette::Active, QPalette::ButtonText, QColor(0xf0,0xf0,0xf0));
+            pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor(0xff,0xff,0xff));
+            pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(0xff,0xff,0xff));
 
-            pal.setColor( QPalette::ToolTipText, QColor("#ffffff") );
+            pal.setColor( QPalette::ToolTipText, QColor(0xff,0xff,0xff) );
 
-            pal.setColor( QPalette::ToolTipBase, QColor("#002020") );
+            pal.setColor( QPalette::ToolTipBase, QColor(0x00,0x20,0x20) );
 
-            pal.setColor( QPalette::Active, QPalette::Window, QColor("#000000") );
-            pal.setColor( QPalette::Inactive, QPalette::Window, QColor("#000000") );
-            pal.setColor( QPalette::Disabled, QPalette::Window, QColor("#000000") );
+            pal.setColor( QPalette::Active, QPalette::Window, QColor(0x00,0x00,0x00) );
+            pal.setColor( QPalette::Inactive, QPalette::Window, QColor(0x00,0x00,0x00) );
+            pal.setColor( QPalette::Disabled, QPalette::Window, QColor(0x00,0x00,0x00) );
 
-            pal.setColor( QPalette::Active, QPalette::Button, QColor("#2a2a2a") );
-            pal.setColor( QPalette::Inactive, QPalette::Button, QColor("#2a2a2a") );
-            pal.setColor( QPalette::Disabled, QPalette::Button, QColor("#2a2a2a") );
+            pal.setColor( QPalette::Active, QPalette::Button, QColor(0x2a,0x2a,0x2a) );
+            pal.setColor( QPalette::Inactive, QPalette::Button, QColor(0x2a,0x2a,0x2a) );
+            pal.setColor( QPalette::Disabled, QPalette::Button, QColor(0x2a,0x2a,0x2a) );
 
         }else{
-            pal.setColor(QPalette::Active, QPalette::Highlight, QColor("#4490d8"));
-            pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor("#4490d8"));
-            pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor("#4490d8"));
+            pal.setColor(QPalette::Active, QPalette::Highlight, QColor(0x44,0x90,0xd8));
+            pal.setColor(QPalette::Inactive, QPalette::Highlight, QColor(0x44,0x90,0xd8));
+            pal.setColor(QPalette::Disabled, QPalette::Highlight, QColor(0x44,0x90,0xd8));
 
-            pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor("#ffffff"));
-            pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor("#ffffff"));
-            pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor("#ffffff"));
+            pal.setColor(QPalette::Active, QPalette::HighlightedText, QColor(0xff,0xff,0xff));
+            pal.setColor(QPalette::Inactive, QPalette::HighlightedText, QColor(0xff,0xff,0xff));
+            pal.setColor(QPalette::Disabled, QPalette::HighlightedText, QColor(0xff,0xff,0xff));
 
-            pal.setColor(QPalette::Active, QPalette::Base, QColor("#ffffff"));
-            pal.setColor(QPalette::Inactive, QPalette::Base, QColor("#ffffff"));
-            pal.setColor(QPalette::Disabled, QPalette::Base, QColor("#ffffff"));
+            pal.setColor(QPalette::Active, QPalette::Base, QColor(0xff,0xff,0xff));
+            pal.setColor(QPalette::Inactive, QPalette::Base, QColor(0xff,0xff,0xff));
+            pal.setColor(QPalette::Disabled, QPalette::Base, QColor(0xff,0xff,0xff));
 
-            pal.setColor(QPalette::Active, QPalette::WindowText, QColor("#000000"));
-            pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor("#000000"));
-            pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor("#000000"));
+            pal.setColor(QPalette::Active, QPalette::WindowText, QColor(0x00,0x00,0x00));
+            pal.setColor(QPalette::Inactive, QPalette::WindowText, QColor(0x00,0x00,0x00));
+            pal.setColor(QPalette::Disabled, QPalette::WindowText, QColor(0x00,0x00,0x00));
 
-            pal.setColor( QPalette::Active, QPalette::Text, QColor("#000000") );
-            pal.setColor( QPalette::Inactive, QPalette::Text, QColor("#000000") );
-            pal.setColor( QPalette::Disabled, QPalette::Text, QColor("#000000") );
+            pal.setColor( QPalette::Active, QPalette::Text, QColor(0x00,0x00,0x00) );
+            pal.setColor( QPalette::Inactive, QPalette::Text, QColor(0x00,0x00,0x00) );
+            pal.setColor( QPalette::Disabled, QPalette::Text, QColor(0x00,0x00,0x00) );
 
-            pal.setColor(QPalette::Active, QPalette::ButtonText, QColor("#000000"));
-            pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor("#000000"));
-            pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#000000"));
+            pal.setColor(QPalette::Active, QPalette::ButtonText, QColor(0x00,0x00,0x00));
+            pal.setColor(QPalette::Inactive, QPalette::ButtonText, QColor(0x00,0x00,0x00));
+            pal.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(0x00,0x00,0x00));
 
-            pal.setColor( QPalette::ToolTipText, QColor("#000000") );
+            pal.setColor( QPalette::ToolTipText, QColor(0x00,0x00,0x00) );
 
-            pal.setColor( QPalette::ToolTipBase, QColor("#FFFFDC") );
+            pal.setColor( QPalette::ToolTipBase, QColor(0xFF,0xFF,0xDC) );
 
             if (x11desktop_env() == 4) {
-                pal.setColor(QPalette::Active, QPalette::Window, QColor("#eae9e9"));
-                pal.setColor(QPalette::Inactive, QPalette::Window, QColor("#eae9e9"));
-                pal.setColor(QPalette::Disabled, QPalette::Window, QColor("#eae9e9"));
+                pal.setColor(QPalette::Active, QPalette::Window, QColor(0xea,0xe9,0xe9));
+                pal.setColor(QPalette::Inactive, QPalette::Window, QColor(0xea,0xe9,0xe9));
+                pal.setColor(QPalette::Disabled, QPalette::Window, QColor(0xea,0xe9,0xe9));
 
-                pal.setColor(QPalette::Active, QPalette::Button, QColor("#eae9e9"));
-                pal.setColor(QPalette::Inactive, QPalette::Button, QColor("#eae9e9"));
-                pal.setColor(QPalette::Disabled, QPalette::Button, QColor("#eae9e9"));
+                pal.setColor(QPalette::Active, QPalette::Button, QColor(0xea,0xe9,0xe9));
+                pal.setColor(QPalette::Inactive, QPalette::Button, QColor(0xea,0xe9,0xe9));
+                pal.setColor(QPalette::Disabled, QPalette::Button, QColor(0xea,0xe9,0xe9));
             } else {
-                pal.setColor( QPalette::Active, QPalette::Window, QColor("#f6f3eb") );
-                pal.setColor( QPalette::Inactive, QPalette::Window, QColor("#f6f3eb") );
-                pal.setColor( QPalette::Disabled, QPalette::Window, QColor("#f6f3eb") );
+                pal.setColor( QPalette::Active, QPalette::Window, QColor(0xf6,0xf3,0xeb) );
+                pal.setColor( QPalette::Inactive, QPalette::Window, QColor(0xf6,0xf3,0xeb) );
+                pal.setColor( QPalette::Disabled, QPalette::Window, QColor(0xf6,0xf3,0xeb) );
 
-                pal.setColor( QPalette::Active, QPalette::Button, QColor("#f6f3eb") );
-                pal.setColor( QPalette::Inactive, QPalette::Button, QColor("#f6f3eb") );
-                pal.setColor( QPalette::Disabled, QPalette::Button, QColor("#f6f3eb") );
+                pal.setColor( QPalette::Active, QPalette::Button, QColor(0xf6,0xf3,0xeb) );
+                pal.setColor( QPalette::Inactive, QPalette::Button, QColor(0xf6,0xf3,0xeb) );
+                pal.setColor( QPalette::Disabled, QPalette::Button, QColor(0xf6,0xf3,0xeb) );
 
             }
         }
@@ -3195,7 +3194,7 @@ void ConfigManager::removeCommand()
 	}
 
 	QWidget *nameWidget = userGridLayout->itemAtPosition(rows - 1, 0)->widget();
-	QString cmdID(getCmdID(nameWidget));
+    //QString cmdID(getCmdID(nameWidget));
 
 	int index = userGridLayout->indexOf(nameWidget);
 	while (index + 1 < userGridLayout->count()) {
@@ -3588,7 +3587,7 @@ void ConfigManager::linkOptionToObject(const void *optionStorage, QObject *objec
 	}
 	property->writeToObject(object);
 	object->setProperty("managedProperty", QVariant::fromValue<ManagedProperty *>(property));
-	connect(object, SIGNAL(destroyed(QObject *)), SLOT(managedOptionObjectDestroyed(QObject *)));
+    connect(object, SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
 	if (qobject_cast<QAction *>(object) || qobject_cast<QCheckBox *>(object) || qobject_cast<QToolButton *>(object))
 		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionBoolToggled()));
 }

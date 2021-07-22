@@ -452,9 +452,9 @@ void QEditor::init(bool actions,QDocument *doc)
 	setAttribute(Qt::WA_InputMethodEnabled, true);
 
 	connect(this							,
-			SIGNAL( markChanged(QString, QDocumentLineHandle*, int, bool) ),
+            SIGNAL( markChanged(QString,QDocumentLineHandle*,int,bool) ),
 			QLineMarksInfoCenter::instance(),
-			SLOT  ( markChanged(QString, QDocumentLineHandle*, int, bool) ) );
+            SLOT  ( markChanged(QString,QDocumentLineHandle*,int,bool) ) );
 
 	if(doc){
 		// externally created document
@@ -463,11 +463,11 @@ void QEditor::init(bool actions,QDocument *doc)
 		m_doc = new QDocument(this);
 	}
 
-	connect(m_doc	, SIGNAL( formatsChange (int, int) ),
-			this	, SLOT  ( repaintContent(int, int) ) );
+    connect(m_doc	, SIGNAL( formatsChange(int,int) ),
+            this	, SLOT  ( repaintContent(int,int) ) );
 
-	connect(m_doc	, SIGNAL( contentsChange(int, int) ),
-			this	, SLOT  ( updateContent (int, int) ) );
+    connect(m_doc	, SIGNAL( contentsChange(int,int) ),
+            this	, SLOT  ( updateContent(int,int) ) );
 
 	connect(m_doc		, SIGNAL( formatsChanged() ),
 			viewport()	, SLOT  ( update() ) );
@@ -1060,7 +1060,7 @@ bool QEditor::writeToFile(const QString &filename, const QByteArray &data) {
 
 	// 1. Prepare
 	QString backupFilename;
-	if (QFileInfo(filename).exists()) {
+    if (QFileInfo::exists(filename)) {
 		int MAX_TRIES = 100;
 		for (int i=0; i<MAX_TRIES; i++) {
 			QString fn = filename + QString("~txs%1").arg(i);
@@ -1217,7 +1217,7 @@ void QEditor::fileChanged(const QString& file)
 	}
 	*/
 
-	if ( !QFileInfo(file).exists())
+    if ( !QFileInfo::exists(file))
 	{
 		watcher()->removeWatch(QString(), this); //no duplicated questions
 
@@ -1229,7 +1229,7 @@ void QEditor::fileChanged(const QString& file)
 		int ret = QMessageBox::warning(this, tr("File deleted"), tr("The file %1 has been deleted on disk.\n"
 		                                                            "Should I save the document as it is to restore the file?\n").arg(fileName()), QMessageBox::Save | QMessageBox::Ignore);
 		if (ret == QMessageBox::Save) {
-			if ( QFileInfo(file).exists() ) {
+            if ( QFileInfo::exists(file) ) {
 				QMessageBox::warning(this, tr("File deleted"), tr("Well, this is strange: The file %1 is not deleted anymore.\n"
 				                                                  "Probably someone else restored it and therefore I'm not going to override the (possible modified) version on the disk.").arg(fileName()), QMessageBox::Ok);
 				m_saveState = Conflict;
@@ -1242,7 +1242,7 @@ void QEditor::fileChanged(const QString& file)
 			}
 		}
 
-		if ( QFileInfo(file).exists() )
+        if ( QFileInfo::exists(file) )
 			reconnectWatcher();
 
 	} else if ( !isContentModified() )
@@ -3939,7 +3939,7 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 			setClipboardSelection();
 			//emit clearAutoCloseStack();
 			emitCursorPositionChanged();
-			emitWordDoubleClicked();
+            emit emitWordDoubleClicked();
 
 			repaintCursor();
 		} else {
@@ -5524,12 +5524,11 @@ bool QEditor::isCursorVisible() const
 {
 	QPoint pos = m_cursor.documentPosition();
 
-	const QRect cursor(pos.x(), pos.y(), 1, document()->getLineSpacing());
 	const QRect display(horizontalOffset(), verticalOffset(), viewport()->width(), viewport()->height());
 
 	//qDebug() << pos << " belongs to " << display << " ?";
 
-	return display.contains(pos); //cursor);
+    return display.contains(pos);
 }
 
 /*!

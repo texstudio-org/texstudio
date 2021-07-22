@@ -77,6 +77,7 @@ public:
 	Q_INVOKABLE QString getCurrentFileName(); ///< returns the absolute file name of the current file or "" if none is opene
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension = ""); ///< treats the path relative to the compiled .tex file
 	Q_INVOKABLE QString getRelativeFileName(const QString &file, QString basepath, bool keepSuffix = false); ///< provide function for scripts
+    Q_INVOKABLE bool fileExists(const QString &file); ///< provide function for scripts
 	QByteArray windowstate; ///< qt window state, used for state-restoring
 	bool tobemaximized, tobefullscreen;
 
@@ -246,6 +247,7 @@ private slots:
     void copyFileName();
     void copyFilePath();
     void toggleSingleDocMode();
+    StructureEntry *labelForStructureEntry(const StructureEntry *entry);
 
     void updateStructureLocally();
     void customMenuStructure(const QPoint &pos);

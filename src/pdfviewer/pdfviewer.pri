@@ -46,7 +46,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
         macx { # PATH to pkgconfig needs to be present in build PATH
             QT_CONFIG -= no-pkg-config
         }
-        poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
+        poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION} poppler-cpp
 
         CONFIG += link_pkgconfig
 
@@ -64,11 +64,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
             error("pkg-config not found. This tool is required if building with poppler. Please install it.")
         }
 
-	# work-around for travis osx build
-	LIBS += -L/usr/local/Cellar/poppler/0.61.0-texworks/lib
 
-        system($${PKG_CONFIG_EXE} --atleast-version=0.31 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_31
-        system($${PKG_CONFIG_EXE} --atleast-version=0.74 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_74
     }
     LIBS *= -lz
 } else {

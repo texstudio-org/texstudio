@@ -54,8 +54,8 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	QRect pixmapRect(QPoint(0, 0), pixmapSize);
 	//QRect pixmapRect=pixmap.rect();
 
-	QFontMetrics fontMetrics(opt.font);
-	QString text = model->data(index, Qt::DisplayRole).toString();
+    //QFontMetrics fontMetrics(opt.font);
+    //QString text = model->data(index, Qt::DisplayRole).toString();
 	QRect textRect(0, 0, 0, 0);
 
 	value = model->data(index, Qt::CheckStateRole);
@@ -86,13 +86,13 @@ QSize IconDelegate::sizeHint(const QStyleOptionViewItem &option,
 
 	QVariant value = model->data(index, Qt::FontRole);
 	QFont fnt = value.isValid() ? qvariant_cast<QFont>(value) : option.font;
-	QString text = model->data(index, Qt::DisplayRole).toString();
+    //QString text = model->data(index, Qt::DisplayRole).toString();
 	QRect pixmapRect;
 	if (model->data(index, Qt::DecorationRole).isValid())
 		pixmapRect = QRect(0, 0, option.decorationSize.width(),
 		                   option.decorationSize.height());
 
-	QFontMetrics fontMetrics(fnt);
+    //QFontMetrics fontMetrics(fnt);
 	QRect textRect(0, 0, 0, 0);
 	//QRect textRect(0, 0, fontMetrics.width(text), fontMetrics.lineSpacing());
 	QRect checkRect = check(option, textRect, model->data(index, Qt::CheckStateRole));

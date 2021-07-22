@@ -81,7 +81,7 @@ void PDFRenderEngine::run()
 
 		// render Image
 		if (!document.isNull() && command.pageNr >= 0 && command.pageNr < cachedNumPages) {
-			Poppler::Page *page = document->page(command.pageNr);
+            std::unique_ptr<Poppler::Page> page(document->page(command.pageNr));
 			if (page) {
 				QImage image = page->renderToImage(command.xres, command.yres,
 				                                   command.x, command.y, command.w, command.h, command.rotate);
@@ -99,12 +99,12 @@ void PDFRenderEngine::run()
                     else if (command.rotate == Poppler::Page::Rotate180) p.rotate(180);
                     else if (command.rotate == Poppler::Page::Rotate270) p.rotate(270);
                 }
-                foreach (Poppler::Annotation *annon, page->annotations())
+                for (auto &annon: page->annotations())
                     if (annon->subType() == Poppler::Annotation::AMovie){
                         p.drawRect(annon->boundary() );
                     }
 
-				delete page;
+                //delete page;
 				if (!queue->stopped) //qDebug() << command.ticket << " send from "<<QThread::currentThreadId(),
 					emit sendImage(image, command.pageNr, command.ticket);
 			}

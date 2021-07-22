@@ -49,7 +49,7 @@ bool LatexRepository::loadStaticPackageList(const QString &file)
 
 bool LatexRepository::packageExists(const QString &name)
 {
-	return packages.keys().contains(name);
+    return packages.contains(name);
 }
 
 QString LatexRepository::shortDescription(const QString &name)

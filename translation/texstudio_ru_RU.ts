@@ -8290,7 +8290,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="41"/>
         <source>fontawesome5</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>fontawesome5</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="42"/>
@@ -11008,7 +11008,7 @@ Do you want to allow and run the new, overriding command?
         <location filename="../src/texstudio.cpp" line="7418"/>
         <location filename="../src/texstudio.cpp" line="7438"/>
         <source>Beyond end of document.</source>
-        <translation>За пределами документа.</translation>
+        <translation>После конца документа.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7420"/>
@@ -12973,7 +12973,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/scriptengine.cpp" line="643"/>
         <source>Yes, allow all calls it will ever make</source>
-        <translation>Да, разрешить все вызовы этого скрипта</translation>
+        <translation>Да, разрешить все последующие вызовы этого скрипта</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="643"/>
@@ -12987,7 +12987,7 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation>Текущий скрипт запросил привилегированный режим чтения следующей величины:
+        <translation>Текущий скрипт запросил привилегированный режим чтения следующего значения:
 %1
 
 Вы доверяете этому скрипту?</translation>
@@ -12995,12 +12995,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/scriptengine.cpp" line="655"/>
         <source>Yes, allow this reading</source>
-        <translation>Да, разрешить чтение</translation>
+        <translation>Да, разрешить чтение в этот раз</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="656"/>
         <source>Yes, grant permanent read access to everything</source>
-        <translation>Да, дать постоянный доступ на любое чтение</translation>
+        <translation>Да, дать постоянные права на чтение</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="287"/>

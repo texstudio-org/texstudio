@@ -9,6 +9,7 @@
 			<array>
 				<string>tex</string>
 				<string>TEX</string>
+				<string>tikz</string>
 				<string>bib</string>
 				<string>BIB</string>
 				<string>sty</string>

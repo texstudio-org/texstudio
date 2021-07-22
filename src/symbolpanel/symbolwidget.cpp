@@ -121,7 +121,7 @@ void SymbolWidget::setupSearchArea(QVBoxLayout *vLayout)
 	categoryFilterButton->setAutoRaise(true);
 	int width = 0;
 	QFontMetrics fm = fontMetrics();
-	foreach (const QString &name, categoryNames.values()) {
+    foreach (const QString &name, categoryNames) {
 		width = qMax(width, UtilsUi::getFmWidth(fm, name) + 20);
 	}
 	categoryFilterButton->setMinimumWidth(width);

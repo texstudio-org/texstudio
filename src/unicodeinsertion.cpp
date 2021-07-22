@@ -58,8 +58,8 @@ UnicodeInsertion::UnicodeInsertion(QWidget *parent, uint defCharCode): QWidget(p
 	table->resizeColumnsToContents();
 	table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	connect(table, SIGNAL(cellClicked(int, int)), SLOT(tableCellClicked(int, int)));
-	connect(table, SIGNAL(cellDoubleClicked(int, int)), SLOT(tableCellDoubleClicked(int, int)));
+    connect(table, SIGNAL(cellClicked(int,int)), SLOT(tableCellClicked(int,int)));
+    connect(table, SIGNAL(cellDoubleClicked(int,int)), SLOT(tableCellDoubleClicked(int,int)));
 
 	lay->addWidget(edit);
 	lay->addWidget(table);
@@ -135,7 +135,7 @@ void UnicodeInsertion::tableCellClicked(int r, int c)
 void UnicodeInsertion::tableCellDoubleClicked(int r, int c)
 {
 	if (r != 2 || !table->item(r, c)) return;
-	insertCharacter(table->item(0, 8)->text()); //tricky, double click is reported as single click - double click and the single click sets the edit box (4.6.3 on debian)
+    emit insertCharacter(table->item(0, 8)->text()); //tricky, double click is reported as single click - double click and the single click sets the edit box (4.6.3 on debian)
 	close();
 }
 

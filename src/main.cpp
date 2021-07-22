@@ -114,7 +114,7 @@ QString generateAppId()
 	if (user.isEmpty()) {
 		user = env.value("USERNAME");
 	}
-	return QString("%1_%2").arg(TEXSTUDIO).arg(user);
+    return QString("%1_%2").arg(TEXSTUDIO,user);
 }
 
 QStringList parseArguments(const QStringList &args, bool &outStartAlways)
@@ -220,8 +220,8 @@ int main(int argc, char **argv)
 #endif
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
-	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
-	                 a.mw, SLOT(onOtherInstanceMessage(const QString &)));
+    QObject::connect(&a, SIGNAL(messageReceived(const QString&)),
+                     a.mw, SLOT(onOtherInstanceMessage(const QString&)));
 
 	try {
 		int execResult = a.exec();

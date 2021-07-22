@@ -76,7 +76,7 @@ void TemplateManager::checkForOldUserTemplates()
 				}
 				QString newName = userTemplateDir() + fi.fileName();
 				if (!QFile::copy(fname, newName)) {
-					UtilsUi::txsWarning(tr("Copying template from\n%1\nto\n%2\nfailed.").arg(fname).arg(newName));
+                    UtilsUi::txsWarning(tr("Copying template from\n%1\nto\n%2\nfailed.").arg(fname,newName));
 				} else {
 					if (!QFile::remove(fname)) {
 						UtilsUi::txsInformation(tr("File\n%1\n could not be removed.").arg(fname));

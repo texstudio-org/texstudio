@@ -964,7 +964,6 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         QString regExpression=chars.join(".*");
 
         QRegularExpression rx(regExpression);
-        QList<int> scoringList;
 
         words=QtConcurrent::blockingFiltered(baselist,[rx](const CompletionWord &item){
             return item.sortWord.contains(rx);
@@ -1118,7 +1117,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
             QChar lst = wordp[wordp.length() - 1];
             ushort nr = lst.unicode();
             wordp[wordp.length() - 1] = QChar(nr + 1);
-            QList<CompletionWord>::const_iterator it2 = std::lower_bound(baselist.begin(),baselist.end(), CompletionWord(wordp));
+            QList<CompletionWord>::const_iterator it2 = std::lower_bound(baselist.constBegin(),baselist.constEnd(), CompletionWord(wordp));
             mWordCount = it2 - it;
             if(it2==baselist.constBegin()){
                 mLastWordInList = baselist.last();
@@ -1294,7 +1293,7 @@ LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObj
 		                      QString("(please report the bug *before* going to a safe place, you could rescue others)"), QMessageBox::Ok);
 	list = new QListView(qobject_cast<QWidget *>(parent()));
 	listModel = new CompletionListModel(list);
-	connect(list, SIGNAL(clicked(const QModelIndex &)) , this, SLOT(selectionChanged(const QModelIndex &)));
+    connect(list, SIGNAL(clicked(const QModelIndex&)) , this, SLOT(selectionChanged(const QModelIndex&)));
 	list->setModel(listModel);
 	list->setFocusPolicy(Qt::NoFocus);
 	list->setItemDelegate(new CompletionItemDelegate(list));
@@ -1828,7 +1827,7 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 			topic = tr("label defined multiple times!");
 		} else {
 			QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(value);
-			QDocumentLineHandle *mLine = result.keys().first();
+            QDocumentLineHandle *mLine = result.keys().constFirst();
 			int l = mLine->document()->indexOf(mLine);
 			if (mLine->document() != editor->document()) {
 				//LatexDocument *doc=document->parent->findDocument(mLine->document());
@@ -1853,7 +1852,7 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 		if (!bibReader) {
 			bibReader = new bibtexReader(this);
 			connect(bibReader, SIGNAL(sectionFound(QString)), this, SLOT(bibtexSectionFound(QString)));
-			connect(this, SIGNAL(searchBibtexSection(QString, QString)), bibReader, SLOT(searchSection(QString, QString)));
+            connect(this, SIGNAL(searchBibtexSection(QString,QString)), bibReader, SLOT(searchSection(QString,QString)));
 			bibReader->start();
 		}
 		QString file = document->findFileFromBibId(value);

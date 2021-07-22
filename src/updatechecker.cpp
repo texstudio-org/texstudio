@@ -230,7 +230,7 @@ void UpdateChecker::checkForNewVersion()
 			                   "<tr><td>Latest stable version:</td><td>%2</td></tr>"
 			                   "</table><br><br>"
 			                   "You can download it from the <a href='%3'>TeXstudio website</a>."
-			               )).arg(currentVersion.versionNumber).arg(latestStableVersion.versionNumber).arg(downloadAddress)
+                           )).arg(currentVersion.versionNumber,latestStableVersion.versionNumber,downloadAddress)
 			      );
 		} else {
 			if (!silent) UtilsUi::txsInformation(tr("TeXstudio is up-to-date."));

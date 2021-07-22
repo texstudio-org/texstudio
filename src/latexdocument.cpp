@@ -55,7 +55,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
     updateSettings();
 	SynChecker.start();
 
-    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle *, bool, int, int)), SLOT(checkNextLine(QDocumentLineHandle *, bool, int, int)), Qt::QueuedConnection);
+    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);
 }
 
 LatexDocument::~LatexDocument()
@@ -147,7 +147,7 @@ const QMultiHash<QDocumentLineHandle *, FileNamePair> &LatexDocument::mentionedB
 QStringList LatexDocument::listOfMentionedBibTeXFiles() const
 {
 	QStringList result;
-	foreach (const FileNamePair &fnp, mMentionedBibTeXFiles.values())
+    foreach (const FileNamePair &fnp, mMentionedBibTeXFiles)
 		result << fnp.absolute;
 	return result;
 }
@@ -1682,7 +1682,7 @@ QStringList LatexDocument::bibItems() const
 QList<CodeSnippet> LatexDocument::userCommandList() const
 {
 	QList<CodeSnippet> csl;
-	foreach (UserCommandPair cmd, mUserCommandList.values()) {
+    foreach (UserCommandPair cmd, mUserCommandList) {
 		csl.append(cmd.snippet);
 	}
     std::sort(csl.begin(),csl.end());
@@ -1838,27 +1838,28 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
 			}
 		}
 
-		int row = documents.indexOf(document);
+        /*int row = documents.indexOf(document);
 		//qDebug()<<document->getFileName()<<row;
 		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
+        */
 
 		documents.removeAll(document);
 		if (document == currentDocument) {
                     currentDocument = nullptr;
 		}
 
-		if (n > 1) { // don't remove document, stays hidden instead
-			hideDocInEditor(document->getEditorView());
-                        if(masterDocument && documents.count()==1){
-                            // special check if masterDocument, but document is not visible
-                            LatexDocument *doc=documents.first();
-                            if(!doc->getEditorView()){
-                                // no view left -> purge
-                                deleteDocument(masterDocument);
-                            }
-                        }
-			return;
-		}
+        if (n > 1) { // don't remove document, stays hidden instead
+            hideDocInEditor(document->getEditorView());
+            if(masterDocument && documents.count()==1){
+                // special check if masterDocument, but document is not visible
+                LatexDocument *doc=documents.first();
+                if(!doc->getEditorView()){
+                    // no view left -> purge
+                    deleteDocument(masterDocument);
+                }
+            }
+            return;
+        }
 		delete view;
 		delete document;
 	} else {
@@ -2896,7 +2897,7 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
  */
 void LatexDocument::updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting,QString prefix)
 {
-    QString line(QString("% %1 %2 = %3").arg(prefix).arg(name).arg(val));
+    QString line(QString("% %1 %2 = %3").arg(prefix,name,val));
 
 	StructureEntry *se = getMagicCommentEntry(name);
     QDocumentLineHandle *dlh = se ? se->getLineHandle() : nullptr;
@@ -2965,7 +2966,7 @@ bool LatexDocument::containsPackage(const QString &name)
 QStringList LatexDocument::containedPackages()
 {
 	QStringList packages;
-	foreach(QString elem, mUsepackageList.values()) {
+    foreach(QString elem, mUsepackageList) {
 		int i = elem.indexOf('#');
 		if (i >= 0) {
 			elem = elem.mid(i + 1);
@@ -3147,7 +3148,7 @@ void LatexDocument::updateSettings()
     QList<QPair<QString,QString> >formats;
     formats<<QPair<QString,QString>("math","numbers")<<QPair<QString,QString>("verbatim","verbatim")<<QPair<QString,QString>("picture","picture")
             <<QPair<QString,QString>("#math","math-keyword")<<QPair<QString,QString>("#picture","picture-keyword")<<QPair<QString,QString>("&math","math-delimiter")
-            <<QPair<QString,QString>("align-ampersand","align-ampersand")<<QPair<QString,QString>("comment","comment");
+            <<QPair<QString,QString>("#mathText","math-text")<<QPair<QString,QString>("align-ampersand","align-ampersand")<<QPair<QString,QString>("comment","comment");
     for(const auto &elem : formats){
         fmtList.insert(elem.first,getFormatId(elem.second));
     }

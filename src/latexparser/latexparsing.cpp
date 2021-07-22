@@ -227,6 +227,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 continue;
         }
         // non-verbatim handling
+        // handle comments after definition/url as % may appear there ...
+        if (tk.type == Token::comment){
+            if(stack.isEmpty() || stack.top().subtype!=Token::url) { // no comments in URL
+                lineLength=tk.start; // limit linelength to comment start
+                commentStart=tk.start;
+                break; // stop at comment start
+            }
+        }
         // special definition handling, is not interpreted !!
         if(!stack.isEmpty() && (stack.top().subtype==Token::definition||stack.top().subtype==Token::url) ){
             EnumsTokenType::TokenType tokenType=stack.top().subtype;
@@ -255,12 +263,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 }
             }
         }
-        // handle comments after definition/url as % may appear there ...
-        if (tk.type == Token::comment){
-            lineLength=tk.start; // limit linelength to comment start
-            commentStart=tk.start;
-            break; // stop at comment start
-        }
+
         // continue normal operation
 	    if (tk.type == Token::command) {
             QString command = line.mid(tk.start, tk.length);

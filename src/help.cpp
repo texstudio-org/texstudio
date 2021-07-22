@@ -25,7 +25,6 @@ void Help::execTexdocDialog(const QStringList &packages, const QString &defaultP
 	}
 	if (dialog.exec()) {
 		viewTexdoc(dialog.selectedPackage());
-		QString package = dialog.selectedPackage();
 	}
 }
 /*!
@@ -43,7 +42,6 @@ void Help::viewTexdoc(QString package)
         QString answer=runTexdoc("--view "+package);
 	}
 }
-
 
 /*!
  * \brief check if system runs miktex
@@ -182,7 +180,7 @@ void Help::texdocAvailableRequestFinished(int,QProcess::ExitStatus status){
  * \param args
  * \return
  */
-QString Help::runTexdoc(QString args) const
+QString Help::runTexdoc(QString args)
 {
     QString output;
     emit statusMessage(QString(" texdoc "));
@@ -324,7 +322,7 @@ void LatexReference::makeIndex()
         QString anchorName(match.captured(1));
         QString word(match.captured(2));
         QString sectionAnchorName(match.captured(3));
-        QString sectionTitle(match.captured(4));
+        //QString sectionTitle(match.captured(4));
 		if (word.startsWith('\\')) { // a command
 			if (word == "\\begin" || word == "\\") {
 				// don't add these words to the index because they give a mess in the tooltips

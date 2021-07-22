@@ -57,6 +57,7 @@
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/cleveref.cwl</file>
 <file>completion/cochineal.cwl</file>
+<file>completion/codehigh.cwl</file>
 <file>completion/color.cwl</file>
 <file>completion/colortbl.cwl</file>
 <file>completion/commath.cwl</file>
@@ -70,6 +71,7 @@
 <file>completion/datatool-base.cwl</file>
 <file>completion/datatool.cwl</file>
 <file>completion/diagxy.cwl</file>
+<file>completion/diffcoeff.cwl</file>
 <file>completion/doi.cwl</file>
 <file>completion/dsfont.cwl</file>
 <file>completion/easyReview.cwl</file>
@@ -133,6 +135,7 @@
 <file>completion/latex-l2tabu.cwl</file>
 <file>completion/layout.cwl</file>
 <file>completion/letltxmacro.cwl</file>
+<file>completion/letterswitharrows.cwl</file>
 <file>completion/libertine.cwl</file>
 <file>completion/libertinus-otf.cwl</file>
 <file>completion/libertinust1math.cwl</file>
@@ -179,6 +182,7 @@
 <file>completion/ngerman.cwl</file>
 <file>completion/nicefrac.cwl</file>
 <file>completion/nicematrix.cwl</file>
+<file>completion/ninecolors.cwl</file>
 <file>completion/nl-interval.cwl</file>
 <file>completion/nomencl.cwl</file>
 <file>completion/numprint.cwl</file>
@@ -215,6 +219,7 @@
 <file>completion/pst-tree.cwl</file>
 <file>completion/regexpatch.cwl</file>
 <file>completion/rotating.cwl</file>
+<file>completion/scalerel.cwl</file>
 <file>completion/scholax.cwl</file>
 <file>completion/scraddr.cwl</file>
 <file>completion/scrdate.cwl</file>
@@ -229,6 +234,7 @@
 <file>completion/siunitx-special.cwl</file>
 <file>completion/stickstootext.cwl</file>
 <file>completion/stix2.cwl</file>
+<file>completion/stmaryrd.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigure.cwl</file>
@@ -237,6 +243,7 @@
 <file>completion/svninfo.cwl</file>
 <file>completion/svn-multi.cwl</file>
 <file>completion/tabu.cwl</file>
+<file>completion/tabularray.cwl</file>
 <file>completion/tabularx.cwl</file>
 <file>completion/tabulary.cwl</file>
 <file>completion/tasks.cwl</file>

@@ -10,7 +10,7 @@ MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
     tableWidget=new QTableWidget(4,1);
     tableWidget->setHorizontalHeaderLabels(QStringList()<<"Macro name");
     tableWidget->horizontalHeader()->setStretchLastSection(true);
-    connect(tableWidget,SIGNAL(itemClicked(QTableWidgetItem *)),SLOT(itemClicked(QTableWidgetItem *)));
+    connect(tableWidget,SIGNAL(itemClicked(QTableWidgetItem*)),SLOT(itemClicked(QTableWidgetItem*)));
     auto *lblName=new QLabel(tr("Name"));
     lblName->setAlignment(Qt::AlignRight);
     auto *lblDescription=new QLabel(tr("Description"));

@@ -55,7 +55,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	ui.fileSelectButton->setIcon(getRealIcon("document-open"));
 	ui.pbSaveDefault->setIcon(getRealIcon("document-save"));
 
-	connect(ui.leFile, SIGNAL(textChanged(const QString &)), this, SLOT(leFileChanged(QString)));
+    connect(ui.leFile, SIGNAL(textChanged(const QString&)), this, SLOT(leFileChanged(QString)));
 	connect(ui.fileSelectButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
 	connect(ui.rbWidthHeight, SIGNAL(toggled(bool)), this, SLOT(includeOptionChanged()));
 	connect(ui.rbUser, SIGNAL(toggled(bool)), this, SLOT(includeOptionChanged()));
@@ -74,7 +74,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	connect(ui.cbPlaceHereFloatPackage, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.cbPlaceForce, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.pbSaveDefault, SIGNAL(clicked()), this, SLOT(saveDefault()));
-	connect(this, SIGNAL(fileNameChanged(const QString &)), this, SLOT(updateLabel(const QString &)));
+    connect(this, SIGNAL(fileNameChanged(const QString&)), this, SLOT(updateLabel(const QString&)));
 	setWindowTitle(tr("Insert Graphics", "Wizard"));
 
 	ui.lePlacement->setValidator(new PlacementValidator(this));
@@ -230,7 +230,7 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf)
 
 bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 {
-	QString cmd, name, arg;
+    //QString cmd, name, arg;
 	bool includeParsed = false;
 	bool containsComment = false;
 

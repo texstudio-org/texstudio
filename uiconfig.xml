@@ -50,15 +50,15 @@
     <insert id="description" text="\begin{description}" insert="\begin{description}%\\item[%&lt;label%>] %&lt;description%>%\\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
     <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%\\item %|%\\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
     <insert id="item" text="\item" insert="%SCRIPT&#10;
-    var ln=cursor.lineNumber();
-    var env=editor.document().getLastEnvName(ln);
-    var ins=&quot;\\item&quot;
-    if(env==&quot;description&quot;){
-	ins=ins+&quot;[%&lt;label%&gt;] %&lt;description%&gt;&quot;
-    }else{
-	ins=ins+&quot; &quot;
-    }
-    editorView.insertSnippet(ins)" 
+    var ln=cursor.lineNumber();&#10;
+    var env=editor.document().getLastEnvName(ln);&#10;
+    var ins=&quot;\\item&quot;&#10;
+    if(env==&quot;description&quot;){&#10;
+	ins=ins+&quot;[%&lt;label%&gt;] %&lt;description%&gt;&quot;&#10;
+    }else{&#10;
+	ins=ins+&quot; &quot;&#10;
+    }&#10;
+    editor.insertSnippet(ins);&#10;" 
     info="\item[label] Hello" icon="item" shortcut="Ctrl+Shift+I"/>
   </menu>
   
@@ -141,26 +141,26 @@
   <menu id="insertfiles" text="Input/Include &amp;Files">
       <insert id="input" text="\input{file}" insert="\input{%(TeX files (*.tex);;All files (*.*)%)}"/>
       <insert id="include" text="\include{file}" insert="%SCRIPT&#10;
-                                                         fnOld=editor.fileName();
-                                                         fnMaster=documentManager.getTemporaryCompileFileName();
-                                                         fileChooser.setDir(fnOld);
-                                                         fileChooser.setFilter(&quot;(TeX files (*.tex);;All files (*.*)&quot;);
-                                                         fileChooser.exec();
-                                                         fn=fileChooser.fileName();
-                                                         fnAbs=documentManager.getAbsoluteFilePath(fn,&quot;tex&quot;,&quot;&quot;)
-                                                         fe=fileExists(fnAbs);
-                                                         fnRel=app.getRelativeFileName(fnAbs,fnOld);
-                                                         txt=cursor.selectedText();
-                                                         cursor.removeSelectedText();
-                                                         cursor.insertText(&quot;\\include{&quot;+fnRel+&quot;}&quot;);
+                                                         fnOld=editor.fileName();&#10;
+                                                         fnMaster=documentManager.getTemporaryCompileFileName();&#10;
+                                                         fileChooser.setDir(fnOld);&#10;
+                                                         fileChooser.setFilter(&quot;(TeX files (*.tex);;All files (*.*)&quot;);&#10;
+                                                         fileChooser.exec();&#10;
+                                                         fn=fileChooser.fileName();&#10;
+                                                         fnAbs=documentManager.getAbsoluteFilePath(fn,&quot;tex&quot;,&quot;&quot;);&#10;
+                                                         fe=app.fileExists(fnAbs);&#10;
+                                                         fnRel=app.getRelativeFileName(fnAbs,fnOld);&#10;
+                                                         txt=cursor.selectedText();&#10;
+                                                         cursor.removeSelectedText();&#10;
+                                                         cursor.insertText(&quot;\\include{&quot;+fnRel+&quot;}&quot;);&#10;
                                                          if(!fe){
-	                                                     app.fileNew();
-	                                                     newEditor = documentManager.currentDocument.editorView.editor;
-	                                                     fnMaster=app.getRelativeFileName(fnMaster,fnAbs);
-	                                                     preamble=&quot;% !TeX root=&quot;+fnMaster+&quot;\n&quot;
-	                                                     newEditor.write(preamble)
-	                                                     newEditor.write(txt);
-	                                                     newEditor.save(fnAbs);
+	                                                     app.fileNew();&#10;
+	                                                     newEditor = documentManager.currentDocument.editorView.editor;&#10;
+	                                                     fnMaster=app.getRelativeFileName(fnMaster,fnAbs);&#10;
+	                                                     preamble=&quot;% !TeX root=&quot;+fnMaster+&quot;\n&quot;;&#10;
+	                                                     newEditor.write(preamble);&#10;
+	                                                     newEditor.write(txt);&#10;
+	                                                     newEditor.save(fnAbs);&#10;
                                                          }"/>
       <insert id="includeonly" text="\includeonly{filelist}" insert="\includeonly{%&lt;filelist%>}"/>
       <separator/>
