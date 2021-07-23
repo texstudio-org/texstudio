@@ -901,8 +901,8 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "debughistory", tr("Debug undo stack"), SLOT(editDebugUndoStack()));
 #endif
 	menu->addSeparator();
+    newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "edit-cut");
 	newManagedAction(menu, "copy", tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "edit-copy");
-	newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "edit-cut");
 	newManagedAction(menu, "paste", tr("&Paste"), SLOT(editPaste()), QKeySequence::Paste, "edit-paste");
 
 	submenu = newManagedMenu(menu, "selection", tr("&Selection"));
