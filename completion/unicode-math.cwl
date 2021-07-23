@@ -61,6 +61,11 @@ version=
 
 \symnormal{text}#*m
 \symliteral{text}#*m
+\symup{text}#*m
+\symit{text}#*m
+\symbf{text}#*m
+\symsf{text}#*m
+\symtt{text}#*m
 \symbb{text}#*m
 \symbbit{text}#*m
 \symcal{text}#*m
