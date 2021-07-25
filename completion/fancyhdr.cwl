@@ -2,6 +2,7 @@
 # dani/2006-02-18
 # modified Edson 30-12-2010
 # modified T. Hoffmann 15-05-2014
+#modified Matthew Bertucci 7/25/2021
 
 \chead[CH-even]{CH-odd}
 \chead{header}
@@ -18,30 +19,37 @@
 \rfoot[RF-even]{RF-odd}
 \rfoot{footer}
 
-\fancyfoot[positions]{footer}
+\fancyfoot[places]{footer}
 \fancyfoot{footer}
 
-\fancyhead[positions]{header}
+\fancyhead[places]{header}
 \fancyhead{header}
 
-\fancyhf[positions]{output}
-\fancyhf{output}
+\fancyhf[places]{output}
+\fancyhf{header}
 
-\fancyfootoffset{length}
-\fancyfootoffset[place]{length}
+\fancyfootoffset[places]{length}
+\fancyheadoffset[places]{length}
+\fancyhfoffset[places]{length}
 
-\fancyheadoffset{length}
-\fancyheadoffset[place]{length}
+\fancypagestyle{name}[base style]{definitions}
 
-\fancyhfoffset{length}
-\fancyhfoffset[place]{length}
-
-\fancypagestyle{name}{style}
-
+\iftopfloat{float page}{other}
+\ifbotfloat{float page}{other}
 \iffloatpage{float page}{other}
+\iffootnote{float page}{other}
 
 \headrulewidth
 \footrulewidth
+\headruleskip
+\footruleskip
+\headwidth
 \thepage
 \headrule
 \footrule
+
+\fancyheadinit{code}
+\fancyfootinit{code}
+\fancyhfinit{code}
+
+\fancycenter[distance][stretch]{left-mark}{center-mark}{right-mark}
