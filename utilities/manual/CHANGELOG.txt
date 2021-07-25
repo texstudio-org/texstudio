@@ -1,10 +1,12 @@
 TeXstudio 4.0.0
 -----------------
-- 
+- adapt to Qt6/poppler-qt6
+- OSX build provided with Qt6
+- remodel structure handling in order to avoid (rare) crashes
+- more and updated completion word lists thanks to mbertucci47
+- handle text (e.g. \text{text}) in mathenv as text with spell checking
+- some bug fixes
 
-TeXstudio 3.1.3
------------------
-- 
 
 TeXstudio 3.1.2
 -----------------
