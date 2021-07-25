@@ -4183,58 +4183,58 @@ void PDFDocument::printPDF()
 	}
 
 	if (!printer.printerName().isEmpty()) {
-#ifdef Q_OS_WIN32
+#if defined(Q_OS_WIN32) && QT_VERSION_MAJOR<6
 		QString paper;
 		switch (printer.paperSize()) {
-		case QPrinter::A0:
+		case QPageSize::A0:
 			paper = "a0";
 			break;
-		case QPrinter::A1:
+		case QPageSize::A1:
 			paper = "a1";
 			break;
-		case QPrinter::A2:
+		case QPageSize::A2:
 			paper = "a2";
 			break;
-		case QPrinter::A3:
+		case QPageSize::A3:
 			paper = "a3";
 			break;
-		case QPrinter::A4:
+		case QPageSize::A4:
 			paper = "a4";
 			break;
-		case QPrinter::A5:
+		case QPageSize::A5:
 			paper = "a5";
 			break;
-		case QPrinter::A6:
+		case QPageSize::A6:
 			paper = "a6";
 			break;
-		case QPrinter::B0:
+		case QPageSize::B0:
 			paper = "isob0";
 			break;
-		case QPrinter::B1:
+		case QPageSize::B1:
 			paper = "isob1";
 			break;
-		case QPrinter::B2:
+		case QPageSize::B2:
 			paper = "isob2";
 			break;
-		case QPrinter::B3:
+		case QPageSize::B3:
 			paper = "isob3";
 			break;
-		case QPrinter::B4:
+		case QPageSize::B4:
 			paper = "isob4";
 			break;
-		case QPrinter::B5:
+		case QPageSize::B5:
 			paper = "isob5";
 			break;
-		case QPrinter::B6:
+		case QPageSize::B6:
 			paper = "isob6";
 			break;
-		case QPrinter::Letter:
+		case QPageSize::Letter:
 			paper = "letter";
 			break;
-		case QPrinter::Ledger:
+		case QPageSize::Ledger:
 			paper = "ledger";
 			break;
-		case QPrinter::Legal:
+		case QPageSize::Legal:
 			paper = "legal";
 			break;
 		default:
