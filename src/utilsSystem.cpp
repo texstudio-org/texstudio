@@ -597,11 +597,12 @@ QString getEnvironmentPath()
 	if (path.isNull()) {
 #ifdef Q_OS_MAC
 		QProcess *myProcess = new QProcess();
-        myProcess->start("bash -l -c \"echo -n $PATH\"");  // -n ensures there is no newline at the end
+        myProcess->start("/usr/libexec/path_helper");  // -n ensures there is no newline at the end
+
 		myProcess->waitForFinished(3000);
 		if (myProcess->exitStatus() == QProcess::NormalExit) {
 			QByteArray res = myProcess->readAllStandardOutput();
-			path = QString(res).split('\n').last();  // bash may have some initial output. path is on the last line
+            path = QString(res).split('\"').at(1);  // bash may have some initial output. path is on the last line
 		} else {
 			path = "";
 		}
