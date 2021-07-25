@@ -224,7 +224,7 @@ namespace Adwaita
             widgets.append( parent );
 
             // stop at topLevel
-            if( parent->isTopLevel() || parent->autoFillBackground() ) break;
+            if( parent->isWindow() || parent->autoFillBackground() ) break;
 
         }
 
@@ -245,7 +245,7 @@ namespace Adwaita
 
         }
 
-        if( parent->isTopLevel() && parent->testAttribute(Qt::WA_StyledBackground))
+        if( parent->isWindow() && parent->testAttribute(Qt::WA_StyledBackground))
         {
             QStyleOption option;
             option.initFrom(parent);
@@ -262,7 +262,11 @@ namespace Adwaita
         for( int i = widgets.size() - 1; i>=0; i-- )
         {
             QWidget* w = widgets.at(i);
+#if QT_VERSION_MAJOR<6
             w->render( &p, -widget->mapTo( w, rect.topLeft() ), rect, 0 );
+#else
+            w->render( &p, -widget->mapTo( w, rect.topLeft() ), rect, RenderFlag::None );
+#endif
         }
 
         // end

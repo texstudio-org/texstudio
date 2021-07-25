@@ -30,7 +30,7 @@
 #include "adwaitatransitionwidget.h"
 
 #include <QObject>
-#include <QTime>
+#include <QElapsedTimer>
 #include <QWidget>
 
 namespace Adwaita
@@ -76,13 +76,13 @@ namespace Adwaita
         //* start clock
         void startClock( void )
         {
-            if( _clock.isNull() ) _clock.start();
+            if( !_clock.isValid() ) _clock.start();
             else _clock.restart();
         }
 
         //* check if rendering is two slow
         bool slow( void ) const
-        { return !( _clock.isNull() || _clock.elapsed() <= maxRenderTime() ); }
+        { return !( !_clock.isValid() || _clock.elapsed() <= maxRenderTime() ); }
 
         protected Q_SLOTS:
 
@@ -118,7 +118,7 @@ namespace Adwaita
         bool _recursiveCheck = false;
 
         //* timer used to detect slow rendering
-        QTime _clock;
+        QElapsedTimer _clock;
 
         //* max render time
         /*! used to detect slow rendering */

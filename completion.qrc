@@ -60,6 +60,7 @@
 <file>completion/codehigh.cwl</file>
 <file>completion/color.cwl</file>
 <file>completion/colortbl.cwl</file>
+<file>completion/comicneue.cwl</file>
 <file>completion/commath.cwl</file>
 <file>completion/comment.cwl</file>
 <file>completion/coordsys.cwl</file>
@@ -70,9 +71,11 @@
 <file>completion/cyrillic.cwl</file>
 <file>completion/datatool-base.cwl</file>
 <file>completion/datatool.cwl</file>
+<file>completion/dejavu-otf.cwl</file>
 <file>completion/diagxy.cwl</file>
 <file>completion/diffcoeff.cwl</file>
 <file>completion/doi.cwl</file>
+<file>completion/domitian.cwl</file>
 <file>completion/dsfont.cwl</file>
 <file>completion/easyReview.cwl</file>
 <file>completion/empheq.cwl</file>
@@ -94,7 +97,9 @@
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
 <file>completion/fbb.cwl</file>
+<file>completion/fdsymbol.cwl</file>
 <file>completion/fhgtechdoku_additional.cwl</file>
+<file>completion/firamath-otf.cwl</file>
 <file>completion/fixme.cwl</file>
 <file>completion/float.cwl</file>
 <file>completion/fontawesome5.cwl</file>
@@ -102,6 +107,7 @@
 <file>completion/fontspec.cwl</file>
 <file>completion/fourier.cwl</file>
 <file>completion/fourier-orns.cwl</file>
+<file>completion/fourier-otf.cwl</file>
 <file>completion/fp.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
@@ -129,6 +135,7 @@
 <file>completion/jurabib.cwl</file>
 <file>completion/kantlipsum.cwl</file>
 <file>completion/keyval.cwl</file>
+<file>completion/knowledge.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
@@ -142,6 +149,7 @@
 <file>completion/libertinus-type1.cwl</file>
 <file>completion/lipsum.cwl</file>
 <file>completion/listings.cwl</file>
+<file>completion/logix.cwl</file>
 <file>completion/logsys.cwl</file>
 <file>completion/longtable.cwl</file>
 <file>completion/lscape.cwl</file>
@@ -149,9 +157,11 @@
 <file>completion/ltxtable.cwl</file>
 <file>completion/luatex.cwl</file>
 <file>completion/luatodonotes.cwl</file>
+<file>completion/macrolist.cwl</file>
 <file>completion/makecell.cwl</file>
 <file>completion/manyfoot.cwl</file>
 <file>completion/marvosym.cwl</file>
+<file>completion/mathcommand.cwl</file>
 <file>completion/mathpartir.cwl</file>
 <file>completion/mathtools.cwl</file>
 <file>completion/mdframed.cwl</file>
@@ -217,6 +227,8 @@
 <file>completion/pstricks.cwl</file>
 <file>completion/pst-text.cwl</file>
 <file>completion/pst-tree.cwl</file>
+<file>completion/pst-xkey.cwl</file>
+<file>completion/raleway.cwl</file>
 <file>completion/regexpatch.cwl</file>
 <file>completion/rotating.cwl</file>
 <file>completion/scalerel.cwl</file>
@@ -232,6 +244,9 @@
 <file>completion/simpleinvoice.cwl</file>
 <file>completion/siunitx.cwl</file>
 <file>completion/siunitx-special.cwl</file>
+<file>completion/sourcecodepro.cwl</file>
+<file>completion/sourcesanspro.cwl</file>
+<file>completion/sourceserifpro.cwl</file>
 <file>completion/stickstootext.cwl</file>
 <file>completion/stix2.cwl</file>
 <file>completion/stmaryrd.cwl</file>
@@ -289,6 +304,8 @@
 <file>completion/xfp.cwl</file>
 <file>completion/xfrac.cwl</file>
 <file>completion/xifthen.cwl</file>
+<file>completion/xkeyval.cwl</file>
+<file>completion/xkvview.cwl</file>
 <file>completion/xltxtra.cwl</file>
 <file>completion/xmpmulti.cwl</file>
 <file>completion/xparse.cwl</file>
