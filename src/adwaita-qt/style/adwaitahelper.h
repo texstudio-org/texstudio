@@ -40,6 +40,11 @@
 #endif
 
 #include <cmath>
+#if QT_VERSION_MAJOR<6
+typedef qreal color_real;
+#else
+typedef float color_real;
+#endif
 
 namespace Adwaita
 {
@@ -98,46 +103,46 @@ public:
         return QColor::fromRgbF(r, g, b, a);
     }
 
-    static QColor lighten(const QColor &color, qreal amount = 0.1)
+    static QColor lighten(const QColor &color, color_real amount = 0.1)
     {
-        qreal h, s, l, a;
+        color_real h, s, l, a;
         color.getHslF(&h, &s, &l, &a);
 
-        qreal lightness = l + amount;
+        color_real lightness = l + amount;
         if (lightness > 1)
             lightness = 1;
         return QColor::fromHslF(h, s, lightness, a);
     }
 
-    static QColor darken(const QColor &color, qreal amount = 0.1)
+    static QColor darken(const QColor &color, color_real amount = 0.1)
     {
-        qreal h, s, l, a;
+        color_real h, s, l, a;
         color.getHslF(&h, &s, &l, &a);
 
-        qreal lightness = l - amount;
+        color_real lightness = l - amount;
         if (lightness < 0)
             lightness = 0;
 
         return QColor::fromHslF(h, s, lightness, a);
     }
 
-    static QColor desaturate(const QColor &color, qreal amount = 0.1)
+    static QColor desaturate(const QColor &color, color_real amount = 0.1)
     {
-        qreal h, s, l, a;
+        color_real h, s, l, a;
         color.getHslF(&h, &s, &l, &a);
 
-        qreal saturation = s - amount;
+        color_real saturation = s - amount;
         if (saturation < 0)
             saturation = 0;
         return QColor::fromHslF(h, saturation, l, a);
     }
 
-    static QColor transparentize(const QColor &color, qreal amount = 0.1)
+    static QColor transparentize(const QColor &color, color_real amount = 0.1)
     {
-        qreal h, s, l, a;
+        color_real h, s, l, a;
         color.getHslF(&h, &s, &l, &a);
 
-        qreal alpha = a - amount;
+        color_real alpha = a - amount;
         if (alpha < 0)
             alpha = 0;
         return QColor::fromHslF(h, s, l, alpha);
@@ -262,7 +267,7 @@ public:
     void renderDebugFrame(QPainter *painter, const QRect &) const;
 
     //* focus rect
-    void renderFocusRect(QPainter *painter, const QRect &rect, const QColor &, const QColor &outline = QColor(), Sides = 0) const;
+    void renderFocusRect(QPainter *painter, const QRect &rect, const QColor &, const QColor &outline = QColor(), Sides = Side::SideNone) const;
 
     //* focus line
     void renderFocusLine(QPainter *painter, const QRect &rect, const QColor &) const;
