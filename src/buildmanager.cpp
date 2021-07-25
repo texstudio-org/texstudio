@@ -2168,7 +2168,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 	if (slash == -1) return false;
 	QString topic = ddePseudoURL.left(slash);
 	ddePseudoURL.remove(0, slash + 1);
-	QStringList commands = ddePseudoURL.split("[", QString::SkipEmptyParts);
+	QStringList commands = ddePseudoURL.split("[", Qt::SkipEmptyParts);
 	if (commands.isEmpty()) return false;
 
 

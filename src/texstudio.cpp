@@ -1202,9 +1202,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "array", tr("Quick &Array..."), SLOT(quickArray()));
 	newManagedAction(menu, "graphic", tr("Insert &Graphic..."), SLOT(quickGraphics()), QKeySequence(), "image");
 #ifdef Q_OS_WIN
-	if (QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
-		newManagedAction(menu, "math", tr("Math Assistant..."), SLOT(quickMath()), QKeySequence(), "TexTablet");
-	}
+	newManagedAction(menu, "math", tr("Math Assistant..."), SLOT(quickMath()), QKeySequence(), "TexTablet");
 #endif
 
 	menu = newManagedMenu("main/bibliography", tr("&Bibliography"));
