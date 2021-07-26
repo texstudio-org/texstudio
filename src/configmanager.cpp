@@ -1654,7 +1654,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		// update macros menu to update quote replacement
 		if (changedProperties.contains(&replaceQuotes)) {
 			bool conflict = false;
-			if (replaceQuotes)
+            if (replaceQuotes){
 				foreach (const Macro &m, completerConfig->userMacros) {
 					if (m.name == TXS_AUTO_REPLACE_QUOTE_OPEN ||
 					        m.name == TXS_AUTO_REPLACE_QUOTE_CLOSE) continue;
@@ -1663,7 +1663,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 						break;
 					}
 				}
-			if (conflict)
+            }
+            if (conflict){
 				if (UtilsUi::txsConfirm(tr("You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))) {
 					for (int i = completerConfig->userMacros.count() - 1; i >= 0; i--) {
 						const Macro &m = completerConfig->userMacros.at(i);
@@ -1671,6 +1672,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 							completerConfig->userMacros.removeAt(i);
 					}
 				}
+            }
 		}
 		//completion
 		completerConfig->enabled = confDlg->ui.checkBoxCompletion->isChecked();

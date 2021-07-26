@@ -226,11 +226,13 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	qRegisterMetaType<QList<GrammarError> >();
 	qRegisterMetaType<LatexParser>();
 	qRegisterMetaType<GrammarCheckerConfig>();
+    qRegisterMetaType<QDocumentLineHandle*>();
 
 	grammarCheck = new GrammarCheck();
 	grammarCheck->moveToThread(&grammarCheckThread);
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
-    connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
+    //connect(grammarCheck, SIGNAL(checked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)));
+    connect(grammarCheck, &GrammarCheck::checked, &documents, &LatexDocuments::lineGrammarChecked);
     connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
 	if (configManager.autoLoadChildren)
 		connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
@@ -1866,7 +1868,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
         connect(edit->editor, SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
         connect(edit->editor, SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
     }
-    connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int)));
+    connect(edit, SIGNAL(linesChanged(QString,LatexDocument *,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,LatexDocument *,QList<LineInfo>,int)));
 
     connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(editorSpellerChanged(QString)));
     connect(edit->editor, SIGNAL(focusReceived()), edit, SIGNAL(focusReceived()));

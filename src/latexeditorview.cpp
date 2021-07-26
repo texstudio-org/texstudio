@@ -1058,10 +1058,10 @@ void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<G
 	//todo: check for width changing like if (changed && ff->format(wordRepetitionFormat).widthChanging()) line.handle()->updateWrapAndNotifyDocument(i);
 }
 
-void LatexEditorView::lineGrammarChecked(const void *doc, const void *lineHandle, int lineNr, const QList<GrammarError> &errors)
+void LatexEditorView::lineGrammarChecked(LatexDocument *doc, QDocumentLineHandle *lineHandle, int lineNr, const QList<GrammarError> &errors)
 {
 	if (doc != this->document) return;
-	lineNr = document->indexOf(const_cast<QDocumentLineHandle *>(static_cast<const QDocumentLineHandle *>(lineHandle)), lineNr);
+    lineNr = document->indexOf(lineHandle, lineNr);
 	if (lineNr < 0) return; //line already deleted
 	displayLineGrammarErrorsInternal(lineNr, errors);
 	document->line(lineNr).setCookie(QDocumentLine::GRAMMAR_ERROR_COOKIE, QVariant::fromValue<QList<GrammarError> >(errors));

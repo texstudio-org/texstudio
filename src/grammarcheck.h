@@ -5,12 +5,15 @@
 
 #include "latexparser/latexparser.h"
 #include "configmanagerinterface.h"
+
+
 //TODO: move this away
 #include "grammarcheck_config.h"
-
+class QDocumentLineHandle;
+class LatexDocument;
 
 struct LineInfo {
-	const void *line;
+    QDocumentLineHandle* line;
 	QString text;
 };
 
@@ -29,8 +32,8 @@ struct GrammarError {
 };
 
 struct LineResult {
-	const void *doc;
-	const void *line;
+    LatexDocument *doc;
+    QDocumentLineHandle *line;
 	int lineNr;
 	QList<GrammarError> errors;
 };
@@ -50,7 +53,7 @@ class GrammarCheckBackend;
 
 struct CheckRequest;
 
-typedef QHash<const void *, QPair<uint, int> > TicketHash;
+typedef QHash<QDocumentLineHandle *, QPair<uint, int> > TicketHash;
 
 class GrammarCheck : public QObject
 {
@@ -65,12 +68,12 @@ public:
     QString getLastErrorMessage();
 
 signals:
-	void checked(const void *doc, const void *line, int lineNr, QList<GrammarError> errors);
+    void checked(LatexDocument *doc, QDocumentLineHandle *line, int lineNr, QList<GrammarError> errors);
 	void languageToolStatusChanged();
     void errorMessage(QString message);
 public slots:
 	void init(const LatexParser &lp, const GrammarCheckerConfig &config);
-	void check(const QString &language, const void *doc, const QList<LineInfo> &lines, int firstLineNr);
+    void check(const QString &language, LatexDocument *doc, const QList<LineInfo> &lines, int firstLineNr);
 	void shutdown();
 private slots:
 	void processLoop();

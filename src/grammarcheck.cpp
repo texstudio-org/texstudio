@@ -96,13 +96,13 @@ struct TokenizedBlock {
 struct CheckRequest {
 	bool pending;
 	QString language;
-	void *doc;
+    LatexDocument *doc;
 	QList<LineInfo> inlines;
 	int firstLineNr;
 	uint ticket;
 	int handledBlocks;
-    CheckRequest(const QString &language, const void *doc, const QList<LineInfo> inlines, const int firstLineNr, const uint ticket):
-		pending(true), language(language), doc(const_cast<void *>(doc)), inlines(inlines), firstLineNr(firstLineNr), ticket(ticket), handledBlocks(0) {}
+    CheckRequest(const QString &language, LatexDocument *doc, const QList<LineInfo> inlines, const int firstLineNr, const uint ticket):
+        pending(true), language(language), doc(doc), inlines(inlines), firstLineNr(firstLineNr), ticket(ticket), handledBlocks(0) {}
 
 	QList<int> linesToSkip;
 
@@ -110,7 +110,7 @@ struct CheckRequest {
 	QVector<QList<GrammarError> > errors;
 };
 
-void GrammarCheck::check(const QString &language, const void *doc, const QList<LineInfo> &inlines, int firstLineNr)
+void GrammarCheck::check(const QString &language, LatexDocument *doc, const QList<LineInfo> &inlines, int firstLineNr)
 {
 	if (shuttingDown || inlines.isEmpty()) return;
 
@@ -834,7 +834,7 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
 
         QStringList cors;
         QJsonArray repl=obj["replacements"].toArray();
-        foreach (QJsonValue elem, repl) {
+        for(const QJsonValue &elem: repl) {
             QJsonObject i=elem.toObject();
             cors<<i["value"].toString();
         }

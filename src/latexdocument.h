@@ -396,7 +396,7 @@ private slots:
 	void bibTeXFilesNeedUpdate();
 
 public slots:
-	void lineGrammarChecked(const void *doc, const void *line, int lineNr, const QList<GrammarError> &errors);
+    void lineGrammarChecked(LatexDocument *doc, QDocumentLineHandle *line, int lineNr, const QList<GrammarError> &errors);
 	void requestedClose();
 
 private:

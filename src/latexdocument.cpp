@@ -3016,9 +3016,9 @@ QString LatexDocument::getAbsoluteFilePath(const QString &relName, const QString
 	return findAbsoluteFilePath(relName, extension, searchPaths, fallbackPath);
 }
 
-void LatexDocuments::lineGrammarChecked(const void *doc, const void *line, int lineNr, const QList<GrammarError> &errors)
+void LatexDocuments::lineGrammarChecked(LatexDocument *doc, QDocumentLineHandle *line, int lineNr, const QList<GrammarError> &errors)
 {
-	int d = documents.indexOf(static_cast<LatexDocument *>(const_cast<void *>(doc)));
+    int d = documents.indexOf(doc);
 	if (d == -1) return;
 	if (!documents[d]->getEditorView()) return;
 	documents[d]->getEditorView()->lineGrammarChecked(doc, line, lineNr, errors);
