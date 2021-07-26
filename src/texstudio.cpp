@@ -1390,7 +1390,7 @@ void Texstudio::setupMenus()
 		QList<QAction *> baseContextActions;
 		QAction *sep = new QAction(menu);
 		sep->setSeparator(true);
-		baseContextActions << getManagedActions(QStringList() << "copy" << "cut" << "paste", "main/edit/");
+        baseContextActions << getManagedActions(QStringList() << "cut" << "copy" << "paste", "main/edit/");
 		baseContextActions << getManagedActions(QStringList() << "main/edit2/pasteAsLatex" << "main/edit2/convertTo" << "main/edit/selection/selectAll");
 		baseContextActions << sep;
 		baseContextActions << getManagedActions(QStringList() << "previewLatex" << "removePreviewLatex", "main/edit2/");
@@ -11263,8 +11263,8 @@ void Texstudio::customMenuStructure(const QPoint &pos){
             menu.addSeparator();
         }
 
-        menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
         menu.addAction(tr("Cut"), this, SLOT(editSectionCut()));
+        menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
         menu.addAction(tr("Paste Before"), this, SLOT(editSectionPasteBefore()));
         menu.addAction(tr("Paste After"), this, SLOT(editSectionPasteAfter()));
         menu.addSeparator();
