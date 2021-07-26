@@ -2394,7 +2394,7 @@ bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command
 	QStringList envAliases = document->lp.environmentAliases.values(environment);
 	bool found;
     QString text;
-	if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]") {
+    if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]" || command == "\\(" || command == "\\)") {
 		found = moveToCommandStart(cursor, "\\");
 	} else if (command == "$" || command == "$$") {
 		found = moveToCommandStart(cursor, command);
