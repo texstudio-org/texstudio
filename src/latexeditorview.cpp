@@ -2399,7 +2399,7 @@ bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command
 	} else if (command == "$" || command == "$$") {
 		found = moveToCommandStart(cursor, command);
         // special treatment for $/$$ as it is handled in syntax checker
-        text=findEnclosedMathText(cursor,command);
+        text="$"+findEnclosedMathText(cursor,command)+"$";
 	} else {
 		found = false;
 	}
