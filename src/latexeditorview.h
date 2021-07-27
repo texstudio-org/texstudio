@@ -308,7 +308,7 @@ public slots:
 	void removeTemporaryHighlight();
 
 	void displayLineGrammarErrorsInternal(int lineNr, const QList<GrammarError> &errors);
-	void lineGrammarChecked(const void *doc, const void *line, int lineNr, const QList<GrammarError> &errors);
+    void lineGrammarChecked(LatexDocument *doc, QDocumentLineHandle *line, int lineNr, const QList<GrammarError> &errors);
 	void updateGrammarOverlays();
 
 	void bibtexSectionFound(QString content);
@@ -346,7 +346,7 @@ signals:
 	void cursorChangeByMouse();
         void focusReceived();
 
-	void linesChanged(QString language, const void *doc, const QList<LineInfo> &lines, int firstLineNr);
+    void linesChanged(QString language, LatexDocument *doc, const QList<LineInfo> &lines, int firstLineNr);
 	void searchBibtexSection(QString file, QString bibId);
 	void openInternalDocViewer(QString package, QString command = "");
 

@@ -226,11 +226,13 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	qRegisterMetaType<QList<GrammarError> >();
 	qRegisterMetaType<LatexParser>();
 	qRegisterMetaType<GrammarCheckerConfig>();
+    qRegisterMetaType<QDocumentLineHandle*>();
 
 	grammarCheck = new GrammarCheck();
 	grammarCheck->moveToThread(&grammarCheckThread);
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
-    connect(grammarCheck, SIGNAL(checked(const void*,const void*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void*,const void*,int,QList<GrammarError>)));
+    //connect(grammarCheck, SIGNAL(checked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)));
+    connect(grammarCheck, &GrammarCheck::checked, &documents, &LatexDocuments::lineGrammarChecked);
     connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
 	if (configManager.autoLoadChildren)
 		connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
@@ -1390,7 +1392,7 @@ void Texstudio::setupMenus()
 		QList<QAction *> baseContextActions;
 		QAction *sep = new QAction(menu);
 		sep->setSeparator(true);
-		baseContextActions << getManagedActions(QStringList() << "copy" << "cut" << "paste", "main/edit/");
+        baseContextActions << getManagedActions(QStringList() << "cut" << "copy" << "paste", "main/edit/");
 		baseContextActions << getManagedActions(QStringList() << "main/edit2/pasteAsLatex" << "main/edit2/convertTo" << "main/edit/selection/selectAll");
 		baseContextActions << sep;
 		baseContextActions << getManagedActions(QStringList() << "previewLatex" << "removePreviewLatex", "main/edit2/");
@@ -1866,7 +1868,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
         connect(edit->editor, SIGNAL(slowOperationStarted()), Guardian::instance(), SLOT(slowOperationStarted()));
         connect(edit->editor, SIGNAL(slowOperationEnded()), Guardian::instance(), SLOT(slowOperationEnded()));
     }
-    connect(edit, SIGNAL(linesChanged(QString,const void*,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,const void*,QList<LineInfo>,int)));
+    connect(edit, SIGNAL(linesChanged(QString,LatexDocument *,QList<LineInfo>,int)), grammarCheck, SLOT(check(QString,LatexDocument *,QList<LineInfo>,int)));
 
     connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(editorSpellerChanged(QString)));
     connect(edit->editor, SIGNAL(focusReceived()), edit, SIGNAL(focusReceived()));
@@ -11263,8 +11265,8 @@ void Texstudio::customMenuStructure(const QPoint &pos){
             menu.addSeparator();
         }
 
-        menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
         menu.addAction(tr("Cut"), this, SLOT(editSectionCut()));
+        menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
         menu.addAction(tr("Paste Before"), this, SLOT(editSectionPasteBefore()));
         menu.addAction(tr("Paste After"), this, SLOT(editSectionPasteAfter()));
         menu.addSeparator();

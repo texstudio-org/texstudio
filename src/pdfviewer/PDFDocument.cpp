@@ -2758,7 +2758,11 @@ void PDFDocument::init(bool embedded)
 	toolButtonGroup->addButton(qobject_cast<QAbstractButton *>(toolBar->widgetForAction(actionScroll)), kScroll);
 	//	toolButtonGroup->addButton(qobject_cast<QAbstractButton*>(toolBar->widgetForAction(actionSelect_Text)), kSelectText);
 	//	toolButtonGroup->addButton(qobject_cast<QAbstractButton*>(toolBar->widgetForAction(actionSelect_Image)), kSelectImage);
+#if QT_VERSION >= QT_VERSION_CHECK(5,15,0)
+    connect(toolButtonGroup, SIGNAL(idClicked(int)), pdfWidget, SLOT(setTool(int)));
+#else
 	connect(toolButtonGroup, SIGNAL(buttonClicked(int)), pdfWidget, SLOT(setTool(int)));
+#endif
 	conf->registerOption("Preview/EditTool", &globalConfig->editTool, kMagnifier);
 	QAbstractButton *bt = toolButtonGroup->button(globalConfig->editTool);
 	if (bt) bt->setChecked(true);

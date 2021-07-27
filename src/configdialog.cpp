@@ -465,7 +465,11 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.pushButtonPathCommands, SIGNAL(clicked()), this, SLOT(browsePathCommands()));
 
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(editTextChanged(QString)), this, SLOT(comboBoxWithPathEdited(QString)));
+#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
+    connect(ui.comboBoxThesaurusFileName, SIGNAL(textHighlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
+#else
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
+#endif
 
 
     ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>","<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
