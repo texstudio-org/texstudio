@@ -8134,7 +8134,7 @@ void Texstudio::previewLatex()
 void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &source)
 {
 	QPixmap pixmap;
-	int devPixelRatio = 1;
+    qreal devPixelRatio = 1.0;
 
     devPixelRatio = devicePixelRatio();
 
@@ -8163,7 +8163,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
 			double c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
-			pixmap = QPixmap::fromImage(page->renderToImage(logicalDpiX() * scale * c, logicalDpiY() * scale * c));
+            pixmap = QPixmap::fromImage(page->renderToImage(qRound(scale*logicalDpiX() * c), qRound(scale*logicalDpiY() * c)));
             previewCache.insert(source.text,pixmap);
 		}
 	}
@@ -8178,12 +8178,12 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
             previewCache.insert(source.text,pixmap);
             if (scale < 0.99 || 1.01 < scale) {
                 // TODO: this does scale the pixmaps, but it would be better to render higher resolution images directly in the compilation process.
-		pixmap = pixmap.scaledToWidth(qRound(pixmap.width() * scale), Qt::SmoothTransformation);
+                pixmap = pixmap.scaledToWidth(qRound(scale*pixmap.width()), Qt::SmoothTransformation);
             }
         }
 	}
 
-	if (devPixelRatio != 1) {
+    if (devPixelRatio > 1.01 || devPixelRatio<0.99) {
 		pixmap.setDevicePixelRatio(devPixelRatio);
 	}
 
@@ -8207,12 +8207,13 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		QRect screen = QGuiApplication::primaryScreen()->geometry();
 		int w = pixmap.width();
 		if (w > screen.width()) w = screen.width() - 2;
+        int w_calculated=qRound(1.0*w / devPixelRatio); //pixmap shown with reduced width to be pixel perfect again
 		if (!fromPDF) {
-		        QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w / devPixelRatio), nullptr);
+                QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w_calculated), nullptr);
 		} else {
 			QString text;
 
-			text = getImageAsText(pixmap, w);
+            text = getImageAsText(pixmap, w_calculated);
 
 			if (completerPreview) {
 				completerPreview = false;
