@@ -1,5 +1,6 @@
 # amssymb package
 # tbraun 01.06.2007
+#include:amsfonts
 \approxeq#m
 \backepsilon#m
 \backprime#m
