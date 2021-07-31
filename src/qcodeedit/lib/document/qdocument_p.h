@@ -286,7 +286,7 @@ public:
         static int m_fontSizeModifier;
 		static bool m_fixedPitch;
 		static QDocument::WorkAroundMode m_workArounds;
-		static int m_leftPadding;  // width between left edge of the document and start of the text
+        static qreal m_leftPadding;  // width between left edge of the document and start of the text
 		static QDocument::WhiteSpaceMode m_showSpaces;
 		static QDocument::LineEnding m_defaultLineEnding;
 		static QTextCodec* m_defaultCodec;

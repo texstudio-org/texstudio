@@ -111,15 +111,15 @@ public:
 
 		void shiftOverlays(int position, int offset);
 
-		void draw(int lineNr,
-					QPainter *p,
-					int xOffset,
-					int vWidth,
-					const QVector<int>& selectionBoundaries,
-					const QPalette& pal,
-					bool fullSel,
-					qreal yStart=0,
-					qreal yEnd=-1) const;
+        void draw(int lineNr,
+                    QPainter *p,
+                    qreal xOffset,
+                    qreal vWidth,
+                    const QVector<int>& selectionBoundaries,
+                    const QPalette& pal,
+                    bool fullSel,
+                    qreal yStart=0,
+                    qreal yEnd=-1) const;
 
 		QString exportAsHtml(int fromOffset=0, int toOffset = -1, int maxLineWidth = -1, int maxWrap = 0) const;
 
