@@ -14,6 +14,7 @@
 ****************************************************************************/
 
 #include "qdocument.h"
+#include "math.h"
 
 /*!
 	\file qdocument.cpp
@@ -6773,7 +6774,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
     int firstLine = qMax(0., cxt.yoffset / m_lineSpacing);
     int lastLine = qMax(0., firstLine + (cxt.height / m_lineSpacing));
 
-    if ( std::fmod(cxt.height,m_lineSpacing)>0.1 )
+    if ( fmod(cxt.height,m_lineSpacing)>0.1 )
 		++lastLine;
 
 	QFormatScheme* scheme = m_formatScheme;
