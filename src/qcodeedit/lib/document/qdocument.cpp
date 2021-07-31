@@ -24,6 +24,7 @@
 #include "smallUsefulFunctions.h"
 #include "encoding.h"
 #include "latexparser/latexparser.h"
+#include <QtMath>
 
 // returns the number of chars/columns from column to the next tab location
 // for a given tabstop periodicity
