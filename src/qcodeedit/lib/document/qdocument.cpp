@@ -7047,7 +7047,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		if (useLineCache) {
 			if (imageCache) {
 
-                int pixelRatio = p->device()->devicePixelRatio();
+                qreal pixelRatio = p->device()->devicePixelRatio();
 				image = new QImage(pixelRatio * m_lineCacheWidth, pixelRatio * ht, QImage::Format_RGB888);
 
 				if (fullSelection) {
