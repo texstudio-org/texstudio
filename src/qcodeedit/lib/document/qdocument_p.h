@@ -329,7 +329,7 @@ public:
 
         QCache<QDocumentLineHandle*,QImage> m_LineCacheAlternative;
         QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
-		int m_lineCacheXOffset, m_lineCacheWidth;
+        qreal m_lineCacheXOffset, m_lineCacheWidth;
 		int m_instanceCachesLogicalDpiY;
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
