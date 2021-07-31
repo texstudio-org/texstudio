@@ -6999,7 +6999,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			if (imageCache) {
 
                 qreal pixelRatio = p->device()->devicePixelRatio();
-				image = new QImage(pixelRatio * m_lineCacheWidth, pixelRatio * ht, QImage::Format_RGB888);
+                image = new QImage(qCeil(pixelRatio * m_lineCacheWidth), qCeil(pixelRatio * ht), QImage::Format_RGB888);
                 image->setDevicePixelRatio(pixelRatio);
 
 				if (fullSelection) {
@@ -7011,7 +7011,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			} else {
 
                 qreal pixelRatio = p->device()->devicePixelRatio();
-				pixmap = new QPixmap(pixelRatio * m_lineCacheWidth, pixelRatio * ht);
+                pixmap = new QPixmap(qCeil(pixelRatio * m_lineCacheWidth), qCeil(pixelRatio * ht));
 				pixmap->setDevicePixelRatio(pixelRatio);
 				// TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
 				// correct drawing on secondary screens with different scaling factors.
