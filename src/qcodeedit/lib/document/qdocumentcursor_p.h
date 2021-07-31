@@ -105,7 +105,7 @@ class QCE_EXPORT QDocumentCursorHandle
         QPointF documentPosition() const;
         QPointF anchorDocumentPosition() const;
 
-		QPolygon documentRegion() const;
+		QPolygonF documentRegion() const;
 
 		void shift(int offset);
 		void setPosition(int pos, int m);

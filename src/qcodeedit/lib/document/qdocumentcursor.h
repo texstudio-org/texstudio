@@ -179,7 +179,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
         Q_INVOKABLE QPointF documentPosition() const;
         Q_INVOKABLE QPointF anchorDocumentPosition() const;
 		
-		QPolygon documentRegion() const;
+		QPolygonF documentRegion() const;
 		
 		QDocumentLine line() const;
 		QDocumentLine anchorLine() const;

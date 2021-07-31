@@ -4635,62 +4635,62 @@ QPointF QDocumentCursorHandle::anchorDocumentPosition() const
 	if ( m_endLine < 0 || m_endOffset < 0 )
 		return documentPosition();
 
-	return QPoint(0, m_doc->y(m_endLine)) + m_doc->line(m_endLine).cursorToDocumentOffset(m_endOffset);
+    return QPointF(0, m_doc->y(m_endLine)) + m_doc->line(m_endLine).cursorToDocumentOffset(m_endOffset);
 }
 
-QPolygon QDocumentCursorHandle::documentRegion() const
+QPolygonF QDocumentCursorHandle::documentRegion() const
 {
-	QPolygon poly;
+    QPolygonF poly;
     QPointF p = documentPosition(), ap = anchorDocumentPosition();
 
 	int w = m_doc->width();
 
-    const int lm = m_doc->impl()->m_leftMargin;
-	const int ls = m_doc->impl()->m_lineSpacing - 1;
+    const qreal lm = m_doc->impl()->m_leftMargin;
+    const qreal ls = m_doc->impl()->m_lineSpacing;
 
 	if ( p == ap )
 	{
 		poly
-            << p.toPoint()
-			<< QPoint(p.x() + 1, p.y())
-			<< QPoint(p.x() + 1, p.y() + ls)
-			<< QPoint(p.x(), p.y() + ls);
+            << p
+            << QPointF(p.x() + 1, p.y())
+            << QPointF(p.x() + 1, p.y() + ls)
+            << QPointF(p.x(), p.y() + ls);
 	} else if ( p.y() == ap.y() ) {
 		poly
-            << p.toPoint()
-            << ap.toPoint()
-			<< QPoint(ap.x(), ap.y() + ls)
-			<< QPoint(p.x(), p.y() + ls);
+            << p
+            << ap
+            << QPointF(ap.x(), ap.y() + ls)
+            << QPointF(p.x(), p.y() + ls);
 	} else if ( p.y() < ap.y() ) {
 		poly
-            << p.toPoint()
-            << QPoint(w+lm, p.y());
+            << p
+            << QPointF(w+lm, p.y());
 
 		if ( ap.x() < w )
-            poly << QPoint(w+lm, ap.y()) << ap.toPoint();
+            poly << QPointF(w+lm, ap.y()) << ap;
 
 		poly
-			<< QPoint(ap.x(), ap.y() + ls)
-			<< QPoint(lm, ap.y() + ls)
-			<< QPoint(lm, p.y() + ls);
+            << QPointF(ap.x(), ap.y() + ls)
+            << QPointF(lm, ap.y() + ls)
+            << QPointF(lm, p.y() + ls);
 
 		if ( p.x() > lm )
-			poly << QPoint(p.x(), p.y() + ls);
+            poly << QPointF(p.x(), p.y() + ls);
 	} else {
 		poly
-            << ap.toPoint()
-            << QPoint(w+lm, ap.y());
+            << ap
+            << QPointF(w+lm, ap.y());
 
 		if ( p.x() < w )
-            poly << QPoint(w+lm, p.y()) << p.toPoint();
+            poly << QPointF(w+lm, p.y()) << p;
 
 		poly
-			<< QPoint(p.x(), p.y() + ls)
-			<< QPoint(lm, p.y() + ls)
-			<< QPoint(lm, ap.y() + ls);
+            << QPointF(p.x(), p.y() + ls)
+            << QPointF(lm, p.y() + ls)
+            << QPointF(lm, ap.y() + ls);
 
 		if ( ap.x() > lm )
-			poly << QPoint(ap.x(), ap.y() + ls);
+            poly << QPointF(ap.x(), ap.y() + ls);
 	}
 
 	return poly;

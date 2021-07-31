@@ -533,9 +533,9 @@ QPointF QDocumentCursor::anchorDocumentPosition() const
     return m_handle ? m_handle->anchorDocumentPosition() : QPointF();
 }
 
-QPolygon QDocumentCursor::documentRegion() const
+QPolygonF QDocumentCursor::documentRegion() const
 {
-	return m_handle ? m_handle->documentRegion() : QPolygon();
+    return m_handle ? m_handle->documentRegion() : QPolygonF();
 }
 
 /*!
