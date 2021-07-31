@@ -34,7 +34,7 @@
 #include <QDateTime>
 #include <QUndoStack>
 #include <QStringList>
-#include <QFontMetrics>
+#include <QFontMetricsF>
 #include <QUndoCommand>
 #include <QCache>
 

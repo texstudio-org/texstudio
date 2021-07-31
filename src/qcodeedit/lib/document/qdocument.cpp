@@ -2625,13 +2625,13 @@ int QDocumentLineHandle::cursorToX(int cpos) const
 	return cursorToXNoLock(cpos);
 }
 
-int QDocumentLineHandle::cursorToXNoLock(int cpos) const
+qreal QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	{
 	cpos = qBound(0, cpos, m_text.length());
 
 	if ( m_layout )
 	{
-		int xoff = m_doc->impl()->leftMarginAndPadding();
+        qreal xoff = m_doc->impl()->leftMarginAndPadding();
 		int coff = 0;
 		int line = m_frontiers.count();
 
@@ -2652,7 +2652,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 		}
 
 		//qDebug("c:%i (wrap:%i) => c2x(x - %i) + %i", cpos, line, coff, xoff);
-		int result=qRound(m_layout->lineAt(line).cursorToX(cpos - coff)) + xoff;
+        qreal result=m_layout->lineAt(line).cursorToX(cpos - coff) + xoff;
 		return result;
 	}
 
@@ -2660,7 +2660,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 
 	if ( QDocumentPrivate::m_fixedPitch )
 	{
-		int result=QDocument::screenColumn(m_text.constData(), cpos, tabStop)
+        qreal result=QDocument::screenColumn(m_text.constData(), cpos, tabStop)
 				* QDocumentPrivate::m_spaceWidth
 				+ m_doc->impl()->leftMarginAndPadding();
 		return result;
@@ -2672,18 +2672,18 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
 	if ( (composited.count() < cpos) || fonts.isEmpty() ){
-		int result=UtilsUi::getFmWidth(QFontMetrics(*QDocumentPrivate::m_font), m_text.left(cpos));
+        qreal result=UtilsUi::getFmWidth(QFontMetricsF(*QDocumentPrivate::m_font), m_text.left(cpos));
 		return result;
 	}
 
 	int idx = 0, column = 0, cwidth;
-	int screenx = m_doc->impl()->leftMarginAndPadding();
+    qreal screenx = m_doc->impl()->leftMarginAndPadding();
 
 	while ( idx < cpos )
 	{
 		QChar c = m_text.at(idx);
 		int fmt = idx < composited.count() ? composited[idx] : 0;
-		QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+        QFontMetricsF fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
 		if ( c == '\t' )
 		{
@@ -2710,7 +2710,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 	QReadLocker locker(&mLock);
 	if ( m_layout )
 	{
-		int xoff = m_doc->impl()->leftMarginAndPadding();
+        qreal xoff = m_doc->impl()->leftMarginAndPadding();
 		int coff = 0;
 		int line = m_frontiers.count();
 
@@ -2733,7 +2733,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 		return m_layout->lineAt(line).xToCursor(xpos - xoff) + coff;
 	}
 
-	int screenx = xpos;
+    qreal screenx = xpos;
 	int tabStop = m_doc->impl()->m_tabStop;
 	const QVector<QFont>& fonts = m_doc->impl()->m_fonts;
 
@@ -2762,7 +2762,8 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 		QVector<int> composited = compose();
 
-		int idx = 0, x = 0, column = 0, cwidth;
+        int idx = 0, x = 0, column = 0;
+        qreal cwidth;
 		screenx -= m_doc->impl()->leftMarginAndPadding();
 		if (screenx < 0)
 			return 0;
@@ -2770,7 +2771,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 		while ( idx < m_text.length() )
 		{
 			int fmt = idx < composited.count() ? composited[idx] : 0;
-			QFontMetrics fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
+            QFontMetricsF fm(fmt < fonts.count() ? fonts.at(fmt) : m_doc->font());
 
 			if ( m_text.at(idx) == '\t' )
 			{

@@ -70,7 +70,7 @@ class QCE_EXPORT QDocumentLineHandle
 public:
 		int xToCursor(int x) const;
 		int cursorToX(int i) const;
-		int cursorToXNoLock(int i) const;
+		qreal cursorToXNoLock(int i) const;
 
 		int wrappedLineForCursor(int cpos) const;
 		int wrappedLineForCursorNoLock(int cpos) const;
