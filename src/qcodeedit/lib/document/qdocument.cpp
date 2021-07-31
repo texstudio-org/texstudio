@@ -7000,6 +7000,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 
                 qreal pixelRatio = p->device()->devicePixelRatio();
 				image = new QImage(pixelRatio * m_lineCacheWidth, pixelRatio * ht, QImage::Format_RGB888);
+                image->setDevicePixelRatio(pixelRatio);
 
 				if (fullSelection) {
 					image->fill(selectionBackground.color().rgb());
