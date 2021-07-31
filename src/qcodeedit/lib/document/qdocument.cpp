@@ -4990,7 +4990,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				if (hasColumnMemory()) {
 					p.rx() = m_savedX;
 				}
-                qDebug()<<QDocumentPrivate::m_lineSpacing;
 				p.ry() -= QDocumentPrivate::m_lineSpacing * count;
 
 				while (p.y() >= 0) {
