@@ -3649,8 +3649,8 @@ void QDocumentLineHandle::drawBorders(QPainter *p, qreal yStart, qreal yEnd) con
 		p->save();
 		p->setPen(linescolor);
 		if (d->m_leftMargin > 0)
-			p->drawLine(0, yStart, 0, yEnd);  // left border line
-		p->drawLine(d->width(), yStart, d->width() , yEnd);  // right border line
+            p->drawLine(QPointF(0, yStart), QPointF(0, yEnd));  // left border line
+        p->drawLine(QPointF(d->width(), yStart), QPointF(d->width() , yEnd));  // right border line
 		p->restore();
 	}
 }
@@ -3677,7 +3677,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		//	applyOverlays();
 
-		const int lineSpacing = QDocumentPrivate::m_lineSpacing;
+        const qreal lineSpacing = QDocumentPrivate::m_lineSpacing;
 
 		QVector<QTextLayout::FormatRange> selections;
 
@@ -3707,7 +3707,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					// span to end of line, not only text
 					range.length = m_text.length() - range.start;
 					qreal lineWidth = m_layout->lineAt(m_layout->lineCount() - 1).naturalTextWidth();
-					const int endX = QDocumentPrivate::m_leftPadding + qRound(lineWidth) - xOffset;
+                    const qreal endX = QDocumentPrivate::m_leftPadding + lineWidth - xOffset;
 
                     QRectF area(endX, lineSpacing * i, vWidth - endX, lineSpacing);
 
@@ -3820,7 +3820,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				//flush mergedRange
 				if(mergeXpos>=0){
 					p->restore();
-					p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+                    p->drawText(QPointF(mergeXpos, ypos + QDocumentPrivate::m_ascent), mergeText);
 					mergeXpos=-1;
 					mergeText.clear();
 				}
@@ -3832,8 +3832,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				{
 					// finish selection
 					p->fillRect(
-						xpos, ypos,
-						maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing,
+                        QRectF(xpos, ypos,maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing),
 						pal.highlight()
 					);
 
@@ -3851,8 +3850,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				{
 					// finish selection
 					p->fillRect(
-						QDocumentPrivate::m_leftPadding, ypos,
-						xpos, QDocumentPrivate::m_lineSpacing,
+                        QRectF(QDocumentPrivate::m_leftPadding, ypos, xpos, QDocumentPrivate::m_lineSpacing),
 						pal.highlight()
 					);
 
@@ -3878,7 +3876,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			if(mergeXpos>=0 && (fmt&(~FORMAT_SPACE)) != (mergeFormat&(~FORMAT_SPACE))){
 				// flush
 				p->restore();
-				p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+                p->drawText(QPointF(mergeXpos, ypos + QDocumentPrivate::m_ascent), mergeText);
 				mergeXpos=-1;
 				mergeText.clear();
 			}
@@ -3893,7 +3891,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				lastFont = newFont;
 			}
 
-			int rwidth = 0;
+            qreal rwidth = 0;
 			int tcol = column;
 			const QString rng = m_text.mid(r.position, r.length);
 
@@ -3931,17 +3929,16 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				continue;
 			}
 
-			int xspos = xpos;
+            qreal xspos = xpos;
 			//const QPen oldpen = p->pen();
-			const int baseline = ypos + QDocumentPrivate::m_ascent;
+            const qreal baseline = ypos + QDocumentPrivate::m_ascent;
 
 
 			const bool currentSelected = (fullSel || (fmt & FORMAT_SELECTION));
 			if ( currentSelected )
 			{
 				p->setPen(highlightedTextColor);
-				p->fillRect(xpos, ypos,
-					rwidth, QDocumentPrivate::m_lineSpacing,
+                p->fillRect(QRectF(xpos, ypos,rwidth, QDocumentPrivate::m_lineSpacing),
 					pal.highlight()
 				);
 			} else {
@@ -3965,10 +3962,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                 }
                 }
                 if(priority>-100){
-                    p->fillRect(
-                        xpos, ypos,
-                        rwidth,
-                        QDocumentPrivate::m_lineSpacing,
+                    p->fillRect(QRectF(xpos, ypos,rwidth,QDocumentPrivate::m_lineSpacing),
                         bg
                     );
                 }
@@ -3995,7 +3989,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					{
 						int toff = ncolsToNextTabStop(column, ts);
 						column += toff;
-						int xoff = toff * currentSpaceWidth;
+                        qreal xoff = toff * currentSpaceWidth;
 
 
 						if ( showTabs )
@@ -4005,9 +3999,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							p->setPen(Qt::lightGray);
 							int headSize = qMin(QDocumentPrivate::m_lineHeight/8, currentSpaceWidth-2);
 							p->translate(xpos+xoff-2, ypos + QDocumentPrivate::m_lineHeight/2);
-							p->drawLine(QPoint(-xoff+3,0),QPoint(0,0));
-							p->drawLine(QPoint(-headSize,-headSize),QPoint(0,0));
-							p->drawLine(QPoint(-headSize, headSize),QPoint(0,0));
+                            p->drawLine(QPointF(-xoff+3,0),QPointF(0,0));
+                            p->drawLine(QPointF(-headSize,-headSize),QPointF(0,0));
+                            p->drawLine(QPointF(-headSize, headSize),QPointF(0,0));
 							p->restore();
 						}
 
@@ -4038,7 +4032,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							// old: manually drawn dot
 							//use old solution as qt5 is sh***y when finding font substitution
 
-							p->drawText(QPoint(xpos, baseline), QString(static_cast<ushort>(0xb7)));
+                            p->drawText(QPointF(xpos, baseline), QString(static_cast<ushort>(0xb7)));
 							p->restore();
 						}
 
@@ -4085,21 +4079,21 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 
 			p->save();
-			setPainterLineWidth(p, p->fontMetrics().lineWidth());  // TODO: maybe we can do this in tunePainter()?
+            setPainterLineWidth(p, p->fontMetrics().lineWidth());  // TODO: maybe we can do this in tunePainter()?
 
 			if ( formats[0].overline || formats[1].overline || formats[2].overline )
 			{
-				p->drawLine(xspos, yup, xpos, yup);
+                p->drawLine(QPointF(xspos, yup), QPointF(xpos, yup));
 			}
 
 			if ( formats[0].strikeout || formats[1].strikeout || formats[2].strikeout )
 			{
-				p->drawLine(xspos, yin, xpos, yin);
+                p->drawLine(QPointF(xspos, yin), QPointF(xpos, yin));
 			}
 
 			if ( formats[0].underline || formats[1].underline || formats[2].underline )
 			{
-				p->drawLine(xspos, ydo, xpos, ydo);
+                p->drawLine(QPointF(xspos, ydo), QPointF(xpos, ydo));
 			}
 			p->restore();
 
@@ -4133,10 +4127,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				pattern2 << 1.0 << 3.0;
 				pn2.setDashPattern(pattern2);
 				p->setPen(pn2);
-				p->drawLine(xspos, ydo, xpos, ydo);
-				p->drawLine(xspos+1, ydo-1, xpos, ydo-1);
-				p->drawLine(xspos+2, ydo, xpos, ydo);
-				p->drawLine(xspos+3, ydo+1, xpos, ydo+1);
+                p->drawLine(QPointF(xspos, ydo), QPointF(xpos, ydo));
+                p->drawLine(QPointF(xspos+1, ydo-1), QPointF(xpos, ydo-1));
+                p->drawLine(QPointF(xspos+2, ydo), QPointF(xpos, ydo));
+                p->drawLine(QPointF(xspos+3, ydo+1), QPointF(xpos, ydo+1));
 				/*
 				QColor cl=p->pen().color();
 				QImage wv(4,3,QImage::Format_ARGB32);
@@ -4163,8 +4157,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 			int cp = 0;
 			brokenWave = false;
-			QVector<QPoint> lstOfPoints;
-			lstOfPoints<<QPoint(xspos,ycenter);
+            QVector<QPointF> lstOfPoints;
+            lstOfPoints<<QPointF(xspos,ycenter);
 
 			while ( cp < rwidth )
 			{
@@ -4172,25 +4166,25 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				{
 					dir = 0;
 					//p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
-					lstOfPoints<<QPoint(xspos+1,ycenter+1);
+                    lstOfPoints<<QPointF(xspos+1,ycenter+1);
 					++cp;
 				} else if ( !cp && brokenWave ) {
 					if ( !dir ){
 						//p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
-						lstOfPoints<<QPoint(xspos+1,ycenter+1);
+                        lstOfPoints<<QPointF(xspos+1,ycenter+1);
 					}else{
 						//p->drawLine(xspos, ycenter, xspos + 1, ycenter - 1);
-						lstOfPoints<<QPoint(xspos+1,ycenter-1);
+                        lstOfPoints<<QPointF(xspos+1,ycenter-1);
 					}
 
 				} else {
 					if ( cp + 2 > rwidth)
 					{
 						if ( !dir )
-							lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+                            lstOfPoints<<QPointF(xspos+cp+1,ycenter);
 							//p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
 						else
-							lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+                            lstOfPoints<<QPointF(xspos+cp+1,ycenter);
 							//p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
 
 						// trick to keep current direction
@@ -4200,10 +4194,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						++cp;
 					} else {
 						if ( !dir )
-							lstOfPoints<<QPoint(xspos+cp+2,ycenter+1);
+                            lstOfPoints<<QPointF(xspos+cp+2,ycenter+1);
 							//p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 2, ycenter + 1);
 						else
-							lstOfPoints<<QPoint(xspos+cp+2,ycenter-1);
+                            lstOfPoints<<QPointF(xspos+cp+2,ycenter-1);
 							//p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 2, ycenter - 1);
 						cp += 2;
 					}
@@ -4226,7 +4220,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		if(mergeXpos>=0){
 			//final flush
 			p->restore();
-			p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
+            p->drawText(QPointF(mergeXpos, ypos + QDocumentPrivate::m_ascent), mergeText);
 		}
 
 		if (hasUnboundedSelection || wrapAroundHighlight) {
@@ -4236,7 +4230,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				QFormat format = m_doc->impl()->m_formatScheme->format(wrapAroundHighlight);
 				brush = QBrush(format.background);
 			}
-			p->fillRect(xpos, ypos, maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing, brush);
+            p->fillRect(QRectF(xpos, ypos, maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing), brush);
 		}
 	}
 	drawBorders(p, yStart, yEnd);
@@ -7762,7 +7756,7 @@ void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, b
 			QPainter pmp(&pm);
 			pmp.setPen(baseColor);
 			tunePainter(&pmp, fid);
-			pmp.drawText(0, m_ascent, cat == QChar::Other_Surrogate?(QString(lastSurrogate)+c):c);
+            pmp.drawText(QPointF(0, m_ascent), cat == QChar::Other_Surrogate?(QString(lastSurrogate)+c):c);
 			px = cache->insert(char_id, pm);
 		}
 		p.drawPixmap(xpos, ypos, *px);
