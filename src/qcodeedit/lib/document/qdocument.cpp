@@ -4220,7 +4220,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			continuingWave = true;
 		} else {
 			continuingWave = false;
-			dir = 0;
+            dir = false;
 
 		}
 #endif
