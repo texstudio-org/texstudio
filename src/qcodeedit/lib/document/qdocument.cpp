@@ -2447,7 +2447,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 	}
 
 	int idx = 0, column = 0, indent = 0;
-	int minx = QDocumentPrivate::m_leftPadding;
+    qreal minx = QDocumentPrivate::m_leftPadding;
 
 	int tempFmts[3]; QFormat tempFormats[3]; int fontFormat;
 
@@ -2458,8 +2458,8 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 		indent = ranges.first().length;
 	}
 
-	int x = QDocumentPrivate::m_leftPadding; //x position
-	int rx = x; //real x position (where it would be without word wrapping)
+    qreal x = QDocumentPrivate::m_leftPadding; //x position
+    qreal rx = x; //real x position (where it would be without word wrapping)
 
 	if ( (minx + QDocumentPrivate::m_spaceWidth) >= maxWidth )
 	{
@@ -2471,13 +2471,14 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 
 	m_indent = minx - QDocumentPrivate::m_leftPadding;
 
-	int lastBreak = 0, lastX = 0; //last position a break would fit nicely
+    int lastBreak = 0;
+    qreal lastX = 0; //last position a break would fit nicely
 	int lastActualBreak = indent; //last position a break was inserted (indent has nothing to do with m_indent)
 	for (int i = 0; i < ranges.size(); i++) {
 		const RenderRange& r = ranges[i];
 		d->m_formatScheme->extractFormats(r.format, tempFmts, tempFormats, fontFormat);
 		int columnDelta;
-		int xDelta = d->getRenderRangeWidth(columnDelta, column, r, fontFormat, m_text);
+        qreal xDelta = d->getRenderRangeWidth(columnDelta, column, r, fontFormat, m_text);
 
 		if ( x + xDelta > maxWidth ) {
 			if (r.format & FORMAT_SPACE) {
@@ -2494,10 +2495,10 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 				}
 
 				//cut in space range
-				int cwidth = d->textWidth(fontFormat, " ");
+                qreal cwidth = d->textWidth(fontFormat, " ");
 				foreach (const QChar& c, m_text.mid(r.position, r.length)) {
 					int coff = QDocument::screenColumn(&c, 1, d->m_tabStop, column) - column;
-					int xoff = coff * cwidth;
+                    qreal xoff = coff * cwidth;
 					if (x + xoff > maxWidth) {
 						m_frontiers << qMakePair(idx, rx);
 						lastActualBreak = idx;
@@ -2519,7 +2520,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 
 				const QChar::Category cat = c.category();
 
-				int cwidth;
+                qreal cwidth;
 				if ( cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining ) {
 					int len = idx - r.position + 1;
 					cwidth = d->textWidth(fontFormat, m_text.mid(r.position, len)) - d->textWidth(fontFormat, m_text.mid(r.position, len - 1));
@@ -2602,7 +2603,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 
 	if (hasCookie(QDocumentLine::PICTURE_COOKIE)) {
 		int h = getPictureCookieHeight();
-		QPair<int,int> l(text().length(), rx);
+        QPair<int,qreal> l(text().length(), rx);
 		for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
 	}
 }
@@ -3608,38 +3609,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 					frontier = until;
 			}
 		}
-	} else/* else if ( m_frontiers.count() ) {
-		//TODO: is this branch ever reached?
-		Q_ASSERT(false);
-
-		// no formatting (nor selection) : simpler
-		int i = 0, wrap = 0, max = m_text.count(),
-			frontier = m_frontiers.count() ? m_frontiers.first().first : max;
-
-		while ( i < max )
-		{
-			RenderRange r;
-			r.position = i;
-			r.length = 1;
-			r.wrap = wrap;
-			r.format = fullSel ? FORMAT_SELECTION : 0;
-
-			while ( ((i + 1) < frontier) )
-			{
-				++r.length;
-				++i;
-			}
-
-			*ranges << r;
-			++i;
-
-			if ( i == frontier )
-			{
-				++wrap;
-				frontier = wrap < m_frontiers.count() ? m_frontiers.at(wrap).first : max;
-			}
-		}
-	} else*/ {
+    } else {
 		// neither formatting nor line wrapping : simple drawText()
 		RenderRange r;
 		r.position = 0;
@@ -3737,7 +3707,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					qreal lineWidth = m_layout->lineAt(m_layout->lineCount() - 1).naturalTextWidth();
 					const int endX = QDocumentPrivate::m_leftPadding + qRound(lineWidth) - xOffset;
 
-					QRect area(endX, lineSpacing * i, vWidth - endX, lineSpacing);
+                    QRectF area(endX, lineSpacing * i, vWidth - endX, lineSpacing);
 
 					p->fillRect(area, fmt.background());
 				}
@@ -3754,11 +3724,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 	} else if ( m_text.isEmpty() ) {
 		// enforce selection drawing on empty lines
 		if ( selectionBoundaries.count() == 1 ){
-			p->fillRect(
-						qMax(xOffset, QDocumentPrivate::m_leftPadding),
-						0,
-						vWidth,
-						QDocumentPrivate::m_lineSpacing,
+            p->fillRect(QRectF(qMax(xOffset, QDocumentPrivate::m_leftPadding),0,vWidth,QDocumentPrivate::m_lineSpacing),
 						pal.highlight()
 						);
 		}else{
@@ -3767,7 +3733,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				foreach(QFormatRange overlay,m_overlays){
 					QFormat format=QDocumentPrivate::m_formatScheme->format(overlay.format);
 					if(format.wrapAround){
-						p->fillRect(qMax(xOffset, QDocumentPrivate::m_leftPadding),0,vWidth,QDocumentPrivate::m_lineSpacing,format.background);
+                        p->fillRect(QRectF(qMax(xOffset, QDocumentPrivate::m_leftPadding),0,vWidth,QDocumentPrivate::m_lineSpacing),format.background);
 					}
 				}
 			}
@@ -3787,9 +3753,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		int fmt = fullSel ? FORMAT_SELECTION : 0;
 		int lastFont = -1;
 		QDocumentPrivate *d = m_doc->impl();
-		const int ts = d->m_tabStop;
-		const int maxWidth = xOffset + vWidth;
-		const int maxDocWidth = xOffset + m_doc->width();
+        const int ts = d->m_tabStop;
+        const qreal maxWidth = xOffset + vWidth;
+        const qreal maxDocWidth = xOffset + m_doc->width();
 		const bool hasUnboundedSelection = selectionBoundaries.count() & 1;
 		// check if wraparound format is active
 		int wrapAroundHighlight = 0;
@@ -3827,7 +3793,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				showTrailing = QDocument::showSpaces() & QDocument::ShowTrailing;
 
 		//const int fns = nextNonSpaceChar(0);
-		int indent = qMax(0, m_indent) + QDocumentPrivate::m_leftPadding;
+        qreal indent = qMax(0., m_indent) + QDocumentPrivate::m_leftPadding;
 
 		int rngIdx = 0;
 		int column = 0;
@@ -3931,7 +3897,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 			if ( r.format & FORMAT_SPACE )
 			{
-				int currentSpaceWidth = d->textWidth(newFont, " ");
+                qreal currentSpaceWidth = d->textWidth(newFont, " ");
 				foreach ( QChar c, rng )
 				{
 					if ( c.unicode() == '\t' )

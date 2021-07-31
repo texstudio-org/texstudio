@@ -183,11 +183,11 @@ public:
 
 		QAtomicInt m_ref;
 
-		mutable int m_indent;
+        mutable qreal m_indent;
 		mutable quint16 m_state;
 		mutable QTextLayout *m_layout;
 		mutable QVector<int> m_cache;
-		mutable QVector< QPair<int, int> > m_frontiers; //list of line wraps, <character, x in pixel (if it were unwrapped) >
+        mutable QVector< QPair<int, qreal> > m_frontiers; //list of line wraps, <character, x in pixel (if it were unwrapped) >
 
 		QNFAMatchContext m_context;
 
