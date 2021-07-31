@@ -3688,8 +3688,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 								const QVector<int>& selectionBoundaries,
 								const QPalette& pal,
 								bool fullSel,
-								int yStart,
-								int yEnd) const
+                                qreal yStart,
+                                qreal yEnd) const
 {
 	QReadLocker locker(&mLock);
 	if ( hasFlag(QDocumentLine::LayoutDirty) ||
@@ -7829,7 +7829,7 @@ void QDocumentPrivate::updateFormatCache(const QPaintDevice *pd)
 	if ( !m_formatScheme )
 	{
 		m_fonts << *m_font;
-		m_fontMetrics << QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
+        m_fontMetrics << QFontMetricsF(*m_font, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
 		return;
 	}
 
@@ -7855,7 +7855,7 @@ void QDocumentPrivate::updateFormatCache(const QPaintDevice *pd)
 		}
 
 		m_fonts << f;
-		m_fontMetrics << QFontMetrics(f, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
+        m_fontMetrics << QFontMetricsF(f, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
 	}
 
 	foreach ( QDocumentPrivate *d, m_documents )

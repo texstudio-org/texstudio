@@ -118,8 +118,8 @@ public:
 					const QVector<int>& selectionBoundaries,
 					const QPalette& pal,
 					bool fullSel,
-					int yStart=0,
-					int yEnd=-1) const;
+					qreal yStart=0,
+					qreal yEnd=-1) const;
 
 		QString exportAsHtml(int fromOffset=0, int toOffset = -1, int maxLineWidth = -1, int maxWrap = 0) const;
 
