@@ -38,11 +38,12 @@ QuickBeamerDialog::QuickBeamerDialog(QWidget *parent, const QString &name)
 	labelImage->setMaximumSize(imgWidth, imgHeight);
 	ui.scrollArea->setMinimumWidth(imgWidth + scrollbarWidth + margin);
 	ui.scrollArea->setMaximumWidth(imgWidth + scrollbarWidth + margin);
-	if (qApp->devicePixelRatio() == 2) {
-		labelImage->setMinimumSize(imgWidth / 2, imgHeight / 2);
-		labelImage->setMaximumSize(imgWidth / 2, imgHeight / 2);
-		ui.scrollArea->setMinimumWidth(imgWidth / 2 + scrollbarWidth + margin);
-		ui.scrollArea->setMaximumWidth(imgWidth / 2 + scrollbarWidth + margin);
+    if (qApp->devicePixelRatio() > 1.01) {
+        qreal ratio=qApp->devicePixelRatio();
+        labelImage->setMinimumSize(imgWidth / ratio, imgHeight / ratio);
+        labelImage->setMaximumSize(imgWidth / ratio, imgHeight / ratio);
+        ui.scrollArea->setMinimumWidth(imgWidth / ratio + scrollbarWidth + margin);
+        ui.scrollArea->setMaximumWidth(imgWidth / ratio + scrollbarWidth + margin);
 	}
 	ui.scrollArea->setBackgroundRole(QPalette::Dark);
 	ui.scrollArea->setWidget(labelImage);
