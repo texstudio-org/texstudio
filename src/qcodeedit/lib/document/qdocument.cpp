@@ -3803,7 +3803,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		int column = 0;
 #ifndef Q_OS_WIN
 		bool continuingWave = false, brokenWave = false;
-		int dir = 0; // 0 = down; 1 = up
+        bool dir = false; // false = down; true = up
 #endif
         int wrap = 0;
         qreal xpos = QDocumentPrivate::m_leftPadding;
@@ -4155,59 +4155,67 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				*/
 			}
 #else
-			const int ycenter = ypos + QDocumentPrivate::m_lineSpacing - 3;
+            const qreal ps=p->fontInfo().pointSizeF();
+            const qreal amp=ps/10;
+            const qreal ycenter = ypos + QDocumentPrivate::m_lineSpacing - 2*amp;
+            p->save();
+            QPen pen=p->pen();
+            pen.setWidthF(amp);
+            p->setPen(pen);
 
-			int cp = 0;
+            qreal cp = 0;
 			brokenWave = false;
             QVector<QPointF> lstOfPoints;
             lstOfPoints<<QPointF(xspos,ycenter);
 
 			while ( cp < rwidth )
 			{
-				if ( !cp && !continuingWave )
+                if ( cp<0.1 && !continuingWave )
 				{
-					dir = 0;
+                    dir = false;
 					//p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
-                    lstOfPoints<<QPointF(xspos+1,ycenter+1);
-					++cp;
-				} else if ( !cp && brokenWave ) {
+                    lstOfPoints<<QPointF(xspos+amp,ycenter+amp);
+                    cp+=amp;
+                } else if ( cp<0.1 && brokenWave ) {
 					if ( !dir ){
 						//p->drawLine(xspos, ycenter, xspos + 1, ycenter + 1);
-                        lstOfPoints<<QPointF(xspos+1,ycenter+1);
+                        lstOfPoints<<QPointF(xspos+amp,ycenter+amp);
 					}else{
 						//p->drawLine(xspos, ycenter, xspos + 1, ycenter - 1);
-                        lstOfPoints<<QPointF(xspos+1,ycenter-1);
+                        lstOfPoints<<QPointF(xspos+amp,ycenter-amp);
 					}
 
 				} else {
-					if ( cp + 2 > rwidth)
+                    if ( cp + 2* amp > rwidth)
 					{
 						if ( !dir )
-                            lstOfPoints<<QPointF(xspos+cp+1,ycenter);
+                            lstOfPoints<<QPointF(xspos+cp+amp,ycenter);
 							//p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
 						else
-                            lstOfPoints<<QPointF(xspos+cp+1,ycenter);
+                            lstOfPoints<<QPointF(xspos+cp+amp,ycenter);
 							//p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
 
 						// trick to keep current direction
-						dir ^= 1;
+                        dir = !dir;
 
 						brokenWave = true;
-						++cp;
+                        cp+=amp;
+                        break;
 					} else {
 						if ( !dir )
-                            lstOfPoints<<QPointF(xspos+cp+2,ycenter+1);
+                            lstOfPoints<<QPointF(xspos+cp+2*amp,ycenter+amp);
 							//p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 2, ycenter + 1);
 						else
-                            lstOfPoints<<QPointF(xspos+cp+2,ycenter-1);
+                            lstOfPoints<<QPointF(xspos+cp+2*amp,ycenter-amp);
 							//p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 2, ycenter - 1);
-						cp += 2;
+                        cp += 2*amp;
 					}
 				}
 
-				dir ^= 1;
+                dir = !dir;
 			}
 			p->drawPolyline(lstOfPoints.data(),lstOfPoints.count());
+            p->restore();
 
 			continuingWave = true;
 		} else {
