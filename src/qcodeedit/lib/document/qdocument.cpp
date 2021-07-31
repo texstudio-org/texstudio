@@ -3459,7 +3459,8 @@ void QDocumentLineHandle::layout(int lineNr) const
 		int oldLW = m_frontiers.size();
 		m_frontiers.clear();
 
-		int i = 0, rx = 0, height = 0, minwidth = 0;
+        int i = 0;
+        qreal rx = 0, height = 0, minwidth = 0;
 
 		forever
 		{
@@ -3478,13 +3479,13 @@ void QDocumentLineHandle::layout(int lineNr) const
 			else
 				line.setNumColumns(m_text.length());
 
-			rx += qRound(line.naturalTextWidth()); //qRound(line.cursorToX(line.textLength()));
+            rx += line.naturalTextWidth(); //qRound(line.cursorToX(line.textLength()));
 
 			if ( m_doc->impl()->m_constrained && m_layout->textOption().textDirection() == Qt::RightToLeft )
 			{
-				line.setPosition(QPoint(qRound(qreal(m_doc->widthConstraint() - 2 * QDocumentPrivate::m_leftPadding) - line.naturalTextWidth()), height));
+                line.setPosition(QPointF(qreal(m_doc->widthConstraint() - 2 * QDocumentPrivate::m_leftPadding) - line.naturalTextWidth(), height));
 			} else {
-				line.setPosition(QPoint(minwidth, height));
+                line.setPosition(QPointF(minwidth, height));
 
 				if ( !i && m_doc->impl()->m_constrained )
 				{
