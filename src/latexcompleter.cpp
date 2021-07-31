@@ -1451,10 +1451,10 @@ void LatexCompleter::adjustWidget()
 	widget->resize(width, 200);
 
 	// adjust position
-	QPoint offset;
+    QPointF offset;
 	bool isAboveCursor = false;
 	if (editor->getPositionBelowCursor(offset, widget->width(), widget->height(), isAboveCursor))
-		widget->move(editor->mapTo(qobject_cast<QWidget *>(parent()), offset));
+        widget->move(editor->mapTo(qobject_cast<QWidget *>(parent()), offset.toPoint()));
 
 	// adjust visible tab bar depending on location relative to cursor
 	QTabBar *tbOn = (isAboveCursor) ? tbAbove : tbBelow;
@@ -1879,7 +1879,7 @@ void LatexCompleter::showTooltip(QString text)
 	QModelIndex index = list->currentIndex();
 	QRect r = list->visualRect(index);
 	QDocumentCursor c = editor->cursor();
-	int lineHeight = c.line().document()->getLineSpacing();
+    qreal lineHeight = c.line().document()->getLineSpacing();
 	QPoint pos = list->mapToGlobal(QPoint(list->width(), r.top() - lineHeight));
 	showTooltipLimited(pos, text, list->width());
 }

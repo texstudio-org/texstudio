@@ -1061,7 +1061,7 @@ void QDocument::print(QPrinter *pr)
 	}
 
 	const int lineCount = lines();
-	const int linesPerPage = fit.height() / m_impl->m_lineSpacing;
+    const int linesPerPage = 1.0*fit.height() / m_impl->m_lineSpacing;
 	int pageCount = lineCount / linesPerPage;
 
 	if ( lineCount % linesPerPage )
@@ -1070,7 +1070,7 @@ void QDocument::print(QPrinter *pr)
 	//qDebug("%i lines per page -> %i pages", linesPerPage, pageCount);
 
 	const int pageWidth = fit.width();
-	const int pageHeight = linesPerPage * m_impl->m_lineSpacing;
+    const int pageHeight = 1.0 * linesPerPage * m_impl->m_lineSpacing;
 
 	int firstPage = pr->fromPage(), lastPage = pr->toPage();
 
@@ -1293,7 +1293,7 @@ void QDocument::setFontSizeModifier(int m, bool forceUpdate)
 	\note this limitation is historic and may disappear
 	in future versions
 */
-int QDocument::getLineSpacing()
+qreal QDocument::getLineSpacing()
 {
 	return QDocumentPrivate::m_lineSpacing;
 }
@@ -1526,9 +1526,9 @@ QDocumentLine QDocument::line(int line) const
 	visual line among the sublines of the wrapped text line).
 
 */
-int QDocument::lineNumber(int ypos, int *wrap) const
+int QDocument::lineNumber(qreal ypos, int *wrap) const
 {
-	int ln = ypos / m_impl->m_lineSpacing;
+    int ln = qRound(ypos / m_impl->m_lineSpacing -0.45);
 
 	return m_impl->textLine(ln, wrap);
 }
@@ -1636,7 +1636,7 @@ int QDocument::findNearLine(const QString &lineText, int startLine) const {
 	\return The Y document coordinate of a given line
 	\param ln textual line number
 */
-int QDocument::y(int ln) const
+qreal QDocument::y(int ln) const
 {
 	if ( !m_impl )
 		return -1;
@@ -1660,7 +1660,7 @@ QRect QDocument::lineRect(int line) const
 /*!
 	\return the line at a given document position
 */
-QDocumentLine QDocument::lineAt(const QPoint& p) const
+QDocumentLine QDocument::lineAt(const QPointF& p) const
 {
 	if ( !m_impl )
 		return QDocumentLine();
@@ -1720,7 +1720,7 @@ QDocumentConstIterator QDocument::iterator(const QDocumentLine& l) const
 	\param line where the line number will be stored
 	\param column where the column (text position within line) will be stored
 */
-void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& column, bool disallowPositionBeyondLine) const
+void QDocument::cursorForDocumentPosition(const QPointF& p, int& line, int& column, bool disallowPositionBeyondLine) const
 {
 	if ( !m_impl )
 		return;
@@ -1741,7 +1741,7 @@ void QDocument::cursorForDocumentPosition(const QPoint& p, int& line, int& colum
 /*!
 	\return The cursor nearest to a document (x, y) position
 */
-QDocumentCursor QDocument::cursorAt(const QPoint& p, bool disallowPositionBeyondLine) const
+QDocumentCursor QDocument::cursorAt(const QPointF& p, bool disallowPositionBeyondLine) const
 {
 	int ln = -1, col = -1;
 
@@ -2948,7 +2948,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y, bool disallowPosit
 	return cpos;
 }
 
-void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
+void QDocumentLineHandle::cursorToDocumentOffset(int cpos, qreal& x, qreal& y) const
 {
 	QReadLocker locker(&mLock);
 	QDocumentPrivate *d = m_doc->impl();
@@ -2996,9 +2996,9 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 	//qDebug("cursorToDocumentOffset(%i) -> (%i, %i)", cpos, x, y);
 }
 
-QPoint QDocumentLineHandle::cursorToDocumentOffset(int cpos) const
+QPointF QDocumentLineHandle::cursorToDocumentOffset(int cpos) const
 {
-	QPoint p;
+    QPointF p;
 	cursorToDocumentOffset(cpos, p.rx(), p.ry()); //locked here
 	return p;
 }
@@ -4655,18 +4655,18 @@ void QDocumentCursorHandle::setAnchorColumnNumber(int c){
 }
 
 
-QPoint QDocumentCursorHandle::documentPosition() const
+QPointF QDocumentCursorHandle::documentPosition() const
 {
 	if ( !m_doc )
-		return QPoint();
+        return QPointF();
 
-	return QPoint(0, m_doc->y(m_begLine)) + m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset);
+    return QPointF(0, m_doc->y(m_begLine)) + m_doc->line(m_begLine).cursorToDocumentOffset(m_begOffset);
 }
 
-QPoint QDocumentCursorHandle::anchorDocumentPosition() const
+QPointF QDocumentCursorHandle::anchorDocumentPosition() const
 {
 	if ( !m_doc )
-		return QPoint();
+        return QPointF();
 
 	if ( m_endLine < 0 || m_endOffset < 0 )
 		return documentPosition();
@@ -4677,7 +4677,7 @@ QPoint QDocumentCursorHandle::anchorDocumentPosition() const
 QPolygon QDocumentCursorHandle::documentRegion() const
 {
 	QPolygon poly;
-	QPoint p = documentPosition(), ap = anchorDocumentPosition();
+    QPointF p = documentPosition(), ap = anchorDocumentPosition();
 
 	int w = m_doc->width();
 
@@ -4687,23 +4687,23 @@ QPolygon QDocumentCursorHandle::documentRegion() const
 	if ( p == ap )
 	{
 		poly
-			<< p
+            << p.toPoint()
 			<< QPoint(p.x() + 1, p.y())
 			<< QPoint(p.x() + 1, p.y() + ls)
 			<< QPoint(p.x(), p.y() + ls);
 	} else if ( p.y() == ap.y() ) {
 		poly
-			<< p
-			<< ap
+            << p.toPoint()
+            << ap.toPoint()
 			<< QPoint(ap.x(), ap.y() + ls)
 			<< QPoint(p.x(), p.y() + ls);
 	} else if ( p.y() < ap.y() ) {
 		poly
-			<< p
+            << p.toPoint()
             << QPoint(w+lm, p.y());
 
 		if ( ap.x() < w )
-            poly << QPoint(w+lm, ap.y()) << ap;
+            poly << QPoint(w+lm, ap.y()) << ap.toPoint();
 
 		poly
 			<< QPoint(ap.x(), ap.y() + ls)
@@ -4714,11 +4714,11 @@ QPolygon QDocumentCursorHandle::documentRegion() const
 			poly << QPoint(p.x(), p.y() + ls);
 	} else {
 		poly
-			<< ap
+            << ap.toPoint()
             << QPoint(w+lm, ap.y());
 
 		if ( p.x() < w )
-            poly << QPoint(w+lm, p.y()) << p;
+            poly << QPoint(w+lm, p.y()) << p.toPoint();
 
 		poly
 			<< QPoint(p.x(), p.y() + ls)
@@ -4836,7 +4836,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			count = m_begOffset - tempOffset;
 			if (count < 0) { count = - count; op = QDocumentCursor::NextCharacter; }
 			else if (count == 0) {
-				QPoint current = l1.cursorToDocumentOffset(m_begOffset);
+                QPointF current = l1.cursorToDocumentOffset(m_begOffset);
 				if (current.y() == 0
 						&& current.x() == l1.cursorToX(l1.xToCursor(0))) //cursor is at start of line (compare x-position instead index because there might be multiple characters at the same position)
 					count = m_begOffset + 1; //jump to previous line
@@ -4844,8 +4844,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 					count = 1;
 
 					//test if moving in plus/minus direction moves the cursor left
-					QPoint pp = l1.cursorToDocumentOffset(m_begOffset+1);
-					QPoint pm = l1.cursorToDocumentOffset(m_begOffset-1);
+                    QPointF pp = l1.cursorToDocumentOffset(m_begOffset+1);
+                    QPointF pm = l1.cursorToDocumentOffset(m_begOffset-1);
 					if ((pp.y() < pm.y() || (pp.y() == pm.y() && pp.x() < pm.x())))
 						op = QDocumentCursor::NextCharacter;
 				}
@@ -4857,7 +4857,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			count = tempOffset - m_begOffset;
 			if (count < 0) { count = - count; op = QDocumentCursor::PreviousCharacter; }
 			else if (count == 0) {
-				QPoint current = l1.cursorToDocumentOffset(m_begOffset);
+                QPointF current = l1.cursorToDocumentOffset(m_begOffset);
 				int lineHeight = (l1.getLayout()->lineCount() - 1) * QDocumentPrivate::m_lineSpacing;
 				if (current.y() == lineHeight
 					&& current.x() == l1.cursorToDocumentOffset(l1.documentOffsetToCursor(document()->width()+5, lineHeight + QDocumentPrivate::m_lineSpacing / 2)).x())
@@ -4865,8 +4865,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				else {
 					count = 1;
 					//test if moving in plus/minus direction moves the cursor right
-					QPoint pp = l1.cursorToDocumentOffset(m_begOffset+1);
-					QPoint pm = l1.cursorToDocumentOffset(m_begOffset-1);
+                    QPointF pp = l1.cursorToDocumentOffset(m_begOffset+1);
+                    QPointF pm = l1.cursorToDocumentOffset(m_begOffset-1);
 					if ((pp.y() < pm.y() || (pp.y() == pm.y() && pp.x() < pm.x())))
 						op = QDocumentCursor::PreviousCharacter;
 				}
@@ -4985,11 +4985,12 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			if ( m & QDocumentCursor::ThroughWrap )
 			{
-				QPoint p = documentPosition();
+                QPointF p = documentPosition();
 
 				if (hasColumnMemory()) {
 					p.rx() = m_savedX;
 				}
+                qDebug()<<QDocumentPrivate::m_lineSpacing;
 				p.ry() -= QDocumentPrivate::m_lineSpacing * count;
 
 				while (p.y() >= 0) {
@@ -5042,7 +5043,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			if ( m & QDocumentCursor::ThroughWrap )
 			{
-				QPoint p = documentPosition();
+                QPointF p = documentPosition();
 
 				if (hasColumnMemory()) {
 					p.rx() = m_savedX;
@@ -5113,7 +5114,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( l1.isRTLByLayout() ) { //todo: test if this also works for non-rtl
 				const int targetPosition = document()->width()+5; //it is rtl
 
-				QPoint curPos = l1.cursorToDocumentOffset(m_begOffset);
+                QPointF curPos = l1.cursorToDocumentOffset(m_begOffset);
 				int target = l1.documentOffsetToCursor(targetPosition, curPos.y());
 				if (m_begOffset == target) target = l1.documentOffsetToCursor(targetPosition, 0);
 				if (m_begOffset == target) return false;
@@ -5127,7 +5128,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				return false;
 
 			if ( m & QDocumentCursor::ThroughWrap && m_doc->line(line).cursorToDocumentOffset(offset).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y() ){
-				QPoint p = documentPosition();
+                QPointF p = documentPosition();
 				p.rx() = 0;
 
 				m_doc->cursorForDocumentPosition(p, line, offset);
@@ -5142,12 +5143,12 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( l1.isRTLByLayout() ) {
 				const int targetPosition = 0; //it is rtl
 
-				QPoint curPos = l1.cursorToDocumentOffset(offset);
+                QPointF curPos = l1.cursorToDocumentOffset(offset);
 				int target = l1.documentOffsetToCursor(targetPosition, curPos.y());
-				QPoint newPosition = l1.cursorToDocumentOffset(target);
+                QPointF newPosition = l1.cursorToDocumentOffset(target);
 				if (newPosition.y() > curPos.y()) { //it is usually moved one character to far to the right in the next line
-					QPoint p = l1.cursorToDocumentOffset(target+1);
-					QPoint m = l1.cursorToDocumentOffset(target-1);
+                    QPointF p = l1.cursorToDocumentOffset(target+1);
+                    QPointF m = l1.cursorToDocumentOffset(target-1);
 					if (p.y() == curPos.y()) target += 1;
 					else if (m.y() == curPos.y()) target -= 1;
 				}
@@ -5170,7 +5171,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				if (m_doc->line(line).cursorToDocumentOffset(offset+1).y()!=m_doc->line(line).cursorToDocumentOffset(offset-1).y()){
 					offset++; //can this ever happen?
 				}
-				QPoint p = documentPosition();
+                QPointF p = documentPosition();
 				p.rx() = -1;
 				p.ry() += QDocumentPrivate::m_lineSpacing;
 				//if (wlinestart) //must move down to solve problem with documentPosition() at w. line start
@@ -6815,11 +6816,11 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	//qDebug("lines [%i, %i]", firstLine, lastLine);
 
-	lcxt.pos = firstLine * m_lineSpacing;
+    lcxt.pos = 1. * firstLine * m_lineSpacing;
 	lcxt.visiblePos = lcxt.pos;
 	if (lcxt.visiblePos < cxt.yoffset) {
 		int n = (cxt.yoffset-lcxt.visiblePos) / m_lineSpacing;
-		lcxt.visiblePos = lcxt.pos + n * m_lineSpacing;
+        lcxt.visiblePos = lcxt.pos + 1. * n * m_lineSpacing;
 	}
 
 	// adjust first line to take selections into account...
@@ -7041,7 +7042,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			p->drawPixmap(m_lineCacheXOffset, 0, *m_LineCache.object(dlh));
 		}
 	} else {
-		int ht = m_lineSpacing*(wrap+1 - pseudoWrap);
+        qreal ht = m_lineSpacing*(wrap+1 - pseudoWrap);
 		QImage *image = nullptr;
 		QPixmap *pixmap = nullptr;
 		QPainter *pr = nullptr;
@@ -7210,10 +7211,10 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 					col.setAlpha(160);
 					QBrush brush(col);
 					p->setBrush(brush);
-					QPoint pt = cur.documentPosition();
+                    QPointF pt = cur.documentPosition();
 					QDocumentCursor curHelper(cur, false);
 					curHelper.movePosition(1);
-					QPoint pt2 = curHelper.documentPosition();
+                    QPointF pt2 = curHelper.documentPosition();
 					int width = 0;
 					if (pt.y() == pt2.y()) {
 						width = pt2.x() - pt.x();
@@ -7224,8 +7225,8 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 					p->drawRect(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing);
 				}else{
 					// regular line cursor
-					QPoint pt = cur.documentPosition();
-					QPoint curHt(0, QDocumentPrivate::m_lineSpacing-1);
+                    QPointF pt = cur.documentPosition();
+                    QPointF curHt(0, QDocumentPrivate::m_lineSpacing-1);
 					p->drawLine(pt, pt + curHt);
 					if (m_drawCursorBold) {
 						pt.setX(pt.x() + 1);

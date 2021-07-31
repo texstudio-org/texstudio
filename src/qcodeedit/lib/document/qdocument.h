@@ -228,8 +228,8 @@ class QCE_EXPORT QDocument : public QObject
 		int visualLineNumber(int textLineNumber) const;
 		int textLineNumber(int visualLineNumber) const;
 
-		int y(int line) const;
-        int lineNumber(int ypos, int *wrap = nullptr) const;
+        qreal y(int line) const;
+        int lineNumber(qreal ypos, int *wrap = nullptr) const;
 
 		QRect lineRect(int line) const;
 
@@ -246,9 +246,9 @@ class QCE_EXPORT QDocument : public QObject
         QList<int> marks(QDocumentLineHandle *dlh) const;
         void removeMark(QDocumentLineHandle *dlh, int mid);
 
-		QDocumentLine lineAt(const QPoint& p) const;
-        void cursorForDocumentPosition(const QPoint& p, int& line, int& column, bool disallowPositionBeyondLine = false) const;
-        QDocumentCursor cursorAt(const QPoint& p, bool disallowPositionBeyondLine = false) const;
+        QDocumentLine lineAt(const QPointF& p) const;
+        void cursorForDocumentPosition(const QPointF& p, int& line, int& column, bool disallowPositionBeyondLine = false) const;
+        QDocumentCursor cursorAt(const QPointF& p, bool disallowPositionBeyondLine = false) const;
 
 		QDocumentLine line(int line) const;
 		QDocumentLine line(QDocumentConstIterator iterator) const;
@@ -306,7 +306,7 @@ class QCE_EXPORT QDocument : public QObject
         static void setBaseFont(const QFont& f, bool forceUpdate = false);
         static void setFontSizeModifier(int m, bool forceUpdate = false);
 		//static const QFontMetrics fontMetrics() const;
-		static int getLineSpacing();
+        static qreal getLineSpacing();
 		static void setLineSpacingFactor(double scale);
         void setCenterDocumentInEditor(bool center);
 

@@ -308,7 +308,7 @@ int QDocumentLine::documentOffsetToCursor(int x, int y, bool disallowPositionBey
 	The (x, y) coordinates given by this function are relative to the absolute
 	position of the line, which can be obtained from the document.
 */
-void QDocumentLine::cursorToDocumentOffset(int cpos, int& x, int& y) const
+void QDocumentLine::cursorToDocumentOffset(int cpos, qreal& x, qreal& y) const
 {
 	if ( m_handle )
 		m_handle->cursorToDocumentOffset(cpos, x, y);
@@ -317,9 +317,9 @@ void QDocumentLine::cursorToDocumentOffset(int cpos, int& x, int& y) const
 /*!
 	\overload
 */
-QPoint QDocumentLine::cursorToDocumentOffset(int cpos) const
+QPointF QDocumentLine::cursorToDocumentOffset(int cpos) const
 {
-	return m_handle ? m_handle->cursorToDocumentOffset(cpos) : QPoint();
+    return m_handle ? m_handle->cursorToDocumentOffset(cpos) : QPointF();
 }
 
 /*!

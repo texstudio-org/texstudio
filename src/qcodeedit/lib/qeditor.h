@@ -630,8 +630,8 @@ public slots:
 		
 		void setCursorPosition(int line, int index, bool moveView = true);
 		void getCursorPosition(int &line, int &index);
-		bool getPositionBelowCursor(QPoint& offset, int width, int height,bool &above);
-		bool getPositionBelowCursor(QPoint& offset, int width=0, int height=0);
+		bool getPositionBelowCursor(QPointF &offset, int width, int height, bool &above);
+		bool getPositionBelowCursor(QPointF &offset, int width=0, int height=0);
 
 		Q_INVOKABLE void clearCursorMirrors();
 		Q_INVOKABLE void addCursorMirror(const QDocumentCursor& c);

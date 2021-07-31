@@ -1949,7 +1949,7 @@ void QEditor::getCursorPosition(int &line, int &index)
 /*!
 	\brief Return the position below the cursor
 */
-bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height){
+bool QEditor::getPositionBelowCursor(QPointF& offset, int width, int height){
 	bool above;
 	return getPositionBelowCursor(offset, width, height, above);
 }
@@ -1960,7 +1960,7 @@ bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height){
  * \param outAbove: indicates whether it's better to place the widget above the cursor than below
  * \return false if there is no valid cursor, true otherwise
  */
-bool QEditor::getPositionBelowCursor(QPoint& outOffset, int width, int height, bool& outAbove){
+bool QEditor::getPositionBelowCursor(QPointF& outOffset, int width, int height, bool& outAbove){
 	QDocumentCursor c(m_cursor, false);
 	QDocumentLine line = c.line();
 	if (!c.line().isValid()) return false;
@@ -1968,7 +1968,7 @@ bool QEditor::getPositionBelowCursor(QPoint& outOffset, int width, int height, b
 
 	outOffset = line.cursorToDocumentOffset(c.columnNumber()-1);
 	outOffset.setY(outOffset.y() + document()->y(c.lineNumber()) + document()->getLineSpacing());
-	outOffset = mapFromContents(outOffset);
+    outOffset = mapFromContents(outOffset.toPoint());
 	int left;
 	int temp;
 	getPanelMargins(&left, &temp, &temp, &temp);
@@ -3164,7 +3164,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 	if ( m_doc->getBackground().isValid() )
 		bg.setColor(m_doc->getBackground());
 	int width = qMax(viewport()->width(), m_doc->width());
-	int height = qMax(viewport()->height(), m_doc->height() + m_doc->getLineSpacing());
+    int height = qMax(viewport()->height(), qRound(m_doc->height() + m_doc->getLineSpacing()));
 	// the actual visible height may be up to one line larger than the doc height,
 	// because the doc lines is are aligned to the top of the viewport. The viewport
 	// then shows n.x lines and when scolled to the very bottom, the .x < 1 line
@@ -5522,20 +5522,20 @@ void QEditor::repaintCursor()
 */
 bool QEditor::isCursorVisible() const
 {
-	QPoint pos = m_cursor.documentPosition();
+    QPointF pos = m_cursor.documentPosition();
 
 	const QRect display(horizontalOffset(), verticalOffset(), viewport()->width(), viewport()->height());
 
 	//qDebug() << pos << " belongs to " << display << " ?";
 
-    return display.contains(pos);
+    return display.contains(pos.toPoint());
 }
 
 /*!
 	\brief Ensure that the current cursor is visible
 */
 void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflags){
-	QPoint pos = cursor.documentPosition();
+    QPointF pos = cursor.documentPosition();
 
 	if (mflags & KeepDistanceFromViewTop && cursor == m_cursor) {
 		int linesFromDocStart = pos.y() / m_doc->getLineSpacing();
@@ -5782,13 +5782,13 @@ QRect QEditor::cursorMircoFocusRect() const
 	if (!c.isValid()) return QRect();
 	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return QRect();
 
-	int left;
-	int top;
+    int left;
+    int top;
 	int temp;
 	getPanelMargins(&left,&top,&temp,&temp);
 
 	top += lineRect(m_cursor.lineNumber()).top();
-	QPoint p = line.cursorToDocumentOffset(c.columnNumber());
+    QPointF p = line.cursorToDocumentOffset(c.columnNumber());
 	left += p.x();
 	top += p.y();
 

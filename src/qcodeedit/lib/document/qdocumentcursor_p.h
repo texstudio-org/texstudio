@@ -102,8 +102,8 @@ class QCE_EXPORT QDocumentCursorHandle
 		void setAnchorLineNumber(int l);
 		void setAnchorColumnNumber(int c);
 
-		QPoint documentPosition() const;
-		QPoint anchorDocumentPosition() const;
+        QPointF documentPosition() const;
+        QPointF anchorDocumentPosition() const;
 
 		QPolygon documentRegion() const;
 

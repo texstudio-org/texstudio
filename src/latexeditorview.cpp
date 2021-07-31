@@ -588,9 +588,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 
 	if (event->reason() == QContextMenuEvent::Mouse) contextMenu->exec(event->globalPos());
 	else {
-		QPoint curPoint = editor->cursor().documentPosition();
+        QPointF curPoint = editor->cursor().documentPosition();
 		curPoint.ry() += editor->document()->getLineSpacing();
-		contextMenu->exec(editor->mapToGlobal(editor->mapFromContents(curPoint)));
+        contextMenu->exec(editor->mapToGlobal(editor->mapFromContents(curPoint.toPoint())));
 	}
 	event->accept();
 

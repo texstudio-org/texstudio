@@ -3952,7 +3952,7 @@ void Texstudio::editInsertUnicode()
 		} else c.setAnchorColumnNumber(c.columnNumber());
 		currentEditor()->setCursor(c);
 	}
-	QPoint offset;
+    QPointF offset;
 	UnicodeInsertion *uid = new UnicodeInsertion (currentEditorView(), curPoint);
 	if (!currentEditor()->getPositionBelowCursor(offset, uid->width(), uid->height())) {
 		delete uid;
@@ -3964,7 +3964,7 @@ void Texstudio::editInsertUnicode()
 	connect(currentEditor(), SIGNAL(visibleLinesChanged()), uid, SLOT(close()));
 	connect(currentEditor()->document(), SIGNAL(contentsChanged()), uid, SLOT(close()));
 
-	uid->move(currentEditor()->mapTo(uid->parentWidget(), offset));
+    uid->move(currentEditor()->mapTo(uid->parentWidget(), offset.toPoint()));
 	this->unicodeInsertionDialog = uid;
 	uid->show();
 	uid->setFocus();
@@ -7824,14 +7824,14 @@ bool Texstudio::gotoLogEntryAt(int newLineNumber)
 	//goto log entry
 	outputView->selectLogEntry(logEntryNumber);
 
-	QPoint p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+    QPointF p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition().toPoint()));
 	//  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
 
 	REQUIRE_RET(outputView->getLogWidget()->getLogModel(), true);
 	QList<int> errors = currentEditorView()->lineToLogEntries.values(lh);
 	QString msg = outputView->getLogWidget()->getLogModel()->htmlErrorTable(errors);
 
-	QToolTip::showText(p, msg, nullptr);
+    QToolTip::showText(p.toPoint(), msg, nullptr);
 	LatexEditorView::hideTooltipWhenLeavingLine = newLineNumber;
 	return true;
 }
@@ -8198,18 +8198,18 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
             (source.atCursor && configManager.previewMode == ConfigManager::PM_INLINE)  || // respect preview setting, except for INLINE
 	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
             (source.fromLine < 0 && !source.atCursor)) { // completer preview
-		QPoint p;
+        QPointF p;
 		if (source.atCursor)
 			p = currentEditorView()->getHoverPosistion();
 		else
-			p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+            p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition().toPoint()));
 
 		QRect screen = QGuiApplication::primaryScreen()->geometry();
 		int w = pixmap.width();
 		if (w > screen.width()) w = screen.width() - 2;
         int w_calculated=qRound(1.0*w / devPixelRatio); //pixmap shown with reduced width to be pixel perfect again
 		if (!fromPDF) {
-                QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w_calculated), nullptr);
+                QToolTip::showText(p.toPoint(), QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w_calculated), nullptr);
 		} else {
 			QString text;
 
@@ -8219,7 +8219,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				completerPreview = false;
 				completer->showTooltip(text);
 			} else {
-			        QToolTip::showText(p, text, nullptr);
+                    QToolTip::showText(p.toPoint(), text, nullptr);
 			}
 		}
 		LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();

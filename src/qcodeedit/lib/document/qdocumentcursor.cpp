@@ -520,17 +520,17 @@ int QDocumentCursor::anchorWrappedLineOffset() const
 	The only difference is the former refers to model perception (QDocument)
 	whereas the later refers to view perception (QEditor)
 */
-QPoint QDocumentCursor::documentPosition() const
+QPointF QDocumentCursor::documentPosition() const
 {
-	return m_handle ? m_handle->documentPosition() : QPoint();
+    return m_handle ? m_handle->documentPosition() : QPointF();
 }
 
 /*!
 	\return the document position of the anchor
 */
-QPoint QDocumentCursor::anchorDocumentPosition() const
+QPointF QDocumentCursor::anchorDocumentPosition() const
 {
-	return m_handle ? m_handle->anchorDocumentPosition() : QPoint();
+    return m_handle ? m_handle->anchorDocumentPosition() : QPointF();
 }
 
 QPolygon QDocumentCursor::documentRegion() const
