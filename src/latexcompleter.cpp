@@ -748,7 +748,7 @@ public:
 		plHolderColor = normalColor;
 		plHolderColor.setAlpha(128);
 
-		QRect r = option.rect;
+        QRectF r = option.rect;
 		r.setLeft(r.left() + 2);
 		bool drawPlaceholder = !cw.placeHolders.empty();
 		QString firstLine = cw.lines[0];
@@ -759,8 +759,8 @@ public:
 		if (!drawPlaceholder)
             painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, firstLine);
 		else {
-			QFontMetrics fmn(fNormal);
-			QFontMetrics fmi(fPlHolder);
+            QFontMetricsF fmn(fNormal);
+            QFontMetricsF fmi(fPlHolder);
 			int p = 0;
 			for (int i = 0; i < cw.placeHolders[0].size(); i++) {
 				QString temp = firstLine.mid(p, cw.placeHolders[0][i].offset - p);

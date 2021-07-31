@@ -168,7 +168,7 @@ public:
 		bool isRTLByText() const;
 		void layout(int lineNr) const; //public for unittests
 	private:
-		void drawBorders(QPainter *p, int yStart, int yEnd) const;
+		void drawBorders(QPainter *p, qreal yStart, qreal yEnd) const;
 
 		void applyOverlays() const;
 		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = nullptr, int from = 0, int until = -1) const;

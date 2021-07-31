@@ -433,7 +433,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setSoftLimitedLineWrapping(bool on);
 		void setWrapAfterNumChars(int numChars);
 protected:
-		void setWrapLineWidth(int l);
+        void setWrapLineWidth(qreal l);
 		bool writeToFile(const QString &filename, const QByteArray &data);
 public:		
 		virtual void save();
@@ -735,7 +735,7 @@ public slots:
 
 		int m_cursorSurroundingLines;
 		
-		int m_LineWidth;
+        int m_LineWidth;
 		int m_wrapAfterNumChars;
 
 		QPropertyAnimation *m_scrollAnimation;

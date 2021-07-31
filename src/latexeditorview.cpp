@@ -3038,12 +3038,12 @@ void LatexEditorViewConfig::settingsChanged()
 
 	f.setKerning(false);
 
-	QList<QFontMetrics> fms;
+    QList<QFontMetrics> fms; // QFontMetric should be okay as it is just used to check for monospace font.
 	for (int b = 0; b < 2; b++) for (int i = 0; i < 2; i++) {
 			QFont ft(f);
 			ft.setBold(b);
 			ft.setItalic(i);
-			fms << QFontMetrics(ft);
+            fms << QFontMetrics(ft);
 		}
 
 	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;

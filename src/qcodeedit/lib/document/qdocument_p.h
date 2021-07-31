@@ -73,7 +73,7 @@ class QCE_EXPORT QDocumentPrivate
 			int docLineNr;
 			int editLineNr;
 			int firstLine; /* constant */
-			int pos;  /* vertical position */
+            qreal pos;  /* vertical position */
 			int visiblePos;
 			bool inSelection;
 			QBrush base; /* constant */
@@ -231,10 +231,10 @@ public:
 		void setFormatScheme(QFormatScheme *f);
 		void tunePainter(QPainter *p, int fid);
 
-		int textWidthSingleLetterFallback(int fid, const QString& text);
-		int textWidth(int fid, const QString& text);
-		int getRenderRangeWidth(int &columnDelta, int curColumn, const RenderRange& r, const int newFont, const QString& text);
-		void drawText(QPainter& p, int fid, const QColor& baseColor, bool selected, int& xpos, int baseline, const QString& text);
+        qreal textWidthSingleLetterFallback(int fid, const QString& text);
+        qreal textWidth(int fid, const QString& text);
+        qreal getRenderRangeWidth(int &columnDelta, int curColumn, const RenderRange& r, const int newFont, const QString& text);
+        void drawText(QPainter& p, int fid, const QColor& baseColor, bool selected, qreal &xpos, qreal baseline, const QString& text);
 		
 	private:
 		QDocument *m_doc;
@@ -293,16 +293,16 @@ public:
 
 		// caches
 		static int m_staticCachesLogicalDpiY;
-		static int m_lineHeight;
-		static int m_lineSpacing;
-		static int m_spaceWidth;
-		static int m_ascent;
-		static int m_descent;
-		static int m_leading;
+        static qreal m_lineHeight;
+        static qreal m_lineSpacing;
+        static qreal m_spaceWidth;
+        static qreal m_ascent;
+        static qreal m_descent;
+        static qreal m_leading;
 				
 		static QVector<QFont> m_fonts;
-		static QList<QFontMetrics> m_fontMetrics;
-		static CacheCache<int> m_fmtWidthCache;
+        static QList<QFontMetricsF> m_fontMetrics;
+        static CacheCache<qreal> m_fmtWidthCache;
 		static CacheCache<QPixmap> m_fmtCharacterCache[2];
 
 		static QFormatScheme *m_formatScheme;

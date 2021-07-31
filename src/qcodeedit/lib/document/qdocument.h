@@ -127,10 +127,10 @@ class QCE_EXPORT QDocument : public QObject
 	public:
 		struct PaintContext
 		{
-			int width;
-			int height;
-			int xoffset;  // draw content from position x+xoffset at position x (used for horizontal scrolling).
-			int yoffset;
+            qreal width;
+            qreal height;
+            qreal xoffset;  // draw content from position x+xoffset at position x (used for horizontal scrolling).
+            qreal yoffset;
 			QPalette palette;
 			bool blinkingCursor;
 			bool fillCursorRect;
@@ -386,7 +386,7 @@ class QCE_EXPORT QDocument : public QObject
 		void print(QPrinter *p);
 
 		void clearWidthConstraint();
-		void setWidthConstraint(int width);
+        void setWidthConstraint(int width);
 		void markFormatCacheDirty();
 
 	signals:

@@ -842,7 +842,7 @@ void QEditor::setSoftLimitedLineWrapping(bool on)
 	setFlag(LineWidthConstraint, on);
 }
 
-void QEditor::setWrapLineWidth(int l){
+void QEditor::setWrapLineWidth(qreal l){
     m_LineWidth=l;
     if(flag(HardLineWrap)||flag(LineWidthConstraint))
 	m_doc->setWidthConstraint(m_LineWidth);
@@ -854,7 +854,7 @@ void QEditor::setWrapAfterNumChars(int numChars){
 		setWrapLineWidth(0);
 	}
 	m_wrapAfterNumChars = qMax(numChars, 20);
-	int w=QFontMetrics(QDocument::font()).averageCharWidth()*(m_wrapAfterNumChars+0.5) + 5; // +5 fixed width on left side, 0.5: 1/2 a char margin on right side
+    qreal w=QFontMetricsF(QDocument::font()).averageCharWidth()*(m_wrapAfterNumChars+0.5) + 5; // +5 fixed width on left side, 0.5: 1/2 a char margin on right side
 	setWrapLineWidth(w);
 }
 
