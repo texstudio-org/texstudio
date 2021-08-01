@@ -11,6 +11,7 @@ echo "copy dlls and qt5 plugins"
 mkdir -p package-zip
 cp texstudio.exe package-zip/
 cd package-zip
+cp /mingw64/bin/libicudt68.dll /mingw64/bin/icudt68.dll
 windeployqt texstudio.exe
 ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
 # force ssl/crypto copy
@@ -19,7 +20,7 @@ ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .
 # check copied dlls
 ldd texstudio.exe
 cd ..
-echo "make installer"
+echo "copy directories"
 cp -r ./translation ./package-zip
 cp -r ./templates package-zip
 cp -r ./utilities/manual package-zip/help
@@ -30,37 +31,19 @@ cp -r ./travis-ci/mxe/fonts package-zip/share/
 # poppler data
 cd package-zip
 cp -r $MSYSTEM_PREFIX/share/poppler share
-
-archivegen txs.7z *
-## manage sub-packages languages
-charexists() {
-  char="$1"; shift
-  case "$*" in *"$char"*) return;; esac; return 1
-}
-
-cp -r ../utilities/dictionaries dictionaries
-for i in `ls dictionaries/*.dic`
-do
-	zw=$(echo $i| cut -f 2 -d / |cut -f 1 -d .);
-	mkdir -p ../packages/dictionaries.$zw/data
-	mkdir -p ../packages/dictionaries.$zw/meta
-	archivegen dict.7z dictionaries/$zw.*
-	mv dict.7z ../packages/dictionaries.$zw/data
-	cp ../utilities/package_dict.xml ../packages/dictionaries.$zw/meta/package.xml
-	sed -i "s/lang/${zw}/g" ../packages/dictionaries.$zw/meta/package.xml
-	charexists "-" $zw &&  sed -i "s/true/false/g" ../packages/dictionaries.$zw/meta/package.xml
-done
+cd ..
+echo "make installer"
+cp ./utilities/texstudio-msys.nsi .
+cp ./utilities/FileAssociation.nsh .
+makensis texstudio-msys.nsi
+# zip package
+cd package-zip
+zip -r ./texstudio-win-${VERSION_NAME}.zip *
 
 cd ..
-mkdir -p packages/dictionaries/data
-mkdir -p packages/dictionaries/meta
-cp utilities/package_dictionaries.xml packages/dictionaries/meta/package.xml
-mkdir -p packages/texstudio/data
-mkdir -p packages/texstudio/meta
-cp utilities/license.txt packages/texstudio/meta
-mv package-zip/txs.7z packages/texstudio/data
-cp utilities/installscript.qs packages/texstudio/meta
-cp utilities/package.xml packages/texstudio/meta
-
-
-
+sha256sum ./texstudio_installer.exe
+sha256sum ./texstudio.exe
+sha256sum ./package-zip/texstudio-win-${VERSION_NAME}.zip
+cp ./package-zip/texstudio-win-${VERSION_NAME}.zip ./texstudio-${GIT_VERSION}-win-portable-qt6.zip
+cp ./texstudio_installer.exe ./texstudio-${GIT_VERSION}-win-qt6.exe
+cp ./texstudio_installer.exe ./texstudio-win-qt6-${VERSION_NAME}.exe

@@ -150,19 +150,27 @@ File package-zip\*.dll
 
 SetOutPath $INSTDIR\platforms
 
-File platforms\*
+File package-zip\platforms\*
 
 SetOutPath $INSTDIR\imageformats
 
-File imageformats\*
+File package-zip\imageformats\*
+
+SetOutPath $INSTDIR\iconengines
+
+File package-zip\iconengines\*
 
 SetOutPath $INSTDIR\styles
 
-File styles\*
+File package-zip\styles\*
 
 SetOutPath $INSTDIR\translations
 
 File translation\*.qm
+
+SetOutPath $INSTDIR\translation
+
+File package-zip\translation\*.qm
 
 SetOutPath $INSTDIR\templates
 
