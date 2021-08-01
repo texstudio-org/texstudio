@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: texstudio-win-qt6-zip
-          path: ./package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+          path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
           
       - name: Upload to GitHub Artifacts
         if: github.event_name == 'push'
