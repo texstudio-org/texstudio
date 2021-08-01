@@ -18,6 +18,10 @@ jobs:
           msystem: MINGW64
           update: true
           install: git make mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt6-base mingw-w64-x86_64-poppler mingw-w64-x86_64-poppler-qt6  mingw-w64-x86_64-qt6-declarative mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-5compat  mingw-w64-x86_64-qt6-tools  mingw-w64-x86_64-nsis zip
+      - name: Poppler
+        run: |
+          curl https://github.com/msys2/MINGW-packages/suites/3320877016/artifacts/78691649
+          unzip 
       - name: Configure
         run: qmake texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1 NO_POPPLER_PREVIEW=1
       - name: Build
@@ -36,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: texstudio-win-qt6-zip
-          path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+          path: ./package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
           
       - name: Upload to GitHub Artifacts
         if: github.event_name == 'push'
