@@ -265,7 +265,7 @@ namespace Adwaita
 #if QT_VERSION_MAJOR<6
             w->render( &p, -widget->mapTo( w, rect.topLeft() ), rect, 0 );
 #else
-            w->render( &p, -widget->mapTo( w, rect.topLeft() ), rect, RenderFlag::None );
+            w->render( &p, -widget->mapTo( w, rect.topLeft() ), rect, RenderFlags() );
 #endif
         }
 
