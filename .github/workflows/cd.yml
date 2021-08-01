@@ -23,8 +23,12 @@ jobs:
       - name: Build
         run: make -j 2
       - name: Package
+        id: package
         run: |
           .github/scripts/package_msys.sh
+          echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+          echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+          echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
