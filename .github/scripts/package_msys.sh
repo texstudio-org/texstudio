@@ -38,12 +38,12 @@ cp ./utilities/FileAssociation.nsh .
 makensis texstudio-msys.nsi
 # zip package
 cd package-zip
-zip -r ./texstudio-win-${VERSION_NAME}.zip *
+zip -r ./texstudio-win-qt6-${VERSION_NAME}.zip *
 
 cd ..
 sha256sum ./texstudio_installer.exe
 sha256sum ./texstudio.exe
-sha256sum ./package-zip/texstudio-win-${VERSION_NAME}.zip
-cp ./package-zip/texstudio-win-${VERSION_NAME}.zip ./texstudio-${GIT_VERSION}-win-portable-qt6.zip
+sha256sum ./package-zip/texstudio-win-qt6-${VERSION_NAME}.zip
+cp ./package-zip/texstudio-win-qt6-${VERSION_NAME}.zip ./texstudio-${GIT_VERSION}-win-portable-qt6.zip
 cp ./texstudio_installer.exe ./texstudio-${GIT_VERSION}-win-qt6.exe
 cp ./texstudio_installer.exe ./texstudio-win-qt6-${VERSION_NAME}.exe
