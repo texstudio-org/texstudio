@@ -25,13 +25,31 @@ jobs:
       - name: Package
         run: |
           .github/scripts/package_msys.sh
-          binarycreator -f -c utilities/config.xml -p packages/ texstudio-installer.exe
-      - name: Upload Installer to GitHub Artifacts
+
+      - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v2
         with:
-          name: texstudio-msys
-          path: texstudio-installer.exe
+          name: texstudio-win-qt6-zip
+          path: ./package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+          
+      - name: Upload to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: texstudio-win-qt6-exe
+          path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
+        
+      - name: Release exe
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+          files: |
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
   build-linux-win:
     name: win build (mxe)
