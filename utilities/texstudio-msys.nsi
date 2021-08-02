@@ -168,10 +168,6 @@ SetOutPath $INSTDIR\translations
 
 File translation\*.qm
 
-SetOutPath $INSTDIR\translation
-
-File package-zip\translation\*.qm
-
 SetOutPath $INSTDIR\templates
 
 File templates\*
