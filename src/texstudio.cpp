@@ -7532,12 +7532,17 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
     // collect user commands and references
     QSet<QString> collected_labels;
     foreach (const LatexDocument *doc, docs) {
+        if(doc->labelItems().isEmpty())
+            continue;
         collected_labels.unite(convertStringListtoSet(doc->labelItems()));
-        foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
-            QString temp = refCommand + "{%1}";
-            foreach (const QString &l, doc->labelItems())
-                words.insert(temp.arg(l));
-        }
+    }
+    foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
+        QString temp = refCommand + "{%1}";
+        CodeSnippetList wordsList;
+        foreach (const QString &l, collected_labels)
+            wordsList.insert(temp.arg(l));
+
+        words.unite(wordsList);
     }
     if (configManager.parseBibTeX) {
         QSet<QString> bibIds;
