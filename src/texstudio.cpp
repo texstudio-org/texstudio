@@ -7538,9 +7538,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
         QStringList lst=doc->labelItems();
         collected_labels.insert(lst.cbegin(),lst.cend());
     }
-    QSet<QString> labels;
-    foreach (const QString &l, collected_labels)
-        labels<<l;
+
     foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
         QString temp = refCommand + "{%1}";
         CodeSnippetList wordsList;
@@ -7591,7 +7589,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
         completer->setAdditionalWords(bibIds, CT_CITATIONS);
     }
 
-    completer->setAdditionalWords(labels, CT_LABELS);
+    completer->setAdditionalWords(collected_labels, CT_LABELS);
 
     completionBaseCommandsUpdated = false;
 
@@ -10023,7 +10021,7 @@ void Texstudio::jumpPrevDiff()
 void Texstudio::removeDiffMarkers(bool theirs)
 {
 	LatexDocument *doc = documents.currentDocument;
-	if (!doc)
+    if (!doc || !doc->mayHaveDiffMarkers)
 		return;
 
 	diffRemoveMarkers(doc, theirs);
