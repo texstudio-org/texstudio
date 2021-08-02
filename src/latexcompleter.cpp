@@ -160,9 +160,16 @@ public:
                 inMath=view->isInMathHighlighting(cursor);
             }
 
-			for (int i = maxWritten - cursor.columnNumber(); i > 0; i--) cursor.deleteChar();
-
-			for (int i = cursor.columnNumber() - curStart; i > 0; i--) cursor.deletePreviousChar();
+            //for (int i = maxWritten - cursor.columnNumber(); i > 0; i--) cursor.deleteChar();
+            if(maxWritten>cursor.columnNumber()){
+                cursor.movePosition(maxWritten-cursor.columnNumber(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+                cursor.removeSelectedText();
+            }
+            //for (int i = cursor.columnNumber() - curStart; i > 0; i--) cursor.deletePreviousChar();
+            if(curStart<cursor.columnNumber()){
+                cursor.movePosition(cursor.columnNumber()-curStart,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
+                cursor.removeSelectedText();
+            }
 			if (!autoOverridenText.isEmpty()) {
 				cursor.insertText(autoOverridenText);
 				cursor.movePosition(autoOverridenText.length(), QDocumentCursor::PreviousCharacter);
