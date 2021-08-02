@@ -121,8 +121,9 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 	if (marksPerLine>maxMarksPerLine) marksPerLine=maxMarksPerLine;
 	setFixedWidth(marksPerLine ? marksPerLine * 16 + 2 : 18);
 
-	int n, posY,
-		as = QFontMetrics(d->font()).ascent(),
+    int n;
+    qreal posY,
+        as = QFontMetricsF(d->font()).ascent(),
 		ls = d->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
@@ -147,7 +148,7 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 			continue;
 
 		m_lines << n;
-		m_rects << QRect(0, posY, width(), ls);
+        m_rects << QRectF(0, posY, width(), ls);
 
 		if ( realMarksPerLine )
 		{
@@ -161,18 +162,18 @@ bool QLineMarkPanel::paint(QPainter *p, QEditor *e)
 				if ( icon.isNull() )
 					continue;
 
-				int size = qMin(16, ls-4); // (maxWidth, maxHeight) assuming square icons
+                int size = qMin(16., ls-4); // (maxWidth, maxHeight) assuming square icons
 
 
-				int x = count,
-					y = posY + ( (ls - size) >> 1 );
+                qreal x = count,
+                    y = posY + ( (ls - size) /2  );
 #ifdef Q_OS_MAC
                 QPixmap pix=icon.pixmap(2*size); // oversampling on mac !!!!
 #else
                 QPixmap pix=icon.pixmap(size);
 #endif
 
-                p->drawPixmap(x, y, size,size,pix);
+                p->drawPixmap(QRectF(x, y, size,size),pix,pix.rect());
 
 				if (count < 16*(maxMarksPerLine-1))
                     count += 16;

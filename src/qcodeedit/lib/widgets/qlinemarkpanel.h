@@ -54,7 +54,7 @@ protected:
 		virtual void contextMenuEvent(QContextMenuEvent *e);
 		
 	private:
-		QList<QRect> m_rects;
+        QList<QRectF> m_rects;
 		QList<int> m_lines;
 		int minMarksPerLine;
 		int maxMarksPerLine;
