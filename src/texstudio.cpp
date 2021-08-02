@@ -83,6 +83,7 @@
 #include "qnfadefinition.h"
 
 #include "PDFDocument_config.h"
+#include <set>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -7530,17 +7531,22 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
     }
 
     // collect user commands and references
-    QSet<QString> collected_labels;
+    std::set<QString> collected_labels;
     foreach (const LatexDocument *doc, docs) {
         if(doc->labelItems().isEmpty())
             continue;
-        collected_labels.unite(convertStringListtoSet(doc->labelItems()));
+        QStringList lst=doc->labelItems();
+        collected_labels.insert(lst.cbegin(),lst.cend());
     }
+    QSet<QString> labels;
+    foreach (const QString &l, collected_labels)
+        labels<<l;
     foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
         QString temp = refCommand + "{%1}";
         CodeSnippetList wordsList;
         foreach (const QString &l, collected_labels)
             wordsList.insert(temp.arg(l));
+
 
         words.unite(wordsList);
     }
@@ -7585,7 +7591,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
         completer->setAdditionalWords(bibIds, CT_CITATIONS);
     }
 
-    completer->setAdditionalWords(collected_labels, CT_LABELS);
+    completer->setAdditionalWords(labels, CT_LABELS);
 
     completionBaseCommandsUpdated = false;
 
