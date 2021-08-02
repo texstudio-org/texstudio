@@ -1412,6 +1412,47 @@ void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, Completio
 	listModel->setBaseWords(concated, newWordList, completionType);
 	widget->resize(200, 200);
 }
+/*!
+ * \brief setAdditionalWords from a std::set<QString>
+ * The advantage is that a std::set is already sorted.
+ * \param newwords
+ * \param completionType
+ */
+void LatexCompleter::setAdditionalWords(const std::set<QString> &newwords, CompletionType completionType)
+{
+    // convert to codesnippets
+    CodeSnippetList newWordList;
+    for (std::set<QString>::const_iterator i = newwords.cbegin(); i != newwords.cend(); ++i) {
+        QString str = *i;
+        bool isReference = str.startsWith('@');
+        if (isReference)
+            str = str.mid(1);
+        CompletionWord cw(str);
+        if (completionType == CT_COMMANDS) {
+            cw.index = qHash(str);
+            cw.snippetLength = str.length();
+            cw.usageCount = isReference ? 2 : 0; // make reference always visible (most used) in completer
+            QList<QPair<int, int> >res = config->usage.values(cw.index);
+            foreach (const PairIntInt &elem, res) {
+                if (elem.first == cw.snippetLength) {
+                    cw.usageCount = elem.second;
+                    break;
+                }
+            }
+        } else {
+            cw.index = 0;
+            cw.usageCount = -2;
+            cw.snippetLength = 0;
+        }
+        newWordList.append(cw);
+    }
+
+    CodeSnippetList concated;
+    if (config && completionType == CT_COMMANDS) concated.unite(config->words);
+    //concated.unite(newwords);
+    listModel->setBaseWords(concated, newWordList, completionType);
+    widget->resize(200, 200);
+}
 
 void LatexCompleter::setAdditionalWords(const CodeSnippetList &newwords, CompletionType completionType)
 {
