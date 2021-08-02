@@ -21,11 +21,12 @@ ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .
 ldd texstudio.exe
 cd ..
 echo "copy directories"
-cp -r ./translation ./package-zip
+cp -r ./translation ./package-zip/translations
 cp -r ./templates package-zip
 cp -r ./utilities/manual package-zip/help
 cp ./utilities/latex2e.css package-zip/help
 cp ./utilities/latex2e.html package-zip/help
+cp -r ./utilities/dictionaries package-zip/dictionaries
 cp -r ./utilities/TexTablet package-zip/TexTablet
 cp -r ./travis-ci/mxe/fonts package-zip/share/
 # poppler data
