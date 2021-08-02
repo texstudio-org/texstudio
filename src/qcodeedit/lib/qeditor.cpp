@@ -3050,9 +3050,9 @@ void QEditor::setVerticalScrollBarMaximum()
 	int viewportHeight = viewportSize.height();
 	if (flag(VerticalOverScroll))
 		viewportHeight /= 2;
-	const int ls = m_doc->getLineSpacing();
+    const qreal ls = m_doc->getLineSpacing();
 	QScrollBar* vsb = verticalScrollBar();
-	vsb->setMaximum(qMax(0, 1 + (m_doc->height() - viewportHeight) / ls));
+    vsb->setMaximum(qMax(0., 1. + (m_doc->height() - viewportHeight) / ls));
 	vsb->setPageStep(viewportSize.height() / ls);
 }
 
@@ -5545,11 +5545,11 @@ void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflag
 
 	int surrounding = (mflags&KeepSurrounding) ? m_cursorSurroundingLines : 0;
 
-	const int ls = document()->getLineSpacing();
+    const qreal ls = document()->getLineSpacing();
 
 	int surroundingHeight = ls * surrounding;
 
-	int ypos = pos.y(),
+    qreal ypos = pos.y(),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + ls;
@@ -5594,18 +5594,18 @@ void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflag
 		}
     }
 
-	int xval = horizontalOffset(),
+    qreal xval = horizontalOffset(),
 		xlen = viewport()->width(),
 		xpos = pos.x();
 
 	if ( xpos < xval )
 	{
 		//qDebug("scroll leftward");
-		horizontalScrollBar()->setValue(qMax(0, xpos - 4));
+        horizontalScrollBar()->setValue(qMax(0., xpos - 4));
 	} else if ( xpos > (xval + xlen - 4) ) {
 		//qDebug("scroll rightward : %i", xpos - xlen + 4);
 		horizontalScrollBar()
-			->setValue(qMax(horizontalScrollBar()->value(), xpos - xlen + 4));
+            ->setValue(qMax(1.*horizontalScrollBar()->value(), xpos - xlen + 4));
 	}
 
 	if ((mflags&ExpandFold) && m_cursor.line().isHidden())
