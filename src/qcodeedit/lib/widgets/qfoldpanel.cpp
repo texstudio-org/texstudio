@@ -168,16 +168,16 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 	int endHighlightLineNr = -1;
 
-	int pos,
-		max = doc->lines(),
-		ls = doc->getLineSpacing(),
+    qreal pos,
+        max = doc->lines(),
+        ls = doc->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 
-	int xMid = m_width / 2;
-	int iconSize = (m_width * 3)/ 4;
-	int xIconOffset = (m_width - iconSize) / 2;
-	int yIconOffset = (ls - iconSize) / 2;
+    qreal xMid = m_width / 2;
+    qreal iconSize = (m_width * 3)/ 4;
+    qreal xIconOffset = (m_width - iconSize) / 2;
+    qreal yIconOffset = (ls - iconSize) / 2;
 	
 	pos = - contentsY;
 
@@ -185,7 +185,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 	p->save();
 	QPen linePen(QColor(128,0,128));
-	int lineWidth = m_width / 5;
+    qreal lineWidth = m_width / 5;
 
 #if defined(__MINGW32__)
 	// workaround for https://bugreports.qt-project.org/browse/QTBUG-32387
@@ -218,7 +218,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 			continue;
 		}
 
-		int len = ls * line.lineSpan();
+        qreal len = ls * line.lineSpan();
 
 		bVisible = ((pos + len) >= 0);
 
@@ -226,8 +226,8 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 			if ( fli.open ) {
 				bool isCollapsed = line.hasFlag(QDocumentLine::CollapsedBlockStart);
-				int topLineEnd = yIconOffset;
-				int bottomLineStart = yIconOffset + iconSize;
+                qreal topLineEnd = yIconOffset;
+                qreal bottomLineStart = yIconOffset + iconSize;
 				if (isCollapsed) {  // a bit more space for collapsed icons
 					topLineEnd -= 1;
 					bottomLineStart += 1;
@@ -235,11 +235,11 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 				// line above icon
 				if (topLineEnd > 0 && fli.lineNr <= endHighlightLineNr)
-					p->drawLine(xMid, pos, xMid, pos + topLineEnd);
+                    p->drawLine(QPointF(xMid, pos), QPointF(xMid, pos + topLineEnd));
 
 				// draw icon
 				m_lines << fli.lineNr;
-				m_rects << QRect(0, pos, m_width, ls);
+                m_rects << QRectF(0, pos, m_width, ls);
 				drawIcon(p, e, xIconOffset, pos + yIconOffset, iconSize, isCollapsed, fli.lineNr == m_lastMouseLine);
 
 				if (!isCollapsed && fli.lineNr == m_lastMouseLine) {
@@ -251,13 +251,13 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 				// line below icon
 				if (bottomLineStart < len && fli.lineNr < endHighlightLineNr)
-					p->drawLine(xMid, pos + bottomLineStart, xMid, pos + len);
+                    p->drawLine(QPointF(xMid, pos + bottomLineStart), QPointF(xMid, pos + len));
 			} else if (fli.lineNr <= endHighlightLineNr) {
 				if ( fli.lineNr == endHighlightLineNr ) {
-					int mid = pos + len - ls / 6;
-					p->drawLine(xMid, pos, xMid, mid); // line ending here
+                    qreal mid = pos + len - ls / 6;
+                    p->drawLine(QPointF(xMid, pos), QPointF(xMid, mid)); // line ending here
 				} else {
-					p->drawLine(xMid, pos, xMid, pos + len); // line continues
+                    p->drawLine(QPointF(xMid, pos), QPointF(xMid, pos + len)); // line continues
 				}
 			}
 		}
@@ -311,7 +311,7 @@ bool QFoldPanel::event(QEvent *e) {
 	return QWidget::event(e);
 }
 
-int QFoldPanel::mapRectPosToLine(const QPoint& p){
+int QFoldPanel::mapRectPosToLine(const QPointF& p){
 	for ( int i = 0; i < m_rects.count(); ++i )
 	{
 		if ( !m_rects.at(i).contains(p) )
@@ -323,11 +323,11 @@ int QFoldPanel::mapRectPosToLine(const QPoint& p){
 }
 
 
-QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
-							int x, int y, int iconSize, bool toExpand, bool highlight)
+QRectF QFoldPanel::drawIcon(	QPainter *p, QEditor *,
+                            qreal x, qreal y, int iconSize, bool toExpand, bool highlight)
 {
 	int tailSpacing = iconSize / 4;
-	QRect symbolRect(x, y, iconSize, iconSize);
+    QRectF symbolRect(x, y, iconSize, iconSize);
 
 	p->save();
 

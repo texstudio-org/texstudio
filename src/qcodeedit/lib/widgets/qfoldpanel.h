@@ -55,10 +55,10 @@ class QCE_EXPORT QFoldPanel : public QPanel
 		virtual bool paint(QPainter *p, QEditor *e);
 		bool event(QEvent *e);
 
-		int mapRectPosToLine(const QPoint& p);
+        int mapRectPosToLine(const QPointF& p);
 
-		QRect drawIcon(QPainter *p, QEditor *e,
-						int x, int y, int iconSize, bool expand, bool highlight);
+		QRectF drawIcon(QPainter *p, QEditor *e,
+						qreal x, qreal y, int iconSize, bool expand, bool highlight);
 
 		virtual void editorChange(QEditor *e);
 
@@ -66,7 +66,7 @@ class QCE_EXPORT QFoldPanel : public QPanel
 		void setFont_slot(const QFont &font);
 
 	private:
-		QList<QRect> m_rects;
+        QList<QRectF> m_rects;
 		QList<int> m_lines;
 		int m_width;
 		int m_lastMouseLine;
