@@ -1540,8 +1540,14 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
     masterDocument = doc;
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
+
+        QStringList items;
+        foreach (const LatexDocument *elem, listOfDocs) {
+            items << elem->labelItems();
+        }
+
         foreach (LatexDocument *elem, listOfDocs) {
-            elem->recheckRefsLabels();
+            elem->recheckRefsLabels(listOfDocs,items);
         }
     }
 }
@@ -1599,7 +1605,7 @@ void LatexDocument::updateRefHighlight(ReferencePairEx p){
     }
 }
 
-void LatexDocument::recheckRefsLabels()
+void LatexDocument::recheckRefsLabels(QList<LatexDocument*> listOfDocs,QStringList items)
 {
 	// get occurences (refs)
 	int referenceMultipleFormat = getFormatId("referenceMultiple");
@@ -1608,10 +1614,15 @@ void LatexDocument::recheckRefsLabels()
     const QList<int> formatList{referenceMissingFormat,referencePresentFormat,referenceMultipleFormat};
     QList<ReferencePairEx> results;
 
-    QStringList items;
-    foreach (const LatexDocument *elem, getListOfDocs()) {
-        items << elem->labelItems();
+    if(listOfDocs.isEmpty()){
+        // if not empty, assume listOfDocs *and* items are provided.
+        // this avoid genearting both lists for each document again
+        listOfDocs=getListOfDocs();
+        foreach (const LatexDocument *elem, listOfDocs) {
+            items << elem->labelItems();
+        }
     }
+
 
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
     QSet<QDocumentLineHandle*> dlhs;
