@@ -391,6 +391,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 
                 tk.level = level; // push old level on stack in order to restore that level later and to distinguish between arguments and arbitrary braces
                 tk.argLevel = ConfigManager::RUNAWAYLIMIT; // run-away prevention
+                if(tk.subtype==Token::beginEnv || tk.subtype==Token::env){
+                    // cut runaway as is must stay within one line
+                    tk.argLevel = 0;
+                }
                 stack.push(tk);
                 tk.level++;
                 lexed << tk;
