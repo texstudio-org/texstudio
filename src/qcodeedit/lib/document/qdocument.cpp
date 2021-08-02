@@ -2831,7 +2831,7 @@ int QDocumentLineHandle::wrappedLineForCursorNoLock(int cpos) const
  * i.e. x = leftMargin + leftPadding + charWidth results in column 1
  * Positions smaller than leftMargin + leftPadding always result in column 0
  */
-int QDocumentLineHandle::documentOffsetToCursor(int x, int y, bool disallowPositionBeyondLine) const
+int QDocumentLineHandle::documentOffsetToCursor(qreal x, qreal y, bool disallowPositionBeyondLine) const
 {
 	//qDebug("documentOffsetToCursor(%i, %i)", x, y);
 	QReadLocker locker(&mLock);
@@ -2852,7 +2852,7 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y, bool disallowPosit
 	if ( m_frontiers.count() )
 	{
 		//qDebug("(%i, %i) : %i", x, y, wrap);
-		x = qMin(x, m_doc->widthConstraint());
+        x = qMin(x, 1.*m_doc->widthConstraint());
 	}
 
 	if ( m_layout )

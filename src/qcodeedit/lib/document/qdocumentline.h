@@ -155,7 +155,7 @@ class QCE_EXPORT QDocumentLine
 		
 		int wrappedLineForCursor(int cpos) const;
 		
-        int documentOffsetToCursor(int x, int y, bool disallowPositionBeyondLine=false) const;
+        int documentOffsetToCursor(qreal x, qreal y, bool disallowPositionBeyondLine=false) const;
 		void cursorToDocumentOffset(int cpos, qreal &x, qreal &y) const;
 		
 		QPointF cursorToDocumentOffset(int cpos) const;
