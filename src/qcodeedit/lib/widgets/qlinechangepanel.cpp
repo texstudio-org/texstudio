@@ -73,15 +73,16 @@ bool QLineChangePanel::paint(QPainter *p, QEditor *e)
 	if ( !e || !e->document() )
 		return true;
 
-	int n, posY,
-		as = QFontMetrics(e->document()->font()).ascent(),
+    int n;
+    qreal posY,
+        as = QFontMetricsF(e->document()->font()).ascent(),
 		ls = e->document()->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 
 	QDocument *d = e->document();
 	n = d->lineNumber(contentsY);
-	posY = 2 + d->y(n) - contentsY;
+    posY = d->y(n) - contentsY;
 
 	for ( ; ; ++n )
 	{
@@ -98,9 +99,9 @@ bool QLineChangePanel::paint(QPainter *p, QEditor *e)
 
 		if ( d->isLineModified(line) )
 		{
-			p->fillRect(1, posY, 2, ls * span, QColor(255, 216, 0)); // yellow
+            p->fillRect(QRectF(1, posY, 2, ls * span), QColor(255, 216, 0)); // yellow
 		} else if ( d->hasLineEverBeenModified(line) ) {
-			p->fillRect(1, posY, 2, ls * span, QColor(70, 191, 0)); // green
+            p->fillRect(QRectF(1, posY, 2, ls * span), QColor(70, 191, 0)); // green
 		}
 
 		posY += ls * span;
