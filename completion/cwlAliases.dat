@@ -81,3 +81,8 @@ booktabs
 dcolumn
 delarray
 array
+amsbook:
+amsmath
+amsthm
+latex-document
+tex
