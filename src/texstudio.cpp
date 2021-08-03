@@ -7549,7 +7549,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
         words.unite(wordsList);
     }
     if (configManager.parseBibTeX) {
-        QSet<QString> bibIds;
+        std::set<QString> bibIds;
 
         QStringList collected_mentionedBibTeXFiles;
         foreach (const LatexDocument *doc, docs) {
@@ -7564,11 +7564,12 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             BibTeXFileInfo &bibTex = documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
 
             // add citation to completer for direct citation completion
-            bibIds.unite(bibTex.ids);
+            bibIds.insert(bibTex.ids.cbegin(),bibTex.ids.cend());
         }
         //handle bibitem definitions
         foreach (const LatexDocument *doc, docs) {
-            bibIds.unite(convertStringListtoSet(doc->bibItems()));
+            QStringList ids=doc->bibItems();
+            bibIds.insert(ids.cbegin(),ids.cend());
         }
         //automatic use of cite commands
         QStringList citationCommands;
