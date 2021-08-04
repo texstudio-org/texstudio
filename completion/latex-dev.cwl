@@ -84,7 +84,7 @@
 \RequirePackageWithOptions{package}#*u
 \RequirePackageWithOptions{package}[release]#*u
 # counter, lengths and dimens
-\setcounter{counter}{value}#*
+\setcounter{counter%keyvals}{value}#*
 \setlanguage{language}#*
 \setlength{\gnat}{length}#*
 \setpapersize{layout}#*
@@ -93,22 +93,42 @@
 \settowidth{\gnat}{text}#*
 \addto#*
 \addtocontents{file}{text}#*
-\addtocounter{counter}{value}#*
+\addtocounter{counter%keyvals}{value}#*
 \addtolength{\gnat}{length}#*
 \addtoversion#*
 \addvspace{length}#*
 \deffootnote[width}{indention}{par indention}{definition}#*
-\newcounter{foo}#*
-\newcounter{foo}[counter]#*
-\refstepcounter{counter}#*
+\newcounter{name}#*s#%counter
+\newcounter{name}[counter%keyvals]#*s#%counter
+\refstepcounter{counter%keyvals}#*
 \restorecr#*
 \reversemarginpar#*
-\stepcounter{counter}#*
+\stepcounter{counter%keyvals}#*
 \stretch{number}#*
-\usecounter{counter}#*
+\usecounter{counter%keyvals}#*
 \usefont{enc}{family}{series}{shape}#*
-\value{counter}#*
+\value{counter%keyvals}#*
 \newfont{cmd}{fontname}#*
+#keyvals:\setcounter,\addtocounter,\newcounter,\refstepcounter,\stepcounter,\usecounter,\value
+%counter
+part
+chapter
+section
+subsection
+subsubsection
+paragraph
+subparagraph
+page
+figure
+table
+footnote
+mpfootnote
+enumi
+enumii
+enumiii
+enumiv
+equation
+#endkeyvals
 # counter representative
 \thechapter#*
 \theenumi#*
@@ -227,7 +247,7 @@
 \pdflinkmargin#*
 \pdfthreadmargin#*
 \pdfminorversion#*
-\numberline#* 
+\numberline#*
 
 # miscellany
 \allocationnumber
