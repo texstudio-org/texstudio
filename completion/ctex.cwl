@@ -271,8 +271,28 @@ resetalternatefont=
 \ccwd
 
 ## Sec. 8.2
-\chinese{counter}
+\chinese{counter%keyvals}
 \CTEXnumber{cmd}{number}#*d
 \CTEXdigits{cmd}{number}#*d
+#keyvals:\chinese
+%counter
+part
+chapter
+section
+subsection
+subsubsection
+paragraph
+subparagraph
+page
+figure
+table
+footnote
+mpfootnote
+enumi
+enumii
+enumiii
+enumiv
+equation
+#endkeyvals
 
 \CTeX#*
