@@ -35,7 +35,7 @@
 \pgfmathsetlengthmacro{cmd}{math expression}#*
 \pgfmathtruncatemacro{cmd}{math expression}#*
 
-\pgfmathnewcounter{counter%keyvals}#*
+\pgfmathnewcounter{name}#*s#%counter
 \pgfmathmakecounterglobal{counter%keyvals}#*
 
 #keyvals:\pgfmathsetcounter,\pgfmathaddtocounter,\pgfmathnewcounter,\pgfmathmakecounterglobal
