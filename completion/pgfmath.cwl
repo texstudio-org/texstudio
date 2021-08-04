@@ -29,14 +29,35 @@
 \pgfmathaddtolength{length register}{math expression}#*
 \pgfmathsetcount{count register}{math expression}#*
 \pgfmathaddtocount{count register}{math expression}#*
-\pgfmathsetcounter{counter}{math expression}#*
-\pgfmathaddtocounter{counter}{math expression}#*
+\pgfmathsetcounter{counter%keyvals}{math expression}#*
+\pgfmathaddtocounter{counter%keyvals}{math expression}#*
 \pgfmathsetmacro{cmd}{math expression}#*
 \pgfmathsetlengthmacro{cmd}{math expression}#*
 \pgfmathtruncatemacro{cmd}{math expression}#*
 
-\pgfmathnewcounter{counter}#*
-\pgfmathmakecounterglobal{counter}#*
+\pgfmathnewcounter{counter%keyvals}#*
+\pgfmathmakecounterglobal{counter%keyvals}#*
+
+#keyvals:\pgfmathsetcounter,\pgfmathaddtocounter,\pgfmathnewcounter,\pgfmathmakecounterglobal
+%counter
+part
+chapter
+section
+subsection
+subsubsection
+paragraph
+subparagraph
+page
+figure
+table
+footnote
+mpfootnote
+enumi
+enumii
+enumiii
+enumiv
+equation
+#endkeyvals
 
 \pgfmathanglebetweenpoints{point 1}{point 2}#*
 \pgfmathanglebetweenlines{line 1 start}{line 1 end}{line 2 start}{line 2 end}#*
