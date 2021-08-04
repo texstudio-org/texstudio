@@ -1,6 +1,7 @@
 # etoolbox package
 # Martin Sievers 18 May 2018
 # muzimuzhi/29 Aug 2019 for etoolbox v2.5e
+# Brian Schubert/ 04 Aug 2021 for %counter completion class
 
 # etex package is only loaded for texlive 2014 or older
 # #include:etex

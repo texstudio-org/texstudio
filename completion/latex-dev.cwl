@@ -1,6 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
+# Brian Schubert/2021-08-04
 # commands with big Letters and others
 \AtBeginDocument{code}#*
 \AtEndDocument{code}#*

@@ -3,6 +3,7 @@
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
+# Brian Schubert/2021-08-04 added %counter definition class.
 #include:latex-dev
 #include:textcomp
 \abstractname#*

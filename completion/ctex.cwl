@@ -1,6 +1,7 @@
 # ctex package
 # Darcy Hu <hot123tea123@gmail.com> 2016
-#modified zepinglee 30 Jan 2021
+# modified zepinglee 30 Jan 2021
+# modified Brian Schubert 04 Aug 2021
 
 #include:zhnumber
 
