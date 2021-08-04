@@ -72,6 +72,7 @@
 <file>completion/datatool-base.cwl</file>
 <file>completion/datatool.cwl</file>
 <file>completion/dejavu-otf.cwl</file>
+<file>completion/derivative.cwl</file>
 <file>completion/diagxy.cwl</file>
 <file>completion/diffcoeff.cwl</file>
 <file>completion/doi.cwl</file>
