@@ -30,8 +30,28 @@
 \protecting{code}
 
 ## user commands - length and counter assignments
-\defcounter{counter}{integer expression}
+\defcounter{counter%keyvals}{integer expression}
 \deflength{length%cmd}{glue expression}#d
+#keyvals:\defcounter
+%counter
+part
+chapter
+section
+subsection
+subsubsection
+paragraph
+subparagraph
+page
+figure
+table
+footnote
+mpfootnote
+enumi
+enumii
+enumiii
+enumiv
+equation
+#endkeyvals
 
 ## user commands - additional document hooks
 \AfterPreamble{code}
