@@ -7572,12 +7572,12 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             bibIds.insert(ids.cbegin(),ids.cend());
         }
         //automatic use of cite commands
-        QStringList citationCommands;
+        std::set<QString> citationCommands;
         foreach (const QString &citeCommand, latexParser.possibleCommands["%cite"]) {
             QString temp = '@' + citeCommand + "{@}";
-            citationCommands.append(temp);
+            citationCommands.insert(temp);
         }
-        completer->setAdditionalWords(convertStringListtoSet(citationCommands), CT_CITATIONCOMMANDS);
+        completer->setAdditionalWords(citationCommands, CT_CITATIONCOMMANDS);
         completer->setAdditionalWords(bibIds, CT_CITATIONS);
     }
 
