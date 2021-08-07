@@ -2800,7 +2800,7 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 	//patch lines for new commands (ref,def, etc)
 
 	QStringList categories;
-	categories << "%ref" << "%label" << "%definition" << "%cite" << "%citeExtended" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%url" << "%todo" << "%replace";
+    categories << "%ref" << "%label" << "%definition" << "%cite" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%url" << "%todo" << "%replace";
 	QStringList newCmds;
 	foreach (const QString elem, categories) {
 		QStringList cmds = ltxCommands.possibleCommands[elem].values();

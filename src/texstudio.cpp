@@ -7580,12 +7580,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             /*foreach (const QString &value, bibIds)
                             words.insert(temp.arg(value));*/
         }
-        foreach (QString citeCommand, latexParser.possibleCommands["%citeExtended"]) {
-            QString temp = '@' + citeCommand.replace("%<bibid%>", "@");
-            citationCommands.append(temp);
-            //temp=citeCommand.replace("%<bibid%>","@");
-            //words.insert(temp);
-        }
         completer->setAdditionalWords(convertStringListtoSet(citationCommands), CT_CITATIONCOMMANDS);
         completer->setAdditionalWords(bibIds, CT_CITATIONS);
     }

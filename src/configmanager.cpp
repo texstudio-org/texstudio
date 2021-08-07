@@ -2461,7 +2461,7 @@ QString prettySlotName(QAction *act)
 		QList<QVariant> args = act->property("args").value<QList<QVariant> >();
 		for (int i = 0; i < args.size(); i++) {
 			if (i != 0) primary += ", ";
-			if (args[i].type() == QVariant::String) primary += '"';
+            if (args[i].type() == QVariant::String) primary += '"';
 			primary += args[i].toString();
 			if (args[i].type() == QVariant::String) primary += '"';
 		}

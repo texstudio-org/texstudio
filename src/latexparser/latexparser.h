@@ -19,7 +19,7 @@ public:
 
 	static const int MAX_STRUCTURE_LEVEL;
 
-	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics, Package, Keyval, KeyvalValue, OptionEx, ArgEx};
+    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Option, Graphics, Package, Keyval, KeyvalValue, OptionEx, ArgEx};
 	// could do with some generalization as well, optionEx/argEx -> special treatment with specialOptionCommands
 
 	static LatexParser &getInstance();
