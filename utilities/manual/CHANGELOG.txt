@@ -1,10 +1,11 @@
 TeXstudio 4.0.0
 -----------------
 - adapt to Qt6/poppler-qt6
-- OSX build provided with Qt6
+- OSX/win build provided with Qt6
 - remodel structure handling in order to avoid (rare) crashes
 - more and updated completion word lists thanks to mbertucci47
 - handle text (e.g. \text{text}) in mathenv as text with spell checking
+- performance improvement for large files with large number of labels and/or large number of includes
 - some bug fixes
 
 
