@@ -1671,8 +1671,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 				}
 			} else {
 				// nothing special, simply add
-				QList<CompletionWord>::iterator it;
-                it = std::lower_bound(listModel->baselist.begin(), listModel->baselist.end(), cw);
+                QList<CompletionWord>::const_iterator it;
+                it = std::lower_bound(listModel->baselist.cbegin(), listModel->baselist.cend(), cw);
 				listModel->baselist.insert(it, cw); // keep sorting
 			}
 		}
