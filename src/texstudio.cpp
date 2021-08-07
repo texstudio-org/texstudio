@@ -4592,7 +4592,7 @@ void Texstudio::normalCompletion()
 		currentPackageList.clear();
 		foreach (QString elem, latexPackageList) {
 			if (elem.startsWith(preambel))
-				currentPackageList << elem.mid(preambel.length());
+                currentPackageList.insert(elem.mid(preambel.length()));
 		}
 	}
 	completer->setPackageList(&currentPackageList);
@@ -9726,7 +9726,7 @@ void Texstudio::readinAllPackageNames()
 		// preliminarily use cached packages
 		QFileInfo cacheFileInfo = QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat");
 		if (cacheFileInfo.exists()) {
-			QSet<QString> cachedPackages = PackageScanner::readPackageList(cacheFileInfo.absoluteFilePath());
+            std::set<QString> cachedPackages = PackageScanner::readPackageList(cacheFileInfo.absoluteFilePath());
 			packageListReadCompleted(cachedPackages);
 		}
 		if (configManager.scanInstalledLatexPackages) {
@@ -9760,7 +9760,7 @@ void Texstudio::readinAllPackageNames()
 	}
 }
 
-void Texstudio::packageListReadCompleted(QSet<QString> packages)
+void Texstudio::packageListReadCompleted(std::set<QString> packages)
 {
 	latexPackageList = packages;
 	if (qobject_cast<PackageScanner *>(sender())) {

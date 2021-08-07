@@ -70,7 +70,7 @@ public:
 	void setConfig(LatexCompleterConfig *config);
 	LatexCompleterConfig *getConfig() const;
 
-	void setPackageList(QSet<QString> *lst); ///< set a list with available latex package names
+    void setPackageList(std::set<QString> *lst); ///< set a list with available latex package names
 
 	bool close(); ///< close completer (without insertion)
 	bool isVisible() { return list->isVisible(); }
@@ -108,7 +108,7 @@ private:
 	directoryReader *dirReader;
 	QEditor *editor;
 
-	QSet<QString> *packageList;
+    std::set<QString> *packageList;
 
 	QWidget *widget;
 	QTabBar *tbBelow, *tbAbove;

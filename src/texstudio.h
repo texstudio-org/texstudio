@@ -623,7 +623,7 @@ private slots:
 	void stopPackageParser();
 	void packageParserFinished();
 	void readinAllPackageNames();
-	void packageListReadCompleted(QSet<QString> packages);
+    void packageListReadCompleted(std::set<QString> packages);
 protected:
 	void dragEnterEvent(QDragEnterEvent *event);
 	void dropEvent(QDropEvent *event);
@@ -676,7 +676,7 @@ protected:
 
     bool rememberFollowFromScroll,enlargedViewer;
 
-	QSet<QString> latexPackageList, currentPackageList;
+    std::set<QString> latexPackageList, currentPackageList;
 
 	QMap<QString, QString> *mReplacementList;
 

@@ -1505,8 +1505,8 @@ void LatexEditorView::updatePackageFormats()
 		for (int j = 0; j < li.size(); j++)
 			if (li[j].format == packagePresentFormat || li[j].format == packageMissingFormat || li[j].format == packageUndefinedFormat) {
 				int newFormat = packageUndefinedFormat;
-				if (!latexPackageList->isEmpty()) {
-					newFormat = latexPackageList->contains(curLineText.mid(li[j].offset, li[j].length)) ? packagePresentFormat : packageMissingFormat;
+                if (!latexPackageList->empty()) {
+                    newFormat = latexPackageList->find(curLineText.mid(li[j].offset, li[j].length)) != latexPackageList->end() ? packagePresentFormat : packageMissingFormat;
 				}
 				if (newFormat != li[j].format) {
 					editor->document()->line(i).removeOverlay(li[j]);
@@ -2109,9 +2109,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					QString text = dlh->text();
 					QString rpck =  trimLeft(text.mid(tk.start, tk.length)); // left spaces are ignored by \cite, right space not
 					//check and highlight
-					if (latexPackageList->isEmpty())
+                    if (latexPackageList->empty())
 						dlh->addOverlay(QFormatRange(tk.start, tk.length, packageUndefinedFormat));
-					else if (latexPackageList->contains(preambel + rpck))
+                    else if (latexPackageList->find(preambel + rpck) != latexPackageList->end())
 						dlh->addOverlay(QFormatRange(tk.start, tk.length, packagePresentFormat));
 					else
 						dlh->addOverlay(QFormatRange(tk.start, tk.length, packageMissingFormat));
@@ -2561,7 +2561,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				type.replace(' ', "&nbsp;");
 			}
             QString text = QString("%1:&nbsp;<b>%2</b>").arg(type,value);
-			if (latexPackageList->contains(preambel + value)) {
+            if (latexPackageList->find(preambel + value) != latexPackageList->end()) {
 				QString description = LatexRepository::instance()->shortDescription(value);
 				if (!description.isEmpty()) text += "<br>" + description;
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);

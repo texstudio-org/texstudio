@@ -1219,6 +1219,48 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, Completion
 	baselist = wordsCommands;
 }
 
+void CompletionListModel::setBaseWords(const std::set<QString> &newwords, CompletionType completionType)
+{
+    QList<CompletionWord> newWordList;
+    newWordList.clear();
+    for (std::set<QString>::const_iterator i = newwords.cbegin(); i != newwords.cend(); ++i) {
+        QString str = *i;
+        CompletionWord cw(str);
+        if (completionType == CT_COMMANDS) {
+            cw.index = qHash(str);
+            cw.snippetLength = str.length();
+            cw.usageCount = 0;
+            QList<QPair<int, int> >res = config->usage.values(cw.index);
+            foreach (const PairIntInt &elem, res) {
+                if (elem.first == cw.snippetLength) {
+                    cw.usageCount = elem.second;
+                    break;
+                }
+            }
+        } else {
+            cw.index = 0;
+            cw.usageCount = -2;
+            cw.snippetLength = 0;
+        }
+        newWordList.append(cw);
+    }
+
+    switch (completionType) {
+    case CT_NORMALTEXT:
+        wordsText = newWordList;
+        break;
+    case CT_CITATIONS:
+        wordsCitations = newWordList;
+        break;
+    default:
+        wordsCommands = newWordList;
+    }
+
+    //if (completionType==CT_NORMALTEXT) wordsText=newWordList;
+    //else wordsCommands=newWordList;
+    baselist = wordsCommands;
+}
+
 void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType)
 {
 	QList<CompletionWord> newWordList;
@@ -1767,7 +1809,7 @@ LatexCompleterConfig *LatexCompleter::getConfig() const
 	return config;
 }
 
-void LatexCompleter::setPackageList(QSet<QString> *lst)
+void LatexCompleter::setPackageList(std::set<QString> *lst)
 {
 	packageList = lst;
 }
