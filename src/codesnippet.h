@@ -7,7 +7,7 @@ class QDocumentCursor;
 class QEditor;
 class Texstudio;
 
-enum CompletionType {CT_COMMANDS, CT_NORMALTEXT, CT_CITATIONS, CT_CITATIONCOMMANDS, CT_LABELS};
+enum CompletionType {CT_COMMANDS, CT_NORMALTEXT, CT_CITATIONS, CT_LABELS};
 
 /*!
  * \brief store information for placeholder

@@ -4590,7 +4590,7 @@ void Texstudio::normalCompletion()
 	case Token::beamertheme: {
 		QString preambel = "beamertheme";
 		currentPackageList.clear();
-		foreach (QString elem, latexPackageList) {
+        for(const QString &elem: latexPackageList) {
 			if (elem.startsWith(preambel))
                 currentPackageList.insert(elem.mid(preambel.length()));
 		}
@@ -7571,13 +7571,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             QStringList ids=doc->bibItems();
             bibIds.insert(ids.cbegin(),ids.cend());
         }
-        //automatic use of cite commands
-        std::set<QString> citationCommands;
-        foreach (const QString &citeCommand, latexParser.possibleCommands["%cite"]) {
-            QString temp = '@' + citeCommand + "{@}";
-            citationCommands.insert(temp);
-        }
-        completer->setAdditionalWords(citationCommands, CT_CITATIONCOMMANDS);
         completer->setAdditionalWords(bibIds, CT_CITATIONS);
     }
 

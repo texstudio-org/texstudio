@@ -1361,9 +1361,6 @@ void CompletionListModel::setBaseWords(const CodeSnippetList &baseCommands, cons
 	case CT_CITATIONS:
 		wordsCitations = newWordList;
 		break;
-	case CT_CITATIONCOMMANDS:
-		wordsCitationCommands = newWordList;
-		break;
 	case CT_LABELS:
 		wordsLabels = newWordList;
 		break;
