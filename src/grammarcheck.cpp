@@ -22,6 +22,7 @@ GrammarCheck::GrammarCheck(QObject *parent) :
 GrammarCheck::~GrammarCheck()
 {
 	delete latexParser;
+    delete backend;
 }
 /*!
  * \brief GrammarCheck::init

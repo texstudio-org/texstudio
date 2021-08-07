@@ -49,7 +49,7 @@ KpathSeaParser::KpathSeaParser(QString kpsecmd, QObject *parent, QString additio
 
 void KpathSeaParser::run()
 {
-	QSet<QString> results;
+    std::set<QString> results;
 	QString res = kpsewhich("--show-path ls-R");
 	QStringList lstOfFiles = res.split(getPathListSeparator()); // find lcoations of ls-R (file database of tex)
 	foreach (QString fn, lstOfFiles) {
@@ -151,7 +151,7 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
 
 void MiktexPackageScanner::run()
 {
-	QSet<QString> results;
+    std::set<QString> results;
 
 	QHash<QString, QStringList> cachedStys = loadPackageMap();
 

@@ -1442,10 +1442,12 @@ LatexCompleter::~LatexCompleter()
 	if (dirReader) {
 		dirReader->quit();
 		dirReader->wait();
+        delete dirReader;
 	}
 	if (bibReader) {
 		bibReader->quit();
-		bibReader->wait();
+        bibReader->wait();
+        delete bibReader;
 	}
 }
 

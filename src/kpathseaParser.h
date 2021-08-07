@@ -19,7 +19,7 @@ public:
     static std::set<QString> readPackageList(const QString &filename);
 
 signals:
-	void scanCompleted(QSet<QString> packages);
+    void scanCompleted(std::set<QString> packages);
 
 protected:
 	explicit PackageScanner(QObject *parent = 0);

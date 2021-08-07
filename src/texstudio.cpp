@@ -9747,7 +9747,7 @@ void Texstudio::readinAllPackageNames()
 			QString addPaths=BuildManager::resolvePaths(BuildManager::additionalSearchPaths);
 			packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this,addPaths);
 #endif
-			connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
+            connect(packageListReader, SIGNAL(scanCompleted(std::set<QString>)), this, SLOT(packageListReadCompleted(std::set<QString>)));
 			packageListReader->start();
 		}
 	}
