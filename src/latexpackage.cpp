@@ -297,6 +297,18 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				if (valid.contains('r')) { // ref command
 					if (res > -1) {
 						package.possibleCommands["%ref"] << rxCom.cap(1);
+
+                        QRegularExpression re{"{.*?}"};
+                        QRegularExpressionMatchIterator it = re.globalMatch(line);
+                        QRegularExpressionMatch match;
+                        for(int i=0;i<cd.argTypes.size();++i){
+                            match = it.next();
+                            if(cd.argTypes[i]==Token::labelRef)
+                                break;
+                        }
+                        if(match.hasMatch()){
+                            line.replace(match.capturedStart(),match.capturedLength(),"{@l}");
+                        }
 					}
 					valid.remove('r');
 				}
@@ -538,7 +550,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 									continue;
 								if (i - lastOpen < 2) // ignore empty arguments, feature request 888
 									continue;
-								if (i - lastOpen == 2 && line.mid(lastOpen + 1, 1) == "@") //ignore single @ (to be replaced with bibid in completer)
+                                if (line.mid(lastOpen + 1, 1) == "@" && line.mid(lastOpen + 2, 1) != "@") //ignore single @ (to be replaced with bibid in completer)
 									continue;
 								line.insert(lastOpen + 1, "%<");
 								i += 2;

@@ -998,7 +998,8 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                     item=CompletionWord(ln);
                 }else{
                     QString ln = item.lines[0];
-                    ln.replace('@', "%<bibid%>");
+                    ln.replace("{@}", "%<bibid%>");
+                    ln.replace("{@l}", "%<label%>");
                     item=CompletionWord(ln);
                 }
             }
@@ -1021,16 +1022,56 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         //TODO: needs to be adapted to later code
         if (it == baselist.end() || !it->word.startsWith(word, cs)) {
             int i = word.lastIndexOf("{");
-            QString test = word.left(i) + "{@}";
-            if (wordsCitationCommands.contains(CompletionWord(test))) {
-                QString citeStart = word.mid(i + 1);
-                foreach (const CompletionWord id, wordsCitations) {
-                    if (id.word.startsWith(citeStart)) {
-                        CompletionWord cw(test);
-                        cw.word.replace("@", id.word);
-                        cw.sortWord.replace("@", id.word);
-                        cw.lines[0].replace("@", id.word);
-                        words.append(cw);
+            QString test = word.left(i) + "{";
+            QList<CompletionWord>::iterator lIt = std::lower_bound(baselist.begin(), baselist.end(), CompletionWord(test));
+            if(lIt != baselist.end()){
+                // part of command without argument is in baselist
+                // is it a on-the-fly filled command ?
+                if(lIt->word.contains('@')){
+                    QString citeStart = word.mid(i + 1);
+                    QString ln = lIt->lines[0];
+                    struct Rpl {
+                        QString id;
+                        QList<CompletionWord>& lst;
+                    };
+
+                    QMap<QString,std::shared_ptr<Rpl>>replacement;
+                    std::shared_ptr<Rpl> r0(new Rpl{"{%<bibid%>}",wordsCitations});
+                    replacement.insert("@",r0);
+                    std::shared_ptr<Rpl> r1(new Rpl{"{%<label%>}",wordsLabels});
+                    replacement.insert("@l",r1);
+                    for(QMap<QString,std::shared_ptr<Rpl>>::const_iterator localIt=replacement.cbegin();localIt!=replacement.cend();++localIt){
+                        QString searchWord="{"+localIt.key()+"}";
+                        QString key=localIt.key();
+                        std::shared_ptr<Rpl> repl=*localIt;
+                        if(ln.contains(searchWord)){
+                            if(repl->id.startsWith("{%<"+citeStart)){
+                                // keep general id if it matches input
+                                ln.replace(searchWord, repl->id);
+                                words.append(CompletionWord(ln));
+                            }
+                            cnt++;
+                            foreach (const CompletionWord id, repl->lst) {
+                                if(!id.word.startsWith(citeStart))
+                                    continue;
+                                CompletionWord cw = *lIt;
+                                int index = cw.lines[0].indexOf(key);
+                                cw.word.replace(key, id.word);
+                                cw.sortWord.replace(key, id.word);
+                                cw.lines[0].replace(key, id.word);
+                                for (int i = 0; i < cw.placeHolders.count(); i++) {
+                                    if (cw.placeHolders[i].isEmpty())
+                                        continue;
+                                    for (int j = 0; j < cw.placeHolders[i].count(); j++) {
+                                        CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
+                                        if (ph.offset > index)
+                                            ph.offset += id.word.length() - 1;
+                                    }
+                                }
+                                words.append(cw);
+                            }
+                            cnt += repl->id.length();
+                        }
                     }
                 }
             }
@@ -1069,27 +1110,44 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                 words.append(CompletionWord(ln));
                             }else{
                                 QString ln = it->lines[0];
-                                ln.replace('@', "%<bibid%>");
-                                words.append(CompletionWord(ln));
-                                cnt++;
-                                foreach (const CompletionWord id, wordsCitations) {
-                                    CompletionWord cw = *it;
-                                    int index = cw.lines[0].indexOf("@");
-                                    cw.word.replace("@", id.word);
-                                    cw.sortWord.replace("@", id.word);
-                                    cw.lines[0].replace("@", id.word);
-                                    for (int i = 0; i < cw.placeHolders.count(); i++) {
-                                        if (cw.placeHolders[i].isEmpty())
-                                            continue;
-                                        for (int j = 0; j < cw.placeHolders[i].count(); j++) {
-                                            CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
-                                            if (ph.offset > index)
-                                                ph.offset += id.word.length() - 1;
+                                struct Rpl {
+                                    QString id;
+                                    QList<CompletionWord>& lst;
+                                };
+
+                                QMap<QString,std::shared_ptr<Rpl>>replacement;
+                                std::shared_ptr<Rpl> r0(new Rpl{"{%<bibid%>}",wordsCitations});
+                                replacement.insert("@",r0);
+                                std::shared_ptr<Rpl> r1(new Rpl{"{%<label%>}",wordsLabels});
+                                replacement.insert("@l",r1);
+                                for(QMap<QString,std::shared_ptr<Rpl>>::const_iterator localIt=replacement.cbegin();localIt!=replacement.cend();++localIt){
+                                    QString searchWord="{"+localIt.key()+"}";
+                                    QString key=localIt.key();
+                                    std::shared_ptr<Rpl> repl=*localIt;
+                                    if(ln.contains(searchWord)){
+                                        ln.replace(searchWord, repl->id);
+                                        words.append(CompletionWord(ln));
+                                        cnt++;
+                                        foreach (const CompletionWord id, repl->lst) {
+                                            CompletionWord cw = *it;
+                                            int index = cw.lines[0].indexOf(key);
+                                            cw.word.replace(key, id.word);
+                                            cw.sortWord.replace(key, id.word);
+                                            cw.lines[0].replace(key, id.word);
+                                            for (int i = 0; i < cw.placeHolders.count(); i++) {
+                                                if (cw.placeHolders[i].isEmpty())
+                                                    continue;
+                                                for (int j = 0; j < cw.placeHolders[i].count(); j++) {
+                                                    CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
+                                                    if (ph.offset > index)
+                                                        ph.offset += id.word.length() - 1;
+                                                }
+                                            }
+                                            words.append(cw);
                                         }
+                                        cnt += repl->id.length();
                                     }
-                                    words.append(cw);
                                 }
-                                cnt += wordsCitations.length();
                             }
                         } else {
                             words.append(*it);

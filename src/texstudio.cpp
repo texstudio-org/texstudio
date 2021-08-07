@@ -7539,7 +7539,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
         collected_labels.insert(lst.cbegin(),lst.cend());
     }
 
-    foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
+    /*foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
         QString temp = refCommand + "{%1}";
         CodeSnippetList wordsList;
         foreach (const QString &l, collected_labels)
@@ -7547,7 +7547,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
 
         words.unite(wordsList);
-    }
+    }*/
     if (configManager.parseBibTeX) {
         std::set<QString> bibIds;
 
