@@ -396,7 +396,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                             if(cd.argTypes[i]==Token::bibItem)
                                 break;
                         }
-                        package.possibleCommands["%cite"] << line.simplified();
+                        package.possibleCommands["%cite"] << rxCom.cap(1);
                         if (!line.startsWith("\\begin")) // HANDLE begin extra
                             package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
                         line.replace(match.capturedStart(),match.capturedLength(),"{@}");

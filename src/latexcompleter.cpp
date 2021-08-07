@@ -1934,11 +1934,10 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 	} else if (config->tooltipPreview && (forcedCite || latexParser.possibleCommands["%cite"].contains(cmd))) {
 		QToolTip::hideText();
 		QString value = listModel->words[index.row()].word;
-		int i = value.indexOf("{");
-		value.remove(0, i + 1);
-		i = value.indexOf("}");
-		value = value.left(i);
-		LatexDocument *document = qobject_cast<LatexDocument *>(editor->document());
+        const QRegularExpression re{"{([^}]+?)}"};
+        const QRegularExpressionMatch match = re.match(value);
+        value = match.captured(1);
+        LatexDocument *document = qobject_cast<LatexDocument *>(editor->document());
 		if (!bibReader) {
 			bibReader = new bibtexReader(this);
 			connect(bibReader, SIGNAL(sectionFound(QString)), this, SLOT(bibtexSectionFound(QString)));
