@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -561,38 +559,6 @@
         <translation>Terminal externo</translation>
     </message>
     <message>
-        <source>OSX 10.11 does not allow applications to write there anymore. Therefore,
-recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
-
-Do you want TeXstudio to change all command paths from /usr/texbin/ to
-%1?</source>
-        <translation type="vanished">O OSX 10.11 já não permite a escrita nessa localização. Assim, versões 
-recentes do MacTeX alteram o caminho dos binários para /Library/TeX/texbin/
-
-Deseja que o TeXstudio altere todos os commandos de /usr/texbin/ para
-%1?</translation>
-    </message>
-    <message>
-        <source>OSX 10.11 does not allow applications to write there anymore. You may
-need to update MacTeX to version 2015.
-
-Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
-
-Do you want TeXstudio to change all command paths from /usr/texbin/ to
-/Library/TeX/texbin/?</source>
-        <translation type="vanished">OSX 10.11 já não permite a escrita nessa localização. Poderá ter de
-actualizar o MacTeX para a versão de 2015.
-
-Depois, os programas MacTeX estarão localizados em /Library/TeX/texbin/
-
-Deseja que o TeXstudio altere todos os caminhos de comando de /usr/texbin/ 
-para /Library/TeX/texbin/?</translation>
-    </message>
-    <message>
-        <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="vanished">Alguns dos seus comandos referem-se a localizações em /usr/texbin/</translation>
-    </message>
-    <message>
         <location filename="../src/buildmanager.cpp" line="892"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>O comando foi expandido para %1 níveis. Deseja continuar a expandir &quot;%2&quot;?</translation>
@@ -918,7 +884,7 @@ Por favor, altere a sua configuração e defina listas de comandos só em &quot;
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define o tipo de aviso de actualizações que recebe:
 - versões estáveis: escolha se a estabilidade é o mais importante para si.
@@ -1126,7 +1092,7 @@ As variáveis são escritas como: $MINHAVAR. Sensíveis a maiúsculas.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1868,17 +1834,17 @@ Dado que o Unicode não tem suporte nativo no LaTeX, tem de incluir os pacotes a
     <message>
         <location filename="../src/configdialog.ui" line="2563"/>
         <source>No Color Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem cor de fundo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2568"/>
         <source>Green Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Fundo verde</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
         <source>Blue Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Fundo azul</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2593"/>
@@ -2647,8 +2613,8 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
         <location filename="../src/configdialog.ui" line="4241"/>
         <location filename="../src/configdialog.ui" line="4308"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>O motor de desenho usado pelo poppler da biblioteca PDF.
 &quot;Splash&quot; é a predefinição e adequa-se à maioria dos casos.
@@ -4346,7 +4312,7 @@ Tem a certeza que deseja desfazer as alterações?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferências de posição da figura
@@ -4464,7 +4430,7 @@ o assistente não suporta o comando </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1983"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome de ficheiro: %1&lt;/b&gt;
 </translation>
@@ -4517,37 +4483,6 @@ o assistente não suporta o comando </translation>
         <location filename="../src/latexdocument.cpp" line="2512"/>
         <source>Unknown magic comment</source>
         <translation>Comentário mágico desconhecido</translation>
-    </message>
-</context>
-<context>
-    <name>LatexDocumentsModel</name>
-    <message>
-        <source>untitled</source>
-        <translation type="vanished">sem título</translation>
-    </message>
-    <message>
-        <source> (Line %1)</source>
-        <translation type="vanished"> (linha %1)</translation>
-    </message>
-    <message>
-        <source>Line</source>
-        <translation type="vanished">Linha</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation type="vanished">Rótulo</translation>
-    </message>
-    <message>
-        <source>Beyond end of document.</source>
-        <translation type="vanished">Além do fim do documento.</translation>
-    </message>
-    <message>
-        <source>In Appendix.</source>
-        <translation type="vanished">No apêndice.</translation>
-    </message>
-    <message>
-        <source>File not found.</source>
-        <translation type="vanished">Ficheiro não encontrado.</translation>
     </message>
 </context>
 <context>
@@ -4643,7 +4578,7 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2538"/>
         <location filename="../src/latexeditorview.cpp" line="2610"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome de ficheiro: %1&lt;/b&gt;
 </translation>
@@ -4651,10 +4586,7 @@ o assistente não suporta o comando </translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2551"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n referência a este rótulo</numerusform>
-            <numerusform>%n referências a este rótulo</numerusform>
-        </translation>
+        <translation><numerusform>%n referência a este rótulo</numerusform><numerusform>%n referências a este rótulo</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2556"/>
@@ -6353,7 +6285,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>O ficheiro original no disco foi destruído durante a gravação.
 Encontrará uma cópia em
@@ -8278,7 +8210,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="41"/>
         <source>fontawesome5</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>fontawesome5</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="42"/>
@@ -10861,7 +10793,7 @@ outro ficheiro antes de o poder sobrescrever.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5579"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Impossível detectar o nome do ficheiro.
 Tem de gravar um documento antes de o compilar.</translation>
@@ -11449,17 +11381,17 @@ Deseja manter o TeXstudio em execução? Pode levar à corrupção de dados.</tr
     <message>
         <location filename="../src/texstudio.cpp" line="11743"/>
         <source>BIBLIOGRAPHY</source>
-        <translation>BIBLIOGRAPHY</translation>
+        <translation>BIBLIOGRAFIA</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11751"/>
         <source>MAGIC_COMMENTS</source>
-        <translation>MAGIC_COMMENTS</translation>
+        <translation>COMENTÁRIOS_MÁGICOS</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11767"/>
         <source>LABELS</source>
-        <translation>LABELS</translation>
+        <translation>RÓTULOS</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="649"/>
