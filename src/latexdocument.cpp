@@ -1540,8 +1540,14 @@ void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
     masterDocument = doc;
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
+
+        QStringList items;
+        foreach (const LatexDocument *elem, listOfDocs) {
+            items << elem->labelItems();
+        }
+
         foreach (LatexDocument *elem, listOfDocs) {
-            elem->recheckRefsLabels();
+            elem->recheckRefsLabels(listOfDocs,items);
         }
     }
 }
@@ -1599,7 +1605,7 @@ void LatexDocument::updateRefHighlight(ReferencePairEx p){
     }
 }
 
-void LatexDocument::recheckRefsLabels()
+void LatexDocument::recheckRefsLabels(QList<LatexDocument*> listOfDocs,QStringList items)
 {
 	// get occurences (refs)
 	int referenceMultipleFormat = getFormatId("referenceMultiple");
@@ -1608,10 +1614,15 @@ void LatexDocument::recheckRefsLabels()
     const QList<int> formatList{referenceMissingFormat,referencePresentFormat,referenceMultipleFormat};
     QList<ReferencePairEx> results;
 
-    QStringList items;
-    foreach (const LatexDocument *elem, getListOfDocs()) {
-        items << elem->labelItems();
+    if(listOfDocs.isEmpty()){
+        // if not empty, assume listOfDocs *and* items are provided.
+        // this avoid genearting both lists for each document again
+        listOfDocs=getListOfDocs();
+        foreach (const LatexDocument *elem, listOfDocs) {
+            items << elem->labelItems();
+        }
     }
+
 
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
     QSet<QDocumentLineHandle*> dlhs;
@@ -2149,18 +2160,22 @@ void LatexDocuments::updateBibFiles(bool updateFiles)
 
 void LatexDocuments::removeDocs(QStringList removeIncludes)
 {
+    QSet<LatexDocument*> lstRecheckLabels;
 	foreach (QString fname, removeIncludes) {
 		LatexDocument *dc = findDocumentFromName(fname);
 		if (dc) {
 			foreach (LatexDocument *elem, getDocuments()) {
 				if (elem->containsChild(dc)) {
 					elem->removeChild(dc);
+                    if(!dc->labelItems().isEmpty()){
+                        elem->recheckRefsLabels();
+                    }
 				}
 			}
 		}
 		if (dc && dc->isHidden()) {
 			QStringList toremove = dc->includedFiles();
-			dc->setMasterDocument(nullptr);
+            dc->setMasterDocument(nullptr,false);
 			hiddenDocuments.removeAll(dc);
 			//qDebug()<<fname;
 			delete dc->getEditorView();
@@ -2596,51 +2611,67 @@ void LatexDocuments::bibTeXFilesNeedUpdate()
 {
 	bibTeXFilesModified = true;
 }
-
+/*!
+ * \brief update parent/child relations
+ * doc is removed and the child settings needs to be adapted
+ * \param doc
+ * \param recheckRefs
+ * \param updateCompleterNow
+ */
 void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheckRefs, bool updateCompleterNow)
 {
 	//update Master/Child relations
 	//remove old settings ...
 	doc->setMasterDocument(nullptr, false);
-	QList<LatexDocument *> docs = getDocuments();
+    const QList<LatexDocument *> docs = getDocuments();
+    QSet<LatexDocument *> removeCandidates;
 	foreach (LatexDocument *elem, docs) {
 		if (elem->getMasterDocument() == doc) {
-            elem->setMasterDocument(nullptr, recheckRefs);
-			doc->removeChild(elem);
-			//elem->recheckRefsLabels();
+            removeCandidates.insert(elem);
 		}
 	}
 
 	//check whether document is child of other docs
-	QString fname = doc->getFileName();
+    QString fname = doc->getFileName();
 	foreach (LatexDocument *elem, docs) {
 		if (elem == doc)
 			continue;
 		QStringList includedFiles = elem->includedFiles();
-		if (includedFiles.contains(fname)) {
+        if (includedFiles.contains(fname) && !elem->containsChild(doc)) {
 			elem->addChild(doc);
-			doc->setMasterDocument(elem, recheckRefs);
+            doc->setMasterDocument(elem, false);
 		}
-	}
+    }
 
 	// check for already open child documents (included in this file)
 	QStringList includedFiles = doc->includedFiles();
-	foreach (const QString &fname, includedFiles) {
-		LatexDocument *child = this->findDocumentFromName(fname);
-		if (child) {
-			doc->addChild(child);
-			child->setMasterDocument(doc, recheckRefs);
-			if (recheckRefs)
-				child->reCheckSyntax(); // redo syntax checking (in case of defined commands)
-		}
-	}
+    foreach (const QString &fname, includedFiles) {
+        LatexDocument *child = this->findDocumentFromName(fname);
+        if (child){
+            if(removeCandidates.contains(child)){
+                removeCandidates.remove(child);
+            }
+            if(!doc->containsChild(child)) {
+                doc->addChild(child);
+                child->setMasterDocument(doc, false);
+                if (recheckRefs)
+                    child->reCheckSyntax(); // redo syntax checking (in case of defined commands)
+            }
+        }
+    }
+    foreach(LatexDocument *elem, removeCandidates){
+        doc->removeChild(elem);
+        elem->setMasterDocument(nullptr, recheckRefs);
+    }
 
 	//recheck references
-	if (recheckRefs)
-		doc->recheckRefsLabels();
+    if(recheckRefs){
+        doc->recheckRefsLabels();
+    }
 
-	if (updateCompleterNow)
+    if(updateCompleterNow){
 		doc->emitUpdateCompleter();
+    }
 }
 
 const LatexDocument *LatexDocument::getRootDocument(QSet<const LatexDocument *> *visitedDocs) const
@@ -2769,7 +2800,7 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 	//patch lines for new commands (ref,def, etc)
 
 	QStringList categories;
-	categories << "%ref" << "%label" << "%definition" << "%cite" << "%citeExtended" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%url" << "%todo" << "%replace";
+    categories << "%ref" << "%label" << "%definition" << "%cite" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%url" << "%todo" << "%replace";
 	QStringList newCmds;
 	foreach (const QString elem, categories) {
 		QStringList cmds = ltxCommands.possibleCommands[elem].values();

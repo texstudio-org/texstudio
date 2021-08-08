@@ -5,6 +5,7 @@
 
 #include "codesnippet.h"
 #include "latexcompleter_config.h"
+#include <set>
 
 typedef CodeSnippet CompletionWord;
 
@@ -25,6 +26,7 @@ public:
 	void filterList(const QString &word, int mostUsed = -1, bool fetchMore = false, CodeSnippet::Type type = CodeSnippet::none);
 	void setEnvironMode(bool mode);
 	void setBaseWords(const QSet<QString> &newwords, CompletionType completionType);
+    void setBaseWords(const std::set<QString> &newwords, CompletionType completionType);
 	void setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType);
 	void setBaseWords(const CodeSnippetList &baseCommands, const CodeSnippetList &newwords, CompletionType completionType);
 	void setAbbrevWords(const QList<CompletionWord> &newwords);
@@ -42,7 +44,7 @@ private:
 	QString curWord;
 
 	QList<CompletionWord> baselist;
-	QList<CompletionWord> wordsText, wordsCommands, wordsAbbrev, wordsLabels, wordsCitations, wordsCitationCommands;
+    QList<CompletionWord> wordsText, wordsCommands, wordsAbbrev, wordsLabels, wordsCitations;
 
 	int mostUsedUpdated;
 

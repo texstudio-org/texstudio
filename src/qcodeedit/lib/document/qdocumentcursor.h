@@ -176,10 +176,10 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE int wrappedLineOffset() const;
 		Q_INVOKABLE int anchorWrappedLineOffset() const;
 		
-		Q_INVOKABLE QPoint documentPosition() const;
-		Q_INVOKABLE QPoint anchorDocumentPosition() const;
+        Q_INVOKABLE QPointF documentPosition() const;
+        Q_INVOKABLE QPointF anchorDocumentPosition() const;
 		
-		QPolygon documentRegion() const;
+		QPolygonF documentRegion() const;
 		
 		QDocumentLine line() const;
 		QDocumentLine anchorLine() const;

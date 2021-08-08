@@ -297,6 +297,18 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				if (valid.contains('r')) { // ref command
 					if (res > -1) {
 						package.possibleCommands["%ref"] << rxCom.cap(1);
+
+                        QRegularExpression re{"{.*?}"};
+                        QRegularExpressionMatchIterator it = re.globalMatch(line);
+                        QRegularExpressionMatch match;
+                        for(int i=0;i<cd.argTypes.size();++i){
+                            match = it.next();
+                            if(cd.argTypes[i]==Token::labelRef)
+                                break;
+                        }
+                        if(match.hasMatch()){
+                            line.replace(match.capturedStart(),match.capturedLength(),"{@l}");
+                        }
 					}
 					valid.remove('r');
 				}
@@ -382,52 +394,24 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					valid.remove('s');
 				}
 				if (valid.contains('c')) { // cite command
-					if (res > -1) {
-						package.possibleCommands["%cite"] << rxCom.cap(1);
-						// replace argument (possibly keylist) with @
-						int p = rxCom.pos(3);
-						int l = rxCom.cap(3).length();
-						if (p >= 0) {
-							line.replace(p, l, "@");
-						}
-					}
+                    // replace 'c' to 'C' to maintain cwl compatibility
 					valid.remove('c');
+                    valid.append('C');
 				}
 				if (valid.contains('C')) { // cite command
 					if (res > -1) {
-						if (!line.contains("%")) {
-							int start = 0;
-							if (line.startsWith("\\begin")) {
-								start = line.indexOf("}") + 1;
-							}
-							//add placeholders to brackets like () to (%<..%>)
-							const QString brackets = "{}[]()<>";
-							int lastOpen = -1, openType = -1;
-							for (int i = start; i < line.size(); i++) {
-								int index = brackets.indexOf(line[i]);
-								if (index >= 0) {
-									if (index % 2 == 0) {
-										lastOpen = i;
-										openType = index / 2;
-									} else {
-										if (lastOpen == -1 || openType != index / 2)
-											continue;
-										if (lastOpen == i - 1)
-											continue;
-										line.insert(lastOpen + 1, "%<");
-										i += 2;
-										line.insert(i, "%>");
-										lastOpen = -1;
-										i += 2;
-									}
-								}
-							}
-						}
-						package.possibleCommands["%citeExtended"] << line.simplified();
-						if (!line.startsWith("\\begin")) // HANDLE begin extra
-							package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
-						line.replace("%<bibid%>", "@");
-						//hideFromCompletion=true;
+                        QRegularExpression re{"{.*?}"};
+                        QRegularExpressionMatchIterator it = re.globalMatch(line);
+                        QRegularExpressionMatch match;
+                        for(int i=0;i<cd.argTypes.size();++i){
+                            match = it.next();
+                            if(cd.argTypes[i]==Token::bibItem)
+                                break;
+                        }
+                        package.possibleCommands["%cite"] << rxCom.cap(1);
+                        if (!line.startsWith("\\begin")) // HANDLE begin extra
+                            package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
+                        line.replace(match.capturedStart(),match.capturedLength(),"{@}");
 					}
 					valid.remove('C');
 				}
@@ -566,7 +550,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 									continue;
 								if (i - lastOpen < 2) // ignore empty arguments, feature request 888
 									continue;
-								if (i - lastOpen == 2 && line.mid(lastOpen + 1, 1) == "@") //ignore single @ (to be replaced with bibid in completer)
+                                if (line.mid(lastOpen + 1, 1) == "@" && line.mid(lastOpen + 2, 1) != "@") //ignore single @ (to be replaced with bibid in completer)
 									continue;
 								line.insert(lastOpen + 1, "%<");
 								i += 2;

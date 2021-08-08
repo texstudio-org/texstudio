@@ -404,12 +404,44 @@ void resizeInFontHeight(QWidget *w, int width, int height)
  * \param[in] ch Character
  * \returns Returns pixel size of character
  */
-int getFmWidth(const QFontMetrics &fm, QChar ch)
+qreal getFmWidth(const QFontMetricsF &fm, QChar ch)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	return fm.horizontalAdvance(ch);
 #else
 	return fm.width(ch);
+#endif
+}
+
+/*!
+ * \brief Given font metrics return pixel size of a character
+ * \param[in] fm Font metrics
+ * \param[in] ch Character
+ * \returns Returns pixel size of character
+ */
+int getFmWidth(const QFontMetrics &fm, QChar ch)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+    return fm.horizontalAdvance(ch);
+#else
+    return fm.width(ch);
+#endif
+}
+
+/*!
+ * \brief Given font metrics return pixel size of a text string
+ * \param[in] fm Font metrics
+ * \param[in] text Text string
+ * \param[in] len Only calculate width of the first len characters of the string. If not specified,
+ * then -1 is assumed which means calculate width of the whole string.
+ * \returns Returns pixel size of the text string
+ */
+qreal getFmWidth(const QFontMetricsF &fm, const QString &text, int len)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+    return fm.horizontalAdvance(text, len);
+#else
+    return fm.width(text.left(len));
 #endif
 }
 
@@ -424,9 +456,9 @@ int getFmWidth(const QFontMetrics &fm, QChar ch)
 int getFmWidth(const QFontMetrics &fm, const QString &text, int len)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-	return fm.horizontalAdvance(text, len);
+    return fm.horizontalAdvance(text, len);
 #else
-	return fm.width(text, len);
+    return fm.width(text, len);
 #endif
 }
 

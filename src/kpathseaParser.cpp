@@ -7,22 +7,22 @@ PackageScanner::PackageScanner(QObject *parent) :
 	stopped = false;
 }
 
-void PackageScanner::savePackageList(QSet<QString> packages, const QString &filename)
+void PackageScanner::savePackageList(std::set<QString> packages, const QString &filename)
 {
 	QFile f(filename);
 	if (f.open(QFile::WriteOnly | QFile::Text)) {
 		QTextStream out(&f);
 		out << "% detected .sty and .cls filenames\n";
-		foreach (const QString &str, packages) {
+        for(const QString &str: packages) {
 			out << str << "\n";
 		}
 	}
 }
 
-QSet<QString> PackageScanner::readPackageList(const QString &filename)
+std::set<QString> PackageScanner::readPackageList(const QString &filename)
 {
 	QFile f(filename);
-	QSet<QString> result;
+    std::set<QString> result;
 	if (f.open(QFile::ReadOnly | QFile::Text)) {
 		QTextStream in(&f);
 		QString line;
@@ -49,7 +49,7 @@ KpathSeaParser::KpathSeaParser(QString kpsecmd, QObject *parent, QString additio
 
 void KpathSeaParser::run()
 {
-	QSet<QString> results;
+    std::set<QString> results;
 	QString res = kpsewhich("--show-path ls-R");
 	QStringList lstOfFiles = res.split(getPathListSeparator()); // find lcoations of ls-R (file database of tex)
 	foreach (QString fn, lstOfFiles) {
@@ -151,7 +151,7 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
 
 void MiktexPackageScanner::run()
 {
-	QSet<QString> results;
+    std::set<QString> results;
 
 	QHash<QString, QStringList> cachedStys = loadPackageMap();
 

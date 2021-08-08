@@ -20,6 +20,7 @@
 #include "qeditor.h"
 #include "directoryreader.h"
 #include "bibtexreader.h"
+#include <set>
 
 class CompletionListModel;
 class LatexCompleterConfig;
@@ -56,6 +57,7 @@ public:
 	void complete(QEditor *newEditor, const CompletionFlags &flags); ///< initiate completion with given flags
 	void setAdditionalWords(const CodeSnippetList &newwords, CompletionType completionType = CT_COMMANDS);
 	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType);
+    void setAdditionalWords(const std::set<QString> &newwords, CompletionType completionType);
 	void setKeyValWords(const QString &name, const QSet<QString> &newwords);
 	void setContextWords(const QSet<QString> &newwords, const QString &context);
 	void updateAbbreviations();
@@ -68,7 +70,7 @@ public:
 	void setConfig(LatexCompleterConfig *config);
 	LatexCompleterConfig *getConfig() const;
 
-	void setPackageList(QSet<QString> *lst); ///< set a list with available latex package names
+    void setPackageList(std::set<QString> *lst); ///< set a list with available latex package names
 
 	bool close(); ///< close completer (without insertion)
 	bool isVisible() { return list->isVisible(); }
@@ -106,7 +108,7 @@ private:
 	directoryReader *dirReader;
 	QEditor *editor;
 
-	QSet<QString> *packageList;
+    std::set<QString> *packageList;
 
 	QWidget *widget;
 	QTabBar *tbBelow, *tbAbove;

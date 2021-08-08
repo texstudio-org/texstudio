@@ -433,7 +433,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setSoftLimitedLineWrapping(bool on);
 		void setWrapAfterNumChars(int numChars);
 protected:
-		void setWrapLineWidth(int l);
+        void setWrapLineWidth(qreal l);
 		bool writeToFile(const QString &filename, const QByteArray &data);
 public:		
 		virtual void save();
@@ -630,8 +630,8 @@ public slots:
 		
 		void setCursorPosition(int line, int index, bool moveView = true);
 		void getCursorPosition(int &line, int &index);
-		bool getPositionBelowCursor(QPoint& offset, int width, int height,bool &above);
-		bool getPositionBelowCursor(QPoint& offset, int width=0, int height=0);
+		bool getPositionBelowCursor(QPointF &offset, int width, int height, bool &above);
+		bool getPositionBelowCursor(QPointF &offset, int width=0, int height=0);
 
 		Q_INVOKABLE void clearCursorMirrors();
 		Q_INVOKABLE void addCursorMirror(const QDocumentCursor& c);
@@ -735,7 +735,7 @@ public slots:
 
 		int m_cursorSurroundingLines;
 		
-		int m_LineWidth;
+        int m_LineWidth;
 		int m_wrapAfterNumChars;
 
 		QPropertyAnimation *m_scrollAnimation;

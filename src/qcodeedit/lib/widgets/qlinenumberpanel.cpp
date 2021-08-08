@@ -128,13 +128,13 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 
 	QFont f(font());
 	f.setWeight(QFont::Bold);
-	const QFontMetrics sfm(f);
+    const QFontMetricsF sfm(f);
     bool specialFontUsage=false;
     QFont specialFont(font());
 
 	#ifndef WIN32
 	static const QChar wrappingArrow(0x2937);
-    const QFontMetrics specialSfm(sfm);
+    const QFontMetricsF specialSfm(sfm);
 #if defined Q_OS_MAC
     if(!specialSfm.inFont(wrappingArrow)){
         specialFontUsage=true;
@@ -147,7 +147,7 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	// this is a hackish fallback to workaround Windows issues with Unicode...
 	static const QChar wrappingArrow(0xC4);
 	specialFont.setFamily("Wingdings");
-	const QFontMetrics specialSfm(specialFont);
+    const QFontMetricsF specialSfm(specialFont);
 	specialFontUsage=true;
 	#endif
 
@@ -155,11 +155,12 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	if(max<100) max=100; // always reserve 3 line number columns to avoid ugly jumping of width
 	QString s_width=QString::number(max);
 	s_width.fill('6');
-	const int panelWidth = UtilsUi::getFmWidth(sfm, s_width) + 5;
+    const qreal panelWidth = UtilsUi::getFmWidth(sfm, s_width) + 5;
 	setFixedWidth(panelWidth);
 
-	int n, posY,
-		as = QFontMetrics(e->document()->font()).ascent(),
+    int n;
+    qreal posY,
+        as = QFontMetricsF(e->document()->font()).ascent(),
 		ls = e->document()->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
@@ -207,8 +208,8 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 
 		if ( draw )
 		{
-			p->drawText(width() - 2 - UtilsUi::getFmWidth(sfm, txt),
-						posY,
+            p->drawText(QPointF(width() - 2 - UtilsUi::getFmWidth(sfm, txt),
+                        posY),
 						txt);
             if(specialFontUsage){
             	if (line.lineSpan()>1) {
@@ -219,7 +220,7 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
             }
 
 			for ( int i = 1; i < line.lineSpan(); ++i )
-				p->drawText(width() - 2 - UtilsUi::getFmWidth(specialSfm, wrappingArrow), posY + i * ls, wrappingArrow);
+                p->drawText(QPointF(width() - 2 - UtilsUi::getFmWidth(specialSfm, wrappingArrow), posY + i * ls), wrappingArrow);
 
             if(specialFontUsage){
                 if (line.lineSpan()>1)
@@ -229,9 +230,9 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			int yOff = posY - (as + 1) + ls / 2;
 
 			if ( (n + 1) % 5 )
-				p->drawPoint(width() - 5, yOff);
+                p->drawPoint(QPointF(width() - 5, yOff));
 			else
-				p->drawLine(width() - 7, yOff, width() - 2, yOff);
+                p->drawLine(QPointF(width() - 7, yOff), QPointF(width() - 2, yOff));
 		}
 
 		if ( n == cursorLine )

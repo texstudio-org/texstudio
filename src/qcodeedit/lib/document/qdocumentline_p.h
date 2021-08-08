@@ -70,15 +70,15 @@ class QCE_EXPORT QDocumentLineHandle
 public:
 		int xToCursor(int x) const;
 		int cursorToX(int i) const;
-		int cursorToXNoLock(int i) const;
+		qreal cursorToXNoLock(int i) const;
 
 		int wrappedLineForCursor(int cpos) const;
 		int wrappedLineForCursorNoLock(int cpos) const;
 
-        int documentOffsetToCursor(int x, int y, bool disallowPositionBeyondLine = false) const;
-		void cursorToDocumentOffset(int cpos, int& x, int& y) const;
+        int documentOffsetToCursor(qreal x, qreal y, bool disallowPositionBeyondLine = false) const;
+		void cursorToDocumentOffset(int cpos, qreal &x, qreal &y) const;
 
-		QPoint cursorToDocumentOffset(int cpos) const;
+		QPointF cursorToDocumentOffset(int cpos) const;
 
 		int indent() const;
 
@@ -111,15 +111,15 @@ public:
 
 		void shiftOverlays(int position, int offset);
 
-		void draw(int lineNr,
-					QPainter *p,
-					int xOffset,
-					int vWidth,
-					const QVector<int>& selectionBoundaries,
-					const QPalette& pal,
-					bool fullSel,
-					int yStart=0,
-					int yEnd=-1) const;
+        void draw(int lineNr,
+                    QPainter *p,
+                    qreal xOffset,
+                    qreal vWidth,
+                    const QVector<int>& selectionBoundaries,
+                    const QPalette& pal,
+                    bool fullSel,
+                    qreal yStart=0,
+                    qreal yEnd=-1) const;
 
 		QString exportAsHtml(int fromOffset=0, int toOffset = -1, int maxLineWidth = -1, int maxWrap = 0) const;
 
@@ -168,7 +168,7 @@ public:
 		bool isRTLByText() const;
 		void layout(int lineNr) const; //public for unittests
 	private:
-		void drawBorders(QPainter *p, int yStart, int yEnd) const;
+		void drawBorders(QPainter *p, qreal yStart, qreal yEnd) const;
 
 		void applyOverlays() const;
 		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = nullptr, int from = 0, int until = -1) const;
@@ -183,11 +183,11 @@ public:
 
 		QAtomicInt m_ref;
 
-		mutable int m_indent;
+        mutable qreal m_indent;
 		mutable quint16 m_state;
 		mutable QTextLayout *m_layout;
 		mutable QVector<int> m_cache;
-		mutable QVector< QPair<int, int> > m_frontiers; //list of line wraps, <character, x in pixel (if it were unwrapped) >
+        mutable QVector< QPair<int, qreal> > m_frontiers; //list of line wraps, <character, x in pixel (if it were unwrapped) >
 
 		QNFAMatchContext m_context;
 

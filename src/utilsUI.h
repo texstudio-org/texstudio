@@ -43,7 +43,9 @@ void resizeInFontHeight(QWidget *w, int width, int height);
 
 // Given font metrics returns the text pixel size
 int getFmWidth(const QFontMetrics &fm, QChar ch);
+qreal getFmWidth(const QFontMetricsF &fm, QChar ch);
 int getFmWidth(const QFontMetrics &fm, const QString &text, int len = -1);
+qreal getFmWidth(const QFontMetricsF &fm, const QString &text, int len = -1);
 
 // Return the screen geometry for a given point
 QRect getAvailableGeometryAt(const QPoint &pos);

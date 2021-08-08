@@ -350,8 +350,6 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			return Package;
 		else if (possibleCommands["%cite"].contains(command))
 			return Citation;
-		else if (possibleCommands["%citeExtendedCommand"].contains(command))
-			return Citation_Ext;
 		else if (possibleCommands["%graphics"].contains(command))
 			return Graphics;
 		else return Option;

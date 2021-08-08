@@ -182,7 +182,6 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands)
 					else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
 					else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
 					else if (lp->possibleCommands["%usepackage"].contains(lastCommand)) result = NW_PACKAGE;
-					else if (lp->possibleCommands["%citeExtendedCommand"].contains(lastCommand)) result = NW_CITATION;
 					if (result != NW_NOTHING) {
 						wordStartIndex = reference;
 						--index;
@@ -214,7 +213,7 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands)
 				}
 				if (lp->possibleCommands["%citeExtendedCommand"].contains(word)) {
 					QString line;
-					foreach (line, lp->possibleCommands["%citeExtended"]) {
+                    foreach (line, lp->possibleCommands["%cite"]) {
 						if (line.startsWith(word))
 							break;
 						line.clear();

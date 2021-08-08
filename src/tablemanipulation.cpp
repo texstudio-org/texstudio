@@ -1022,6 +1022,9 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 			if (line.startsWith(cmd)) {
 				int behind;
 				getCommandOptions(line, cmd.length(), &behind);
+                if(behind>0 && pre.contains('%')){
+                    pre.append('\n');
+                }
 				pre.append(line.left(behind));
 
 				line = line.mid(behind).trimmed();

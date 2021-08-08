@@ -6,6 +6,7 @@
 #include <QSemaphore>
 #include <QMutex>
 #include <QQueue>
+#include <set>
 
 class PackageScanner : public SafeThread
 {
@@ -14,11 +15,11 @@ class PackageScanner : public SafeThread
 public:
 	void stop();
 
-	static void savePackageList(QSet<QString> packages, const QString &filename);
-	static QSet<QString> readPackageList(const QString &filename);
+    static void savePackageList(std::set<QString> packages, const QString &filename);
+    static std::set<QString> readPackageList(const QString &filename);
 
 signals:
-	void scanCompleted(QSet<QString> packages);
+    void scanCompleted(std::set<QString> packages);
 
 protected:
 	explicit PackageScanner(QObject *parent = 0);

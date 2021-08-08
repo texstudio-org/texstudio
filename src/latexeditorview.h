@@ -153,7 +153,7 @@ public:
 
 	QDocumentCursor parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses = true);
 	QDocumentCursor findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats);
-	void setLatexPackageList(QSet<QString> *lst) { latexPackageList = lst; }
+    void setLatexPackageList(std::set<QString> *lst) { latexPackageList = lst; }
 
 	LatexParser lp;
 
@@ -199,7 +199,7 @@ private:
 	static QVector<bool> grammarFormatsDisabled;
 	static QList<int> formatsList;
 
-	QSet<QString> *latexPackageList;
+    std::set<QString> *latexPackageList;
 
 	friend class DefaultInputBinding;
 	friend class SyntaxCheckTest;

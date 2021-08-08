@@ -160,9 +160,16 @@ public:
                 inMath=view->isInMathHighlighting(cursor);
             }
 
-			for (int i = maxWritten - cursor.columnNumber(); i > 0; i--) cursor.deleteChar();
-
-			for (int i = cursor.columnNumber() - curStart; i > 0; i--) cursor.deletePreviousChar();
+            //for (int i = maxWritten - cursor.columnNumber(); i > 0; i--) cursor.deleteChar();
+            if(maxWritten>cursor.columnNumber()){
+                cursor.movePosition(maxWritten-cursor.columnNumber(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+                cursor.removeSelectedText();
+            }
+            //for (int i = cursor.columnNumber() - curStart; i > 0; i--) cursor.deletePreviousChar();
+            if(curStart<cursor.columnNumber()){
+                cursor.movePosition(cursor.columnNumber()-curStart,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
+                cursor.removeSelectedText();
+            }
 			if (!autoOverridenText.isEmpty()) {
 				cursor.insertText(autoOverridenText);
 				cursor.movePosition(autoOverridenText.length(), QDocumentCursor::PreviousCharacter);
@@ -748,7 +755,7 @@ public:
 		plHolderColor = normalColor;
 		plHolderColor.setAlpha(128);
 
-		QRect r = option.rect;
+        QRectF r = option.rect;
 		r.setLeft(r.left() + 2);
 		bool drawPlaceholder = !cw.placeHolders.empty();
 		QString firstLine = cw.lines[0];
@@ -759,8 +766,8 @@ public:
 		if (!drawPlaceholder)
             painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, firstLine);
 		else {
-			QFontMetrics fmn(fNormal);
-			QFontMetrics fmi(fPlHolder);
+            QFontMetricsF fmn(fNormal);
+            QFontMetricsF fmi(fPlHolder);
 			int p = 0;
 			for (int i = 0; i < cw.placeHolders[0].size(); i++) {
 				QString temp = firstLine.mid(p, cw.placeHolders[0][i].offset - p);
@@ -991,7 +998,8 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                     item=CompletionWord(ln);
                 }else{
                     QString ln = item.lines[0];
-                    ln.replace('@', "%<bibid%>");
+                    ln.replace("{@}", "%<bibid%>");
+                    ln.replace("{@l}", "%<label%>");
                     item=CompletionWord(ln);
                 }
             }
@@ -1014,16 +1022,56 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
         //TODO: needs to be adapted to later code
         if (it == baselist.end() || !it->word.startsWith(word, cs)) {
             int i = word.lastIndexOf("{");
-            QString test = word.left(i) + "{@}";
-            if (wordsCitationCommands.contains(CompletionWord(test))) {
-                QString citeStart = word.mid(i + 1);
-                foreach (const CompletionWord id, wordsCitations) {
-                    if (id.word.startsWith(citeStart)) {
-                        CompletionWord cw(test);
-                        cw.word.replace("@", id.word);
-                        cw.sortWord.replace("@", id.word);
-                        cw.lines[0].replace("@", id.word);
-                        words.append(cw);
+            QString test = word.left(i) + "{";
+            QList<CompletionWord>::iterator lIt = std::lower_bound(baselist.begin(), baselist.end(), CompletionWord(test));
+            if(lIt != baselist.end()){
+                // part of command without argument is in baselist
+                // is it a on-the-fly filled command ?
+                if(lIt->word.contains('@')){
+                    QString citeStart = word.mid(i + 1);
+                    QString ln = lIt->lines[0];
+                    struct Rpl {
+                        QString id;
+                        QList<CompletionWord>& lst;
+                    };
+
+                    QMap<QString,std::shared_ptr<Rpl>>replacement;
+                    std::shared_ptr<Rpl> r0(new Rpl{"{%<bibid%>}",wordsCitations});
+                    replacement.insert("@",r0);
+                    std::shared_ptr<Rpl> r1(new Rpl{"{%<label%>}",wordsLabels});
+                    replacement.insert("@l",r1);
+                    for(QMap<QString,std::shared_ptr<Rpl>>::const_iterator localIt=replacement.cbegin();localIt!=replacement.cend();++localIt){
+                        QString searchWord="{"+localIt.key()+"}";
+                        QString key=localIt.key();
+                        std::shared_ptr<Rpl> repl=*localIt;
+                        if(ln.contains(searchWord)){
+                            if(repl->id.startsWith("{%<"+citeStart)){
+                                // keep general id if it matches input
+                                ln.replace(searchWord, repl->id);
+                                words.append(CompletionWord(ln));
+                            }
+                            cnt++;
+                            foreach (const CompletionWord id, repl->lst) {
+                                if(!id.word.startsWith(citeStart))
+                                    continue;
+                                CompletionWord cw = *lIt;
+                                int index = cw.lines[0].indexOf(key);
+                                cw.word.replace(key, id.word);
+                                cw.sortWord.replace(key, id.word);
+                                cw.lines[0].replace(key, id.word);
+                                for (int i = 0; i < cw.placeHolders.count(); i++) {
+                                    if (cw.placeHolders[i].isEmpty())
+                                        continue;
+                                    for (int j = 0; j < cw.placeHolders[i].count(); j++) {
+                                        CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
+                                        if (ph.offset > index)
+                                            ph.offset += id.word.length() - 1;
+                                    }
+                                }
+                                words.append(cw);
+                            }
+                            cnt += repl->id.length();
+                        }
                     }
                 }
             }
@@ -1062,27 +1110,44 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                 words.append(CompletionWord(ln));
                             }else{
                                 QString ln = it->lines[0];
-                                ln.replace('@', "%<bibid%>");
-                                words.append(CompletionWord(ln));
-                                cnt++;
-                                foreach (const CompletionWord id, wordsCitations) {
-                                    CompletionWord cw = *it;
-                                    int index = cw.lines[0].indexOf("@");
-                                    cw.word.replace("@", id.word);
-                                    cw.sortWord.replace("@", id.word);
-                                    cw.lines[0].replace("@", id.word);
-                                    for (int i = 0; i < cw.placeHolders.count(); i++) {
-                                        if (cw.placeHolders[i].isEmpty())
-                                            continue;
-                                        for (int j = 0; j < cw.placeHolders[i].count(); j++) {
-                                            CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
-                                            if (ph.offset > index)
-                                                ph.offset += id.word.length() - 1;
+                                struct Rpl {
+                                    QString id;
+                                    QList<CompletionWord>& lst;
+                                };
+
+                                QMap<QString,std::shared_ptr<Rpl>>replacement;
+                                std::shared_ptr<Rpl> r0(new Rpl{"{%<bibid%>}",wordsCitations});
+                                replacement.insert("@",r0);
+                                std::shared_ptr<Rpl> r1(new Rpl{"{%<label%>}",wordsLabels});
+                                replacement.insert("@l",r1);
+                                for(QMap<QString,std::shared_ptr<Rpl>>::const_iterator localIt=replacement.cbegin();localIt!=replacement.cend();++localIt){
+                                    QString searchWord="{"+localIt.key()+"}";
+                                    QString key=localIt.key();
+                                    std::shared_ptr<Rpl> repl=*localIt;
+                                    if(ln.contains(searchWord)){
+                                        ln.replace(searchWord, repl->id);
+                                        words.append(CompletionWord(ln));
+                                        cnt++;
+                                        foreach (const CompletionWord id, repl->lst) {
+                                            CompletionWord cw = *it;
+                                            int index = cw.lines[0].indexOf(key);
+                                            cw.word.replace(key, id.word);
+                                            cw.sortWord.replace(key, id.word);
+                                            cw.lines[0].replace(key, id.word);
+                                            for (int i = 0; i < cw.placeHolders.count(); i++) {
+                                                if (cw.placeHolders[i].isEmpty())
+                                                    continue;
+                                                for (int j = 0; j < cw.placeHolders[i].count(); j++) {
+                                                    CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
+                                                    if (ph.offset > index)
+                                                        ph.offset += id.word.length() - 1;
+                                                }
+                                            }
+                                            words.append(cw);
                                         }
+                                        cnt += repl->id.length();
                                     }
-                                    words.append(cw);
                                 }
-                                cnt += wordsCitations.length();
                             }
                         } else {
                             words.append(*it);
@@ -1212,6 +1277,48 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, Completion
 	baselist = wordsCommands;
 }
 
+void CompletionListModel::setBaseWords(const std::set<QString> &newwords, CompletionType completionType)
+{
+    QList<CompletionWord> newWordList;
+    newWordList.clear();
+    for (std::set<QString>::const_iterator i = newwords.cbegin(); i != newwords.cend(); ++i) {
+        QString str = *i;
+        CompletionWord cw(str);
+        if (completionType == CT_COMMANDS) {
+            cw.index = qHash(str);
+            cw.snippetLength = str.length();
+            cw.usageCount = 0;
+            QList<QPair<int, int> >res = config->usage.values(cw.index);
+            foreach (const PairIntInt &elem, res) {
+                if (elem.first == cw.snippetLength) {
+                    cw.usageCount = elem.second;
+                    break;
+                }
+            }
+        } else {
+            cw.index = 0;
+            cw.usageCount = -2;
+            cw.snippetLength = 0;
+        }
+        newWordList.append(cw);
+    }
+
+    switch (completionType) {
+    case CT_NORMALTEXT:
+        wordsText = newWordList;
+        break;
+    case CT_CITATIONS:
+        wordsCitations = newWordList;
+        break;
+    default:
+        wordsCommands = newWordList;
+    }
+
+    //if (completionType==CT_NORMALTEXT) wordsText=newWordList;
+    //else wordsCommands=newWordList;
+    baselist = wordsCommands;
+}
+
 void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType)
 {
 	QList<CompletionWord> newWordList;
@@ -1253,9 +1360,6 @@ void CompletionListModel::setBaseWords(const CodeSnippetList &baseCommands, cons
 		break;
 	case CT_CITATIONS:
 		wordsCitations = newWordList;
-		break;
-	case CT_CITATIONCOMMANDS:
-		wordsCitationCommands = newWordList;
 		break;
 	case CT_LABELS:
 		wordsLabels = newWordList;
@@ -1338,10 +1442,12 @@ LatexCompleter::~LatexCompleter()
 	if (dirReader) {
 		dirReader->quit();
 		dirReader->wait();
+        delete dirReader;
 	}
 	if (bibReader) {
 		bibReader->quit();
-		bibReader->wait();
+        bibReader->wait();
+        delete bibReader;
 	}
 }
 
@@ -1405,6 +1511,47 @@ void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, Completio
 	listModel->setBaseWords(concated, newWordList, completionType);
 	widget->resize(200, 200);
 }
+/*!
+ * \brief setAdditionalWords from a std::set<QString>
+ * The advantage is that a std::set is already sorted.
+ * \param newwords
+ * \param completionType
+ */
+void LatexCompleter::setAdditionalWords(const std::set<QString> &newwords, CompletionType completionType)
+{
+    // convert to codesnippets
+    CodeSnippetList newWordList;
+    for (std::set<QString>::const_iterator i = newwords.cbegin(); i != newwords.cend(); ++i) {
+        QString str = *i;
+        bool isReference = str.startsWith('@');
+        if (isReference)
+            str = str.mid(1);
+        CompletionWord cw(str);
+        if (completionType == CT_COMMANDS) {
+            cw.index = qHash(str);
+            cw.snippetLength = str.length();
+            cw.usageCount = isReference ? 2 : 0; // make reference always visible (most used) in completer
+            QList<QPair<int, int> >res = config->usage.values(cw.index);
+            foreach (const PairIntInt &elem, res) {
+                if (elem.first == cw.snippetLength) {
+                    cw.usageCount = elem.second;
+                    break;
+                }
+            }
+        } else {
+            cw.index = 0;
+            cw.usageCount = -2;
+            cw.snippetLength = 0;
+        }
+        newWordList.append(cw);
+    }
+
+    CodeSnippetList concated;
+    if (config && completionType == CT_COMMANDS) concated.unite(config->words);
+    //concated.unite(newwords);
+    listModel->setBaseWords(concated, newWordList, completionType);
+    widget->resize(200, 200);
+}
 
 void LatexCompleter::setAdditionalWords(const CodeSnippetList &newwords, CompletionType completionType)
 {
@@ -1451,10 +1598,10 @@ void LatexCompleter::adjustWidget()
 	widget->resize(width, 200);
 
 	// adjust position
-	QPoint offset;
+    QPointF offset;
 	bool isAboveCursor = false;
 	if (editor->getPositionBelowCursor(offset, widget->width(), widget->height(), isAboveCursor))
-		widget->move(editor->mapTo(qobject_cast<QWidget *>(parent()), offset));
+        widget->move(editor->mapTo(qobject_cast<QWidget *>(parent()), offset.toPoint()));
 
 	// adjust visible tab bar depending on location relative to cursor
 	QTabBar *tbOn = (isAboveCursor) ? tbAbove : tbBelow;
@@ -1581,7 +1728,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 				}
 			} else {
 				// nothing special, simply add
-				QList<CompletionWord>::iterator it;
+                QList<CompletionWord>::iterator it;
                 it = std::lower_bound(listModel->baselist.begin(), listModel->baselist.end(), cw);
 				listModel->baselist.insert(it, cw); // keep sorting
 			}
@@ -1719,7 +1866,7 @@ LatexCompleterConfig *LatexCompleter::getConfig() const
 	return config;
 }
 
-void LatexCompleter::setPackageList(QSet<QString> *lst)
+void LatexCompleter::setPackageList(std::set<QString> *lst)
 {
 	packageList = lst;
 }
@@ -1844,11 +1991,10 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 	} else if (config->tooltipPreview && (forcedCite || latexParser.possibleCommands["%cite"].contains(cmd))) {
 		QToolTip::hideText();
 		QString value = listModel->words[index.row()].word;
-		int i = value.indexOf("{");
-		value.remove(0, i + 1);
-		i = value.indexOf("}");
-		value = value.left(i);
-		LatexDocument *document = qobject_cast<LatexDocument *>(editor->document());
+        const QRegularExpression re{"{([^}]+?)}"};
+        const QRegularExpressionMatch match = re.match(value);
+        value = match.captured(1);
+        LatexDocument *document = qobject_cast<LatexDocument *>(editor->document());
 		if (!bibReader) {
 			bibReader = new bibtexReader(this);
 			connect(bibReader, SIGNAL(sectionFound(QString)), this, SLOT(bibtexSectionFound(QString)));
@@ -1879,7 +2025,7 @@ void LatexCompleter::showTooltip(QString text)
 	QModelIndex index = list->currentIndex();
 	QRect r = list->visualRect(index);
 	QDocumentCursor c = editor->cursor();
-	int lineHeight = c.line().document()->getLineSpacing();
+    qreal lineHeight = c.line().document()->getLineSpacing();
 	QPoint pos = list->mapToGlobal(QPoint(list->width(), r.top() - lineHeight));
 	showTooltipLimited(pos, text, list->width());
 }

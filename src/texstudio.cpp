@@ -83,6 +83,7 @@
 #include "qnfadefinition.h"
 
 #include "PDFDocument_config.h"
+#include <set>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -3952,7 +3953,7 @@ void Texstudio::editInsertUnicode()
 		} else c.setAnchorColumnNumber(c.columnNumber());
 		currentEditor()->setCursor(c);
 	}
-	QPoint offset;
+    QPointF offset;
 	UnicodeInsertion *uid = new UnicodeInsertion (currentEditorView(), curPoint);
 	if (!currentEditor()->getPositionBelowCursor(offset, uid->width(), uid->height())) {
 		delete uid;
@@ -3964,7 +3965,7 @@ void Texstudio::editInsertUnicode()
 	connect(currentEditor(), SIGNAL(visibleLinesChanged()), uid, SLOT(close()));
 	connect(currentEditor()->document(), SIGNAL(contentsChanged()), uid, SLOT(close()));
 
-	uid->move(currentEditor()->mapTo(uid->parentWidget(), offset));
+    uid->move(currentEditor()->mapTo(uid->parentWidget(), offset.toPoint()));
 	this->unicodeInsertionDialog = uid;
 	uid->show();
 	uid->setFocus();
@@ -4589,9 +4590,9 @@ void Texstudio::normalCompletion()
 	case Token::beamertheme: {
 		QString preambel = "beamertheme";
 		currentPackageList.clear();
-		foreach (QString elem, latexPackageList) {
+        for(const QString &elem: latexPackageList) {
 			if (elem.startsWith(preambel))
-				currentPackageList << elem.mid(preambel.length());
+                currentPackageList.insert(elem.mid(preambel.length()));
 		}
 	}
 	completer->setPackageList(&currentPackageList);
@@ -7530,17 +7531,25 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
     }
 
     // collect user commands and references
-    QSet<QString> collected_labels;
+    std::set<QString> collected_labels;
     foreach (const LatexDocument *doc, docs) {
-        collected_labels.unite(convertStringListtoSet(doc->labelItems()));
-        foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
-            QString temp = refCommand + "{%1}";
-            foreach (const QString &l, doc->labelItems())
-                words.insert(temp.arg(l));
-        }
+        if(doc->labelItems().isEmpty())
+            continue;
+        QStringList lst=doc->labelItems();
+        collected_labels.insert(lst.cbegin(),lst.cend());
     }
+
+    /*foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
+        QString temp = refCommand + "{%1}";
+        CodeSnippetList wordsList;
+        foreach (const QString &l, collected_labels)
+            wordsList.insert(temp.arg(l));
+
+
+        words.unite(wordsList);
+    }*/
     if (configManager.parseBibTeX) {
-        QSet<QString> bibIds;
+        std::set<QString> bibIds;
 
         QStringList collected_mentionedBibTeXFiles;
         foreach (const LatexDocument *doc, docs) {
@@ -7555,28 +7564,13 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             BibTeXFileInfo &bibTex = documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
 
             // add citation to completer for direct citation completion
-            bibIds.unite(bibTex.ids);
+            bibIds.insert(bibTex.ids.cbegin(),bibTex.ids.cend());
         }
         //handle bibitem definitions
         foreach (const LatexDocument *doc, docs) {
-            bibIds.unite(convertStringListtoSet(doc->bibItems()));
+            QStringList ids=doc->bibItems();
+            bibIds.insert(ids.cbegin(),ids.cend());
         }
-        //automatic use of cite commands
-        QStringList citationCommands;
-        foreach (const QString &citeCommand, latexParser.possibleCommands["%cite"]) {
-            QString temp = '@' + citeCommand + "{@}";
-            citationCommands.append(temp);
-            //words.insert(temp);
-            /*foreach (const QString &value, bibIds)
-                            words.insert(temp.arg(value));*/
-        }
-        foreach (QString citeCommand, latexParser.possibleCommands["%citeExtended"]) {
-            QString temp = '@' + citeCommand.replace("%<bibid%>", "@");
-            citationCommands.append(temp);
-            //temp=citeCommand.replace("%<bibid%>","@");
-            //words.insert(temp);
-        }
-        completer->setAdditionalWords(convertStringListtoSet(citationCommands), CT_CITATIONCOMMANDS);
         completer->setAdditionalWords(bibIds, CT_CITATIONS);
     }
 
@@ -7824,14 +7818,14 @@ bool Texstudio::gotoLogEntryAt(int newLineNumber)
 	//goto log entry
 	outputView->selectLogEntry(logEntryNumber);
 
-	QPoint p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+    QPointF p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition().toPoint()));
 	//  p.ry()+=2*currentEditorView()->editor->document()->fontMetrics().lineSpacing();
 
 	REQUIRE_RET(outputView->getLogWidget()->getLogModel(), true);
 	QList<int> errors = currentEditorView()->lineToLogEntries.values(lh);
 	QString msg = outputView->getLogWidget()->getLogModel()->htmlErrorTable(errors);
 
-	QToolTip::showText(p, msg, nullptr);
+    QToolTip::showText(p.toPoint(), msg, nullptr);
 	LatexEditorView::hideTooltipWhenLeavingLine = newLineNumber;
 	return true;
 }
@@ -8134,7 +8128,7 @@ void Texstudio::previewLatex()
 void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &source)
 {
 	QPixmap pixmap;
-	int devPixelRatio = 1;
+    qreal devPixelRatio = 1.0;
 
     devPixelRatio = devicePixelRatio();
 
@@ -8163,7 +8157,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
 			double c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
-			pixmap = QPixmap::fromImage(page->renderToImage(logicalDpiX() * scale * c, logicalDpiY() * scale * c));
+            pixmap = QPixmap::fromImage(page->renderToImage(qRound(scale*logicalDpiX() * c), qRound(scale*logicalDpiY() * c)));
             previewCache.insert(source.text,pixmap);
 		}
 	}
@@ -8178,12 +8172,12 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
             previewCache.insert(source.text,pixmap);
             if (scale < 0.99 || 1.01 < scale) {
                 // TODO: this does scale the pixmaps, but it would be better to render higher resolution images directly in the compilation process.
-		pixmap = pixmap.scaledToWidth(qRound(pixmap.width() * scale), Qt::SmoothTransformation);
+                pixmap = pixmap.scaledToWidth(qRound(scale*pixmap.width()), Qt::SmoothTransformation);
             }
         }
 	}
 
-	if (devPixelRatio != 1) {
+    if (devPixelRatio > 1.01 || devPixelRatio<0.99) {
 		pixmap.setDevicePixelRatio(devPixelRatio);
 	}
 
@@ -8198,27 +8192,28 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
             (source.atCursor && configManager.previewMode == ConfigManager::PM_INLINE)  || // respect preview setting, except for INLINE
 	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
             (source.fromLine < 0 && !source.atCursor)) { // completer preview
-		QPoint p;
+        QPointF p;
 		if (source.atCursor)
 			p = currentEditorView()->getHoverPosistion();
 		else
-			p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+            p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition().toPoint()));
 
 		QRect screen = QGuiApplication::primaryScreen()->geometry();
 		int w = pixmap.width();
 		if (w > screen.width()) w = screen.width() - 2;
+        int w_calculated=qRound(1.0*w / devPixelRatio); //pixmap shown with reduced width to be pixel perfect again
 		if (!fromPDF) {
-		        QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w / devPixelRatio), nullptr);
+                QToolTip::showText(p.toPoint(), QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w_calculated), nullptr);
 		} else {
 			QString text;
 
-			text = getImageAsText(pixmap, w);
+            text = getImageAsText(pixmap, w_calculated);
 
 			if (completerPreview) {
 				completerPreview = false;
 				completer->showTooltip(text);
 			} else {
-			        QToolTip::showText(p, text, nullptr);
+                    QToolTip::showText(p.toPoint(), text, nullptr);
 			}
 		}
 		LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
@@ -9724,7 +9719,7 @@ void Texstudio::readinAllPackageNames()
 		// preliminarily use cached packages
 		QFileInfo cacheFileInfo = QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat");
 		if (cacheFileInfo.exists()) {
-			QSet<QString> cachedPackages = PackageScanner::readPackageList(cacheFileInfo.absoluteFilePath());
+            std::set<QString> cachedPackages = PackageScanner::readPackageList(cacheFileInfo.absoluteFilePath());
 			packageListReadCompleted(cachedPackages);
 		}
 		if (configManager.scanInstalledLatexPackages) {
@@ -9752,13 +9747,13 @@ void Texstudio::readinAllPackageNames()
 			QString addPaths=BuildManager::resolvePaths(BuildManager::additionalSearchPaths);
 			packageListReader = new KpathSeaParser(quotePath(baseDir + "kpsewhich"), this,addPaths);
 #endif
-			connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
+            connect(packageListReader, SIGNAL(scanCompleted(std::set<QString>)), this, SLOT(packageListReadCompleted(std::set<QString>)));
 			packageListReader->start();
 		}
 	}
 }
 
-void Texstudio::packageListReadCompleted(QSet<QString> packages)
+void Texstudio::packageListReadCompleted(std::set<QString> packages)
 {
 	latexPackageList = packages;
 	if (qobject_cast<PackageScanner *>(sender())) {
@@ -10011,7 +10006,7 @@ void Texstudio::jumpPrevDiff()
 void Texstudio::removeDiffMarkers(bool theirs)
 {
 	LatexDocument *doc = documents.currentDocument;
-	if (!doc)
+    if (!doc || !doc->mayHaveDiffMarkers)
 		return;
 
 	diffRemoveMarkers(doc, theirs);

@@ -17,21 +17,44 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git make mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt6-base mingw-w64-x86_64-poppler mingw-w64-x86_64-poppler-qt6  mingw-w64-x86_64-qt6-declarative mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-5compat  mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-qt-installer-framework
+          install: git make mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt6-base mingw-w64-x86_64-poppler mingw-w64-x86_64-poppler-qt6  mingw-w64-x86_64-qt6-declarative mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-5compat  mingw-w64-x86_64-qt6-tools  mingw-w64-x86_64-nsis zip
       - name: Configure
-        run: qmake texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+        run: qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1 NO_POPPLER_PREVIEW=1
       - name: Build
         run: make -j 2
       - name: Package
+        id: package
         run: |
-          .github/scripts/package_msys.sh
-          binarycreator -f -c utilities/config.xml -p packages/ texstudio-installer.exe
-      - name: Upload Installer to GitHub Artifacts
+          . ./.github/scripts/get-version.sh
+          ./.github/scripts/package_msys.sh
+          echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+          echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+          echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+
+      - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v2
         with:
-          name: texstudio-msys
-          path: texstudio-installer.exe
+          name: texstudio-win-qt6-zip
+          path: ./package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+          
+      - name: Upload to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: texstudio-win-qt6-exe
+          path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
+        
+      - name: Release exe
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+          files: |
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
   build-linux-win:
     name: win build (mxe)

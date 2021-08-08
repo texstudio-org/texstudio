@@ -108,7 +108,7 @@ public:
 	Q_INVOKABLE QList<CodeSnippet> userCommandList() const; ///< all user commands defined in this document, sorted
 	Q_INVOKABLE CodeSnippetList additionalCommandsList();
 	void updateRefsLabels(const QString &ref);
-	void recheckRefsLabels();
+    void recheckRefsLabels(QList<LatexDocument *> listOfDocs=QList<LatexDocument*>(), QStringList items=QStringList());
     static void updateRefHighlight(ReferencePairEx p);
 	Q_INVOKABLE int countLabels(const QString &name);
 	Q_INVOKABLE int countRefs(const QString &name);

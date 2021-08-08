@@ -34,7 +34,7 @@
 #include <QDateTime>
 #include <QUndoStack>
 #include <QStringList>
-#include <QFontMetrics>
+#include <QFontMetricsF>
 #include <QUndoCommand>
 #include <QCache>
 
@@ -73,7 +73,7 @@ class QCE_EXPORT QDocumentPrivate
 			int docLineNr;
 			int editLineNr;
 			int firstLine; /* constant */
-			int pos;  /* vertical position */
+            qreal pos;  /* vertical position */
 			int visiblePos;
 			bool inSelection;
 			QBrush base; /* constant */
@@ -231,10 +231,10 @@ public:
 		void setFormatScheme(QFormatScheme *f);
 		void tunePainter(QPainter *p, int fid);
 
-		int textWidthSingleLetterFallback(int fid, const QString& text);
-		int textWidth(int fid, const QString& text);
-		int getRenderRangeWidth(int &columnDelta, int curColumn, const RenderRange& r, const int newFont, const QString& text);
-		void drawText(QPainter& p, int fid, const QColor& baseColor, bool selected, int& xpos, int baseline, const QString& text);
+        qreal textWidthSingleLetterFallback(int fid, const QString& text);
+        qreal textWidth(int fid, const QString& text);
+        qreal getRenderRangeWidth(int &columnDelta, int curColumn, const RenderRange& r, const int newFont, const QString& text);
+        void drawText(QPainter& p, int fid, const QColor& baseColor, bool selected, qreal &xpos, qreal baseline, const QString& text);
 		
 	private:
 		QDocument *m_doc;
@@ -286,23 +286,23 @@ public:
         static int m_fontSizeModifier;
 		static bool m_fixedPitch;
 		static QDocument::WorkAroundMode m_workArounds;
-		static int m_leftPadding;  // width between left edge of the document and start of the text
+        static qreal m_leftPadding;  // width between left edge of the document and start of the text
 		static QDocument::WhiteSpaceMode m_showSpaces;
 		static QDocument::LineEnding m_defaultLineEnding;
 		static QTextCodec* m_defaultCodec;
 
 		// caches
 		static int m_staticCachesLogicalDpiY;
-		static int m_lineHeight;
-		static int m_lineSpacing;
-		static int m_spaceWidth;
-		static int m_ascent;
-		static int m_descent;
-		static int m_leading;
+        static qreal m_lineHeight;
+        static qreal m_lineSpacing;
+        static qreal m_spaceWidth;
+        static qreal m_ascent;
+        static qreal m_descent;
+        static qreal m_leading;
 				
 		static QVector<QFont> m_fonts;
-		static QList<QFontMetrics> m_fontMetrics;
-		static CacheCache<int> m_fmtWidthCache;
+        static QList<QFontMetricsF> m_fontMetrics;
+        static CacheCache<qreal> m_fmtWidthCache;
 		static CacheCache<QPixmap> m_fmtCharacterCache[2];
 
 		static QFormatScheme *m_formatScheme;
@@ -329,7 +329,7 @@ public:
 
         QCache<QDocumentLineHandle*,QImage> m_LineCacheAlternative;
         QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
-		int m_lineCacheXOffset, m_lineCacheWidth;
+        qreal m_lineCacheXOffset, m_lineCacheWidth;
 		int m_instanceCachesLogicalDpiY;
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
