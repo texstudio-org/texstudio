@@ -1,4 +1,5 @@
 # allrunes package
+# tbraun, 28.08.2008
 # Matthew Bertucci 8/6/2021
 
 \bar
