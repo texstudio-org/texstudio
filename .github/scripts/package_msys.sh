@@ -7,7 +7,7 @@ set -e
  
 echo "package build into zip for win"
 # workaround for botched qt6 installation
-# cp /mingw64/bin/qmake-qt6.exe /mingw64/bin/qmake.exe
+cp /mingw64/bin/qmake-qt6.exe /mingw64/bin/qmake.exe
 echo "copy dlls and qt5 plugins"
 mkdir -p package-zip
 cp texstudio.exe package-zip/
