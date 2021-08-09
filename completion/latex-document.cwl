@@ -266,13 +266,16 @@
 \markright{righthead}#*
 \mathbf{text}#m
 \mathcal{text}#m
+\mathdollar#m
 \mathellipsis#m
 \mathgroup#m
 \mathit{text}#m
 \mathnormal{text}#m
+\mathparagraph#m
 \mathring{o}#m
 \mathrm{text}#m
 \mathscr{text}#m
+\mathsection#m
 \mathsf{text}#m
 \mathsterling#m
 \mathtt{text}#m

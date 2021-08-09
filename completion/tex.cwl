@@ -478,7 +478,7 @@
 \dot{a}#m
 \doteq#m
 \dotfill#*
-\dots#m
+\dots
 \downarrow#m
 \Downarrow#m
 \downbracefill#*m

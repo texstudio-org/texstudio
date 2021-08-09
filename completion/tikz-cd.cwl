@@ -1,10 +1,11 @@
 # tikz-cd package
 # Fernando Muro, 5 Nov 2017
 # muzimuzhi, 23 Jan 2020, tikz-cd v0.9f
+# Matthew Bertucci, 7/29/2021, v1.0
 
 #include: tikz
-\begin{tikzcd}#\array
-\begin{tikzcd}[options]#\array
+\begin{tikzcd}#\array,math
+\begin{tikzcd}[options]#\array,math
 \end{tikzcd}
 \arrow[options%keyvals]#/tikzcd
 \arrow[options%keyvals]{direction}%<labels%>#*/tikzcd
@@ -66,7 +67,7 @@ crossing over
 ## appearance of diagrames
 #keyvals:\tikzcdset,\begin{tikzcd}#c
 every diagram
-diagrames=%<options%>
+diagrams=%<options%>
 every matrix
 every cell
 cells=%<options%>
@@ -74,7 +75,7 @@ row sep=
 column sep=
 sep=
 cramped
-math mode%true,false
+math mode#true,false
 background color=#%color
 every arrow
 arrows=%<options%>
@@ -91,9 +92,10 @@ start anchor=
 end anchor=
 shorten=##L
 crossing over
-corssing over clearance=##L
+crossing over clearance=##L
 every label
 labels=%<options%>
 marking
 description
+center yshift=##L
 #endkeyvals

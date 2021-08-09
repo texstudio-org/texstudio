@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 6/12/2021
+# Matthew Bertucci 7/25/2021
 
 #include:amsmath
 #include:array
@@ -190,6 +190,7 @@ b
 L
 R
 C
+tikz=
 #endkeyvals
 
 #keyvals:\CodeBefore

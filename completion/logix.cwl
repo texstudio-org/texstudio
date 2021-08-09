@@ -1,5 +1,5 @@
 # logix package
-# Matthew Bertucci 7/22/2021
+# Matthew Bertucci 7/30/2021
 
 #include:arydshln
 #include:unicode-math
@@ -3551,6 +3551,41 @@
 \XWkMtEquv
 \XWkMtImpl
 \Xor
+\TrpTurn
+\DTrpTurn
+\NotTrpTurn
+\NotDTrpTurn
+\InvNt
+\Mnd
+\Dnd
+\Dor
+\Dnt
+\DAsterisk
+\DTimes
+\DPlus
+\DMinus
+\Owns
+\NotOwned
+\MulMap
+\NotMulMap
+\MulMapInv
+\NotMulMapInv
+\MulMapDual
+\NotMulMapDual
+\SCoh
+\SInCoh
+\Coh
+\InCoh
+\AAnd
+\Mnd
+\Aor
+\Mor
+\OfCrse
+\WhyNot
+\Perp
+\SimPerp
+\QuantAAnd
+\QuantMor
 
 ### Delimiters ###
 
