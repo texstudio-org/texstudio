@@ -23,7 +23,7 @@ jobs:
           unzip ./.github/scripts/MINGW64-packages.zip
           pacman -U mingw-w64-x86_64-poppler*
       - name: Configure
-        run: qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1 NO_POPPLER_PREVIEW=1
+        run: qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
       - name: Build
         run: make -j 2
       - name: Package
