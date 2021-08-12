@@ -131,10 +131,10 @@ all
 \newtcolorbox[init options]{envname}[args][default]{options%keyvals}#N
 \renewtcolorbox{envname}{options%keyvals}
 \renewtcolorbox[init options]{envname}[args][default]{options%keyvals}
-\newtcbox{cmd}{options%keyvals}
-\newtcbox[init options]{cmd}[args][default]{options%keyvals}
-\renewtcbox{cmd}{options%keyvals}
-\renewtcbox[init options]{cmd}[args][default]{options%keyvals}
+\newtcbox{cmd}{options%keyvals}#d
+\newtcbox[init options]{cmd}[args][default]{options%keyvals}#d
+\renewtcbox{cmd}{options%keyvals}#d
+\renewtcbox[init options]{cmd}[args][default]{options%keyvals}#d
 \tcolorboxenvironment{envname}{options%keyvals}#N
 
 # << Subtitle >>
