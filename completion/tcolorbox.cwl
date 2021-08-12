@@ -137,6 +137,10 @@ all
 \renewtcbox[init options]{cmd}[args][default]{options%keyvals}#d
 \tcolorboxenvironment{envname}{options%keyvals}#N
 
+# << Title >>
+\tcbtitletext
+\tcbtitle
+
 # << Subtitle >>
 \tcbsubtitle[options%keyvals]{text}
 
