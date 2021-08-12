@@ -3,7 +3,7 @@
 # muzimuzhi, 23 Jan 2020, tikz-cd v0.9f
 # Matthew Bertucci, 7/29/2021, v1.0
 
-#include: tikz
+#include:tikz
 \begin{tikzcd}#\array,math
 \begin{tikzcd}[options]#\array,math
 \end{tikzcd}
