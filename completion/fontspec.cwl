@@ -28,8 +28,8 @@
 \setsansfont[font features]{font}[font features%keyvals]#*
 \setmonofont{font}
 \setmonofont[font features]{font}*
-\setsansfont{font}[font features%keyvals]
-\setsansfont[font features]{font}[font features%keyvals]#*
+\setmonofont{font}[font features%keyvals]
+\setmonofont[font features]{font}[font features%keyvals]#*
 
 \newfontfamily{cmd}{font}#d
 \newfontfamily{cmd}[font features]{font}#*d
