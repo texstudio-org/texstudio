@@ -16,6 +16,7 @@ studcolor=#%color
 brickheight=%<number%>
 bricklength=%<number%>
 brickwidth=%<number%>
+studradius=%<number%>
 studheight=%<number%>
 studtext=
 #endkeyvals
