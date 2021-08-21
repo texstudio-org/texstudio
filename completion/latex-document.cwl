@@ -201,6 +201,7 @@
 \frame{text}
 \frq
 \frqq
+\fussy#*
 \glossaryentry{text}{pagenum}
 \glossary{text}
 \glq
@@ -372,6 +373,7 @@
 \shortstack[position]{text\\text}
 \shortstack{text\\text}
 \sl#*
+\sloppy#*
 \slshape
 \small
 \sqrt[root]{arg}#m

@@ -1,6 +1,7 @@
 # tocloft.sty
 # J. Sundermeyer
 # Edson 20-12-2010
+# Matthew Bertucci 8/15/2021
 
 \addcontentsline{file}{kind}{title}#n
 \contentsline{kind}{title}{page}#n
@@ -37,6 +38,7 @@
 
 \cftsetpnumwidth{length}#n
 \cftsetrmarg{length}#n
+\cftpnumalign#n
 \cftparskip#n
 
 \cftbeforepartskip#n
@@ -183,3 +185,44 @@
 \lofdepth#n
 \newlistentry[within]{entry}{ext}{level-1}#n
 
+\cftchapterprecis{text}#*n
+\cftchapterprecishere{text}#*n
+\cftchapterprecistoc{text}#*n
+
+\cftlocalchange{file}{pnumwidth}{tocrmarg}#*n
+
+\cftaddtitleline{file}{kind}{title}{page}#*n
+\cftaddnumtitleline{file}{kind}{num}{title}{page}#*n
+
+\cftlofposthook#*n
+\cftlofprehook#*n
+\cftlotposthook#*n
+\cftlotprehook#*n
+\cfttocposthook#*n
+\cfttocprehook#*n
+
+\cftpartfillnum#*n
+\cftchapfillnum#*n
+\cftsecfillnum#*n
+\cftsubsecfillnum#*n
+\cftsubsubsecfillnum#*n
+\cftparafillnum#*n
+\cftsubparafillnum#*n
+\cftfigfillnum#*n
+\cftsubfigfillnum#*n
+\cfttabfillnum#*n
+\cftsubtabfillnum#*n
+
+\cftchapname#*n
+\cftsecname#*n
+\cftsubsecname#*n
+\cftsubsubsecname#*n
+\cftparaname#*n
+\cftsubparaname#*n
+\cftfigname#*n
+\cftsubfigname#*n
+\cfttabname#*n
+\cftsubtabname#*n
+
+\phantomsection#*n
+\cftparfillskip#*n
