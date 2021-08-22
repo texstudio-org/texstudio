@@ -465,7 +465,7 @@
 \typeout{msg}#*
 \unboldmath
 \upshape
-\usepackage[options]{package}
+\usepackage[options%keyvals]{package}
 \usepackage{package}
 \vdots
 \vector(xslope,yslope){length}#*/picture
