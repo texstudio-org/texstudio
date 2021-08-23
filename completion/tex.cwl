@@ -243,6 +243,7 @@
 \nullfont#*
 \number
 \omit#*
+\ooalign#*
 \openin#*
 \openout#*
 \or#*
