@@ -3,7 +3,7 @@
 
 #include:ifthen
 
-\ocr{cheese}
+\ocr{text}
 \ocrfamily#*
-\ocrneg{cheese}
+\ocrneg{text}
 \ocrnegfamily#*
