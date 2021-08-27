@@ -231,7 +231,7 @@ class QCE_EXPORT QDocument : public QObject
         qreal y(int line) const;
         int lineNumber(qreal ypos, int *wrap = nullptr) const;
 
-		QRect lineRect(int line) const;
+        QRectF lineRect(int line) const;
 
 		QDocumentCursor* editCursor() const;
 		void setEditCursor(QDocumentCursor *c);

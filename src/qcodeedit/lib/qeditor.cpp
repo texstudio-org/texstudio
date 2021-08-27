@@ -1970,8 +1970,8 @@ bool QEditor::getPositionBelowCursor(QPointF& outOffset, int width, int height, 
 	outOffset = line.cursorToDocumentOffset(c.columnNumber()-1);
 	outOffset.setY(outOffset.y() + document()->y(c.lineNumber()) + document()->getLineSpacing());
     outOffset = mapFromContents(outOffset.toPoint());
-	int left;
-	int temp;
+    qreal left;
+    qreal temp;
 	getPanelMargins(&left, &temp, &temp, &temp);
 	outOffset.setX(outOffset.x() + left);
 	if (outOffset.y() + height > this->height()) {
@@ -3094,8 +3094,8 @@ void QEditor::paintEvent(QPaintEvent *e)
 		return;
 
 	QPainter p(viewport());
-	const int yOffset = verticalOffset();
-	const int xOffset = horizontalOffset();
+    const qreal yOffset = verticalOffset();
+    const qreal xOffset = horizontalOffset();
 
 	#ifdef Q_GL_EDITOR
 	//QRect r(e->rect());
@@ -3164,13 +3164,14 @@ void QEditor::paintEvent(QPaintEvent *e)
 	QBrush bg = palette().base();
 	if ( m_doc->getBackground().isValid() )
 		bg.setColor(m_doc->getBackground());
-	int width = qMax(viewport()->width(), m_doc->width());
-    int height = qMax(viewport()->height(), qCeil(m_doc->height() + m_doc->getLineSpacing()));
+    qreal width = qMax(viewport()->width(), m_doc->width());
+    qreal height = qMax(viewport()->height(), qCeil(m_doc->height() + m_doc->getLineSpacing()));
 	// the actual visible height may be up to one line larger than the doc height,
 	// because the doc lines is are aligned to the top of the viewport. The viewport
 	// then shows n.x lines and when scolled to the very bottom, the .x < 1 line
 	// exceeds the document height.
-	p.fillRect(0, 0, width, height, bg);
+    const QRectF rect(0, 0, width, height);
+    p.fillRect(rect, bg);
 
 	p.save();
 	m_doc->draw(&p, ctx);
@@ -3200,7 +3201,7 @@ void QEditor::timerEvent(QTimerEvent *e)
 	int id = e->timerId();
 
 	if ( id == m_blink.timerId() )
-	{
+    {
 		bool on = !flag(CursorOn);
 
 		if ( m_cursor.hasSelection() )
@@ -3987,11 +3988,11 @@ void QEditor::dragEnterEvent(QDragEnterEvent *e)
 */
 void QEditor::dragLeaveEvent(QDragLeaveEvent *)
 {
-	const QRect crect = cursorRect(m_dragAndDrop);
+    const QRectF crect = cursorRect(m_dragAndDrop);
 	m_dragAndDrop = QDocumentCursor();
 
 	if ( crect.isValid() )
-		viewport()->update(crect);
+        viewport()->update(crect.toRect());
 
 }
 
@@ -4021,10 +4022,10 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 
 	if ( c.isValid() )
 	{
-		QRect crect = cursorRect(m_dragAndDrop);
+        QRectF crect = cursorRect(m_dragAndDrop);
 
 		if ( crect.isValid() )
-			viewport()->update(crect);
+            viewport()->update(crect.toRect());
 
 		m_dragAndDrop = c;
 
@@ -4041,7 +4042,7 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 		m_cursorSurroundingLines = backup;
 
 		crect = cursorRect(m_dragAndDrop);
-		viewport()->update(crect);
+        viewport()->update(crect.toRect());
 	}
 
 	//e->acceptProposedAction();
@@ -5458,7 +5459,7 @@ void QEditor::zoom(int n)
 	\param r right margin
 	\param b bottom margin
 */
-void QEditor::getPanelMargins(int *l, int *t, int *r, int *b) const
+void QEditor::getPanelMargins(qreal *l, qreal *t, qreal *r, qreal *b) const
 {
 	m_margins.getCoords(l, t, r, b);
 }
@@ -5470,7 +5471,7 @@ void QEditor::getPanelMargins(int *l, int *t, int *r, int *b) const
 	\param r right margin
 	\param b bottom margin
 */
-void QEditor::setPanelMargins(int l, int t, int r, int b)
+void QEditor::setPanelMargins(qreal l, qreal t, qreal r, qreal b)
 {
 	m_margins.setCoords(l, t, r, b);
 
@@ -5506,15 +5507,15 @@ void QEditor::repaintCursor()
 	    return;
 	}
 
-	QRect r = cursorRect();
+    QRectF r = cursorRect();
 
 	if ( m_crect != r )
 	{
-		viewport()->update(m_crect.translated(horizontalOffset(), 0));
+        viewport()->update(m_crect.translated(horizontalOffset(), 0).toRect());
 		m_crect = r;
-		viewport()->update(m_crect.translated(horizontalOffset(), 0));
+        viewport()->update(m_crect.translated(horizontalOffset(), 0).toRect());
 	} else {
-		viewport()->update(m_crect.translated(horizontalOffset(), 0));
+        viewport()->update(m_crect.translated(horizontalOffset(), 0).toRect());
 	}
 }
 
@@ -5525,11 +5526,11 @@ bool QEditor::isCursorVisible() const
 {
     QPointF pos = m_cursor.documentPosition();
 
-	const QRect display(horizontalOffset(), verticalOffset(), viewport()->width(), viewport()->height());
+    const QRectF display(horizontalOffset(), verticalOffset(), viewport()->width(), viewport()->height());
 
 	//qDebug() << pos << " belongs to " << display << " ?";
 
-    return display.contains(pos.toPoint());
+    return display.contains(pos);
 }
 
 /*!
@@ -5638,7 +5639,7 @@ void QEditor::ensureVisible(int line)
 		return;
 
 	const int ls = document()->getLineSpacing();
-	int ypos = m_doc->y(line),
+    qreal ypos = m_doc->y(line),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + ls;
@@ -5653,13 +5654,13 @@ void QEditor::ensureVisible(int line)
 /*!
 	\brief Ensure that a given rect is visible by updating scrollbars if needed
 */
-void QEditor::ensureVisible(const QRect &rect)
+void QEditor::ensureVisible(const QRectF &rect)
 {
 	if ( !m_doc )
 		return;
 
-	const int ls = document()->getLineSpacing();
-	int ypos = rect.y(),
+    const qreal ls = document()->getLineSpacing();
+    qreal ypos = rect.y(),
 		yval = verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + rect.height();
@@ -5686,7 +5687,7 @@ void QEditor::ensureVisible(const QRect &rect)
 	line needs to be updated to properly update the line background whenever the cursor move
 	from a line to another.
 */
-QRect QEditor::cursorRect() const
+QRectF QEditor::cursorRect() const
 {
 	return m_cursor.hasSelection() ? selectionRect() : cursorRect(m_cursor);
 }
@@ -5703,11 +5704,11 @@ int QEditor::getLastVisibleLine(){
 
 void QEditor::scrollToFirstLine(int l){
 
-	const int ls = document()->getLineSpacing();
-	int ypos = m_doc->y(l-1);
-	int yval = verticalOffset();
-	int ylen = viewport()->height();
-	int yend = ypos + ylen;
+    const qreal ls = document()->getLineSpacing();
+    const qreal ypos = m_doc->y(l-1);
+    const qreal yval = verticalOffset();
+    const int ylen = viewport()->height();
+    const qreal yend = ypos + ylen;
 
 	if ( ypos < yval )
 	    verticalScrollBar()->setValue(ypos / ls);
@@ -5729,7 +5730,7 @@ void QEditor::setCursorSurroundingLines(int s){
 	it is actually the union of all the rectangles occupied by all lines the selection
 	spans over.
 */
-QRect QEditor::selectionRect() const
+QRectF QEditor::selectionRect() const
 {
 	if ( !m_cursor.hasSelection() )
 		return cursorRect(m_cursor);
@@ -5740,10 +5741,10 @@ QRect QEditor::selectionRect() const
 		return cursorRect(m_cursor);
 
 	int y = m_doc->y(s.startLine);
-	QRect r = m_doc->lineRect(s.endLine);
+    QRectF r = m_doc->lineRect(s.endLine);
 	int height = r.y() + r.height() - y;
 
-	r = QRect(0, y, viewport()->width(), height);
+    r = QRectF(0, y, viewport()->width(), height);
 	r.translate(-horizontalOffset(), -verticalOffset());
 	return r;
 }
@@ -5753,12 +5754,12 @@ QRect QEditor::selectionRect() const
 
 	The width of the returned rectangle will always be the viewport width.
 */
-QRect QEditor::lineRect(int line) const
+QRectF QEditor::lineRect(int line) const
 {
 	if ( !m_doc )
-		return QRect();
+        return QRectF();
 
-	QRect r = m_doc->lineRect(line);
+    QRectF r = m_doc->lineRect(line);
 	r.setWidth(viewport()->width());
 	r.translate(-horizontalOffset(), -verticalOffset());
 
@@ -5768,34 +5769,34 @@ QRect QEditor::lineRect(int line) const
 /*!
 	\return The line rect of the given cursor
 */
-QRect QEditor::cursorRect(const QDocumentCursor& c) const
+QRectF QEditor::cursorRect(const QDocumentCursor& c) const
 {
-	return lineRect(c.lineNumber());
+    return lineRect(c.lineNumber());
 }
 
 /*!
 	\return the area covered by the cursor (in widget coordinates)
 */
-QRect QEditor::cursorMircoFocusRect() const
+QRectF QEditor::cursorMircoFocusRect() const
 {
 	QDocumentCursor c(m_cursor, false);
 	QDocumentLine line=c.line();
 	if (!c.isValid()) return QRect();
-	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return QRect();
+    if (c.columnNumber()<0 || c.columnNumber()>line.length()) return QRectF();
 
-    int left;
-    int top;
-	int temp;
-	getPanelMargins(&left,&top,&temp,&temp);
+    qreal left;
+    qreal top;
+    qreal temp;
+    getPanelMargins(&left,&top,&temp,&temp);
 
 	top += lineRect(m_cursor.lineNumber()).top();
     QPointF p = line.cursorToDocumentOffset(c.columnNumber());
 	left += p.x();
 	top += p.y();
 
-	int width = 1; // TODO adapt for bold cursor and overwrite cursor
-	int height = document()->getLineSpacing();
-	return QRect(left, top, width, height);
+    const qreal width = 1; // TODO adapt for bold cursor and overwrite cursor
+    const qreal height = document()->getLineSpacing();
+    return QRectF(left, top, width, height);
 }
 
 /*!
@@ -6143,9 +6144,9 @@ void QEditor::repaintContent(int i, int n)
 		viewport()->update();
 	}
 
-	QRect frect = m_doc->lineRect(i);
+    QRectF frect = m_doc->lineRect(i);
 
-	const int yoff = verticalOffset() + viewport()->height();
+    const qreal yoff = verticalOffset() + viewport()->height();
 
 	if ( frect.y() > yoff )
 		return;
@@ -6154,11 +6155,11 @@ void QEditor::repaintContent(int i, int n)
 	{
 		frect.translate(0, -verticalOffset());
 		//qDebug() << frect;
-		viewport()->update(frect);
+        viewport()->update(frect.toRect());
 		return;
 	}
 
-	QRect lrect = m_doc->lineRect(i + n - 1);
+    QRectF lrect = m_doc->lineRect(i + n - 1);
 
 	if ( (n > 0) && (lrect.y() + lrect.height()) < verticalOffset() )
 		return;
@@ -6168,11 +6169,11 @@ void QEditor::repaintContent(int i, int n)
 	//rect.setWidth(viewport()->width());
 	//rect.setHeight(qMin(viewport()->height(), rect.height() * n));
 
-	const int paintOffset = frect.y() - verticalOffset();
-	const int paintHeight = lrect.y() + lrect.height() - frect.y();
-	const int maxPaintHeight = viewport()->height() - paintOffset;
+    const qreal paintOffset = frect.y() - verticalOffset();
+    const qreal paintHeight = lrect.y() + lrect.height() - frect.y();
+    const qreal maxPaintHeight = viewport()->height() - paintOffset;
 
-	QRect rect = QRect(
+    QRectF rect = QRectF(
 				frect.x(),
 				paintOffset,
 				viewport()->width(),
@@ -6185,7 +6186,7 @@ void QEditor::repaintContent(int i, int n)
 
 	//qDebug() << rect;
 
-	viewport()->update(rect);
+    viewport()->update(rect.toRect());
 	#endif
 }
 

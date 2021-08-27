@@ -1651,11 +1651,11 @@ qreal QDocument::y(int ln) const
 
 	\note the width of the returned rectangle is the DOCUMENT's width
 */
-QRect QDocument::lineRect(int line) const
+QRectF QDocument::lineRect(int line) const
 {
-	const int yoff = y(line);
+    const qreal yoff = y(line);
 
-	return (yoff != -1) ? QRect(0, yoff, width(), this->line(line).lineSpan() * m_impl->m_lineSpacing) : QRect();
+    return (yoff != -1) ? QRectF(0, yoff, width(), this->line(line).lineSpan() * m_impl->m_lineSpacing) : QRectF();
 }
 
 /*!

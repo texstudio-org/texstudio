@@ -261,11 +261,11 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		QAction* action(const QString& s);
 		
-		virtual QRect cursorRect() const;
-		virtual QRect selectionRect() const;
-		virtual QRect lineRect(int line) const;
-		virtual QRect cursorRect(const QDocumentCursor& c) const;
-		virtual QRect cursorMircoFocusRect() const;
+        virtual QRectF cursorRect() const;
+        virtual QRectF selectionRect() const;
+        virtual QRectF lineRect(int line) const;
+        virtual QRectF cursorRect(const QDocumentCursor& c) const;
+        virtual QRectF cursorMircoFocusRect() const;
 
 		
 		virtual int getFirstVisibleLine();
@@ -301,7 +301,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setSilentReloadOnExternalChanges(bool flag) {mSilentReloadOnExternalChanges=flag;}
 		void setUseQSaveFile(bool flag) {m_useQSaveFile=flag;}
 
-		inline int horizontalOffset() const
+        inline qreal horizontalOffset() const
         {
 #if defined Q_OS_MAC
             return horizontalScrollBar()->value();
@@ -309,7 +309,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
             return horizontalScrollBar()->isVisible() ? horizontalScrollBar()->value() : 0;
 #endif
         }
-		inline int verticalOffset() const
+        inline qreal verticalOffset() const
         {
 #if defined Q_OS_MAC
             return verticalScrollBar()->value() * m_doc->getLineSpacing();  // does this work always ?
@@ -476,8 +476,8 @@ public slots:
 		void resetZoom();
 		void zoom(int n);
 		
-		void setPanelMargins(int l, int t, int r, int b);
-		void getPanelMargins(int *l, int *t, int *r, int *b) const;
+        void setPanelMargins(qreal l, qreal t, qreal r, qreal b);
+        void getPanelMargins(qreal *l, qreal *t, qreal *r, qreal *b) const;
 		
 		void setTitle(const QString& title);
 		
@@ -612,7 +612,7 @@ public slots:
 
 		void repaintCursor();
 		void ensureVisible(int line);
-		void ensureVisible(const QRect &rect);
+        void ensureVisible(const QRectF &rect);
 		
 	protected:
 		void preInsertUnindent(QDocumentCursor& c, const QString& text, int additionalUnindent);
@@ -703,7 +703,7 @@ public slots:
 		
 		int m_state;
 		bool m_selection;
-		QRect m_crect, m_margins;
+        QRectF m_crect, m_margins;
 		QPoint m_clickPoint, m_dragPoint;
 		QBasicTimer m_blink, m_click, m_drag, m_autoScroll;
 
