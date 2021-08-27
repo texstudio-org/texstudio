@@ -102,6 +102,7 @@
 \lVert#m
 \mod#m
 \mspace{dimen}#m
+\multlinegap#*
 \nobreakdash
 \notag#m
 \numberwithin{env}{counter}
@@ -116,6 +117,8 @@
 \raisetag{dimen}
 \rvert#m
 \rVert#m
+\shoveright{arg}#m
+\shoveleft{arg}#m
 \sideset{left}{right}{symbol}#m
 \smash{argument}
 \smash[valign]{argument}
