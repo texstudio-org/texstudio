@@ -3104,16 +3104,16 @@ void QEditor::paintEvent(QPaintEvent *e)
 	QRect r(e->rect());
 	#endif
 
-	//qDebug() << r;
+    //qDebug() << r << yOffset;
 
 	//p.setClipping(false);
 	p.translate(-xOffset, -yOffset);
 
 	QDocument::PaintContext ctx;
 	ctx.xoffset = xOffset;
-	ctx.yoffset = r.y() + yOffset;
+    ctx.yoffset = yOffset;// + ry;//r.y();
 	ctx.width = viewport()->width();
-	ctx.height = qMin(r.height(), viewport()->height());
+    ctx.height = viewport()->height();//qMin(r.height(), viewport()->height());
 	ctx.palette = palette();
 	if (m_cursor.isValid())
 		ctx.cursors << m_cursor.handle();
@@ -3164,7 +3164,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 	QBrush bg = palette().base();
 	if ( m_doc->getBackground().isValid() )
 		bg.setColor(m_doc->getBackground());
-    qreal width = qMax(viewport()->width(), m_doc->width());
+    qreal width = qMax(viewport()->width(), qCeil(m_doc->width()));
     qreal height = qMax(viewport()->height(), qCeil(m_doc->height() + m_doc->getLineSpacing()));
 	// the actual visible height may be up to one line larger than the doc height,
 	// because the doc lines is are aligned to the top of the viewport. The viewport
@@ -4210,7 +4210,7 @@ void QEditor::resizeEvent(QResizeEvent *)
 
 	    m_doc->setWidthConstraint(wrapWidth());
 	} else {
-	    horizontalScrollBar()->setMaximum(qMax(0, m_doc->width() - viewportSize.width()));
+        horizontalScrollBar()->setMaximum(qMax(0., m_doc->width() - viewportSize.width()));
 	    horizontalScrollBar()->setPageStep(viewportSize.width());
 	}
 
@@ -5740,9 +5740,9 @@ QRectF QEditor::selectionRect() const
 	if ( s.startLine == s.endLine )
 		return cursorRect(m_cursor);
 
-	int y = m_doc->y(s.startLine);
+    qreal y = m_doc->y(s.startLine);
     QRectF r = m_doc->lineRect(s.endLine);
-	int height = r.y() + r.height() - y;
+    qreal height = r.y() + r.height() - y;
 
     r = QRectF(0, y, viewport()->width(), height);
 	r.translate(-horizontalOffset(), -verticalOffset());
