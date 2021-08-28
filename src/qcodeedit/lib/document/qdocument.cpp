@@ -1400,7 +1400,7 @@ void QDocument::setEditCursor(QDocumentCursor *c)
 	The width of the document is that of longest text line,
 	or the maximal width if a width constraint is set.
 */
-int QDocument::width() const
+qreal QDocument::width() const
 {
 	return m_impl ? m_impl->m_width : 0;
 }
@@ -1408,7 +1408,7 @@ int QDocument::width() const
 /*!
 	\return the height of the document, in pixels
 */
-int QDocument::height() const
+qreal QDocument::height() const
 {
 	return m_impl ? m_impl->m_height : 0;
 }
@@ -1419,7 +1419,7 @@ int QDocument::height() const
 	Setting a width constraint on a document achieves line
 	wrapping.
 */
-int QDocument::widthConstraint() const
+qreal QDocument::widthConstraint() const
 {
 	return (m_impl && m_impl->m_constrained) ? m_impl->m_width : 100000000;
 }
@@ -2440,9 +2440,9 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 
 	if (ranges.isEmpty()){
 		if (hasCookie(QDocumentLine::PICTURE_COOKIE)) {
-			int h = getPictureCookieHeight();
+            qreal h = getPictureCookieHeight();
 			QPair<int,int> l(text().length(), 0);
-			for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
+            for (int i=0;i<qRound(1.*h/QDocumentPrivate::m_lineSpacing);i++) { l.second++; l.first++; m_frontiers << l; }
 		}
 		return;
 	}
@@ -2603,9 +2603,9 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 	}
 
 	if (hasCookie(QDocumentLine::PICTURE_COOKIE)) {
-		int h = getPictureCookieHeight();
+        qreal h = getPictureCookieHeight();
         QPair<int,qreal> l(text().length(), rx);
-		for (int i=0;i<h/QDocumentPrivate::m_lineSpacing;i++) { l.second++; l.first++; m_frontiers << l; }
+        for (int i=0;i<qRound(1.*h/QDocumentPrivate::m_lineSpacing);i++) { l.second++; l.first++; m_frontiers << l; }
 	}
 }
 
@@ -3629,10 +3629,11 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
  *
  * Access is not using a mutex. Locking needs to be done before calling this.
  */
-int QDocumentLineHandle::getPictureCookieHeight() const{
+qreal QDocumentLineHandle::getPictureCookieHeight() const{
 	if (!hasCookie(QDocumentLine::PICTURE_COOKIE)) return 0;
-    int h = 2*PICTURE_BORDER + getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>().height();
-    if (h % qRound(QDocumentPrivate::m_lineSpacing) > 0) h += QDocumentPrivate::m_lineSpacing - h % qRound(QDocumentPrivate::m_lineSpacing);
+    qreal h = 2*PICTURE_BORDER + getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>().height();
+    h = qCeil(h/QDocumentPrivate::m_lineSpacing)*QDocumentPrivate::m_lineSpacing;
+    //if (fmod(h,QDocumentPrivate::m_lineSpacing) > 0) h += QDocumentPrivate::m_lineSpacing - h % qRound(QDocumentPrivate::m_lineSpacing);
 	return h;
 }
 
@@ -4831,7 +4832,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if (count < 0) { count = - count; op = QDocumentCursor::PreviousCharacter; }
 			else if (count == 0) {
                 QPointF current = l1.cursorToDocumentOffset(m_begOffset);
-				int lineHeight = (l1.getLayout()->lineCount() - 1) * QDocumentPrivate::m_lineSpacing;
+                qreal lineHeight = (l1.getLayout()->lineCount() - 1) * QDocumentPrivate::m_lineSpacing;
 				if (current.y() == lineHeight
 					&& current.x() == l1.cursorToDocumentOffset(l1.documentOffsetToCursor(document()->width()+5, lineHeight + QDocumentPrivate::m_lineSpacing / 2)).x())
 					count = l1.length() - m_begOffset + 1;
@@ -6790,10 +6791,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
     lcxt.pos = 1. * firstLine * m_lineSpacing;
 	lcxt.visiblePos = lcxt.pos;
-	if (lcxt.visiblePos < cxt.yoffset) {
-		int n = (cxt.yoffset-lcxt.visiblePos) / m_lineSpacing;
+    if (lcxt.visiblePos < cxt.yoffset) {
+        int n = qRound((cxt.yoffset-lcxt.visiblePos) / m_lineSpacing);
         lcxt.visiblePos = lcxt.pos + 1. * n * m_lineSpacing;
-	}
+    }
 
 	// adjust first line to take selections into account...
 	foreach ( const QDocumentSelection& s, cxt.selections )
@@ -6964,10 +6965,10 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 	if (dlh->hasCookie(QDocumentLine::PICTURE_COOKIE)) {
 		QPixmap pm = dlh->getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>();
 
-		int reservedHeight = dlh->getPictureCookieHeight();
+        const qreal reservedHeight = dlh->getPictureCookieHeight();
 		dlh->unlock();  // readLock
 
-		pseudoWrap = reservedHeight / m_lineSpacing;
+        pseudoWrap = qRound(reservedHeight / m_lineSpacing);
         qreal x = qMax(-m_leftMargin, (m_width - pm.width()) / 2);
         // special treatment if line width > viewport width (e.g. no line wrap)
         x = qMin(x,(cxt.width-pm.width())/2);
@@ -7057,7 +7058,6 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			}
 			ht += m_lineSpacing;
 		}
-
 		dlh->draw(lcxt.docLineNr, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
 
 		if (useLineCache) {
@@ -7084,7 +7084,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			p->save();
 			p->setPen(linescolor);
 
-			int y = m_lineSpacing * (wrap + 1) - 1;
+            qreal y = m_lineSpacing * (wrap + 1) - 1;
 			p->drawLine(0, y, m_width, y);
 			p->restore();
 		}
@@ -7181,7 +7181,7 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 					if (width == 0) {
 						width = textWidth(0, " ");
 					}
-					p->drawRect(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing);
+                    p->drawRect(QRectF(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing));
 				}else{
 					// regular line cursor
                     QPointF pt = cur.documentPosition();
@@ -7497,13 +7497,13 @@ void QDocumentPrivate::adjustWidth(int line)
 
 void QDocumentPrivate::setHeight()
 {
-	int oldHeight = m_height;
+    qreal oldHeight = m_height;
 	int last = visualLine(m_lines.count() - 1) + 1;
 
 	if ( m_lines.count() )
 		last += m_lines.last()->m_frontiers.count();
 
-	m_height = last * m_lineSpacing;
+    m_height = 1. * last * m_lineSpacing;
 
 	if ( oldHeight != m_height )
 		emitHeightChanged();
@@ -7596,7 +7596,7 @@ void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
 		m_ascent = fm.ascent();
 		m_descent = fm.descent();
 		m_lineHeight = fm.height();
-		m_leading = fm.leading() + qRound((m_lineSpacingFactor-1.0)*m_lineHeight);
+        m_leading = fm.leading() + (m_lineSpacingFactor-1.0)*m_lineHeight;
 		m_lineSpacing = m_leading+m_lineHeight;
 		//if ( !m_fixedPitch )
 		//	qDebug("unsafe computations...");

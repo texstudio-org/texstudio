@@ -216,9 +216,9 @@ class QCE_EXPORT QDocument : public QObject
 		Q_INVOKABLE bool canUndo() const;
 		Q_INVOKABLE bool canRedo() const;
 
-		int width() const;
-		int height() const;
-		int widthConstraint() const;
+        qreal width() const;
+        qreal height() const;
+        qreal widthConstraint() const;
 
 		int lines() const;
 		Q_INVOKABLE int lineCount() const;

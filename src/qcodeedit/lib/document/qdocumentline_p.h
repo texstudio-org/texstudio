@@ -173,7 +173,7 @@ public:
 		void applyOverlays() const;
 		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = nullptr, int from = 0, int until = -1) const;
 
-		int getPictureCookieHeight() const;
+        qreal getPictureCookieHeight() const;
 
 		template <template<class T> class CONTAINER_TYPE>
 		CONTAINER_TYPE<QTextLayout::FormatRange> decorations() const;
