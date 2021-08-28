@@ -314,7 +314,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 #if defined Q_OS_MAC
             return verticalScrollBar()->value() * m_doc->getLineSpacing();  // does this work always ?
 #else
-            return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->getLineSpacing() : 0;
+            return verticalScrollBar()->isVisible() ? 1. * verticalScrollBar()->value() * m_doc->getLineSpacing() : 0;
 #endif
         }
 		

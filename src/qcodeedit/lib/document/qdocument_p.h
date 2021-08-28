@@ -74,7 +74,7 @@ class QCE_EXPORT QDocumentPrivate
 			int editLineNr;
 			int firstLine; /* constant */
             qreal pos;  /* vertical position */
-			int visiblePos;
+            qreal visiblePos;
 			bool inSelection;
 			QBrush base; /* constant */
 			QBrush alternate; /* constant */
@@ -272,8 +272,8 @@ public:
 		
 		bool m_constrained;
 		bool m_hardLineWrap,m_lineWidthConstraint;
-		int m_leftMargin;
-		int m_width, m_height;
+        qreal m_leftMargin;
+        qreal m_width, m_height;
 		
 		int m_tabStop;
 		static int m_defaultTabStop;
