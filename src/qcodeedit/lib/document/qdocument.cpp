@@ -3822,7 +3822,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			{
 				//flush mergedRange
 				if(mergeXpos>=0){
-					p->restore();
+                    p->restore();
                     p->drawText(QPointF(mergeXpos, ypos + QDocumentPrivate::m_ascent), mergeText);
 					mergeXpos=-1;
 					mergeText.clear();
@@ -3878,7 +3878,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 			if(mergeXpos>=0 && (fmt&(~FORMAT_SPACE)) != (mergeFormat&(~FORMAT_SPACE))){
 				// flush
-				p->restore();
+                p->restore();
                 p->drawText(QPointF(mergeXpos, ypos + QDocumentPrivate::m_ascent), mergeText);
 				mergeXpos=-1;
 				mergeText.clear();
@@ -4001,7 +4001,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 							p->save();
 							p->setPen(Qt::lightGray);
 							int headSize = qMin(QDocumentPrivate::m_lineHeight/8, currentSpaceWidth-2);
-							p->translate(xpos+xoff-2, ypos + QDocumentPrivate::m_lineHeight/2);
+                            p->translate(xpos+xoff-2, ypos + QDocumentPrivate::m_lineHeight/2);
                             p->drawLine(QPointF(-xoff+3,0),QPointF(0,0));
                             p->drawLine(QPointF(-headSize,-headSize),QPointF(0,0));
                             p->drawLine(QPointF(-headSize, headSize),QPointF(0,0));
@@ -6745,8 +6745,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	updateStaticCaches(p->device());
 	updateInstanceCaches(p->device(), cxt);
 
-    int firstLine = qMax(0., cxt.yoffset / m_lineSpacing);
-    int lastLine = qMax(0., firstLine + (cxt.height / m_lineSpacing));
+    int firstLine = qMax(0, qFloor(cxt.yoffset / m_lineSpacing));
+    int lastLine = qMax(0, qCeil((cxt.yoffset+cxt.height) / m_lineSpacing));
 
     if ( fmod(cxt.height,m_lineSpacing)>0.1 )
 		++lastLine;
@@ -6822,7 +6822,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			//qDebug("line %i not valid", i);
 			break;
 		}
-		drawTextLine(p, cxt, lcxt);
+        drawTextLine(p, cxt, lcxt);
 	}
     p->translate(-m_leftMargin, 0);
 	//qDebug("painting done in %i ms...", t.elapsed());
@@ -6957,7 +6957,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 	p->save();  // every line get's its own standard pointer to prevent leaking of pointer state
 
 	// simplify line drawing
-	p->translate(0, lcxt.pos);
+    p->translate(QPointF(0, lcxt.pos));
 
 	// draw text with caching
 	int pseudoWrap = 0;
@@ -7058,7 +7058,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 			}
 			ht += m_lineSpacing;
 		}
-		dlh->draw(lcxt.docLineNr, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
+        dlh->draw(lcxt.docLineNr, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
 
 		if (useLineCache) {
 			if(imageCache) {
@@ -7091,7 +7091,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 	}
 
 	// see above
-	p->translate(0, -lcxt.pos);
+    p->translate(QPointF(0, -lcxt.pos));
 	p->restore();
 
 	// shift pos to the end of the line (ready for next line)

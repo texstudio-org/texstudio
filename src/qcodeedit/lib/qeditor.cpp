@@ -3107,7 +3107,7 @@ void QEditor::paintEvent(QPaintEvent *e)
     //qDebug() << r << yOffset;
 
 	//p.setClipping(false);
-	p.translate(-xOffset, -yOffset);
+    p.translate(QPointF(-xOffset, -yOffset));
 
 	QDocument::PaintContext ctx;
 	ctx.xoffset = xOffset;
