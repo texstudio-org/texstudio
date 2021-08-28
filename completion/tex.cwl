@@ -752,6 +752,7 @@
 \ss#n
 \star#m
 \strut#*n
+\strutbox#*
 \subset#m
 \subseteq#m
 \succ#m
