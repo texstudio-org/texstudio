@@ -1062,7 +1062,7 @@ void QDocument::print(QPrinter *pr)
 	}
 
 	const int lineCount = lines();
-    const int linesPerPage = 1.0*fit.height() / m_impl->m_lineSpacing;
+    const int linesPerPage = qFloor(1.0*fit.height() / m_impl->m_lineSpacing);
 	int pageCount = lineCount / linesPerPage;
 
 	if ( lineCount % linesPerPage )
@@ -1070,8 +1070,8 @@ void QDocument::print(QPrinter *pr)
 
 	//qDebug("%i lines per page -> %i pages", linesPerPage, pageCount);
 
-	const int pageWidth = fit.width();
-    const int pageHeight = 1.0 * linesPerPage * m_impl->m_lineSpacing;
+    const int pageWidth = qCeil(fit.width());
+    const int pageHeight = qCeil(1.0 * linesPerPage * m_impl->m_lineSpacing);
 
 	int firstPage = pr->fromPage(), lastPage = pr->toPage();
 
@@ -1083,7 +1083,7 @@ void QDocument::print(QPrinter *pr)
 	cxt.xoffset = 0;
 	cxt.yoffset = firstPage * pageHeight;
 	cxt.width = pageWidth;
-	cxt.height = pageHeight - m_impl->m_lineSpacing;
+    cxt.height = 0. + pageHeight - m_impl->m_lineSpacing;
 	cxt.palette = QApplication::palette();
 	cxt.fillCursorRect = false;
 	cxt.blinkingCursor = false;
@@ -6973,7 +6973,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
         // special treatment if line width > viewport width (e.g. no line wrap)
         x = qMin(x,(cxt.width-pm.width())/2);
 
-        qreal y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2;
+        qreal y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2.;
         p->fillRect(QRectF(x - PICTURE_BORDER, y - PICTURE_BORDER, pm.width() + 2*PICTURE_BORDER, pm.height() + 2* PICTURE_BORDER), Qt::white);
         p->drawPixmap(QPointF(x, y), pm);
 
@@ -7185,7 +7185,7 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 				}else{
 					// regular line cursor
                     QPointF pt = cur.documentPosition();
-                    QPointF curHt(0, QDocumentPrivate::m_lineSpacing-1);
+                    QPointF curHt(0, QDocumentPrivate::m_lineSpacing-1.);
 					p->drawLine(pt, pt + curHt);
 					if (m_drawCursorBold) {
 						pt.setX(pt.x() + 1);

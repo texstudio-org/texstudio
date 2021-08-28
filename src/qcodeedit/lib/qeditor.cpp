@@ -3053,7 +3053,7 @@ void QEditor::setVerticalScrollBarMaximum()
     const qreal ls = m_doc->getLineSpacing();
 	QScrollBar* vsb = verticalScrollBar();
     vsb->setMaximum(qMax(0., 1. + (m_doc->height() - viewportHeight) / ls));
-	vsb->setPageStep(viewportSize.height() / ls);
+    vsb->setPageStep(qCeil(1.* viewportSize.height() / ls));
 }
 
 /*!
@@ -4850,7 +4850,7 @@ void QEditor::pageUp(QDocumentCursor::MoveMode moveMode)
 	if ( m_cursor.atStart() )
 		return;
 
-	int n = viewport()->height() / QDocument::getLineSpacing();
+    int n = qFloor(1. * viewport()->height() / QDocument::getLineSpacing());
 
 	repaintCursor();
 	m_cursor.movePosition(n, QDocumentCursor::Up, moveMode);
@@ -4873,7 +4873,7 @@ void QEditor::pageDown(QDocumentCursor::MoveMode moveMode)
 	if ( m_cursor.atEnd() )
 		return;
 
-	int n = viewport()->height() / document()->getLineSpacing();
+    int n = qFloor(1. * viewport()->height() / document()->getLineSpacing());
 
 	repaintCursor();
 	m_cursor.movePosition(n, QDocumentCursor::Down, moveMode);
@@ -5548,7 +5548,7 @@ void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflag
 
     const qreal ls = document()->getLineSpacing();
 
-	int surroundingHeight = ls * surrounding;
+    qreal surroundingHeight = ls * surrounding;
 
     qreal ypos = pos.y(),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
@@ -5557,12 +5557,12 @@ void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflag
 	int ytarget = -1;
 
      if ( ypos - surroundingHeight < yval ) {// cursor above
-        ytarget = ypos / ls;
+        ytarget = qFloor(ypos / ls);
      } else if ( yend + surroundingHeight > (yval + ylen ) ) {// cursor below
           if (ypos > (yval + ylen) && (mflags & AllowScrollToTop)) { // cursor off screen: maximal move (cursor at topmost pos + surrounding - like in cursor above)
-            ytarget = ypos / ls;
+            ytarget = qFloor(ypos / ls);
           } else { // cursor still on screen: minimal move (cursor at bottommost pos - surrounding)
-            ytarget = 1 + (yend - ylen) / ls + surrounding + surrounding;
+            ytarget = qFloor(1. + (yend - ylen) / ls + surrounding + surrounding);
           }
      }
 
@@ -5638,16 +5638,16 @@ void QEditor::ensureVisible(int line)
 	if ( !m_doc )
 		return;
 
-	const int ls = document()->getLineSpacing();
+    const qreal ls = document()->getLineSpacing();
     qreal ypos = m_doc->y(line),
 		yval = verticalScrollBar()->value() * ls, //verticalOffset(),
 		ylen = viewport()->height(),
 		yend = ypos + ls;
 
 	if ( ypos < yval )
-		verticalScrollBar()->setValue(ypos / ls);
+        verticalScrollBar()->setValue(qFloor(ypos / ls));
 	else if ( yend > (yval + ylen) )
-		verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
+        verticalScrollBar()->setValue(qFloor(1. + (yend - ylen) / ls));
 
 }
 
@@ -5666,9 +5666,9 @@ void QEditor::ensureVisible(const QRectF &rect)
 		yend = ypos + rect.height();
 
 	if ( ypos < yval )
-		verticalScrollBar()->setValue(ypos / ls);
+        verticalScrollBar()->setValue(qFloor(ypos / ls));
 	else if ( yend > (yval + ylen) )
-		verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
+        verticalScrollBar()->setValue(qFloor(1. + (yend - ylen) / ls));
 
 	//verticalScrollBar()->setValue(rect.y());
 }
@@ -5711,9 +5711,9 @@ void QEditor::scrollToFirstLine(int l){
     const qreal yend = ypos + ylen;
 
 	if ( ypos < yval )
-	    verticalScrollBar()->setValue(ypos / ls);
+        verticalScrollBar()->setValue(qFloor(ypos / ls));
 	else if ( yend > (yval + ylen) )
-	    verticalScrollBar()->setValue(1 + (yend - ylen) / ls);
+        verticalScrollBar()->setValue(qFloor(1. + (yend - ylen) / ls));
 
 }
 
@@ -6028,8 +6028,8 @@ void QEditor::scrollContentsBy(int dx, int dy)
 	#ifdef Q_GL_EDITOR
 	viewport()->update();
 	#else
-	const int ls = document()->getLineSpacing();
-	viewport()->scroll(dx, dy * ls);
+    const qreal ls = document()->getLineSpacing();
+    viewport()->scroll(dx, qFloor(dy * ls));
 	#endif
 
 	if (dy != 0)
