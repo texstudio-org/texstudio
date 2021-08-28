@@ -21,7 +21,7 @@ class AboutDialog : public QDialog
 	Q_OBJECT
 
 public:
-	AboutDialog(QWidget *parent = 0); ///< set-up about dialog
+    AboutDialog(QWidget *parent = nullptr); ///< set-up about dialog
 	~AboutDialog();
 	Ui::AboutDialog ui;
 private slots:

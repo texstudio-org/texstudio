@@ -20,7 +20,7 @@ class ArrayDialog : public QDialog
 	Q_OBJECT
 
 public:
-	ArrayDialog(QWidget *parent = 0, const char *name = 0);
+    ArrayDialog(QWidget *parent = nullptr, const char *name = 0);
 	~ArrayDialog();
 	Ui::ArrayDialog ui;
 	QString getLatexText();
