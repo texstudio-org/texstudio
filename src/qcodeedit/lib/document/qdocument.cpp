@@ -1655,7 +1655,7 @@ QRectF QDocument::lineRect(int line) const
 {
     const qreal yoff = y(line);
 
-    return (yoff != -1) ? QRectF(0, yoff, width(), this->line(line).lineSpan() * m_impl->m_lineSpacing) : QRectF();
+    return (yoff != -1) ? QRectF(0, yoff, width(), 1. * this->line(line).lineSpan() * m_impl->m_lineSpacing) : QRectF();
 }
 
 /*!
@@ -1734,7 +1734,7 @@ void QDocument::cursorForDocumentPosition(const QPointF& p, int& line, int& colu
 		return;
 
 	//qDebug("%i %i", line, wrap);
-    column = l.documentOffsetToCursor(p.x(), wrap * QDocumentPrivate::m_lineSpacing,disallowPositionBeyondLine);
+    column = l.documentOffsetToCursor(p.x(), 1. * wrap * QDocumentPrivate::m_lineSpacing,disallowPositionBeyondLine);
 
 	//qDebug("(%i, %i) -> (%i [+%i], %i)", p.x(), p.y(), line, wrap, column);
 }
@@ -2618,7 +2618,7 @@ void QDocumentLineHandle::updateWrapAndNotifyDocument(int line) const{
 
 	if ( lw ) m_doc->impl()->m_wrapped[line] = lw;
 	else m_doc->impl()->m_wrapped.remove(line);
-	m_doc->impl()->m_height += (lw-oldLW)*m_doc->impl()->m_lineSpacing;
+    m_doc->impl()->m_height += 1.*(lw-oldLW)*m_doc->impl()->m_lineSpacing;
 }
 
 int QDocumentLineHandle::cursorToX(int cpos) const
@@ -2839,7 +2839,7 @@ int QDocumentLineHandle::documentOffsetToCursor(qreal x, qreal y, bool disallowP
 
 	x -= d->leftMarginAndPadding();  // remove margin and padding
 
-	int wrap = y / QDocumentPrivate::m_lineSpacing;
+    int wrap = qFloor(y / QDocumentPrivate::m_lineSpacing);
 
 	if ( wrap > m_frontiers.count() )
 	{
@@ -2967,7 +2967,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, qreal& x, qreal& y) c
 	int wrap = wrappedLineForCursorNoLock(cpos);
 
 	x = d->leftMarginAndPadding();
-	y = wrap * QDocumentPrivate::m_lineSpacing;
+    y = 1. * wrap * QDocumentPrivate::m_lineSpacing;
 
 	if ( wrap )
 	{
@@ -3513,7 +3513,7 @@ void QDocumentLineHandle::layout(int lineNr) const
 		if ( m_doc && lw != oldLW ) {
 			if ( lw ) m_doc->impl()->m_wrapped[lineNr] = lw;
 			else m_doc->impl()->m_wrapped.remove(lineNr);
-			m_doc->impl()->m_height += (lw-oldLW)*m_doc->impl()->m_lineSpacing;
+            m_doc->impl()->m_height += 1.*(lw-oldLW)*m_doc->impl()->m_lineSpacing;
 		}
 	} else {
 		delete m_layout;
@@ -3632,7 +3632,7 @@ void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const
 qreal QDocumentLineHandle::getPictureCookieHeight() const{
 	if (!hasCookie(QDocumentLine::PICTURE_COOKIE)) return 0;
     qreal h = 2*PICTURE_BORDER + getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>().height();
-    h = qCeil(h/QDocumentPrivate::m_lineSpacing)*QDocumentPrivate::m_lineSpacing;
+    h = qCeil(1.*h/QDocumentPrivate::m_lineSpacing)*QDocumentPrivate::m_lineSpacing;
     //if (fmod(h,QDocumentPrivate::m_lineSpacing) > 0) h += QDocumentPrivate::m_lineSpacing - h % qRound(QDocumentPrivate::m_lineSpacing);
 	return h;
 }
@@ -4832,7 +4832,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if (count < 0) { count = - count; op = QDocumentCursor::PreviousCharacter; }
 			else if (count == 0) {
                 QPointF current = l1.cursorToDocumentOffset(m_begOffset);
-                qreal lineHeight = (l1.getLayout()->lineCount() - 1) * QDocumentPrivate::m_lineSpacing;
+                qreal lineHeight = 1.*(l1.getLayout()->lineCount() - 1) * QDocumentPrivate::m_lineSpacing;
 				if (current.y() == lineHeight
 					&& current.x() == l1.cursorToDocumentOffset(l1.documentOffsetToCursor(document()->width()+5, lineHeight + QDocumentPrivate::m_lineSpacing / 2)).x())
 					count = l1.length() - m_begOffset + 1;
@@ -5125,7 +5125,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 					if (p.y() == curPos.y()) target += 1;
 					else if (m.y() == curPos.y()) target -= 1;
 				}
-				if (m_begOffset == target) target = l1.documentOffsetToCursor(targetPosition, (l1.getLayout()->lineCount() - 1 + 1) * QDocumentPrivate::m_lineSpacing);
+                if (m_begOffset == target) target = l1.documentOffsetToCursor(targetPosition, 1.*(l1.getLayout()->lineCount() - 1 + 1) * QDocumentPrivate::m_lineSpacing);
 				if (m_begOffset == target) return false;
 				m_begOffset = target;
 				refreshColumnMemory(); //??
