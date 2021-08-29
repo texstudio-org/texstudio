@@ -2427,7 +2427,7 @@ void QEditor::setCursorPosition(const QPoint& p, bool moveView)
 */
 void QEditor::emitCursorPositionChanged()
 {
-	m_cursorLinesFromViewTop = m_cursor.documentPosition().y() / m_doc->getLineSpacing() - verticalScrollBar()->value();
+    m_cursorLinesFromViewTop = qRound(m_cursor.documentPosition().y() / m_doc->getLineSpacing() - verticalScrollBar()->value());
 	emit cursorPositionChanged();
 	emit copyAvailable(m_cursor.hasSelection());
 
@@ -5220,7 +5220,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                 newText.append('\n');
                 newText.append(lines.at(i).trimmed());
             }
-            c.insertText(newText,true);
+            c.insertText(newText,true); // leads to insertion of text twice which runs through all documentPatched steps. TODO: find a way to insert text only once
         }
 
         // FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
