@@ -5502,10 +5502,10 @@ void QEditor::repaintCursor()
 	    if(m_doc->line(i).hasFlag(QDocumentLine::LayoutDirty)||!m_doc->line(i).hasFlag(QDocumentLine::FormatsApplied))
 		updateAll=true;
 	}
-	if(updateAll){
+    if(updateAll){
 	    viewport()->update();
 	    return;
-	}
+    }
 
     QRectF r = cursorRect();
 
