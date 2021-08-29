@@ -1,9 +1,9 @@
 # cancel.cwl
-# Edson 27-12-2010
+# Edson 27-12-2010; Matthew Bertucci 27-8-2021
 
-\cancel{expression}
-\bcancel{expression}
-\xcance{expression}
-\cancelto{value}{expression}
+\cancel{expression}#m
+\bcancel{expression}#m
+\xcancel{expression}#m
+\cancelto{value}{expression}#m
 
-\CancelColor
+\CancelColor#*

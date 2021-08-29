@@ -88,6 +88,7 @@
 \end{xalignat*}
 \end{xxalignat}
 \eqref{label}#r
+\genfrac{left-delim}{right-delim}{thickness%l}{mathstyle}{numerator}{denominator}#m
 \hdotsfor{columns}
 \hdotsfor[multiplier]{columns}
 \idotsint#m
