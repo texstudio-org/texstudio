@@ -7,6 +7,7 @@ TeXstudio 4.0.0
 - handle text (e.g. \text{text}) in mathenv as text with spell checking
 - performance improvement for large files with large number of labels and/or large number of includes
 - fix that search options are persistant
+- automatic structure scrolling can be turned off (#1742)
 - some bug fixes
 
 
