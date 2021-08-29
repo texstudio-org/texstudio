@@ -4833,8 +4833,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			else if (count == 0) {
                 QPointF current = l1.cursorToDocumentOffset(m_begOffset);
                 qreal lineHeight = 1.*(l1.getLayout()->lineCount() - 1) * QDocumentPrivate::m_lineSpacing;
-				if (current.y() == lineHeight
-					&& current.x() == l1.cursorToDocumentOffset(l1.documentOffsetToCursor(document()->width()+5, lineHeight + QDocumentPrivate::m_lineSpacing / 2)).x())
+                if (qFuzzyCompare(current.y(),lineHeight)
+                    && qFuzzyCompare(current.x(),l1.cursorToDocumentOffset(l1.documentOffsetToCursor(document()->width()+5, lineHeight + QDocumentPrivate::m_lineSpacing / 2)).x()))
 					count = l1.length() - m_begOffset + 1;
 				else {
 					count = 1;
