@@ -11062,7 +11062,7 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
         if(currentSection && (se==currentSection)){
             item->setData(0,Qt::UserRole+1,item->background(0));
             item->setBackground(0,activeItemColor);
-            if (!mDontScrollToItem){
+            if (!mDontScrollToItem && configManager.structureScrollToCurrentPosition){
                 if(tocMode){
                     topTOCTreeWidget->scrollToItem(item);
                 }else{

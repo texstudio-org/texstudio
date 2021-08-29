@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>620</width>
-            <height>735</height>
+            <width>606</width>
+            <height>669</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -740,8 +740,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>821</width>
-            <height>598</height>
+            <width>770</width>
+            <height>577</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -898,8 +898,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>209</width>
-                   <height>79</height>
+                   <width>723</width>
+                   <height>76</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -2001,9 +2001,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-843</y>
-            <width>746</width>
-            <height>1826</height>
+            <y>-529</y>
+            <width>722</width>
+            <height>1661</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2505,58 +2505,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
               <string>Structure Panel</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_2">
-              <item row="7" column="0">
-               <widget class="QCheckBox" name="checkBoxMarkStructureElementsBeyondEnd">
-                <property name="text">
-                 <string>Mark structure elements beyond \end{document}</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_64">
-                <property name="text">
-                 <string>Reference commands in context menu:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0">
-               <widget class="QCheckBox" name="checkBoxMarkStructureElementsInAppendix">
-                <property name="text">
-                 <string>Mark structure elements in appendix</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_83">
-                <property name="text">
-                 <string>Regular expression for TODO comment: </string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="2">
-               <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
-              </item>
-              <item row="5" column="2">
-               <widget class="QLineEdit" name="leRegExpTODO"/>
-              </item>
-              <item row="0" column="0" colspan="3">
-               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
-                <property name="text">
-                 <string>Keep indentation of includes in structure tree</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="2">
-               <widget class="QCheckBox" name="checkBoxShowCommentedElementsInStructure">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Show elements in comments</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="2">
+              <item row="10" column="2">
                <widget class="QComboBox" name="comboBoxTOCBackgroundColor">
                 <item>
                  <property name="text">
@@ -2575,6 +2524,73 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </item>
                </widget>
               </item>
+              <item row="9" column="0">
+               <widget class="QCheckBox" name="checkBoxMarkStructureElementsBeyondEnd">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Mark structure elements beyond \end{document}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_64">
+                <property name="text">
+                 <string>Reference commands in context menu:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="2">
+               <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
+              </item>
+              <item row="10" column="0">
+               <widget class="QCheckBox" name="checkBoxMarkStructureElementsInAppendix">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Mark structure elements in appendix</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="2">
+               <widget class="QLineEdit" name="leRegExpTODO"/>
+              </item>
+              <item row="9" column="2">
+               <widget class="QCheckBox" name="checkBoxShowCommentedElementsInStructure">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Show elements in comments</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_83">
+                <property name="text">
+                 <string>Regular expression for TODO comment: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
+                <property name="text">
+                 <string>Keep indentation of includes in structure tree</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QCheckBox" name="checkBoxScrollToCurrentPosition">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Scroll to current cursor position</string>
+                </property>
+               </widget>
+              </item>
              </layout>
              <zorder>checkBoxIndentIncludesInStructureTree</zorder>
              <zorder>label_64</zorder>
@@ -2585,6 +2601,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
              <zorder>leRegExpTODO</zorder>
              <zorder>checkBoxShowCommentedElementsInStructure</zorder>
              <zorder>comboBoxTOCBackgroundColor</zorder>
+             <zorder>checkBoxScrollToCurrentPosition</zorder>
             </widget>
            </item>
            <item>
@@ -3216,8 +3233,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>571</width>
-            <height>790</height>
+            <width>543</width>
+            <height>718</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3742,8 +3759,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>397</width>
-            <height>297</height>
+            <width>388</width>
+            <height>270</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4004,8 +4021,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>560</height>
+            <width>546</width>
+            <height>506</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">

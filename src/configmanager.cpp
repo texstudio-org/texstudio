@@ -452,6 +452,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("StructureView/ReferenceCommandsInContextMenu", &referenceCommandsInContextMenu, "\\ref", &pseudoDialog->leReferenceCommandsInContextMenu);
     registerOption("StructureView/BackgroundColorInGlobalTOC", &globalTOCbackgroundOptions, 1, &pseudoDialog->comboBoxTOCBackgroundColor);
     registerOption("StructureView/SingleDocMode", &structureShowSingleDoc, false);
+    registerOption("StructureView/ScrollToCurrentPosition", &structureScrollToCurrentPosition, true, &pseudoDialog->checkBoxScrollToCurrentPosition);
 
 	//beginRegisterGroup("texmaker");
 	//files

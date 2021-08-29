@@ -105,6 +105,7 @@ public:
     int globalTOCbackgroundOptions;
 	QString referenceCommandsInContextMenu;
     bool structureShowSingleDoc;
+    bool structureScrollToCurrentPosition;
 
 	//update
 	bool autoUpdateCheck;
