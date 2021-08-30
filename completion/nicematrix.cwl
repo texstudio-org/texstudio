@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 8/12/2021, v6.0
+# Matthew Bertucci 8/29/2021, v6.1
 
 #include:amsmath
 #include:array
@@ -9,47 +9,47 @@
 
 \NiceMatrixOptions{keyvals}
 
-\begin{NiceTabular}[keyvals]{preamble}#\tabular
-\begin{NiceTabular}[keyvals]{preamble}[keyvals]#S\tabular
+\begin{NiceTabular}[options%keyvals]{preamble}#\tabular
+\begin{NiceTabular}[options%keyvals]{preamble}[options%keyvals]#S\tabular
 \end{NiceTabular}
-\begin{NiceTabular*}[keyvals]{preamble}#\tabular
-\begin{NiceTabular*}[keyvals]{preamble}[keyvals]#S\tabular
+\begin{NiceTabular*}[options%keyvals]{preamble}#\tabular
+\begin{NiceTabular*}[options%keyvals]{preamble}[options%keyvals]#S\tabular
 \end{NiceTabular*}
-\begin{NiceTabularX}{width}[keyvals]{preamble}#\tabular
-\begin{NiceTabularX}{width}[keyvals]{preamble}[keyvals]#S\tabular
+\begin{NiceTabularX}{width}[options%keyvals]{preamble}#\tabular
+\begin{NiceTabularX}{width}[options%keyvals]{preamble}[keyvals]#S\tabular
 \end{NiceTabularX}
-\begin{NiceArray}[keyvals]{preamble}#m\array
-\begin{NiceArray}[keyvals]{preamble}[keyvals]#S\array
+\begin{NiceArray}[options%keyvals]{preamble}#m\array
+\begin{NiceArray}[options%keyvals]{preamble}[options%keyvals]#S\array
 \end{NiceArray}
-\begin{pNiceArray}[keyvals]{preamble}#m\array
-\begin{pNiceArray}[keyvals]{preamble}[keyvals]#S\array
+\begin{pNiceArray}[options%keyvals]{preamble}#m\array
+\begin{pNiceArray}[options%keyvals]{preamble}[options%keyvals]#S\array
 \end{pNiceArray}
-\begin{bNiceArray}[keyvals]{preamble}#m\array
-\begin{bNiceArray}[keyvals]{preamble}[keyvals]#S\array
+\begin{bNiceArray}[options%keyvals]{preamble}#m\array
+\begin{bNiceArray}[options%keyvals]{preamble}[options%keyvals]#S\array
 \end{bNiceArray}
-\begin{BNiceArray}[keyvals]{preamble}#m\array
-\begin{BNiceArray}[keyvals]{preamble}[keyvals]#S\array
+\begin{BNiceArray}[options%keyvals]{preamble}#m\array
+\begin{BNiceArray}[options%keyvals]{preamble}[options%keyvals]#S\array
 \end{BNiceArray}
-\begin{vNiceArray}[keyvals]{preamble}#m\array
-\begin{vNiceArray}[keyvals]{preamble}[keyvals]#S\array
+\begin{vNiceArray}[options%keyvals]{preamble}#m\array
+\begin{vNiceArray}[options%keyvals]{preamble}[options%keyvals]#S\array
 \end{vNiceArray}
-\begin{VNiceArray}[keyvals]{preamble}#m\array
-\begin{VNiceArray}[keyvals]{preamble}[keyvals]#S\array
+\begin{VNiceArray}[options%keyvals]{preamble}#m\array
+\begin{VNiceArray}[options%keyvals]{preamble}[options%keyvals]#S\array
 \end{VNiceArray}
-\begin{NiceMatrix}[keyvals]#m\array
+\begin{NiceMatrix}[options%keyvals]#m\array
 \end{NiceMatrix}
-\begin{pNiceMatrix}[keyvals]#m\array
+\begin{pNiceMatrix}[options%keyvals]#m\array
 \end{pNiceMatrix}
-\begin{bNiceMatrix}[keyvals]#m\array
+\begin{bNiceMatrix}[options%keyvals]#m\array
 \end{bNiceMatrix}
-\begin{BNiceMatrix}[keyvals]#m\array
+\begin{BNiceMatrix}[options%keyvals]#m\array
 \end{BNiceMatrix}
-\begin{vNiceMatrix}[keyvals]#m\array
+\begin{vNiceMatrix}[options%keyvals]#m\array
 \end{vNiceMatrix}
-\begin{VNiceMatrix}[keyvals]#m\array
+\begin{VNiceMatrix}[options%keyvals]#m\array
 \end{VNiceMatrix}
 
-\Block[keyvals]{i-j}<code>{arg}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+\Block[options%keyvals]{i-j}<code>{arg}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
 \Hline#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
@@ -68,8 +68,9 @@
 \columncolor[opt_color_model]{color}{i,j-k,l-,...}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 \rowcolors[opt_color_model]{row}{color1}{color2}[keyvals]#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 \rowlistcolors[opt_color_model]{row}{color1,color2,...}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+\RowStyle[options%keyvals]{formatting}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
-\begin{NiceMatrixBlock}[keyvals]
+\begin{NiceMatrixBlock}[options%keyvals]
 \end{NiceMatrixBlock}
 
 \Ldots[keyvals]#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
@@ -86,28 +87,27 @@
 \Vdotsfor{number}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
 \CodeAfter[keyvals]#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
-\line[keyvals]{i-j}{k-l}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+\line[options%keyvals]{i-j}{k-l}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 \SubMatrix%<delim1%>{i-j}{k-l}%<delim2%>[keyvals]#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
 \tabularnote{note}
 
 \rotate#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
-\AutoNiceMatrix[keyvals]{i-j}{pattern}#m
-\pAutoNiceMatrix[keyvals]{i-j}{pattern}#m
-\bAutoNiceMatrix[keyvals]{i-j}{pattern}#m
-\BAutoNiceMatrix[keyvals]{i-j}{pattern}#m
-\vAutoNiceMatrix[keyvals]{i-j}{pattern}#m
-\VAutoNiceMatrix[keyvals]{i-j}{pattern}#m
+\AutoNiceMatrix[options%keyvals]{i-j}{pattern}#m
+\pAutoNiceMatrix[options%keyvals]{i-j}{pattern}#m
+\bAutoNiceMatrix[options%keyvals]{i-j}{pattern}#m
+\BAutoNiceMatrix[options%keyvals]{i-j}{pattern}#m
+\vAutoNiceMatrix[options%keyvals]{i-j}{pattern}#m
+\VAutoNiceMatrix[options%keyvals]{i-j}{pattern}#m
 
-\begin{NiceArrayWithDelims}%<delim1%>%<delim2%>{preamble}[keyvals]#m
+\begin{NiceArrayWithDelims}{delim1}{delim2}{preamble}[options%keyvals]#m\array
 \end{NiceArrayWithDelims}
 
-\NiceMatrixLastEnv
+\NiceMatrixLastEnv#*
+\OnlyMainNiceMatrix{arg}#*
 
-\OnlyMainNiceMatrix{arg}
-
-\NotEmpty#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+\NotEmpty#*/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
 #keyvals:\begin{NiceTabular},\begin{NiceTabular*},\begin{NiceTabularX},\begin{NiceArray},\begin{pNiceArray},\begin{bNiceArray},\begin{BNiceArray},\begin{vNiceArray},\begin{VNiceArray},\begin{NiceMatrix},\begin{pNiceMatrix},\begin{bNiceMatrix},\begin{BNiceMatrix},\begin{vNiceMatrix},\begin{VNiceMatrix},\begin{NiceArrayWithDelims}
 t
@@ -209,6 +209,13 @@ create-cell-nodes
 cols=
 restart
 respect-blocks
+#endkeyvals
+
+#keyvals:\RowStyle
+cell-space-top-limit=##L
+cell-space-bottom-limit=##L
+cell-space-limits=##L
+color=#%color
 #endkeyvals
 
 #keyvals:\begin{NiceMatrixBlock}

@@ -1,16 +1,13 @@
 # kpfonts-otf package
-# Matthew Bertucci 7/25/2021
+# Matthew Bertucci 8/29/2021 for v0.37
 
 #include:unicode-math
 
-\Semibold
-\SemiboldItalic
-\Extrabold
-\ExtraboldItalic
+\sbseries
 \textsb{text}
+\ebseries
 \texteb{text}
-\Light
-\LightItalic
+\ltseries
 \textlt{text}
 \lscshape
 \pscshape
@@ -24,6 +21,7 @@
 
 \acwopencirclearrow#m
 \adots#m
+\Angstrom#m
 \approxident#m
 \assert#m
 \asteraccent{arg}#m
@@ -32,16 +30,22 @@
 \barvee#m
 \BbbA#m
 \BbbB#m
+\BbbC#m
 \BbbD#m
 \BbbE#m
 \BbbF#m
 \BbbG#m
+\BbbH#m
 \BbbI#m
 \BbbJ#m
 \BbbK#m
 \BbbL#m
 \BbbM#m
+\BbbN#m
 \BbbO#m
+\BbbP#m
+\BbbQ#m
+\BbbR#m
 \BbbS#m
 \Bbbsum#m
 \BbbT#m
@@ -50,8 +54,10 @@
 \BbbW#m
 \BbbX#m
 \BbbY#m
+\BbbZ#m
 \bigblacktriangledown#m
 \bigblacktriangleup#m
+\bigbot#m
 \bigcapplus#m
 \bigcupdot#m
 \bigsqcap#m
@@ -59,6 +65,7 @@
 \bigsqcupplus#m
 \bigsqcupplus#m
 \bigtimes#m
+\bigtop#m
 \boxast#m
 \boxbar#m
 \boxbslash#m
@@ -91,6 +98,9 @@
 \Coloneq#m
 \colonsim#m
 \Colonsim#m
+\concavediamond#m
+\concavediamondtickleft#m
+\concavediamondtickright#m
 \cupdot#m
 \cupleftarrow#m
 \cwopencirclearrow#m
@@ -119,6 +129,11 @@
 \downdasharrow#m
 \downuparrows#m
 \dualmap#m
+\eighthnote#m
+\enclosecircle#m
+\enclosediamond#m
+\enclosesquare#m
+\enclosetriangle#m
 \eqcolon#m
 \eqgtr#m
 \eqless#m
@@ -134,6 +149,7 @@
 \greater#m
 \gtreqqslantless#m
 \gtreqslantless#m
+\hrectangle#m
 \hrectangleblack#m
 \IM#m
 \imageof#m
@@ -169,7 +185,9 @@
 \lesseqqslantgtr#m
 \lesseqslantgtr#m
 \lgblkcircle#m
+\lgblksquare#m
 \lgwhtcircle#m
+\lgwhtsquare#m
 \lhd#m
 \linefeed#m
 \llcorner#m
@@ -185,6 +203,7 @@
 \Longmmapsto#m
 \longmmapsto#m
 \longrightsquigarrow#m
+\lozengeminus#m
 \lparen#m
 \lparenextender#m
 \lparenlend#m
@@ -764,12 +783,15 @@
 \mbhslash#m
 \mdblkcircle#m
 \mdblkdiamond#m
+\mdblklozenge#m
 \mdblksquare#m
 \mdlgblkcircle#m
 \mdlgblkdiamond#m
+\mdlgblklozenge#m
 \mdlgblksquare#m
 \mdlgwhtcircle#m
-\mdlgwhtsquare#m
+\mdlgwhtdiamond#m
+\mdlgwhtlozenge#m
 \mdlgwhtsquare#m
 \mdsmblkcircle#m
 \mdsmwhtcircle#m
@@ -781,6 +803,7 @@
 \mfraka#m
 \mfrakB#m
 \mfrakb#m
+\mfrakC#m
 \mfrakc#m
 \mfrakD#m
 \mfrakd#m
@@ -790,6 +813,7 @@
 \mfrakf#m
 \mfrakG#m
 \mfrakg#m
+\mfrakH#m
 \mfrakh#m
 \mfraki#m
 \mfrakJ#m
@@ -823,6 +847,7 @@
 \mfrakx#m
 \mfrakY#m
 \mfraky#m
+\mfrakZ#m
 \mfrakz#m
 \mho#m
 \minus#m
@@ -1059,15 +1084,23 @@
 \msansz#m
 \msanszero#m
 \mscrA#m
+\mscrB#m
 \mscrC#m
 \mscrD#m
+\mscrE#m
+\mscrF#m
 \mscrG#m
+\mscrH#m
+\mscrI#m
 \mscrJ#m
 \mscrK#m
+\mscrL#m
+\mscrM#m
 \mscrN#m
 \mscrO#m
 \mscrP#m
 \mscrQ#m
+\mscrR#m
 \mscrS#m
 \mscrT#m
 \mscrU#m
@@ -1279,18 +1312,23 @@
 \sime#m
 \simneqq#m
 \sinewave#m
+\smallblacktriangleleft#m
 \smalltriangleleft#m
 \smalltriangleright#m
 \smblkcircle#m
+\smblkdiamond#m
+\smblklozenge#m
 \smblksquare#m
 \smwhtcircle#m
 \smwhtdiamond#m
+\smwhtlozenge#m
 \smwhtsquare#m
 \sqcapplus#m
 \sqcupplus#m
 \sqiiint#m
 \sqiint#m
 \sqint#m
+\sqrtbottom#*m
 \sqsubset#m
 \sqsubsetneq#m
 \sqsupset#m
@@ -1354,7 +1392,10 @@
 \wedgebar#m
 \widearc{arg}#m
 \widearcarrow{arg}#m
+\widebreve{arg}#m
 \widebridgeabove{arg}#m
+\widecheck{arg}#m
+\wideoverbar{arg}#m
 \wideutilde{arg}#m
 \Wr#m
 \Zbar#m
