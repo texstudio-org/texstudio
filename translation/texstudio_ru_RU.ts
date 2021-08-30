@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru_RU" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -561,38 +559,6 @@
         <translation>Внешний терминал</translation>
     </message>
     <message>
-        <source>OSX 10.11 does not allow applications to write there anymore. Therefore,
-recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
-
-Do you want TeXstudio to change all command paths from /usr/texbin/ to
-%1?</source>
-        <translation type="vanished">OSX 10.11 больше не позволяет приложениям записывать в эти места.
-Новые версии MacTeX изменили путь к bin на /Library/TeX/texbin/
-
-Вы хотите, чтобы TeXstudio изменил все пути команд с /usr/texbin/ на
-%1?</translation>
-    </message>
-    <message>
-        <source>OSX 10.11 does not allow applications to write there anymore. You may
-need to update MacTeX to version 2015.
-
-Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
-
-Do you want TeXstudio to change all command paths from /usr/texbin/ to
-/Library/TeX/texbin/?</source>
-        <translation type="vanished">OSX 10.11 больше не позволяет приложениям записывать в эти места.
-Может понадобиться обновить MacTeX до версии 2015.
-
-После этого программы MacTeX будут расположены в /Library/TeX/texbin/
-
-Вы хотите, чтобы TeXstudio изменил все пути команд с /usr/texbin/ на
-/Library/TeX/texbin/?</translation>
-    </message>
-    <message>
-        <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="vanished">Некоторые ваши команды указывают на места в /usr/texbin/</translation>
-    </message>
-    <message>
         <location filename="../src/buildmanager.cpp" line="892"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>Команда была раскрыта до %1 уровня. Хотите продолжить раскрытие «%2»?</translation>
@@ -918,7 +884,7 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Определяет уровень уведомлений о наличии обновлений:
 — стабильные версии — если вам наиболее важна стабильность.
@@ -1128,7 +1094,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1885,22 +1851,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2530"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Элементы вроде «\section» подсвечиваются другим фоновым цветом, чтобы показать, что они &lt;span style=&quot; font-weight:600;&quot;&gt;не&lt;/span&gt; появятся в документе.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2550"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Элементы вроде «\section» подсвечиваются другим фоновым цветом, чтобы показать, что они появятся в виде приложения.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2587"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Текущее положение курсора подсвечивается на панели структуры.&lt;/p&gt;&lt;p&gt;Если эта опция активирована, то тогда элемент структуры развернётся и будет всегда виден благодаря автопрокрутке.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Scroll to current cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Прокрутить до текущего положения курсора</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2671,8 +2637,8 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="4258"/>
         <location filename="../src/configdialog.ui" line="4325"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Обработчик формирования изображения, используемый PDF-библиотекой poppler.
 «Splash» — выбор по умолчанию — подходит в большинстве случаев.
@@ -4370,7 +4336,7 @@ Are you sure you want to undo all changes?</source>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Установка предпочтений для рисунка
@@ -4488,7 +4454,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1983"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Имя файла: %1&lt;/b&gt;
 </translation>
@@ -4541,37 +4507,6 @@ The wizard does not support command </source>
         <location filename="../src/latexdocument.cpp" line="2512"/>
         <source>Unknown magic comment</source>
         <translation>Неизвестный спецкомментарий</translation>
-    </message>
-</context>
-<context>
-    <name>LatexDocumentsModel</name>
-    <message>
-        <source>untitled</source>
-        <translation type="vanished">untitled</translation>
-    </message>
-    <message>
-        <source> (Line %1)</source>
-        <translation type="vanished"> (Строка %1)</translation>
-    </message>
-    <message>
-        <source>Line</source>
-        <translation type="vanished">Строка</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation type="vanished">Метка</translation>
-    </message>
-    <message>
-        <source>Beyond end of document.</source>
-        <translation type="vanished">За пределами документа.</translation>
-    </message>
-    <message>
-        <source>In Appendix.</source>
-        <translation type="vanished">В Приложении.</translation>
-    </message>
-    <message>
-        <source>File not found.</source>
-        <translation type="vanished">Файл не найден.</translation>
     </message>
 </context>
 <context>
@@ -4667,7 +4602,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2538"/>
         <location filename="../src/latexeditorview.cpp" line="2610"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Имя файла: %1&lt;/b&gt;
 </translation>
@@ -4675,11 +4610,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2551"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n ссылка на эту метку</numerusform>
-            <numerusform>%n ссылки на эту метку</numerusform>
-            <numerusform>%n ссылок на эту метку</numerusform>
-        </translation>
+        <translation><numerusform>%n ссылка на эту метку</numerusform><numerusform>%n ссылки на эту метку</numerusform><numerusform>%n ссылок на эту метку</numerusform><numerusform>%n ссыл(ка/ки/ок) на эту метку</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2556"/>
@@ -6380,7 +6311,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Оригинальный файл на диске был уничтожен во время сохранения.
 Вы можете найти копию в
@@ -10887,7 +10818,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5579"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Не удаётся определить имя файла.
 Вы должны сохранить документ, прежде чем его компилировать.</translation>

@@ -144,6 +144,7 @@ TRANSLATIONS += translation/texstudio_ar.ts \
     translation/texstudio_sk.ts \
     translation/texstudio_sv.ts \
     translation/texstudio_tr_TR.ts \
+    translation/texstudio_ug.ts \
     translation/texstudio_uk.ts \
     translation/texstudio_vi.ts \
     translation/texstudio_zh_CN.ts
@@ -230,6 +231,7 @@ unix {
         translation/texstudio_sk.qm \
         translation/texstudio_sv.qm \
         translation/texstudio_tr_TR.qm \
+        translation/texstudio_ug.qm \
         translation/texstudio_uk.qm \
         translation/texstudio_vi.qm \
         translation/texstudio_zh_CN.qm \
