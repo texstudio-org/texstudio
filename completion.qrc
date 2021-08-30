@@ -1,6 +1,7 @@
 <RCC>
 <qresource prefix="/">
 <file>completion/abntcite.cwl</file>
+<file>completion/Acorn.cwl</file>
 <file>completion/acro.cwl</file>
 <file>completion/acronym.cwl</file>
 <file>completion/actuarialangle.cwl</file>
@@ -26,10 +27,13 @@
 <file>completion/amsopn.cwl</file>
 <file>completion/amssymb.cwl</file>
 <file>completion/amsthm.cwl</file>
+<file>completion/AnnSton.cwl</file>
 <file>completion/anttor.cwl</file>
 <file>completion/appendix.cwl</file>
 <file>completion/aramaic.cwl</file>
 <file>completion/array.cwl</file>
+<file>completion/ArtNouvc.cwl</file>
+<file>completion/ArtNouv.cwl</file>
 <file>completion/Arvo.cwl</file>
 <file>completion/asapsym.cwl</file>
 <file>completion/ascii.cwl</file>
@@ -51,6 +55,7 @@
 <file>completion/bearwear.cwl</file>
 <file>completion/begriff.cwl</file>
 <file>completion/berenis.cwl</file>
+<file>completion/bezierplot.cwl</file>
 <file>completion/bguq.cwl</file>
 <file>completion/biblatex.cwl</file>
 <file>completion/bidi.cwl</file>
@@ -74,6 +79,8 @@
 <file>completion/cancel.cwl</file>
 <file>completion/caption.cwl</file>
 <file>completion/carlito.cwl</file>
+<file>completion/Carrickc.cwl</file>
+<file>completion/cascade.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/ccicons.cwl</file>
 <file>completion/cfr-lm.cwl</file>
@@ -81,6 +88,8 @@
 <file>completion/chemformula.cwl</file>
 <file>completion/chemmacros.cwl</file>
 <file>completion/chemstyle.cwl</file>
+<file>completion/cinzel.cwl</file>
+<file>completion/circle.cwl</file>
 <file>completion/circuitikz.cwl</file>
 <file>completion/cite.cwl</file>
 <file>completion/cjhebrew.cwl</file>
@@ -95,6 +104,8 @@
 <file>completion/ClearSans.cwl</file>
 <file>completion/cleveref.cwl</file>
 <file>completion/clrstrip.cwl</file>
+<file>completion/cmathbb.cwl</file>
+<file>completion/cmbright.cwl</file>
 <file>completion/cmll.cwl</file>
 <file>completion/cmsrb.cwl</file>
 <file>completion/cmupint.cwl</file>
@@ -126,6 +137,7 @@
 <file>completion/cyrillic.cwl</file>
 <file>completion/datatool-base.cwl</file>
 <file>completion/datatool.cwl</file>
+<file>completion/daytime.cwl</file>
 <file>completion/dejavu-otf.cwl</file>
 <file>completion/derivative.cwl</file>
 <file>completion/diagbox.cwl</file>
@@ -145,7 +157,11 @@
 <file>completion/dutchcal.cwl</file>
 <file>completion/easyReview.cwl</file>
 <file>completion/ebgaramond.cwl</file>
+<file>completion/Eichenla.cwl</file>
+<file>completion/EileenBl.cwl</file>
+<file>completion/Eileen.cwl</file>
 <file>completion/electrum.cwl</file>
+<file>completion/Elzevier.cwl</file>
 <file>completion/emf.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/enumerate.cwl</file>
@@ -200,6 +216,7 @@
 <file>completion/frcursive.cwl</file>
 <file>completion/froufrou.cwl</file>
 <file>completion/garamondlibre.cwl</file>
+<file>completion/gensymb.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
 <file>completion/gfsartemisia.cwl</file>
@@ -212,6 +229,8 @@
 <file>completion/glossaries.cwl</file>
 <file>completion/glossaries-extra.cwl</file>
 <file>completion/glosstex.cwl</file>
+<file>completion/GotIn.cwl</file>
+<file>completion/GoudyIn.cwl</file>
 <file>completion/graphbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/graphpap.cwl</file>
@@ -246,9 +265,12 @@
 <file>completion/kantlipsum.cwl</file>
 <file>completion/keystroke.cwl</file>
 <file>completion/keyval.cwl</file>
+<file>completion/Kinigcap.cwl</file>
 <file>completion/knowledge.cwl</file>
+<file>completion/Konanur.cwl</file>
 <file>completion/kpfonts.cwl</file>
 <file>completion/kpfonts-otf.cwl</file>
+<file>completion/Kramer.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latexcolors.cwl</file>
 <file>completion/latex-dev.cwl</file>
@@ -257,6 +279,7 @@
 <file>completion/layout.cwl</file>
 <file>completion/letltxmacro.cwl</file>
 <file>completion/letterswitharrows.cwl</file>
+<file>completion/lettrine.cwl</file>
 <file>completion/lexend.cwl</file>
 <file>completion/libertine.cwl</file>
 <file>completion/libertinus-otf.cwl</file>
@@ -289,6 +312,7 @@
 <file>completion/mathalpha.cwl</file>
 <file>completion/mathbbol.cwl</file>
 <file>completion/mathcommand.cwl</file>
+<file>completion/mathcomp.cwl</file>
 <file>completion/mathdesign.cwl</file>
 <file>completion/mathfont.cwl</file>
 <file>completion/mathpartir.cwl</file>
@@ -301,6 +325,7 @@
 <file>completion/menukeys.cwl</file>
 <file>completion/metrix.cwl</file>
 <file>completion/mhchem.cwl</file>
+<file>completion/miama.cwl</file>
 <file>completion/microtype.cwl</file>
 <file>completion/milstd.cwl</file>
 <file>completion/MinionPro.cwl</file>
@@ -309,6 +334,7 @@
 <file>completion/mismath.cwl</file>
 <file>completion/MnSymbol.cwl</file>
 <file>completion/montserrat.cwl</file>
+<file>completion/MorrisIn.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multido.cwl</file>
 <file>completion/multimedia.cwl</file>
@@ -318,6 +344,7 @@
 <file>completion/nabatean.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>
+<file>completion/nccbbb.cwl</file>
 <file>completion/needspace.cwl</file>
 <file>completion/newclude.cwl</file>
 <file>completion/newcomputermodern.cwl</file>
@@ -336,6 +363,7 @@
 <file>completion/noto-mono.cwl</file>
 <file>completion/noto-sans.cwl</file>
 <file>completion/noto-serif.cwl</file>
+<file>completion/Nouveaud.cwl</file>
 <file>completion/numprint.cwl</file>
 <file>completion/oands.cwl</file>
 <file>completion/ocr.cwl</file>
@@ -348,6 +376,7 @@
 <file>completion/parskip.cwl</file>
 <file>completion/patch-common.cwl</file>
 <file>completion/pbsi.cwl</file>
+<file>completion/pdflscape.cwl</file>
 <file>completion/pdfpages.cwl</file>
 <file>completion/permute.cwl</file>
 <file>completion/pgfcore.cwl</file>
@@ -360,6 +389,7 @@
 <file>completion/pgfplotstable.cwl</file>
 <file>completion/pgfrcs.cwl</file>
 <file>completion/phaistos.cwl</file>
+<file>completion/phonenumbers.cwl</file>
 <file>completion/physics.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/placeins.cwl</file>
@@ -392,9 +422,13 @@
 <file>completion/roboto-mono.cwl</file>
 <file>completion/rojud.cwl</file>
 <file>completion/romande.cwl</file>
+<file>completion/Romantik.cwl</file>
 <file>completion/rotating.cwl</file>
+<file>completion/Rothdn.cwl</file>
+<file>completion/Royal.cwl</file>
 <file>completion/rsfso.cwl</file>
 <file>completion/runic.cwl</file>
+<file>completion/Sanremo.cwl</file>
 <file>completion/sarabian.cwl</file>
 <file>completion/scalerel.cwl</file>
 <file>completion/scholax.cwl</file>
@@ -424,6 +458,7 @@
 <file>completion/spbmark.cwl</file>
 <file>completion/spectral.cwl</file>
 <file>completion/spelling.cwl</file>
+<file>completion/Starburst.cwl</file>
 <file>completion/starfont.cwl</file>
 <file>completion/staves.cwl</file>
 <file>completion/steinmetz.cwl</file>
@@ -487,6 +522,7 @@
 <file>completion/tikzorbital.cwl</file>
 <file>completion/tikzsymbols.cwl</file>
 <file>completion/tikz-timing.cwl</file>
+<file>completion/time.cwl</file>
 <file>completion/tipa.cwl</file>
 <file>completion/tipauni.cwl</file>
 <file>completion/tipx.cwl</file>
@@ -508,7 +544,9 @@
 <file>completion/tram.cwl</file>
 <file>completion/trfsigns.cwl</file>
 <file>completion/trsym.cwl</file>
+<file>completion/truncate.cwl</file>
 <file>completion/typicons.cwl</file>
+<file>completion/Typocaps.cwl</file>
 <file>completion/ugarite.cwl</file>
 <file>completion/ulem.cwl</file>
 <file>completion/ulsy.cwl</file>
@@ -518,8 +556,10 @@
 <file>completion/unravel.cwl</file>
 <file>completion/upgreek.cwl</file>
 <file>completion/url.cwl</file>
+<file>completion/urwchancal.cwl</file>
 <file>completion/utfsym.cwl</file>
 <file>completion/varioref.cwl</file>
+<file>completion/varwidth.cwl</file>
 <file>completion/venturis2.cwl</file>
 <file>completion/venturis.cwl</file>
 <file>completion/venturisold.cwl</file>
@@ -554,6 +594,7 @@
 <file>completion/yathesis.cwl</file>
 <file>completion/yfonts.cwl</file>
 <file>completion/yhmath.cwl</file>
+<file>completion/Zallman.cwl</file>
 <file>completion/zhlipsum.cwl</file>
 <file>completion/zhnumber.cwl</file>
 <file>completion/cwlAliases.dat</file>
