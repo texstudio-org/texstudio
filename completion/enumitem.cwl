@@ -27,8 +27,8 @@ i
 \begin{itemize}[keyvals]
 \begin{description}[keyvals]
 
-\newlist{name}{type}{max-depth}
-\renewlist{name}{type}{max-depth}
+\newlist{name%envname}{type}{max-depth}#N
+\renewlist{name%envname}{type}{max-depth}#N
 \setlist{%<options%>}
 \setlist*{%<options%>}
 \setlist[%<names%>, %<levels%>]{%<options%>}
