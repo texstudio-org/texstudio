@@ -55,6 +55,7 @@
 <file>completion/bearwear.cwl</file>
 <file>completion/begriff.cwl</file>
 <file>completion/berenis.cwl</file>
+<file>completion/beuron.cwl</file>
 <file>completion/bezierplot.cwl</file>
 <file>completion/bguq.cwl</file>
 <file>completion/biblatex.cwl</file>
@@ -128,6 +129,7 @@
 <file>completion/CormorantGaramond.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
 <file>completion/cquthesis.cwl</file>
+<file>completion/crimson.cwl</file>
 <file>completion/CrimsonPro.cwl</file>
 <file>completion/csquotes.cwl</file>
 <file>completion/css-colors.cwl</file>
@@ -146,6 +148,7 @@
 <file>completion/dingbat.cwl</file>
 <file>completion/doi.cwl</file>
 <file>completion/domitian.cwl</file>
+<file>completion/dotlessi.cwl</file>
 <file>completion/droid.cwl</file>
 <file>completion/droidsans.cwl</file>
 <file>completion/droidsansmono.cwl</file>
@@ -181,6 +184,7 @@
 <file>completion/expl3.cwl</file>
 <file>completion/extpfeil.cwl</file>
 <file>completion/extraipa.cwl</file>
+<file>completion/faktor.cwl</file>
 <file>completion/fancybox.cwl</file>
 <file>completion/fancyhdr.cwl</file>
 <file>completion/fancypar.cwl</file>
@@ -239,6 +243,7 @@
 <file>completion/guit.cwl</file>
 <file>completion/halloweenmath.cwl</file>
 <file>completion/harvard.cwl</file>
+<file>completion/harveyballs.cwl</file>
 <file>completion/heuristica.cwl</file>
 <file>completion/hieroglf.cwl</file>
 <file>completion/hlist.cwl</file>
@@ -261,6 +266,7 @@
 <file>completion/InriaSerif.cwl</file>
 <file>completion/inter.cwl</file>
 <file>completion/interval.cwl</file>
+<file>completion/jamtimes.cwl</file>
 <file>completion/jurabib.cwl</file>
 <file>completion/kantlipsum.cwl</file>
 <file>completion/keystroke.cwl</file>
@@ -290,6 +296,7 @@
 <file>completion/librefranklin.cwl</file>
 <file>completion/libris.cwl</file>
 <file>completion/linearb.cwl</file>
+<file>completion/linguisticspro.cwl</file>
 <file>completion/lipsum.cwl</file>
 <file>completion/listings.cwl</file>
 <file>completion/logix.cwl</file>
@@ -330,6 +337,8 @@
 <file>completion/milstd.cwl</file>
 <file>completion/MinionPro.cwl</file>
 <file>completion/minted.cwl</file>
+<file>completion/mintspirit2.cwl</file>
+<file>completion/mintspirit.cwl</file>
 <file>completion/minutes.cwl</file>
 <file>completion/mismath.cwl</file>
 <file>completion/MnSymbol.cwl</file>
@@ -367,8 +376,10 @@
 <file>completion/numprint.cwl</file>
 <file>completion/oands.cwl</file>
 <file>completion/ocr.cwl</file>
+<file>completion/oldgerm.cwl</file>
 <file>completion/oldprsn.cwl</file>
 <file>completion/OldStandard.cwl</file>
+<file>completion/oubraces.cwl</file>
 <file>completion/overpic.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/paralist.cwl</file>
@@ -394,6 +405,9 @@
 <file>completion/pifont.cwl</file>
 <file>completion/placeins.cwl</file>
 <file>completion/plaintex.cwl</file>
+<file>completion/planets.cwl</file>
+<file>completion/Play.cwl</file>
+<file>completion/PlayfairDisplay.cwl</file>
 <file>completion/plex-otf.cwl</file>
 <file>completion/plimsoll.cwl</file>
 <file>completion/pmboxdraw.cwl</file>
@@ -466,6 +480,7 @@
 <file>completion/stickstootext.cwl</file>
 <file>completion/stix2.cwl</file>
 <file>completion/stmaryrd.cwl</file>
+<file>completion/strands.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigure.cwl</file>
@@ -484,16 +499,22 @@
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
 <file>completion/tdsfrmath.cwl</file>
+<file>completion/tensind.cwl</file>
 <file>completion/tex.cwl</file>
 <file>completion/textcomp.cwl</file>
 <file>completion/textgreek.cwl</file>
 <file>completion/textpos.cwl</file>
+<file>completion/textualicomma.cwl</file>
 <file>completion/tfrupee.cwl</file>
+<file>completion/TheanoDidot.cwl</file>
+<file>completion/TheanoModern.cwl</file>
+<file>completion/TheanoOldStyle.cwl</file>
 <file>completion/theorem.cwl</file>
 <file>completion/thmtools.cwl</file>
 <file>completion/tikzbricks.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikz.cwl</file>
+<file>completion/tikz-dimline.cwl</file>
 <file>completion/tikzducks.cwl</file>
 <file>completion/tikzlings-anteaters.cwl</file>
 <file>completion/tikzlings-bats.cwl</file>
@@ -520,8 +541,10 @@
 <file>completion/tikzlings-snowmen.cwl</file>
 <file>completion/tikzlings-squirrels.cwl</file>
 <file>completion/tikzorbital.cwl</file>
+<file>completion/tikzpfeile.cwl</file>
 <file>completion/tikzsymbols.cwl</file>
 <file>completion/tikz-timing.cwl</file>
+<file>completion/tikz-truchet.cwl</file>
 <file>completion/time.cwl</file>
 <file>completion/tipa.cwl</file>
 <file>completion/tipauni.cwl</file>
@@ -560,6 +583,7 @@
 <file>completion/utfsym.cwl</file>
 <file>completion/varioref.cwl</file>
 <file>completion/varwidth.cwl</file>
+<file>completion/venndiagram.cwl</file>
 <file>completion/venturis2.cwl</file>
 <file>completion/venturis.cwl</file>
 <file>completion/venturisold.cwl</file>
@@ -568,6 +592,7 @@
 <file>completion/vowel.cwl</file>
 <file>completion/wasysym.cwl</file>
 <file>completion/worldflags.cwl</file>
+<file>completion/wrapfig.cwl</file>
 <file>completion/xcharter.cwl</file>
 <file>completion/xcolor.cwl</file>
 <file>completion/xcolor-material.cwl</file>
@@ -575,11 +600,13 @@
 <file>completion/xeCJK.cwl</file>
 <file>completion/xeCJKfntef.cwl</file>
 <file>completion/xecolor.cwl</file>
+<file>completion/xellipsis.cwl</file>
 <file>completion/xepersian.cwl</file>
 <file>completion/xetex.cwl</file>
 <file>completion/xfp.cwl</file>
 <file>completion/xfrac.cwl</file>
 <file>completion/xifthen.cwl</file>
+<file>completion/xistercian.cwl</file>
 <file>completion/xkcdcolors.cwl</file>
 <file>completion/xkeyval.cwl</file>
 <file>completion/xkvview.cwl</file>
