@@ -145,6 +145,7 @@ penrose
 perspective
 petri
 phylogenetics
+pie
 plothandlers
 plotmarks
 positioning
