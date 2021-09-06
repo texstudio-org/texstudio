@@ -47,6 +47,7 @@
 <file>completion/bbding.cwl</file>
 <file>completion/bbm.cwl</file>
 <file>completion/bbold.cwl</file>
+<file>completion/bchart.cwl</file>
 <file>completion/beamerfoils.cwl</file>
 <file>completion/beamerprosper.cwl</file>
 <file>completion/beamerseminar.cwl</file>
@@ -61,7 +62,9 @@
 <file>completion/biblatex.cwl</file>
 <file>completion/bidi.cwl</file>
 <file>completion/bigints.cwl</file>
+<file>completion/binarytree.cwl</file>
 <file>completion/biochemistry-colors.cwl</file>
+<file>completion/bitpattern.cwl</file>
 <file>completion/blindtext.cwl</file>
 <file>completion/bm.cwl</file>
 <file>completion/booktabs.cwl</file>
@@ -84,6 +87,7 @@
 <file>completion/cascade.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/ccicons.cwl</file>
+<file>completion/centeredline.cwl</file>
 <file>completion/cfr-lm.cwl</file>
 <file>completion/changes.cwl</file>
 <file>completion/chemformula.cwl</file>
@@ -172,6 +176,7 @@
 <file>completion/epigrafica.cwl</file>
 <file>completion/epigraph.cwl</file>
 <file>completion/epiolmec.cwl</file>
+<file>completion/epsdice.cwl</file>
 <file>completion/epstopdf.cwl</file>
 <file>completion/erewhon.cwl</file>
 <file>completion/esint.cwl</file>
@@ -213,10 +218,13 @@
 <file>completion/fontmfizz.cwl</file>
 <file>completion/fontsetup.cwl</file>
 <file>completion/fontspec.cwl</file>
+<file>completion/footmisc.cwl</file>
+<file>completion/footnote.cwl</file>
 <file>completion/fourier.cwl</file>
 <file>completion/fourier-orns.cwl</file>
 <file>completion/fourier-otf.cwl</file>
 <file>completion/fp.cwl</file>
+<file>completion/framed.cwl</file>
 <file>completion/frcursive.cwl</file>
 <file>completion/froufrou.cwl</file>
 <file>completion/garamondlibre.cwl</file>
@@ -245,6 +253,7 @@
 <file>completion/harvard.cwl</file>
 <file>completion/harveyballs.cwl</file>
 <file>completion/heuristica.cwl</file>
+<file>completion/hhline.cwl</file>
 <file>completion/hieroglf.cwl</file>
 <file>completion/hlist.cwl</file>
 <file>completion/hologo.cwl</file>
@@ -314,6 +323,7 @@
 <file>completion/makecell.cwl</file>
 <file>completion/manfnt.cwl</file>
 <file>completion/manyfoot.cwl</file>
+<file>completion/marginnote.cwl</file>
 <file>completion/marvosym.cwl</file>
 <file>completion/mathabx.cwl</file>
 <file>completion/mathalpha.cwl</file>
@@ -396,6 +406,7 @@
 <file>completion/pgfkeys.cwl</file>
 <file>completion/pgfmath.cwl</file>
 <file>completion/pgfornament.cwl</file>
+<file>completion/pgf-pie.cwl</file>
 <file>completion/pgfplots.cwl</file>
 <file>completion/pgfplotstable.cwl</file>
 <file>completion/pgfrcs.cwl</file>
@@ -413,6 +424,7 @@
 <file>completion/pmboxdraw.cwl</file>
 <file>completion/polyglossia.cwl</file>
 <file>completion/polynom.cwl</file>
+<file>completion/progressbar.cwl</file>
 <file>completion/proof.cwl</file>
 <file>completion/protosem.cwl</file>
 <file>completion/psfrag.cwl</file>
@@ -436,6 +448,7 @@
 <file>completion/roboto-mono.cwl</file>
 <file>completion/rojud.cwl</file>
 <file>completion/romande.cwl</file>
+<file>completion/romannum.cwl</file>
 <file>completion/Romantik.cwl</file>
 <file>completion/rotating.cwl</file>
 <file>completion/Rothdn.cwl</file>
@@ -469,12 +482,14 @@
 <file>completion/sourcecodepro.cwl</file>
 <file>completion/sourcesanspro.cwl</file>
 <file>completion/sourceserifpro.cwl</file>
+<file>completion/spalign.cwl</file>
 <file>completion/spbmark.cwl</file>
 <file>completion/spectral.cwl</file>
 <file>completion/spelling.cwl</file>
 <file>completion/Starburst.cwl</file>
 <file>completion/starfont.cwl</file>
 <file>completion/staves.cwl</file>
+<file>completion/stdclsdv.cwl</file>
 <file>completion/steinmetz.cwl</file>
 <file>completion/step.cwl</file>
 <file>completion/stickstootext.cwl</file>
@@ -540,10 +555,13 @@
 <file>completion/tikzlings-sloths.cwl</file>
 <file>completion/tikzlings-snowmen.cwl</file>
 <file>completion/tikzlings-squirrels.cwl</file>
+<file>completion/tikz-network.cwl</file>
 <file>completion/tikzorbital.cwl</file>
+<file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
 <file>completion/tikzsymbols.cwl</file>
 <file>completion/tikz-timing.cwl</file>
+<file>completion/tikz-trackschematic.cwl</file>
 <file>completion/tikz-truchet.cwl</file>
 <file>completion/time.cwl</file>
 <file>completion/tipa.cwl</file>
