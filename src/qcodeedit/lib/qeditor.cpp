@@ -6028,8 +6028,12 @@ void QEditor::scrollContentsBy(int dx, int dy)
 	#ifdef Q_GL_EDITOR
 	viewport()->update();
 	#else
+#if QT_VERSION<QT_VERSION_CHECK(6,0,0)
     const qreal ls = document()->getLineSpacing();
     viewport()->scroll(dx, qFloor(dy * ls));
+#else
+    viewport()->update();
+#endif
 	#endif
 
 	if (dy != 0)
