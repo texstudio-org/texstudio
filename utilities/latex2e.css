@@ -1,35 +1,23 @@
-h3.fn,span.fn {font-family:sans-serif; margin-left: 1cm; text-indent: -1cm; }
-a:link {font-family:sans-serif; color: #004faf; text-decoration: none }
-a:visited {font-family:sans-serif; color: #004faf; text-decoration: none }
-body {font-family:sans-serif; background: white; color: black; }
-P        { font-family:sans-serif; }
-OL        { font-family:sans-serif; }
-UL        { font-family:sans-serif; }
-LI       { font-family:sans-serif;  }
-TD        { font-family:sans-serif; }
-DD        { font-family:sans-serif; }
-DL        { font-family:sans-serif; }
-DT        { font-family:sans-serif; }
-H1        { font-family:sans-serif;  }
-H2        { font-family:sans-serif; color:white; background:#3f5881;  
-	margin: 30px 0 15px 0;
-	padding: 5px;
+/* $Id: latex2e.css 935 2021-07-23 17:48:15Z jimhefferon $
+   Minor css for latexrefman. Public domain.
+   Originally written by Jim Hefferon and Karl Berry, 2018. */
+
+BODY {
+  margin-top: 1em;
+  margin-left: 1em; /* auto results in two-digit <ol> lost off left */
+  margin-right: 1em;
+  margin-bottom: 1em;
+  /* the idea is to use the whole window, unless it is ridiculously
+     wide, probably with too-small fonts, too.  */
+  max-width: 64em;
 }
 
-.shortcontents {
-	-moz-column-count: 3;
-	-moz-column-width: 320px;
-	-webkit-column-count: 3;
-	-webkit-column-width: 320px;
-	column-count: 3;
-	column-width: 320px;
-}
+/* Because we want @math{... @code ...} to be upright, not slanted,
+   and Texinfo won't fix it. */
+code {font-style:normal; font-family:monospace; }
 
-.contents {
-	-moz-column-count: 3;
-	-moz-column-width: 320px;
-	-webkit-column-count: 3;
-	-webkit-column-width: 320px;
-	column-count: 3;
-	column-width: 320px;
-}
+/* We put a link to our own home page at the bottom. */
+div.referenceinfo {font-size:small;}
+
+/* So you can style for yourself */
+@import url("/css/latexreflocal.css");
