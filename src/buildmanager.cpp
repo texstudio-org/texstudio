@@ -841,43 +841,48 @@ QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
         if (!texPath.isEmpty() && QFileInfo::exists(addPathDelimeter(texPath) + fileName)) {
             return addPathDelimeter(texPath)+fileName+options; // found in texpath
         }
-		if (!BuildManager::findFileInPath(fileName).isEmpty())
-			return fileName + options; //found in path
-		else {
-			//platform dependent mess
+        if (!BuildManager::findFileInPath(fileName).isEmpty())
+            return fileName + options; //found in path
+        // additonal search path
+        foreach(const QString& path,BuildManager::additionalSearchPaths ){
+            if (QFileInfo::exists(addPathDelimeter(path) + fileName)) {
+                return addPathDelimeter(path)+fileName+options; // found in texpath
+            }
+        }
+
+        //platform dependent mess
 #ifdef Q_OS_WIN32
-			//Windows MikTex
-			QString mikPath = getMiKTeXBinPath();
-			if (!mikPath.isEmpty() && QFileInfo(mikPath + fileName).exists())
-				return "\"" + mikPath + fileName + "\" " + options; //found
-			//Windows TeX Live
-			QString livePath = getTeXLiveWinBinPath();
-			if (!livePath.isEmpty() && QFileInfo(livePath + fileName).exists())
-				return "\"" + livePath + fileName + "\" " + options; //found
+        //Windows MikTex
+        QString mikPath = getMiKTeXBinPath();
+        if (!mikPath.isEmpty() && QFileInfo(mikPath + fileName).exists())
+            return "\"" + mikPath + fileName + "\" " + options; //found
+        //Windows TeX Live
+        QString livePath = getTeXLiveWinBinPath();
+        if (!livePath.isEmpty() && QFileInfo(livePath + fileName).exists())
+            return "\"" + livePath + fileName + "\" " + options; //found
 #endif
 #ifdef Q_OS_MAC
-			QStringList paths;
-			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/" << "/Library/TeX/texbin/" << "/Library/TeX/local/bin/" ;
-			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
+        QStringList paths;
+        paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/" << "/Library/TeX/texbin/" << "/Library/TeX/local/bin/" ;
+        paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
 
-            QDate date = QDate::currentDate();
-            for (int i = date.year(); i > 2008; i--) {
-				//paths << QString("/usr/texbin MACTEX/TEXLIVE%1").arg(i); from texmaker comment
-				paths << QString("/usr/local/texlive/%1/bin/x86_64-darwin/").arg(i);
-				paths << QString("/usr/local/texlive/%1/bin/i386-darwin/").arg(i);
-				paths << QString("/usr/local/texlive/%1/bin/powerpc-darwin/").arg(i);
-			}
-			foreach (const QString &p, paths)
-				if (QFileInfo(p + fileName).exists()) {
-					if (cmd == "makeglossaries") {
-						// workaround: makeglossaries calls makeindex or xindy and therefore has to be run in an environment that has these commands on the path
-						return QString("sh -c \"PATH=$PATH:%1; %2%3\"").arg(p).arg(fileName).arg(options);
-					} else {
-						return p + fileName + options;
-					}
-				}
+        QDate date = QDate::currentDate();
+        for (int i = date.year(); i > 2008; i--) {
+            //paths << QString("/usr/texbin MACTEX/TEXLIVE%1").arg(i); from texmaker comment
+            paths << QString("/usr/local/texlive/%1/bin/x86_64-darwin/").arg(i);
+            paths << QString("/usr/local/texlive/%1/bin/i386-darwin/").arg(i);
+            paths << QString("/usr/local/texlive/%1/bin/powerpc-darwin/").arg(i);
+        }
+        foreach (const QString &p, paths)
+            if (QFileInfo(p + fileName).exists()) {
+                if (cmd == "makeglossaries") {
+                    // workaround: makeglossaries calls makeindex or xindy and therefore has to be run in an environment that has these commands on the path
+                    return QString("sh -c \"PATH=$PATH:%1; %2%3\"").arg(p).arg(fileName).arg(options);
+                } else {
+                    return p + fileName + options;
+                }
+            }
 #endif
-		}
 	}
 	return "";
 }
