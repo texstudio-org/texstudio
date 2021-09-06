@@ -3093,7 +3093,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 	if ( !m_doc )
 		return;
 
-    QPainter p(viewport());
+	QPainter p(viewport());
     const qreal yOffset = verticalOffset();
     const qreal xOffset = horizontalOffset();
 
@@ -3107,14 +3107,11 @@ void QEditor::paintEvent(QPaintEvent *e)
     //qDebug() << r << yOffset;
 
 	//p.setClipping(false);
-    p.drawLine(QLineF(0,0,10,10));
-    p.drawLine(QLineF(0,10,10,20));
-    return;
     p.translate(QPointF(-xOffset, -yOffset));
 
 	QDocument::PaintContext ctx;
 	ctx.xoffset = xOffset;
-    ctx.yoffset = yOffset+r.y();
+    ctx.yoffset = yOffset;// + ry;//r.y();
 	ctx.width = viewport()->width();
     ctx.height = viewport()->height();//qMin(r.height(), viewport()->height());
 	ctx.palette = palette();
@@ -3193,6 +3190,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 		foreach (const QDocumentCursor& m, m_placeHolders[i].mirrors )
 			p.drawConvexPolygon(m.selectionStart().documentRegion());
 	}*/
+	
 }
 
 /*!

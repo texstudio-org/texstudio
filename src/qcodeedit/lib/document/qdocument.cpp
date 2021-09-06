@@ -6771,8 +6771,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	DrawTextLineContext lcxt = { /* docLineNr */ 0,
 	                             /* editLineNr */ 0,
 	                             /* firstLine */ 0,
-                                 /* pos */ 0.,
-                                 /* visiblePos */ 0.,
+	                             /* pos */ 0,
+	                             /* visiblePos */ 0,
 	                             /* inSelection */ false,
 	                             /* base */ base,
 	                             /* alternate */ alternate};
@@ -6814,6 +6814,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	                                // so that the painter x coordinate starts at the edge of the document.
 	                                // leftPadding is still included, because here the background has to be drawn
 
+
 	for ( ; lcxt.editLineNr <= lastLine; ++lcxt.docLineNr )
 	{
 		if ( lcxt.docLineNr >= m_lines.count() )
@@ -6821,7 +6822,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			//qDebug("line %i not valid", i);
 			break;
 		}
-        drawTextLine(p, cxt, lcxt); //TODO pos daneben, translate correct, clipping off hilft
+        drawTextLine(p, cxt, lcxt);
 	}
     p->translate(-m_leftMargin, 0);
 	//qDebug("painting done in %i ms...", t.elapsed());
@@ -6956,10 +6957,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 	p->save();  // every line get's its own standard pointer to prevent leaking of pointer state
 
 	// simplify line drawing
-    p->translate(QPointF(0., lcxt.pos));
-    p->drawLine(QLineF(0.,0.,20,0));
-    if(cursorOnLine)
-        qDebug()<<lcxt.pos<<p->worldTransform();
+    p->translate(QPointF(0, lcxt.pos));
 
 	// draw text with caching
 	int pseudoWrap = 0;
