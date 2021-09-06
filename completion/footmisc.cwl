@@ -9,12 +9,12 @@
 \footref{label}#r
 \footnotelayout#*
 \footglue#*
-\footnotebaselineskip
-\fudgefactor
-\makefootnoteparagraph
-\makehboxofhboxes
-\removehboxes
-\footnotehint
+\footnotebaselineskip#*
+\fudgefactor#*
+\makefootnoteparagraph#*
+\makehboxofhboxes#*
+\removehboxes#*
+\footnotehint#*
 
 #ifOption:marginal
 \footnotemargin
