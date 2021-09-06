@@ -145,6 +145,7 @@ penrose
 perspective
 petri
 phylogenetics
+pie
 plothandlers
 plotmarks
 positioning
@@ -177,6 +178,7 @@ switching-architectures
 through
 tikzmark
 topaths
+tqft
 trees
 turtle
 views
