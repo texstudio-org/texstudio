@@ -12,7 +12,7 @@ echo "copy dlls and qt5 plugins"
 mkdir -p package-zip
 cp texstudio.exe package-zip/
 cd package-zip
-cp /mingw64/bin/libicudt68.dll /mingw64/bin/icudt68.dll
+#cp /mingw64/bin/libicudt68.dll /mingw64/bin/icudt68.dll
 windeployqt-qt6 texstudio.exe
 ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
 # force ssl/crypto copy
