@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 7/4/2021
+# Matthew Bertucci 9/7/2021 for v2021N
 
 \begin{tblr}{preamble%keyvals}#\tabular
 \end{tblr}
@@ -79,7 +79,7 @@ entry=
 label=
 #endkeyvals
 
-\multirow[keyvals]{rows}{width}{contents}#/tblr,longtblr
+\multirow[options%keyvals]{rows}{width}{contents}#/tblr,longtblr
 
 #keyvals:\multirow
 t
@@ -167,14 +167,14 @@ appto=
 cmd=
 #endkeyvals
 
-\NewColumnType{name}[number][optarg]{definition}#d
-\NewRowType{name}[number][optarg]{definition}#d
-\NewColumnRowType{name}[number][optarg]{definition}#*d
+\NewColumnType{name}[number][optarg]{definition}
+\NewRowType{name}[number][optarg]{definition}
+\NewColumnRowType{name}[number][optarg]{definition}#*
 
-\NewTableCommand{command}{definition}#d
+\NewTableCommand{cmd}{definition}#d
 
-\hline[keyvals]#/tblr,longtblr
-\cline[keyvals]{arg}#/tblr,longtblr
+\hline[options%keyvals]#/tblr,longtblr
+\cline[options%keyvals]{arg}#/tblr,longtblr
 
 #keyvals:\hline#c,\cline#c
 dash=#solid,dashed,dotted
@@ -187,10 +187,10 @@ fg=#%color
 
 \NewChildSelector#*
 
-\leftsep#/tblr
-\rightsep#/tblr
-\abovesep#/tblr
-\belowsep#/tblr
+\leftsep#*
+\rightsep#*
+\abovesep#*
+\belowsep#*
 
 \SetTblrTracing{keyvals}#*
 
@@ -241,11 +241,11 @@ indent=##L
 hang=##L
 #endkeyvals
 
-\TblrNote{arg}#/tblr,longtblr
+\TblrNote{mark-symbol}#/tblr,longtblr
 
-\DefTblrTemplate{arg1}{arg2}{arg3}#*d
-\SetTblrTemplate{arg1}{arg2}#*
-\UseTblrTemplate{arg1}{arg2}#*
+\DefTblrTemplate{template}{type}{contents}#*
+\SetTblrTemplate{template}{type}#*
+\UseTblrTemplate{template}{type}#*
 \ExpTblrTemplate
 \InsertTblrText{arg}#*
 \InsertTblrNoteTag#*
@@ -261,4 +261,5 @@ hang=##L
 booktabs
 diagbox
 siunitx
+varwidth
 #endkeyvals
