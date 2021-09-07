@@ -190,6 +190,7 @@ duration=
 faculty=
 homepage=
 mainlogo=
+secondlogo=
 matriculationnumber=
 oralexaminationdate=
 place=
@@ -219,6 +220,7 @@ duration
 faculty
 homepage
 mainlogo
+secondlogo
 matriculationnumber
 oralexaminationdate
 place
@@ -261,6 +263,7 @@ duration
 faculty
 homepage
 mainlogo
+secondlogo
 matriculationnumber
 oralexaminationdate
 place
