@@ -10,7 +10,7 @@
 \TitleOption{option%keyvals}{value}
 \TitleOptions{option=value,...%keyvals}
 
-#keyvals:\TitlePageStyle/h
+#keyvals:\TitlePageStyle/DHBW
 author=
 company=
 course=
@@ -162,6 +162,20 @@ title=
 university=
 #endkeyvals
 
+#keyvals:\TitlePageStyle/UKoLa
+advisor=
+author=
+chair=
+academicgrade=
+mainlogo=
+secondlogo=
+place=
+referee=
+student=
+subject=
+title=
+#endkeyvals
+ 
 #keyvals:\maketitle,\TitleOptions
 advisor=
 author=
