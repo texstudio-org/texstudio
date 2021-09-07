@@ -1,5 +1,12 @@
 # newtxtext package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/7/2021 for v1.656
+
+#include:fontaxes
+#include:etoolbox
+#include:xstring
+#include:scalefnt
+#include:fontenc
+#include:textcomp
 
 \infigures
 \lfstyle
@@ -7,15 +14,17 @@
 \osfstyle
 \sustyle
 \textfrac[optional whole part]{numerator}{denominator}
-\textin{arg}
+\textinf{text}
+\textde{text}#*
 \textlf{text}
 \textosf{text}
-\textsu{arg}
+\textsu{text}
 \textth{text}
+\textthit{text}#*
 \texttlf{text}
 \texttosf{text}
 \thfamily
 \tlfstyle
 \tosfstyle
-\useosf
-\useproportional
+\useosf#*
+\useproportional#*
