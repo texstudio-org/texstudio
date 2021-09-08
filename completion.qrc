@@ -132,7 +132,9 @@
 <file>completion/coordsys.cwl</file>
 <file>completion/CormorantGaramond.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
+<file>completion/covington.cwl</file>
 <file>completion/cquthesis.cwl</file>
+<file>completion/crbox.cwl</file>
 <file>completion/crimson.cwl</file>
 <file>completion/CrimsonPro.cwl</file>
 <file>completion/csquotes.cwl</file>
@@ -144,6 +146,7 @@
 <file>completion/datatool-base.cwl</file>
 <file>completion/datatool.cwl</file>
 <file>completion/daytime.cwl</file>
+<file>completion/decorule.cwl</file>
 <file>completion/dejavu-otf.cwl</file>
 <file>completion/derivative.cwl</file>
 <file>completion/diagbox.cwl</file>
@@ -173,6 +176,7 @@
 <file>completion/empheq.cwl</file>
 <file>completion/enumerate.cwl</file>
 <file>completion/enumitem.cwl</file>
+<file>completion/environ.cwl</file>
 <file>completion/epigrafica.cwl</file>
 <file>completion/epigraph.cwl</file>
 <file>completion/epiolmec.cwl</file>
@@ -220,12 +224,14 @@
 <file>completion/fontspec.cwl</file>
 <file>completion/footmisc.cwl</file>
 <file>completion/footnote.cwl</file>
+<file>completion/footnotehyper.cwl</file>
 <file>completion/fourier.cwl</file>
 <file>completion/fourier-orns.cwl</file>
 <file>completion/fourier-otf.cwl</file>
 <file>completion/fp.cwl</file>
 <file>completion/framed.cwl</file>
 <file>completion/frcursive.cwl</file>
+<file>completion/frege.cwl</file>
 <file>completion/froufrou.cwl</file>
 <file>completion/garamondlibre.cwl</file>
 <file>completion/gensymb.cwl</file>
@@ -238,11 +244,13 @@
 <file>completion/gfsdidot.cwl</file>
 <file>completion/gfsneohellenic.cwl</file>
 <file>completion/gfsneohellenicot.cwl</file>
+<file>completion/ghab.cwl</file>
 <file>completion/glossaries.cwl</file>
 <file>completion/glossaries-extra.cwl</file>
 <file>completion/glosstex.cwl</file>
 <file>completion/GotIn.cwl</file>
 <file>completion/GoudyIn.cwl</file>
+<file>completion/gradientframe.cwl</file>
 <file>completion/graphbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/graphpap.cwl</file>
@@ -310,6 +318,7 @@
 <file>completion/listings.cwl</file>
 <file>completion/logix.cwl</file>
 <file>completion/logsys.cwl</file>
+<file>completion/longfbox.cwl</file>
 <file>completion/longtable.cwl</file>
 <file>completion/lscape.cwl</file>
 <file>completion/ltablex.cwl</file>
@@ -452,6 +461,7 @@
 <file>completion/Romantik.cwl</file>
 <file>completion/rotating.cwl</file>
 <file>completion/Rothdn.cwl</file>
+<file>completion/roundbox.cwl</file>
 <file>completion/Royal.cwl</file>
 <file>completion/rsfso.cwl</file>
 <file>completion/runic.cwl</file>
@@ -470,6 +480,7 @@
 <file>completion/setdeck.cwl</file>
 <file>completion/setspace.cwl</file>
 <file>completion/shadow.cwl</file>
+<file>completion/shadowtext.cwl</file>
 <file>completion/shellesc.cwl</file>
 <file>completion/shuffle.cwl</file>
 <file>completion/simpleinvoice.cwl</file>
@@ -496,10 +507,12 @@
 <file>completion/stix2.cwl</file>
 <file>completion/stmaryrd.cwl</file>
 <file>completion/strands.cwl</file>
+<file>completion/styledcmd.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigure.cwl</file>
 <file>completion/subfiles.cwl</file>
+<file>completion/sudoku.cwl</file>
 <file>completion/supertabular.cwl</file>
 <file>completion/svgcolor.cwl</file>
 <file>completion/svninfo.cwl</file>
@@ -599,6 +612,7 @@
 <file>completion/url.cwl</file>
 <file>completion/urwchancal.cwl</file>
 <file>completion/utfsym.cwl</file>
+<file>completion/uwa-colours.cwl</file>
 <file>completion/varioref.cwl</file>
 <file>completion/varwidth.cwl</file>
 <file>completion/venndiagram.cwl</file>
@@ -611,7 +625,7 @@
 <file>completion/wasysym.cwl</file>
 <file>completion/worldflags.cwl</file>
 <file>completion/wrapfig.cwl</file>
-<file>completion/xcharter.cwl</file>
+<file>completion/XCharter.cwl</file>
 <file>completion/xcolor.cwl</file>
 <file>completion/xcolor-material.cwl</file>
 <file>completion/xcolor-solarized.cwl</file>
