@@ -1,10 +1,16 @@
 # fbb package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/7/2021 for v1.16
 
 #include:fontaxes
+#include:fontenc
+#include:textcomp
+#include:etoolbox
+#include:xstring
+#include:mweights
 
 \defigures
 \infigures
+\inffigures#*
 \lfstyle
 \nufigures
 \osfstyle
@@ -12,12 +18,16 @@
 \sufigures
 \swshape
 \textfrac[optional whole part]{numerator}{denominator}
-\textin{arg}
+\textin{text}
+\textinf{text}#*
+\textinferior{text}#*
 \textlf{text}
 \textosf{text}
-\textsu{arg}
-\textde{arg}
-\textnu{arg}
+\textsu{text}
+\textsup{text}#*
+\textsuperior{text}#*
+\textde{text}
+\textnu{text}
 \texttlf{text}
 \texttosf{text}
 \tlfstyle

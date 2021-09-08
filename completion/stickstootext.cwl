@@ -1,5 +1,11 @@
 # stickstootext package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/7/2021 for v1.02
+
+#include:fontenc
+#include:textcomp
+#include:mweights
+#include:etoolbox
+#include:fontaxes
 
 \defigures
 \infigures
@@ -7,17 +13,19 @@
 \nufigures
 \osfstyle
 \sufigures
-\textde{arg}
+\textde{text}
 \textfrac{numerator}{denominator}
-\textin{arg}
+\textin{text}
+\textinferior{text}#*
 \textlf{text}
 \textnu{arg}
 \textosf{text}
-\textsu{arg}
+\textsu{text}
+\textsuperior{text}#*
 \texttlf{text}
 \texttosf{text}
 \thfamily
 \tlfstyle
 \tosfstyle
-\useosf
-\useproportional
+\useosf#*
+\useproportional#*
