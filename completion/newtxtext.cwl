@@ -28,3 +28,4 @@
 \tosfstyle
 \useosf#*
 \useproportional#*
+\k{arg}#*
