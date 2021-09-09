@@ -23,59 +23,59 @@ m
 km
 #endkeyvals
 
-\npfourdigitsep
-\npfourdigitnosep
+\npfourdigitsep#*
+\npfourdigitnosep#*
 
-\npaddmissingzero
-\npnoaddmissingzero
+\npaddmissingzero#*
+\npnoaddmissingzero#*
 
-\npaddplus
-\npnoaddplus
+\npaddplus#*
+\npnoaddplus#*
 
-\npaddplusexponent
-\npnoaddplusexponent
+\npaddplusexponent#*
+\npnoaddplusexponent#*
 
 \nprounddigits{digits}
 \nproundexpdigits{digits}
-\npnoround
-\npnoroundexp
+\npnoround#*
+\npnoroundexp#*
 
-\nplpadding[character]{digits}
-\npnolpadding
+\nplpadding[character]{digits}#*
+\npnolpadding#*
 
-\npreplacenull{replacement}
-\npprintnull
+\npreplacenull{replacement}#*
+\npprintnull#*
 
 \npunitcommand#*
 
-\npdefunit{unitname}{unit}{scale}
+\npdefunit{unitname}{unit}{scale}#*
 
-\selectlanguage{language}
+\selectlanguage{language}#*
 
-\npmakebox[text1][justification]{text2}
+\npmakebox[text1][justification]{text2}#*
 
 #ifOption:boldmath
-\npboldmath
+\npboldmath#*
 #endif
 
-\npafternum{arg}
+\npafternum{arg}#*
 
-\npunit{unit}
+\npunit{unit}#*
 
-\npdigits{before}{after}
-\npexponentdigits[after]{before}
-\npnodigits
-\npnoexponentdigits
+\npdigits{before}{after}#*
+\npexponentdigits[after]{before}#*
+\npnodigits#*
+\npnoexponentdigits#*
 
-\npthousandsep{separator}
-\npthousandthpartsep{separator}
-\npdecimalsign{sign}
-\npproductsign{sign}
+\npthousandsep{separator}#*
+\npthousandthpartsep{separator}#*
+\npdecimalsign{sign}#*
+\npproductsign{sign}#*
 
-\npunitseparator{separator}
-\npdegreeseparator{separator}
-\npcelsiusseparator{separator}
-\nppercentseparator{separator}
+\npunitseparator{separator}#*
+\npdegreeseparator{separator}#*
+\npcelsiusseparator{separator}#*
+\nppercentseparator{separator}#*
 
 #ifOption:autolanguage
 \npstyledefault
