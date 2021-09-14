@@ -1,5 +1,5 @@
 # montserrat package
-# Matthew Bertucci 7/27/2021
+# Matthew Bertucci 9/13/2021 for v1.03
 
 #include:fontaxes
 #include:fontenc
@@ -9,14 +9,13 @@
 \montserratalt
 \defigures
 \textde{text}
+\textdenominators{text}#*
 \infigures
 \textin{text}
+\textinferior{text}#*
 \nufigures
 \textnu{text}
+\textnumerators{text}#*
 \sufigures
 \textsu{text}
-\rmdefault#*
-\familydefault#*
-\sfdefault#*
-\ttdefault#*
-\mddefault#*
+\textsuperior{text}#*

@@ -8,6 +8,8 @@
 \end{epigraphs}#n
 \qitem{text}{source}#n
 
+\epigraphnoindent#*
+\epigraphnoindentfalse#*
 \epigraphwidth
 \textflush
 \epigraphflush

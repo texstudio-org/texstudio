@@ -1,9 +1,8 @@
-# noto-sans package
-# Matthew Bertucci 7/27/2021
+# noto-serif package
+# Matthew Bertucci 9/14/2021
 
 #include:fontaxes
 #include:fontenc
-#include:fontspec
 #include:mweights
 #include:textcomp
 
@@ -11,7 +10,3 @@
 \notoseriflgr#*
 \sufigures
 \textsu{text}
-\rmdefault#*
-\familydefault#*
-\sfdefault#*
-\ttdefault#*
