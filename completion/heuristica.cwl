@@ -1,18 +1,23 @@
 # heuristica package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/13/2021 for v1.092
 
 #include:textcomp
 #include:fontaxes
+#include:mweights
+#include:etoolbox
+#include:fontenc
 
 \infigures
 \Qswash
 \sufigures
 \swshape
 \textfrac{numerator}{denominator}
-\textin{arg}
+\textin{text}
+\textinferior{text}#*
 \textlf{text}
 \textosf{text}
-\textsu{arg}
+\textsu{text}
+\textsuperior{text}#*
 \texttlf{text}
 \texttosf{text}
-\useosf
+\useosf#*
