@@ -13,7 +13,8 @@
 \tkzDefIntSimilitudeCenter(point1,num1)(point2,num2)#/tikzpicture
 \tkzExtSimilitudeCenter(point1,num1)(point2,num2)#/tikzpicture
 
-\tkzDefTriangleCenter[local options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzDefTriangleCenter(point1,point2,point3)#/tikzpicture
+\tkzDefTriangleCenter[options%keyvals](point1,point2,point3)#/tikzpicture
 
 #keyvals:\tkzDefTriangleCenter#c
 ortho
@@ -29,13 +30,15 @@ mittenpunkt
 feuerbach
 #endkeyvals
 
-\tkzDefPointOnLine[local options%keyvals](point1,point2)#/tikzpicture
+\tkzDefPointOnLine(point1,point2)#/tikzpicture
+\tkzDefPointOnLine[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDefPointOnLine#c
 pos=
 #endkeyvals
 
-\tkzDefPointOnCircle[local options%keyvals]#/tikzpicture
+\tkzDefPointOnCircle#/tikzpicture
+\tkzDefPointOnCircle[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzDefPointOnCircle#c
 angle=
@@ -43,10 +46,13 @@ center=
 radius=
 #endkeyvals
 
-\tkzDefPointBy[local options%keyvals](point)#/tikzpicture
-\tkzDefPointsBy[local options%keyvals](point1,point2,...){point1,point2,...}#/tikzpicture
 
-#keyvals:\tkzDefPointBy#c
+\tkzDefPointBy(point)#/tikzpicture
+\tkzDefPointBy[options%keyvals](point)#/tikzpicture
+\tkzDefPointsBy(point1,point2,...){point1,point2,...}#/tikzpicture
+\tkzDefPointsBy[options%keyvals](point1,point2,...){point1,point2,...}#/tikzpicture
+
+#keyvals:\tkzDefPointBy#c,tkzDefPointsBy#c
 translation=
 homothety=
 reflection=
@@ -57,7 +63,8 @@ rotation in rad=
 inversion=
 #endkeyvals
 
-\tkzDefPointWith[local options%keyvals](point1,point2)#/tikzpicture
+\tkzDefPointWith(point1,point2)#/tikzpicture
+\tkzDefPointWith[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:tkzDefPointWith#c
 orthogonal
@@ -71,7 +78,7 @@ K=
 
 \tkzGetVectxy(point1,point2){name}#/tikzpicture
 
-\tkzDefRandPointOn[local options%keyvals]#/tikzpicture
+\tkzDefRandPointOn[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzDefRandPointOn#c
 rectangle=
@@ -82,8 +89,8 @@ circle through=
 disk through=
 #endkeyvals
 
-\tkzDefLine[local options%keyvals](point1,point2)#/tikzpicture
-\tkzDefLine[local options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzDefLine(point1,point2)#/tikzpicture
+\tkzDefLine[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDefLine#c
 mediator
@@ -94,8 +101,8 @@ K=
 normed
 #endkeyvals
 
-\tkzDefTangent[local options%keyvals](point1,point2)#/tikzpicture
-\tkzDefTangent[local options%keyvals](point1,radius)#/tikzpicture
+\tkzDefTangent(point1,point2)#/tikzpicture
+\tkzDefTangent[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDefTangent#c
 at=
@@ -103,8 +110,8 @@ from=
 from with R=
 #endkeyvals
 
-\tkzDrawLine[local options%keyvals](point1,point2)#/tikzpicture
-\tkzDrawLine[local options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzDrawLine(point1,point2)#/tikzpicture
+\tkzDrawLine[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDrawLine#c
 median
@@ -114,17 +121,21 @@ none
 add=
 #endkeyvals
 
-\tkzDrawSegment[local options%keyvals](point1,point2)#/tikzpicture
+\tkzDrawSegment(point1,point2)#/tikzpicture
+\tkzDrawSegment[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDrawSegment#c
 add=
 dim=
 #endkeyvals
 
-\tkzDrawSegments[local options](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzDrawSegments(point1,point2 point3,point4 ...)#/tikzpicture
+\tkzDrawSegments[options](point1,point2 point3,point4 ...)#/tikzpicture
 
-\tkzMarkSegment[local options%keyvals](point1,point2)#/tikzpicture
-\tkzMarkSegments[local options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzMarkSegment(point1,point2)#/tikzpicture
+\tkzMarkSegment[options%keyvals](point1,point2)#/tikzpicture
+\tkzMarkSegments(point1,point2 point3,point4 ...)#/tikzpicture
+\tkzMarkSegments[options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
 
 #keyvals:\tkzMarkSegment#c,\tkzMarkSegments#c
 pos=
@@ -133,17 +144,17 @@ mark=
 size=##L
 #endkeyvals
 
-\tkzLabelLine[local options%keyvals](point1,point2){label%plain}#/tikzpicture
+\tkzLabelLine[options%keyvals](point1,point2){label%plain}#/tikzpicture
 
-\tkzLabelSegment[local options%keyvals](point1,point2){label%plain}#/tikzpicture
-\tkzLabelSegments[local options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzLabelSegment[options%keyvals](point1,point2){label%plain}#/tikzpicture
+\tkzLabelSegments[options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
 
 #keyvals:\tkzLabelLine#c,\tkzLabelSegment#c,\tkzLabelSegments#c
 pos=
 #endkeyvals
 
-\tkzDefTriangle[local options%keyvals](point1,point2)#/tikzpicture
-\tkzDrawTriangle[local options%keyvals](point1,point2)#/tikzpicture
+\tkzDefTriangle[options%keyvals](point1,point2)#/tikzpicture
+\tkzDrawTriangle[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDefTriangle#c,\tkzDrawTriangle#c
 two angles=
@@ -156,7 +167,7 @@ golden
 cheops
 #endkeyvals
 
-\tkzDefSpcTriangle[local options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzDefSpcTriangle[options%keyvals](point1,point2,point3)#/tikzpicture
 
 #keyvals:\tkzDefSpcTriangle#c
 in
@@ -175,18 +186,25 @@ name=
 #endkeyvals
 
 \tkzDefSquare(point1,point2)#/tikzpicture
-\tkzDrawSquare[local options](point1,point2)#/tikzpicture
+\tkzDrawSquare(point1,point2)#/tikzpicture
+\tkzDrawSquare[options](point1,point2)#/tikzpicture
 \tkzDefParallelogram(point1,point2,point3)#/tikzpicture
 
 \tkzDefGoldRectangle(point1,point2)
-\tkzDrawGoldRectangle[local options](point1,point2)#/tikzpicture
+\tkzDrawGoldRectangle(point1,point2)#/tikzpicture
+\tkzDrawGoldRectangle[options](point1,point2)#/tikzpicture
 
-\tkzDrawPolygon[local options](point1,point2,...)#/tikzpicture
-\tkzDrawPolySeg[local options](point1,point2,...)#/tikzpicture
-\tkzClipPolygon[local options](point1,point2,...)#/tikzpicture
-\tkzFillPolygon[local options](point1,point2,...)#/tikzpicture
+\tkzDrawPolygon(point1,point2,...)#/tikzpicture
+\tkzDrawPolygon[options](point1,point2,...)#/tikzpicture
+\tkzDrawPolySeg(point1,point2,...)#/tikzpicture
+\tkzDrawPolySeg[options](point1,point2,...)#/tikzpicture
+\tkzClipPolygon(point1,point2,...)#/tikzpicture
+\tkzClipPolygon[options](point1,point2,...)#/tikzpicture
+\tkzFillPolygon(point1,point2,...)#/tikzpicture
+\tkzFillPolygon[options](point1,point2,...)#/tikzpicture
 
-\tkzDefRegPolygon[local options%keyvals](point1,point2)#/tikzpicture
+\tkzDefRegPolygon(point1,point2)#/tikzpicture
+\tkzDefRegPolygon[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDefRegPolygon#c
 name=
@@ -195,8 +213,8 @@ center
 side
 #endkeyvals
 
-\tkzDefCircle[local options%keyvals](point1,point2)#/tikzpicture
-\tkzDefCircle[local options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzDefCircle(point1,point2)#/tikzpicture
+\tkzDefCircle[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDefCircle#c
 through
@@ -213,26 +231,31 @@ orthogonal through
 K=
 #endkeyvals
 
-\tkzDrawCircle[local options%keyvals](point1,point2)#/tikzpicture
-\tkzDrawCircles[local options%keyvals](point1,point2 point3,point4)#/tikzpicture
+\tkzDrawCircle(point1,point2)#/tikzpicture
+\tkzDrawCircle[options%keyvals](point1,point2)#/tikzpicture
+\tkzDrawCircles(point1,point2 point3,point4)#/tikzpicture
+\tkzDrawCircles[options%keyvals](point1,point2 point3,point4)#/tikzpicture
 
-#keyvals:\tkzDrawCircle#c
+#keyvals:\tkzDrawCircle#c,\tkzDrawCircles#c
 through
 diameter
 R
 #endkeyvals
 
-\tkzDrawSemiCircle[local options%keyvals](point1,point2)#/tikzpicture
+\tkzDrawSemiCircle(point1,point2)#/tikzpicture
+\tkzDrawSemiCircle[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDrawSemiCircle#c
 through
 diameter
 #endkeyvals
 
-\tkzFillCircle[local options%keyvals](point1,point2)#/tikzpicture
-\tkzClipCircle[local options%keyvals](point1,point2)#/tikzpicture
-\tkzClipCircle[local options%keyvals](point1,radius)#/tikzpicture
-\tkzLabelCircle[local options%keyvals](point1,point2)(angle){label%plain}#/tikzpicture
+\tkzFillCircle(point1,point2)#/tikzpicture
+\tkzFillCircle[options%keyvals](point1,point2)#/tikzpicture
+\tkzClipCircle(point1,point2)#/tikzpicture
+\tkzClipCircle[options%keyvals](point1,point2)#/tikzpicture
+\tkzLabelCircle(point1,point2)(angle){label%plain}#/tikzpicture
+\tkzLabelCircle[options%keyvals](point1,point2)(angle){label%plain}#/tikzpicture
 
 #keyvals:\tkzFillCircle#c,\tkzClipCircle#c,\tkzLabelCircle#c
 radius
@@ -241,12 +264,10 @@ R
 
 \tkzInterLL(point1,point2)(point3,point4)#/tikzpicture
 
-\tkzInterLC[local options%keyvals](point1,point2)(point3,point4)#/tikzpicture
-\tkzInterLC[local options%keyvals](point1,point2)(point3,radius)#/tikzpicture
-\tkzInterLC[local options%keyvals](point1,point2)(point3,point4,point5)#/tikzpicture
-\tkzInterCC[local options%keyvals](point1,point2)(point3,point4)#/tikzpicture
-\tkzInterCC[local options%keyvals](point1,radius1)(point2,radius2)#/tikzpicture
-\tkzInterCC[local options%keyvals](point1,point2,point3)(point4,point5,point6)#/tikzpicture
+\tkzInterLC(point1,point2)(point3,point4)#/tikzpicture
+\tkzInterLC[options%keyvals](point1,point2)(point3,point4)#/tikzpicture
+\tkzInterCC(point1,point2)(point3,point4)#/tikzpicture
+\tkzInterCC[options%keyvals](point1,point2)(point3,point4)#/tikzpicture
 \tkzInterCCN(point1,point2)(point3,point4)#/tikzpicture
 \tkzInterCCR(point1,radius1)(point2,radius2)#/tikzpicture
 
@@ -256,20 +277,24 @@ R
 with nodes
 #endkeyvals
 
-\tkzLengthResult#/tikzpicture
-\tkzPointResult#/tikzpicture
-\tkzAngleResult#/tikzpicture
-\tkzLength#/tikzpicture
+\tkzLengthResult#*/tikzpicture
+\tkzPointResult#*/tikzpicture
+\tkzAngleResult#*/tikzpicture
+\tkzLength#*/tikzpicture
 
-\tkzFillAngle[local options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzFillAngles[local options%keyvals](point1,point2,point3)(point4,point5,point6)...#/tikzpicture
+\tkzFillAngle(point1,point2,point3)#/tikzpicture
+\tkzFillAngle[options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzFillAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+\tkzFillAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
 
 #keyvals:\tkzFillAngle#c,\tkzFillAngles#c
 size=##L
 #endkeyvals
 
-\tkzMarkAngle[local options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzMarkAngles[local options%keyvals](point1,point2,point3)(point4,point5,point6)...#/tikzpicture
+\tkzMarkAngle(point1,point2,point3)#/tikzpicture
+\tkzMarkAngle[options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzMarkAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+\tkzMarkAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
 
 #keyvals:\tkzMarkAngle#c,\tkzMarkAngles#c
 arc=
@@ -280,36 +305,37 @@ mkcolor=#%color
 mkpos=
 #endkeyvals
 
-\tkzLabelAngle[local options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzLabelAngles[local options%keyvals](point1,point2,point3)(point4,point5,point6)...#/tikzpicture
+\tkzLabelAngle(point1,point2,point3)#/tikzpicture
+\tkzLabelAngle[options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzLabelAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+\tkzLabelAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
 
 #keyvals:\tkzLabelAngle#c,\tkzLabelAngles#c
 pos=
 #endkeyvals
 
-\tkzMarkRightAngle[local options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzMarkRightAngles[local options%keyvals](point1,point2,point3)(point4,point5,point6)...#/tikzpicture
+\tkzMarkRightAngle(point1,point2,point3)#/tikzpicture
+\tkzMarkRightAngle[options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzMarkRightAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+\tkzMarkRightAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
 
 #keyvals:\tkzMarkRightAngle#c,\tkzMarkRightAngles#c
 german
 size=
 #endkeyvals
 
-\tkzGetAngle(name)#/tikzpicture
+\tkzGetAngle(name)#*/tikzpicture
 
-\tkzFindAngle(point1,point2,point3)#/tikzpicture
+\tkzFindAngle(point1,point2,point3)#*/tikzpicture
 
-\tkzFindSlope(point1,point2){name}#/tikzpicture
-\tkzFindSlopeAngle(point1,point2)#/tikzpicture
+\tkzFindSlope(point1,point2){name}#*/tikzpicture
+\tkzFindSlopeAngle(point1,point2)#*/tikzpicture
 
-\tkzDrawSector[local options%keyvals](point1,point2)(point3)#/tikzpicture
-\tkzDrawSector[local options%keyvals](point1,point2)(angle)#/tikzpicture
-\tkzDrawSector[local options%keyvals](point,radius)(angle1,angle2)#/tikzpicture
-\tkzDrawSector[local options%keyvals](point,radius)(point1,point2)#/tikzpicture
-\tkzFillSector[local options%keyvals](point1,point2)(point3)#/tikzpicture
-\tkzFillSector[local options%keyvals](point1,point2)(angle)#/tikzpicture
-\tkzFillSector[local options%keyvals](point,radius)(angle1,angle2)#/tikzpicture
-\tkzFillSector[local options%keyvals](point,radius)(point1,point2)#/tikzpicture
+
+\tkzDrawSector(point1,point2)(point3)#/tikzpicture
+\tkzDrawSector[options%keyvals](point1,point2)(point3)#/tikzpicture
+\tkzFillSector(point1,point2)(point3)#/tikzpicture
+\tkzFillSector[options%keyvals](point1,point2)(point3)#/tikzpicture
 
 #keyvals:\tkzDrawSector#c,\tkzFillSector#c
 towards
@@ -318,9 +344,8 @@ R
 R with nodes
 #endkeyvals
 
-\tkzClipSector[local options%keyvals](point1,point2)(point3)#/tikzpicture
-\tkzClipSector[local options%keyvals](point1,point2)(angle)#/tikzpicture
-\tkzClipSector[local options%keyvals](point,radius)(angle1,angle2)#/tikzpicture
+\tkzClipSector[options%keyvals](point1,point2)(point3)#/tikzpicture
+\tkzClipSector(point1,point2)(point3)#/tikzpicture
 
 #keyvals:\tkzClipSector#c
 towards
@@ -328,11 +353,8 @@ rotate
 R
 #endkeyvals
 
-\tkzDrawArc[local options%keyvals](point1,point2)(point3)#/tikzpicture
-\tkzDrawArc[local options%keyvals](point1,point2)(angle)#/tikzpicture
-\tkzDrawArc[local options%keyvals](point,radius)(angle1,angle2)#/tikzpicture
-\tkzDrawArc[local options%keyvals](point,radius)(point1,point2)#/tikzpicture
-\tkzDrawArc[local options%keyvals](point,point2)(angle1,angle2)#/tikzpicture
+\tkzDrawArc(point1,point2)(point3)#/tikzpicture
+\tkzDrawArc[options%keyvals](point1,point2)(point3)#/tikzpicture
 
 #keyvals:\tkzDrawArc#c
 towards
@@ -344,26 +366,28 @@ angles
 
 \tkzDuplicateSegment(point1,point2)(point3,point4){point5}#/tikzpicture
 
-\tkzCalcLength[local options%keyvals](point1,point2){name}#/tikzpicture
+\tkzCalcLength[options%keyvals](point1,point2){name}#/tikzpicture
 
 #keyvals:\tkzCalcLength#c
 cm
 #endkeyvals
 
-\tkzpttocm(number){name}#/tikzpicture
-\tkzcmtopt(number){name}#/tikzpicture
+\tkzpttocm(number){name}#*/tikzpicture
+\tkzcmtopt(number){name}#*/tikzpicture
 
-\tkzGetPointCoord(point){name}#/tikzpicture
+\tkzGetPointCoord(point){name}#*/tikzpicture
 
-\tkzCompass[local options%keyvals](point1,point2)#/tikzpicture
-\tkzCompasss[local options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzCompass(point1,point2)#/tikzpicture
+\tkzCompass[options%keyvals](point1,point2)#/tikzpicture
+\tkzCompasss(point1,point2 point3,point4 ...)#/tikzpicture
+\tkzCompasss[options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
 
 #keyvals:\tkzCompass#c,\tkzCompasss#c
 delta=
 length=
 #endkeyvals
 
-\tkzSetUpCompass[local options%keyvals]#/tikzpicture
+\tkzSetUpCompass[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzSetUpCompass#c
 line width=##L
@@ -371,8 +395,8 @@ color=#%color
 style=
 #endkeyvals
 
-\tkzShowLine[local options%keyvals](point1,point2)#/tikzpicture
-\tkzShowLine[local options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzShowLine(point1,point2)#/tikzpicture
+\tkzShowLine[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzShowLine#c
 mediator
@@ -386,8 +410,8 @@ gap=
 size=
 #endkeyvals
 
-\tkzShowTransformation[local options%keyvals](point1,point2)#/tikzpicture
-\tkzShowTransformation[local options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzShowTransformation(point1,point2)#/tikzpicture
+\tkzShowTransformation[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzShowTransformation#c
 reflection=over
@@ -401,7 +425,8 @@ gap=
 size=
 #endkeyvals
 
-\tkzDefEquiPoints[local options%keyvals](point1,point2)#/tikzpicture
+\tkzDefEquiPoints(point1,point2)#/tikzpicture
+\tkzDefEquiPoints[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzDefEquiPoints#c
 dist=##L
@@ -410,7 +435,8 @@ show
 /compass/delta=
 #endkeyvals
 
-\tkzProtractor[local options%keyvals](point1,point2)#/tikzpicture
+\tkzProtractor(point1,point2)#/tikzpicture
+\tkzProtractor[options%keyvals](point1,point2)#/tikzpicture
 
 #keyvals:\tkzProtractor#c
 lw=##L
@@ -418,7 +444,7 @@ scale=
 return
 #endkeyvals
 
-\tkzSetUpLine[local options%keyvals]#/tikzpicture
+\tkzSetUpLine[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzSetUpLine#c
 color=#%color
