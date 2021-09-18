@@ -178,8 +178,10 @@ fill=
 
 \tkzPointShowCoord(point)#/tikzpicture
 \tkzPointShowCoord[options%keyvals](point)#/tikzpicture
+\tkzShowPointCoord(point)#*/tikzpicture
+\tkzShowPointCoord[options%keyvals](point)#*/tikzpicture
 
-#keyvals:\tkzPointShowCoord#c
+#keyvals:\tkzPointShowCoord#c,\tkzShowPointCoord#c
 xlabel=
 xstyle=
 noxdraw
@@ -288,3 +290,5 @@ line#true,false
 \tkzCalcLength[unit](point1,point2){macro}#*/tikzpicture
 \tkzGetLength{arg}#/tikzpicture
 \tkzGetPoint{point}#/tikzpicture
+\tkzGetFirstPoint{point}#*/tikzpicture
+\tkzGetSecondPoint{point}#*/tikzpicture
