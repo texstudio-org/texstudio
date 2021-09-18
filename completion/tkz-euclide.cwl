@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 6/16/2021
+# Matthew Bertucci 9/17/2021 for v3.06c
 
 #include:tkz-base
 
@@ -9,6 +9,10 @@
 \tkzDefMidPoint(point1,point2)#/tikzpicture
 \tkzDefBarycentricPoint(point1=num1,point2=num2,...)#/tikzpicture
 \tkzCentroid(point1=num1,point2=num2,point3=num3)#/tikzpicture
+\tkzApolloniusCenter[options](point1,point2)#*/tikzpicture
+\tkzDefApolloniusPoint[options](point1,point2)#*/tikzpicture
+\tkzDefApolloniusRadius[options](point1,point2)#*/tikzpicture
+\tkzInCenter(point1,point2,point3)#*/tikzpicture
 
 \tkzDefIntSimilitudeCenter(point1,num1)(point2,num2)#/tikzpicture
 \tkzExtSimilitudeCenter(point1,num1)(point2,num2)#/tikzpicture
@@ -63,6 +67,8 @@ rotation in rad=
 inversion=
 #endkeyvals
 
+\tkzCircumCenter(point1,point2,point3)#*/tikzpicture
+
 \tkzDefPointWith(point1,point2)#/tikzpicture
 \tkzDefPointWith[options%keyvals](point1,point2)#/tikzpicture
 
@@ -101,6 +107,8 @@ K=
 normed
 #endkeyvals
 
+\tkzDefEquilateral(point1,point2)#*/tikzpicture
+
 \tkzDefTangent(point1,point2)#/tikzpicture
 \tkzDefTangent[options%keyvals](point1,point2)#/tikzpicture
 
@@ -121,6 +129,9 @@ none
 add=
 #endkeyvals
 
+\tkzDrawLines(point1,point2,...)#/tikzpicture
+\tkzDrawLines[options](point1,point2,...)#/tikzpicture
+
 \tkzDrawSegment(point1,point2)#/tikzpicture
 \tkzDrawSegment[options%keyvals](point1,point2)#/tikzpicture
 
@@ -129,13 +140,13 @@ add=
 dim=
 #endkeyvals
 
-\tkzDrawSegments(point1,point2 point3,point4 ...)#/tikzpicture
-\tkzDrawSegments[options](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzDrawSegments(pt1,pt2 pt3,pt4 ...)#/tikzpicture
+\tkzDrawSegments[options](pt1,pt2 pt3,pt4 ...)#/tikzpicture
 
 \tkzMarkSegment(point1,point2)#/tikzpicture
 \tkzMarkSegment[options%keyvals](point1,point2)#/tikzpicture
-\tkzMarkSegments(point1,point2 point3,point4 ...)#/tikzpicture
-\tkzMarkSegments[options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzMarkSegments(pt1,pt2 pt3,pt4 ...)#/tikzpicture
+\tkzMarkSegments[options%keyvals](pt1,pt2 pt3,pt4 ...)#/tikzpicture
 
 #keyvals:\tkzMarkSegment#c,\tkzMarkSegments#c
 pos=
@@ -147,7 +158,7 @@ size=##L
 \tkzLabelLine[options%keyvals](point1,point2){label%plain}#/tikzpicture
 
 \tkzLabelSegment[options%keyvals](point1,point2){label%plain}#/tikzpicture
-\tkzLabelSegments[options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzLabelSegments[options%keyvals](pt1,pt2 pt3,pt4 ...){label%plain}#/tikzpicture
 
 #keyvals:\tkzLabelLine#c,\tkzLabelSegment#c,\tkzLabelSegments#c
 pos=
@@ -193,15 +204,18 @@ name=
 \tkzDefGoldRectangle(point1,point2)
 \tkzDrawGoldRectangle(point1,point2)#/tikzpicture
 \tkzDrawGoldRectangle[options](point1,point2)#/tikzpicture
-
+\tkzDrawRectangle(point1,point2)#/tikzpicture
+\tkzDrawRectangle[options](point1,point2)#/tikzpicture
 \tkzDrawPolygon(point1,point2,...)#/tikzpicture
 \tkzDrawPolygon[options](point1,point2,...)#/tikzpicture
 \tkzDrawPolySeg(point1,point2,...)#/tikzpicture
 \tkzDrawPolySeg[options](point1,point2,...)#/tikzpicture
 \tkzClipPolygon(point1,point2,...)#/tikzpicture
 \tkzClipPolygon[options](point1,point2,...)#/tikzpicture
+\tkzClipOutPolygon(point1,point2,...)#*/tikzpicture
 \tkzFillPolygon(point1,point2,...)#/tikzpicture
 \tkzFillPolygon[options](point1,point2,...)#/tikzpicture
+\tkzLabelRegPolygon[options](point){label1,label2,...}#/tikzpicture
 
 \tkzDefRegPolygon(point1,point2)#/tikzpicture
 \tkzDefRegPolygon[options%keyvals](point1,point2)#/tikzpicture
@@ -231,10 +245,12 @@ orthogonal through
 K=
 #endkeyvals
 
+\tkzDefExCircle(point1,point2,point3)#/tikzpicture
+
 \tkzDrawCircle(point1,point2)#/tikzpicture
 \tkzDrawCircle[options%keyvals](point1,point2)#/tikzpicture
-\tkzDrawCircles(point1,point2 point3,point4)#/tikzpicture
-\tkzDrawCircles[options%keyvals](point1,point2 point3,point4)#/tikzpicture
+\tkzDrawCircles(pt1,pt2 pt3,pt4 ...)#/tikzpicture
+\tkzDrawCircles[options%keyvals](pt1,pt2 pt3,pt4 ...)#/tikzpicture
 
 #keyvals:\tkzDrawCircle#c,\tkzDrawCircles#c
 through
@@ -263,7 +279,6 @@ R
 #endkeyvals
 
 \tkzInterLL(point1,point2)(point3,point4)#/tikzpicture
-
 \tkzInterLC(point1,point2)(point3,point4)#/tikzpicture
 \tkzInterLC[options%keyvals](point1,point2)(point3,point4)#/tikzpicture
 \tkzInterCC(point1,point2)(point3,point4)#/tikzpicture
@@ -353,6 +368,8 @@ rotate
 R
 #endkeyvals
 
+\tkzDrawBisector(point1,point2,point3)#/tikzpicture
+
 \tkzDrawArc(point1,point2)(point3)#/tikzpicture
 \tkzDrawArc[options%keyvals](point1,point2)(point3)#/tikzpicture
 
@@ -366,12 +383,6 @@ angles
 
 \tkzDuplicateSegment(point1,point2)(point3,point4){point5}#/tikzpicture
 
-\tkzCalcLength[options%keyvals](point1,point2){name}#/tikzpicture
-
-#keyvals:\tkzCalcLength#c
-cm
-#endkeyvals
-
 \tkzpttocm(number){name}#*/tikzpicture
 \tkzcmtopt(number){name}#*/tikzpicture
 
@@ -379,8 +390,8 @@ cm
 
 \tkzCompass(point1,point2)#/tikzpicture
 \tkzCompass[options%keyvals](point1,point2)#/tikzpicture
-\tkzCompasss(point1,point2 point3,point4 ...)#/tikzpicture
-\tkzCompasss[options%keyvals](point1,point2 point3,point4 ...)#/tikzpicture
+\tkzCompasss(pt1,pt2 pt3,pt4 ...)#/tikzpicture
+\tkzCompasss[options%keyvals](pt1,pt2 pt3,pt4 ...)#/tikzpicture
 
 #keyvals:\tkzCompass#c,\tkzCompasss#c
 delta=
@@ -452,3 +463,7 @@ line width=##L
 style=
 add=
 #endkeyvals
+
+\tkzRadius#*/tikzpicture
+\tkzVecKOrth(point1,point2)#*/tikzpicture
+\tkzVecKOrth[option](point1,point2)#*/tikzpicture
