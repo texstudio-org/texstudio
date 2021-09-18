@@ -1,12 +1,13 @@
 # alterqcm package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/17/2021 for v4.42c
 
 #include:calc
 #include:array
 #include:multirow
 #include:pifont
 
-\begin{alterqcm}[keyvals]
+\begin{alterqcm}
+\begin{alterqcm}[options%keyvals]
 \end{alterqcm}
 
 #keyvals:\begin{alterqcm}
@@ -38,7 +39,8 @@ language=#english,german,greek,italian,russian,chinese,unknown
 transparent
 #endkeyvals
 
-\AQquestion[keyvals]{question}{{prop1},{prop2},...}#/alterqcm
+\AQquestion{%<question%>}{%<{prop1},{prop2},...%>}#/alterqcm
+\AQquestion[%<options%>]{%<question%>}{%<{prop1},{prop2},...%>}#/alterqcm
 
 #keyvals:\AQquestion
 pq=##L
@@ -51,7 +53,8 @@ br=
 
 \InputQuestionList{filepath}{prefix}{num1,num2,...}#/alterqcm
 
-\AQannexe[keyvals]{start}{end}{number of props}
+\AQannexe{start}{end}{number of props}
+\AQannexe[options%keyvals]{start}{end}{number of props}
 
 #keyvals:\AQannexe
 VF
@@ -59,3 +62,6 @@ propstyle=
 #endkeyvals
 
 \AQpoints{number}
+
+\dingsquare
+\dingchecksquare
