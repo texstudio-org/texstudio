@@ -1,15 +1,17 @@
 # tkz-berge package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/17/2021 for v2.0
 
 #include:tkz-graph
 
-\grEmptyPath[local options%keyvals]{number of vertices}#/tikzpicture
+\grEmptyPath{number of vertices}#/tikzpicture
+\grEmptyPath[options%keyvals]{number of vertices}#/tikzpicture
 
 #keyvals:\grEmptyPath#c
 RA=
 RS=
 prefix=
 Math
+form=
 #endkeyvals
 
 \EdgeInGraphLoop{prefix}{number of vertices}#/tikzpicture
@@ -31,15 +33,23 @@ Math
 \EdgeMod*{prefix1}{prefix2}{number of vertices}{step1}{step2}#/tikzpicture
 \EdgeDoubleMod{prefix1}{numofvertices1}{start1}{add1}{prefix2}{numofvertices2}{start2}{add2}{end}#/tikzpicture
 
-\EdgeInGraphFromOneToComp[local options%keyvals]{prefix}{number of vertices}{from}#/tikzpicture
+\EdgeInGraphFromOneToComp{prefix}{number of vertices}{from}#/tikzpicture
+\EdgeInGraphFromOneToComp[options%keyvals]{prefix}{number of vertices}{from}#/tikzpicture
 
-\grEmptyCycle[local options%keyvals]{number of vertices}#/tikzpicture
-\grCycle[local options%keyvals]{number of vertices}#/tikzpicture
-\grComplete[local options%keyvals]{number of vertices}#/tikzpicture
-\grCirculant[local options%keyvals]{number of vertices}{step1,step2,...}#/tikzpicture
-\grStar[local options%keyvals]{number of vertices}#/tikzpicture
-\grSQCycle[local options%keyvals]{number of vertices}#/tikzpicture
-\grWheel[local options%keyvals]{number of vertices}#/tikzpicture
+\grEmptyCycle{number of vertices}#/tikzpicture
+\grEmptyCycle[options%keyvals]{number of vertices}#/tikzpicture
+\grCycle{number of vertices}#/tikzpicture
+\grCycle[options%keyvals]{number of vertices}#/tikzpicture
+\grComplete{number of vertices}#/tikzpicture
+\grComplete[options%keyvals]{number of vertices}#/tikzpicture
+\grCirculant{number of vertices}{step1,step2,...}#/tikzpicture
+\grCirculant[options%keyvals]{number of vertices}{step1,step2,...}#/tikzpicture
+\grStar{number of vertices}#/tikzpicture
+\grStar[options%keyvals]{number of vertices}#/tikzpicture
+\grSQCycle{number of vertices}#/tikzpicture
+\grSQCycle[options%keyvals]{number of vertices}#/tikzpicture
+\grWheel{number of vertices}#/tikzpicture
+\grWheel[options%keyvals]{number of vertices}#/tikzpicture
 
 #keyvals:\EdgeInGraphFromOneToComp#c,\grEmptyCycle#c,\grCycle#c,\grComplete#c,\grCirculant#c,\grStar#c,\grSQCycle#c,\grWheel#c
 x=
@@ -50,7 +60,8 @@ prefix=
 Math
 #endkeyvals
 
-\grLadder[local options%keyvals]{number of vertices}#/tikzpicture
+\grLadder{number of vertices}#/tikzpicture
+\grLadder[options%keyvals]{number of vertices}#/tikzpicture
 
 #keyvals:\grLadder#c
 RA=
@@ -60,7 +71,8 @@ prefixx=
 Math
 #endkeyvals
 
-\grPrism[local options%keyvals]{number of vertices}#/tikzpicture
+\grPrism{number of vertices}#/tikzpicture
+\grPrism[options%keyvals]{number of vertices}#/tikzpicture
 
 #keyvals:\grPrism#c
 RA=
@@ -70,7 +82,8 @@ prefixx=
 Math
 #endkeyvals
 
-\grCompleteBipartite[local options%keyvals]{number1}{number2}#/tikzpicture
+\grCompleteBipartite{number1}{number2}#/tikzpicture
+\grCompleteBipartite[options%keyvals]{number1}{number2}#/tikzpicture
 
 #keyvals:\grCompleteBipartite#c
 RA=
@@ -82,7 +95,8 @@ prefixx=
 Math
 #endkeyvals
 
-\grTriangularGrid[local options%keyvals]{number of vertices}#/tikzpicture
+\grTriangularGrid{number of vertices}#/tikzpicture
+\grTriangularGrid[options%keyvals]{number of vertices}#/tikzpicture
 
 #keyvals:\grTriangularGrid#c
 RA=
@@ -91,16 +105,21 @@ prefix=
 Math
 #endkeyvals
 
-\grLCF{RA-number}{num1,num2,...}{number}#/tikzpicture
+\grLCF[RA-number]{num1,num2,...}{number}#/tikzpicture
 
-\tkzSetUpColors[[local options%keyvals]#/tikzpicture
+#keyvals:\grLCF#c
+RA=
+#endkeyvals
+
+\tkzSetUpColors[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzSetUpColors
 background=#%color
-text=#&color
+text=#%color
 #endkeyvals
 
-\AssignVertexLabel[local options%keyvals]{prefix}{name1,name2,...}#/tikzpicture
+\AssignVertexLabel{prefix}{name1,name2,...}#/tikzpicture
+\AssignVertexLabel[options%keyvals]{prefix}{name1,name2,...}#/tikzpicture
 
 #keyvals:\AssignVertexLabel
 size=
@@ -141,5 +160,5 @@ Math
 \grTetrahedral#/tikzpicture
 \grTutteCoxeter#/tikzpicture
 \grWong#/tikzpicture
-\grWriteExplicitLabel#/tikzpicture
-\grWriteExplicitLabels#/tikzpicture
+\grWriteExplicitLabel#*/tikzpicture
+\grWriteExplicitLabels#*/tikzpicture
