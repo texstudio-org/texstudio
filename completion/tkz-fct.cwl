@@ -1,10 +1,11 @@
 # tkz-fct package
-# Matthew Bertucci 6/17/2021
+# Matthew Bertucci 9/17/2021 for v1.4c
 
 #include:tkz-base
 #include:fp
 
-\tkzFct[local options%keyvals]{gnuplot expression}#/tikzpicture
+\tkzFct{gnuplot expression}#/tikzpicture
+\tkzFct[options%keyvals]{gnuplot expression}#/tikzpicture
 
 #keyvals:\tkzFct#c
 domain=
@@ -15,7 +16,8 @@ line width=##L
 style=
 #endkeyvals
 
-\tkzDefPointByFct[local options%keyvals](number)#/tikzpicture
+\tkzDefPointByFct(number)#/tikzpicture
+\tkzDefPointByFct[options%keyvals](number)#/tikzpicture
 
 #keyvals:\tkzDefPointByFct#c
 draw
@@ -23,7 +25,8 @@ with=
 ref=
 #endkeyvals
 
-\tkzDrawTangentLine[local options%keyvals](number)#/tikzpicture
+\tkzDrawTangentLine(number)#/tikzpicture
+\tkzDrawTangentLine[options%keyvals](number)#/tikzpicture
 
 #keyvals:\tkzDrawTangentLine#c
 draw
@@ -32,7 +35,7 @@ kr=
 kl=
 #endkeyvals
 
-\tkzDrawArea[local options%keyvals]#/tikzpicture
+\tkzDrawArea[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzDrawArea#c
 domain=
@@ -42,7 +45,7 @@ opacity=
 style=
 #endkeyvals
 
-\tkzDrawAreafg[local options%keyvals]#/tikzpicture
+\tkzDrawAreafg[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzDrawAreafg#c
 between=
@@ -50,18 +53,20 @@ domain=
 opacity=
 #endkeyvals
 
-\tkzDrawRiemannSum[local options%keyvals]#/tikzpicture
-\tkzDrawRiemannSumInf[local options%keyvals]#/tikzpicture
-\tkzDrawRiemannSumSup[local options%keyvals]#/tikzpicture
-\tkzDrawRiemannSumMid[local options%keyvals]#/tikzpicture
+\tkzDrawRiemannSum[options%keyvals]#/tikzpicture
+\tkzDrawRiemannSumInf[options%keyvals]#/tikzpicture
+\tkzDrawRiemannSumSup[options%keyvals]#/tikzpicture
+\tkzDrawRiemannSumMid[options%keyvals]#/tikzpicture
 
 #keyvals:\tkzDrawRiemannSum#c,\tkzDrawRiemannSumInf#c,\tkzDrawRiemannSumSup#c,\tkzDrawRiemannSumMid#c
 interval=
 number=
 #endkeyvals
 
-\tkzFctPar[local options%keyvals]{x(t)}{y(t)}#/tikzpicture
-\tkzFctPolar[local options%keyvals]{f(t)}#/tikzpicture
+\tkzFctPar{%<x(t)%>}{%<y(t)%>}#/tikzpicture
+\tkzFctPar[%<options%>]{%<x(t)%>}{%<y(t)%>}#/tikzpicture
+\tkzFctPolar{%<f(t)%>}#/tikzpicture
+\tkzFctPolar[%<options%>]{%<f(t)%>}#/tikzpicture
 
 #keyvals:\tkzFctPar#c,\tkzFctPolar#c
 domain=
@@ -71,4 +76,3 @@ color=#%color
 line width=##L
 style=
 #endkeyvals
-
