@@ -1,19 +1,30 @@
 # ducksay package
-# Matthew Bertucci 8/19/2021 for v2.5a
+# Matthew Bertucci 9/21/2021 for v2.5a
+
+#include:xparse
+#include:l3keys2e
+#include:array
+#include:grabbox
 
 \DefaultAnimal{animal%keyvals}
 
 \DucksayOptions{keyvals}
 
-\AddAnimal[options%keyvals]{animal}%<ascii-art%>
-\AddAnimal*[options%keyvals]{animal}%<ascii-art%>
-\AddColoredAnimal[options%keyvals]{animal}%<ascii-art%>
-\AddColoredAnimal*[options%keyvals]{animal}%<ascii-art%>
+\AddAnimal{%<animal%>}%<ascii-art%>
+\AddAnimal[%<options%>]{%<animal%>}%<ascii-art%>
+\AddAnimal*{%<animal%>}%<ascii-art%>
+\AddAnimal*[%<options%>]{%<animal%>}%<ascii-art%>
+\AddColoredAnimal{%<animal%>}%<ascii-art%>
+\AddColoredAnimal[%<options%>]{%<animal%>}%<ascii-art%>
+\AddColoredAnimal*{%<animal%>}%<ascii-art%>
+\AddColoredAnimal*[%<options%>]{%<animal%>}%<ascii-art%>
 
 \AnimalOptions{animal}{options%keyvals}
 \AnimalOptions*{animal}{options%keyvals}
 
+\ducksay{message}
 \ducksay[options%keyvals]{message}
+\duckthink{message}
 \duckthink[options%keyvals]{message}
 
 #keyvals:\DucksayOptions#c,\AnimalOptions#c,\AnimalOptions*#c,\ducksay#c,\duckthink#c
