@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -561,35 +559,6 @@
         <translation>Terminal externa</translation>
     </message>
     <message>
-        <source>OSX 10.11 does not allow applications to write there anymore. Therefore,
-recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
-
-Do you want TeXstudio to change all command paths from /usr/texbin/ to
-%1?</source>
-        <translation type="vanished">OSX 10.11 no permite que las aplicaciones escriban en esa ubicación. Por tanto, versiones recientes de MacTeX cambiaron la ruta de bin a /Library/TeX/texbin/
-
-¿Desea que TeXstudio cambie todas las rutas de orden de /usr/texbin/ a %1?</translation>
-    </message>
-    <message>
-        <source>OSX 10.11 does not allow applications to write there anymore. You may
-need to update MacTeX to version 2015.
-
-Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
-
-Do you want TeXstudio to change all command paths from /usr/texbin/ to
-/Library/TeX/texbin/?</source>
-        <translation type="vanished">OSX 10.11 no permite que las aplicaciones escriban en esa ubicación. Podría ser necesario actualizar MacTeX a la versión de 2015.
-
-Después, los programas de MacTeX se localizarán en /Library/TeX/texbin/
-
-¿Desea que TeXstudio cambie el directorio de comandos de /usr/texbin/ a
-/Library/TeX/texbin/?</translation>
-    </message>
-    <message>
-        <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="vanished">Algunas de sus órdenes están referidas a ubicaciones en /usr/texbin/</translation>
-    </message>
-    <message>
         <location filename="../src/buildmanager.cpp" line="892"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>La orden se ha ampliado a los niveles %1. ¿Desea continuar con la expansión &quot;%2&quot;?</translation>
@@ -915,7 +884,7 @@ Cambie su configuración y defina las listas de orden solo en &apos;Opciones -&g
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define los tipos de notificaciones de actualización que recibirá:
 - Versiones estables: Escoge esto si la estabilidad es lo más importante para ti.
@@ -1122,7 +1091,7 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1880,22 +1849,22 @@ que renderizar los caracteres. Dado que unicode no es compatible de forma nativa
     <message>
         <location filename="../src/configdialog.ui" line="2530"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elementos como &amp;quot;\section&amp;quot; se resaltan con un color de fondo diferente para mostrar que &lt;span style=&quot; font-weight:600;&quot;&gt;no&lt;/span&gt; van a aparecer en el documento.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2550"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elementos como &amp;quot;\section&amp;quot; se resaltan con un color de fondo diferente para mostrar que van a aparecer como apéndice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2587"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La posición actual del cursor es resaltada en la vista de estructura.&lt;/p&gt;&lt;p&gt;Si esta opción está activa, la entrada es expandida y desplazada para ser visible..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Scroll to current cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Desplazarse hasta la posición actual del cursor</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2665,8 +2634,8 @@ aquí.</translation>
         <location filename="../src/configdialog.ui" line="4258"/>
         <location filename="../src/configdialog.ui" line="4325"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>El motor usado por la librería PDF. 
 &apos;Splash&apos; es la opción predeterminada y funciona en la mayoría de las situaciones.
@@ -4364,7 +4333,7 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferencia sobre la posición de una figura:
@@ -4482,7 +4451,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1983"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre: %1&lt;/b&gt;
 </translation>
@@ -4535,37 +4504,6 @@ El asistente no admite órdenes </translation>
         <location filename="../src/latexdocument.cpp" line="2512"/>
         <source>Unknown magic comment</source>
         <translation>Comentario mágico desconocido</translation>
-    </message>
-</context>
-<context>
-    <name>LatexDocumentsModel</name>
-    <message>
-        <source>untitled</source>
-        <translation type="vanished">sin título</translation>
-    </message>
-    <message>
-        <source> (Line %1)</source>
-        <translation type="vanished"> (Línea %1)</translation>
-    </message>
-    <message>
-        <source>Line</source>
-        <translation type="vanished">Línea</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation type="vanished">Etiqueta</translation>
-    </message>
-    <message>
-        <source>Beyond end of document.</source>
-        <translation type="vanished">Más allá del final del documento.</translation>
-    </message>
-    <message>
-        <source>In Appendix.</source>
-        <translation type="vanished">En el apéndice.</translation>
-    </message>
-    <message>
-        <source>File not found.</source>
-        <translation type="vanished">Archivo no encontrado.</translation>
     </message>
 </context>
 <context>
@@ -4661,17 +4599,14 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2538"/>
         <location filename="../src/latexeditorview.cpp" line="2610"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre del archivo: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2551"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n referencia a esta etiqueta</numerusform>
-            <numerusform>%n referencias a esta etiqueta</numerusform>
-        </translation>
+        <translation><numerusform>%n referencia a esta etiqueta</numerusform><numerusform>%n referencias a esta etiqueta</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2556"/>
@@ -6370,7 +6305,7 @@ falló.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>El fichero original fue eliminado durante la operación de guardado. 
 Encontrará una copia en %1</translation>
@@ -10878,7 +10813,7 @@ No se pudo guardar el archivo de imagen.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5579"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>No se puede detectar el nombre del archivo.
 Usted tiene que guardar un documento antes de poder compilarlo.</translation>
@@ -12649,9 +12584,9 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>begingroup(); endgroup;</source>
-        <translation>&#xa0;
-&#xa0;
-&#xa0;
+        <translation> 
+ 
+ 
 begingroup(); endgroup;</translation>
     </message>
     <message>
