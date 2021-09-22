@@ -1,8 +1,9 @@
 # polynom package
-# Matthew Bertucci 7/26/2021
+# Matthew Bertucci 9/21/2021 for v0.19
 
-\polyset{keyvals}
-\polylongdiv[keyvals]{polynom1%formula}{polynom2%formula}
+\polyset{options%keyvals}
+\polylongdiv{polynom1%formula}{polynom2%formula}
+\polylongdiv[options%keyvals]{polynom1%formula}{polynom2%formula}
 
 #keyvals:\polyset,\polylongdiv
 vars=%<token string%>
@@ -12,7 +13,8 @@ style=
 div=%<token%>
 #endkeyvals
 
-\polyhornerscheme[keyvals]{polynom%formula}
+\polyhornerscheme{polynom%formula}
+\polyhornerscheme[options%keyvals]{polynom%formula}
 
 #keyvals:\polyset,\polyhornerscheme#c
 stage=%<number%>
@@ -31,12 +33,15 @@ arrayrowsep=%<dimension%>
 showmiddlerow#true,false
 #endkeyvals
 
-\polylonggcd[keyvals]{polynom1%formula}{polynom2%formula}
-\polyfactorize[keyvals]{polynom%formula}
+\polylonggcd{polynom1%formula}{polynom2%formula}
+\polylonggcd[options]{polynom1%formula}{polynom2%formula}
+\polyfactorize{polynom%formula}
+\polyfactorize[options]{polynom%formula}
 
-\polyadd#*
-\polysub#*
-\polymul#*
-\polydiv#*
-\polygcd#*
-\polyprint#*
+\polyadd{cmd}{polynom1%formula}{polynom2%formula}#*d
+\polysub{cmd}{polynom1%formula}{polynom2%formula}#*d
+\polymul{cmd}{polynom1%formula}{polynom2%formula}#*d
+\polydiv{cmd}{polynom1%formula}{polynom2%formula}#*d
+\polygcd{cmd}{polynom1%formula}{polynom2%formula}#*d
+\polyprint{cmd}#*
+\polyremainder#*
