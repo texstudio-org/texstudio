@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 8/17/2021
+# Matthew Bertucci 9/21/2021 for v1.53
 
 #include:etoolbox
 #include:makecmds
@@ -22,12 +22,16 @@
 #include:farsical
 #include:nkonumbers
 
+\setdefaultlanguage{language}
 \setdefaultlanguage[options]{language}
+\setmainlanguage{language}
 \setmainlanguage[options]{language}
+\setotherlanguage{language}
 \setotherlanguage[options]{language}
 \setotherlanguages{lang1,lang2,...}
 
-\textlang[options%keyvals]{language}{text}
+\textlang{language}{text}
+\textlang[options]{language}{text}
 
 \textafrikaans[options%keyvals]{text}#*
 \textalbanian[options%keyvals]{text}#*
@@ -110,7 +114,8 @@
 \textvietnamese[options%keyvals]{text}#*
 \textwelsh[options%keyvals]{text}#*
 
-\begin{lang}[options%keyvals]{language}
+\begin{lang}{language}
+\begin{lang}[options]{language}
 \end{lang}
 
 \begin{afrikaans}[options%keyvals]#*
@@ -274,16 +279,22 @@
 \end{vietnamese}#*
 \end{welsh}#*
 
+\selectlanguage{language}
 \selectlanguage[options]{language}
+\foreignlanguage{language}{text}
 \foreignlanguage[options]{language}{text}
+\begin{otherlanguage}{language}
 \begin{otherlanguage}[options]{language}
 \end{otherlanguage}
-\begin{otherlanguage*}[options]{language}
+\begin{otherlanguage*}{language}#*
+\begin{otherlanguage*}[options]{language}#*
 \end{otherlanguage*}
+\begin{hyphenrules}{language}
 \begin{hyphenrules}[options]{language}
 \end{hyphenrules}
 
 \selectbackgroundlanguage{language}#*
+\resetdefaultlanguage{language}#*
 \resetdefaultlanguage[options]{language}#*
 \normalfontlatin#*
 \rmfamilylatin#*
@@ -292,8 +303,10 @@
 \latinalph#*
 \latinAlph#*
 
+\setlanguagealias{language}{alias%envname}#N
 \setlanguagealias[options]{language}{alias%envname}#N
-\setlanguagealias*[options]{language}{alias}
+\setlanguagealias*[options]{language}{alias}#*
+\setlanguagealias*{language}{alias}#*
 
 \pghyphenation[options]{language}{exceptions}
 \setlanghyphenmins[options]{language}{l}{r}
@@ -981,11 +994,14 @@ date=#long,short
 \noextrasvietnamese#*
 \noextraswelsh#*
 
-\polyglossia#*
-\localnumeral[option%keyvals]{number}
-\localnumeral*[option%keyvals]{counter}
-\Localnumeral[option%keyvals]{number}
-\Localnumeral*[option%keyvals]{counter}
+\localnumeral{number}#*
+\localnumeral[option%keyvals]{number}#*
+\localnumeral*{counter}#*
+\localnumeral*[option%keyvals]{counter}#*
+\Localnumeral{number}#*
+\Localnumeral[option%keyvals]{number}#*
+\Localnumeral*{counter}#*
+\Localnumeral*[option%keyvals]{counter}#*
 
 #keyvals:\localnumeral,\localnumeral*,\Localnumeral,\Localnumeral*
 lang=
