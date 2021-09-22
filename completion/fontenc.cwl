@@ -1,10 +1,6 @@
 # fontenc package
 # Matthew Bertucci 7/29/2021
 
-\SS#n
-\IJ#n
-\ij#n
-
 #ifOption:OT2
 \guillemotleft#n
 \guillemotright#n
