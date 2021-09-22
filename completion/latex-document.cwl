@@ -178,8 +178,6 @@
 \enlargethispage{size}
 \fbox{text}
 \figurename
-\flq
-\flqq
 \flushbottom
 \fnsymbol{counter}#*
 \fontencoding{enc}
@@ -201,15 +199,9 @@
 \framebox[width][position]{text}
 \framebox[width]{text}
 \frame{text}
-\frq
-\frqq
 \fussy#*
 \glossaryentry{text}{pagenum}
 \glossary{text}
-\glq
-\glqq
-\grq
-\grqq
 \hline#t
 \hlinefill
 \hrule
@@ -218,6 +210,8 @@
 \huge
 \Huge
 \i
+\ij
+\IJ
 \include{file}#i
 \input{file}#i
 \includeonly{filelist}
@@ -359,6 +353,7 @@
 \roman{counter}
 \rule[raise%l]{width}{thickness%l}
 \rule{width}{thickness%l}
+\SS
 \samepage
 \sbox{cmd}[text]
 \sc#*
