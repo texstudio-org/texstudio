@@ -1,10 +1,12 @@
 # longfbox package
-# Matthew Bertucci 9/7/2021 for v1.0
+# Matthew Bertucci 9/21/2021 for v1.0
 
 #include:pict2e
 #include:ellipse
 
-\lfbox[options%keyvals]{content}
+\lfbox{content%text}
+\lfbox[options%keyvals]{content%text}
+\begin{longfbox}
 \begin{longfbox}[options%keyvals]
 \end{longfbox}
 \newfboxstyle{name}{options%keyvals}

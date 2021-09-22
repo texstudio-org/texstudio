@@ -1,7 +1,13 @@
 # duckuments package
-# Matthew Bertucci 8/18/2021 for v0.5
+# Matthew Bertucci 9/21/2021 for v0.5
 
+#include:xparse
+#include:letltxmacro
+#include:l3keys2e
+
+\duckument
 \duckument[options%keyvals]
+\blindduck
 \blindduck[options%keyvals]
 
 #keyvals:\duckument#c,\blindduck#c
@@ -21,5 +27,7 @@ immediate#true,false
 \duckdescription
 
 \duckumentsCreateExampleFiles#*
+\duckumentsDrawRandomDucks#*
 \duckumentsDrawRandomDucks[number]#*
+\duckumentsDrawRandomDucks*#*
 \duckumentsDrawRandomDucks*[number]#*

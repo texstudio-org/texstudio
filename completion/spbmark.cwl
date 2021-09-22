@@ -1,17 +1,29 @@
 # spbmark package
-# Matthew Bertucci 8/6/2021
+# Matthew Bertucci 9/21/2021 for v1.1c
 
-\super[vshift%l][height,depth%l](code){content}[hshift%l]
-\super*[vshift%l][height,depth%l](code){content}[hshift%l]
-\sp[vshift%l][height,depth%l](code){content}[hshift%l]#*
-\sp*[vshift%l][height,depth%l](code){content}[hshift%l]#*
-\sub[vshift%l][height,depth%l](code){content}[hshift%l]
-\sub*[vshift%l][height,depth%l](code){content}[hshift%l]
-\sb[vshift%l][height,depth%l](code){content}[hshift%l]#*
-\sb*[vshift%l][height,depth%l](code){content}[hshift%l]#*
-\supersub[vsep%l](align){sup content}{sub content}[hshift%l](sup code,sub code)
-\supersub*[vsep%l](align){sup content}{sub content}[hshift%l](sup code,sub code)
+\super{content}
+\super[vshift%l][height,depth](code){content}[hshift%l]
+\super*{content}
+\super*[vshift%l][height,depth](code){content}[hshift%l]
+\sp{content}#*
+\sp[vshift%l][height,depth](code){content}[hshift%l]#*
+\sp*{content}#*
+\sp*[vshift%l][height,depth](code){content}[hshift%l]#*
+\sub{content}
+\sub[vshift%l][height,depth](code){content}[hshift%l]
+\sub*{content}
+\sub*[vshift%l][height,depth](code){content}[hshift%l]
+\sb{content}#*
+\sb[vshift%l][height,depth](code){content}[hshift%l]#*
+\sb*{content}#*
+\sb*[vshift%l][height,depth](code){content}[hshift%l]#*
+\supersub{sup}{sub}
+\supersub[vsep%l](align){sup}{sub}[hshift%l](sup code,sub code)
+\supersub*{sup}{sub}
+\supersub*[vsep%l](align){sup}{sub}[hshift%l](sup code,sub code)
+\spb{sup}{sub}#*
 \spb[vsep%l](align){sup content}{sub content}[hshift%l](sup code,sub code)#*
+\spb*{sup}{sub}#*
 \spb*[vsep%l](align){sup content}{sub content}[hshift%l](sup code,sub code)#*
 
 \spb@textsuperscript@save{content}#*
@@ -19,7 +31,7 @@
 \spb@sp@save{content}#*
 \spb@sb@save{content}#*
 
-\spbset{keyvals}
+\spbset{options%keyvals}
 
 #keyvals:\spbset
 super-vshift=##L

@@ -1,11 +1,12 @@
 # strands package
-# Matthew Bertucci 9/1/2021 for v1.1
+# Matthew Bertucci 9/21/2021 for v1.1
 
 #include:forarray
 #include:tikz
 #include:xfp
 #include:xstring
 
+\vpartition{sorted blocks}
 \vpartition[options%keyvals]{sorted blocks}
 
 #keyvals:\vpartition
@@ -30,6 +31,7 @@ type=#0,2,3,4,5
 width=
 #endkeyvals
 
+\arcpartition{sorted blocks}
 \arcpartition[options%keyvals]{sorted blocks}
 
 #keyvals:\arcpartition
@@ -51,6 +53,7 @@ type=#0,1
 width=
 #endkeyvals
 
+\permutation{images of 1 to n}
 \permutation[options%keyvals]{images of 1 to n}
 
 #keyvals:\permutation
@@ -73,6 +76,7 @@ type=#0,2,3,4,5
 width=
 #endkeyvals
 
+\tiedpair{permutation}{set partition}
 \tiedpair[options%keyvals]{permutation}{set partition}
 
 #keyvals:\tiedpair
@@ -97,6 +101,7 @@ type=#0,2,3,4,5
 width=
 #endkeyvals
 
+\tie{dots}
 \tie[options%keyvals]{dots}
 
 #keyvals:\tie
@@ -116,6 +121,7 @@ tiewidth=
 width=
 #endkeyvals
 
+\strands{generators}
 \strands[options%keyvals]{generators}
 
 #keyvals:\strands

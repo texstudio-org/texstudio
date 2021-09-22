@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 8/29/2021 for v0.37
+# Matthew Bertucci 9/19/2021 for v0.38
 
 #include:unicode-math
 
@@ -254,6 +254,8 @@
 \mbfd#m
 \mbfDelta#m
 \mbfdelta#m
+\mbfdotlessi#m
+\mbfdotlessj#m
 \mbfE#m
 \mbfe#m
 \mbfeight#m

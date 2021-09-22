@@ -1,27 +1,28 @@
 # diffcoeff package
-# Matthew Bertucci 7/4/2021
+# Matthew Bertucci 9/21/2021 for v3.2
 
-\diff[ord]{arg}{var}[subscript]^{supscript}#m
-\diff[ord]{arg}/{var}[subscript]^{supscript}#m
-\diff*[ord]{arg}{var}[subscript]^{supscript}#m
-\diff*[ord]{arg}/{var}[subscript]^{supscript}#m
-\diff[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#m
-\diff[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#m
-\diff*[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#m
-\diff*[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#m
+#include:expl3
+#include:xparse
+#include:l3keys2e
+#include:xtemplate
 
-\diffp[ord]{arg}{var}[subscript]^{supscript}#m
-\diffp[ord]{arg}/{var}[subscript]^{supscript}#m
-\diffp*[ord]{arg}{var}[subscript]^{supscript}#m
-\diffp*[ord]{arg}/{var}[subscript]^{supscript}#m
-\diffp[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#m
-\diffp[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#m
-\diffp*[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#m
-\diffp*[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#m
+\diff{arg}{var}#m
+\diff[ord]{arg}{var}#m
+\diff[ord]{arg}{var}[subscript]^{supscript}#*m
+\diff*{arg}{var}#m
+\diff*[ord]{arg}{var}#m
+\diff*[ord]{arg}{var}[subscript]^{supscript}#*m
+
+\diffp{arg}{var}#m
+\diffp[ord]{arg}{var}#m
+\diffp[ord]{arg}{var}[subscript]^{supscript}#*m
+\diffp*{arg}{var}#m
+\diffp*[ord]{arg}{var}#m
+\diffp*[ord]{arg}{var}[subscript]^{supscript}#*m
 
 \jacob{arg1,arg2,...}{var1,var2,...}#m
 
-\diffdef{name}{keyvals}
+\diffdef{name}{options%keyvals}
 
 #keyvals:\diffdef
 op-symbol=
@@ -46,34 +47,7 @@ subscr-nudge=##L
 
 \dl{arg}#m
 
-\negmu#m
-\nilmu#m
-\onemu#m
-\twomu#m
-
-\Diff[ord]{arg}{var}[subscript]^{supscript}#*m
-\Diff[ord]{arg}/{var}[subscript]^{supscript}#*m
-\Diff*[ord]{arg}{var}[subscript]^{supscript}#*m
-\Diff*[ord]{arg}/{var}[subscript]^{supscript}#*m
-\Diff[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#*m
-\Diff[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#*m
-\Diff*[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#*m
-\Diff*[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#*m
-
-\diffd[ord]{arg}{var}[subscript]^{supscript}#*m
-\diffd[ord]{arg}/{var}[subscript]^{supscript}#*m
-\diffd*[ord]{arg}{var}[subscript]^{supscript}#*m
-\diffd*[ord]{arg}/{var}[subscript]^{supscript}#*m
-\diffd[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#*m
-\diffd[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#*m
-\diffd*[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#*m
-\diffd*[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#*m
-
-\Diffd[ord]{arg}{var}[subscript]^{supscript}#*m
-\Diffd[ord]{arg}/{var}[subscript]^{supscript}#*m
-\Diffd*[ord]{arg}{var}[subscript]^{supscript}#*m
-\Diffd*[ord]{arg}/{var}[subscript]^{supscript}#*m
-\Diffd[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#*m
-\Diffd[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#*m
-\Diffd*[ord1,ord2,...]{arg}{var1,var2,...}[subscript]^{supscript}#*m
-\Diffd*[ord1,ord2,...]{arg}/{var1,var2,...}[subscript]^{supscript}#*m
+\negmu#*m
+\nilmu#*m
+\onemu#*m
+\twomu#*m

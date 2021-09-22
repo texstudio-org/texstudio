@@ -1,10 +1,10 @@
 # pgfornament package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/17/2021 for v1.2
 
 #include:tikz
 
-\newpgfornamentfamily{keyvals}
-\begin{newfamily}[keyvals]
+\newpgfornamentfamily{family%keyvals}
+\begin{newfamily}[family%keyvals]
 \end{newfamily}
 
 #keyvals:\newpgfornamentfamily,\begin{newfamily}
@@ -12,8 +12,10 @@ pgfhan
 vectorian
 #endkeyvals
 
-\pgfornament[keyvals]{ornament number}#/tikzpicture
-\pgfornamentline[keyvals]{point1}{point2}{number}{ornament number}
+\pgfornament{ornament number}#/tikzpicture
+\pgfornament[options%keyvals]{ornament number}#/tikzpicture
+\pgfornamentline{point1}{point2}{number}{ornament number}
+\pgfornamentline[options%keyvals]{point1}{point2}{number}{ornament number}
 
 #keyvals:\pgfornament#c,\pgfornamentline#c
 scale=
@@ -29,7 +31,5 @@ anchor=
 \pgfornamentscale#*/tikzpicture
 \pgfornamentydelta#*/tikzpicture
 \pgfornamentanchor#*/tikzpicture
-
 \resetpgfornamentstyle#*/tikzpicture
-
 \getornamentlength#*/tikzpicture

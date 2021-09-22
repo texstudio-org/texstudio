@@ -1,9 +1,10 @@
 # tkz-kiviat package
-# Matthew Bertucci 6/16/2021
+# Matthew Bertucci 9/17/2021 for v0.1b
 
 #include:tikz
 
-\tkzKiviatDiagram[local options%keyvals]{name1,name2,...}#/tikzpicture
+\tkzKiviatDiagram{name1,name2,...}#/tikzpicture
+\tkzKiviatDiagram[options%keyvals]{name1,name2,...}#/tikzpicture
 
 #keyvals:\tkzKiviatDiagram#c
 lattice=
@@ -15,15 +16,15 @@ radial style=
 label style=
 #endkeyvals
 
-\tkzKiviatLine[local options%keyvals]{num1,num2,...}#/tikzpicture
-\tkzKiviatLineFromFile[local options%keyvals]{file1}{file2}#/tikzpicture
+\tkzKiviatLine[options%keyvals]{num1,num2,...}#/tikzpicture
+\tkzKiviatLineFromFile[options%keyvals]{file1}{file2}#/tikzpicture
 
 #keyvals:\tkzKiviatLine#c,\tkzKiviatLineFromFile#c
 fill=
 opacity=
 #endkeyvals
 
-\tkzKiviatGrad[local options%keyvals]{integer}#/tikzpicture
+\tkzKiviatGrad[options%keyvals](integer)#/tikzpicture
 
 #keyvals:\tkzKiviatGrad#c
 graduation distance=##L
@@ -32,7 +33,8 @@ suffix=
 unity=
 #endkeyvals
 
-\tkzKiviatDiagramFromFile[local options%keyvals]{file}#/tikzpicture
+\tkzKiviatDiagramFromFile{file}#/tikzpicture
+\tkzKiviatDiagramFromFile[options%keyvals]{file}#/tikzpicture
 
 #keyvals:\tkzKiviatDiagramFromFile#c
 lattice=

@@ -1,6 +1,7 @@
 # vowel package
-# Matthew Bertucci 7/29/2021
+# Matthew Bertucci 9/21/2021 for v1.1
 
+\begin{vowel}
 \begin{vowel}[options%keyvals]
 \end{vowel}
 
@@ -14,7 +15,9 @@ triangle
 three
 #endkeyvals
 
+\putcvowel{symbol}{num}#/vowel
 \putcvowel[dot pos%keyvals]{symbol}{num}#/vowel
+\putvowel{symbol}{x%l}{y%l}#/vowel
 \putvowel[dot pos%keyvals]{symbol}{x%l}{y%l}#/vowel
 
 #keyvals:\putcvowel,\putvowel
