@@ -1,5 +1,5 @@
 # tikz-network package
-# Matthew Bertucci 9/3/2021 for v1.1
+# Matthew Bertucci 9/21/2021 for v1.1
 
 #include:tikz
 #include:etex
@@ -8,6 +8,7 @@
 #include:trimspaces
 #include:xifthen
 
+\Vertex{name}
 \Vertex[options%keyvals]{name}
 
 #keyvals:\Vertex
@@ -32,6 +33,7 @@ RGB#true,false
 Pseudo#true,false
 #endkeyvals
 
+\Edge(vertex1)(vertex2)
 \Edge[options%keyvals](vertex1)(vertex2)
 
 #keyvals:\Edge
@@ -56,6 +58,7 @@ RGB#true,false
 NotInBG#true,false
 #endkeyvals
 
+\Text{text}
 \Text[options%keyvals]{text}
 
 #keyvals:\Text
@@ -74,6 +77,7 @@ layer=
 RGB#true,false
 #endkeyvals
 
+\Vertices{file}
 \Vertices[options%keyvals]{file}
 
 #keyvals:\Vertices
@@ -89,6 +93,7 @@ RGB#true,false
 Pseudo#true,false
 #endkeyvals
 
+\Edges{file}
 \Edges[options%keyvals]{file}
 
 #keyvals:\Edges
