@@ -154,7 +154,6 @@
 \chapter*{title}#L1
 \chapter[short title]{title}#L1
 \chaptermark{code}#*
-\chaptername#*
 \cite{keylist}#c
 \cite[add. text]{keylist}
 \circle{diameter}#*
@@ -317,7 +316,6 @@
 \oval(width,height)[portion]#*/picture
 \pagebreak
 \pagebreak[number]
-\pagename
 \pagenumbering{numstyle}
 \pageref{label}#r
 \pagestyle{option}
