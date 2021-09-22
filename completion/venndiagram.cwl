@@ -1,11 +1,13 @@
 # venndiagram package
-# Matthew Bertucci 9/1/2021 for v1.2
+# Matthew Bertucci 9/21/2021 for v1.2
 
 #include:tikz
 #include:etoolbox
 
+\begin{venndiagram3sets}
 \begin{venndiagram3sets}[options%keyvals]
 \end{venndiagram3sets}
+\begin{venndiagram2sets}
 \begin{venndiagram2sets}[options%keyvals]
 \end{venndiagram2sets}
 
