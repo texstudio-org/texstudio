@@ -1,5 +1,5 @@
 # fontenc package
-# Matthew Bertucci 7/29/2021
+# Matthew Bertucci 9/22/2021
 
 #ifOption:OT2
 \guillemotleft#n
@@ -1163,6 +1163,7 @@
 #endif
 
 #ifOption:LGR
+\ensuregreek{text}
 \textAlpha#n
 \textBeta#n
 \textGamma#n
