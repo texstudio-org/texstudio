@@ -1283,6 +1283,7 @@
 \accvaria{arg}#n
 \accdasia{arg}#n
 \accpsili{arg}#n
+\accoxia{arg}#n
 #endif
 
 #ifOption:TU
