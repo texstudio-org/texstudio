@@ -1164,6 +1164,7 @@
 
 #ifOption:LGR
 \ensuregreek{text}
+\greekscript
 \textAlpha#n
 \textBeta#n
 \textGamma#n
@@ -1206,6 +1207,7 @@
 \textpi#n
 \textrho#n
 \textsigma#n
+\textvarsigma#n
 \textfinalsigma#n
 \textautosigma#n
 \texttau#n
@@ -1233,6 +1235,15 @@
 \textDigamma#n
 \textdexiakeraia#n
 \textaristerikeraia#n
+\textstigmagreek#*n
+\textkoppagreek#*n
+\textStigmagreek#*n
+\textSampigreek#*n
+\textsampigreek#*n
+\textdigammagreek#*n
+\textDigammagreek#*n
+\textnumeralsigngreek#*n
+\textnumeralsignlowergreek#*n
 \guillemotleft#n
 \guillemotright#n
 \textpercent#n
