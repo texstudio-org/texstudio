@@ -1,7 +1,9 @@
 # doncherry/2013-04-25 for lipsum v1.2
 # thatlittleboy/2018-11-30 for lipsum v2.0
 # muzimuzhi/11 Aug 2019 for lipsum v2.2
+# Matthew Bertucci 9/22/2021 for v2.7
 
+#include:l3keys2e
 #include:expl3
 #include:xparse
 
@@ -16,14 +18,46 @@
 \lipsum*[%<num%>-%<num%>]
 \lipsum*[%<num%>-%<num%>][%<num%>-%<num%>]
 
-\SetLipsumDefault{num}#*
-\SetLipsumDefault{%<num%>-%<num%>}#*
-\LipsumPar{num}#*
 \unpacklipsum#*
 \unpacklipsum[num]#*
 \unpacklipsum*#*
 \unpacklipsum*[num]#*
 \lipsumexp#*
+
+\setlipsum{keyvals}
+
+#keyvals:\setlipsum#c
+nopar#true,false
+text=#lipsum,cicero,lipsum-cs
+language=
+auto-lang#true,false
+default-range=%<i-j%>
+par-before=%<tokens%>
+par-begin=%<tokens%>
+par-sep=%<tokens%>
+par-end=%<tokens%>
+par-after=%<tokens%>
+sentence-before=%<tokens%>
+sentence-begin=%<tokens%>
+sentence-sep=%<tokens%>
+sentence-end=%<tokens%>
+sentence-after=%<tokens%>
+par-before*=%<tokens%>
+par-begin*=%<tokens%>
+par-sep*=%<tokens%>
+par-end*=%<tokens%>
+par-after*=%<tokens%>
+sentence-before*=%<tokens%>
+sentence-begin*=%<tokens%>
+sentence-sep*=%<tokens%>
+sentence-end*=%<tokens%>
+sentence-after*=%<tokens%>
+#endkeyvals
+
+\SetLipsumText{lipsum text definition filename}#*
+\SetLipsumDefault{num}#*
+\SetLipsumDefault{%<num%>-%<num%>}#*
+\LipsumPar{num}#*
 
 \SetLipsumParListStart{tokens}#*
 \SetLipsumParListStart*{tokens}#*
@@ -64,4 +98,4 @@
 \LipsumRestoreAll#*
 
 \NewLipsumPar{paragrph}#*
-\SetLipsumText{lipsum text definition filename}
+\SetLipsumLanguage{language}#*
