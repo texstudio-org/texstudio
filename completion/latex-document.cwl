@@ -173,6 +173,7 @@
 \documentclass{class}
 \em#*
 \emph{text}
+\encodingdefault#*
 \enlargethispage*{size}
 \enlargethispage{size}
 \fbox{text}
