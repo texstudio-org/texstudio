@@ -27,6 +27,7 @@ public:
 	static QStringList keyToOptions(const QString &key);
 
 	bool notFound;  // Workaround: explicit flag better than using a magic value in package name. TODO: Do we need not found packages?
+    bool containsOptionalSections; ///< optimization to not reread for different package options
 	QString packageName; ///< name of package
 	QStringList requiredPackages; ///< necessary sub-packages
 	CodeSnippetList completionWords; ///< list of completion words

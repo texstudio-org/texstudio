@@ -107,6 +107,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 		QStringList specialTreatment;
 		specialTreatment << "color";
 		QString keyvals;
+        package.containsOptionalSections=false;
 		while (!stream.atEnd()) {
 			line = stream.readLine().trimmed();
 			if (line.startsWith("#endif")) {
@@ -115,6 +116,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				continue;
 			}
 			if (line.startsWith("#ifOption:")) {
+                package.containsOptionalSections=true;
 				QString condition = line.mid(10);
 				skipSection = !(conditions.contains(condition) || conditions.contains(condition + "=true"));
 				continue;
@@ -575,11 +577,12 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					}
 				}
 
-				if (!words.contains(line)) {
-					CodeSnippet cs = CodeSnippet(line);
+                CodeSnippet cs = CodeSnippet(line);
+                uint hash = qHash(line);
+                CodeSnippetList::iterator it = std::lower_bound(words.begin(), words.end(), cs);
+                if (it == words.end() || it->index!=hash) {
                     CodeSnippetList::iterator it = std::lower_bound(words.begin(), words.end(), cs);
 					it = words.insert(it, cs);
-					uint hash = qHash(line);
 					int len = line.length();
 					it->index = hash;
 					it->snippetLength = len;

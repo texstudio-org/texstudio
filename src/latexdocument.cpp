@@ -2863,16 +2863,25 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
 		if (parent->cachedPackages.contains(elem)) {
 			zw = parent->cachedPackages.value(elem);
 		} else {
+            // check if package is actually not depending on options
 			QString fileName = LatexPackage::keyToCwlFilename(elem);
 			QStringList options = LatexPackage::keyToOptions(elem);
-			zw = loadCwlFile(fileName, completerConfig, options);
-			if (!zw.notFound) {
-				parent->cachedPackages.insert(elem, zw); // cache package
-			} else {
-				LatexPackage zw;
-				zw.packageName = elem;
-				parent->cachedPackages.insert(elem, zw); // cache package as empty/not found package
-			}
+            bool found=false;
+            if(parent->cachedPackages.contains(fileName) ){
+                zw = parent->cachedPackages.value(fileName);
+                found=!zw.containsOptionalSections;
+            }
+            if(!found){
+                zw = loadCwlFile(fileName, completerConfig, options);
+                if (!zw.notFound) {
+                    fileName= zw.containsOptionalSections ? elem : fileName;
+                    parent->cachedPackages.insert(fileName, zw); // cache package
+                } else {
+                    LatexPackage zw;
+                    zw.packageName = fileName;
+                    parent->cachedPackages.insert(fileName, zw); // cache package as empty/not found package
+                }
+            }
 		}
 		if (zw.notFound) {
 			QString name = elem;
