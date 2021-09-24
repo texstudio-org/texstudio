@@ -1,15 +1,19 @@
 # numprint package
-# Matthew Bertucci 6/16/2021
+# Matthew Bertucci 9/21/2021 for v1.39
 
 #include:array
 
+\numprint{number}
 \numprint[unit]{number}
 
 #ifOption:np
+\np{number}
 \np[unit]{number}
 #endif
 
+\cntprint{counter}
 \cntprint[unit]{counter}
+\lenprint{length}
 \lenprint[unit%keyvals]{length}
 
 #keyvals:\lenprint#c
@@ -46,13 +50,14 @@ km
 \npreplacenull{replacement}#*
 \npprintnull#*
 
-\npunitcommand#*
+\npunitcommand{arg}#*
 
 \npdefunit{unitname}{unit}{scale}#*
 
 \selectlanguage{language}#*
 
-\npmakebox[text1][justification]{text2}#*
+\npmakebox{text}#*
+\npmakebox[dummy text][justification]{text}#*
 
 #ifOption:boldmath
 \npboldmath#*
@@ -63,6 +68,7 @@ km
 \npunit{unit}#*
 
 \npdigits{before}{after}#*
+\npexponentdigits{before}#*
 \npexponentdigits[after]{before}#*
 \npnodigits#*
 \npnoexponentdigits#*

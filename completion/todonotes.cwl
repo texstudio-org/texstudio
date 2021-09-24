@@ -1,10 +1,14 @@
 # todonotes.sty
-# Salim 2008/11/09; A. Weder 2010/06/04; Matthew Bertucci 7/12/2021
+# Salim 2008/11/09; A. Weder 2010/06/04; Matthew Bertucci 9/21/2021 for v1.1.5
 # http://midtiby.blogspot.com/
 # http://www.ctan.org/tex-archive/help/Catalogue/entries/todonotes.html
 
+#include:ifthen
 #include:xcolor
+#include:tikz
+#include:calc
 
+\todo{text%todo}#D
 \todo[options%keyvals]{text%todo}#D
 
 #keyvals:\todo
@@ -34,6 +38,7 @@ inlinepar
 noinlinepar
 #endkeyvals
 
+\missingfigure{text%todo}#D
 \missingfigure[options%keyvals]{text%todo}#D
 
 #keyvals:\missingfigure
@@ -42,5 +47,6 @@ figheight=##L
 figcolor=#%color
 #endkeyvals
 
+\listoftodos
 \listoftodos[name]
 \todototoc

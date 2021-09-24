@@ -1,13 +1,18 @@
 # harveyballs package
-# Matthew Bertucci 9/1/2021 for v1.1
+# Matthew Bertucci 9/21/2021 for v1.1
 
 #include:tikz
 
-\harveyBallNone[opt_size%l]
-\harveyBallQuarter[opt_size%l]
-\harveyBallHalf[opt_size%l]
-\harveyBallThreeQuarter[opt_size%l]
-\harveyBallFull[opt_size%l]
+\harveyBallNone
+\harveyBallNone[size%l]
+\harveyBallQuarter
+\harveyBallQuarter[size%l]
+\harveyBallHalf
+\harveyBallHalf[size%l]
+\harveyBallThreeQuarter
+\harveyBallThreeQuarter[size%l]
+\harveyBallFull
+\harveyBallFull[size%l]
 
 \harveyBallsSize#*
 \harveyBallsLineWidth#*

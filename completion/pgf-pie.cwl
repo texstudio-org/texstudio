@@ -1,9 +1,10 @@
 # pgf-pie package
-# Matthew Bertucci 9/3/2021 for v0.6
+# Matthew Bertucci 9/21/2021 for v0.6
 
 #include:tikz
 #include:scalefnt
 
+\pie{num1/text1,num2/text2,...}
 \pie[options%keyvals]{num1/text1,num2/text2,...}
 
 #keyvals:\pie

@@ -1,5 +1,8 @@
 # halloweenmath package
-# Matthew Bertucci 8/22/2021 for v0.11
+# Matthew Bertucci 9/21/2021 for v0.11
+
+#include:amsmath
+#include:pict2e
 
 \mathleftghost#m
 \mathghost#m
@@ -23,21 +26,37 @@
 \hmleftpitchfork#m
 \hmrightpitchfork#m
 
+\xleftwitchonbroom{above}#m
 \xleftwitchonbroom[below]{above}#m
+\xrightwitchonbroom{above}#m
 \xrightwitchonbroom[below]{above}#m
+\xleftwitchonbroom*{above}#m
 \xleftwitchonbroom*[below]{above}#m
+\xrightwitchonbroom*{above}#m
 \xrightwitchonbroom*[below]{above}#m
+\xleftwitchonpitchfork{above}#m
 \xleftwitchonpitchfork[below]{above}#m
+\xrightwitchonpitchfork{above}#m
 \xrightwitchonpitchfork[below]{above}#m
+\xleftwitchonpitchfork*{above}#m
 \xleftwitchonpitchfork*[below]{above}#m
+\xrightwitchonpitchfork*{above}#m
 \xrightwitchonpitchfork*[below]{above}#m
+\xleftbroom{above}#m
 \xleftbroom[below]{above}#m
+\xrightbroom{above}#m
 \xrightbroom[below]{above}#m
+\xleftpitchfork{above}#m
 \xleftpitchfork[below]{above}#m
+\xrightpitchfork{above}#m
 \xrightpitchfork[below]{above}#m
+\xleftswishingghost{above}#m
 \xleftswishingghost[below]{above}#m
+\xrightswishingghost{above}#m
 \xrightswishingghost[below]{above}#m
+\xleftflutteringbat{above}#m
 \xleftflutteringbat[below]{above}#m
+\xrightflutteringbat{above}#m
 \xrightflutteringbat[below]{above}#m
 
 \overleftwitchonbroom{arg}#m
@@ -80,8 +99,8 @@
 \underrightswishingghost{arg}#m
 \underleftflutteringbat{arg}#m
 \underrightflutteringbat{arg}#m
-\overbat{xyz}#m
-\underbat{xyz}#m
+\overbat{arg}#m
+\underbat{arg}#m
 \overscriptleftarrow{arg}#m
 \underscriptleftarrow{arg}#m
 \overscriptrightarrow{arg}#m

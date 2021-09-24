@@ -1,16 +1,16 @@
 # fp package
-# Matthew Bertucci 6/17/2021
+# Matthew Bertucci 9/21/2021 for v2.1d
 
-\FPset{name}{value}
-\FPprint{name}
-\FPadd{name}{value1}{value2}
-\FPdiv{name}{value1}{value2}
-\FPmul{name}{value1}{value2}
-\FPsub{name}{value1}{value2}
-\FPabs{name}{value}
-\FPneg{name}{value}
-\FPmin{name}{value1}{value2}
-\FPmax{name}{value1}{value2}
+\FPset{variable%cmd}{value}#d
+\FPprint{variable}
+\FPadd{variable%cmd}{value1}{value2}#d
+\FPdiv{variable%cmd}{value1}{value2}#d
+\FPmul{variable%cmd}{value1}{value2}#d
+\FPsub{variable%cmd}{value1}{value2}#d
+\FPabs{variable%cmd}{value}#d
+\FPneg{variable%cmd}{value}#d
+\FPmin{variable%cmd}{value1}{value2}#d
+\FPmax{variable%cmd}{value1}{value2}#d
 \FPiflt{value1}{value2}
 \FPifeq{value1}{value2}
 \FPifgt{value1}{value2}
@@ -20,21 +20,21 @@
 \FPifint{value}
 \ifFPtest
 \FPpi
-\FPsin{name}{value}
-\FPcos{name}{value}
-\FPsincos{name1}{name2}{value}
-\FPtan{name}{value}
-\FPcot{name}{value}
-\FPtancot{name1}{name2}{value}
-\FParcsin{name}{value}
-\FParccos{name}{value}
-\FParcsincos{name1}{name2}{value}
-\FParctan{name}{value}
-\FParccot{name}{value}
-\FParctancot{name1}{name2}{value}
-\FPlsolve{name}{value1}{value2}
-\FPqsolve{name1}{name2}{value1}{value2}{value3}
-\FPcsolve{name1}{name2}{name3}{value1}{value2}{value3}{value4}
-\FPqqsolve{name1}{name2}{name3}{name4}{value1}{value2}{value3}{value4}{value5}
-\FPeval{name}{expression}
-\FPupn{name}{expression}
+\FPsin{variable%cmd}{value}#d
+\FPcos{variable%cmd}{value}#d
+\FPsincos{variable1%cmd}{variable2%cmd}{value}#d
+\FPtan{variable%cmd}{value}#d
+\FPcot{variable%cmd}{value}#d
+\FPtancot{variable1%cmd}{variable2%cmd}{value}#d
+\FParcsin{variable%cmd}{value}#d
+\FParccos{variable%cmd}{value}#d
+\FParcsincos{variable1%cmd}{variable2%cmd}{value}#d
+\FParctan{variable%cmd}{value}#d
+\FParccot{variable%cmd}{value}#d
+\FParctancot{variable1%cmd}{variable2%cmd}{value}#d
+\FPlsolve{variable%cmd}{value1}{value2}#d
+\FPqsolve{variable1%cmd}{variable2%cmd}{val1}{val2}{val3}#d
+\FPcsolve{variable1%cmd}{variable2%cmd}{variable3%cmd}{val1}{val2}{val3}{val4}#d
+\FPqqsolve{variable1%cmd}{variable2%cmd}{variable2%cmd}{variable4%cmd}{val1}{val2}{val3}{val4}{val5}#d
+\FPeval{variable%cmd}{expression}#d
+\FPupn{variable%cmd}{expression}#d

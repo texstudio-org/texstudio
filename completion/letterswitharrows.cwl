@@ -1,7 +1,14 @@
 # letterswitharrows package
-# Matthew Bertucci 7/4/2021
+# Matthew Bertucci 9/21/2021
 
+#include:expl3
+#include:xparse
+#include:l3keys2e
+#include:mathtools
+
+\arrowoverset{arg}#m
 \arrowoverset[xoffset][xscale][yoffset]{arg}#m
+\arrowoverset*{arg}#m
 \arrowoverset*[xoffset][xscale][yoffset]{arg}#m
 
 \vA#m
@@ -164,4 +171,8 @@
 #ifOption:presets={vec-cev}
 \vec{arg}#m
 \cev{arg}#m
+#endif
+
+#ifOption:pgf
+#include:pgf
 #endif

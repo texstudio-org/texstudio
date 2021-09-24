@@ -1,9 +1,10 @@
 # mathfont package
-# Matthew Bertucci 8/18/2021 for v1.6
+# Matthew Bertucci 9/21/2021 for v1.6
 
 #include:fontspec
 #include:atveryend
 
+\mathfont{fontname}
 \mathfont[character classes%keyvals]{fontname}
 
 #keyvals:\mathfont
@@ -57,6 +58,8 @@ bfrak
 \newmathbf{cmd}{fontname}#d
 \newmathbfit{cmd}{fontname}#d
 \newmathfontcommand{cmd}{fontname}{series}{shape}#*d
+
+\restoremathinternals#*
 
 \aacute{arg}#m
 \Alpha#*m

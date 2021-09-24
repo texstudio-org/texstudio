@@ -1,12 +1,14 @@
 # diagbox package
-# Matthew Bertucci 7/24/2021
+# Matthew Bertucci 9/19/2021 for v2.3
 
 #include:pict2e
 #include:calc
 #include:array
+#include:fp
 
-\diagbox[keyvals]{left}{right}#/tabular
-\diagbox[keyvals]{left}{middle}{right}#/tabular
+\diagbox{left}{right}#/tabular
+\diagbox[options%keyvals]{left}{right}#/tabular
+\diagbox{left}{middle}{right}#/tabular
 
 #keyvals:\diagbox
 width=##l
@@ -25,8 +27,8 @@ linewidth=##l
 linecolor=#%color
 #endkeyvals
 
-\backslashbox[width][trim%keyvals]{left}{right}
-\slashbox[width][trim%keyvals]{left}{right}
+\backslashbox[width][trim%keyvals]{left}{right}#*
+\slashbox[width][trim%keyvals]{left}{right}#*
 
 #keyvals:\backslashbox,\slashbox
 l

@@ -1,8 +1,12 @@
 # countriesofeurope package
-# Matthew Bertucci 8/6/2021
+# Matthew Bertucci 9/19/2021 for v0.23
+
+#include:graphicx
+#include:xcolor
 
 \countriesofeuropefamily
 \CoEF#*
+\EUCountry{name}
 \EUCountry[options%keyvals]{name}
 
 #keyvals:\EUCountry

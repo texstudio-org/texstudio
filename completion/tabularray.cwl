@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 9/7/2021 for v2021N
+# Matthew Bertucci 9/21/2021 for v2021N
 
 \begin{tblr}{preamble%keyvals}#\tabular
 \end{tblr}
@@ -32,7 +32,8 @@ vline
 hline
 #endkeyvals
 
-\SetTblrInner[opt env name]{keyvals}
+\SetTblrInner{options%keyvals}
+\SetTblrInner[envname]{options%keyvals}#N
 
 #keyvals:\SetTblrInner
 colspec=
@@ -57,7 +58,8 @@ rowhead=
 rowfoot=
 #endkeyvals
 
-\SetTblrOuter[opt env name]{keyvals}
+\SetTblrOuter{options%keyvals}
+\SetTblrOuter[envname]{options%keyvals}#N
 
 #keyvals:\SetTblrOuter
 long
@@ -79,7 +81,8 @@ entry=
 label=
 #endkeyvals
 
-\multirow[options%keyvals]{rows}{width}{contents}#/tblr,longtblr
+\multirow{rows}{width}{contents}#/tblr,longtblr
+\multirow[pos%keyvals]{rows}{width}{contents}#/tblr,longtblr
 
 #keyvals:\multirow
 t
@@ -87,7 +90,8 @@ b
 c
 #endkeyvals
 
-\SetCell[r=%<rows%>,c=%<columns%>]{keyvals}#/tblr,longtblr
+\SetCell{%<options%>}#/tblr,longtblr
+\SetCell[r=%<rows%>,c=%<columns%>]{%<options%>}#/tblr,longtblr
 
 #keyvals:\SetCell#c
 halign=#l,c,r
@@ -109,7 +113,7 @@ appto=
 cmd=
 #endkeyvals
 
-\SetRow{keyvals}#/tblr,longtblr
+\SetRow{styles%keyvals}#/tblr,longtblr
 
 #keyvals:\SetRow#c
 halign=#l,c,r
@@ -138,7 +142,7 @@ appto=
 cmd=
 #endkeyvals
 
-\SetColumn{keyvals}#/tblr,longtblr
+\SetColumn{styles%keyvals}#/tblr,longtblr
 
 #keyvals:\SetColumn#c
 halign=#l,c,r
@@ -167,14 +171,19 @@ appto=
 cmd=
 #endkeyvals
 
+\NewColumnType{name}{definition}
 \NewColumnType{name}[number][optarg]{definition}
+\NewRowType{name}{definition}
 \NewRowType{name}[number][optarg]{definition}
+\NewColumnRowType{name}{definition}#*
 \NewColumnRowType{name}[number][optarg]{definition}#*
 
 \NewTableCommand{cmd}{definition}#d
 
-\hline[options%keyvals]#/tblr,longtblr
-\cline[options%keyvals]{arg}#/tblr,longtblr
+\hline
+\hline[options%keyvals]
+\cline{arg}
+\cline[options%keyvals]{arg}
 
 #keyvals:\hline#c,\cline#c
 dash=#solid,dashed,dotted
@@ -192,7 +201,7 @@ fg=#%color
 \abovesep#*
 \belowsep#*
 
-\SetTblrTracing{keyvals}#*
+\SetTblrTracing{settings%keyvals}#*
 
 #keyvals:\SetTblrTracing
 all
@@ -203,6 +212,7 @@ none
 
 \NewTblrTheme{name}{specs}
 
+\begin{longtblr}{preamble}#\tabular
 \begin{longtblr}[outer specs%keyvals]{preamble}#\tabular
 \end{longtblr}
 

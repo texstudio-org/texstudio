@@ -1,10 +1,23 @@
 # luatodonotes.sty
-# Tim Hoffmann 2017/06/17; Matthew Bertucci 7/24/2021
+# Tim Hoffmann 2017/06/17; Matthew Bertucci 9/21/2021 for v0.5
 
 #include:xcolor
+#include:ifluatex
+#include:ifthen
+#include:tikz
+#include:luacode
+#include:atbegshi
+#include:xstring
+#include:zref-abspage
+#include:ifoddpage
+#include:soul
+#include:soulpos
+#include:etoolbox
 
-\todo[keyvals]{text%todo}#D
-\todoarea[keyvals]{note text%todo}{highlighted text}#D
+\todo{text%todo}#D
+\todo[options%keyvals]{text%todo}#D
+\todoarea{note text%todo}{highlighted text}#D
+\todoarea[options%keyvals]{note text%todo}{highlighted text}#D
 
 #keyvals:\todo,\todoarea
 disable
@@ -25,7 +38,8 @@ noprepend
 author=
 #endkeyvals
 
-\missingfigure[keyvals]{text%todo}#D
+\missingfigure{text%todo}#D
+\missingfigure[options%keyvals]{text%todo}#D
 
 #keyvals:\missingfigure
 figwidth=##l
@@ -33,5 +47,6 @@ figheight=##l
 figcolor=#%color
 #endkeyvals
 
+\listoftodos
 \listoftodos[name]
 \todototoc
