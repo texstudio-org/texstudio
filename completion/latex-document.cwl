@@ -331,8 +331,8 @@
 \paragraph[short title]{title}#L5
 \paragraphmark
 \paragraph{title}#L5
-\parbox[position][height][inner-pos]{width}{contents}
-\parbox[position][height]{width}{contents}
+\parbox[position][height][inner-pos]{width}{text}
+\parbox[position][height]{width}{text}
 \parbox[position]{width}{text}
 \parbox{width}{text}
 \part*{title}#L0
