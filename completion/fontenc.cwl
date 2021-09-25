@@ -1637,6 +1637,36 @@
 \thaiKhomut
 #endif
 
+#ifOption:LHE
+\alef
+\bet
+\gimel
+\dalet
+\he
+\vav
+\zayin
+\het
+\tet
+\yod
+\finalkaf
+\kaf
+\lamed
+\finalmem
+\mem
+\finalnun
+\nun
+\samekh
+\ayin
+\finalpe
+\pe
+\finaltsadi
+\tsadi
+\qof
+\resh
+\shin
+\tav
+#endif
+
 \DeclareFontEncoding{encoding}{text settings}{math settings}#*
 \DeclareTextAccent{cmd}{encoding}{slot}#*d
 \DeclareTextAccentDefault{cmd}{encoding}#*d
