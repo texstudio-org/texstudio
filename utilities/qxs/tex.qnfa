@@ -117,8 +117,8 @@ environments in smallUsefulFunctions.cpp)
 
 	<!-- ========================= GENERAL BLOCKS ====================== -->
 	
-	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
-	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
+	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">[^%]\\begin{[^}]*}</word>
+	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >[^%]\\end{[^}]*}</word>
 
 
 	<!-- ========================= SECTIONS ====================== -->
