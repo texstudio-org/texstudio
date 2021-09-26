@@ -721,6 +721,7 @@ QWidget* UniversalInputDialogScript::add(const QJSValue &def, const QJSValue &de
 		QJSValueIterator it(def);
 		while (it.hasNext()) {
 			it.next();
+            if(it.name()=="length") continue; // skip length property
 			if (it.value().isString() || it.value().isNumber()) options << it.value().toString();
 			//else engine->throwError("Invalid default value in array (must be string or number): " + it.value().toString());
 		}
