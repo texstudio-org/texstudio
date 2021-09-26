@@ -116,9 +116,16 @@ environments in smallUsefulFunctions.cpp)
 	
 
 	<!-- ========================= GENERAL BLOCKS ====================== -->
-	
-	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">[^%]\\begin{[^}]*}</word>
-	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >[^%]\\end{[^}]*}</word>
+	<context id="block:open@commented" stayOnLine="true" ambiguous="true">
+	<start>%\\begin{[^}]*}</start>
+	<stop exclusive="false">\n</stop>
+	</context>
+	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
+	<context id="block:close@commented" stayOnLine="true" ambiguous="true">
+	<start>%\\end{[^}]*}</start>
+	<stop exclusive="false">\n</stop>
+	</context>
+	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 
 
 	<!-- ========================= SECTIONS ====================== -->
