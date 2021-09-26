@@ -1145,7 +1145,7 @@ cmd.waitForFinished()</pre>
   <tr><td>dialog.getAll()</td><td>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</td></tr>
   <tr><td>dialog.exec()</td><td>Displays the dialog. Returns 1 if the user accepted the dialog, 0 if it was canceled.</td></tr>
   <tr><td>dialog.show()</td><td>Displays the dialog asynchronously.</td></tr>
-  <tr><td>UniversalInputDialog([[defaultValue_0, description_0, id_0], [defaultValue_1, description_1, id_1], ...])</td><td>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</td></tr>
+  <tr><td><del>UniversalInputDialog([[defaultValue_0, description_0, id_0], [defaultValue_1, description_1, id_1], ...])</del></td><td><del>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</del> Not working in txs 4.0.0</td></tr>
   <tr><th colspan=2>FileChooser object</th></tr>
   <tr>
 	<td> fileChooser.exec()
