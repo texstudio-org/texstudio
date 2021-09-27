@@ -1,7 +1,10 @@
 # libertinus-otf package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 9/27/2021 for v0.29
 
 #include:textcomp
+#include:unicode-math
+#include:ifxetex
+#include:ifluatex
 
 \Land
 \LCASE-
@@ -95,6 +98,6 @@
 \sufigures
 \textinit{capstext}
 \textsbf{text}
-\textsup{arg}
+\textsup{text}
 \Wikipedia
 \WikipediaW
