@@ -63,6 +63,7 @@
 \begin{quotation}
 \begin{quote}
 \begin{scriptsize}
+\begin{samepage}
 \begin{small}
 \begin{tabbing}
 \begin{table*}
@@ -117,6 +118,7 @@
 \end{quotation}
 \end{quote}
 \end{scriptsize}
+\end{samepage}
 \end{small}
 \end{tabbing}
 \end{table}
@@ -353,7 +355,7 @@
 \rule[raise%l]{width}{thickness%l}
 \rule{width}{thickness%l}
 \SS
-\samepage
+\samepage#*
 \sbox{cmd}[text]
 \sc#*
 \scriptsize
