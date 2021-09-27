@@ -177,7 +177,7 @@ XSLT
 
 \lstset{keyvals}
 \lstinline|%<code%>|
-\lstinline[options%keyvals]|%<code%>|
+\lstinline[%<options%>]|%<code%>|
 \lstinline[options%keyvals]{verbatimSymbol}#S
 \begin{lstlisting}#V
 \begin{lstlisting}[options%keyvals]#V
