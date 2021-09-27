@@ -21,6 +21,7 @@
 <file>completion/allauncl.cwl</file>
 <file>completion/allrunes.cwl</file>
 <file>completion/alltt.cwl</file>
+<file>completion/alphabeta.cwl</file>
 <file>completion/alphalph.cwl</file>
 <file>completion/alterqcm.cwl</file>
 <file>completion/amsbsy.cwl</file>
@@ -31,6 +32,7 @@
 <file>completion/amsthm.cwl</file>
 <file>completion/annee-scolaire.cwl</file>
 <file>completion/AnnSton.cwl</file>
+<file>completion/antanilipsum.cwl</file>
 <file>completion/anttor.cwl</file>
 <file>completion/appendix.cwl</file>
 <file>completion/aramaic.cwl</file>
@@ -41,6 +43,7 @@
 <file>completion/asapsym.cwl</file>
 <file>completion/ascii.cwl</file>
 <file>completion/association-matrix.cwl</file>
+<file>completion/athnum.cwl</file>
 <file>completion/attachfile.cwl</file>
 <file>completion/auncial.cwl</file>
 <file>completion/aurical.cwl</file>
@@ -184,6 +187,7 @@
 <file>completion/dynkin-diagrams.cwl</file>
 <file>completion/easyReview.cwl</file>
 <file>completion/ebgaramond.cwl</file>
+<file>completion/econlipsum.cwl</file>
 <file>completion/efbox.cwl</file>
 <file>completion/Eichenla.cwl</file>
 <file>completion/EileenBl.cwl</file>
@@ -284,6 +288,7 @@
 <file>completion/graphpap.cwl</file>
 <file>completion/greek4cbc.cwl</file>
 <file>completion/greek6cbc.cwl</file>
+<file>completion/grmath.cwl</file>
 <file>completion/guit.cwl</file>
 <file>completion/halloweenmath.cwl</file>
 <file>completion/harvard.cwl</file>
@@ -295,6 +300,7 @@
 <file>completion/hlist.cwl</file>
 <file>completion/hologo.cwl</file>
 <file>completion/holtpolt.cwl</file>
+<file>completion/hulipsum.cwl</file>
 <file>completion/hvlogos.cwl</file>
 <file>completion/hyperref.cwl</file>
 <file>completion/IEEEtrantools.cwl</file>
@@ -402,6 +408,7 @@
 <file>completion/montserrat.cwl</file>
 <file>completion/MorrisIn.cwl</file>
 <file>completion/multicol.cwl</file>
+<file>completion/multicolrule.cwl</file>
 <file>completion/multido.cwl</file>
 <file>completion/multimedia.cwl</file>
 <file>completion/multiobjective.cwl</file>
@@ -544,6 +551,7 @@
 <file>completion/siunitx-special.cwl</file>
 <file>completion/skak.cwl</file>
 <file>completion/skull.cwl</file>
+<file>completion/snotez.cwl</file>
 <file>completion/soul.cwl</file>
 <file>completion/sourcecodepro.cwl</file>
 <file>completion/sourcesanspro.cwl</file>
@@ -588,6 +596,7 @@
 <file>completion/tempora.cwl</file>
 <file>completion/tensind.cwl</file>
 <file>completion/tex.cwl</file>
+<file>completion/textalpha.cwl</file>
 <file>completion/textcomp.cwl</file>
 <file>completion/textgreek.cwl</file>
 <file>completion/textpos.cwl</file>
