@@ -637,7 +637,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/buildmanager.cpp" line="1509"/>
         <source>Error: One command expansion invalid.</source>
-        <translation>Erro: Comando de expansão inválido</translation>
+        <translation>Erro: Comando de expansão inválido.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1510"/>
@@ -843,7 +843,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/configdialog.ui" line="436"/>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation>Lembrar o filtro de arquivos selecionado no diálogo abrir/salvar</translation>
+        <translation>Lembrar o filtro de arquivos selecionado no diálogo abrir/salvar </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="446"/>
@@ -889,7 +889,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
         <translation>Define os tipos de aviso de atualização que receberá:
 - Versões Estáveis: escolha esta se estabilidade é mais importante para você.
 - Candidatas a Lançamento: perto de ser lançada futuramente em termos de recursos e estabilidade. Escolha esta para ter uma prévia dos novos recursos e nos ajudar a testar esta versão antes que ela seja lançada oficialmente (versões estáveis serão notificadas também).
-- Versões de desenvolvimento: Contém os recursos mais recentes, porém pode ser instável (versões estáveis e candidatas a lançamento serão notificadas também)</translation>
+- Versões de desenvolvimento: Contém os recursos mais recentes, porém pode ser instável (versões estáveis e candidatas a lançamento serão notificadas também).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="520"/>
@@ -929,7 +929,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/configdialog.ui" line="605"/>
         <source>Update Level:</source>
-        <translation>Nível de atualização</translation>
+        <translation>Nível de atualização:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="660"/>
@@ -991,7 +991,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/configdialog.ui" line="848"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation>Não abrir nova instância do visualizador de DVI/PS/PDF se já existir uma sendo executada.</translation>
+        <translation>Não abrir nova instância do visualizador de DVI/PS/PDF se já existir uma sendo executada</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="855"/>
@@ -1818,7 +1818,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
         <source>Regular expression for TODO comment: </source>
-        <translation>Expressão regular para comentários TODO:</translation>
+        <translation>Expressão regular para comentários TODO: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2580"/>
@@ -1873,7 +1873,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2616"/>
         <source>bib File Encoding:</source>
-        <translation>Codificação de Arquivo bib</translation>
+        <translation>Codificação de Arquivo bib:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2623"/>
@@ -1948,7 +1948,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2768"/>
         <source>Automatically switch keyboard layout: </source>
-        <translation>Trocar layout do teclado automaticamente:</translation>
+        <translation>Trocar layout do teclado automaticamente: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2775"/>
@@ -2309,7 +2309,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3501"/>
         <source>Server URL: </source>
-        <translation>URL do Servidor:</translation>
+        <translation>URL do Servidor: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3508"/>
@@ -2384,7 +2384,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3688"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation>URL para conectar a ferramenta de idioma.</translation>
+        <translation>URL para conectar a ferramenta de idioma. </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3779"/>
@@ -2639,7 +2639,7 @@ Note: Changing this setting will only affect documents that are opened afterward
         <translation>Renderização usada pela biblioteca PDF poppler.
 &apos;Splash&apos; é o padrão e adequada à maioria das situações.
 Se houver problemas de renderização, você pode tentar a alternativa &apos;Arthur&apos;.
-Obs.: Esta mudança afetará somente documentos abertos a seguir. </translation>
+Obs.: Esta mudança afetará somente documentos abertos a seguir.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4074"/>
@@ -2674,7 +2674,7 @@ Obs.: Esta mudança afetará somente documentos abertos a seguir. </translation>
     <message>
         <location filename="../src/configdialog.ui" line="4106"/>
         <source>Paper Color</source>
-        <translation>Cor do papel</translation>
+        <translation>Cor do papel:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4354"/>
@@ -2734,7 +2734,7 @@ Obs.: Esta mudança afetará somente documentos abertos a seguir. </translation>
     <message>
         <location filename="../src/configdialog.ui" line="4529"/>
         <source>SVN Directory Search Depth: </source>
-        <translation>Profundidade de pesquisa em diretório SVN:</translation>
+        <translation>Profundidade de pesquisa em diretório SVN: </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4580"/>
@@ -3061,7 +3061,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="16"/>
         <source>Font Sizes</source>
-        <translation>Ta&amp;manhos de Fonte</translation>
+        <translation>Tamanhos de Fonte</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="17"/>
@@ -3081,7 +3081,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Cross References</source>
-        <translation>&amp;Referências Cruzadas</translation>
+        <translation>Referências Cruzadas</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
@@ -3136,7 +3136,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Review remarks (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>Anotações de revisão (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -4105,7 +4105,7 @@ Deseja desfazer todas as alterações?</translation>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
         <source>line </source>
-        <translation>linha</translation>
+        <translation>linha </translation>
     </message>
 </context>
 <context>
@@ -4240,7 +4240,7 @@ Deseja desfazer todas as alterações?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="285"/>
         <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
-        <translation>Identificador, que será utilizado para referenciar a figura; e.g. utilizando \ref{esteRótulo} </translation>
+        <translation>Identificador, que será utilizado para referenciar a figura; e.g. utilizando \ref{esteRótulo}</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="292"/>
@@ -4356,14 +4356,14 @@ Nota: Os 4 primeiros posicionamentos são simplesmente sugestões. Se o layout d
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
         <translation>Não foi possível analisar código de inclusão de figuras:
-Número de argumentos insuficiente</translation>
+Número de argumentos insuficiente para </translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="280"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
         <translation>Não foi possível analisar código de inclusão de figuras:
-O assistente não suporta ambientes</translation>
+O assistente não suporta o ambiente </translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="289"/>
@@ -4384,7 +4384,7 @@ Faltando opções para \includegraphics.</translation>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
         <translation>Impossível efetuar código para inclusão de figuras:
-O assistente não suporta comandos</translation>
+O assistente não suporta o comando </translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="422"/>
@@ -4466,7 +4466,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="../src/diffoperations.cpp" line="26"/>
         <source>Unknown error. Potential crash. You are advised to restart TeXstudio</source>
-        <translation>Erro desconhecido. Falha em potencial. É aconselhável reiniciar o TeXstudio </translation>
+        <translation>Erro desconhecido. Falha em potencial. É aconselhável reiniciar o TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/latexdocument.cpp" line="37"/>
@@ -5138,7 +5138,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="951"/>
         <source>Set Page Count...</source>
-        <translation>Ajustar Contador de Página</translation>
+        <translation>Ajustar Contador de Página...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
@@ -5296,7 +5296,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2611"/>
         <source>&amp;Scroll</source>
-        <translation>Rolagem</translation>
+        <translation>&amp;Rolagem</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2613"/>
@@ -5823,7 +5823,7 @@ Você pode inserir a senha agora:</translation>
     <message>
         <location filename="../src/pdfsplittool.ui" line="96"/>
         <source>Output file:</source>
-        <translation>Arquivo de saída</translation>
+        <translation>Arquivo de saída:</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="109"/>
@@ -6306,7 +6306,7 @@ em perda de dados.
 %1
 failed.</source>
         <translation>Falha ao escrever no documento
-%1</translation>
+%1.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
@@ -6871,7 +6871,7 @@ Notas:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>math-text</source>
-        <translation type="unfinished"/>
+        <translation>math-text</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -7225,12 +7225,12 @@ Nota: Se o tamanho for maior que o espaçamento entre linhas, caracteres poderã
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
         <source>Prio</source>
-        <translation>Prior.</translation>
+        <translation>Prioridade</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="82"/>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
-        <translation>Prioridade determina qual formato aparecerá no topo se múltiplos formatos forem utilizados. </translation>
+        <translation>Prioridade determina qual formato aparecerá no topo se múltiplos formatos forem utilizados.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="281"/>
@@ -7298,7 +7298,7 @@ Deseja salvá-las?</translation>
     <message>
         <location filename="../src/latexoutputfilter.cpp" line="42"/>
         <source>BadBox: </source>
-        <translation>Badbox:</translation>
+        <translation>Badbox: </translation>
     </message>
     <message>
         <location filename="../src/latexoutputfilter.cpp" line="45"/>
@@ -7315,7 +7315,7 @@ Deseja salvá-las?</translation>
         <source>Macro read-in failed
 Error: </source>
         <translation>Leitura de Macro falhou
-Erro:</translation>
+Erro: </translation>
     </message>
 </context>
 <context>
@@ -8140,22 +8140,22 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="327"/>
         <source>Command: </source>
-        <translation>Comando:</translation>
+        <translation>Comando: </translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="340"/>
         <source>Package: </source>
-        <translation>Pacote:</translation>
+        <translation>Pacote: </translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="342"/>
         <source>Packages: </source>
-        <translation>Pacotes:</translation>
+        <translation>Pacotes: </translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbollistmodel.cpp" line="353"/>
         <source>Unicode Character: </source>
-        <translation>Caractere Unicode:</translation>
+        <translation>Caractere Unicode: </translation>
     </message>
 </context>
 <context>
@@ -8223,7 +8223,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation>Misc. Mat.</translation>
+        <translation>Misc. Matemática</translation>
     </message>
     <message>
         <location filename="../src/symbolpanel/symbolwidget.cpp" line="39"/>
@@ -8669,7 +8669,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/templatemanager.cpp" line="148"/>
         <source>User created template files</source>
-        <translation>Arquivos de Modelos criados pelo usuário.</translation>
+        <translation>Arquivos de Modelos criados pelo usuário</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="201"/>
@@ -8852,7 +8852,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Revisão</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
@@ -9109,7 +9109,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="847"/>
         <source>Restore Previous Session</source>
-        <translation>&amp;Restaurar Sessão Anterior</translation>
+        <translation>Restaurar Sessão Anterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="856"/>
@@ -9461,12 +9461,12 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="952"/>
         <source>Replace Next</source>
-        <translation>Substituir Pró&amp;ximo</translation>
+        <translation>Substituir Próximo</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="953"/>
         <source>Replace Prev</source>
-        <translation>Substituir A&amp;nterior</translation>
+        <translation>Substituir Anterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="954"/>
@@ -9779,7 +9779,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1097"/>
         <source>Refresh Structure</source>
-        <translation>Atuali&amp;zar Estrutura</translation>
+        <translation>Atualizar Estrutura</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1098"/>
@@ -9789,12 +9789,12 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1099"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation>Força uma atualização do modelo de idioma dinâmico usado para destaques. Em geral, não precisa utiliza-lo pois as atualizações são automáticas, </translation>
+        <translation>Força uma atualização do modelo de idioma dinâmico usado para destaques. Em geral, não precisa utiliza-lo pois as atualizações são automáticas.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1100"/>
         <source>Remove Placeholders</source>
-        <translation>R&amp;emover Espaços Reservados</translation>
+        <translation>Remover Espaços Reservados</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1101"/>
@@ -10150,7 +10150,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1208"/>
         <source>Math Assistant...</source>
-        <translation>Assistente Mat</translation>
+        <translation>Assistente Matemático...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1236"/>
@@ -10187,12 +10187,12 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1265"/>
         <source>Previous Document</source>
-        <translation>Documento &amp;Anterior</translation>
+        <translation>Documento Anterior</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1266"/>
         <source>Next Document</source>
-        <translation>&amp;Próximo Documento</translation>
+        <translation>Próximo Documento</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1267"/>
@@ -10247,7 +10247,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1288"/>
         <source>Collapse</source>
-        <translation>&amp;Recolher</translation>
+        <translation>Recolher</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1289"/>
@@ -10270,7 +10270,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1293"/>
         <source>Expand</source>
-        <translation>&amp;Expandir</translation>
+        <translation>Expandir</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1299"/>
@@ -10361,7 +10361,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1359"/>
         <source>Restore &amp;Default Settings...</source>
-        <translation>Restaurar Configuração &amp;Padrão</translation>
+        <translation>Restaurar Configuração &amp;Padrão...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1362"/>
@@ -10387,12 +10387,12 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1377"/>
         <source>LaTeX Reference...</source>
-        <translation>&amp;Referência LaTeX...</translation>
+        <translation>Referência LaTeX...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1378"/>
         <source>User Manual...</source>
-        <translation>&amp;Manual do Usuário...</translation>
+        <translation>Manual do Usuário...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1379"/>
@@ -10842,7 +10842,7 @@ Você tem que salvar um documento antes de compilá-lo.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5625"/>
         <source>  Running this command: </source>
-        <translation>Executando este comando:</translation>
+        <translation>  Executando este comando: </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5631"/>
@@ -11257,7 +11257,7 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
     <message>
         <location filename="../src/texstudio.cpp" line="10615"/>
         <source>LT current status: </source>
-        <translation>Estatus LT atual:</translation>
+        <translation>Estatus LT atual: </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10618"/>
@@ -11435,7 +11435,7 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
     <message>
         <location filename="../src/utilsSystem.cpp" line="651"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation>Impossível encontrar explorer.exe no PATH para iniciar Windows Explorer</translation>
+        <translation>Impossível encontrar explorer.exe no PATH para iniciar Windows Explorer.</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="701"/>
@@ -11685,7 +11685,7 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="384"/>
         <source>Min&amp;max words per phrase:</source>
-        <translation>Mín. e máx. de palavras por frase:</translation>
+        <translation>&amp;Mín. e máx. de palavras por frase:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="399"/>
@@ -11855,7 +11855,7 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="188"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation>Checagem de atualização para candidatos a lançamento falhou (formato de arquivo de atualização inválido)</translation>
+        <translation>Checagem de atualização para candidatos a lançamento falhou (formato de arquivo de atualização inválido).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="191"/>
@@ -12268,7 +12268,7 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
     <message>
         <location filename="../src/webpublishdialog.ui" line="273"/>
         <source>Text displayed at the bottom of each html files </source>
-        <translation>Texto exibido na base de cada arquivo html</translation>
+        <translation>Texto exibido na base de cada arquivo html </translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="280"/>
@@ -12387,7 +12387,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="165"/>
         <source>  Running this command: </source>
-        <translation>Executando este comando:</translation>
+        <translation>  Executando este comando: </translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="187"/>
@@ -12442,7 +12442,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="820"/>
         <source>Fatal error : </source>
-        <translation>Erro fatal:</translation>
+        <translation>Erro fatal: </translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="852"/>
@@ -12552,7 +12552,7 @@ Você confia neste script?</translation>
     <message>
         <location filename="../src/templateselector.ui" line="238"/>
         <source>Target folder not empty.</source>
-        <translation>Pasta de destino não vazia</translation>
+        <translation>Pasta de destino não vazia.</translation>
     </message>
 </context>
 </TS>
