@@ -135,7 +135,7 @@
         <translation>Dehou</translation>
     </message>
     <message>
-        <location filename="../src/arraydialog.cpp" line="43"/>
+        <location filename="../src/arraydialog.cpp" line="44"/>
         <source>Quick Array</source>
         <translation>Skoazeller matris</translation>
     </message>
@@ -11281,7 +11281,7 @@ Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11024"/>
-        <location filename="../src/texstudio.cpp" line="11762"/>
+        <location filename="../src/texstudio.cpp" line="11767"/>
         <source>TODO</source>
         <translation>D&apos;OBER</translation>
     </message>
@@ -11395,28 +11395,38 @@ Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;
         <translation>Di-endantadur ar gevrenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11279"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
+        <source>Expand Subitems</source>
+        <translation>Astenn an is-elfennoù</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11276"/>
+        <source>Collapse Subitems</source>
+        <translation>Bihanaat an is-elfennoù</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11284"/>
         <source>Open Document</source>
         <translation>Digeriñ an teuliad</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11280"/>
-        <location filename="../src/texstudio.cpp" line="11287"/>
+        <location filename="../src/texstudio.cpp" line="11285"/>
+        <location filename="../src/texstudio.cpp" line="11292"/>
         <source>Go to Definition</source>
         <translation>Mont d&apos;an termenadur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAFIEZH</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11754"/>
+        <location filename="../src/texstudio.cpp" line="11759"/>
         <source>MAGIC_COMMENTS</source>
         <translation>EVEZHIADENNOÙ_HUD</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11770"/>
+        <location filename="../src/texstudio.cpp" line="11775"/>
         <source>LABELS</source>
         <translation>LABELIOÙ</translation>
     </message>

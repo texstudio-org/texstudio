@@ -135,7 +135,7 @@
         <translation>Direita</translation>
     </message>
     <message>
-        <location filename="../src/arraydialog.cpp" line="43"/>
+        <location filename="../src/arraydialog.cpp" line="44"/>
         <source>Quick Array</source>
         <translation>Assistente de Matriz</translation>
     </message>
@@ -11288,7 +11288,7 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11024"/>
-        <location filename="../src/texstudio.cpp" line="11762"/>
+        <location filename="../src/texstudio.cpp" line="11767"/>
         <source>TODO</source>
         <translation>A FAZER</translation>
     </message>
@@ -11402,28 +11402,38 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
         <translation>Remover recuo da Seção</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11279"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
+        <source>Expand Subitems</source>
+        <translation>Expandir Subitens</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11276"/>
+        <source>Collapse Subitems</source>
+        <translation>Recolher Subitens</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11284"/>
         <source>Open Document</source>
         <translation>Abrir Documento</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11280"/>
-        <location filename="../src/texstudio.cpp" line="11287"/>
+        <location filename="../src/texstudio.cpp" line="11285"/>
+        <location filename="../src/texstudio.cpp" line="11292"/>
         <source>Go to Definition</source>
         <translation>Ir para Definição</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAFIA</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11754"/>
+        <location filename="../src/texstudio.cpp" line="11759"/>
         <source>MAGIC_COMMENTS</source>
         <translation>COMENTÁRIOS_MÁGICOS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11770"/>
+        <location filename="../src/texstudio.cpp" line="11775"/>
         <source>LABELS</source>
         <translation>RÓTULOS</translation>
     </message>

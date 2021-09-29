@@ -135,7 +135,7 @@
         <translation>右揃え</translation>
     </message>
     <message>
-        <location filename="../src/arraydialog.cpp" line="43"/>
+        <location filename="../src/arraydialog.cpp" line="44"/>
         <source>Quick Array</source>
         <translation>簡単な行列作成</translation>
     </message>
@@ -11284,7 +11284,7 @@ TeXstudioを実行し続けますか? これはデータの破壊につながる
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11024"/>
-        <location filename="../src/texstudio.cpp" line="11762"/>
+        <location filename="../src/texstudio.cpp" line="11767"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
@@ -11398,28 +11398,38 @@ TeXstudioを実行し続けますか? これはデータの破壊につながる
         <translation>節のインデントの解除</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11279"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
+        <source>Expand Subitems</source>
+        <translation>サブ項目を展開</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11276"/>
+        <source>Collapse Subitems</source>
+        <translation>サブ項目を非表示</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11284"/>
         <source>Open Document</source>
         <translation>文書を開く</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11280"/>
-        <location filename="../src/texstudio.cpp" line="11287"/>
+        <location filename="../src/texstudio.cpp" line="11285"/>
+        <location filename="../src/texstudio.cpp" line="11292"/>
         <source>Go to Definition</source>
         <translation>定義へ移動</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHY</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11754"/>
+        <location filename="../src/texstudio.cpp" line="11759"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11770"/>
+        <location filename="../src/texstudio.cpp" line="11775"/>
         <source>LABELS</source>
         <translation>LABELS</translation>
     </message>

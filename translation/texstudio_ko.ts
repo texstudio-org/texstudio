@@ -135,7 +135,7 @@
         <translation>오른쪽</translation>
     </message>
     <message>
-        <location filename="../src/arraydialog.cpp" line="43"/>
+        <location filename="../src/arraydialog.cpp" line="44"/>
         <source>Quick Array</source>
         <translation>빠른 배열 입력</translation>
     </message>
@@ -11152,7 +11152,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11024"/>
-        <location filename="../src/texstudio.cpp" line="11762"/>
+        <location filename="../src/texstudio.cpp" line="11767"/>
         <source>TODO</source>
         <translation>할것</translation>
     </message>
@@ -11266,28 +11266,38 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11279"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
+        <source>Expand Subitems</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11276"/>
+        <source>Collapse Subitems</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11284"/>
         <source>Open Document</source>
         <translation>열린 문서</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11280"/>
-        <location filename="../src/texstudio.cpp" line="11287"/>
+        <location filename="../src/texstudio.cpp" line="11285"/>
+        <location filename="../src/texstudio.cpp" line="11292"/>
         <source>Go to Definition</source>
         <translation>정의로 이동</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>BIBLIOGRAPHY</source>
         <translation>참고문헌</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11754"/>
+        <location filename="../src/texstudio.cpp" line="11759"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11770"/>
+        <location filename="../src/texstudio.cpp" line="11775"/>
         <source>LABELS</source>
         <translation>라벨</translation>
     </message>
