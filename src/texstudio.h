@@ -247,6 +247,8 @@ private slots:
     void copyFileName();
     void copyFilePath();
     void toggleSingleDocMode();
+    void expandSubitems();
+    void collapseSubitems();
     StructureEntry *labelForStructureEntry(const StructureEntry *entry);
 
     void updateStructureLocally();
