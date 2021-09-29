@@ -38,8 +38,9 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 	ui.comboEnvironment->insertItem(1, "matrix");
 	ui.comboEnvironment->insertItem(2, "pmatrix");
 	ui.comboEnvironment->insertItem(3, "bmatrix");
-	ui.comboEnvironment->insertItem(4, "vmatrix");
-	ui.comboEnvironment->insertItem(5, "Vmatrix");
+	ui.comboEnvironment->insertItem(4, "Bmatrix");
+	ui.comboEnvironment->insertItem(5, "vmatrix");
+	ui.comboEnvironment->insertItem(6, "Vmatrix");
 	setWindowTitle(tr("Quick Array"));
 }
 
@@ -78,7 +79,7 @@ QString ArrayDialog::getLatexText()
 	QTableWidgetItem *item = ui.tableWidget->item(nrows - 1, ncols - 1);
 	if (item)
 		text += item->text();
-	text += QString("\n\\end{") + env + "}\n";
+	text += QString("\n\\end{") + env + "}";
 	return text;
 }
 
