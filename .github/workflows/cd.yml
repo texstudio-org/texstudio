@@ -337,7 +337,7 @@ jobs:
       if: github.event_name == 'push'
       uses: actions/upload-artifact@v2
       with:
-        name: texstudio-osx
+        name: texstudio-osx-qt5
         path: texstudio-osx-qt5-${{ steps.package.outputs.VERSION_NAME }}.dmg
         
     - name: Release
