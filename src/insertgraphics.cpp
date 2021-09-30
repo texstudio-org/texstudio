@@ -40,8 +40,8 @@ QValidator::State PlacementValidator::validate(QString &input, int &pos) const
     return QRegularExpressionValidator::validate(input, pos);
 }
 
-QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "";
-QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm" << "";
+QStringList InsertGraphics::widthUnits = QStringList() << "\\linewidth" << "cm" << "mm" << "pt";
+QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm" << "mm" << "pt";
 QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "jpeg" << "png" << "pdf";
 
 InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
@@ -50,7 +50,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	setWindowTitle(tr("Insert Graphic"));
 	setModal(true);
 	ui.setupUi(this);
-	UtilsUi::resizeInFontHeight(this, 33, 40);
+    UtilsUi::resizeInFontHeight(this, 35, 40);
 
 	ui.fileSelectButton->setIcon(getRealIcon("document-open"));
 	ui.pbSaveDefault->setIcon(getRealIcon("document-save"));
