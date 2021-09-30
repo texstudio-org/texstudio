@@ -120,7 +120,7 @@
       <item row="0" column="2">
        <widget class="QLineEdit" name="leWidth">
         <property name="text">
-         <string>0.7</string>
+         <string notr="true">0.7</string>
         </property>
        </widget>
       </item>
@@ -132,6 +132,12 @@
           <height>0</height>
          </size>
         </property>
+        <property name="currentText">
+         <string notr="true"/>
+        </property>
+        <property name="currentIndex">
+         <number>-1</number>
+        </property>
        </widget>
       </item>
       <item row="1" column="1">
@@ -142,7 +148,11 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLineEdit" name="leHeight"/>
+       <widget class="QLineEdit" name="leHeight">
+        <property name="text">
+         <string notr="true"/>
+        </property>
+       </widget>
       </item>
       <item row="1" column="3">
        <widget class="QComboBox" name="cbHeightUnit">
@@ -151,6 +161,12 @@
           <width>80</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="currentText">
+         <string notr="true"/>
+        </property>
+        <property name="currentIndex">
+         <number>-1</number>
         </property>
        </widget>
       </item>
@@ -321,7 +337,7 @@
       <item row="1" column="1" colspan="2">
        <widget class="QLineEdit" name="leShortCaption">
         <property name="toolTip">
-         <string>Caption for display in the list of tables</string>
+         <string>Caption for display in the list of figures</string>
         </property>
        </widget>
       </item>
@@ -513,8 +529,8 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../texstudio.qrc"/>
   <include location="../images.qrc"/>
+  <include location="../texstudio.qrc"/>
  </resources>
  <connections>
   <connection>
