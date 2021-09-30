@@ -206,6 +206,14 @@ void setSubtreeExpanded(QTreeView *view, QModelIndex idx, bool expand)
 	view->setExpanded(idx, expand);
 }
 
+void setSubtreeExpanded(QTreeWidgetItem *item, bool expand)
+{
+    item->setExpanded( expand);
+    for(int i=0;i<item->childCount();++i){
+        setSubtreeExpanded(item->child(i), expand);
+    }
+}
+
 bool browse(QWidget *w, const QString &title, const QString &extension, const QString &startPath, bool list)
 {
 	QLineEdit *le = qobject_cast<QLineEdit *>(w);

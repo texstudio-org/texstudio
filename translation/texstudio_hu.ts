@@ -135,7 +135,7 @@
         <translation>Jobbra</translation>
     </message>
     <message>
-        <location filename="../src/arraydialog.cpp" line="43"/>
+        <location filename="../src/arraydialog.cpp" line="44"/>
         <source>Quick Array</source>
         <translation>Gyors tömb</translation>
     </message>
@@ -11272,7 +11272,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11024"/>
-        <location filename="../src/texstudio.cpp" line="11762"/>
+        <location filename="../src/texstudio.cpp" line="11767"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
@@ -11386,28 +11386,38 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
         <translation>Fejezet behúzásának megszüntetése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11279"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
+        <source>Expand Subitems</source>
+        <translation>Almenük kinyitása</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11276"/>
+        <source>Collapse Subitems</source>
+        <translation>Almenük összecsukása</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11284"/>
         <source>Open Document</source>
         <translation>Dokumentum megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11280"/>
-        <location filename="../src/texstudio.cpp" line="11287"/>
+        <location filename="../src/texstudio.cpp" line="11285"/>
+        <location filename="../src/texstudio.cpp" line="11292"/>
         <source>Go to Definition</source>
         <translation>Ugrás a definícióra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRÁFIA</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11754"/>
+        <location filename="../src/texstudio.cpp" line="11759"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MÁGIKUS_MEGJEGYZÉSEK</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11770"/>
+        <location filename="../src/texstudio.cpp" line="11775"/>
         <source>LABELS</source>
         <translation>CÍMKÉK</translation>
     </message>

@@ -135,7 +135,7 @@
         <translation>Aligné à droite</translation>
     </message>
     <message>
-        <location filename="../src/arraydialog.cpp" line="43"/>
+        <location filename="../src/arraydialog.cpp" line="44"/>
         <source>Quick Array</source>
         <translation>Assistant matrice</translation>
     </message>
@@ -3136,7 +3136,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Review remarks (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>Remarques de révision (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -6869,7 +6869,7 @@ Remarques :
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>math-text</source>
-        <translation type="unfinished"/>
+        <translation>texte-math</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -8850,7 +8850,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Révision</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
@@ -11286,7 +11286,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11024"/>
-        <location filename="../src/texstudio.cpp" line="11762"/>
+        <location filename="../src/texstudio.cpp" line="11767"/>
         <source>TODO</source>
         <translation>À FAIRE</translation>
     </message>
@@ -11400,28 +11400,38 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>Désindenter Section</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11279"/>
+        <location filename="../src/texstudio.cpp" line="11275"/>
+        <source>Expand Subitems</source>
+        <translation>Développer les sous-items</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11276"/>
+        <source>Collapse Subitems</source>
+        <translation>Réduire les sous-items</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11284"/>
         <source>Open Document</source>
         <translation>Ouvrir le document</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11280"/>
-        <location filename="../src/texstudio.cpp" line="11287"/>
+        <location filename="../src/texstudio.cpp" line="11285"/>
+        <location filename="../src/texstudio.cpp" line="11292"/>
         <source>Go to Definition</source>
         <translation>Aller à la définition</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHIE</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11754"/>
+        <location filename="../src/texstudio.cpp" line="11759"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11770"/>
+        <location filename="../src/texstudio.cpp" line="11775"/>
         <source>LABELS</source>
         <translation>ÉTIQUETTES</translation>
     </message>

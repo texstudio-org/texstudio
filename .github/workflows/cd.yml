@@ -279,6 +279,75 @@ jobs:
         files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+        
+  macosx-qt5:
+    name: Mac OS X (Qt5)
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
+    - name: Install Dependencies
+      run: |
+        # /usr/local/bin/2to3 is symlinked to the native python2 installation
+        # but prevents the homebrew install from succeeding
+        rm -f /usr/local/bin/2to3
+        brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
+        # install poppler with qt6
+        brew install poppler-qt5
+
+    - name: Configure
+      run: |
+        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/lib/pkgconfig"
+        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/share/pkgconfig"
+        /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
+
+    - name: Build
+      run: |
+        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/lib/pkgconfig"
+        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/share/pkgconfig"
+        make -j 2
+
+    - name: Workarounds
+      run: |
+        python2 ./.github/scripts/fixRpath.py /usr/local/opt/qt/lib
+        mkdir -p texstudio.app/Contents/PlugIns/imageformats
+        cp /usr/local/opt/qt/share/qt/plugins/imageformats/libqsvg.dylib texstudio.app/Contents/PlugIns/imageformats
+        mkdir -p texstudio.app/Contents/Frameworks
+        cp /usr/local/lib/libbrotlicommon.1.dylib texstudio.app/Contents/Frameworks
+
+    - name: Package
+      id: package
+      run: |
+        /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
+        . ./.github/scripts/get-version.sh
+        cp texstudio.dmg texstudio-${GIT_VERSION}-osx-qt5.dmg
+        mv texstudio.dmg texstudio-osx-qt5-${VERSION_NAME}.dmg
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+        
+    - name: Upload to Github artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v2
+      with:
+        name: texstudio-osx-qt5
+        path: texstudio-osx-qt5-${{ steps.package.outputs.VERSION_NAME }}.dmg
+        
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx-qt5.dmg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
    
 
 
