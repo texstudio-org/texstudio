@@ -305,13 +305,11 @@ jobs:
     - name: Configure
       run: |
         export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/lib/pkgconfig"
-        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/share/pkgconfig"
         /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
 
     - name: Build
       run: |
         export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/lib/pkgconfig"
-        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/share/pkgconfig"
         make -j 2
 
     - name: Workarounds
