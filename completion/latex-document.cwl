@@ -236,6 +236,7 @@
 \ldots
 \lefteqn
 \lefthyphenmin#*
+\lhook#*m
 \line(xslope,yslope){length}#*/picture
 \linebreak
 \linebreak[number]
@@ -346,6 +347,7 @@
 \r{letter}
 \ref{label}#r
 \refname
+\rhook#*m
 \rightmargin
 \rightmark
 \rm#*
