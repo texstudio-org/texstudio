@@ -211,7 +211,6 @@
 \mbfhbar#m
 \mbfimath#m
 \mbfitell#m
-\mbfitell#m
 \mbfithbar#m
 \mbfitsansA#m
 \mbfitsansa#m
