@@ -4,3 +4,8 @@
 
 \keepXColumns
 \convertXColumns
+\endfirstfoot#/tabularx
+\endlastfoot#/tabularx
+\endfirsthead#/tabularx
+\endfoot#/tabularx
+\endhead#/tabularx

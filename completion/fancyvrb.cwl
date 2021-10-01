@@ -2,6 +2,7 @@
 # neeraavi 12 Apr 2007
 # muzimuzhi 15 Mar 2020, fancyvrb v3.5
 # muzimuzhi 25 Mar 2020
+# Matthew Bertucci 27 Sep 2021 for v3.8
 
 #include:keyval
 
@@ -14,30 +15,32 @@
 \UndefineShortVerb{verb char}
 
 \begin{Verbatim}#V
-\begin{Verbatim}[options%keyvals]
+\begin{Verbatim}[options%keyvals]#V
 \end{Verbatim}
 \begin{Verbatim*}#V
-\begin{Verbatim*}[options%keyvals]
+\begin{Verbatim*}[options%keyvals]#V
 \end{Verbatim*}
 \begin{BVerbatim}#V
-\begin{BVerbatim}[options%keyvals]
+\begin{BVerbatim}[options%keyvals]#V
 \end{BVerbatim}
 \begin{BVerbatim*}#V
-\begin{BVerbatim*}[options%keyvals]
+\begin{BVerbatim*}[options%keyvals]#V
 \end{BVerbatim*}
 \begin{LVerbatim}#V
-\begin{LVerbatim}[options%keyvals]
+\begin{LVerbatim}[options%keyvals]#V
 \end{LVerbatim}
 \begin{LVerbatim*}#V
-\begin{LVerbatim*}[options%keyvals]
+\begin{LVerbatim*}[options%keyvals]#V
 \end{LVerbatim*}
 \fvset{options%keyvals}
 \FancyVerbFormatLine#*
 \theFancyVerbLine#*
+\FancyVerbStartString#*
+\FancyVerbStopString#*
 
-\DefineVerbatimEnvironment{envname}{env type}{options%keyvals}
+\DefineVerbatimEnvironment{envname}{env type}{options%keyvals}#N
 \RecustomVerbatimEnvironment{envname}{env type}{options%keyvals}
-\CustomVerbatimCommand{command}{cmd type}{options%keyvals}
+\CustomVerbatimCommand{command}{cmd type}{options%keyvals}#d
 \RecustomVerbatimCommand{command}{cmd type}{options%keyvals}
 
 # saving and restoring verbatim text and envs
@@ -74,42 +77,45 @@
 \begin{VerbatimOut}{file name}#V
 \end{VerbatimOut}
 
-#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\begin{VerbatimOut}
-boxwidth
-baseline=#b,c,t
+#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput
 commentchar=%<single char%>
-gobble
-formatcom
-formatcom*
-fontfamily
-fontsize
-fontshape
-fontseries
+gobble=%<integer%>
+formatcom=%<command%>
+fontfamily=
+fontsize=
+fontshape=
+fontseries=
 frame=#none,leftline,topline,bottomline,lines,single
 framerule=##L
 framesep=##L
 rulecolor=%<color cmd%>
 fillcolor=%<color cmd%>
-label
+label=
 labelposition=#none,topline,bottomline,all
 numbers=#none,left,right
 numbersep=##L
 firstnumber=#auto,last,integer
-stepnumber
+stepnumber=%<integer%>
 numberblanklines#true,false
-firstline
-lastline
+firstline=%<integer%>
+lastline=%<integer%>
 showspaces#true,false
 showtabs#true,false
 obeytabs#true,false
-tabsize
-baselinestretch
+tabsize=%<integer%>
+baselinestretch=##L
 commandchars=%<three chars%>
 xleftmargin=##L
 xrightmargin=##L
 resetmargins#true,false
 hfuzz=##L
 samepage#true,false
-codes
-defineactive
+codes=
+defineactive=
+reflabel=##l
+#endkeyvals
+
+#keyvals:\begin{BVerbatim},\begin{BVerbatim*},\fvset,\DefineVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\BUseVerbatim,\BVerbatimInput
+boxwidth=##L
+baseline=#b,c,t
 #endkeyvals

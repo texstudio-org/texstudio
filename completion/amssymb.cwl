@@ -34,6 +34,7 @@
 \circledast#m
 \circledcirc#m
 \circleddash#m
+\circledR#m
 \circledS#m
 \complement#m
 \Cup#m
