@@ -17,6 +17,7 @@ b
 \multirowsetup#*
 \multirowdebugtrue#*
 \multirowdebugfalse#*
+\bigstrutjot#*
 
 #ifOption:supertabular
 \STneed{length}
