@@ -10,7 +10,9 @@
 #endif
 
 // disable backtrace on ARM as the code does not compile
-#if (defined(arm) || defined(__arm__))
+// disable backtrace on RISC-V. RISC-V does not support stack unwinding using frame pointer.
+// Recommended approach for RISC-V is dwarf cfi info.
+#if (defined(arm) || defined(__arm__) || defined(__riscv))
 #define NO_CRASH_HANDLER
 #endif
 
