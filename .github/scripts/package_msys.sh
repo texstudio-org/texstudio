@@ -40,6 +40,7 @@ cp ./utilities/FileAssociation.nsh .
 makensis texstudio-msys.nsi
 # zip package
 cd package-zip
+mkdir config
 zip -r ./texstudio-win-qt6-${VERSION_NAME}.zip *
 
 cd ..
