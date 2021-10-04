@@ -1,7 +1,8 @@
 # tipauni package
-# Matthew Bertucci 8/10/2021
+# Matthew Bertucci 10/4/2021 for v0.3
 
 #include:fontspec
+#include:xparse
 
 \textrtailt
 \textrtaild
@@ -106,3 +107,4 @@
 \texttoptiebar{arg}
 \textbottomtiebar{arg}
 \textipa{text%plain}
+\super{arg}#*

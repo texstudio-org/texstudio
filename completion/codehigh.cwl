@@ -1,5 +1,5 @@
 # codehigh package
-# Matthew Bertucci 9/19/2021 for v2021C
+# Matthew Bertucci 10/3/2021 for v2021C
 
 #include:expl3
 #include:l3benchmark
@@ -23,4 +23,8 @@ language=#latex,latex/latex2,latex/latex3,latex/math,latex/table
 style/main=#%color
 style/code=#%color
 style/demo=#%color
+boxsep=##L
 #endkeyvals
+
+\NewCodeHighEnv{envname}{style}#*N
+\NewCodeHighInput{cmd}{style}#*d
