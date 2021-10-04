@@ -3138,7 +3138,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Review remarks (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>Comentarios de la revisión (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -6869,7 +6869,7 @@ Notas:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>math-text</source>
-        <translation type="unfinished"/>
+        <translation>Texto matemático</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -8850,7 +8850,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Revisión</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>

@@ -122,7 +122,7 @@
     <message>
         <location filename="../src/arraydialog.cpp" line="33"/>
         <source>Center</source>
-        <translation>Centralizar</translation>
+        <translation>Centro</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.cpp" line="34"/>
@@ -4255,7 +4255,7 @@ Deseja desfazer todas as alterações?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="324"/>
         <source>Caption for display in the list of tables</source>
-        <translation>Legenda para ser exibida na lista de tabelas</translation>
+        <translation>Legenda para ser exibida na lista de figuras</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="331"/>
@@ -4342,12 +4342,12 @@ Deseja desfazer todas as alterações?</translation>
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferências para o posicionamento da figura
 
-[t] Top: No topo da página
-[b] Bottom: Na base da página
-[p] Page: Em uma página dedicada às figuras
-[h] Here: Nesta posição do texto
-[H] Here: Exatamente nesta posição do texto (requer pacote float)
-[!]: Sobrescrever os parâmetros internos usados pelo LaTeX para determinar um `bom&apos; posicionamento.
+[t] topo: No topo da página
+[b] base: Na base da página
+[p] página: Em uma página dedicada às figuras
+[h] aqui: Nesta posição do texto
+[H] Aqui: Exatamente nesta posição do texto (requer pacote float)
+[!]: Sobrescrever os parâmetros internos usados pelo LaTeX para determinar um &apos;bom&apos; posicionamento.
 
 Nota: Os 4 primeiros posicionamentos são simplesmente sugestões. Se o layout da página for muito ruim, o LaTeX poderá ignorá-los.</translation>
     </message>
@@ -7659,7 +7659,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
         <source>Input encoding</source>
-        <translation>Codificação de entrada</translation>
+        <translation>Codificação de Entrada</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="310"/>
@@ -9079,7 +9079,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="839"/>
         <source>New From &amp;Template...</source>
-        <translation>Novo a &amp;Partir de modelo...</translation>
+        <translation>Novo a &amp;partir de modelo...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="840"/>
@@ -9391,7 +9391,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="933"/>
         <source>&amp;Align Cursors</source>
-        <translation>&amp;Alinhar cursores</translation>
+        <translation>&amp;Alinhar Cursores</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="935"/>
@@ -10105,7 +10105,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1193"/>
         <source>&amp;Math</source>
-        <translation>&amp;Mat</translation>
+        <translation>&amp;Matemática</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1197"/>
@@ -11506,7 +11506,7 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
     <message>
         <location filename="../src/textanalysis.ui" line="57"/>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation>Informações</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="63"/>
@@ -11641,7 +11641,7 @@ Se &quot;ignorar palavras menores que&quot; estiver selecionado as palavras meno
     <message>
         <location filename="../src/textanalysis.ui" line="279"/>
         <source>Minimum occurrence count:</source>
-        <translation>Mínima contagem de ocorrência:</translation>
+        <translation>Contagem mínima de ocorrência:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="298"/>
@@ -11695,7 +11695,7 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="384"/>
         <source>Min&amp;max words per phrase:</source>
-        <translation>&amp;Mín. e máx. de palavras por frase:</translation>
+        <translation>Mín. e máx. de palavras por frase:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="399"/>
@@ -11715,7 +11715,7 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="417"/>
         <source>Filter</source>
-        <translation>Filtro</translation>
+        <translation>Filtro:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="430"/>

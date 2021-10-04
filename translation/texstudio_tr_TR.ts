@@ -3137,7 +3137,7 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Review remarks (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>Yorumları gözden geçir (kolay gözden geçirme)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -6871,7 +6871,7 @@ Notlar:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>math-text</source>
-        <translation type="unfinished"/>
+        <translation>math-text</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -8851,7 +8851,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Gözden geçir</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
@@ -11396,12 +11396,12 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
     <message>
         <location filename="../src/texstudio.cpp" line="11275"/>
         <source>Expand Subitems</source>
-        <translation>Alt Ögeleri Genişlet</translation>
+        <translation>Alt ögeleri genişlet</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11276"/>
         <source>Collapse Subitems</source>
-        <translation>Alt Ögeleri Daralt</translation>
+        <translation>Alt ögeleri daralt</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11284"/>

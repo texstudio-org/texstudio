@@ -1279,7 +1279,7 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
     <message>
         <location filename="../src/configdialog.ui" line="1605"/>
         <source>Inline Checking:</source>
-        <translation>Řadové přezkoušení:</translation>
+        <translation>Přezkoušení vkládaného:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1644"/>
@@ -2444,7 +2444,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3853"/>
         <source>Inline</source>
-        <translation>Řadový</translation>
+        <translation>Vkládaný</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3858"/>
@@ -3136,7 +3136,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Review remarks (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>Posouzení připomínek (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -3496,12 +3496,12 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>Inline math mode $...$</source>
-        <translation>Matematický režim v řádku  - $...$</translation>
+        <translation>Vkládaný matematický režim  - $...$</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
         <source>LaTeX inline math mode \(...\)</source>
-        <translation>LaTeX matematický režim v řádku \(...\)</translation>
+        <translation>LaTeX vkládaný matematický režim \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="105"/>
@@ -8850,7 +8850,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Posoudit</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
@@ -9597,7 +9597,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1039"/>
         <source>C&amp;lear Inline Preview</source>
-        <translation>S&amp;mazat řadový náhled</translation>
+        <translation>S&amp;mazat vkládaný náhled</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1042"/>

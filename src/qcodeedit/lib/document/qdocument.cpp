@@ -3915,7 +3915,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				}
 			} else {
 				column += r.length;
-#ifdef Q_OS_OSX
+#if defined(Q_OS_OSX) && QT_VERSION_MAJOR<6
                 rwidth = p->fontMetrics().horizontalAdvance(rng);
 #else
                 rwidth = d->textWidth(lastFont, rng);

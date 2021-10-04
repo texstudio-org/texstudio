@@ -282,6 +282,7 @@ jobs:
         
   macosx-qt5:
     name: Mac OS X (Qt5)
+    if: false
     runs-on: macos-latest
 
     steps:
@@ -313,6 +314,7 @@ jobs:
         make -j 2
 
     - name: Workarounds
+      if: false
       run: |
         python2 ./.github/scripts/fixRpath.py /usr/local/opt/qt/lib
         mkdir -p texstudio.app/Contents/PlugIns/imageformats

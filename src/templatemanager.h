@@ -83,13 +83,4 @@ private:
 	QString selectedFile;
 };
 
-class LatexTemplateManager : public TemplateManager
-{
-	Q_OBJECT
-
-public:
-    explicit LatexTemplateManager(QObject *parent = nullptr);
-};
-
-
 #endif // TEMPLATEMANAGER_H
