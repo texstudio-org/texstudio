@@ -6,7 +6,11 @@
 
 [website]: http://www.texstudio.org
 
+[Download]: https://www.texstudio.org/#download
+[Releases]: https://github.com/texstudio-org/texstudio/releases/
+[News]: https://www.texstudio.org/#news
 [Contribute]: /wiki/Contribute
+
 
 # TeXstudio
 [![Codacy Badge]][Codacy TeXstudio] ![CI]
@@ -15,7 +19,7 @@
 Our goal is to make ***writing LaTeX documents as easy and comfortable*** as possible.
 
 ---
-#### [ [Contribute] ]
+#### 〔 [Download] / [Releases] 〕 〔 [News] 〕 〔 [Contribute] 〕
 ---
 
 
