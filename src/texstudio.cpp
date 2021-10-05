@@ -4294,6 +4294,8 @@ void Texstudio::saveSettings(const QString &configName)
 			Session s = getCurrentSession();
             QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
             bool ok=false;
+            qDebug()<<"lastSession filename:"<<f.filePath();
+            qDebug()<<"current file:"<<s.currentFile();
             if(!f.exists() || (f.exists() && f.isWritable())){
                 ok=s.save(f.filePath(), configManager.sessionStoreRelativePaths);
             }
