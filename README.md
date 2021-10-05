@@ -6,7 +6,8 @@
 
 [website]: http://www.texstudio.org
 
-# TeXstudio [![Codacy Badge]][Codacy TeXstudio] ![CI]
+# TeXstudio
+[![Codacy Badge]][Codacy TeXstudio] ![CI]
 
 **TeXstudio** is a fully featured **LaTeX** editor.<br>
 Our goal is to make ***writing LaTeX documents as easy and comfortable*** as possible.
@@ -59,6 +60,3 @@ You do not necessarily have to be a programmer to help and make TeXstudio even b
 * TeXstudio is written in C++/Qt. Programmers are welcome to implement new features or fix bugs. Code development takes place on github. Pull-requests, direct patches or changed files are welcome.
 
 It is a good idea to announce your plans on the texstudio issue list. So everybody knows what's going on around TeXstudio and there is no duplicate work. For questions how you can contribute contact one of the developers.
-
-
-[TeXstudio - A LaTeX Editor Web Site](http://www.texstudio.org)
