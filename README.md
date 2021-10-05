@@ -16,8 +16,7 @@ Our goal is to make ***writing LaTeX documents as easy and comfortable*** as pos
 Some of the outstanding features of **TeXstudio** are:
 - Advanced **Syntax Highlighting**
 - Live **Reference Checking**
-- An integrated **PDF viewer**<br>
-  *with (almost) word-level synchronization*
+- An integrated **PDF viewer**
 - Live **Inline Preview**
 - Latex **Commands**
 - **Grammar**
