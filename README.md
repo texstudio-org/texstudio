@@ -9,7 +9,7 @@
 [Download]: https://www.texstudio.org/#download
 [Releases]: https://github.com/texstudio-org/texstudio/releases/
 [News]: https://www.texstudio.org/#news
-[Contribute]: /wiki/Contribute
+[Contribute]: https://github.com/texstudio-org/texstudio/wiki/Contribute
 
 
 # TeXstudio
