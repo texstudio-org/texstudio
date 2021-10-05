@@ -4,9 +4,29 @@
 
 [CI]: https://github.com/texstudio-org/texstudio/workflows/CI/badge.svg
 
+[website]: http://www.texstudio.org
+
 # TeXstudio [![Codacy Badge]][Codacy TeXstudio] ![CI]
 
-TeXstudio is a fully featured LaTeX editor. Our goal is to make writing LaTeX documents as easy and comfortable as possible. Some of the outstanding features of TeXstudio are an integrated pdf viewer with (almost) word-level synchronization, live inline preview, advanced syntax-highlighting, live checking of references, citations, latex commands, spelling and grammar. Find out more at our website.
+**TeXstudio** is a fully featured **LaTeX** editor.<br>
+Our goal is to make ***writing LaTeX documents as easy and comfortable*** as possible.
+
+<br>
+
+Some of the outstanding features of **TeXstudio** are:
+- Advanced **Syntax Highlighting**
+- Live **Reference Checking**
+- An integrated **PDF viewer**<br>
+  *with (almost) word-level synchronization*
+- Live **Inline Preview**
+- Latex **Commands**
+- **Grammar**
+- **Citations**
+- **Spelling**
+
+<br>
+
+Find out more at our [website].
 
 ## Features
 
