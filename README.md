@@ -15,7 +15,8 @@
 # TeXstudio
 [![Codacy Badge]][Codacy TeXstudio] ![CI]
 
-**TeXstudio** is a fully featured **LaTeX** editor.<br>
+**TeXstudio** is a fully featured **LaTeX** editor.
+
 Our goal is to make ***writing LaTeX documents as easy and comfortable*** as possible.
 
 ---
