@@ -13,7 +13,7 @@ Our goal is to make ***writing LaTeX documents as easy and comfortable*** as pos
 
 <br>
 
-Some of the outstanding features of **TeXstudio** are:
+### Features
 - Advanced **Syntax Highlighting**
 - Live **Reference Checking**
 - An integrated **PDF viewer**
