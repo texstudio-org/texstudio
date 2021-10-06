@@ -1043,7 +1043,7 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 	else
 		text = tr("%1 min").arg((remainingSeconds + 30) / 60);
 	QFont f = p.font();
-	f.setPixelSize(r.height());
+	f.setPixelSize(r.height() * 0.8); // smaller font 
 	p.setFont(f);
 	p.setPen(textColor);
 	int labelWidth = UtilsUi::getFmWidth(p.fontMetrics(), "9999 min");
