@@ -4292,7 +4292,16 @@ void Texstudio::saveSettings(const QString &configName)
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
-			s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath(), configManager.sessionStoreRelativePaths);
+            QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
+            bool ok=false;
+            qDebug()<<"lastSession filename:"<<f.filePath();
+            qDebug()<<"current file:"<<s.currentFile();
+            if(!f.exists() || (f.exists() && f.isWritable())){
+                ok=s.save(f.filePath(), configManager.sessionStoreRelativePaths);
+            }
+            if(!ok){
+                QMessageBox::warning(this,tr("Storing session failed"),tr("Storing session information into %1 failed. File exists but is not writeable.").arg(f.filePath()));
+            }
 		}
 	}
 

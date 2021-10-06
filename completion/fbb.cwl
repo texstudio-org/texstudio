@@ -17,7 +17,8 @@
 \Qswash
 \sufigures
 \swshape
-\textfrac[optional whole part]{numerator}{denominator}
+\textfrac{numerator}{denominator}
+\textfrac[whole part]{numerator}{denominator}
 \textin{text}
 \textinf{text}#*
 \textinferior{text}#*

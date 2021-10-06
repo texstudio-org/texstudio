@@ -1,8 +1,7 @@
 # tikz-trackschematic package
-# Matthew Bertucci 9/4/2021 for v0.6
+# Matthew Bertucci 10/3/2021 for v0.6.1
 
 #include:tikz
-#include:lmodern
 #include:xcolor
 #include:etoolbox
 

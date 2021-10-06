@@ -55,6 +55,15 @@ protected slots:
     bool confirmWarning(const QString &message);
     void debug(const QString &message);
 
+#ifndef QT_NO_DEBUG
+    void crash_assert();
+#endif
+    void crash_sigsegv();
+    void crash_sigfpe();
+    void crash_stack();
+    void crash_loop();
+    void crash_throw();
+
     ProcessX *system(const QString &commandline, const QString &workingDirectory=QString());
 
     void writeFile(const QString &filename, const QString &content);
