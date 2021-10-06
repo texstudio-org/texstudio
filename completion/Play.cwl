@@ -1,5 +1,5 @@
 # Play package
-# Matthew Bertucci 8/28/2021
+# Matthew Bertucci 10/6/2021 for v0.0.1
 
 #include:fontenc
 #include:textcomp
@@ -7,5 +7,8 @@
 #include:mweights
 #include:fontaxes
 
-\sufigures#n
-\textsu{text}#n
+\sufigures
+\supfigures#*
+\textsu{text}
+\textsup{text}#*
+\textsuperior{text}#*
