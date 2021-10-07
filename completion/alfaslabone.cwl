@@ -1,5 +1,5 @@
-# Play package
-# Matthew Bertucci 10/6/2021 for v0.0.1
+# alfaslabone package
+# Matthew Bertucci 10/6/2021 for v0.01
 
 #include:fontenc
 #include:textcomp
@@ -12,3 +12,4 @@
 \textsu{text}
 \textsup{text}#*
 \textsuperior{text}#*
+\alfaslabonetabular

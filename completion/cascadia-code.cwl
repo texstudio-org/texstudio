@@ -1,4 +1,4 @@
-# Play package
+# cascadia-code package
 # Matthew Bertucci 10/6/2021 for v0.0.1
 
 #include:fontenc

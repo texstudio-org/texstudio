@@ -1,5 +1,5 @@
-# Play package
-# Matthew Bertucci 10/6/2021 for v0.0.1
+# Archivo package
+# Matthew Bertucci 10/6/2021 for v0.02
 
 #include:fontenc
 #include:textcomp
