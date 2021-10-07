@@ -1,5 +1,6 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
+# r0the/2021-10-07 for siunitx v3
 
 \A#*
 \ampere
@@ -28,6 +29,10 @@
 \clight
 \cmclight
 \color
+\complexnum{%<number%>}{%<unit%>}
+\complexnum[%<options%>]{%<number%>}{%<unit%>}
+\complexqty{%<number%>}{%<unit%>}
+\complexnqty[%<options%>]{%<number%>}{%<unit%>}
 \coulomb
 \cubed
 \cubic
@@ -152,6 +157,8 @@
 \num{%<number%>}
 \numlist[%<options%>]{%<numbers%>}
 \numlist{%<numbers%>}
+\numproduct[%<options%>]{%<numbers%>}
+\numproduct{%<numbers%>}
 \numrange[%<options%>]{%<number1%>}{%<number2%>}
 \numrange{%<number1%>}{%<number2%>}
 \nV#*
@@ -172,6 +179,14 @@
 \pmol#*
 \ps#*
 \pV#*
+\qty[%<options%>]{%<number%>}{%<unit%>}
+\qty{%<number%>}{%<unit%>}
+\qtylist[%<options%>]{%<numbers%>}{%<unit%>}
+\qtylist{%<numbers%>}{%<unit%>}
+\qtyproduct[%<options%>]{%<numbers%>}{%<unit%>}
+\qtyproduct{%<numbers%>}{%<unit%>}
+\qtyrange[%<options%>]{%<number1%>}{%<number2%>}{%<unit%>}
+\qtyrange{%<number1%>}{%<number2%>}{%<unit%>}
 \radian
 \raiseto{%<power%>}
 \s#*
@@ -215,6 +230,8 @@
 \ul#*
 \um#*
 \umol#*
+\unit[%<options%>]{%<unit%>}
+\unit{%<unit%>}
 \us#*
 \uV#*
 \uW#*
