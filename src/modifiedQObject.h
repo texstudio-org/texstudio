@@ -5,7 +5,7 @@
 #include <qglobal.h>
 
 // Crash handler and its helper functions are available only when using GNU libc
-#if !defined(NO_CRASH_HANDLER) && defined(__GLIBC__)
+#if !defined(NO_CRASH_HANDLER) && (defined(__GLIBC__) || defined(Q_OS_WIN32))
 
 #define ASSERT_THROW Q_DECL_NOTHROW
 
