@@ -753,7 +753,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Preview/", &pdfDocumentConfig->disableHorizontalScrollingForFitToTextWidth, true, &pseudoDialog->checkBoxDisableHorizontalScrollingForFitToTextWidth);
 	registerOption("Preview/ZoomStepFactor", &pdfDocumentConfig->zoomStepFactor, 1.4142135); // sqrt(2)
 	registerOption("Preview/Magnifier Size", &pdfDocumentConfig->magnifierSize, 300, &pseudoDialog->spinBoxPreviewMagnifierSize);
-	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1, &pseudoDialog->comboBoxPreviewMagnifierShape);
+    registerOption("Preview/Magnifier Shape", reinterpret_cast<int *>(&pdfDocumentConfig->magnifierShape), static_cast<int>(PDFDocumentConfig::CircleWithShadow), &pseudoDialog->comboBoxPreviewMagnifierShape);
 	registerOption("Preview/Magnifier Border", &pdfDocumentConfig->magnifierBorder, false, &pseudoDialog->checkBoxPreviewMagnifierBorder);
 
 	registerOption("Preview/PaperColor", &pdfDocumentConfig->paperColor, "#FFFFFF", &pseudoDialog->lineEditPaperColor);

@@ -350,7 +350,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	int side = qMin(width(), height()) ;
 	QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 
-	if(globalConfig->magnifierShape==1){
+    if(globalConfig->magnifierShape==PDFDocumentConfig::CircleWithShadow){
 	    // circular magnifier, add transparent shadow
 	    const int padding=10;
 
@@ -396,13 +396,13 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
 		switch (globalConfig->magnifierShape) {
-		case 1: { //circular
+        case PDFDocumentConfig::CircleWithShadow: { //circular
 		        //int side = qMin(width(), height()) ;
 		        //painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 		        painter.drawEllipse(outline);
 			break;
 		}
-		case 2: { //circular without shadow
+        case PDFDocumentConfig::Circle: { //circular without shadow
 		        int side = qMin(width(), height()) ;
 			painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 			break;
