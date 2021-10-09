@@ -9346,25 +9346,27 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	}
 	if (!doc) return;
 	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
-	QStringList curPaths;
-	if (documents.masterDocument)
-		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
-        if (doc->getRootDocument())
-            curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
-        curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
-        if (defaultExt == "bib") {
-            curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
-        }
-        bool loaded = false;
-	for (int i = 0; i < curPaths.count(); i++) {
-		const QString &curPath = ensureTrailingDirSeparator(curPaths.value(i));
-		if ((loaded = load(getAbsoluteFilePath(curPath + name, defaultExt))))
-			break;
-		if ((loaded = load(getAbsoluteFilePath(curPath + name, ""))))
-			break;
-		if ((loaded = load(getAbsoluteFilePath(name, defaultExt))))
-			break;
-	}
+    QStringList curPaths;
+    if (documents.masterDocument){
+        curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
+    }
+    if (doc->getRootDocument()){
+        curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
+    }
+    curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
+    if (defaultExt == "bib") {
+        curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
+    }
+    bool loaded = false;
+    for (int i = 0; i < curPaths.count(); i++) {
+        const QString &curPath = ensureTrailingDirSeparator(curPaths.value(i));
+        if ((loaded = load(getAbsoluteFilePath(curPath + name, defaultExt))))
+            break;
+        if ((loaded = load(getAbsoluteFilePath(curPath + name, ""))))
+            break;
+        if ((loaded = load(getAbsoluteFilePath(name, defaultExt))))
+            break;
+    }
 
 	if (!loaded) {
 		Q_ASSERT(curPaths.count() > 0);
@@ -11849,7 +11851,8 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
-            QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
+            LatexDocument *rootDoc=doc->getRootDocument();
+            QString fn=ensureTrailingDirSeparator(rootDoc->getFileInfo().absolutePath())+elem->title;
             doc=documents.findDocumentFromName(fn);
             if(!doc){
                 doc=documents.findDocumentFromName(fn+".tex");

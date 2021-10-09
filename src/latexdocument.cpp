@@ -2637,8 +2637,10 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 		if (elem == doc)
 			continue;
 		QStringList includedFiles = elem->includedFiles();
-        if (includedFiles.contains(fname) && !elem->containsChild(doc)) {
-			elem->addChild(doc);
+        if (includedFiles.contains(fname)) {
+            if(!elem->containsChild(doc)){
+                elem->addChild(doc);
+            }
             doc->setMasterDocument(elem, false);
 		}
     }
