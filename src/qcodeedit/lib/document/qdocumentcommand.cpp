@@ -158,7 +158,12 @@ void QDocumentCommand::setTargetCursor(QDocumentCursorHandle *h)
 	{
 		// make sure the handle does not get deleted while the command knows it
 		m_cursor->ref();
-	}
+    }
+}
+
+QDocumentCursorHandle *QDocumentCommand::getTargetCursor()
+{
+    return m_cursor;
 }
 
 /*!
@@ -971,9 +976,6 @@ void QDocumentCommandBlock::redo()
 		return;
 	}
 
-	//foreach ( QDocumentCommand *c, m_commands )
-	//	c->redo();
-
 	for ( int i = 0; i < m_commands.count(); ++i )
 		m_commands.at(i)->redo();
 
@@ -981,11 +983,11 @@ void QDocumentCommandBlock::redo()
 
 void QDocumentCommandBlock::undo()
 {
-	//foreach ( QDocumentCommand *c, m_commands )
-	//	c->undo();
     for (int i = m_commands.count() - 1; i >= 0; --i )
 		m_commands.at(i)->undo();
 
+    QDocumentCursorHandle *c=m_commands.at(0)->getTargetCursor();
+    m_doc->setProposedPosition(c);
 }
 
 /*!
