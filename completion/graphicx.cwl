@@ -48,6 +48,7 @@ command=
 quiet
 page=
 interpolate#true,false
+decodearray=
 #endkeyvals
 
 #keyvals:\rotatebox
