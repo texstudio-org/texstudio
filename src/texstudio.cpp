@@ -4647,11 +4647,14 @@ void Texstudio::insertTextCompletion()
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow = getCommonEOW();
 
-	if (c.columnNumber() == 0 || eow.contains(c.previousChar()))
+    if (c.columnNumber() == 0 || eow.contains(c.previousChar()) )
 		return;
 
 	int col = c.columnNumber();
 	QString line = c.line().text();
+    if(col>line.length()){
+        col=line.length(); // avoid crash, should not happen but did
+    }
 	for (; col > 0 && !eow.contains(line[col - 1]); col-- )
 		;
 
