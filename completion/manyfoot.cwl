@@ -8,10 +8,11 @@
 \Footnotemark{marker}
 \Footnotetext{marker}{inserted text%text}
 \Footnote{marker}{inserted text%text}
+\DeclareNewFootnote{suffix}
 \DeclareNewFootnote[footnote-style]{suffix}[enumeration-style]
 \SelectFootnoteRule{rule-name}
 \SelectFootnoteRule[priority]{rule-name}[action]
 \footnoterulepriority
-\SetFootnoteHook
+\SetFootnoteHook{code}
 \SplitNote
-\ExtraParaSkip
+\ExtraParaSkip{space%l}
