@@ -162,7 +162,7 @@ macx {
         x86_64
 
     # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.14
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.15
     target.path = /Applications
     manual.path = Contents/Resources/
     utilities.path = Contents/Resources/
