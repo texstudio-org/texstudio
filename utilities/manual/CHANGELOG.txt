@@ -3,6 +3,8 @@ TeXstudio 4.0.1
 - add more cwls
 - fix pdfviewer page display
 - build OSX with QT6.2, fix special charcters entry (alt+n + n , etc.) (#1770)
+- activate crash handler on win again
+- fix strcuture detection for included files
  
 
 TeXstudio 4.0.0
