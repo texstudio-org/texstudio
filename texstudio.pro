@@ -191,7 +191,8 @@ unix:!macx {
     icon.files = utilities/texstudio.svg
     isEmpty(NO_APPDATA) {
         appdata.path = $${DATADIR}/metainfo
-        appdata.files = utilities/texstudio.metainfo.xml
+        appdata.files = utilities/texstudio.metainfo.xml \
+           utilities/texstudio.appdata.xml
         INSTALLS += appdata
     }
     INSTALLS += applicationmenu
