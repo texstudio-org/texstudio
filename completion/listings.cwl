@@ -343,7 +343,7 @@ consecutivenumbers#true,false
 \lstdefinelanguage{language name}{keyvals}#*
 \lstalias{alias}{language}#*
 
-#keyvals:\lstdefinelanguage,\lstset
+#keyvals:\lstdefinelanguage,\lstset,\lstinputlisting
 keywordsprefix=%<prefix%>
 keywords={%<list of keywords%>}
 keywords=[%<number%>]{%<list of keywords%>}
