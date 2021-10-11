@@ -736,9 +736,9 @@ cmd = system ("wget -O /home/john/page.html http://www.my-website.com??arg1=abc&
 cmd.waitForFinished()</pre>
     </td>
   </tr>
-  <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
-  <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
-  <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>
+  <tr><td><del> setGlobal(name, value) </del></td>	<td>Unsuppoted since txs 4.x. Sets a temporary, global variable </td></tr>
+  <tr><td><del> getGlobal(name) </del></td>	<td>Unsuppoted since txs 4.x. Reads a global variable </td></tr>
+  <tr><td><del> hasGlobal(name) </del></td>	<td>Unsuppoted since txs 4.x. Checks for the existence of a global variable </td></tr>
   <tr><td> setPersistent(name, value) </td>	<td> Sets a global configuration variable. (can change the values of the ini file, requires write privileges) </td></tr>
   <tr><td> getPersistent(name) </td>	<td> Reads a global configuration variable. (can read all values of the ini file, requires read privileges) </td></tr>
   <tr><td> hasPersistent(name) </td>	<td> Checks if a global configuration variable exists. (requires read privileges) </td></tr>
@@ -748,7 +748,7 @@ cmd.waitForFinished()</pre>
   <tr><td> registerAsBackgroundScript([id]) </td>	<td> Allows the script to run in the background (necessary iff the script should handle events/signals) </td></tr>
   <tr><td>triggerMatches </td>	<td> Matches of the regular trigger expression, if the script was called by an editor <a href="#sectionTriggers"> trigger</a>.</td></tr>
   <tr><td> triggerId </td>	<td> Numeric id of the trigger, if the script was called by an event <a href="#sectionTriggers"> trigger</a>. </td></tr>
-  <tr><td> include(script) </td>	<td> Includes another script. Can be a filename or the name of a macro. </td></tr>
+  <tr><td><del> include(script) </del></td>	<td>Unsuppoted since txs 4.x. Includes another script. Can be a filename or the name of a macro. </td></tr>
   <tr><td> pdfs </td>	<td> List of all open, internal pdf viewers . </td></tr>
 
   <tr><th colspan=2>Editor object</th></tr>
