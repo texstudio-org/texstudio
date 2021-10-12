@@ -69,6 +69,7 @@ class QCE_EXPORT QDocumentCommand : public QUndoCommand
 		void setKeepAnchor(bool y);
 		
 		void setTargetCursor(QDocumentCursorHandle *h);
+        QDocumentCursorHandle* getTargetCursor();
 		
 		void setRedoOffset(int off);
 		void setUndoOffset(int off);	

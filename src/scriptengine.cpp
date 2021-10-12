@@ -217,6 +217,15 @@ void scriptengine::run(const bool quiet)
     engine->globalObject().setProperty("confirm", scriptJS.property("confirm"));
     engine->globalObject().setProperty("confirmWarning", scriptJS.property("confirmWarning"));
     engine->globalObject().setProperty("debug", scriptJS.property("debug"));
+#ifndef QT_NO_DEBUG
+    engine->globalObject().setProperty("crash_assert", scriptJS.property("crash_assert"));
+#endif
+    engine->globalObject().setProperty("crash_sigsegv", scriptJS.property("crash_sigsegv"));
+    engine->globalObject().setProperty("crash_sigfpe", scriptJS.property("crash_sigfpe"));
+    engine->globalObject().setProperty("crash_sigstack", scriptJS.property("crash_sigstack"));
+    engine->globalObject().setProperty("crash_loop", scriptJS.property("crash_loop"));
+    engine->globalObject().setProperty("crash_throw", scriptJS.property("crash_throw"));
+
     engine->globalObject().setProperty("readFile", scriptJS.property("readFile"));
     engine->globalObject().setProperty("writeFile", scriptJS.property("writeFile"));
     engine->globalObject().setProperty("hasPersistent", scriptJS.property("hasPersistent"));
@@ -539,6 +548,58 @@ void scriptengine::debug(const QString &message)
 {
     qDebug() << message;
 }
+#ifndef QT_NO_DEBUG
+void scriptengine::crash_assert()
+{
+    Q_ASSERT(false);
+}
+#endif
+
+void scriptengine::crash_sigsegv()
+{
+    if (!confirmWarning("Do you want to let txs crash with a SIGSEGV?")) return;
+    char *c = nullptr;
+    *c = 'A';
+}
+
+int global0 = 0;
+void scriptengine::crash_sigfpe()
+{
+    if (!confirmWarning("Do you want to let txs crash with a SIGFPE?")) return;
+    int x = 1 / global0;
+    Q_UNUSED(x)
+}
+
+void scriptengine::crash_stack()
+{
+    if (!confirmWarning("Do you want to let txs crash with a stack overflow?")) return;
+    int temp = global0;
+    crash_stack();
+    Q_UNUSED(temp)
+}
+
+void scriptengine::crash_loop()
+{
+    if (!confirmWarning("Do you want to let txs freeze with an endless loop?")) return;
+//#ifndef QT_NO_DEBUG // only used in the Q_ASSERT statements: prevent unused variable warning in release build
+    int a = 1, b = 2, c = 3, d = 4;
+//#endif
+    while (true) {
+        void *x = malloc(16);
+        free(x);
+        Q_ASSERT(a == 1);
+        Q_ASSERT(b == 2);
+        Q_ASSERT(c == 3);
+        Q_ASSERT(d == 4); //make sure, no register suddenly change
+    };
+}
+
+void scriptengine::crash_throw()
+{
+    if (!confirmWarning("Do you want to let txs crash with an exception?")) return;
+    throw "debug crash";
+}
+
 
 void scriptengine::save(const QString fn)
 {

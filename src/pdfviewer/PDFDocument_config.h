@@ -23,7 +23,9 @@ struct PDFDocumentConfig {
 
 	double zoomStepFactor;
 
-	int magnifierSize, magnifierShape;
+    int magnifierSize;
+    enum MagnifierShape {Rect,CircleWithShadow,Circle};
+    MagnifierShape magnifierShape;
 	bool magnifierBorder;
 
 	QString syncFileMask;

@@ -195,6 +195,27 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     continue;
                 }
             }
+            if(tk.type == Token::command && tk.length>1){
+                // special treatment of slash verbatim-symbol
+                // \verb+ .... \+ ...
+                QString smb = line.mid(tk.start, tk.length);
+                if (smb[1] == verbatimSymbol) {
+                    // stop verbatimSymbol mode
+                    verbatimSymbol.clear();
+                    Token tk1;
+                    tk1.start=tk.start;
+                    tk1.length=1;
+                    tk1.type=Token::verbatim;
+                    tk.type=Token::symbol;
+                    tk.subtype=Token::verbatimStop;
+                    tk.level = level;
+                    ++tk.start;
+                    tk.length=1;
+
+                    lexed << tk1 << tk;
+                    continue;
+                }
+            }
             tk.type = Token::verbatim;
             if (!stack.isEmpty()) {
                 tk.subtype = stack.top().subtype;

@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 9/30/2021 for v0.39
+# Matthew Bertucci 10/6/2021 for v0.40
 
 #include:iftex
 #include:unicode-math
@@ -18,6 +18,10 @@
 \circledS
 \euro
 \kpeuro
+\kpeuro[amount]
+\KpRoman#*
+\KpLight#*
+\ringbelow{arg}
 
 \acwopencirclearrow#m
 \adots#m

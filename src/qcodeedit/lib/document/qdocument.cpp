@@ -1748,7 +1748,7 @@ QDocumentCursor QDocument::cursorAt(const QPointF& p, bool disallowPositionBeyon
 
     cursorForDocumentPosition(p, ln, col,disallowPositionBeyondLine);
 
-	return QDocumentCursor(const_cast<QDocument*>(this), ln, col);
+    return QDocumentCursor(const_cast<QDocument*>(this), ln, col);
 }
 
 /*!
