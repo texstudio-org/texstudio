@@ -186,7 +186,7 @@ XSLT
 \lstinputlisting[options%keyvals]{file}
 
 ### keyvals for both \lstset and individual listings
-#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline
 inputpath=%<path%>
 aboveskip=##L
 belowskip=##L
@@ -312,7 +312,7 @@ multicols=%<number%>
 #endkeyvals
 
 ### keyvals for individual listings only
-#keyvals:\lstinline,\begin{lstlisting},\lstinputlisting
+#keyvals:\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline
 float
 float=%<subset of tbph%>
 float=*%<subset of tbph%>
@@ -337,7 +337,7 @@ consecutivenumbers#true,false
 \lstnewenvironment{envname}[args]{starting code}{ending code}#*N
 \lstnewenvironment{envname}{starting code}{ending code}#*N
 
-\lstMakeShortInline[options]%<<character>%>#*
+\lstMakeShortInline[%<options%>]%<<character>%>#*
 \lstDeleteShortInline%<<character>%>#*
 
 \lstdefinelanguage{language name}{keyvals}#*
