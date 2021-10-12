@@ -1,6 +1,11 @@
-#include:algcompatible
+# algpseudocode package
+# updated Matthew Bertucci 10/12/2021 for v1.2
+
 #include:algorithmicx
-#include:ifthen
+
+#ifOption:compatible
+#include:algcompatible
+#endif
 
 \For{condition}#/algorithmic
 \EndFor#/algorithmic
@@ -30,3 +35,21 @@
 \Ensure#/algorithmic
 \Call{name}{params}#/algorithmic
 \Return#/algorithmic
+
+\algorithmicend#*
+\algorithmicdo#*
+\algorithmicwhile#*
+\algorithmicfor#*
+\algorithmicforall#*
+\algorithmicloop#*
+\algorithmicrepeat#*
+\algorithmicuntil#*
+\algorithmicprocedure#*
+\algorithmicfunction#*
+\algorithmicif#*
+\algorithmicthen#*
+\algorithmicelse#*
+\algorithmicrequire#*
+\algorithmicensure#*
+\algorithmicreturn#*
+\textproc{text}#*
