@@ -34,10 +34,10 @@
 \begin{figure}[placement]
 \begin{figure*}
 \begin{figure*}[placement]
-\begin{filecontents}
-\begin{filecontents}[options%keyvals]
-\begin{filecontents*}
-\begin{filecontents*}[options%keyvals]
+\begin{filecontents}{file}
+\begin{filecontents}[options%keyvals]{file}
+\begin{filecontents*}{file}
+\begin{filecontents*}[options%keyvals]{file}
 \begin{flushleft}
 \begin{flushright}
 \begin{footnotesize}
