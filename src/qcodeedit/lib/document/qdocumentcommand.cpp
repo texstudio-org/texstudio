@@ -158,7 +158,12 @@ void QDocumentCommand::setTargetCursor(QDocumentCursorHandle *h)
 	{
 		// make sure the handle does not get deleted while the command knows it
 		m_cursor->ref();
-	}
+    }
+}
+
+QDocumentCursorHandle *QDocumentCommand::getTargetCursor()
+{
+    return m_cursor;
 }
 
 /*!
@@ -452,11 +457,11 @@ void QDocumentCommand::updateTarget(int l, int offset)
 			++l;
 		}
 
-		if ( !m_keepAnchor )
-		{
-		m_cursor->m_endLine = -1;
-		m_cursor->m_endOffset = -1;
-		} else if ( m_cursor->m_endLine == -1 ) {
+        if ( !m_keepAnchor )
+        {
+            m_cursor->m_endLine = -1;
+            m_cursor->m_endOffset = -1;
+        } else if ( m_cursor->m_endLine == -1 ) {
 			m_cursor->m_endLine = m_cursor->m_begLine;
 			m_cursor->m_endOffset = m_cursor->m_begOffset;
 		}
@@ -739,6 +744,7 @@ QStringList QDocumentInsertCommand::debugRepresentation() const{
 	QStringList result;
 	result << QString("INSERT COMMAND: %1:%2").arg(m_data.lineNumber).arg(m_data.startOffset).arg(m_data.lineNumber+m_data.handles.size()).arg(m_data.endOffset);
 	result << QString("     Inserted text: \"%1\"").arg(m_data.begin);
+    result << QString("     Cursor undoOffset: %1   redoOffset: %2").arg(m_undoOffset).arg(m_redoOffset);
 	if (m_data.handles.size()) {
 		result << ("     Inserted lines:");
 		for (int i=0; i < m_data.handles.size(); i++)
@@ -897,6 +903,7 @@ QStringList QDocumentEraseCommand::debugRepresentation() const{
 	QStringList result;
 	result << QString("ERASE COMMAND: %1:%2 to %3:%4").arg(m_data.lineNumber).arg(m_data.startOffset).arg(m_data.lineNumber+m_data.handles.size()).arg(m_data.endOffset);
 	result << QString("     Erased text: \"%1\", \"%2\"").arg(m_data.begin).arg(m_data.end);
+    result << QString("     Cursor undoOffset: %1   redoOffset: %2").arg(m_undoOffset).arg(m_redoOffset);
     if (!m_data.handles.empty()) {
 		result << ("     Erased lines:");
 		for (int i=0; i < m_data.handles.size(); i++)
@@ -969,9 +976,6 @@ void QDocumentCommandBlock::redo()
 		return;
 	}
 
-	//foreach ( QDocumentCommand *c, m_commands )
-	//	c->redo();
-
 	for ( int i = 0; i < m_commands.count(); ++i )
 		m_commands.at(i)->redo();
 
@@ -979,12 +983,11 @@ void QDocumentCommandBlock::redo()
 
 void QDocumentCommandBlock::undo()
 {
-	//foreach ( QDocumentCommand *c, m_commands )
-	//	c->undo();
-
-	for ( int i = m_commands.count() - 1; i >= 0; --i )
+    for (int i = m_commands.count() - 1; i >= 0; --i )
 		m_commands.at(i)->undo();
 
+    QDocumentCursorHandle *c=m_commands.at(0)->getTargetCursor();
+    m_doc->setProposedPosition(c);
 }
 
 /*!

@@ -11,8 +11,8 @@
 \Verb*{verbatimSymbol}#S
 \Verb*|%<code%>|
 \VerbatimFootnotes
-\DefineShortVerb{verb char}
-\UndefineShortVerb{verb char}
+\DefineShortVerb{\%<character%>}
+\UndefineShortVerb{\%<character%>}
 
 \begin{Verbatim}#V
 \begin{Verbatim}[options%keyvals]#V

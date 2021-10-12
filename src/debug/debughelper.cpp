@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 //backtrace is only available on GNU libc
-#ifndef __GLIBC__
+#if !defined(__GLIBC__)&&!defined(Q_OS_WIN32)
 #define NO_CRASH_HANDLER
 #endif
 
@@ -292,8 +292,8 @@ bool initDebugHelp()
 
 	LOAD_FUNCTIONREQRET(SymInitialize, "SymInitialize", false);
 
-	if (!(*SymInitialize)(((QSysInfo::windowsVersion() & QSysInfo::WV_DOS_based) == 0) ? GetCurrentProcess() : (HANDLE)GetCurrentProcessId(), 0, true))
-		return false;
+    if (!(*SymInitialize)(true ? GetCurrentProcess() : (HANDLE)GetCurrentProcessId(), 0, true))
+        return false;
 	return true;
 }
 
@@ -368,7 +368,7 @@ geteip:
 	    : "=r"(context.Ebp), "=r"(context.Esp));
 #endif
 	ZeroMemory( &stackFrame, sizeof( stackFrame ) );
-#ifdef CPU_IS_64
+#if defined(CPU_IS_64) || (defined(x86_64) || defined(__x86_64__))
 	DWORD machineType           = IMAGE_FILE_MACHINE_AMD64;
 	stackFrame.AddrPC.Offset    = context.Rip;
 	stackFrame.AddrPC.Mode      = AddrModeFlat;
@@ -435,8 +435,6 @@ QStringList backtrace_symbols_win(void **, int)
 }
 
 #endif
-
-
 
 QString print_backtrace(const SimulatedCPU &state, const QString &message)
 {
@@ -818,7 +816,7 @@ void recoverWithStackGuardianPage()
 #endif
 
 
-const char *exceptionCodeToName(int code)
+const char *exceptionCodeToName(long long code)
 {
 	switch (code) {
 #define X(t) case t: return #t;

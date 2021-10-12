@@ -448,6 +448,7 @@
 \chi#m
 \choose#*m
 \circ#m
+\clap{text}#n
 \clubsuit#m
 \colon#m
 \cong#m

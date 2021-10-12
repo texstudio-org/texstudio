@@ -4292,7 +4292,16 @@ void Texstudio::saveSettings(const QString &configName)
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
-			s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath(), configManager.sessionStoreRelativePaths);
+            QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
+            bool ok=false;
+            qDebug()<<"lastSession filename:"<<f.filePath();
+            qDebug()<<"current file:"<<s.currentFile();
+            if(!f.exists() || (f.exists() && f.isWritable())){
+                ok=s.save(f.filePath(), configManager.sessionStoreRelativePaths);
+            }
+            if(!ok){
+                QMessageBox::warning(this,tr("Storing session failed"),tr("Storing session information into %1 failed. File exists but is not writeable.").arg(f.filePath()));
+            }
 		}
 	}
 
@@ -4638,11 +4647,14 @@ void Texstudio::insertTextCompletion()
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow = getCommonEOW();
 
-	if (c.columnNumber() == 0 || eow.contains(c.previousChar()))
+    if (c.columnNumber() == 0 || eow.contains(c.previousChar()) )
 		return;
 
 	int col = c.columnNumber();
 	QString line = c.line().text();
+    if(col>line.length()){
+        col=line.length(); // avoid crash, should not happen but did
+    }
 	for (; col > 0 && !eow.contains(line[col - 1]); col-- )
 		;
 
@@ -9337,25 +9349,27 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	}
 	if (!doc) return;
 	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
-	QStringList curPaths;
-	if (documents.masterDocument)
-		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
-        if (doc->getRootDocument())
-            curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
-        curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
-        if (defaultExt == "bib") {
-            curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
-        }
-        bool loaded = false;
-	for (int i = 0; i < curPaths.count(); i++) {
-		const QString &curPath = ensureTrailingDirSeparator(curPaths.value(i));
-		if ((loaded = load(getAbsoluteFilePath(curPath + name, defaultExt))))
-			break;
-		if ((loaded = load(getAbsoluteFilePath(curPath + name, ""))))
-			break;
-		if ((loaded = load(getAbsoluteFilePath(name, defaultExt))))
-			break;
-	}
+    QStringList curPaths;
+    if (documents.masterDocument){
+        curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
+    }
+    if (doc->getRootDocument()){
+        curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
+    }
+    curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
+    if (defaultExt == "bib") {
+        curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
+    }
+    bool loaded = false;
+    for (int i = 0; i < curPaths.count(); i++) {
+        const QString &curPath = ensureTrailingDirSeparator(curPaths.value(i));
+        if ((loaded = load(getAbsoluteFilePath(curPath + name, defaultExt))))
+            break;
+        if ((loaded = load(getAbsoluteFilePath(curPath + name, ""))))
+            break;
+        if ((loaded = load(getAbsoluteFilePath(name, defaultExt))))
+            break;
+    }
 
 	if (!loaded) {
 		Q_ASSERT(curPaths.count() > 0);
@@ -11840,7 +11854,8 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
-            QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
+            LatexDocument *rootDoc=doc->getRootDocument();
+            QString fn=ensureTrailingDirSeparator(rootDoc->getFileInfo().absolutePath())+elem->title;
             doc=documents.findDocumentFromName(fn);
             if(!doc){
                 doc=documents.findDocumentFromName(fn+".tex");

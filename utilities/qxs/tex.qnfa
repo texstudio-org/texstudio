@@ -73,11 +73,6 @@ environments in smallUsefulFunctions.cpp)
 	</context>
 	-->
 	
-	<context id="comment/env" format="comment">
-		<start parenthesis="commentenv:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword" >\\begin{comment}</start>
-		<stop parenthesis="commentenv:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword" >\\end{comment}</stop>
-	</context>
-
 	
 	<!-- ========================= MATH MODE ====================== -->
 

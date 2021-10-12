@@ -1780,7 +1780,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 		if (flags & CF_FORCE_REF) eow = "[]{}\\";
 		if (flags & CF_FORCE_REFLIST) eow = "[]{}\\,";
 		QString lineText = c.line().text();
-		for (int i = c.columnNumber() - 1; i >= 0; i--) {
+        int i = c.columnNumber() - 1;
+        if(i>lineText.length()){
+            i=lineText.length()-1; // avoid crash
+        }
+        for (; i >= 0; i--) {
 			if ((lineText.at(i) == QChar('\\')) && !(flags & CF_FORCE_GRAPHIC)) {
 				start = i;
 				break;

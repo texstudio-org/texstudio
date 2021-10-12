@@ -1,5 +1,5 @@
-# verse 2.3 package
-# nja 17 July 2007 not submitted
+# verse package
+# nja 17 July 2007 not submitted; updated 10/7/2021 for v2.4b
 
 \begin{verse}
 \begin{verse}[length of average line]
@@ -15,7 +15,6 @@
 
 \indentpattern{digits}
 
-
 \versewidth
 
 \vin
@@ -30,6 +29,7 @@
 \vleftskip
 \vrightskip
 \poemlines{nth}
+\setverselinenums{first line num}{start nums at}
 \thepoemline
 \verselinenumfont{font-spec}
 \verselinenumbersleft
@@ -43,3 +43,10 @@
 \afterpoemtitleskip
 \poemtitlemark{title}
 
+\newarray{array name}{low}{high}
+\setarrayelement{array name}{index}{text}
+\getarrayelement{array name}{index}{result}
+\checkarrayindex{array name}{index}
+\stringtoarray{array name}{string}
+\arraytostring{array name}{result}
+\checkifinteger{number}
