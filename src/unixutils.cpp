@@ -41,12 +41,14 @@ QString UnixUtils::defaultFileBrowser()
     return QLatin1String("xdg-open %d");
 }
 
-QString UnixUtils::fileBrowser(const QSettings *settings)
-{
-    const QString dflt = defaultFileBrowser();
-    if (!settings)
-        return dflt;
-    return settings->value(QLatin1String("General/FileBrowser"), dflt).toString();
+QString UnixUtils::fileBrowser(const QSettings * settings){
+
+    const QString fileBrowser = defaultFileBrowser();
+
+    if(settings)
+        return settings -> value(QLatin1String("General/FileBrowser"),fileBrowser).toString();
+
+    return fileBrowser;
 }
 
 void UnixUtils::setFileBrowser(QSettings *settings, const QString &term)
@@ -55,17 +57,18 @@ void UnixUtils::setFileBrowser(QSettings *settings, const QString &term)
 }
 
 
-QString UnixUtils::fileBrowserHelpText()
-{
-    QString help = QCoreApplication::translate("Utils::UnixTools",
-            "<table border=1 cellspacing=0 cellpadding=3>"
-            "<tr><th>Variable</th><th>Expands to</th></tr>"
-            "<tr><td>%d</td><td>directory of current file</td></tr>"
-            "<tr><td>%f</td><td>file name (with full path)</td></tr>"
-            "<tr><td>%n</td><td>file name (without path)</td></tr>"
-            "<tr><td>%%</td><td>%</td></tr>"
-            "</table>");
-    return help;
+QString UnixUtils::fileBrowserHelpText(){
+
+    return QCoreApplication::translate(
+        "Utils::UnixTools",
+        "<table border=1 cellspacing=0 cellpadding=3>"
+        "<tr><th>Variable</th><th>Expands to</th></tr>"
+        "<tr><td>%d</td><td>directory of current file</td></tr>"
+        "<tr><td>%f</td><td>file name (with full path)</td></tr>"
+        "<tr><td>%n</td><td>file name (without path)</td></tr>"
+        "<tr><td>%%</td><td>%</td></tr>"
+        "</table>"
+    );
 }
 
 QString UnixUtils::substituteFileBrowserParameters(const QString &pre, const QString &file)
