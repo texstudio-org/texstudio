@@ -80,24 +80,8 @@ void Bookmarks::initializeWidget()
 	createContextMenu();
 }
 
-<<<<<<< Updated upstream
-void Bookmarks::createContextMenu()
-{
-	bookmarksWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
-	QAction *act = new QAction(tr("Move Up"), bookmarksWidget);
-	connect(act, SIGNAL(triggered()), SLOT(moveBookmarkUp()));
-	bookmarksWidget->addAction(act);
-	act = new QAction(tr("Move Down"), bookmarksWidget);
-	connect(act, SIGNAL(triggered()), SLOT(moveBookmarkDown()));
-	bookmarksWidget->addAction(act);
-	act = new QAction(tr("Remove"), bookmarksWidget);
-	connect(act, SIGNAL(triggered()), SLOT(removeBookmark()));
-	bookmarksWidget->addAction(act);
-	act = new QAction(tr("Remove All"), bookmarksWidget);
-	connect(act, SIGNAL(triggered()), SLOT(removeAllBookmarks()));
-	bookmarksWidget->addAction(act);
-=======
+
 void Bookmarks::createContextMenu(){
 
     bookmarksWidget -> setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -113,8 +97,7 @@ void Bookmarks::createContextMenu(){
     defineAction("Remove",removeBookmark());
     defineAction("Remove All",removeAllBookmarks());
 
-    #undef slotAction
->>>>>>> Stashed changes
+    #undef defineAction
 }
 
 void Bookmarks::setBookmarks(const QList<Bookmark> &bookmarkList)
