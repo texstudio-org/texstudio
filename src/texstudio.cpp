@@ -11155,8 +11155,8 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
-            QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
-            QFileInfo fi(fn);
+            //QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
+            QFileInfo fi(doc->getRootDocument()->getFileInfo().absolutePath(),elem->title);
             doc=documents.findDocumentFromName(fi.absoluteFilePath());
             if(!doc){
                 doc=documents.findDocumentFromName(fi.absoluteFilePath()+".tex");
@@ -11856,8 +11856,8 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
             LatexDocument *rootDoc=doc->getRootDocument();
-            QString fn=ensureTrailingDirSeparator(rootDoc->getFileInfo().absolutePath())+elem->title;
-            QFileInfo fi(fn);
+            //QString fn=ensureTrailingDirSeparator(rootDoc->getFileInfo().absolutePath())+elem->title;
+            QFileInfo fi(rootDoc->getFileInfo().absolutePath(),elem->title);
             doc=documents.findDocumentFromName(fi.absoluteFilePath());
             if(!doc){
                 doc=documents.findDocumentFromName(fi.absoluteFilePath()+".tex");
