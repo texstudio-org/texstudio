@@ -4,7 +4,10 @@
 #include <QBuffer>
 #include "latexparser/latexparser.h"
 
+using std::map;
+using std::pair;
 
+using CharMap = map<pair<char,char>,int>;
 
 /*
 QList<QPair<QString,QString> > latexToPlainWordReplaceList =
@@ -32,6 +35,79 @@ QList<QPair<QString,QString> > latexToPlainWordReplaceList =
 //	<< QPair<QString, QString> ("\"\"","") redunant
  << QPair<QString, QString> ("\\",""); // eliminating backslash which might remain from accents like \"a ...
 */
+
+const CharMap characters {
+
+    //  Umlaut
+
+    { { '"' , 'a' } , 0xE4 },
+    { { '"' , 'e' } , 0xEB },
+    { { '"' , 'i' } , 0xEF },
+    { { '"' , 'o' } , 0xF6 },
+    { { '"' , 'u' } , 0xFC },
+    { { '"' , 'A' } , 0xC4 },
+    { { '"' , 'E' } , 0xCB },
+    { { '"' , 'I' } , 0xCF },
+    { { '"' , 'O' } , 0xD6 },
+    { { '"' , 'U' } , 0xDC },
+    { { '"' , 's' } , 0xDF },
+
+    //  Grave
+
+    { { '`' , 'a' } , 0xE0 },
+    { { '`' , 'e' } , 0xE8 },
+    { { '`' , 'i' } , 0xEC },
+    { { '`' , 'o' } , 0xF2 },
+    { { '`' , 'u' } , 0xF9 },
+    { { '`' , 'A' } , 0xC0 },
+    { { '`' , 'E' } , 0xC8 },
+    { { '`' , 'I' } , 0xCC },
+    { { '`' , 'O' } , 0xD2 },
+    { { '`' , 'U' } , 0xD9 },
+
+    //  Acute
+
+    { { '\'' , 'a' } , 0xE1 },
+    { { '\'' , 'e' } , 0xE9 },
+    { { '\'' , 'i' } , 0xED },
+    { { '\'' , 'o' } , 0xF3 },
+    { { '\'' , 'u' } , 0xFA },
+    { { '\'' , 'y' } , 0xFD },
+    { { '\'' , 'A' } , 0xC1 },
+    { { '\'' , 'E' } , 0xC9 },
+    { { '\'' , 'I' } , 0xCD },
+    { { '\'' , 'O' } , 0xD3 },
+    { { '\'' , 'U' } , 0xDA },
+    { { '\'' , 'Y' } , 0xDD },
+
+    //  Circumflex
+
+    { { '^' , 'a' } , 0xE2 },
+    { { '^' , 'e' } , 0xEA },
+    { { '^' , 'i' } , 0xEE },
+    { { '^' , 'o' } , 0xF4 },
+    { { '^' , 'u' } , 0xFB },
+    { { '^' , 'A' } , 0xC2 },
+    { { '^' , 'E' } , 0xCA },
+    { { '^' , 'I' } , 0xCE },
+    { { '^' , 'O' } , 0xD4 },
+    { { '^' , 'U' } , 0xDB },
+
+    //  Tilde
+
+    { { '~' , 'a' } , 0xE3 },
+    { { '~' , 'n' } , 0xF1 },
+    { { '~' , 'o' } , 0xF5 },
+    { { '~' , 'A' } , 0xC3 },
+    { { '~' , 'N' } , 0xD1 },
+    { { '~' , 'O' } , 0xD5 },
+
+    //  Cedille
+
+    { { 'c' , 'c' } , 0xE7 },
+    { { 'c' , 'C' } , 0xC7 }
+};
+
 /*!
  * \brief transformCharacter
  * Transform a character from a tex encoded to utf
@@ -40,88 +116,14 @@ QList<QPair<QString,QString> > latexToPlainWordReplaceList =
  * \param context
  * \return tranformed character
  */
-QChar transformCharacter(const QChar &c, const QChar &context)
-{
-	// *INDENT-OFF*  (astyle-config)
-	switch (context.toLatin1()) {
-	case '"':  // umlaut
-		switch (c.toLatin1()){
-		case 'a': return QChar(0xE4);
-		case 'e': return QChar(0xEB);
-		case 'i': return QChar(0xEF);
-		case 'o': return QChar(0xF6);
-		case 'u': return QChar(0xFC);
-		case 'A': return QChar(0xC4);
-		case 'E': return QChar(0xCB);
-		case 'I': return QChar(0xCF);
-		case 'O': return QChar(0xD6);
-		case 'U': return QChar(0xDC);
-		case 's': return QChar(0xDF);
-		default: return c;
-		}
-	case '`':  // grave
-		switch (c.toLatin1()){
-		case 'a': return QChar(0xE0);
-		case 'e': return QChar(0xE8);
-		case 'i': return QChar(0xEC);
-		case 'o': return QChar(0xF2);
-		case 'u': return QChar(0xF9);
-		case 'A': return QChar(0xC0);
-		case 'E': return QChar(0xC8);
-		case 'I': return QChar(0xCC);
-		case 'O': return QChar(0xD2);
-		case 'U': return QChar(0xD9);
-		default: return c;
-		}
-	case '\'':  // acute
-		switch (c.toLatin1()){
-		case 'a': return QChar(0xE1);
-		case 'e': return QChar(0xE9);
-		case 'i': return QChar(0xED);
-		case 'o': return QChar(0xF3);
-		case 'u': return QChar(0xFA);
-		case 'y': return QChar(0xFD);
-		case 'A': return QChar(0xC1);
-		case 'E': return QChar(0xC9);
-		case 'I': return QChar(0xCD);
-		case 'O': return QChar(0xD3);
-		case 'U': return QChar(0xDA);
-		case 'Y': return QChar(0xDD);
-		default: return c;
-		}
-	case '^':  // circumflex
-		switch (c.toLatin1()){
-		case 'a': return QChar(0xE2);
-		case 'e': return QChar(0xEA);
-		case 'i': return QChar(0xEE);
-		case 'o': return QChar(0xF4);
-		case 'u': return QChar(0xFB);
-		case 'A': return QChar(0xC2);
-		case 'E': return QChar(0xCA);
-		case 'I': return QChar(0xCE);
-		case 'O': return QChar(0xD4);
-		case 'U': return QChar(0xDB);
-		default: return c;
-		}
-	case '~':  // tilde
-		switch (c.toLatin1()){
-		case 'a': return QChar(0xE3);
-		case 'n': return QChar(0xF1);
-		case 'o': return QChar(0xF5);
-		case 'A': return QChar(0xC3);
-		case 'N': return QChar(0xD1);
-		case 'O': return QChar(0xD5);
-		default: return c;
-		}
-	case 'c':  // cedille
-		switch (c.toLatin1()){
-		case 'c': return QChar(0xE7);
-		case 'C': return QChar(0xC7);
-		default: return c;
-		}
-	}
-	return c;
-	// *INDENT-ON*  (astyle-config)
+QChar transformCharacter(const QChar & character,const QChar & context){
+
+    auto transformation = characters.find({ context.toLatin1() , character.toLatin1() });
+
+    if(transformation == characters.end())
+        return character;
+
+    return QChar(transformation -> second);
 }
 
 QString latexToPlainWord(const QString &word)
