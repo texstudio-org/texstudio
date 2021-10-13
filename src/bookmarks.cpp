@@ -8,20 +8,24 @@ Bookmark::Bookmark() : lineNumber(0), bookmarkNumber(-1) {}
 
 Bookmark Bookmark::fromStringList(QStringList strings){
 
+    #define returnIfEmpty     \
+        if(strings.isEmpty()) \
+            return bookmark   \
+
     Bookmark bookmark;
 
-    if(strings.isEmpty())
-        return bookmark;
+    returnIfEmpty;
+
 
     bookmark.filename = strings.takeFirst();
 
-    if(strings.isEmpty())
-        return bookmark;
+    returnIfEmpty;
+
 
     bookmark.lineNumber = strings.takeFirst().toInt();
 
-    if(strings.isEmpty())
-        return bookmark;
+    returnIfEmpty;
+
 
     bool ok;
 
@@ -32,12 +36,14 @@ Bookmark Bookmark::fromStringList(QStringList strings){
         strings.removeFirst();
     }
 
-    if(strings.isEmpty())
-        return bookmark;
+    returnIfEmpty;
+
 
     bookmark.text = strings.takeFirst();
 
     return bookmark;
+
+    #undef returnIfEmpty
 }
 
 QStringList Bookmark::toStringList() const
