@@ -6,27 +6,38 @@
 
 Bookmark::Bookmark() : lineNumber(0), bookmarkNumber(-1) {}
 
-Bookmark Bookmark::fromStringList(QStringList slist)
-{
-	Bookmark bm;
-	if (!slist.isEmpty()) {
-		bm.filename = slist.takeFirst();
-	}
-	if (!slist.isEmpty()) {
-		bm.lineNumber = slist.takeFirst().toInt();
-	}
-	if (!slist.isEmpty()) {
-		bool ok;
-		int n = slist.first().toInt(&ok);
-		if (ok) {
-			bm.bookmarkNumber = n;
-			slist.removeFirst();
-		}
-	}
-	if (!slist.isEmpty()) {
-		bm.text = slist.takeFirst();
-	}
-	return bm;
+Bookmark Bookmark::fromStringList(QStringList strings){
+
+    Bookmark bookmark;
+
+    if(strings.isEmpty())
+        return bookmark;
+
+    bookmark.filename = strings.takeFirst();
+
+    if(strings.isEmpty())
+        return bookmark;
+
+    bookmark.lineNumber = strings.takeFirst().toInt();
+
+    if(strings.isEmpty())
+        return bookmark;
+
+    bool ok;
+
+    int id = strings.first().toInt(&ok);
+
+    if(ok){
+        bookmark.bookmarkNumber = id;
+        strings.removeFirst();
+    }
+
+    if(strings.isEmpty())
+        return bookmark;
+
+    bookmark.text = strings.takeFirst();
+
+    return bookmark;
 }
 
 QStringList Bookmark::toStringList() const
