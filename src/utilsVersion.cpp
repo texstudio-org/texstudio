@@ -30,9 +30,12 @@ QList<int> Version::parseVersionNumber(const QString &versionNumber)
 	return result;
 }
 
-bool Version::versionNumberIsValid(const QString &versionNumber)
-{
-    return ( (parseVersionNumber(versionNumber).length() == 3)||(parseVersionNumber(versionNumber).length() == 4));
+bool Version::versionNumberIsValid(const QString & versionNumber){
+
+    auto length = parseVersionNumber(versionNumber).length();
+
+    return length == 3 ||
+           length == 4;
 }
 
 
