@@ -1997,7 +1997,9 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 		QString value = listModel->words[index.row()].word;
         const QRegularExpression re{"{([^}]+?)}"};
         const QRegularExpressionMatch match = re.match(value);
-        value = match.captured(1);
+        if(match.hasMatch()){
+            value = match.captured(1);
+        }
         LatexDocument *document = qobject_cast<LatexDocument *>(editor->document());
 		if (!bibReader) {
 			bibReader = new bibtexReader(this);
