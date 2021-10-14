@@ -11869,7 +11869,14 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
                 item->setForeground(0,Qt::red);
             }
             item->setIcon(0,QIcon(":/images/include.png"));
-            rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
+            if(configManager.indentIncludesInStructure){
+                rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
+            }else{
+                rootVector[0]->addChild(item);
+                for(int i=1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
+                    rootVector[i]=rootVector[0];
+                }
+            }
         }
     }
 }
