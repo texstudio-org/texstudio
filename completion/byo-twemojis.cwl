@@ -8,7 +8,7 @@
 \byoTwemoji{elmt1;elmt2;...}
 \byoTwemoji[options%keyvals]{elmt1;elmt2;...}
 
-#keyvals:\byoTwemoji
+#keyvals:\byoTwemoji#c
 let White=
 let WhiteGray=
 let LightGray=
