@@ -152,7 +152,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), m_
     //qmlRegisterType<LatexEditorView>("com.txs.qmlcomponents", 1, 0, "LatexEditorView");
     qmlRegisterType<LatexDocument>("com.txs.qmlcomponents", 1, 0, "LatexDocument");
     qmlRegisterType<LatexDocuments>("com.txs.qmlcomponents", 1, 0, "LatexDocuments");
-    qmlRegisterType<QEditor*>("com.txs.qmlcomponents", 1, 0, "QEditor");
+    qmlRegisterType<QEditor>("com.txs.qmlcomponents", 1, 0, "QEditor");
 #ifndef NO_POPPLER_PREVIEW
     //qmlRegisterType<PDFDocument>("com.txs.qmlcomponents", 1, 0, "PDFDocument");
     //qmlRegisterType<PDFWidget>("com.txs.qmlcomponents", 1, 0, "PDFWidget");
