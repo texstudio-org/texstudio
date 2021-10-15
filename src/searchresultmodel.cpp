@@ -25,22 +25,22 @@
  *    Result entry a1    0x00018001    searches[1].lines[1]
  */
 
-#define RESULT_ENTRY_FLAG (1<<15)
-#define SEARCH_MASK 0xFFFF0000
+const quint32 ResultEntryFlag = (1 << 15);
+const quint32 SearchMask = 0xFFFF0000;
 
 bool iidIsResultEntry(quint32 iid)
 {
-	return iid & RESULT_ENTRY_FLAG;
+    return iid & ResultEntryFlag;
 }
 
 quint32 makeResultEntryIid(quint32 searchIid, int row)
 {
-	return searchIid + RESULT_ENTRY_FLAG + row;
+    return searchIid + ResultEntryFlag + row;
 }
 
 quint32 searchIid(quint32 iid)
 {
-	return iid & SEARCH_MASK;
+    return iid & SearchMask;
 }
 
 int searchIndexFromIid(quint32 iid)
