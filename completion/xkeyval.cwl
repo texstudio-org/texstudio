@@ -1,82 +1,61 @@
 # xkeyval package
-# Matthew Bertucci 7/22/2021
+# Matthew Bertucci 10/14/2021 for v2.8
 
-\XKV@documentclass#*
-\XKV@classoptionslist#*
-
-\define@key{family}{key%plain}[default]{function}#*d
-
-\define@cmdkey[prefix]{family}[macro prefix]{key%plain}[default]{function}#*d
-\define@cmdkeys[prefix]{family}[macro prefix]{keys%plain}[default]#*d
-
-\define@choicekey[prefix]{family}{key%plain}[bin]{keylist}[default]{function}#*d
-\define@choicekey*[prefix]{family}{key%plain}[bin]{keylist}[default]{function}#*d
-
-\define@choicekey+[prefix]{family}{key%plain}[bin]{keylist}[default]{function1}{function2}#*d
-\define@choicekey*+[prefix]{family}{key%plain}[bin]{keylist}[default]{function1}{function2}#*d
-
-\XKV@cc[bin]{input}{keylist}{function}#*
-\XKV@cc*[bin]{input}{keylist}{function}#*
-\XKV@cc+[bin]{input}{keylist}{function1}{function2}#*
-\XKV@cc*+[bin]{input}{keylist}{function1}{function2}#*
-
-\define@boolkey[prefix]{family}[macro prefix]{key%plain}[default]{macro}#*d
-\define@boolkey+[prefix]{family}[macro prefix]{key%plain}[default]{function1}{function2}#*d
-\define@boolkeys[prefix]{family}[macro prefix]{keylist}[default]#*d
-
-\key@ifundefined[prefix]{families}{key%plain}{undefined}{defined}#*
-
-\disable@keys[prefix]{family}{keylist}#*
-
-\setkeys[prefix]{families}[ignored keys]{keylist}#*
-\setkeys*[prefix]{families}[ignored keys]{keylist}#*
+\setkeys{families}{keyvals}#*
+\setkeys[prefix]{families}[ignored keys]{keyvals}#*
+\setkeys*{families}{keyvals}#*
+\setkeys*[prefix]{families}[ignored keys]{keyvals}#*
+\setrmkeys{families}#*
 \setrmkeys[prefix]{families}[ignored keys]#*
+\setrmkeys*{families}#*
 \setrmkeys*[prefix]{families}[ignored keys]#*
-\setkeys+[prefix]{families}[ignored keys]{keylist}#*
-\setkeys*+[prefix]{families}[ignored keys]{keylist}#*
+\setkeys+{families}{keyvals}#*
+\setkeys+[prefix]{families}[ignored keys]{keyvals}#*
+\setkeys*+{families}{keyvals}#*
+\setkeys*+[prefix]{families}[ignored keys]{keyvals}#*
+\setrmkeys+{families}#*
 \setrmkeys+[prefix]{families}[ignored keys]#*
+\setrmkeys*+{families}#*
 \setrmkeys*+[prefix]{families}[ignored keys]#*
 
-\XKV@prefix#*
-\XKV@fams#*
-\XKV@tfam#*
-\XKV@header#*
-\XKV@tkey#*
-\XKV@na#*
+\savevalue{key%plain}#*
+\gsavevalue{key%plain}#*
 
-\savevalue#*
-\gsavevalue#*
-
-\savekeys[prefix]{family}{keylist}#*
-\gsavekeys[prefix]{family}{keylist}#*
-\delsavekeys[prefix]{family}{keylist}#*
-\gdelsavekeys[prefix]{family}{keylist}#*
+\savekeys{family}{keyvals}#*
+\savekeys[prefix]{family}{keyvals}#*
+\gsavekeys{family}{keyvals}#*
+\gsavekeys[prefix]{family}{keyvals}#*
+\delsavekeys{family}{keyvals}#*
+\delsavekeys[prefix]{family}{keyvals}#*
+\gdelsavekeys{family}{keyvals}#*
+\gdelsavekeys[prefix]{family}{keyvals}#*
+\unsavekeys{family}#*
 \unsavekeys[prefix]{family}#*
+\gunsavekeys{family}#*
 \gunsavekeys[prefix]{family}#*
 
-\global#*
-\usevalue#*
+\global{key%plain}#*
+\usevalue{key%plain}#*
 
+\presetkeys{family}{head keys}{tail keys}#*
 \presetkeys[prefix]{family}{head keys}{tail keys}#*
+\gpresetkeys{family}{head keys}{tail keys}#*
 \gpresetkeys[prefix]{family}{head keys}{tail keys}#*
+\delpresetkeys{family}{head keys}{tail keys}#*
 \delpresetkeys[prefix]{family}{head keys}{tail keys}#*
+\gdelpresetkeys{family}{head keys}{tail keys}#*
 \gdelpresetkeys[prefix]{family}{head keys}{tail keys}#*
+\unpresetkeys{family}#*
 \unpresetkeys[prefix]{family}#*
+\gunpresetkeys{family}#*
 \gunpresetkeys[prefix]{family}#*
 
+\DeclareOptionX{key%plain}{function}#*
 \DeclareOptionX[prefix]<family>{key%plain}[default]{function}#*
 \DeclareOptionX*{function}#*
-\ExecuteOptionsX[prefix]<families>[ignored keys]{keylist}#*
+\ExecuteOptionsX{keyvals}#*
+\ExecuteOptionsX[prefix]<families>[ignored keys]{keyvals}#*
+\ProcessOptionsX#*
 \ProcessOptionsX[prefix]<families>[ignored keys]#*
+\ProcessOptionsX*#*
 \ProcessOptionsX*[prefix]<families>[ignored keys]#*
-
-\pre@fam@key#*
-\cmd@fam@key#*
-\ifpre@fam@key#*
-\pre@fam@keytrue#*
-\pre@fam@keyfalse#*
-\pre@fam@key@default#*
-\XKV@pre@fam@key@value#*
-\XKV@pre@fam@save#*
-\XKV@pre@fam@preseth#*
-\XKV@pre@fam@presett#*

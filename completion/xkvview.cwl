@@ -1,7 +1,8 @@
 # xkvview package
-# Matthew Bertucci 7/22/2021
+# Matthew Bertucci 10/14/2021 for v1.5
 
 #include:xkeyval
+#include:longtable
 
 \xkvview{options%keyvals}
 
@@ -13,7 +14,7 @@ default=
 columns=
 vlabels#true,false
 file=
-wcolsep=
+wcolsep=##L
 weol=
 wlabels#true,false
 view#true,false

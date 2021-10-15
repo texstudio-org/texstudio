@@ -1,8 +1,7 @@
 # pst-xkey package
-# Matthew Bertucci 7/22/2021
+# Matthew Bertucci 10/14/2021 for v1.6
 
 #include:xkeyval
 
-\pst@addfams{families}
-\pst@famlist
-\psset[families]{keylist}
+\psset{keyvals}#*
+\psset[families]{keyvals}#*
