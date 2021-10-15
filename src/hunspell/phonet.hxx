@@ -30,16 +30,16 @@
 #ifndef Header_Phonet
 #define Header_Phonet
 
-#define HASHSIZE 256
-#define MAXPHONETLEN 256
-#define MAXPHONETUTF8LEN (MAXPHONETLEN * 4)
+const int HashSize = 256;
+const int MaxPhonetLength = 256;
+const int MaxPhonetUTF8Length = 4 * MaxPhonetLength;
 
 #include "hunvisapi.h"
 
 struct phonetable {
   char utf8;
   std::vector<std::string> rules;
-  int hash[HASHSIZE];
+  int hash[HashSize];
 };
 
 LIBHUNSPELL_DLL_EXPORTED void init_phonet_hash(phonetable& parms);
