@@ -164,11 +164,28 @@ const QString punctuationNotFollowedBySpace = "(\"\u00A0";
  * If i > words.length() break;
  * This does always increase i by one. (Note: the checks below are written based on i++)
  * This is used in loops for selectively joining words with spaces. */
-#define CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words) i++; \
-  if (i >= words.length()) break; \
-  if (words[i].length() == 1 && punctuationNotPreceededBySpace.contains(words[i][0])) continue; \
-  if (words[i-1].length() == 1 && punctuationNotFollowedBySpace.contains(words[i-1][0])) continue; \
-  if (words[i-1].length() == 2 && words[i-1][1] == '.' && words[i].length() == 2 && words[i][1] == '.') continue; /* abbeviations like "e.g." */ \
+
+
+#define preceedWithSpaces(i,words)                                      \
+                                                                        \
+    (i)++;                                                              \
+                                                                        \
+    if((i) >= words.length())                                           \
+        break;                                                          \
+                                                                        \
+    if(words[i].length() == 1)                                          \
+        if(punctuationNotPreceededBySpace.contains(words[i][0]))        \
+            continue;                                                   \
+                                                                        \
+    if(words[(i) - 1].length() == 1)                                    \
+        if(punctuationNotFollowedBySpace.contains(words[(i) - 1][0]))   \
+            continue;                                                   \
+                                                                        \
+    if(words[i].length() == 2 && words[(i) - 1].length() == 2)          \
+        if(words[i][1] == '.' && words[(i) - 1][1] == '.')              \
+            continue;
+
+
 
 void GrammarCheck::process(int reqId)
 {
@@ -328,7 +345,7 @@ void GrammarCheck::process(int reqId)
             joined.reserve(expectedLength + words.length());
             for (int i = 0;;) {
                 joined += words[i];
-                CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words)
+                preceedWithSpaces(i, words)
                 joined += " ";
 			}
 			backend->check(crTicket, b, crLanguage, joined);
@@ -448,7 +465,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	while (err < backendErrors.size()) {
 		if (backendErrors[err].offset >= curOffset + words[curWord].length()) {
 			curOffset += words[curWord].length();
-			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(curWord, words)
+            preceedWithSpaces(curWord, words)
 			curOffset++; //space
 		} else { //if (backendErrors[err].offset >= curOffset) {
 			int trueIndex = tb.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
@@ -464,7 +481,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 					}
 					break;
 				}
-				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(w, words)
+                preceedWithSpaces(w, words)
 				tempOffset++; //space
 			}
 			if (trueLength == -1)
@@ -873,3 +890,5 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
             check(cr.ticket, cr.subticket, cr.language, cr.text);
     }
 }
+
+#undef preceedWithSpaces
