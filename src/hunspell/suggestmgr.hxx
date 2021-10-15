@@ -68,8 +68,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef SUGGESTMGR_HXX_
-#define SUGGESTMGR_HXX_
+#ifndef Header_Suggest_Manager
+#define Header_Suggest_Manager
 
 #define MAX_ROOTS 100
 #define MAX_WORDS 100

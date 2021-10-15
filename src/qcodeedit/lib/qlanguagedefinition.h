@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QLANGUAGE_DEFINITION_H_
-#define _QLANGUAGE_DEFINITION_H_
+#ifndef Header_QLanguage_Definition
+#define Header_QLanguage_Definition
 
 #include "mostQtHeaders.h"
 #include "qdocumentline.h"

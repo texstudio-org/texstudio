@@ -8,8 +8,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef SMALLUSEFULFUNCTIONS_H
-#define SMALLUSEFULFUNCTIONS_H
+#ifndef Header_SmallUsefulFunctions
+#define Header_SmallUsefulFunctions
 
 #include "mostQtHeaders.h"
 #include "qglobal.h"

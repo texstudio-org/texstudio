@@ -18,8 +18,8 @@
  * along with Xkb-switch. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XKEYBOARD_H
-#define XKEYBOARD_H
+#ifndef Header_XKeyboard
+#define Header_XKeyboard
 
 #include <vector>
 #include <string>

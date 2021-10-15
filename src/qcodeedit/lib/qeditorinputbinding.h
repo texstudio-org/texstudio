@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QEDITOR_INPUT_BINDING_H_
-#define _QEDITOR_INPUT_BINDING_H_
+#ifndef Header_QEditor_InputBinding
+#define Header_QEditor_InputBinding
 
 #include "mostQtHeaders.h"
 

@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QLINE_NUMBER_PANEL_H_
-#define _QLINE_NUMBER_PANEL_H_
+#ifndef Header_QLine_Number_Panel
+#define Header_QLine_Number_Panel
 
 #include "mostQtHeaders.h"
 

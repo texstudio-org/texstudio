@@ -68,8 +68,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef AFFIXMGR_HXX_
-#define AFFIXMGR_HXX_
+#ifndef Header_Affix_Manager
+#define Header_Affix_Manager
 
 #include <stdio.h>
 

@@ -1,5 +1,5 @@
-#ifndef adwaitaaddeventfilter_h
-#define adwaitaaddeventfilter_h
+#ifndef Header_Adwaita_AddEvent_Filter
+#define Header_Adwaita_AddEvent_Filter
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

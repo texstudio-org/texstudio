@@ -1,5 +1,5 @@
-#ifndef LATEXREADER_H
-#define LATEXREADER_H
+#ifndef Header_Latex_Reader
+#define Header_Latex_Reader
 
 #include "latexparser.h"
 

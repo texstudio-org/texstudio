@@ -1,5 +1,5 @@
-#ifndef UPDATECHECKER_T_H
-#define UPDATECHECKER_T_H
+#ifndef Header_UpdateChecker_T
+#define Header_UpdateChecker_T
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"

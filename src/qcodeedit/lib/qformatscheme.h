@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QFORMAT_SCHEME_H_
-#define _QFORMAT_SCHEME_H_
+#ifndef Header_QFormat_Scheme
+#define Header_QFormat_Scheme
 
 #include "mostQtHeaders.h"
 

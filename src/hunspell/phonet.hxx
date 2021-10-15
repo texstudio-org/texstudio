@@ -27,8 +27,8 @@
                 Porting from Aspell to Hunspell using C-like structs
 */
 
-#ifndef PHONET_HXX_
-#define PHONET_HXX_
+#ifndef Header_Phonet
+#define Header_Phonet
 
 #define HASHSIZE 256
 #define MAXPHONETLEN 256

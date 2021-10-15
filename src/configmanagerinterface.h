@@ -1,5 +1,5 @@
-#ifndef CONFIGMANAGERINTERFACE_H
-#define CONFIGMANAGERINTERFACE_H
+#ifndef Header_Config_Manager_Interface
+#define Header_Config_Manager_Interface
 
 #include "mostQtHeaders.h"
 

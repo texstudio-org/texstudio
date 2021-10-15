@@ -18,8 +18,8 @@
 	For links to further information, or to contact the author,
 	see <http://texworks.org/>.
 */
-#ifndef PDFDOCKS_H
-#define PDFDOCKS_H
+#ifndef Header_PDF_Docks
+#define Header_PDF_Docks
 
 #ifndef NO_POPPLER_PREVIEW
 

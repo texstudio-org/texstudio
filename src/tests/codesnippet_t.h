@@ -1,5 +1,5 @@
-#ifndef CODESNIPPET_T_H
-#define CODESNIPPET_T_H
+#ifndef Header_CodeSnippet_T
+#define Header_CodeSnippet_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QtTest/QtTest>

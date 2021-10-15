@@ -1,5 +1,5 @@
-#ifndef MAKETEMPLATEDIALOG_H
-#define MAKETEMPLATEDIALOG_H
+#ifndef Header_MakeTemplate_Dialog
+#define Header_MakeTemplate_Dialog
 
 #include <QDialog>
 #include <QFileInfo>

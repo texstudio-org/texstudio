@@ -1,5 +1,5 @@
-#ifndef ENCODINGDIALOG_H
-#define ENCODINGDIALOG_H
+#ifndef Header_Encoding_Dialog
+#define Header_Encoding_Dialog
 
 #include "mostQtHeaders.h"
 

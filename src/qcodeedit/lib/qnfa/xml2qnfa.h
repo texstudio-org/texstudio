@@ -1,5 +1,5 @@
-#ifndef XML2QNFA_H
-#define XML2QNFA_H
+#ifndef Header_XML2_QNFA
+#define Header_XML2_QNFA
 
 #include "mostQtHeaders.h"
 

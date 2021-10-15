@@ -1,5 +1,5 @@
-#ifndef COMMANDDESCRIPTION_H
-#define COMMANDDESCRIPTION_H
+#ifndef Header_CommandDescription
+#define Header_CommandDescription
 
 #include "mostQtHeaders.h"
 #include "latextokens.h"

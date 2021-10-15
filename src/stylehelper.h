@@ -27,8 +27,8 @@
 **
 **************************************************************************/
 
-#ifndef STYLEHELPER_H
-#define STYLEHELPER_H
+#ifndef Header_StyleHelper
+#define Header_StyleHelper
 
 
 #include <QRect>

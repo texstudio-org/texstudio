@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef QUICKDOCUMENTDIALOG_H
-#define QUICKDOCUMENTDIALOG_H
+#ifndef Header_QuickDocument_Dialog
+#define Header_QuickDocument_Dialog
 
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef LATEXOUTPUTFILTER_T_H
-#define LATEXOUTPUTFILTER_T_H
+#ifndef Header_Latex_OutputFilter_T
+#define Header_Latex_OutputFilter_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef LATEXCOMPLETER_T_H
-#define LATEXCOMPLETER_T_H
+#ifndef Header_Latex_Completer_T
+#define Header_Latex_Completer_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QtTest/QtTest>

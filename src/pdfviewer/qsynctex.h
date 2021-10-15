@@ -15,8 +15,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef QSYNCTEX_H
-#define QSYNCTEX_H
+#ifndef Header_QSync_Tex
+#define Header_QSync_Tex
 
 #include <QObject>
 #include <QFile>

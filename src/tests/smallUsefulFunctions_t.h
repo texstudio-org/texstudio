@@ -1,5 +1,5 @@
-#ifndef SMALLUSEFULFUNCTIONS_T_H
-#define SMALLUSEFULFUNCTIONS_T_H
+#ifndef Header_SmallUsefulFunctions_T
+#define Header_SmallUsefulFunctions_T
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"

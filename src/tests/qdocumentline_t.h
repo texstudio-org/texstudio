@@ -1,5 +1,5 @@
-#ifndef QDOCUMENTLINETEST_H
-#define QDOCUMENTLINETEST_H
+#ifndef Header_QDocument_LineTest
+#define Header_QDocument_LineTest
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"

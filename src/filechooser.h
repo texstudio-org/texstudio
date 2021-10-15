@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef FILECHOOSER_H
-#define FILECHOOSER_H
+#ifndef Header_FileChooser
+#define Header_FileChooser
 
 #include "ui_filechooser.h"
 

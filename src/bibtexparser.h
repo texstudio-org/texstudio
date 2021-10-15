@@ -1,5 +1,5 @@
-#ifndef BIBTEXPARSER_H
-#define BIBTEXPARSER_H
+#ifndef Header_Bibtex_Parser
+#define Header_Bibtex_Parser
 
 #include "mostQtHeaders.h"
 

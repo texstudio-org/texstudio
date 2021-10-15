@@ -8,8 +8,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#ifndef CURSORHISTORY_H
-#define CURSORHISTORY_H
+#ifndef Header_CursorHistory
+#define Header_CursorHistory
 
 #include "mostQtHeaders.h"
 #include "latexdocument.h"

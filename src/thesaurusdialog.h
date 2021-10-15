@@ -1,5 +1,5 @@
-#ifndef THESAURUSDIALOG_H
-#define THESAURUSDIALOG_H
+#ifndef Header_Thesaurus_Dialog
+#define Header_Thesaurus_Dialog
 
 #include "mostQtHeaders.h"
 class ThesaurusDatabaseType;

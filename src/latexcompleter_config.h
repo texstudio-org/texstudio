@@ -1,5 +1,5 @@
-#ifndef LATEXCOMPLETERCONFIG_H
-#define LATEXCOMPLETERCONFIG_H
+#ifndef Header_Latex_Completer_Config
+#define Header_Latex_Completer_Config
 
 //having the configuration in a single file allows to change it,
 //without having a relationship between completer and configmanager

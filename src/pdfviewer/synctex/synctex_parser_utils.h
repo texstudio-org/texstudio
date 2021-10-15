@@ -38,8 +38,8 @@ authorization from the copyright holder.
 
 */
 
-#ifndef SYNCTEX_PARSER_UTILS_H
-#define SYNCTEX_PARSER_UTILS_H
+#ifndef Header_SyncTex_ParserUtils
+#define Header_SyncTex_ParserUtils
 
 /*  The utilities declared here are subject to conditional implementation.
  *  All the operating system special stuff goes here.

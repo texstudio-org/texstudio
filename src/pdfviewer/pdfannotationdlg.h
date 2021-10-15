@@ -1,5 +1,5 @@
-#ifndef PDFANNOTATIONDLG_H
-#define PDFANNOTATIONDLG_H
+#ifndef Header_PDF_Annotation_Dialog
+#define Header_PDF_Annotation_Dialog
 
 #include <QDialog>
 #ifndef NO_POPPLER_PREVIEW

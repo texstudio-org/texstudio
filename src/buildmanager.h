@@ -1,5 +1,5 @@
-#ifndef BUILDMANAGER_H
-#define BUILDMANAGER_H
+#ifndef Header_Build_Manager
+#define Header_Build_Manager
 
 #include "mostQtHeaders.h"
 

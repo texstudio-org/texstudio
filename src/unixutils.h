@@ -28,8 +28,8 @@
 **
 ****************************************************************************/
 
-#ifndef UNIXUTILS_H
-#define UNIXUTILS_H
+#ifndef Header_UnixUtils
+#define Header_UnixUtils
 
 #include "mostQtHeaders.h"
 

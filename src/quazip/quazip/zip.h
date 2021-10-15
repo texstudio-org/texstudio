@@ -43,8 +43,8 @@
 
 */
 
-#ifndef _zip12_H
-#define _zip12_H
+#ifndef Header_Zip12
+#define Header_Zip12
 
 #ifdef __cplusplus
 extern "C" {

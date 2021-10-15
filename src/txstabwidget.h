@@ -1,5 +1,5 @@
-#ifndef TXSTABWIDGET_H
-#define TXSTABWIDGET_H
+#ifndef Header_TxStab_Widget
+#define Header_TxStab_Widget
 
 #include "mostQtHeaders.h"
 

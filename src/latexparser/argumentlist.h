@@ -1,5 +1,5 @@
-#ifndef ARGUMENTLIST_H
-#define ARGUMENTLIST_H
+#ifndef Header_ArgumentList
+#define Header_ArgumentList
 
 #include "mostQtHeaders.h"
 

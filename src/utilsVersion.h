@@ -1,5 +1,5 @@
-#ifndef UTILSVERSION_H
-#define UTILSVERSION_H
+#ifndef Header_UtilsVersion
+#define Header_UtilsVersion
 
 #define TEXSTUDIO "TeXstudio"
 

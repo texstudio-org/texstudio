@@ -45,8 +45,8 @@
   to support QIODevice interface. Some improvements and small fixes were also made.
 */
 
-#ifndef _unz64_H
-#define _unz64_H
+#ifndef Header_Unzip64
+#define Header_Unzip64
 
 #ifdef __cplusplus
 extern "C" {

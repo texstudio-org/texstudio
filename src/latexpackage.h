@@ -1,5 +1,5 @@
-#ifndef LATEXPACKAGE_H
-#define LATEXPACKAGE_H
+#ifndef Header_Latex_Package
+#define Header_Latex_Package
 
 #include "mostQtHeaders.h"
 #include "codesnippet.h"

@@ -1,5 +1,5 @@
-#ifndef QEDITORTEST_H
-#define QEDITORTEST_H
+#ifndef Header_QEditor_Test
+#define Header_QEditor_Test
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"

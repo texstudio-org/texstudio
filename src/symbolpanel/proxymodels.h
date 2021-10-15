@@ -1,5 +1,5 @@
-#ifndef PROXYMODELS_H
-#define PROXYMODELS_H
+#ifndef Header_Proxy_Model
+#define Header_Proxy_Model
 
 #include <QSortFilterProxyModel>
 

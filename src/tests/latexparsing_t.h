@@ -1,5 +1,5 @@
-#ifndef LATEXPARSING_T_H
-#define LATEXPARSING_T_H
+#ifndef Header_Latex_Parsing_T
+#define Header_Latex_Parsing_T
 
 #ifndef QT_NO_DEBUG
 

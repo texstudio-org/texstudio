@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QEDITOR_INPUT_BINDING_INTERFACE_H_
-#define _QEDITOR_INPUT_BINDING_INTERFACE_H_
+#ifndef Header_QEditor_InputBinding_Interface
+#define Header_QEditor_InputBinding_Interface
 
 #include "qce-config.h"
 

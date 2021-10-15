@@ -10,8 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef WEBPUBLISHDIALOG_H
-#define WEBPUBLISHDIALOG_H
+#ifndef Header_WebPublish_Dialog
+#define Header_WebPublish_Dialog
 
 #include "mostQtHeaders.h"
 

@@ -8,8 +8,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef SPELLERUTILITY_H
-#define SPELLERUTILITY_H
+#ifndef Header_Speller_Utility
+#define Header_Speller_Utility
 
 #include "mostQtHeaders.h"
 #include <QMutex>

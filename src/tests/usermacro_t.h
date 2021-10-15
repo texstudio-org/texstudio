@@ -1,5 +1,5 @@
-#ifndef USERMACROTEST_H
-#define USERMACROTEST_H
+#ifndef Header_UserMacro_Test
+#define Header_UserMacro_Test
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QtTest/QtTest>

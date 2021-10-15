@@ -1,5 +1,5 @@
-#ifndef MOSTQTHEADER_H
-#define MOSTQTHEADER_H
+#ifndef Header_Most_QTHeader
+#define Header_Most_QTHeader
 
 //This header should be included by any file using some qt headers
 //It is marked as precompiled, so it is only once processed and faster than some of these headers alone

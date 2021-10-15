@@ -1,5 +1,5 @@
-#ifndef ENCODING_H
-#define ENCODING_H
+#ifndef Header_Encoding
+#define Header_Encoding
 
 #include "mostQtHeaders.h"
 

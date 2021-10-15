@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef ARRAYDIALOG_H
-#define ARRAYDIALOG_H
+#ifndef Header_Array_Dialog
+#define Header_Array_Dialog
 
 #include "mostQtHeaders.h"
 #include "ui_arraydialog.h"

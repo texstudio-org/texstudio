@@ -1,5 +1,5 @@
-#ifndef GIT_T_H
-#define GIT_T_H
+#ifndef Header_Git_T
+#define Header_Git_T
 
 #ifndef QT_NO_DEBUG
 

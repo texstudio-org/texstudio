@@ -1,5 +1,5 @@
-#ifndef adwaitastackedwidget_datah
-#define adwaitastackedwidget_datah
+#ifndef Header_Adwaita_StackedWidget_Data
+#define Header_Adwaita_StackedWidget_Data
 
 //////////////////////////////////////////////////////////////////////////////
 // adwaitastackedwidgetdata.h

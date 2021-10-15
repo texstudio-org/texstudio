@@ -1,5 +1,5 @@
-#ifndef EXECPROGRAM_H
-#define EXECPROGRAM_H
+#ifndef Header_ExecProgram
+#define Header_ExecProgram
 
 #include "mostQtHeaders.h"
 

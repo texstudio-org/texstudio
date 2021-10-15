@@ -27,8 +27,8 @@
 **
 ****************************************************************************/
 
-#ifndef MINISPLITTER_H
-#define MINISPLITTER_H
+#ifndef Header_MiniSplitter
+#define Header_MiniSplitter
 
 //#include "core_global.h"
 

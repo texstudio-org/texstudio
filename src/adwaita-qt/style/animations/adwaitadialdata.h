@@ -1,5 +1,5 @@
-#ifndef adwaitadial_data_h
-#define adwaitadial_data_h
+#ifndef Header_Adwaita_Dial_Data
+#define Header_Adwaita_Dial_Data
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

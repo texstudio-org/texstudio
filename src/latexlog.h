@@ -1,5 +1,5 @@
-#ifndef LATEXLOG_H
-#define LATEXLOG_H
+#ifndef Header_Latex_Log
+#define Header_Latex_Log
 #include "mostQtHeaders.h"
 
 #include "latexoutputfilter.h"

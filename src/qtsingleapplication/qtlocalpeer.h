@@ -38,8 +38,8 @@
 **
 ****************************************************************************/
 
-#ifndef QTLOCALPEER_H
-#define QTLOCALPEER_H
+#ifndef Header_QTLocalPeer
+#define Header_QTLocalPeer
 
 #include <QLocalServer>
 #include <QLocalSocket>

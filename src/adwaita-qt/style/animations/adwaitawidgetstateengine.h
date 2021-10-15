@@ -1,5 +1,5 @@
-#ifndef adwaitawidgetstateengine_h
-#define adwaitawidgetstateengine_h
+#ifndef Header_Adwaita_WidgetState_Engine
+#define Header_Adwaita_WidgetState_Engine
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

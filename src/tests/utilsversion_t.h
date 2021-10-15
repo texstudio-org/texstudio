@@ -1,5 +1,5 @@
-#ifndef UTILSVERSION_T_H
-#define UTILSVERSION_T_H
+#ifndef Header_UtilsVersion_T
+#define Header_UtilsVersion_T
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"

@@ -1,5 +1,5 @@
-#ifndef UPDATECHECKER_H
-#define UPDATECHECKER_H
+#ifndef Header_UpdateChecker
+#define Header_UpdateChecker
 
 #include "mostQtHeaders.h"
 #include <QNetworkAccessManager>

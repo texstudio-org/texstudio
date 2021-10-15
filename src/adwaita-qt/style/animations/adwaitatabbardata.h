@@ -1,5 +1,5 @@
-#ifndef adwaitatabbar_data_h
-#define adwaitatabbar_data_h
+#ifndef Header_Adwaita_TabBar_Data
+#define Header_Adwaita_TabBar_Data
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

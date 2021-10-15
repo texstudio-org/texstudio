@@ -69,8 +69,8 @@
  */
 
 /* string replacement list class */
-#ifndef REPLIST_HXX_
-#define REPLIST_HXX_
+#ifndef Header_RepList
+#define Header_RepList
 
 #include "w_char.hxx"
 

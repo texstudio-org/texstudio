@@ -1,5 +1,5 @@
-#ifndef LATEXPARSER_H
-#define LATEXPARSER_H
+#ifndef Header_Latex_Parser
+#define Header_Latex_Parser
 
 #include "commanddescription.h"
 

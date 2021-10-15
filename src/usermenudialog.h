@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef USERMENUDIALOG_H
-#define USERMENUDIALOG_H
+#ifndef Header_UserMenu_Dialog
+#define Header_UserMenu_Dialog
 
 #include "mostQtHeaders.h"
 #include "ui_usermenudialog.h"

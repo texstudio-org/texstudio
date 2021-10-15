@@ -1,5 +1,5 @@
-#ifndef adwaitatransitionwidget_h
-#define adwaitatransitionwidget_h
+#ifndef Header_Adwaita_Transition_Widget
+#define Header_Adwaita_Transition_Widget
 //////////////////////////////////////////////////////////////////////////////
 // adwaitatransitionwidget.h
 // stores event filters and maps widgets to transitions for transitions

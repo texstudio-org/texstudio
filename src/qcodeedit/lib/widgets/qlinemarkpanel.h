@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QLINE_MARK_PANEL_H_
-#define _QLINE_MARK_PANEL_H_
+#ifndef Header_QLine_Mark_Panel
+#define Header_QLine_Mark_Panel
 
 /*!
 	\file qlinemarkpanel.h

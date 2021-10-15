@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QDOCUMENT_CURSOR_H_
-#define _QDOCUMENT_CURSOR_H_
+#ifndef Header_QDocument_Cursor
+#define Header_QDocument_Cursor
 
 #include "qce-config.h"
 

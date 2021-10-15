@@ -1,5 +1,5 @@
-#ifndef adwaitaspinboxengine_h
-#define adwaitaspinboxengine_h
+#ifndef Header_Adwaita_Spinbox_Engine
+#define Header_Adwaita_Spinbox_Engine
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

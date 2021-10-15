@@ -1,5 +1,5 @@
-#ifndef INSERTGRAPHICS_CONFIG_H
-#define INSERTGRAPHICS_CONFIG_H
+#ifndef Header_InsertGraphics_Config
+#define Header_InsertGraphics_Config
 
 //having the configuration in a single file allows to change it,
 //without having a relationship between insertgraphics and configmanager

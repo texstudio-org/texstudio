@@ -1,5 +1,5 @@
-#ifndef TESTMANAGER_H
-#define TESTMANAGER_H
+#ifndef Header_Test_Manager
+#define Header_Test_Manager
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QAbstractNativeEventFilter>

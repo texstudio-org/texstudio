@@ -1,5 +1,5 @@
-#ifndef BIBTEXREADER_H
-#define BIBTEXREADER_H
+#ifndef Header_Bibtex_Reader
+#define Header_Bibtex_Reader
 #include "smallUsefulFunctions.h"
 #include "mostQtHeaders.h"
 #include <QThread>

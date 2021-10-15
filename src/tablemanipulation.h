@@ -1,5 +1,5 @@
-#ifndef TABLEMANIPULATION_H
-#define TABLEMANIPULATION_H
+#ifndef Header_TableManipulation
+#define Header_TableManipulation
 
 #include "mostQtHeaders.h"
 #include "qdocument.h"

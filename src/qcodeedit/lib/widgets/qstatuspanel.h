@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QSTATUS_PANEL_H_
-#define _QSTATUS_PANEL_H_
+#ifndef Header_QStatus_Panel
+#define Header_QStatus_Panel
 
 #include "mostQtHeaders.h"
 

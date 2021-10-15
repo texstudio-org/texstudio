@@ -1,5 +1,5 @@
-#ifndef LATEXPARSING_H
-#define LATEXPARSING_H
+#ifndef Header_Latex_Parsing
+#define Header_Latex_Parsing
 
 #include "mostQtHeaders.h"
 #include "argumentlist.h"

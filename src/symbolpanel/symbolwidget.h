@@ -1,5 +1,5 @@
-#ifndef SYMBOLWIDGET_H
-#define SYMBOLWIDGET_H
+#ifndef Header_Symbol_Widget
+#define Header_Symbol_Widget
 
 #include "mostQtHeaders.h"
 

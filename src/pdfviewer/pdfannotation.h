@@ -1,5 +1,5 @@
-#ifndef PDFANNOTATION_H
-#define PDFANNOTATION_H
+#ifndef Header_PDF_Annotation
+#define Header_PDF_Annotation
 #ifndef NO_POPPLER_PREVIEW
 #include "poppler-annotation.h"
 #include <QTableView>

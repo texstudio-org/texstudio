@@ -67,8 +67,8 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#ifndef MYSPELLMGR_HXX_
-#define MYSPELLMGR_HXX_
+#ifndef Header_MySpell_Manager_2
+#define Header_MySpell_Manager_2
 
 #include "hunvisapi.h"
 #include "w_char.hxx"

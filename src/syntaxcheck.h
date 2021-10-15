@@ -1,5 +1,5 @@
-#ifndef SYNTAXCHECK_H
-#define SYNTAXCHECK_H
+#ifndef Header_SyntaxCheck
+#define Header_SyntaxCheck
 
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"

@@ -1,5 +1,5 @@
-#ifndef PDFSPLITTOOL_H
-#define PDFSPLITTOOL_H
+#ifndef Header_PDF_SplitTool
+#define Header_PDF_SplitTool
 
 #include <QDialog>
 #include <QList>

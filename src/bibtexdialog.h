@@ -1,5 +1,5 @@
-#ifndef BIBTEXDIALOG_H
-#define BIBTEXDIALOG_H
+#ifndef Header_Bibtex_Dialog
+#define Header_Bibtex_Dialog
 
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef adwaitabaseengine_h
-#define adwaitabaseengine_h
+#ifndef Header_Adwaita_Base_Engine
+#define Header_Adwaita_Base_Engine
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

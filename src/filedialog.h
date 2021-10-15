@@ -1,5 +1,5 @@
-#ifndef FILEDIALOG_H
-#define FILEDIALOG_H
+#ifndef Header_File_Dialog
+#define Header_File_Dialog
 
 #include <QWidget>
 #include <QString>

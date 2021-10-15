@@ -1,5 +1,5 @@
-#ifndef adwaitascrollbar_data_h
-#define adwaitascrollbar_data_h
+#ifndef Header_Adwaita_Scrollbar_Data
+#define Header_Adwaita_Scrollbar_Data
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

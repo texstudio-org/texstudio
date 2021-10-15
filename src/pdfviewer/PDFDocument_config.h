@@ -1,5 +1,5 @@
-#ifndef PDFDOCUMENT_CONFIG_H
-#define PDFDOCUMENT_CONFIG_H
+#ifndef Header_PDF_Document_Config
+#define Header_PDF_Document_Config
 
 #include <QByteArray>
 struct PDFDocumentConfig {

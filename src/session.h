@@ -1,5 +1,5 @@
-#ifndef SESSION_H
-#define SESSION_H
+#ifndef Header_Session
+#define Header_Session
 
 #include "bookmarks.h"
 #include "mostQtHeaders.h"

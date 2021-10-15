@@ -19,8 +19,8 @@
 	see <http://texworks.org/>.
 */
 
-#ifndef PDFDocument_H
-#define PDFDocument_H
+#ifndef Header_PDF_Document
+#define Header_PDF_Document
 
 #ifndef NO_POPPLER_PREVIEW
 

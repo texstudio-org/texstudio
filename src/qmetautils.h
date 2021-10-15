@@ -1,5 +1,5 @@
-#ifndef QMETAUTILS_H
-#define QMETAUTILS_H
+#ifndef Header_QMetaUtils
+#define Header_QMetaUtils
 
 #include "modifiedQObject.h"
 #include "QList"
