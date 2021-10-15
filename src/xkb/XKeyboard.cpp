@@ -16,6 +16,22 @@
 #include <cctype>
 #include <cstring>
 
+
+#define assert(expression,msg)                          \
+                                                        \
+    if(!(expression)){                                  \
+                                                        \
+        std::ostringstream stream;                      \
+                                                        \
+        stream << __FILE__    << " : "                  \
+               << __LINE__    << " : "                  \
+               << "XKeyboard" << " : "                  \
+               << msg << "[ " << #expression << "]";    \
+                                                        \
+        throw std::runtime_error(stream.str());         \
+    }
+
+
 namespace kb {
 
 XKeyboard::XKeyboard()
@@ -75,14 +91,18 @@ std::string XKeyboard::get_kb_string()
   XkbGetNames(_display, XkbSymbolsNameMask, _kbdDescPtr);
 
   Atom symNameAtom = _kbdDescPtr->names->symbols;
-  CHECK(symNameAtom != None);
+
+  assert(symNameAtom != None,"Symbol Name is not present");
 
   char* kbsC = XGetAtomName(_display, symNameAtom);
-  CHECK(kbsC);
+
+  assert(kbsC,"Symbol Name pointer is invalid");
+
   std::string kbs(kbsC);
   XFree(kbsC);
 
-  CHECK(!kbs.empty());
+  assert(!kbs.empty(),"Symbol Name is an empty string");
+
   return kbs;
 
   /*     StringVector symNames; */
@@ -93,21 +113,23 @@ std::string XKeyboard::get_kb_string()
 
 void XKeyboard::wait_event()
 {
-  CHECK(_display != 0);
+  assert(_display != 0,"Display is not present");
 
   Bool bret = XkbSelectEventDetails(_display, XkbUseCoreKbd, 
       XkbStateNotify, XkbAllStateComponentsMask, XkbGroupStateMask);
-  CHECK_MSG(bret==True, "XkbSelectEventDetails failed");
+
+  assert(bret==True, "Failed to select event details");
 
   XEvent event;
   int iret = XNextEvent(_display, &event);
-  CHECK_MSG(iret==0, "XNextEvent failed with " << iret);
+
+  assert(iret==0,"Failed to retrieve next event with " << iret);
 }
 
 void XKeyboard::set_group(int groupNum)
 {
   Bool result = XkbLockGroup(_display, _deviceId, groupNum);
-  CHECK(result == True);
+  assert(result == True,"Failed to set group to: " << groupNum);
 }
 
 int XKeyboard::get_group() const
@@ -285,4 +307,6 @@ string_vector parse3(const std::string& symbols, const string_vector& nonsyms)
 }
 
 }
+
+#undef assert
 
