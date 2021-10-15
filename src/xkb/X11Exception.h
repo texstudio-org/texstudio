@@ -24,15 +24,6 @@
 #include <exception>
 #include <stdexcept>
 
-#define CHECK_MSG(x,msg) do{ \
-		if(!(x)) { \
-			std::ostringstream oss; \
-			oss << __FILE__ << ":" << __LINE__ << ": Condition " << #x << " failed. " << msg; \
-			throw std::runtime_error(oss.str()); \
-		} \
-	} while(0)
-
-#define CHECK(x) CHECK_MSG(x,"")
 
 class X11Exception : public std::exception
 {
