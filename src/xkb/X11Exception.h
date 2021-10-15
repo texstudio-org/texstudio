@@ -18,8 +18,8 @@
  * along with Xkb-switch. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef X11EXCEPTION
-#define X11EXCEPTION
+#ifndef Header_X11_Exception
+#define Header_X11_Exception
 
 #include <exception>
 #include <stdexcept>
