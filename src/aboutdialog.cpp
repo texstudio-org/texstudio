@@ -12,13 +12,12 @@
 #include "aboutdialog.h"
 #include "utilsVersion.h"
 
-const QString git =
-
 #ifdef TEXSTUDIO_GIT_REVISION
-    QString(" (git %1)").arg(TEXSTUDIO_GIT_REVISION);
+    const QString git = QString(" (git %1)").arg(TEXSTUDIO_GIT_REVISION);
 #else
-    "";
+    const QString git = "";
 #endif
+
 
 const QString aboutTemplate =
     "<p style = 'font-family:monospace'>                                            "
