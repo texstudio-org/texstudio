@@ -1,6 +1,7 @@
 TeXstudio 4.0.2
 -----------------
-- 
+- fix structure view (inlcudes and cursor marking, #1828) 
+- fix completer tooltip on bibids (#1835)
 
 TeXstudio 4.0.1
 -----------------
