@@ -11047,6 +11047,11 @@ void Texstudio::updateTOC(){
 }
 /*!
  * \brief update marking of current position in global TOC
+ *
+ * Works recursively.
+ * \param root nullptr at the start, treewidgetitem of which the children need to be checked later.
+ * \param old  previously marked section of which the mark needs to be removed
+ * \param selected  selected section
  */
 void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected)
 {
@@ -11057,7 +11062,20 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
         if(topTOCTreeWidget->isVisible()){
             root=topTOCTreeWidget->topLevelItem(0);
         }else{
-            root=structureTreeWidget->topLevelItem(0);
+            root=nullptr;
+            for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
+                QTreeWidgetItem* item=structureTreeWidget->topLevelItem(i);
+                StructureEntry *se = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                if(old && old->document!=documents.getCurrentDocument() && se->document==old->document){
+                    // remove cursor mark from structureView of not current document (after document switch)
+                    updateCurrentPosInTOC(item,old);
+                    if(root)
+                        break; // no need to search further
+                }
+                if(se->document == documents.getCurrentDocument()){
+                    root=item;
+                }
+            }
         }
     }
     if(!root) return;
