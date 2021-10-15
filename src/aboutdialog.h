@@ -26,6 +26,7 @@ public:
 	Ui::AboutDialog ui;
 private slots:
 	void largeLogo(); ///< show enlarged logo, triggered via context menu on image in about-dialog
+    QString use(QString name,QString copyright,QString license,QString author);
 };
 
 

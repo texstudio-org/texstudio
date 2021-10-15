@@ -12,50 +12,152 @@
 #include "aboutdialog.h"
 #include "utilsVersion.h"
 
-AboutDialog::AboutDialog(QWidget *parent)
-	: QDialog(parent)
-{
+const QString git =
+
+#ifdef TEXSTUDIO_GIT_REVISION
+    QString(" (git %1)").arg(TEXSTUDIO_GIT_REVISION);
+#else
+    "";
+#endif
+
+
+const QString aboutTemplate =
+    "<p style = 'font-family:monospace'>                                            "
+    "   <b> %1 %2 </b> %3                                                       <br>"
+    "                                                                           <br>"
+    "   <b>QT Version</b>                                                       <br>"
+    "   %4: %5                                                                  <br>"
+    "   %6: %7 %8                                                               <br>"
+    "                                                                           <br>"
+    "  「 <a href='https://texstudio.org/'>Website</a> 」                            "
+    "  「 <a href='https://github.com/texstudio-org/texstudio'>Github</a> 」     <br>"
+    "                                                                           <br>"
+    "   <h2>Copyright ©</h2>                                                    <br>"
+    "                                                                           <br>"
+    "   <b>%1</b>                                                               <br>"
+    "   - Benito van der Zander                                                 <br>"
+    "   - Jan Sundermeyer                                                       <br>"
+    "   - Daniel Braun                                                          <br>"
+    "   - Tim Hoffmann                                                          <br>"
+    "                                                                           <br>"
+    "   <b>TeXMaker:</b> Pascal Brachet                                         <br>"
+    "                                                                           <br>"
+    "   <b>QCodeEdit:</b> Luc Bruant                                            <br>"
+    "                                                                           <br>"
+    "   <b>%9:</b> Joël Amblard                                                 <br>"
+    "                                                                           <br>"
+    "   <b> %10 :</b>                                                           <br>"
+    "   - QtCreator ( GPL | Copyright (C) Nokia )                               <br>"
+    "   - SyncTeX ( Jerome Laurens )                                            <br>"
+    "   - Hunspell ( GPL )                                                      <br>"
+    "   - KILE ( GPL )                                                          <br>"
+    "                                                                           <br>"
+    "   <h3> %1 %11 </h3>                                                           "
+    "                                                                           <br>"
+    "   <h5> %12 </h5>                                                              "
+    "                                                                           <br>"
+    "   <h5> %13 </h5>                                                              "
+    "                                                                           <br>"
+    "   <h5> %14 </h5>                                                              "
+    "                                                                           <br>"
+    "                                                                           <br>"
+    "   %15                                                                     <br>"
+    "                                                                               "
+    "   %16                                                                     <br>"
+    "                                                                               "
+    "   %17                                                                     <br>"
+    "                                                                               "
+    "   %18                                                                     <br>"
+    "                                                                               "
+    "   <h4> %19 </h4>                                                              "
+    "   - Crystal Project (LGPL)                                                <br>"
+    "   - Oxygen Icon Yheme (CC-BY-SA 3.0)                                      <br>"
+    "                                                                           <br>"
+    "   <h4> Adwaitaa-QT </h4>                                                      "
+    "   %20: GPL2                                                               <br>"
+    "   %21: 「 <a href='https://github.com/FedoraQt/adwaita-qt'>Github</a> 」   <br>"
+    "                                                                           <br>"
+    "   <h3> %22 </h3> %23                                                      <br>"
+    "                                                                           <br>"
+    "                                                                           <br>"
+    "   <i> %24 </i>                                                            <br>"
+    "                                                                           <br>"
+    "</p>"
+;
+
+
+const QString thanksTo = QString::fromUtf8(
+    "Frédéric Devernay, Denis Bitouzé, Vesselin Atanasov, Yukai Chou, Jean-Côme Charpentier, "
+    "Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev, David Sichau, Grigory Mozhaev, "
+    "mattgk, A. Weder, Pavel Fric, András Somogyi, István Blahota, Edson Henriques, Grant McLean, "
+    "Tom Jampen, Kostas Oikinimou, Lion Guillaume, ranks.nl, AI Corleone, Diego Andrés Jarrín, "
+    "Matthias Pospiech, Zulkifli Hidayat, Christian Spieß, Robert Diaz, Kirill Müller, "
+    "Atsushi Nakajima Yuriy Kolerov, Victor Kozyakin, Mattia Meneguzzo, Andriy Bandura, "
+    "Carlos Eduardo Valencia Urbina, Koutheir Attouchi, Stefan Kraus, Bjoern Menke, "
+    "Charles Brunet, François Gannaz, Marek Kurdej, Paulo Silva, Thiago de Melo, YoungFrog, "
+    "Klaus Schneider-Zapp, Jakob Nixdorf, Thomas Leitz, Quoc Ho, Matthew Bertucci");
+
+
+QString AboutDialog::use(QString name,QString copyright,QString license,QString author){
+    return "<h4>" + (name) + "</h4>" +
+           tr("Copyright") + ": " + (copyright) + "<br>" +
+           tr("License")   + ": " + (license)   + "<br>" +
+           tr("Author")    + ": " + (author)    + "<br>" + "<br>";
+};
+
+AboutDialog::AboutDialog(QWidget * parent) : QDialog(parent) {
+
+    const QString html = aboutTemplate.arg(
+
+        /*  1 */ TEXSTUDIO , TXSVERSION , git,
+        /*  4 */ tr("Using") , qVersion(),
+        /*  6 */ tr("Compiled") , QT_VERSION_STR , COMPILED_DEBUG_OR_RELEASE,
+        /*  9 */ tr("HTML Conversion"),
+        /* 10 */ tr("TeXstudio contains code from"),
+        /* 11 */ tr("Uses"),
+
+        /* 12 */ tr("PDF Viewer of TeXworks"),
+        /* 13 */ tr("An image by Alexander Klink."),
+        /* 14 */ tr("Flowlayout from QT 5.6 examples"),
+
+        /* 15 */ use("DSingleApplication Class","BioImage Informatics","GPL","Dima Fedorov Levit"),
+        /* 16 */ use("TexTablet","2012","MIT","Steven Lovegrove"),
+        /* 17 */ use("QuaZip","2005 - 2012","LGPL","Sergey A. Tachenov & Contributors"),
+        /* 18 */ use("Title Case","2008 - 2013","MIT","David Gouch"),
+
+        /* 19 */ tr("Icons"),
+        /* 20 */ tr("License") , tr("Source"),
+        /* 22 */ tr("Thanks to ") , thanksTo,
+        /* 24 */ tr(
+            "This program is licensed to you under the terms of the GNU General "
+            "Public License Version 2 as published by the Free Software Foundation."
+        )
+     );
+
+
 	ui.setupUi(this);
-	ui.textBrowser->setOpenExternalLinks(true);
-    ui.textBrowser->setHtml(QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + "<br>" +
-                            tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion(),QT_VERSION_STR,COMPILED_DEBUG_OR_RELEASE) + "<br><br>" +
-	                        "Copyright (c)<br>" +
-	                        TEXSTUDIO ": Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>"
-	                        "Texmaker: Pascal Brachet<br>" +
-	                        "QCodeEdit: Luc Bruant<br>" +
-	                        tr("html conversion: ") + QString::fromUtf8("Joël Amblard</i><br>") +
-	                        tr("TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).") + "<br>" +
-	                        tr("TeXstudio uses the PDF viewer of TeXworks.") + "<br>" +
-	                        tr("TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).") + "<br>" +
-	                        tr("TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).") + "<br>" +
-	                        tr("TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).") + "<br>" +
-	                        tr("TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).") + "<br>" +
-	                        tr("TeXstudio contains an image by Alexander Klink.") + "<br>" +
-	                        tr("TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).") + "<br>" +
-	                        tr("TeXstudio uses flowlayout from Qt5.6 examples.") + "<br>" +
-                            tr("TeXstudio uses adwaita-qt (GPL2) from ") + "https://github.com/FedoraQt/adwaita-qt <br>" +
-	                        "<br>" +
-                            tr("Thanks to ") + QString::fromUtf8("Frédéric Devernay, Denis Bitouzé, Vesselin Atanasov, Yukai Chou, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev, David Sichau, Grigory Mozhaev, mattgk, A. Weder, Pavel Fric, András Somogyi, István Blahota, Edson Henriques, Grant McLean, Tom Jampen, Kostas Oikinimou, Lion Guillaume, ranks.nl, AI Corleone, Diego Andrés Jarrín, Matthias Pospiech, Zulkifli Hidayat, Christian Spieß, Robert Diaz, Kirill Müller, Atsushi Nakajima Yuriy Kolerov, Victor Kozyakin, Mattia Meneguzzo, Andriy Bandura, Carlos Eduardo Valencia Urbina, Koutheir Attouchi, Stefan Kraus, Bjoern Menke, Charles Brunet, François Gannaz, Marek Kurdej, Paulo Silva, Thiago de Melo, YoungFrog, Klaus Schneider-Zapp, Jakob Nixdorf, Thomas Leitz, Quoc Ho, Matthew Bertucci.<br><br>") +
-                            tr("Project home site:") + " <a href=\"https://texstudio.org/\">https://texstudio.org/</a><br><br>" +
-	                        tr("This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation."));
-	QAction *act = new QAction("large", this);
-	connect(act, SIGNAL(triggered()), SLOT(largeLogo()));
-	ui.label->addAction(act);
-	ui.label->setContextMenuPolicy(Qt::ActionsContextMenu);
+    ui.textBrowser -> setOpenExternalLinks(true);
+    ui.textBrowser -> setHtml(html);
+
+    QAction * action = new QAction("large",this);
+    connect(action,SIGNAL(triggered()),SLOT(largeLogo()));
+    ui.label -> addAction(action);
+    ui.label -> setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
-AboutDialog::~AboutDialog()
-{
-}
 
-void AboutDialog::largeLogo()
-{
-    QDialog *dlg = new QDialog(nullptr);
-	dlg->setAttribute(Qt::WA_DeleteOnClose);
-	dlg->setLayout(new QHBoxLayout(dlg));
-	QLabel *label = new QLabel(dlg);
-	label->setPixmap(QPixmap(":/images/splash_large.png"));
-	dlg->layout()->addWidget(label);
-	dlg->setWindowTitle("TeXstudio");
-	dlg->exec();
+
+AboutDialog::~AboutDialog(){}
+
+void AboutDialog::largeLogo(){
+
+    QDialog * dialog = new QDialog(nullptr);
+    dialog -> setAttribute(Qt::WA_DeleteOnClose);
+    dialog -> setLayout(new QHBoxLayout(dialog));
+
+    QLabel * label = new QLabel(dialog);
+    label -> setPixmap(QPixmap(":/images/splash_large.png"));
+    dialog -> layout() -> addWidget(label);
+    dialog -> setWindowTitle("TeXstudio");
+    dialog -> exec();
 }
