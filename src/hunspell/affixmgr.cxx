@@ -1598,7 +1598,7 @@ struct hentry* AffixMgr::compound_check(const std::string& word,
   // add a time limit to handle possible
   // combinatorical explosion of the overlapping words
 
-  HUNSPELL_THREAD_LOCAL clock_t timelimit;
+  thread_local clock_t timelimit;
 
   if (wordnum == 0)
       timelimit = clock();
@@ -2204,7 +2204,7 @@ int AffixMgr::compound_check_morph(const char* word,
   // add a time limit to handle possible
   // combinatorical explosion of the overlapping words
 
-  HUNSPELL_THREAD_LOCAL clock_t timelimit;
+  thread_local clock_t timelimit;
 
   if (wordnum == 0)
       timelimit = clock();
