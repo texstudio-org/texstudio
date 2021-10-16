@@ -29,7 +29,10 @@
 // returns the number of chars/columns from column to the next tab location
 // for a given tabstop periodicity
 // e.g. dist(0,4)==4, dist(3,4)==1, dist(4,4)==4, dist(5,4)=3
-#define ncolsToNextTabStop(column, tabstop) (tabstop - (column % tabstop))
+
+inline int ncolsToNextTabStop(int column,int tabstop){
+    return tabstop - (column % tabstop);
+}
 
 
 /*
