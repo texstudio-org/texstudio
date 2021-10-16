@@ -3040,6 +3040,7 @@ bool Texstudio::saveFilesForClosing(const QList<LatexDocument *> &documentList)
     foreach (LatexDocument *doc, documentList) {
 repeatAfterFileSavingFailed:
         LatexEditorView *edView=doc->getEditorView();
+        if(!edView) continue;
 		if (edView->editor->isContentModified()) {
             if(!doc->isHidden())
                 editors->setCurrentEditor(edView);
@@ -7715,6 +7716,14 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
         LatexEditorView *edView = se->document->getEditorView();
         if (edView) {
             gotoLine(se->getRealLineNumber(), 0, edView);
+        }else{
+            // going to hidden doc
+            // relevant for hidden master document
+            openExternalFile(se->document->getFileName(),"tex",se->document);
+            LatexEditorView *edView = se->document->getEditorView();
+            if (edView) {
+                gotoLine(se->getRealLineNumber(), 0, edView);
+            }
         }
     }else{
         // unresolved include, go to open file
@@ -11657,6 +11666,12 @@ void Texstudio::updateStructureLocally(){
         return;
     }
 
+    LatexDocument *master = documents.getMasterDocument();
+    bool showHiddenMasterFirst=false;
+    bool hiddenMasterStructureIsVisible=false;
+    if(configManager.parseMaster && master && master->isHidden()){
+        showHiddenMasterFirst=true;
+    }
     if(configManager.structureShowSingleDoc){
         root= structureTreeWidget->topLevelItem(0);
         if(structureTreeWidget->topLevelItemCount()>1){
@@ -11682,6 +11697,12 @@ void Texstudio::updateStructureLocally(){
                     font.setBold(false);
                     item->setFont(0,font);
                     if(!documents.documents.contains(contextEntry->document) || documents.hiddenDocuments.contains(contextEntry->document)){
+                        if(showHiddenMasterFirst && contextEntry->document == master && !hiddenMasterStructureIsVisible){
+                            // run only once
+                            // reload may add more structure views
+                            hiddenMasterStructureIsVisible=true;
+                            continue; // keep showing master document regardless
+                        }
                         structureTreeWidget->takeTopLevelItem(i);
                         --i;
                     }
