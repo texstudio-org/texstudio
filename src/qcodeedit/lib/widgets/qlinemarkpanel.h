@@ -34,7 +34,7 @@ class QCE_EXPORT QLineMarkPanel : public QPanel
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QLineMarkPanel, "Line Mark Panel")
+		Q_Panel(QLineMarkPanel, "Line Mark Panel")
 		
 		QLineMarkPanel(QWidget *p = 0);
 		virtual ~QLineMarkPanel();
