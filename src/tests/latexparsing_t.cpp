@@ -25,35 +25,40 @@ Q_DECLARE_METATYPE(TTypes)
 
 
 /*!
- * comparison of Token::TokenType
- *   actual: Token::TokenType or int
- *   expected: Token::TokenType or int
- *   description: const char
+ *  Comparison of Token::TokenType
+ *  actual: Token::TokenType or int
+ *  expected: Token::TokenType or int
+ *  description: const char
  */
-#define COMPARE_TOKENTYPE(actual, expected, description) \
-do {\
-    Token::TokenType t_actual = (Token::TokenType) actual;\
-    Token::TokenType t_expected = (Token::TokenType) expected;\
-    if (t_actual == t_expected) {\
-        if (!QTest::qVerify(true,\
-                    QString("Token::%1 == Token::%2").arg(Token::tokenTypeName(t_actual)).arg(Token::tokenTypeName(t_expected)).toLatin1().constData(),\
-                    (description), __FILE__, __LINE__))\
-            return;\
-    } else {\
-        if (!QTest::qVerify(false,\
-                    QString("Token::%1 == Token::%2").arg(Token::tokenTypeName(t_actual)).arg(Token::tokenTypeName(t_expected)).toLatin1().constData(),\
-                    (description), __FILE__, __LINE__))\
-            return;\
-    }\
-} while (0)
+
+inline bool compare(
+    EnumsTokenType::TokenType Actual,
+    EnumsTokenType::TokenType Expected,
+    const char * description
+){
+
+    const auto
+        actual = (Token::TokenType) Actual,
+        expected = (Token::TokenType) Expected;
+
+    const auto msg = QString("Token::%1 == Token::%2")
+        .arg(Token::tokenTypeName(actual))
+        .arg(Token::tokenTypeName(expected))
+        .toLatin1().constData();
+
+    return ! QTest::qVerify(actual == expected,msg,description,__FILE__,__LINE__);
+}
 
 
-/*! Helper macro to create a formatted const char *.
+
+/*!
+ *  Helper macro to create a formatted const char *.
  *  This is particularly useful for test macros which expect a const char * as description.
  */
-#define ARG1(formatstr, arg1) \
-    QString(formatstr).arg(arg1).toLatin1().constData()
 
+template <typename Type> inline auto format(const char * string,Type value){
+    return QString(string).arg(value).toLatin1().constData();
+}
 
 
 void LatexParsingTest::test_simpleLexing_data() {
@@ -147,9 +152,10 @@ void LatexParsingTest::test_simpleLexing() {
     TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
     for(int i=0; i<tl.length(); i++) {
         Token tk = tl.at(i);
-        COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
-        QVERIFY2(tk.start == starts.value(i), ARG1("incorrect start at index %1", i));
-        QVERIFY2(tk.length == lengths.value(i), ARG1("incorrect length at index %1", i));
+        if(compare(tk.type, types.value(i), format("incorrect type at index %1", i)))
+            return;
+        QVERIFY2(tk.start == starts.value(i), format("incorrect start at index %1", i));
+        QVERIFY2(tk.length == lengths.value(i), format("incorrect length at index %1", i));
     }
     dlh->deref();
     delete doc;
@@ -364,11 +370,16 @@ void LatexParsingTest::test_latexLexing() {
 
 	for(int i=0; i<tl.length(); i++){
         Token tk = tl.at(i);
-        COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
-        COMPARE_TOKENTYPE(tk.subtype, subtypes.value(i), ARG1("incorrect subtype at index %1", i));
-        QVERIFY2(tk.start == starts.value(i), ARG1("incorrect start (at index %1)", i));
-        QVERIFY2(tk.length == lengths.value(i), ARG1("incorrect length (at index %1)", i));
-        QVERIFY2(tk.level == levels.value(i), ARG1("incorrect level (at index %1)", i));
+
+        if(compare(tk.type, types.value(i), format("incorrect type at index %1", i)))
+            return;
+
+        if(compare(tk.subtype, subtypes.value(i), format("incorrect subtype at index %1", i)))
+            return;
+
+        QVERIFY2(tk.start == starts.value(i), format("incorrect start (at index %1)", i));
+        QVERIFY2(tk.length == lengths.value(i), format("incorrect length (at index %1)", i));
+        QVERIFY2(tk.level == levels.value(i), format("incorrect level (at index %1)", i));
     }
     QVERIFY2(tl.length() == types.length(), "missing tokens");
     delete doc;
@@ -466,11 +477,16 @@ void LatexParsingTest::test_findCommandWithArgsFromTL() {
     QVERIFY(cmdStart==0);
     for(int i=0; i<args.length(); i++){
         Token tk = args.at(i);
-        COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
-        COMPARE_TOKENTYPE(tk.subtype, subtypes.value(i), ARG1("incorrect subtype at index %1", i));
-        QVERIFY2(tk.start == starts.value(i), ARG1("incorrect start (at index %1)", i));
-        QVERIFY2(tk.length == lengths.value(i), ARG1("incorrect length (at index %1)", i));
-        QVERIFY2(tk.level == levels.value(i), ARG1("incorrect level (at index %1)", i));
+
+        if(compare(tk.type, types.value(i), format("incorrect type at index %1", i)))
+            return;
+
+        if(compare(tk.subtype, subtypes.value(i), format("incorrect subtype at index %1", i)))
+            return;
+
+        QVERIFY2(tk.start == starts.value(i), format("incorrect start (at index %1)", i));
+        QVERIFY2(tk.length == lengths.value(i), format("incorrect length (at index %1)", i));
+        QVERIFY2(tk.level == levels.value(i), format("incorrect level (at index %1)", i));
     }
     QVERIFY2(args.length() == types.length(), "missing tokens");
     delete doc;
@@ -759,11 +775,16 @@ void LatexParsingTest::test_getTokenAtCol() {
         int p = Parsing::getTokenAtCol(tl, nr.at(i));
         Token tk = Parsing::getTokenAtCol(dlh, nr.at(i));
         QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
-        COMPARE_TOKENTYPE(tk.type, desiredResults.at(i), ARG1("incorrect type at index %1", i));
+
+        if(compare(tk.type, desiredResults.at(i), format("incorrect type at index %1", i)))
+            return;
+
         p = Parsing::getTokenAtCol(tl, nr.at(i), true);
         tk = Parsing::getTokenAtCol(dlh, nr.at(i), true);
         QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
-        COMPARE_TOKENTYPE(tk.type, desiredResults2.at(i), ARG1("incorrect type at index %1", i));
+
+        if(compare(tk.type, desiredResults2.at(i), format("incorrect type at index %1", i)))
+            return;
     }
     delete doc;
 }
@@ -957,8 +978,11 @@ void LatexParsingTest::test_getContext() {
     TokenStack result = Parsing::getContext(dlh,nr);
 
     for(int k=0;k<result.size();k++){
-        COMPARE_TOKENTYPE(result.at(k).type, desiredResults.at(k), ARG1("incorrect type at index %1", k));
-        COMPARE_TOKENTYPE(result.at(k).type, desiredResults.at(k), ARG1("incorrect subtype at index %1", k));
+        if(compare(result.at(k).type, desiredResults.at(k), format("incorrect type at index %1", k)))
+            return;
+
+        if(compare(result.at(k).type, desiredResults.at(k), format("incorrect subtype at index %1", k)))
+            return;
     }
 
     delete doc;
