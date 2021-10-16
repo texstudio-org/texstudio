@@ -86,12 +86,9 @@
 #endif
 
 #ifdef OPENOFFICEORG
-#include <unicode/uchar.h>
-#else
-#ifndef MOZILLA_CLIENT
-#include "utf_info.hxx"
-#define UTF_LST_LEN (sizeof(utf_lst) / (sizeof(unicode_info)))
-#endif
+    #include <unicode/uchar.h>
+#elif ! defined(MOZILLA_CLIENT)
+    #include "utf_info.hxx"
 #endif
 
 #ifdef MOZILLA_CLIENT
@@ -2432,7 +2429,7 @@ void initialize_utf_tbl() {
     utf_tbl[j].clower = (unsigned short)j;
     utf_tbl[j].cupper = (unsigned short)j;
   }
-  for (size_t j = 0; j < UTF_LST_LEN; ++j) {
+  for (size_t j = 0; j < (sizeof(utf_lst) / sizeof(unicode_info)); ++j) {
     utf_tbl[utf_lst[j].c].cletter = 1;
     utf_tbl[utf_lst[j].c].clower = utf_lst[j].clower;
     utf_tbl[utf_lst[j].c].cupper = utf_lst[j].cupper;
