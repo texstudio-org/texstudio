@@ -11717,9 +11717,10 @@ void Texstudio::updateStructureLocally(){
         for(int i=0;i<documents.documents.length();++i){
             bool found=false;
             int j=i;
+            StructureEntry *contextEntry;
             for(;j<structureTreeWidget->topLevelItemCount();++j){
                 QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
-                StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
                 if(contextEntry->document == documents.documents.value(i)){
                     found=true;
                     break;
@@ -11727,6 +11728,11 @@ void Texstudio::updateStructureLocally(){
             }
             if(found && i<j){
                 QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
+                if(contextEntry->document==master){
+                    item->setIcon(0,QIcon(":/images/masterdoc.png"));
+                }else{
+                    item->setIcon(0,QIcon(":/images/doc.png"));
+                }
                 structureTreeWidget->insertTopLevelItem(i,item);
             }
             if(!found){
@@ -11736,6 +11742,11 @@ void Texstudio::updateStructureLocally(){
 
                 item->setText(0,doc->getFileInfo().fileName());
                 item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+                if(doc==master){
+                    item->setIcon(0,QIcon(":/images/masterdoc.png"));
+                }else{
+                    item->setIcon(0,QIcon(":/images/doc.png"));
+                }
                 structureTreeWidget->insertTopLevelItem(i,item);
                 if(doc==documents.getCurrentDocument()){
                     root=item;
@@ -11788,6 +11799,11 @@ void Texstudio::updateStructureLocally(){
 
     root->setText(0,doc->getFileInfo().fileName());
     root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+    if(doc==master){
+        root->setIcon(0,QIcon(":/images/masterdoc.png"));
+    }else{
+        root->setIcon(0,QIcon(":/images/doc.png"));
+    }
     QFont font=root->font(0);
     font.setBold(true);
     root->setFont(0,font);
