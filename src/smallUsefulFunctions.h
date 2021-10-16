@@ -34,7 +34,14 @@
 // find the first occuence of either A or B in a string
 // pos = indexMin(s.indexOf('A'), s.indexOf('B'))
 // pos is negative if s does not contain neither A nor B
-#define indexMin(i, j) ((i < 0) ? qMax(i, j) : (j < 0) ? qMax(i, j) : qMin(i, j))
+
+#define universal template <typename Type> constexpr inline const Type &
+
+universal indexMin(const Type & a,const Type & b){
+    return (a < 0 || b < 0) ? qMax(a,b) : qMin(a,b);
+}
+
+#undef universal
 
 
 struct CommandArgument {
