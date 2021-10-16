@@ -9823,6 +9823,16 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 	QKeySequence seq = QKeySequence::fromString(shortcut, QKeySequence::PortableText);
 #if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
     //TODO Qt6 ?
+    if (seq.count() > 0) {
+        QKeyCombination keyCombination = seq[0];
+        int key = keyCombination.key();
+        Qt::KeyboardModifiers modifiers = keyCombination.keyboardModifiers();
+        // TODO: we could additionally provide the text for the KeyEvent (necessary for actually typing characters
+        QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, key, modifiers);
+        QApplication::postEvent(QApplication::focusWidget(), event);
+        event = new QKeyEvent(QEvent::KeyRelease, key, modifiers);
+        QApplication::postEvent(QApplication::focusWidget(), event);
+    }
 #else
         if (seq.count() > 0) {
         int key = seq[0] & ~Qt::KeyboardModifierMask;
