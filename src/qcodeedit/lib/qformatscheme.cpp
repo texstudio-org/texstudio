@@ -44,7 +44,7 @@
 #include <QDomElement>
 #include <QDomDocument>
 
-#define QFORMAT_VERSION "1.0"
+const char * FormatVersion("1.0");
 
 static bool bool_cast(const QString& s)
 {
@@ -178,11 +178,11 @@ void QFormatScheme::load(const QDomElement& elem, bool ignoreNewIds)
 {
 	if (!elem.hasAttributes() && !elem.hasChildNodes()) return;
 
-	if ( elem.attribute("version") < QFORMAT_VERSION )
+    if ( elem.attribute("version") < FormatVersion )
 	{
 		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
 				qPrintable(elem.attribute("version")),
-				QFORMAT_VERSION);
+                FormatVersion);
 
 		return;
 	}
@@ -224,7 +224,7 @@ void QFormatScheme::load(const QDomElement& elem, bool ignoreNewIds)
 void QFormatScheme::save(QDomElement& elem) const
 {
 	QDomDocument doc = elem.ownerDocument();
-	elem.setAttribute("version", QFORMAT_VERSION);
+    elem.setAttribute("version", FormatVersion);
 
 	for ( int i = 0; i < m_formatKeys.count(); ++i )
 	{
@@ -330,11 +330,11 @@ void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
 
 	QString version = s.value("version").toString();
 
-	if ( version < QFORMAT_VERSION )
+    if ( version < FormatVersion )
 	{
 		qWarning("Format encoding version mismatch : [found]%s != [expected]%s",
 				qPrintable(version),
-				QFORMAT_VERSION);
+                FormatVersion);
 
 		return;
 	}
@@ -373,7 +373,7 @@ void QFormatScheme::load(QSettings& s, bool ignoreNewIds)
 */
 void QFormatScheme::save(QSettings& s,QFormatScheme *defaultFormats) const
 {
-	s.setValue("version", QFORMAT_VERSION);
+    s.setValue("version", FormatVersion);
 
 	s.beginGroup("data");
 
