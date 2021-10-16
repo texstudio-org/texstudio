@@ -10,6 +10,8 @@
 [Releases]: https://github.com/texstudio-org/texstudio/releases/
 [News]: https://www.texstudio.org/#news
 [Contribute]: https://github.com/texstudio-org/texstudio/wiki/Contribute
+[user manual]: https://htmlpreview.github.io/?https://github.com/texstudio-org/texstudio/master/utilities/manual/usermanual_en.html
+[dev builds]: https://github.com/texstudio-org/texstudio/actions/workflows/cd.yml
 
 
 # TeXstudio
@@ -20,7 +22,7 @@
 Our goal is to make ***writing LaTeX documents as easy and comfortable*** as possible.
 
 ---
-#### 〔 [Download] / [Releases] 〕 〔 [News] 〕 〔 [Contribute] 〕
+#### 〔 [Download] / [Releases] / [dev builds]〕 〔 [News] 〕 〔 [Contribute] 〕( [user manual] )
 ---
 
 
@@ -29,10 +31,11 @@ Our goal is to make ***writing LaTeX documents as easy and comfortable*** as pos
 - Live **Reference Checking**
 - An integrated **PDF viewer**
 - Live **Inline Preview**
-- Latex **Commands**
-- **Grammar**
-- **Citations**
-- **Spelling**
+- **Latex Commands completion and syntax checking**
+- Live **Grammar checking** 
+- Local and global **structure view**
+- **Citations checking and completion**
+- **Spellchecking**
 
 <br>
 
