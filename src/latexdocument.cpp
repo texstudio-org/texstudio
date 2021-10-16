@@ -79,10 +79,10 @@ LatexDocument::~LatexDocument()
 void LatexDocument::setFileName(const QString &fileName)
 {
 	//clear all references to old editor
-	if (this->edView) {
+    /*if (this->edView) {
 		StructureEntryIterator iter(baseStructure);
 		while (iter.hasNext()) iter.next()->setLine(nullptr);
-	}
+    }*/
 
 	this->setFileNameInternal(fileName);
 	this->edView = nullptr;
@@ -1767,97 +1767,97 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 
 void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool purge)
 {
-	if (!hidden)
-		emit aboutToDeleteDocument(document);
-	LatexEditorView *view = document->getEditorView();
-	if (view)
-		view->closeCompleter();
-        if ((document != masterDocument)||(documents.count()==1) ) {
-		// get list of all affected documents
-		QList<LatexDocument *> lstOfDocs = document->getListOfDocs();
-		// special treatment to remove document in purge mode (hidden doc was deleted on disc)
-		if (purge) {
-			Q_ASSERT(hidden); //purging non-hidden doc crashes.
-			LatexDocument *rootDoc = document->getRootDocument();
-			hiddenDocuments.removeAll(document);
-			foreach (LatexDocument *elem, getDocuments()) {
-				if (elem->containsChild(document)) {
-					elem->removeChild(document);
-				}
-			}
-			//update children (connection to parents is severed)
-			foreach (LatexDocument *elem, lstOfDocs) {
-				if (elem->getMasterDocument() == document) {
-					if (elem->isHidden())
-						deleteDocument(elem, true, true);
-					else
-						elem->setMasterDocument(nullptr);
-				}
-			}
-			delete document;
-			if (rootDoc != document) {
-				// update parents
-				lstOfDocs = rootDoc->getListOfDocs();
-				int n = 0;
-				foreach (LatexDocument *elem, lstOfDocs) {
-					if (!elem->isHidden()) {
-						n++;
-						break;
-					}
-				}
-				if (n == 0)
-					deleteDocument(rootDoc, true, true);
-				else
-					updateMasterSlaveRelations(rootDoc, true, true);
-			}
-			return;
-		}
-		// count open related (child/parent) documents
-		int n = 0;
-		foreach (LatexDocument *elem, lstOfDocs) {
-			if (!elem->isHidden())
-				n++;
-		}
-		if (hidden) {
-			hiddenDocuments.removeAll(document);
-			return;
-		}
-		if (n > 1) { // at least one related document will be open after removal
-			hiddenDocuments.append(document);
-			LatexEditorView *edView = document->getEditorView();
-			if (edView) {
-				QEditor *ed = edView->getEditor();
-				if (ed) {
-					document->remeberAutoReload = ed->silentReloadOnExternalChanges();
-					ed->setSilentReloadOnExternalChanges(true);
-					ed->setHidden(true);
-				}
-			}
-		} else {
-			// no open document remains, remove all others as well
-			foreach (LatexDocument *elem, getDocuments()) {
-				if (elem->containsChild(document)) {
-					elem->removeChild(document);
-				}
-			}
-			foreach (LatexDocument *elem, lstOfDocs) {
-				if (elem->isHidden()) {
-					hiddenDocuments.removeAll(elem);
-					delete elem->getEditorView();
-					delete elem;
-				}
-			}
-		}
+    if (!hidden)
+        emit aboutToDeleteDocument(document);
+    LatexEditorView *view = document->getEditorView();
+    if (view)
+        view->closeCompleter();
+    if ((document != masterDocument)||(documents.count()==1) ) {
+        // get list of all affected documents
+        QList<LatexDocument *> lstOfDocs = document->getListOfDocs();
+        // special treatment to remove document in purge mode (hidden doc was deleted on disc)
+        if (purge) {
+            Q_ASSERT(hidden); //purging non-hidden doc crashes.
+            LatexDocument *rootDoc = document->getRootDocument();
+            hiddenDocuments.removeAll(document);
+            foreach (LatexDocument *elem, getDocuments()) {
+                if (elem->containsChild(document)) {
+                    elem->removeChild(document);
+                }
+            }
+            //update children (connection to parents is severed)
+            foreach (LatexDocument *elem, lstOfDocs) {
+                if (elem->getMasterDocument() == document) {
+                    if (elem->isHidden())
+                        deleteDocument(elem, true, true);
+                    else
+                        elem->setMasterDocument(nullptr);
+                }
+            }
+            delete document;
+            if (rootDoc != document) {
+                // update parents
+                lstOfDocs = rootDoc->getListOfDocs();
+                int n = 0;
+                foreach (LatexDocument *elem, lstOfDocs) {
+                    if (!elem->isHidden()) {
+                        n++;
+                        break;
+                    }
+                }
+                if (n == 0)
+                    deleteDocument(rootDoc, true, true);
+                else
+                    updateMasterSlaveRelations(rootDoc, true, true);
+            }
+            return;
+        }
+        // count open related (child/parent) documents
+        int n = 0;
+        foreach (LatexDocument *elem, lstOfDocs) {
+            if (!elem->isHidden())
+                n++;
+        }
+        if (hidden) {
+            hiddenDocuments.removeAll(document);
+            return;
+        }
+        if (n > 1) { // at least one related document will be open after removal
+            hiddenDocuments.append(document);
+            LatexEditorView *edView = document->getEditorView();
+            if (edView) {
+                QEditor *ed = edView->getEditor();
+                if (ed) {
+                    document->remeberAutoReload = ed->silentReloadOnExternalChanges();
+                    ed->setSilentReloadOnExternalChanges(true);
+                    ed->setHidden(true);
+                }
+            }
+        } else {
+            // no open document remains, remove all others as well
+            foreach (LatexDocument *elem, getDocuments()) {
+                if (elem->containsChild(document)) {
+                    elem->removeChild(document);
+                }
+            }
+            foreach (LatexDocument *elem, lstOfDocs) {
+                if (elem->isHidden()) {
+                    hiddenDocuments.removeAll(elem);
+                    delete elem->getEditorView();
+                    delete elem;
+                }
+            }
+        }
 
         /*int row = documents.indexOf(document);
-		//qDebug()<<document->getFileName()<<row;
-		if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
+        //qDebug()<<document->getFileName()<<row;
+        if (!document->baseStructure) row = -1; //may happen directly after reload (but won't)
         */
 
-		documents.removeAll(document);
-		if (document == currentDocument) {
-                    currentDocument = nullptr;
-		}
+        documents.removeAll(document);
+        if (document == currentDocument) {
+            currentDocument = nullptr;
+        }
 
         if (n > 1) { // don't remove document, stays hidden instead
             hideDocInEditor(document->getEditorView());
@@ -1871,26 +1871,26 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             }
             return;
         }
-		delete view;
-		delete document;
-	} else {
-		if (hidden) {
-			hiddenDocuments.removeAll(document);
-			return;
-		}
-		document->setFileName(document->getFileName());
-		document->clearAppendix();
-		delete view;
-		if (document == currentDocument)
-			currentDocument = nullptr;
-	}
-        // purge masterdocument if none is left
-        if(documents.isEmpty()){
-            if(masterDocument){
-                masterDocument=nullptr;
-            }
-            hiddenDocuments.clear();
+        delete view;
+        delete document;
+    } else {
+        if (hidden) {
+            hiddenDocuments.removeAll(document);
+            return;
         }
+        document->setFileName(document->getFileName());
+        document->clearAppendix();
+        delete view;
+        if (document == currentDocument)
+            currentDocument = nullptr;
+    }
+    // purge masterdocument if none is left
+    if(documents.isEmpty()){
+        if(masterDocument){
+            masterDocument=nullptr;
+        }
+        hiddenDocuments.clear();
+    }
 }
 
 void LatexDocuments::requestedClose()
