@@ -85,45 +85,35 @@ class QPanelCreator
 		virtual QPanel* panel(QWidget *p) = 0;
 };
 
-#define Q_PANEL(T, SID)									\
-	public:												\
-	class Creator : public QPanelCreator				\
-	{ 													\
-		public: 										\
-			virtual QString id() const					\
-			{											\
-				return SID;								\
-			}											\
-														\
-			virtual QPanel* panel(QWidget *p)			\
-			{											\
-				return new T(p);						\
-			}											\
-														\
-			static QPanelCreator* instance()			\
-			{											\
-				static Creator global;					\
-				return &global;							\
-			}											\
-														\
-			Creator() {}								\
-			virtual ~Creator() {}						\
-	};													\
-														\
-	QString id() const { return SID; }					\
-														\
-	static void _register()								\
-	{													\
-		QPanel::registerCreator(Creator::instance());	\
-	}													\
-	
 
-#define Q_PANEL_ID(T)									\
-	T::Creator::instance()->id()						\
-	
+#define Q_Panel(type,name)                                  \
+                                                            \
+    QString id() const { return (name); }                   \
+                                                            \
+    static void _register(){                                \
+        QPanel::registerCreator(Creator::instance());       \
+    }                                                       \
+                                                            \
+    class Creator : public QPanelCreator {                  \
+                                                            \
+        public:                                             \
+                                                            \
+            Creator(){}                                     \
+                                                            \
+            virtual ~ Creator(){}                           \
+                                                            \
+            virtual QString id() const {                    \
+                return (name); }                            \
+                                                            \
+            virtual QPanel * panel(QWidget * widget){       \
+                return new (type)(widget); }                \
+                                                            \
+            static QPanelCreator * instance(){              \
+                static Creator global;                      \
+                return & global;                            \
+            }                                               \
+    };
 
-#define Q_CREATE_PANEL(T)								\
-	QPanel::panel(Q_PANEL_ID(T))						\
-	
+
 
 #endif // _QPANEL_H_
