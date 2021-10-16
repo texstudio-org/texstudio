@@ -199,8 +199,9 @@ WriteRegStr HKCU "Software\${APPNAME}" "" $INSTDIR
 # define uninstaller name
 WriteUninstaller $INSTDIR\uninstall.exe
 
-# associate .tex
+# associate .tex/.txss
 ${registerExtension} $INSTDIR\texstudio.exe ".tex" "tex File"
+${registerExtension} $INSTDIR\texstudio.exe ".txss" "txs Session File"
 
 # Start Menu
 createShortCut "$SMPROGRAMS\${APPNAME}.lnk" \
