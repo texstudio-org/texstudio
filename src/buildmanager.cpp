@@ -12,13 +12,15 @@
 #include "windows.h"
 #endif
 
-#ifdef Q_OS_WIN32
-#define ON_WIN(x) x
-#define ON_NIX(x)
-#else
-#define ON_WIN(x)
-#define ON_NIX(x) x
-#endif
+template <typename Type> constexpr Type os(Type win,Type nix){
+    #ifdef Q_OS_WIN32
+        (void) nix;
+        return win;
+    #else
+        (void) win;
+        return nix;
+    #endif
+}
 
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
@@ -32,15 +34,54 @@ QString BuildManager::autoRerunCommands;
 QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
 
 // *INDENT-OFF* (astyle-config)
-#define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
-CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(LATEXMK, latexmk)
-CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
-CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(BIBTEX8, bibtex8) CMD_DEFINE(BIBER, biber) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin) CMD_DEFINE(GIT, git) CMD_DEFINE(TEXDOC, texdoc)
-CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(GLOSSARY, glossary) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
-CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
-CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
-CMD_DEFINE(TERMINAL_EXTERNAL, terminal-external)
-#undef CMD_DEFINE
+
+#define cmd(name,id) \
+    const QString BuildManager::CMD_##name = BuildManager::TXS_CMD_PREFIX + #id
+
+cmd(LATEX,latex);
+cmd(PDFLATEX,pdflatex);
+cmd(XELATEX,xelatex);
+cmd(LUALATEX,lualatex);
+cmd(LATEXMK,latexmk);
+
+cmd(VIEW_DVI,view-dvi);
+cmd(VIEW_PS,view-ps);
+cmd(VIEW_PDF,view-pdf);
+cmd(VIEW_LOG,view-log);
+
+cmd(DVIPNG,dvipng);
+cmd(DVIPS,dvips);
+cmd(DVIPDF,dvipdf);
+cmd(PS2PDF,ps2pdf);
+
+cmd(GS,gs);
+cmd(MAKEINDEX,makeindex);
+cmd(TEXINDY,texindy);
+cmd(MAKEGLOSSARIES,makeglossaries);
+cmd(METAPOST,metapost);
+cmd(ASY,asy);
+
+cmd(BIBTEX,bibtex);
+cmd(BIBTEX8,bibtex8);
+cmd(BIBER,biber);
+
+cmd(SVN,svn);
+cmd(SVNADMIN,svnadmin);
+cmd(GIT,git);
+cmd(TEXDOC,texdoc);
+cmd(COMPILE,compile);
+cmd(VIEW,view);
+cmd(BIBLIOGRAPHY,bibliography);
+cmd(INDEX,index);
+cmd(GLOSSARY,glossary);
+cmd(QUICK,quick);
+cmd(RECOMPILE_BIBLIOGRAPHY,recompile-bibliography);
+cmd(VIEW_PDF_INTERNAL,view-pdf-internal);
+cmd(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY,conditionally-recompile-bibliography);
+cmd(INTERNAL_PRE_COMPILE,internal-pre-compile);
+cmd(TERMINAL_EXTERNAL,terminal-external);
+
+#undef cmd
 // *INDENT-ON* (astyle-config)
 
 //! These commands should not consist of a command list, but rather a single command.
@@ -300,8 +341,8 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("dvipng",      "dvipng",       "DviPng",      "-T tight -D 120 %.dvi", "Tools/Dvipng");
 	registerCommand("ps2pdf",      "ps2pdf",       "Ps2Pdf",      "%.ps", "Tools/Ps2pdf");
 	registerCommand("dvipdf",      "dvipdfmx",       "DviPdf",      "%.dvi", "Tools/Dvipdf");
-	registerCommand("bibtex",      "bibtex",       "BibTeX",       ON_WIN("%") ON_NIX("%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
-	registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", ON_WIN("%") ON_NIX("%.aux"));
+    registerCommand("bibtex",      "bibtex",       "BibTeX",       os("%","%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
+    registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", os("%","%.aux"));
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
@@ -836,7 +877,7 @@ QString findGhostscriptDLL()   //called dll, may also find an exe
 QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
 {
 	foreach(QString command, cmd.split(";")) {
-		QString fileName = command   ON_WIN(+ ".exe");
+        QString fileName = command + os(".exe","");
 		if (!options.startsWith(" ")) options = " " + options;
         if (!texPath.isEmpty() && QFileInfo::exists(addPathDelimeter(texPath) + fileName)) {
             return addPathDelimeter(texPath)+fileName+options; // found in texpath
@@ -1683,7 +1724,7 @@ QString BuildManager::createTemporaryFileName()
 void addLaTeXInputPaths(ProcessX *p, const QStringList &paths)
 {
 	if (paths.isEmpty()) return;
-	static const QString SEP = ON_WIN(";") ON_NIX(":");
+    static const QString SEP = os(";",":");
 	static const QStringList envNames = QStringList() << "TEXINPUTS" << "BIBINPUTS" << "BSTINPUTS" << "MFINPUTS" << "MPINPUTS" << "TFMFONTS";
 	QString addPath = paths.join(SEP) + SEP + "." + SEP;
 	QStringList env = p->environment();
