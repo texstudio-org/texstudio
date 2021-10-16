@@ -147,8 +147,14 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 #endif
 			else
 				cmdLine << cmdArgument;
-		} else
+        } else {
+            if(cmdArgument.endsWith(".txss")){
+                // explicit session restor
+                // disable restoring of last session
+                ConfigManager::dontRestoreSession = true;
+            }
 			cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
+        }
 	}
 	return cmdLine;
 }
