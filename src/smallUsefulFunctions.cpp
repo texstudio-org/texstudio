@@ -310,17 +310,22 @@ QString latexToText(QString s)
 }
 
 // joins all the input lines trimming whitespace. A new line is started on comments and empty lines
-QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines)
-{
-#define flush_tmpLine() if (!tmpLine.isEmpty()) { joinedLines.append(tmpLine); tmpLine.clear(); }
+QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 
 	QStringList joinedLines;
 	QString tmpLine;
+
+    #define flushTmp()                      \
+        if(!tmpLine.isEmpty()){             \
+            joinedLines.append(tmpLine);    \
+            tmpLine.clear();                \
+        }
+
 	foreach (const QString &l, lines) {
 		QString rtrimmedLine = trimRight(l);
 
 		if (rtrimmedLine.isEmpty()) { // empty line as separator
-			flush_tmpLine();
+            flushTmp();
 			joinedLines.append(rtrimmedLine);
 			continue;
 		}
@@ -332,10 +337,14 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines)
 		}
 		int commentStart = LatexParser::commentStart(rtrimmedLine);
 		if (commentStart >= 0) {
-			flush_tmpLine();
+            flushTmp();
 		}
 	}
-	flush_tmpLine();
+
+    flushTmp();
+
+    #undef flushTmp
+
 	return joinedLines;
 }
 
@@ -884,19 +893,25 @@ QString makeLatexLabel(const QString &s) {
  *  This respects quoted arguments. Output redirection operators are separate tokens
  */
 QStringList tokenizeCommandLine(const QString &commandLine) {
-#define FLUSH(x) { if (!x.isEmpty()) { result << x; } x = ""; }
-	QStringList result;
+
+    QStringList result;
 	QString currentToken = "";
 	currentToken.reserve(30);
 	bool inQuote = false;
 	bool escape= false;
+
+    #define flush(value)        \
+        if(!(value).isEmpty())  \
+            result << (value);  \
+                                \
+        (value) = "";
 
 	foreach (const QChar &c, commandLine) {
 		if (c.isSpace()) {
 			if (inQuote) {
 				currentToken.append(c);
 			} else {
-				FLUSH(currentToken)
+                flush(currentToken)
 			}
 		} else if (c == '\\') {
 			escape = !escape;
@@ -910,21 +925,23 @@ QStringList tokenizeCommandLine(const QString &commandLine) {
 				currentToken.append(c);
 			} else if (currentToken == "2"){
 				currentToken.append(c);
-				FLUSH(currentToken);
+                flush(currentToken);
 			} else {
-				FLUSH(currentToken)
+                flush(currentToken)
 				currentToken = c;
-				FLUSH(currentToken)
+                flush(currentToken)
 			}
 		} else {
 			currentToken.append(c);
 		}
 		escape = false;
 	}
-	FLUSH(currentToken)
+
+    flush(currentToken)
+
+    #undef flush
 
 	return result;
-#undef FLUSH
 }
 
 QStringList extractOutputRedirection(const QStringList &commandArgs, QString &stdOut, QString &stdErr) {
@@ -1081,9 +1098,4 @@ bool addMostRecent(const QString &item, QStringList &mostRecentList, int maxLeng
 	if (mostRecentList.count() > maxLength) mostRecentList.removeLast();
 	return changed;
 }
-
-
-#define GCC_VERSION (__GNUC__ * 10000 \
-                               + __GNUC_MINOR__ * 100 \
-                               + __GNUC_PATCHLEVEL__)
 
