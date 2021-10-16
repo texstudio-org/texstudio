@@ -6,7 +6,6 @@
   <project_license>GPL-2.0</project_license>
   <name>TeXstudio</name>
   <summary>LaTeX editor</summary>
-
   <description>
     <p>
       TeXstudio is an integrated writing environment for creating LaTeX documents. It integrates editing, building and viewing into a single frontend.
@@ -27,15 +26,12 @@
       <li>Scripting support</li>
     </ul>
   </description>
-
   <launchable type="desktop-id">texstudio.desktop</launchable>
-
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/texstudio-org/texstudio/master/utilities/screenshot1.png</image>
     </screenshot>
   </screenshots>
-
   <kudos>
     <kudo>AppMenu</kudo>
     <kudo>HiDpiIcon</kudo>
@@ -43,75 +39,20 @@
     <kudo>ModernToolkit</kudo>
     <kudo>UserDocs</kudo>
   </kudos>
-
   <url type="homepage">https://texstudio.org/</url>
   <url type="bugtracker">https://github.com/texstudio-org/texstudio/issues</url>
   <url type="faq">https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions</url>
-  
   <developer_name>Benito van der Zander</developer_name>
-  <content_rating type="oars-1.1" />
-  
+  <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
-  
   <releases>
-    <release date="2020-09-01" version="3.0.1">
+    <release date="2021-10-15T19:48:46+0000" version="4.0.2">
       <description>
-      <p>Changes:</p>
-      <ul>
-	<li>fix glitch in mopdern style (#1238 , triangle missing)</li>
-	<li>fix equation preview (#1234)</li>
-	<li>fix commands with quotes (#1225 &amp; #1169)</li>
-	<li>fix syntax marker in darkmode (#1224)</li>
-      </ul>
+        <ul>
+          <li>fix structure view (inlcudes and cursor marking, #1828) </li>
+          <li>fix completer tooltip on bibids (#1835)</li>
+        </ul>
       </description>
     </release>
-    <release date="2020-08-24" version="3.0.0">
-      <description>
-      <p>Changes:</p>
-      <ul>
-	<li>speed up document parsing, should result in faster document load times</li>
-	<li>spell checking is done asynchronously</li>
-	<li>custom verbatim/math env highlighting abandoned for a cwl based approach</li>
-	<li>better dark-mode support</li>
-	<li>qt4 support abandoned</li>
-      </ul>
-      </description>
-    </release>
-    <release date="2020-01-18" version="2.12.22">
-      <description>
-      <p>Changes:</p>
-      <ul>
-	<li>fixes garbled symbols in OSX</li>
-	<li>fix crash when changing magic language comment</li>
-	<li>fix pdf search path handling</li>
-      </ul>
-      </description>
-    </release>
-    <release date="2020-01-13" version="2.12.20">
-      <description>
-      <p>Changes:</p>
-      <ul>
-	<li>fixes a problem with replacing when search highlight is activated</li>
-      </ul>
-      </description>
-    </release>
-    <release date="2019-12-26" version="2.12.18">
-      <description>
-      <p>Changes:</p>
-      <ul>
-	<li>bug fixes</li>
-	<li>some cwl added</li>
-	<li>correct handling of \string~ in filenames in \include</li>
-	<li>search can handle more regexp (greedy/lazy) since it has been changed to QRegularExpression on QT5 (no change on QT4)</li>
-      </ul>
-      </description>
-    </release>
-    <release date="2019-04-07" version="2.12.16"/>
-    <release date="2018-11-27" version="2.12.14"/>
-    <release date="2018-11-12" version="2.12.12"/>
-    <release date="2018-07-06" version="2.12.10"/>
-    <release date="2018-02-02" version="2.12.8"/>
-    <release date="2017-07-25" version="2.12.6"/>
   </releases>
-  
 </component>
