@@ -83,8 +83,8 @@
 #include "replist.hxx"
 
 // check flag duplication
-#define dupSFX (1 << 0)
-#define dupPFX (1 << 1)
+const char dupSFX = (1 << 0);
+const char dupPFX = (1 << 1);
 
 class PfxEntry;
 class SfxEntry;
