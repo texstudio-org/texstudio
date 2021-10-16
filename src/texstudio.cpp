@@ -7318,6 +7318,7 @@ void Texstudio::masterDocumentChanged(LatexDocument *doc)
 	}
 
 	updateMasterDocumentCaption();
+    updateStructureLocally();
 	completerNeedsUpdate();
 }
 
