@@ -11662,7 +11662,7 @@ void Texstudio::updateStructureLocally(){
     if(!doc){
         // no root document
         // clear TOC completely
-        topTOCTreeWidget->clear();
+        structureTreeWidget->clear();
         return;
     }
 
