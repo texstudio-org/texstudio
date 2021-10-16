@@ -7720,7 +7720,10 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
         }else{
             // going to hidden doc
             // relevant for hidden master document
+            bool unmodified=se->document->isClean();
             openExternalFile(se->document->getFileName(),"tex",se->document);
+            if(unmodified)
+                se->document->setClean(); // work-around, unclear where that state is reset during load
             LatexEditorView *edView = se->document->getEditorView();
             if (edView) {
                 gotoLine(se->getRealLineNumber(), 0, edView);
