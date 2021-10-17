@@ -1982,7 +1982,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 		if (lookBehind > 0) lookBehind--;
 		if (lookBehind > linenr) lookBehind = linenr;
 
-		LIST_RESERVE(changedLines, linenr + count + lookBehind + 1);
+        changedLines.reserve(linenr + count + lookBehind + 1);
+
 		int truefirst = linenr - lookBehind;
 		for (int i = linenr - lookBehind; i < editor->document()->lineCount(); i++) {
 			QDocumentLine line = editor->document()->line(i);
