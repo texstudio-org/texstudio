@@ -308,5 +308,5 @@ string_vector parse3(const std::string& symbols, const string_vector& nonsyms)
 
 }
 
-#undef assert
+#undef assertMsg
 
