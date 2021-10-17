@@ -96,29 +96,29 @@ QEditorFactory::QEditorFactory(QSettingsServer *s)
 		setValue("name", "No panels");
 		endGroup();
 		
-        #define idOf(Class) \
+        #define panelIdOf(Class) \
             Class::Creator::instance() -> id()
 
 		beginGroup("default");
 		setValue("struct",
 				QString::number(QCodeEdit::West)
 				+ "{"
-                + idOf(QLineMarkPanel)
+                + panelIdOf(QLineMarkPanel)
 				+ ","
-                + idOf(QLineNumberPanel)
+                + panelIdOf(QLineNumberPanel)
 				+ ","
-                + idOf(QFoldPanel)
+                + panelIdOf(QFoldPanel)
 				+ ","
-                + idOf(QLineChangePanel)
+                + panelIdOf(QLineChangePanel)
 				+ "}"
 				
 				+ QString::number(QCodeEdit::South)
 				+ "{"
-                + idOf(QStatusPanel)
+                + panelIdOf(QStatusPanel)
 				+ ","
-                + idOf(QGotoLinePanel)
+                + panelIdOf(QGotoLinePanel)
 				+ ","
-                + idOf(QSearchReplacePanel)
+                + panelIdOf(QSearchReplacePanel)
 				+ "}"
 				);
 		
@@ -129,17 +129,17 @@ QEditorFactory::QEditorFactory(QSettingsServer *s)
 		setValue("struct",
 				QString::number(QCodeEdit::West)
 				+ "{"
-                + idOf(QLineNumberPanel)
+                + panelIdOf(QLineNumberPanel)
 				+ ","
-                + idOf(QFoldPanel)
+                + panelIdOf(QFoldPanel)
 				+ "}"
 				
 				+ QString::number(QCodeEdit::South)
 				+ "{"
-                + idOf(QStatusPanel)
+                + panelIdOf(QStatusPanel)
 				+ "}"
 				);
-        #undef idOf
+        #undef panelIdOf
 		
 		setValue("name", "Trimmed-down panel layout");
 		endGroup();
