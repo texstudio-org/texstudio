@@ -85,7 +85,7 @@ enum flag { FLAG_CHAR, FLAG_LONG, FLAG_NUM, FLAG_UNI };
 // arbitrary number "ph:" (MORPH_PHON) fields to store typical
 // phonetic or other misspellings of that word.
 // ratio of lines/lines with "ph:" in the dic file: 1/MORPH_PHON_RATIO
-#define MORPH_PHON_RATIO 500
+const int MORPH_PHON_RATIO = 500;
 
 class HashMgr {
   int tablesize;
