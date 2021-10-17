@@ -1672,33 +1672,46 @@ void LatexEditorView::updateFormatSettings()
 	static bool formatsLoaded = false;
 	if (!formatsLoaded) {
 		REQUIRE(QDocument::defaultFormatScheme());
-#define F(n) &n##Format, #n,
-		const void *formats[] = {F(environment)
-		                         F(referenceMultiple) F(referencePresent) F(referenceMissing)
-		                         F(citationPresent) F(citationMissing)
-		                         F(packageMissing) F(packagePresent)
-		                         &packageUndefinedFormat, "normal",
-		                         &syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
-		                         F(structure)
-		                         &todoFormat, "commentTodo",
-		                         &deleteFormat, "diffDelete",
-		                         &insertFormat, "diffAdd",
-		                         &replaceFormat, "diffReplace",
-		                         F(wordRepetition) F(wordRepetitionLongRange) F(badWord)
-		                         F(grammarMistake)
-		                         F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
-		                         F(numbers) F(verbatim) F(comment) F(picture)
-		                         &pweaveDelimiterFormat, "pweave-delimiter",
-		                         &pweaveBlockFormat, "pweave-block",
-		                         &sweaveDelimiterFormat, "sweave-delimiter",
-		                         &sweaveBlockFormat, "sweave-block",
-		                         &math_DelimiterFormat, "math-delimiter",
-		                         &math_KeywordFormat, "math-keyword",
-		                         &asymptoteBlockFormat, "asymptote:block",
-		                         &preEditFormat, "preedit",
-                                 nullptr, nullptr
-		                        };
-#undef F
+
+        const void *formats[] = {
+            & environmentFormat , "environment" ,
+            & referenceMultipleFormat , "referenceMultiple" ,
+            & referencePresentFormat , "referencePresent" ,
+            & referenceMissingFormat , "referenceMissing" ,
+            & citationPresentFormat , "citationPresent" ,
+            & citationMissingFormat , "citationMissing" ,
+            & packageMissingFormat , "packageMissing" ,
+            & packagePresentFormat , "packagePresent" ,
+            & packageUndefinedFormat, "normal",
+            & syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
+            & structureFormat , "structure" ,
+            & todoFormat , "commentTodo" ,
+            & deleteFormat, "diffDelete",
+            & insertFormat, "diffAdd",
+            & replaceFormat, "diffReplace",
+            & wordRepetitionFormat , "wordRepetition" ,
+            & wordRepetitionLongRangeFormat , "wordRepetitionLongRange" ,
+            & badWordFormat , "badWord" ,
+            & grammarMistakeFormat , "grammarMistake" ,
+            & grammarMistakeSpecial1Format , "grammarMistakeSpecial1" ,
+            & grammarMistakeSpecial2Format , "grammarMistakeSpecial2" ,
+            & grammarMistakeSpecial3Format , "grammarMistakeSpecial3" ,
+            & grammarMistakeSpecial4Format , "grammarMistakeSpecial4" ,
+            & numbersFormat , "numbers" ,
+            & verbatimFormat , "verbatim" ,
+            & commentFormat , "comment" ,
+            & pictureFormat ,"picture" ,
+            & pweaveDelimiterFormat , "pweave-delimiter" ,
+            & pweaveBlockFormat , "pweave-block" ,
+            & sweaveDelimiterFormat , "sweave-delimiter" ,
+            & sweaveBlockFormat , "sweave-block" ,
+            & math_DelimiterFormat , "math-delimiter" ,
+            & math_KeywordFormat , "math-keyword" ,
+            & asymptoteBlockFormat , "asymptote:block" ,
+            & preEditFormat , "preedit" ,
+            nullptr, nullptr
+        };
+
 		const void **temp = formats;
 		while (*temp) {
 			int *c = (static_cast<int *>(const_cast<void *>(*temp)));
