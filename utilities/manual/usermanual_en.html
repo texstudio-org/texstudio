@@ -911,7 +911,7 @@ cmd.waitForFinished()</pre>
   <tr><th colspan=2>Document object</th></tr>
 <tr><td>editor.document().lineCount() </td><td>   Returns the number of lines     </td></tr>
 <tr><td>editor.document().visualLineCount() </td><td>    Returns the number of visual lines (counting wrapped lines)    </td></tr>
-<tr><td>editor.document().cursor(line, [column = 0], [lineTo = -1], [columnTo = length of lineTo]) </td><td>  Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not.   </td></tr>
+<tr><td><del>editor.document().cursor(line, [column = 0], [lineTo = -1], [columnTo = length of lineTo]) </del></td><td>  Unsupported in txs 4.x. Use new QDocumentCursor(...) instead, see section cursor.</td></tr>
 <tr><td>editor.document().text([removeTrailing = false], [preserveIndent = true]) </td><td>  Returns the complete text of the document </td></tr>
 <tr><td>editor.document().textLines() </td><td>   Returns an array of all text lines     </td></tr>
 <tr><td>editor.document().lineEndingString() </td><td> Returns a string containing the ending of a line (\n or \n\r)       </td></tr>
@@ -974,7 +974,10 @@ cmd.waitForFinished()</pre>
   <tr>
   <th colspan=2>Cursor object</th>
   </tr>
-
+  <tr>
+  	<td> new QDocumentCursor(editor.document(),line, [column = 0], [lineTo = -1], [columnTo = length of lineTo])
+  	<td> Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not.
+  </tr>
   <tr>
     <td> cursor.atEnd()
     <td> returns whether the cursor is at the end of the document
