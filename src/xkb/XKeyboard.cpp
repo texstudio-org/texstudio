@@ -17,7 +17,7 @@
 #include <cstring>
 
 
-#define assert(expression,msg)                          \
+#define assertMsg(expression,msg)                       \
                                                         \
     if(!(expression)){                                  \
                                                         \
@@ -92,16 +92,16 @@ std::string XKeyboard::get_kb_string()
 
   Atom symNameAtom = _kbdDescPtr->names->symbols;
 
-  assert(symNameAtom != None,"Symbol Name is not present");
+  assertMsg(symNameAtom != None,"Symbol Name is not present");
 
   char* kbsC = XGetAtomName(_display, symNameAtom);
 
-  assert(kbsC,"Symbol Name pointer is invalid");
+  assertMsg(kbsC,"Symbol Name pointer is invalid");
 
   std::string kbs(kbsC);
   XFree(kbsC);
 
-  assert(!kbs.empty(),"Symbol Name is an empty string");
+  assertMsg(!kbs.empty(),"Symbol Name is an empty string");
 
   return kbs;
 
@@ -113,23 +113,23 @@ std::string XKeyboard::get_kb_string()
 
 void XKeyboard::wait_event()
 {
-  assert(_display != 0,"Display is not present");
+  assertMsg(_display != 0,"Display is not present");
 
   Bool bret = XkbSelectEventDetails(_display, XkbUseCoreKbd, 
       XkbStateNotify, XkbAllStateComponentsMask, XkbGroupStateMask);
 
-  assert(bret==True, "Failed to select event details");
+  assertMsg(bret==True, "Failed to select event details");
 
   XEvent event;
   int iret = XNextEvent(_display, &event);
 
-  assert(iret==0,"Failed to retrieve next event with " << iret);
+  assertMsg(iret==0,"Failed to retrieve next event with " << iret);
 }
 
 void XKeyboard::set_group(int groupNum)
 {
   Bool result = XkbLockGroup(_display, _deviceId, groupNum);
-  assert(result == True,"Failed to set group to: " << groupNum);
+  assertMsg(result == True,"Failed to set group to: " << groupNum);
 }
 
 int XKeyboard::get_group() const
