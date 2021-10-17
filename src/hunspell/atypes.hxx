@@ -56,54 +56,63 @@ static inline void HUNSPELL_WARNING(FILE*, const char*, ...) {}
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <time.h>
 
-#define SETSIZE 256
-#define CONTSIZE 65536
+const int SETSIZE = 256;
+const int CONTSIZE = 65536;
 
 // AffEntry options
-#define aeXPRODUCT (1 << 0)
-#define aeUTF8 (1 << 1)
-#define aeALIASF (1 << 2)
-#define aeALIASM (1 << 3)
-#define aeLONGCOND (1 << 4)
+const char
+    aeXPRODUCT = (1 << 0),
+    aeUTF8 = (1 << 1),
+    aeALIASF = (1 << 2),
+    aeALIASM = (1 << 3),
+    aeLONGCOND = (1 << 4);
+
 
 // compound options
-#define IN_CPD_NOT 0
-#define IN_CPD_BEGIN 1
-#define IN_CPD_END 2
-#define IN_CPD_OTHER 3
+const char
+    IN_CPD_NOT = 0,
+    IN_CPD_BEGIN = 1,
+    IN_CPD_END = 2,
+    IN_CPD_OTHER = 3;
 
 // info options
-#define SPELL_COMPOUND (1 << 0)
-#define SPELL_FORBIDDEN (1 << 1)
-#define SPELL_ALLCAP (1 << 2)
-#define SPELL_NOCAP (1 << 3)
-#define SPELL_INITCAP (1 << 4)
-#define SPELL_ORIGCAP (1 << 5)
-#define SPELL_WARN (1 << 6)
+const char
+    SPELL_COMPOUND = (1 << 0),
+    SPELL_FORBIDDEN = (1 << 1),
+    SPELL_ALLCAP = (1 << 2),
+    SPELL_NOCAP = (1 << 3),
+    SPELL_INITCAP = (1 << 4),
+    SPELL_ORIGCAP = (1 << 5),
+    SPELL_WARN = (1 << 6);
 
-#define MINCPDLEN 3
-#define MAXCOMPOUND 10
-#define MAXCONDLEN 20
-#define MAXCONDLEN_1 (MAXCONDLEN - sizeof(char*))
+const int
+    MINCPDLEN = 3,
+    MAXCOMPOUND = 10,
+    MAXCONDLEN = 20;
 
-#define MAXACC 1000
+const int MAXCONDLEN_1 = MAXCONDLEN - sizeof(char *);
 
-#define FLAG unsigned short
-#define FLAG_NULL 0x00
-#define FREE_FLAG(a) a = 0
+using FLAG = unsigned short;
+const FLAG FLAG_NULL = 0x00;
 
-#define TESTAFF(a, b, c) (std::binary_search(a, a + c, b))
+inline bool TESTAFF(const unsigned short * a,unsigned short b,short c){
+    return std::binary_search(a,a + c,b);
+}
 
 // timelimit: max. ~1/4 sec (process time on Linux) for
 // for a suggestion, including max. ~/10 sec for a case
 // sensitive plain or compound word suggestion, within
 // ~1/20 sec long time consuming suggestion functions
-#define TIMELIMIT_GLOBAL (CLOCKS_PER_SEC / 4)
-#define TIMELIMIT_SUGGESTION (CLOCKS_PER_SEC / 10)
-#define TIMELIMIT (CLOCKS_PER_SEC / 20)
-#define MINTIMER 100
-#define MAXPLUSTIMER 100
+const clock_t
+    TIMELIMIT_SUGGESTION = CLOCKS_PER_SEC / 10,
+    TIMELIMIT_GLOBAL = CLOCKS_PER_SEC / 4,
+    TIMELIMIT = CLOCKS_PER_SEC / 20;
+
+const int
+    MINTIMER = 100,
+    MAXPLUSTIMER = 100;
 
 struct guessword {
   char* word;

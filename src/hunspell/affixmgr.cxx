@@ -207,20 +207,21 @@ AffixMgr::~AffixMgr() {
   delete oconvtable;
   delete phone;
 
-  FREE_FLAG(compoundflag);
-  FREE_FLAG(compoundbegin);
-  FREE_FLAG(compoundmiddle);
-  FREE_FLAG(compoundend);
-  FREE_FLAG(compoundpermitflag);
-  FREE_FLAG(compoundforbidflag);
-  FREE_FLAG(compoundroot);
-  FREE_FLAG(forbiddenword);
-  FREE_FLAG(nosuggest);
-  FREE_FLAG(nongramsuggest);
-  FREE_FLAG(needaffix);
-  FREE_FLAG(lemma_present);
-  FREE_FLAG(circumfix);
-  FREE_FLAG(onlyincompound);
+  compoundflag = 0;
+  compoundbegin = 0;
+  compoundmiddle= 0 ;
+  compoundend = 0;
+  compoundpermitflag = 0;
+  compoundforbidflag = 0;
+  compoundroot = 0;
+
+  forbiddenword = 0;
+  nosuggest = 0;
+  nongramsuggest = 0;
+  needaffix = 0;
+  lemma_present = 0;
+  circumfix = 0;
+  onlyincompound = 0;
 
   cpdwordmax = 0;
   pHMgr = NULL;
