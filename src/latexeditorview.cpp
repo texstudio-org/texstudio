@@ -1679,6 +1679,8 @@ void LatexEditorView::updateFormatSettings()
             & referencePresentFormat , "referencePresent" ,
             & referenceMissingFormat , "referenceMissing" ,
             & citationPresentFormat , "citationPresent" ,
+            & citationMissingFormat , "citationMissing" ,
+            & packageMissingFormat , "packageMissing" ,
             & packagePresentFormat , "packagePresent" ,
             & packageUndefinedFormat, "normal",
             & syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
