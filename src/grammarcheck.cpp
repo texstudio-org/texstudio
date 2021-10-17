@@ -194,7 +194,8 @@ void GrammarCheck::process(int reqId)
 
 	CheckRequest &cr = requests[reqId];
 
-	LIST_RESERVE(cr.linesToSkip, cr.inlines.size());
+    cr.linesToSkip.reserve(cr.inlines.size());
+
 	if (cr.ticket != ticket) {
 		//processing an old request
 		for (int i = 0; i < cr.inlines.size(); i++) {
