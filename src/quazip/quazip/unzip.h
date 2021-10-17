@@ -102,8 +102,9 @@ const int
 const unsigned int
     UNZ_AUTO_CLOSE = 0x01u;
 
-const unsigned int
-    UNZ_DEFAULT_FLAGS = UNZ_AUTO_CLOSE;
+//const unsigned int
+//    UNZ_DEFAULT_FLAGS = UNZ_AUTO_CLOSE;
+#define UNZ_DEFAULT_FLAGS UNZ_AUTO_CLOSE
 
 
 /* tm_unz contain date/time info */
