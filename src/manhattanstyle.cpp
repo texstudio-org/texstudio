@@ -60,7 +60,7 @@
 
 
 // We define a currently unused state for indicating animations
-#define State_Animating 0x00000040
+const unsigned int State_Animating = 0x00000040;
 
 // Because designer needs to disable this for widget previews
 // we have a custom property that is inherited
