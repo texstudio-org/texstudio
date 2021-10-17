@@ -173,16 +173,16 @@ const QString punctuationNotFollowedBySpace = "(\"\u00A0";
     if((i) >= words.length())                                           \
         break;                                                          \
                                                                         \
-    if(words[i].length() == 1)                                          \
-        if(punctuationNotPreceededBySpace.contains(words[i][0]))        \
+    if(words[i].length() == 1 &&                                        \
+        punctuationNotPreceededBySpace.contains(words[i][0]))           \
             continue;                                                   \
                                                                         \
-    if(words[(i) - 1].length() == 1)                                    \
-        if(punctuationNotFollowedBySpace.contains(words[(i) - 1][0]))   \
+    if(words[(i) - 1].length() == 1 &&                                  \
+        punctuationNotFollowedBySpace.contains(words[(i) - 1][0]))      \
             continue;                                                   \
                                                                         \
-    if(words[i].length() == 2 && words[(i) - 1].length() == 2)          \
-        if(words[i][1] == '.' && words[(i) - 1][1] == '.')              \
+    if(words[i].length() == 2 && words[(i) - 1].length() == 2 &&        \
+        words[i][1] == '.' && words[(i) - 1][1] == '.')              \
             continue;
 
 
