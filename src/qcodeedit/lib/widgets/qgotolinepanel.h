@@ -34,7 +34,7 @@ class QCE_EXPORT QGotoLinePanel : public QPanel, private Ui::GotoLine
 	Q_OBJECT
 	
 	public:
-		Q_PANEL(QGotoLinePanel, "Goto Line Panel")
+		Q_Panel(QGotoLinePanel, "Goto Line Panel")
 		
 		QGotoLinePanel(QWidget *p = 0);
 		virtual ~QGotoLinePanel();
