@@ -12,7 +12,7 @@
 #include "windows.h"
 #endif
 
-inline const char * os(const char * const win,const char * const nix){
+inline const char * onWin_Nix(const char * const win,const char * const nix){
     #ifdef Q_OS_WIN32
         (void) nix;
         return win;
@@ -341,8 +341,8 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("dvipng",      "dvipng",       "DviPng",      "-T tight -D 120 %.dvi", "Tools/Dvipng");
 	registerCommand("ps2pdf",      "ps2pdf",       "Ps2Pdf",      "%.ps", "Tools/Ps2pdf");
 	registerCommand("dvipdf",      "dvipdfmx",       "DviPdf",      "%.dvi", "Tools/Dvipdf");
-    registerCommand("bibtex",      "bibtex",       "BibTeX",       os("%","%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
-    registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", os("%","%.aux"));
+    registerCommand("bibtex",      "bibtex",       "BibTeX",       onWin_Nix("%","%.aux"),  "Tools/Bibtex"); //miktex bibtex will stop (appears like crash in txs) if .aux is attached
+    registerCommand("bibtex8",     "bibtex8",      "BibTeX 8-Bit", onWin_Nix("%","%.aux"));
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
@@ -877,7 +877,7 @@ QString findGhostscriptDLL()   //called dll, may also find an exe
 QString searchBaseCommand(const QString &cmd, QString options, QString texPath)
 {
 	foreach(QString command, cmd.split(";")) {
-        QString fileName = command + os(".exe","");
+        QString fileName = command + onWin_Nix(".exe","");
 		if (!options.startsWith(" ")) options = " " + options;
         if (!texPath.isEmpty() && QFileInfo::exists(addPathDelimeter(texPath) + fileName)) {
             return addPathDelimeter(texPath)+fileName+options; // found in texpath
@@ -1724,7 +1724,7 @@ QString BuildManager::createTemporaryFileName()
 void addLaTeXInputPaths(ProcessX *p, const QStringList &paths)
 {
 	if (paths.isEmpty()) return;
-    static const QString SEP = os(";",":");
+    static const QString SEP = onWin_Nix(";",":");
 	static const QStringList envNames = QStringList() << "TEXINPUTS" << "BIBINPUTS" << "BSTINPUTS" << "MFINPUTS" << "MPINPUTS" << "TFMFONTS";
 	QString addPath = paths.join(SEP) + SEP + "." + SEP;
 	QStringList env = p->environment();
