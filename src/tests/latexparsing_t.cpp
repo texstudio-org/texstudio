@@ -31,7 +31,7 @@ Q_DECLARE_METATYPE(TTypes)
  *  description: const char
  */
 
-inline bool sameType(
+inline bool sameTokenType(
     EnumsTokenType::TokenType Actual,
     EnumsTokenType::TokenType Expected,
     const QString description
@@ -157,7 +157,7 @@ void LatexParsingTest::test_simpleLexing() {
     for(int i=0; i<tl.length(); i++) {
         Token tk = tl.at(i);
 
-        if(! sameType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
+        if(! sameTokenType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
             return;
 
         QVERIFY2(tk.start == starts.value(i), QString("incorrect start at index %1").arg(i).toLatin1());
@@ -377,10 +377,10 @@ void LatexParsingTest::test_latexLexing() {
 	for(int i=0; i<tl.length(); i++){
         Token tk = tl.at(i);
 
-        if(! sameType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
+        if(! sameTokenType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
             return;
 
-        if(! sameType(tk.subtype, subtypes.value(i), QString("incorrect subtype at index %1").arg(i)))
+        if(! sameTokenType(tk.subtype, subtypes.value(i), QString("incorrect subtype at index %1").arg(i)))
             return;
 
         QVERIFY2(tk.start == starts.value(i), QString("incorrect start (at index %1)").arg(i).toLatin1());
@@ -484,10 +484,10 @@ void LatexParsingTest::test_findCommandWithArgsFromTL() {
     for(int i=0; i<args.length(); i++){
         Token tk = args.at(i);
 
-        if(! sameType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
+        if(! sameTokenType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
             return;
 
-        if(! sameType(tk.subtype, subtypes.value(i), QString("incorrect subtype at index %1").arg(i)))
+        if(! sameTokenType(tk.subtype, subtypes.value(i), QString("incorrect subtype at index %1").arg(i)))
             return;
 
         QVERIFY2(tk.start == starts.value(i), QString("incorrect start (at index %1)").arg(i).toLatin1());
@@ -782,14 +782,14 @@ void LatexParsingTest::test_getTokenAtCol() {
         Token tk = Parsing::getTokenAtCol(dlh, nr.at(i));
         QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
 
-        if(! sameType(tk.type, desiredResults.at(i), QString("incorrect type at index %1").arg(i)))
+        if(! sameTokenType(tk.type, desiredResults.at(i), QString("incorrect type at index %1").arg(i)))
             return;
 
         p = Parsing::getTokenAtCol(tl, nr.at(i), true);
         tk = Parsing::getTokenAtCol(dlh, nr.at(i), true);
         QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
 
-        if(! sameType(tk.type, desiredResults2.at(i), QString("incorrect type at index %1").arg(i)))
+        if(! sameTokenType(tk.type, desiredResults2.at(i), QString("incorrect type at index %1").arg(i)))
             return;
     }
     delete doc;
@@ -984,10 +984,10 @@ void LatexParsingTest::test_getContext() {
     TokenStack result = Parsing::getContext(dlh,nr);
 
     for(int k=0;k<result.size();k++){
-        if(! sameType(result.at(k).type, desiredResults.at(k), QString("incorrect type at index %1").arg(k)))
+        if(! sameTokenType(result.at(k).type, desiredResults.at(k), QString("incorrect type at index %1").arg(k)))
             return;
 
-        if(! sameType(result.at(k).type, desiredResults.at(k), QString("incorrect subtype at index %1").arg(k)))
+        if(! sameTokenType(result.at(k).type, desiredResults.at(k), QString("incorrect subtype at index %1").arg(k)))
             return;
     }
 
