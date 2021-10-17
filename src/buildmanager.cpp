@@ -12,7 +12,7 @@
 #include "windows.h"
 #endif
 
-constexpr const char * os(const char * const win,const char * const nix){
+inline const char * os(const char * const win,const char * const nix){
     #ifdef Q_OS_WIN32
         (void) nix;
         return win;
