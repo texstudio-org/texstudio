@@ -76,17 +76,36 @@ typedef voidp unzFile;
 #endif
 
 
-#define UNZ_OK                          (0)
-#define UNZ_END_OF_LIST_OF_FILE         (-100)
-#define UNZ_ERRNO                       (Z_ERRNO)
-#define UNZ_EOF                         (0)
-#define UNZ_PARAMERROR                  (-102)
-#define UNZ_BADZIPFILE                  (-103)
-#define UNZ_INTERNALERROR               (-104)
-#define UNZ_CRCERROR                    (-105)
+//#define UNZ_OK                          (0)
+//#define UNZ_END_OF_LIST_OF_FILE         (-100)
+//#define UNZ_ERRNO                       (Z_ERRNO)
+//#define UNZ_EOF                         (0)
+//#define UNZ_PARAMERROR                  (-102)
+//#define UNZ_BADZIPFILE                  (-103)
+//#define UNZ_INTERNALERROR               (-104)
+//#define UNZ_CRCERROR                    (-105)
 
-#define UNZ_AUTO_CLOSE 0x01u
+const int
+    UNZ_OK                      = 0,
+    UNZ_END_OF_LIST_OF_FILE     = -100,
+    UNZ_ERRNO                   = Z_ERRNO,
+    UNZ_EOF                     = 0,
+    UNZ_PARAMERROR              = -102,
+    UNZ_BADZIPFILE              = -103,
+    UNZ_INTERNALERROR           = -104,
+    UNZ_CRCERROR                = -105;
+
+
+//#define UNZ_AUTO_CLOSE 0x01u
+//#define UNZ_DEFAULT_FLAGS UNZ_AUTO_CLOSE
+
+const unsigned int
+    UNZ_AUTO_CLOSE = 0x01u;
+
+//const unsigned int
+//    UNZ_DEFAULT_FLAGS = UNZ_AUTO_CLOSE;
 #define UNZ_DEFAULT_FLAGS UNZ_AUTO_CLOSE
+
 
 /* tm_unz contain date/time info */
 typedef struct tm_unz_s

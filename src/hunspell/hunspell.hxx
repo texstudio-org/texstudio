@@ -76,10 +76,11 @@
 #include <string>
 #include <vector>
 
-#define SPELL_XML "<?xml?>"
+const char * const SPELL_XML = "<?xml?>";
 
-#define MAXSUGGESTION 15
-#define MAXSHARPS 5
+const int
+    MAXSUGGESTION = 15,
+    MAXSHARPS = 5;
 
 #ifndef MAXWORDLEN
 #define MAXWORDLEN 100

@@ -75,17 +75,22 @@ typedef zipFile__ *zipFile;
 typedef voidp zipFile;
 #endif
 
-#define ZIP_OK                          (0)
-#define ZIP_EOF                         (0)
-#define ZIP_ERRNO                       (Z_ERRNO)
-#define ZIP_PARAMERROR                  (-102)
-#define ZIP_BADZIPFILE                  (-103)
-#define ZIP_INTERNALERROR               (-104)
 
-#define ZIP_WRITE_DATA_DESCRIPTOR 0x8u
-#define ZIP_AUTO_CLOSE 0x1u
-#define ZIP_SEQUENTIAL 0x2u
-#define ZIP_DEFAULT_FLAGS (ZIP_AUTO_CLOSE | ZIP_WRITE_DATA_DESCRIPTOR)
+const int
+    ZIP_OK            = 0,
+    ZIP_EOF           = 0,
+    ZIP_ERRNO         = Z_ERRNO,
+    ZIP_PARAMERROR    = -102,
+    ZIP_BADZIPFILE    = -103,
+    ZIP_INTERNALERROR = -104;
+
+const unsigned int
+    ZIP_WRITE_DATA_DESCRIPTOR = 0x8u,
+    ZIP_AUTO_CLOSE = 0x1u,
+    ZIP_SEQUENTIAL = 0x2u;
+
+//const unsigned int ZIP_DEFAULT_FLAGS = ZIP_AUTO_CLOSE | ZIP_WRITE_DATA_DESCRIPTOR;
+#define ZIP_DEFAULT_FLAGS ZIP_AUTO_CLOSE | ZIP_WRITE_DATA_DESCRIPTOR
 
 #ifndef DEF_MEM_LEVEL
 #  if MAX_MEM_LEVEL >= 8
@@ -120,9 +125,10 @@ typedef struct
 typedef const char* zipcharpc;
 
 
-#define APPEND_STATUS_CREATE        (0)
-#define APPEND_STATUS_CREATEAFTER   (1)
-#define APPEND_STATUS_ADDINZIP      (2)
+const int
+    APPEND_STATUS_CREATE = 0,
+    APPEND_STATUS_CREATEAFTER = 1,
+    APPEND_STATUS_ADDINZIP = 2;
 
 extern zipFile ZEXPORT zipOpen OF((voidpf file, int append));
 extern zipFile ZEXPORT zipOpen64 OF((voidpf file, int append));

@@ -14,7 +14,6 @@
 #define REQUIRE(x)  do { Q_ASSERT((x)); if (!(x)) return; } while (0)
 #define REQUIRE_RET(x,e) do { Q_ASSERT((x)); if (!(x)) return (e); } while (0)
 
-#define LIST_RESERVE(list, count) list.reserve(count)
 
 extern const char *TEXSTUDIO_GIT_REVISION;
 

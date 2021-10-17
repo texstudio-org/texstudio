@@ -36,7 +36,7 @@
 #include "phonet.hxx"
 
 void init_phonet_hash(phonetable& parms) {
-  for (int i = 0; i < HASHSIZE; i++) {
+  for (int i = 0; i < HashSize; i++) {
     parms.hash[i] = -1;
   }
 
@@ -76,11 +76,11 @@ std::string phonet(const std::string& inword, phonetable& parms) {
   typedef unsigned char uchar;
 
   size_t len = inword.size();
-  if (len > MAXPHONETUTF8LEN)
+  if (len > MaxPhonetUTF8Length)
     return std::string();
-  char word[MAXPHONETUTF8LEN + 1];
-  strncpy(word, inword.c_str(), MAXPHONETUTF8LEN);
-  word[MAXPHONETUTF8LEN] = '\0';
+  char word[MaxPhonetUTF8Length + 1];
+  strncpy(word, inword.c_str(), MaxPhonetUTF8Length);
+  word[MaxPhonetUTF8Length] = '\0';
 
   std::string target;
   /**  check word  **/

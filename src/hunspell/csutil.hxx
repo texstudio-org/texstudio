@@ -87,43 +87,54 @@
 #endif
 
 // casing
-#define NOCAP 0
-#define INITCAP 1
-#define ALLCAP 2
-#define HUHCAP 3
-#define HUHINITCAP 4
+const int
+    NOCAP = 0,
+    INITCAP = 1,
+    ALLCAP = 2,
+    HUHCAP = 3,
+    HUHINITCAP = 4;
 
 // default encoding and keystring
-#define SPELL_ENCODING "ISO8859-1"
-#define SPELL_KEYSTRING "qwertyuiop|asdfghjkl|zxcvbnm"
+const std::string
+    SPELL_ENCODING = "ISO8859-1",
+    SPELL_KEYSTRING = "qwertyuiop|asdfghjkl|zxcvbnm";
+
 
 // default morphological fields
-#define MORPH_STEM "st:"
-#define MORPH_ALLOMORPH "al:"
-#define MORPH_POS "po:"
-#define MORPH_DERI_PFX "dp:"
-#define MORPH_INFL_PFX "ip:"
-#define MORPH_TERM_PFX "tp:"
-#define MORPH_DERI_SFX "ds:"
-#define MORPH_INFL_SFX "is:"
-#define MORPH_TERM_SFX "ts:"
-#define MORPH_SURF_PFX "sp:"
-#define MORPH_FREQ "fr:"
-#define MORPH_PHON "ph:"
-#define MORPH_HYPH "hy:"
-#define MORPH_PART "pa:"
-#define MORPH_FLAG "fl:"
-#define MORPH_HENTRY "_H:"
-#define MORPH_TAG_LEN strlen(MORPH_STEM)
+using morth = const char * const;
 
-#define MSEP_FLD ' '
-#define MSEP_REC '\n'
-#define MSEP_ALT '\v'
+morth MORPH_STEM = "st:";
+morth MORPH_ALLOMORPH = "al:";
+morth MORPH_POS = "po:";
+
+morth MORPH_DERI_PFX = "dp:";
+morth MORPH_INFL_PFX = "ip:";
+morth MORPH_TERM_PFX = "tp:";
+morth MORPH_SURF_PFX = "sp:";
+
+morth MORPH_DERI_SFX = "ds:";
+morth MORPH_INFL_SFX = "is:";
+morth MORPH_TERM_SFX = "ts:";
+
+morth MORPH_FREQ = "fr:";
+morth MORPH_PHON = "ph:";
+morth MORPH_HYPH = "hy:";
+morth MORPH_PART = "pa:";
+morth MORPH_FLAG = "fl:";
+morth MORPH_HENTRY = "_H:";
+
+const int MORPH_TAG_LEN = strlen(MORPH_STEM);
+
+const char
+    MSEP_FLD = ' ',
+    MSEP_REC = '\n',
+    MSEP_ALT = '\v';
 
 // default flags
-#define DEFAULTFLAGS 65510
-#define FORBIDDENWORD 65510
-#define ONLYUPCASEFLAG 65511
+const int
+    DEFAULTFLAGS = 65510,
+    FORBIDDENWORD = 65510,
+    ONLYUPCASEFLAG = 65511;
 
 // fix long pathname problem of WIN32 by using w_char std::fstream::open override
 LIBHUNSPELL_DLL_EXPORTED void myopen(std::ifstream& stream, const char* path,
