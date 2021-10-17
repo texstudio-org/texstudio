@@ -38,28 +38,23 @@
 #ifndef Header_HTypes
 #define Header_HTypes
 
-#define ROTATE_LEN 5
 
-#define ROTATE(v, q) \
-  (v) = ((v) << (q)) | (((v) >> (32 - q)) & ((1 << (q)) - 1));
+const long RotateLength = 5;
+
+inline long rotate(long v,long q){
+    return (v << q) | ((v >> (32 - q)) & ((1 << q) - 1));
+}
 
 // hentry options
-#define H_OPT (1 << 0)          // is there optional morphological data?
-#define H_OPT_ALIASM (1 << 1)   // using alias compression?
-#define H_OPT_PHON (1 << 2)     // is there ph: field in the morphological data?
-#define H_OPT_INITCAP (1 << 3)  // is dictionary word capitalized?
-
-// see also csutil.hxx
-#define HENTRY_WORD(h) &(h->word[0])
+const char
+    H_OPT = (1 << 0),           // is there optional morphological data?
+    H_OPT_ALIASM = (1 << 1),    // using alias compression?
+    H_OPT_PHON = (1 << 2),      // is there ph: field in the morphological data?
+    H_OPT_INITCAP = (1 << 3);   // is dictionary word capitalized?
 
 // approx. number  of user defined words
-#define USERWORD 1000
+const int USERWORD = 1000;
 
-#if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)
-#  define HUNSPELL_THREAD_LOCAL thread_local
-#else
-#  define HUNSPELL_THREAD_LOCAL static
-#endif
 
 struct hentry {
   unsigned char blen;    // word length in bytes
@@ -71,5 +66,10 @@ struct hentry {
   char var;      // bit vector of H_OPT hentry options
   char word[1];  // variable-length word (8-bit or UTF-8 encoding)
 };
+
+// see also csutil.hxx
+inline char * HENTRY_WORD(const hentry * h){
+    return (char *) & (h -> word[0]);
+}
 
 #endif
