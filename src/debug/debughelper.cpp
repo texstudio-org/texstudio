@@ -131,12 +131,13 @@ struct SimulatedCPU {
 //===========================CRASH HANDLER HEADER==============================
 
 #ifdef OS_IS_UNIX_LIKE
-#include "signal.h"
-#include "unistd.h"
-#include "sys/wait.h"
-#define SAFE_INT volatile sig_atomic_t
+    #include "signal.h"
+    #include "unistd.h"
+    #include "sys/wait.h"
+
+    using SAFE_INT = volatile sig_atomic_t;
 #else
-#define SAFE_INT int
+    using SAFE_INT = int;
 #endif
 
 SAFE_INT crashHandlerType = 1;
@@ -144,11 +145,16 @@ enum { ERR_NONE = 0, ERR_SIGNAL, ERR_ASSERT, ERR_LOOP, ERR_EXCEPTION};
 SAFE_INT lastErrorType = 0;
 volatile void *sigSegvRecoverReturnAddress = 0; //address where it should jump to, if recovering causes another sigsegv
 
-#define CRASH_HANDLER_RECOVER 1
+/*#define CRASH_HANDLER_RECOVER 1
 #define CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER 2
 #define CRASH_HANDLER_LOOP_GUARDIAN_DISABLED 4
-#define CRASH_HANDLER_USE_NATIVE_BACKTRACE 8
+#define CRASH_HANDLER_USE_NATIVE_BACKTRACE 8*/
 
+const SAFE_INT
+    CRASH_HANDLER_RECOVER = 1,
+    CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER = 2,
+    CRASH_HANDLER_LOOP_GUARDIAN_DISABLED = 4,
+    CRASH_HANDLER_USE_NATIVE_BACKTRACE = 8;
 
 //===========================STACK TRACE PRINTING=========================
 
