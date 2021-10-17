@@ -11,8 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef TEXSTUDIO_H
-#define TEXSTUDIO_H
+#ifndef Header_TexStudio
+#define Header_TexStudio
 
 #include "mostQtHeaders.h"
 

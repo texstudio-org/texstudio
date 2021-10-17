@@ -17,8 +17,8 @@
 */
 
 
-#ifndef MARKEDSCROLLBAR_H
-#define MARKEDSCROLLBAR_H
+#ifndef Header_MarkedScrollbar
+#define Header_MarkedScrollbar
 
 #include <QScrollBar>
 #include <QPaintEvent>

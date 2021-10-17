@@ -17,8 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  *************************************************************************/
 
-#ifndef ADWAITAWIDGETEXPLORER_H
-#define ADWAITAWIDGETEXPLORER_H
+#ifndef Header_Adwaita_WidgetExplorer
+#define Header_Adwaita_WidgetExplorer
 
 #include <QEvent>
 #include <QObject>

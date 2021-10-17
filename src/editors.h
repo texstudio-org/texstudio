@@ -1,5 +1,5 @@
-#ifndef EDITORS_H
-#define EDITORS_H
+#ifndef Header_Editors
+#define Header_Editors
 
 #include "mostQtHeaders.h"
 

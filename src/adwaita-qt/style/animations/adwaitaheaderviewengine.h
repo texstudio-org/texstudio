@@ -1,5 +1,5 @@
-#ifndef adwaitaheaderviewengine_h
-#define adwaitaheaderviewengine_h
+#ifndef Header_Adwaita_HeaderView_Engine
+#define Header_Adwaita_HeaderView_Engine
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

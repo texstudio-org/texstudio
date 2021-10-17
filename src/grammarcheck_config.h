@@ -1,5 +1,5 @@
-#ifndef GRAMMARCHECK_CONFIG_H
-#define GRAMMARCHECK_CONFIG_H
+#ifndef Header_GrammarCheck_Config
+#define Header_GrammarCheck_Config
 
 #include "QVariant"
 

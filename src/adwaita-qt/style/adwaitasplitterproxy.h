@@ -1,5 +1,5 @@
-#ifndef adwaitasplitterproxy_h
-#define adwaitasplitterproxy_h
+#ifndef Header_Adwaita_SplitterProxy
+#define Header_Adwaita_SplitterProxy
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

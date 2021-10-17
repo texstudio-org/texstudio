@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QCALL_TIP_H_
-#define _QCALL_TIP_H_
+#ifndef Header_QCall_Tip
+#define Header_QCall_Tip
 
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef LATEXSTYLEPARSER_T_H
-#define LATEXSTYLEPARSER_T_H
+#ifndef Header_Latex_Style_Parser_T
+#define Header_Latex_Style_Parser_T
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"

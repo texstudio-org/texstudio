@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QDOCUMENT_H_
-#define _QDOCUMENT_H_
+#ifndef Header_QDocument
+#define Header_QDocument
 
 #include "modifiedQObject.h"
 

@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QEDIT_CONFIG_H_
-#define _QEDIT_CONFIG_H_
+#ifndef Header_QEdit_Config
+#define Header_QEdit_Config
 
 #include "mostQtHeaders.h"
 

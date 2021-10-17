@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LOGEDITOR_H
-#define LOGEDITOR_H
+#ifndef Header_LogEditor
+#define Header_LogEditor
 
 #include "mostQtHeaders.h"
 

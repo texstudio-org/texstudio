@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef CONFIGDIALOG_H
-#define CONFIGDIALOG_H
+#ifndef Header_Config_Dialog
+#define Header_Config_Dialog
 
 #include "mostQtHeaders.h"
 

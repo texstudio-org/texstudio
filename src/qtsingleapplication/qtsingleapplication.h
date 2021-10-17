@@ -38,8 +38,8 @@
 **
 ****************************************************************************/
 
-#ifndef QTSINGLEAPPLICATION_H
-#define QTSINGLEAPPLICATION_H
+#ifndef Header_QTSingleApplication
+#define Header_QTSingleApplication
 
 #include <QApplication>
 

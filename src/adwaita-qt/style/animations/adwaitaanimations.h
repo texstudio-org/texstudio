@@ -1,5 +1,5 @@
-#ifndef adwaitaanimations_h
-#define adwaitaanimations_h
+#ifndef Header_Adwaita_Animations
+#define Header_Adwaita_Animations
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

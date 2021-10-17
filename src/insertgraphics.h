@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef INSERTGRAPHICS_H
-#define INSERTGRAPHICS_H
+#ifndef Header_InsertGraphics
+#define Header_InsertGraphics
 
 #include "ui_insertgraphics.h"
 

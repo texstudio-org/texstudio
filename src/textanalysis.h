@@ -1,5 +1,5 @@
-#ifndef TEXTANALYSIS_H
-#define TEXTANALYSIS_H
+#ifndef Header_TextAnalysis
+#define Header_TextAnalysis
 
 #include "mostQtHeaders.h"
 

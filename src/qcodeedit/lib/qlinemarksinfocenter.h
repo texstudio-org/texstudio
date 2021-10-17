@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QLINE_MARKS_INFO_CENTER_H_
-#define _QLINE_MARKS_INFO_CENTER_H_
+#ifndef Header_QLine_Marks_InfoCenter
+#define Header_QLine_Marks_InfoCenter
 
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef USERMACRO_H
-#define USERMACRO_H
+#ifndef Header_UserMacro
+#define Header_UserMacro
 
 #include "mostQtHeaders.h"
 #include "latexdocument.h"

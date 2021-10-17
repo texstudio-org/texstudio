@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QLANGUAGE_FACTORY_H_
-#define _QLANGUAGE_FACTORY_H_
+#ifndef Header_QLanguage_Factory
+#define Header_QLanguage_Factory
 
 #include "mostQtHeaders.h"
 

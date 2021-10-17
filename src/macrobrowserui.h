@@ -1,5 +1,5 @@
-#ifndef MACROBROWSERUI_H
-#define MACROBROWSERUI_H
+#ifndef Header_MacroBrowser_UI
+#define Header_MacroBrowser_UI
 
 #include "mostQtHeaders.h"
 #include "configmanager.h"

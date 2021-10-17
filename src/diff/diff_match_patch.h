@@ -19,8 +19,8 @@
  * http://code.google.com/p/google-diff-match-patch/
  */
 
-#ifndef DIFF_MATCH_PATCH_H
-#define DIFF_MATCH_PATCH_H
+#ifndef Header_Diff_Match_Patch
+#define Header_Diff_Match_Patch
 
 #include <time.h>
 

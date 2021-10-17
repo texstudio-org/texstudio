@@ -24,8 +24,8 @@
  * provides a lot of features we do not want
  */
 
-#ifndef KSTYLE_KDE4_COMPAT_H
-#define KSTYLE_KDE4_COMPAT_H
+#ifndef Header_KStyle_KDE4_Compat
+#define Header_KStyle_KDE4_Compat
 
 #include <QCommonStyle>
 #include <QHash>

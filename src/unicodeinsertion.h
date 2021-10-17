@@ -1,5 +1,5 @@
-#ifndef UNICODEINSERTION_H
-#define UNICODEINSERTION_H
+#ifndef Header_UnicodeInsertion
+#define Header_UnicodeInsertion
 
 #include "mostQtHeaders.h"
 

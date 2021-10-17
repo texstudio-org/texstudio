@@ -1,5 +1,5 @@
-#ifndef QUAZIP_QUAZIODEVICE_H
-#define QUAZIP_QUAZIODEVICE_H
+#ifndef Header_Qua_Zip_IODevice
+#define Header_Qua_Zip_IODevice
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov

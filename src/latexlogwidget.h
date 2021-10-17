@@ -1,5 +1,5 @@
-#ifndef LATEXLOGWIDGET_H
-#define LATEXLOGWIDGET_H
+#ifndef Header_Latex_Log_Widget
+#define Header_Latex_Log_Widget
 
 #include "logeditor.h"
 #include "latexlog.h"

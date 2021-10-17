@@ -1,5 +1,5 @@
-#ifndef HELP_H
-#define HELP_H
+#ifndef Header_Help
+#define Header_Help
 
 #include "mostQtHeaders.h"
 

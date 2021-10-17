@@ -1,5 +1,5 @@
-#ifndef STRUCTUREVIEW_T_H
-#define STRUCTUREVIEW_T_H
+#ifndef Header_StructureView_T
+#define Header_StructureView_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include "latexdocument.h"

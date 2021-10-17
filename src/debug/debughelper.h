@@ -1,5 +1,5 @@
-#ifndef DEBUGHELPER_H
-#define DEBUGHELPER_H
+#ifndef Header_DebugHelper
+#define Header_DebugHelper
 
 #include "modifiedQObject.h"
 #include "smallUsefulFunctions.h"

@@ -1,5 +1,5 @@
-#ifndef adwaitadatamap_h
-#define adwaitadatamap_h
+#ifndef Header_Adwaita_DataMap
+#define Header_Adwaita_DataMap
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

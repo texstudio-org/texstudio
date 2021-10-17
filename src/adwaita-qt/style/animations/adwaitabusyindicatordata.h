@@ -1,5 +1,5 @@
-#ifndef adwaitabusyindicatordata_h
-#define adwaitabusyindicatordata_h
+#ifndef Header_Adwaita_BusyIndicator_Data
+#define Header_Adwaita_BusyIndicator_Data
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

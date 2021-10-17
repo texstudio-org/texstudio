@@ -10,8 +10,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef XMLTAGSLISTWIDGET_H
-#define XMLTAGSLISTWIDGET_H
+#ifndef Header_XMLTagsList_Widget
+#define Header_XMLTagsList_Widget
 
 #include <QListWidget>
 

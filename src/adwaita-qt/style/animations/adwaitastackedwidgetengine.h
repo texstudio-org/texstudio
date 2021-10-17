@@ -1,5 +1,5 @@
-#ifndef adwaitastackedwidgetengine_h
-#define adwaitastackedwidgetengine_h
+#ifndef Header_Adwaita_StackedWidget_Engine
+#define Header_Adwaita_StackedWidget_Engine
 
 //////////////////////////////////////////////////////////////////////////////
 // adwaitastackedwidgetengine.h

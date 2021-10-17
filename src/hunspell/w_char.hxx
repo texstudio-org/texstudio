@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#ifndef W_CHAR_HXX_
-#define W_CHAR_HXX_
+#ifndef Header_W_Char
+#define Header_W_Char
 
 #include <string>
 

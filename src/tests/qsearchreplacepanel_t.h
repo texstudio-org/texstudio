@@ -1,5 +1,5 @@
-#ifndef QSEARCHREPLACEPANEL_T_H
-#define QSEARCHREPLACEPANEL_T_H
+#ifndef Header_QSearch_ReplacePanel
+#define Header_QSearch_ReplacePanel
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QtTest/QtTest>

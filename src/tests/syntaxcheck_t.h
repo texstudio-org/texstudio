@@ -1,5 +1,5 @@
-#ifndef SYNTAXCHECK_T_H
-#define SYNTAXCHECK_T_H
+#ifndef Header_SyntaxCheck_T
+#define Header_SyntaxCheck_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include "latexeditorview.h"

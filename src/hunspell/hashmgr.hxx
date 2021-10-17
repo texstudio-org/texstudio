@@ -68,8 +68,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef HASHMGR_HXX_
-#define HASHMGR_HXX_
+#ifndef Header_Hash_Manager
+#define Header_Hash_Manager
 
 #include <stdio.h>
 #include <string>

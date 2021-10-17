@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QPANEL_H_
-#define _QPANEL_H_
+#ifndef Header_QPanel
+#define Header_QPanel
 
 #include "mostQtHeaders.h"
 

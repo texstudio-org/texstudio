@@ -1,5 +1,5 @@
-#ifndef QUAZIP_QUAZIPDIR_H
-#define QUAZIP_QUAZIPDIR_H
+#ifndef Header_Qua_Zip_Dir
+#define Header_Qua_Zip_Dir
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov

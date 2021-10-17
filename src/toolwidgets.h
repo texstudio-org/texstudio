@@ -1,8 +1,8 @@
 /*
 	This file contains the dockwidgets at the left/bottom side of txs
 */
-#ifndef TOOLWIDGETS_H
-#define TOOLWIDGETS_H
+#ifndef Header_Tool_Widget
+#define Header_Tool_Widget
 
 #include "mostQtHeaders.h"
 

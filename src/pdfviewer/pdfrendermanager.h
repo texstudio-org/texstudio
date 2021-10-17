@@ -1,5 +1,5 @@
-#ifndef PDFRENDERMANAGER_H
-#define PDFRENDERMANAGER_H
+#ifndef Header_PDF_RenderManager
+#define Header_PDF_RenderManager
 
 #include "mostQtHeaders.h"
 

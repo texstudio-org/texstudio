@@ -1,5 +1,5 @@
-#ifndef DEBUGLOGGER_H
-#define DEBUGLOGGER_H
+#ifndef Header_DebugLogger
+#define Header_DebugLogger
 
 #include "mostQtHeaders.h"
 

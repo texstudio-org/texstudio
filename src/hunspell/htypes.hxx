@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#ifndef HTYPES_HXX_
-#define HTYPES_HXX_
+#ifndef Header_HTypes
+#define Header_HTypes
 
 #define ROTATE_LEN 5
 

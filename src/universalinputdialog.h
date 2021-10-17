@@ -1,5 +1,5 @@
-#ifndef UNIVERSALINPUTDIALOG_H
-#define UNIVERSALINPUTDIALOG_H
+#ifndef Header_UniversalInput_Dialog
+#define Header_UniversalInput_Dialog
 
 #include "mostQtHeaders.h"
 

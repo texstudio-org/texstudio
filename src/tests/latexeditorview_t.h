@@ -1,5 +1,5 @@
-#ifndef LATEXEDITORVIEW_T_H
-#define LATEXEDITORVIEW_T_H
+#ifndef Header_Latex_Editor_View_T
+#define Header_Latex_Editor_View_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QtTest/QtTest>

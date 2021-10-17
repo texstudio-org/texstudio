@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#ifndef ATYPES_HXX_
-#define ATYPES_HXX_
+#ifndef Header_ATypes
+#define Header_ATypes
 
 #ifndef HUNSPELL_WARNING
 #include <stdio.h>

@@ -17,8 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  *************************************************************************/
 
-#ifndef ADWAITA_DEBUG_H
-#define ADWAITA_DEBUG_H
+#ifndef Header_Adwaita_Debug
+#define Header_Adwaita_Debug
 
 #include <QLoggingCategory>
 

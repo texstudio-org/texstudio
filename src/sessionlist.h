@@ -1,5 +1,5 @@
-#ifndef SESSIONLIST_H
-#define SESSIONLIST_H
+#ifndef Header_SessionList
+#define Header_SessionList
 
 #include "mostQtHeaders.h"
 

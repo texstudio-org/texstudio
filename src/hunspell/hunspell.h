@@ -38,8 +38,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#ifndef MYSPELLMGR_H_
-#define MYSPELLMGR_H_
+#ifndef Header_MyStell_Managere
+#define Header_MyStell_Managere
 
 #include "hunvisapi.h"
 

@@ -8,8 +8,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef SPELLERDIALOG_H
-#define SPELLERDIALOG_H
+#ifndef Header_Speller_Dialog
+#define Header_Speller_Dialog
 
 #include "mostQtHeaders.h"
 

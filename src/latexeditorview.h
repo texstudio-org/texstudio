@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LATEXEDITORVIEW_H
-#define LATEXEDITORVIEW_H
+#ifndef Header_Latex_Editor_View
+#define Header_Latex_Editor_View
 
 #include "mostQtHeaders.h"
 #include "qdocument.h"

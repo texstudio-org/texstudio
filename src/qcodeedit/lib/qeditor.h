@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QEDITOR_H_
-#define _QEDITOR_H_
+#ifndef Header_QEditor
+#define Header_QEditor
 
 #include "mostQtHeaders.h"
 

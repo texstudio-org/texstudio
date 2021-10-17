@@ -1,5 +1,5 @@
-#ifndef TERMINAL_CONFIG_H
-#define TERMINAL_CONFIG_H
+#ifndef Header_Terminal_Config
+#define Header_Terminal_Config
 #include <QString>
 #include <QFont>
 #include <QApplication>

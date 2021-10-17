@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef ABOUTDIALOG_H
-#define ABOUTDIALOG_H
+#ifndef Header_About_Dialog
+#define Header_About_Dialog
 
 #include "mostQtHeaders.h"
 

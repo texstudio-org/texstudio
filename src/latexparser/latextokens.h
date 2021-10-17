@@ -1,5 +1,5 @@
-#ifndef LATEXTOKENS_H
-#define LATEXTOKENS_H
+#ifndef Header_Latex_Tokens
+#define Header_Latex_Tokens
 
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef SVN_H
-#define SVN_H
+#ifndef Header_SVN
+#define Header_SVN
 
 #include "mostQtHeaders.h"
 /*!

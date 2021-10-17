@@ -1,5 +1,5 @@
-#ifndef UTILSSYSTEM_H
-#define UTILSSYSTEM_H
+#ifndef Header_UtilsSystem
+#define Header_UtilsSystem
 
 #include "mostQtHeaders.h"
 #include <QCache>

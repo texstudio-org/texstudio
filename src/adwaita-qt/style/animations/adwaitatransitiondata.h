@@ -1,5 +1,5 @@
-#ifndef adwaitatransitiondata_h
-#define adwaitatransitiondata_h
+#ifndef Header_Adwaita_Transition_Data
+#define Header_Adwaita_Transition_Data
 
 //////////////////////////////////////////////////////////////////////////////
 // adwaitatransitiondata.h

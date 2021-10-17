@@ -1,5 +1,5 @@
-#ifndef SEARCHRESULTWIDGET_H
-#define SEARCHRESULTWIDGET_H
+#ifndef Header_SearchResult_Widget
+#define Header_SearchResult_Widget
 
 #include "mostQtHeaders.h"
 

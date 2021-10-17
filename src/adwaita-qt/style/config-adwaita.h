@@ -19,8 +19,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  *************************************************************************/
 
-#ifndef config_adwaita_h
-#define config_adwaita_h
+#ifndef Header_Adwaita_Config
+#define Header_Adwaita_Config
 
 /* Define to 1 if adwaita is compiled against KDE4 */
 #define ADWAITA_USE_KDE4 0

@@ -1,5 +1,5 @@
-#ifndef CODESNIPPET_H
-#define CODESNIPPET_H
+#ifndef Header_CodeSnippet
+#define Header_CodeSnippet
 
 #include "mostQtHeaders.h"
 

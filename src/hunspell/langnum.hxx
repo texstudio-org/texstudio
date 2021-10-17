@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#ifndef LANGNUM_HXX_
-#define LANGNUM_HXX_
+#ifndef Header_LangNum
+#define Header_LangNum
 
 /*
  language numbers for language specific codes

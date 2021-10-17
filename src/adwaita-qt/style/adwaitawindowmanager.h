@@ -1,5 +1,5 @@
-#ifndef adwaitawindowmanager_h
-#define adwaitawindowmanager_h
+#ifndef Header_Adwaita_Window_Manager
+#define Header_Adwaita_Window_Manager
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

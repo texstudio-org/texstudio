@@ -1,5 +1,5 @@
-#ifndef TEMPLATEMANAGER_P_H
-#define TEMPLATEMANAGER_P_H
+#ifndef Header_Template_Manager_P
+#define Header_Template_Manager_P
 
 #include "mostQtHeaders.h"
 #include "templatemanager.h"

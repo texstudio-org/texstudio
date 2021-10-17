@@ -19,8 +19,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  *************************************************************************/
 
-#ifndef ADWAITA_STYLE_H
-#define ADWAITA_STYLE_H
+#ifndef Header_Adwaita_Style
+#define Header_Adwaita_Style
 
 #include "adwaita.h"
 #include "config-adwaita.h"

@@ -1,5 +1,5 @@
-#ifndef LATEXSTRUCTURE_H
-#define LATEXSTRUCTURE_H
+#ifndef Header_Latex_Structure
+#define Header_Latex_Structure
 
 #include "mostQtHeaders.h"
 

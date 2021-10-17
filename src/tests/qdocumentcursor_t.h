@@ -1,5 +1,5 @@
-#ifndef QDOCUMENTCURSOR_T_H
-#define QDOCUMENTCURSOR_T_H
+#ifndef Header_QDocument_Cursor_T
+#define Header_QDocument_Cursor_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QtTest/QtTest>

@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QGOTO_LINE_PANEL_H_
-#define _QGOTO_LINE_PANEL_H_
+#ifndef Header_QGoto_Line_Panel
+#define Header_QGoto_Line_Panel
 
 #include "mostQtHeaders.h"
 

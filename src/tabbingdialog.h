@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef TABBINGDIALOG_H
-#define TABBINGDIALOG_H
+#ifndef Header_Tabbing_Dialog
+#define Header_Tabbing_Dialog
 
 #include "mostQtHeaders.h"
 

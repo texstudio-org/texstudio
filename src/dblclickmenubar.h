@@ -1,5 +1,5 @@
-#ifndef DBLCLICKMENUBAR_H
-#define DBLCLICKMENUBAR_H
+#ifndef Header_DblClick_MenuBar
+#define Header_DblClick_MenuBar
 
 #include <QMenuBar>
 

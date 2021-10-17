@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QDOCUMENT_SEARCH_H_
-#define _QDOCUMENT_SEARCH_H_
+#ifndef Header_QDocument_Search
+#define Header_QDocument_Search
 
 #include "qce-config.h"
 

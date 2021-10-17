@@ -68,8 +68,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef AFFIX_HXX_
-#define AFFIX_HXX_
+#ifndef Header_Affix
+#define Header_Affix
 
 #include "atypes.hxx"
 #include "baseaffix.hxx"

@@ -1,5 +1,5 @@
-#ifndef GRAMMARCHECK_H
-#define GRAMMARCHECK_H
+#ifndef Header_GrammarCheck
+#define Header_GrammarCheck
 
 #include "mostQtHeaders.h"
 

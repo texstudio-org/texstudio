@@ -1,5 +1,5 @@
-#ifndef TITLEDPANEL_H
-#define TITLEDPANEL_H
+#ifndef Header_TitlePanel
+#define Header_TitlePanel
 
 #include "mostQtHeaders.h"
 //#include "animatedsplitter.h"

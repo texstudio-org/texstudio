@@ -1,5 +1,5 @@
-#ifndef FINDINDIRS_H
-#define FINDINDIRS_H
+#ifndef Header_FindInDirs
+#define Header_FindInDirs
 
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef LATEXEDITORVIEWCONFIG_H
-#define LATEXEDITORVIEWCONFIG_H
+#ifndef Header_Latex_Editor_View_Config
+#define Header_Latex_Editor_View_Config
 
 //having the configuration in a single file allows to change it,
 //without having a relationship between completer and configmanager

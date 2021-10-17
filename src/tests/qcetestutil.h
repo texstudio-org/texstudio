@@ -1,5 +1,5 @@
-#ifndef QCETESTUTIL_H
-#define QCETESTUTIL_H
+#ifndef Header_QCE_TestUtil
+#define Header_QCE_TestUtil
 #ifndef QT_NO_DEBUG
 class QDocumentCursor;
 QString cur2str(const QDocumentCursor &c);

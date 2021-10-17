@@ -20,8 +20,8 @@
 
 */
 
-#ifndef _ZLIBIOAPI64_H
-#define _ZLIBIOAPI64_H
+#ifndef Header_ZLib_IO_API64
+#define Header_ZLib_IO_API64
 
 #if (!defined(_WIN32)) && (!defined(WIN32))
 

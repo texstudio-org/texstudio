@@ -1,5 +1,5 @@
-#ifndef FILESELECTOR_H
-#define FILESELECTOR_H
+#ifndef Header_FileSelector
+#define Header_FileSelector
 
 #include "mostQtHeaders.h"
 

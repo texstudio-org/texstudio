@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QDOCUMENT_LINE_H_
-#define _QDOCUMENT_LINE_H_
+#ifndef Header_QDocument_Line
+#define Header_QDocument_Line
 
 #include "qce-config.h"
 

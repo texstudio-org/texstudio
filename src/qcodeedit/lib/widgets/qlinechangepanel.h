@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QLINE_CHANGE_PANEL_H_
-#define _QLINE_CHANGE_PANEL_H_
+#ifndef Header_QLine_Change_Panel
+#define Header_QLine_Change_Panel
 
 #include "mostQtHeaders.h"
 

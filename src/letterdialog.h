@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LETTERDIALOG_H
-#define LETTERDIALOG_H
+#ifndef Header_Letter_Dialog
+#define Header_Letter_Dialog
 
 #include "mostQtHeaders.h"
 

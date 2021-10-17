@@ -1,5 +1,5 @@
-#ifndef SYMBOLLISTVIEW_H
-#define SYMBOLLISTVIEW_H
+#ifndef Header_SymbolList_View
+#define Header_SymbolList_View
 
 #include "mostQtHeaders.h"
 

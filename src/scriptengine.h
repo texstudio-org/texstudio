@@ -1,5 +1,5 @@
-#ifndef SCRIPTENGINE_H
-#define SCRIPTENGINE_H
+#ifndef Header_ScriptEngine
+#define Header_ScriptEngine
 
 #include "mostQtHeaders.h"
 //#if defined(__GNUC__) && !defined(__INTEL_COMPILER) && !defined(__clang__) && (__GNUC__ >= 8)

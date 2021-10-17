@@ -1,5 +1,5 @@
-#ifndef SEARCHQUERY_H
-#define SEARCHQUERY_H
+#ifndef Header_SearchQuery
+#define Header_SearchQuery
 
 #include "mostQtHeaders.h"
 #include "searchresultmodel.h"

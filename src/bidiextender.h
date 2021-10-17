@@ -1,5 +1,5 @@
-#ifndef BIDIEXTENDER_H
-#define BIDIEXTENDER_H
+#ifndef Header_Bibiex_Tender
+#define Header_Bibiex_Tender
 
 enum InputLanguage { IL_UNCERTAIN, IL_LTR, IL_RTL };
 

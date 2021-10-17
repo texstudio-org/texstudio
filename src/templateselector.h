@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef TEMPLATESELECTOR_H
-#define TEMPLATESELECTOR_H
+#ifndef Header_Template_Selector
+#define Header_Template_Selector
 
 #include "mostQtHeaders.h"
 #include "templatemanager.h"

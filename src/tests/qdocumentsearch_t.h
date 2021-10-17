@@ -1,5 +1,5 @@
-#ifndef QDOCUMENTSEARCH_T_H
-#define QDOCUMENTSEARCH_T_H
+#ifndef Header_QDocument_Search_T
+#define Header_QDocument_Search_T
 #ifndef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include <QtTest/QtTest>

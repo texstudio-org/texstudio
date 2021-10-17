@@ -1,5 +1,5 @@
-#ifndef QUACHECKSUM32_H
-#define QUACHECKSUM32_H
+#ifndef Header_Qua_Checksum32
+#define Header_Qua_Checksum32
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov

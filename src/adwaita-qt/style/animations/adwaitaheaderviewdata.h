@@ -1,5 +1,5 @@
-#ifndef adwaitaheaderview_data_h
-#define adwaitaheaderview_data_h
+#ifndef Header_Adwaita_HeaderView_Data
+#define Header_Adwaita_HeaderView_Data
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

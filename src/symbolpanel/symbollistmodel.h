@@ -1,5 +1,5 @@
-#ifndef SYMBOLLISTMODEL_H
-#define SYMBOLLISTMODEL_H
+#ifndef Header_SymbolList_Model
+#define Header_SymbolList_Model
 
 #include "mostQtHeaders.h"
 

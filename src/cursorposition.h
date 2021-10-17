@@ -1,5 +1,5 @@
-#ifndef CURSORPOSITION_H
-#define CURSORPOSITION_H
+#ifndef Header_CursorPosition
+#define Header_CursorPosition
 
 class QDocument;
 class QDocumentLineHandle;

@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _Q_NFA_H_
-#define _Q_NFA_H_
+#ifndef Header_QNFA
+#define Header_QNFA
 
 /*!
 	\file qnfa.h

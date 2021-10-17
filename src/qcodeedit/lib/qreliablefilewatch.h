@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QRELIABLE_FILE_WATCH_H_
-#define _QRELIABLE_FILE_WATCH_H_
+#ifndef Header_QReliable_FileWatch
+#define Header_QReliable_FileWatch
 
 #include "mostQtHeaders.h"
 

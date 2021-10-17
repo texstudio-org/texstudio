@@ -1,5 +1,5 @@
-#ifndef MODIFIDIEDQOBJECT_H
-#define MODIFIDIEDQOBJECT_H
+#ifndef Header_Modified_QObject
+#define Header_Modified_QObject
 
 
 #include <qglobal.h>

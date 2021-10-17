@@ -14,8 +14,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LATEXOUTPUTFILTER_H
-#define LATEXOUTPUTFILTER_H
+#ifndef Header_Latex_OutputFilter
+#define Header_Latex_OutputFilter
 
 #include "mostQtHeaders.h"
 

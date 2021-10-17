@@ -1,5 +1,5 @@
-#ifndef JLCOMPRESSFOLDER_H_
-#define JLCOMPRESSFOLDER_H_
+#ifndef Header_JLCompress_Folder
+#define Header_JLCompress_Folder
 
 /*
 Copyright (C) 2010 Roberto Pompermaier

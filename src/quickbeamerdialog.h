@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef QUICKBEAMERDIALOG_H
-#define QUICKBEAMERDIALOG_H
+#ifndef Header_QuickBeamer_Dialog
+#define Header_QuickBeamer_Dialog
 
 #include "ui_quickbeamerdialog.h"
 #include <QLabel>

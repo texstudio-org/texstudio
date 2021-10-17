@@ -1,5 +1,5 @@
-#ifndef LATEXDOCUMENT_H
-#define LATEXDOCUMENT_H
+#ifndef Header_Latex_Document
+#define Header_Latex_Document
 //#undef QT_NO_DEBUG
 #include "mostQtHeaders.h"
 #include "latexstructure.h"

@@ -10,8 +10,8 @@
  ***************************************************************************/
 
 
-#ifndef LOGHIGHLIGHTER_H
-#define LOGHIGHLIGHTER_H
+#ifndef Header_LogHighlighter
+#define Header_LogHighlighter
 
 #include "mostQtHeaders.h"
 

@@ -27,8 +27,8 @@
 **
 **************************************************************************/
 
-#ifndef MANHATTANSTYLE_H
-#define MANHATTANSTYLE_H
+#ifndef Header_ManhattenStyle
+#define Header_ManhattenStyle
 #include <QStyle>
 
 #include <QProxyStyle>

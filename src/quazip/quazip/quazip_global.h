@@ -1,5 +1,5 @@
-#ifndef QUAZIP_GLOBAL_H
-#define QUAZIP_GLOBAL_H
+#ifndef Header_Qua_Zip_Global
+#define Header_Qua_Zip_Global
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov

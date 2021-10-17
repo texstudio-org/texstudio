@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LATEXCOMPLETER_H
-#define LATEXCOMPLETER_H
+#ifndef Header_Latex_Completer
+#define Header_Latex_Completer
 
 #include "mostQtHeaders.h"
 

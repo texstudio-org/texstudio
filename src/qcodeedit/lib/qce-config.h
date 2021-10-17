@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QCE_CONFIG_H_
-#define _QCE_CONFIG_H_
+#ifndef Header_QCE_Config
+#define Header_QCE_Config
 
 /*!
 	\file qce-config.h

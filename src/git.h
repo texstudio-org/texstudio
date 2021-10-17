@@ -1,5 +1,5 @@
-#ifndef GIT_H
-#define GIT_H
+#ifndef Header_Git
+#define Header_Git
 
 #include "mostQtHeaders.h"
 /*!

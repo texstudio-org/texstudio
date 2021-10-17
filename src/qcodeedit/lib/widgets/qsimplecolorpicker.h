@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QSIMPLE_COLOR_PICKER_H_
-#define _QSIMPLE_COLOR_PICKER_H_
+#ifndef Header_QSimple_ColorPicker
+#define Header_QSimple_ColorPicker
 
 #include "mostQtHeaders.h"
 

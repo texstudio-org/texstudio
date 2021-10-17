@@ -1,5 +1,5 @@
-#ifndef RANDOMTEXTGENERATOR_H
-#define RANDOMTEXTGENERATOR_H
+#ifndef Header_RandomText_Generator
+#define Header_RandomText_Generator
 
 #include "mostQtHeaders.h"
 #include "qdocument.h"

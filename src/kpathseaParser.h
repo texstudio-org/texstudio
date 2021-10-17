@@ -1,5 +1,5 @@
-#ifndef KPATHSEAPARSER_H
-#define KPATHSEAPARSER_H
+#ifndef Header_KPathSea_Parser
+#define Header_KPathSea_Parser
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"
 #include <QThread>

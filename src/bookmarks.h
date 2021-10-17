@@ -1,5 +1,5 @@
-#ifndef BOOKMARKS_H
-#define BOOKMARKS_H
+#ifndef Header_Bookmarks
+#define Header_Bookmarks
 
 #include "mostQtHeaders.h"
 #include "latexeditorview.h"

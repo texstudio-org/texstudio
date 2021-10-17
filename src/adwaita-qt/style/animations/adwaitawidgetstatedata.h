@@ -1,5 +1,5 @@
-#ifndef adwaitawidgetstatedata_h
-#define adwaitawidgetstatedata_h
+#ifndef Header_Adwaita_WidgetState_Data
+#define Header_Adwaita_WidgetState_Data
 
 /*************************************************************************
  * Copyright (C) 2014 by Hugo Pereira Da Costa <hugo.pereira@free.fr>    *

@@ -1,5 +1,5 @@
-#ifndef TESTUTIL_H
-#define TESTUTIL_H
+#ifndef Header_TestUtil
+#define Header_TestUtil
 #ifndef QT_NO_DEBUG
 #include <QtTest/QtTest>
 #include <QMessageBox>

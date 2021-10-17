@@ -1,5 +1,5 @@
-#ifndef DIFFOPERATIONS_H
-#define DIFFOPERATIONS_H
+#ifndef Header_Diff_Operations
+#define Header_Diff_Operations
 
 #include "diff/diff_match_patch.h"
 #include "latexdocument.h"

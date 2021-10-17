@@ -27,8 +27,8 @@
 **
 **************************************************************************/
 
-#ifndef ANIMATION_H
-#define ANIMATION_H
+#ifndef Header_Animation
+#define Header_Animation
 
 #include <QtCore/QPointer>
 #include <QtCore/QTime>

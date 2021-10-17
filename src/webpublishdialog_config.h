@@ -1,5 +1,5 @@
-#ifndef WEBPUBLISHDIALOGCONFIG_H
-#define WEBPUBLISHDIALOGCONFIG_H
+#ifndef Header_WebPublish_Dialog_Config
+#define Header_WebPublish_Dialog_Config
 
 //having the configuration in a single file allows to change it,
 //without having a relationship between completer and configmanager

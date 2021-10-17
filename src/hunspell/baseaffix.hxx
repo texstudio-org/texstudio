@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#ifndef BASEAFF_HXX_
-#define BASEAFF_HXX_
+#ifndef Header_BaseAff
+#define Header_BaseAff
 
 #include <string>
 

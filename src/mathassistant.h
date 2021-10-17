@@ -1,5 +1,5 @@
-#ifndef MATHASSISTANT_H
-#define MATHASSISTANT_H
+#ifndef Header_MathAssistant
+#define Header_MathAssistant
 
 #include "mostQtHeaders.h"
 

@@ -1,5 +1,5 @@
-#ifndef UTILSUI_T_H
-#define UTILSUI_T_H
+#ifndef Header_UtilsUI_T
+#define Header_UtilsUI_T
 #ifndef QT_NO_DEBUG
 
 #include "mostQtHeaders.h"

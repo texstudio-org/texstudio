@@ -1,5 +1,5 @@
-#ifndef LATEXREPOSITORY_H
-#define LATEXREPOSITORY_H
+#ifndef Header_Latex_Repository
+#define Header_Latex_Repository
 
 #include "mostQtHeaders.h"
 

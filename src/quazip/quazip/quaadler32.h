@@ -1,5 +1,5 @@
-#ifndef QUAADLER32_H
-#define QUAADLER32_H
+#ifndef Header_Qua_Adler32
+#define Header_Qua_Adler32
 
 /*
 Copyright (C) 2010 Adam Walczak

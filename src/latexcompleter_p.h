@@ -1,5 +1,5 @@
-#ifndef LATEXCOMPLETER_P_H
-#define LATEXCOMPLETER_P_H
+#ifndef Header_Latex_Completer_P
+#define Header_Latex_Completer_P
 
 #include "mostQtHeaders.h"
 

@@ -9,8 +9,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef USERQUICKDIALOG_H
-#define USERQUICKDIALOG_H
+#ifndef Header_UserQuick_Dialog
+#define Header_UserQuick_Dialog
 
 #include "ui_userquickdialog.h"
 

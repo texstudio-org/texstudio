@@ -1,5 +1,5 @@
-#ifndef QUACRC32_H
-#define QUACRC32_H
+#ifndef Header_Qua_CRC32
+#define Header_Qua_CRC32
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov

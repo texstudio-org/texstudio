@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QSEARCH_REPLACE_PANEL_H_
-#define _QSEARCH_REPLACE_PANEL_H_
+#ifndef Header_QSearch_Replace_Panel
+#define Header_QSearch_Replace_Panel
 
 #include "mostQtHeaders.h"
 #include "qdocumentcursor.h"

@@ -1,5 +1,5 @@
-#ifndef PDFRENDERENGINE_H
-#define PDFRENDERENGINE_H
+#ifndef Header_PDF_RenderEngine
+#define Header_PDF_RenderEngine
 
 #ifndef NO_POPPLER_PREVIEW
 

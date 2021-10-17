@@ -38,8 +38,8 @@
 **
 ****************************************************************************/
 
-#ifndef FlowLayoutX_H
-#define FlowLayoutX_H
+#ifndef Header_FlowLayoutX
+#define Header_FlowLayoutX
 
 #include <QLayout>
 #include <QRect>

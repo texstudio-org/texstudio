@@ -1,5 +1,5 @@
-#ifndef DIRECTORYREADER_H
-#define DIRECTORYREADER_H
+#ifndef Header_Directory_Reader
+#define Header_Directory_Reader
 
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"

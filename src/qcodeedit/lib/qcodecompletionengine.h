@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _QCOMPLETION_ENGINE_H_
-#define _QCOMPLETION_ENGINE_H_
+#ifndef Header_QCompletion_Engine
+#define Header_QCompletion_Engine
 
 #include "mostQtHeaders.h"
 

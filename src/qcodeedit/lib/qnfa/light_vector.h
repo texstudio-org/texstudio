@@ -13,8 +13,8 @@
 **
 ****************************************************************************/
 
-#ifndef _LIGHT_VECTOR_H_
-#define _LIGHT_VECTOR_H_
+#ifndef Header_Light_Vector
+#define Header_Light_Vector
 
 #include <qglobal.h>
 

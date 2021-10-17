@@ -1,5 +1,5 @@
-#ifndef QUA_ZIPFILEINFO_H
-#define QUA_ZIPFILEINFO_H
+#ifndef Header_Qua_Zip_FileInfo
+#define Header_Qua_Zip_FileInfo
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov

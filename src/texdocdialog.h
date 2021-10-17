@@ -1,5 +1,5 @@
-#ifndef TEXDOCDIALOG_H
-#define TEXDOCDIALOG_H
+#ifndef Header_TexDoc_Dialog
+#define Header_TexDoc_Dialog
 
 #include "mostQtHeaders.h"
 #include "help.h"
