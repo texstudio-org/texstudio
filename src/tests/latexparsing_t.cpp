@@ -31,10 +31,10 @@ Q_DECLARE_METATYPE(TTypes)
  *  description: const char
  */
 
-inline bool compare(
+inline bool sameType(
     EnumsTokenType::TokenType Actual,
     EnumsTokenType::TokenType Expected,
-    const char * description
+    const QString description
 ){
 
     const auto
@@ -46,7 +46,11 @@ inline bool compare(
         .arg(Token::tokenTypeName(expected))
         .toLatin1().constData();
 
-    return ! QTest::qVerify(actual == expected,msg,description,__FILE__,__LINE__);
+    const auto desc = description
+        .toLatin1().constData();
+
+
+    return QTest::qVerify(actual == expected,msg,desc,__FILE__,__LINE__);
 }
 
 
@@ -56,9 +60,9 @@ inline bool compare(
  *  This is particularly useful for test macros which expect a const char * as description.
  */
 
-template <typename Type> inline auto format(const char * string,Type value){
-    return QString(string).arg(value).toLatin1().constData();
-}
+//template <typename Type> inline auto format(const char * string,Type value){
+//    return QString(string).arg(value).toLatin1().constData();
+//}
 
 
 void LatexParsingTest::test_simpleLexing_data() {
@@ -152,10 +156,12 @@ void LatexParsingTest::test_simpleLexing() {
     TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
     for(int i=0; i<tl.length(); i++) {
         Token tk = tl.at(i);
-        if(compare(tk.type, types.value(i), format("incorrect type at index %1", i)))
+
+        if(! sameType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
             return;
-        QVERIFY2(tk.start == starts.value(i), format("incorrect start at index %1", i));
-        QVERIFY2(tk.length == lengths.value(i), format("incorrect length at index %1", i));
+
+        QVERIFY2(tk.start == starts.value(i), QString("incorrect start at index %1").arg(i).toLatin1());
+        QVERIFY2(tk.length == lengths.value(i), QString("incorrect length at index %1").arg(i).toLatin1());
     }
     dlh->deref();
     delete doc;
@@ -371,15 +377,15 @@ void LatexParsingTest::test_latexLexing() {
 	for(int i=0; i<tl.length(); i++){
         Token tk = tl.at(i);
 
-        if(compare(tk.type, types.value(i), format("incorrect type at index %1", i)))
+        if(! sameType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
             return;
 
-        if(compare(tk.subtype, subtypes.value(i), format("incorrect subtype at index %1", i)))
+        if(! sameType(tk.subtype, subtypes.value(i), QString("incorrect subtype at index %1").arg(i)))
             return;
 
-        QVERIFY2(tk.start == starts.value(i), format("incorrect start (at index %1)", i));
-        QVERIFY2(tk.length == lengths.value(i), format("incorrect length (at index %1)", i));
-        QVERIFY2(tk.level == levels.value(i), format("incorrect level (at index %1)", i));
+        QVERIFY2(tk.start == starts.value(i), QString("incorrect start (at index %1)").arg(i).toLatin1());
+        QVERIFY2(tk.length == lengths.value(i), QString("incorrect length (at index %1)").arg(i).toLatin1());
+        QVERIFY2(tk.level == levels.value(i), QString("incorrect level (at index %1)").arg(i).toLatin1());
     }
     QVERIFY2(tl.length() == types.length(), "missing tokens");
     delete doc;
@@ -478,15 +484,15 @@ void LatexParsingTest::test_findCommandWithArgsFromTL() {
     for(int i=0; i<args.length(); i++){
         Token tk = args.at(i);
 
-        if(compare(tk.type, types.value(i), format("incorrect type at index %1", i)))
+        if(! sameType(tk.type, types.value(i), QString("incorrect type at index %1").arg(i)))
             return;
 
-        if(compare(tk.subtype, subtypes.value(i), format("incorrect subtype at index %1", i)))
+        if(! sameType(tk.subtype, subtypes.value(i), QString("incorrect subtype at index %1").arg(i)))
             return;
 
-        QVERIFY2(tk.start == starts.value(i), format("incorrect start (at index %1)", i));
-        QVERIFY2(tk.length == lengths.value(i), format("incorrect length (at index %1)", i));
-        QVERIFY2(tk.level == levels.value(i), format("incorrect level (at index %1)", i));
+        QVERIFY2(tk.start == starts.value(i), QString("incorrect start (at index %1)").arg(i).toLatin1());
+        QVERIFY2(tk.length == lengths.value(i), QString("incorrect length (at index %1)").arg(i).toLatin1());
+        QVERIFY2(tk.level == levels.value(i), QString("incorrect level (at index %1)").arg(i).toLatin1());
     }
     QVERIFY2(args.length() == types.length(), "missing tokens");
     delete doc;
@@ -776,14 +782,14 @@ void LatexParsingTest::test_getTokenAtCol() {
         Token tk = Parsing::getTokenAtCol(dlh, nr.at(i));
         QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
 
-        if(compare(tk.type, desiredResults.at(i), format("incorrect type at index %1", i)))
+        if(! sameType(tk.type, desiredResults.at(i), QString("incorrect type at index %1").arg(i)))
             return;
 
         p = Parsing::getTokenAtCol(tl, nr.at(i), true);
         tk = Parsing::getTokenAtCol(dlh, nr.at(i), true);
         QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
 
-        if(compare(tk.type, desiredResults2.at(i), format("incorrect type at index %1", i)))
+        if(! sameType(tk.type, desiredResults2.at(i), QString("incorrect type at index %1").arg(i)))
             return;
     }
     delete doc;
@@ -978,10 +984,10 @@ void LatexParsingTest::test_getContext() {
     TokenStack result = Parsing::getContext(dlh,nr);
 
     for(int k=0;k<result.size();k++){
-        if(compare(result.at(k).type, desiredResults.at(k), format("incorrect type at index %1", k)))
+        if(! sameType(result.at(k).type, desiredResults.at(k), QString("incorrect type at index %1").arg(k)))
             return;
 
-        if(compare(result.at(k).type, desiredResults.at(k), format("incorrect subtype at index %1", k)))
+        if(! sameType(result.at(k).type, desiredResults.at(k), QString("incorrect subtype at index %1").arg(k)))
             return;
     }
 
