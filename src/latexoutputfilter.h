@@ -36,11 +36,16 @@ struct LatexLogEntry {
 };
 
 #define DEBUG_FILE_STACK 0
-#if DEBUG_FILE_STACK
-#define PRINT_FILE_STACK(operation, file) {qDebug() << operation << file;}
-#else
-#define PRINT_FILE_STACK(operation, file)
-#endif
+
+inline void printFileStack(const char * operation,QString file){
+    #if DEBUG_FILE_STACK
+        qDebug() << operation << file;
+    #else
+        (void) operation;
+        (void) file;
+    #endif
+}
+
 
 /**
  * An object of this class is used to parse the output messages
