@@ -1248,6 +1248,7 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 
 	config->beginGroup("version");
 	// updated on every access
+    uint writtenQtVersion=config->value("written_by_Qt_version").toUInt();
 	config->setValue("written_by_TXS_version", TXSVERSION);
     config->setValue("written_by_TXS_hg_revision", TEXSTUDIO_GIT_REVISION);
 	config->setValue("written_by_Qt_version", QT_VERSION);
@@ -1321,6 +1322,17 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	// custom highlighting
     QStringList zw = LatexParser::getInstance().customCommands.values();
 	config->setValue("customCommands", zw);
+
+#if QT_VERSION<QT_VERSION_CHECK(6,0,0)
+    if(writtenQtVersion>=0x060000){
+        // avoid crash when syncing to file (mix of Qt6/Qt5 ini with DateTime)
+        config->remove("Update/LastCheck");
+        config->remove("Debug/Last Application Modification");
+        config->remove("Debug/Last Full Test Run");
+    }
+#else
+    Q_UNUSED(writtenQtVersion)
+#endif
 
 	config->endGroup();
 
