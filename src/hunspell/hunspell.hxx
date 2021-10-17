@@ -76,9 +76,9 @@
 #include <string>
 #include <vector>
 
-const std::string SPELL_XML = "<?xml?>";
+const char * const SPELL_XML = "<?xml?>";
 
-const unsigned int
+const int
     MAXSUGGESTION = 15,
     MAXSHARPS = 5;
 
