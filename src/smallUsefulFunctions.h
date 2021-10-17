@@ -35,13 +35,9 @@
 // pos = indexMin(s.indexOf('A'), s.indexOf('B'))
 // pos is negative if s does not contain neither A nor B
 
-#define universal template <typename Type> constexpr inline const Type &
-
-universal indexMin(const Type & a,const Type & b){
+constexpr const int & indexMin(const int & a,const int & b){
     return (a < 0 || b < 0) ? qMax(a,b) : qMin(a,b);
 }
-
-#undef universal
 
 
 struct CommandArgument {
