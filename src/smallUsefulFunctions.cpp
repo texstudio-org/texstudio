@@ -315,7 +315,7 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 	QStringList joinedLines;
 	QString tmpLine;
 
-    #define flushTmp()                      \
+    #define flushTmpLine()                      \
         if(!tmpLine.isEmpty()){             \
             joinedLines.append(tmpLine);    \
             tmpLine.clear();                \
@@ -325,7 +325,7 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 		QString rtrimmedLine = trimRight(l);
 
 		if (rtrimmedLine.isEmpty()) { // empty line as separator
-            flushTmp();
+            flushTmpLine();
 			joinedLines.append(rtrimmedLine);
 			continue;
 		}
@@ -337,13 +337,13 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 		}
 		int commentStart = LatexParser::commentStart(rtrimmedLine);
 		if (commentStart >= 0) {
-            flushTmp();
+            flushTmpLine();
 		}
 	}
 
-    flushTmp();
+    flushTmpLine();
 
-    #undef flushTmp
+    #undef flushTmpLine
 
 	return joinedLines;
 }
