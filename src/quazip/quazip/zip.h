@@ -64,7 +64,7 @@ extern "C" {
 #include "bzlib.h"
 #endif
 
-const unsigned long Z_BZIP2ED = 12;
+#define Z_BZIP2ED 12
 
 #if defined(STRICTZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
@@ -87,8 +87,9 @@ const int
 const unsigned int
     ZIP_WRITE_DATA_DESCRIPTOR = 0x8u,
     ZIP_AUTO_CLOSE = 0x1u,
-    ZIP_SEQUENTIAL = 0x2u,
-    ZIP_DEFAULT_FLAGS = ZIP_AUTO_CLOSE | ZIP_WRITE_DATA_DESCRIPTOR;
+    ZIP_SEQUENTIAL = 0x2u;
+
+const unsigned int ZIP_DEFAULT_FLAGS = ZIP_AUTO_CLOSE | ZIP_WRITE_DATA_DESCRIPTOR;
 
 #ifndef DEF_MEM_LEVEL
 #  if MAX_MEM_LEVEL >= 8
