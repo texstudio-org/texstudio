@@ -314,10 +314,18 @@ void scriptengine::insertSnippet(const QString& arg)
 	}
 }
 
-#if (QT_VERSION>=QT_VERSION_CHECK(5,12,0))
-#define SCRIPT_REQUIRE(cond, message) if (!(cond)) { engine->throwError(scriptengine::tr(message)); return QJSValue();}
+#if ( QT_VERSION >= QT_VERSION_CHECK(5,12,0) )
+    #define assertTrue(condition,message)                     \
+        if(!(condition)){                                     \
+            engine -> throwError(scriptengine::tr(message));  \
+            return QJSValue();                                \
+        }
 #else
-#define SCRIPT_REQUIRE(cond, message) if (!(cond)) { qDebug()<<scriptengine::tr(message); return QJSValue();}
+    #define assertTrue(condition,message)           \
+        if(!(condition)){                           \
+            qDebug() << scriptengine::tr(message);  \
+            return QJSValue();                      \
+        }
 #endif
 
 QJSValue scriptengine::replaceSelectedText(QJSValue replacementText,QJSValue options)
@@ -329,13 +337,13 @@ QJSValue scriptengine::replaceSelectedText(QJSValue replacementText,QJSValue opt
 	bool macro = false;
 
 	if (!options.isUndefined() ) {
-		SCRIPT_REQUIRE(options.isObject(), "2nd value needs to be an object")
+        assertTrue(options.isObject(), "2nd value needs to be an object")
 		noEmpty = options.property("noEmpty").toBool();
 		onlyEmpty = options.property("onlyEmpty").toBool();
 		append = options.property("append").toBool();
 		prepend = options.property("prepend").toBool();
 		macro = options.property("macro").toBool();
-		SCRIPT_REQUIRE(!macro || !(append || prepend), "Macro option cannot be combined with append or prepend option.") //well it could, but there is no good way to	define what should happen to the selection
+        assertTrue(!macro || !(append || prepend), "Macro option cannot be combined with append or prepend option.") //well it could, but there is no good way to	define what should happen to the selection
 	}
 
 
@@ -398,10 +406,10 @@ QJSValue scriptengine::replaceSelectedText(QJSValue replacementText,QJSValue opt
 QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1, QJSValue arg2, QJSValue arg3, bool replace)
 {
 	//read arguments
-	SCRIPT_REQUIRE(m_editor, "invalid object")
-	SCRIPT_REQUIRE(!replace || !arg1.isUndefined(), "at least two arguments are required")
-	SCRIPT_REQUIRE(!searchText.isUndefined() , "at least one argument is required")
-	SCRIPT_REQUIRE(searchText.isString() || searchText.isRegExp(), "first argument must be a string or regexp")
+    assertTrue(m_editor, "invalid object")
+    assertTrue(!replace || !arg1.isUndefined(), "at least two arguments are required")
+    assertTrue(!searchText.isUndefined() , "at least one argument is required")
+    assertTrue(searchText.isString() || searchText.isRegExp(), "first argument must be a string or regexp")
 	QDocumentSearch::Options flags = QDocumentSearch::Silent;
     bool global = false, caseInsensitive = false;
 	QString searchFor;
@@ -443,7 +451,7 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
 			break;
 		if (args.isString() || args.isCallable()) handlerCount++;
 	}
-	SCRIPT_REQUIRE(handlerCount <= (replace ? 3 : 2), "too many string or function arguments")
+    assertTrue(handlerCount <= (replace ? 3 : 2), "too many string or function arguments")
 	for (int i = 1; i < 4; i++) {
 		QJSValue a;
 		switch (i)
@@ -461,7 +469,7 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
 		if(a.isUndefined())
 			break;
 		if (a.isCallable()) {
-			SCRIPT_REQUIRE(handler.isUndefined(), "Multiple callbacks")
+            assertTrue(handler.isUndefined(), "Multiple callbacks")
 			handler = a;
 		} else if (a.isString()) {
 			if (!replace || handlerCount > 1) {
@@ -470,15 +478,15 @@ QJSValue scriptengine::searchReplaceFunction(QJSValue searchText, QJSValue arg1,
 				caseInsensitive = s.contains("i");
 				if (s.contains("w")) flags |= QDocumentSearch::WholeWords;
 			} else {
-				SCRIPT_REQUIRE(handler.isUndefined(), "Multiple callbacks")
+                assertTrue(handler.isUndefined(), "Multiple callbacks")
 				handler = a;
 			}
 			handlerCount--;
 		} else if (a.isNumber()) flags |= QDocumentSearch::Options((int)a.toNumber());
         else if (a.isObject()) m_scope = cursorFromValue(a);
-		else SCRIPT_REQUIRE(false, "Invalid argument")
+        else assertTrue(false, "Invalid argument")
 	}
-	SCRIPT_REQUIRE(!handler.isUndefined() || !replace, "No callback given")
+    assertTrue(!handler.isUndefined() || !replace, "No callback given")
 	if (!caseInsensitive) flags |= QDocumentSearch::CaseSensitive;
 	//search/replace
 	QDocumentSearch search(m_editor, searchFor, flags);
@@ -839,3 +847,5 @@ QVariant UniversalInputDialogScript::get(const QJSValue &id)
 	//engine->throwError(tr("Unknown variable %1").arg(id.toString()));
 	return QVariant();
 }
+
+#undef assertTrue
