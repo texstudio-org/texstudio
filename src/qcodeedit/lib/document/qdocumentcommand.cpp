@@ -983,6 +983,7 @@ void QDocumentCommandBlock::redo()
 
 void QDocumentCommandBlock::undo()
 {
+    if(m_commands.isEmpty()) return;
     for (int i = m_commands.count() - 1; i >= 0; --i )
 		m_commands.at(i)->undo();
 
