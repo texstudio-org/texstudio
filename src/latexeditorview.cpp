@@ -1674,7 +1674,7 @@ void LatexEditorView::updateFormatSettings()
 		REQUIRE(QDocument::defaultFormatScheme());
 
         const void *formats[] = {
-            & environmentFormat , "enviroment" ,
+            & environmentFormat , "environment" ,
             & referenceMultipleFormat , "referenceMultiple" ,
             & referencePresentFormat , "referencePresent" ,
             & referenceMissingFormat , "referenceMissing" ,
