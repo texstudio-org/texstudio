@@ -56,6 +56,7 @@ static inline void HUNSPELL_WARNING(FILE*, const char*, ...) {}
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <time.h>
 
 const int SETSIZE = 256;
 const int CONTSIZE = 65536;
