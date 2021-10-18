@@ -506,6 +506,11 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
     // check command-words
 	for (int i = 0; i < tl.length(); i++) {
         Token &tk = tl[i];
+        // remove top env if column exceeds columnlimit
+        // used for formula -> brace -> {....}
+        if(activeEnv.top().endingColumn>=0 && tk.start>activeEnv.top().endingColumn){
+            Environment env=activeEnv.pop();
+        }
 		// ignore commands in definition arguments e.g. \newcommand{cmd}{definition}
 		if (stackContainsDefinition(stack)) {
 			Token top = stack.top();
@@ -557,6 +562,18 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 elem.format=mFormatList["#math"];
             }else{
                 elem.format=mFormatList["math"];
+            }
+            if(tk.type==Token::braces){
+                // add to active env
+                Environment env;
+                env.name = "math";
+                env.id = 1; // to be changed
+                env.dlh = dlh;
+                env.ticket = ticket;
+                env.level = tk.level;
+                env.startingColumn=tk.start+1;
+                env.endingColumn=tk.start+tk.length-1;
+                activeEnv.push(env);
             }
             newRanges.append(elem);
         }
@@ -1194,19 +1211,26 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 	}
     if(!activeEnv.isEmpty()){
         //check active env for env highlighting (math,verbatim)
-        foreach(const Environment &env, activeEnv){
-            QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
-            altEnvs<<env.name;
+        QStack<Environment>::Iterator it=activeEnv.begin();
+        while(it!=activeEnv.end()){
+            QStringList altEnvs = ltxCommands->environmentAliases.values(it->name);
+            altEnvs<<it->name;
             foreach(const QString &key, mFormatList.keys()){
                 if(altEnvs.contains(key)){
                     Error elem;
-                    int start= env.dlh==dlh ? env.startingColumn : 0;
+                    int start= it->dlh==dlh ? it->startingColumn : 0;
                     elem.range = QPair<int, int>(start, commentStart>=0 ? commentStart-start : line.length()-start);
                     elem.type = ERR_highlight;
                     elem.format=mFormatList.value(key);
                     newRanges.prepend(elem);  // draw this first and then other on top (e.g. keyword highlighting) !
                 }
             }
+            if(it->endingColumn>-1){
+                activeEnv.erase(it);
+            }else{
+                ++it;
+            }
         }
+
     }
 }

@@ -17,7 +17,7 @@ class SpellerUtility;
 class Environment
 {
 public:
-    Environment(): id(-1), excessCol(0), dlh(nullptr), ticket(0), level(0) {} ///< constructor
+    Environment(): id(-1), excessCol(0), dlh(nullptr),endingColumn(-1) , ticket(0), level(0) {} ///< constructor
 
 	QString name; ///< name of environment, partially an alias is used, e.g. math instead of '$'
     QString origName; ///< original name of environment if alias is used, otherwise empty
@@ -25,6 +25,7 @@ public:
 	int excessCol; ///< number of unused tabular-columns if columns are strechted over several text lines
 	QDocumentLineHandle *dlh; ///< linehandle of starting line
     int startingColumn;
+    int endingColumn;
 	int ticket;
     int level; ///< command level (see tokens) in order to handle nested commands like \shortstack
 
