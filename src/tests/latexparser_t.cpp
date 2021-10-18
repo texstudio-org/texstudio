@@ -340,15 +340,15 @@ void LatexParserTest::test_findContext2_data()
 	QTest::addColumn<QString>("command");
 	QTest::addColumn<QString>("value");
 
-	QTest::newRow("command") << "\\begin{test}" << 3 << (int)LatexParser::Command << "\\begin" << "test";
-	QTest::newRow("content") << "\\begin{test}" << 8 << (int)LatexParser::Environment << "\\begin" << "test";
-	QTest::newRow("ref") << "\\ref{test}" << 8 << (int)LatexParser::Reference << "\\ref" << "test";
-	QTest::newRow("label") << "\\label{test}" << 8 << (int)LatexParser::Label << "\\label" << "test";
-	QTest::newRow("cite") << "\\cite{test}" << 8 << (int)LatexParser::Citation << "\\cite" << "test";
-	QTest::newRow("cite") << "\\cite{test}" << 3 << (int)LatexParser::Command << "\\cite" << "test";
-	QTest::newRow("abcd option") << "\\abcd{test}" << 7 << (int)LatexParser::Option << "\\abcd" << "test";
-	QTest::newRow("abcd option2") << "\\abcd[abc]{test}" << 12 << (int)LatexParser::Option << "\\abcd" << "test";
-	QTest::newRow("abcd option3") << "\\abcd[\\abc]{test}" << 12 << (int)LatexParser::Option << "\\abcd" << "test";
+    QTest::newRow("command") << "\\begin{test}" << 3 << static_cast<int>(LatexParser::Command) << "\\begin" << "test";
+    QTest::newRow("content") << "\\begin{test}" << 8 << static_cast<int>(LatexParser::Environment) << "\\begin" << "test";
+    QTest::newRow("ref") << "\\ref{test}" << 8 << static_cast<int>(LatexParser::Reference) << "\\ref" << "test";
+    QTest::newRow("label") << "\\label{test}" << 8 << static_cast<int>(LatexParser::Label) << "\\label" << "test";
+    QTest::newRow("cite") << "\\cite{test}" << 8 << static_cast<int>(LatexParser::Citation) << "\\cite" << "test";
+    QTest::newRow("cite") << "\\cite{test}" << 3 << static_cast<int>(LatexParser::Command) << "\\cite" << "test";
+    QTest::newRow("abcd option") << "\\abcd{test}" << 7 << static_cast<int>(LatexParser::Option) << "\\abcd" << "test";
+    QTest::newRow("abcd option2") << "\\abcd[abc]{test}" << 12 << static_cast<int>(LatexParser::Option) << "\\abcd" << "test";
+    QTest::newRow("abcd option3") << "\\abcd[\\abc]{test}" << 12 << static_cast<int>(LatexParser::Option) << "\\abcd" << "test";
 }
 
 void LatexParserTest::test_findContext2()
@@ -361,7 +361,7 @@ void LatexParserTest::test_findContext2()
 	QString cmd;
 	QString val;
 	LatexParser::ContextType res = LatexParser::getInstance().findContext(in, pos, cmd, val);
-	QEQUAL((int)res, out);
+    QEQUAL(static_cast<int>(res), out);
 	QEQUAL(cmd, command);
 	QEQUAL(val, value);
 }
