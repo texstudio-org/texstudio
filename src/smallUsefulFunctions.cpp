@@ -925,7 +925,7 @@ QStringList tokenizeCommandLine(const QString &commandLine) {
 				currentToken.append(c);
 			} else if (currentToken == "2"){
 				currentToken.append(c);
-                FLUSH(currentToken);
+                FLUSH(currentToken)
 			} else {
                 FLUSH(currentToken)
 				currentToken = c;
