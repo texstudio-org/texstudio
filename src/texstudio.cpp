@@ -6770,7 +6770,7 @@ bool Texstudio::executeTests(const QStringList &args)
             || (configManager.debugLastFullTestRun.daysTo(myself.lastModified()) > 6);
     if(autoTests)
         allTests=false;
-    if (args.contains("--execute-tests") || myself.lastModified() != configManager.debugLastFileModification || allTests || autoTests) {
+    if (args.contains("--execute-tests") || (configManager.debugLastFileModification.isValid() && myself.lastModified() != configManager.debugLastFileModification) || allTests || autoTests) {
         fileNew();
         if (!currentEditorView() || !currentEditorView()->editor){
             if(autoTests){
