@@ -166,7 +166,7 @@ const QString punctuationNotFollowedBySpace = "(\"\u00A0";
  * This is used in loops for selectively joining words with spaces. */
 
 
-#define preceedWithSpaces(i,words)                                      \
+#define PRECEED_WITH_SPACES(i,words)                                      \
                                                                         \
     (i)++;                                                              \
                                                                         \
@@ -346,7 +346,7 @@ void GrammarCheck::process(int reqId)
             joined.reserve(expectedLength + words.length());
             for (int i = 0;;) {
                 joined += words[i];
-                preceedWithSpaces(i, words)
+                PRECEED_WITH_SPACES(i, words)
                 joined += " ";
 			}
 			backend->check(crTicket, b, crLanguage, joined);
@@ -466,7 +466,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	while (err < backendErrors.size()) {
 		if (backendErrors[err].offset >= curOffset + words[curWord].length()) {
 			curOffset += words[curWord].length();
-            preceedWithSpaces(curWord, words)
+            PRECEED_WITH_SPACES(curWord, words)
 			curOffset++; //space
 		} else { //if (backendErrors[err].offset >= curOffset) {
 			int trueIndex = tb.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
@@ -482,7 +482,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 					}
 					break;
 				}
-                preceedWithSpaces(w, words)
+                PRECEED_WITH_SPACES(w, words)
 				tempOffset++; //space
 			}
 			if (trueLength == -1)
@@ -892,4 +892,4 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
     }
 }
 
-#undef preceedWithSpaces
+#undef PRECEED_WITH_SPACES
