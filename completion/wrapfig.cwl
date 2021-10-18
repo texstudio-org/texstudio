@@ -1,9 +1,9 @@
 # wrapfig package
 # Matthew Bertucci 8/31/2021 for v3.6
 
-\begin{wrapfig}{position}{width}
-\begin{wrapfig}[lineheight]{position}[overhang%l]{width}
-\end{wrapfig}
+\begin{wrapfigure}{position}{width}
+\begin{wrapfigure}[lineheight]{position}[overhang%l]{width}
+\end{wrapfigure}
 \begin{wraptable}{position}{width}#*
 \begin{wraptable}[lineheight]{position}[overhang%l]{width}#*
 \end{wraptable}#*
