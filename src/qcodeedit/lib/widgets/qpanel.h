@@ -86,7 +86,7 @@ class QPanelCreator
 };
 
 
-#define Q_Panel(type,name)                                  \
+#define Q_PANEL(type,name)                                  \
                                                             \
     QString id() const { return (name); }                   \
                                                             \

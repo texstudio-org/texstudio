@@ -38,7 +38,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 	Q_OBJECT
 	
 	public:
-		Q_Panel(QSearchReplacePanel, "Search Replace Panel")
+		Q_PANEL(QSearchReplacePanel, "Search Replace Panel")
 		
         QSearchReplacePanel(QWidget *p = nullptr);
 		virtual ~QSearchReplacePanel();
