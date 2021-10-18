@@ -377,7 +377,7 @@
 \slshape
 \small
 \sqrt[root]{arg}#m
-\stackrel{above}{under}
+\stackrel{above}{rel}#m
 \stepcounter{counter}
 \stop
 \subitem
