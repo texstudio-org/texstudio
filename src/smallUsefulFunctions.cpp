@@ -315,7 +315,7 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 	QStringList joinedLines;
 	QString tmpLine;
 
-    #define flushTmpLine()                      \
+    #define FLUSH_TMPLINE()                      \
         if(!tmpLine.isEmpty()){             \
             joinedLines.append(tmpLine);    \
             tmpLine.clear();                \
@@ -325,7 +325,7 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 		QString rtrimmedLine = trimRight(l);
 
 		if (rtrimmedLine.isEmpty()) { // empty line as separator
-            flushTmpLine();
+            FLUSH_TMPLINE();
 			joinedLines.append(rtrimmedLine);
 			continue;
 		}
@@ -337,13 +337,13 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 		}
 		int commentStart = LatexParser::commentStart(rtrimmedLine);
 		if (commentStart >= 0) {
-            flushTmpLine();
+            FLUSH_TMPLINE();
 		}
 	}
 
-    flushTmpLine();
+    FLUSH_TMPLINE();
 
-    #undef flushTmpLine
+    #undef FLUSH_TMPLINE
 
 	return joinedLines;
 }
@@ -900,7 +900,7 @@ QStringList tokenizeCommandLine(const QString &commandLine) {
 	bool inQuote = false;
 	bool escape= false;
 
-    #define flush(value)        \
+    #define FLUSH(value)        \
         if(!(value).isEmpty())  \
             result << (value);  \
                                 \
@@ -911,7 +911,7 @@ QStringList tokenizeCommandLine(const QString &commandLine) {
 			if (inQuote) {
 				currentToken.append(c);
 			} else {
-                flush(currentToken)
+                FLUSH(currentToken)
 			}
 		} else if (c == '\\') {
 			escape = !escape;
@@ -925,11 +925,11 @@ QStringList tokenizeCommandLine(const QString &commandLine) {
 				currentToken.append(c);
 			} else if (currentToken == "2"){
 				currentToken.append(c);
-                flush(currentToken);
+                FLUSH(currentToken);
 			} else {
-                flush(currentToken)
+                FLUSH(currentToken)
 				currentToken = c;
-                flush(currentToken)
+                FLUSH(currentToken)
 			}
 		} else {
 			currentToken.append(c);
@@ -937,9 +937,9 @@ QStringList tokenizeCommandLine(const QString &commandLine) {
 		escape = false;
 	}
 
-    flush(currentToken)
+    FLUSH(currentToken)
 
-    #undef flush
+    #undef FLUSH
 
 	return result;
 }
