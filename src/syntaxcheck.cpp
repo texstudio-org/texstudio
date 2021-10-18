@@ -508,7 +508,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
         Token &tk = tl[i];
         // remove top env if column exceeds columnlimit
         // used for formula -> brace -> {....}
-        if(activeEnv.top().endingColumn>=0 && tk.start>activeEnv.top().endingColumn){
+        if(!activeEnv.isEmpty() && activeEnv.top().endingColumn>=0 && tk.start>activeEnv.top().endingColumn){
             Environment env=activeEnv.pop();
         }
 		// ignore commands in definition arguments e.g. \newcommand{cmd}{definition}
