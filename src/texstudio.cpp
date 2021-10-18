@@ -805,9 +805,9 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 // note: in particular many key combination with arrows are reserved for text navigation in OSX
 // and we already set them in QEditor. Don't overwrite them here.
 #ifdef Q_OS_MAC
-    #define macOrDefault(shortcutMac, shortcutOther) shortcutMac
+    #define MAC_OR_DEFAULT(shortcutMac, shortcutOther) shortcutMac
 #else
-    #define macOrDefault(shortcutMac, shortcutOther) shortcutOther
+    #define MAC_OR_DEFAULT(shortcutMac, shortcutOther) shortcutOther
 #endif
 /*! \brief set-up all menus in the menu-bar
  *
@@ -921,11 +921,11 @@ void Texstudio::setupMenus()
 	submenu = newManagedMenu(menu, "lineoperations", tr("&Line Operations"));
     newManagedAction(submenu, "deleteLine", tr("Delete &Line"), SLOT(editDeleteLine()), Qt::CTRL | Qt::Key_K);
 #if QT_VERSION>=QT_VERSION_CHECK(6,0,0)
-    newManagedAction(submenu, "deleteToEndOfLine", tr("Delete To &End Of Line"), SLOT(editDeleteToEndOfLine()), macOrDefault(Qt::CTRL | Qt::Key_Delete,  Qt::AltModifier | Qt::Key_K));
+    newManagedAction(submenu, "deleteToEndOfLine", tr("Delete To &End Of Line"), SLOT(editDeleteToEndOfLine()), MAC_OR_DEFAULT(Qt::CTRL | Qt::Key_Delete,  Qt::AltModifier | Qt::Key_K));
 #else
-    newManagedAction(submenu, "deleteToEndOfLine", tr("Delete To &End Of Line"), SLOT(editDeleteToEndOfLine()), macOrDefault(Qt::CTRL | Qt::Key_Delete,  Qt::AltModifier + Qt::Key_K));
+    newManagedAction(submenu, "deleteToEndOfLine", tr("Delete To &End Of Line"), SLOT(editDeleteToEndOfLine()), MAC_OR_DEFAULT(Qt::CTRL | Qt::Key_Delete,  Qt::AltModifier + Qt::Key_K));
 #endif
-    newManagedAction(submenu, "deleteFromStartOfLine", tr("Delete From &Start Of Line"), SLOT(editDeleteFromStartOfLine()), macOrDefault(Qt::CTRL | Qt::Key_Backspace, 0));
+    newManagedAction(submenu, "deleteFromStartOfLine", tr("Delete From &Start Of Line"), SLOT(editDeleteFromStartOfLine()), MAC_OR_DEFAULT(Qt::CTRL | Qt::Key_Backspace, 0));
 	newManagedAction(submenu, "moveLineUp", tr("Move Line &Up"), SLOT(editMoveLineUp()));
 	newManagedAction(submenu, "moveLineDown", tr("Move Line &Down"), SLOT(editMoveLineDown()));
 	newManagedAction(submenu, "duplicateLine", tr("Du&plicate Line"), SLOT(editDuplicateLine()));
@@ -942,8 +942,8 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
 	newManagedAction(submenu, "find", tr("&Find"), SLOT(editFind()), QKeySequence::Find);
-    newManagedEditorAction(submenu, "findnext", tr("Find &Next"), "findNext", macOrDefault(Qt::CTRL | Qt::Key_G, Qt::Key_F3));
-    newManagedEditorAction(submenu, "findprev", tr("Find &Prev"), "findPrev", macOrDefault(Qt::CTRL | Qt::SHIFT | Qt::Key_G, Qt::SHIFT | Qt::Key_F3));
+    newManagedEditorAction(submenu, "findnext", tr("Find &Next"), "findNext", MAC_OR_DEFAULT(Qt::CTRL | Qt::Key_G, Qt::Key_F3));
+    newManagedEditorAction(submenu, "findprev", tr("Find &Prev"), "findPrev", MAC_OR_DEFAULT(Qt::CTRL | Qt::SHIFT | Qt::Key_G, Qt::SHIFT | Qt::Key_F3));
     newManagedEditorAction(submenu, "findinsamedir", tr("Continue F&ind"), "findInSameDir");
 	newManagedEditorAction(submenu, "findcount", tr("&Count"), "findCount");
 	newManagedEditorAction(submenu, "select", tr("&Select all matches..."), "selectAllMatches");
@@ -956,7 +956,7 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "goto", tr("Go to"));
 
-    newManagedEditorAction(submenu, "line", tr("Line"), "gotoLine", macOrDefault(Qt::CTRL + Qt::Key_L, Qt::CTRL | Qt::Key_G), "goto");
+    newManagedEditorAction(submenu, "line", tr("Line"), "gotoLine", MAC_OR_DEFAULT(Qt::CTRL + Qt::Key_L, Qt::CTRL | Qt::Key_G), "goto");
     newManagedEditorAction(submenu, "lastchange", tr("Previous Change"), "jumpChangePositionBackward", Qt::CTRL | Qt::Key_H);
 #if (QT_VERSION>=QT_VERSION_CHECK(6,0,0))
     newManagedEditorAction(submenu, "nextchange", tr("Next Change"), "jumpChangePositionForward", QKeyCombination(Qt::CTRL | Qt::SHIFT , Qt::Key_H));
@@ -964,12 +964,12 @@ void Texstudio::setupMenus()
     newManagedEditorAction(submenu, "nextchange", tr("Next Change"), "jumpChangePositionForward", Qt::CTRL | Qt::SHIFT | Qt::Key_H);
 #endif
 	submenu->addSeparator();
-    newManagedAction(submenu, "markprev", tr("Previous mark"), "gotoMark", macOrDefault(0, Qt::CTRL | Qt::Key_Up), "", QList<QVariant>() << true << -1); //, ":/images/errorprev.png");
-    newManagedAction(submenu, "marknext", tr("Next mark"), "gotoMark", macOrDefault(0, Qt::CTRL | Qt::Key_Down), "", QList<QVariant>() << false << -1); //, ":/images/errornext.png");
+    newManagedAction(submenu, "markprev", tr("Previous mark"), "gotoMark", MAC_OR_DEFAULT(0, Qt::CTRL | Qt::Key_Up), "", QList<QVariant>() << true << -1); //, ":/images/errorprev.png");
+    newManagedAction(submenu, "marknext", tr("Next mark"), "gotoMark", MAC_OR_DEFAULT(0, Qt::CTRL | Qt::Key_Down), "", QList<QVariant>() << false << -1); //, ":/images/errornext.png");
 	submenu->addSeparator();
 	if (cursorHistory) {
-        cursorHistory->setBackAction(newManagedAction(submenu, "goback", tr("Go Back"), SLOT(goBack()), macOrDefault(0, Qt::ALT | Qt::Key_Left), "back"));
-        cursorHistory->setForwardAction(newManagedAction(submenu, "goforward", tr("Go Forward"), SLOT(goForward()), macOrDefault(0, Qt::ALT | Qt::Key_Right), "forward"));
+        cursorHistory->setBackAction(newManagedAction(submenu, "goback", tr("Go Back"), SLOT(goBack()), MAC_OR_DEFAULT(0, Qt::ALT | Qt::Key_Left), "back"));
+        cursorHistory->setForwardAction(newManagedAction(submenu, "goforward", tr("Go Forward"), SLOT(goForward()), MAC_OR_DEFAULT(0, Qt::ALT | Qt::Key_Right), "forward"));
 	}
 
 	submenu = newManagedMenu(menu, "gotoBookmark", tr("Goto Bookmark"));
@@ -1030,7 +1030,7 @@ void Texstudio::setupMenus()
 
 	//Edit 2 (for LaTeX related things)
 	menu = newManagedMenu("main/edit2", tr("&Idefix"));
-    newManagedAction(menu, "eraseWord", tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), macOrDefault(0, Qt::ALT | Qt::Key_Delete));
+    newManagedAction(menu, "eraseWord", tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), MAC_OR_DEFAULT(0, Qt::ALT | Qt::Key_Delete));
 
 	menu->addSeparator();
     newManagedAction(menu, "pasteAsLatex", tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_V), "editpaste");
@@ -1050,12 +1050,12 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "goto", tr("&Go to"));
 
-    newManagedAction(submenu, "errorprev", tr("Previous Error"), "gotoNearLogEntry", macOrDefault(0, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Up)), "errorprev", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
-    newManagedAction(submenu, "errornext", tr("Next Error"), "gotoNearLogEntry", macOrDefault(0, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Down)), "errornext", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
+    newManagedAction(submenu, "errorprev", tr("Previous Error"), "gotoNearLogEntry", MAC_OR_DEFAULT(0, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Up)), "errorprev", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
+    newManagedAction(submenu, "errornext", tr("Next Error"), "gotoNearLogEntry", MAC_OR_DEFAULT(0, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Down)), "errornext", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
 	newManagedAction(submenu, "warningprev", tr("Previous Warning"), "gotoNearLogEntry", QKeySequence(), "", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !")); //, ":/images/errorprev.png");
 	newManagedAction(submenu, "warningnext", tr("Next Warning"), "gotoNearLogEntry", QKeySequence(), "", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !")); //, ":/images/errornext.png");
-    newManagedAction(submenu, "badboxprev", tr("Previous Bad Box"), "gotoNearLogEntry", macOrDefault(0, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Up)), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !")); //, ":/images/errorprev.png");
-    newManagedAction(submenu, "badboxnext", tr("Next Bad Box"), "gotoNearLogEntry", macOrDefault(0, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Down)), "", QList<QVariant>() << LT_BADBOX << false << tr("No bad boxes detected !")); //, ":/images/errornext.png");
+    newManagedAction(submenu, "badboxprev", tr("Previous Bad Box"), "gotoNearLogEntry", MAC_OR_DEFAULT(0, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Up)), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !")); //, ":/images/errorprev.png");
+    newManagedAction(submenu, "badboxnext", tr("Next Bad Box"), "gotoNearLogEntry", MAC_OR_DEFAULT(0, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Down)), "", QList<QVariant>() << LT_BADBOX << false << tr("No bad boxes detected !")); //, ":/images/errornext.png");
 
 	submenu->addSeparator();
     newManagedAction(submenu, "definition", tr("Definition"), SLOT(editGotoDefinition()), filterLocaleShortcut(QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_F)));
@@ -1087,7 +1087,7 @@ void Texstudio::setupMenus()
 #endif
 
 	submenu = newManagedMenu(menu, "complete", tr("Complete"));
-    newManagedAction(submenu, "normal", tr("Normal"), SLOT(normalCompletion()), macOrDefault(QKeySequence(Qt::META | Qt::Key_Space), QKeySequence(Qt::CTRL | Qt::Key_Space)));
+    newManagedAction(submenu, "normal", tr("Normal"), SLOT(normalCompletion()), MAC_OR_DEFAULT(QKeySequence(Qt::META | Qt::Key_Space), QKeySequence(Qt::CTRL | Qt::Key_Space)));
     newManagedAction(submenu, "environment", tr("\\begin{ Completion"), SLOT(insertEnvironmentCompletion()), QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_Space));
     newManagedAction(submenu, "text", tr("Normal Text"), SLOT(insertTextCompletion()), QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Space));
     newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(closeEnvironment()), QKeySequence(Qt::ALT | Qt::Key_Return));
@@ -1161,7 +1161,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "analysetext", tr("A&nalyse Text..."), SLOT(analyseText()));
 	newManagedAction(menu, "generaterandomtext", tr("Generate &Random Text..."), SLOT(generateRandomText()));
 	menu->addSeparator();
-    newManagedAction(menu, "spelling", tr("Check Spelling..."), SLOT(editSpell()), macOrDefault(Qt::CTRL | Qt::SHIFT | Qt::Key_F7, Qt::CTRL | Qt::Key_Colon));
+    newManagedAction(menu, "spelling", tr("Check Spelling..."), SLOT(editSpell()), MAC_OR_DEFAULT(Qt::CTRL | Qt::SHIFT | Qt::Key_F7, Qt::CTRL | Qt::Key_Colon));
     newManagedAction(menu, "thesaurus", tr("Thesaurus..."), SLOT(editThesaurus()), Qt::CTRL | Qt::SHIFT | Qt::Key_F8);
 	newManagedAction(menu, "wordrepetions", tr("Find Word Repetitions..."), SLOT(findWordRepetions()));
 
@@ -1262,8 +1262,8 @@ void Texstudio::setupMenus()
 
 	//---view---
 	menu = newManagedMenu("main/view", tr("&View"));
-    newManagedAction(menu, "prevdocument", tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_PageUp) << macOrDefault(QKeySequence(Qt::META  | Qt::SHIFT | Qt::Key_Tab),QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab)));
-    newManagedAction(menu, "nextdocument", tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_PageDown) << macOrDefault(QKeySequence(Qt::META | Qt::Key_Tab),QKeySequence(Qt::CTRL | Qt::Key_Tab)));
+    newManagedAction(menu, "prevdocument", tr("Previous Document"), SLOT(gotoPrevDocument()), QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_PageUp) << MAC_OR_DEFAULT(QKeySequence(Qt::META  | Qt::SHIFT | Qt::Key_Tab),QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Tab)));
+    newManagedAction(menu, "nextdocument", tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_PageDown) << MAC_OR_DEFAULT(QKeySequence(Qt::META | Qt::Key_Tab),QKeySequence(Qt::CTRL | Qt::Key_Tab)));
 	newManagedMenu(menu, "documents", tr("Open Documents"));
 	newManagedAction(menu, "documentlist", tr("List Of Open Documents"), SLOT(viewDocumentList()));
 	newManagedAction(menu, "documentlisthidden", tr("List Of Hidden Documents"), SLOT(viewDocumentListHidden()));
@@ -12095,4 +12095,4 @@ void Texstudio::collapseSubitems()
 /*! @} */
 
 
-#undef macOrDefault
+#undef MAC_OR_DEFAULT
