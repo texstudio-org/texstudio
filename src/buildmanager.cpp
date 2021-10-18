@@ -35,53 +35,53 @@ QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, B
 
 // *INDENT-OFF* (astyle-config)
 
-#define cmd(name,id) \
+#define CMD_DEFINE(name,id) \
     const QString BuildManager::CMD_##name = BuildManager::TXS_CMD_PREFIX + #id
 
-cmd(LATEX,latex);
-cmd(PDFLATEX,pdflatex);
-cmd(XELATEX,xelatex);
-cmd(LUALATEX,lualatex);
-cmd(LATEXMK,latexmk);
+CMD_DEFINE(LATEX,latex);
+CMD_DEFINE(PDFLATEX,pdflatex);
+CMD_DEFINE(XELATEX,xelatex);
+CMD_DEFINE(LUALATEX,lualatex);
+CMD_DEFINE(LATEXMK,latexmk);
 
-cmd(VIEW_DVI,view-dvi);
-cmd(VIEW_PS,view-ps);
-cmd(VIEW_PDF,view-pdf);
-cmd(VIEW_LOG,view-log);
+CMD_DEFINE(VIEW_DVI,view-dvi);
+CMD_DEFINE(VIEW_PS,view-ps);
+CMD_DEFINE(VIEW_PDF,view-pdf);
+CMD_DEFINE(VIEW_LOG,view-log);
 
-cmd(DVIPNG,dvipng);
-cmd(DVIPS,dvips);
-cmd(DVIPDF,dvipdf);
-cmd(PS2PDF,ps2pdf);
+CMD_DEFINE(DVIPNG,dvipng);
+CMD_DEFINE(DVIPS,dvips);
+CMD_DEFINE(DVIPDF,dvipdf);
+CMD_DEFINE(PS2PDF,ps2pdf);
 
-cmd(GS,gs);
-cmd(MAKEINDEX,makeindex);
-cmd(TEXINDY,texindy);
-cmd(MAKEGLOSSARIES,makeglossaries);
-cmd(METAPOST,metapost);
-cmd(ASY,asy);
+CMD_DEFINE(GS,gs);
+CMD_DEFINE(MAKEINDEX,makeindex);
+CMD_DEFINE(TEXINDY,texindy);
+CMD_DEFINE(MAKEGLOSSARIES,makeglossaries);
+CMD_DEFINE(METAPOST,metapost);
+CMD_DEFINE(ASY,asy);
 
-cmd(BIBTEX,bibtex);
-cmd(BIBTEX8,bibtex8);
-cmd(BIBER,biber);
+CMD_DEFINE(BIBTEX,bibtex);
+CMD_DEFINE(BIBTEX8,bibtex8);
+CMD_DEFINE(BIBER,biber);
 
-cmd(SVN,svn);
-cmd(SVNADMIN,svnadmin);
-cmd(GIT,git);
-cmd(TEXDOC,texdoc);
-cmd(COMPILE,compile);
-cmd(VIEW,view);
-cmd(BIBLIOGRAPHY,bibliography);
-cmd(INDEX,index);
-cmd(GLOSSARY,glossary);
-cmd(QUICK,quick);
-cmd(RECOMPILE_BIBLIOGRAPHY,recompile-bibliography);
-cmd(VIEW_PDF_INTERNAL,view-pdf-internal);
-cmd(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY,conditionally-recompile-bibliography);
-cmd(INTERNAL_PRE_COMPILE,internal-pre-compile);
-cmd(TERMINAL_EXTERNAL,terminal-external);
+CMD_DEFINE(SVN,svn);
+CMD_DEFINE(SVNADMIN,svnadmin);
+CMD_DEFINE(GIT,git);
+CMD_DEFINE(TEXDOC,texdoc);
+CMD_DEFINE(COMPILE,compile);
+CMD_DEFINE(VIEW,view);
+CMD_DEFINE(BIBLIOGRAPHY,bibliography);
+CMD_DEFINE(INDEX,index);
+CMD_DEFINE(GLOSSARY,glossary);
+CMD_DEFINE(QUICK,quick);
+CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY,recompile-bibliography);
+CMD_DEFINE(VIEW_PDF_INTERNAL,view-pdf-internal);
+CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY,conditionally-recompile-bibliography);
+CMD_DEFINE(INTERNAL_PRE_COMPILE,internal-pre-compile);
+CMD_DEFINE(TERMINAL_EXTERNAL,terminal-external);
 
-#undef cmd
+#undef CMD_DEFINE
 // *INDENT-ON* (astyle-config)
 
 //! These commands should not consist of a command list, but rather a single command.
