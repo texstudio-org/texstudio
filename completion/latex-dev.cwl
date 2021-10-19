@@ -24,11 +24,11 @@
 \DeclareFontFamily{encoding}{family}{loading-settings}#*
 \DeclareFontShape{encoding}{family}{series}{shape}{loading-info}{loading-settings}#*
 \DeclareMathAccent{cmd}{type}{sym-font}{slot}#*d
-\DeclareMathAlphabet{math-alph}{encoding}{family}{series}{shape}#*
+\DeclareMathAlphabet{math-alph%cmd}{encoding}{family}{series}{shape}#*d
 \DeclareMathDelimiter{cmd}{type}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
 \DeclareMathRadical{cmd}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
 \DeclareMathSizes{t-size}{mt-size}{s-size}{ss-size}#*
-\DeclareMathSymbol{symbol}{type}{sym-font}{slot}#*d
+\DeclareMathSymbol{cmd}{type}{sym-font}{slot}#*d
 \DeclareMathVersion{version}#*
 \DeclareOldFontCommand{cmd}{text-switch}{math-switch}#*
 \DeclareOption*{code}#*
@@ -227,10 +227,11 @@
 \pdflinkmargin#*
 \pdfthreadmargin#*
 \pdfminorversion#*
-\numberline#* 
-
+\pdfgentounicode#*
+\pdfmapfile{file}#*
+\numberline#*
 # miscellany
-\allocationnumber
-\fill
-\tracingfonts
-\unitlength
+\allocationnumber#*
+\fill#*
+\tracingfonts#*
+\unitlength#*

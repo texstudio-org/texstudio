@@ -1,8 +1,8 @@
 # tikz-trackschematic package
-# Matthew Bertucci 10/3/2021 for v0.6.1
+# Matthew Bertucci 10/17/2021 for v0.6.2
 
 #include:tikz
-#include:xcolor
+#include:xkeyval
 #include:etoolbox
 
 \tsFullSymbology#*
@@ -140,13 +140,15 @@ foreground=#%color
 
 \distantsignal[options%keyvals]
 \speedsignal[options%keyvals]
+\speedsign[options%keyvals]#*
 \blocksignal[options%keyvals]
 \routesignal[options%keyvals]
 \shuntsignal[options%keyvals]
 \shuntlimit[options%keyvals]
 \berthsignal[options%keyvals]
+\berthsign[options%keyvals]#*
 
-#keyvals:\distantsignal,\speedsignal,\blocksignal,\routesignal,\shuntsignal,\shuntlimit,\berthsignal
+#keyvals:\distantsignal,\speedsignal,\speedsign,\blocksignal,\routesignal,\shuntsignal,\shuntlimit,\berthsignal,\berthsign
 face=#forward,backward
 forward
 backward
@@ -155,7 +157,7 @@ shift label={%<(x,y)%>}
 foreground=#%color
 #endkeyvals
 
-#keyvals:\speedsignal
+#keyvals:\speedsignal,\speedsign
 speed=
 #endkeyvals
 

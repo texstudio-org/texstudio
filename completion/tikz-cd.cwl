@@ -5,7 +5,7 @@
 
 #include:tikz
 \begin{tikzcd}#\array,math
-\begin{tikzcd}[options]#\array,math
+\begin{tikzcd}[options%keyvals]#\array,math
 \end{tikzcd}
 \arrow[options%keyvals]#/tikzcd
 \arrow[options%keyvals]{direction}%<labels%>#*/tikzcd

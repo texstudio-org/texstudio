@@ -1,8 +1,12 @@
 # tikzsymbols package
-# Matthew Bertucci 8/6/2021
+# Matthew Bertucci 10/17/2021 for v4.12
 
+#include:xparse
+#include:expl3
 #include:tikz
 #include:xcolor
+#include:xspace
+#include:l3keys2e
 
 \tikzsymbolsset{keyvals}
 
@@ -110,6 +114,7 @@ remember-picture#true,false
 \Cat
 \Ninja
 \Sleepey
+\Maskey
 \NiceReapey
 \Smiley[scale][color]
 \Sadey[scale][color]
@@ -134,6 +139,7 @@ remember-picture#true,false
 \SchrodingersCat[scale]{case}
 \Ninja[scale][color][headband color%color][eye color%color]
 \Sleepey[scale][color][cap color%color][star color%color]
+\Maskey[scale][color][mask color%color]
 \NiceReapey[scale]
 
 \dSmiley
@@ -176,6 +182,8 @@ remember-picture#true,false
 \olddWinkey[scale]
 
 \Strichmaxerl
+\Heart
+\dHeart
 \Candle
 \Fire
 \Coffeecup
@@ -185,6 +193,8 @@ remember-picture#true,false
 \Moai
 \Snowman
 \Strichmaxerl[scale][left arm][right arm][left leg][right leg]
+\Heart[scale][color]
+\dHeart[scale][color]
 \Candle[scale]
 \Fire[scale]
 \Coffeecup[scale]
@@ -194,12 +204,20 @@ remember-picture#true,false
 \Moai[scale]
 \Snowman[scale]
 
+\BasicTree{trunkcolor%color}{leafcolor1%color}{leafcolor2%color}{leaf}
 \Springtree
 \Summertree
+\Autumntree
 \Wintertree
 \WorstTree
 \BasicTree[scale]{trunkcolor%color}{leafcolor1%color}{leafcolor2%color}{leaf}
 \Springtree[scale]
 \Summertree[scale]
+\Autumntree[scale]
 \Wintertree[scale]
 \WorstTree[scale]
+
+\tikzsymbolsdefinesymbol{symbol name}{args}{code}
+\tikzsymbolsprovideandusesavebox{box name}{code}
+\tikzsymbolssetscaleabs{dimen%l}
+\tikzsymbolsscaleabs
