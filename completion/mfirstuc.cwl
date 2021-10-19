@@ -1,9 +1,10 @@
 # mfirstuc package
-# Matthew Bertucci 10/5/2021 for v2.06
+# Matthew Bertucci 10/19/2021 for v2.07
 
 #include:etoolbox
 
 \makefirstuc{text}
+\MFUskippunc{punctuation}
 \xmakefirstuc{text}
 \emakefirstuc{text}
 \glsmakefirstuc{text}
@@ -12,6 +13,7 @@
 \ifMFUhyphen#*
 \MFUhyphentrue#*
 \MFUhyphenfalse#*
+\MFUwordbreak{puncutation}
 \capitalisefmtwords{phrase%text}
 \xcapitalisewords{text}
 \ecapitalisewords{text}
