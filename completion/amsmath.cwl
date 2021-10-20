@@ -33,8 +33,8 @@
 \begin{pmatrix}#m\array
 \begin{smallmatrix}#m\array
 \begin{split}#\array
-\begin{subarray}
-\begin{subarray}[align]
+\begin{subarray}#m
+\begin{subarray}{align}#m
 \begin{subequations}
 \begin{vmatrix}#m\array
 \begin{Vmatrix}#m\array
