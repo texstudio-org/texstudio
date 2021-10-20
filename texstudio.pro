@@ -258,6 +258,9 @@ unix {
         templates/template_Article_French.json \
         templates/template_Article_French.png \
         templates/template_Article_French.tex \
+        templates/template_Article_LuaLaTeX_French.json \
+        templates/template_Article_LuaLaTeX_French.png \
+        templates/template_Article_LuaLaTeX_French.tex \
         templates/template_Beamer.json \
         templates/template_Beamer.tex \
         templates/template_Book.json \
