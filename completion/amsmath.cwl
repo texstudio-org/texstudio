@@ -2,6 +2,7 @@
 # dani/2006-02-19
 # muzimuzhi/1 Nov 2019
 
+#include:amstext
 #include:amsbsy
 #include:amsopn
 
@@ -25,8 +26,8 @@
 \begin{flalign*}#\math,array
 \begin{gather}#\math
 \begin{gather*}#\math
-\begin{gathered}#\math
-\begin{gathered}[alignment]#\math
+\begin{gathered}#m
+\begin{gathered}[alignment]#m
 \begin{matrix}#m\array
 \begin{multline}#\math
 \begin{multline*}#\math
