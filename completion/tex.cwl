@@ -128,6 +128,7 @@
 \firstmark#*
 \floatingpenalty#*
 \font#*
+\font{cmd}#dS
 \fontdimen#*
 \fontname#*
 \futurelet#*
