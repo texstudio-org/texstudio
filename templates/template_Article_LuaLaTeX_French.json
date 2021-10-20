@@ -1,0 +1,8 @@
+{
+    "Name"        : "Article (French) for LuaLaTeX",
+    "Description" : "Article class with French language settings and luatex engine.",
+    "Author"      : "TXS built-in",
+    "Date"        : "2021-10-20",
+    "Version"     : "1.0",
+    "License"     : "Public Domain"
+}
