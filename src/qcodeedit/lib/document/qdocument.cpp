@@ -7177,8 +7177,8 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 					QDocumentCursor curHelper(cur, false);
 					curHelper.movePosition(1);
                     QPointF pt2 = curHelper.documentPosition();
-					int width = 0;
-					if (pt.y() == pt2.y()) {
+                    qreal width = 0;
+                    if (pt.y() == pt2.y()) {
 						width = pt2.x() - pt.x();
 					}
 					if (width == 0) {
