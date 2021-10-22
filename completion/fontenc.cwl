@@ -112,8 +112,8 @@
 \dj#n
 \ng#n
 \k{arg}#n
-\guillemotleft#n
-\guillemotright#n
+\guillemotleft#*n
+\guillemotright#*n
 \guilsinglleft#n
 \guilsinglright#n
 \quotedblbase#n
@@ -123,6 +123,11 @@
 \th#n
 \TH#n
 \dh#n
+\Hwithstroke#n
+\hwithstroke#n
+\textogonekcentered{arg}#n
+\guillemetleft#n
+\guillemetright#n
 #endif
 
 #ifOption:T1R
@@ -1288,9 +1293,9 @@
 
 #ifOption:TU
 \guillemetleft#n
-\guillemotleft#n
+\guillemotleft#*n
 \guillemetright#n
-\guillemotright#n
+\guillemotright#*n
 \DH#n
 \TH#n
 \dh#n
@@ -1299,9 +1304,6 @@
 \dj#n
 \NG#n
 \ng#n
-\textnonbreakinghyphen#n
-\textfiguredash#n
-\texthorizontalbar#n
 \quotesinglbase#n
 \quotedblbase#n
 \guilsinglleft#n
@@ -1310,6 +1312,12 @@
 \hwithstroke#n
 \k{a}#n
 \textcommabelow{a}#n
+\UnicodeEncodingName
+\UnicodeFontTeXLigatures
+\UnicodeFontFile{arg1}{arg2}
+\UnicodeFontName{arg1}{arg2}
+\DeclareUnicodeAccent{cmd}{encoding}{definition}#d
+\DeclareUnicodeComposite{cmd}{argument}{slot}#d
 #endif
 
 #ifOption:LCY
@@ -1666,22 +1674,3 @@
 \shin
 \tav
 #endif
-
-\DeclareFontEncoding{encoding}{text settings}{math settings}#*
-\DeclareTextAccent{cmd}{encoding}{slot}#*d
-\DeclareTextAccentDefault{cmd}{encoding}#*d
-\DeclareTextCommand{cmd}{encoding}{defn}#*d
-\DeclareTextCommand{cmd}{encoding}[nargs]{defn}#*d
-\DeclareTextCommand{cmd}{encoding}[nargs][optargdefault]{defn}#*d
-\ProvideTextCommand{cmd}{encoding}{defn}#*d
-\ProvideTextCommand{cmd}{encoding}[nargs]{defn}#*d
-\ProvideTextCommand{cmd}{encoding}[nargs][optargdefault]{defn}#*d
-\DeclareTextCommandDefault{cmd}{defn}#*d
-\ProvideTextCommandDefault{cmd}{defn}#*d
-\DeclareTextComposite{cmd}{encoding}{simple_object}{slot}#*d
-\DeclareTextCompositeCommand{cmd}{encoding}{arg}{code}#*d
-\DeclareTextSymbol{cmd}{encoding}{slot}#*d
-\DeclareTextSymbolDefault{cmd}{encoding}#*d
-\LastDeclaredEncoding#*
-\UseTextSymbol{encoding}{cmd}#*d
-\UseTextAccent{encoding}{cmd}{text}#*d
