@@ -13,6 +13,7 @@
 \appendix
 \appendixname#*
 \arabic{counter}#*
+\asciispace#*
 \author{names}
 # the following line generates the general "\begin{%<environment%>}"
 %<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>
@@ -150,6 +151,10 @@
 \bigg|%|\bigg|#mM
 \boldmath
 \botfigrule#*
+\braceld#*m
+\bracelu#*m
+\bracerd#*m
+\braceru#*m
 \caption{text}
 \caption[short text%text]{text}
 \chapter{title}#L1
@@ -185,7 +190,9 @@
 \fontencoding{enc}
 \fontfamily{family}
 \fontseries{series}
+\fontseriesforce{series}#*
 \fontshape{shape}
+\fontshapeforce{shape}#*
 \fontsize{size}{skip}
 \fontsubfuzz#*
 \footnotemark#*
@@ -195,6 +202,7 @@
 \footnotetext{text}
 \footnote[number]{text}
 \footnote{text}
+\footref{label}#r
 \frac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \framebox(xdimen,ydimen)[position]{text}
 \framebox(xdimen,ydimen){text}
@@ -220,6 +228,7 @@
 \indexname
 \indexspace
 \index{entry}
+\intop#*m
 \it#*
 \item %|
 \item[%<label%>] %<description%>
@@ -227,15 +236,18 @@
 \itshape
 \kill#T
 \label{key%labeldef}
+\labelformat{counter}{representation}#*
 \language#*
 \LARGE
 \Large
 \large
 \LaTeX
 \LaTeXe
+\lbrack#*
 \ldots
 \lefteqn
 \lefthyphenmin#*
+\legacyoldstylenums{text}#*
 \lhook#*m
 \line(xslope,yslope){length}#*/picture
 \linebreak
@@ -260,6 +272,7 @@
 \MakeLowercase{text}#*
 \maketitle
 \MakeUppercase{text}#*
+\mapstochar#*m
 \marginpar[left]{right}#*
 \marginpar{right}#*
 \markboth{lefthead}{righthead}#*
@@ -269,6 +282,7 @@
 \mathdollar#m
 \mathellipsis#m
 \mathgroup#m
+\mathindent#*
 \mathit{text}#m
 \mathnormal{text}#m
 \mathparagraph#m
@@ -305,15 +319,18 @@
 \nonumber
 \nopagebreak
 \nopagebreak[number]
+\noprotrusion#*
 \normalcolor
 \normalfont
 \normalmarginpar#*
+\normalshape#*
 \normalsize
 \nouppercase#*
 \obeycr#*
 \oddsidemargin#*
 \oe
 \OE
+\ointop#*m
 \oldstylenums#*
 \onecolumn
 \oval(width,height)#*/picture
@@ -339,14 +356,20 @@
 \plus
 \poptabs#T
 \pounds
-\printindex#n
 \protect
 \pushtabs#T
 \put(xcoord,ycoord){text}#*/picture
+\qbezier(x1,y1)(x2,y2)(x3,y3)#*/picture
+\qbezier[n](x1,y1)(x2,y2)(x3,y3)#*/picture
+\qbeziermax#*
 \raggedleft
 \r{letter}
+\rbrack#*
 \ref{label}#r
+\Ref{label}#*r
 \refname
+\relbar#*m
+\Relbar#*m
 \rhook#*m
 \rightmargin
 \rightmark
@@ -354,6 +377,7 @@
 \rmfamily
 \Roman{counter}
 \roman{counter}
+\rootbox#*
 \rule[raise%l]{width}{thickness%l}
 \rule{width}{thickness%l}
 \SS
@@ -377,6 +401,8 @@
 \slshape
 \small
 \sqrt[root]{arg}#m
+\sqrtsign{arg}#*m
+\sscshape#*
 \stackrel{above}{rel}#m
 \stepcounter{counter}
 \stop
@@ -396,6 +422,7 @@
 \subsubsection{title}#L4
 \suppressfloats
 \suppressfloats[placement]
+\swshape#*
 \symbol{n}
 \tablename
 \tableofcontents
@@ -411,6 +438,8 @@
 \textbraceright
 \textbullet
 \textcircled
+\textcommaabove{arg}
+\textcommabelow{arg}
 \textcompwordmark
 \textcopyright
 \textdagger
@@ -420,11 +449,14 @@
 \textemdash
 \textendash
 \textexclamdown
+\textfiguredash#*
 \textgreater
 \textheight#L
+\texthorizontalbar#*
 \textit{text}
 \textless
 \textmd{text}
+\textnonbreakinghyphen#*
 \textnormal
 \textparagraph
 \textperiodcentered
@@ -436,14 +468,17 @@
 \textregistered
 \textrm{text}
 \textsc{text}
+\textssc{text}#*
 \textsection
 \textsf{text}
 \textsl{text}
 \textsterling
 \textsubscript{arg}
 \textsuperscript{arg}
+\textsw{text}#*
 \texttrademark
 \texttt{text}
+\textulc{text}#*
 \textunderscore
 \textup{text}
 \textvisiblespace
@@ -463,16 +498,20 @@
 \typein[cmd]{msg}#*
 \typein{msg}#*
 \typeout{msg}#*
+\ulcshape#*
 \unboldmath
 \upshape
 \usepackage[options%keyvals]{package}
 \usepackage{package}
+\varbigtriangledown#m
+\varbigtriangleup#m
 \vdots
 \vector(xslope,yslope){length}#*/picture
 \verb|%<text%>|
 \verb*|%<text%>|
 \verb{verbatimSymbol}#S
 \verb*{verbatimSymbol}#S
+\verbvisiblespace#*
 \vline
 \vspace*{length}
 \vspace{length}

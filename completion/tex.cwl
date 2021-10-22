@@ -128,6 +128,7 @@
 \firstmark#*
 \floatingpenalty#*
 \font#*
+\font{cmd}#dS
 \fontdimen#*
 \fontname#*
 \futurelet#*
@@ -404,8 +405,8 @@
 \Bigg#mK
 \biggl#mK
 \Biggl#mK
-\biggm#m
-\biggm#m
+\biggm#mK
+\Biggm#mK
 \biggr#mK
 \Biggr#mK
 \bigl#mK

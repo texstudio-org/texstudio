@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 9/15/2021 for v6.2
+# Matthew Bertucci 10/20/2021 for v6.3
 
 #include:amsmath
 #include:array
@@ -156,6 +156,7 @@ draw
 draw=#%color
 color=#%color
 line-width=##L
+rounded-corners
 rounded-corners=##L
 borders=#left,right,top,bottom
 hvlines
@@ -165,6 +166,7 @@ L
 R
 C
 tikz=
+name=
 #endkeyvals
 
 \Hline#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
@@ -211,10 +213,13 @@ respect-blocks
 \RowStyle[options%keyvals]{code}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
 #keyvals:\RowStyle
+nb-rows=%<number%>
 cell-space-top-limit=##L
 cell-space-bottom-limit=##L
 cell-space-limits=##L
+rowcolor=#%color
 color=#%color
+bold
 #endkeyvals
 
 \begin{NiceMatrixBlock}
@@ -364,3 +369,6 @@ colortbl-like
 \NiceMatrixLastEnv#*
 \OnlyMainNiceMatrix{code}#*
 \NotEmpty#*/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+
+\myfileversion#S
+\myfiledate#S
