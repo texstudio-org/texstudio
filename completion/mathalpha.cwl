@@ -8,7 +8,7 @@ cal=#bickham,bickhams,boondox,boondoxo,boondoxupr,cm,dutchcal,esstix,euler,lucid
 calscaled=
 frak=#euler,lucida,mathpi,mma,mt,esstix,boondox,pxtx
 frakscaled=
-bb=#ams,lucida,mathpi,mma,mt,mth,pazo,fourier,esstix,boondox,px,tx,txof
+bb=#ams,lucida,mathpi,mma,mt,mth,pazo,fourier,esstix,boondox,px,tx,txof,bboldx,bboldx-light
 bbscaled=
 scaled=
 showoptions
@@ -241,4 +241,10 @@ showoptions
 #ifOption:bb=txof
 \mathbb{text}#m
 \mathbbb{text}#m
+#endif
+#ifOption:bb=bboldx
+#include:bboldx
+#endif
+#ifOption:bb=bboldx-light
+#include:bboldx
 #endif

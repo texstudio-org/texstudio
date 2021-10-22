@@ -4,8 +4,12 @@
 # thatlittleboy/2018-05-07 edited
 # Edited by Rishi Advani (2020-12-06)
 
+#include:keyval
+#include:calc
+#include:mhsetup
 #include:amsmath
 #include:graphicx
+
 \mathtoolsset{%<options%>}
 #keyvals:\mathtoolsset
 showonlyrefs#true,false
@@ -13,20 +17,20 @@ showmanualtags#true,false
 original-intertext#true,false
 original-shortintertext#true,false
 mathic#true,false
-above-intertext-sep=
-below-intertext-sep=
-above-shortintertext-sep=
-below-shortintertext-sep=
-smallmatrix-align=
+above-intertext-sep=##L
+below-intertext-sep=##L
+above-shortintertext-sep=##L
+below-shortintertext-sep=##L
+smallmatrix-align=#c,l,r
 smallmatrix-inner-space=
-firstline-afterskip=
-lastline-preskip=
-multlined-width=
-multlined-pos=
+firstline-afterskip=##L
+lastline-preskip=##L
+multlined-width=##L
+multlined-pos=#c,b,t
 centercolon#true,false
-prescript-sup-format=
-prescript-sub-format=
-prescript-arg-format=
+prescript-sup-format=%<cmd%>
+prescript-sub-format=%<cmd%>
+prescript-arg-format=%<cmd%>
 shortvdotsadjustabove=##L
 shortvdotsadjustbelow=##L
 #endkeyvals
@@ -47,21 +51,26 @@ shortvdotsadjustbelow=##L
 \crampedrlap{math}#m
 \crampedclap[mathstyle]{math}#*m
 \crampedclap{math}#m
-\smashoperator[pos]{operator with limits}#*m
+\begin{crampedsubarray}#m
+\begin{crampedsubarray}{align}#m
+\end{crampedsubarray}#m
+\crampedsubstack{arg}#m
+\smashoperator[pos%keyvals]{operator with limits}#*m
 #keyvals:\smashoperator
 l
 r
 lr
+rl
 #endkeyvals
 \smashoperator{operator with limits}#m
-\adjustlimits{operator1}_{limit1} {operator2}_{limit2}#m
+\adjustlimits{operator1}_{limit1}{operator2}_{limit2}#m
 \SwapAboveDisplaySkip#m
 \newtagform{name}[inner format]{left}{right}#n
 \newtagform{name}{left}{right}#n
 \renewtagform{name}[inner format]{left}{right}#n
 \renewtagform{name}{left}{right}#n
 \usetagform{name}#n
-\refeq{label}#n
+\refeq{label}#r
 \noeqref{label,label,...}#n
 \xleftrightarrow[sub]{sup}#m
 \xLeftarrow[sub]{sup}#m
@@ -108,10 +117,9 @@ lr
 \begin{vsmallmatrix*}[col]#m\array
 \begin{Vsmallmatrix}#m\array
 \begin{Vsmallmatrix*}[col]#m\array
-\begin{spreadlines}{dimen}#m\array
+\begin{spreadlines}{dimen}
 \begin{lgathered}[pos]#m\array
 \begin{rgathered}[pos]#m\array
-\endlinechar#m
 \end{dcases}
 \end{dcases*}
 \end{rcases}
@@ -139,16 +147,21 @@ lr
 \end{spreadlines}
 \end{lgathered}
 \end{rgathered}
-\newgathered{name}{pre line}{post line}{after}#m
-\renewgathered{name}{pre line}{post line}{after}#m
-\begin{multlined}[pos][width]#m\array
-\endlinechar#m
+\newgathered{envname}{pre line}{post line}{after}#N
+\renewgathered{envname}{pre line}{post line}{after}#N
+\begin{multlined}#m
+\begin{multlined}[pos][width]#m
 \end{multlined}
+\shoveleft{arg}#m
 \shoveleft[dimen]{arg}#m
+\shoveright{arg}#m
 \shoveright[dimen]{arg}#m
+\MoveEqLeft#m
 \MoveEqLeft[number]#m
 \Aboxed{left hand side & right hand side}#m
+\ArrowBetweenLines#/alignat,alignat*
 \ArrowBetweenLines[symbol]#/alignat,alignat*
+\ArrowBetweenLines*#/alignat,alignat*
 \ArrowBetweenLines*[symbol]#/alignat,alignat*
 \vdotswithin{symbol}#m
 \shortvdotswithin{symbol}#m
@@ -158,9 +171,14 @@ lr
 \shortintertext{text}#m
 \intertext{text}#m
 \DeclarePairedDelimiter{cmd}{left delim%formula}{right delim%formula}#nd
-\DeclarePairedDelimiterX{cmd}[numargs]{left delim%formula}{right delim%formula}{body%formula}#nd
-\DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim%formula}{right delim%formula}{post code%formula}{body%formula}#nd
-\reDeclarePairedDelimiterInnerWrapper{macro name}{star or nostar}{code}#m
+\DeclarePairedDelimiterX{cmd}[args]{left delim%formula}{right delim%formula}{body%formula}#nd
+\DeclarePairedDelimiterXPP{cmd}[args]{pre code}{left delim%formula}{right delim%formula}{post code%formula}{body%formula}#nd
+\reDeclarePairedDelimiterInnerWrapper{macro name}{star option%keyvals}{code}#m
+#keyvals:\reDeclarePairedDelimiterInnerWrapper
+star
+nostarnonscaled
+nostarscaled
+#endkeyvals
 \lparen#m
 \rparen#m
 \vcentcolon#m
@@ -184,3 +202,5 @@ lr
 \prescript{sup}{sub}{arg}#m
 \splitfrac{numer}{denom}#m
 \splitdfrac{numer}{denom}#m
+\xmathstrut{increase}#m
+\xmathstrut[depth increase]{increase}#m

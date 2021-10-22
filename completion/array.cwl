@@ -5,5 +5,6 @@
 \extratabsurround
 \firsthline
 \lasthline
-\newcolumntype{name}{argument}
+\newcolumntype{name%cmd}{definition}#d
+\newcolumntype{name%cmd}[args]{definition}#d
 \showcols

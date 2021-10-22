@@ -282,8 +282,8 @@ jobs:
         
   macosx-qt5:
     name: Mac OS X (Qt5)
-    if: false
-    runs-on: macos-latest
+    if: true
+    runs-on: macos-10.15
 
     steps:
     - name: Checkout

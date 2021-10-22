@@ -7177,8 +7177,8 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 					QDocumentCursor curHelper(cur, false);
 					curHelper.movePosition(1);
                     QPointF pt2 = curHelper.documentPosition();
-					int width = 0;
-					if (pt.y() == pt2.y()) {
+                    qreal width = 0;
+                    if (pt.y() == pt2.y()) {
 						width = pt2.x() - pt.x();
 					}
 					if (width == 0) {
@@ -7189,11 +7189,16 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 					// regular line cursor
                     QPointF pt = cur.documentPosition();
                     QPointF curHt(0, QDocumentPrivate::m_lineSpacing-1.);
-					p->drawLine(pt, pt + curHt);
-					if (m_drawCursorBold) {
+                    QPen pen(p->pen());
+                    if (m_drawCursorBold) {
+                       pen.setWidthF(2.);
+                    }
+                    p->setPen(pen);
+                    p->drawLine(pt, pt + curHt);
+                    /*if (m_drawCursorBold) {
 						pt.setX(pt.x() + 1);
 						p->drawLine(pt, pt + curHt);
-					}
+                    }*/
 				}
 			}
 		}

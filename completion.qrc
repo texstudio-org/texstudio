@@ -75,6 +75,7 @@
 <file>completion/bbding.cwl</file>
 <file>completion/bbm.cwl</file>
 <file>completion/bbold.cwl</file>
+<file>completion/bboldx.cwl</file>
 <file>completion/bchart.cwl</file>
 <file>completion/beamerfoils.cwl</file>
 <file>completion/beamerprosper.cwl</file>
@@ -96,7 +97,9 @@
 <file>completion/binarytree.cwl</file>
 <file>completion/biochemistry-colors.cwl</file>
 <file>completion/bitpattern.cwl</file>
+<file>completion/bitset.cwl</file>
 <file>completion/blindtext.cwl</file>
+<file>completion/blkarray.cwl</file>
 <file>completion/bm.cwl</file>
 <file>completion/bohr.cwl</file>
 <file>completion/boites.cwl</file>
@@ -197,6 +200,7 @@
 <file>completion/complexity.cwl</file>
 <file>completion/concepts.cwl</file>
 <file>completion/concmath.cwl</file>
+<file>completion/conteq.cwl</file>
 <file>completion/contour.cwl</file>
 <file>completion/cookingsymbols.cwl</file>
 <file>completion/coordsys.cwl</file>
@@ -234,6 +238,7 @@
 <file>completion/diagbox.cwl</file>
 <file>completion/diagxy.cwl</file>
 <file>completion/diffcoeff.cwl</file>
+<file>completion/digiconfigs.cwl</file>
 <file>completion/dijkstra.cwl</file>
 <file>completion/dingbat.cwl</file>
 <file>completion/doi.cwl</file>
@@ -332,6 +337,7 @@
 <file>completion/floatpag.cwl</file>
 <file>completion/flushend.cwl</file>
 <file>completion/fnlineno.cwl</file>
+<file>completion/fnpct.cwl</file>
 <file>completion/fnumprint.cwl</file>
 <file>completion/foliono.cwl</file>
 <file>completion/fontawesome5.cwl</file>
@@ -345,6 +351,7 @@
 <file>completion/footnotehyper.cwl</file>
 <file>completion/forest.cwl</file>
 <file>completion/forest-index.cwl</file>
+<file>completion/fouridx.cwl</file>
 <file>completion/fourier.cwl</file>
 <file>completion/fourier-orns.cwl</file>
 <file>completion/fourier-otf.cwl</file>
@@ -353,6 +360,7 @@
 <file>completion/frcursive.cwl</file>
 <file>completion/frege.cwl</file>
 <file>completion/froufrou.cwl</file>
+<file>completion/galois.cwl</file>
 <file>completion/garamondlibre.cwl</file>
 <file>completion/gensymb.cwl</file>
 <file>completion/geometry.cwl</file>
@@ -493,6 +501,7 @@
 <file>completion/mahjong.cwl</file>
 <file>completion/makebox.cwl</file>
 <file>completion/makecell.cwl</file>
+<file>completion/makeidx.cwl</file>
 <file>completion/manfnt.cwl</file>
 <file>completion/manyfoot.cwl</file>
 <file>completion/marginnote.cwl</file>
@@ -522,6 +531,7 @@
 <file>completion/mfirstuc.cwl</file>
 <file>completion/mflogo.cwl</file>
 <file>completion/mhchem.cwl</file>
+<file>completion/mhsetup.cwl</file>
 <file>completion/miama.cwl</file>
 <file>completion/microtype.cwl</file>
 <file>completion/midfloat.cwl</file>
@@ -550,6 +560,7 @@
 <file>completion/mwe.cwl</file>
 <file>completion/nabatean.cwl</file>
 <file>completion/nahuatl.cwl</file>
+<file>completion/namedef.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>
 <file>completion/nccbbb.cwl</file>
@@ -715,6 +726,7 @@
 <file>completion/semtrans.cwl</file>
 <file>completion/setdeck.cwl</file>
 <file>completion/setouterhbox.cwl</file>
+<file>completion/sets.cwl</file>
 <file>completion/setspace.cwl</file>
 <file>completion/shadow.cwl</file>
 <file>completion/shadowtext.cwl</file>
@@ -731,9 +743,11 @@
 <file>completion/siunitx-special.cwl</file>
 <file>completion/skak.cwl</file>
 <file>completion/skull.cwl</file>
+<file>completion/slashed.cwl</file>
 <file>completion/snotez.cwl</file>
 <file>completion/somedefs.cwl</file>
 <file>completion/soul.cwl</file>
+<file>completion/soulpos.cwl</file>
 <file>completion/sourcecodepro.cwl</file>
 <file>completion/sourcesanspro.cwl</file>
 <file>completion/sourceserifpro.cwl</file>
@@ -770,6 +784,7 @@
 <file>completion/svn-multi.cwl</file>
 <file>completion/svrsymbols.cwl</file>
 <file>completion/symbolpalette.cwl</file>
+<file>completion/syntonly.cwl</file>
 <file>completion/systeme.cwl</file>
 <file>completion/t4phonet.cwl</file>
 <file>completion/tabu.cwl</file>
@@ -798,6 +813,7 @@
 <file>completion/TheanoOldStyle.cwl</file>
 <file>completion/theorem.cwl</file>
 <file>completion/thmtools.cwl</file>
+<file>completion/ticollege.cwl</file>
 <file>completion/tikzbricks.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikz.cwl</file>
@@ -870,6 +886,7 @@
 <file>completion/twoopt.cwl</file>
 <file>completion/tx-of.cwl</file>
 <file>completion/txuprcal.cwl</file>
+<file>completion/typewriter.cwl</file>
 <file>completion/typicons.cwl</file>
 <file>completion/Typocaps.cwl</file>
 <file>completion/ugarite.cwl</file>
@@ -898,9 +915,11 @@
 <file>completion/venturis.cwl</file>
 <file>completion/venturisold.cwl</file>
 <file>completion/verbatimbox.cwl</file>
+<file>completion/verbatimcopy.cwl</file>
 <file>completion/verbatim.cwl</file>
 <file>completion/verbdef.cwl</file>
 <file>completion/verse.cwl</file>
+<file>completion/vhistory.cwl</file>
 <file>completion/virginialake.cwl</file>
 <file>completion/vowel.cwl</file>
 <file>completion/vplref.cwl</file>
