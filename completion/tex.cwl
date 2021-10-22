@@ -405,8 +405,8 @@
 \Bigg#mK
 \biggl#mK
 \Biggl#mK
-\biggm#m
-\biggm#m
+\biggm#mK
+\Biggm#mK
 \biggr#mK
 \Biggr#mK
 \bigl#mK
