@@ -1,5 +1,5 @@
 # zx-calculus package
-# Matthew Bertucci 10/17/2021
+# Matthew Bertucci 10/23/2021
 
 #include:tikz-cd
 #include:amssymb
@@ -213,7 +213,7 @@ bn
 \zxH{text}
 \zxH[options%keyvals]{text}
 
-#keyvals:\zx#c,\begin{ZX}#c,\zxZ#c,\zxX#c,\zxH#c
+#keyvals:\zx#c,\begin{ZX}#c,\zxZ#c,\zxX#c,\zxH#c,\zxSaveDiagram#c
 a=%<alias%>
 phase in content
 phase in label
@@ -274,8 +274,16 @@ colorZxH#B
 \zxHSRowFlat#*
 \zxWCol#*
 \zxWRow#*
+\zxwCol#*
+\zxwRow#*
 \zxDotsCol#*
 \zxDotsRow#*
+\zxZeroCol#*
+\zxZeroRow#*
+\zxNCol#*
+\zxNRow#*
+\zxDefaultColumnSep#*
+\zxDefaultRowSep#*
 \zxDefaultSoftAngleS#*
 \zxDefaultSoftAngleN#*
 \zxDefaultSoftAngleO#*
@@ -283,3 +291,13 @@ colorZxH#B
 \zxScaleDots#*
 \zxMinus#*
 \zxDefaultLineWidth#*
+\zxEdgesAbove#*
+\zxControlPointsVisible#*
+\zxEnableIntersections#*
+\zxDisableIntersections#*
+\zxEnableIntersectionsNodes#*
+\zxEnableIntersectionsWires#*
+\zxIntersectionLineBetweenStartEnd#*
+
+\zxSaveDiagram{cmd}{diagram%formula}#d
+\zxSaveDiagram{cmd}[options%keyvals]{diagram%formula}#d
