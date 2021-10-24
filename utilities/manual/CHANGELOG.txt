@@ -1,6 +1,6 @@
 TeXstudio 4.0.3
 -----------------
-- 
+- fix linewidth calculation in Qt6 
 
 TeXstudio 4.0.2
 -----------------
