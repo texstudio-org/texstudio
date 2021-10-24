@@ -666,7 +666,7 @@ void GrammarCheckLanguageToolJSON::tryToStart()
     connect(javaProcess, SIGNAL(finished(int,QProcess::ExitStatus)), javaProcess, SLOT(deleteLater()));
     connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-    javaProcess->start(quoteSpaces(javaPath),QStringList()<< "-cp" << quoteSpaces(ltPath) << ltArguments.split(" ")); // check sdm
+    javaProcess->start(javaPath,QStringList()<< "-cp" << ltPath << ltArguments.split(" ")); // check sdm
     javaProcess->waitForStarted(500);
     javaProcess->waitForReadyRead(500);
     errorText=javaProcess->readAllStandardError();
