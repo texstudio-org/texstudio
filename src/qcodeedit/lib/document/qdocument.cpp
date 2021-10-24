@@ -2624,7 +2624,7 @@ void QDocumentLineHandle::updateWrapAndNotifyDocument(int line) const{
     m_doc->impl()->m_height += 1.*(lw-oldLW)*m_doc->impl()->m_lineSpacing;
 }
 
-int QDocumentLineHandle::cursorToX(int cpos) const
+qreal QDocumentLineHandle::cursorToX(int cpos) const
 {
 	QReadLocker locker(&mLock);
 	return cursorToXNoLock(cpos);
@@ -2709,7 +2709,7 @@ qreal QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	return screenx;
 }
 
-int QDocumentLineHandle::xToCursor(int xpos) const
+int QDocumentLineHandle::xToCursor(qreal xpos) const
 {
 	//qDebug("x->c(%i) unsafe computations...", xpos);
 	QReadLocker locker(&mLock);
@@ -7303,18 +7303,18 @@ void QDocumentPrivate::setCursorBold(bool bold)
 }
 
 
-void QDocumentPrivate::setWidth(int width)
+void QDocumentPrivate::setWidth(qreal width)
 {
     if(m_width==width){
 		return; // no change if width is not changed
 	}
 
 	bool oldConstraint = m_constrained;
-    m_constrained = width > 0 ;
+    m_constrained = width > 0. ;
 
 	if ( m_constrained || m_forceLineWrapCalculation )
 	{
-		int oldWidth = m_width;
+        qreal oldWidth = m_width;
 
 		m_width = width;
 
@@ -7419,7 +7419,7 @@ void QDocumentPrivate::setWidth()
 			emitFormatsChange(first, -1);
 	}
 	if (!m_constrained){
-		int oldWidth = m_width;
+        qreal oldWidth = m_width;
 
 		m_width = 0;
 

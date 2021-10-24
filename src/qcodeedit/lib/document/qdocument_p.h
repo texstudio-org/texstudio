@@ -159,7 +159,7 @@ public:
 		void hideEvent(int line, int count);
 		void showEvent(int line, int count);
 		
-		void setWidth(int width);
+        void setWidth(qreal width);
 		void setHardLineWrap(bool wrap);
 		void setLineWidthConstraint(bool wrap);
         void setCenterDocumentInEditor(bool center);
