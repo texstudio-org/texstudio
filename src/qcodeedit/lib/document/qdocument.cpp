@@ -2681,7 +2681,8 @@ qreal QDocumentLineHandle::cursorToXNoLock(int cpos) const
 		return result;
 	}
 
-	int idx = 0, column = 0, cwidth;
+    int idx = 0, column = 0;
+    qreal cwidth;
     qreal screenx = m_doc->impl()->leftMarginAndPadding();
 
 	while ( idx < cpos )
