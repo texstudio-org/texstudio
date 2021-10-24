@@ -2768,8 +2768,8 @@ int QDocumentLineHandle::xToCursor(qreal xpos) const
 
 		QVector<int> composited = compose();
 
-        int idx = 0, x = 0, column = 0;
-        qreal cwidth;
+        int idx = 0, column = 0;
+        qreal x = 0. ,cwidth;
 		screenx -= m_doc->impl()->leftMarginAndPadding();
 		if (screenx < 0)
 			return 0;
@@ -2790,7 +2790,7 @@ int QDocumentLineHandle::xToCursor(qreal xpos) const
 				cwidth = UtilsUi::getFmWidth(fm, m_text.at(idx));
 			}
 
-			int mid = (x + (cwidth / 2) + 1);
+            qreal mid = (x + (cwidth / 2) + 1);
 
 			if ( screenx <= mid ){
 				return idx;
