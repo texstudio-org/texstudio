@@ -399,9 +399,11 @@ QString BibTeXDialog::textToInsert(const BibTeXType &entry, bool keepOptionalFie
 					remainingFields.remove(t);
 					break;
 				}
-			if (!inserted)
-				foreach (const QString &t, sl)
+            if (!inserted){
+                foreach (const QString &t, sl){
 					result += "ALT" + t + " = {%<" + t + "%>},\n";
+                }
+            }
 		}
 
 	}
