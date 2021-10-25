@@ -16,6 +16,7 @@
 \pgfkeysalso{key list}#*
 \pgfqkeysalso{default path}{key list}#*
 
+\pgfeov#*
 \pgfkeysdef{key%plain}{code}#*
 \pgfkeysedef{key%plain}{code}#*
 \pgfkeysdefnargs{key%plain}{arg count}{code}#*
