@@ -5403,6 +5403,8 @@ void Texstudio::editMacros()
         connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
         connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
         connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
+        // persistent setting like wrap
+        userMacroDialog->setLineWrap(configManager.macroEditorUsesLineWrap);
     }
     userMacroDialog->show();
     userMacroDialog->raise();
@@ -5421,6 +5423,9 @@ void Texstudio::macroDialogAccepted()
         configManager.saveMacros();
 	completer->updateAbbreviations();
 	addMacrosAsTagList();
+    // read out wrap setting to make it persistent
+    configManager.macroEditorUsesLineWrap=userMacroDialog->getLineWrap();
+
 	userMacroDialog->deleteLater();
 	userMacroDialog = nullptr;
 }

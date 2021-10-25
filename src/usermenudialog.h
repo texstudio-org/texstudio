@@ -34,6 +34,8 @@ public:
     QList<Macro> getMacros(QTreeWidgetItem *item,const QString &path) const;
 
     void selectFirst();
+    void setLineWrap(bool wrap);
+    bool getLineWrap();
 
 private:
 	void setLanguageFromText(void);

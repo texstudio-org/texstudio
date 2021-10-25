@@ -107,6 +107,8 @@ public:
     bool structureShowSingleDoc;
     bool structureScrollToCurrentPosition;
 
+    bool macroEditorUsesLineWrap;
+
 	//update
 	bool autoUpdateCheck;
 	int updateLevel;

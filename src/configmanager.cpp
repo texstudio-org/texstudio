@@ -454,7 +454,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("StructureView/SingleDocMode", &structureShowSingleDoc, false);
     registerOption("StructureView/ScrollToCurrentPosition", &structureScrollToCurrentPosition, true, &pseudoDialog->checkBoxScrollToCurrentPosition);
 
-	//beginRegisterGroup("texmaker");
+    registerOption("MacroEditor/LineWrap", &macroEditorUsesLineWrap, false);
+
 	//files
 	registerOption("Files/New File Encoding", &newFileEncodingName, "utf-8", &pseudoDialog->comboBoxEncoding); //check
 	registerOption("Files/AutoDetectEncodingFromChars", &autoDetectEncodingFromChars, true, &pseudoDialog->checkBoxAutoDetectEncodingFromChars);

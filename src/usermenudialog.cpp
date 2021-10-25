@@ -189,6 +189,16 @@ void UserMenuDialog::selectFirst()
     ui.treeWidget->setCurrentItem(item);
 }
 
+void UserMenuDialog::setLineWrap(bool wrap)
+{
+    codeedit->editor()->setLineWrapping(wrap);
+}
+
+bool UserMenuDialog::getLineWrap()
+{
+    return codeedit->editor()->flag(QEditor::LineWrap);
+}
+
 QTreeWidgetItem *UserMenuDialog::findCreateFolder(const QString &menu)
 {
     QTreeWidgetItem *parent=nullptr;
