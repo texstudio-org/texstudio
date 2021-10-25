@@ -6216,7 +6216,7 @@ void QEditor::updateContent (int i, int n)
 	//qDebug("updating %i, %i", i, n);
 
 	if (m_placeHolders.count()>0 && 
-		!m_placeHolderSynchronizing) { //no recursion, if updateContent is called due to changes made by setPlaceHolder
+        !m_placeHolderSynchronizing) { //no recursion, if updateContent is called due to changes made by setPlaceHolder
 		//look which placeholder has been modified
 		if (m_mirrors.count()==0){
 			for (int i=0;i<m_placeHolders.count();i++){
@@ -6238,12 +6238,21 @@ void QEditor::updateContent (int i, int n)
 		}
 		//remove placeholders
 		//if another has been modified
-		if (m_curPlaceHolder!=m_lastPlaceHolder && 
+        for(int i=0;i<m_curPlaceHolder && i< m_placeHolders.count();++i){
+            const PlaceHolder& current_ph = m_placeHolders.at(m_curPlaceHolder);
+            const PlaceHolder& ph = m_placeHolders.at(i);
+            if(ph.cursor.lineNumber()!=current_ph.cursor.lineNumber()){
+                //remove old placeholders
+                removePlaceHolder(i);
+                --i;
+            }
+        }
+        /*if (m_curPlaceHolder!=m_lastPlaceHolder &&
 			m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count())
 			if (m_placeHolders[m_lastPlaceHolder].autoRemove){
 				removePlaceHolder(m_lastPlaceHolder);
 				m_lastPlaceHolder=m_curPlaceHolder;
-			}
+            }*/
 		//if someone pressed enter
 		if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()) 
 			if (m_placeHolders[m_curPlaceHolder].autoRemove && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
