@@ -1,4 +1,4 @@
-# filehook package
+# pgf-filehook package
 # Matthew Bertucci 10/6/2021 for v1.0
 
 #include:filehook
