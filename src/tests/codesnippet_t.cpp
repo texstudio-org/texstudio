@@ -474,7 +474,7 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< "\\some[%<thing%>]"
 			<< "test\\begin{magic}{\\some[xyz]}\n"+indent+content+"\n\\end{magic}i\nng"
 			<< CP(0,24,27,
-			   QList<CP>() << CP(1,i,i+content.length()) << CP(0,24,27)); //second insertion removes placeholder on line 0 and append a new one to line 0
+               QList<CP>() << CP(0,24,27)); //second insertion removes placeholder on line 0 and append a new one to line 0
 		/*QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
@@ -496,7 +496,7 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< "testenv"
 			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"testenv\n\\end{"+translatedEnvironmentName+"}i\nng"
 			<< CP(1,i+7,
-			   QList<CP>() << CP(0,11,11+ translatedEnvironmentName.length(), QList<CP>() << CP(2,5,5+ translatedEnvironmentName.length())) << CP(1,i,i+7));
+               QList<CP>() << CP(1,i,i+7));
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror changing/inserting another placehoder"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
@@ -505,8 +505,7 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< "\\miau{%<testenv%>}"
 			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"\\miau{"+content+"}\n\\end{"+translatedEnvironmentName+"}i\nng"
 			<< CP(1,i+6,i+6+content.length(),
-			   QList<CP>() << CP(0,11,11+ translatedEnvironmentName.length(), QList<CP>() << CP(2,5,5+ translatedEnvironmentName.length()))
-			               << CP(1,i+6,i+6+content.length())); 
+               QList<CP>() << CP(1,i+6,i+6+content.length()));
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with nested mirrors"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
@@ -519,8 +518,7 @@ void CodeSnippetTest::nestedInsert_data(){
 				indent+"\\end{"+content+"}\n"+
 				"\\end{"+translatedEnvironmentName+"}i\nng"
 			<< CP(1,i+7,i+7+content.length(),
-			   QList<CP>() << CP(0,11,11+ translatedEnvironmentName.length(), QList<CP>() << CP(4,5,5+ translatedEnvironmentName.length()))
-				       << CP(1,i+7,i+7+content.length(), QList<CP>() << CP(3,i+5,i+5+content.length()))
+               QList<CP>() << CP(1,i+7,i+7+content.length(), QList<CP>() << CP(3,i+5,i+5+content.length()))
 			               << CP(2,2*i,2*i+content.length())); 
 		
 	}
