@@ -86,9 +86,12 @@
 #endif
 
 #ifdef OPENOFFICEORG
-    #include <unicode/uchar.h>
-#elif ! defined(MOZILLA_CLIENT)
-    #include "utf_info.hxx"
+#include <unicode/uchar.h>
+#else
+#ifndef MOZILLA_CLIENT
+#include "utf_info.hxx"
+#define UTF_LST_LEN (sizeof(utf_lst) / (sizeof(unicode_info)))
+#endif
 #endif
 
 #ifdef MOZILLA_CLIENT
@@ -109,24 +112,24 @@ static struct unicode_info2* utf_tbl = NULL;
 static int utf_tbl_count =
     0;  // utf_tbl can be used by multiple Hunspell instances
 
-void myopen(std::ifstream& stream, const char* path, std::ios_base::openmode mode){
-
-    #if defined(_WIN32) && defined(_MSC_VER)
-        //  Win32 Long Path Prefix
-        if (strncmp(path,"\\\\?\\", 4) == 0) {
-            int len = MultiByteToWideChar(CP_UTF8, 0, path, -1, NULL, 0);
-            wchar_t* buff = new wchar_t[len];
-            wchar_t* buff2 = new wchar_t[len];
-            MultiByteToWideChar(CP_UTF8, 0, path, -1, buff, len);
-            if (_wfullpath(buff2, buff, len) != NULL) {
-              stream.open(buff2, mode);
-            }
-            delete [] buff;
-            delete [] buff2;
-        } else
-    #endif
-
-    stream.open(path, mode);
+void myopen(std::ifstream& stream, const char* path, std::ios_base::openmode mode)
+{
+#if defined(_WIN32) && defined(_MSC_VER)
+#define WIN32_LONG_PATH_PREFIX "\\\\?\\"
+  if (strncmp(path, WIN32_LONG_PATH_PREFIX, 4) == 0) {
+    int len = MultiByteToWideChar(CP_UTF8, 0, path, -1, NULL, 0);
+    wchar_t* buff = new wchar_t[len];
+    wchar_t* buff2 = new wchar_t[len];
+    MultiByteToWideChar(CP_UTF8, 0, path, -1, buff, len);
+    if (_wfullpath(buff2, buff, len) != NULL) {
+      stream.open(buff2, mode);
+    }
+    delete [] buff;
+    delete [] buff2;
+  }
+  else
+#endif
+  stream.open(path, mode);
 }
 
 std::string& u16_u8(std::string& dest, const std::vector<w_char>& src) {
@@ -2429,7 +2432,7 @@ void initialize_utf_tbl() {
     utf_tbl[j].clower = (unsigned short)j;
     utf_tbl[j].cupper = (unsigned short)j;
   }
-  for (size_t j = 0; j < (sizeof(utf_lst) / sizeof(unicode_info)); ++j) {
+  for (size_t j = 0; j < UTF_LST_LEN; ++j) {
     utf_tbl[utf_lst[j].c].cletter = 1;
     utf_tbl[utf_lst[j].c].clower = utf_lst[j].clower;
     utf_tbl[utf_lst[j].c].cupper = utf_lst[j].cupper;
