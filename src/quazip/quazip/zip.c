@@ -82,6 +82,9 @@ typedef uLongf z_crc_t;
 /* I've found an old Unix (a SunOS 4.1.3_U1) without all SEEK_* defined.... */
 
 
+/* NOT sure that this work on ALL platform */
+#define MAKEULONG64(a, b) ((ZPOS64_T)(((unsigned long)(a)) | ((ZPOS64_T)((unsigned long)(b))) << 32))
+
 #ifndef SEEK_CUR
 #define SEEK_CUR    1
 #endif
@@ -106,16 +109,17 @@ const char zip_copyright[] =" zip 1.01 Copyright 1998-2004 Gilles Vollant - http
 
 #define SIZEDATA_INDATABLOCK (4096-(4*4))
 
-const unsigned long
-    LOCALHEADERMAGIC        = 0x04034b50,
-    DESCRIPTORHEADERMAGIC   = 0x08074b50,
-    CENTRALHEADERMAGIC      = 0x02014b50,
-    ENDHEADERMAGIC          = 0x06054b50,
-    ZIP64ENDHEADERMAGIC     = 0x6064b50,
-    ZIP64ENDLOCHEADERMAGIC  = 0x7064b50;
+#define LOCALHEADERMAGIC    (0x04034b50)
+#define DESCRIPTORHEADERMAGIC    (0x08074b50)
+#define CENTRALHEADERMAGIC  (0x02014b50)
+#define ENDHEADERMAGIC      (0x06054b50)
+#define ZIP64ENDHEADERMAGIC      (0x6064b50)
+#define ZIP64ENDLOCHEADERMAGIC   (0x7064b50)
 
-const unsigned long SIZECENTRALHEADER = 0x2e;
+#define FLAG_LOCALHEADER_OFFSET (0x06)
+#define CRC_LOCALHEADER_OFFSET  (0x0e)
 
+#define SIZECENTRALHEADER (0x2e) /* 46 */
 
 typedef struct linkedlist_datablock_internal_s
 {
@@ -984,7 +988,7 @@ int Write_LocalFileHeader(zip64_internal* zi, const char* filename,
   uInt size_filename = (uInt)strlen(filename);
   uInt size_extrafield = size_extrafield_local;
 
-  err = zip64local_putValue(&zi->z_filefunc,zi->filestream,LOCALHEADERMAGIC, 4);
+  err = zip64local_putValue(&zi->z_filefunc,zi->filestream,(uLong)LOCALHEADERMAGIC, 4);
 
   if (err==ZIP_OK)
   {
@@ -1176,7 +1180,7 @@ extern int ZEXPORT zipOpenNewFileInZip4_64 (zipFile file, const char* filename, 
     }
 
     zi->ci.size_centralExtra = size_extrafield_global;
-    zip64local_putValue_inmemory(zi->ci.central_header,CENTRALHEADERMAGIC,4);
+    zip64local_putValue_inmemory(zi->ci.central_header,(uLong)CENTRALHEADERMAGIC,4);
     /* version info */
     zip64local_putValue_inmemory(zi->ci.central_header+4,(uLong)versionMadeBy,2);
     zip64local_putValue_inmemory(zi->ci.central_header+6,(uLong)version_to_extract,2);
@@ -1780,7 +1784,7 @@ extern int ZEXPORT zipCloseFileInZipRaw64 (zipFile file, ZPOS64_T uncompressed_s
         if ((zi->ci.flag & 8) != 0) {
             /* Write local Descriptor after file data */
             if (err==ZIP_OK)
-                err = zip64local_putValue(&zi->z_filefunc,zi->filestream,DESCRIPTORHEADERMAGIC,4);
+                err = zip64local_putValue(&zi->z_filefunc,zi->filestream,(uLong)DESCRIPTORHEADERMAGIC,4);
             if (err==ZIP_OK)
                 err = zip64local_putValue(&zi->z_filefunc,zi->filestream,crc32,4); /* crc 32, unknown */
             if (zi->ci.zip64) {
@@ -1837,7 +1841,7 @@ int Write_Zip64EndOfCentralDirectoryRecord(zip64_internal* zi, uLong size_centra
 
   uLong Zip64DataSize = 44;
 
-  err = zip64local_putValue(&zi->z_filefunc,zi->filestream,ZIP64ENDHEADERMAGIC,4);
+  err = zip64local_putValue(&zi->z_filefunc,zi->filestream,(uLong)ZIP64ENDHEADERMAGIC,4);
 
   if (err==ZIP_OK) /* size of this 'zip64 end of central directory' */
     err = zip64local_putValue(&zi->z_filefunc,zi->filestream,(ZPOS64_T)Zip64DataSize,8); /* why ZPOS64_T of this ? */
@@ -1875,7 +1879,7 @@ int Write_EndOfCentralDirectoryRecord(zip64_internal* zi, uLong size_centraldir,
   int err = ZIP_OK;
 
   /*signature*/
-  err = zip64local_putValue(&zi->z_filefunc,zi->filestream,ENDHEADERMAGIC,4);
+  err = zip64local_putValue(&zi->z_filefunc,zi->filestream,(uLong)ENDHEADERMAGIC,4);
 
   if (err==ZIP_OK) /* number of this disk */
     err = zip64local_putValue(&zi->z_filefunc,zi->filestream,(uLong)0,2);

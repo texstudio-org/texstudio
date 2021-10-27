@@ -1778,7 +1778,7 @@ extern int ZEXPORT unzReadCurrentFile  (unzFile file, voidp buf, unsigned len)
 
             if ((pfile_in_zip_read_info->stream.avail_in == 0) &&
                 (pfile_in_zip_read_info->rest_read_compressed == 0))
-                return (iRead==0) ? UNZ_EOF : (int) iRead;
+                return (iRead==0) ? UNZ_EOF : iRead;
 
             if (pfile_in_zip_read_info->stream.avail_out <
                             pfile_in_zip_read_info->stream.avail_in)
@@ -1841,7 +1841,7 @@ extern int ZEXPORT unzReadCurrentFile  (unzFile file, voidp buf, unsigned len)
             pfile_in_zip_read_info->stream.total_out = pfile_in_zip_read_info->bstream.total_out_lo32;
 
             if (err==BZ_STREAM_END)
-              return (iRead==0) ? UNZ_EOF : (int) iRead;
+              return (iRead==0) ? UNZ_EOF : iRead;
             if (err!=BZ_OK)
               break;
 #endif
@@ -1874,7 +1874,7 @@ extern int ZEXPORT unzReadCurrentFile  (unzFile file, voidp buf, unsigned len)
             iRead += uAvailOutBefore - uAvailOutAfter;
 
             if (err==Z_STREAM_END)
-                return (iRead==0) ? UNZ_EOF : (int) iRead;
+                return (iRead==0) ? UNZ_EOF : iRead;
             if (err!=Z_OK)
                 break;
         }
