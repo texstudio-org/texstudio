@@ -578,7 +578,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             newRanges.append(elem);
         }
         // spell checking
-        if (speller->inlineSpellChecking && tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && tk.length >= 3 && speller) {
+        if (speller->inlineSpellChecking && tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && speller) {
             int tkLength=tk.length;
             QString word = tk.getText();
             if(i+1 < tl.length()){
@@ -619,7 +619,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     newRanges.append(elem);
                 }
             }
-            if (!word.isEmpty() && !speller->check(word) ) {
+            if (tkLength>=3 && !word.isEmpty() && !speller->check(word) ) {
                 if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
                     continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
                 if(word.endsWith('.')){
