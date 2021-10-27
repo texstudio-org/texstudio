@@ -27,19 +27,19 @@
                 Porting from Aspell to Hunspell using C-like structs
 */
 
-#ifndef Header_Phonet
-#define Header_Phonet
+#ifndef PHONET_HXX_
+#define PHONET_HXX_
 
-const int HashSize = 256;
-const int MaxPhonetLength = 256;
-const int MaxPhonetUTF8Length = 4 * MaxPhonetLength;
+#define HASHSIZE 256
+#define MAXPHONETLEN 256
+#define MAXPHONETUTF8LEN (MAXPHONETLEN * 4)
 
 #include "hunvisapi.h"
 
 struct phonetable {
   char utf8;
   std::vector<std::string> rules;
-  int hash[HashSize];
+  int hash[HASHSIZE];
 };
 
 LIBHUNSPELL_DLL_EXPORTED void init_phonet_hash(phonetable& parms);

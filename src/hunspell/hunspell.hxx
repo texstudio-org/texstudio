@@ -67,8 +67,8 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#ifndef Header_MySpell_Manager_2
-#define Header_MySpell_Manager_2
+#ifndef MYSPELLMGR_HXX_
+#define MYSPELLMGR_HXX_
 
 #include "hunvisapi.h"
 #include "w_char.hxx"
@@ -76,11 +76,10 @@
 #include <string>
 #include <vector>
 
-const char * const SPELL_XML = "<?xml?>";
+#define SPELL_XML "<?xml?>"
 
-const int
-    MAXSUGGESTION = 15,
-    MAXSHARPS = 5;
+#define MAXSUGGESTION 15
+#define MAXSHARPS 5
 
 #ifndef MAXWORDLEN
 #define MAXWORDLEN 100

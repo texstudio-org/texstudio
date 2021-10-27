@@ -42,12 +42,13 @@
 #include "hunzip.hxx"
 #include "csutil.hxx"
 
+#define CODELEN 65536
+#define BASEBITREC 5000
 
-const int BASEBITREC = 5000;
-const char * MAGIC = "hz0";
-const char * MAGIC_ENCRYPT = "hz1";
-
-const size_t MAGICLEN = sizeof(MAGIC) - 1;
+#define UNCOMPRESSED '\002'
+#define MAGIC "hz0"
+#define MAGIC_ENCRYPT "hz1"
+#define MAGICLEN (sizeof(MAGIC) - 1)
 
 int Hunzip::fail(const char* err, const char* par) {
   fprintf(stderr, err, par);

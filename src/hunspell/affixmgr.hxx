@@ -68,8 +68,8 @@
  * SUCH DAMAGE.
  */
 
-#ifndef Header_Affix_Manager
-#define Header_Affix_Manager
+#ifndef AFFIXMGR_HXX_
+#define AFFIXMGR_HXX_
 
 #include <stdio.h>
 
@@ -83,8 +83,8 @@
 #include "replist.hxx"
 
 // check flag duplication
-const char dupSFX = (1 << 0);
-const char dupPFX = (1 << 1);
+#define dupSFX (1 << 0)
+#define dupPFX (1 << 1)
 
 class PfxEntry;
 class SfxEntry;
