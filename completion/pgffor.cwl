@@ -6,4 +6,5 @@
 #include:pgfmath
 
 \foreach#*
+\foreach{cmd}#Sd
 \breakforeach#*

@@ -1,5 +1,6 @@
 # incgraph package
 # muzimuzhi,31 Jul 2020 for incgraph 1.12
+# Matthew Bertucci 10/23/2021 for v1.2
 
 #include:pgfkeys
 #include:pgf
@@ -7,12 +8,16 @@
 #include:graphicx
 #include:bookmark
 
-\incgraph{imagefile}
-\incgraph[options%keyvals]{imagefile}
-\incgraph[options%keyvals][graphics options]{imagefile}
-\incmultigraph{file name pattern}{list}
-\incmultigraph[options%keyvals]{file name pattern}{list}
-\incmultigraph[options%keyvals][graphics options]{file name pattern}{list}
+\incgraph{imagefile}#g
+\incgraph[options%keyvals]{imagefile}#g
+\incgraph[options%keyvals][graphics options]{imagefile}#g
+\incmultigraph{file name pattern}{list}#g
+\incmultigraph[options%keyvals]{file name pattern}{list}#g
+\incmultigraph[options%keyvals][graphics options]{file name pattern}{list}#g
+\n#*
+\ni#*
+\nn#*
+\nt#*
 \begin{inctext}
 \begin{inctext}[options%keyvals]
 \end{inctext}
@@ -23,7 +28,8 @@ currentpaper
 documentpaper
 graphicspaper
 paper size=%<width%>:%<height%>
-paper=#current,document,graphics,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,d0,d1,d2,d3,d4,d5,d6,d7,landscape
+paper=#current,document,graphics,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,d0,d1,d2,d3,d4,d5,d6,d7,executive,letter,legal,ledger
+landscape
 portrait
 a0paper
 a1paper
@@ -76,16 +82,22 @@ options={%<graphics options%>}
 options add={%<graphics options%>}
 include command=%<macro%>
 existence check=%<macro%>
+no existence check
 fail on not found
 ignore on not found
+ignore on not found with extensions={%<extension list%>}
+ignore on not found with extensions*={%<extension list%>}
+extensions={%<extension list%>}
+extensions add={%<extension list%>}
+extensions from graphics
 hyper
 no hyper
 target=%<hyperref anchor%>
 label=##l
-bookmark=
-bookmark options=
-bookmark heading=
-bookmark heading options=
+bookmark=%<text%>
+bookmark options={%<options%>}
+bookmark heading=%<text%>
+bookmark heading options={%<options%>}
 left border=##L
 bottom border=##L
 right border=##L
@@ -102,21 +114,40 @@ overlay={%<tikz code%>}
 overlay page number at=%<position%>
 overlay page number at bottom=##L
 overlay page number at top=##L
+overlay page number options={%<TikZ options%>}
 no overlay
 pagestyle=%<page style%>
 zerofill=%<digits%>
 #endkeyvals
+
+\igrGetPageSize
+\igrPageWidth
+\igrPageHeight
+\igrSetPageSize{width}{height}
+\igrGetLastPage{file}
+\igrLastPage
 
 \igfpage{text}
 \igrcenter{text}
 \igrcenterfit{width}{height}{text}
 \igrtargetset{hyperref anchor}
 
+\theigrpage
+\igrpagestyle#*
+\igrmatchvalue#*
+
 \igfboxset{text}
 \igrboxcenter
 \igrboxtikz
 \igrboxtikzpage
-\igfboxtikzcenter
+\igrboxtikzcenter
+
+\igrbox#*
+\igrAutoTarget#*
+\igrBoxWidth#*
+\igrBoxHeight#*
+\igrBoxht#*
+\igrBoxdp#*
 
 \igrsetmatchvalue{key%plain}{value}
 \igrsetmatches{list}

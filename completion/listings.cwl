@@ -185,7 +185,6 @@ XSLT
 \lstinputlisting{file}
 \lstinputlisting[options%keyvals]{file}
 
-### keyvals for both \lstset and individual listings
 #keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline
 inputpath=%<path%>
 aboveskip=##L
@@ -309,10 +308,6 @@ rangeprefix=
 rangesuffix=
 includerangemarker#true,false
 multicols=%<number%>
-#endkeyvals
-
-### keyvals for individual listings only
-#keyvals:\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline
 float
 float=%<subset of tbph%>
 float=*%<subset of tbph%>
