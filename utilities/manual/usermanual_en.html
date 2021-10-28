@@ -1686,7 +1686,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><b>package-based:</b> Each cwl should correspond to a package. The exception are some cwls containing fundamental (La)TeX commands, but we've already written them so you should not have to bother. The cwl should be named like the package so that automatic loading works. If you <code>\usepackage{mypackage}</code> TeXstudio will load mypackage.cwl if available.</li>
   <li><b>complete:</b> The cwl should contain all commands in the package. If you use a non-specified command in the editor, the syntaxchecker will mark it as unknown.</li>
   <li><b>specific:</b> The commands should be classified if possible. This allows TeXstudio to give additional context to the command (e.g. warn if a math command is used outside of a math environment or check references and citations.</li>
-  <li><b>priorized:</b> Some packages may specify very many commands. Mark the unusual ones by the *-classifier to prevent the completer from overcrowding with rarely used commands.</li>
+  <li><b>prioritized:</b> Some packages may specify very many commands. Mark the unusual ones by the *-classifier to prevent the completer from overcrowding with rarely used commands.</li>
 </ul>
 
 <h3>4.14.5 cwl file placement</h3>
