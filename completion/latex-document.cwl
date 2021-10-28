@@ -288,7 +288,6 @@
 \mathparagraph#m
 \mathring{o}#m
 \mathrm{text}#m
-\mathscr{text}#m
 \mathsection#m
 \mathsf{text}#m
 \mathsterling#m
