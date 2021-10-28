@@ -3135,7 +3135,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Review remarks (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>باھا سۆزى (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -4610,7 +4610,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2551"/>
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>بۇ خەتكۈچتىكى %n پايدىلانما</numerusform><numerusform>بۇ خەتكۈچتىكى n% پايدىلانما</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2556"/>
@@ -6868,7 +6868,7 @@ TeXstudio نىڭ سىرتىدا ئۆزگەرتىلدى. دىسكىدىن قاي�
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>math-text</source>
-        <translation type="unfinished"/>
+        <translation>ماتېماتىكا تېكست</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -8849,7 +8849,7 @@ failed.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>تەكرارلاش</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
@@ -11404,12 +11404,12 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
     <message>
         <location filename="../src/texstudio.cpp" line="11275"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished"/>
+        <translation>تىزىملىكنى كېڭەرت</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11276"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished"/>
+        <translation>تىزىملىكنى يوشۇر</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11284"/>
