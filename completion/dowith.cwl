@@ -5,7 +5,7 @@
 \DoDoWith%<<arg1><arg2>...<argN>%>\StopDoing#*
 \StopDoing#*
 \setdo{definition}#*
-\letdo%<<cmd>%>
+\letdo%<<cmd>%>#*
 \DoWithAllOf{%<cmd%>}{%<<arg1><arg2>...<argN>%>}#*
 \DoDoWithAllOf{%<<arg1><arg2>...<argN>%>}#*
 \DoWithAllIn{cmd}{list macro}#*
