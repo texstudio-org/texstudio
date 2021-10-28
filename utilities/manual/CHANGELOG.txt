@@ -1,6 +1,9 @@
 TeXstudio 4.0.3
 -----------------
-- fix linewidth calculation in Qt6 
+- fix linewidth calculation in Qt6
+- fix crash on load/new doc (under unknown,system specific circumstances)
+- remove placeholder quicker
+- more cwls 
 
 TeXstudio 4.0.2
 -----------------
