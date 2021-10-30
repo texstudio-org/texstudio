@@ -46,13 +46,13 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2021-10-22T16:21:33+0000" version="4.0.2">
+    <release date="2021-10-30T07:18:05+0000" version="4.0.3">
       <description>
         <ul>
-          <li>fix structure view (inlcudes and cursor marking, #1828) </li>
-          <li>fix completer tooltip on bibids (#1835)</li>
-          <li>OSX: fix "slanted" cursor (#1836)</li>
-          <li>more cwls</li>
+          <li>fix linewidth calculation in Qt6</li>
+          <li>fix crash on load/new doc (under unknown,system specific circumstances)</li>
+          <li>remove placeholder quicker</li>
+          <li>more cwls </li>
         </ul>
       </description>
     </release>
