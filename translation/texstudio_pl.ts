@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/aboutdialog.ui" line="14"/>
         <source>About TeXstudio</source>
-        <translation>About TeXstudio</translation>
+        <translation>O TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="81"/>
@@ -64,12 +64,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="35"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio wykorzystuje flowlayout z przykładów Qt5.6.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="36"/>
         <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio używa adwaita-qt (GPL2) z </translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="38"/>
@@ -1080,7 +1080,7 @@ Zmienne zapisywane jako: $MYVAR. Wielkość liter ma znaczenie.
     <message>
         <location filename="../src/configdialog.ui" line="1043"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation>Interpretuj definicję polecenia w komentarzach magicznych</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1080"/>
@@ -1695,7 +1695,7 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     <message>
         <location filename="../src/configdialog.ui" line="2319"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Nadpisz nawias zamykający po symbolu zastępczym</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2326"/>
@@ -1757,12 +1757,12 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2189"/>
         <source>Show image tooltip on image files</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż etykietę obrazu na plikach obrazów</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2196"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Nadpisz nawias otwierający przed symbolem zastępczym</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2356"/>
@@ -1782,17 +1782,17 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="1544"/>
         <source>Embedded PDF Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Pasek narzędzi osadzonego PDF</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2241"/>
         <source>Latex Command for pushed citations:</source>
-        <translation type="unfinished"/>
+        <translation>Polecenie Latex dla wypchniętych cytowań:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2495"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Przewijanie poza koniec pliku</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2505"/>
@@ -1822,7 +1822,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2580"/>
         <source>Keep indentation of includes in structure tree</source>
-        <translation type="unfinished"/>
+        <translation>Zachowaj wcięcia nagłówków w drzewie strukturalnym</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2566"/>
@@ -1832,7 +1832,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2512"/>
         <source>No Color Background</source>
-        <translation type="unfinished"/>
+        <translation>Bez kolorowania tła</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2517"/>
@@ -1862,7 +1862,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Scroll to current cursor position</source>
-        <translation type="unfinished"/>
+        <translation>Przewiń do bieżącego położenia kursora</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -1942,7 +1942,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2761"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation type="unfinished"/>
+        <translation>Tryb wizualny kursora kolumnowego (tj. przesuwanie kursora w kierunku klawiszy strzałek w tekstach RTL)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2768"/>
@@ -1967,7 +1967,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="2798"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
-        <translation type="unfinished"/>
+        <translation>Wyłącz obejście we wprowadzaniu akcentów (tylko Mac OS X)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2805"/>
@@ -2157,7 +2157,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="3158"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"/>
+        <translation>Automatycznie wstawiaj ograniczniki matematyczne, gdzie potrzeba</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3168"/>
