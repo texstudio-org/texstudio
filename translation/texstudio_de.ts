@@ -11186,14 +11186,14 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/texstudio.cpp" line="10598"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation>Echzeitprüfungen sind aktiviert.
+        <translation>Echtzeitprüfungen sind aktiviert.
 </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10600"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation>Echzeitprüfungen sind deaktiviert!!!
+        <translation>Echtzeitprüfungen sind deaktiviert!!!
 </translation>
     </message>
     <message>
