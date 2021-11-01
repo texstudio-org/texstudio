@@ -2843,7 +2843,7 @@ int QDocumentLineHandle::documentOffsetToCursor(qreal x, qreal y, bool disallowP
 
 	x -= d->leftMarginAndPadding();  // remove margin and padding
 
-    int wrap = qFloor(y / QDocumentPrivate::m_lineSpacing);
+    int wrap = qRound(y / QDocumentPrivate::m_lineSpacing);
 
 	if ( wrap > m_frontiers.count() )
 	{
