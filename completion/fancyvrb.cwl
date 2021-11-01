@@ -39,7 +39,8 @@
 \FancyVerbStopString#*
 
 \DefineVerbatimEnvironment{envname}{env type}{options%keyvals}#N
-\RecustomVerbatimEnvironment{envname}{env type}{options%keyvals}
+\CustomVerbatimEnvironment{envname}{env type}{options%keyvals}#*N
+\RecustomVerbatimEnvironment{envname}{env type}{options%keyvals}#N
 \CustomVerbatimCommand{command}{cmd type}{options%keyvals}#d
 \RecustomVerbatimCommand{command}{cmd type}{options%keyvals}
 
@@ -77,7 +78,7 @@
 \begin{VerbatimOut}{file name}#V
 \end{VerbatimOut}
 
-#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput
+#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput
 commentchar=%<single char%>
 gobble=%<integer%>
 formatcom=%<command%>
