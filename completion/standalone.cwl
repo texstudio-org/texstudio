@@ -14,7 +14,11 @@
 #include:preview
 #endif
 #ifOption:beamer
-#include:beamer
+#include:class-beamer
+\begin{standaloneframe}{frame title}{frame subtitle}#*
+\begin{standaloneframe}{frame title}#*
+\begin{standaloneframe}#*
+\end{standaloneframe}#*
 #endif
 #ifOption:tikz
 #include:tikz
@@ -59,9 +63,9 @@ pstricks
 beamer=#true,false
 beamer
 float=#true,false
-convert=#true,false,{options}
+convert=#true,false,{%<options%>}
 convert
-png=#true,false,{options}
+png=#true,false,{%<options%>}
 png
 #endkeyvals
 
@@ -70,14 +74,9 @@ png
 \standaloneignore#*
 
 \begin{standalone}#S
+\end{standalone}#S
 
 \ifstandalonebeamer#*
-
-## not so sure about this one, has a lot of options
-\begin{standaloneframe}{frame title}{frame subtitle}#*
-\begin{standaloneframe}{frame title}#*
-\begin{standaloneframe}#*
-
 
 ###############################
 ## As package:
@@ -97,13 +96,43 @@ group=#true,false
 mode=#tex,image,image|tex,buildmissing,buildnew
 obeyclassoptions=#true,false
 extension=
-build=#{options}
+build={%<options%>}
 #endkeyvals
 
-\standaloneconfig{%<options%>}#*
-
-## also any options  in \includegraphics
+## also any options in \includegraphics
 \includestandalone{file}#i
+\includestandalone[options%keyvals]{file}#i
+
+#keyvals:\includestandalone
+bb=
+bbllx=
+bblly=
+bburx=
+bbury=
+natwidth=
+natheight=
+hiresbb#true,false
+pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
+viewport=
+trim=
+angle=
+origin=
+width=##L
+height=##L
+totalheight=##L
+keepaspectratio#true,false
+scale=
+clip#true,false
+draft#true,false
+type=
+ext=
+read=
+command=
+quiet
+page=
+interpolate#true,false
+decodearray=
+#endkeyvals
 
 ###############################
 ## Common:
