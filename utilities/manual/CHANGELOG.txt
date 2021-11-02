@@ -1,6 +1,8 @@
 TeXstudio 4.0.4
 -----------------
-- 
+- better pdf font substitution on windows (#1812)
+- fix placing cursor for large fonts (#1908)
+- more cwls
 
 TeXstudio 4.0.3
 -----------------
