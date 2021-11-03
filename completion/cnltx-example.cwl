@@ -105,6 +105,7 @@ local-frame={%<mdframed options%>}
 gobble=%<integer%>
 add-cmds={%<list of csnames%>}
 add-silent-cmds={%<list of csnames%>}
+listings-options={%<listings options%>}
 add-listings-options={%<listings options%>}
 add-sourcecode-options={%<listings options%>}
 sourcecode-options={%<listings options%>}
