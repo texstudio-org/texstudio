@@ -1,9 +1,12 @@
 # microtype.cwl
 # Edson 27-12-2010
 # doncherry/2014-10-03 for microtype v. 2.5a
-# Matthew Bertucci 7/22/2021 for microtype v. 2.8c
+# Matthew Bertucci 11/3/2021 for microtype v3.0
 
-\microtypesetup{keyvals}
+#include:keyval
+#include:etoolbox
+
+\microtypesetup{options%keyvals}
 
 #keyvals:\microtypesetup
 protrusion=#true,false,compatibility,nocompatibility,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
@@ -13,6 +16,8 @@ tracking=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,bas
 kerning=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
 spacing=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
 factor=%<integer%>
+patch=#all,none,item,toc,footnote,eqnum
+nopatch=#all,none,item,toc,footnote,eqnum
 unit=%<dimension%>
 auto#true,false
 stretch=%<integer%>
@@ -20,19 +25,24 @@ shrink=%<integer%>
 step=%<integer%>
 selected#true,false
 letterspace=%<integer%>
-draft#true,false
+disable=#true,false,ifdraft
 final#true,false
 verbose=#true,false,errors,silent
 babel#true,false
 DVIoutput#true,false
 #endkeyvals
 
+\DeclareMicrotypeSet{name}{fonts%keyvals}
 \DeclareMicrotypeSet[features]{name}{fonts%keyvals}
+\DeclareMicrotypeSet*{name}{fonts%keyvals}
 \DeclareMicrotypeSet*[features]{name}{fonts%keyvals}
 
+\UseMicrotypeSet{name}
 \UseMicrotypeSet[features]{name}
+\DeclareMicrotypeSetDefault{name}
 \DeclareMicrotypeSetDefault[features]{name}
 
+\SetProtrusion{fonts}{settings}
 \SetProtrusion[options%keyvals]{fonts}{settings}
 
 #keyvals:\SetProtrusion
@@ -45,6 +55,7 @@ inputenc=
 context=
 #endkeyvals
 
+\SetExpansion{fonts}{settings}
 \SetExpansion[options%keyvals]{fonts}{settings}
 
 #keyvals:\SetExpansion
@@ -57,8 +68,10 @@ auto#true,false
 stretch=%<integer%>
 shrink=%<integer%>
 step=%<integer%>
+factor=
 #endkeyvals
 
+\SetTracking{fonts}{settings}
 \SetTracking[options%keyvals]{fonts}{settings}
 
 #keyvals:\SetTracking
@@ -71,6 +84,7 @@ outer kerning=
 no ligatures=
 #endkeyvals
 
+\SetExtraKerning{fonts}{settings}
 \SetExtraKerning[options%keyvals]{fonts}{settings}
 
 #keyvals:\SetExtraKerning
@@ -83,6 +97,7 @@ unit=
 context=
 #endkeyvals
 
+\SetExtraSpacing{fonts}{settings}
 \SetExtraSpacing[options%keyvals]{fonts}{settings}
 
 #keyvals:\SetExtraSpacing
@@ -95,6 +110,7 @@ context=
 unit=
 #endkeyvals
 
+\DeclareCharacterInheritance{fonts%keyvals}{list}
 \DeclareCharacterInheritance[features]{fonts%keyvals}{list}
 
 \DeclareMicrotypeVariants{suffixes}
@@ -117,11 +133,14 @@ spacing=
 kerning=
 #endkeyvals
 
+\textls{text}
 \textls[amount]{text}
+\textls*{text}
 \textls*[amount]{text}
 \lsstyle
 \lslig{ligature}
 
+\DisableLigatures{fonts%keyvals}
 \DisableLigatures[characters]{fonts%keyvals}
 
 #keyvals:\DeclareMicrotypeSet,\DeclareMicrotypeSet*,\DeclareCharacterInheritance,\DisableLigatures
@@ -130,4 +149,8 @@ family=
 series=
 shape=
 size=
+font=
 #endkeyvals
+
+\leftprotrusion{text}
+\rightprotrusion{text}
