@@ -1,19 +1,36 @@
 # denisbitouze, 27.10.2012
-\oldstylenums{number}#n
-\oldstylenumsf{number}#n
-\liningnums{number}#n
-\liningnumsf{number}#n
-\tabularnums{number}#n
-\tabularnumsf{number}#n
-\proportionalnums{number}#n
-\proportionalnumsf{number}#n
-\libertine{text}#n
-\libertineSB{text}#n
-\libertineOsF{number}#n
-\libertineLF{number}#n
-\biolinum{text}#n
-\biolinumOsF{number}#n
-\biolinumLF{number}#n
+# Matthew Bertucci 11/2/2021 for v5.3.0
+
+#include:ifxetex
+#include:ifluatex
+#include:xkeyval
+#include:textcomp
+#include:mweights
+#include:fontenc
+#include:fontaxes
+
+\oldstylenums{text}#n
+\oldstylenumsf{text}#n
+\liningnums{text}#n
+\liningnumsf{text}#n
+\tabularnums{text}#n
+\tabularnumsf{text}#n
+\proportionalnums{text}#n
+\proportionalnumsf{text}#n
+\sufigures#n
+\textsu{text}#n
+\textsuperior{text}#*n
+\libertine#n
+\libertineSB#n
+\libertineOsF#n
+\libertineLF#n
+\libertineDisplay#n
+\libmono#n
+\libertineInitial#n
+\biolinum#n
+\biolinumOsF#n
+\biolinumLF#n
+\libertineInitialGlyph{glyph name}#n
 \libertineGlyph{glyph name}#n
 \biolinumGlyph{glyph name}#n
 \biolinumKeyGlyph{glyph name}#n
@@ -86,3 +103,4 @@
 \LMouseIIL#n
 \LMouseIIR#n
 \LMouseIILR#n
+\DeclareTextGlyphY{type}{name}{number}#*
