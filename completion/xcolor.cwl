@@ -6,10 +6,36 @@
 #include:color
 #ifOption:table
 #include:colortbl
+## double command as workaround for color args to be recognized properly as colors
+\rowcolors[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors[commands]{row}{color}{color}#S
+\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors*[commands]{row}{color}{color}#S
+\showrowcolors
+\hiderowcolors
+\rownum
 #endif
 #ifOption:fixpdftex
 #include:pdfcolmk
 #endif
+
+\GetGinDriver#*
+\GinDriver#*
+\xcolorcmd#*
+\adjustUCRBG#*
+\rangeHsb#*
+\rangetHsb#*
+\rangeRGB#*
+\rangeHSB#*
+\rangeGray#*
+\substitutecolormodel{source model}{target model-list}#*
+\selectcolormodel{num model}#*
+\ifconvertcolorsD#*
+\convertcolorsDtrue#*
+\convertcolorsDfalse#*
+\ifconvertcolorsU#*
+\convertcolorsUtrue#*
+\convertcolorsUfalse#*
 
 \definecolor{name}{model-list}{spec-list}#s#%color
 \definecolor[type]{name}{model-list}{spec-list}#s#%color
@@ -24,28 +50,37 @@
 \providecolorset[type]{model-list}{head}{tail}{set-spec}#*
 \preparecolor[type]{name}{model-list}{spec-list}#*s#%color
 \preparecolorset[type]{model-list}{head}{tail}{set-spec}#*
+\ifdefinecolors#*
 \DefineNamedColor{type}{name}{model-list}{spec-list}#Ss#%color
 \definecolors{id-list}#*
+\definecolorstrue#*
+\definecolorsfalse#*
 \providecolors{id-list}#*
+\ifglobalcolors#*
+\globalcolorstrue#*
+\globalcolorsfalse#*
+\xglobal#*
 
 \nopagecolor#*
+\boxframe{width}{height}{depth}#*
+\begin{testcolors}#*\tabular
+\begin{testcolors}[model-list]#*\tabular
+\end{testcolors}#*
 \testcolor{color}#*
 \testcolor[model-list]{spec-list}#*
 \blendcolors{mix-expr}
+\blendcolors*{mix-expr}
+\maskcolors{color}#*
 \maskcolors[num-model]{color}#*
+\ifmaskcolors#*
+\maskcolorstrue#*
+\maskcolorsfalse#*
+\colormask#*
 
 \definecolorseries{name}{core-model}{method%keyvals}{b-spec}{s-spec}#*
 \definecolorseries{name}{core-model}{method%keyvals}[b-model]{b-spec}[s-model]{s-spec}#*
 \resetcolorseries[div]{name}
-
-## double command as workaround for color args to be recognized properly as colors
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
+\colorseriescycle#*
 
 \extractcolorspec{color}{cmd}#*
 \extractcolorspecs{color}{model-cmd}{color-cmd}#*

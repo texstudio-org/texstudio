@@ -55,6 +55,9 @@
 \dfrac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \displaybreak
 \displaybreak[value]
+\DOTSB#*
+\DOTSI#*
+\DOTSX#*
 \dotsb#m
 \dotsc#m
 \dotsi#m

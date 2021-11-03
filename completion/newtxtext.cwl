@@ -2,8 +2,10 @@
 # Matthew Bertucci 9/7/2021 for v1.656
 
 #include:fontaxes
+#include:xkeyval
 #include:etoolbox
 #include:xstring
+#include:ifthen
 #include:scalefnt
 #include:fontenc
 #include:textcomp
@@ -29,3 +31,7 @@
 \useosf#*
 \useproportional#*
 \k{arg}#*
+\thdefault#*
+\LGCscale#*
+\fileversion#S
+\filedate#S
