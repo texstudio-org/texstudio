@@ -185,7 +185,7 @@ XSLT
 \lstinputlisting{file}
 \lstinputlisting[options%keyvals]{file}
 
-#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
 inputpath=%<path%>
 aboveskip=##L
 belowskip=##L
@@ -316,29 +316,6 @@ firstline=%<number%>
 lastline=%<number%>
 linerange={%<first1-last1,first2-last2,...%>}
 consecutivenumbers#true,false
-#endkeyvals
-
-\lstdefinestyle{style name}{keyvals}#*
-\thelstnumber#*
-\lstlistoflistings
-\lstlistlistingname#*
-\lstlistingname#*
-\lstlistingnamestyle#*
-\thelstlisting#*
-\lstname#*
-\lstindexmacro{arg}#*
-
-\lstnewenvironment{envname}[args][default]{starting code}{ending code}#*N
-\lstnewenvironment{envname}[args]{starting code}{ending code}#*N
-\lstnewenvironment{envname}{starting code}{ending code}#*N
-
-\lstMakeShortInline[%<options%>]%<<character>%>#*
-\lstDeleteShortInline%<<character>%>#*
-
-\lstdefinelanguage{language name}{keyvals}#*
-\lstalias{alias}{language}#*
-
-#keyvals:\lstdefinelanguage,\lstset,\lstinputlisting
 keywordsprefix=%<prefix%>
 keywords={%<list of keywords%>}
 keywords=[%<number%>]{%<list of keywords%>}
@@ -373,6 +350,26 @@ deletekeywordcomment={%<keywords%>}
 keywordcommentsemicolon={%<keywords%>}{%<keywords%>}{%<keywords%>}
 podcomment#true,false
 #endkeyvals
+
+\lstdefinestyle{style name}{keyvals}#*
+\thelstnumber#*
+\lstlistoflistings
+\lstlistlistingname#*
+\lstlistingname#*
+\lstlistingnamestyle#*
+\thelstlisting#*
+\lstname#*
+\lstindexmacro{arg}#*
+
+\lstnewenvironment{envname}[args][default]{starting code}{ending code}#*N
+\lstnewenvironment{envname}[args]{starting code}{ending code}#*N
+\lstnewenvironment{envname}{starting code}{ending code}#*N
+
+\lstMakeShortInline[%<options%>]%<<character>%>#*
+\lstDeleteShortInline%<<character>%>#*
+
+\lstdefinelanguage{language name}{keyvals}#*
+\lstalias{alias}{language}#*
 
 \lstaspectfiles#*
 \lstlanguagefiles#*
