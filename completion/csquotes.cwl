@@ -1,6 +1,10 @@
 # csquotes package, available from ctan
 # commands for csquotes users
 # dbitouze, 14.09.2013
+# Matthew Bertucci 04.11.2021 for v5.2l
+
+#include:etoolbox
+#include:keyval
 
 \enquote{text}
 \enquote*{text}
@@ -11,8 +15,12 @@
 \hyphenquote{language}{text}#*
 \hyphenquote*{language}{text}#*
 
-\textquote[manual citation][punct]{text}
-\textquote*[manual citation][punct]{text}
+\textquote{text}
+\textquote*{text}
+\textquote[manual citation]{text}
+\textquote*[manual citation]{text}
+\textquote[manual citation][punct]{text}#*
+\textquote*[manual citation][punct]{text}#*
 
 \foreigntextquote{language}{text}
 \foreigntextquote*{language}{text}#*
@@ -188,19 +196,16 @@
 
 \begin{displayquote}
 \begin{displayquote}[manual citation]
-\begin{displayquote}[][punct]#*
 \begin{displayquote}[manual citation][punct]#*
 \end{displayquote}
 
 \begin{foreigndisplayquote}{language}
 \begin{foreigndisplayquote}{language}[manual citation]
-\begin{foreigndisplayquote}{language}[][punct]#*
 \begin{foreigndisplayquote}{language}[manual citation][punct]#*
 \end{foreigndisplayquote}
 
 \begin{hyphendisplayquote}{language}
 \begin{hyphendisplayquote}{language}[manual citation]
-\begin{hyphendisplayquote}{language}[][punct]#*
 \begin{hyphendisplayquote}{language}[manual citation][punct]#*
 \end{hyphendisplayquote}
 
@@ -241,4 +246,73 @@
 \textins{text}
 \textins*{text}
 
-\SetCiteCommand{command}
+\textdel{text}
+
+\DeclareQuoteStyle{style}{openoutermark}{closeoutermark}{openinnermark}{closeinnermark}#*
+\DeclareQuoteStyle[variant]{style}[outerinit][innerinit]{openouter}[midouter]{closeouter}{openinner}[midinner]{closeinner}#*
+
+\DeclareQuoteAlias{style}{alias}#*
+\DeclareQuoteAlias[variant]{style}{alias}#*
+\DeclareQuoteAlias{first-level alias}{second-level alias}#*
+
+\DeclareQuoteOption{style}#*
+
+\ExecuteQuoteOptions{options%keyvals}#*
+#keyvals:\ExecuteQuoteOptions#c
+strict#true,false
+style=
+autostyle=#true,false,try,once,tryonce
+maxlevel=%<integer%>
+autopunct#true,false
+threshold=%<integer%>
+thresholdtype=#lines,words
+parthreshold#true,false
+splitcomp#true,false
+csdisplay#true,false
+debug#true,false
+version=
+#endkeyvals
+
+\DeclarePlainStyle{openoutermark}{closeoutermark}{openinnermark}{closeinnermark}#*
+
+\SetBlockThreshold{integer}#*
+\SetBlockEnvironment{envname}#*
+\SetCiteCommand{command}#*
+
+\mkcitation{cite}#*
+\mkccitation{cite code}#*
+\mktextquote{open}{text}{close}{punct}{tpunct}{cite}#*
+\mkblockquote{text}{punct}{tpunct}{cite}#*
+\mkbegdispquote{punct}{cite}#*
+\mkenddispquote{punct}{cite}#*
+
+\ifpunctmark{character}{true}{false}#*
+\ifpunct{true}{false}#*
+\ifterm{true}{false}#*
+\iftextpunctmark{text}{character}{true}{false}#*
+\iftextpunct{text}{true}{false}#*
+\iftextterm{text}{true}{false}#*
+\ifblockquote{true}{false}#*
+\ifblank{string}{true}{false}#*
+\unspace#*
+
+\DeclareAutoPunct{characters}#*
+
+\BlockquoteDisable{code}#*
+
+\DeclareQuoteGlyph{encoding}{position}#*
+
+\openautoquote#*
+\closeautoquote#*
+\openinnerquote#*
+\closeinnerquote#*
+
+\textooquote#*
+\textcoquote#*
+\textmoquote#*
+\textoiquote#*
+\textciquote#*
+\textmiquote#*
+
+\initoquote#*
+\initiquote#*

@@ -648,9 +648,11 @@ nearest
 \ifinteger#*
 \ifoddpage#*
 \ifonlyfloats{arg1}{arg2}#*
+\ifreversesidepar#*
 \ifsamename#*
 \ifsidecapleft#*
 \IfStreamOpen{arg1}{arg2}{arg3}#*
+\ifstrictpagecheck#*
 \ignorenoidxfile#*
 \iiirdstring#*
 \iindstring#*
@@ -1186,6 +1188,8 @@ subparagraph
 \restorefromonecol#*
 \restorepagenumber#*
 \restoretrivseps#*
+\reversesidepartrue#*
+\reversesideparfalse#*
 \russianpar#*
 \savepagenumber#*
 \savetrivseps#*
@@ -1417,6 +1421,8 @@ subparagraph
 \stocksuperroyalvo#*
 \stockwidth
 \strictpagecheck#*
+\strictpagechecktrue#*
+\strictpagecheckfalse#*
 \stringtoarray{arg1}{arg2}#*
 \subbottom#*
 \subcaption#*
