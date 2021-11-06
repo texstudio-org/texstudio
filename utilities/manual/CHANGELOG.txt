@@ -1,3 +1,7 @@
+TeXstudio 4.0.5
+-----------------
+- 
+
 TeXstudio 4.0.4
 -----------------
 - use QT6.2.1 on OSX, fix crash when checking for updates, fix restoring last session
