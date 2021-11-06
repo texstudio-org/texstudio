@@ -1,6 +1,6 @@
 TeXstudio 4.0.4
 -----------------
-- use QT6.2.1 on OSX, fix crash when checking for updates
+- use QT6.2.1 on OSX, fix crash when checking for updates, fix restoring last session
 - better pdf font substitution on windows (#1812)
 - fix placing cursor for large fonts (#1908)
 - more cwls
