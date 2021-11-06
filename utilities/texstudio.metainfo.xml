@@ -46,13 +46,12 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2021-10-30T07:18:05+0000" version="4.0.3">
+    <release date="2021-11-03T19:24:38+0000" version="4.0.4">
       <description>
         <ul>
-          <li>fix linewidth calculation in Qt6</li>
-          <li>fix crash on load/new doc (under unknown,system specific circumstances)</li>
-          <li>remove placeholder quicker</li>
-          <li>more cwls </li>
+          <li>better pdf font substitution on windows (#1812)</li>
+          <li>fix placing cursor for large fonts (#1908)</li>
+          <li>more cwls</li>
         </ul>
       </description>
     </release>
