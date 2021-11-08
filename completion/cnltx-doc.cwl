@@ -46,7 +46,7 @@
 \begin{environments}
 \end{environments}
 
-#keyvals:\setcnltx
+#keyvals:\setcnltx#c
 list-setup={%<definitions%>}
 expandable-sign={%<definitions%>}
 package={%<package%>}
