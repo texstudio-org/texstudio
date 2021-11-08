@@ -46,7 +46,7 @@
 \begin{environments}
 \end{environments}
 
-#keyvals:\setcnltx
+#keyvals:\setcnltx#c
 list-setup={%<definitions%>}
 expandable-sign={%<definitions%>}
 package={%<package%>}
@@ -89,6 +89,9 @@ index-style={%<style file%>}
 \keyval{name}{value}#/options
 \keyval*{name}{value}#/options
 \keyval-{name}{value}#/options
+\keylit{name}{value}#/options
+\keylit*{name}{value}#/options
+\keylit-{name}{value}#/options
 \keychoice{name}{list of choices}#/options
 \keychoice*{name}{list of choices}#/options
 \keybool{name}#/options
