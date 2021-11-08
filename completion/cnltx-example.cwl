@@ -59,6 +59,9 @@
 \cls{class}
 \cls*{class}
 \clsidx{class}
+\bnd{bundle}
+\bnd*{bundle}
+\bnd{bundle}
 
 \inputexample{file}
 \inputexample[options%keyvals]{file}
