@@ -89,6 +89,9 @@ index-style={%<style file%>}
 \keyval{name}{value}#/options
 \keyval*{name}{value}#/options
 \keyval-{name}{value}#/options
+\keylit{name}{value}#/options
+\keylit*{name}{value}#/options
+\keylit-{name}{value}#/options
 \keychoice{name}{list of choices}#/options
 \keychoice*{name}{list of choices}#/options
 \keybool{name}#/options
