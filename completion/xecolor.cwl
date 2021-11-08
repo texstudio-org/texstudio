@@ -1,6 +1,7 @@
 # xecolor package
 # Matthew Bertucci 8/14/2021
 
+#include:xetex
 #include:fontspec
 #include:iftex
 
