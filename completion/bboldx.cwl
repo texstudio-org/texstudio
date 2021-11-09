@@ -147,7 +147,7 @@
 \txtbbRangle#*
 \txtbbLparen#*
 \txtbbRparen#*
-#*
+
 \txtbfbbdotlessi#*
 \txtbfbbdotlessj#*
 \txtbfbbGamma#*
