@@ -1,6 +1,7 @@
 # luatexbase package
-# Matthew Bertucci 8/14/2021
+# Matthew Bertucci 8/14/2021 for v1.3
 
+#include:luatex
 #include:ctablestack
 
 \CatcodeTableIniTeX#*
@@ -10,13 +11,14 @@
 \CatcodeTableOther#*
 \CatcodeTableExpl#*
 \SetCatcodeRange#*
-\BeginCatcodeRegime#*
+\BeginCatcodeRegime{catcode table}#*
 \EndCatcodeRegime#*
 \PushCatcodeTableNumStack#*
 \PopCatcodeTableNumStack#*
 \newluatexcatcodetable#*
 \setluatexcatcodetable#*
-\RequireLuaModule#*
+\RequireLuaModule{file}#*
+\RequireLuaModule{file}[info]#*
 \newluatexattribute#*
 \setluatexattribute#*
 \unsetluatexattribute#*

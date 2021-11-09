@@ -10,6 +10,7 @@
 \glsmakefirstuc{text}
 \capitalisewords{text}
 \MFUcapword{word%text}
+\MFUcapwordfirstuc{word%text}
 \ifMFUhyphen#*
 \MFUhyphentrue#*
 \MFUhyphenfalse#*
@@ -22,3 +23,7 @@
 \MFUnocap{word%text}
 \gMFUnocap{word%text}
 \MFUclear
+
+\mfirstucMakeUppercase{text}#*
+\MFUapplytofirst{cmd}{text}#*
+\MFUhyphencapword{word%text}#*
