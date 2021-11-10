@@ -3,8 +3,29 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
+#modified Matthew Bertucci 9 Nov 2021 for v7.00m
 
+#include:iftex
+#include:keyval
+#include:kvsetkeys
+#include:kvdefinekeys
+#include:pdfescape
+#include:hycolor
+#include:letltxmacro
+#include:auxhook
+#include:kvoptions
+#include:intcalc
+#include:url
+#include:bitset
+#include:bigintcalc
+#include:atbegshi
+#include:atveryend
+#include:rerunfilecheck
 #include:nameref
+
+#ifOption:backref
+#include:backref
+#endif
 
 \hypersetup{keyvals}
 #keyvals:\hypersetup
@@ -14,6 +35,8 @@ anchorcolor=#%color
 backref#section,slide,page,none,false
 baseurl=
 bookmarks#true,false
+bookmarksdepth
+bookmarksdepth=%<number%>
 bookmarksnumbered#true,false
 bookmarksopen#true,false
 bookmarksopenlevel=
@@ -23,6 +46,7 @@ CJKbookmarks#true,false
 citebordercolor=#%color
 citecolor=#%color
 colorlinks#true,false
+customdriver=%<file%>
 debug#true,false
 destlabel#true,false
 draft#true,false
@@ -50,11 +74,13 @@ linkbordercolor=#%color
 linkcolor=#%color
 linktoc=#section,page,all,none
 linktocpage#true,false
+localanchorname#true,false
 menubordercolor=#%color
 menucolor=#%color
 nativepdf#true,false
 naturalnames#true,false
 nesting#true,false
+ocgcolorlinks#true,false
 pageanchor#true,false
 pagebackref#true,false
 pdfauthor=
@@ -65,18 +91,21 @@ pdfcreator=
 pdfdirection=
 pdfdisplaydoctitle#true,false
 pdfduplex
+pdfencoding=#pdfdoc,unicode,auto
+pdfescapeform#true,false
 pdffitwindow#true,false
 pdfhighlight=
 pdfinfo=
 pdfkeywords=
 pdflang=
+pdflinkmargin=##L
 pdfmark#true,false
 pdfmenubar#true,false
 pdfnewwindow#true,false
 pdfnonfullscreenpagemode
 pdfnumcopies=
 pdfpagelabels#true,false
-pdfpagelayout
+pdfpagelayout=#SinglePage,OneColumn,TwoColumnLeft,TwoColumnRight,TwoPageLeft,TwoPageRight
 pdfpagemode=#FullScreen,UseNone,UseOutlines,UseOC,UseAttachments,UseThumbs
 pdfpagescrop=
 pdfpagetransition=
@@ -94,6 +123,7 @@ pdftex
 pdftitle=
 pdftoolbar#true,false
 pdftrapped=#True,False,Unknown
+pdfusetitle
 pdfview=
 pdfviewarea=
 pdfviewclip=
@@ -115,8 +145,16 @@ vtex
 xetex
 #endkeyvals
 
-\href[options]{URL}{text}#U
-\href{URL}{text}#U
+\href[options%keyvals]{URL}{text%plain}#U
+\href{URL}{text%plain}#U
+
+#keyvals:\href
+pdfremotestartview=%<name%>
+pdfnewwindow#true,false
+page=%<number%>
+ismap#true,false
+nextactionraw=
+#endkeyvals
 
 \url{URL}#U
 \nolinkurl{URL}#U
@@ -141,7 +179,10 @@ xetex
 \ref*{label}#r
 \pageref*{label}#r
 \thispdfpagelabel
-\pdfstringdef{macroname}{TEXstring}
+\pdfstringdef{macroname%cmd}{TeXstring}#d
+\begin{NoHyper}
+\end{NoHyper}
+\pdfbookmark{text}{name}
 \pdfbookmark[level]{text}{name}
 \currentpdfbookmark{text}{name}
 \subpdfbookmark{text}{name}
@@ -161,12 +202,18 @@ encoding=
 method=#post,get
 #endkeyvals
 
-\TextField[parameters]{label}#/Form
-\CheckBox[parameters]{label}#/Form
-\ChoiceMenu[parameters]{label}{choices}#/Form
-\PushButton[parameters]{label}#/Form
-\Submit[parameters]{label}#/Form
-\Reset[parameters]{label}#/Form
+\TextField{label}#/Form
+\TextField[parameters%keyvals]{label}#/Form
+\CheckBox{label}#/Form
+\CheckBox[parameters%keyvals]{label}#/Form
+\ChoiceMenu{label}{choices}#/Form
+\ChoiceMenu[parameters%keyvals]{label}{choices}#/Form
+\PushButton{label}#/Form
+\PushButton[parameters%keyvals]{label}#/Form
+\Submit{label}#/Form
+\Submit[parameters%keyvals]{label}#/Form
+\Reset{label}#/Form
+\Reset[parameters%keyvals]{label}#/Form
 #keyvals:\TextField,\CheckBox,\ChoiceMenu,\PushButton,\Submit,\Reset
 accesskey
 align=#0,1,2
@@ -237,3 +284,36 @@ width=##L
 \DefaultHeightofText#*
 \DefaultHeightofTextMultiline#*
 \DefaultWidthofText#*
+
+\XeTeXLinkBox{contents}#*
+\XeTeXLinkMargin#*
+\IfHyperBooleanExists{option}{true}{false}#*
+\IfHyperBoolean{options}{true}{false}#*
+\MaybeStopEarly#*
+\MaybeStopNow#*
+\unichar{char num}#*
+\ifpdfstringunicode{unicode chars}{chars}#*
+\nohyperpage{arg}#*
+\HyperDestNameFilter{arg}#*
+\HyperDestLabelReplace{dest}#*
+#ifOption:destlabel
+\HyperDestRename{destination}{newname}
+#endif
+\theHequation#*
+\theHpart#*
+\theHchapter#*
+\theHfigure#*
+\theHtable#*
+\theHsection#*
+\theHsubsection#*
+\theHsubsubsection#*
+\theHparagraph#*
+\theHsubparagraph#*
+\theHtheorem#*
+\theHthm#* 
+\theHenumi#*
+\theHenumii#*
+\theHenumiii#*
+\theHenumiv#*
+\theHHfootnote#*
+\theHmpfootnote#*
