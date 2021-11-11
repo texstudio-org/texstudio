@@ -286,8 +286,8 @@ rules/width=##L
 rules/color=#%color
 #endkeyvals
 
-\SubMatrix{delim1}{i-j}{k-l}{delim2}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
-\SubMatrix{delim1}{i-j}{k-l}{delim2}[options%keyvals]#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+\SubMatrix{delim1%delim}{i-j}{k-l}{delim2%delim}#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
+\SubMatrix{delim1%delim}{i-j}{k-l}{delim2%delim}[options%keyvals]#/NiceTabular,NiceTabular*,NiceTabularX,NiceArray,pNiceArray,bNiceArray,BNiceArray,vNiceArray,VNiceArray,NiceMatrix,pNiceMatrix,bNiceMatrix,BNiceMatrix,vNiceMatrix,VNiceMatrix,NiceArrayWithDelims
 
 #keyvals:\SubMatrix
 left-xshift=##L
@@ -303,6 +303,16 @@ hlines=
 hvlines
 name=
 #endkeyvals
+
+#delim:\SubMatrix
+.
+\{
+\}
+[
+]
+(
+)
+#enddelim
 
 \tabularnote{note}
 \rotate
