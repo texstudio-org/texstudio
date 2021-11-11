@@ -534,6 +534,7 @@
 \familydefault#*
 \fill#*
 \hideoutput#*
+\ignorespacesafterend#*
 \itdefault#*
 \loggingall#*
 \loggingoutput#* 
