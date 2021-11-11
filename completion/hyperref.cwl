@@ -293,6 +293,7 @@ width=##L
 \MaybeStopNow#*
 \unichar{char num}#*
 \ifpdfstringunicode{unicode chars}{chars}#*
+\hyperpage{arg}#*
 \nohyperpage{arg}#*
 \HyperDestNameFilter{arg}#*
 \HyperDestLabelReplace{dest}#*
