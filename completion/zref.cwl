@@ -67,6 +67,6 @@
 #include:zref-user
 #endif
 
-#ifOption:zref-xr
+#ifOption:xr
 #include:zref-xr
 #endif
