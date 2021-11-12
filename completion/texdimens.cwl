@@ -1,5 +1,5 @@
 # texdimens package
-# Matthew Bertucci 11/4/2021 for v0.99a
+# Matthew Bertucci 11/11/2021 for v1.0
 
 \texdimenpt{dim-expr}#*
 \texdimenbp{dim-expr}#*
@@ -35,6 +35,12 @@
 \texdimenbothincmpt{dim-expr}#*
 \texdimenbothcminsp{dim-expr}#*
 \texdimenbothincmsp{dim-expr}#*
+\texdimenbothmmbp{dim-expr}#*
+\texdimenbothbpmm{dim-expr}#*
+\texdimenbothbpmmpt{dim-expr}#*
+\texdimenbothmmbppt{dim-expr}#*
+\texdimenbothbpmmsp{dim-expr}#*
+\texdimenbothmmbpsp{dim-expr}#*
 \texdimenwithunit{dim-expr1}{dim-expr2}#*
 
 \texdimenfirstofone{arg}#S

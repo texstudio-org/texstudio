@@ -1,6 +1,8 @@
 # mode: listings.sty
 # dani/2006-02-18; Matthew Bertucci 2021-08-28 for v1.8d
 
+#include:keyval
+
 \lstloadlanguages{lang1,lang2,...%keyvals}
 
 #keyvals:\lstloadlanguages#c

@@ -1,8 +1,12 @@
 # lua-widow-control package
-# Matthew Bertucci 10/13/2021 for v1.0.0
+# Matthew Bertucci 11/9/2021 for v1.1.0
 
+#include:luatex
 #include:microtype
+#include:etoolbox
 
 \lwcenable
 \lwcdisable
-\lwcemergencystretch#*
+\lwcemergencystretch
+\lwcdisablecmd{cmd}
+\iflwc#*
