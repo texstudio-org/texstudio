@@ -3295,7 +3295,7 @@ void Texstudio::fileLoadSession()
 			openDir = doc->getFileInfo().path();
 		}
 	}
-	QString fn = FileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
+    QString fn = FileDialog::getOpenFileName(this, tr("Load Session"), openDir, tr("TeXstudio Session") + " (*.txss2 *.txss)");
 	if (fn.isNull()) return;
 	loadSession(fn);
 	recentSessionList->addFilenameToList(fn);
