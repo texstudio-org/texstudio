@@ -69,7 +69,7 @@ public:
 
 	void setFileName(const QString &fileName);
 	void setEditorView(LatexEditorView *edView);///< set reference to actual GUI element of editor
-	LatexEditorView *getEditorView() const;
+    Q_INVOKABLE LatexEditorView *getEditorView() const;
 	QString getFileName() const;
 	QFileInfo getFileInfo() const;
 	//QSet<QString> texFiles; //absolute file names, also contains fileName
