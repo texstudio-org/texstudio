@@ -674,6 +674,7 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 	document = doc;
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
+    horizontalTextRange.setWidth(-1.0);
 
 	if (!document.isNull()) {
 		docPages = document->numPages();
