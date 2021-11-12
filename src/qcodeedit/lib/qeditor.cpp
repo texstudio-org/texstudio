@@ -5349,31 +5349,31 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
     //bracket auto insertion
     if (autoComplete) {
-	if (!cutBuffer.isEmpty()) {
-	    c.insertText(cutBuffer+autoBracket);
-	    c.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-	    c.movePosition(cutBuffer.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-	}
-
-	if (flag(QEditor::AutoInsertLRM) && c.isRTL() && autoBracket == "}")
-	    autoBracket = "}" + QString(QChar(LRM));
-
-	QDocumentCursor copiedCursor = c.selectionEnd();
-	PlaceHolder ph(autoBracket.length(),copiedCursor);
-	ph.autoOverride = true;
-	ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
-	ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
-
-	if (!cutBuffer.isEmpty()) {
-	    addPlaceHolder(ph);
-	    cutBuffer.clear();
-	} else {
-	    copiedCursor.insertText(autoBracket);
-        if(!autoBracket.startsWith('\\')){ // don't set placeholder for commands e.g. \} or \left as it pretty much inhibits enterring normal commands
-            addPlaceHolder(ph);
+        if (!cutBuffer.isEmpty()) {
+            c.insertText(cutBuffer+autoBracket);
+            c.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+            c.movePosition(cutBuffer.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
         }
-	    c.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-	}
+
+        if (flag(QEditor::AutoInsertLRM) && c.isRTL() && autoBracket == "}")
+            autoBracket = "}" + QString(QChar(LRM));
+
+        QDocumentCursor copiedCursor = c.selectionEnd();
+        PlaceHolder ph(autoBracket.length(),copiedCursor);
+        ph.autoOverride = true;
+        ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
+        ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
+
+        if (!cutBuffer.isEmpty()) {
+            addPlaceHolder(ph);
+            cutBuffer.clear();
+        } else {
+            copiedCursor.insertText(autoBracket);
+            if(!autoBracket.startsWith('\\')){ // don't set placeholder for commands e.g. \} or \left as it pretty much inhibits enterring normal commands
+                addPlaceHolder(ph);
+            }
+            c.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+        }
     }
 
 
@@ -5898,6 +5898,9 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			if (txt.isEmpty())
 				return;
+
+            // filter \r (bug #1919)
+            txt.remove('\r');
 
 			bool slow = txt.size() > 5*1024;
 			if (slow) emit slowOperationStarted();
