@@ -24,30 +24,30 @@
 \pgfpointlineatdistance{distance}{p1}{p2}#*
 \pgfpointarcaxesattime{time}{center}{0-degree axis}{90-degree axis}{start angle}{end angle}#*
 \pgfpointcurveattime{time}{p1}{p2}{p3}{p4}#*
-\pgfpointpolar{arg1}#*
-\pgfqpointpolar{arg1}#*
-\pgfpointpolarxy{arg1}#*
-\pgfpointcylindrical{arg1}#*
-\pgfpointspherical{arg1}#*
-\pgfpointxy{arg1}#*
-\pgfqpointxy{arg1}#*
-\pgfpointxyz{arg1}#*
-\pgfqpointxyz{arg1}#*
-\pgfsetxvec{arg1}#*
-\pgfsetyvec{arg1}#*
-\pgfsetzvec{arg1}#*
-\pgfpointnormalised{arg1}#*
-\pgfpointborderrectangle{arg1}#*
-\pgfpointborderellipse{arg1}#*
-\pgfextractx{arg1}#*
-\pgfextracty{arg1}#*
-\pgfgetlastxy{arg1}#*
-\pgfsetcornersarced{arg1}#*
-\pgfpathmoveto{arg1}#*
-\pgfpathlineto{arg1}#*
+\pgfpointpolar{degree}{radius}#*
+\pgfqpointpolar{degree}{radius}#*
+\pgfpointpolarxy{degree}{radius}#*
+\pgfpointcylindrical{degree}{radius}{height}#*
+\pgfpointspherical{longitude}{latitude}{radius}#*
+\pgfpointxy{x}{y}#*
+\pgfqpointxy{x}{y}#*
+\pgfpointxyz{x}{y}{z}#*
+\pgfqpointxyz{x}{y}{z}#*
+\pgfsetxvec{point}#*
+\pgfsetyvec{point}#*
+\pgfsetzvec{point}#*
+\pgfpointnormalised{point}#*
+\pgfpointborderrectangle{direction}{corner}#*
+\pgfpointborderellipse{direction}{corner}#*
+\pgfextractx{dimension}{point}#*
+\pgfextracty{dimension}{point}#*
+\pgfgetlastxy{macro for x}{macro for y}#*
+\pgfsetcornersarced{point}#*
+\pgfpathmoveto{point}#*
+\pgfpathlineto{point}#*
 \pgfpathclose#*
-\pgfpathcurveto{arg1}#*
-\pgfpathquadraticcurveto{arg1}#*
+\pgfpathcurveto{support p1}{support p2}{end point}#*
+\pgfpathquadraticcurveto{support point}{end point}#*
 \pgfpatharc{arg1}#*
 \pgfpatharcaxes{arg1}#*
 \pgfpatharcto{arg1}#*
@@ -63,7 +63,7 @@
 \pgfpathparabola{arg1}#*
 \pgfpathsine{arg1}#*
 \pgfpathcosine{arg1}#*
-\pgfpathcurvebetweentime#*
+\pgfpathcurvebetweentime{time t1}{time t2}{point p}{point s1}{point s2}{point q}#*
 \pgfpathcurvebetweentimecontinue#*
 \pgfusepath{arg1}#*
 \pgfsetshortenstart{arg1}#*
