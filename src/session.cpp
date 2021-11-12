@@ -2,7 +2,7 @@
 #include "configmanager.h"
 #include "smallUsefulFunctions.h"
 
-QString Session::m_fileExtension = "txss";
+QString Session::m_fileExtension = "txss2";
 
 Session::Session(const Session &s)
 {
@@ -15,7 +15,16 @@ Session::Session(const Session &s)
 	m_pdfEmbedded = s.m_pdfEmbedded;
 }
 
-bool Session::load(const QString &file)
+bool Session::load(const QString &fileName){
+    if (!QFileInfo(fileName).isReadable()) return false;
+    if(fileName.endsWith(".txss")){
+        return load_v1(fileName);
+    }else{
+        return load_v2(fileName);
+    }
+}
+
+bool Session::load_v1(const QString &file)
 {
 	if (!QFileInfo(file).isReadable()) return false;
 	QSettings s(file, QSettings::IniFormat);
@@ -42,12 +51,13 @@ bool Session::load(const QString &file)
 	}
 	m_masterFile = QDir::cleanPath(dir.filePath(s.value("MasterFile").toString()));
 	m_currentFile = QDir::cleanPath(dir.filePath(s.value("CurrentFile").toString()));
-	
-	foreach (const QVariant &v, s.value("Bookmarks").value<QList<QVariant> >()) {
-		Bookmark bm = Bookmark::fromStringList(v.toStringList());
-		bm.filename = QDir::cleanPath(dir.filePath(bm.filename));
-		m_bookmarks << bm;
-	}
+
+    foreach (const QVariant &v, s.value("Bookmarks").value<QList<QVariant> >()) {
+        Bookmark bm = Bookmark::fromStringList(v.toStringList());
+        bm.filename = QDir::cleanPath(dir.filePath(bm.filename));
+        m_bookmarks << bm;
+    }
+
 	s.endGroup();
 
 	s.beginGroup("InternalPDFViewer");
@@ -55,46 +65,110 @@ bool Session::load(const QString &file)
 	m_pdfFile = (pdfFileName.trimmed().isEmpty()) ? "" : QDir::cleanPath(dir.filePath(pdfFileName));
 	m_pdfEmbedded = s.value("Embedded").toBool();
 	s.endGroup();
-	return true;
+    return true;
 }
 
-bool Session::save(const QString &file, bool relPaths) const
+bool Session::load_v2(const QString &file)
 {
-	if (!isFileRealWritable(file)) return false;
-	QSettings s(file, QSettings::IniFormat);
-	s.clear();
-	s.beginGroup("Session");
-	s.setValue("FileVersion", 1); // increment if format changes are applied later on. This might be used for version-dependent loading.
-	QDir dir = QFileInfo(file).dir();
-	for (int i = 0; i < m_files.count(); i++) {
-		s.beginGroup(QString("File%1").arg(i));
-		s.setValue("FileName", fmtPath(dir, m_files[i].fileName, relPaths));
-		s.setValue("EditorGroup", m_files[i].editorGroup);
-		s.setValue("Line", m_files[i].cursorLine);
-		s.setValue("Col", m_files[i].cursorCol);
-		s.setValue("FirstLine", m_files[i].firstLine);
-		s.setValue("FoldedLines", intListToStr(m_files[i].foldedLines)); // saving as string is not very elegant, but at least human-readable (QList<int> would result in a byte stream - after adding it as a metatype)
-		s.endGroup();
-	}
-	s.setValue("MasterFile", fmtPath(dir, m_masterFile, relPaths));
-	s.setValue("CurrentFile", fmtPath(dir, m_currentFile, relPaths));
-	
-	QList<QVariant> bookmarkList;
-	foreach (Bookmark bm, m_bookmarks) {
-		if (relPaths) {
-			bm.filename = fmtPath(dir, bm.filename, relPaths);
-		}
-		bookmarkList << bm.toStringList();
-	}
-	s.setValue("Bookmarks", bookmarkList);
-	s.endGroup();
+    QFile loadFile(file);
+    if (!loadFile.open(QIODevice::ReadOnly | QIODevice::Text))
+            return false;
 
-	s.beginGroup("InternalPDFViewer");
-	s.setValue("File", fmtPath(dir, m_pdfFile, relPaths));
-	s.setValue("Embedded", m_pdfEmbedded);
-	s.endGroup();
+    QByteArray data = loadFile.readAll();
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc=QJsonDocument::fromJson(data,&parseError);
+    if(parseError.error!=QJsonParseError::NoError){
+        // parser could not read input
+        return false;
+    }
+    QDir dir = QFileInfo(file).dir();
+    QJsonObject dd=jsonDoc.object();
+    QJsonObject j_pdf=dd["InternalPDFViewer"].toObject();
 
-	return true;
+    QString pdfFileName(j_pdf.value("File").toString());
+    m_pdfFile = (pdfFileName.trimmed().isEmpty()) ? "" : QDir::cleanPath(dir.filePath(pdfFileName));
+    m_pdfEmbedded = j_pdf.value("Embedded").toBool();
+
+    QJsonObject j_session=dd["Session"].toObject();
+
+    m_masterFile = QDir::cleanPath(dir.filePath(j_session.value("MasterFile").toString()));
+    m_currentFile = QDir::cleanPath(dir.filePath(j_session.value("CurrentFile").toString()));
+
+    QJsonArray ja=j_session.value("Files").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QJsonObject jo=ja[i].toObject();
+        FileInSession f;
+        QString filename = jo.value("FileName").toString();
+        if (filename.isEmpty()) continue;
+        f.fileName = QDir::cleanPath(dir.filePath(filename));
+        f.editorGroup = jo.value("EditorGroup").toInt();
+        f.cursorLine = jo.value("Line").toInt();
+        f.cursorCol = jo.value("Col").toInt();
+        f.firstLine = jo.value("FirstLine").toInt();
+        f.foldedLines = strToIntList(jo.value("FoldedLines").toString());
+        m_files.append(f);
+    }
+
+    QJsonArray ja2=j_session.value("Bookmarks").toArray();
+    for(int i=0;i<ja2.size();++i) {
+        QJsonObject jo=ja2[i].toObject();
+        Bookmark bm = Bookmark::fromJSON(jo);
+        bm.filename = QDir::cleanPath(dir.filePath(bm.filename));
+        m_bookmarks << bm;
+    }
+
+    return true;
+}
+
+bool Session::save(const QString &fileName, bool relPaths) const
+{
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+    QDir dir = QFileInfo(file).dir();
+
+    QJsonObject j_pdf;
+    j_pdf["File"]=fmtPath(dir, m_pdfFile, relPaths);
+    j_pdf["Embedded"]=m_pdfEmbedded;
+
+    QJsonObject j_session;
+    j_session["FileVersion"]=1;
+    j_session["MasterFile"]=fmtPath(dir, m_masterFile, relPaths);
+    j_session["CurrentFile"]=fmtPath(dir, m_currentFile, relPaths);
+
+    QJsonArray ja;
+    QJsonObject j_file;
+    for (int i = 0; i < m_files.count(); i++) {
+        j_file["FileName"]=fmtPath(dir, m_files[i].fileName, relPaths);
+        j_file["EditorGroup"]=m_files[i].editorGroup;
+        j_file["Line"]=m_files[i].cursorLine;
+        j_file["Col"]= m_files[i].cursorCol;
+        j_file["FirstLine"]=m_files[i].firstLine;
+        j_file["FoldedLines"]=intListToStr(m_files[i].foldedLines);
+        ja.append(j_file);
+    }
+    j_session.insert("Files",ja);
+
+    QJsonArray ja2;
+    QJsonObject j_bm;
+    int i=0;
+    foreach (Bookmark bm, m_bookmarks) {
+        if (relPaths) {
+            bm.filename = fmtPath(dir, bm.filename, relPaths);
+        }
+        j_bm=bm.toJSON();
+        ja2.append(j_bm);
+    }
+    j_session.insert("Bookmarks",ja2);
+
+    QJsonObject dd;
+    dd.insert("InternalPDFViewer",j_pdf);
+    dd.insert("Session",j_session);
+
+    QJsonDocument jsonDoc(dd);
+    file.write(jsonDoc.toJson());
+
+    return true;
 }
 
 void Session::addFile(FileInSession f)

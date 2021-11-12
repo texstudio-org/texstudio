@@ -11,6 +11,7 @@ SessionList::SessionList(QMenu *menu, QObject *parent) : QObject(parent), m_menu
 void SessionList::addFilenameToList(const QString &file)
 {
 	if (file.endsWith("lastSession.txss")) return;
+    if (file.endsWith("lastSession.txss2")) return;
 	REQUIRE(m_config);
 	QStringList files = m_config->getOption("Files/Recent Session Files").toStringList();
 	int maxFiles = m_config->getOption("Files/Max Recent Sessions").toInt();

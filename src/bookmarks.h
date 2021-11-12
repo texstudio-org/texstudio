@@ -15,6 +15,8 @@ struct Bookmark {
 	
 	static Bookmark fromStringList(QStringList slist);
 	QStringList toStringList() const;
+    static Bookmark fromJSON(QJsonObject input);
+    QJsonObject toJSON() const;
 	
 	QString filename;
 	int lineNumber;

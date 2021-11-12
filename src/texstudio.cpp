@@ -2683,13 +2683,21 @@ void Texstudio::fileOpen()
 void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
 {
 
-	QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
+    QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss2");
 	Session s;
 	if (f.exists()) {
 		if (!s.load(f.filePath())) {
 			UtilsUi::txsCritical(tr("Loading of last session failed."));
 		}
-	}
+    }else{
+        // restore v1 format if it exists
+        QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
+        if (f.exists()) {
+            if (!s.load(f.filePath())) {
+                UtilsUi::txsCritical(tr("Loading of last session failed."));
+            }
+        }
+    }
 	restoreSession(s, showProgress, warnMissing);
 }
 /*!
@@ -4293,7 +4301,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
-            QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss");
+            QFileInfo f(QDir(configManager.configBaseDir), "lastSession.txss2");
             bool ok=false;
             if(!f.exists() || (f.exists() && f.isWritable())){
                 ok=s.save(f.filePath(), configManager.sessionStoreRelativePaths);

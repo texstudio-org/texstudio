@@ -36,7 +36,27 @@ QStringList Bookmark::toStringList() const
 	slist << QString::number(lineNumber);
 	slist << QString::number(bookmarkNumber);
 	slist << text;
-	return slist;
+    return slist;
+}
+
+QJsonObject Bookmark::toJSON() const
+{
+    QJsonObject result;
+    result["fileName"]=filename;
+    result["lineNumber"]=lineNumber;
+    result["bookmarkNumber"]=bookmarkNumber;
+    result["text"]=text;
+    return result;
+}
+Bookmark Bookmark::fromJSON(QJsonObject input)
+{
+    Bookmark bm;
+    bm.filename = input.value("fileName").toString();
+    bm.lineNumber = input.value("lineNumber").toInt();
+    bm.bookmarkNumber = input.value("bookmarkNumber").toInt();
+    bm.text=input.value("text").toString();
+
+    return bm;
 }
 
 

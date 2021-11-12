@@ -25,8 +25,8 @@ public:
 	Session(const Session &s);
 	Session & operator=(const Session &) = default;	// Avoid GCC9 -Wdeprecated-copy warning
 
-	bool load(const QString &file);
-	bool save(const QString &file, bool relPaths=true) const;
+    bool load(const QString &fileName);
+    bool save(const QString &fileName, bool relPaths=true) const;
 
 	const QList<FileInSession> files() const { return m_files; }
 	void addFile(FileInSession f);
@@ -50,6 +50,9 @@ public:
 	static QString fmtPath(const QDir &dir, const QString &file, bool relPath=true);
 
 private:
+    bool load_v1(const QString &file);
+    bool load_v2(const QString &file);
+
 	static QString m_fileExtension;
 
 	QList<FileInSession> m_files;

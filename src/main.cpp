@@ -148,7 +148,7 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 			else
 				cmdLine << cmdArgument;
         } else {
-            if(cmdArgument.endsWith(".txss")){
+            if(cmdArgument.endsWith(".txss")||cmdArgument.endsWith(".txss2")){
                 // explicit session restor
                 // disable restoring of last session
                 ConfigManager::dontRestoreSession = true;
