@@ -267,7 +267,7 @@ namespace Adwaita
             case QEvent::Timer:
             if( static_cast<QTimerEvent*>( event )->timerId() != _timerId )
             { return QWidget::event( event ); }
-
+            [[clang::fallthrough]];
             /*
             Fall through is intended.
             We somehow lost a QEvent::Leave before timeout. We fix it from here
