@@ -43,8 +43,8 @@ QT_END_NAMESPACE
 class MiniSplitter : public QSplitter
 {
 public:
-    MiniSplitter(QWidget *parent = 0);
-    MiniSplitter(Qt::Orientation orientation, QWidget *parent = 0);
+    MiniSplitter(QWidget *parent = nullptr);
+    MiniSplitter(Qt::Orientation orientation, QWidget *parent = nullptr);
 
 protected:
     QSplitterHandle *createHandle();
