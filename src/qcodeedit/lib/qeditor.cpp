@@ -4086,7 +4086,7 @@ void QEditor::dropEvent(QDropEvent *e)
 
 	//m_doc->beginMacro();
 	//m_cursor.beginEditBlock();
-	QDocumentCursor insertCursor = cursorForPosition(mapToContents(e->pos()));
+    QDocumentCursor insertCursor = cursorForPosition(mapToContents(e->pos()));
 	
 	if (
 			(e->dropAction() == Qt::MoveAction)
@@ -6035,6 +6035,7 @@ void QEditor::scrollContentsBy(int dx, int dy)
     const qreal ls = document()->getLineSpacing();
     viewport()->scroll(dx, qFloor(dy * ls));
 #else
+    Q_UNUSED(dx)
     viewport()->update();
 #endif
 	#endif
