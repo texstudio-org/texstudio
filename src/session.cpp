@@ -151,7 +151,6 @@ bool Session::save(const QString &fileName, bool relPaths) const
 
     QJsonArray ja2;
     QJsonObject j_bm;
-    int i=0;
     foreach (Bookmark bm, m_bookmarks) {
         if (relPaths) {
             bm.filename = fmtPath(dir, bm.filename, relPaths);
