@@ -24,7 +24,7 @@ class UserQuickDialog : public QDialog
 	Q_OBJECT
 
 public:
-	UserQuickDialog(QWidget *parent = 0, const QStringList &ids = QStringList(), const QStringList &usualNames = QStringList(""), const QStringList &usualCommands = QStringList(""));
+    UserQuickDialog(QWidget *parent = nullptr, const QStringList &ids = QStringList(), const QStringList &usualNames = QStringList(""), const QStringList &usualCommands = QStringList(""));
 	~UserQuickDialog();
 	Ui::UserQuickDialog ui;
 	void setCommandList(const QString &list);
