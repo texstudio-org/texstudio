@@ -3088,7 +3088,7 @@ bool QEditor::event(QEvent *e)
 /*!
 	\internal
 */
-void QEditor::paintEvent(QPaintEvent *e)
+void QEditor::paintEvent(QPaintEvent */*e*/)
 {
 	if ( !m_doc )
 		return;
@@ -3101,7 +3101,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 	//QRect r(e->rect());
 	QRect r(0, 0, viewport()->width(), viewport()->height());
 	#else
-	QRect r(e->rect());
+    //QRect r(e->rect());
 	#endif
 
     //qDebug() << r << yOffset;
