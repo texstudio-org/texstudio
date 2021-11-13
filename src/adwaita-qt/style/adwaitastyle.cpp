@@ -5984,6 +5984,7 @@ bool Style::drawToolButtonComplexControl(const QStyleOptionComplex *option, QPai
             case Qt::RightArrow:
                 painter->drawRect(rect.adjusted(0, 1, -2, -2));
                 break;
+            default:;
             }
             painter->setPen(outline);
             switch (toolButtonOption->arrowType) {
@@ -5993,6 +5994,7 @@ bool Style::drawToolButtonComplexControl(const QStyleOptionComplex *option, QPai
             case Qt::RightArrow:
                 painter->drawLine(rect.topRight(), rect.bottomRight());
                 break;
+            default:;
             }
             switch (toolButtonOption->arrowType) {
             case Qt::UpArrow:
@@ -6005,6 +6007,7 @@ bool Style::drawToolButtonComplexControl(const QStyleOptionComplex *option, QPai
                 painter->drawLine(rect.topLeft(), rect.topRight());
                 painter->drawLine(rect.bottomLeft(), rect.bottomRight());
                 break;
+            default:;
             }
         } else if (sunken && hasPopupMenu && !(toolButtonOption->activeSubControls & SC_ToolButton)) {
             // Only menu button is active. so draw left hand side od button raised
