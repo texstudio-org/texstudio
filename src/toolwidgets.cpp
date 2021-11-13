@@ -311,6 +311,8 @@ OutputViewWidget::OutputViewWidget(QWidget *parent, InternalTerminalConfig *term
 #ifdef INTERNAL_TERMINAL
 	terminalWidget = new TerminalWidget(this, terminalConfig);
 	appendPage(new TitledPanelPage(terminalWidget, TERMINAL_PAGE, tr("Terminal")), false);
+#else
+    Q_UNUSED(terminalConfig)
 #endif
 
 	// global search results
