@@ -9,7 +9,7 @@ class MostUsedProxyModel : public QSortFilterProxyModel
 	Q_OBJECT
 
 public:
-	MostUsedProxyModel(QObject *parent = 0);
+    MostUsedProxyModel(QObject *parent = nullptr);
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
@@ -21,7 +21,7 @@ class BooleanFilterProxyModel : public QSortFilterProxyModel
 	Q_OBJECT
 
 public:
-	BooleanFilterProxyModel(QObject *parent = 0);
+    BooleanFilterProxyModel(QObject *parent = nullptr);
 	using QSortFilterProxyModel::invalidateFilter;
 
 protected:
