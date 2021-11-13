@@ -6,7 +6,8 @@
 # commands with big Letters and others
 \AddEverypageHook{code}#*
 \AddThispageHook{code}#*
-\AddToHook{hook}{label}{code}#*
+\AddToHook{hook}{code}#*
+\AddToHook{hook}[label]{code}#*
 \AddToHookNext{hook}{code}#*
 \AfterEndEnvironment[label]{envname}{code}#*
 \AfterEndEnvironment{envname}{code}#*
