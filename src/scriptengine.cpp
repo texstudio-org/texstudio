@@ -117,7 +117,7 @@ QString *getStrPtr(QJSValue value)
 	return reinterpret_cast<QString *>(ptr ^ pointerObsfuscationKey());
 }
 
-QJSValue getSetStrValue(QJSEngine *engine)
+QJSValue getSetStrValue(QJSEngine */*engine*/)
 {
 	/*bool setterMode = context->argumentCount() == 1;
 	QString *s = getStrPtr(context->thisObject());
