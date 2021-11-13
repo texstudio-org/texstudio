@@ -18,7 +18,7 @@ class PDFSplitMergeTool : public QDialog
 	Q_OBJECT
 
 public:
-	explicit PDFSplitMergeTool(QWidget *parent = 0, const QString &infile = QString());
+    explicit PDFSplitMergeTool(QWidget *parent = nullptr, const QString &infile = QString());
 	~PDFSplitMergeTool();
 
 private slots:
