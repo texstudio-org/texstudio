@@ -1,6 +1,9 @@
 TeXstudio 4.1.0
 -----------------
 - change session format to json in order to circumvent OSX/Qt6 issue
+- fix input box for chinese (#1896)
+- fix update of pdf fit to text width (#1935)
+- make edview accessible from js
 
 TeXstudio 4.0.4
 -----------------
