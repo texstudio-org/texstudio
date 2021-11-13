@@ -4425,7 +4425,7 @@ void QEditor::registerEditOperation(const EditOperation& op){
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-    QKeySequence qkey=QKeySequence(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key);
+    QKeySequence qkey=QKeySequence(modifiers | key);
     m_registeredKeys.insert(qkey.toString(), op);
 	m_registeredOperations << op;
 }
@@ -4434,13 +4434,14 @@ void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::Stan
 	QList<QKeySequence> sc = QKeySequence::keyBindings(key);
 	foreach (const QKeySequence& seq, sc){
 		if (!seq.count()) continue;
-		addEditOperation(op, (Qt::KeyboardModifiers)(seq[0] & Qt::KeyboardModifierMask), (Qt::Key)(seq[0] & ~Qt::KeyboardModifierMask));
+        m_registeredKeys.insert(seq.toString(), op);
+        m_registeredOperations << op;
 	}
 }
 
 QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-    QKeySequence qkey=QKeySequence(((int)modifiers & (Qt::ShiftModifier | Qt::AltModifier | Qt::ControlModifier | Qt::MetaModifier)) | (int)key);
-    EditOperation op = (EditOperation) m_registeredKeys.value(qkey.toString() , NoOperation);
+    QKeySequence qkey=QKeySequence(modifiers | key);
+    EditOperation op = static_cast<EditOperation>(m_registeredKeys.value(qkey.toString() , NoOperation));
 	static const int MAX_JUMP_TO_PLACEHOLDER = 5;
 	switch (op){
 	case IndentSelection: case UnindentSelection:
