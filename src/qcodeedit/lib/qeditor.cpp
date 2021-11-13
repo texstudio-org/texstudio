@@ -6045,10 +6045,8 @@ void QEditor::scrollContentsBy(int dx, int dy)
 
 QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
 	switch(property) {
-#if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
-    case Qt::ImMicroFocus:
+    case Qt::ImCursorRectangle:
         return cursorMircoFocusRect();
-#endif
 	case Qt::ImFont:
 		// TODO find out correct value: qtextcontol uses the following
 		//return QVariant(d->cursor.charFormat().font());
