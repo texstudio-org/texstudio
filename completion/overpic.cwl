@@ -1,18 +1,15 @@
-# overpic package
-# Matthew Bertucci 11/13/2021 for v1.3
+# updated 11/13/2021 for v1.3
 
-#include:graphicx
 #include:epic
+#include:graphicx
 
-\begin{overpic}{imagefile}
-\begin{overpic}[options%keyvals]{imagefile}
-\end{overpic}
-
-\begin{Overpic}{TeX code}
-\begin{Overpic}[options%keyvals]{TeX code}
+\begin{overpic}{file}#\picture
+\begin{overpic}[options]{file}#\picture
+\begin{Overpic}{tex-code}#\picture
+\begin{Overpic}[options]{tex-code}#\picture
 \end{Overpic}
-
-\setOverpic{options%keyvals}
+\end{overpic}
+\setOverpic{options}
 
 #keyvals:\begin{overpic},\begin{Overpic},\setOverpic
 abs#true,false
