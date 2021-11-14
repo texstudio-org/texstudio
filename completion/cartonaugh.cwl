@@ -1,6 +1,8 @@
 # cartonaugh package
 # Matthew Bertucci 9/10/2021 for v1.0
 
+#include:luatex
+#include:iftex
 #include:tikz
 #include:xparse
 #include:xstring

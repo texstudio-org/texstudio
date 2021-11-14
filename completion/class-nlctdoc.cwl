@@ -1,4 +1,4 @@
-# nlctdoc package
+# nlctdoc class
 # Matthew Bertucci 10/31/2021 for v1.07
 
 #include:ifpdf

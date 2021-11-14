@@ -238,6 +238,7 @@
 \label{key%labeldef}
 \labelformat{counter}{representation}#*
 \language#*
+\languagename#*
 \LARGE
 \Large
 \large
