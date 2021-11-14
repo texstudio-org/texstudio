@@ -79,7 +79,7 @@
 \PlainTeX
 \meta{arg}
 \OnlyDescription
-\StopEventually
+\StopEventually{code}
 \Finale
 \AlsoImplementation
 \changes{version}{date}{text}
