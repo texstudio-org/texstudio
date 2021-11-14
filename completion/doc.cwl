@@ -3,7 +3,7 @@
 
 #include:multicol
 
-\DocInput{file}
+\DocInput{file}#i
 \IndexInput{file}
 
 \begin{macrocode}
