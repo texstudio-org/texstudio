@@ -223,11 +223,12 @@
 \ij
 \IJ
 \include{file}#i
-\input{file}#i
 \includeonly{filelist}
 \indexname
 \indexspace
 \index{entry}
+\input{file}#i
+\inputencodingname#*
 \intop#*m
 \it#*
 \item %|
