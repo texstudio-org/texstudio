@@ -244,6 +244,7 @@
 \nullfont#*
 \number
 \omit#*
+\oalign#*
 \ooalign#*
 \openin#*
 \openout#*
