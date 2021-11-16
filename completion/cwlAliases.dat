@@ -137,3 +137,13 @@ class-isodoc
 latex-document
 latex-dev
 tex
+a0poster:
+class-a0poster
+latex-document
+latex-dev
+tex
+modernposter:
+class-modernposter
+latex-document
+latex-dev
+tex
