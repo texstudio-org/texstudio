@@ -147,3 +147,13 @@ class-modernposter
 latex-document
 latex-dev
 tex
+ltxguide:
+class-ltxguide
+latex-document
+latex-dev
+tex
+ltxguidex:
+class-ltxguidex
+latex-document
+latex-dev
+tex
