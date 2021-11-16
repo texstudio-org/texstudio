@@ -18,7 +18,9 @@
 # these are zero-argument but delimited macros
 \fa500Px
 \faCss3
+\faCss#S
 \faHtml5
+\faHtml#S
 
 # normal commands
 \faAdjust
