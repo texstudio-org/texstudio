@@ -5,6 +5,6 @@
 #include:pgfkeys
 #include:pgfmath
 
-\foreach#*
+\foreach
 \foreach{cmd}#Sd
 \breakforeach#*
