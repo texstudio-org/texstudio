@@ -21,6 +21,7 @@
 \scalebox{h-scale}[v-scale]{text}
 
 #keyvals:\includegraphics
+alt=
 bb=
 bbllx=
 bblly=

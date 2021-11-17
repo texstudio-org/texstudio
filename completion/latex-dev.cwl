@@ -4,6 +4,7 @@
 # Matthew Bertucci 10/21/2021
 
 # commands with big Letters and others
+\ActivateGenericHook{hook}#*
 \AddEverypageHook{code}#*
 \AddThispageHook{code}#*
 \AddToHook{hook}{code}#*
@@ -11,6 +12,7 @@
 \AddToHookNext{hook}{code}#*
 \AfterEndEnvironment[label]{envname}{code}#*
 \AfterEndEnvironment{envname}{code}#*
+\ArgumentSpecification#*
 \AtBeginDocument{code}#*
 \AtBeginDvi{code}#*
 \AtBeginEnvironment[label]{envname}{code}#*
@@ -47,8 +49,11 @@
 \CheckEncodingSubset{text cmd}{encoding}{error}{subset id}{symbol}#*
 \ClassError{class name}{error text}{help text}#*
 \ClassInfo{class name}{info text}#*
-\ClassWarning{class name}{warning text}#*
-\ClassWarningNoLine{class name}{warning text}#*
+\ClassNote{class name}{note text%text}#*
+\ClassNoteNoLine{class name}{note text%text}#*
+\ClassWarning{class name}{warning text%text}#*
+\ClassWarningNoLine{class name}{warning text%text}#*
+\ClearHookNext{hook}#*
 \ClearHookRule{hook}{label1}{label2}#*
 \CurrentFile#*
 \CurrentFilePath#*
@@ -113,6 +118,7 @@
 \DeclareTextFontCommand{cmd}{font-switches%definition}#*d
 \DeclareTextSymbol{cmd}{encoding}{slot}#*d
 \DeclareTextSymbolDefault{cmd}{encoding}#*
+\DisableGenericHook{hook}#*
 \DisableHook{hook}#*
 \DiscardShipoutBox#*
 \EndIncludeInRelease#*
@@ -129,7 +135,9 @@
 \IfBooleanF{arg}{falseCode}
 \IfBooleanT{arg}{trueCode}
 \IfBooleanTF{arg}{trueCode}{falseCode}
-\IfClassAtLeastTF{date}{true code}{false code}#*
+\IfClassAtLeastTF{class}{date}{true code}{false code}#*
+\IfClassLoadedTF{class}{true}{false}#*
+\IfClassLoadedWithOptionsTF{class}{options}{true}{false}#*
 \IfFileExists{file}{then}{else}#*
 \IfFontSeriesContextTF{face}{true code}{false code}#*
 \IfFormatAtLeastTF{date}{true code}{false code}#*
@@ -137,8 +145,14 @@
 \IfNoValueF{arg}{ValueCode}
 \IfNoValueT{arg}{-NoValue-Code}
 \IfNoValueTF{arg}{-NoValue-Code}{ValueCode}
-\IfPackageAtLeastTF{date}{true code}{false code}#*
+\IfPackageAtLeastTF{package}{date}{true code}{false code}#*
+\IfPackageLoadedTF{package}{true}{false}#*
+\IfPackageLoadedWithOptionsTF{package}{options}{true}{false}#*
+\IfPDFManagementActiveTF{true}{false}#*
 \IfTargetDateBefore{date}{before code}{after code}#*
+\IfValueF{arg}{-NoValue-Code}#*
+\IfValueT{arg}{ValueCode}#*
+\IfValueTF{arg}{ValueCode}{-NoValue-Code}#*
 \IncludeInRelease{date}{command}{description}#*
 \IndentBox#*
 \InputIfFileExists{file}{then}{else}#*
@@ -165,10 +179,12 @@
 \NewReversedHook{hook}#*
 \OmitIndent#*
 \OptionNotUsed#*
-\PackageError{package name}{error text}{help text}#*
-\PackageInfo{package name}{info text}#*
-\PackageWarning{package name}{warning text}#*
-\PackageWarningNoLine{package name}{warning text}#*
+\PackageError{package name}{error text%text}{help text%text}#*
+\PackageInfo{package name}{info text%text}#*
+\PackageNote{package name}{note text%text}#*
+\PackageNoteNoLine{package name}{note text%text}#*
+\PackageWarning{package name}{warning text%text}#*
+\PackageWarningNoLine{package name}{warning text%text}#*
 \PassOptionsToClass{optionlist}{class}#*
 \PassOptionsToPackage{optionlist}{package}#*
 \PopDefaultHookLabel#*
@@ -221,6 +237,7 @@
 \ShowCommand{cmd}#*
 \ShowDocumentCommandArgSpec{cmd}#*
 \ShowDocumentEnvironmentArgSpec{envname}#*
+\ShowFloat{identifier}#*
 \ShowHook{hook}#*
 \SplitArgument{number}{tokens}#*
 \SplitList{tokens}#*
@@ -283,7 +300,7 @@
 \thesubsection#*
 \thesubsubsection#*
 \thetable#*
-
+\thetotalpages#*
 
 # boxes
 \savebox{box}[width][position]{text}#*
@@ -535,10 +552,14 @@
 \familydefault#*
 \fill#*
 \hideoutput#*
+\IeC#*
 \ignorespacesafterend#*
 \itdefault#*
+\kill#*
 \loggingall#*
-\loggingoutput#* 
+\loggingoutput#*
+\ltfilehookdate#*
+\ltfilehookversion#*
 \mathalpha#*
 \mathgroup#*
 \mathhexbox{number}{expr%formula}{expr%formula}#*
@@ -553,6 +574,7 @@
 \rmdefault#*
 \rmsubstdefault#*
 \scdefault#*
+\secdef{star cmd}{unstar cmd}#*
 \seriesdefault#*
 \sfdefault#*
 \sfsubstdefault#*
@@ -562,6 +584,12 @@
 \sldefault#*
 \sscdefault#*
 \swdefault#*
+\symletters#*
+\symoperators#*
+\tencirc#*
+\tencircw#*
+\tenln#*
+\tenlnw#*
 \textcompsubstdefault#*
 \TextOrMath{text content}{math content}#*
 \tmspace{arg1}{arg2}{arg3}#*
