@@ -3,17 +3,18 @@
 
 #include:fontenc
 #include:textcomp
+#include:mweights
 #include:etoolbox
 #include:xstring
-#include:mweights
-#include:scalefnt
+#include:ifthen
 #include:fontaxes
+#include:xkeyval
 
 \lfstyle
 \osfstyle
 \sufigures
 \textfrac{numerator}{denominator}
-\textfrac[optional whole part]{numerator}{denominator}
+\textfrac[whole part]{numerator}{denominator}
 \textlf{text}
 \textosf{text}
 \textsu{text}
@@ -27,3 +28,26 @@
 \tosfstyle
 \useosf#*
 \useproportional#*
+
+# from T1 option of fontenc
+\DH#n
+\NG#n
+\dj#n
+\ng#n
+\k{arg}#n
+\guillemotleft#*n
+\guillemotright#*n
+\guilsinglleft#n
+\guilsinglright#n
+\quotedblbase#n
+\quotesinglbase#n
+\textquotedbl#n
+\DJ#n
+\th#n
+\TH#n
+\dh#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\textogonekcentered{arg}#*n
+\guillemetleft#n
+\guillemetright#n
