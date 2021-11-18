@@ -157,3 +157,8 @@ class-ltxguidex
 latex-document
 latex-dev
 tex
+limecv:
+class-limecv
+latex-document
+latex-dev
+tex

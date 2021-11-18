@@ -1,16 +1,20 @@
 # algolrevived package
 # Matthew Bertucci 8/22/2021 for v1.052
 
+#include:fontenc
 #include:textcomp
 #include:xstring
 #include:ifthen
 #include:scalefnt
 #include:mweights
 #include:fontaxes
+#include:xkeyval
 
 \textsu{text}#n
+\textsuperior{text}#*n
 \sufigures#n
 \textinf{text}#n
+\textinferior{text}#*n
 \infigures#n
 \textlf{text}#n
 \lfstyle#n
@@ -72,3 +76,26 @@
 \textsqsubseteq#n
 \textsqcap#n
 \textsqcup#n
+
+# from T1 option of fontenc
+\DH#n
+\NG#n
+\dj#n
+\ng#n
+\k{arg}#n
+\guillemotleft#*n
+\guillemotright#*n
+\guilsinglleft#n
+\guilsinglright#n
+\quotedblbase#n
+\quotesinglbase#n
+\textquotedbl#n
+\DJ#n
+\th#n
+\TH#n
+\dh#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\textogonekcentered{arg}#*n
+\guillemetleft#n
+\guillemetright#n
