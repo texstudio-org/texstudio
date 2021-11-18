@@ -1,16 +1,20 @@
 # algolrevived package
 # Matthew Bertucci 8/22/2021 for v1.052
 
+#include:fontenc
 #include:textcomp
 #include:xstring
 #include:ifthen
 #include:scalefnt
 #include:mweights
 #include:fontaxes
+#include:xkeyval
 
 \textsu{text}#n
+\textsuperior{text}#*n
 \sufigures#n
 \textinf{text}#n
+\textinferior{text}#*n
 \infigures#n
 \textlf{text}#n
 \lfstyle#n
