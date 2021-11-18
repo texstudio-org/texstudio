@@ -1,6 +1,8 @@
 # dsserif package
 # Matthew Bertucci 11/2/2021 for v1.031
 
+#include:xkeyval
+
 \mathbb{arg}#m
 \mathbfbb{arg}#m
 
