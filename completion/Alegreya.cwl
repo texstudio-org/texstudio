@@ -8,6 +8,7 @@
 #include:fontenc
 #include:fontaxes
 #include:mweights
+#include:xkeyval
 
 \Alegreya#n
 \AlegreyaExtraBold#n
