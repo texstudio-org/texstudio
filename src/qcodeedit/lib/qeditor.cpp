@@ -4440,7 +4440,7 @@ void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::Stan
 }
 
 QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-    QKeySequence qkey=QKeySequence(modifiers | key);
+    QKeySequence qkey=QKeySequence((modifiers&~Qt::KeypadModifier) | key);
     EditOperation op = static_cast<EditOperation>(m_registeredKeys.value(qkey.toString() , NoOperation));
 	static const int MAX_JUMP_TO_PLACEHOLDER = 5;
 	switch (op){
