@@ -46,13 +46,11 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2021-11-19T19:42:32+0000" version="4.1.0">
+    <release date="2021-11-20T20:34:28+0000" version="4.1.1">
       <description>
         <ul>
-          <li>change session format to json in order to circumvent OSX/Qt6 issue</li>
-          <li>fix input box for chinese (#1896)</li>
-          <li>fix update of pdf fit to text width (#1935)</li>
-          <li>make edview accessible from js</li>
+          <li>fix weird OSX issue that cursor keys were not working</li>
+          <li>allow maximise config dialog </li>
         </ul>
       </description>
     </release>
