@@ -4425,7 +4425,7 @@ void QEditor::registerEditOperation(const EditOperation& op){
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-    QKeySequence qkey=QKeySequence(modifiers | key);
+    QKeySequence qkey=QKeySequence((modifiers&~Qt::KeypadModifier) | key);
     m_registeredKeys.insert(qkey.toString(), op);
 	m_registeredOperations << op;
 }
