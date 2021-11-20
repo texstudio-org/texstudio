@@ -190,7 +190,9 @@
 <file>completion/class-cnltx-doc.cwl</file>
 <file>completion/class-codedoc.cwl</file>
 <file>completion/class-combine.cwl</file>
+<file>completion/class-graphpaper.cwl</file>
 <file>completion/classics.cwl</file>
+<file>completion/class-isodoc.cwl</file>
 <file>completion/class-letter.cwl</file>
 <file>completion/class-limecv.cwl</file>
 <file>completion/classlist.cwl</file>
@@ -199,6 +201,7 @@
 <file>completion/class-ltxguide.cwl</file>
 <file>completion/class-ltxguidex.cwl</file>
 <file>completion/class-memoir.cwl</file>
+<file>completion/class-mensa-tex.cwl</file>
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
@@ -826,6 +829,7 @@
 <file>completion/physconst.cwl</file>
 <file>completion/physics.cwl</file>
 <file>completion/physunits.cwl</file>
+<file>completion/pict2e.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/placeat.cwl</file>
@@ -942,6 +946,7 @@
 <file>completion/showframe.cwl</file>
 <file>completion/showlabels.cwl</file>
 <file>completion/shuffle.cwl</file>
+<file>completion/sidecap.cwl</file>
 <file>completion/sidenotes.cwl</file>
 <file>completion/silence.cwl</file>
 <file>completion/simpleinvoice.cwl</file>
@@ -1113,6 +1118,7 @@
 <file>completion/translator.cwl</file>
 <file>completion/transparent.cwl</file>
 <file>completion/trfsigns.cwl</file>
+<file>completion/trig.cwl</file>
 <file>completion/trimclip.cwl</file>
 <file>completion/trsym.cwl</file>
 <file>completion/truncate.cwl</file>
