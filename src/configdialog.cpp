@@ -389,7 +389,7 @@ void ComboBoxDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionV
 
 int ConfigDialog::lastUsedPage = 0;
 
-ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPDFViewer(nullptr), riddled(false), oldToolbarIndex(-1), mBuildManager(nullptr)
+ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::WindowMinMaxButtonsHint|Qt::WindowCloseButtonHint), checkboxInternalPDFViewer(nullptr), riddled(false), oldToolbarIndex(-1), mBuildManager(nullptr)
 {
     // adapt icon size to dpi
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
