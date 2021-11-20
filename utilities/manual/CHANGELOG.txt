@@ -1,3 +1,7 @@
+TeXstudio 4.1.1
+-----------------
+- 
+
 TeXstudio 4.1.0
 -----------------
 - change session format to json in order to circumvent OSX/Qt6 issue
