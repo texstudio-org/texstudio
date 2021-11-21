@@ -199,8 +199,12 @@ void SymbolWidget::setSymbolSize(int size)
 
 void SymbolWidget::restoreSplitter(const QByteArray &ba)
 {
-    if(!ba.isEmpty())
+    if(ba.isEmpty()){
+        QList lst={64,64,2000}; // basically trick the splitter in using minimum heigth for the first two widgets
+        splitter->setSizes(lst);
+    }else{
         splitter->restoreState(ba);
+    }
 }
 
 void SymbolWidget::saveSplitterState(QByteArray &ba)
