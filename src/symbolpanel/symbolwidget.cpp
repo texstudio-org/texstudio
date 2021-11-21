@@ -36,6 +36,7 @@ SymbolWidget::SymbolWidget(SymbolListModel *model, bool &insertUnicode, QWidget 
     vLayout = new QVBoxLayout();
     frame->setLayout(vLayout);
     splitter->addWidget(frame);
+    splitter->setCollapsible(2,false);
     vLayout->setContentsMargins(0, 0, 0, 0);
     vLayout->setSpacing(0);
 	setupSearchArea(vLayout);
