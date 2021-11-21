@@ -13,7 +13,7 @@ SymbolWidget::SymbolWidget(SymbolListModel *model, bool &insertUnicode, QWidget 
 
 	QVBoxLayout *vLayout = new QVBoxLayout();
 	setLayout(vLayout);
-    QSplitter *splitter=new QSplitter(Qt::Vertical);
+    splitter=new QSplitter(Qt::Vertical);
     vLayout->addWidget(splitter);
 
     QWidget *frame=new QWidget();
@@ -194,6 +194,17 @@ void SymbolWidget::setSymbolSize(int size)
 	mostUsedListView->setSymbolSize(size);
 	symbolListView->setSymbolSize(size);
 
+}
+
+void SymbolWidget::restoreSplitter(const QByteArray &ba)
+{
+    if(!ba.isEmpty())
+        splitter->restoreState(ba);
+}
+
+void SymbolWidget::saveSplitterState(QByteArray &ba)
+{
+    ba=splitter->saveState();
 }
 
 void SymbolWidget::setCategoryFilterFromAction()
