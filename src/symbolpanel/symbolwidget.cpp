@@ -13,13 +13,31 @@ SymbolWidget::SymbolWidget(SymbolListModel *model, bool &insertUnicode, QWidget 
 
 	QVBoxLayout *vLayout = new QVBoxLayout();
 	setLayout(vLayout);
+    QSplitter *splitter=new QSplitter(Qt::Vertical);
+    vLayout->addWidget(splitter);
+
+    QWidget *frame=new QWidget();
+    vLayout = new QVBoxLayout();
+    frame->setLayout(vLayout);
+    splitter->addWidget(frame);
 	vLayout->setContentsMargins(0, 0, 0, 0);
 	vLayout->setSpacing(0);
-
 	setupFavoritesArea(vLayout);
-	addHLine(vLayout);
+
+    frame=new QWidget();
+    vLayout = new QVBoxLayout();
+    frame->setLayout(vLayout);
+    splitter->addWidget(frame);
+    vLayout->setContentsMargins(0, 0, 0, 0);
+    vLayout->setSpacing(0);
 	setupMostUsedArea(vLayout);
-	addHLine(vLayout);
+
+    frame=new QWidget();
+    vLayout = new QVBoxLayout();
+    frame->setLayout(vLayout);
+    splitter->addWidget(frame);
+    vLayout->setContentsMargins(0, 0, 0, 0);
+    vLayout->setSpacing(0);
 	setupSearchArea(vLayout);
 
 	setSymbolSize(32);
@@ -75,12 +93,14 @@ void SymbolWidget::setupFavoritesArea(QVBoxLayout *vLayout)
 	hLayout->setSpacing(8);
 	vLayout->addLayout(hLayout);
 
-	hLayout->addWidget(new QLabel(tr("Favorites")));
+    QLabel *lbl=new QLabel(tr("Favorites"));
+    lbl->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Minimum);
+    hLayout->addWidget(lbl);
 
 	addHLine(vLayout);
 
 	favoritesListView = new SymbolListView();
-	favoritesListView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+    favoritesListView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 	favoritesListView->setModel(favoritesProxyModel);
 	initSymbolListView(favoritesListView);
 	vLayout->addWidget(favoritesListView);
@@ -93,12 +113,14 @@ void SymbolWidget::setupMostUsedArea(QVBoxLayout *vLayout)
 	hLayout->setSpacing(8);
 	vLayout->addLayout(hLayout);
 
-	hLayout->addWidget(new QLabel(tr("Most Used")));
+    QLabel *lbl=new QLabel(tr("Most Used"));
+    lbl->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Maximum);
+    hLayout->addWidget(lbl);
 
 	addHLine(vLayout);
 
 	mostUsedListView = new SymbolListView();
-	mostUsedListView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+    mostUsedListView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
 	mostUsedListView->setModel(mostUsedProxyModel);
 	initSymbolListView(mostUsedListView);
 	vLayout->addWidget(mostUsedListView);
