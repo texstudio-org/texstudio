@@ -4425,7 +4425,7 @@ void QEditor::registerEditOperation(const EditOperation& op){
 }
 
 void QEditor::addEditOperation(const EditOperation& op, const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-    QKeySequence qkey=QKeySequence((modifiers&~Qt::KeypadModifier) | key);
+    QKeySequence qkey=QKeySequence((modifiers&~Qt::KeypadModifier) | key); // filter out keypadmodifier which is sent with cursor on OSX
     m_registeredKeys.insert(qkey.toString(), op);
 	m_registeredOperations << op;
 }
@@ -4440,7 +4440,7 @@ void QEditor::addEditOperation(const EditOperation& op, const QKeySequence::Stan
 }
 
 QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& modifiers, const Qt::Key& key){
-    QKeySequence qkey=QKeySequence((modifiers&~Qt::KeypadModifier) | key);
+    QKeySequence qkey=QKeySequence((modifiers&~Qt::KeypadModifier) | key); // filter out keypadmodifier which is sent with cursor on OSX
     EditOperation op = static_cast<EditOperation>(m_registeredKeys.value(qkey.toString() , NoOperation));
 	static const int MAX_JUMP_TO_PLACEHOLDER = 5;
 	switch (op){
