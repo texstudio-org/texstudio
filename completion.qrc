@@ -54,6 +54,7 @@
 <file>completion/aramaic.cwl</file>
 <file>completion/Archivo.cwl</file>
 <file>completion/array.cwl</file>
+<file>completion/arrayjobx.cwl</file>
 <file>completion/ArtNouvc.cwl</file>
 <file>completion/ArtNouv.cwl</file>
 <file>completion/Arvo.cwl</file>
@@ -208,6 +209,7 @@
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/ClearSans.cwl</file>
+<file>completion/clefval.cwl</file>
 <file>completion/cleveref.cwl</file>
 <file>completion/clrstrip.cwl</file>
 <file>completion/cmathbb.cwl</file>
@@ -313,6 +315,7 @@
 <file>completion/dox.cwl</file>
 <file>completion/dozenal.cwl</file>
 <file>completion/DPcircling.cwl</file>
+<file>completion/drac.cwl</file>
 <file>completion/draftfigure.cwl</file>
 <file>completion/draftwatermark.cwl</file>
 <file>completion/droid.cwl</file>
@@ -346,6 +349,7 @@
 <file>completion/emf.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/engord.cwl</file>
+<file>completion/engpron.cwl</file>
 <file>completion/engrec.cwl</file>
 <file>completion/enotez.cwl</file>
 <file>completion/enparen.cwl</file>
@@ -581,6 +585,7 @@
 <file>completion/kpfonts.cwl</file>
 <file>completion/kpfonts-otf.cwl</file>
 <file>completion/Kramer.cwl</file>
+<file>completion/kvmap.cwl</file>
 <file>completion/kvoptions.cwl</file>
 <file>completion/kvsetkeys.cwl</file>
 <file>completion/l3keys2e.cwl</file>
@@ -711,7 +716,9 @@
 <file>completion/MorrisIn.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multicolrule.cwl</file>
+<file>completion/multidef.cwl</file>
 <file>completion/multido.cwl</file>
+<file>completion/multienv.cwl</file>
 <file>completion/multimedia.cwl</file>
 <file>completion/multiobjective.cwl</file>
 <file>completion/multirow.cwl</file>
@@ -894,6 +901,7 @@
 <file>completion/repltext.cwl</file>
 <file>completion/rerunfilecheck.cwl</file>
 <file>completion/resizegather.cwl</file>
+<file>completion/returntogrid.cwl</file>
 <file>completion/ribbonproofs.cwl</file>
 <file>completion/roboto.cwl</file>
 <file>completion/roboto-mono.cwl</file>
@@ -914,6 +922,7 @@
 <file>completion/sansmath.cwl</file>
 <file>completion/sarabian.cwl</file>
 <file>completion/SASnRdisplay.cwl</file>
+<file>completion/scalefnt.cwl</file>
 <file>completion/scalerel.cwl</file>
 <file>completion/schedule.cwl</file>
 <file>completion/schemata.cwl</file>
@@ -921,10 +930,22 @@
 <file>completion/sclang-prettifier.cwl</file>
 <file>completion/scraddr.cwl</file>
 <file>completion/scrambledenvs.cwl</file>
+<file>completion/scrbase.cwl</file>
 <file>completion/scrdate.cwl</file>
+<file>completion/scrextend.cwl</file>
+<file>completion/scrfontsizes.cwl</file>
+<file>completion/scrhack.cwl</file>
+<file>completion/scrjura.cwl</file>
+<file>completion/scrkbase.cwl</file>
+<file>completion/scrlayer.cwl</file>
+<file>completion/scrlayer-notecolumn.cwl</file>
+<file>completion/scrlayer-scrpage.cwl</file>
 <file>completion/scrlfile.cwl</file>
+<file>completion/scrlfile-hook.cwl</file>
+<file>completion/scrlogo.cwl</file>
 <file>completion/scrpage2.cwl</file>
 <file>completion/scrtime.cwl</file>
+<file>completion/scrwfile.cwl</file>
 <file>completion/scsnowman.cwl</file>
 <file>completion/secsty.cwl</file>
 <file>completion/selectp.cwl</file>
@@ -944,6 +965,7 @@
 <file>completion/showcharinbox.cwl</file>
 <file>completion/showexpl.cwl</file>
 <file>completion/showframe.cwl</file>
+<file>completion/showkeys.cwl</file>
 <file>completion/showlabels.cwl</file>
 <file>completion/shuffle.cwl</file>
 <file>completion/sidecap.cwl</file>
@@ -1107,6 +1129,7 @@
 <file>completion/tkz-orm.cwl</file>
 <file>completion/tkz-tab.cwl</file>
 <file>completion/to-be-determined.cwl</file>
+<file>completion/tocbasic.cwl</file>
 <file>completion/tocbibind.cwl</file>
 <file>completion/tocloft.cwl</file>
 <file>completion/todonotes.cwl</file>
@@ -1128,6 +1151,7 @@
 <file>completion/tx-ds.cwl</file>
 <file>completion/tx-of.cwl</file>
 <file>completion/txuprcal.cwl</file>
+<file>completion/typearea.cwl</file>
 <file>completion/typewriter.cwl</file>
 <file>completion/typicons.cwl</file>
 <file>completion/Typocaps.cwl</file>
