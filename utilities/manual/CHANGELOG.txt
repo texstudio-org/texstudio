@@ -1,6 +1,6 @@
 TeXstudio 4.1.2
 -----------------
-- 
+- allow resizing the different sections in the symbol widget 
 
 TeXstudio 4.1.1
 -----------------
