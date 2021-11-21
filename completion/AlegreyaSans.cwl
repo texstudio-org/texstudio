@@ -8,6 +8,7 @@
 #include:fontenc
 #include:fontaxes
 #include:mweights
+#include:xkeyval
 
 \AlegreyaSans#n
 \AlegreyaSansThin#n
