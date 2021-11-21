@@ -6,7 +6,7 @@ on:
 jobs:
   build-win:
     name: win build (msys2)
-    if: true
+    if: github.event_name == 'push'
     runs-on: windows-latest
     defaults:
       run:
@@ -160,6 +160,7 @@ jobs:
 
   build-linux-release:
     name: linux appimage
+    if: github.event_name == 'push'
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
@@ -281,7 +282,7 @@ jobs:
         
   macosx-qt5:
     name: Mac OS X (Qt5)
-    if: true
+    if: github.event_name == 'push'
     runs-on: macos-10.15
 
     steps:
