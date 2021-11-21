@@ -286,7 +286,6 @@
 \theequation#*
 \thefigure#*
 \thefootnote#*
-\thefootnotemark#*
 \thehours#*
 \theminutes#*
 \thempfn#*
