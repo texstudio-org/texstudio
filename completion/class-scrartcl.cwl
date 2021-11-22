@@ -1,0 +1,346 @@
+# scrartcl class
+# Matthew Bertucci 11/21/21 for v3.34
+
+#include:scrkbase
+#include:tocbasic
+#include:typearea
+
+#ifOption:emulatestandardclasses
+\defaultpapersize
+#include:scrlayer-scrpage
+#endif
+
+#keyvals:\KOMAoptions#c
+draft=#true,on,yes,false,off,no
+overfullrule=#true,on,yes,false,off,no
+fontsize=##L
+titlepage=#true,on,yes,false,off,no,firstiscover
+abstract=#true,on,yes,false,off,no
+toc=#bibliography,bib,bibliographynumbered,bibnumbered,numberedbibliography,numberedbib,flat,left,graduated,indent,indented,indenttextentries,indentunnumbered,numberline,index,idx,indexnumbered,idxnumbered,numberedindex,numberedidx,leftaligntextentries,leftalignunnumbered,nonumberline,listof,listofnumbered,numberedlistof,nobibliography,nobib,noindex,noidx,nolistof,sectionentrywithdots,sectionentrydotfill,sectionentrywithoutdots,sectionentryfill
+sectionentrydots=#true,on,yes,false,off,no
+parskip=#false,off,no,full,true,yes,full-,full+,full*,half,half-,half+,half*,never
+cleardoublepage=#empty,headings,myheadings,plain,current
+footnotes=#multiple,nomultiple
+headings=#big,normal,optiontohead,optiontoheadandtoc,optiontotocandhead,optiontotoc,small,standardclasses
+numbers=#autoendperiod,autoenddot,auto,endperiod,withendperiod,periodatend,enddot,withenddot,dotatend,noendperiod,noperiodatend,noenddot,nodotatend
+captions=#bottombeside,besidebottom,centeredbeside,besidecentered,middlebeside,besidemiddle,figureheading,figureabove,abovefigure,topatfigure,figuresignature,belowfigure,bottomatfiggure,heading,above,top,innerbeside,besideinner,leftbeside,besideleft,nooneline,oneline,outerbeside,besideouter,rightbeside,besideright,signature,below,bot,bottom,tableheading,tableabove,abovetable,abovetabular,topattable,tablesignature,belowtable,belowtabular,bottomattable,topbeside,besidetop
+listof=#entryprefix,flat,left,graduated,indent,indented,leveldown,indenttextentries,indentunnumbered,numberline,leftaligntextentries,leftalignunnumbered,nonumberline,notoc,nottotoc,plainheading,numbered,totocnumbered,tocnumbered,numberedtoc,numberedtotoc,standardlevel,totoc,toc,notnumbered
+bibliography=#leveldown,notoc,nottotoc,plainheading,numbered,tocnumbered,totocnumbered,numberedtoc,numberedtotoc,oldstyle,openstyle,standardlevel,toc,totoc,notnumbered
+index=#leveldown,notoc,nottotoc,plainheading,numbered,tocnumbered,totocnumbered,numberedtoc,numberedtotoc,standardlevel,toc,totoc,notnumbered
+egregdoesnotlikesansseriftitles
+bookmarkpackage=#true,on,yes,false,off,no
+#endkeyvals
+
+#keyvals:\setkomafont#c,\addtokomafont#c,\usekomafont#c
+author
+caption
+captionlabel
+date
+dedication
+descriptionlabel
+dictum
+dictumauthor
+dictumtext
+disposition
+footnote
+footnotelabel
+footnotereference
+footnoterule
+itemizelabel
+labelinglabel
+labelingseparator
+labelitemi
+labelitemii
+labelitemiii
+labelitemiv
+minisec
+pagefoot
+pagehead
+pageheadfoot
+pagenumber
+pagination
+paragraph
+part
+partentry
+partentrypagenumber
+partnumber
+publishers
+section
+sectionentry
+sectionentrydots
+sectionentrypagenumber
+sectioning
+subject
+subparagraph
+subsection
+subsubsection
+subtitle
+title
+titlehead
+#endkeyvals
+
+\addparagraphtocentry{number}{heading%text}#*
+\addpart*[short title]{title}#L0
+\addpart*{title}#L0
+\addpart[short title]{title}#L0
+\addpart{title}#L0
+\addpartmark{running head}#*
+\addparttocentry{number}{heading%text}#*
+\addsec*[short title]{title}#L2
+\addsec*{title}#L2
+\addsec[short title]{title}#L2
+\addsec{title}#L2
+\addsecmark{running head}#*
+\addsectiontocentry{number}{heading%text}#*
+\addsubparagraphtocentry{number}{heading%text}#*
+\addsubsectiontocentry{number}{heading%text}#*
+\addsubsubsectiontocentry{number}{heading%text}#*
+\addtocentrydefault{level}{number}{heading%text}#*
+\AddToSectionCommandOptionsDoList{key%plain}#*
+\AfterBibliographyPreamble{code}#*
+\AtEndBibliography{code}#*
+\autodot#*
+\begin{addmargin*}[inner indent%l]{indent%l}
+\begin{addmargin*}{indent%l}
+\begin{addmargin}[left indent%l]{indent%l}
+\begin{addmargin}{indent%l}
+\begin{captionbeside}[short title]{caption text%text}[placement][width][offset%l]
+\begin{captionbeside}{caption text%text}
+\begin{captionofbeside}{float type}[short title]{caption text%text}[placement][width][offset%l]
+\begin{captionofbeside}{float type}{caption text%text}
+\begin{labeling}[delimiter]{widest pattern}
+\begin{labeling}{widest pattern}
+\bibindent#*
+\bibpreamble#*
+\BreakBibliography{interruption code}#*
+\capfont#*
+\caplabelfont#*
+\captionabove[entry]{title%text}
+\captionabove[entry]{title%text}
+\captionabove{title%text}
+\captionaboveof{float type}[entry]{title%text}
+\captionaboveof{float type}{title%text}
+\captionbelow{title%text}
+\captionbelowof{float type}[entry]{title%text}
+\captionbelowof{float type}{title%text}
+\captionformat#*
+\captionof{float type}[entry]{title%text}
+\captionof{float type}{title%text}
+\changefontsizes{font size%l}#*
+\ClassName#*
+\cleardoubleemptypage
+\cleardoubleevenemptypage
+\cleardoubleevenpage
+\cleardoubleevenpageusingstyle{page style%keyvals}
+\cleardoubleevenplainpage
+\cleardoubleevenstandardpage
+\cleardoubleoddemptypage
+\cleardoubleoddpage
+\cleardoubleoddpageusingstyle{page style%keyvals}
+\cleardoubleoddplainpage
+\cleardoubleoddstandardpage
+\cleardoublepageusingstyle{page style%keyvals}
+\cleardoubleplainpage
+\cleardoublestandardpage
+\coverpagebottommargin#*
+\coverpageleftmargin#*
+\coverpagerightmargin#*
+\coverpagetopmargin#*
+\DeclareNewSectionCommand[attributes%keyvals]{name}#*
+\DeclareNewSectionCommand{name}#*
+\DeclareNewSectionCommands[attributes%keyvals]{list of names}#*
+\DeclareNewSectionCommands{list of names}#*
+\DeclareSectionCommand[attributes%keyvals]{name}
+\DeclareSectionCommand{name}
+\DeclareSectionCommands[attributes%keyvals]{list of names}
+\DeclareSectionCommands{list of names}
+\DeclareSectionCommandStyleFontOption{section level}{key%plain}{prefix}{postfix}#*
+\DeclareSectionCommandStyleFuzzyOption{section level}{key%plain}{prefix}{postfix}{alt}#*
+\DeclareSectionCommandStyleLengthOption{section level}{key%plain}{prefix}{postfix}#*
+\DeclareSectionCommandStyleNumberOption{section level}{key%plain}{prefix}{postfix}#*
+\DeclareSectionCommandStyleOption{section level}{key%plain}{code}#*
+\dedication{dedication%text}
+\deffootnote[mark width%l]{indent%l}{parindent%l}{definition}#*
+\deffootnote{indent%l}{parindent%l}{definition}#*
+\deffootnotemark{definition}#*
+\descfont#*
+\dictum[author]{text}
+\dictum{text}
+\dictumauthorformat{author}#*
+\dictumrule#*
+\dictumwidth#*
+\end{addmargin*}
+\end{addmargin}
+\end{captionbeside}
+\end{captionofbeside}
+\end{labeling}
+\extratitle{short title}
+\FamilyElseValue#*
+\figureformat#*
+\footfont#*
+\frontispiece{frontispiece%text}
+\headfont#*
+\Ifnumbered{section level}{then code}{else code}#*
+\ifonelinecaptions#*
+\IfSectionCommandStyleIs{name}{style}{then code}{else code}#*
+\Ifthispageodd{true code}{false code}#*
+\ifthispagewasodd#*
+\Ifunnumbered{section level}{then code}{else code}#*
+\IfUseNumber{then code}{else code}#*
+\IfUsePrefixLine{then code}{else code}#*
+\indexpagestyle#*
+\KOMAClassFileName#*
+\KOMAClassName#*
+\labelinglabel{arg}#*
+\labelitemfont#*
+\listoftocname#*
+\lowertitleback{titlebackfoot%text}
+\maketitle[page number]
+\marginline{margin note%text}
+\minisec{title}
+\multfootsep#*
+\multiplefootnotemarker#*
+\multiplefootnoteseparator#*
+\newbibstyle[parent style]{name}{commands}#*
+\newbibstyle{name}{commands}#*
+\onelinecaptionsfalse#*
+\onelinecaptionstrue#*
+\pagemark#*
+\pagenumbering{numbering style%keyvals}
+\pagestyle{page style%keyvals}
+\paragraphformat#*
+\paragraphnumdepth#*
+\paragraphtocdepth#*
+\partformat#*
+\partheadendvskip#*
+\partheadmidvskip#*
+\partheadstartvskip#*
+\partlineswithprefixformat{level}{number}{text}#*
+\partmark{text}#*
+\partnumdepth#*
+\parttocdepth#*
+\pnumfont#*
+\ProvideSectionCommand[attributes%keyvals]{name}
+\ProvideSectionCommand{name}
+\ProvideSectionCommands[attributes%keyvals]{list of names}
+\ProvideSectionCommands{list of names}
+\publishers{publisher}
+\raggedcaption#*
+\raggeddictum#*
+\raggeddictumauthor#*
+\raggeddictumtext#*
+\raggedfootnote#*
+\raggedpart#*
+\raggedsection#*
+\raggedsectionentry#*
+\RedeclareSectionCommand[attributes%keyvals]{name}
+\RedeclareSectionCommand{name}
+\RedeclareSectionCommands[attributes%keyvals]{list of names}
+\RedeclareSectionCommands{list of names}
+\RelaxSectionCommandOptions#*
+\SecDef{star command}{command}#*
+\sectfont#*
+\sectioncatchphraseformat{level}{indent%l}{number}{text}#*
+\sectionformat#*
+\sectionlinesformat{level}{indent%l}{number}{text}#*
+\sectionmarkformat#*
+\sectionnumdepth#*
+\sectiontocdepth#*
+\setbibpreamble{preamble%text}
+\setcapdynwidth[justification%keyvals]{width}#*
+\setcapdynwidth{width}#*
+\setcaphanging#*
+\setcapindent*{indent%l}#*
+\setcapindent{indent%l}#*
+\setcapmargin*[inner margin%l]{margin%l}#*
+\setcapmargin*{margin%l}#*
+\setcapmargin[left margin%l]{margin%l}#*
+\setcapmargin{margin%l}#*
+\setcaptionalignment[float type]{alignment%keyvals}#*
+\setcaptionalignment{alignment%keyvals}#*
+\setcapwidth[justification%keyvals]{width}#*
+\setcapwidth{width}#*
+\setfootnoterule[thickness]{length}#*
+\setfootnoterule{length}#*
+\setindexpreamble{preamble%text}
+\setparsizes{indent%l}{distance%l}{last-line end space}#*
+\subject{subject%text}
+\subparagraphformat#*
+\subparagraphnumdepth#*
+\subparagraphtocdepth#*
+\subsectionformat#*
+\subsectionmarkformat#*
+\subsectionnumdepth#*
+\subsectiontocdepth#*
+\subsubsectionformat#*
+\subsubsectionnumdepth#*
+\subsubsectiontocdepth#*
+\subtitle{subtitle%text}
+\tableformat#*
+\thefootnotemark#*
+\thispagestyle{page style%keyvals}
+\thispagewasoddfalse#*
+\thispagewasoddtrue#*
+\titlefont#*
+\titlehead{title head%text}
+\titlepagestyle#*
+\uppertitleback{titlebackhead%text}
+\UseNumberUsageError{then code}{else code}#*
+
+#keyvals:\DeclareSectionCommand#c,\DeclareNewSectionCommand#c,\RedeclareSectionCommand#c,\ProvideSectionCommand#c,\DeclareSectionCommands#c,\DeclareNewSectionCommands#c,\RedeclareSectionCommands#c,\ProvideSectionCommands#c
+counterwithin=%<counter%>
+counterwithout=%<counter%>
+expandtopt=#true,on,yes,false,off,no
+level=%<integer%>
+style=%<style%>
+tocstyle=%<TOC style%>
+afterindent=##L
+afterskip=##L
+beforeskip=##L
+font=%<font commands%>
+indent=##L
+runin=#true,on,yes,false,off,no
+innerskip=##L
+pagestyle=%<page style%>
+prefixfont=%<font commands%>
+#endkeyvals
+
+#keyvals:\setcapwidth,\setcapdynwidth
+l
+c
+r
+i
+o
+#endkeyvals
+
+#keyvals:\setcaptionalignment
+c
+j
+l
+r
+C
+J
+L
+R
+#endkeyvals
+
+#keyvals:\pagestyle#c,\thispagestyle#c,\cleardoublepageusingstyle#c,\cleardoubleoddpageusingstyle#c,\cleardoubleevenpageusingstyle#c
+empty
+headings
+myheadings
+plain
+#endkeyvals
+
+#keyvals:\pagenumbering#c
+arabic
+roman
+Roman
+alph
+Alph
+#endkeyvals
+
+# deprecated
+\ifnumbered#S
+\ifthispageodd#S
+\ifunnumbered#S
+\othersectionlevelsformat#S
