@@ -9,7 +9,15 @@
 #include:doc
 #include:dox
 #include:upquote
-#include:class-scrartcl,scrreprt,scrbook
+#include:class-scrartcl
+
+#ifOption:book
+#include:class-scrbook
+#endif
+
+#ifOption:report
+#include:class-scrreprt
+#endif
 
 \ifnlctdocinlinetitle#*
 \nlctdocinlinetitletrue#*
