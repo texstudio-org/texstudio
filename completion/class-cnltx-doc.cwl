@@ -4,7 +4,7 @@
 #include:cnltx-tools
 #include:cnltx-names
 #include:cnltx-example
-#include:class-scrartcl,scrreprt,scrbook
+#include:class-scrartcl
 #include:scrlayer-scrpage
 #include:multicol
 #include:ragged2e
