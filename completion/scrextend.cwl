@@ -13,33 +13,32 @@ footnotes=#multiple,nomultiple
 egregdoesnotlikesansseriftitles
 #endkeyvals
 
-\sectfont#*
-\FamilyElseValue#*
-\cleardoubleoddstandardpage#*
-\cleardoubleoddpageusingstyle{page style}#*
-\cleardoubleoddemptypage#*
-\cleardoubleoddplainpage#*
-\cleardoubleevenstandardpage#*
-\cleardoubleevenpageusingstyle{page style}#*
-\cleardoubleevenemptypage#*
-\cleardoubleevenplainpage#*
-\cleardoublestandardpage#*
-\cleardoubleoddpage#*
-\cleardoubleevenpage#*
-\cleardoublepageusingstyle{page style}#*
-\cleardoubleemptypage#*
-\cleardoubleplainpage#*
+\cleardoubleoddstandardpage
+\cleardoubleoddpageusingstyle{page style}
+\cleardoubleoddemptypage
+\cleardoubleoddplainpage
+\cleardoubleevenstandardpage
+\cleardoubleevenpageusingstyle{page style}
+\cleardoubleevenemptypage
+\cleardoubleevenplainpage
+\cleardoublestandardpage
+\cleardoubleoddpage
+\cleardoubleevenpage
+\cleardoublepageusingstyle{page style}
+\cleardoubleemptypage
+\cleardoubleplainpage
 \changefontsizes{font size}#*
 
-\extratitle{half-title%text}#*
-\frontispiece{frontispiece%text}#*
-\titlehead{title head%text}#*
-\subject{subject%text}#*
-\subtitle{subtitle%text}#*
-\publishers{publisher}#*
-\uppertitleback{titlebackhead%text}#*
-\lowertitleback{titlebackfoot%text}#*
-\dedication{dedication%text}#*
+\extratitle{short title}
+\frontispiece{frontispiece%text}
+\titlehead{title head%text}
+\subject{subject%text}
+\subtitle{subtitle%text}
+\publishers{publisher}
+\uppertitleback{titlebackhead%text}
+\lowertitleback{titlebackfoot%text}
+\dedication{dedication%text}
+\maketitle[page number]
 \coverpagetopmargin#*
 \coverpagebottommargin#*
 \coverpageleftmargin#*
@@ -54,6 +53,9 @@ egregdoesnotlikesansseriftitles
 \dictumauthorformat{author}#*
 \raggeddictumtext#*
 \raggeddictumauthor#*
+\ifthispagewasodd#*
+\thispagewasoddtrue#*
+\thispagewasoddfalse#*
 \Ifthispageodd{true code}{false code}#*
 \marginline{margin note%text}
 \raggedfootnote#*
@@ -64,6 +66,8 @@ egregdoesnotlikesansseriftitles
 \multiplefootnoteseparator#*
 \multfootsep#*
 \multiplefootnotemarker#*
+\sectfont#*
+\FamilyElseValue#*
 \begin{labeling}{widest pattern}
 \begin{labeling}[delimiter]{widest pattern}
 \end{labeling}
@@ -74,3 +78,6 @@ egregdoesnotlikesansseriftitles
 \begin{addmargin*}{indent%l}
 \begin{addmargin*}[inner indent%l]{indent%l}
 \end{addmargin*}
+
+# deprecated
+\ifthispageodd#S
