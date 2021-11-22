@@ -31,7 +31,7 @@ egregdoesnotlikesansseriftitles
 bookmarkpackage=#true,on,yes,false,off,no
 #endkeyvals
 
-#keyvals:\setkomafont#c,\addtokomafont#c,\usekomafont#c
+#keyvals:\setkomafont#c,\addtokomafont#c,\usekomafont#c,\usesizeofkomafont#c,\usefamilyofkomafont#c,\useseriesofkomafont#c,\useshapeofkomafont#c,\useencodingofkomafont#c,\usefontofkomafont#c
 author
 caption
 captionlabel
