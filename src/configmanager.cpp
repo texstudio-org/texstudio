@@ -492,6 +492,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ScanInstalledLatexPackages", &scanInstalledLatexPackages, true, &pseudoDialog->checkBoxScanInstalledLatexPackages);
 
 	registerOption("Tools/Insert Unicode From SymbolGrid", &insertSymbolsAsUnicode, false, &pseudoDialog->checkBoxInsertSymbolAsUCS);
+    registerOption("Tools/SymbolGrid Splitter", &stateSymbolsWidget, QByteArray());
 
 	registerOption("Spell/DictionaryDir", &spellDictDir, "", &pseudoDialog->leDictDir); //don't translate it
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);

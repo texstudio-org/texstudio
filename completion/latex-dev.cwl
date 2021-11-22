@@ -265,7 +265,6 @@
 \addtolength{\gnat}{length}#*
 \addtoversion#*
 \addvspace{length}#*
-\deffootnote[width}{indention}{par indention}{definition}#*
 \newcounter{foo}#*
 \newcounter{foo}[counter]#*
 \refstepcounter{counter}#*
@@ -287,7 +286,6 @@
 \theequation#*
 \thefigure#*
 \thefootnote#*
-\thefootnotemark#*
 \thehours#*
 \theminutes#*
 \thempfn#*

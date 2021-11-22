@@ -690,6 +690,7 @@ void Texstudio::setupDockWidgets()
 
     if (!leftPanel->widget("symbols")) {
         symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
+        symbolWidget->restoreSplitter(configManager.stateSymbolsWidget);
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
         connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
         leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
@@ -4276,6 +4277,7 @@ void Texstudio::saveSettings(const QString &configName)
 		}
 	}
 #endif
+    symbolWidget->saveSplitterState(configManager.stateSymbolsWidget); // readout splitter state from symbol widget
 
 	QSettings *config = configManager.saveSettings(configName);
 
@@ -4322,6 +4324,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 	config->setValue("Symbols/UsageCount", symbolWidget->model()->usageCountAsQVariantMap());
 	config->setValue("Symbols/FavoriteIDs", symbolWidget->model()->favorites());
+
 	// TODO: parse old "Symbols/Favorite IDs"
 
 	config->setValue("Symbols/hiddenlists", leftPanel->hiddenWidgets());

@@ -1,6 +1,11 @@
-TeXstudio 4.1.1
+TeXstudio 4.1.2
 -----------------
 - 
+
+TeXstudio 4.1.1
+-----------------
+- fix weird OSX issue that cursor keys were not working
+- allow maximise config dialog 
 
 TeXstudio 4.1.0
 -----------------

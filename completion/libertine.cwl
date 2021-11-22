@@ -104,3 +104,4 @@
 \LMouseIIR#n
 \LMouseIILR#n
 \DeclareTextGlyphY{type}{name}{number}#*
+\useosf#*

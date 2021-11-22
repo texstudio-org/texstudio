@@ -218,6 +218,7 @@ public:
 
 	// input unicode instead of latex command from symbolgrid (if available)
 	bool insertSymbolsAsUnicode;
+    QByteArray stateSymbolsWidget;
 
     // macro repository
     QString URLmacroRepository;

@@ -16,6 +16,8 @@ public:
 
 	void setSymbolSize(int size);
 	const SymbolListModel * model() const { return symbolListModel; }
+    void restoreSplitter(const QByteArray &ba);
+    void saveSplitterState(QByteArray &ba);
 
 signals:
 	void insertSymbol(const QString &text);
@@ -42,6 +44,8 @@ private:
 	SymbolListView *favoritesListView;
 	SymbolListView *mostUsedListView;
 	SymbolListView *symbolListView;
+
+    QSplitter *splitter;
 
 	QStringList categories;
 	QHash<QString, QString> categoryNames;
