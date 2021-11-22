@@ -17,9 +17,9 @@
 
 \IfExistskomafont{element}{then code}{else code}#*
 \IfIsAliaskomafont{element}{then code}{else code}#*
-\setkomafont{element%keyvals}{commands}#*
-\addtokomafont{element%keyvals}{commands}#*
-\usekomafont{element%keyvals}#*
+\setkomafont{element%keyvals}{commands}
+\addtokomafont{element%keyvals}{commands}
+\usekomafont{element%keyvals}
 \usesizeofkomafont{element%keyvals}#*
 \usefamilyofkomafont{element%keyvals}#*
 \useseriesofkomafont{element%keyvals}#*
