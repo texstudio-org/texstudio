@@ -3093,6 +3093,7 @@ void Texstudio::closeAllFiles()
 
 bool Texstudio::canCloseNow(bool saveSettings)
 {
+    if(programStopped) return true; // avoid running through here twice. (Qt6/OSX)
 	if (!saveAllFilesForClosing()) return false;
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *viewer, PDFDocument::documentList())
@@ -3113,8 +3114,11 @@ bool Texstudio::canCloseNow(bool saveSettings)
  */
 void Texstudio::closeEvent(QCloseEvent *e)
 {
-	if (canCloseNow())  e->accept();
-	else e->ignore();
+    if (canCloseNow()) {
+        e->accept();
+    } else {
+        e->ignore();
+    }
 }
 
 void Texstudio::updateUserMacros(bool updateMenu)
