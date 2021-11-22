@@ -2,8 +2,8 @@
 !define DESCRIPTION "TeXstudio is a fully featured LaTeX editor."
 # These three must be integers
 !define VERSIONMAJOR 4
-!define VERSIONMINOR 0
-!define VERSIONBUILD 5
+!define VERSIONMINOR 1
+!define VERSIONBUILD 2
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 !define HELPURL "https://texstudio.org" # "Support Information" link
