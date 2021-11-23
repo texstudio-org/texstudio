@@ -3,6 +3,7 @@ article:
 latex-document
 tex
 report:
+class-report
 latex-document
 tex
 book:
