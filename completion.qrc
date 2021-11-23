@@ -160,6 +160,7 @@
 <file>completion/catchfile.cwl</file>
 <file>completion/ccicons.cwl</file>
 <file>completion/cellprops.cwl</file>
+<file>completion/cellspace.cwl</file>
 <file>completion/censor.cwl</file>
 <file>completion/centeredline.cwl</file>
 <file>completion/centernot.cwl</file>
@@ -206,14 +207,19 @@
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
+<file>completion/class-report.cwl</file>
+<file>completion/class-scrartcl.cwl</file>
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
+<file>completion/class-scrbook.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
+<file>completion/class-scrreprt.cwl</file>
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
 <file>completion/cleveref.cwl</file>
 <file>completion/clrstrip.cwl</file>
 <file>completion/cmathbb.cwl</file>
 <file>completion/cmbright.cwl</file>
+<file>completion/cmdstring.cwl</file>
 <file>completion/cmll.cwl</file>
 <file>completion/cmsrb.cwl</file>
 <file>completion/cmupint.cwl</file>
@@ -237,6 +243,7 @@
 <file>completion/colorwav.cwl</file>
 <file>completion/colorweb.cwl</file>
 <file>completion/combelow.cwl</file>
+<file>completion/combofont.cwl</file>
 <file>completion/comicneue.cwl</file>
 <file>completion/commath.cwl</file>
 <file>completion/comment.cwl</file>
@@ -246,6 +253,7 @@
 <file>completion/conteq.cwl</file>
 <file>completion/continue.cwl</file>
 <file>completion/contour.cwl</file>
+<file>completion/conv-xkv.cwl</file>
 <file>completion/cookingsymbols.cwl</file>
 <file>completion/cooltooltips.cwl</file>
 <file>completion/coordsys.cwl</file>
@@ -516,8 +524,10 @@
 <file>completion/greek6cbc.cwl</file>
 <file>completion/greekctr.cwl</file>
 <file>completion/greekdates.cwl</file>
+<file>completion/gridset.cwl</file>
 <file>completion/grmath.cwl</file>
 <file>completion/grundgesetze.cwl</file>
+<file>completion/GS1.cwl</file>
 <file>completion/guit.cwl</file>
 <file>completion/halloweenmath.cwl</file>
 <file>completion/hanging.cwl</file>
@@ -590,6 +600,7 @@
 <file>completion/kvsetkeys.cwl</file>
 <file>completion/l3keys2e.cwl</file>
 <file>completion/langcode.cwl</file>
+<file>completion/langsci-avm.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latexcolors.cwl</file>
 <file>completion/latexdemo.cwl</file>
@@ -621,6 +632,7 @@
 <file>completion/listings.cwl</file>
 <file>completion/listliketab.cwl</file>
 <file>completion/listofitems.cwl</file>
+<file>completion/listofsymbols.cwl</file>
 <file>completion/logicproof.cwl</file>
 <file>completion/logicpuzzle.cwl</file>
 <file>completion/logix.cwl</file>
@@ -759,6 +771,7 @@
 <file>completion/noitcrul.cwl</file>
 <file>completion/nolbreaks.cwl</file>
 <file>completion/nomencl.cwl</file>
+<file>completion/normalcolor.cwl</file>
 <file>completion/notespages.cwl</file>
 <file>completion/notocondensed.cwl</file>
 <file>completion/notocondensed-mono.cwl</file>
@@ -833,6 +846,7 @@
 <file>completion/phfquotetext.cwl</file>
 <file>completion/phfthm.cwl</file>
 <file>completion/phonenumbers.cwl</file>
+<file>completion/phonrule.cwl</file>
 <file>completion/physconst.cwl</file>
 <file>completion/physics.cwl</file>
 <file>completion/physunits.cwl</file>
@@ -940,6 +954,7 @@
 <file>completion/scrlayer.cwl</file>
 <file>completion/scrlayer-notecolumn.cwl</file>
 <file>completion/scrlayer-scrpage.cwl</file>
+<file>completion/scrletter.cwl</file>
 <file>completion/scrlfile.cwl</file>
 <file>completion/scrlfile-hook.cwl</file>
 <file>completion/scrlogo.cwl</file>
@@ -959,6 +974,7 @@
 <file>completion/shadow.cwl</file>
 <file>completion/shadowtext.cwl</file>
 <file>completion/shapepar.cwl</file>
+<file>completion/shdoc.cwl</file>
 <file>completion/shellesc.cwl</file>
 <file>completion/shortvrb.cwl</file>
 <file>completion/show2e.cwl</file>
@@ -973,6 +989,7 @@
 <file>completion/silence.cwl</file>
 <file>completion/simpleinvoice.cwl</file>
 <file>completion/simplekv.cwl</file>
+<file>completion/simpler-wick.cwl</file>
 <file>completion/simpsons.cwl</file>
 <file>completion/siunitx.cwl</file>
 <file>completion/siunitx-special.cwl</file>
@@ -1011,6 +1028,7 @@
 <file>completion/stix2.cwl</file>
 <file>completion/stmaryrd.cwl</file>
 <file>completion/strands.cwl</file>
+<file>completion/stringstrings.cwl</file>
 <file>completion/styledcmd.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subeqn.cwl</file>
@@ -1195,6 +1213,7 @@
 <file>completion/virginialake.cwl</file>
 <file>completion/vowel.cwl</file>
 <file>completion/vplref.cwl</file>
+<file>completion/vruler.cwl</file>
 <file>completion/wasysym.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
 <file>completion/witharrows.cwl</file>
