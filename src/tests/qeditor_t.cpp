@@ -327,8 +327,8 @@ void QEditorTest::passiveFolding_data(){
 		<< (QList<int>() << 1)
 		<< (QList<int>() << 2 << 3 << 4 << 5);
 
-	QTest::newRow("\\chapter overrides \\section")
-		<< "0\n1\\chapter\n2\n3\\section\n4\n5\\section\n6\n7\\chapter\n8\n9\n10\n"
+    QTest::newRow("\\section overrides \\subsection")
+        << "0\n1\\section\n2\n3\\subsection\n4\n5\\subsection\n6\n7\\section\n8\n9\n10\n"
 		<< (QList<int>() << 1 << 3)
 		<< (QList<int>() << 2 << 3 << 4 << 5 << 6)
 		<< (QList<int>() << 1)
@@ -336,8 +336,8 @@ void QEditorTest::passiveFolding_data(){
 		<< (QList<int>() << 7)
 		<< (QList<int>() << 4 << 8 << 9 << 10 << 11);
 
-	QTest::newRow("\\section folds until \\chapter")
-		<< "0\n1\\chapter\n2\n3\\section\n4\n5\\section\n6\n7\\chapter\n8\n9\n10\n"
+    QTest::newRow("\\subsection folds until \\section")
+        << "0\n1\\section\n2\n3\\subsection\n4\n5\\subsection\n6\n7\\section\n8\n9\n10\n"
 		<< (QList<int>() << 5)
 		<< (QList<int>() << 6)
 		<< (QList<int>())
