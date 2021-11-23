@@ -1,9 +1,13 @@
 # mode: xtab.sty
 # dani/2006-02-18
-\begin{mpxtabular}{preamble}
-\begin{mpxtabular*}{preamble}
-\begin{xtabular}{preamble}
-\begin{xtabular*}{preamble}
+\begin{mpxtabular}{preamble}#\tabular
+\begin{mpxtabular}[pos]{preamble}#\tabular
+\begin{mpxtabular*}{preamble}#\tabular
+\begin{mpxtabular*}[pos]{preamble}#\tabular
+\begin{xtabular}{preamble}#\tabular
+\begin{xtabular}[pos]{preamble}#\tabular
+\begin{xtabular*}{preamble}#\tabular
+\begin{xtabular*}[pos]{preamble}#\tabular
 \bottomcaption[short]{text}
 \bottomcaption{text}
 \end{mpxtabular}
@@ -21,4 +25,24 @@
 \tabletail{text}
 \topcaption[short]{text}
 \topcaption{text}
-\xentryfraction{decimal-fraction}
+\xentrystretch{decimal-fraction}
+
+\PWSTcapht#*
+\PWSTlastpage#*
+\PWSTcurpage#*
+\PWSTpenultimate#*
+\PWSTtempc#*
+\PWSTlines#*
+\PWSThead#*
+\PWSTlasthead#*
+\iffirstcall#*
+\firstcalltrue#*
+\firstcallfalse#*
+\sttraceon#*
+\sttraceoff#*
+\setSTheight{dimen%l}#*
+\PWSTcalchtlines#*
+\PWSTcalnextpageht#*
+\PWSTinit#*
+\PWSToplastpagenum#*
+\PWSTsethead#*

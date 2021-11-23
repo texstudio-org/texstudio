@@ -9,7 +9,7 @@
 #include:ltxdockit
 #include:hyperref
 #include:hypcap
-#include:class-scrartcl,scrreprt,scrbook
+#include:class-scrartcl
 #include:lmodern
 #include:helvet
 #include:charter

@@ -118,6 +118,7 @@
 \DeclareTextFontCommand{cmd}{font-switches%definition}#*d
 \DeclareTextSymbol{cmd}{encoding}{slot}#*d
 \DeclareTextSymbolDefault{cmd}{encoding}#*
+\DeclareUnicodeCharacter{hexadecimal}{definition}#*
 \DisableGenericHook{hook}#*
 \DisableHook{hook}#*
 \DiscardShipoutBox#*
@@ -278,7 +279,6 @@
 \newfont{cmd}{fontname}#*d
 
 # counter representative
-\thechapter#*
 \theenumi#*
 \theenumii#*
 \theenumiii#*

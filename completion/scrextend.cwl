@@ -13,64 +13,85 @@ footnotes=#multiple,nomultiple
 egregdoesnotlikesansseriftitles
 #endkeyvals
 
-\sectfont#*
-\FamilyElseValue#*
-\cleardoubleoddstandardpage#*
-\cleardoubleoddpageusingstyle{page style}#*
-\cleardoubleoddemptypage#*
-\cleardoubleoddplainpage#*
-\cleardoubleevenstandardpage#*
-\cleardoubleevenpageusingstyle{page style}#*
-\cleardoubleevenemptypage#*
-\cleardoubleevenplainpage#*
-\cleardoublestandardpage#*
-\cleardoubleoddpage#*
-\cleardoubleevenpage#*
-\cleardoublepageusingstyle{page style}#*
-\cleardoubleemptypage#*
-\cleardoubleplainpage#*
-\changefontsizes{font size}#*
+#keyvals:\setkomafont#c,\addtokomafont#c,\usekomafont#c,\usesizeofkomafont#c,\usefamilyofkomafont#c,\useseriesofkomafont#c,\useshapeofkomafont#c,\useencodingofkomafont#c,\usefontofkomafont#c
+subtitle
+titlehead
+author
+date
+publishers
+dedication
+sectioning
+disposition
+dictum
+dictumauthor
+dictumtext
+labelinglabel
+labelingseparator
+#endkeyvals
 
-\extratitle{half-title%text}#*
-\frontispiece{frontispiece%text}#*
-\titlehead{title head%text}#*
-\subject{subject%text}#*
-\subtitle{subtitle%text}#*
-\publishers{publisher}#*
-\uppertitleback{titlebackhead%text}#*
-\lowertitleback{titlebackfoot%text}#*
-\dedication{dedication%text}#*
-\coverpagetopmargin#*
+\begin{addmargin*}[inner indent%l]{indent%l}
+\begin{addmargin*}{indent%l}
+\begin{addmargin}[left indent%l]{indent%l}
+\begin{addmargin}{indent%l}
+\begin{labeling}[delimiter]{widest pattern}
+\begin{labeling}{widest pattern}
+\changefontsizes{font size}#*
+\cleardoubleemptypage
+\cleardoubleevenemptypage
+\cleardoubleevenpage
+\cleardoubleevenpageusingstyle{page style%keyvals}
+\cleardoubleevenplainpage
+\cleardoubleevenstandardpage
+\cleardoubleoddemptypage
+\cleardoubleoddpage
+\cleardoubleoddpageusingstyle{page style%keyvals}
+\cleardoubleoddplainpage
+\cleardoubleoddstandardpage
+\cleardoublepageusingstyle{page style%keyvals}
+\cleardoubleplainpage
+\cleardoublestandardpage
 \coverpagebottommargin#*
 \coverpageleftmargin#*
 \coverpagerightmargin#*
-
-\titlefont#*
-\dictum{text}
+\coverpagetopmargin#*
+\dedication{dedication%text}
+\deffootnote[mark width%l]{indent%l}{parindent%l}{definition}#*
+\deffootnote{indent%l}{parindent%l}{definition}#*
+\deffootnotemark{definition}#*
 \dictum[author]{text}
+\dictum{text}
+\dictumauthorformat{author}#*
 \dictumrule#*
 \dictumwidth#*
-\raggeddictum#*
-\dictumauthorformat{author}#*
-\raggeddictumtext#*
-\raggeddictumauthor#*
+\end{addmargin*}
+\end{addmargin}
+\end{labeling}
+\extratitle{short title}
+\FamilyElseValue#*
+\frontispiece{frontispiece%text}
 \Ifthispageodd{true code}{false code}#*
+\ifthispagewasodd#*
+\labelinglabel{arg}#*
+\lowertitleback{titlebackfoot%text}
+\maketitle[page number]
 \marginline{margin note%text}
-\raggedfootnote#*
-\deffootnote{indent%l}{parindent%l}{definition}#*
-\deffootnote[mark width%l]{indent%l}{parindent%l}{definition}#*
-\deffootnotemark{definition}#*
-\thefootnotemark#*
-\multiplefootnoteseparator#*
 \multfootsep#*
 \multiplefootnotemarker#*
-\begin{labeling}{widest pattern}
-\begin{labeling}[delimiter]{widest pattern}
-\end{labeling}
-\labelinglabel{arg}#*
-\begin{addmargin}{indent%l}
-\begin{addmargin}[left indent%l]{indent%l}
-\end{addmargin}
-\begin{addmargin*}{indent%l}
-\begin{addmargin*}[inner indent%l]{indent%l}
-\end{addmargin*}
+\multiplefootnoteseparator#*
+\publishers{publisher}
+\raggeddictum#*
+\raggeddictumauthor#*
+\raggeddictumtext#*
+\raggedfootnote#*
+\sectfont#*
+\subject{subject%text}
+\subtitle{subtitle%text}
+\thefootnotemark#*
+\thispagewasoddfalse#*
+\thispagewasoddtrue#*
+\titlefont#*
+\titlehead{title head%text}
+\uppertitleback{titlebackhead%text}
+
+# deprecated
+\ifthispageodd#S

@@ -4,7 +4,6 @@
 #include:scrkbase
 
 #keyvals:\KOMAoptions#c
-version=#first,last
 BCOR=%<correction%>
 DIV=#areaset,calc,classic,current,default,last
 twoside=#true,on,yes,false,off,no,semi
@@ -45,3 +44,7 @@ usegeometry
 \areaset[BCOR]{width}{height}
 \AfterSettingArea{code}
 \AfterSettingArea*{code}
+
+# deprecated
+\SetDIVList#S
+\SetXDIVList#S
