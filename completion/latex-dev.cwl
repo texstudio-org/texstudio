@@ -278,7 +278,6 @@
 \newfont{cmd}{fontname}#*d
 
 # counter representative
-\thechapter#*
 \theenumi#*
 \theenumii#*
 \theenumiii#*
