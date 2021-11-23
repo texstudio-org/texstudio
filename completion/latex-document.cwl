@@ -137,6 +137,7 @@
 \ensuremath{formula}
 \bezier{n}(x1,y1)(x2,y2)(x3,y3)#*/picture
 \bfseries
+\bibindent#*
 \bibitem{citekey}
 \bibitem[label]{citekey}
 \bibliographystyle{style}
@@ -157,10 +158,6 @@
 \braceru#*m
 \caption{text}
 \caption[short text%text]{text}
-\chapter{title}#L1
-\chapter*{title}#L1
-\chapter[short title]{title}#L1
-\chaptermark{code}#*
 \cite{keylist}#c
 \cite[add. text]{keylist}
 \circle{diameter}#*
@@ -238,6 +235,7 @@
 \kill#T
 \label{key%labeldef}
 \labelformat{counter}{representation}#*
+\labelitemfont#*
 \language#*
 \languagename#*
 \LARGE
@@ -332,7 +330,7 @@
 \oe
 \OE
 \ointop#*m
-\oldstylenums#*
+\oldstylenums{text}#*
 \onecolumn
 \oval(width,height)#*/picture
 \oval(width,height)[portion]#*/picture
@@ -343,7 +341,7 @@
 \pagestyle{option}
 \paragraph*{title}#L5
 \paragraph[short title]{title}#L5
-\paragraphmark
+\paragraphmark{code}
 \paragraph{title}#L5
 \parbox[position][height][inner-pos]{width}{text}
 \parbox[position][height]{width}{text}

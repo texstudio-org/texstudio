@@ -56,10 +56,10 @@
 #include:class-ltxdockit
 #endif
 #ifOption:scrartcl
-#include:class-scrartcl,scrreprt,scrbook
+#include:class-scrartcl
 #endif
 #ifOption:scrreprt
-#include:class-scrartcl,scrreprt,scrbook
+#include:class-scrreprt
 #endif
 #ifOption:scrlttr2
 #include:class-scrlttr2

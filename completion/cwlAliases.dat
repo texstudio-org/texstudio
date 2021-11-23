@@ -3,6 +3,7 @@ article:
 latex-document
 tex
 report:
+class-report
 latex-document
 tex
 book:
@@ -34,12 +35,12 @@ latex-document
 latex-dev
 tex
 scrbook:
-class-scrartcl,scrreprt,scrbook
+class-scrbook
 latex-document
 latex-dev
 tex
 scrreprt:
-class-scrartcl,scrreprt,scrbook
+class-scrreprt
 latex-document
 latex-dev
 tex
