@@ -25,7 +25,6 @@
 \labelcount#*
 \longindentation#*
 \mlabel{return address}{to address}#*
-\nobreakvspace#*
 \pagename#*
 \returnaddress#*
 \startbreaks#*
