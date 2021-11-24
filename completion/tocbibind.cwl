@@ -1,22 +1,27 @@
-# tocbibind.sty
-# J. Sundermeyer
-# modified Edson 30-12-2010
+# tocbibind package
+# Matthew Bertucci 11/22/2021 for v1.5k
 
-\tocotherhead{headingname}#n
-\tocbibname#n
+\tocotherhead{heading name}
+\tocbibname
+\setindexname{name}
+\settocname{name}
+\setlotname{name}
+\setlofname{name}
+\settocbibname{name}
+	
+\simplechapter
+\simplechapter[name]
+\simplechapterdelim
+\restorechapter	
+	
+\tocchapter
+\tocsection
 
-\setindexname{name}#n
-\settocname{name}#n
-\setlotname{name}#n
-\setlofname{name}#n
-\settocbibname{name}#n
+\tocetcmark{head}
 
-
-\simplechapter#n
-\simplechapter[name]#n
-\restorechapter#n
-\simplechapterdelim#n
-
-\tocchapter#n
-\tocsection#n
-\tocfile{text}{file-extension}#n
+\PRWPackageNote{package}{note text}#*
+\PRWPackageNoteNoLine{package}{note text}#*
+\bibsection#*
+\begin{thebibitemlist}#*
+\end{thebibitemlist}#*
+\tocfile{head text}{file ext}#*
