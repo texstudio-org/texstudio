@@ -77,8 +77,8 @@ tex
 graphicx
 moderncv:
 class-moderncv
-geometry
-babel
+latex-document
+tex
 memoir:
 class-memoir
 latex-document
@@ -166,4 +166,8 @@ limecv:
 class-limecv
 latex-document
 latex-dev
+tex
+proc:
+class-proc
+latex-document
 tex
