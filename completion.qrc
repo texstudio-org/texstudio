@@ -147,6 +147,7 @@
 <file>completion/calculus.cwl</file>
 <file>completion/calligra.cwl</file>
 <file>completion/cancel.cwl</file>
+<file>completion/captdef.cwl</file>
 <file>completion/caption.cwl</file>
 <file>completion/carbohydrates.cwl</file>
 <file>completion/carlito.cwl</file>
@@ -165,6 +166,7 @@
 <file>completion/centeredline.cwl</file>
 <file>completion/centernot.cwl</file>
 <file>completion/cfr-lm.cwl</file>
+<file>completion/cgloss4e.cwl</file>
 <file>completion/changebar.cwl</file>
 <file>completion/changelog.cwl</file>
 <file>completion/changepage.cwl</file>
@@ -207,6 +209,7 @@
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
+<file>completion/class-proc.cwl</file>
 <file>completion/class-report.cwl</file>
 <file>completion/class-scrartcl.cwl</file>
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
@@ -286,6 +289,7 @@
 <file>completion/datagidx.cwl</file>
 <file>completion/datapie.cwl</file>
 <file>completion/dataplot.cwl</file>
+<file>completion/dataref.cwl</file>
 <file>completion/datatool-base.cwl</file>
 <file>completion/datatool.cwl</file>
 <file>completion/datatool-fp.cwl</file>
@@ -483,10 +487,12 @@
 <file>completion/galois.cwl</file>
 <file>completion/garamondlibre.cwl</file>
 <file>completion/gates.cwl</file>
+<file>completion/gb4e.cwl</file>
 <file>completion/gensymb.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
 <file>completion/getfiledate.cwl</file>
+<file>completion/getitems.cwl</file>
 <file>completion/gettitlestring.cwl</file>
 <file>completion/gfsartemisia.cwl</file>
 <file>completion/gfsbaskerville.cwl</file>
@@ -530,6 +536,7 @@
 <file>completion/GS1.cwl</file>
 <file>completion/guit.cwl</file>
 <file>completion/halloweenmath.cwl</file>
+<file>completion/hang.cwl</file>
 <file>completion/hanging.cwl</file>
 <file>completion/hardwrap.cwl</file>
 <file>completion/harvard.cwl</file>
@@ -627,6 +634,7 @@
 <file>completion/linearb.cwl</file>
 <file>completion/linegoal.cwl</file>
 <file>completion/lineno.cwl</file>
+<file>completion/ling-macros.cwl</file>
 <file>completion/linguisticspro.cwl</file>
 <file>completion/lipsum.cwl</file>
 <file>completion/listings.cwl</file>
@@ -641,6 +649,7 @@
 <file>completion/longfbox.cwl</file>
 <file>completion/longfigure.cwl</file>
 <file>completion/longtable.cwl</file>
+<file>completion/lpic.cwl</file>
 <file>completion/lplfitch.cwl</file>
 <file>completion/lscape.cwl</file>
 <file>completion/lstautogobble.cwl</file>
@@ -719,6 +728,8 @@
 <file>completion/minutes.cwl</file>
 <file>completion/mismath.cwl</file>
 <file>completion/MnSymbol.cwl</file>
+<file>completion/moderncvcollection.cwl</file>
+<file>completion/moderncvcompatibility.cwl</file>
 <file>completion/modiagram.cwl</file>
 <file>completion/modroman.cwl</file>
 <file>completion/modulus.cwl</file>
@@ -734,6 +745,7 @@
 <file>completion/multimedia.cwl</file>
 <file>completion/multiobjective.cwl</file>
 <file>completion/multirow.cwl</file>
+<file>completion/multitoc.cwl</file>
 <file>completion/mwe.cwl</file>
 <file>completion/myfilist.cwl</file>
 <file>completion/nabatean.cwl</file>
@@ -807,6 +819,7 @@
 <file>completion/paralist.cwl</file>
 <file>completion/parallel.cwl</file>
 <file>completion/parcolumns.cwl</file>
+<file>completion/paresse.cwl</file>
 <file>completion/parnotes.cwl</file>
 <file>completion/parselines.cwl</file>
 <file>completion/parskip.cwl</file>
@@ -852,6 +865,7 @@
 <file>completion/physunits.cwl</file>
 <file>completion/pict2e.cwl</file>
 <file>completion/pifont.cwl</file>
+<file>completion/pinoutikz.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
@@ -865,6 +879,7 @@
 <file>completion/poetrytex.cwl</file>
 <file>completion/polyglossia.cwl</file>
 <file>completion/polynom.cwl</file>
+<file>completion/prelim2e.cwl</file>
 <file>completion/preview.cwl</file>
 <file>completion/printlen.cwl</file>
 <file>completion/processkv.cwl</file>
@@ -904,12 +919,14 @@
 <file>completion/rank-2-roots.cwl</file>
 <file>completion/rawfonts.cwl</file>
 <file>completion/rccol.cwl</file>
+<file>completion/readarray.cwl</file>
 <file>completion/readprov.cwl</file>
 <file>completion/realboxes.cwl</file>
 <file>completion/realhats.cwl</file>
 <file>completion/realtranspose.cwl</file>
 <file>completion/recycle.cwl</file>
 <file>completion/refcount.cwl</file>
+<file>completion/reflectgraphics.cwl</file>
 <file>completion/regexpatch.cwl</file>
 <file>completion/relsize.cwl</file>
 <file>completion/repltext.cwl</file>
@@ -942,6 +959,7 @@
 <file>completion/schemata.cwl</file>
 <file>completion/scholax.cwl</file>
 <file>completion/sclang-prettifier.cwl</file>
+<file>completion/scontents.cwl</file>
 <file>completion/scraddr.cwl</file>
 <file>completion/scrambledenvs.cwl</file>
 <file>completion/scrbase.cwl</file>
@@ -976,6 +994,7 @@
 <file>completion/shapepar.cwl</file>
 <file>completion/shdoc.cwl</file>
 <file>completion/shellesc.cwl</file>
+<file>completion/shorttoc.cwl</file>
 <file>completion/shortvrb.cwl</file>
 <file>completion/show2e.cwl</file>
 <file>completion/showcharinbox.cwl</file>
@@ -1060,6 +1079,7 @@
 <file>completion/tabularx.cwl</file>
 <file>completion/tabulary.cwl</file>
 <file>completion/tagging.cwl</file>
+<file>completion/tagpair.cwl</file>
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
 <file>completion/tdsfrmath.cwl</file>
@@ -1093,6 +1113,7 @@
 <file>completion/tikz.cwl</file>
 <file>completion/tikz-dimline.cwl</file>
 <file>completion/tikzducks.cwl</file>
+<file>completion/tikz-feynman.cwl</file>
 <file>completion/tikz-imagelabels.cwl</file>
 <file>completion/tikz-inet.cwl</file>
 <file>completion/tikzlings-anteaters.cwl</file>
@@ -1149,7 +1170,9 @@
 <file>completion/to-be-determined.cwl</file>
 <file>completion/tocbasic.cwl</file>
 <file>completion/tocbibind.cwl</file>
+<file>completion/tocdata.cwl</file>
 <file>completion/tocloft.cwl</file>
+<file>completion/tocvsec2.cwl</file>
 <file>completion/todonotes.cwl</file>
 <file>completion/tone.cwl</file>
 <file>completion/totcount.cwl</file>
@@ -1213,6 +1236,7 @@
 <file>completion/virginialake.cwl</file>
 <file>completion/vowel.cwl</file>
 <file>completion/vplref.cwl</file>
+<file>completion/vrsion.cwl</file>
 <file>completion/vruler.cwl</file>
 <file>completion/wasysym.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
