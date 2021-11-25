@@ -91,7 +91,7 @@
 \newsourcecodeenv{envname}#N
 \newsourcecodeenv[options%keyvals]{envname}#N
 
-#keyvals:\setcnltx,\inputexample,\inputsidebyside,\inputsourcecode,\implementation,\newinputsourcefilecmd,\begin{example},\begin{sidebyside},\begin{sourcecode},\newsourcecodeenv
+#keyvals:\setcnltx#c,\inputexample,\inputsidebyside,\inputsourcecode,\implementation,\newinputsourcefilecmd,\begin{example},\begin{sidebyside},\begin{sourcecode},\newsourcecodeenv
 side-by-side#true,false
 code-only#true,false
 code-left#true,false
@@ -140,7 +140,7 @@ after-skip=##L
 \classformat#*
 \argumentformat#*
 
-#keyvals:\setcnltx
+#keyvals:\setcnltx#c
 title-format={%<definitions%>}
 abstract-width=##L
 abstract-format={%<definitions%>}
