@@ -37,6 +37,26 @@
 #include:tikz
 #endif
 
+#ifOption:vignette
+## loads option skins
+#include:tikz
+#endif
+
+#ifOption:breakable
+#include:pdfcol
+#endif
+
+#ifOption:magazine
+## loads option breakable
+#include:pdfcol
+#endif
+
+#ifOption:poster
+## loads options skins, breakable, magazine, and fitting
+#include:tikz
+#include:pdfcol
+#endif
+
 #ifOption:theorems
 #include:amsmath
 #endif
@@ -61,10 +81,11 @@
 #endif
 
 #ifOption:many
-## loads options skins, theorems, and xparse
+## loads options skins, breakable, theorems, and xparse
 #include:amsmath
 #include:tikz
 #include:xparse
+#include:pdfcol
 #endif
 
 #ifOption:most
@@ -79,6 +100,7 @@
 #include:shellesc
 #include:tikz
 #include:xparse
+#include:pdfcol
 #endif
 
 #ifOption:all
@@ -94,6 +116,7 @@
 #include:shellesc
 #include:tikz
 #include:xparse
+#include:pdfcol
 #endif
 
 # << Libraries >>
