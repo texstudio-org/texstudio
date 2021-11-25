@@ -19,7 +19,7 @@
 
 \setcnltx{options%keyvals}
 
-#keyvals:\setcnltx
+#keyvals:\setcnltx#c
 color-scheme=
 set-trail-punct={%<punctuation marks%>}
 #endkeyvals
