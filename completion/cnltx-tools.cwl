@@ -37,7 +37,7 @@
 \BC
 \AD
 
-#keyvals:\setcnltx
+#keyvals:\setcnltx#c
 acronym-format={%<definition%>}
 name-format={%<formatting cmds%>}
 last-name-format={%<formatting cmds%>}

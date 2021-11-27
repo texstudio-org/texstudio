@@ -19,6 +19,9 @@
 #ifOption:newfloat
 #include:newfloat
 #endif
+#ifOption:newfloat=true
+#include:newfloat
+#endif
 
 \begin{minted}[options%keyvals]#S
 \begin{minted}{language}#MV

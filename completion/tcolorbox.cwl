@@ -37,6 +37,26 @@
 #include:tikz
 #endif
 
+#ifOption:vignette
+## loads option skins
+#include:tikz
+#endif
+
+#ifOption:breakable
+#include:pdfcol
+#endif
+
+#ifOption:magazine
+## loads option breakable
+#include:pdfcol
+#endif
+
+#ifOption:poster
+## loads options skins, breakable, magazine, and fitting
+#include:tikz
+#include:pdfcol
+#endif
+
 #ifOption:theorems
 #include:amsmath
 #endif
@@ -61,10 +81,11 @@
 #endif
 
 #ifOption:many
-## loads options skins, theorems, and xparse
+## loads options skins, breakable, theorems, and xparse
 #include:amsmath
 #include:tikz
 #include:xparse
+#include:pdfcol
 #endif
 
 #ifOption:most
@@ -79,6 +100,7 @@
 #include:shellesc
 #include:tikz
 #include:xparse
+#include:pdfcol
 #endif
 
 #ifOption:all
@@ -94,6 +116,7 @@
 #include:shellesc
 #include:tikz
 #include:xparse
+#include:pdfcol
 #endif
 
 # << Libraries >>
@@ -247,9 +270,9 @@ all
 \end{tcboxeditemize}
 
 # << Listings, minted >>
-\begin{tcblisting}{options%keyvals}
+\begin{tcblisting}{options%keyvals}#V
 \end{tcblisting}
-\begin{tcboutputlisting}
+\begin{tcboutputlisting}#V
 \end{tcboutputlisting}
 \tcbinputlisting{options%keyvals}
 \tcbuselistingtext
@@ -497,9 +520,9 @@ all
 \end{dispExample}#*
 \begin{dispExample*}{options%keyvals}#*
 \end{dispExample*}#*
-\begin{dispListing}#*
+\begin{dispListing}#*V
 \end{dispListing}#*
-\begin{dispListing*}{options%keyvals}#*
+\begin{dispListing*}{options%keyvals}#*V
 \end{dispListing*}#*
 \begin{absquote}#*
 \end{absquote}#*
@@ -527,69 +550,69 @@ all
 # << Option Keys >> - Documentation library
 # ---------------------------------------
 #keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset
-doc name
-doc parameter
-doc description
-doc label
-doc index
-doc sort index
+doc name=%<name%>
+doc parameter=%<parameters%>
+doc description=%<description%>
+doc label=%<text%>
+doc index=%<text%>
+doc sort index=%<text%>
 doc into index#true,false
 doc no index
-doc new
-doc updated
+doc new=%<date%>
+doc updated=%<date%>
 doc new and updated={%<new date%>}{%<update date%>}
 doc left=##L
 doc right=##L
 doc left indent=##L
 doc right indent=##L
-doc raster
-doc head
-before doc body
-after doc body
+doc raster={%<options%>}
+doc head={%<options%>}
+before doc body={%<code%>}
+after doc body={%<code%>}
 #endkeyvals
 
 #keyvals:\begin{docCommand},\begin{docCommand*},\begin{docCommands},\tcbset
-before doc body command
-after doc body command
-doc head command
-doc raster command
+before doc body command={%<code%>}
+after doc body command={%<code%>}
+doc head command={%<options%>}
+doc raster command={%<options%>}
 #endkeyvals
 
 #keyvals:\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\tcbset
-before doc body environment
-after doc body environment
-doc head environment
-doc raster environment
+before doc body environment={%<code%>}
+after doc body environment={%<code%>}
+doc head environment={%<options%>}
+doc raster environment={%<options%>}
 #endkeyvals
 
 #keyvals:\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbset
-doc keypath
-before doc body key
-after doc body key
-doc head key
-doc raster key
+doc keypath=%<key path%>
+before doc body key={%<code%>}
+after doc body key={%<code%>}
+doc head key={%<options%>}
+doc raster key={%<options%>}
 #endkeyvals
 
 #keyvals:\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\tcbset
-before doc body path
-after doc body path
-doc head path
-doc raster path
+before doc body path={%<code%>}
+after doc body path={%<code%>}
+doc head path={%<options%>}
+doc raster path={%<options%>}
 #endkeyvals
 
 #keyvas:\tcbdocmarginnote,\tcbset
-doc marginnote
+doc marginnote={%<options%>}
 #endkeyvals
 
 #keyvals:\begin{dispExample*},\begin{dispListing*},\tcbset
-docexample/.style=
-documentation listing options
-documentation listing style
-documentation minted options
-documentation minted style
-documentation minted language
-before example
-after example
+docexample/.style={%<options%>}
+documentation listing options={%<listings keys%>}
+documentation listing style=%<listings style%>
+documentation minted options={%<minted keys%>}
+documentation minted style=%<minted style%>
+documentation minted language=%<language%>
+before example={%<code%>}
+after example={%<code%>}
 #endkeyvals
 
 # ---------------------------------------
@@ -1472,12 +1495,12 @@ external/preamble tcbset=
 external/clear preamble
 # Documentation library
 keywords bold#true,false
-index command=
-index command name=
+index command=%<macro%>
+index command name=%<name%>
 index format=#pgfsection,pgfchapter,pgf,doc,off
-index actual=
-index quote=
-index level=
+index actual=%<character%>
+index quote=%<character%>
+index level=%<character%>
 index default settings/.style=
 index german settings/.style=
 index annotate#true,false
@@ -1495,24 +1518,24 @@ color option=#%color
 color fade=#%color
 color hyperlink=#%color
 english language
-doclang/color=
-doclang/colors=
-doclang/counter=
-doclang/environment=
-doclang/environments=
-doclang/environment content=
-doclang/index=
-doclang/key=
-doclang/keys=
-doclang/length=
-doclang/lengths=
-doclang/new=
-doclang/path=
-doclang/paths=
-doclang/pageshort=
-doclang/updated=
-doclang/value=
-doclang/values=
+doclang/color=%<text%>
+doclang/colors=%<text%>
+doclang/counter=%<text%>
+doclang/environment=%<text%>
+doclang/environments=%<text%>
+doclang/environment content=%<text%>
+doclang/index=%<text%>
+doclang/key=%<text%>
+doclang/keys=%<text%>
+doclang/length=%<text%>
+doclang/lengths=%<text%>
+doclang/new=%<text%>
+doclang/path=%<text%>
+doclang/paths=%<text%>
+doclang/pageshort=%<text%>
+doclang/updated=%<text%>
+doclang/value=%<text%>
+doclang/values=%<text%>
 #endkeyvals
 
 # ---------------------------------------

@@ -1,5 +1,5 @@
 # numspell package
-# Matthew Bertucci 9/13/2021 for v1.4
+# Matthew Bertucci 11/24/2021 for v1.5
 
 #include:xstring
 #include:iflang
@@ -45,3 +45,6 @@
 \Aordnumspell*[zeros]{number}#*
 \numspellitmasculine#*
 \numspellitmasculine#*
+\numspelllamasculine#*
+\numspelllafeminine#*
+\numspelllaneuter#*
