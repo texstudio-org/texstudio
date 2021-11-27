@@ -33,27 +33,26 @@ isEmpty(NO_POPPLER_PREVIEW) {
     FORMS += \
         $$PWD/pdfannotationdlg.ui
 
-            macx { # PATH to pkgconfig needs to be present in build PATH
-            QT_CONFIG -= no-pkg-config
-        }
-        poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION} poppler-cpp
+    macx { # PATH to pkgconfig needs to be present in build PATH
+        QT_CONFIG -= no-pkg-config
+    }
+    poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION} poppler-cpp
 
-        CONFIG += link_pkgconfig
+    CONFIG += link_pkgconfig
 
-        PKGCONFIG += $${poppler_qt_pkg}
+    PKGCONFIG += $${poppler_qt_pkg}
 
-	!isEmpty(MXE){
-		message("Using MXE")
-		PKGCONFIG += lcms2
-		PKGCONFIG += libtiff-4
-		PKGCONFIG += libopenjp2
-	}
+    !isEmpty(MXE){
+            message("Using MXE")
+            PKGCONFIG += lcms2
+            PKGCONFIG += libtiff-4
+            PKGCONFIG += libopenjp2
+    }
 
-        PKG_CONFIG_EXE = $$pkgConfigExecutable()
-        isEmpty(PKG_CONFIG_EXE) {
-            error("pkg-config not found. This tool is required if building with poppler. Please install it.")
-        }
-
+    PKG_CONFIG_EXE = $$pkgConfigExecutable()
+    isEmpty(PKG_CONFIG_EXE) {
+        error("pkg-config not found. This tool is required if building with poppler. Please install it.")
+    }
 
     LIBS *= -lz
 } else {
