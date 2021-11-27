@@ -33,17 +33,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
     FORMS += \
         $$PWD/pdfannotationdlg.ui
 
-    win32:isEmpty(MXE) {
-        INCLUDEPATH  += ./src/pdfviewer/include_win32_qt5
-        win32-msvc*: {
-            LIBS += ./zlib.lib ./libpoppler-qt5.lib
-        } else {
-            LIBS += ./zlib1.dll ./libpoppler-qt5.dll
-        }
-        DEFINES += HAS_POPPLER_31
-        LIBS *= -lshlwapi
-    } else {
-        macx { # PATH to pkgconfig needs to be present in build PATH
+            macx { # PATH to pkgconfig needs to be present in build PATH
             QT_CONFIG -= no-pkg-config
         }
         poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION} poppler-cpp
@@ -65,7 +55,6 @@ isEmpty(NO_POPPLER_PREVIEW) {
         }
 
 
-    }
     LIBS *= -lz
 } else {
     DEFINES += NO_POPPLER_PREVIEW
