@@ -46,11 +46,11 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2021-11-20T20:34:28+0000" version="4.1.1">
+    <release date="2021-11-27T12:25:10+0000" version="4.1.2">
       <description>
         <ul>
-          <li>fix weird OSX issue that cursor keys were not working</li>
-          <li>allow maximise config dialog </li>
+          <li>allow resizing the different sections in the symbol widget </li>
+          <li>fix automatic session restore on OSX/Qt6</li>
         </ul>
       </description>
     </release>
