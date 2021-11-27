@@ -171,3 +171,8 @@ proc:
 class-proc
 latex-document
 tex
+l3doc:
+class-l3doc
+latex-document
+latex-dev
+tex
