@@ -445,13 +445,6 @@ exists(./.git)  {
   QMAKE_CXXFLAGS += -fno-omit-frame-pointer
   win32: QMAKE_CXXFLAGS += -fpermissive
   !win32:!haiku: QMAKE_LFLAGS += -rdynamic # option not supported by mingw and haiku
-  else {
-    !win32:QMAKE_CXXFLAGS += -gstabs -g
-    !win32:QMAKE_LFLAGS -= -Wl,-s
-    isEmpty(STRIP):!win32{
-        QMAKE_LFLAGS_RELEASE -= -Wl,-s
-    }
-  }
 } else {
   DEFINES += _CRT_SECURE_NO_WARNINGS
 }
