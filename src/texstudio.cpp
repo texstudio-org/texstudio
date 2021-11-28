@@ -381,16 +381,16 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setAcceptDrops(true);
 	//installEventFilter(this);
 
-        completer = new LatexCompleter(latexParser, this);
-        completer->setConfig(configManager.completerConfig);
-        completer->setPackageList(&latexPackageList);
-        connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
-        connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-        connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
-        //updateCompleter();
-        LatexEditorView::setCompleter(completer);
-        completer->setLatexReference(latexReference);
-        completer->updateAbbreviations();
+    completer = new LatexCompleter(latexParser, this);
+    completer->setConfig(configManager.completerConfig);
+    completer->setPackageList(&latexPackageList);
+    connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
+    connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
+    connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
+    //updateCompleter();
+    LatexEditorView::setCompleter(completer);
+    completer->setLatexReference(latexReference);
+    completer->updateAbbreviations();
 
 	TemplateManager::setConfigBaseDir(configManager.configBaseDir);
 	TemplateManager::ensureUserTemplateDirExists();
