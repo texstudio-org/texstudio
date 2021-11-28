@@ -142,7 +142,7 @@ kernelglossredefs={%<value%>}
 \printnumbers[options%keyvals]
 #endif
 #ifOption:index
-\newterm{term{
+\newterm{term}
 \newterm[options%keyvals]{term}
 \printindex
 \printindex[options%keyvals]
