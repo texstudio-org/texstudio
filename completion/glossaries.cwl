@@ -1616,7 +1616,6 @@ footnote-sm-desc
 ### 8 Displaying a Glossary ###
 \printnoidxglossaries
 \printglossaries
-\printunsrtglossaries#*
 
 \printnoidxglossary
 \printnoidxglossary[options%keyvals]
