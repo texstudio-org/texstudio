@@ -432,6 +432,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             if(lastComma>0){
                                 // -> val
                                 tk.subtype=Token::keyVal_val;
+                                QString cmd=lexed[lastComma].optionalCommandName;
+                                QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
+                                tk.optionalCommandName=cmd+"/"+key;
                             }else{
                                 tk.subtype=Token::keyVal_key; // not sure if that is a real scenario
                             }
@@ -720,6 +723,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             tk.level = level;
             if (!stack.isEmpty()) {
                 tk.subtype = stack.top().subtype;
+                tk.optionalCommandName = stack.top().optionalCommandName;
                 tk.argLevel=-1; // tk is part of brace
             }
             if (!commandStack.isEmpty() && commandStack.top().level == level) {
