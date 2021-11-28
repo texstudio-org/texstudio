@@ -427,6 +427,15 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     tk.argLevel = ConfigManager::RUNAWAYLIMIT; // run-away prevention, needs to be >0 as otherwise closing barces are misinterpreted
                     if (!stack.isEmpty()) {
                         tk.subtype = stack.top().subtype;
+                        if(tk.subtype==Token::keyValArg){
+                            // still the generic argument, needs to be broken down to key or val
+                            if(lastComma>0){
+                                // -> val
+                                tk.subtype=Token::keyVal_val;
+                            }else{
+                                tk.subtype=Token::keyVal_key; // not sure if that is a real scenario
+                            }
+                        }
                     }
                     stack.push(tk);
                     lexed << tk;
@@ -630,6 +639,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                         }
                     }
+                    // add cmd/key as optionalCommandName
+                    QString cmd=lexed[lastComma].optionalCommandName;
+                    QString key=line.mid(lexed[lastComma].start, lexed[lastComma].length);
+                    tk.optionalCommandName=cmd+"/"+key;
                     // special treatment for word if is adjacent to "-"
                     if (tk.type == Token::word) {
                         if(lastComma==(lexed.length()-2)){
