@@ -26,7 +26,6 @@
 \glossaryname#*
 \glsnumbersgroupname#*
 \glssymbolsgroupname#*
-\inputencodingname#*
 \pagelistname#*
 \seename#*
 \symbolname#*
