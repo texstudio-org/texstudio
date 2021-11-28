@@ -1268,8 +1268,14 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 QString getCommandFromToken(Token tk)
 {
     // don't use outside of main thread as "previous" may be invalid
-    if(!tk.optionalCommandName.isEmpty())
-        return tk.optionalCommandName;
+    if(!tk.optionalCommandName.isEmpty()){
+        QString cmd=tk.optionalCommandName;
+        int i=cmd.indexOf('/');
+        if(i>-1){
+            cmd=cmd.left(i);
+        }
+        return cmd;
+    }
 
     QString cmd;
 	QDocumentLineHandle *dlh = tk.dlh;
