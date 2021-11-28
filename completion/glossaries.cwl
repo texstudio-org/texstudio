@@ -1622,10 +1622,8 @@ footnote-sm-desc
 \printnoidxglossary[options%keyvals]
 \printglossary
 \printglossary[options%keyvals]
-\printunsrtglossary#*
-\printunsrtglossary[options%keyvals]#*
 
-#keyvals:\printnoidxglossary#c,\printglossary#c,\printunsrtglossary#c,\printsymbols#c,\printnumbers#c,\printindex#c,\printacronyms#c
+#keyvals:\printnoidxglossary#c,\printglossary#c,\printsymbols#c,\printnumbers#c,\printindex#c,\printacronyms#c
 type=
 title=
 toctitle=
