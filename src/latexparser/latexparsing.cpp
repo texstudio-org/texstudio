@@ -740,6 +740,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 }
                 tk.level++; // needs tk level be increased
             }
+
+            if(tk.subtype==Token::keyVal_val && tk.type==Token::punctuation && line.mid(tk.start, tk.length)==",") continue; // exception for comma in keyVal braces
             lexed << tk;
             if(tk.subtype==Token::verbatimStart){
                 verbatimSymbol = line.mid(tk.start, 1);
