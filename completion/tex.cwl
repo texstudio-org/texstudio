@@ -741,7 +741,7 @@
 \smallint#m
 \smallskip#*
 \smallskipamount#*
-\smash{text}#m
+\smash{text}
 \smile#m
 \sp#*m
 \sp{superscript}#*m

@@ -31,9 +31,9 @@
 \pgfmathaddtocount{count register}{math expression}#*
 \pgfmathsetcounter{counter}{math expression}#*
 \pgfmathaddtocounter{counter}{math expression}#*
-\pgfmathsetmacro{cmd}{math expression}#*
-\pgfmathsetlengthmacro{cmd}{math expression}#*
-\pgfmathtruncatemacro{cmd}{math expression}#*
+\pgfmathsetmacro{cmd}{math expression}#*d
+\pgfmathsetlengthmacro{cmd}{math expression}#*d
+\pgfmathtruncatemacro{cmd}{math expression}#*d
 
 \pgfmathnewcounter{counter}#*
 \pgfmathmakecounterglobal{counter}#*
@@ -133,9 +133,9 @@
 \pgfmathrand#*
 \pgfmathrandom{maximum int}#*
 \pgfmathrandom{minimum int}{maximum int}#*
-\pgfmathrandominteger{cmd}{minimum}{maximum}#*
+\pgfmathrandominteger{cmd}{minimum}{maximum}#*d
 \pgfmathdeclarerandomlist{list name}{list of items}#*
-\pgfmathrandomitem{cmd}{list name}#*
+\pgfmathrandomitem{cmd}{list name}#*d
 
 # from pgfmathfunctions.comparison.code.tex
 \pgfmathgreater{x}{y}#*
@@ -163,13 +163,13 @@
 \pgfmathhex{x in base 10}#*
 \pgfmathHex{x in base 10}#*
 \pgfmathoct{x in base 10}#*
-\pgfmathbasetodec{cmd}{number}{base}#*
-\pgfmathdectobase{cmd}{number}{base}#*
-\pgfmathdectoBase{cmd}{number}{base}#*
-\pgfmathbasetobase{cmd}{number}{base1}{base2}#*
-\pgfmathbasetoBase{cmd}{number}{base1}{base2}#*
+\pgfmathbasetodec{cmd}{number}{base}#*d
+\pgfmathdectobase{cmd}{number}{base}#*d
+\pgfmathdectoBase{cmd}{number}{base}#*d
+\pgfmathbasetobase{cmd}{number}{base1}{base2}#*d
+\pgfmathbasetoBase{cmd}{number}{base1}{base2}#*d
 \pgfmathsetbasenumberlength{integer}#*
-\pgfmathtodigitlist{cmd}{number}#*
+\pgfmathtodigitlist{cmd}{number}#*d
 
 # from pgfmathfunctions.round.code.tex
 \pgfmathround{x}#*
@@ -216,11 +216,11 @@
 
 \pgfmathfloatparsenumber{number}#*
 \pgfmathfloatqparsenumber{number}#*
-\pgfmathfloattomacro{number}{flags macro%cmd}{mantissa macro%cmd}{exponent macro%cmd}#*
+\pgfmathfloattomacro{number}{flags macro%cmd}{mantissa macro%cmd}{exponent macro%cmd}#*d
 \pgfmathfloattoregisters{number}{flags count}{mantissa dimen}{exponent count}#*
 \pgfmathfloattoregisterstok{number}{flags count}{mantissa toks}{exponent count}#*
 \pgfmathfloatgetflags{number}{flags count}#*
-\pgfmathfloatgetflagstomacro{number}{flags macro%cmd}#*
+\pgfmathfloatgetflagstomacro{number}{flags macro%cmd}#*d
 \pgfmathfloatgetmantissa{number}{mantissa dimen}#*
 \pgfmathfloatgetmantisse{number}{mantissa dimen}#*
 \pgfmathfloatgetmantissatok{number}{mantissa toks}#*
@@ -244,7 +244,7 @@
 \pgfmathgreatestcommondivisor{int 1}{int 2}#*
 \pgfmathifisint{number constant}{true}{false}#*
 \pgfmathprintnumber{number}#*
-\pgfmathprintnumberto{number}{cmd}#*
+\pgfmathprintnumberto{number}{cmd}#*d
 \ifpgfmathfloatparsenumberpendingperiod#*
 \pgfmathfloatparsenumberpendingperiodtrue#*
 \pgfmathfloatparsenumberpendingperiodfalse#*
