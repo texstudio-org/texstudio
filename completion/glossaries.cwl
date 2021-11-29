@@ -1946,7 +1946,12 @@ inline
 \glsnoidxstripaccents#*
 \glsnomakeindexwarning{cmd}#*
 \glsnonextpages#*
+\ifglsnopostdotfalse#*
 \glsnopostdotfalse#*
+\glsnopostdottrue#*
+\ifglsnonumberlist#*
+\glsnonumberlisttrue#*
+\glsnonumberlistfalse#*
 \glsnoxindywarning{cmd}#*
 \glsnumlistparser#*
 \glsorder#*
