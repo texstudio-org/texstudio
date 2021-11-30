@@ -174,6 +174,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	latexReference->setFile(findResourceFile("latex2e.html"));
 
 	qRegisterMetaType<QSet<QString> >();
+    qRegisterMetaType<std::set<QString> >();
 
 	txsInstance = this;
 	static int crashHandlerType = 1;
