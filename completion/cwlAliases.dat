@@ -94,6 +94,16 @@ amsmath
 amsthm
 latex-document
 tex
+amsart:
+amsmath
+amsthm
+latex-document
+tex
+amsproc:
+amsmath
+amsthm
+latex-document
+tex
 ltxdoc:
 class-ltxdoc
 latex-document
