@@ -137,10 +137,10 @@ QString QuickDocumentDialog::getNewDocumentText()
 	if (ui.comboBoxBabel->currentText() != "NONE")
       tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
 
-	if (ui.lineEditAuthor->text() != "")
-		tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
 	if (ui.lineEditTitle->text() != "")
 		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
+	if (ui.lineEditAuthor->text() != "")
+      tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
 
 	tag += QString("\\begin{document}\n%|\n\\end{document}");
 	return tag;
