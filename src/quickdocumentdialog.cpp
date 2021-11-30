@@ -111,8 +111,6 @@ QString QuickDocumentDialog::getNewDocumentText()
 	}
 	if (ui.comboBoxInputEncoding->currentText().startsWith("utf8x"))
 		tag += QString("\\usepackage{ucs}\n");
-	if (ui.comboBoxBabel->currentText() != "NONE")
-		tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
 	if (ui.checkBoxAMS->isChecked())
 		tag += QString("\\usepackage{amsmath}\n\\usepackage{amssymb}\n");
 	if (ui.checkBoxIDX->isChecked())
@@ -136,11 +134,13 @@ QString QuickDocumentDialog::getNewDocumentText()
 		geometryOptions.remove(0, 2);
 		tag += "\\usepackage[" + geometryOptions + "]{geometry}\n";
 	}
+	if (ui.comboBoxBabel->currentText() != "NONE")
+      tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
 
-	if (ui.lineEditAuthor->text() != "")
-		tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
 	if (ui.lineEditTitle->text() != "")
 		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
+	if (ui.lineEditAuthor->text() != "")
+      tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
 
 	tag += QString("\\begin{document}\n%|\n\\end{document}");
 	return tag;
