@@ -114,7 +114,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 	if (ui.comboBoxBabel->currentText() != "NONE")
 		tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
 	if (ui.checkBoxAMS->isChecked())
-		tag += QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
+		tag += QString("\\usepackage{amsmath}\n\\usepackage{amssymb}\n");
 	if (ui.checkBoxIDX->isChecked())
 		tag += QString("\\usepackage{makeidx}\n");
 	if (ui.checkBoxGraphicx->isChecked())
