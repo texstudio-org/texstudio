@@ -2,6 +2,7 @@
 <qresource prefix="/">
 <file>completion/abntcite.cwl</file>
 <file>completion/abstract.cwl</file>
+<file>completion/academicons.cwl</file>
 <file>completion/accsupp.cwl</file>
 <file>completion/Acorn.cwl</file>
 <file>completion/acro.cwl</file>
@@ -129,6 +130,7 @@
 <file>completion/BOONDOX-frak.cwl</file>
 <file>completion/BOONDOX-uprscr.cwl</file>
 <file>completion/boxedminipage.cwl</file>
+<file>completion/boxhandler.cwl</file>
 <file>completion/braket.cwl</file>
 <file>completion/breqn.cwl</file>
 <file>completion/bropd.cwl</file>
@@ -515,16 +517,21 @@
 <file>completion/glosmathtools.cwl</file>
 <file>completion/glossaries-accsupp.cwl</file>
 <file>completion/glossaries.cwl</file>
+<file>completion/glossaries-extra-bib2gls.cwl</file>
 <file>completion/glossaries-extra.cwl</file>
+<file>completion/glossaries-extra-stylemods.cwl</file>
 <file>completion/glossaries-prefix.cwl</file>
+<file>completion/glossary-bookindex.cwl</file>
 <file>completion/glossary-hypernav.cwl</file>
 <file>completion/glossary-inline.cwl</file>
 <file>completion/glossary-list.cwl</file>
 <file>completion/glossary-longbooktabs.cwl</file>
 <file>completion/glossary-long.cwl</file>
+<file>completion/glossary-longextra.cwl</file>
 <file>completion/glossary-longragged.cwl</file>
 <file>completion/glossary-mcols.cwl</file>
 <file>completion/glossary-super.cwl</file>
+<file>completion/glossary-topic.cwl</file>
 <file>completion/glossary-tree.cwl</file>
 <file>completion/glosstex.cwl</file>
 <file>completion/GotIn.cwl</file>
@@ -1035,6 +1042,7 @@
 <file>completion/slashed.cwl</file>
 <file>completion/smartdiagram.cwl</file>
 <file>completion/snapshot.cwl</file>
+<file>completion/snaptodo.cwl</file>
 <file>completion/snotez.cwl</file>
 <file>completion/somedefs.cwl</file>
 <file>completion/soul.cwl</file>
@@ -1051,6 +1059,7 @@
 <file>completion/spreadtab.cwl</file>
 <file>completion/spverbatim.cwl</file>
 <file>completion/stabular.cwl</file>
+<file>completion/stackengine.cwl</file>
 <file>completion/stacklet.cwl</file>
 <file>completion/stackrel.cwl</file>
 <file>completion/standalone.cwl</file>
@@ -1090,6 +1099,7 @@
 <file>completion/tableof.cwl</file>
 <file>completion/tablists.cwl</file>
 <file>completion/tabls.cwl</file>
+<file>completion/tabstackengine.cwl</file>
 <file>completion/tabto.cwl</file>
 <file>completion/tabu.cwl</file>
 <file>completion/tabularht.cwl</file>
