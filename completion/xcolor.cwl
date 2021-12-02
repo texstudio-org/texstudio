@@ -66,8 +66,8 @@
 \begin{testcolors}#*\tabular
 \begin{testcolors}[model-list]#*\tabular
 \end{testcolors}#*
-\testcolor{color}#*t
-\testcolor[model-list]{spec-list}#*t
+\testcolor{color}#*/testcolors
+\testcolor[model-list]{spec-list}#*/testcolors
 \blendcolors{mix-expr}
 \blendcolors*{mix-expr}
 \maskcolors{color}#*
