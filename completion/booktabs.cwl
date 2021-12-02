@@ -2,19 +2,20 @@
 # dani/2006-02-18
 # muzimuzhi/17 Jul 2019
 # muzimuzhi/1 Sep 2019 for booktabs v1.618033
+# muzimuzhi/3 Dec 2021 add tabular-only classification ("#t")
 
-\toprule
-\toprule[line width%l]
-\midrule
-\midrule[line width%l]
-\bottomrule
-\bottomrule[line width%l]
+\toprule#t
+\toprule[line width%l]#t
+\midrule#t
+\midrule[line width%l]#t
+\bottomrule#t
+\bottomrule[line width%l]#t
 
-\cmidrule{a-b}
-\cmidrule(trim){a-b}
-\cmidrule[line width%l](trim){a-b}
+\cmidrule{a-b}#t
+\cmidrule(trim){a-b}#t
+\cmidrule[line width%l](trim){a-b}#t
 
-\morecmidrules
-\specialrule{line width%l}{above space}{below space}
-\addlinespace
-\addlinespace[vspace]
+\morecmidrules#t
+\specialrule{line width%l}{above space}{below space}#t
+\addlinespace#t
+\addlinespace[vspace]#t
