@@ -10,6 +10,10 @@
 
 #include:pgffrcs
 
+#keyvals:\usepackage/pgfsys#c
+dvisvgm
+#endkeyvals
+
 ## from pgfsys.code.tex
 \pgfset{keyvals}#*
 \ifpgfpicture#*
