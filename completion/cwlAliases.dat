@@ -186,3 +186,7 @@ class-l3doc
 latex-document
 latex-dev
 tex
+ReadableCV:
+class-ReadableCV
+latex-document
+tex

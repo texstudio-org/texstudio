@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 9/26/2021 for v3.63
+# tbraun 4.11.2008; Matthew Bertucci 12/1/2021 for v3.67
 
 \selectlanguage{language}
 \foreignlanguage{language}{text}
@@ -108,7 +108,12 @@ script.tag.opentype
 \babelpatterns{patterns}#*
 \babelpatterns[lang1,lang2,...]{patterns}#*
 \babelposthyphenation{hypenrules-name}{lua-pattern}{replacement}#*
+\babelposthyphenation[options%keyvals]{hypenrules-name}{lua-pattern}{replacement}#*
 \babelprehyphenation{locale-name}{lua-pattern}{replacement}#*
+\babelprehyphenation[options%keyvals]{locale-name}{lua-pattern}{replacement}#*
+#keyvals:\babelposthyphenation#c,\babelprehyphenation#c
+attribute=
+#endkeyvals
 
 \ensureascii{text}#*
 
