@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 10/3/2021 for v2021P
+# Matthew Bertucci 12/3/2021 for v2021Q
 
 #include:expl3
 #include:xparse
@@ -11,18 +11,20 @@
 \SetTblrInner{options%keyvals}
 \SetTblrInner[envname]{options%keyvals}
 
-#keyvals:\begin{tblr}#c,\SetTblrInner,\begin{+matrix},\begin{+bmatrix},\begin{+Bmatrix},\begin{+pmatrix},\begin{+vmatrix},\begin{+Vmatrix},\begin{+cases},\begin{booktabs}#c
-colspec=
-rowspec=
+#keyvals:\begin{tblr}#c,\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c,\begin{booktabs}#c
+colspec={%<col types%>}
+rowspec={%<row types%>}
 width=##L
 hspan=#default,even,minimal
 vspan=#default,even
-stretch=
+stretch=%<factor%>
 columns={%<styles%>}
 rows={%<styles%>}
 cells={%<styles%>}
+hlines
 hlines={%<styles%>}
 hlines={%<cols%>}{%<styles%>}
+vlines
 vlines={%<styles%>}
 vlines={%<rows%>}{%<styles%>}
 leftsep=##L
@@ -32,8 +34,8 @@ abovesep=##L
 belowsep=##L
 rowsep=##L
 rulesep=##L
-rowhead=
-rowfoot=
+rowhead=%<number%>
+rowfoot=%<number%>
 column{%<j%>}={%<styles%>}
 column
 row{%<i%>}={%<styles%>}
@@ -51,7 +53,7 @@ measure=#vbox
 \SetTblrOuter{options%keyvals}
 \SetTblrOuter[envname]{options%keyvals}
 
-#keyvals:\SetTblrOuter
+#keyvals:\SetTblrOuter#c
 long
 halign=#l,c,r
 valign=#t,m,b
@@ -102,6 +104,12 @@ belowspace=##L
 abovespace+=##L
 belowspace+=##L
 #endkeyvals
+
+\therownum#*
+\thecolnum#*
+\therowcount#*
+\thecolcount#*
+\tablewidth#*
 
 \SetVline{rows}{styles%keyvals}#*
 \SetVline[index]{rows}{styles%keyvals}#*
@@ -216,11 +224,11 @@ appto=%<text%>
 #endkeyvals
 
 \NewColumnType{name}{definition}
-\NewColumnType{name}[number][optarg]{definition}
+\NewColumnType{name}[args][default]{definition}
 \NewRowType{name}{definition}
-\NewRowType{name}[number][optarg]{definition}
+\NewRowType{name}[args][default]{definition}
 \NewColumnRowType{name}{definition}#*
-\NewColumnRowType{name}[number][optarg]{definition}#*
+\NewColumnRowType{name}[args][default]{definition}#*
 
 \NewTblrEnviron{envname}#N
 
@@ -234,12 +242,47 @@ appto=%<text%>
 \belowsep#*
 
 \SetTblrTracing{settings%keyvals}#*
+\SetTabularrayTracing{settings%keyvals}#S
 
-#keyvals:\SetTblrTracing
+#keyvals:\SetTblrTracing,\SetTabularrayTracing
 all
 none
 +row
 +column
++text
+-text
++command
+-command
++option
+-option
++theme
+-theme
++outer
+-outer
++inner
+-inner
+-column
+-row
++cell
+-cell
++vline
+-vline
++hline
+-hline
++colspec
+-colspec
++rowspec
+-rowspec
++target
+-target
++cellspan
+-cellspan
++intarray
+-intarray
++page
+-page
++step
+-step
 #endkeyvals
 
 \begin{longtblr}{preamble}#\tabular
@@ -301,7 +344,7 @@ foot
 
 #keyvals:\SetTblrStyle#c
 fg=#%color
-font=
+font=%<commands%>
 halign=#l,c,r
 l
 c
@@ -321,6 +364,7 @@ hang=##L
 \MapTblrNotes{code}#*
 \MapTblrRemarks{code}#*
 
+\NewTblrLibrary{name}{code}#*
 \UseTblrLibrary{library%keyvals}
 
 #keyvals:\UseTblrLibrary#c
@@ -332,6 +376,7 @@ siunitx
 varwidth
 #endkeyvals
 
+# from amsmath tblrlibrary
 \begin{+array}{preamble}#*m\array
 \end{+array}#*m
 \begin{+matrix}#*m\array
@@ -356,6 +401,7 @@ varwidth
 \begin{+cases}[inner specs%keyvals]#*m\array
 \end{+cases}#*m
 
+# from booktabs tblrlibrary
 \toprule#*
 \toprule[options]#*
 \midrule#*
@@ -372,5 +418,20 @@ varwidth
 \addlinespace#*
 \addlinespace[space%l]#*
 
+# from diagbox tblrlibrary
 \diagbox{lower}{upper}#*
 \diagboxthree{lower}{middle}{upper}#*
+
+# miscellaneous undocumented
+\LogTblrTracing{arg}#*
+\LogTabularrayTracing{arg}#S
+\GetTblrStyle{element}{key%plain}#*
+\UseTblrAlign{element}#*
+\UseTblrIndent{element}#*
+\UseTblrHang{element}#*
+\UseTblrColor{element}#*
+\UseTblrFont{element}#*
+\InsertTblrMore{arg}#*
+\NewDashStyle{name}{definition}#*
+\NewContentCommand{cmd}{definition}#*d
+\NewContentCommand{cmd}[args][default]{definition}#*d
