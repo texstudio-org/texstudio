@@ -1,5 +1,5 @@
 # limecv class
-# Matthew Bertucci 11/15/2021 for v0.1.8
+# Matthew Bertucci 12/3/2021 for v0.1.12
 
 #include:kvoptions
 #include:ifxetex
@@ -17,6 +17,13 @@
 #include:fontspec
 #include:fontawesome5
 
+#keyvals:\documentclass/limecv#c
+print#true,false
+path=%<file path%>
+sansfont=%<font name%>
+monofont=%<font name%>
+#endkeyvals
+
 \cvSetLanguage{language}
 
 #keyvals:\cvSetLanguage#c
@@ -26,6 +33,7 @@ english
 french
 german
 italian
+spanish
 #endkeyvals
 
 \begin{cvSidebar}
@@ -79,6 +87,8 @@ height=##L
 
 \begin{cvMainContent}
 \end{cvMainContent}
+\begin{cvMainContent*}#*
+\end{cvMainContent*}#*
 
 \begin{cvEducation}
 \end{cvEducation}
@@ -133,6 +143,7 @@ cvGreenLight#B
 cvDark#B
 cvRed#B
 cvAccent#B
+cvBackground#B
 
 #keyvals:\tikzset#c
 interesticon/.style={%<TikZ styles%>}
@@ -183,3 +194,13 @@ sectionEduText/.style={%<TikZ styles%>}
 \cvPositionSep#*
 \cvSkillSep#*
 \cvHeaderIconWidth#*
+
+\cvComma#*
+\ifnodedefined{node name}{true code}{false code}#*
+\globalcolor{color}#*
+\faVcard#*
+\kright{arg}#*
+\kleft{arg}#*
+\extract{n}{string}#*
+\cvList{envname}{name}{icon}#*N
+\cvContactTemplate[opt]{arg1}{arg2}#*
