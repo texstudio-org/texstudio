@@ -1122,20 +1122,14 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 		if (tk.subtype == Token::keyVal_val) {
 			//figure out keyval
 			QString word = line.mid(tk.start, tk.length);
+            if(word=="{"){
+                continue; // assume open brace is always valid
+            }
 			// first get command
-			Token cmd = Parsing::getCommandTokenFromToken(tl, tk);
-			QString command = line.mid(cmd.start, cmd.length);
-			// figure out key
-			QString key;
-			for (int k = i - 1; k >= 0; k--) {
-				Token elem = tl.at(k);
-				if (elem.level == tk.level - 1) {
-					if (elem.type == Token::keyVal_key) {
-						key = line.mid(elem.start, elem.length);
-					}
-					break;
-				}
-			}
+            QString command = tk.optionalCommandName;
+            int index=command.indexOf('/');
+            QString key=command.mid(index+1);
+            command=command.left(index);
 			// find if values are defined
 			QString elem;
             foreach(elem, ltxCommands->possibleCommands.keys()) {

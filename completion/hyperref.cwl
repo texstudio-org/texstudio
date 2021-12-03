@@ -318,3 +318,5 @@ width=##L
 \theHenumiv#*
 \theHHfootnote#*
 \theHmpfootnote#*
+\pdfstringdefPreHook#*
+\pdfstringdefPostHook#*

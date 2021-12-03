@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 10/6/2021 for v0.40
+# Matthew Bertucci 11/24/2021 for v0.41
 
 #include:iftex
 #include:unicode-math
@@ -900,6 +900,7 @@
 \vertoverlay{arg}#m
 \vlongdash#m
 \VvDash#m
+\Vvert#m
 \vysmblkcircle#m
 \vysmblksquare#m
 \vysmwhtcircle#m

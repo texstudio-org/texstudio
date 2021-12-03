@@ -11,6 +11,6 @@
 \listbibfiletypes{file}
 \listbibfileentries{file}
 
-#keyvals:\setcnltx
+#keyvals:\setcnltx#c
 list-sep=%<separator%>
 #endkeyvals

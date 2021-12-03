@@ -8,7 +8,7 @@
 #include:tikz
 #include:tabularx
 #include:ragged2e
-#include:class-scrartcl,scrreprt,scrbook
+#include:class-scrartcl
 
 \PackageName#*
 \PackageVersion#*

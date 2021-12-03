@@ -264,6 +264,24 @@ void LatexParsingTest::test_latexLexing_data() {
                                                   << (Starts() << 0 << 16 << 17 << 21 << 25 << 30 << 31)
                                                   << (Length() << 16 << 14 << 3 << 3 << 4 << 6 << 4)
                                                   << (Levels() << 0 << 1 << 1 << 1 << 2 << 1 << 1);
+    QTest::newRow("graphics command with keyval, multi-line") << "\\includegraphics[opt,\nopt=text]{file}"
+                                                  << (TTypes() << T::command << T::openSquare << T::keyVal_key << T::keyVal_key << T::word << T::closeSquareBracket << T::braces << T::imagefile)
+                                                  << (STypes() << T::none << T::keyValArg << T::none << T::none << T::keyVal_val << T::keyValArg << T::imagefile << T::none)
+                                                  << (Starts() << 0 << 16 << 17 << 0 << 4 << 8 << 9 << 10)
+                                                  << (Length() << 16 << 5 << 3 << 3 << 4 << 1 << 6 << 4)
+                                                  << (Levels() << 0 << 1 << 1 << 1 << 2 << 1 << 1 << 1);
+    QTest::newRow("graphics command with keyval in braces") << "\\includegraphics[opt={text}]{file}"
+                                                  << (TTypes() << T::command << T::squareBracket << T::keyVal_key << T::braces << T::word  << T::braces << T::imagefile)
+                                                  << (STypes() << T::none << T::keyValArg << T::none << T::keyVal_val << T::keyVal_val << T::imagefile << T::none)
+                                                  << (Starts() << 0  << 16 << 17 << 21 << 22 << 28 << 29)
+                                                  << (Length() << 16 << 12 << 3  <<  6 << 4  << 6  << 4)
+                                                  << (Levels() << 0  << 1  << 1  << 2  << 2  << 1  << 1);
+    QTest::newRow("graphics command with keyval in braces, multiline") << "\\includegraphics[opt={\ntext\n}]{file}"
+                                                  << (TTypes() << T::command << T::openSquare << T::keyVal_key << T::openBrace << T::word  << T::closeBrace << T::closeSquareBracket << T::braces << T::imagefile)
+                                                  << (STypes() << T::none << T::keyValArg << T::none << T::keyVal_val << T::keyVal_val << T::keyVal_val << T::keyValArg << T::imagefile << T::none)
+                                                  << (Starts() << 0  << 16 << 17 << 21 << 0 << 0 << 1 << 2 << 3 )
+                                                  << (Length() << 16 << 6  << 3  <<  1 << 4 << 1 << 1 << 6 << 4 )
+                                                  << (Levels() << 0  << 1  << 1  << 2  << 3 << 3 << 2 << 1 << 1 );
     QTest::newRow("include command") << "\\include{text dsf}"
                                      << (TTypes() << T::command << T::braces << T::file)
                                      << (STypes() << T::none << T::file << T::none)
@@ -324,10 +342,6 @@ void LatexParsingTest::test_latexLexing() {
         QDocumentLineHandle *dlh = doc->line(i).handle();
         tl.append(dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>());
     }
-	qDebug() << "XXX";
-	for(int i=0; i<tl.length(); i++){
-		qDebug() << tl.at(i);
-	}
 
 	for(int i=0; i<tl.length(); i++){
         Token tk = tl.at(i);

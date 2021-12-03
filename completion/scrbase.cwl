@@ -59,6 +59,8 @@
 \ClassInfoNoLine{class}{information%text}#*
 \IfActiveMkBoth{then code}{else code}#*
 
+\BeforeFamilyProcessOptions{family}{code}#*
+\BeforeFamilyProcessOptions[member]{family}{code}#*
 \FamilyExecuteOptions{family}{options list}#*
 \FamilyExecuteOptions[member]{family}{options list}#*
 \FamilyOptions{family}{options list}#*
@@ -121,3 +123,24 @@
 \newcaptionname*{language list}{term%cmd}{definition}#*d
 \renewcaptionname{language list}{term%cmd}{definition}#*d
 \renewcaptionname*{language list}{term%cmd}{definition}#*d
+
+# deprecated
+\ifnotundefined#S
+\ifstr#S
+\ifstrstart#S
+\ifisdimen#S
+\ifisskip#S
+\ifiscount#S
+\ifisdimexpr#S
+\ifisglueexpr#S
+\ifisnumexpr#S
+\ifiscounter#S
+\ifisinteger#S
+\ifisdimension#S
+\ifisglue#S
+\ifnumber#S
+\ifintnumber#S
+\ifdimen#S
+\ifpdfoutput#S
+\ifpsoutput#S
+\ifdvioutput#S

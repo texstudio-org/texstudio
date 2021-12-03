@@ -180,3 +180,7 @@ rightindent=##L
 \TOCLineLeaderFill#*
 \TOCLineLeaderFill[leader]#*
 \MakeMarkcase{text}
+
+# deprecated
+\ifattoclist#S
+\iftocfeature#S

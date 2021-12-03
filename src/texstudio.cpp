@@ -174,6 +174,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	latexReference->setFile(findResourceFile("latex2e.html"));
 
 	qRegisterMetaType<QSet<QString> >();
+    qRegisterMetaType<std::set<QString> >();
 
 	txsInstance = this;
 	static int crashHandlerType = 1;
@@ -381,16 +382,16 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setAcceptDrops(true);
 	//installEventFilter(this);
 
-        completer = new LatexCompleter(latexParser, this);
-        completer->setConfig(configManager.completerConfig);
-        completer->setPackageList(&latexPackageList);
-        connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
-        connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
-        connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
-        //updateCompleter();
-        LatexEditorView::setCompleter(completer);
-        completer->setLatexReference(latexReference);
-        completer->updateAbbreviations();
+    completer = new LatexCompleter(latexParser, this);
+    completer->setConfig(configManager.completerConfig);
+    completer->setPackageList(&latexPackageList);
+    connect(completer, &LatexCompleter::showImagePreview, this, &Texstudio::showImgPreview);
+    connect(completer, SIGNAL(showPreview(QString)), this, SLOT(showPreview(QString)));
+    connect(this, &Texstudio::imgPreview, completer, &LatexCompleter::bibtexSectionFound);
+    //updateCompleter();
+    LatexEditorView::setCompleter(completer);
+    completer->setLatexReference(latexReference);
+    completer->updateAbbreviations();
 
 	TemplateManager::setConfigBaseDir(configManager.configBaseDir);
 	TemplateManager::ensureUserTemplateDirExists();
@@ -5243,7 +5244,7 @@ void Texstudio::quickLetter()
 		if (ltDlg->ui.comboBoxEncoding->currentText() != "NONE") tag += QString("\\usepackage[") + ltDlg->ui.comboBoxEncoding->currentText() + QString("]{inputenc}");
 		if (ltDlg->ui.comboBoxEncoding->currentText().startsWith("utf8x")) tag += QString(" \\usepackage{ucs}");
 		tag += QString("\n");
-		if (ltDlg->ui.checkBox->isChecked()) tag += QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
+		if (ltDlg->ui.checkBox->isChecked()) tag += QString("\\usepackage{amsmath}\n\\usepackage{amssymb}\n");
 		tag += "\\address{your name and address} \n";
 		tag += "\\signature{your signature} \n";
 		tag += "\\begin{document} \n";

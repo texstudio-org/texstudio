@@ -36,7 +36,12 @@ markcase=#lower,upper,used,ignoreuppercase,nouppercase,ignoreupper,noupper
 \partmarkformat#*
 \chaptermarkformat#*
 \sectionmarkformat#*
+\subsectionmarkformat#*
+\subsubsectionmarkformat#*
+\paragraphmarkformat#*
+\subparagraphmarkformat#*
 \GenericMarkFormat#*
+\partmark{text}#*
 \markleft{left mark}#*
 \markdouble{mark}#*
 \manualmark#*

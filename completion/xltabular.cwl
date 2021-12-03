@@ -7,3 +7,8 @@
 \begin{xltabular}{width}{preamble}#\tabular
 \begin{xltabular}[hPos]{width}{preamble}#\tabular
 \end{xltabular}
+\endfirstfoot#/xltabular
+\endlastfoot#/xltabular
+\endfirsthead#/xltabular
+\endfoot#/xltabular
+\endhead#/xltabular

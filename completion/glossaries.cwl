@@ -26,13 +26,71 @@
 \glossaryname#*
 \glsnumbersgroupname#*
 \glssymbolsgroupname#*
-\inputencodingname#*
 \pagelistname#*
 \seename#*
 \symbolname#*
 	
 ### 2 Package Options ###
 ## 2.1 General Options ##
+#keyvals:\usepackage/glossaries#c
+nowarn
+nolangwarn
+noredefwarn
+debug=#false,true,showtargets,showaccsupp
+savewrites#true,false
+translate=#true,false,babel
+notranslate
+hyperfirst#true,false
+writeglslabels
+writeglslabelnames
+toc#true,false
+numberline#true,false
+section=%<section unit%>
+ucmark#true,false
+numberedsection=#false,nolabel,autolabel
+savenumberlist#true,false
+entrycounter#true,false
+counterwithin=%<counter%>
+subentrycounter#true,false
+style=
+nolong
+nosuper
+nolist
+notree
+nostyles
+nonumberlist
+seeautonumberlist
+counter=%<counter%>
+nopostdot#true,false
+nogroupskip#true,false
+seenoindex=#error,warn,ignore
+esclocations#true,false
+indexonlyfirst#true,false
+sanitizesort#true,false
+sort=#standard,def,use,none
+order=#word,letter
+makeindex
+xindy
+xindygloss
+xindynoglsnumbers
+automake=#false,true,immediate
+disablemakegloss
+restoremakegloss
+nohypertypes={%<list%>}
+nomain
+symbols
+numbers
+index
+noglossaryindex
+acronym#true,false
+acronyms
+acronymlists={%<value%>}
+shortcuts
+compatible-2.07#true,false
+compatible-3.07#true,false
+kernelglossredefs={%<value%>}
+#endkeyvals
+
 #ifOption:debug=showtargets
 \glsshowtarget{target name}
 \glsshowtargetouter{label}
@@ -84,7 +142,7 @@
 \printnumbers[options%keyvals]
 #endif
 #ifOption:index
-\newterm{term{
+\newterm{term}
 \newterm[options%keyvals]{term}
 \printindex
 \printindex[options%keyvals]
@@ -1558,14 +1616,11 @@ footnote-sm-desc
 ### 8 Displaying a Glossary ###
 \printnoidxglossaries
 \printglossaries
-\printunsrtglossaries#*
 
 \printnoidxglossary
 \printnoidxglossary[options%keyvals]
 \printglossary
 \printglossary[options%keyvals]
-\printunsrtglossary#*
-\printunsrtglossary[options%keyvals]#*
 
 #keyvals:\printnoidxglossary#c,\printglossary#c,\printsymbols#c,\printnumbers#c,\printindex#c,\printacronyms#c
 type=
@@ -1891,7 +1946,12 @@ inline
 \glsnoidxstripaccents#*
 \glsnomakeindexwarning{cmd}#*
 \glsnonextpages#*
+\ifglsnopostdotfalse#*
 \glsnopostdotfalse#*
+\glsnopostdottrue#*
+\ifglsnonumberlist#*
+\glsnonumberlisttrue#*
+\glsnonumberlistfalse#*
 \glsnoxindywarning{cmd}#*
 \glsnumlistparser#*
 \glsorder#*

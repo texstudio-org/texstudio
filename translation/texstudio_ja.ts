@@ -122,7 +122,7 @@
     <message>
         <location filename="../src/arraydialog.cpp" line="33"/>
         <source>Center</source>
-        <translation>中揃え</translation>
+        <translation>中央揃え</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.cpp" line="34"/>
@@ -2906,7 +2906,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>SVN/GIT</source>
-        <translation type="unfinished"/>
+        <translation>SVN/GIT</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="572"/>
@@ -10713,12 +10713,12 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="3633"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>昇順</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3633"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>降順</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3633"/>

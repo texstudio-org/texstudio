@@ -818,7 +818,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Modern - donker</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -1836,12 +1836,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2517"/>
         <source>Green Background</source>
-        <translation type="unfinished"/>
+        <translation>Groene Achtergrond</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2522"/>
         <source>Blue Background</source>
-        <translation type="unfinished"/>
+        <translation>Blauwe Achtergrond</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2530"/>

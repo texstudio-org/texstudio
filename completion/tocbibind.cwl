@@ -20,3 +20,10 @@
 \tocchapter#n
 \tocsection#n
 \tocfile{text}{file-extension}#n
+
+\tocetcmark{head}#*
+\PRWPackageNote{package}{note text}#*
+\PRWPackageNoteNoLine{package}{note text}#*
+\bibsection#*
+\begin{thebibitemlist}#*
+\end{thebibitemlist}#*

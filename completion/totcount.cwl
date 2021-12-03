@@ -1,5 +1,5 @@
 # totcount package
-# Matthew Bertucci 7/26/2021
+# Matthew Bertucci 7/26/2021 for v1.2
 
 #include:keyval
 
@@ -13,3 +13,7 @@ auxfile=
 \total{counter}
 \totvalue{counter}
 \usetotcountfile{file}
+
+\totcdocdate#S
+\totcfiledate#S
+\totcfileversion#S

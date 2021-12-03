@@ -342,7 +342,7 @@ YellowOrange#B
 #endif
 
 ## color names via "x11names" option
-#ifOption:dvipsnames
+#ifOption:x11names
 AntiqueWhite1#B
 AntiqueWhite2#B
 AntiqueWhite3#B
