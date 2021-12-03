@@ -3466,6 +3466,10 @@ void QEditor::keyPressEvent(QKeyEvent *e)
                 break;
             if(c==QChar('\t'))
                 break;
+            if(text.length()>1){
+                // assume bug like #1992
+                break;
+            }
 		}
 
 		bool prot = protectedCursor(m_cursor);
@@ -3634,7 +3638,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
 #endif
         }
 
-		m_cursor.insertText(e->commitString());
+        m_cursor.insertText(e->commitString());
 
 		m_cursor.endEditBlock();
 	}
