@@ -9,8 +9,8 @@
 #include:xparse
 #include:inlinedef
 
-\begin{forest}#\picture
-\begin{forest}(config%keyvals)#*\picture
+\begin{forest}
+\begin{forest}(config%keyvals)#*
 \end{forest}
 \Forest{tree}
 \Forest(config%keyvals){tree}#*

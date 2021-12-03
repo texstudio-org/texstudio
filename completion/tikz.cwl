@@ -19,7 +19,7 @@
 \pgfmatrixrowsep#*
 \tikzstyle{style} = [definition]#s#%tikzstyle
 \begin{tikzpicture}
-\begin{tikzpicture}[options%keyvals]#\picture
+\begin{tikzpicture}[options%keyvals]
 \end{tikzpicture}
 \tikz
 \tikz[options%keyvals]

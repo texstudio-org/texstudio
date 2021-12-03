@@ -439,13 +439,13 @@ library/all
 \tcbsegmentstate
 \tcboxedtitlewidth
 \tcboxedtitleheight
-\begin{tcbclipframe}#\picture
+\begin{tcbclipframe}
 \end{tcbclipframe}
-\begin{tcbinvclipframe}#\picture
+\begin{tcbinvclipframe}
 \end{tcbinvclipframe}
-\begin{tcbclipinterior}#\picture
+\begin{tcbclipinterior}
 \end{tcbclipinterior}
-\begin{tcbcliptitle}#\picture
+\begin{tcbcliptitle}
 \end{tcbcliptitle}
 \tcbstartdraftmode#*
 \tcbstopdraftmode#*
