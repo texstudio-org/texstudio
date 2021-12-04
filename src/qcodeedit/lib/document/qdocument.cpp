@@ -6976,6 +6976,17 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
         qreal x = qMax(-m_leftMargin, (m_width - pm.width()) / 2);
         // special treatment if line width > viewport width (e.g. no line wrap)
         x = qMin(x,(cxt.width-pm.width())/2);
+        if(pm.width()>m_width){
+            // special treatment if pximap does not fit in line
+            if(m_constrained){
+                //line wrap
+                x=m_leftMargin;
+                qreal pixelRatio=pm.devicePixelRatio()*pm.width()/m_width;
+                pm.setDevicePixelRatio(pixelRatio);
+            }else{
+                x=m_leftMargin;
+            }
+        }
 
         qreal y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2.;
         p->fillRect(QRectF(x - PICTURE_BORDER, y - PICTURE_BORDER, pm.width() + 2*PICTURE_BORDER, pm.height() + 2* PICTURE_BORDER), Qt::white);

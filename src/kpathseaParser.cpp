@@ -110,7 +110,7 @@ void MiktexPackageScanner::savePackageMap(const QHash<QString, QStringList> &map
 QHash<QString, QStringList> MiktexPackageScanner::loadPackageMap()
 {
 	QFile f(ensureTrailingDirSeparator(settingsDir) + "miktexPackageNames.dat");
-	QHash<QString, QStringList> result;
+    QHash<QString, QStringList> result;
 	if (f.open(QFile::ReadOnly | QFile::Text)) {
 		QTextStream in(&f);
 		QString line;
