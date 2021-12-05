@@ -15,12 +15,13 @@
 \contentslabel[format]{space%l}
 \contentspage
 \contentspage[format]
-\contentpush{text}
+\contentspush{text}
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[separator]
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[separator][end]
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[begin][separator][end]
 \contentsuse{name}{ext}
+\contentsfinish#*
 \startcontents
 \startcontents[name]
 \stopcontents
