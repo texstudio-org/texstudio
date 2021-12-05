@@ -1376,8 +1376,8 @@ A-benn neuze e c&apos;hallit diuzañ ur verradenn nevez gant unan eus an doareo�
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
-        <source>French Quotes (babel): \og \fg{}</source>
-        <translation>Klochedigoù Gall (babel): \og \fg{}</translation>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation>Klochedigoù Gall (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>

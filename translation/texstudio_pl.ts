@@ -1374,8 +1374,8 @@ Można wtedy wybrać nowy skrót na kilka sposobów:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
-        <source>French Quotes (babel): \og \fg{}</source>
-        <translation>Francuski cudzysłów (babel): \og \fg{}</translation>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation>Francuski cudzysłów (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>

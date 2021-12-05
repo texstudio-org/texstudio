@@ -1375,8 +1375,8 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
-        <source>French Quotes (babel): \og \fg{}</source>
-        <translation>Französische Anführungszeichen (babel):  \og \fg{}</translation>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation>Französische Anführungszeichen (babel):  \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>

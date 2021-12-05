@@ -1378,8 +1378,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
-        <source>French Quotes (babel): \og \fg{}</source>
-        <translation>Французские кавычки (babel): \og \fg{}</translation>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation>Французские кавычки (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>

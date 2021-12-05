@@ -1810,7 +1810,7 @@ Then you can select a new shortcut by one of the following ways:
             </item>
             <item>
              <property name="text">
-              <string>French Quotes (babel): \og \fg{}</string>
+              <string>French Quotes (babel): \og{} \fg{}</string>
              </property>
             </item>
             <item>

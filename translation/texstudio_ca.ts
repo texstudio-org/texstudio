@@ -1376,8 +1376,8 @@ Llavors podreu seleccionar una drecera nova de qualsevol de les maneres següent
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
-        <source>French Quotes (babel): \og \fg{}</source>
-        <translation>Cometes franceses (babel): \og \fg{}</translation>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation>Cometes franceses (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>

@@ -1377,8 +1377,8 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
-        <source>French Quotes (babel): \og \fg{}</source>
-        <translation>Guillemets français (babel) : \og  \fg{}</translation>
+        <source>French Quotes (babel): \og{} \fg{}</source>
+        <translation>Guillemets français (babel) : \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>
