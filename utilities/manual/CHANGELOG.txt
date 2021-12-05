@@ -2,6 +2,11 @@ TeXstudio 4.1.2
 -----------------
 - allow resizing the different sections in the symbol widget 
 - fix automatic session restore on OSX/Qt6
+- scale inline preview if visible linewidth is too small
+- fix latex package name parsing on Qt5 builds
+- added cwls
+- Use Qt 6.2.2 on Win and OSX (fixes ctrl+letter shortcut issue on OSX)
+- fix file restore on OSX
 
 TeXstudio 4.1.1
 -----------------
