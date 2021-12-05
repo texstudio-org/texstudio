@@ -3400,7 +3400,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     cursorHistory->setInsertionEnabled(true);
 
     if (!s.PDFFile().isEmpty()) {
-        runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded() ? "--embedded" : "--windowed");
+        runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), enquoteStr(s.PDFFile()) +" "+ (s.PDFEmbedded() ? "--embedded" : "--windowed"));
     }
     // update completer
     if (currentEditorView())
@@ -5753,7 +5753,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 	if (pdfFile.isNull()) {
 		pdfFile = master.completeBaseName() + ".pdf";
 	}
-	pdfFile = buildManager.findCompiledFile(pdfFile, master);
+    if(!QFileInfo(pdfFile).isAbsolute() || !QFileInfo(pdfFile).isReadable()){
+        pdfFile = buildManager.findCompiledFile(pdfFile, master); // don't search if file name is given as absolutue path and exists
+    }
 	int ln = 0;
 	int col = 0;
 	if (currentEditorView()) {
