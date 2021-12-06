@@ -42,14 +42,16 @@
 \deca
 \deci
 \decibel
-\DeclareBinaryPrefix{%<prefix%>}{%<symbol%>}{%<power of 2%>}#d
-\DeclareSIPostPower{%<power macro%>}{%<number%>}#d
-\DeclareSIPrefix{%<prefix%>}{%<symbol%>}{%<power of 10%>}#d
-\DeclareSIPrePower{%<power macro%>}{%<number%>}#d
-\DeclareSIQualifier{%<qualifier%>}{%<symbol%>}#d
-\DeclareSIUnit[%<options%>]{unit%cmd}{definition}#d
+\DeclareBinaryPrefix{prefix macro%cmd}{symbol}{power of 2}#d
+\DeclareSIPostPower{power macro%cmd}{number}#*d
+\DeclareSIPower{symbol-before%cmd}{symbol-after%cmd}{power}#d
+\DeclareSIPrefix{prefix macro%cmd}{symbol}{power of 10}#d
+\DeclareSIPrePower{power macro%cmd}{number}#*d
+\DeclareSIQualifier{qualifier%cmd}{symbol}#d
+\DeclareSIUnit[options%keyvals]{unit%cmd}{definition}#d
 \DeclareSIUnit{unit%cmd}{definition}#d
 \degreeCelsius
+\degree
 \deka
 \dm#*
 \electronmass
@@ -111,6 +113,8 @@
 \l#*
 \liter
 \litre
+\lumen
+\lux
 \m#*
 \mA#*
 \mebi
