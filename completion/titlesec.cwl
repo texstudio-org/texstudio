@@ -2,17 +2,76 @@
 # http://ctan.org/tex-archive/macros/latex/contrib/titlesec
 # By astroscion: 2012-02-15
 # muzimuzhi, 5 Jun 2020, 22 Jun 2020
-# Matthew Bertucci 8/16/2021
+# Matthew Bertucci 12/3/2021 for v2.14
 
-#ifOption:pagestyles
-#include:titleps
-#endif
+#keyvals:\usepackage/titlesec#c
+rm
+sf
+tt
+md
+bf
+up
+it
+sl
+sc
+big
+medium
+small
+tiny
+raggedleft
+center
+raggedright
+compact
+uppercase
+indentafter
+noindentafter
+rigidchapters
+rubberchapters
+bottomtitles
+nobottomtitles
+nobottomtitles*
+aftersep
+largestsep
+pageatnewline
+nostruts
+calcwidth
+explicit
+oldparttoc
+newparttoc
+clearempty
+toctitles
+newlinetospace
+notocpart*
+loadonly
+pagestyles
+floatps
+psfloats
+extramarks
+outermarks
+topmarks
+botmarks
+innermarks
+footmarks
+#endkeyvals
 
 \titlelabel{label-format}
 \thetitle
 \titleformat*{command%plain}{format}
-\titleformat{command%plain}[shape]{format}{label}{sep%l}{before-code}[after-code]
-\chaptertitlename
+\titleformat{command%plain}{format}{label}{sep%l}{before-code}
+\titleformat{command%plain}[shape%keyvals]{format}{label}{sep%l}{before-code}
+\titleformat{command%plain}[shape%keyvals]{format}{label}{sep%l}{before-code}[after-code]
+#keyvals:\titleformat#c
+hang
+block
+display
+runin
+leftmargin
+rightmargin
+drop
+wrap
+frame
+#endkeyvals
+\chaptertitlename#*
 \titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}
 \titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
 \titlespacing*{command%plain}{left%l}{before-sep%l}{after-sep%l}
@@ -25,24 +84,38 @@
 \fillast
 \filinner
 \filouter
-\wordsep
+\wordsep#*
 \bottomtitlespace#*
 \nostruts#*
-\titleline[align]{horizontal material}
+\titleline{horizontal material%text}
+\titleline[align%keyvals]{horizontal material%text}
+#ifOption:calcwidth
+\titleline*{horizontal material%text}
+\titleline*[align%keyvals]{horizontal material%text}
+#endif
+#keyvals:\titleline,\titleline*
+l
+c
+r
+#endkeyvals
+\titlerule
 \titlerule[height]
+\titlerule*{text}
 \titlerule*[width]{text}
 \titlewidth#*
 \titlewidthfirst#*
 \titlewidthlast#*
 \iftitlemeasuring{true}{false}
 \assignpagestyle{command%plain}{pagestyle}
-\sectionbreak
-\subsectionbreak
-\subsubsectionbreak
-\paragraphbreak
-\subparagraphbreak
-\subsubparagraphbreak
-\chaptertolists
+\sectionbreak#*
+\subsectionbreak#*
+\subsubsectionbreak#*
+\paragraphbreak#*
+\subparagraphbreak#*
+\chaptertolists#*
 \titleclass{name}{class%plain}
 \titleclass{name}{class%plain}[super-level-cmd]
-\titleclass{name}[start-level-num]{class%plain}
+\titleclass{name}[start-level-num]{class%plain}#*
+#ifOption:pagestyles
+#include:titleps
+#endif

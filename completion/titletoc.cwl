@@ -1,8 +1,8 @@
 # titletoc package
 # muzimuzhi 22 Jun 2020 for titletoc v2.13
 
-\dottecontents{section}{above-code}{label-width%l}{leader-width%l}
-\dottecontents{section}[left%l]{above-code}{label-width%l}{leader-width%l}
+\dottedcontents{section}{above-code}{label-width%l}{leader-width%l}
+\dottedcontents{section}[left%l]{above-code}{label-width%l}{leader-width%l}
 \titlecontents{section}{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}
 \titlecontents{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}
 \titlecontents{section}{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[below-code]
@@ -15,12 +15,13 @@
 \contentslabel[format]{space%l}
 \contentspage
 \contentspage[format]
-\contentpush{text}
+\contentspush{text}
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[separator]
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[separator][end]
 \titlecontents*{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[begin][separator][end]
 \contentsuse{name}{ext}
+\contentsfinish#*
 \startcontents
 \startcontents[name]
 \stopcontents
