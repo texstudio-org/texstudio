@@ -57,7 +57,7 @@
 \pgfkeysinstallkeyfilterhandler{full key}{optional args}#*
 \pgfkeysactivatefamily{family name}#*
 \pgfkeysdeactivatefamily{family name}#*
-\pgfkeysactivatefamilies{family list}{deactivate macro name}#*
+\pgfkeysactivatefamilies{family list}{deactivate macro name%cmd}#*d
 \pgfkeysiffamilydefined{family}{true}{false}#*
 \pgfkeysisfamilyactive{family}#*
 \pgfkeysgetfamily{full key}{result macro}#*
