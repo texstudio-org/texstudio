@@ -150,6 +150,7 @@
 <file>completion/calculator.cwl</file>
 <file>completion/calculus.cwl</file>
 <file>completion/calligra.cwl</file>
+<file>completion/callouts.cwl</file>
 <file>completion/cancel.cwl</file>
 <file>completion/captdef.cwl</file>
 <file>completion/caption.cwl</file>
@@ -349,6 +350,7 @@
 <file>completion/ducksay.cwl</file>
 <file>completion/duckuments.cwl</file>
 <file>completion/dutchcal.cwl</file>
+<file>completion/dynamicnumber.cwl</file>
 <file>completion/dynkin-diagrams.cwl</file>
 <file>completion/easylist.cwl</file>
 <file>completion/easyReview.cwl</file>
@@ -1199,6 +1201,7 @@
 <file>completion/tipauni.cwl</file>
 <file>completion/tipx.cwl</file>
 <file>completion/titlecaps.cwl</file>
+<file>completion/titleps.cwl</file>
 <file>completion/titleref.cwl</file>
 <file>completion/titlesec.cwl</file>
 <file>completion/titletoc.cwl</file>
