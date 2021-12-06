@@ -4217,7 +4217,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
         <source>Caption for display next to the image</source>
-        <translation>A képfelirat megjelenítése a kép mellett</translation>
+        <translation>Felirat az ábra mellett</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
@@ -4242,7 +4242,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
         <source>Caption for display in the list of figures</source>
-        <translation type="unfinished"/>
+        <translation>Felirat az ábralistában</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="347"/>
@@ -10774,7 +10774,7 @@ El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="4317"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
-        <translation type="unfinished"/>
+        <translation>Munkamenet információinak tárolása nem sikerült ide: %1. A fájl létezik, de nem írható. </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4412"/>
