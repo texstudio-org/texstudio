@@ -172,6 +172,10 @@ SetOutPath $INSTDIR\templates
 
 File templates\*
 
+SetOutPath $INSTDIR\tls
+
+File tls\qopensslbackend.dll
+
 SetOutPath $INSTDIR\help
 
 File utilities\AUTHORS
