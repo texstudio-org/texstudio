@@ -51,7 +51,7 @@ void UpdateChecker::check(bool silent)
 	QNetworkReply *reply = networkManager->get(request);
 	connect(reply, SIGNAL(finished()), this, SLOT(onRequestCompleted()));
 	if (!silent)
-		connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError()));
+		connect(reply, &QNetworkReply::errorOccurred, this, &UpdateChecker::onRequestError);
 }
 
 void UpdateChecker::onRequestError()
