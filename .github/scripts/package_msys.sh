@@ -30,6 +30,7 @@ cp ./utilities/latex2e.html package-zip/help
 cp -r ./utilities/dictionaries package-zip/dictionaries
 cp -r ./utilities/TexTablet package-zip/TexTablet
 mkdir -p package-zip/share
+cp -r package-zip/tls .
 cp -r ./travis-ci/mxe/fonts package-zip/share/fonts
 # poppler data
 cd package-zip
