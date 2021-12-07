@@ -5,8 +5,7 @@ TeXstudio 4.1.2
 - scale inline preview if visible linewidth is too small
 - fix latex package name parsing on Qt5 builds
 - added cwls
-- Use Qt 6.2.2 on Win and OSX (fixes ctrl+letter shortcut issue on OSX)
-- fix file restore on OSX
+- Use Qt 6.2.2 on OSX (fixes ctrl+letter shortcut issue on OSX)
 
 TeXstudio 4.1.1
 -----------------
