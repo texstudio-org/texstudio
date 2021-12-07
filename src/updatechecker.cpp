@@ -50,8 +50,13 @@ void UpdateChecker::check(bool silent)
 	request.setRawHeader("User-Agent", "TeXstudio Update Checker");
 	QNetworkReply *reply = networkManager->get(request);
 	connect(reply, SIGNAL(finished()), this, SLOT(onRequestCompleted()));
-	if (!silent)
+	if (!silent) {
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+		connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError()));
+#else
 		connect(reply, &QNetworkReply::errorOccurred, this, &UpdateChecker::onRequestError);
+#endif
+    }
 }
 
 void UpdateChecker::onRequestError()
