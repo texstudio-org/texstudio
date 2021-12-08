@@ -245,6 +245,7 @@
 <file>completion/cochineal.cwl</file>
 <file>completion/codehigh.cwl</file>
 <file>completion/coffeestains.cwl</file>
+<file>completion/collcell.cwl</file>
 <file>completion/collectbox.cwl</file>
 <file>completion/collect.cwl</file>
 <file>completion/colonequals.cwl</file>
@@ -352,6 +353,7 @@
 <file>completion/dutchcal.cwl</file>
 <file>completion/dynamicnumber.cwl</file>
 <file>completion/dynkin-diagrams.cwl</file>
+<file>completion/easyfig.cwl</file>
 <file>completion/easylist.cwl</file>
 <file>completion/easyReview.cwl</file>
 <file>completion/ebgaramond.cwl</file>
@@ -544,6 +546,7 @@
 <file>completion/glossary-topic.cwl</file>
 <file>completion/glossary-tree.cwl</file>
 <file>completion/glosstex.cwl</file>
+<file>completion/gobble-user.cwl</file>
 <file>completion/GotIn.cwl</file>
 <file>completion/GoudyIn.cwl</file>
 <file>completion/grabbox.cwl</file>
@@ -1090,6 +1093,7 @@
 <file>completion/stickstootext.cwl</file>
 <file>completion/stix2.cwl</file>
 <file>completion/stmaryrd.cwl</file>
+<file>completion/storebox.cwl</file>
 <file>completion/strands.cwl</file>
 <file>completion/stringenc.cwl</file>
 <file>completion/stringstrings.cwl</file>
