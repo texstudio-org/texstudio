@@ -4199,11 +4199,6 @@ Are you sure you want to undo all changes?</source>
         <translation>그래픽 아래</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="287"/>
-        <source>Caption for display next to the image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
         <source>Label</source>
         <translation type="unfinished"></translation>
@@ -4224,8 +4219,13 @@ Are you sure you want to undo all changes?</source>
         <translation>위치</translation>
     </message>
     <message>
+        <location filename="../src/insertgraphics.ui" line="287"/>
+        <source>Caption for the image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11710,55 +11710,55 @@ included document in %1</source>
 <context>
     <name>UpdateChecker</name>
     <message>
-        <location filename="../src/updatechecker.cpp" line="28"/>
+        <location filename="../src/updatechecker.cpp" line="27"/>
         <source>Never</source>
         <comment>last update</comment>
         <translation>절대 안 함</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="62"/>
+        <location filename="../src/updatechecker.cpp" line="65"/>
         <source>Update check failed with error:
 </source>
         <translation>업데이트 확인 도중 오류가 발생했습니다:
 </translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="182"/>
+        <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>업데이트 확인이 실패했습니다 (유효하지 않은 업데이트 파일 형식).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="188"/>
+        <location filename="../src/updatechecker.cpp" line="191"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="191"/>
+        <location filename="../src/updatechecker.cpp" line="194"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="208"/>
+        <location filename="../src/updatechecker.cpp" line="211"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="211"/>
+        <location filename="../src/updatechecker.cpp" line="214"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>새로운 버전의 TeXstudio 개발 버전이 사용 가능합니다.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;현재 버전:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;최신 안정 버전:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;최신 개발 버전:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&apos;%7&apos;&gt;TeXstudio 웹사이트&lt;/a&gt;에서 다운로드하실 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="227"/>
+        <location filename="../src/updatechecker.cpp" line="230"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>새로운 버전의 TeXstudio가 사용 가능합니다.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;현재 버전:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;최신 안정 버전:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt; &lt;a href=&apos;%3&apos;&gt;TeXstudio 웹사이트&lt;/a&gt;에서 다운로드하실 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="236"/>
+        <location filename="../src/updatechecker.cpp" line="239"/>
         <source>TeXstudio is up-to-date.</source>
         <translation>TeXstudio가 최신 버전입니다.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="248"/>
+        <location filename="../src/updatechecker.cpp" line="251"/>
         <source>TeXstudio Update</source>
         <translation>TeXstudio 업데이트</translation>
     </message>

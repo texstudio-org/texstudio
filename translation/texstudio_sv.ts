@@ -4202,9 +4202,8 @@ Dessa ändringar kommer gå förlorade om du väljer att ladda om filen med en n
         <translation>Under grafik</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="287"/>
         <source>Caption for display next to the image</source>
-        <translation>Rubrik för att visas bredvid bilden</translation>
+        <translation type="vanished">Rubrik för att visas bredvid bilden</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
@@ -4227,8 +4226,13 @@ Dessa ändringar kommer gå förlorade om du väljer att ladda om filen med en n
         <translation>Position</translation>
     </message>
     <message>
+        <location filename="../src/insertgraphics.ui" line="287"/>
+        <source>Caption for the image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11773,55 +11777,55 @@ inkluderade dokument i %1</translation>
 <context>
     <name>UpdateChecker</name>
     <message>
-        <location filename="../src/updatechecker.cpp" line="28"/>
+        <location filename="../src/updatechecker.cpp" line="27"/>
         <source>Never</source>
         <comment>last update</comment>
         <translation>Aldrig</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="62"/>
+        <location filename="../src/updatechecker.cpp" line="65"/>
         <source>Update check failed with error:
 </source>
         <translation>Uppdateringskontroll misslyckades med felmeddelande:
 </translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="182"/>
+        <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>Uppdateringskontroll misslyckades (inkorrekt format på uppdateringsfilen).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="188"/>
+        <location filename="../src/updatechecker.cpp" line="191"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
         <translation>Uppdateringskontroll för lanseringskandidaten misslyckades (inkorrekt format på uppdateringsfilen).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="191"/>
+        <location filename="../src/updatechecker.cpp" line="194"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>En ny releasekandidat av TeXstudio är tillgänglig.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Nuvarande version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Senaste stabila version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Releasekandidat:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Du kan ladda ner den från &lt;a href=&apos;%7&apos;&gt;TeXstudios webbsajt&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="208"/>
+        <location filename="../src/updatechecker.cpp" line="211"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation>Uppdateringskontroll för utvecklingsversionen misslyckades (inkorrekt format på uppdateringsfilen).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="211"/>
+        <location filename="../src/updatechecker.cpp" line="214"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>En ny utvecklingsversion av TeXstudio är tillgänglig.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Nuvarande version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Senaste stabila version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Senaste utvecklingsversion:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Du kan ladda ner den från&lt;a href=&apos;%7&apos;&gt;TeXstudios webbsajt&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="227"/>
+        <location filename="../src/updatechecker.cpp" line="230"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>En ny version av TeXstudio är tillgänglig.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Nuvarande version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Senaste stabila version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Du kan ladda ner den från&lt;a href=&apos;%3&apos;&gt;TeXstudios webbsajt&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="236"/>
+        <location filename="../src/updatechecker.cpp" line="239"/>
         <source>TeXstudio is up-to-date.</source>
         <translation>TeXstudio är av senaste versionen.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="248"/>
+        <location filename="../src/updatechecker.cpp" line="251"/>
         <source>TeXstudio Update</source>
         <translation>TeXstudio Uppdatering</translation>
     </message>

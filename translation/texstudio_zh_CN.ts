@@ -4226,9 +4226,8 @@ Are you sure you want to undo all changes?</source>
         <translation>图片下方</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="287"/>
         <source>Caption for display next to the image</source>
-        <translation>图片旁边显示的标题</translation>
+        <translation type="vanished">图片旁边显示的标题</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
@@ -4251,13 +4250,18 @@ Are you sure you want to undo all changes?</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption for display in the list of tables</source>
+        <translation type="vanished">图片列表中显示的标题</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="287"/>
+        <source>Caption for the image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Caption for display in the list of tables</source>
-        <translation type="vanished">图片列表中显示的标题</translation>
+        <location filename="../src/insertgraphics.ui" line="340"/>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="347"/>
@@ -11857,55 +11861,55 @@ included document in %1</source>
 <context>
     <name>UpdateChecker</name>
     <message>
-        <location filename="../src/updatechecker.cpp" line="28"/>
+        <location filename="../src/updatechecker.cpp" line="27"/>
         <source>Never</source>
         <comment>last update</comment>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="62"/>
+        <location filename="../src/updatechecker.cpp" line="65"/>
         <source>Update check failed with error:
 </source>
         <translation>检查更新失败，错误：
 </translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="182"/>
+        <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>检查更新失败（更新文件格式无效）。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="188"/>
+        <location filename="../src/updatechecker.cpp" line="191"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
         <translation>测试版本更新检测 (不可用的更新文件格式)</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="191"/>
+        <location filename="../src/updatechecker.cpp" line="194"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>发现TeXstudio的新候选版本。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;当前版本：&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新稳定版：&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;候选版本：&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;您可以从此处下载 &lt;a href=&apos;%7&apos;&gt;TeXstudio 官网&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="208"/>
+        <location filename="../src/updatechecker.cpp" line="211"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation>开发版检查更新失败(更新文件格式无效)。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="211"/>
+        <location filename="../src/updatechecker.cpp" line="214"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>发现新的TeXstudio开发版本。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;当前版本：&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新稳定版：&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; 最新开发版本：&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;您可以从此处下载 &lt;a href=&apos;%7&apos;&gt;TeXstudio 官网&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="227"/>
+        <location filename="../src/updatechecker.cpp" line="230"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>TeXstudio有新版本了。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;当前版本：&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新稳定版本：&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;TeXstudio 网站&lt;a href=&apos;%3&apos;&gt;下载最新版本&lt;/a&gt;。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="236"/>
+        <location filename="../src/updatechecker.cpp" line="239"/>
         <source>TeXstudio is up-to-date.</source>
         <translation>TeXstudio 已是最新版本。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="248"/>
+        <location filename="../src/updatechecker.cpp" line="251"/>
         <source>TeXstudio Update</source>
         <translation>TeXstudio 更新</translation>
     </message>

@@ -4228,9 +4228,8 @@ Are you sure you want to undo all changes?</source>
         <translation>رەسىم ئاستىدا</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="287"/>
         <source>Caption for display next to the image</source>
-        <translation>رەسىمنىڭ يېنىدا كۆرسىتىش ئۈچۈن يېزىلغان تىما</translation>
+        <translation type="vanished">رەسىمنىڭ يېنىدا كۆرسىتىش ئۈچۈن يېزىلغان تىما</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
@@ -4253,13 +4252,18 @@ Are you sure you want to undo all changes?</source>
         <translation>ئورۇن</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption for display in the list of tables</source>
+        <translation type="vanished">جەدۋەل تىزىملىكىدە كۆرسىتىلىدىغان تېما</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="287"/>
+        <source>Caption for the image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Caption for display in the list of tables</source>
-        <translation type="vanished">جەدۋەل تىزىملىكىدە كۆرسىتىلىدىغان تېما</translation>
+        <location filename="../src/insertgraphics.ui" line="340"/>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="347"/>
@@ -11866,55 +11870,55 @@ included document in %1</source>
 <context>
     <name>UpdateChecker</name>
     <message>
-        <location filename="../src/updatechecker.cpp" line="28"/>
+        <location filename="../src/updatechecker.cpp" line="27"/>
         <source>Never</source>
         <comment>last update</comment>
         <translation>ھەرگىز</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="62"/>
+        <location filename="../src/updatechecker.cpp" line="65"/>
         <source>Update check failed with error:
 </source>
         <translation>يېڭىلاشنى تەكشۈرۈش مەغلۇب بولدى:
 </translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="182"/>
+        <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>يېڭىلاش تەكشۈرۈشى مەغلۇپ بولدى (يېڭىلاش ھۆججەت فورماتى ئىناۋەتسىز).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="188"/>
+        <location filename="../src/updatechecker.cpp" line="191"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
         <translation>قويۇپ بېرىلگەن كاندىداتنى يېڭىلاش تەكشۈرۈشى مەغلۇپ بولدى (يېڭىلاش ھۆججەت شەكلى ئىناۋەتسىز).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="191"/>
+        <location filename="../src/updatechecker.cpp" line="194"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>TeXstudio نىڭ يېڭى تارقىتىلىدىغان كاندىداتى بار.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;نۆۋەتتىكى نەشىرى:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ئەڭ يېڭى نەشىرى:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;تارقىتىش كاندىداتى:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;ئۇنى&lt;a href=&apos;%7&apos;&gt;ئۇنى TeXstudio تور بېتىدىن چۈشۈرەلەيسىز&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="208"/>
+        <location filename="../src/updatechecker.cpp" line="211"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation>ئېچىش نەشرىنى يېڭىلاش مەغلۇب بولدى (يېڭىلاش ھۆججەت فورماتى ئىناۋەتسىز).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="211"/>
+        <location filename="../src/updatechecker.cpp" line="214"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>TeXstudio نىڭ يېڭى ئاچقۇچىلار نۇسخىسى بار.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;نۆۋەتتىكى نەشىرى:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;ئەڭ يېڭى نەشىرى:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;تارقىتىش كاندىداتى:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;ئۇنى&lt;a href=&apos;%7&apos;&gt;ئۇنى TeXstudio تور بېتىدىن چۈشۈرەلەيسىز&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="227"/>
+        <location filename="../src/updatechecker.cpp" line="230"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>TeXstudio نىڭ يېڭى نەشرى بار.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;ھازىرقىسى:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;يېڭى مۇقىم نەشىرى:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;ئۇنى&lt;a href=&apos;%3&apos;&gt;ئۇنى TeXstudio تور بېتىدىن چۈشۈرەلەيسىز&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="236"/>
+        <location filename="../src/updatechecker.cpp" line="239"/>
         <source>TeXstudio is up-to-date.</source>
         <translation>TeXstudio ئەڭ يېڭى.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="248"/>
+        <location filename="../src/updatechecker.cpp" line="251"/>
         <source>TeXstudio Update</source>
         <translation>TeXstudio نى يىڭلاش</translation>
     </message>

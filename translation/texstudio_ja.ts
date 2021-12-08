@@ -4230,9 +4230,8 @@ Are you sure you want to undo all changes?</source>
         <translation>画像の下部</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="287"/>
         <source>Caption for display next to the image</source>
-        <translation>画像の次に表示する図見出し</translation>
+        <translation type="vanished">画像の次に表示する図見出し</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
@@ -4255,13 +4254,18 @@ Are you sure you want to undo all changes?</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption for display in the list of tables</source>
+        <translation type="vanished">図表一覧に表示する図見出し</translation>
+    </message>
+    <message>
+        <location filename="../src/insertgraphics.ui" line="287"/>
+        <source>Caption for the image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Caption for display in the list of tables</source>
-        <translation type="vanished">図表一覧に表示する図見出し</translation>
+        <location filename="../src/insertgraphics.ui" line="340"/>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="347"/>
@@ -11861,55 +11865,55 @@ included document in %1</source>
 <context>
     <name>UpdateChecker</name>
     <message>
-        <location filename="../src/updatechecker.cpp" line="28"/>
+        <location filename="../src/updatechecker.cpp" line="27"/>
         <source>Never</source>
         <comment>last update</comment>
         <translation>なし</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="62"/>
+        <location filename="../src/updatechecker.cpp" line="65"/>
         <source>Update check failed with error:
 </source>
         <translation>アップデートの確認はエラーで失敗しました:
 </translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="182"/>
+        <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>アップデートの確認は失敗しました（無効なアップデートファイル形式）。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="188"/>
+        <location filename="../src/updatechecker.cpp" line="191"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
         <translation>リリース候補のアップデート確認に失敗しました（無効なアップデートファイル書式）。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="191"/>
+        <location filename="../src/updatechecker.cpp" line="194"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>TeXstudioの新規リリース候補が利用可能です。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;現在のバージョン：&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新の安定バージョン：&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;リリース候補：&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt; &lt;a href=&apos;%7&apos;&gt;TeXstudio webサイト&lt;/a&gt;からダウンロード可能です。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="208"/>
+        <location filename="../src/updatechecker.cpp" line="211"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation>開発バージョンのアップデート確認に失敗しました（無効なアップデートファイル書式）。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="211"/>
+        <location filename="../src/updatechecker.cpp" line="214"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>TeXstudio開発版の新しいバージョンが利用可能です。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;現在のバージョン：&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新の安定バージョン：&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新の開発バージョン：&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&apos;%7&apos;&gt;TeXstudio webサイト&lt;/a&gt;からダウンロードできます。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="227"/>
+        <location filename="../src/updatechecker.cpp" line="230"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation>TeXstudioの新しいバージョンが利用可能です。&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;現在のバージョン：&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;最新の安定版バージョン：&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&apos;%3&apos;&gt;TeXstudioのWebサイト&lt;/a&gt;からダウンロードできます。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="236"/>
+        <location filename="../src/updatechecker.cpp" line="239"/>
         <source>TeXstudio is up-to-date.</source>
         <translation>TeXstudioは最新です。</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="248"/>
+        <location filename="../src/updatechecker.cpp" line="251"/>
         <source>TeXstudio Update</source>
         <translation>TeXstudioアップデート</translation>
     </message>
