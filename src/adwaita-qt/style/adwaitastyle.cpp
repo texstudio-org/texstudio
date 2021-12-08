@@ -4779,7 +4779,7 @@ bool Style::drawMenuItemControl(const QStyleOption *option, QPainter *painter, c
     }
 
     // We want to always to keep the space for checkbox
-    contentsRect.setLeft(Metrics::CheckBox_Size + Metrics::MenuItem_ItemSpacing);
+    contentsRect.setLeft(rect.left() - 1 + Metrics::CheckBox_Size + Metrics::MenuItem_ItemSpacing);
 
     CheckBoxState checkState(menuItemOption->checked ? CheckOn : CheckOff);
     const QColor &outline(palette.windowText().color());
