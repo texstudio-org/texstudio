@@ -45,7 +45,7 @@ void UpdateChecker::check(bool silent)
 {
 	this->silent = silent;
     networkManager = new QNetworkAccessManager();
-    QNetworkRequest request = QNetworkRequest(QUrl("https://api.github.fcom/repos/texstudio-org/texstudio/git/refs/tags"));
+    QNetworkRequest request = QNetworkRequest(QUrl("https://api.github.com/repos/texstudio-org/texstudio/git/refs/tags"));
 	request.setRawHeader("User-Agent", "TeXstudio Update Checker");
 	QNetworkReply *reply = networkManager->get(request);
 	connect(reply, SIGNAL(finished()), this, SLOT(onRequestCompleted()));
