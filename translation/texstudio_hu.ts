@@ -4216,7 +4216,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
-        <source>Caption for display next to the image</source>
+        <source>Caption for the image</source>
         <translation>Felirat az ábra mellett</translation>
     </message>
     <message>
@@ -4241,7 +4241,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation>Felirat az ábralistában</translation>
     </message>
     <message>

@@ -4220,7 +4220,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
-        <source>Caption for display next to the image</source>
+        <source>Caption for the image</source>
         <translation>Überschrift für das Bild</translation>
     </message>
     <message>
@@ -4245,7 +4245,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation>Überschrift für die Liste der Bilder</translation>
     </message>
     <message>

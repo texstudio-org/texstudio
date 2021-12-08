@@ -3756,7 +3756,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="262"/>
-        <source>Caption for display next to the image</source>
+        <source>Caption for the image</source>
         <translation type="unfinished"/>
     </message>
     <message>

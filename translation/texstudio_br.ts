@@ -4229,7 +4229,7 @@ Ha sur oc&apos;h ho peus c&apos;hoant da zizober an holl cheñchamantoù?</trans
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
-        <source>Caption for display next to the image</source>
+        <source>Caption for the image</source>
         <translation>Alc&apos;hwez da ziskouez e-kichen ar skeudenn</translation>
     </message>
     <message>
@@ -4254,7 +4254,7 @@ Ha sur oc&apos;h ho peus c&apos;hoant da zizober an holl cheñchamantoù?</trans
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

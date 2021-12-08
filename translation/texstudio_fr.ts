@@ -4224,7 +4224,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
-        <source>Caption for display next to the image</source>
+        <source>Caption for the image</source>
         <translation>Légende à afficher à côté de l&apos;image</translation>
     </message>
     <message>
@@ -4249,7 +4249,7 @@ Continuer tout de même ?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation>Légende à afficher dans la liste des figures (si souhaitée différente de la légende longue)</translation>
     </message>
     <message>

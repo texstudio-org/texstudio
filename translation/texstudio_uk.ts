@@ -4226,7 +4226,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
-        <source>Caption for display next to the image</source>
+        <source>Caption for the image</source>
         <translation>Підпис поруч із зображенням</translation>
     </message>
     <message>
@@ -4251,7 +4251,7 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation>Підпис для розміщення у списку рисунків</translation>
     </message>
     <message>

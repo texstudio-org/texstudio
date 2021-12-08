@@ -4240,7 +4240,7 @@ Sei sicuro di voler perdere le modifiche?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
-        <source>Caption for display next to the image</source>
+        <source>Caption for the image</source>
         <translation>Didascalia destinata ad essere visualizzata vicino all&apos;immagine</translation>
     </message>
     <message>
@@ -4266,7 +4266,7 @@ per esempio, tramite \ref{questaEtichetta}</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
-        <source>Caption for display in the list of figures</source>
+        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
