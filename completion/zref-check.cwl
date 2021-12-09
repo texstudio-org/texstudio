@@ -1,5 +1,5 @@
 # zref-check package
-# Matthew Bertucci 11/26/2021 for v0.2.1
+# Matthew Bertucci 12/9/2021 for v0.2.2
 
 #include:zref-user
 #include:zref-abspage
@@ -47,8 +47,8 @@ far
 
 #keyvals:\zrefchecksetup,\usepackage/zref-check#c
 hyperref=#auto,true,false
-msglevel=#warn,info,none,obeydraft,obeyfinal
-onpage=#labelseq,msg,obeydraft,obeyfinal
+msglevel=#warn,info,none,infoifdraft,warniffinal
+onpage=#labelseq,msg,labelseqifdraft,msgiffinal
 closerange=%<integer%>
 labelcmd=%<csname%>
 #endkeyvals
