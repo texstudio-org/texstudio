@@ -935,7 +935,7 @@ bool cwLessThan(const CompletionWord &s1, const CompletionWord &s2)
 
 void CompletionListModel::filterList(const QString &word, int mostUsed, bool fetchMore, CodeSnippet::Type type)
 {
-	if (mostUsed < 0)
+    if (mostUsed < 0)
 		mostUsed = LatexCompleter::config->preferedCompletionTab;
 	if (!word.isEmpty() && word == curWord && mostUsed == mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
 	mLastWord = word;

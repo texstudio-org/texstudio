@@ -99,7 +99,7 @@ secondLevelBreak:
 bool CodeSnippet::autoReplaceCommands = true;
 bool CodeSnippet::debugDisableAutoTranslate = false;
 
-CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
+CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline, bool substituteSpace)
 {
 	QString realNewWord = expandCode(newWord);
 	cursorLine = -1;
@@ -141,12 +141,15 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline)
 					case '[':
 						sortWord.append('"');
 						break;
-                    case ' ':
-                        sortWord.append('$');
+                    case '*':
+                        sortWord.append('#');
                         break;
-					case '*':
-						sortWord.append('#');
-						break;
+                    case ' ':
+                        if(substituteSpace){
+                            sortWord.append('$');
+                            break;
+                        }
+                        [[gnu::fallthrough]];
 					default:
 						sortWord.append(currentChar);
 					}
