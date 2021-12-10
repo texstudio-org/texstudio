@@ -270,7 +270,8 @@ private:
 	void treeWidgetToManagedMenuTo(QTreeWidgetItem *item);
 
 	QTreeWidgetItem *managedLatexMenuToTreeWidget(QTreeWidgetItem *parent, QMenu *menu);
-	void treeWidgetToManagedLatexMenuTo();
+    void treeWidgetToManagedLatexMenuTo(QTreeWidgetItem *item);
+    void scanTreeWidgetForCustomMenuEntries(QMap<QString, QVariant> &foundMenus, QTreeWidgetItem *item, QString prefix);
 
 public:
 	// custom toolbar
