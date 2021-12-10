@@ -539,7 +539,7 @@
 \int#m
 \iota#m
 \it#*
-\item
+# \item    also defined in latex-document, there with space
 \j#n
 \jmath#m
 \jot#*
