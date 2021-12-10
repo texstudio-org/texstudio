@@ -148,44 +148,42 @@ FakeSlant=%<number%>
 FakeStretch=%<number%>
 Font=%<font name%>
 FontFace={%<series%>}{%<shape%>}{%<font name%>}
-Fractions
-HyphenChar
+Fractions=#On,Off,Reset,Alternate,ResetAll
+HyphenChar=%<character%>
 IgnoreFontspecFile
-ItalicFeatures
-ItalicFont
-Kerning
-Language
-LetterSpace
-Letters
-Ligatures
-LocalForms
-NFSSFamily
-Numbers
-OpticalSize
-Ornament
+ItalicFeatures={%<features%>}
+ItalicFont=%<font name%>
+Kerning=#On,Off,Reset,Uppercase,ResetAll
+Language=%<language%>
+LetterSpace=%<number%>
+Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
+Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
+LocalForms=#On,Off,Reset
+NFSSFamily=%<font family%>
+Numbers=#Uppercase,Lowercase,Lining,OldStyle,Proportional,Monospaced,SlashedZero,Arabic,ResetAll
+OpticalSize=%<size%>
+Ornament=
 Path=%<file path%>
-PunctuationSpace
-RawFeature
-Scale
-ScaleAgain
-ScientificInferior
-Script
-Size
-SizeFeatures
-SlantedFeatures
-SlantedFont
-SmallCapsFeatures
-SmallCapsFont
-Style
-StylisticAlternates
-StylisticSet
-UprightFeatures
-UprightFont
-Variant
-Vertical
-VerticalPosition
-WordSpace
+PunctuationSpace=%<number%>
+RawFeature=%<feature tag%>
+Scale=%<number%>
+ScaleAgain=%<number%>
+Script=%<name%>
+Size=%<number%>
+SizeFeatures={%<features%>}
+SlantedFeatures={%<features%>}
+SlantedFont=%<font name%>
+SmallCapsFeatures={%<features%>}
+SmallCapsFont=%<font name%>
+Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll
+StylisticAlternates=%<feature%>
+StylisticSet=%<set number%>
+UprightFeatures={%<features%>}
+UprightFont=%<font name%>
+Variant=%<integer%>
+Vertical=#RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll
+VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll
+WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
-Renderer=%<xetex-only feature%>
-WordSpace=
+Renderer=%<renderer%>
 #endkeyvals
