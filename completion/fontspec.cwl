@@ -125,30 +125,29 @@
 ## common keyvals list, 
 ## both cmds and keys are in alphabetic order, except for engine specific keys
 #keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setromanfont,\setsansfont
-Alternate
-Annotation
-AutoFakeBold
-AutoFakeSlant
-BoldFeatures
-BoldFont
-BoldItalicFeatures
-BoldItalicFont
-BoldSlantedFeatures
-BoldSlantedFont
-CJKShape
-CharacterVariant
-CharacterWidth
-Color
-Colour
-Contextuals
-Diacritics
-Extension
-ExternalLocation
-FakeBold
-FakeSlant
-FakeStretch
-Font
-FontFace={series}{shape}{font name}
+Alternate=%<feature%>
+Annotation=
+AutoFakeBold=%<number%>
+AutoFakeSlant=%<number%>
+BoldFeatures={%<features%>}
+BoldFont=%<font name%>
+BoldItalicFeatures={%<features%>}
+BoldItalicFont=%<font name%>
+BoldSlantedFeatures={%<features%>}
+BoldSlantedFont=%<font name%>
+CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant={%<glyph num list%>:%<variety num%>}
+CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
+Color=#%color
+Colour=#%color
+Contextuals=#Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll
+Diacritics=#MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll
+Extension=%<extension%>
+FakeBold=%<number%>
+FakeSlant=%<number%>
+FakeStretch=%<number%>
+Font=%<font name%>
+FontFace={%<series%>}{%<shape%>}{%<font name%>}
 Fractions
 HyphenChar
 IgnoreFontspecFile
@@ -164,6 +163,7 @@ NFSSFamily
 Numbers
 OpticalSize
 Ornament
+Path=%<file path%>
 PunctuationSpace
 RawFeature
 Scale
