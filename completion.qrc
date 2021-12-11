@@ -166,6 +166,7 @@
 <file>completion/catchfile.cwl</file>
 <file>completion/ccaption.cwl</file>
 <file>completion/ccicons.cwl</file>
+<file>completion/cdcmd.cwl</file>
 <file>completion/cellprops.cwl</file>
 <file>completion/cellspace.cwl</file>
 <file>completion/censor.cwl</file>
@@ -182,6 +183,7 @@
 <file>completion/chemformula.cwl</file>
 <file>completion/chemgreek.cwl</file>
 <file>completion/chemmacros.cwl</file>
+<file>completion/chemnum.cwl</file>
 <file>completion/chemstyle.cwl</file>
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
@@ -216,6 +218,7 @@
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
+<file>completion/class-novel.cwl</file>
 <file>completion/class-proc.cwl</file>
 <file>completion/class-ReadableCV.cwl</file>
 <file>completion/class-report.cwl</file>
@@ -284,6 +287,7 @@
 <file>completion/css-colors.cwl</file>
 <file>completion/ctable.cwl</file>
 <file>completion/ctex.cwl</file>
+<file>completion/currency.cwl</file>
 <file>completion/currfile-abspath.cwl</file>
 <file>completion/currfile.cwl</file>
 <file>completion/currvita.cwl</file>
@@ -373,6 +377,7 @@
 <file>completion/embedfile.cwl</file>
 <file>completion/embrac.cwl</file>
 <file>completion/emf.cwl</file>
+<file>completion/emoji.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/endfloat.cwl</file>
 <file>completion/engord.cwl</file>
@@ -510,6 +515,7 @@
 <file>completion/galois.cwl</file>
 <file>completion/garamondlibre.cwl</file>
 <file>completion/gates.cwl</file>
+<file>completion/gatherenum.cwl</file>
 <file>completion/gb4e.cwl</file>
 <file>completion/gensymb.cwl</file>
 <file>completion/geometry.cwl</file>
@@ -653,6 +659,8 @@
 <file>completion/lcg.cwl</file>
 <file>completion/leading.cwl</file>
 <file>completion/lecturer.cwl</file>
+<file>completion/leftindex.cwl</file>
+<file>completion/lengthconvert.cwl</file>
 <file>completion/letltxmacro.cwl</file>
 <file>completion/letterswitharrows.cwl</file>
 <file>completion/lettrine.cwl</file>
@@ -708,6 +716,7 @@
 <file>completion/lua-widow-control.cwl</file>
 <file>completion/lutabulartools.cwl</file>
 <file>completion/macrolist.cwl</file>
+<file>completion/magaz.cwl</file>
 <file>completion/mahjong.cwl</file>
 <file>completion/mailing.cwl</file>
 <file>completion/makebox.cwl</file>
@@ -949,6 +958,7 @@
 <file>completion/pxpic.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
 <file>completion/pxtx-frak.cwl</file>
+<file>completion/qrbill.cwl</file>
 <file>completion/qrcode.cwl</file>
 <file>completion/qstest.cwl</file>
 <file>completion/qtree.cwl</file>
@@ -1060,6 +1070,7 @@
 <file>completion/skull.cwl</file>
 <file>completion/slashed.cwl</file>
 <file>completion/smartdiagram.cwl</file>
+<file>completion/smartunits.cwl</file>
 <file>completion/snapshot.cwl</file>
 <file>completion/snaptodo.cwl</file>
 <file>completion/snotez.cwl</file>
@@ -1297,6 +1308,7 @@
 <file>completion/vruler.cwl</file>
 <file>completion/wasysym.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
+<file>completion/withargs.cwl</file>
 <file>completion/witharrows.cwl</file>
 <file>completion/worldflags.cwl</file>
 <file>completion/wrapfig.cwl</file>
