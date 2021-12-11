@@ -179,6 +179,7 @@ quantikz
 quotes
 rdf
 routing
+rulercompass
 scopes
 shadings
 shadows

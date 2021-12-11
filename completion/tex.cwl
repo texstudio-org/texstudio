@@ -313,6 +313,7 @@
 \splitmaxdepth#*
 \splittopskip#*
 \string#*
+\string{cmd}#S
 \tabskip#*
 \textfont#*
 \textstyle#*

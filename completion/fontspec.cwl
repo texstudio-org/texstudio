@@ -125,67 +125,65 @@
 ## common keyvals list, 
 ## both cmds and keys are in alphabetic order, except for engine specific keys
 #keyvals:\addfontfeature,\addfontfeatures,\defaultfontfeatures,\fontspec,\newfontface,\newfontfamily,\providefontface,\providefontfamily,\renewfontface,\renewfontfamily,\setboldmathrm,\setfontface,\setfontfamily,\setmainfont,\setmathrm,\setmathsf,\setmathtt,\setmonofont,\setromanfont,\setsansfont
-Alternate
-Annotation
-AutoFakeBold
-AutoFakeSlant
-BoldFeatures
-BoldFont
-BoldItalicFeatures
-BoldItalicFont
-BoldSlantedFeatures
-BoldSlantedFont
-CJKShape
-CharacterVariant
-CharacterWidth
-Color
-Colour
-Contextuals
-Diacritics
-Extension
-ExternalLocation
-FakeBold
-FakeSlant
-FakeStretch
-Font
-FontFace={series}{shape}{font name}
-Fractions
-HyphenChar
+Alternate=%<feature%>
+Annotation=
+AutoFakeBold=%<number%>
+AutoFakeSlant=%<number%>
+BoldFeatures={%<features%>}
+BoldFont=%<font name%>
+BoldItalicFeatures={%<features%>}
+BoldItalicFont=%<font name%>
+BoldSlantedFeatures={%<features%>}
+BoldSlantedFont=%<font name%>
+CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
+CharacterVariant={%<glyph num list%>:%<variety num%>}
+CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
+Color=#%color
+Colour=#%color
+Contextuals=#Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll
+Diacritics=#MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll
+Extension=%<extension%>
+FakeBold=%<number%>
+FakeSlant=%<number%>
+FakeStretch=%<number%>
+Font=%<font name%>
+FontFace={%<series%>}{%<shape%>}{%<font name%>}
+Fractions=#On,Off,Reset,Alternate,ResetAll
+HyphenChar=%<character%>
 IgnoreFontspecFile
-ItalicFeatures
-ItalicFont
-Kerning
-Language
-LetterSpace
-Letters
-Ligatures
-LocalForms
-NFSSFamily
-Numbers
-OpticalSize
-Ornament
-PunctuationSpace
-RawFeature
-Scale
-ScaleAgain
-ScientificInferior
-Script
-Size
-SizeFeatures
-SlantedFeatures
-SlantedFont
-SmallCapsFeatures
-SmallCapsFont
-Style
-StylisticAlternates
-StylisticSet
-UprightFeatures
-UprightFont
-Variant
-Vertical
-VerticalPosition
-WordSpace
+ItalicFeatures={%<features%>}
+ItalicFont=%<font name%>
+Kerning=#On,Off,Reset,Uppercase,ResetAll
+Language=%<language%>
+LetterSpace=%<number%>
+Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
+Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
+LocalForms=#On,Off,Reset
+NFSSFamily=%<font family%>
+Numbers=#Uppercase,Lowercase,Lining,OldStyle,Proportional,Monospaced,SlashedZero,Arabic,ResetAll
+OpticalSize=%<size%>
+Ornament=
+Path=%<file path%>
+PunctuationSpace=%<number%>
+RawFeature=%<feature tag%>
+Scale=%<number%>
+ScaleAgain=%<number%>
+Script=%<name%>
+Size=%<number%>
+SizeFeatures={%<features%>}
+SlantedFeatures={%<features%>}
+SlantedFont=%<font name%>
+SmallCapsFeatures={%<features%>}
+SmallCapsFont=%<font name%>
+Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll
+StylisticAlternates=%<feature%>
+StylisticSet=%<set number%>
+UprightFeatures={%<features%>}
+UprightFont=%<font name%>
+Variant=%<integer%>
+Vertical=#RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll
+VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll
+WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
-Renderer=%<xetex-only feature%>
-WordSpace=
+Renderer=%<renderer%>
 #endkeyvals

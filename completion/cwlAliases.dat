@@ -190,3 +190,8 @@ ReadableCV:
 class-ReadableCV
 latex-document
 tex
+novel:
+class-novel
+latex-document
+latex-dev
+tex
