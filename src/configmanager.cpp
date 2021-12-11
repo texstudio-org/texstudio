@@ -2489,7 +2489,22 @@ void ConfigManager::modifyMenuContents()
 {
 	QStringList ids = manipulatedMenus.keys();
 	while (!ids.isEmpty()) modifyMenuContent(ids, ids.first());
-	modifyMenuContentsFirstCall = false;
+    modifyMenuContentsFirstCall = false;
+    // remove menus
+    foreach(const QString &elem,tobeRemovedList){
+        if(elem.endsWith("/")){
+            QMenu *menu=getManagedMenu(elem.left(elem.length()-1));
+            if(menu){
+                QAction *act=menu->menuAction();
+                act->setVisible(false);
+            }
+        }else{
+            QAction *act=getManagedAction(elem);
+            if(act){
+                act->setVisible(false); // hide for now, will be gone on restart
+            }
+        }
+    }
 }
 
 void ConfigManager::modifyMenuContent(QStringList &ids, const QString &id)
@@ -3324,6 +3339,9 @@ void ConfigManager::moveCommand(int dir, int atRow)
 QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *parent, QMenu *menu)
 {
     if (!menu) return nullptr;
+    if (tobeRemovedList.contains(menu->objectName()+"/")){
+        return nullptr;
+    }
 	static QStringList relevantMenus = QStringList() << "main/tools" << "main/latex" << "main/math";
 	QTreeWidgetItem *menuitem = new QTreeWidgetItem(parent, QStringList(menu->title()));
 	bool advanced = false;
@@ -3348,6 +3366,9 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 	QList<QAction *> acts = menu->actions();
 	for (int i = 0; i < acts.size(); i++) {
 		bool subAdvanced = advanced;
+        if(tobeRemovedList.contains(acts[i]->objectName())){
+            continue;
+        }
         QTreeWidgetItem *twi = nullptr;
 		if (acts[i]->menu()) twi = managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
@@ -3454,6 +3475,7 @@ void ConfigManager::menuTreeRevertItem(){
         parent->removeChild(item);
         manipulatedMenuTree.remove(ID);
         changedItemsList.removeOne(item);
+        tobeRemovedList.append(ID);
     }else{ //revert
         QFont bold = item->font(0);
         if(bold.bold()){

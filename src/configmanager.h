@@ -328,6 +328,7 @@ private:
 
 	QList<QTreeWidgetItem *> changedItemsList, superAdvancedItems;
 	QHash<QString, QTreeWidgetItem *> manipulatedMenuTree;
+    QStringList tobeRemovedList;
 
 	QMap<QString, QVariant> manipulatedMenus;
 
