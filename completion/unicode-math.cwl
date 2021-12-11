@@ -26,11 +26,12 @@
 \setmathfontface{cmd}{font}#d
 \setmathfontface{cmd}[font features]{font}#*d
 \setmathfontface{cmd}{font}[font features%keyvals]#d
-\setmathfontface{cmd}[font features]{font}[font features%keyvals]#d
+\setmathfontface{cmd}[font features]{font}[font features%keyvals]#*d
 \setoperatorfont{cmd}
-\NewNegationCommand{symbol or cmd}{definition}
+\NewNegationCommand{symbol or cmd%cmd}{definition}#*d
+\RenewNegationCommand{symbol or cmd%cmd}{definition}#*d
 
-#keyvals:\unimathsetup
+#keyvals:\unimathsetup#c,\setmathfont#c,\setmathfontface#c
 normal-style=#ISO,TeX,french,upright,literal
 math-style=#ISO,TeX,french,upright,literal
 bold-style=#ISO,TeX,upright,literal
@@ -46,17 +47,20 @@ mathit=#text,sym
 mathsf=#text,sym
 mathbf=#text,sym
 mathtt=#text,sym
+#endkeyvals
+
+#keyvals:\unimathsetup#c
 trace=#on,debug,off
-warnings-off=
+warnings-off={%<warning list%>}
 #endkeyvals
 
 #keyvals:\setmathfont#c,\setmathfontface#c
-range=
-script-font=
-sscript-font=
-script-features=
-sscript-features=
-version=
+range=%<unicode range%>
+script-font=%<font name%>
+sscript-font=%<font name%>
+script-features={%<features%>}
+sscript-features={%<features%>}
+version=%<version name%>
 # and all the keys inherited from fontspec
 #endkeyvals
 
@@ -100,6 +104,26 @@ version=
 \mathbffrak{text}#*m
 \mathbfsfup{text}#*m
 \mathbfsfit{text}#*m
+
+# Commands not in the main documentation
+\addnolimits{arg}#*
+\crampeddisplaystyle#*
+\crampedscriptscriptstyle#*
+\crampedscriptstyle#*
+\crampedtextstyle#*
+\mathaccentoverlay#S
+\mathaccentwide#S
+\mathbacktick#S
+\mathbotaccent#S
+\mathbotaccentwide#S
+\mathfence#S
+\mathover#S
+\mathstraightquote#S
+\mathunder#S
+\mathunderbar#S
+\notaccent{arg}#*
+\removenolimits{arg}#*
+\UnicodeMathSymbol{code point}{cmd}{math class}{unicode name}#*d
 
 # Math letter symbols defined by all unicode-math fonts
 \Alpha#*m
