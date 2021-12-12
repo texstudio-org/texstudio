@@ -915,37 +915,6 @@ cmd.waitForFinished()</pre>
 <tr><td>editor.document().text([removeTrailing = false], [preserveIndent = true]) </td><td>  Returns the complete text of the document </td></tr>
 <tr><td>editor.document().textLines() </td><td>   Returns an array of all text lines     </td></tr>
 <tr><td>editor.document().lineEndingString() </td><td> Returns a string containing the ending of a line (\n or \n\r)       </td></tr>
-
-<tr>
-  <td>editor.document().getLineTokens(lineNr)</td>
-  <td>
-    Returns an array of parser tokens for a given zero-based line number. Each token is an object with the following properties:
-    <ul>
-      <li><b>type</b>: Token type (integer)</li>
-      <li><b>subtype</b>: Token subtype (integer)</li>
-      <li><b>startColumn</b>: Starting column number (integer)</li>
-      <li><b>level</b>: Token level (integer)</li>
-      <li><b>text</b>: Token text (string)</li>
-    </ul>
-    The token type and subtype values can be compared with the integer properties of the <b>latexTokenType</b> object. Each property of this object corresponds to one token type:<br>
-    <br>
-    none, word, command, braces, bracket, squareBracket, openBrace, openBracket, openSquare, less, closeBrace, closeBracket, closeSquareBracket, greater, math,
-    comment, commandUnknown, label, bibItem, file, imagefile, bibfile, keyValArg, keyVal_key, keyVal_val, list, text, env, beginEnv, def,
-    labelRef, package, width, placement, colDef, title, shorttitle, todo, url, documentclass, beamertheme, packageoption, color, verbatimStart, verbatimStop,
-    verbatim, symbol, punctuation, number, generalArg, defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList, specialArg, newTheorem, newBibItem, formula, overlay,
-    overlayRegion
-    <br>
-    <br>
-    This method returns <b>false</b> on error. This could happen in one of the following cases:
-    <ul>
-      <li><b>lineNr</b> is outside of the range of valid line numbers (negative or greater or equal to the number of document lines).</li>
-      <li>The parser has not finished parsing the specified line yet.</li>
-      <li>The currently open file is not a TeX file.</li>
-    </ul>
-  </td>
-</tr>
-
-
 <tr><td>editor.document().canUndo() </td><td>   Returns true if undo is possible     </td></tr>
 <tr><td>editor.document().canRedo() </td><td>    Returns true if redo is possible    </td></tr>
 <tr><td>editor.document().expand(lineNr)</td><td>    Expands the line    </td></tr>
