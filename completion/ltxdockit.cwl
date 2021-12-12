@@ -88,6 +88,9 @@ boxfill#B
 \end{argumentlist}
 \begin{changelog}
 \end{changelog}
+\begin{release}{version}{date}
+\end{release}
+\see{label}#r
 
 \lstenvsep#*
 
