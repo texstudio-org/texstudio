@@ -10853,7 +10853,7 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation>A(z) %1 leírás a(z) %2 parancsot a(z) %3 paranccsal helyettesítené.
+        <translation>A(z) %1 dokumentum a(z) %2 parancsot a(z) %3 paranccsal akarja helyettesíteni.
 
 Beleegyezik a cserébe?
 
