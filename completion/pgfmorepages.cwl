@@ -1,6 +1,7 @@
-# pgfpages package
-# Matthew Bertucci 10/24/2021 for v0.02
+# pgfmorepages package
+# Matthew Bertucci 12/12/2021 for v1.20
 
+# shared commands with pgfpages
 #include:pgfcore
 #include:calc
 
@@ -45,7 +46,7 @@ physical width=##L
 
 \pgfpageslogicalpageoptions{logical page number}{options%keyvals}#*
 
-#keyvals:\pgfpageslogicalpageoptions
+#keyvals:\pgfpageslogicalpageoptions,\pgfpagessetdefaults
 center=%<pgf point%>
 resized width=##L
 resized height=##L
@@ -80,3 +81,19 @@ corner width=##L
 \pgfpageoptionsecondcenter#*
 \pgfpageoptiontwoheight#*
 \pgfpageoptiontwowidth#*
+
+# commands specific to pgfmorepages
+\ifpgfpagesship#*
+\pgfpagesshiptrue#*
+\pgfpagesshipfalse#*
+\pgfactualpage#*
+\pgfpageoptionbordercode#*
+\pgfmorepagesloadextralayouts
+\pgfpagesphysicalpage{number}{options}
+\pgfpagessetdefaults{options%keyvals}
+#keyvals:\pgfpagesuselayout
+border code=%<code%>
+#endkeyvals
+#keyvals:\pgfpageslogicalpageoptions,\pgfpagessetdefaults
+skip code=%<code%>
+#endkeyvals
