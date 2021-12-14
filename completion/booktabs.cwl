@@ -19,3 +19,14 @@
 \specialrule{line width%l}{above space}{below space}#t
 \addlinespace#t
 \addlinespace[vspace]#t
+
+\heavyrulewidth#*
+\lightrulewidth#*
+\cmidrulewidth#*
+\belowrulesep#*
+\belowbottomsep#*
+\aboverulesep#*
+\abovetopsep#*
+\cmidrulesep#*
+\cmidrulekern#*
+\defaultaddspace#*
