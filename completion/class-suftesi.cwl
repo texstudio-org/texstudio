@@ -351,15 +351,3 @@ tocauthorfont=#roman,italic,smallcaps
 \texorpdfstring#S
 \xheadbreak#S
 \yheadbreak#S
-
-
-
-
-
-
-
-
-
-
-
-
