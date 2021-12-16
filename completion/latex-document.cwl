@@ -278,7 +278,7 @@
 \markboth{lefthead}{righthead}#*
 \markright{righthead}#*
 \mathbf{text}#m
-\mathcal{text}#m
+\mathcal{text%plain}#m
 \mathdollar#m
 \mathellipsis#m
 \mathgroup#m
