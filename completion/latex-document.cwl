@@ -481,7 +481,7 @@
 \textunderscore
 \textup{text}
 \textvisiblespace
-\textwidth
+\textwidth#L
 \thanks{text}
 \thicklines#*/picture
 \thickspace
