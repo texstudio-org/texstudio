@@ -1,6 +1,8 @@
 # amssymb package
 # tbraun 01.06.2007
+
 #include:amsfonts
+
 \approxeq#m
 \backepsilon#m
 \backprime#m
@@ -18,7 +20,6 @@
 \blacktriangledown#m
 \blacktriangleleft#m
 \blacktriangleright#m
-\Box#m
 \boxdot#m
 \boxminus#m
 \boxplus#m
@@ -27,14 +28,12 @@
 \Bumpeq#m
 \Cap#m
 \centerdot#m
-\checkmark#m
 \circeq#m
 \circlearrowleft#m
 \circlearrowright#m
 \circledast#m
 \circledcirc#m
 \circleddash#m
-\circledR#m
 \circledS#m
 \complement#m
 \Cup#m
@@ -49,9 +48,12 @@
 \diagup#m
 \digamma#m
 \divideontimes#m
+\Doteq#m
 \doteqdot#m
 \dotplus#m
 \doublebarwedge#m
+\doublecap#m
+\doublecup#m
 \downdownarrows#m
 \downharpoonleft#m
 \downharpoonright#m
@@ -66,6 +68,7 @@
 \geqq#m
 \geqslant#m
 \ggg#m
+\gggtr#m
 \gimel#m
 \gnapprox#m
 \gneq#m
@@ -96,17 +99,16 @@
 \lesssim#m
 \Lleftarrow#m
 \lll#m
+\llless#m
 \lnapprox#m
 \lneq#m
 \lneqq#m
 \lnsim#m
 \looparrowleft#m
 \looparrowright#m
-\lozenge#m
 \Lsh#m
 \ltimes#m
 \lvertneqq#m
-\maltese#m
 \measuredangle#m
 \multimap#m
 \ncong#m
@@ -153,11 +155,10 @@
 \precneqq#m
 \precnsim#m
 \precsim#m
-psamsfonts#m
+\restriction#m
 \rightarrowtail#m
 \rightleftarrows#m
 \rightrightarrows#m
-\rightsquigarrow#m
 \rightthreetimes#m
 \risingdotseq#m
 \Rrightarrow#m
@@ -169,7 +170,6 @@ psamsfonts#m
 \smallsetminus#m
 \smallsmile#m
 \sphericalangle#m
-\square#m
 \Subset#m
 \subseteqq#m
 \subsetneq#m
@@ -188,9 +188,7 @@ psamsfonts#m
 \thickapprox#m
 \thicksim#m
 \triangledown#m
-\trianglelefteq#m
 \triangleq#m
-\trianglerighteq#m
 \twoheadleftarrow#m
 \twoheadrightarrow#m
 \upharpoonleft#m
@@ -204,11 +202,7 @@ psamsfonts#m
 \varsupsetneq#m
 \varsupsetneqq#m
 \vartriangle#m
-\vartriangleleft#m
-\vartriangleright#m
 \vDash#m
 \Vdash#m
 \veebar#m
 \Vvdash#m
-\mathbb{text}#m
-\mathfrak{text}#m

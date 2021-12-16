@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 11/24/2021 for v0.41
+# Matthew Bertucci 12/15/2021 for v0.42
 
 #include:iftex
 #include:unicode-math
@@ -29,6 +29,7 @@
 \approxident#m
 \assert#m
 \asteraccent{arg}#m
+\awint#m
 \backcong#m
 \barV#m
 \barvee#m
@@ -834,6 +835,8 @@
 \simneqq#m
 \sinewave#m
 \smallblacktriangleleft#m
+\smallin#m
+\smallni#m
 \smalltriangleleft#m
 \smalltriangleright#m
 \smblkcircle#m

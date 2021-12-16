@@ -1,190 +1,47 @@
 # numerica package
-# Matthew Bertucci 11/6/2021 for v1.0.0
+# Matthew Bertucci 12/14/2021 for v2.0.0
 
 #include:xparse
 #include:l3keys2e
 #include:amsmath
 #include:mathtools
 
-#ifOption:plus
-\iter{expression}
-\iter[settings%keyvals]{expression}
-\iter{expression}[vv-list]
-\iter[settings%keyvals]{expression}[vv-list]#*
-\iter{expression}[vv-list][num format]#*
-\iter[settings%keyvals]{expression}[vv-list][num format]#*
-\iter*{expression}
-\iter*[settings%keyvals]{expression}
-\iter*{expression}[vv-list]
-\iter*[settings%keyvals]{expression}[vv-list]#*
-\iter*{expression}[vv-list][num format]#*
-\iter*[settings%keyvals]{expression}[vv-list][num format]#*
-\nmcIterate{expression}#*
-\nmcIterate[settings%keyvals]{expression}#*
-\nmcIterate{expression}[vv-list]v
-\nmcIterate[settings%keyvals]{expression}[vv-list]#*
-\nmcIterate{expression}[vv-list][num format]#*
-\nmcIterate[settings%keyvals]{expression}[vv-list][num format]#*
-\nmcIterate*{expression}#*
-\nmcIterate*[settings%keyvals]{expression}#*
-\nmcIterate*{expression}[vv-list]#*
-\nmcIterate*[settings%keyvals]{expression}[vv-list]#*
-\nmcIterate*{expression}[vv-list][num format]#*
-\nmcIterate*[settings%keyvals]{expression}[vv-list][num format]#*
-
-#keyvals:\iter,\iter*,\nmcIterate,\nmcIterate*
-var=%<variable name%>
-+=%<integer%>
-max=%<integer%>
-do=%<integer%>
-see=%<integer%>
-#endkeyvals
-
-\solve{expression}
-\solve[settings%keyvals]{expression}
-\solve{expression}[vv-list]
-\solve[settings%keyvals]{expression}[vv-list]#*
-\solve{expression}[vv-list][num format]#*
-\solve[settings%keyvals]{expression}[vv-list][num format]#*
-\solve*{expression}
-\solve*[settings%keyvals]{expression}
-\solve*{expression}[vv-list]
-\solve*[settings%keyvals]{expression}[vv-list]#*
-\solve*{expression}[vv-list][num format]#*
-\solve*[settings%keyvals]{expression}[vv-list][num format]#*
-\nmcSolve{expression}#*
-\nmcSolve[settings%keyvals]{expression}#*
-\nmcSolve{expression}[vv-list]#*
-\nmcSolve[settings%keyvals]{expression}[vv-list]#*
-\nmcSolve{expression}[vv-list][num format]#*
-\nmcSolve[settings%keyvals]{expression}[vv-list][num format]#*
-\nmcSolve*{expression}#*
-\nmcSolve*[settings%keyvals]{expression}#*
-\nmcSolve*{expression}[vv-list]#*
-\nmcSolve*[settings%keyvals]{expression}[vv-list]#*
-\nmcSolve*{expression}[vv-list][num format]#*
-\nmcSolve*[settings%keyvals]{expression}[vv-list][num format]#*
-
-#keyvals:\solve,\solve*,\nmcSolve,\nmcSolve*
-var=%<variable name%>
-dvar=%<real number%>
-+=%<integer%>
-max=%<integer%>
-#endkeyvals
-
-\recur{expression}
-\recur[settings%keyvals]{expression}
-\recur{expression}[vv-list]
-\recur[settings%keyvals]{expression}[vv-list]#*
-\recur{expression}[vv-list][num format]#*
-\recur[settings%keyvals]{expression}[vv-list][num format]#*
-\recur*{expression}
-\recur*[settings%keyvals]{expression}
-\recur*{expression}[vv-list]
-\recur*[settings%keyvals]{expression}[vv-list]#*
-\recur*{expression}[vv-list][num format]#*
-\recur*[settings%keyvals]{expression}[vv-list][num format]#*
-\nmcRecur{expression}#*
-\nmcRecur[settings%keyvals]{expression}#*
-\nmcRecur{expression}[vv-list]#*
-\nmcRecur[settings%keyvals]{expression}[vv-list]#*
-\nmcRecur{expression}[vv-list][num format]#*
-\nmcRecur[settings%keyvals]{expression}[vv-list][num format]#*
-\nmcRecur*{expression}#*
-\nmcRecur*[settings%keyvals]{expression}#*
-\nmcRecur*{expression}[vv-list]#*
-\nmcRecur*[settings%keyvals]{expression}[vv-list]#*
-\nmcRecur*{expression}[vv-list][num format]#*
-\nmcRecur*[settings%keyvals]{expression}[vv-list][num format]#*
-
-#keyvals:\recur,\recur*,\nmcRecur,\nmcRecur*
-do=%<integer%>
-see1=%<integer%>
-see2=%<integer%>
-...
-#endkeyvals
-#endif
-
-#ifOption:tables
-#include:booktabs
-\tabulate[settings%keyvals]{expression}[vv-list]
-\tabulate[settings%keyvals]{expression}[vv-list][num format]
-\tabulate*[settings%keyvals]{expression}[vv-list]
-\tabulate*[settings%keyvals]{expression}[vv-list][num format]
-\nmcTabulate[settings%keyvals]{expression}[vv-list]#*
-\nmcTabulate[settings%keyvals]{expression}[vv-list][num format]#*
-\nmcTabulate*[settings%keyvals]{expression}[vv-list]#*
-\nmcTabulate*[settings%keyvals]{expression}[vv-list][num format]#*
-
-#keyvals:\tabulate,\tabulate*,\nmcTabulate,\nmcTabulate*
-rvar=%<tokens%>
-rstep=%<real number%>
-rstop=%<real number%>
-rows=%<integer%>
-rspec={%<csv list%>}
-rround=%<integer%>
-ralign=#r,c,l
-rfont=%<chars%>
-rhead=%<tokens%>
-rhnudge=%<integer%>
-rpos=%<integer%>
-rvar'=%<tokens%>
-rhead'=%<tokens%>
-rhnudge'=%<integer%>
-chstyle=%<integer%>
-ctitle=%<tokens%>
-chead=%<tokens%>
-calign=#r,c,l
-chnudge=%<integer%>
-chround=%<integer%>
-(pad)=%<integer%>
-signs=%<integer%>
-diffs=%<integer%>
-Q?=%<tokens%>
-A!=%<tokens%>
-rules=%<chars%>
-foot=%<tokens%>
-rbloc={%<csv list%>}
-rblocsep=##L
-valign=#t,b
-#endkeyvals
-#endif
-
 \eval{expression}
 \eval[settings%keyvals]{expression}
-\eval{expression}[vv-list]
-\eval[settings%keyvals]{expression}[vv-list]#*
-\eval{expression}[vv-list][num format]#*
-\eval[settings%keyvals]{expression}[vv-list][num format]#*
+\eval{expression}[vv-list%formula]
+\eval[settings%keyvals]{expression}[vv-list%formula]#*
+\eval{expression}[vv-list%formula][num format]#*
+\eval[settings%keyvals]{expression}[vv-list%formula][num format]#*
 \eval*{expression}
 \eval*[settings%keyvals]{expression}
-\eval*{expression}[vv-list]
-\eval*[settings%keyvals]{expression}[vv-list]#*
-\eval*{expression}[vv-list][num format]#*
-\eval*[settings%keyvals]{expression}[vv-list][num format]#*
-
+\eval*{expression}[vv-list%formula]
+\eval*[settings%keyvals]{expression}[vv-list%formula]#*
+\eval*{expression}[vv-list%formula][num format]#*
+\eval*[settings%keyvals]{expression}[vv-list%formula][num format]#*
 \nmcEvaluate{expression}#*
 \nmcEvaluate[settings%keyvals]{expression}#*
-\nmcEvaluate{expression}[vv-list]#*
-\nmcEvaluate[settings%keyvals]{expression}[vv-list]#*
-\nmcEvaluate{expression}[vv-list][num format]#*
-\nmcEvaluate[settings%keyvals]{expression}[vv-list][num format]#*
+\nmcEvaluate{expression}[vv-list%formula]#*
+\nmcEvaluate[settings%keyvals]{expression}[vv-list%formula]#*
+\nmcEvaluate{expression}[vv-list%formula][num format]#*
+\nmcEvaluate[settings%keyvals]{expression}[vv-list%formula][num format]#*
 \nmcEvaluate*{expression}#*
 \nmcEvaluate*[settings%keyvals]{expression}#*
-\nmcEvaluate*{expression}[vv-list]#*
-\nmcEvaluate*[settings%keyvals]{expression}[vv-list]#*
-\nmcEvaluate*{expression}[vv-list][num format]#*
-\nmcEvaluate*[settings%keyvals]{expression}[vv-list][num format]#*
+\nmcEvaluate*{expression}[vv-list%formula]#*
+\nmcEvaluate*[settings%keyvals]{expression}[vv-list%formula]#*
+\nmcEvaluate*{expression}[vv-list%formula][num format]#*
+\nmcEvaluate*[settings%keyvals]{expression}[vv-list%formula][num format]#*
 
-#keyvals:\eval,\eval*,\nmcEvaluate,\nmcEvaluate*,\iter,\iter*,\nmcIterate,\nmcIterate*,\solve,\solve*,\nmcSolve,\nmcSolve*,\recur,\recur*,\nmcRecur,\nmcRecur*,\tabulate,\tabulate*,\nmcTabulate,\nmcTabulate*
+#keyvals:\eval,\eval*,\nmcEvaluate,\nmcEvaluate*,\macros,\macros*,\nmcMacros,\nmcMacros*,\constants,\constants*,\nmcConstants,\nmcConstants*,\reuse,\reuse*,\nmcReuse,\nmcReuse*
 dbg=%<integer%>
-reuse=%<integer%>
+view
+reuse=#0,1
 ^=%<char%>
-xx=%<integer%>
-()=%<integer%>
+xx=#0,1
+()=#0,1,2
 o
 log=%<number%>
-vvmode=%<integer%>
+vvmode=#0,1
+vv@=#0,1
 vvi=%<specification%>
 vvd=%<specification%>
 *
@@ -221,25 +78,66 @@ P?=%<integer%>
 \ceil[opt]{arg}#*m
 \ceil*{arg}#m
 \ceil*[opt]{arg}#m
-
 \q#m
 \Q#m
 
-\info{type%keyvals}
-\info*{type%keyvals}
-\nmcInfo{type%keyvals}#*
-\nmcInfo*{type%keyvals}#*
+\info{type}
+\info[settings%keyvals]{type}
+\info*{type}
+\info*[settings%keyvals]{type}
+\nmcInfo{type}#*
+\nmcInfo[settings%keyvals]{type}#*
+\nmcInfo*{type}#*
+\nmcInfo*[settings%keyvals]{type}#*
 
-#keyvals:\info,\nmcInfo
-sum
-prod
+#keyvals:\info#c,\info*#c,\nmcInfo#c,\nmcInfo*#c
+view
 #endkeyvals
 
-\reuse
-\reuse[csname]
-\reuse*
-\reuse*[csname]
-\nmcReuse#*
-\nmcReuse[csname]#*
-\nmcReuse*#*
-\nmcReuse*[csname]#*
+\macros{command list}
+\macros[settings%keyvals]{command list}
+\macros{command list}[vv-list%formula]
+\macros[settings%keyvals]{command list}[vv-list%formula]#*
+\macros*{command list}
+\macros*[settings%keyvals]{command list}
+\macros*{command list}[vv-list%formula]
+\macros*[settings%keyvals]{command list}[vv-list%formula]#*
+\nmcMacros{command list}
+\nmcMacros[settings%keyvals]{command list}
+\nmcMacros{command list}[vv-list%formula]
+\nmcMacros[settings%keyvals]{command list}[vv-list%formula]#*
+\nmcMacros*{command list}
+\nmcMacros*[settings%keyvals]{command list}
+\nmcMacros*{command list}[vv-list%formula]
+\nmcMacros*[settings%keyvals]{command list}[vv-list%formula]#*
+
+#keyvals:\macros,\macros*,\nmcMacros,\nmcMacros*
+free
+#endkeyvals
+
+\constants{name1=val1,name2=val2,...%formula}
+\constants[settings%keyvals]{name1=val1,name2=val2,...%formula}
+\constants{name1=val1,name2=val2,...%formula}[vv-list%formula]
+\constants[settings%keyvals]{name1=val1,name2=val2,...%formula}[vv-list%formula]#*
+\nmcConstants{name1=val1,name2=val2,...%formula}#*
+\nmcConstants[settings%keyvals]{name1=val1,name2=val2,...%formula}#*
+\nmcConstants{name1=val1,name2=val2,...%formula}[vv-list%formula]#*
+\nmcConstants[settings%keyvals]{name1=val1,name2=val2,...%formula}[vv-list%formula]#*
+
+#keyvals:\constants,\constants*,\nmcConstants,\nmcConstants*
+add
+#endkeyvals
+
+\reuse{csname}
+\reuse[settings%keyvals]{csname}
+\reuse*{csname}
+\reuse*[settings%keyvals]{csname}
+\nmcReuse{csname}#*
+\nmcReuse[settings%keyvals]{csname}#*
+\nmcReuse*{csname}#*
+\nmcReuse*[settings%keyvals]{csname}#*
+
+#keyvals:\reuse,\reuse*,\nmcReuse,\nmcReuse*
+delete
+renew
+#endkeyvals
