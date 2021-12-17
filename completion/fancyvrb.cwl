@@ -33,10 +33,6 @@
 \begin{LVerbatim*}[options%keyvals]#V
 \end{LVerbatim*}
 \fvset{options%keyvals}
-\FancyVerbFormatLine#*
-\theFancyVerbLine#*
-\FancyVerbStartString#*
-\FancyVerbStopString#*
 
 \DefineVerbatimEnvironment{envname}{env type}{options%keyvals}#N
 \CustomVerbatimEnvironment{envname}{env type}{options%keyvals}#*N
@@ -120,3 +116,25 @@ reflabel=##l
 boxwidth=##L
 baseline=#b,c,t
 #endkeyvals
+
+\FancyVerbFormatLine#*
+\theFancyVerbLine#*
+\FancyVerbStartString#*
+\FancyVerbStopString#*
+\VerbatimEnvironment#*
+\FancyVerbCodes#*
+\FancyVerbVspace#*
+\FancyVerbStartNum#*
+\FancyVerbStopNum#*
+\FancyVerbGetLine{arg}#*
+\FancyVerbDefineActive#*
+\FancyVerbFormatCom#*
+\FancyVerbSpace#*
+\FancyVerbTabSize#*
+\FancyVerbTab#*
+\FancyVerbRuleColor#*
+\SaveMVerb#*
+\FancyVerbGetVerb{arg}#*
+\SaveGVerb#*
+\UseMVerb#*
+\pUseMVerb#*
