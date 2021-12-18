@@ -129,6 +129,9 @@ spcmd={%<format cmds%>}
 sbcmd={%<format cmds%>}
 spbhshift=##L
 spbcmd={%<super cmds,sub cmds%>}
+#endkeyvals
+
+#keyvals:\spbset,\supersub,\spb
 vsep=##L
 halign=#l,c,r
 #endkeyvals
