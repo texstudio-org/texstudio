@@ -1,7 +1,17 @@
 # YAMLvars package
-# Matthew Bertucci 11/8/2021
+# Matthew Bertucci 12/18/2021
 
 #include:luacode
+#include:xspace
+#include:etoolbox
+#include:penlight
+
+#keyvals:\usepackage/YAMLvars#c
+useyv
+parseCLI
+allowundeclared
+debug
+#endkeyvals
 
 #ifOption:useyv
 \yv{var}
