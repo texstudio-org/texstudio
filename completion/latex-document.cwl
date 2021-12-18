@@ -58,6 +58,7 @@
 \begin{normalsize}
 \begin{picture}(width,height)
 \begin{picture}(width,height)(xoffset,yoffset)
+\begin{pmatrix}#m\array
 \begin{quotation}
 \begin{quote}
 \begin{scriptsize}
@@ -110,6 +111,7 @@
 \end{minipage}
 \end{normalsize}
 \end{picture}
+\end{pmatrix}
 \end{quotation}
 \end{quote}
 \end{scriptsize}
