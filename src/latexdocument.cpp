@@ -2955,6 +2955,10 @@ void LatexDocument::updateMagicComment(const QString &name, const QString &val, 
 		if (createIfNonExisting) {
 			QDocumentCursor cur(this);
 			cur.insertText(line + "\n");
+            if(val.isEmpty()){
+                cur.movePosition(1,QDocumentCursor::PreviousCharacter);
+                getEditorView()->editor->setCursor(cur);
+            }
 		}
 	}
 }
