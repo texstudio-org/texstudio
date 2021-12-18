@@ -20,8 +20,6 @@
 \begin{abstract}
 \begin{array}{cols}#m
 \begin{array}[pos]{cols}#m
-\begin{bmatrix}#m\array
-\begin{Bmatrix}#m\array
 \begin{center}
 \begin{description}
 \begin{description}\item
@@ -60,7 +58,6 @@
 \begin{normalsize}
 \begin{picture}(width,height)
 \begin{picture}(width,height)(xoffset,yoffset)
-\begin{pmatrix}#m\array
 \begin{quotation}
 \begin{quote}
 \begin{scriptsize}
@@ -85,8 +82,6 @@
 \begin{verse}
 \end{abstract}
 \end{array}
-\end{bmatrix}
-\end{Bmatrix}
 \end{center}
 \end{description}
 \end{displaymath}
@@ -115,7 +110,6 @@
 \end{minipage}
 \end{normalsize}
 \end{picture}
-\end{pmatrix}
 \end{quotation}
 \end{quote}
 \end{scriptsize}
