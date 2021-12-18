@@ -111,6 +111,7 @@ alignedleftspaceyesifneg
 \endmathdisplay{envname}#*
 \eqref{label}#r
 \genfrac{left-delim}{right-delim}{thickness%l}{mathstyle}{numerator}{denominator}#m
+\hdots#*m
 \hdotsfor{columns}#t
 \hdotsfor[multiplier]{columns}#t
 \idotsint#m
