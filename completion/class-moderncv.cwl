@@ -1,15 +1,14 @@
 # denisbitouze, 02.03.2013
-# Matthew Bertucci updated 11/22/2021 for v2.2.0
+# Matthew Bertucci updated 12/18/2021 for v2.3.0
 
 #include:etoolbox
 #include:ifthen
 #include:xcolor
+
+# from table option of xcolor
 #include:colortbl
-#include:ifxetex
-#include:ifluatex
-#include:inputenc
-#include:fontenc
-#include:lmodern
+
+#include:iftex
 #include:url
 #include:hyperref
 #include:graphicx
@@ -22,10 +21,27 @@
 #include:moderncvcompatibility
 #include:expl3
 
+#keyvals:\documentclass/moderncv#c
+a4paper
+a5paper
+b5paper
+letterpaper
+legalpaper
+executivepaper
+landscape
+10pt
+11pt
+12pt
+sans
+roman
+draft
+final
+#endkeyvals
+
 \ifxetexorluatex#*
 \xetexorluatextrue#*
 \xetexorluatexfalse#*
-
+\pdfpagemode#*
 \nopagenumbers#n
 \pagenumberwidth#*
 \name{first name}{last name}#n
@@ -119,9 +135,12 @@ red
 #endkeyvals
 \moderncvicons{icon set%keyvals}
 #keyvals:\moderncvicons
+academic
 awesome
 letters
 marvosym
+symbols
+tikz
 #endkeyvals
 \recomputeheadlengths#*
 \recomputebodylengths#*
@@ -270,25 +289,5 @@ marvosym
 \makecvheadinfobox#*
 \makecvheadinfoheight#*
 
-# from T1 option of fontenc
-\DH#n
-\NG#n
-\dj#n
-\ng#n
-\k{arg}#n
-\guillemotleft#*n
-\guillemotright#*n
-\guilsinglleft#n
-\guilsinglright#n
-\quotedblbase#n
-\quotesinglbase#n
-\textquotedbl#n
-\DJ#n
-\th#n
-\TH#n
-\dh#n
-\Hwithstroke#*n
-\hwithstroke#*n
-\textogonekcentered{arg}#*n
-\guillemetleft#n
-\guillemetright#n
+# from moderncviconsmarvosym.sty
+\marvosymbol{number}#S
