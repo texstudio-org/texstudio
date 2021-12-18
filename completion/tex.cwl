@@ -191,7 +191,7 @@
 \left
 \lefthyphenmin#*
 \leftskip#*
-\leqno{eqn num}#*
+\leqno{eqn num}#*m
 # for command interpretation
 \let
 \let{cmd}{def}#dS
