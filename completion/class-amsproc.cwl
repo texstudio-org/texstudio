@@ -4,7 +4,7 @@
 #include:amsmath
 #include:amsfonts
 
-#keyvals:\documentclass/amsart#c
+#keyvals:\documentclass/amsproc#c
 10pt
 11pt
 12pt
