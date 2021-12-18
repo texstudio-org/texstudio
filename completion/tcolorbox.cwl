@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 11/30/2021 for v4.51
+# Matthew Bertucci updated 12/18/2021 for v5.0.0
 
 #include:environ
 #include:etoolbox
@@ -549,7 +549,6 @@ fill image options={%<graphics options%>}
 \newtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}#N
 \renewtcbtheorem{envname}{display name}{options%keyvals}{prefix}
 \renewtcbtheorem[init options]{envname}{display name}{options%keyvals}{prefix}
-\tcbmaketheorem{envname}{display name}{options%keyvals}{counter}{prefix}#*N
 \tcboxmath{mathematical box content%formula}
 \tcboxmath[options%keyvals]{mathematical box content%formula}
 \tcbhighmath{mathematical box content%formula}
@@ -816,7 +815,7 @@ Fade#B
 # << Option Keys >> - Standard
 # ------------------------------
 
-#keyvals:\tcbset,\begin{tcolorbox},\tcbsetforeverylayer,\tcbox,\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,\tcolorboxenvironment,\tcbsubtitle,\tcbsidebyside,\tcbsubskin,\tcbincludegraphics,\tcbincludepdf,\begin{tcbraster},\begin{tcbitemize},\tcbitem,\begin{tcboxedraster},\begin{tcboxeditemize},\begin{tcblisting},\tcbinputlisting,\newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,\newtcbtheorem,\renewtcbtheorem,\tcbmaketheorem,\tcboxmath,\tcbhighmath,\usetcboxarray,\consumetcboxarray,\posterbox,\begin{posterboxenv},\tcboxfit,\newtcboxfit,\renewtcboxfit,\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit,\tcboxverb,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*},\tcbdocmarginnote
+#keyvals:\tcbset,\begin{tcolorbox},\tcbsetforeverylayer,\tcbox,\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,\tcolorboxenvironment,\tcbsubtitle,\tcbsidebyside,\tcbsubskin,\tcbincludegraphics,\tcbincludepdf,\begin{tcbraster},\begin{tcbitemize},\tcbitem,\begin{tcboxedraster},\begin{tcboxeditemize},\begin{tcblisting},\tcbinputlisting,\newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,\newtcbtheorem,\renewtcbtheorem,\tcboxmath,\tcbhighmath,\usetcboxarray,\consumetcboxarray,\posterbox,\begin{posterboxenv},\tcboxfit,\newtcboxfit,\renewtcboxfit,\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit,\tcboxverb,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*},\tcbdocmarginnote
 ### << always available keys >> ###
 title=%<text%>
 notitle
@@ -1147,16 +1146,24 @@ tcb fill interior
 tcb fill title
 attach boxed title to top left
 attach boxed title to top left={%<boxtitle options%>}
+attach boxed title to top text left
+attach boxed title to top text left={%<boxtitle options%>}
 attach boxed title to top center
 attach boxed title to top center={%<boxtitle options%>}
 attach boxed title to top right
 attach boxed title to top right={%<boxtitle options%>}
+attach boxed title to top text right
+attach boxed title to top text right={%<boxtitle options%>}
 attach boxed title to bottom left
 attach boxed title to bottom left={%<boxtitle options%>}
+attach boxed title to bottom text left
+attach boxed title to bottom text left={%<boxtitle options%>}
 attach boxed title to bottom center
 attach boxed title to bottom center={%<boxtitle options%>}
 attach boxed title to bottom right
 attach boxed title to bottom right={%<boxtitle options%>}
+attach boxed title to bottom text right
+attach boxed title to bottom text right={%<boxtitle options%>}
 attach boxed title to top
 attach boxed title to top={%<boxtitle options%>}
 attach boxed title to top*
@@ -1397,6 +1404,7 @@ theorem hanging indent=##L
 theorem name and number
 theorem number and name
 theorem name
+theorem number
 theorem={%<display name%>}{%<counter%>}{%<title%>}{%<marker%>}
 highlight math style={%<options%>}
 math upper
@@ -1752,6 +1760,7 @@ every listing line*=%<text%>
 listing utf8=%<encoding%>
 minted language=%<programming lang%>
 minted options={%<minted options%>}
+default minted options={%<minted options%>}
 minted style=%<style%>
 listing engine=#listings,minted
 listing file=%<file name%>

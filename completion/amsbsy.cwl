@@ -1,4 +1,7 @@
 # Commands from AMSBSY package
 # neeraavi 22 Mar 2007
-\boldsymbol{symbol}
+
+#include:amsgen
+
+\boldsymbol{symbol}#m
 \pmb{symbol}

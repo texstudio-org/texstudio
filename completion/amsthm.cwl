@@ -16,3 +16,11 @@
 \qedhere
 \qed
 \proofname
+\nopunct#*
+\thmhead{arg1}{arg2}{arg3}#*
+\swappedhead{arg1}{arg2}{arg3}#*
+\mathqed#*
+\pushQED{arg}#*
+\popQED#*
+\openbox
+\textsquare

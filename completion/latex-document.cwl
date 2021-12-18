@@ -20,8 +20,6 @@
 \begin{abstract}
 \begin{array}{cols}#m
 \begin{array}[pos]{cols}#m
-\begin{bmatrix}#m\array
-\begin{Bmatrix}#m\array
 \begin{center}
 \begin{description}
 \begin{description}\item
@@ -85,8 +83,6 @@
 \begin{verse}
 \end{abstract}
 \end{array}
-\end{bmatrix}
-\end{Bmatrix}
 \end{center}
 \end{description}
 \end{displaymath}
@@ -278,7 +274,7 @@
 \markboth{lefthead}{righthead}#*
 \markright{righthead}#*
 \mathbf{text}#m
-\mathcal{text}#m
+\mathcal{text%plain}#m
 \mathdollar#m
 \mathellipsis#m
 \mathgroup#m
