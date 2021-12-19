@@ -203,7 +203,7 @@ void SyntaxCheckTest::checkkeyval_data(){
      QTest::newRow("key/value")
              <<"\\SI[mode=text]{test}"<<false;
      QTest::newRow("key/value, with -")
-             <<"\\si[per-mode=reciprocal-positive-first]{dfg}"<<false;
+             <<"\\si[per-mode=power-positive-first]{dfg}"<<false;
      QTest::newRow("key/value,error key")
              <<"\\SI[modea=text]{test}"<<true;
      QTest::newRow("key/value, with -, error key")

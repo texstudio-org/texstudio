@@ -69,3 +69,14 @@ corner width=##L
 \ifpgfphysicalpageempty#*
 \pgfphysicalpageemptytrue#*
 \pgfphysicalpageemptyfalse#*
+\pgfphysicalheight#*
+\pgfphysicalwidth#*
+\pgfpageoptionheight#*
+\pgfpageoptionwidth#*
+\pgfpageoptionborder#*
+\pgfpageoptioncornerwidth#*
+\pgfpageoptionfirstshipout#*
+\pgfpageoptionfirstcenter#*
+\pgfpageoptionsecondcenter#*
+\pgfpageoptiontwoheight#*
+\pgfpageoptiontwowidth#*

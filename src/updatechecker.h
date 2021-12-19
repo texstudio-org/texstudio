@@ -3,6 +3,7 @@
 
 #include "mostQtHeaders.h"
 #include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include "utilsVersion.h"
 
 class UpdateChecker : public QObject
@@ -25,7 +26,7 @@ signals:
 public slots:
 
 private slots:
-	void onRequestError();
+    void onRequestError(QNetworkReply::NetworkError code);
 	void onRequestCompleted();
 
 private:

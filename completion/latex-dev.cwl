@@ -372,7 +372,6 @@
 \baselinestretch#*
 \columnsep#*L
 \columnseprule#*
-\columnwidth#*L
 \evensidemargin#*
 \extracolsep#*
 \fboxrule#*

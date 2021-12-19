@@ -1134,7 +1134,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 						if(tk3.level==tk2.level && tk.subtype!=Token::none)
 							txt.append(tk3.getText());
 					}
-					CodeSnippet cs(txt);
+                    CodeSnippet cs(txt,true,true);
 					cs.type=CodeSnippet::userConstruct;
 					mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), cs));
 				}
@@ -1145,7 +1145,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					CommandDescription cd = lp.commandDefs.value(cmd);
 					if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
 						QString txt=cmd+"{"+firstArg+"}";
-						CodeSnippet cs(txt);
+                        CodeSnippet cs(txt,true,true);
 						cs.type=CodeSnippet::userConstruct;
 						mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), cs));
 					}
@@ -2955,6 +2955,10 @@ void LatexDocument::updateMagicComment(const QString &name, const QString &val, 
 		if (createIfNonExisting) {
 			QDocumentCursor cur(this);
 			cur.insertText(line + "\n");
+            if(val.isEmpty()){
+                cur.movePosition(1,QDocumentCursor::PreviousCharacter);
+                getEditorView()->editor->setCursor(cur);
+            }
 		}
 	}
 }

@@ -1,23 +1,53 @@
 #cwl for newclude package, v.2
-\include*[prehook]{file}[posthook]#i
-\IncludeSurround#*
-\DefaultIncludeSurround#*
+
+#include:moredefs
+#include:afterpage
+
+#keyvals:\usepackage/newclude#c
+simple
+tag
+allocate
+#endkeyvals
+
+\include[prehook]{file}#i
 \include[prehook]{file}[posthook]#i
+\include*[prehook]{file}#i
+\include*[prehook]{file}[posthook]#i
 \AtBeginInclude{tokens}#*
 \AtEndInclude{tokens}#*
-\includeonly{file}
+\IncludeSurround#*
+\DefaultIncludeSurround#*
 \includeall
-\includeenv[prehook]{file}{envname}{instance}[posthook]#*i
-\includeenv*[prehook]{file}{envname}{instance}[posthook]#*i
-\includedoc[prehook]{file}[posthook]#*i
-\includedoc*[prehook]{file}[posthook]#*i
-\IfAllowed {part}{true}{false}#*
+\IncludeEnv{file}{envname}{instance}#*i
+\IncludeEnv[prehook]{file}{envname}{instance}#*i
+\IncludeEnv[prehook]{file}{envname}{instance}[posthook]#*i
+\IncludeEnv*{file}{envname}{instance}#*i
+\IncludeEnv*[prehook]{file}{envname}{instance}#*i
+\IncludeEnv*[prehook]{file}{envname}{instance}[posthook]#*i
+\includedoc[prehook]{file}#i
+\includedoc[prehook]{file}[posthook]#i
+\includedoc*[prehook]{file}#i
+\includedoc*[prehook]{file}[posthook]#i
+\includedocskip[prehook]{file}[posthook]#*i
+\includedocskip*[prehook]{file}[posthook]#*i
+\IfAllowed{part name}{true}{false}#*
 \IncludeName#*
 \ParentName#*
-\DeclareFormattingPackage{packagename}#*
+\DeclareFormattingPackage{package name}#*
 \ifSkipPreamble#*
 \SkipPreambletrue#*
 \SkipPreamblefalse#*
 \Disable{tokens}#*
 \DisableAll#*
-#I did my best, eboebo.
+
+#ifOption:allocate
+\NextAux#*
+\DynamicAux#*
+\StaticAux{number of streams}#*
+\InitWheel{cmd}#*d
+\DefWheel{cmd}{spokes}#*d
+\Roll{wheel}#*
+\Top{wheel}#*
+\AddSpokes{wheel}{spokes}#*
+\IfTop{wheel}{spoke}{true}{false}#*
+#endif

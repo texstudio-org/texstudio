@@ -457,8 +457,6 @@
 \item<alert specification>[item label]<alert specification>
 \item<alert specification><alert specification>
 \item[item label]<alert specification>
-\item[item label]
-\item
 \label<overlay specification>{key%labeldef}
 \resetcounteronoverlays{counter name}
 \resetcountonoverlays{count register name}

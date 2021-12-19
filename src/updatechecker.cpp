@@ -2,7 +2,6 @@
 #include "smallUsefulFunctions.h"
 #include "utilsVersion.h"
 #include "configmanager.h"
-#include <QNetworkReply>
 #include <QNetworkProxyFactory>
 #include <QMutex>
 
@@ -51,10 +50,14 @@ void UpdateChecker::check(bool silent)
 	QNetworkReply *reply = networkManager->get(request);
 	connect(reply, SIGNAL(finished()), this, SLOT(onRequestCompleted()));
 	if (!silent)
-		connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError()));
+#if QT_VERSION_MAJOR<6
+        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError(QNetworkReply::NetworkError)));
+#else
+        connect(reply, &QNetworkReply::errorOccurred,this, &UpdateChecker::onRequestError);
+#endif
 }
 
-void UpdateChecker::onRequestError()
+void UpdateChecker::onRequestError(QNetworkReply::NetworkError )
 {
 	QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 	if (!reply) return;

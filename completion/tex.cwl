@@ -191,7 +191,7 @@
 \left
 \lefthyphenmin#*
 \leftskip#*
-\leqno{eqn num}#*
+\leqno{eqn num}#*m
 # for command interpretation
 \let
 \let{cmd}{def}#dS
@@ -313,6 +313,7 @@
 \splitmaxdepth#*
 \splittopskip#*
 \string#*
+\string{cmd}#S
 \tabskip#*
 \textfont#*
 \textstyle#*
@@ -539,7 +540,7 @@
 \int#m
 \iota#m
 \it#*
-\item
+# \item    also defined in latex-document, there with space
 \j#n
 \jmath#m
 \jot#*

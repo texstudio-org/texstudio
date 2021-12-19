@@ -498,6 +498,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
     registerOption("Spell/Dic", &spell_dic, "<dic not found>", nullptr);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
+    registerOption("Spell/UsedLanguages", &previouslyUsedDictionaries, QStringList{"en_US","fr_FR","de_DE"}, nullptr);
 
     //macro repository
     registerOption("Macros/RepositoryURL", &URLmacroRepository, "https://api.github.com/repos/texstudio-org/texstudio-macro/contents/", nullptr);
@@ -1860,7 +1861,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 #ifndef NO_POPPLER_PREVIEW
         treeWidgetToManagedMenuTo(menuShortcutsPDF);
 #endif
-		treeWidgetToManagedLatexMenuTo();
+        treeWidgetToManagedLatexMenuTo(confDlg->ui.menuTree->invisibleRootItem());
 
 		// custom toolbar
 		Q_ASSERT(confDlg->customizableToolbars.size() == managedToolBars.size());
@@ -2489,7 +2490,22 @@ void ConfigManager::modifyMenuContents()
 {
 	QStringList ids = manipulatedMenus.keys();
 	while (!ids.isEmpty()) modifyMenuContent(ids, ids.first());
-	modifyMenuContentsFirstCall = false;
+    modifyMenuContentsFirstCall = false;
+    // remove menus
+    foreach(const QString &elem,tobeRemovedList){
+        if(elem.endsWith("/")){
+            QMenu *menu=getManagedMenu(elem.left(elem.length()-1));
+            if(menu){
+                QAction *act=menu->menuAction();
+                act->setVisible(false);
+            }
+        }else{
+            QAction *act=getManagedAction(elem);
+            if(act){
+                act->setVisible(false); // hide for now, will be gone on restart
+            }
+        }
+    }
 }
 
 void ConfigManager::modifyMenuContent(QStringList &ids, const QString &id)
@@ -2657,6 +2673,7 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 			                                att.namedItem("icon").nodeValue());
 			act->setWhatsThis(att.namedItem("info").nodeValue());
             act->setStatusTip(att.namedItem("info").nodeValue());
+            act->setToolTip(att.namedItem("info").nodeValue());
 			act->setData(att.namedItem("insert").nodeValue());
 		} else if (c.nodeName() == "separator") menu->addSeparator();
 	}
@@ -3324,20 +3341,23 @@ void ConfigManager::moveCommand(int dir, int atRow)
 QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *parent, QMenu *menu)
 {
     if (!menu) return nullptr;
+    if (tobeRemovedList.contains(menu->objectName()+"/")){
+        return nullptr;
+    }
 	static QStringList relevantMenus = QStringList() << "main/tools" << "main/latex" << "main/math";
 	QTreeWidgetItem *menuitem = new QTreeWidgetItem(parent, QStringList(menu->title()));
 	bool advanced = false;
 	if (parent) advanced = parent->data(0, Qt::UserRole + 2).toBool();
 	else {
 		menuitem->setData(0, Qt::UserRole, menu->objectName());
-		if (manipulatedMenus.contains(menu->objectName())) {
-			QFont bold = menuitem->font(0);
-			bold.setBold(true);
-            changedItemsList.append(menuitem); // rescan item when determing the changed menus
-			for (int j = 0; j < 3; j++) menuitem->setFont(j, bold);
-		}
 		if (!relevantMenus.contains(menu->objectName())) advanced = true;
 	}
+    if (manipulatedMenus.contains(menu->objectName()) || manipulatedMenus.contains(menu->objectName()+"/")) {
+        QFont bold = menuitem->font(0);
+        bold.setBold(true);
+        changedItemsList.append(menuitem); // rescan item when determing the changed menus
+        for (int j = 0; j < 3; j++) menuitem->setFont(j, bold);
+    }
 	if (advanced) {
 		superAdvancedItems << menuitem;
 		menuitem->setData(0, Qt::UserRole + 2, true);
@@ -3348,6 +3368,9 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 	QList<QAction *> acts = menu->actions();
 	for (int i = 0; i < acts.size(); i++) {
 		bool subAdvanced = advanced;
+        if(tobeRemovedList.contains(acts[i]->objectName())){
+            continue;
+        }
         QTreeWidgetItem *twi = nullptr;
 		if (acts[i]->menu()) twi = managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
@@ -3367,7 +3390,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 				twi->setIcon(0, QIcon(":/images/separator.png"));
 			}
 			twi->setData(2, Qt::UserRole, acts[i]->property("originalSlot").isValid() ? acts[i]->property("originalSlot").toString() : twi->text(2));
-			if (manipulatedMenus.contains(acts[i]->objectName())) {
+            if (manipulatedMenus.contains(acts[i]->objectName()) || manipulatedMenus.contains(acts[i]->objectName()+"/")) {
 				QFont bold = twi->font(0);
 				bold.setBold(true);
                 changedItemsList.append(twi);
@@ -3386,7 +3409,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 		if (j < acts.size()) twi->setData(0, Qt::UserRole + 1, acts[j]->menu() ? acts[j]->menu()->objectName() : acts[j]->objectName());
 		else twi->setData(0, Qt::UserRole + 1, menu->objectName() + "/");
 	}
-	if (acts.isEmpty()) {
+    if (acts.isEmpty() || manipulatedMenus.contains(menu->objectName()+"/")) {
 		QTreeWidgetItem *filler = new QTreeWidgetItem(menuitem, QStringList() << QString("temporary menu end") << "");
 		filler->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 		filler->setData(0, Qt::UserRole, menu->objectName() + "/!!end");
@@ -3454,6 +3477,7 @@ void ConfigManager::menuTreeRevertItem(){
         parent->removeChild(item);
         manipulatedMenuTree.remove(ID);
         changedItemsList.removeOne(item);
+        tobeRemovedList.append(ID);
     }else{ //revert
         QFont bold = item->font(0);
         if(bold.bold()){
@@ -3480,21 +3504,46 @@ void ConfigManager::toggleVisibleTreeItems(bool show)
 		tw->setColumnWidth(1, tw->width() - tw->columnWidth(0) - tw->columnWidth(2));
 }
 
-void ConfigManager::treeWidgetToManagedLatexMenuTo()
+void ConfigManager::scanTreeWidgetForCustomMenuEntries(QMap<QString, QVariant> &foundMenus, QTreeWidgetItem *item,QString prefix)
+{
+    QString id;
+    QString previous=prefix+"/!!end";
+    for(int i=item->childCount()-1;i>=0;--i){
+        QTreeWidgetItem *child=item->child(i);
+        previous=id;
+        id = child->data(0, Qt::UserRole).toString();
+        if(child->childCount()>0){
+            if(changedItemsList.contains(child)){
+                if (id == "") continue;
+                QStringList m;
+                m << child->text(0)
+                  << child->text(1)
+                  << (child->checkState(0) == Qt::Checked ? "visible" : "hidden")
+                  << previous
+                  << ((child->text(2) != child->data(2, Qt::UserRole).toString()) ? child->text(2) : "");
+                foundMenus.insert(id, m);
+            }
+            scanTreeWidgetForCustomMenuEntries(foundMenus,child,id);
+        }else{
+            if(changedItemsList.contains(child)){
+                if (id == "") continue;
+                QStringList m;
+                m << child->text(0)
+                  << child->text(1)
+                  << (child->checkState(0) == Qt::Checked ? "visible" : "hidden")
+                  << previous
+                  << ((child->text(2) != child->data(2, Qt::UserRole).toString()) ? child->text(2) : "");
+                foundMenus.insert(id, m);
+            }
+        }
+    }
+}
+
+void ConfigManager::treeWidgetToManagedLatexMenuTo(QTreeWidgetItem *item)
 {
     manipulatedMenus.clear();
-	foreach (QTreeWidgetItem *item, changedItemsList) {
-		QString id = item->data(0, Qt::UserRole).toString();
-		if (id == "") continue;
-		QStringList m;
-		m << item->text(0)
-		  << item->text(1)
-		  << (item->checkState(0) == Qt::Checked ? "visible" : "hidden")
-		  << item->data(0, Qt::UserRole + 1).toString()
-		  << ((item->text(2) != item->data(2, Qt::UserRole).toString()) ? item->text(2) : "");
-		manipulatedMenus.insert(id, m);
-	}
-	modifyMenuContents();
+    scanTreeWidgetForCustomMenuEntries(manipulatedMenus,item,"/");
+    modifyMenuContents();
 }
 
 void ConfigManager::registerOption(const QString &name, void *storage, PropertyType type, QVariant def, void *displayWidgetOffset)
