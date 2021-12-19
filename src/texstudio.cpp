@@ -5639,7 +5639,7 @@ void Texstudio::addMagicCoding()
 void Texstudio::addMagicBibliography()
 {
     if (currentEditorView()) {
-        currentEditorView()->document->updateMagicComment("TS-program", "", true,"!BIB");
+        currentEditorView()->document->updateMagicComment("TXS-program:bibliography", "", true);
     }
 }
 
