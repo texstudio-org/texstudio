@@ -272,6 +272,8 @@ RMDir /r $INSTDIR\platforms
 RMDir /r $INSTDIR\styles
 RMDir /r $INSTDIR\TexTablet
 RMDir /r $INSTDIR\dictionaries
+RMDir /r $INSTDIR\tls
+RMDir /r $INSTDIR\iconengines
 Delete $INSTDIR\*
 
 # Try to remove the install directory - this will only happen if it is empty
