@@ -126,7 +126,7 @@ baseline=#b,c,t
 \FancyVerbVspace#*
 \FancyVerbStartNum#*
 \FancyVerbStopNum#*
-\FancyVerbGetLine{arg}#*
+\FancyVerbGetLine#*
 \FancyVerbDefineActive#*
 \FancyVerbFormatCom#*
 \FancyVerbSpace#*
@@ -134,7 +134,7 @@ baseline=#b,c,t
 \FancyVerbTab#*
 \FancyVerbRuleColor#*
 \SaveMVerb#*
-\FancyVerbGetVerb{arg}#*
+\FancyVerbGetVerb#*
 \SaveGVerb#*
 \UseMVerb#*
 \pUseMVerb#*
