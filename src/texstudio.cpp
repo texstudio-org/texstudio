@@ -1492,13 +1492,29 @@ void Texstudio::updateAvailableLanguages()
 	spellLanguageActions = new QActionGroup(statusTbLanguage);
 	spellLanguageActions->setExclusive(true);
 
-	foreach (const QString &s, spellerManager.availableDicts()) {
-		QAction *act = new QAction(spellLanguageActions);
-		act->setText(spellerManager.prettyName(s));
-		act->setData(QVariant(s));
-		act->setCheckable(true);
-		connect(act, SIGNAL(triggered()), this, SLOT(changeEditorSpeller()));
-	}
+    bool reduceDictDisplay=spellerManager.availableDicts().size()>20;
+    bool hiddenEntries=false;
+    if(!configManager.previouslyUsedDictionaries.contains(spellerManager.defaultSpellerName())){
+        configManager.previouslyUsedDictionaries.append(spellerManager.defaultSpellerName());
+    }
+
+    foreach (const QString &s, spellerManager.availableDicts()) {
+        QAction *act = new QAction(spellLanguageActions);
+        act->setText(spellerManager.prettyName(s));
+        act->setData(QVariant(s));
+        act->setCheckable(true);
+        if(reduceDictDisplay && !configManager.previouslyUsedDictionaries.contains(s) && (s != "<none>")){
+            act->setVisible(false);
+            hiddenEntries=true;
+        }
+        connect(act, SIGNAL(triggered()), this, SLOT(changeEditorSpeller()));
+    }
+    if(hiddenEntries){
+        QAction *act = new QAction(spellLanguageActions);
+        act->setText(tr("show more entries ..."));
+        act->setData(QVariant(true));
+        connect(act, SIGNAL(triggered()), this, SLOT(showMoreDictionaries()));
+    }
 
 	QAction *act = new QAction(spellLanguageActions);
 	act->setSeparator(true);
@@ -5510,8 +5526,14 @@ void Texstudio::editorSpellerChanged(const QString &name)
 	}
 	if (name == "<default>") {
 		statusTbLanguage->setText(spellerManager.defaultSpellerName());
+        if(!configManager.previouslyUsedDictionaries.contains(spellerManager.defaultSpellerName())){
+            configManager.previouslyUsedDictionaries<<spellerManager.defaultSpellerName();
+        }
 	} else {
 		statusTbLanguage->setText(name);
+        if(!configManager.previouslyUsedDictionaries.contains(name)){
+            configManager.previouslyUsedDictionaries<<name;
+        }
 	}
 }
 
@@ -5529,7 +5551,39 @@ void Texstudio::changeEditorSpeller()
 				break;
 			}
 		}
-	}
+    }
+}
+
+void Texstudio::showMoreDictionaries()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if(!action)
+        return; // safety check
+    bool showMore=action->data().toBool();
+    if(showMore){
+        // show more
+        foreach (QAction *act, statusTbLanguage->actions()) {
+            act->setVisible(true);
+        }
+        action->setData(QVariant(false));
+        action->setText(tr("show less entries ..."));
+    }else{
+        //show less
+        foreach (QAction *act, statusTbLanguage->actions()) {
+            QVariant data=act->data();
+            if(data.isValid()){
+                QString name=data.toString();
+                if(!configManager.previouslyUsedDictionaries.contains(name) && (name!="<default>") && (name!="<none>")){
+                    act->setVisible(false);
+                }
+            }
+        }
+        action->setData(QVariant(true));
+        action->setText(tr("show more entries ..."));
+        action->setVisible(true);
+    }
+
+    statusTbLanguage->showMenu();
 }
 
 void Texstudio::insertSpellcheckMagicComment()

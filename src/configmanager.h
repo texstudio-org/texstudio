@@ -205,6 +205,7 @@ public:
 	QString spellDictDir;
 	QString spellLanguage;
 	QString spell_dic, thesaurus_database;
+    QStringList previouslyUsedDictionaries;
 
 	//debug
 #ifndef QT_NO_DEBUG

@@ -498,6 +498,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Spell/Language", &spellLanguage, "<none>", &pseudoDialog->comboBoxSpellcheckLang);
     registerOption("Spell/Dic", &spell_dic, "<dic not found>", nullptr);
 	registerOption("Thesaurus/Database", &thesaurus_database, "<dic not found>", &pseudoDialog->comboBoxThesaurusFileName);
+    registerOption("Spell/UsedLanguages", &previouslyUsedDictionaries, QStringList{"en_US","fr_FR","de_DE"}, nullptr);
 
     //macro repository
     registerOption("Macros/RepositoryURL", &URLmacroRepository, "https://api.github.com/repos/texstudio-org/texstudio-macro/contents/", nullptr);
