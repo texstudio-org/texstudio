@@ -76,6 +76,7 @@
 
 \xintSeq{start-integer}{stop-integer}
 \xintSeq[step]{start-integer}{stop-integer}
+\xintseq{start-integer}{stop-integer}#S
 
 \xintloop#*
 \xintbreakloop#*
