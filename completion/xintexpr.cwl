@@ -67,10 +67,14 @@
 \xintnewdummy{character}
 \xintensuredummy{character}
 \xintrestorevariable{character}
+\xintrestorevariablesilently{character}#*
 
 \xintdeffunc %<<function>%> := %<<definition>%>;
 \xintdefiifunc %<<function>%> := %<<definition>%>;
 \xintdeffloatfunc %<<function>%> := %<<definition>%>;
+\xintdefufunc %<<function>%> := %<<definition>%>;#*
+\xintdefiiufunc %<<function>%> := %<<definition>%>;#*
+\xintdeffloatufunc %<<function>%> := %<<definition>%>;#*
 \xintunassignexprfunc{name}
 \xintunassigniiexprfunc{name}
 \xintunassignfloatexprfunc{name}
@@ -98,14 +102,22 @@
 \xintthebareeval{expr}#*
 \xintthebarefloateval{expr}#*
 \xintthebareiieval{expr}#*
+\xintthebareroundedfloateval{expr}#*
 \ifxintexprsafecatcodes#*
 \xintexprsafecatcodestrue#*
 \xintexprsafecatcodesfalse#*
+\XINTusenoargfunc{func}#*
+\XINTusefunc{func}#*
+\XINTuseufunc{func}#*
+\XINTusemacrofunc{arg1}{arg2}{arg3}#*
+\xintNEprinthook#*
 
 \xintexprPrintOne#S
+\xintiexprPrintOne#S
 \xintiiexprPrintOne#S
 \xintfloatexprPrintOne#S
 \xintboolexprPrintOne#S
+\xintexprEmptyItem#S
 \thexintexpr#S
 \thexintiexpr#S
 \thexintfloatexpr#S
