@@ -7,10 +7,8 @@
 #include:xintlog
 
 \xintexpr %<<expr>%> \relax
-\xintexpr#S
 \xintthe
 \xinttheexpr %<<expr>%> \relax
-\xinttheexpr#S
 
 \xintexprSafeCatcodes#*
 \xintexprRestoreCatcodes#*
@@ -25,21 +23,13 @@
 \xintfracSetDigits{expr}#*
 \xintiexpr %<<expr>%> \relax
 \xintiexpr[%<digits%>] %<<expr>%> \relax
-\xintiexpr#S
 \xinttheiexpr %<<expr>%> \relax
-\xinttheiexpr#S
 \xintiiexpr %<<expr>%> \relax
-\xintiiexpr#S
 \xinttheiiexpr %<<expr>%> \relax
-\xinttheiiexpr#S
 \xintboolexpr %<<expr>%> \relax
-\xintboolexpr#S
 \xinttheboolexpr %<<expr>%> \relax
-\xinttheboolexpr#S
 \xintfloatexpr %<<expr>%> \relax
-\xintfloatexpr#S
 \xintthefloatexpr %<<expr>%> \relax
-\xintthefloatexpr#S
 
 \xinteval{expr}
 \xintieval{expr}
@@ -70,11 +60,8 @@
 \xintNewBoolExpr{cmd}[args]{definition}#d
 
 \xintdefvar %<<variables>%> := %<<expr>%>;
-\xintdefvar#S
 \xintdefiivar %<<variables>%> := %<<expr>%>;
-\xintdefiivar#S
 \xintdeffloatvar %<<variables>%> := %<<expr>%>;
-\xintdeffloatvar#S
 \xintunassignvar{variable}
 
 \xintnewdummy{character}
@@ -82,11 +69,8 @@
 \xintrestorevariable{character}
 
 \xintdeffunc %<<function>%> := %<<definition>%>;
-\xintdeffunc#S
 \xintdefiifunc %<<function>%> := %<<definition>%>;
-\xintdefiifunc#S
 \xintdeffloatfunc %<<function>%> := %<<definition>%>;
-\xintdeffloatfunc#S
 \xintunassignexprfunc{name}
 \xintunassigniiexprfunc{name}
 \xintunassignfloatexprfunc{name}
