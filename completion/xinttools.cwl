@@ -94,9 +94,7 @@
 \xintApplyInline{macro}{list}
 
 \xintFor %<<param>%> in {%<csv list%>} \do {%<code%>}
-\xintFor#S
 \xintFor* %<<param>%> in {%<csv list%>} \do {%<code%>}
-\xintFor*#S
 
 \xintifForFirst{YES branch}{NO branch}
 \xintifForLast{YES branch}{NO branch}
@@ -110,15 +108,11 @@
 \xintrationals
 
 \xintForpair %<params%> in {%<csv pair list%>} \do {%<code%>}
-\xintForpair#S
 \xintForthree %<params%> in {%<csv triple list%>} \do {%<code%>}
-\xintForthree#S
 \xintForfour %<params%> in {%<csv 4-tuple list%>} \do {%<code%>}
-\xintForfour#S
 
 \xintAssign %<<braced things>%> \to %<<cmd list>%>
 \xintAssign[%<options%>] %<<braced things>%> \to %<<cmd list>%>
-\xintAssign#S
 \to{cmd}#Sd
 
 #keyvals:\xintAssign
@@ -135,10 +129,8 @@ gf
 
 \xintAssignArray %<<braced things>%> \to %<<cmd>%>
 \xintAssignArray[%<options%>] %<<braced things>%> \to %<<cmd>%>
-\xintAssignArray#S
 \xintDigitsOf %<<braced things>%> \to %<<cmd>%>
 \xintDigitsOf[%<options%>] %<<braced things>%> \to %<<cmd>%>
-\xintDigitsOf#S
 
 #keyvals:\xintAssignArray,\xintDigitsOf
 o
