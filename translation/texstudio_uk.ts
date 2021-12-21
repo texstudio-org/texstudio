@@ -10425,7 +10425,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1514"/>
         <location filename="../src/texstudio.cpp" line="5582"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>показати більше записів ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1522"/>
@@ -10841,7 +10841,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5569"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>показати менше записів ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5610"/>

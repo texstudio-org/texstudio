@@ -10406,7 +10406,7 @@ fájlt nem lehet eltávolítani.</translation>
         <location filename="../src/texstudio.cpp" line="1514"/>
         <location filename="../src/texstudio.cpp" line="5582"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>mutassa a többit ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1522"/>
@@ -10820,7 +10820,7 @@ El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5569"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>mutasson kevesebbet ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5610"/>

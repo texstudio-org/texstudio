@@ -10421,7 +10421,7 @@ n&apos;a pas pu être supprimé.</translation>
         <location filename="../src/texstudio.cpp" line="1514"/>
         <location filename="../src/texstudio.cpp" line="5582"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>afficher davantage d&apos;entrées...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1522"/>
@@ -10835,7 +10835,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5569"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>afficher moins d&apos;entrées...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5610"/>

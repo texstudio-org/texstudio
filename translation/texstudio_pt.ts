@@ -10422,7 +10422,7 @@ não pôde ser removido.</translation>
         <location filename="../src/texstudio.cpp" line="1514"/>
         <location filename="../src/texstudio.cpp" line="5582"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>mostrar mais entradas...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1522"/>
@@ -10836,7 +10836,7 @@ outro ficheiro antes de o poder sobrescrever.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5569"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>mostrar menos entradas...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5610"/>
