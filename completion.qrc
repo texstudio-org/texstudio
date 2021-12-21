@@ -68,6 +68,7 @@
 <file>completion/arydshln.cwl</file>
 <file>completion/asapsym.cwl</file>
 <file>completion/ascii.cwl</file>
+<file>completion/askmaps.cwl</file>
 <file>completion/association-matrix.cwl</file>
 <file>completion/athnum.cwl</file>
 <file>completion/attachfile2.cwl</file>
@@ -197,6 +198,7 @@
 <file>completion/chemstyle.cwl</file>
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
+<file>completion/chordbars.cwl</file>
 <file>completion/cinzel.cwl</file>
 <file>completion/circle.cwl</file>
 <file>completion/circledsteps.cwl</file>
@@ -243,6 +245,7 @@
 <file>completion/class-scrbook.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
+<file>completion/class-sdapsclassic.cwl</file>
 <file>completion/class-suftesi.cwl</file>
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
@@ -796,6 +799,7 @@
 <file>completion/mfirstuc.cwl</file>
 <file>completion/mflogo.cwl</file>
 <file>completion/mhchem.cwl</file>
+<file>completion/mhequ.cwl</file>
 <file>completion/mhsetup.cwl</file>
 <file>completion/miama.cwl</file>
 <file>completion/microtype.cwl</file>
@@ -835,6 +839,7 @@
 <file>completion/multirow.cwl</file>
 <file>completion/multitoc.cwl</file>
 <file>completion/mup.cwl</file>
+<file>completion/musikui.cwl</file>
 <file>completion/mwe.cwl</file>
 <file>completion/myfilist.cwl</file>
 <file>completion/nabatean.cwl</file>
@@ -897,6 +902,7 @@
 <file>completion/oldprsn.cwl</file>
 <file>completion/OldStandard.cwl</file>
 <file>completion/oldstyle.cwl</file>
+<file>completion/optidef.cwl</file>
 <file>completion/optional.cwl</file>
 <file>completion/optparams.cwl</file>
 <file>completion/orcidlink.cwl</file>
@@ -978,6 +984,7 @@
 <file>completion/plimsoll.cwl</file>
 <file>completion/pmboxdraw.cwl</file>
 <file>completion/poetrytex.cwl</file>
+<file>completion/polexpr.cwl</file>
 <file>completion/polyglossia.cwl</file>
 <file>completion/polynom.cwl</file>
 <file>completion/prelim2e.cwl</file>
@@ -1011,6 +1018,7 @@
 <file>completion/pxpic.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
 <file>completion/pxtx-frak.cwl</file>
+<file>completion/pygmentex.cwl</file>
 <file>completion/pylatex.cwl</file>
 <file>completion/pymacros.cwl</file>
 <file>completion/python.cwl</file>
@@ -1091,6 +1099,9 @@
 <file>completion/scrtime.cwl</file>
 <file>completion/scrwfile.cwl</file>
 <file>completion/scsnowman.cwl</file>
+<file>completion/sdapsarray.cwl</file>
+<file>completion/sdapsbase.cwl</file>
+<file>completion/sdapslayout.cwl</file>
 <file>completion/secsty.cwl</file>
 <file>completion/selectp.cwl</file>
 <file>completion/selnolig.cwl</file>
@@ -1155,6 +1166,7 @@
 <file>completion/stacklet.cwl</file>
 <file>completion/stackrel.cwl</file>
 <file>completion/standalone.cwl</file>
+<file>completion/stanli.cwl</file>
 <file>completion/Starburst.cwl</file>
 <file>completion/starfont.cwl</file>
 <file>completion/statistics.cwl</file>
@@ -1248,6 +1260,7 @@
 <file>completion/tikzducks.cwl</file>
 <file>completion/tikz-feynman.cwl</file>
 <file>completion/tikz-imagelabels.cwl</file>
+<file>completion/tikzinclude.cwl</file>
 <file>completion/tikz-inet.cwl</file>
 <file>completion/tikzlings-anteaters.cwl</file>
 <file>completion/tikzlings-bats.cwl</file>
@@ -1327,6 +1340,7 @@
 <file>completion/truncate.cwl</file>
 <file>completion/truthtable.cwl</file>
 <file>completion/turnstile.cwl</file>
+<file>completion/tweaklist.cwl</file>
 <file>completion/twoopt.cwl</file>
 <file>completion/tx-ds.cwl</file>
 <file>completion/tx-of.cwl</file>
