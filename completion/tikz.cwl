@@ -152,6 +152,7 @@ graphdrawing
 graphdrawing.evolving
 graphs
 graphs.standard
+hobby
 intersections
 karnaugh
 knots

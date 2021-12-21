@@ -7,10 +7,8 @@
 #include:xintlog
 
 \xintexpr %<<expr>%> \relax
-\xintexpr#S
 \xintthe
 \xinttheexpr %<<expr>%> \relax
-\xinttheexpr#S
 
 \xintexprSafeCatcodes#*
 \xintexprRestoreCatcodes#*
@@ -25,21 +23,13 @@
 \xintfracSetDigits{expr}#*
 \xintiexpr %<<expr>%> \relax
 \xintiexpr[%<digits%>] %<<expr>%> \relax
-\xintiexpr#S
 \xinttheiexpr %<<expr>%> \relax
-\xinttheiexpr#S
 \xintiiexpr %<<expr>%> \relax
-\xintiiexpr#S
 \xinttheiiexpr %<<expr>%> \relax
-\xinttheiiexpr#S
 \xintboolexpr %<<expr>%> \relax
-\xintboolexpr#S
 \xinttheboolexpr %<<expr>%> \relax
-\xinttheboolexpr#S
 \xintfloatexpr %<<expr>%> \relax
-\xintfloatexpr#S
 \xintthefloatexpr %<<expr>%> \relax
-\xintthefloatexpr#S
 
 \xinteval{expr}
 \xintieval{expr}
@@ -70,23 +60,21 @@
 \xintNewBoolExpr{cmd}[args]{definition}#d
 
 \xintdefvar %<<variables>%> := %<<expr>%>;
-\xintdefvar#S
 \xintdefiivar %<<variables>%> := %<<expr>%>;
-\xintdefiivar#S
 \xintdeffloatvar %<<variables>%> := %<<expr>%>;
-\xintdeffloatvar#S
 \xintunassignvar{variable}
 
 \xintnewdummy{character}
 \xintensuredummy{character}
 \xintrestorevariable{character}
+\xintrestorevariablesilently{character}#*
 
 \xintdeffunc %<<function>%> := %<<definition>%>;
-\xintdeffunc#S
 \xintdefiifunc %<<function>%> := %<<definition>%>;
-\xintdefiifunc#S
 \xintdeffloatfunc %<<function>%> := %<<definition>%>;
-\xintdeffloatfunc#S
+\xintdefufunc %<<function>%> := %<<definition>%>;#*
+\xintdefiiufunc %<<function>%> := %<<definition>%>;#*
+\xintdeffloatufunc %<<function>%> := %<<definition>%>;#*
 \xintunassignexprfunc{name}
 \xintunassigniiexprfunc{name}
 \xintunassignfloatexprfunc{name}
@@ -114,14 +102,22 @@
 \xintthebareeval{expr}#*
 \xintthebarefloateval{expr}#*
 \xintthebareiieval{expr}#*
+\xintthebareroundedfloateval{expr}#*
 \ifxintexprsafecatcodes#*
 \xintexprsafecatcodestrue#*
 \xintexprsafecatcodesfalse#*
+\XINTusenoargfunc{func}#*
+\XINTusefunc{func}#*
+\XINTuseufunc{func}#*
+\XINTusemacrofunc{arg1}{arg2}{arg3}#*
+\xintNEprinthook#*
 
 \xintexprPrintOne#S
+\xintiexprPrintOne#S
 \xintiiexprPrintOne#S
 \xintfloatexprPrintOne#S
 \xintboolexprPrintOne#S
+\xintexprEmptyItem#S
 \thexintexpr#S
 \thexintiexpr#S
 \thexintfloatexpr#S

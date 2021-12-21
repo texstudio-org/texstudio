@@ -147,6 +147,9 @@ titlehead
 \changefontsizes{font size%l}#*
 \chapapp#*
 \chapappifchapterprefix{additional test}#*
+\chapter{title}#L1
+\chapter*{title}#L1
+\chapter[short title]{title}#L1
 \chapterformat#*
 \chapterheadendvskip#*
 \chapterheadmidvskip#*

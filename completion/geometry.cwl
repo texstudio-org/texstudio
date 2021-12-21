@@ -13,7 +13,7 @@
 #endkeyvals
 
 ## Paper size (section 5.1) (not available for \newgeometry)
-#keyvals:\geometry
+#keyvals:\geometry,\usepackage/geometry#c
 paper=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
 papername=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
 a0paper
@@ -62,7 +62,7 @@ portrait#true,false
 #endkeyvals
 
 ## Layout size (section 5.2)
-#keyvals:\geometry,\newgeometry
+#keyvals:\geometry,\newgeometry,\usepackage/geometry#c
 layout=#a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper
 layoutwidth=##L
 layoutheight=##L
@@ -75,7 +75,7 @@ layoutoffset={%<hoffset%>,%<voffset%>}
 #endkeyvals
 
 ## Body size (section 5.3)
-#keyvals:\geometry,\newgeometry
+#keyvals:\geometry,\newgeometry,\usepackage/geometry#c
 hscale=%<scale%>
 vscale=%<scale%>
 scale=%<scale%>
@@ -108,7 +108,7 @@ divide={%<left/top margin%>,%<width/height%>,%<right/bottom margin%>}
 #endkeyvals
 
 ## Margin size (section 5.4)
-#keyvals:\geometry,\newgeometry
+#keyvals:\geometry,\newgeometry,\usepackage/geometry#c
 left=##L
 lmargin=##L
 inner=##L
@@ -140,7 +140,7 @@ bindingoffset=##L
 #endkeyvals
 
 ## Native dimensions (section 5.5)
-#keyvals:\geometry,\newgeometry
+#keyvals:\geometry,\newgeometry,\usepackage/geometry#c
 headheight=##L
 head=##L
 headsep=##L
@@ -166,7 +166,7 @@ reversemarginpar#true,false
 #endkeyvals
 
 ## Drivers (section 5.6) (not available for \newgeometry)
-#keyvals:\geometry
+#keyvals:\geometry,\usepackage/geometry#c
 driver=#auto,none,dvips,dvipdfm,pdftex,luatex,xetex,vtex,dvipdfmx,xdvipdfmx
 dvips
 dvipdfm
@@ -179,7 +179,7 @@ xdvipdfmx
 #endkeyvals
 
 ## Other options (section 5.7) (not available for \newgeometry)
-#keyvals:\geometry
+#keyvals:\geometry,\usepackage/geometry#c
 verbose#true,false
 reset#true,false
 mag=%<magnification%>

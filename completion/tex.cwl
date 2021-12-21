@@ -75,6 +75,7 @@
 \copy#*
 \count#*
 \countdef#*
+\countdef{cmd}#Sd
 \cr#*
 \crcr#*
 \csname#*

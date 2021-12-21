@@ -188,6 +188,7 @@
 \xintdectostring#S
 \xintdectostringrez#S
 \xintfloor#S
+\xintifloor#S
 \xintceil#S
 \xinticeil#S
 \xintnumerator#S
@@ -211,6 +212,7 @@
 \xintsum#S
 \xintmul#S
 \xintsqr#S
+\xintipow#S
 \xintpow#S
 \xintfac#S
 \xintbinomial#S

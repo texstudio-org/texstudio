@@ -201,3 +201,7 @@ pylatex:
 class-pylatex
 latex-document
 tex
+sdapsclassic:
+class-sdapsclassic
+latex-document
+tex
