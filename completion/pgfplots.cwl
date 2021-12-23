@@ -643,11 +643,11 @@ enable tick line clipping#true,false
 \begin{tikzpicture}% file%\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\addplot file {%<file%>};%\\end{axis}%\\end{tikzpicture}#*n
 \begin{tikzpicture}% gnuplot%\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\addplot gnuplot {%<gnuplot code%>};%\\end{axis}%\\end{tikzpicture}#*n
 
-\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% function%\\addplot {%|};%\\end{axis}#n
-\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% table%\\addplot table[x=%<column header%>,y=%<column header%>] {%<file%>};%\\end{axis}#n
-\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% coordinates%\\addplot coordinates {%|};%\\end{axis}#n
-\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% file%\\addplot file {%<file%>};%\\end{axis}#*n
-\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% gnuplot%\\addplot gnuplot {%<gnuplot code%>};%\\end{axis}#*n
+\begin{axis}[%<options%>]% function%\\addplot {%|};%\\end{axis}#/tikzpicture
+\begin{axis}[%<options%>]% table%\\addplot table[x=%<column header%>,y=%<column header%>] {%<file%>};%\\end{axis}#/tikzpicture
+\begin{axis}[%<options%>]% coordinates%\\addplot coordinates {%|};%\\end{axis}#/tikzpicture
+\begin{axis}[%<options%>]% file%\\addplot file {%<file%>};%\\end{axis}#*/tikzpicture
+\begin{axis}[%<options%>]% gnuplot%\\addplot gnuplot {%<gnuplot code%>};%\\end{axis}#*/tikzpicture
 
 \addplot table [x=%<column header%>,y=%<column header%>] {%<file%>};#/axis,semilogxaxis,semilogyaxis,loglogaxis,groupplot,polaraxis,smithchart,ternaryaxis
 \addplot coordinates {%<coord list%>};#/axis,semilogxaxis,semilogyaxis,loglogaxis,groupplot,polaraxis,smithchart,ternaryaxis
