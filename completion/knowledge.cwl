@@ -1,16 +1,31 @@
 # knowledge package
-# Matthew Bertucci 7/22/2021
+# Matthew Bertucci 12/23/2021 for v1.26
 
-\knowledgeconfigure{keyvals}
+#include:l3keys2e
+#include:etoolbox
+#include:xparse
+#keyvals:\usepackage/knowledge#c
+paper
+electronic
+composition
+hyperref
+hyperref=#active,inactive,compatibility,auto
+xcolor
+xcolor=#active,inactive,compatibility,auto
+makeidx
+makeidx=#active,inactive,compatibility,auto
+#endkeyvals
 
-#keyvals:\knowledgeconfigure
+\knowledgeconfigure{directives%keyvals}
+
+#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
 diagnose bar#true,false
 diagnose help#true,false
 diagnose line#true,false
 fix hyperref twocolumn
 label scope#true,false
 notion
-protect quotation=%<{env1,env2,...}%>
+protect quotation={%<env1,env2,...%>}
 protect link
 unprotect link
 quotation
@@ -20,7 +35,8 @@ visible anchor points#true,false
 no patch
 #endkeyvals
 
-\knowledge{knowledge name}[synonym1|synonym2|...]{keyvals}
+\knowledge{knowledge name}{directives%keyvals}
+\knowledge{knowledge name}[synonym1|synonym2|...]{directives%keyvals}
 \knowledgestyle{style name}{keyvals}
 \knowledgestyle*{style name}{keyvals}
 \knowledgedirective{name}[optional parameter]{keyvals}
@@ -29,21 +45,19 @@ no patch
 \knowledgedefault*{keyvals}
 
 #keyvals:\knowledge#c,\knowledgestyle#c,\knowledgestyle*#c,\knowledgedirective#c,\knowledgedirective*#c
+also now
 autoref
 autoref link
 autoref target
 autorefhere
 boldface
-color=
-colorbox=
-cyclic color
 detokenize
 emphasize
 ensuretext
 ensuremath
-export=
+export=%<file%>
 invisible
-italic=
+italic
 fbox
 md
 notion
@@ -51,10 +65,11 @@ index=
 index key=
 index style=
 index parent key=
-intro style=
+intro style=%<knowledge style%>
+invisible
 italic
-link=
-link scope=
+link=%<knowledge%>
+link scope=%<label%>
 lowercase
 mathord
 mathop
@@ -63,38 +78,42 @@ mathrel
 mathopen
 mathclose
 mathpunct
-protect link
-ref=
-scope=
+namespace=
+now
+remove space
+scope=%<name%>
 smallcaps
-style=
+style=%<knowledge style%>
 synonym
-text=
+text=%<text%>
 remove space
 typewriter
 underline
 up
 uppercase
-url=
-wrap=
+wrap=%<macro%>
 #endkeyvals
 
-\kl(optional scope)[optional knowledge name]{text}
+\kl{text}
+\kl(scope){text}
+\kl[knowledge name]{text}
+\kl(scope)[knowledge name]{text}
 
-\knowledgenewvariant{command}{keyvals}
-\knowledgesetvariant{command}{keyvals}
+\knowledgenewvariant{command}{directives%keyvals}#d
+\knowledgesetvariant{command}{directives%keyvals}#d
 
 #keyvals:\knowledgenewvariant,\knowledgesetvariant
-namespace=
-default style=
-unknown style=
-unknown style cont=
-style directive=
-auto knowledge=
+namespace=%<string%>
+default style={%<style list%>}
+unknown style={%<style list%>}
+unknown style cont={%<style list%>}
+style directive={%<directive list%>}
+auto knowledge={%<directives%>}
 unknown warning#true,false
 unknown diagnose#true,false
-suggestion=
-PDF string=
+suggestion={%<directives%>}
+PDF string={%<code%>}
+display code={%<code%>}
 #endkeyvals
 
 \knowledgevariantmodifier{variant1*variant2*...}{command}
@@ -102,7 +121,7 @@ PDF string=
 \begin{scope}
 \end{scope}
 \knowledgescope{scope name}
-\knowledgeimport{label}
+\knowledgeimport{scope1,scope2,...}
 \knowledgeconfigureenvironment{env1,env2,...}{keyvals}
 
 #keyvals:\knowledgeconfigureenvironment#c
@@ -110,35 +129,73 @@ scope#true,false
 label=#none,accepts
 environment#true,false
 autoclose#true,false
-parents=
-push code=
-pop code=
-occurrences=
-forces=
+parents={%<area1,area2,...%>}
+push code={%<code%>}
+pop code={%<code%>}
+occurrences=#once,multiple,recursive
+forces=%<area%>
+knowledge=%<knowledge%>
 #endkeyvals
 
 #ifOption:hyperref
 #include:hyperref
+#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+ref=%<label%>
+protect link
+url=%<URL%>
+anchor point color=#%color
+AP color=#%color
+anchor point shape=%<shape%>
+AP shape=%<shape%>
+anchor point shift={%<x,y%>}
+AP shift={%<x,y%>}
+#endkeyvals
 #endif
 #ifOption:hyperref=active
 #include:hyperref
+#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+ref=%<label%>
+protect link
+url=%<URL%>
+anchor point color=#%color
+AP color=#%color
+anchor point shape=%<shape%>
+AP shape=%<shape%>
+anchor point shift={%<x,y%>}
+AP shift={%<x,y%>}
+#endkeyvals
 #endif
 
-\intro(optional scope)[optional knowledge name]{command}
-\intro*(optional scope)[optional knowledge name]{command}
-\phantomintro(optional label){command}
-\nointro{command}
-\reintro[optional knowledge name]{command}
-\reintro*[optional knowledge name]{command}
+\intro{knowledge}
+\intro[knowledge name]{knowledge}
+\intro*{knowledge}
+\intro*[knowledge name]{knowledge}
+\phantomintro{knowledge}
+\phantomintro(label){knowledge}
+\nointro{knowledge}
+\reintro{knowledge}
+\reintro[knowledge name]{knowledge}
+\reintro*{knowledge}
+\reintro*[knowledge name]{knowledge}
 
 \AP
 \itemAP
 
 #ifOption:xcolor
 #include:xcolor
+#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+color=#%color
+cyclic color={%<color1,color2,...%>}
+colorbox=#%color
+#endkeyvals
 #endif
 #ifOption:xcolor=active
 #include:xcolor
+#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+color=#%color
+cyclic color={%<color1,color2,...%>}
+colorbox=#%color
+#endkeyvals
 #endif
 
 #ifOption:makeidx
@@ -149,9 +206,9 @@ forces=
 #endif
 
 \knowledgepackagemode#*
-\IfKnowledgePaperModeTF#*
+\IfKnowledgePaperModeTF{true}{false}#*
 \ifKnowledgePaperMode#*
-\IfKnowledgeElectronicModeTF#*
+\IfKnowledgeElectronicModeTF{true}{false}#*
 \ifKnowledgeElectronicMode#*
-\IfKnowledgeCompositionModeTF#*
+\IfKnowledgeCompositionModeTF{true}{false}#*
 \ifKnowledgeCompositionMode#*
