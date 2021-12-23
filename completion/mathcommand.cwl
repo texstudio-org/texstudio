@@ -1,5 +1,5 @@
 # mathcommand package
-# Matthew Bertucci 7/22/2021
+# Matthew Bertucci 7/22/2021 for v1.04
 
 \newmathcommand{command}[args]{def}#d
 \newtextcommand{command}[args]{def}#d
@@ -15,8 +15,9 @@
 \DeclareDocumentTextCommand{command}{args}{def}#d
 \ProvideDocumentMathCommand{command}{args}{def}#d
 \ProvideDocumentTextCommand{command}{args}{def}#d
-\declarecommand
-\storecommand[optional prefix]{macro}
+\declarecommand{command}[args]{def}#d
+\storecommand{command}
+\storecommand[prefix]{command}
 
 \IfEmptyTF{string}{NoValueCode}{ValueCode}
 \GetIndex{string}
