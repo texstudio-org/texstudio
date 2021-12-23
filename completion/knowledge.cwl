@@ -4,6 +4,8 @@
 #include:l3keys2e
 #include:etoolbox
 #include:xparse
+#include:currfile
+
 #keyvals:\usepackage/knowledge#c
 paper
 electronic
@@ -14,11 +16,13 @@ xcolor
 xcolor=#active,inactive,compatibility,auto
 makeidx
 makeidx=#active,inactive,compatibility,auto
+cleveref
+cleveref=#active,inactive,compatibility,auto
 #endkeyvals
 
 \knowledgeconfigure{directives%keyvals}
 
-#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+#keyvals:\knowledgeconfigure#c,\usepackage/knowledge#c
 diagnose bar#true,false
 diagnose help#true,false
 diagnose line#true,false
@@ -61,10 +65,6 @@ italic
 fbox
 md
 notion
-index=
-index key=
-index style=
-index parent key=
 intro style=%<knowledge style%>
 invisible
 italic
@@ -102,7 +102,7 @@ wrap=%<macro%>
 \knowledgenewvariant{command}{directives%keyvals}#d
 \knowledgesetvariant{command}{directives%keyvals}#d
 
-#keyvals:\knowledgenewvariant,\knowledgesetvariant
+#keyvals:\knowledgenewvariant#c,\knowledgesetvariant#c
 namespace=%<string%>
 default style={%<style list%>}
 unknown style={%<style list%>}
@@ -139,7 +139,7 @@ knowledge=%<knowledge%>
 
 #ifOption:hyperref
 #include:hyperref
-#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+#keyvals:\knowledgeconfigure#c,\usepackage/knowledge#c
 ref=%<label%>
 protect link
 url=%<URL%>
@@ -153,7 +153,7 @@ AP shift={%<x,y%>}
 #endif
 #ifOption:hyperref=active
 #include:hyperref
-#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+#keyvals:\knowledgeconfigure#c,\usepackage/knowledge#c
 ref=%<label%>
 protect link
 url=%<URL%>
@@ -183,7 +183,7 @@ AP shift={%<x,y%>}
 
 #ifOption:xcolor
 #include:xcolor
-#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+#keyvals:\knowledgeconfigure#c,\usepackage/knowledge#c
 color=#%color
 cyclic color={%<color1,color2,...%>}
 colorbox=#%color
@@ -191,7 +191,7 @@ colorbox=#%color
 #endif
 #ifOption:xcolor=active
 #include:xcolor
-#keyvals:\knowledgeconfigure,\usepackage/knowledge#c
+#keyvals:\knowledgeconfigure#c,\usepackage/knowledge#c
 color=#%color
 cyclic color={%<color1,color2,...%>}
 colorbox=#%color
@@ -200,10 +200,89 @@ colorbox=#%color
 
 #ifOption:makeidx
 #include:makeidx
+#keyvals:\knowledge#c,\knowledgestyle#c,\knowledgestyle*#c,\knowledgedirective#c,\knowledgedirective*#c
+index=%<text%>
+index key=%<index key text%>
+index parent key=%<index key%>
+index style=%<csname%>
+no index
+#endkeyvals
+\knowledgeIntroIndexStyle#*
 #endif
 #ifOption:makeidx=active
 #include:makeidx
+#keyvals:\knowledge#c,\knowledgestyle#c,\knowledgestyle*#c,\knowledgedirective#c,\knowledgedirective*#c
+index=%<text%>
+index key=%<index key text%>
+index parent key=%<index key%>
+index style=%<csname%>
+no index
+#endkeyvals
+\knowledgeIntroIndexStyle#*
 #endif
+
+#ifOption:cleveref
+#include:cleveref
+\kcref{labellist}#r
+\kCref{labellist}#r
+\kcpageref{labellist}#r
+\kCpageref{labellist}#r
+\knamecref{key}#r
+\knameCref{key}#r
+\knamerefs{key}#r
+\knameCrefs{key}#r
+#endif
+#ifOption:cleveref=active
+#include:cleveref
+\kcref{labellist}#r
+\kCref{labellist}#r
+\kcpageref{labellist}#r
+\kCpageref{labellist}#r
+\knamecref{key}#r
+\knameCref{key}#r
+\knamerefs{key}#r
+\knameCrefs{key}#r
+#endif
+
+\knowledgenewrobustcmd{cmd}[args]{def}#*d
+\knowledgenewcommand{cmd}[args]{def}#*d
+\knowledgerenewcommand{cmd}[args]{def}#*d
+\KnowledgeNewDocumentCommand{cmd}{args}{def}#*d
+\KnowledgeRenewDocumentCommand{cmd}{args}{def}#*d
+\KnowledgeProvideDocumentCommand{cmd}{args}{def}#*d
+\KnowledgeDeclareDocumentCommand{cmd}{args}{def}#*d
+\knowledgedeclarecommand{cmd}[args]{def}#*d
+\knowledgenewmathcommand{cmd}[args]{def}#*d
+\knowledgenewtextcommand{cmd}[args]{def}#*d
+\knowledgerenewmathcommand{cmd}[args]{def}#*d
+\knowledgerenewtextcommand{cmd}[args]{def}#*d
+\knowledgedeclaremathcommand{cmd}[args]{def}#*d
+\knowledgedeclaretextcommand{cmd}[args]{def}#*d
+\KnowledgeNewDocumentMathCommand{cmd}{args}{def}#*d
+\KnowledgeNewDocumentTextCommand{cmd}{args}{def}#*d
+\KnowledgeRenewDocumentMathCommand{cmd}{args}{def}#*d
+\KnowledgeRenewDocumentTextCommand{cmd}{args}{def}#*d
+\KnowledgeProvideDocumentMathCommand{cmd}{args}{def}#*d
+\KnowledgeProvideDocumentTextCommand{cmd}{args}{def}#*d
+\KnowledgeDeclareDocumentMathCommand{cmd}{args}{def}#*d
+\KnowledgeDeclareDocumentTextCommand{cmd}{args}{def}#*d
+\knowledgenewcommandPIE{cmd}[args]{def}#*d
+\knowledgerenewcommandPIE{cmd}[args]{def}#*d
+\knowledgedeclarecommandPIE{cmd}[args]{def}#*d
+\knowledgenewmathcommandPIE{cmd}[args]{def}#*d
+\knowledgerenewmathcommandPIE{cmd}[args]{def}#*d
+\knowledgedeclaremathcommandPIE{cmd}[args]{def}#*d
+\KnowledgeNewDocumentCommandPIE{cmd}{args}{def}#*d
+\KnowledgeRenewDocumentCommandPIE{cmd}{args}{def}#*d
+\KnowledgeDeclareDocumentCommandPIE{cmd}{args}{def}#*d
+\KnowledgeProvideDocumentCommandPIE{cmd}{args}{def}#*d
+\KnowledgeNewDocumentMathCommandPIE{cmd}{args}{def}#*d
+\KnowledgeRenewDocumentMathCommandPIE{cmd}{args}{def}#*d
+\KnowledgeDeclareDocumentMathCommandPIE{cmd}{args}{def}#*d
+\KnowledgeProvideDocumentMathCommandPIE{cmd}{args}{def}#*d
+
+\withkl{cmd}{code}#*
+\cmdkl{arg}#*
 
 \knowledgepackagemode#*
 \IfKnowledgePaperModeTF{true}{false}#*
@@ -212,3 +291,8 @@ colorbox=#%color
 \ifKnowledgeElectronicMode#*
 \IfKnowledgeCompositionModeTF{true}{false}#*
 \ifKnowledgeCompositionMode#*
+
+\robustdisplay{arg}#*
+\robustdisplaybracket{arg}#*
+\quotesymbol#*
+\knowledgeFixHyperrefTwocolumn#*
