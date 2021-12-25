@@ -1,8 +1,8 @@
 # censor package
-# Matthew Bertucci 9/27/2021 for v3.22
+# Matthew Bertucci 12/26/2021 for v4.0
 
 #include:pbox
-#include:ifnextok
+#include:tokcycle
 
 \censor{text}
 \StopCensoring
@@ -18,6 +18,10 @@
 \censor*{width}
 \censorbox*{width}{height}{depth}
 \censorbox*[pre-commands]{width}{height}{depth}
+\blackoutenv
+\endblackoutenv
+\xblackoutenv
+\endxblackoutenv
 \censorruledepth#*
 \censorruleheight#*
 \censordot#*
