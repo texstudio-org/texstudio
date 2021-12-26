@@ -12,6 +12,9 @@
 #include:ifthen
 #include:url
 
+\bibname
+\biblistname
+
 ## 3.2 Global Customization ##
 \ExecuteBibliographyOptions{options%keyvals}
 \ExecuteBibliographyOptions[entrytype list]{options%keyvals}
