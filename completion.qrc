@@ -223,6 +223,7 @@
 <file>completion/classicthesis.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-l3doc.cwl</file>
+<file>completion/class-leadsheet.cwl</file>
 <file>completion/class-letter.cwl</file>
 <file>completion/class-limecv.cwl</file>
 <file>completion/classlist.cwl</file>
@@ -308,6 +309,8 @@
 <file>completion/crop.cwl</file>
 <file>completion/csquotes.cwl</file>
 <file>completion/css-colors.cwl</file>
+<file>completion/csvsimple.cwl</file>
+<file>completion/csvsimple-l3.cwl</file>
 <file>completion/ctable.cwl</file>
 <file>completion/ctex.cwl</file>
 <file>completion/currency.cwl</file>
@@ -482,6 +485,7 @@
 <file>completion/feyn.cwl</file>
 <file>completion/ffcode.cwl</file>
 <file>completion/fge.cwl</file>
+<file>completion/fgruler.cwl</file>
 <file>completion/fhgtechdoku_additional.cwl</file>
 <file>completion/fibnum.cwl</file>
 <file>completion/filecontentsdef.cwl</file>
@@ -499,6 +503,7 @@
 <file>completion/floatpag.cwl</file>
 <file>completion/floatpagestyle.cwl</file>
 <file>completion/floatrow.cwl</file>
+<file>completion/flowchart.cwl</file>
 <file>completion/fltpoint.cwl</file>
 <file>completion/flushend.cwl</file>
 <file>completion/fmtcount.cwl</file>
@@ -591,6 +596,7 @@
 <file>completion/GoudyIn.cwl</file>
 <file>completion/grabbox.cwl</file>
 <file>completion/gradientframe.cwl</file>
+<file>completion/graph35.cwl</file>
 <file>completion/graphbox.cwl</file>
 <file>completion/graphicxbox.cwl</file>
 <file>completion/graphicx.cwl</file>
@@ -668,6 +674,8 @@
 <file>completion/jurabib.cwl</file>
 <file>completion/jvlisting.cwl</file>
 <file>completion/kantlipsum.cwl</file>
+<file>completion/karnaugh-map.cwl</file>
+<file>completion/karnaughmap.cwl</file>
 <file>completion/kbordermatrix.cwl</file>
 <file>completion/keyfloat.cwl</file>
 <file>completion/keyparse.cwl</file>
@@ -696,11 +704,13 @@
 <file>completion/layout.cwl</file>
 <file>completion/lcg.cwl</file>
 <file>completion/leading.cwl</file>
+<file>completion/leadsheets.cwl</file>
 <file>completion/lecturer.cwl</file>
 <file>completion/leftidx.cwl</file>
 <file>completion/leftindex.cwl</file>
 <file>completion/lengthconvert.cwl</file>
 <file>completion/letltxmacro.cwl</file>
+<file>completion/letterspace.cwl</file>
 <file>completion/letterswitharrows.cwl</file>
 <file>completion/lettrine.cwl</file>
 <file>completion/lexend.cwl</file>
@@ -763,6 +773,7 @@
 <file>completion/makecell.cwl</file>
 <file>completion/makeidx.cwl</file>
 <file>completion/makematch.cwl</file>
+<file>completion/makeshape.cwl</file>
 <file>completion/manfnt.cwl</file>
 <file>completion/manyfoot.cwl</file>
 <file>completion/manyind.cwl</file>
@@ -1133,6 +1144,7 @@
 <file>completion/silence.cwl</file>
 <file>completion/simpleinvoice.cwl</file>
 <file>completion/simplekv.cwl</file>
+<file>completion/simpleoptics.cwl</file>
 <file>completion/simpler-wick.cwl</file>
 <file>completion/simpsons.cwl</file>
 <file>completion/siunitx.cwl</file>
@@ -1183,6 +1195,7 @@
 <file>completion/strands.cwl</file>
 <file>completion/stringenc.cwl</file>
 <file>completion/stringstrings.cwl</file>
+<file>completion/structmech.cwl</file>
 <file>completion/styledcmd.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subeqn.cwl</file>
@@ -1288,6 +1301,7 @@
 <file>completion/tikzlings-squirrels.cwl</file>
 <file>completion/tikz-network.cwl</file>
 <file>completion/tikzorbital.cwl</file>
+<file>completion/tikz-page.cwl</file>
 <file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
 <file>completion/tikzsymbols.cwl</file>
