@@ -34,6 +34,7 @@
 \libertineGlyph{glyph name}#n
 \biolinumGlyph{glyph name}#n
 \biolinumKeyGlyph{glyph name}#n
+\biolinumkey#*n
 \LKeyTux#n
 \LKeyWin#n
 \LKeyMenu#n
@@ -89,7 +90,7 @@
 \LKeyReset#n
 \LKeyCtrlAltX{letter or digit}#n
 \LKeyCtrlAltEnt#n
-\LKeyAltF{1}#n
+\LKeyAltF{digit}#n
 \LKeyStrgAltF{digit}#n
 \LKeyCtrlAltF{digit}#n
 \LMouseEmpty#n

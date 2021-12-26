@@ -205,3 +205,7 @@ sdapsclassic:
 class-sdapsclassic
 latex-document
 tex
+leadsheet:
+class-leadsheet
+latex-document
+tex
