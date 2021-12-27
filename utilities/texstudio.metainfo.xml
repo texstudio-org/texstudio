@@ -46,15 +46,14 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2021-12-06T18:05:37+0000" version="4.1.2">
+    <release date="2021-12-27T19:28:10+0000" version="4.2.0">
       <description>
         <ul>
-          <li>allow resizing the different sections in the symbol widget </li>
-          <li>fix automatic session restore on OSX/Qt6</li>
-          <li>scale inline preview if visible linewidth is too small</li>
-          <li>fix latex package name parsing on Qt5 builds</li>
-          <li>added cwls</li>
-          <li>Use Qt 6.2.2 on OSX (fixes ctrl+letter shortcut issue on OSX)</li>
+          <li>more cwls</li>
+          <li>fix key handling for some special keyboard set-ups (#2011)</li>
+          <li>fix user menu handling</li>
+          <li>filter available dictionaries in status/language selection</li>
+          <li>change placeHolder behavior: autoremove when content in placeholder is changed, don't use placeholder for cutBuffer</li>
         </ul>
       </description>
     </release>
