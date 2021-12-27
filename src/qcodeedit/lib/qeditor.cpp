@@ -6255,6 +6255,14 @@ void QEditor::updateContent (int i, int n)
                 m_curPlaceHolder=-1;
             }
         }
+        //empty ones (which are not currently used)
+        for (int i=m_placeHolders.count()-1;i>=0;i--) {
+            const PlaceHolder& ph = m_placeHolders.at(i);
+            if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && ph.autoRemove &&
+                    ph.cursor.lineNumber()==ph.cursor.anchorLineNumber() &&
+                    ph.cursor.columnNumber()==ph.cursor.anchorColumnNumber())
+                removePlaceHolder(i);
+        }
 		//invalid used ones
         /*if (m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count() &&
 			m_placeHolders[m_lastPlaceHolder].cursor.lineNumber()==-1) {
