@@ -6243,35 +6243,12 @@ void QEditor::updateContent (int i, int n)
 				}
 			}
 		}
-		//remove placeholders
-		//if another has been modified
-        for(int i=0;i<m_curPlaceHolder && i< m_placeHolders.count();++i){
-            const PlaceHolder& current_ph = m_placeHolders.at(m_curPlaceHolder);
-            const PlaceHolder& ph = m_placeHolders.at(i);
-            if(ph.cursor.lineNumber()!=current_ph.cursor.lineNumber()){
-                //remove old placeholders
-                removePlaceHolder(i);
-                --i;
+		//if someone pressed enter
+        if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()){
+            if (m_placeHolders[m_curPlaceHolder].autoRemove && !m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft){
+				removePlaceHolder(m_curPlaceHolder);
             }
         }
-        /*if (m_curPlaceHolder!=m_lastPlaceHolder &&
-			m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count())
-			if (m_placeHolders[m_lastPlaceHolder].autoRemove){
-				removePlaceHolder(m_lastPlaceHolder);
-				m_lastPlaceHolder=m_curPlaceHolder;
-            }*/
-		//if someone pressed enter
-		if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()) 
-			if (m_placeHolders[m_curPlaceHolder].autoRemove && m_placeHolders[m_curPlaceHolder].cursor.lineNumber() != m_placeHolders[m_curPlaceHolder].cursor.anchorLineNumber())
-				removePlaceHolder(m_curPlaceHolder);
-		//empty ones (which are not currently used)
-		for (int i=m_placeHolders.count()-1;i>=0;i--) {
-			const PlaceHolder& ph = m_placeHolders.at(i);
-			if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && ph.autoRemove &&
-				ph.cursor.lineNumber()==ph.cursor.anchorLineNumber() &&
-				ph.cursor.columnNumber()==ph.cursor.anchorColumnNumber())
-					removePlaceHolder(i);					
-		}
 		//invalid used ones
 		if (m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count() &&
 			m_placeHolders[m_lastPlaceHolder].cursor.lineNumber()==-1) {
