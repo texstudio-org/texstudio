@@ -1,9 +1,10 @@
-TeXstudio 4.1.3
+TeXstudio 4.2.0
 -----------------
 - more cwls
 - fix key handling for some special keyboard set-ups (#2011)
 - fix user menu handling
 - filter available dictionaries in status/language selection
+- change placeHolder behavior: autoremove when content in placeholder is changed, don't use placeholder for cutBuffer
 
 TeXstudio 4.1.2
 -----------------
