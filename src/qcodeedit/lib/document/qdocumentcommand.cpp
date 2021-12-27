@@ -331,12 +331,12 @@ void QDocumentCommand::updateCursorsOnDeletion(int line, int column, int prefixL
 //	qDebug("removing %i lines at (%i, %i) with (%i : %i) bounds", numLines, line, column, prefixLength, suffixLength);
 //erstes zeichen einer zeile: warning: removing 0 lines at (12, 0) with (1 : -1) bounds
 //zeile mit 10 textzeichen: warning: removing 1 lines at (13, 0) with (10 : 0) bounds
-	foreach ( QDocumentCursorHandle *ch, m_doc->impl()->m_autoUpdatedCursorList )
+    foreach ( QDocumentCursorHandle *ch, m_doc->impl()->m_autoUpdatedCursorList )
 	{
 		if ( ch == m_cursor || ch->document() != m_doc)
 			continue;
 
-	//	qDebug("[[watch:0x%x(%i, %i)]]", ch, ch->m_begLine, ch->m_begOffset);
+        // qDebug("[[watch:0x%x(%i, %i)]]", ch, ch->m_begLine, ch->m_begOffset);
 		int columnEnd = (numLines >= 1) ? suffixLength : column + prefixLength;
 		// TODO : better selection handling
 		if ( ch->hasSelection() )

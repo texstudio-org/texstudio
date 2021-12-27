@@ -2118,7 +2118,8 @@ void QEditor::removePlaceHolder(int id)
 		ph.mirrors[i].line().setFlag(QDocumentLine::LayoutDirty,true);
 	    }
 	ph.mirrors.clear();
-	ph.cursor.setAutoUpdated(false);
+    ph.cursor.setAutoUpdated(false);
+    ph.cursor=QDocumentCursor();
 	m_placeHolders.removeAt(id);
 	
 	if ( id < m_curPlaceHolder )
@@ -6229,7 +6230,7 @@ void QEditor::updateContent (int i, int n)
 	if (m_placeHolders.count()>0 && 
         !m_placeHolderSynchronizing) { //no recursion, if updateContent is called due to changes made by setPlaceHolder
 		//look which placeholder has been modified
-		if (m_mirrors.count()==0){
+        if (m_mirrors.count()==0){
 			for (int i=0;i<m_placeHolders.count();i++){
 				if (m_placeHolders[i].autoOverride) continue;
 				bool found=false;
@@ -6246,18 +6247,19 @@ void QEditor::updateContent (int i, int n)
 					break;
 				}
 			}
-		}
+        }
 		//if someone pressed enter
         if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()){
             if (m_placeHolders[m_curPlaceHolder].autoRemove && !m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft){
 				removePlaceHolder(m_curPlaceHolder);
+                m_curPlaceHolder=-1;
             }
         }
 		//invalid used ones
-		if (m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count() &&
+        /*if (m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count() &&
 			m_placeHolders[m_lastPlaceHolder].cursor.lineNumber()==-1) {
 			removePlaceHolder(m_lastPlaceHolder);
-		}
+        }*/
 		if (m_curPlaceHolder>=0 &&  m_curPlaceHolder < m_placeHolders.count() &&
 			m_placeHolders[m_curPlaceHolder].cursor.lineNumber()==-1) {
 			removePlaceHolder(m_curPlaceHolder);
@@ -6275,7 +6277,7 @@ void QEditor::updateContent (int i, int n)
 				}
 		}
 	}
-	m_lastPlaceHolder=m_curPlaceHolder;
+    //m_lastPlaceHolder=m_curPlaceHolder;
 			
 	repaintContent(i, n>1 ? -1 : n);
 }

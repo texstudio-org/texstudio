@@ -202,18 +202,6 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 			return true;
 		if (autoInsertLRM(event, editor))
 			return true;
-		if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-			// if cursor is at the end of a placeholder, remove that placeholder
-			int phId = editor->currentPlaceHolder();
-			if (phId >= 0) {
-				PlaceHolder ph = editor->getPlaceHolder(phId);
-				if (editor->cursor().lineNumber() == ph.cursor.lineNumber() &&
-				        editor->cursor().columnNumber() == ph.cursor.columnNumber()) {
-					editor->removePlaceHolder(phId);
-					return true;
-				}
-			}
-		}
 	} else {
 		if (event->key() == Qt::Key_Control) {
 			editor->setMouseTracking(true);
