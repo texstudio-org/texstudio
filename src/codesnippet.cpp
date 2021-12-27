@@ -346,8 +346,10 @@ void CodeSnippet::insertAt(QEditor *editor, QDocumentCursor *cursor, Placeholder
 	QString savedSelection;
 	bool alwaysSelect = false;
 	bool editBlockOpened = false;
-	if (cursor->hasSelection()) {
-		savedSelection = cursor->selectedText();
+    if (cursor->hasSelection() ) {
+        if(editor->currentPlaceHolder()==-1){ // don't reuse placeholder content
+            savedSelection = cursor->selectedText();
+        }
 		editBlockOpened = true;
 		cursor->beginEditBlock();
 		// TODO: This is a workaround. clearLanguageMatches() does not work properly

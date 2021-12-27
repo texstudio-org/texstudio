@@ -4898,7 +4898,9 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	bool hasSelection = c.hasSelection();
 
 	if ( hasSelection ) {
-	    cutBuffer=c.selectedText();
+        if(m_curPlaceHolder==-1){ // only process text outside a placeholder
+            cutBuffer=c.selectedText();
+        }
 	    c.removeSelectedText();
 	}
 
@@ -5076,7 +5078,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
         c.deleteChar();
     else {
         if ( hasSelection ){
-            cutBuffer=c.selectedText();
+            if(m_curPlaceHolder==-1){ // don't store placeholder content as cutBuffer
+                cutBuffer=c.selectedText();
+            }
             c.removeSelectedText();
         }
 
