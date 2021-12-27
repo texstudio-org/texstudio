@@ -378,25 +378,25 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< "inserted"
 		<< "abc\\abc{inserted}def"
 		<< CP(0,16,
-		   QList<CP>()<<CP(0,8,16));
+           QList<CP>());
 	QTest::newRow("simple nested placeholder")
 		<< "abcdef"
 		<< 0 << 0 << 3
 		<< "\\la{%<here%>}"
 		<< 0
 		<< "\\tex{%<print%>}"
-		<< "abc\\la{\\tex{here}}def"
-		<< CP(0,12,16,
-		   QList<CP>()<<CP(0,12,16)); 
+        << "abc\\la{\\tex{print}}def"
+        << CP(0,12,17,
+           QList<CP>()<<CP(0,12,17));
 	QTest::newRow("multi line nested placeholder")
 		<< "abcdef"
 		<< -1 << 0 << 3
 		<< "\\la{%<here%>}"
 		<< 0
 		<< "loli\n\\tex{%<print%>}"
-		<< "abc\\la{loli\n\\tex{here}}def"
-		<< CP(1,5,9,
-		   QList<CP>()<<CP(1,5,9));
+        << "abc\\la{loli\n\\tex{print}}def"
+        << CP(1,5,10,
+           QList<CP>()<<CP(1,5,10));
 	QTest::newRow("selection removing placeholder")
 		<< "abcdef"
 		<< 0 << 0 << 3
@@ -405,7 +405,7 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< "just me"
 		<< "abc\\la{just me}def"
 		<< CP(0,14,14,
-		   QList<CP>()<<CP(0,7,14));
+           QList<CP>());
 	QTest::newRow("selection removing multiline placeholder")
 		<< "abcdef"
 		<< -1 << 0 << 3
@@ -420,17 +420,17 @@ void CodeSnippetTest::nestedInsert_data(){
 		<< "\\la{%<here%>}"
 		<< 0
 		<< "just me %|"
-		<< "abc\\la{just me here}def"
-        << CP(0,15,19,
-		   QList<CP>()<<CP(0,7,19));
+        << "abc\\la{just me }def"
+        << CP(0,15,15,
+           QList<CP>());
 	QTest::newRow("selection multiline reinserted at cursor pos")
 		<< "abcdef"
 		<< -1 << 0 << 3
 		<< "\\la{%<here%>}"
 		<< 0
 		<< "just\nme %|"
-		<< "abc\\la{just\nme here}def"
-        << CP(1,3,7);
+        << "abc\\la{just\nme }def"
+        << CP(1,3,3);
 
 	//begin MAGIC
 	//begin MAGIC (don't forget to change this when the spells changes)
@@ -447,16 +447,16 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< "content gone"
 			<< "test\\begin{magic}\n"+indent+"content gone\n\\end{magic}i\nng"
 			<< CP(1,i+12, 
-			   QList<CP>() << CP(1,i,i+12));
+               QList<CP>() );
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with nested placeholder")))
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
 			<< "\\begin{magic}"
 			<< 0
 			<< "<%<what will be here?%>>"
-			<< "test\\begin{magic}\n"+indent+"<"+content+">\n\\end{magic}i\nng"
-			<< CP(1,i+1,i+1+content.length(), 
-			   QList<CP>() << CP(1,i+1,i+1+content.length()));
+            << "test\\begin{magic}\n"+indent+"<what will be here?>\n\\end{magic}i\nng"
+            << CP(1,i+1,i+1+18,
+               QList<CP>() << CP(1,i+1,i+1+18));
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with option"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
@@ -465,16 +465,16 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< "option"
 			<< "test\\begin{magic}{option}\n"+indent+content+"\n\\end{magic}i\nng"
 			<< CP(0,24,
-			   QList<CP>() << CP(0,18,24) << CP(1,i,i+content.length()));
+               QList<CP>() << CP(1,i,i+content.length()));
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with option and nesting"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
 			<< "\\begin{magic}{%<xyz%>}" 
 			<< 0
 			<< "\\some[%<thing%>]"
-			<< "test\\begin{magic}{\\some[xyz]}\n"+indent+content+"\n\\end{magic}i\nng"
-			<< CP(0,24,27,
-               QList<CP>() << CP(0,24,27)); //second insertion removes placeholder on line 0 and append a new one to line 0
+            << "test\\begin{magic}{\\some[thing]}\n"+indent+content+"\n\\end{magic}i\nng"
+            << CP(0,24,29,
+               QList<CP>() << CP(1,i,i+content.length())<< CP(0,24,29));
 		/*QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
@@ -495,17 +495,18 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< 1
 			<< "testenv"
 			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"testenv\n\\end{"+translatedEnvironmentName+"}i\nng"
-			<< CP(1,i+7,
-               QList<CP>() << CP(1,i,i+7));
+            << CP(1,i+7,
+                  QList<CP>() << CP(0,11,11+translatedEnvironmentName.length(),QList<CP>() << CP(2,5,5+translatedEnvironmentName.length())) );
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with mirror changing/inserting another placehoder"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
 			<< "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< 1
 			<< "\\miau{%<testenv%>}"
-			<< "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"\\miau{"+content+"}\n\\end{"+translatedEnvironmentName+"}i\nng"
-			<< CP(1,i+6,i+6+content.length(),
-               QList<CP>() << CP(1,i+6,i+6+content.length()));
+            << "test\\begin{"+translatedEnvironmentName+"}\n"+indent+"\\miau{testenv}\n\\end{"+translatedEnvironmentName+"}i\nng"
+            << CP(1,i+6,i+13,
+                  QList<CP>() << CP(0,11,11+translatedEnvironmentName.length(),QList<CP>() << CP(2,5,5+translatedEnvironmentName.length()))
+                              << CP(1,i+6,i+13));
 		QTest::newRow(qPrintable(withIndent.arg("begin magic with nested mirrors"))) 
 			<< "testi\nng"
 			<< 2*i-1 << 0 << 4
@@ -513,12 +514,13 @@ void CodeSnippetTest::nestedInsert_data(){
 			<< 1
 			<< "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"
 			<< "test\\begin{"+translatedEnvironmentName+"}\n"+
-			    indent+"\\begin{"+content+"}\n"+ //selected text (content) is pasted to new placeholder
+                indent+"\\begin{"+translatedEnvironmentName+"}\n"+
 				indent+indent+content+"\n"+
-				indent+"\\end{"+content+"}\n"+
+                indent+"\\end{"+translatedEnvironmentName+"}\n"+
 				"\\end{"+translatedEnvironmentName+"}i\nng"
-			<< CP(1,i+7,i+7+content.length(),
-               QList<CP>() << CP(1,i+7,i+7+content.length(), QList<CP>() << CP(3,i+5,i+5+content.length()))
+            << CP(1,i+7,i+7+translatedEnvironmentName.length(),
+               QList<CP>() << CP(0,11,11+translatedEnvironmentName.length(), QList<CP>() << CP(4,5,5+translatedEnvironmentName.length()))
+                           << CP(1,i+7,i+7+translatedEnvironmentName.length(), QList<CP>() << CP(3,i+5,i+5+translatedEnvironmentName.length()))
 			               << CP(2,2*i,2*i+content.length())); 
 		
 	}
