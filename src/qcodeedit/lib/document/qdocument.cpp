@@ -7123,25 +7123,9 @@ void QDocumentPrivate::drawPlaceholders(QPainter *p, QDocument::PaintContext &cx
 {
 	p->save();
 
-	//mark placeholder which will probably be removed
-	if (
-		cxt.lastPlaceHolder >=0
-		&& cxt.lastPlaceHolder < cxt.placeHolders.count()
-		&& cxt.lastPlaceHolder != cxt.curPlaceHolder
-	){
-		const PlaceHolder& ph = cxt.placeHolders.at(cxt.lastPlaceHolder);
-		if (!ph.autoRemove) cxt.lastPlaceHolder = -1;
-		else if (!ph.cursor.line().isHidden()) {
-			p->setPen(QColor(0, 0, 0));
-			p->setPen(Qt::DotLine);
-			p->drawConvexPolygon(ph.cursor.documentRegion());
-			p->setPen(Qt::SolidLine);
-		}
-	}
-
 	//draw placeholders
 	for (int i=0; i < cxt.placeHolders.count(); i++)
-		if (i != cxt.curPlaceHolder && i!=cxt.lastPlaceHolder && !cxt.placeHolders[i].autoOverride &&  !cxt.placeHolders[i].cursor.line().isHidden())
+        if (i != cxt.curPlaceHolder && !cxt.placeHolders[i].autoOverride &&  !cxt.placeHolders[i].cursor.line().isHidden())
 			p->drawConvexPolygon(cxt.placeHolders[i].cursor.documentRegion());
 
 	//mark active placeholder

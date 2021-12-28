@@ -2124,10 +2124,6 @@ void QEditor::removePlaceHolder(int id)
 	
 	if ( id < m_curPlaceHolder )
 		--m_curPlaceHolder;
-	if ( id < m_lastPlaceHolder )
-		--m_lastPlaceHolder;
-	else if ( id == m_lastPlaceHolder )
-		m_lastPlaceHolder=-1;
 	
 	viewport()->update();
 }
@@ -2142,7 +2138,6 @@ void QEditor::replacePlaceHolders(const QList<PlaceHolder>& newPlaceholders){
 	m_placeHolders = newPlaceholders;
 	if ( m_curPlaceHolder >= m_placeHolders.size() )
 		m_curPlaceHolder = m_placeHolders.size() - 1;
-	m_lastPlaceHolder = -1;
 	viewport()->update();
 }
 
@@ -3156,7 +3151,6 @@ void QEditor::paintEvent(QPaintEvent */*e*/)
 		// put placeholder info into paint context
 		ctx.placeHolders=m_placeHolders;
 		ctx.curPlaceHolder=m_curPlaceHolder;
-		ctx.lastPlaceHolder=m_lastPlaceHolder;
 	}
         //qDebug("elapsed %d ms",tm.elapsed());
 
@@ -3358,7 +3352,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			//setFlag(CursorOn, true);
 			//ensureCursorVisible();
 
-			if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor))
+            if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor))
 				setPlaceHolder(-1);
 				/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
 				{
@@ -6257,7 +6251,7 @@ void QEditor::updateContent (int i, int n)
         //empty ones (which are not currently used)
         for (int i=m_placeHolders.count()-1;i>=0;i--) {
             const PlaceHolder& ph = m_placeHolders.at(i);
-            if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && ph.autoRemove &&
+            if (i != m_curPlaceHolder && ph.autoRemove &&
                     ph.cursor.lineNumber()==ph.cursor.anchorLineNumber() &&
                     ph.cursor.columnNumber()==ph.cursor.anchorColumnNumber()){
                 removePlaceHolder(i);
@@ -6281,7 +6275,6 @@ void QEditor::updateContent (int i, int n)
 				}
 		}
 	}
-    //m_lastPlaceHolder=m_curPlaceHolder;
 			
 	repaintContent(i, n>1 ? -1 : n);
 }

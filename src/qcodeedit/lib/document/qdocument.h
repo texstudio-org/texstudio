@@ -137,7 +137,7 @@ class QCE_EXPORT QDocument : public QObject
 			QList<QDocumentCursorHandle*> extra;
 			QList<QDocumentCursorHandle*> cursors;
 			QList<QDocumentSelection> selections;
-			int curPlaceHolder, lastPlaceHolder;
+            int curPlaceHolder;
 			QList<PlaceHolder> placeHolders;
 		};
 

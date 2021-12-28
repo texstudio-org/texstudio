@@ -696,7 +696,7 @@ public slots:
 		
 		bool atPlaceholder();
         bool isMirrored();
-		int m_curPlaceHolder, m_lastPlaceHolder, m_cphOffset;
+        int m_curPlaceHolder, m_cphOffset;
 		bool m_placeHolderSynchronizing; 
 		
 		QList<PlaceHolder> m_placeHolders;
