@@ -3,3 +3,7 @@
 \MakeShortVerb{\%<character%>}
 \MakeShortVerb*{\%<character%>}
 \DeleteShortVerb{\%<character%>}
+# following three lines tell highlighter not to mark args as incorrect
+\MakeShortVerb{definition}#S
+\MakeShortVerb*{definition}#S
+\DeleteShortVerb{definition}#S
