@@ -6252,7 +6252,6 @@ void QEditor::updateContent (int i, int n)
         if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()){
             if (m_placeHolders[m_curPlaceHolder].autoRemove && !m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft){
 				removePlaceHolder(m_curPlaceHolder);
-                m_curPlaceHolder=-1;
             }
         }
         //empty ones (which are not currently used)
@@ -6260,14 +6259,11 @@ void QEditor::updateContent (int i, int n)
             const PlaceHolder& ph = m_placeHolders.at(i);
             if (i != m_curPlaceHolder && i!=m_lastPlaceHolder && ph.autoRemove &&
                     ph.cursor.lineNumber()==ph.cursor.anchorLineNumber() &&
-                    ph.cursor.columnNumber()==ph.cursor.anchorColumnNumber())
+                    ph.cursor.columnNumber()==ph.cursor.anchorColumnNumber()){
                 removePlaceHolder(i);
+            }
         }
 		//invalid used ones
-        /*if (m_lastPlaceHolder>=0 &&  m_lastPlaceHolder < m_placeHolders.count() &&
-			m_placeHolders[m_lastPlaceHolder].cursor.lineNumber()==-1) {
-			removePlaceHolder(m_lastPlaceHolder);
-        }*/
 		if (m_curPlaceHolder>=0 &&  m_curPlaceHolder < m_placeHolders.count() &&
 			m_placeHolders[m_curPlaceHolder].cursor.lineNumber()==-1) {
 			removePlaceHolder(m_curPlaceHolder);
