@@ -19,6 +19,9 @@
 
 \MakeSpecialShortVerb{%<verb cmd%>}{\%<character%>}
 \MakeSpecialShortVerb*{%<verb cmd%>}{\%<character%>}
+# following two lines tell highlighter not to mark args as incorrect
+\MakeSpecialShortVerb{verb cmd}{definition}#S
+\MakeSpecialShortVerb*{verb cmd}{definition}#S
 
 \collectverb{%<code%>}{%<verb text%>}#*
 \collectverb{%<code%>}{verbatimSymbol}#S
