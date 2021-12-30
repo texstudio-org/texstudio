@@ -1377,7 +1377,7 @@ Esto cambia la escala de las barras de herramientas verticales (para pantallas d
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
-        <translation type="unfinished"/>
+        <translation>Comillas Francesas (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>
@@ -4226,12 +4226,12 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
         <source>Caption for the image</source>
-        <translation type="unfinished"/>
+        <translation>Leyenda de la imagen</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
         <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
-        <translation type="unfinished"/>
+        <translation>Título que se mostrará en la lista de figuras (si se desea diferente del título largo)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
@@ -10421,7 +10421,7 @@ no pudo ser eliminado.</translation>
         <location filename="../src/texstudio.cpp" line="1514"/>
         <location filename="../src/texstudio.cpp" line="5582"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>mostrar más entradas ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1522"/>
@@ -10791,12 +10791,12 @@ No se pudo guardar el archivo de imagen.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="4333"/>
         <source>Storing session failed</source>
-        <translation type="unfinished"/>
+        <translation>Error al guardar la sesión</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4333"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
-        <translation type="unfinished"/>
+        <translation>Error al almacenar la información de la sesión en %1, El archivo existe pero no se puede escribir.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4428"/>
@@ -10836,7 +10836,7 @@ No se pudo guardar el archivo de imagen.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5569"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>mostrar menos entradas ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5610"/>
