@@ -3189,7 +3189,16 @@ void Texstudio::fileRecentList()
 	fileSelector.data()->init(QStringList() << configManager.recentProjectList << configManager.recentFilesList, 0);
 
     connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
-	fileSelector.data()->setVisible(true);
+    fileSelector.data()->setVisible(true);
+}
+/*!
+ * \brief clear recent file list
+ */
+void Texstudio::fileClearRecentList()
+{
+    configManager.recentFilesList.clear();
+    configManager.recentProjectList.clear();
+    configManager.updateRecentFiles();
 }
 
 void Texstudio::viewDocumentListHidden()

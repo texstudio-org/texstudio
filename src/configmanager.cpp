@@ -1952,7 +1952,8 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems)
 		recentMenu->addSeparator();
 		for (int i = 0; i < maxRecentFiles; ++i)
 			newOrLostOldManagedAction(recentMenu, QString::number(i), tr("Recent File %1").arg(i), SLOT(fileOpenRecent()))->setVisible(false);
-		newOrLostOldManagedAction(recentMenu, "list", tr("File list"), SLOT(fileRecentList()));
+        newOrLostOldManagedAction(recentMenu, "clearlist", tr("Clear file list"), SLOT(fileClearRecentList()));
+        newOrLostOldManagedAction(recentMenu, "list", tr("File list"), SLOT(fileRecentList()));
 		newOrLostOldManagedAction(recentMenu, "firstFile", tr("Open first non-open file"), SLOT(fileOpenFirstNonOpen()));
 		newOrLostOldManagedAction(recentMenu, "allFiles", tr("&* Open all files"), SLOT(fileOpenAllRecent()));
 	}

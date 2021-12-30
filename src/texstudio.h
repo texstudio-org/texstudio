@@ -291,6 +291,7 @@ protected slots:
 	void fileOpenRecent();
 	void fileOpenAllRecent(); ///< open all files in recent file list
 	void fileRecentList();
+    void fileClearRecentList();
 	void viewDocumentListHidden(); ///< show names of all hidden document (for debug)
 	void fileDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column);
 	void viewDocumentList();
