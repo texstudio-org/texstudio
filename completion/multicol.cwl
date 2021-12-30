@@ -1,15 +1,29 @@
 # mode: multicol.sty
 # dani/2006-02-18
-\begin{multicols}{n}
+# updated 12/29/2021 for v1.9b
+
 \begin{multicols*}{n}
-\begin{multicols}{n}[preface]
 \begin{multicols*}{n}[preface]
-\begin{multicols}{n}[preface][skip]
 \begin{multicols*}{n}[preface][skip]
+\begin{multicols}{n}
+\begin{multicols}{n}[preface]
+\begin{multicols}{n}[preface][skip]
 \columnbreak
-\end{multicols}
+\columnseprulecolor#*
+\docolaction{first}{middle}{last}
 \end{multicols*}
-\multicolsep
-\multicoltolerance
-\postmulticols
-\premulticols
+\end{multicols}
+\flushcolumns
+\LRmulticolcolumns#*
+\maxbalancingoverflow#*
+\multicolbaselineskip#*
+\multicolpretolerance#*
+\multicolsep#*
+\multicoltolerance#*
+\newcolumn
+\postmulticols#*
+\premulticols#*
+\raggedcolumns
+\RLmulticolcolumns#*
+\setemergencystretch{num of cols}{hsize}#*
+\vfilmaxdepth#*
