@@ -165,7 +165,7 @@
 \LoadClassWithOptions{class}#*u
 \LoadClassWithOptions{class}[release]#*u
 \LoadFontDefinitionFile{encoding}{family}#*
-\LogHook#*
+\LogHook{hook}#*
 \MakeRobust{cmd}#*
 \MessageBreak#*
 \NeedsTeXFormat{format}#*
@@ -216,7 +216,8 @@
 \RawParEnd#*
 \RawShipout#*
 \ReadonlyShipoutCounter#*
-\RemoveFromHook{hook}{label}#*
+\RemoveFromHook{hook}#*
+\RemoveFromHook{hook}[label]#*
 \RenewCommandCopy{cmd}{def}#d
 \RenewDocumentCommand{cmd}{args}{def}#d
 \RenewDocumentEnvironment{envname}{args}{begdef}{enddef}#N
