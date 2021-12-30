@@ -14,6 +14,7 @@
 \AfterEndEnvironment{environment}{code}#*
 \ArgumentSpecification#*
 \AtBeginDocument{code}#*
+\AtBeginDocument[label]{code}#*
 \AtBeginDvi{code}#*
 \AtBeginEnvironment[label]{environment}{code}#*
 \AtBeginEnvironment{environment}{code}#*
@@ -29,6 +30,7 @@
 \AtBeginShipoutUpperLeft{code}#*
 \AtBeginShipoutUpperLeftForeground{code}#*
 \AtEndDocument{code}#*
+\AtEndDocument[label]{code}#*
 \AtEndDvi{code}#*
 \AtEndEnvironment[label]{environment}{code}#*
 \AtEndEnvironment{environment}{code}#*
