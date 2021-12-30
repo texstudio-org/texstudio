@@ -1,5 +1,6 @@
 # tasks pacakge
 # muzimuzhi/3 Nov 2019, tasks v1.0c
+# updated 12/29/2021 for v1.3a
 
 #include:expl3
 #include:xparse
@@ -11,34 +12,43 @@
 \begin{tasks}(cols)
 \end{tasks}
 \task
-\task[label format]
-\task[label format](cols)
+\task[label text]
+\task[label text](cols)
 \task(cols)
 \task*
-\task*[label format]
-\task*[label format](cols)
+\task*[label text]
+\task*[label text](cols)
 \task*(cols)
 \task!
 \startnewitemline
 \settasks{keyvals}
-\NewTasksEnvironment{name}
-\NewTasksEnvironment[keyvals]{name}[seperator](cols)
-\RenewTasksEnvironment{name}
-\RenewTasksEnvironment[keyvals]{name}[seperator](cols)
+\NewTasksEnvironment{envname}#N
+\NewTasksEnvironment[keyvals]{envname}[separator](cols)#N
+\RenewTasksEnvironment{envname}#N
+\RenewTasksEnvironment[keyvals]{envname}[separator](cols)#N
 
 #keyvals:\begin{tasks},\settasks,\NewTasksEnvironment,\RenewTasksEnvironment
 style=itemize,enumerate
 label-format=%<code%>
 label=%<code%>
+ref=%<code%>
 label-width=##L
 label-offset=##L
 item-format=%<code%>
 item-indent=##L
 column-sep=##L
-label-align=left,right,center
+label-align=#left,right,center
 before-skip=##L
 after-skip=##L
 after-item-skip=##L
 resume#true,false
+start=%<integer%>
+counter=%<counter%>
 debug#true,false
 #endkeyvals
+
+\tasksifmeasuringTF{true}{false}#*
+\tasksifmeasuringT{true}#*
+\tasksifmeasuringF{false}#*
+\tasklabel#*
+\thetask#*

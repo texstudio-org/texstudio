@@ -143,3 +143,5 @@ right
 swap
 to path={%<path spec%>}
 #endkeyvals
+
+\tikzcdmatrixname#*

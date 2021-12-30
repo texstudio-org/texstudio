@@ -209,3 +209,15 @@ leadsheet:
 class-leadsheet
 latex-document
 tex
+bookcover:
+class-bookcover
+latex-document
+tex
+tufte-handout:
+class-tufte-handout
+latex-document
+tex
+tufte-book:
+class-tufte-book
+latex-document
+tex

@@ -3,6 +3,26 @@
 
 #include:array
 
+#keyvals:\usepackage/numprint#c
+nosepfour
+sepfour
+noaddmissingzero
+addmissingzero
+noaddplus
+addplus
+noaddplusexponent
+addplusexponent
+noautolanguage
+autolanguage
+np
+oldcolumntypes
+newcolumntypes
+boldmath
+warning
+error
+debug
+#endkeyvals
+
 \numprint{number}
 \numprint[unit]{number}
 
@@ -44,6 +64,7 @@ km
 \npnoround#*
 \npnoroundexp#*
 
+\nplpadding{digits}#*
 \nplpadding[character]{digits}#*
 \npnolpadding#*
 
@@ -83,9 +104,10 @@ km
 \npcelsiusseparator{separator}#*
 \nppercentseparator{separator}#*
 
-#ifOption:autolanguage
-\npstyledefault
-\npstyleenglish
-\npstylegerman
-\npaddtolanguage{lang1}{lang2}
-#endif
+\npstyledefault#*
+\npstyleenglish#*
+\npstylegerman#*
+\npstylefrench#*
+\npstyleportuguese#*
+\npstyledutch#*
+\npaddtolanguage{lang1}{lang2}#*
