@@ -3026,6 +3026,9 @@ repeatAfterFileSavingFailed:
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
     updateTOCs();
 
+    // if editors are split and tabgroup 0 does not contain any editors, move remaining editors to tabgroup 0
+    editors->moveAllToGroupZeroifEmpty();
+
 #ifndef NO_POPPLER_PREVIEW
 	//close associated embedded pdf viewer
 	foreach (PDFDocument *viewer, PDFDocument::documentList())

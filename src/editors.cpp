@@ -469,7 +469,22 @@ void Editors::moveToTabGroup(LatexEditorView *edView, int groupIndex, int target
 		groupIndex = 0;
 	if (groupIndex > tabGroups.length() -1)
 		groupIndex = tabGroups.length() -1;
-	moveToTabGroup(edView, tabGroups[groupIndex], targetIndex);
+    moveToTabGroup(edView, tabGroups[groupIndex], targetIndex);
+}
+/*!
+ * \brief move all editor to tabgroup 0 if there are no editors
+ * This basically "closes" tabgroup 1
+ */
+void Editors::moveAllToGroupZeroifEmpty()
+{
+    if(tabGroups.length()>1 && tabGroups[0]->isEmpty()) {
+        TxsTabWidget *tabGroup = tabGroups[1];
+        if (!tabGroup) return;
+
+        // NOTE: This code assumes exactly two tabGroups
+        foreach (LatexEditorView *edView, tabGroup->editors())
+            moveToTabGroup(edView, tabGroups[0], -1);
+    }
 }
 
 /*!

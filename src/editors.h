@@ -34,6 +34,7 @@ public:
 	QList<LatexEditorView *> editors();
 	int tabGroupIndexFromEditor(LatexEditorView *edView) const;
 	void moveToTabGroup(LatexEditorView *edView, int groupIndex, int targetIndex);
+    void moveAllToGroupZeroifEmpty();
 
 signals:
 	void currentEditorChanged();
