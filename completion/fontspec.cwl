@@ -187,3 +187,31 @@ WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
 Renderer=%<renderer%>
 #endkeyvals
+
+# from tuenc.def
+\UnicodeEncodingName#*
+\UnicodeFontTeXLigatures#*
+\UnicodeFontFile{arg1}{arg2}#*
+\UnicodeFontName{arg1}{arg2}#*
+\DeclareUnicodeAccent{cmd}{encoding}{char code}#*
+\DeclareUnicodeComposite{cmd}{letter}{definition}#*
+\textquotedbl#n
+\guillemetleft#n
+\guillemotleft#*n
+\guillemetright#n
+\guillemotright#*n
+\DH#n
+\TH#n
+\dh#n
+\th#n
+\DJ#n
+\dj#n
+\NG#n
+\ng#n
+\quotesinglbase#n
+\quotedblbase#n
+\guilsinglleft#n
+\guilsinglright#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\k{arg}#n
