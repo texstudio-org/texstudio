@@ -2,6 +2,9 @@
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
 
+#include:xparse
+#include:l3keys2e
+
 \zhnumber{number}
 \zhnumber[options%keyvals]{number}
 
