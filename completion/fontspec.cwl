@@ -193,8 +193,8 @@ Renderer=%<renderer%>
 \UnicodeFontTeXLigatures#*
 \UnicodeFontFile{arg1}{arg2}#*
 \UnicodeFontName{arg1}{arg2}#*
-\DeclareUnicodeAccent{cmd}{encoding}{char code}#*
-\DeclareUnicodeComposite{cmd}{letter}{definition}#*
+\DeclareUnicodeAccent{cmd}{encoding}{char code}#*d
+\DeclareUnicodeComposite{cmd}{letter}{definition}#*d
 \textquotedbl#n
 \guillemetleft#n
 \guillemotleft#*n
