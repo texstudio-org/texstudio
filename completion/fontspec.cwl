@@ -3,7 +3,7 @@
 # muzimuzhi/30 Aug 2019 for fontspec v2.7c
 # url: http://www.ctan.org/tex-archive/help/Catalogue/entries/fontspec.html
 
-## Sec. I.4 Interaction with LaTeX2e and other pacakges
+## Sec. I.4 Interaction with LaTeX2e and other packages
 \liningnums{nums}
 \emfontdeclare{font-switching list}
 \emreset
