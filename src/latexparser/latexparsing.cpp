@@ -375,7 +375,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         cd.args--;
                         tk.subtype = cd.argTypes.takeFirst();
                     } else {
-                        // ignore
+                        // ignore, but make sure that optional arguments are impossible after that (see #2046)
+                        commandStack.pop();
                         lexed << tk;
                         continue;
                     }
