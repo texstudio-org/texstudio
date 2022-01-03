@@ -1,5 +1,5 @@
 # witharrows package
-# Matthew Bertucci 9/8/2021 for v2.6c
+# Matthew Bertucci 1/3/2022 for v2.6d
 
 #include:expl3
 #include:l3keys2e
@@ -20,17 +20,17 @@
 \end{DispWithArrows*}
 \WithArrowsOptions{options%keyvals}
 
-#keyvals:\begin{WithArrows},\WithArrowsOptions
+#keyvals:\begin{WithArrows},\WithArrowsOptions,\WithArrowsNewStyle
 c
 b
 #endkeyvals
 
-#keyvals:\begin{WithArrows},\begin{DispWithArrows},\begin{DispWithArrows*},\WithArrowsOptions
-tikz=
+#keyvals:\begin{WithArrows},\begin{DispWithArrows},\begin{DispWithArrows*},\WithArrowsOptions,\WithArrowsNewStyle
+tikz={%<TikZ options%>}
 xoffset=##L
-command-name=
-code-before=
-code-after=
+command-name=%<csname%>
+code-before=%<code%>
+code-after=%<code%>
 format=%<cols%>
 show-nodes
 show-node-names
@@ -51,28 +51,29 @@ end-adjust=##L
 ygap=##L
 ystart=##L
 max-length-of-arrow=##L
+%witharrowsstyle
 #endkeyvals
 
-#keyvals:\begin{WithArrows},\begin{DispWithArrows},\begin{DispWithArrows*}
-name=
+#keyvals:\begin{WithArrows},\begin{DispWithArrows},\begin{DispWithArrows*},\WithArrowsNewStyle
+name=%<node name%>
 #endkeyvals
 
-#keyvals:\begin{DispWithArrows},\begin{DispWithArrows*},\WithArrowsOptions
+#keyvals:\begin{DispWithArrows},\begin{DispWithArrows*},\WithArrowsOptions,\WithArrowsNewStyle
 wrap-lines
-tagged-lines=
+tagged-lines={%<line1,line2,...%>}
 fleqn
 mathindent=##L
 subequations
 standard-behaviour-with-items
 #endkeyvals
 
-#keyvals:\begin{DispWithArrows},\begin{DispWithArrows*}
+#keyvals:\begin{DispWithArrows},\begin{DispWithArrows*},\WithArrowsNewStyle
 left-brace
 left-brace={%<content%>}
 replace-left-brace-by=
 #endkeyvals
 
-#keyvals:\WithArrowsOptions
+#keyvals:\WithArrowsOptions,\WithArrowsNewStyle
 xoffset-for-o-arrows=##L
 up-and-down/width=##L
 up-and-down/radius=##L
@@ -107,7 +108,8 @@ down={%<options%>}
 \notag#m
 \tagnextline#/DispWithArrows,DispWithArrows*
 \WithArrowsRightX#*
-\WithArrowsNewStyle{style name}{options}#*
+
+\WithArrowsNewStyle{style name}{options%keyvals}#s#%witharrowsstyle
 
 #ifOption:footnote
 #include:footnote
@@ -118,3 +120,10 @@ down={%<options%>}
 #endif
 
 \WithArrowsNbLines#*
+
+\Witharrows#S
+\endWithArrows#S
+\DispWithArrows#S
+\endDispWithArrows#S
+\myfileversion#S
+\myfiledate#S
