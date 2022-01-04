@@ -46,7 +46,7 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2021-12-27T19:28:10+0000" version="4.2.0">
+    <release date="2022-01-04T09:40:00+0000" version="4.2.0">
       <description>
         <ul>
           <li>more cwls</li>
