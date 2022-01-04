@@ -3,7 +3,7 @@
 # muzimuzhi/30 Aug 2019 for fontspec v2.7c
 # url: http://www.ctan.org/tex-archive/help/Catalogue/entries/fontspec.html
 
-## Sec. I.4 Interaction with LaTeX2e and other pacakges
+## Sec. I.4 Interaction with LaTeX2e and other packages
 \liningnums{nums}
 \emfontdeclare{font-switching list}
 \emreset
@@ -187,3 +187,31 @@ WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
 Renderer=%<renderer%>
 #endkeyvals
+
+# from tuenc.def
+\UnicodeEncodingName#*
+\UnicodeFontTeXLigatures#*
+\UnicodeFontFile{arg1}{arg2}#*
+\UnicodeFontName{arg1}{arg2}#*
+\DeclareUnicodeAccent{cmd}{encoding}{char code}#*d
+\DeclareUnicodeComposite{cmd}{letter}{definition}#*d
+\textquotedbl#n
+\guillemetleft#n
+\guillemotleft#*n
+\guillemetright#n
+\guillemotright#*n
+\DH#n
+\TH#n
+\dh#n
+\th#n
+\DJ#n
+\dj#n
+\NG#n
+\ng#n
+\quotesinglbase#n
+\quotedblbase#n
+\guilsinglleft#n
+\guilsinglright#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\k{arg}#n

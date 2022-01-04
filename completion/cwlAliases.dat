@@ -221,3 +221,11 @@ tufte-book:
 class-tufte-book
 latex-document
 tex
+turabian-researchpaper:
+class-turabian-researchpaper
+latex-document
+tex
+turabian-thesis:
+class-turabian-thesis
+latex-document
+tex

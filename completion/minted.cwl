@@ -28,6 +28,7 @@ chapter
 cache#true,false
 cachedir=%<directory%>
 finalizecache#true,false
+fontencoding=%<encoding%>
 frozencache#true,false
 draft#true,false
 final#true,false
@@ -175,3 +176,6 @@ breaksymbolseprightnchars=%<int%>
 \DeleteFile{file}#*
 \DeleteFile[directory]{file}#*
 \MintedPygmentize#*
+\MintedPython#*
+\PYG#*
+\PYGZsq#*
