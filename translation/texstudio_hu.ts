@@ -3786,7 +3786,7 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1955"/>
         <source>File list</source>
-        <translation>Fájl lista</translation>
+        <translation>Fájllista</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1956"/>
