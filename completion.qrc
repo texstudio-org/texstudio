@@ -13,6 +13,7 @@
 <file>completion/actcodes.cwl</file>
 <file>completion/actuarialangle.cwl</file>
 <file>completion/actuarialsymbol.cwl</file>
+<file>completion/addlines.cwl</file>
 <file>completion/adfarrows.cwl</file>
 <file>completion/adfbullets.cwl</file>
 <file>completion/adforn.cwl</file>
@@ -131,6 +132,8 @@
 <file>completion/blowup.cwl</file>
 <file>completion/blox.cwl</file>
 <file>completion/bm.cwl</file>
+<file>completion/bmpsize-base.cwl</file>
+<file>completion/bmpsize.cwl</file>
 <file>completion/bnumexpr.cwl</file>
 <file>completion/bodegraph.cwl</file>
 <file>completion/bohr.cwl</file>
@@ -403,6 +406,7 @@
 <file>completion/duckuments.cwl</file>
 <file>completion/duerer.cwl</file>
 <file>completion/dutchcal.cwl</file>
+<file>completion/dvipscol.cwl</file>
 <file>completion/dynamicnumber.cwl</file>
 <file>completion/dynbrackets.cwl</file>
 <file>completion/dynkin-diagrams.cwl</file>
@@ -573,6 +577,7 @@
 <file>completion/frege.cwl</file>
 <file>completion/fr-fancy.cwl</file>
 <file>completion/froufrou.cwl</file>
+<file>completion/fullminipage.cwl</file>
 <file>completion/fullwidth.cwl</file>
 <file>completion/fvextra.cwl</file>
 <file>completion/fwlw.cwl</file>
@@ -633,8 +638,10 @@
 <file>completion/greek6cbc.cwl</file>
 <file>completion/greekctr.cwl</file>
 <file>completion/greekdates.cwl</file>
+<file>completion/grfext.cwl</file>
 <file>completion/gridpapers.cwl</file>
 <file>completion/gridset.cwl</file>
+<file>completion/grid-system.cwl</file>
 <file>completion/grmath.cwl</file>
 <file>completion/grundgesetze.cwl</file>
 <file>completion/GS1.cwl</file>
@@ -668,6 +675,7 @@
 <file>completion/hyperbar.cwl</file>
 <file>completion/hyperref.cwl</file>
 <file>completion/hyperxmp.cwl</file>
+<file>completion/hyphsubst.cwl</file>
 <file>completion/icite.cwl</file>
 <file>completion/identkey.cwl</file>
 <file>completion/idxcmds.cwl</file>
@@ -698,6 +706,7 @@
 <file>completion/interpreter.cwl</file>
 <file>completion/interval.cwl</file>
 <file>completion/intopdf.cwl</file>
+<file>completion/inversepath.cwl</file>
 <file>completion/ionumbers.cwl</file>
 <file>completion/isodate.cwl</file>
 <file>completion/isopt.cwl</file>
@@ -859,6 +868,7 @@
 <file>completion/midpage.cwl</file>
 <file>completion/miller.cwl</file>
 <file>completion/milstd.cwl</file>
+<file>completion/minibox.cwl</file>
 <file>completion/minidocument.cwl</file>
 <file>completion/minifp.cwl</file>
 <file>completion/MinionPro.cwl</file>
@@ -868,6 +878,7 @@
 <file>completion/minutes.cwl</file>
 <file>completion/mismath.cwl</file>
 <file>completion/missaali.cwl</file>
+<file>completion/mleftright.cwl</file>
 <file>completion/mnotes.cwl</file>
 <file>completion/MnSymbol.cwl</file>
 <file>completion/moderncvcollection.cwl</file>
@@ -967,6 +978,7 @@
 <file>completion/orcidlink.cwl</file>
 <file>completion/ordinalpt.cwl</file>
 <file>completion/Oswald.cwl</file>
+<file>completion/ot-tableau.cwl</file>
 <file>completion/oubraces.cwl</file>
 <file>completion/overpic.cwl</file>
 <file>completion/padcount.cwl</file>
@@ -974,6 +986,7 @@
 <file>completion/pagecont.cwl</file>
 <file>completion/pagegrid.cwl</file>
 <file>completion/pagenote.cwl</file>
+<file>completion/pagesel.cwl</file>
 <file>completion/papermas.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/paralist.cwl</file>
@@ -1037,6 +1050,14 @@
 <file>completion/pifont.cwl</file>
 <file>completion/pinoutikz.cwl</file>
 <file>completion/pixelart.cwl</file>
+<file>completion/PJLauthor.cwl</file>
+<file>completion/PJLdate.cwl</file>
+<file>completion/PJLdraft.cwl</file>
+<file>completion/PJLlang.cwl</file>
+<file>completion/PJLlogo.cwl</file>
+<file>completion/PJLmath.cwl</file>
+<file>completion/PJLpaper.cwl</file>
+<file>completion/PJLthm.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
@@ -1059,6 +1080,7 @@
 <file>completion/prodint.cwl</file>
 <file>completion/productbox.cwl</file>
 <file>completion/progressbar.cwl</file>
+<file>completion/ProjLib.cwl</file>
 <file>completion/proof.cwl</file>
 <file>completion/proofread.cwl</file>
 <file>completion/protecteddef.cwl</file>
@@ -1128,6 +1150,7 @@
 <file>completion/rotating.cwl</file>
 <file>completion/rotchiffre.cwl</file>
 <file>completion/Rothdn.cwl</file>
+<file>completion/rotpages.cwl</file>
 <file>completion/roundbox.cwl</file>
 <file>completion/Royal.cwl</file>
 <file>completion/rsfso.cwl</file>
@@ -1139,6 +1162,7 @@
 <file>completion/sarabian.cwl</file>
 <file>completion/SASnRdisplay.cwl</file>
 <file>completion/savesym.cwl</file>
+<file>completion/scalebar.cwl</file>
 <file>completion/scalefnt.cwl</file>
 <file>completion/scalerel.cwl</file>
 <file>completion/schedule.cwl</file>
@@ -1401,6 +1425,7 @@
 <file>completion/tocbasic.cwl</file>
 <file>completion/tocbibind.cwl</file>
 <file>completion/tocdata.cwl</file>
+<file>completion/tocenter.cwl</file>
 <file>completion/tocloft.cwl</file>
 <file>completion/tocvsec2.cwl</file>
 <file>completion/todo.cwl</file>
@@ -1577,6 +1602,7 @@
 <file>completion/zref-user.cwl</file>
 <file>completion/zref-xr.cwl</file>
 <file>completion/zwgetfdate.cwl</file>
+<file>completion/zwpagelayout.cwl</file>
 <file>completion/zx-calculus.cwl</file>
 <file>completion/cwlAliases.dat</file>
 </qresource>
