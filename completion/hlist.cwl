@@ -35,3 +35,11 @@ show label#true,false
 list parindent=##L
 show frame#true,false
 #endkeyvals
+
+
+\hlstname#S
+\hlstdate#S
+\hlstver#S
+
+\hlist#S
+\endhlist#S
