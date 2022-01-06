@@ -66,3 +66,9 @@ linenumsep=%<number%>
 #endkeyvals
 
 \thecvcounter
+
+cvgrayc#B
+cvgray#B
+cvgrayb#B
+cvblue#B
+chengse#B
