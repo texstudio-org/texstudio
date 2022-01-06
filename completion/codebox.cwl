@@ -1,5 +1,5 @@
 # codebox package
-# Matthew Bertucci 1/3/2022 for v1.0.2
+# Matthew Bertucci 1/6/2022 for v1.0.3
 
 #include:expl3
 #include:xtemplate
@@ -53,7 +53,7 @@
 
 \codeset{options%keyvals}
 
-#keyvals:\begin{codebox},\begin{codebox*},\codefile,\codefile*,\begin{codeview},\begin{codeview*},\cvfile,\cvfile*,cvcounter
+#keyvals:\begin{codebox},\begin{codebox*},\codefile,\codefile*,\begin{codeview},\begin{codeview*},\cvfile,\cvfile*
 minted#true,false
 lang=%<source code lang%>
 pretitle=%<title prefix%>
@@ -63,6 +63,10 @@ comments=%<text%>
 commentf=%<format macros%>
 codestretch=%<factor%>
 linenumsep=%<number%>
+#endkeyvals
+
+#keyvals:\begin{codeview},\begin{codeview*},\cvfile,\cvfile*
+label=##l
 #endkeyvals
 
 \thecvcounter
