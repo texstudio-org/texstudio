@@ -173,6 +173,7 @@ uselist={%<csv list of ids%>}
 
 #keyvals:\DeclareAcronym#c,\NewAcroPreset#c,\RenewAcroPreset#c,\DeclareAcroPreset#c,\ac#c,\ac*#c,\Ac#c,\Ac*#c,\acp#c,\acp*#c,\Acp#c,\Acp*#c,\iac#c,\iac*#c,\Iac#c,\Iac*#c,\acs#c,\acs*#c,\Acs#c,\Acs*#c,\acsp#c,\acsp*#c,\Acsp#c,\Acsp*#c,\iacs#c,\iacs*#c,\Iacs#c,\Iacs*#c,\acl#c,\acl*#c,\Acl#c,\Acl*#c,\aclp#c,\aclp*#c,\Aclp#c,\Aclp*#c,\iacl#c,\iacl*#c,\Iacl#c,\Iacl*#c,\aca#c,\aca*#c,\Aca#c,\Aca*#c,\acap#c,\acap*#c,\Acap#c,\Acap*#c,\iaca#c,\iaca*#c,\Iaca#c,\Iaca*#c,\acf#c,\acf*#c,\Acf#c,\Acf*#c,\acfp#c,\acfp*#c,\Acfp#c,\Acfp*#c,\iacf#c,\iacf*#c,\Iacf#c,\Iacf*#c
 case-sensitive#true,false
+case-insensitive#true,false
 first-style=#long-short,short-long,short,long,footnote
 subsequent-style=#long-short,short-long,short,long,footnote
 single-style=#long-short,short-long,short,long,footnote
@@ -371,7 +372,7 @@ load-style=%<name%>
 \DeclareAcroEnding{name}{short default}{long default}#*
 \DeclareAcroArticle{name}{default}#*
 \DeclareAcroTranslation{key%plain}{language-translation list}#*
-\AddAcroTranslation{key%plain}{language-translation list}#*
+\AddAcroTranslations{key%plain}{language-translation list}#*
 \DeclareAcroProperty{name}#*
 \DeclareAcroPropertyAlias{name1}{name2}#*
 \MakeAcroPropertyAlias{name1}{name2}#*

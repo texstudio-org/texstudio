@@ -20,7 +20,7 @@
 \ExecuteBibliographyOptions[entrytype list]{options%keyvals}
 
 #keyvals:\ExecuteBibliographyOptions#c
-sorting=nty,nyt,nyvt,anyt,anyvt,ynt,ydnt,none,debug
+sorting=#nty,nyt,nyvt,anyt,anyvt,ynt,ydnt,none,debug
 sortcase#true,false
 sortupper#true,false
 sortlocale=

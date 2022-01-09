@@ -1,234 +1,220 @@
 # tkz-euclide package
-# Matthew Bertucci 9/17/2021 for v3.06c
+# Matthew Bertucci 1/6/2022 for v4.00b
 
-#include:tkz-base
+#include:tikz
+# loads angles, arrows, arrows.meta, calc, decorations, decorations.markings
+# decorations.pathreplacing, decorations.shapes, decorations.text, decorations.pathmorphing
+# intersections, plotmarks, quotes, and shapes.misc tikzlibraries
+#include:xfp
 
-\tkzGetPoint{point}#/tikzpicture
-\tkzGetPoints{point1,point2,...}#/tikzpicture
+### II. Setting ###
 
-\tkzDefMidPoint(point1,point2)#/tikzpicture
-\tkzDefBarycentricPoint(point1=num1,point2=num2,...)#/tikzpicture
-\tkzCentroid(point1=num1,point2=num2,point3=num3)#/tikzpicture
-\tkzApolloniusCenter[options](point1,point2)#*/tikzpicture
-\tkzDefApolloniusPoint[options](point1,point2)#*/tikzpicture
-\tkzDefApolloniusRadius[options](point1,point2)#*/tikzpicture
-\tkzInCenter(point1,point2,point3)#*/tikzpicture
+## 6. Definition of a point: \tkzDefPoint or \tkzDefPoints ##
+\tkzDefPoint(%<x%>,%<y%>){%<ref%>}
+\tkzDefPoint[%<options%>](%<x%>,%<y%>){%<ref%>}
+\tkzDefPoint(%<angle%>:%<radius%>){%<ref%>}
+\tkzDefPoint[%<options%>](%<angle%>:%<radius%>){%<ref%>}
+	
+#keyvals:\tkzDefPoint#c,\tkzDefPoints#c
+label=%<text%>
+shift=(%<x%>,%<y%>)
+shift=(%<angle%>:%<radius%>)
+#endkeyvals
 
-\tkzDefIntSimilitudeCenter(point1,num1)(point2,num2)#/tikzpicture
-\tkzExtSimilitudeCenter(point1,num1)(point2,num2)#/tikzpicture
+\tkzDefShiftPoint[%<point%>](%<x%>,%<y%>){%<ref%>}
+\tkzDefShiftPoint[%<point%>](%<angle%>:%<radius%>){%<ref%>}
+\tkzDefShiftPointCoord[point1](angle:radius){point2}#*
 
-\tkzDefTriangleCenter(point1,point2,point3)#/tikzpicture
-\tkzDefTriangleCenter[options%keyvals](point1,point2,point3)#/tikzpicture
+\tkzDefPoints{x1/y1/name1,x2/y2/name2,...}
+\tkzDefPoints[options%keyvals]{x1/y1/name1,x2/y2/name2,...}
+
+### III. Calculating ###
+
+## 7. Auxiliary tools ##
+\tkzGetPoint{ref}
+\tkzGetPoints{ref1}{ref2}
+\tkzGetFirstPoint{ref1}
+\tkzGetSecondPoint{ref2}
+\tkzGetLength{csname}
+
+## 8. Special Points ##
+\tkzDefMidPoint(point1,point2)
+\tkzDefBarycentricPoint(point1=num1,point2=num2,...)
+\tkzDefGoldenRatio(point1,point2)
+
+\tkzDefEquiPoints(point1,point2)
+\tkzDefEquiPoints[options%keyvals](point1,point2)
+
+#keyvals:\tkzDefEquiPoints#c
+dist=##L
+from=%<point%>
+show#true,false
+/tkzcompass/delta=%<number%>
+#endkeyvals
+
+## 9. Special points relating to a triangle ##
+\tkzDefTriangleCenter(point1,point2,point3)
+\tkzDefTriangleCenter[options%keyvals](point1,point2,point3)
 
 #keyvals:\tkzDefTriangleCenter#c
 ortho
+orthic
 centroid
+median
 circum
 in
 ex
 euler
+gergonne
 symmedian
+lemoine
+grebe
 spieker
 nagel
 mittenpunkt
 feuerbach
 #endkeyvals
 
-\tkzDefPointOnLine(point1,point2)#/tikzpicture
-\tkzDefPointOnLine[options%keyvals](point1,point2)#/tikzpicture
+## 10. Projection of excenters ##
+\tkzDefProjExcenter(A,B,C)(a,b,c){X,Y,Z}
+\tkzDefProjExcenter[options%keyvals](A,B,C)(a,b,c){X,Y,Z}
+
+#keyvals:\tkzDefProjExcenter#c
+name=%<name%>
+#endkeyvals
+
+## 11. Point on line or circle ##
+\tkzDefPointOnLine(point1,point2)
+\tkzDefPointOnLine[options%keyvals](point1,point2)
 
 #keyvals:\tkzDefPointOnLine#c
-pos=
+pos=%<number%>
 #endkeyvals
 
-\tkzDefPointOnCircle#/tikzpicture
-\tkzDefPointOnCircle[options%keyvals]#/tikzpicture
+\tkzDefPointOnCircle[options%keyvals]
 
 #keyvals:\tkzDefPointOnCircle#c
-angle=
-center=
-radius=
+angle=%<degrees%>
+center=%<point%>
+radius=%<number%>
 #endkeyvals
 
+## 12. Definition of points by transformation : \tkzDefPointBy ##
+\tkzDefPointBy(point)
+\tkzDefPointBy[options%keyvals](point)
+\tkzDefPointsBy(point1,point2,...){point1,point2,...}
+\tkzDefPointsBy[options%keyvals](point1,point2,...){point1,point2,...}
 
-\tkzDefPointBy(point)#/tikzpicture
-\tkzDefPointBy[options%keyvals](point)#/tikzpicture
-\tkzDefPointsBy(point1,point2,...){point1,point2,...}#/tikzpicture
-\tkzDefPointsBy[options%keyvals](point1,point2,...){point1,point2,...}#/tikzpicture
-
-#keyvals:\tkzDefPointBy#c,tkzDefPointsBy#c
-translation=
-homothety=
-reflection=
-symmetry=
-projection=
-rotation=
-rotation in rad=
-inversion=
+#keyvals:\tkzDefPointBy#c,\tkzDefPointsBy#c
+translation=from %<point1%> to %<point2%>
+homothety=center %<point%> ratio %<number%>
+reflection=over %<point1%>--%<point2%>
+symmetry=center %<point%>
+projection=onto %<point1%>--%<point2%>
+rotation=center %<point%> angle %<degrees%>
+rotation in rad=center %<point%> angle %<radians%>
+inversion=center %<point1%> through %<point2%>
+inversion negative=center %<point1%> through %<point2%>
 #endkeyvals
 
-\tkzCircumCenter(point1,point2,point3)#*/tikzpicture
+## 13. Defining points using a vector ##
+\tkzDefPointWith(point1,point2)
+\tkzDefPointWith[options%keyvals](point1,point2)
 
-\tkzDefPointWith(point1,point2)#/tikzpicture
-\tkzDefPointWith[options%keyvals](point1,point2)#/tikzpicture
-
-#keyvals:tkzDefPointWith#c
+#keyvals:\tkzDefPointWith#c
 orthogonal
 orthogonal normed
 linear
 linear normed
-colinear=
-colinear normed=
-K=
+colinear=at %<point%>
+colinear normed=at %<point%>
+K=%<number%>
 #endkeyvals
 
-\tkzGetVectxy(point1,point2){name}#/tikzpicture
+\tkzGetVectxy(point1,point2){text%plain}
 
-\tkzDefRandPointOn[options%keyvals]#/tikzpicture
+## 14. The straight lines ##
 
-#keyvals:\tkzDefRandPointOn#c
-rectangle=
-segment=
-line=
-circle=
-circle through=
-disk through=
-#endkeyvals
-
-\tkzDefLine(point1,point2)#/tikzpicture
-\tkzDefLine[options%keyvals](point1,point2)#/tikzpicture
+\tkzDefLine(point1,point2)
+\tkzDefLine[options%keyvals](point1,point2)
 
 #keyvals:\tkzDefLine#c
 mediator
-perpendicular=through
-parallel=through
+perpendicular=through %<point%>
+orthogonal=through %<point%>
+parallel=through %<point%>
 bisector
-K=
-normed
+bisector out
+K=%<number%>
+normed#true,false
 #endkeyvals
 
-\tkzDefEquilateral(point1,point2)#*/tikzpicture
-
-\tkzDefTangent(point1,point2)#/tikzpicture
-\tkzDefTangent[options%keyvals](point1,point2)#/tikzpicture
+\tkzDefTangent(point1,point2)
+\tkzDefTangent[options%keyvals](point1,point2)
 
 #keyvals:\tkzDefTangent#c
-at=
-from=
-from with R=
+at=%<point%>
+from=%<point%>
+from with R=%<point%>
 #endkeyvals
 
-\tkzDrawLine(point1,point2)#/tikzpicture
-\tkzDrawLine[options%keyvals](point1,point2)#/tikzpicture
+## 15. Triangles ##
+\tkzDefTriangle[options%keyvals](point1,point2)
 
-#keyvals:\tkzDrawLine#c
-median
-altitude
-bisector
-none
-add=
-#endkeyvals
-
-\tkzDrawLines(point1,point2,...)#/tikzpicture
-\tkzDrawLines[options](point1,point2,...)#/tikzpicture
-
-\tkzDrawSegment(point1,point2)#/tikzpicture
-\tkzDrawSegment[options%keyvals](point1,point2)#/tikzpicture
-
-#keyvals:\tkzDrawSegment#c
-add=
-dim=
-#endkeyvals
-
-\tkzDrawSegments(pt1,pt2 pt3,pt4 ...)#/tikzpicture
-\tkzDrawSegments[options](pt1,pt2 pt3,pt4 ...)#/tikzpicture
-
-\tkzMarkSegment(point1,point2)#/tikzpicture
-\tkzMarkSegment[options%keyvals](point1,point2)#/tikzpicture
-\tkzMarkSegments(pt1,pt2 pt3,pt4 ...)#/tikzpicture
-\tkzMarkSegments[options%keyvals](pt1,pt2 pt3,pt4 ...)#/tikzpicture
-
-#keyvals:\tkzMarkSegment#c,\tkzMarkSegments#c
-pos=
-color=#%color
-mark=
-size=##L
-#endkeyvals
-
-\tkzLabelLine[options%keyvals](point1,point2){label%plain}#/tikzpicture
-
-\tkzLabelSegment[options%keyvals](point1,point2){label%plain}#/tikzpicture
-\tkzLabelSegments[options%keyvals](pt1,pt2 pt3,pt4 ...){label%plain}#/tikzpicture
-
-#keyvals:\tkzLabelLine#c,\tkzLabelSegment#c,\tkzLabelSegments#c
-pos=
-#endkeyvals
-
-\tkzDefTriangle[options%keyvals](point1,point2)#/tikzpicture
-\tkzDrawTriangle[options%keyvals](point1,point2)#/tikzpicture
-
-#keyvals:\tkzDefTriangle#c,\tkzDrawTriangle#c
-two angles=
+#keyvals:\tkzDefTriangle#c
+two angles=%<angle1%> and %<angle2%>
 equilateral
+isosceles right
 pythagore
 school
 gold
-euclide
+euclid
 golden
 cheops
 #endkeyvals
 
-\tkzDefSpcTriangle[options%keyvals](point1,point2,point3)#/tikzpicture
+## 16. Specific triangles with \tkzDefSpcTriangle ##
+\tkzDefSpcTriangle[options%keyvals](point1,point2,point3){ref1,ref2,ref3}
 
 #keyvals:\tkzDefSpcTriangle#c
+orthic
+centroid
+medial
 in
 incentral
 ex
 excentral
+extouch
 intouch
 contact
-centroid
-medial
-orthic
-feuerbach
 euler
+symmedial
 tangential
-name=
+feuerbach
+name=%<name%>
+ortho
 #endkeyvals
 
-\tkzDefSquare(point1,point2)#/tikzpicture
-\tkzDrawSquare(point1,point2)#/tikzpicture
-\tkzDrawSquare[options](point1,point2)#/tikzpicture
-\tkzDefParallelogram(point1,point2,point3)#/tikzpicture
+## 17. Definition of polygons ##
+\tkzDefSquare(point1,point2)
+\tkzDefRectangle(point1,point2)
+\tkzDefParallelogram(point1,point2,point3)
+\tkzDefGoldenRectangle(point1,point2)
+\tkzDefGoldRectangle(point1,point2)#*
 
-\tkzDefGoldRectangle(point1,point2)
-\tkzDrawGoldRectangle(point1,point2)#/tikzpicture
-\tkzDrawGoldRectangle[options](point1,point2)#/tikzpicture
-\tkzDrawRectangle(point1,point2)#/tikzpicture
-\tkzDrawRectangle[options](point1,point2)#/tikzpicture
-\tkzDrawPolygon(point1,point2,...)#/tikzpicture
-\tkzDrawPolygon[options](point1,point2,...)#/tikzpicture
-\tkzDrawPolySeg(point1,point2,...)#/tikzpicture
-\tkzDrawPolySeg[options](point1,point2,...)#/tikzpicture
-\tkzClipPolygon(point1,point2,...)#/tikzpicture
-\tkzClipPolygon[options](point1,point2,...)#/tikzpicture
-\tkzClipOutPolygon(point1,point2,...)#*/tikzpicture
-\tkzFillPolygon(point1,point2,...)#/tikzpicture
-\tkzFillPolygon[options](point1,point2,...)#/tikzpicture
-\tkzLabelRegPolygon[options](point){label1,label2,...}#/tikzpicture
-
-\tkzDefRegPolygon(point1,point2)#/tikzpicture
-\tkzDefRegPolygon[options%keyvals](point1,point2)#/tikzpicture
+\tkzDefRegPolygon(point1,point2)
+\tkzDefRegPolygon[options%keyvals](point1,point2)
 
 #keyvals:\tkzDefRegPolygon#c
-name=
-sides=
+name=%<name%>
+sides=%<integer%>
 center
 side
 #endkeyvals
 
-\tkzDefCircle(point1,point2)#/tikzpicture
-\tkzDefCircle[options%keyvals](point1,point2)#/tikzpicture
+## 18. The Circles ##
+\tkzDefCircle(point1,point2)
+\tkzDefCircle[options%keyvals](point1,point2)
 
 #keyvals:\tkzDefCircle#c
 through
@@ -240,51 +226,32 @@ euler
 nine
 spieker
 apollonius
-orthogonal
-orthogonal through
-K=
+K=%<number%>
 #endkeyvals
 
-\tkzDefExCircle(point1,point2,point3)#/tikzpicture
+## 19. Definition of circle by transformation; \tkzDefCircleBy ##
+\tkzDefCircleBy(point1,point2)
+\tkzDefCircleBy[options%keyvals](point1,point2)
 
-\tkzDrawCircle(point1,point2)#/tikzpicture
-\tkzDrawCircle[options%keyvals](point1,point2)#/tikzpicture
-\tkzDrawCircles(pt1,pt2 pt3,pt4 ...)#/tikzpicture
-\tkzDrawCircles[options%keyvals](pt1,pt2 pt3,pt4 ...)#/tikzpicture
-
-#keyvals:\tkzDrawCircle#c,\tkzDrawCircles#c
-through
-diameter
-R
+#keyvals:\tkzDefCircleBy#c
+translation=from %<point1%> to %<point2%>
+homothety=center %<point%> ratio %<number%>
+reflection=over %<point1%>--%<point2%>
+symmetry=center %<point%>
+projection=onto %<point1%>--%<point2%>
+rotation=center %<point%> angle %<degrees%>
+orthogonal from=%<point%>
+orthogonal through=%<point%>
+inversion=center %<point1%> through %<point2%>
 #endkeyvals
 
-\tkzDrawSemiCircle(point1,point2)#/tikzpicture
-\tkzDrawSemiCircle[options%keyvals](point1,point2)#/tikzpicture
+## 20. Intersections ##
+\tkzInterLL(point1,point2)(point3,point4)
 
-#keyvals:\tkzDrawSemiCircle#c
-through
-diameter
-#endkeyvals
-
-\tkzFillCircle(point1,point2)#/tikzpicture
-\tkzFillCircle[options%keyvals](point1,point2)#/tikzpicture
-\tkzClipCircle(point1,point2)#/tikzpicture
-\tkzClipCircle[options%keyvals](point1,point2)#/tikzpicture
-\tkzLabelCircle(point1,point2)(angle){label%plain}#/tikzpicture
-\tkzLabelCircle[options%keyvals](point1,point2)(angle){label%plain}#/tikzpicture
-
-#keyvals:\tkzFillCircle#c,\tkzClipCircle#c,\tkzLabelCircle#c
-radius
-R
-#endkeyvals
-
-\tkzInterLL(point1,point2)(point3,point4)#/tikzpicture
-\tkzInterLC(point1,point2)(point3,point4)#/tikzpicture
-\tkzInterLC[options%keyvals](point1,point2)(point3,point4)#/tikzpicture
-\tkzInterCC(point1,point2)(point3,point4)#/tikzpicture
-\tkzInterCC[options%keyvals](point1,point2)(point3,point4)#/tikzpicture
-\tkzInterCCN(point1,point2)(point3,point4)#/tikzpicture
-\tkzInterCCR(point1,radius1)(point2,radius2)#/tikzpicture
+\tkzInterLC(point1,point2)(point3,point4)
+\tkzInterLC[options%keyvals](point1,point2)(point3,point4)
+\tkzInterCC(point1,point2)(point3,point4)
+\tkzInterCC[options%keyvals](point1,point2)(point3,point4)
 
 #keyvals:\tkzInterLC#c,\tkzInterCC#c
 N
@@ -292,86 +259,257 @@ R
 with nodes
 #endkeyvals
 
-\tkzLengthResult#*/tikzpicture
-\tkzPointResult#*/tikzpicture
-\tkzAngleResult#*/tikzpicture
-\tkzLength#*/tikzpicture
+\tkzInterCCN(point1,point2)(point3,point4)
+\tkzInterCCR(point1,radius1)(point2,radius2)
 
-\tkzFillAngle(point1,point2,point3)#/tikzpicture
-\tkzFillAngle[options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzFillAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
-\tkzFillAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+## 21. The angles ##
+\tkzGetAngle(csname)
+\tkzFindAngle(point1,point2,point3)
+\tkzFindSlopeAngle(point1,point2)
 
-#keyvals:\tkzFillAngle#c,\tkzFillAngles#c
-size=##L
+## 22. Random point definition ##
+\tkzDefRandPointOn[options%keyvals]
+
+#keyvals:\tkzDefRandPointOn#c
+rectangle=%<point1%> and %<point2%>
+segment=%<point1%>--%<point2%>
+line=%<point1%>--%<point2%>
+circle=center %<point%> radius %<number%>
+circle through=center %<point1%> through %<point2%>
+disk through=center %<point1%> through %<point2%>
 #endkeyvals
 
-\tkzMarkAngle(point1,point2,point3)#/tikzpicture
-\tkzMarkAngle[options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzMarkAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
-\tkzMarkAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+### IV. Drawing and Filling ###
 
-#keyvals:\tkzMarkAngle#c,\tkzMarkAngles#c
-arc=
-size=##L
-mark=
-mksize=##L
-mkcolor=#%color
-mkpos=
+## 23. Drawing ##
+\tkzDrawPoint(name)
+\tkzDrawPoint[options%keyvals](name)
+\tkzDrawPoints(name1,name2,...)
+\tkzDrawPoints[options%keyvals](name1,name2,...)
+
+#keyvals:\tkzDrawPoint#c,\tkzDrawPoints#c
+shape=#circle,cross,cross out
+size=%<number%>
+color=#%color
+%color
+fill=#%color
+draw=#%color
+opacity=%<factor%>
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
 #endkeyvals
 
-\tkzLabelAngle(point1,point2,point3)#/tikzpicture
-\tkzLabelAngle[options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzLabelAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
-\tkzLabelAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+## 24. Drawing the lines ##
+\tkzDrawLine(point1,point2)
+\tkzDrawLine[options%keyvals](point1,point2)
+\tkzDrawLines(point1,point2,...)
+\tkzDrawLines[options%keyvals](point1,point2,...)
 
-#keyvals:\tkzLabelAngle#c,\tkzLabelAngles#c
-pos=
+#keyvals:\tkzDrawLine#c,\tkzDrawLines#c
+add=%<num1%> and %<num2%>
+color=#%color
+%color
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+style={%<TikZ options%>}
+->
+<-
+<->
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+line width=##L
+double
+double distance=##L
 #endkeyvals
 
-\tkzMarkRightAngle(point1,point2,point3)#/tikzpicture
-\tkzMarkRightAngle[options%keyvals](point1,point2,point3)#/tikzpicture
-\tkzMarkRightAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
-\tkzMarkRightAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>#/tikzpicture
+## 25. Drawing a segment ##
+\tkzDrawSegment(point1,point2)
+\tkzDrawSegment[options%keyvals](point1,point2)
+\tkzDrawSegments(pt1,pt2 pt3,pt4 ...)
+\tkzDrawSegments[options%keyvals](pt1,pt2 pt3,pt4 ...)
 
-#keyvals:\tkzMarkRightAngle#c,\tkzMarkRightAngles#c
-german
-size=
+#keyvals:\tkzDrawSegment#c,\tkzDrawSegments#c
+add=%<num1%> and %<num2%>
+dim={%<label%>,%<dim%>,%<option%>}
+color=#%color
+%color
+opacity=%<factor%>
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+style={%<TikZ options%>}
+->
+<-
+<->
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+line width=##L
+double
+double distance=##L
 #endkeyvals
 
-\tkzGetAngle(name)#*/tikzpicture
+\tkzDrawPolygon(point1,point2,...)
+\tkzDrawPolygon[options%keyvals](point1,point2,...)
+\tkzDrawPolySeg(point1,point2,...)
+\tkzDrawPolySeg[options%keyvals](point1,point2,...)
 
-\tkzFindAngle(point1,point2,point3)#*/tikzpicture
+#keyvals:\tkzDrawPolygon#c,\tkzDrawPolySeg#c
+color=#%color
+%color
+fill=#%color
+draw=#%color
+opacity=%<factor%>
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+style={%<TikZ options%>}
+->
+<-
+<->
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+line width=##L
+line join=#round,bevel,miter
+double
+double distance=##L
+#endkeyvals
 
-\tkzFindSlope(point1,point2){name}#*/tikzpicture
-\tkzFindSlopeAngle(point1,point2)#*/tikzpicture
+## 26. Draw a circle with \tkzDrawCircle ##
+\tkzDrawCircle(point1,point2)
+\tkzDrawCircle[options%keyvals](point1,point2)
+\tkzDrawCircles(pt1,pt2 pt3,pt4 ...)
+\tkzDrawCircles[options%keyvals](pt1,pt2 pt3,pt4 ...)
 
-
-\tkzDrawSector(point1,point2)(point3)#/tikzpicture
-\tkzDrawSector[options%keyvals](point1,point2)(point3)#/tikzpicture
-\tkzFillSector(point1,point2)(point3)#/tikzpicture
-\tkzFillSector[options%keyvals](point1,point2)(point3)#/tikzpicture
-
-#keyvals:\tkzDrawSector#c,\tkzFillSector#c
-towards
-rotate
+#keyvals:\tkzDrawCircle#c,\tkzDrawCircles#c
+through
+diameter
+radius
 R
-R with nodes
+help lines
+circum
+in
+ex
+euler
+nine
+color=#%color
+%color
+fill=#%color
+opacity=%<factor%>
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+line width=##L
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+double
+double distance=##L
 #endkeyvals
 
-\tkzClipSector[options%keyvals](point1,point2)(point3)#/tikzpicture
-\tkzClipSector(point1,point2)(point3)#/tikzpicture
+\tkzDrawSemiCircle(point1,point2)
+\tkzDrawSemiCircle[options%keyvals](point1,point2)
+\tkzDrawSemiCircles(point1,point2)
+\tkzDrawSemiCircles[options%keyvals](point1,point2)
 
-#keyvals:\tkzClipSector#c
-towards
-rotate
-R
+#keyvals:\tkzDrawSemiCircle#c,\tkzDrawSemiCircles#c
+through
+diameter
+color=#%color
+%color
+fill=#%color
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+line width=##L
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+double
+double distance=##L
 #endkeyvals
 
-\tkzDrawBisector(point1,point2,point3)#/tikzpicture
-
-\tkzDrawArc(point1,point2)(point3)#/tikzpicture
-\tkzDrawArc[options%keyvals](point1,point2)(point3)#/tikzpicture
+## 27. Drawing arcs ##
+\tkzDrawArc(point1,point2)(point3)
+\tkzDrawArc[options%keyvals](point1,point2)(point3)
 
 #keyvals:\tkzDrawArc#c
 towards
@@ -379,91 +517,894 @@ rotate
 R
 R with nodes
 angles
+delta=%<number%>
+color=#%color
+%color
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+line width=##L
+style={%<TikZ options%>}
+line width=##L
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+double
+double distance=##L
 #endkeyvals
 
-\tkzDuplicateSegment(point1,point2)(point3,point4){point5}#/tikzpicture
+## 28. Drawing a sector or sectors ##
+\tkzDrawSector(point1,point2)(point3)
+\tkzDrawSector[options%keyvals](point1,point2)(point3)
 
-\tkzpttocm(number){name}#*/tikzpicture
-\tkzcmtopt(number){name}#*/tikzpicture
+#keyvals:\tkzDrawSector#c,\tkzFillSector#c
+towards
+rotate
+R
+R with nodes
+fill=#%color
+opacity=%<factor%>
+color=#%color
+%color
+draw=#%color
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+line width=##L
+style={%<TikZ options%>}
+line width=##L
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+double
+double distance=##L
+#endkeyvals
 
-\tkzGetPointCoord(point){name}#*/tikzpicture
+\tkzFillCircle(point1,point2)
+\tkzFillCircle[options%keyvals](point1,point2)
 
-\tkzCompass(point1,point2)#/tikzpicture
-\tkzCompass[options%keyvals](point1,point2)#/tikzpicture
-\tkzCompasss(pt1,pt2 pt3,pt4 ...)#/tikzpicture
-\tkzCompasss[options%keyvals](pt1,pt2 pt3,pt4 ...)#/tikzpicture
+#keyvals:\tkzFillCircle#c
+radius
+R
+color=#%color
+%color
+fill=#%color
+opacity=%<factor%>
+#endkeyvals
+
+\tkzFillPolygon(point1,point2,...)
+\tkzFillPolygon[options%keyvals](point1,point2,...)
+
+#keyvals:\tkzFillPolygon#c
+color=#%color
+%color
+opacity=%<factor%>
+fill=#%color
+#endkeyvals
+
+\tkzFillSector(point1,point2)(point3)
+\tkzFillSector[options%keyvals](point1,point2)(point3)
+
+\tkzFillAngle(point1,point2,point3)
+\tkzFillAngle[options%keyvals](point1,point2,point3)
+\tkzFillAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+\tkzFillAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+
+#keyvals:\tkzFillAngle#c,\tkzFillAngles#c
+size=%<number%>
+color=#%color
+%color
+opacity=%<factor%>
+fill=#%color
+left color=#%color
+right color=#%color
+#endkeyvals
+
+## 29. Controlling Bounding Box ##
+\tkzInit[options%keyvals]
+
+#keyvals:\tkzInit#c
+xmin=%<number%>
+xmax=%<number%>
+xstep=%<number%>
+ymin=%<number%>
+ymax=%<number%>
+ystep=%<number%>
+#endkeyvals
+
+\tkzClip
+\tkzClip[options%keyvals]
+
+#keyvals:\tkzClip#c
+space=%<number%>
+#endkeyvals
+
+\tkzShowBB
+\tkzShowBB[options%keyvals]
+
+#keyvals:\tkzShowBB#c
+line width=##L
+fill=#%color
+opacity=%<factor%>
+color=#%color
+%color
+#endkeyvals
+
+\tkzClipBB
+
+## 30. Clipping different objects ##
+\tkzClipPolygon(point1,point2,...)
+\tkzClipPolygon[options%keyvals](point1,point2,...)
+
+#keyvals:\tkzClipPolygon#c
+out
+#endkeyvals
+
+\tkzClipCircle(point1,point2)
+\tkzClipCircle[options%keyvals](point1,point2)
+
+#keyvals:\tkzClipCircle#c
+radius
+R
+out
+#endkeyvals
+
+\tkzClipSector[options%keyvals](point1,point2)(point3)
+\tkzClipSector(point1,point2)(point3)
+
+#keyvals:\tkzClipSector#c
+towards
+rotate
+R
+#endkeyvals
+
+### V. Marking ###
+
+\tkzMarkSegment(point1,point2)
+\tkzMarkSegment[options%keyvals](point1,point2)
+\tkzMarkSegments(pt1,pt2 pt3,pt4 ...)
+\tkzMarkSegments[options%keyvals](pt1,pt2 pt3,pt4 ...)
+
+\tkzMarkArc(point1,point2,point3)
+\tkzMarkArc[options%keyvals](point1,point2,point3)
+
+#keyvals:\tkzMarkSegment#c,\tkzMarkSegments#c,\tkzMarkArc#c
+pos=%<number%>
+color=#%color
+%color
+mark=%<mark%>
+size=##L
+line width=##L
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
+#endkeyvals
+
+\tkzMarkAngle(point1,point2,point3)
+\tkzMarkAngle[options%keyvals](point1,point2,point3)
+\tkzMarkAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+\tkzMarkAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+
+#keyvals:\tkzMarkAngle#c,\tkzMarkAngles#c
+arc=#l,ll,lll
+size=##L
+mark=%<mark%>
+mksize=##L
+mkcolor=#%color
+color=#%color
+mkpos=%<number%>
+#endkeyvals
+
+\tkzMarkRightAngle(point1,point2,point3)
+\tkzMarkRightAngle[options%keyvals](point1,point2,point3)
+\tkzMarkRightAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+\tkzMarkRightAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+
+#keyvals:\tkzMarkRightAngle#c,\tkzMarkRightAngles#c
+german
+size=%<number%>
+fill=#%color
+opacity=%<factor%>
+draw=#%color
+color=#%color
+%color
+line width=##L
+#endkeyvals
+
+### VI. Labelling ###
+
+## 31. Labelling ##
+\tkzLabelPoint(point){label}
+\tkzLabelPoint[options%keyvals](point){label}
+\tkzLabelPoints(point1,point2,...)
+\tkzLabelPoints[options%keyvals](point1,point2,...)
+\tkzAutoLabelPoints(point1,point2,...)
+\tkzAutoLabelPoints[options%keyvals](point1,point2,...)
+
+#keyvals:\tkzLabelPoint#c,\tkzLabelPoints#c,\tkzAutoLabelPoints#c
+left
+right
+above
+below
+above right
+above left
+below right
+below left
+color=#%color
+%color
+font=%<font commands%>
+label=%<text%>
+centered
+#endkeyvals
+
+#keyvals:\tkzAutoLabelPoints#c
+center=%<point%>
+dist=%<number%>
+#endkeyvals
+
+## 32. Label for a segment ##
+\tkzLabelSegment(point1,point2){label}
+\tkzLabelSegment[options%keyvals](point1,point2){label}
+\tkzLabelSegments(pt1,pt2 pt3,pt4 ...){label}
+\tkzLabelSegments[options%keyvals](pt1,pt2 pt3,pt4 ...){label}
+
+#keyvals:\tkzLabelLine#c,\tkzLabelSegment#c,\tkzLabelSegments#c
+pos=%<number%>
+swap
+auto
+below=##L
+above=##L
+left=##L
+right=##L
+below left=##L
+below right=##L
+above left=##L
+above right=##L
+sloped
+midway
+near start
+near end
+very near start
+very near end
+at start
+at end
+color=#%color
+%color
+#endkeyvals
+
+## 33. Add labels on a straight line \tkzLabelLine ##
+\tkzLabelLine(point1,point2){label}
+\tkzLabelLine[options%keyvals](point1,point2){label}
+
+\tkzLabelAngle(point1,point2,point3)
+\tkzLabelAngle[options%keyvals](point1,point2,point3)
+\tkzLabelAngles(%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+\tkzLabelAngles[%<options%>](%<point1,point2,point3%>)(%<point4,point5,point6%>)%<...%>
+
+#keyvals:\tkzLabelAngle#c,\tkzLabelAngles#c
+pos=%<number%>
+circle
+draw
+fill=#%color
+font=%<font commands%>
+#endkeyvals
+
+\tkzLabelCircle(point1,point2)(angle){label%plain}
+\tkzLabelCircle[options%keyvals](point1,point2)(angle){label%plain}
+
+#keyvals:\tkzLabelCircle#c
+radius
+R
+below=##L
+above=##L
+left=##L
+right=##L
+below left=##L
+below right=##L
+above left=##L
+above right=##L
+color=#%color
+%color
+fill=#%color
+font=%<font commands%>
+draw
+text width=##L
+text centered
+#endkeyvals
+
+## 34. Label for an arc ##
+\tkzLabelArc(point1,point2,point3){label}
+\tkzLabelArc[options%keyvals](point1,point2,point3){label}
+
+#keyvals:\tkzLabelArc#c
+pos=%<number%>
+below=##L
+above=##L
+left=##L
+right=##L
+below left=##L
+below right=##L
+above left=##L
+above right=##L
+color=#%color
+%color
+#endkeyvals
+
+### VII. Complements ###
+
+## 35. Using the compass ##
+\tkzCompass(point1,point2)
+\tkzCompass[options%keyvals](point1,point2)
+\tkzCompasss(pt1,pt2 pt3,pt4 ...)
+\tkzCompasss[options%keyvals](pt1,pt2 pt3,pt4 ...)
 
 #keyvals:\tkzCompass#c,\tkzCompasss#c
-delta=
-length=
-#endkeyvals
-
-\tkzSetUpCompass[options%keyvals]#/tikzpicture
-
-#keyvals:\tkzSetUpCompass#c
-line width=##L
+delta=%<degrees%>
+length=%<number%>
 color=#%color
-style=
+%color
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+line width=##L
+style={%<TikZ options%>}
+line width=##L
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
 #endkeyvals
 
-\tkzShowLine(point1,point2)#/tikzpicture
-\tkzShowLine[options%keyvals](point1,point2)#/tikzpicture
+## 36. The Show ##
+\tkzShowLine(point1,point2)
+\tkzShowLine[options%keyvals](point1,point2)
 
 #keyvals:\tkzShowLine#c
 mediator
-perpendicular
+parallel=through %<point%>
+perpendicular=through %<point%>
 orthogonal
 bisector
-K=
-length=
-ratio=
-gap=
-size=
+K=%<number%>
+length=%<number%>
+ratio=%<number%>
+gap=%<number%>
+size=%<number%>
+color=#%color
+%color
+solid
+dotted
+densely dotted
+loosely dotted
+dashed
+densely dashed
+loosely dashed
+dash dot
+densely dash dot
+loosely dash dot
+dash dot dot
+densely dash dot dot 
+loosely dash dot dot
+line width=##L
+style={%<TikZ options%>}
+line width=##L
+ultra thin
+very thin
+thin
+semithick
+thick
+very thick
+ultra thick
 #endkeyvals
 
-\tkzShowTransformation(point1,point2)#/tikzpicture
-\tkzShowTransformation[options%keyvals](point1,point2)#/tikzpicture
+\tkzShowTransformation(point1,point2)
+\tkzShowTransformation[options%keyvals](point1,point2)
 
 #keyvals:\tkzShowTransformation#c
-reflection=over
-symmetry=center
-projection=onto
-translation=from
-K=
-length=
-ratio=
-gap=
-size=
+reflection=over %<point1%>--%<point2%>
+symmetry=center %<point%>
+projection=onto %<point1%>--%<point2%>
+translation=from %<point1%> to %<point2%>
+K=%<number%>
+length=%<number%>
+ratio=%<number%>
+gap=%<number%>
+size=%<number%>
+color=#%color
+%color
 #endkeyvals
 
-\tkzDefEquiPoints(point1,point2)#/tikzpicture
-\tkzDefEquiPoints[options%keyvals](point1,point2)#/tikzpicture
-
-#keyvals:\tkzDefEquiPoints#c
-dist=##L
-from=
-show
-/compass/delta=
-#endkeyvals
-
-\tkzProtractor(point1,point2)#/tikzpicture
-\tkzProtractor[options%keyvals](point1,point2)#/tikzpicture
+## 37. Protractor ##
+\tkzProtractor(point1,point2)
+\tkzProtractor[options%keyvals](point1,point2)
 
 #keyvals:\tkzProtractor#c
 lw=##L
-scale=
-return
+scale=%<factor%>
+return#true,false
 #endkeyvals
 
-\tkzSetUpLine[options%keyvals]#/tikzpicture
+## 38. Miscellaneous tools ##
+\tkzDuplicateSegment(point1,point2)(point3,point4){point5}
 
-#keyvals:\tkzSetUpLine#c
+\tkzCalcLength(point1,point2)
+\tkzCalcLength[options%keyvals](point1,point2)
+
+#keyvals:\tkzCalcLength#c
+cm#true,false
+#endkeyvals
+
+\tkzpttocm(number){csname}
+\tkzcmtopt(number){csname}
+\tkzGetPointCoord(point){csname}
+
+### VIII. Working with style ###
+
+## 39. Predefined styles ##
+\tkzSetUpColors[options%keyvals]
+
+#keyvals:\tkzSetUpColors#c
+background=#%color
+text=#%color
+#endkeyvals
+
+## 40. Points style ##
+\tkzSetUpPoint[options%keyvals]
+
+#keyvals:\tkzSetUpPoint#c
+color=#%color
+size=%<number%>
+fill=#%color
+shape=#circle,cross,cross out
+#endkeyvals
+
+## 41,42,43. Lines, arc, and compass style ##
+\tkzSetUpLine[options%keyvals]
+\tkzSetUpArc[options%keyvals]
+\tkzSetUpCompass[options%keyvals]
+
+#keyvals:\tkzSetUpLine#c,\tkzSetUpArc#c,\tkzSetUpCompass#c
 color=#%color
 line width=##L
-style=
-add=
+style=#solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed,dash dot,densely dash dot,loosely dash dot,dash dot dot,densely dash dot dot ,loosely dash dot dot
 #endkeyvals
 
-\tkzRadius#*/tikzpicture
-\tkzVecKOrth(point1,point2)#*/tikzpicture
-\tkzVecKOrth[option](point1,point2)#*/tikzpicture
+#keyvals:\tkzSetUpLine#c
+add=%<num1%> and %<num2%>
+#endkeyvals
+
+#keyvals:\tkzSetUpArc#c,\tkzSetUpCompass#c
+delta=%<number%>
+#endkeyvals
+
+## 44. Label style ##
+\tkzSetUpLabel[TikZ options]
+
+## 45. Own style ##
+\tkzSetUpStyle[TikZ options]{style name}
+\tkzLengthResult#*
+\tkzAngleResult#*
+
+## miscellaneous
+\fileversion#S
+\filedate#S
+\tkzLengthResult#*
+\tkzAngleResult#*
+
+## deprecated
+\tkzDrawSquare(point1,point2)#S
+\tkzDrawSquare[options](point1,point2)#S
+\tkzDrawGoldRectangle(point1,point2)#S
+\tkzDrawGoldRectangle[options](point1,point2)#S
+\tkzDrawGoldenRectangle(point1,point2)#S
+\tkzDrawGoldenRectangle[options](point1,point2)#S
+\tkzDrawRectangle(point1,point2)#S
+\tkzDrawRectangle[options](point1,point2)#S
+\tkzDrawBisector(point1,point2,point3)#S
+\tkzDefIntSimilitudeCenter(point1,num1)(point2,num2)#S
+\tkzDefExtSimilitudeCenter(point1,num1)(point2,num2)#S
+\tkzDefIntHomotheticCenter(point1,num1)(point2,num2)#S
+\tkzDefExtHomotheticCenter(point1,num1)(point2,num2)#S
+\tkzDrawMedian#S
+\tkzDrawBisector#S
+\tkzDrawAltitude#S
+\tkzDrawMedians#S
+\tkzDrawBisectors#S
+\tkzDrawAltitudes#S
+\tkzGetRandPointOn#S
+\tkzTangent#S
+
+## not documented
+# from tkz-euclide.sty
+\tkzRadius#*
+\tkzLength#*
+
+# from tkz-tools-eu-colors.tex
+\setupcolorkeys{options}#*
+\tkzSetUpAllColors[options]#*
+
+# from tkz-tools-eu-angles.tex
+\tkzNormalizeAngle(arg)#*
+
+# from tkz-tools-eu-math.tex
+\tkzpointnormalised{arg}#*
+
+# from tkz-tools-eu-utilities.tex
+\extractxy{arg}#*
+\iftkznodedefined{node}{true}{false}#*
+\tkzActivOff#*
+\tkzActivOn#*
+\CountToken{arg}#*
+\SubStringConditional{arg1}{arg2}#*
+\RecursionMacroEnd{arg1}{arg2}{arg3}#*
+\ReplaceSubStrings{arg1}{arg2}{arg3}{arg4}#*
+\DisabledNumprint#*
+\EnabledNumprint#*
+
+# from tkz-tools-eu-text.tex
+\tkzText(x,y){text}
+\tkzText[options%keyvals](x,y){text}
+
+#keyvals:\tkzText#c
+draw
+color=#%color
+text=#%color
+fill=#%color
+opacity=%<factor%>
+line width=##L
+rotate=%<degrees%>
+inner sep=##L
+text width=##L
+#endkeyvals
+
+\tkzLegend{style/size/color/text}
+\tkzLegend[options%keyvals]{style/size/color/text}
+
+#keyvals:\tkzLegend#c
+line#true,false
+#endkeyvals
+
+# from tkz-obj-eu-axesmin.tex
+\ifinteger#*
+\integertrue#*
+\integerfalse#*
+\removedot#*
+\tkzSetUpAxis[options]#*
+
+\tkzDrawX
+\tkzDrawX[options%keyvals]
+
+#keyvals:\tkzDrawX#c
+color=#%color
+noticks#true,false
+right space=##L
+left space=##L
+label=%<text%>
+trig=%<integer%>
+tickwd=##L
+tickup=##L
+tickdn=##L
+>=%<end arrow spec%>
+#endkeyvals
+
+\tkzDrawY
+\tkzDrawY[options%keyvals]
+
+#keyvals:\tkzDrawY#c
+color=#%color
+noticks#true,false
+up space=##L
+down space=##L
+label=%<text%>
+trig=%<integer%>
+tickwd=##L
+ticklt=##L
+tickrt=##L
+#endkeyvals
+
+# from tkz-obj-eu-draw-polygons.tex
+\tkzDrawPolygons(point1,point2,...)#*
+\tkzDrawPolygons[options](point1,point2,...)#*
+\tkzLabelRegPolygon(point){label1,label2,...}#*
+\tkzLabelRegPolygon[options](point){label1,label2,...}#*
+\iftkzClipOutPoly#*
+\tkzClipOutPolytrue#*
+\tkzClipOutPolyfalse#*
+
+# from tkz-obj-eu-draw-circles.tex
+\tkzDrawSemiCircleThrough(point1,point2)#*
+\tkzDrawSemiCircleDiameter(point1,point2)#*
+\iftkzClipOutCircle#*
+\tkzClipOutCircletrue#*
+\tkzClipOutCirclefalse#*
+
+# from tkz-obj-eu-grids.tex
+\tkzSetUpGrid[options]#*
+
+\tkzGrid[%<options%>]
+\tkzGrid[%<options%>](%<x1%>,%<y1%>)(%<x2%>,%<y2%>)
+
+#keyvals:\tkzGrid#c
+sub#true,false
+color=#%color
+%color
+subxstep=%<number%>
+subystep=%<number%>
+line width=##L
+#endkeyvals
+
+# from tkz-obj-eu-circles-by.tex
+\tkzDefCircleTranslation(point1,point2)#*
+\tkzDefCircleHomothety(point1,point2)#*
+\tkzDefCircleReflection(point1,point2)#*
+\tkzDefCircleSymmetry(point1,point2)#*
+\tkzDefCircleRotation(point1,point2)#*
+\tkzDefOrthogonalCircle(point1,point2,point3)#*
+\tkzDefOrthoThroughCircle(point1,point2,point3,point4)#*
+\tkzDefInversionCircle(point1,point2,point3,point4)#*
+
+# from tkz-obj-eu-triangles.tex
+\tkzDefEquilateral(point1,point2)#*
+\tkzDefIsoscelesRightTriangle(point1,point2)#*
+\tkzDrawEquilateral[options](point1,point2)#*
+\tkzDefIsoscelesRightTriangle[options](point1,point2)#*
+\tkzDefTwoOne(point1,point2)#*
+\tkzDefPythagore(point1,point2)#*
+\tkzDefSchoolTriangle(point1,point2)#*
+\tkzDefGoldTriangle(point1,point2)#*
+\tkzDefEuclideTriangle(point1,point2)#*
+\tkzDefGoldenTriangle(point1,point2)#*
+\tkzDefCheopsTriangle(point1,point2)#*
+\tkzDefTwoAnglesTriangle(point1,point2)#*
+\SetUpPTTR{options}#*
+\tkzDefIncentralTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefExcentralTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzExcentralTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefIntouchTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefContactTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefFeuerbachTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefCentroidTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefMedialTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefMidpointTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefOrthicTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefAltitudeTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefEulerTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefTangentialTriangle[options](point1,point2,point3)(ref1,ref2)#*
+\tkzDefSymmedialTriangle[options](point1,point2,point3)(ref1,ref2)#*
+
+# from tkz-obj-eu-circles.tex
+\tkzDefCircleR(point1,point2)#*
+\tkzDefCircleThrough(point1,point2)#*
+\tkzDefCircleD(point1,point2)#*
+\tkzDefCircumCircle(point1,point2,point3)#*
+\tkzDefInCircle(point1,point2,point3)#*
+\tkzDefExCircle(point1,point2,point3)#*
+\tkzDefExRadius(point1,point2,point3)#*
+\tkzDefEulerCircle(point1,point2,point3)#*
+\tkzDefNinePointsCircle(point1,point2,point3)#*
+\tkzFeuerBachCircle(point1,point2,point3)#*
+\tkzDefEulerRadius(point1,point2,point3)#*
+\tkzDefApolloniusCircle(point1,point2)#*
+\tkzDefApolloniusRadius[options](point1,point2)#*
+\tkzDefApolloniusPoint[options](point1,point2)#*
+\tkzApolloniusCenter[options](point1,point2)#*
+\tkzDefOrthogonalCircle(point1,point2,point3)#*
+\tkzDefOrthoThroughCircle(point1,point2,point3,point4)#*
+\tkzDefSpiekerCircle(point1,point2,point3)#*
+\tkzDefInversionCircle(point1,point2,point3,point4)#*
+\tkzDefInversionNegativeCircle(point1,point2,point3,point4)#*
+
+# from tkz-obj-eu-sectors.tex
+\tkzDrawSectorRAngles[options](point1,point2)(point3)#*
+\tkzDrawSectorN[options](point1,point2)(point3)#*
+\tkzDrawSectorRotate[options](point1,point2)(point3)#*
+\tkzDrawSectorAngles[options](point1,point2)(point3)#*
+\tkzDrawSectorRwithNodesAngles[options](point1,point2)(point3)#*
+\tkzDrawSectorR[options](point1,point2)(point3)#*
+\tkzFillSectorRAngles[options](point1,point2)(point3)#*
+\tkzFillSectorN[options](point1,point2)(point3)#*
+\tkzFillSectorRotate[options](point1,point2)(point3)#*
+\tkzFillSectorAngles[options](point1,point2)(point3)#*
+\tkzFillSectorR[options](point1,point2)(point3)#*
+
+# from tkz-obj-eu-lines.tex
+\tkzDefLineLL[options](point1,point2,point3)#*
+\tkzDefOrthLine[options](point1,point2,point3)#*
+\tkzDefMediatorLine[options](point1,point2,point3)#*
+\tkzDefBisectorLine(point1,point2,point3)#*
+\tkzDefBisectorOutLine(point1,point2,point3)#*
+\tkzDefSymmedianLine(point1,point2,point3)#*
+\tkzTgtAt(point1)(point2)#*
+\tkzTgtFromP(point1,point2)(point3)#*
+\tkzTgtFromPR(point1,point2)(point3)#*
+
+# from tkz-obj-eu-polygons.tex
+\tkzRegPolygonCenter(point1,point2)#*
+\tkzRegPolygonSide(point1,point2)#*
+
+# # from tkz-obj-eu-points.tex
+\tkzRenamePoint(arg1){arg2}#*
+
+\tkzPointShowCoord(point)#*
+\tkzPointShowCoord[options%keyvals](point)#*
+\tkzShowPointCoord(point)#*
+\tkzShowPointCoord[options%keyvals](point)#*
+
+#keyvals:\tkzPointShowCoord#c,\tkzShowPointCoord#c
+xlabel=%<text%>
+xstyle=
+noxdraw#true,false
+ylabel=%<text%>
+ystyle=
+noydraw#true,false
+#endkeyvals
+
+\tkzGetPointxy(arg1){arg2}#*
+
+# from tkz-obj-eu-draw-angles.tex
+\tkzDrawArcTowards[options](point1,point2)(point3)#*
+\tkzDrawArcRotate[options](point1,point2)(point3)#*
+\tkzDrawArcAngles[options](point1,point2)(point3)#*
+\tkzDrawArcRwithNodes[options](point1,point2)(point3)#*
+\tkzDrawArcR[options](point1,point2)(point3)#*
+\tkzDrawArcRAngles[options](point1,point2)(point3)#*
+\tkzDrawArcRAN[options](point1,point2)(point3)#*
+\tkzPathArcRAN[options](point1,point2)(point3)#*
+
+# from tkz-obj-eu-points-rnd.tex
+\tkzRandPointOnRect(point1,point2)#*
+\tkzRandPointOnSegment(point1,point2)#*
+\tkzRandPointOnLine(point1,point2)#*
+\tkzRandPointOnCircle(point1,point2)#*
+\tkzRandPointOnCircleThrough(point1,point2)#*
+\tkzRandPointOnDisk(point1,point2)#*
+
+# from tkz-obj-eu-points-with.tex
+\tkzVecKOrth[options](point1,point2)#*
+\tkzVecK[options](point1,point2)#*
+\tkzVecKOrthNorm[options](point1,point2)#*
+\tkzVecKNorm[options](point1,point2)#*
+
+# from tkz-obj-eu-show.tex
+\tkzShowMediatorLine[opts](arg)#*
+\tkzShowLLLine[opts](arg1)(arg2)#*
+\tkzShowOrthLine[opts](arg1)(arg2)#*
+\tkzShowBisectorLine[opts](arg1)(arg2)#*
+\tkzShowTranslation[opts](arg1)(arg2)#*
+\tkzShowSymOrth[opts](arg1)(arg2)#*
+\tkzShowCSym[opts](arg1)(arg2)#*
+\tkzShowProjection[opts](arg1)(arg2)#*
+
+# from tkz-obj-eu-points-by.tex
+\ExtractPoint#S
+\FirstPointInList{arg}#*
+\tkzTranslation(arg1)(arg2){arg3}#*
+\tkzUTranslation(arg1)(arg2)#*
+\tkzCSym(arg1)(arg2){arg3}#*
+\tkzUCSym(arg1)(arg2)#*
+\tkzSymOrth(arg1)(arg2){arg3}#*
+\tkzUSymOrth(arg1)(arg2)#*
+\tkzProjection(arg1)(arg2){arg3}#*
+\tkzUProjection(arg1)(arg2)#*
+\tkzHomo(arg1)(arg2){arg3}#*
+\tkzUHomo(arg1)(arg2)#*
+\tkzRotateAngle(arg1)(arg2){arg3}#*
+\tkzURotateAngle(arg1)(arg2)#*
+\tkzRotateInRad(arg1)(arg2){arg3}#*
+\tkzURotateInRad(arg1)(arg2)#*
+\tkzInversePoint(arg1)(arg2){arg3}#*
+\tkzUInversePoint(arg1)(arg2)#*
+\tkzInverseNegativePoint(arg1)(arg2){arg3}#*
+\tkzUInverseNegativePoint(arg1)(arg2)#*
+
+# from tkz-obj-eu-points-spc.tex
+\tkzDefBCPoint(point1=num1,point2=num2,...)#*
+\tkzDefCentroid(point1,point2,...)#*
+\tkzOrthoCenter(point1,point2,point3)#*
+\tkzDefOrthoCenter(point1,point2,point3)#*
+\tkzCentroid(point1,point2,point3)#*
+\tkzBaryCenter(point1,point2,point3)#*
+\tkzCircumCenter(point1,point2,point3)#*
+\tkzDefCircumCenter(point1,point2,point3)#*
+\tkzInCenter(point1,point2,point3)#*
+\tkzDefInCenter(point1,point2,point3)#*
+\tkzExCenter(point1,point2,point3)#*
+\tkzDefExCenter(point1,point2,point3)#*
+\tkzEulerCenter(point1,point2,point3)#*
+\tkzNinePointCenter(point1,point2,point3)#*
+\tkzDefEulerCenter(point1,point2,point3)#*
+\tkzSymmedianCenter(point1,point2,point3)#*
+\tkzLemoinePoint(point1,point2,point3)#*
+\tkzGrebePoint(point1,point2,point3)#*
+\tkzDefLemoinePoint(point1,point2,point3)#*
+\tkzSpiekerCenter(point1,point2,point3)#*
+\tkzDefSpiekerCenter(point1,point2,point3)#*
+\tkzGergonneCenter(point1,point2,point3)#*
+\tkzDefGergonneCenter(point1,point2,point3)#*
+\tkzNagelCenter(point1,point2,point3)#*
+\tkzDefNagelCenter(point1,point2,point3)#*
+\tkzMittenpunktCenter(point1,point2,point3)#*
+\tkzDefMittenpunktCenter(point1,point2,point3)#*
+\tkzDefMiddlespoint(point1,point2,point3)#*
+\tkzFeuerbachCenter(point1,point2,point3)#*
+\tkzDefFeuerbachCenter(point1,point2,point3)#*
+\tkzOrthogonalCenter(point1,point2)#*
+
+# from tkz-obj-eu-modules.tex
+\usetkzobj{list of objects}#*
+\usetkztool{list of tools}#*
+
+# from tkz-obj-eu-intersections.tex
+\tkzInterLLxy(point1,point2)(point3,point4)#*
+\tkzTestInterLC(point1,point2)(point3,point4)#*
+\tkzflagLC#*
+\tkzInterLCR(arg1)(arg2){arg3}{arg4}#*
+\tkzInterLCWithNodes(arg1)(arg2){arg3}{arg4}#*
+\tkzInterCCWithNodes(arg1)(arg2){arg3}{arg4}#*
+
+# from tkz-obj-eu-base.tex
+\tkzAddName[options]{name}#*
+
+# from tkz-obj-eu-protractor.tex
+\FullProtractor#*
+\FullProtractorReturn#*
+
+# from tkz-euclide.cfg
+\tkzmathstyle#*
+\tkzCoeffSubColor#*
+\tkzCoeffSubLw#*
+\tkzRatioLineGrid#*
+\tkzPhi#*
+\tkzInvPhi#*
+\tkzSqrtPhi#*
+\tkzSqrTwo#*
+\tkzSqrThree#*
+\tkzSqrFive#*
+\tkzSqrTwobyTwo#*
+\tkzPi#*
+\tkzEuler#*

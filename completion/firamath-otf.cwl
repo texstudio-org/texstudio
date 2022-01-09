@@ -283,6 +283,7 @@
 \squoval#m
 \sun#m
 \Swarrow#m
+\threeunderdot{arg}#m
 \topsemicircle#m
 \trprime#m
 \turnangle#m
@@ -296,7 +297,9 @@
 \ularc#m
 \ulblacktriangle#m
 \underbracket{arg}#m
+\underleftharpoondown{arg}#m
 \underparen{arg}#m
+\underrightharpoondown{arg}#m
 \unicodecdots#m
 \unicodeellipsis#m
 \uparrowbarred#m
@@ -329,3 +332,4 @@
 \wideangledown#m
 \wideangleup#m
 \widebridgeabove{arg}#m
+\wideutilde{arg}#m
