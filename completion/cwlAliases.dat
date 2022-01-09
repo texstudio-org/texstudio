@@ -229,3 +229,7 @@ turabian-thesis:
 class-turabian-thesis
 latex-document
 tex
+leaflet:
+class-leaflet
+latex-document
+tex
