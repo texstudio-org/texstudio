@@ -1,5 +1,13 @@
 # hologo package
-# Matthew Bertucci 7/27/2021
+# Matthew Bertucci 1/10/2022 for v1.15
+
+#include:ltxcmds
+#include:infwarerr
+#include:kvsetkeys
+#include:kvdefinekeys
+#include:pdftexcmds
+#include:iftex
+#include:kvoptions
 
 \hologo{logo%keyvals}
 \Hologo{logo%keyvals}
@@ -68,12 +76,11 @@ virTeX
 VTeX
 Xe
 XeLaTeX
-ATEX
 XeTeX
 #endkeyvals
 
-\hologoSetup{keyvals}
-\hologoLogoSetup{logo}{keyvals}
+\hologoSetup{options%keyvals}
+\hologoLogoSetup{logo}{options%keyvals}
 
 #keyvals:\hologoSetup,\hologoLogoSetup
 break#true,false
@@ -83,10 +90,10 @@ discretionarybreak#true,false
 #endkeyvals
 
 #keyvals:\hologoLogoSetup
-variant=
+variant=%<string%>
 #endkeyvals
 
-\hologoDriverSetup{keyvals}
+\hologoDriverSetup{options%keyvals}
 
 #keyvals:\hologoDriverSetup
 pdftex
@@ -98,14 +105,14 @@ dvipsone
 xdvi
 xetex
 vtex
-driverfallback=
+driverfallback=%<driver%>
 #endkeyvals
 
-\hologoFontSetup{keyvals}
-\hologoLogoFontSetup{logo}{keyvals}
+\hologoFontSetup{options%keyvals}
+\hologoLogoFontSetup{logo}{options%keyvals}
 
 #keyvals:\hologoFontSetup,\hologoLogoFontSetup
-general=
+general=%<font commands%>
 bibsf
 rm
 sc
