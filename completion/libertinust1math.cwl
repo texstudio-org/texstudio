@@ -1,8 +1,32 @@
 # libertinust1math package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 1/10/2022 for v2.0.1
 
 #include:xkeyval
+#include:etoolbox
 #include:amsmath
+
+#ifOption:amsthm
+#include:amsthm
+#endif
+
+#keyvals:\usepackage/libertinust1math#c
+subscriptcorrectionfile=%<file%>
+nosubscriptcorrection
+subscriptcorrection
+lcgreekalpha
+upint
+frenchmath
+slantedGreek
+uprightGreek
+ISO
+nosans
+sansmath
+reuseMathAlphabets
+mathsfit
+scale=%<factor%>
+scaled=%<factor%>
+amsthm
+#endkeyvals
 
 \adots#m
 \alphait#*m
@@ -156,13 +180,55 @@
 \iintslop#*m
 \iintupop#*m
 \increment#m
-\intop#m
+\intop#*m
 \intslop#*m
 \intupop#*m
 \invlazys#m
 \invnot#m
 \iotait#*m
 \iotaup#*m
+\italpha#*m
+\itbeta#*m
+\itchi#*m
+\itDelta#*m
+\itdelta#*m
+\itepsilon#*m
+\iteta#*m
+\itGamma#*m
+\itGamma#*m
+\itgamma#*m
+\itiota#*m
+\itkappa#*m
+\itLambda#*m
+\itlambda#*m
+\itmu#*m
+\itnu#*m
+\itOmega#*m
+\itomega#*m
+\itPhi#*m
+\itphi#*m
+\itPi#*m
+\itpi#*m
+\itPsi#*m
+\itpsi#*m
+\itrho#*m
+\itSigma#*m
+\itsigma#*m
+\ittau#*m
+\itTheta#*m
+\ittheta#*m
+\itUpsilon#*m
+\itupsilon#*m
+\itvarepsilon#*m
+\itvarkappa#*m
+\itvarphi#*m
+\itvarpi#*m
+\itvarrho#*m
+\itvarsigma#*m
+\itvartheta#*m
+\itXi#*m
+\itxi#*m
+\itzeta#*m
 \kappait#*m
 \kappaup#*m
 \kernelcontraction#m
@@ -180,6 +246,7 @@
 \lesseqgtr#m
 \lessgtr#m
 \lesssim#m
+\lhd#m
 \lhook#*m
 \lll#m
 \llless#m
@@ -195,13 +262,13 @@
 \Mapsto#m
 \mathbb{letter}#m
 \mathbcal{letter}#m
-\mathbfit{text}#m
-\mathboldsans{text}#m
+\mathbfit{text%plain}#m
+\mathboldsans{text%plain}#m
 \mathdollar#m
 \mathparagraph#m
 \mathsection#m
-\mathsfbf{text}#m
-\mathsfbfit{text}#m
+\mathsfbf{text%plain}#m
+\mathsfbfit{text%plain}#m
 \mathvisiblespace#m
 \mdlgblkcircle#*m
 \mdlgblkdiamond#*m
@@ -246,6 +313,7 @@
 \nni#m
 \notchar#*m
 \nparallel#m
+\nPerp#m
 \nprec#m
 \npreccurlyeq#m
 \nrightarrow#m
@@ -294,6 +362,7 @@
 \parenlu#*m
 \parenrd#*m
 \parenru#*m
+\Perp#m
 \Phiit#*m
 \phiit#*m
 \Phiup#*m
@@ -319,6 +388,7 @@
 \questeq#m
 \Question#m
 \rBrack#m
+\rhd#m
 \rhoit#*m
 \rhook#*m
 \rhoup#*m
@@ -475,11 +545,13 @@
 \vdotsmath#m
 \veeeq#m
 \vertoverlay#m
+\vv{arg}#m
 \Vvdash#m
 \Vvert#m
 \vysmblkcircle#*m
 \vysmwhtcircle#*m
 \wedgeq#m
+\widebar{arg}#m
 \widebridgeabove{arg}#m
 \widecheck{arg}#m
 \xbsol#m
@@ -496,14 +568,16 @@
 \zetaup#*m
 
 #ifOption:mathsfit
-\mathsfit{arg}#m
+\mathsfit{text%plain}#m
 #endif
 
 #ifOption:ISO
-\mathbold{arg}#m
+\mathbold{text%plain}#m
 \vectorsym{arg}#m
 \matrixsym{arg}#m
 \tensorsym{arg}#m
 #endif
 
 \ShowMathFonts#*
+\loadsubfile{file}#*
+\readsufile{file}#*
