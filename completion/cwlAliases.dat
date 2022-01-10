@@ -233,3 +233,11 @@ leaflet:
 class-leaflet
 latex-document
 tex
+europecv:
+class-europecv
+latex-document
+tex
+willowtreebook:
+class-willowtreebook
+latex-document
+tex
