@@ -4,11 +4,27 @@
 #include:ifxetex
 #include:ifluatex
 #include:textcomp
-#include:fontspec
 #include:fontenc
 #include:fontaxes
 #include:mweights
 #include:xkeyval
+
+#keyvals:\usepackage/Alegreya#c
+scale=%<factor%>
+scaled=%<factor%>
+type1
+lining#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+tabular#true,false
+tf#true,false
+proportional#true,false
+pf#true,false
+black
+extrabold
+medium
+#endkeyvals
 
 \Alegreya#n
 \AlegreyaExtraBold#n
@@ -23,3 +39,4 @@
 \textsu{text}#n
 \textin{text}#n
 \useosf#*n
+\Alegreyafamily#*
