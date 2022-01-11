@@ -1,10 +1,11 @@
 # hvlogos package
-# Matthew Bertucci 8/24/2021 for v0.02
+# Matthew Bertucci 1/10/2022 for v0.05
 
 #include:fetamont
 #include:hologo
 #include:dantelogo
 #include:xspace
+#include:expl3
 
 \ALEPH#n
 \AmS#n
@@ -33,14 +34,16 @@
 \KOMAScript#n
 \LaTeXIII#n
 \LaTeXML#n
+\LMTX#n
 \LaTeXTeX#n
 \LuaHBTeX#n
 \LuaLaTeX#n
-\LuaTeX #n
+\LuaTeX#n
+\LuaMetaTeX
 \LyX#n
 \macOS#n
 \METAFONT#n
-\MetaFun #n
+\MetaFun#n
 \METAPOST#n
 \mfShort#n
 \MiKTeX#n
@@ -53,11 +56,12 @@
 \PCTeX#n
 \pdfLaTeX#n
 \pdfTeX#n
-\pgftikz#n
-\PiC #n
-\PiCTeX  #n
-\plainTeX #n
-\PostScript #n
+\pgf/tikz#n
+\pgf#Sn
+\PiC#n
+\PiCTeX#n
+\plainTeX#n
+\PostScript#n
 \PSTricks#n
 \PurdueThesis#n
 \PuTh#n
@@ -65,6 +69,8 @@
 \SLiTeX#n
 \teTeX#n
 \TeXivht#n
+\tex4ht#n
+\tex#S
 \TeXLive#n
 \TikZ#n
 \TTH#n
@@ -73,7 +79,7 @@
 \virTeX#n
 \VTeX#n
 \WikipediA#n
-\XeLaTeX #n
+\XeLaTeX#n
 \XeTeX#n
 
 \AMS#*n
@@ -81,6 +87,7 @@
 \BibTeXacht#*n
 \context#*n
 \HTT#*n
+\lmtx#*n
 \luahbtex#*n
 \LuahbTeX#*n
 \lualatex#*n
@@ -89,7 +96,7 @@
 \MFun#*n
 \pdflatex#*n
 \pdftex#*n
-\pgf#*n
+\pgftikz#*n
 \PS#*n
 \pstricks#*n
 \purduethesis#*n
@@ -97,3 +104,10 @@
 \tikzlogo#*n
 \Wikipedia#*n
 \wikipedia#*n
+
+\hvLaTeX[L-a kern]#*
+\hvLaTeX[L-a kern][La-TeX kern]#*
+\hvLaTeXTeX[(-La kern]#*
+\hvLaTeXTeX[(-La kern][L-a kern]#*
+\hvLaTeXTeX[(-La kern][L-a kern][a-) kern]#*
+\hvLaTeXTeX[(-La kern][L-a kern][a-) kern][)-TeX kern]#*
