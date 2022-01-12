@@ -6,7 +6,7 @@
 #include:fontaxes
 #include:xkeyval
 
-#keyvals:\usepackage/domitian#c
+#keyvals:\usepackage/clara#c
 scale=%<factor%>
 scaled=%<factor%>
 lining
