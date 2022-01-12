@@ -1,12 +1,31 @@
 # mintspirit2 package
 # Matthew Bertucci 8/28/2021
 
+#include:ifxetex
+#include:ifluatex
+#include:xkeyval
 #include:textcomp
-#include:fontspec
 #include:fontenc
 #include:fontaxes
 
-\mintspirit#n
+#keyvals:\usepackage/mintspirit2#c
+scale=%<factor%>
+scaled=%<factor%>
+type1
+default
+sfdefault
+lining#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+tabular#true,false
+tab#true,false
+proportional#true,false
+prop#true,false
+#endkeyvals
+
+\mintspirit2#n
+\mintspirit#S
 \plstyle#n
 \textpl{text}#n
 \postyle#n
@@ -20,3 +39,4 @@
 \infigures#n
 \textin{text}#n
 \useosf#*
+\mintspiritfamily#*
