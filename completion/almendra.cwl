@@ -1,4 +1,4 @@
-# arimo package
+# almendra package
 # Matthew Bertucci 1/11/2022
 
 #include:ifxetex
@@ -7,13 +7,13 @@
 #include:xkeyval
 #include:fontenc
 #include:fontaxes
+#include:mweights
 
-#keyvals:\usepackage/arimo#c
+#keyvals:\usepackage/almendra#c
 scale=%<factor%>
 scaled=%<factor%>
-sfdefault
 type1
 #endkeyvals
 
-\arimo
-\arimofamily#*
+\almendra
+\almendrafamily#*
