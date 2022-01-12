@@ -5,7 +5,7 @@
 #include:textcomp
 #include:xkeyval
 
-#keyvals:\usepackage/nimbusmononarrow#c
+#keyvals:\usepackage/nimbusserif#c
 scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
