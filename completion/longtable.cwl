@@ -9,6 +9,7 @@
 \endfoot#/longtable
 \endhead#/longtable
 \end{longtable}
+\LTchunksize
 \LTcapwidth
 \LTleft
 \LTpost

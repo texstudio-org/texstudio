@@ -1,9 +1,40 @@
 # ebgaramond package
 # Matthew Bertucci 8/20/2021
 
+#include:ifxetex
+#include:ifluatex
+#include:xkeyval
 #include:textcomp
 #include:fontenc
+#include:fontaxes
+#include:mweights
 
+#keyvals:\usepackage/ebgaramond#c
+scale=%<factor%>
+scaled=%<factor%>
+type1
+lining
+nf
+lf
+oldstyle
+osf
+tabular
+t
+proportional
+p
+medium
+m
+semibold
+sb
+extrabold
+eb
+#endkeyvals
+
+\ebgaramond
+\ebgaramondOsF
+\ebgaramondLF
+\ebgaramondtabular
+\ebgaramondproportional
 \oldstylenums{text}
 \liningnums{text}
 \tabularnums{text}
@@ -14,6 +45,7 @@
 \textinf{text}
 \swshape
 \textsw{text}
+\initials
 \textin{letter%keyvals}
 #keyvals:\textin
 A

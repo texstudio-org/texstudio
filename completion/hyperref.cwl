@@ -27,6 +27,10 @@
 #include:backref
 #endif
 
+#ifOption:colorlinks
+#include:color
+#endif
+
 \hypersetup{keyvals}
 #keyvals:\hypersetup
 addtopdfcreator=%<text%>

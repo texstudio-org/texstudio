@@ -1,11 +1,37 @@
 # spectral package
 # Matthew Bertucci 7/27/2021
 
-#include:fontaxes
-#include:fontenc
-#include:fontspec
-#include:mweights
+#include:ifxetex
+#include:ifluatex
 #include:textcomp
+#include:xkeyval
+#include:fontenc
+#include:fontaxes
+#include:mweights
+
+#keyvals:\usepackage/spectral#c
+scale=%<factor%>
+scaled=%<factor%>
+type1
+lining
+lf
+oldstyle
+osf
+tabular
+t
+proportional
+p
+medium
+m
+light
+l
+el
+extralight
+semibold
+sb
+extrabold
+eb
+#endkeyvals
 
 \spectralextralight
 \spectrallight
@@ -20,7 +46,3 @@
 \textsw{text}
 \sufigures
 \textsu{text}
-\rmdefault#*
-\familydefault#*
-\sfdefault#*
-\ttdefault#*
