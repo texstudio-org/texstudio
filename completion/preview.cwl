@@ -3,6 +3,33 @@
 
 #include:luatex85
 
+#keyvals:\usepackage/preview#c
+active
+noconfig
+psfixbb
+dvips
+pdftex
+xetex
+displaymath
+floats
+textmath
+graphics
+sections
+delayed
+auctex
+showlabels
+tightpage
+lyx
+counters
+footnotes
+tracingall
+showbox
+#endkeyvals
+
+\begin{preview}
+\end{preview}
+\begin{nopreview}
+\end{nopreview}
 \PreviewMacro{macro}
 \PreviewMacro[arg spec]{macro}
 \PreviewMacro*{macro}
