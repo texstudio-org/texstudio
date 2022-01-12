@@ -1,11 +1,23 @@
 # garamondlibre package
 # Matthew Bertucci 7/27/2021
 
+#include:ifxetex
+#include:ifluatex
+#include:textcomp
+#include:xkeyval
 #include:fontaxes
 #include:fontenc
-#include:fontspec
 #include:mweights
-#include:textcomp
+
+#keyvals:\usepackage/garamondlibre#c
+scale=%<factor%>
+scaled=%<factor%>
+type1
+oldstyle
+osf
+lining
+lf
+#endkeyvals
 
 \oldstylenums{text}
 \liningnums{text}
@@ -15,9 +27,7 @@
 \textin{text}
 \swashshape
 \textsw{text}
+\ornaments
+\ornament{char slot}#*
 \textornaments{number}
 \garamondlibrelgr#*
-\rmdefault#*
-\familydefault#*
-\sfdefault#*
-\ttdefault#*
