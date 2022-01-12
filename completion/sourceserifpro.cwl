@@ -3,6 +3,7 @@
 
 #include:ifxetex
 #include:ifluatex
+#include:xkeyval
 #include:fontenc
 #include:mweights
 
