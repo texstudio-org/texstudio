@@ -1,11 +1,24 @@
 # PlayfairDisplay package
 # Matthew Bertucci 8/28/2021
 
-#include:fontenc
+#include:ifxetex
+#include:ifluatex
 #include:textcomp
-#include:fontspec
-#include:mweights
+#include:xkeyval
+#include:fontenc
 #include:fontaxes
+#include:mweights
+
+#keyvals:\usepackage/PlayfairDisplay#c
+scale=%<factor%>
+scaled=%<factor%>
+type1
+black
+lining#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+#endkeyvals
 
 \playfair#n
 \playfairblack#n
@@ -13,3 +26,5 @@
 \playfairLF#n
 \sufigures#n
 \textsu{text}#n
+\textsuperior{text}#*n
+\playfairfamily#*
