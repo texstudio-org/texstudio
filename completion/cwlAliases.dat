@@ -241,3 +241,7 @@ willowtreebook:
 class-willowtreebook
 latex-document
 tex
+exam:
+class-exam
+latex-document
+tex
