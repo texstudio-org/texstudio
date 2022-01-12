@@ -1,10 +1,41 @@
 # FiraSans package
-# Matthew Bertucci 7/27/2021
+# Matthew Bertucci 1/11/2022 for v4.3
 
-#include:fontaxes
-#include:fontspec
-#include:mweights
+#include:ifxetex
+#include:ifluatex
+#include:xkeyval
 #include:textcomp
+#include:fontaxes
+#include:mweights
+
+#keyvals:\usepackage/FiraSans#c
+scale=%<factor%>
+scaled=%<factor%>
+type1
+lining
+nf
+lf
+oldstyle
+osf
+tabular
+t
+proportional
+p
+book
+medium
+mb
+semibold
+sb
+light
+l
+extralight
+ultralight
+thin
+extrabold
+heavy
+default
+sfdefault
+#endkeyvals
 
 \firaoldstyle
 \firalining
@@ -21,7 +52,4 @@
 \firaultralight
 \sufigures
 \firalgr#*
-\rmdefault#*
-\sfdefault#*
-\ttdefault#*
-\familydefault#*
+\firafamily#*
