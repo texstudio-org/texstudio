@@ -1,5 +1,5 @@
 # zref-clever package
-# Matthew Bertucci 11/26/2021 for v0.1.0-alpha
+# Matthew Bertucci 1/12/2022 for v0.1.2-alpha
 
 #include:zref-base
 #include:zref-user
@@ -82,8 +82,8 @@ pairsep=
 listsep=
 lastsep=
 rangesep=
-refpre=
-refpos=
+preref=
+postref=
 namefont=
 reffont=
 #endkeyvals
@@ -100,8 +100,8 @@ pairsep=
 listsep=
 lastsep=
 rangesep=
-refpre=
-refpos=
+preref=
+postref=
 Name-sg=
 name-sg=
 Name-pl=
@@ -112,6 +112,8 @@ Name-pl-ab=
 name-pl-ab=
 namefont=
 reffont=
+cap#true,false
+abbrev#true,false
 #endkeyvals
 
 \zcDeclareLanguage{language}
@@ -137,11 +139,11 @@ pairsep=
 listsep=
 lastsep=
 rangesep=
-refpre=
-refpos=
+preref=
+postref=
 type=%<type%>
 case=#N,A,D,G
-gender=#f,m,n
+gender={%<gender list%>}
 Name-sg=
 name-sg=
 Name-pl=
@@ -150,4 +152,6 @@ Name-sg-ab=
 name-sg-ab=
 Name-pl-ab=
 name-pl-ab=
+cap#true,false
+abbrev#true,false
 #endkeyvals
