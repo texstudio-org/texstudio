@@ -283,7 +283,6 @@ jobs:
   macosx-qt5:
     name: Mac OS X (Qt5)
     if: false
-    if: github.event_name == 'push'
     runs-on: macos-10.15
 
     steps:
