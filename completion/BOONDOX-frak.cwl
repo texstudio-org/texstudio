@@ -3,5 +3,9 @@
 
 #include:xkeyval
 
-\mathfrak{text}#m
-\mathbfrak{text}#m
+#keyvals:\usepackage/BOONDOX-frak#c
+scaled=%<factor%>
+#endkeyvals
+
+\mathfrak{text%plain}#m
+\mathbfrak{text%plain}#m
