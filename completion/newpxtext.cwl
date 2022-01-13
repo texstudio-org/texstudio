@@ -1,23 +1,81 @@
 # newpxtext package
-# Matthew Bertucci 9/13/2021 for v1.425
+# Matthew Bertucci 1/13/2022 for v1.503
 
-#include:fontaxes
-#include:etoolbox
 #include:fontenc
-#include:textcomp
+#include:ifxetex
+#include:ifluatex
 #include:xkeyval
+#include:etoolbox
+#include:textcomp
+#include:xstring
+#include:ifthen
+#include:scalefnt
+#include:mweight
+#include:fontaxes
 
+#keyvals:\usepackage/newpxtext#c
+type1#true,false
+nofontspec#true,false
+no-math#true,false
+defaultfeatures={%<fontspec options%>}
+lining#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+tabular#true,false
+t#true,false
+proportional#true,false
+p#true,false
+scaled=%<factor%>
+scale=%<factor%>
+defaultsups#true,false
+largesc#true,false
+nohelv#true,false
+helvratio=%<factor%>
+spcfactor=%<factor%>
+spacing=##L
+stretch=##L
+shrink=##L
+oldSS
+slashedzero
+theoremfont
+thmlining
+trueslanted
+scosf
+tighter
+looser
+#endkeyvals
+
+\defigures#*
+\destyle
+\infigures#*
+\instyle
 \lfstyle
+\liningnums{text}
+\nufigures#*
+\nustyle
+\oldstylenums{text}
 \osfstyle
+\proportionalnums{text}
+\sufigures#*
 \sustyle
+\tabularnums{text}
+\textde{text}
+\textdenominator{text}#*
+\textfrac[whole part]{numerator}{denominator}
+\textfrac{numerator}{denominator}
+\textinf{text}
+\textinferior{text}#*
 \textlf{text}
+\textnu{text}
+\textnumerator{text}#*
 \textosf{text}
 \textsu{text}
+\textsuperior{text}#*
 \textth{text}
 \textthit{text}#*
 \texttlf{text}
 \texttosf{text}
-\thempfootnote#*
 \thfamily
 \tlfstyle
 \tosfstyle
