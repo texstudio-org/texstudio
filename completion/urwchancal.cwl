@@ -1,8 +1,16 @@
 # urwchancal package
-# Matthew Bertucci 8/27/2021
+# Matthew Bertucci 1/13/2022 for v1
 
 #include:xkeyval
 
+#keyvals:\usepackage/urwchancal#c
+scaled=%<factor%>
+mathscr#true,false
+#endkeyvals
+
 #ifOption:mathscr
-\mathscr{arg}#m
+\mathscr{text%plain}#m
+#endif
+#ifOption:mathscr=true
+\mathscr{text%plain}#m
 #endif
