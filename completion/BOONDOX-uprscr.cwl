@@ -3,5 +3,9 @@
 
 #include:xkeyval
 
-\mathscr{text}#m
-\mathbscr{text}#m
+#keyvals:\usepackage/BOONDOX-uprscr#c
+scaled=%<factor%>
+#endkeyvals
+
+\mathscr{text%plain}#m
+\mathbscr{text%plain}#m
