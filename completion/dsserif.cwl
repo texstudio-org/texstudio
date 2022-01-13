@@ -3,8 +3,17 @@
 
 #include:xkeyval
 
-\mathbb{arg}#m
-\mathbfbb{arg}#m
+#keyvals:\usepackage/dsserif#c
+scale=%<factor%>
+scaled=%<factor%>
+bfbb
+bbsymbols
+symbols
+#endkeyvals
+
+\mathbb{text%plain}#m
+\mathbfbb{text%plain}#m
+\mathbbb{text%plain}#*m
 
 #ifOption:bbsymbols
 \bbdotlessi#m
@@ -37,3 +46,15 @@
 \bbPsi#m
 \bbOmega#m
 #endif
+
+\txtbbGamma#*
+\txtbbDelta#*
+\txtbbTheta#*
+\txtbbLambda#*
+\txtbbPi#*
+\txtbbSigma#*
+\txtbbPhi#*
+\txtbbPsi#*
+\txtbbOmega#*
+\txtbbdotlessi#*
+\txtbbdotlessj#*
