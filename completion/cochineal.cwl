@@ -38,8 +38,8 @@ sups
 scosf
 bold
 regular
-foresolidus=%<symbol%>
-aftsolidus=%<symbol%>
+foresolidus=##L
+aftsolidus=##L
 #endkeyvals
 
 \circledtxt#*
