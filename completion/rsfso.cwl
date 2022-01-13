@@ -3,6 +3,11 @@
 
 #include:xkeyval
 
+#keyvals:\usepackage/rsfso#c
+scaled=%<factor%>
+scr#true,false
+#endkeyvals
+
 #ifOption:scr
 \mathscr{arg}#m
 #endif
