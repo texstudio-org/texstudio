@@ -11,6 +11,24 @@
 #include:mweights
 #include:xkeyval
 
+#keyvals:\usepackage/fbb#c
+scale=%<factor%>
+scaled=%<factor%>
+foresolidus=##L
+aftsolidus=##L
+raisefrac=##L
+altP
+swashQ
+lining
+oldstyle
+osf
+tabular
+proportional
+p
+sups
+scosf
+#endkeyvals
+
 \defigures
 \infigures
 \inffigures#*
