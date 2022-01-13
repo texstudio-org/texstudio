@@ -4,8 +4,8 @@
 #include:xkeyval
 
 #keyvals:\usepackage/bboldx#c
-scaled
-scale
+scaled=%<factor%>
+scale=%<factor%>
 bfbb
 light#true,false
 bbsymbols
