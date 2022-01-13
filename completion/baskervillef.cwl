@@ -10,6 +10,25 @@
 #include:fontaxes
 #include:xkeyval
 
+#keyvals:\usepackage/baskervillef#c
+scale=%<factor%>
+scaled=%<factor%>
+spacing=##L
+stretch=##L
+shrink=##L
+theoremfont
+lining
+lf
+oldstyle
+osf
+tabular
+t
+proportional
+p
+sups
+scosf
+#endkeyvals
+
 \lfstyle
 \osfstyle
 \sufigures
