@@ -245,3 +245,11 @@ exam:
 class-exam
 latex-document
 tex
+exesheet:
+class-exesheet
+latex-document
+tex
+webquiz:
+class-webquiz
+latex-document
+tex
