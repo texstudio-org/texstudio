@@ -432,7 +432,7 @@
 \textbraceleft
 \textbraceright
 \textbullet
-\textcircled
+\textcircled{arg}
 \textcommaabove{arg}
 \textcommabelow{arg}
 \textcompwordmark
