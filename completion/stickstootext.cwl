@@ -8,6 +8,24 @@
 #include:fontaxes
 #include:xkeyval
 
+#keyvals:\usepackage/stickstootext#c
+scale=%<factor%>
+scaled=%<factor%>
+lining
+lf
+oldstyle
+osf
+p
+proportional
+t
+tabular
+theoremfont
+sups
+scosf
+foresolidus=##L
+aftsolidus=##L
+#endkeyvals
+
 \defigures
 \infigures
 \lfstyle
@@ -15,17 +33,19 @@
 \osfstyle
 \sufigures
 \textde{text}
+\textdenominators{text}#*
 \textfrac{numerator}{denominator}
+\textfrac[whole part]{numerator}{denominator}
 \textinf{text}
 \textinferior{text}#*
 \textlf{text}
-\textnu{arg}
+\textnu{text}
+\textnumerators{text}#*
 \textosf{text}
 \textsu{text}
 \textsuperior{text}#*
 \texttlf{text}
 \texttosf{text}
-\thfamily
 \tlfstyle
 \tosfstyle
 \useosf#*
