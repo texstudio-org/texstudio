@@ -4,6 +4,19 @@
 #include:mweights
 #include:xkeyval
 
+#keyvals:\usepackage/zlmtt#c
+light
+l
+lightcondensed
+lc
+med
+m
+proportional
+p
+scale=%<factor%>
+scaled=%<factor%>
+#endkeyvals
+
 \monott{text}
 \proptt{text}
 \lctt{text}
