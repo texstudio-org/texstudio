@@ -3,5 +3,9 @@
 
 #include:xkeyval
 
+#keyvals:\usepackage/BOONDOX-calo#c
+scaled=%<factor%>
+#endkeyvals
+
 \mathcal{text}#m
 \mathbcal{text}#m
