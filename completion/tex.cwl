@@ -487,7 +487,7 @@
 \dots
 \downarrow#m
 \Downarrow#m
-\downbracefill#*m
+\downbracefill#*
 \egroup#*
 \eject#*
 \ell#m
