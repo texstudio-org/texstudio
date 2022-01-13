@@ -1,4 +1,11 @@
-# px-ds package, Matthew Bertucci 9/13/2021 for v1
+# px-ds package, Matthew Bertucci 1/13/2022 for v2
+
 #include:xkeyval
-\mathbb{arg}#m
-\mathbbb{arg}#m
+
+#keyvals:\usepackage/px-ds#c
+scale=%<factor%>
+scaled=%<factor%>
+#endkeyvals
+
+\mathbb{text%plain}#m
+\mathbbb{text%plain}#m
