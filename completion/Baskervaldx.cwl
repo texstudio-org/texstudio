@@ -9,6 +9,20 @@
 #include:fontaxes
 #include:xkeyval
 
+#keyvals:\usepackage/Baskervaldx#c
+scale=%<factor%>
+scaled=%<factor%>
+lining
+lf
+oldstyle
+osf
+tabular
+proportional
+p
+sups
+swash
+#endkeyvals
+
 \lfstyle
 \osfstyle
 \sufigures

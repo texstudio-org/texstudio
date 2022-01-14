@@ -10,6 +10,22 @@
 #include:fontaxes
 #include:xkeyval
 
+#keyvals:\usepackage/algolrevived#c
+scale=%<factor%>
+scaled=%<factor%>
+tt
+hyphens
+nohyphens
+zeroslash
+nozeroslash
+lining
+lf
+oldstyle
+osf
+foresolidus
+aftsolidus
+#endkeyvals
+
 \textsu{text}#n
 \textsuperior{text}#*n
 \sufigures#n

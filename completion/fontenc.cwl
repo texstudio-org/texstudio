@@ -1,6 +1,31 @@
 # fontenc package
 # Matthew Bertucci 9/22/2021
 
+#keyvals:\usepackage/fontenc#c
+OT1
+OT2
+OT4
+T1
+T1R
+T2A
+T2B
+T2C
+T3
+TS3
+T4
+T5
+X2
+LY1
+LGR
+TU
+LCY
+B1
+ECMSRB1
+ECMSRB2
+LTH
+LHE
+#endkeyvals
+
 #ifOption:OT2
 \guillemotleft#n
 \guillemotright#n

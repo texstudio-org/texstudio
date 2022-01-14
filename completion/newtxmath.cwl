@@ -1,5 +1,5 @@
 # newtxmath package
-# Matthew Bertucci 11/2/2021 for v1.659
+# Matthew Bertucci 1/13/2022 for v1.7
 
 #include:amsmath
 #include:ifthen
@@ -9,6 +9,79 @@
 #include:xkeyval
 #include:centernot
 
+#ifOption:amsthm
+#include:amsthm
+#endif
+
+#keyvals:\usepackage/newtxmath#c
+subscriptcorrectionfile=%<file%>
+nosubscriptcorrection
+subscriptcorrection
+timesmathacc
+bigdelims
+varbb
+vvarbb
+libaltvw
+nosymbolsc
+libertine
+minion
+cochineal
+garamondx
+ebgaramond
+baskerville
+Baskerville
+baskervillef
+BaskervilleF
+baskervaldx
+Baskervaldx
+utopia
+heuristica
+Heuristica
+Erewhon
+erewhon
+charter
+xcharter
+cmintegrals
+cmbraces
+noamssymbols
+amssymbols
+uprightscript
+uprightGreek
+slantedGreek
+altnu
+largelibfigs
+liby
+frenchmath
+nonewtxmathopt
+upint
+smallerops
+useBImacros
+noxchvw
+noXchvw
+stix2
+stickstoo
+nc
+ncf
+noto
+notosans
+cochf
+cochrho
+alty
+varg
+varvw
+internaldigits
+noOT1
+amsthm
+#endkeyvals
+
+# text- or math-mode commands
+\checkmark
+\circledR
+\maltese
+\openbox#*
+\textsquare
+
+# math-mode only commands
 \alphait#*m
 \alphaup#*m
 \Angstrom#m
@@ -86,7 +159,6 @@
 \cdotB#m
 \cdotBB#m
 \centerdot#m
-\checkmark#m
 \chiit#m
 \chiup#m
 \circeq#m
@@ -106,7 +178,6 @@
 \circledotleft#m
 \circledotright#m
 \circledplus#m
-\circledR#m
 \circledS#m
 \circledslash#m
 \circledtimes#m
@@ -164,7 +235,6 @@
 \doublecap#m
 \doublecup#m
 \downdownarrows#m
-\downgroupfill#*
 \downgroupfillla#*
 \downgroupfillra#*
 \downharpoonleft#m
@@ -366,7 +436,6 @@
 \ltimes#m
 \lvec{arg}#m
 \lvertneqq#m
-\maltese#m
 \Mappedfrom#m
 \mappedfrom#m
 \mappedfromchar#*m
@@ -375,10 +444,11 @@
 \mapsfrom#m
 \Mapsto#m
 \Mapstochar#*m
-\mathbb{letter}#m
-\mathfrak{letter}#m
-\mathslscr{letter}#*m
-\mathuscr{letter}#*m
+\mathbb{text%plain}#m
+\mathfrak{text%plain}#m
+\mathscr{text%plain}#m
+\mathslscr{text%plain}#*m
+\mathuscr{text%plain}#*m
 \measuredangle#m
 \medbullet#m
 \medcirc#m
@@ -518,7 +588,6 @@
 \omegait#*m
 \Omegaup#*m
 \omegaup#*m
-\openbox#*m
 \openJoin#m
 \opentimes#m
 \overgroup{arg}#m
@@ -658,7 +727,6 @@
 \Swarrow#m
 \tauit#*m
 \tauup#*m
-\textsquare#*m
 \therefore#m
 \Thetait#*m
 \thetait#*m
@@ -693,7 +761,6 @@
 \upeta#*m
 \upGamma#*m
 \upgamma#*m
-\upgroupfill#*
 \upgroupfillla#*
 \upgroupfillra#*
 \upharpoonleft#m
@@ -783,12 +850,12 @@
 \Vdash#m
 \vDash#m
 \veebar#m
-\vmathbb{letter}#m
+\vmathbb{text%plain}#m
 \vv*{arg1}{arg2}#m
 \vv{arg}#m
 \VvDash#m
 \Vvdash#m
-\vvmathbb{letter}#m
+\vvmathbb{text%plain}#m
 \vvstar{arg}#*m
 \widearc{arg}#m
 \wideOarc{arg}#m
@@ -874,3 +941,4 @@
 \loadsubfile{file}#*
 \readsufile{file}#*
 \rmdefaultB#*
+\DeclareMathSymbolCtr{cmd}{type}{sym-font}{slot}#*d

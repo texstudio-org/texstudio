@@ -2,7 +2,12 @@
 
 #include:xkeyval
 
-\mathfrak{letter}#m
-\mathbfrak{letter}#m
+#keyvals:\usepackage/pxtx-frak#c
+scale=%<factor%>
+scaled=%<factor%>
+#endkeyvals
+
+\mathfrak{text%plain}#m
+\mathbfrak{text%plain}#m
 \frakdotlessi#m
 \frakdotlessj#m

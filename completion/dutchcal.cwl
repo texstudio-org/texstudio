@@ -3,5 +3,9 @@
 
 #include:xkeyval
 
-\mathcal{arg}#m
-\mathbcal{arg}#m
+#keyvals:\usepackage/dutchcal#c
+scaled=%<factor%>
+#endkeyvals
+
+\mathcal{text%plain}#m
+\mathbcal{text%plain}#m

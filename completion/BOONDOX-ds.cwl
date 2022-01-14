@@ -3,5 +3,9 @@
 
 #include:xkeyval
 
-\mathbb{text}#m
-\mathbbb{text}#m
+#keyvals:\usepackage/BOONDOX-ds#c
+scaled=%<factor%>
+#endkeyvals
+
+\mathbb{text%plain}#m
+\mathbbb{text%plain}#m

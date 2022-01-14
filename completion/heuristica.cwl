@@ -9,6 +9,23 @@
 #include:etoolbox
 #include:xkeyval
 
+#keyvals:\usepackage/heuristica#c
+scale=%<factor%>
+scaled=%<factor%>
+spacing=##L
+stretch=##L
+shrink=##L
+space=%<factor%>
+lining
+lf
+oldstyle
+osf
+tabular
+sups
+looser
+loosest
+#endkeyvals
+
 \infigures
 \Qswash
 \sufigures

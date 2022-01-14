@@ -1,14 +1,25 @@
 # newtxtt package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 1/13/2022 for v1.051
 
 #include:fontenc
 #include:textcomp
 #include:xkeyval
 
-\ttz#*
+#keyvals:\usepackage/newtxtt#c
+scale=%<factor%>
+scaled=%<factor%>
+nomono
+straightquotes
+ttdefault
+ttzdefault
+#endkeyvals
+
 \ttzdefault#*
 \ttzfamily
 \textttz{text}
+
+# deprecated
+\ttz#S
 
 # from T1 option of fontenc
 \DH#n

@@ -1,38 +1,95 @@
 # newtxtext package
-# Matthew Bertucci 9/7/2021 for v1.656
+# Matthew Bertucci 1/13/2022 for v1.705
 
-#include:fontaxes
+#include:fontenc
+#include:ifxetex
+#include:ifluatex
 #include:xkeyval
 #include:etoolbox
+#include:textcomp
 #include:xstring
 #include:ifthen
 #include:scalefnt
-#include:fontenc
-#include:textcomp
+#include:mweight
+#include:fontaxes
 
+#keyvals:\usepackage/newtxtext#c
+type1#true,false
+nofontspec#true,false
+no-math#true,false
+defaultfeatures={%<fontspec options%>}
+lining#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+tabular#true,false
+t#true,false
+proportional#true,false
+p#true,false
+scaled=%<factor%>
+scale=%<factor%>
+defaultsups#true,false
+largesc#true,false
+nohelv#true,false
+nott#true,false
+helvratio=%<factor%>
+spcfactor=%<factor%>
+spacing=##L
+stretch=##L
+shrink=##L
+oldSS
+slashedzero
+theoremfont
+thmslshape
+thmlining
+trueslanted
+scosf
+tighter
+looser
+#endkeyvals
+
+\defigures#*
+\destyle
 \infigures
+\instyle#*
 \lfstyle
-\mathcent#m
+\liningnums{text}
+\nufigures#*
+\nustyle
+\oldstylenums{text}
 \osfstyle
+\proportionalnums{text}
+\sufigures#*
 \sustyle
-\textfrac{numerator}{denominator}
-\textfrac[whole part]{numerator}{denominator}
-\textinf{text}
+\tabularnums{text}
 \textde{text}
+\textdenominator{text}#*
+\textfrac[whole part]{numerator}{denominator}
+\textfrac{numerator}{denominator}
+\textinf{text}
+\textinferior{text}#*
 \textlf{text}
+\textnu{text}
+\textnumerator{text}#*
 \textosf{text}
 \textsu{text}
+\textsuperior{text}#*
 \textth{text}
 \textthit{text}#*
 \texttlf{text}
 \texttosf{text}
+\thdefault#*
 \thfamily
 \tlfstyle
 \tosfstyle
 \useosf#*
 \useproportional#*
-\thdefault#*
-\LGCscale#*
+
+\ifntxotf#S
+\ntxotftrue#S
+\ntxotffalse#S
+\fileversion#S
+\filedate#S
 
 # from T1 option of fontenc
 \DH#n
@@ -56,5 +113,3 @@
 \textogonekcentered{arg}#*n
 \guillemetleft#n
 \guillemetright#n
-\fileversion#S
-\filedate#S

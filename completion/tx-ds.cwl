@@ -3,7 +3,12 @@
 
 #include:xkeyval
 
-\mathbb{letter}#m
+#keyvals:\usepackage/tx-ds#c
+scale=%<factor%>
+scaled=%<factor%>
+#endkeyvals
+
+\mathbb{text%plain}#m
 \bbdotlessi#m
 \bbdotlessj#m
 \imathbb#*m

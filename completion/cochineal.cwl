@@ -13,6 +13,35 @@
 #include:mweights
 #include:fontaxes
 
+#keyvals:\usepackage/cochineal#c
+type1#true,false
+nofontspec#true,false
+defaultfeatures={%<fontspec options%>}
+lining#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+tabular#true,false
+t#true,false
+proportional#true,false
+p#true,false
+scale=%<factor%>
+scaled=%<factor%>
+altQ
+altJ
+oldSS
+theoremfont
+thmtabular
+thmlining
+swashQ
+sups
+scosf
+bold
+regular
+foresolidus=##L
+aftsolidus=##L
+#endkeyvals
+
 \circledtxt#*
 \cochLF#*
 \cochOsF#*
@@ -30,7 +59,7 @@
 \swshape
 \tabularnums{text}
 \textde{text}
-\textdenominator{text}#*
+\textdenominators{text}#*
 \textfrac[whole part]{numerator}{denominator}
 \textfrac{numerator}{denominator}
 \textinf{text}

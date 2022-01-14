@@ -3,13 +3,22 @@
 
 #include:xkeyval
 
+#keyvals:\usepackage/bboldx#c
+scaled=%<factor%>
+scale=%<factor%>
+bfbb
+light#true,false
+bbsymbols
+symbols
+#endkeyvals
+
 \bbxfamily
 \bbbxfamily
-\textbb{arg}
-\textbfbb{arg}
+\textbb{text%plain}
+\textbfbb{text%plain}
 
-\mathbb{arg}#m
-\mathbfbb{arg}#m
+\mathbb{text%plain}#m
+\mathbfbb{text%plain}#m
 
 #ifOption:bbsymbols
 \imathbb#m

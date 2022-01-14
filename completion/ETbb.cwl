@@ -12,6 +12,31 @@
 #include:fontaxes
 #include:xkeyval
 
+#keyvals:\usepackage/ETbb#c
+scale=%<factor%>
+scaled=%<factor%>
+foresolidus=##L
+aftsolidus=##L
+raisefrac=##L
+altP
+lining
+lf
+oldstyle
+osf
+useosf
+tabular
+t
+proportional
+p
+sharpS
+swashQ
+mainfont
+bold
+regular
+sups
+scosf
+#endkeyvals
+
 \swshape
 \lfstyle
 \textlf{text}
@@ -28,6 +53,8 @@
 \textsuperior{text}#*
 \infigures
 \inffigures#*
+\textfrac{numerator}{denominator}
+\textfrac[whole part]{numerator}{denominator}
 \textin{text}
 \textinf{text}#*
 \textinferior{text}#*
