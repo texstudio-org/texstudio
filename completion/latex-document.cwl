@@ -332,7 +332,7 @@
 \oval(width,height)[portion]#*/picture
 \pagebreak
 \pagebreak[number]
-\pagenumbering{numstyle}
+\pagenumbering{numstyle%keyvals}
 \pageref{label}#r
 \pagestyle{option}
 \paragraph*{title}#L5
@@ -610,4 +610,12 @@ nosearch
 #endkeyvals
 #keyvals:\begin{filecontents}
 noheader
+#endkeyvals
+
+#keyvals:\pagenumbering#c
+arabic
+roman
+Roman
+alph
+Alph
 #endkeyvals
