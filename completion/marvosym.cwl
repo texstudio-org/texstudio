@@ -238,6 +238,18 @@
 \Handwash#*
 \Celtcross#*
 \Yinyang#*
+\MVRightarrow#*
+\Rightscissors#*
+\Leftscissors#*
+\Clocklogo#*
+\Anglesign#*
+\YingYang#*
+\Pointinghand#*
+\Writinghand#*
+\Fax#*
+\ironing#*
+\Ironing#*
+\IRONING#*
 
 # old macros:
 \FHBOlogo
@@ -256,3 +268,8 @@
 \Bat
 \Womanface
 \MartinVogel
+
+# misc:
+\mvs#*
+\mvchr{char num}#*
+\textmvs{text}#*
