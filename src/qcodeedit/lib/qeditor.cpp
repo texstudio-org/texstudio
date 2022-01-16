@@ -6218,8 +6218,7 @@ void QEditor::updateContent (int i, int n)
 {
 	if ( !m_doc )
 		return;
-
-	//qDebug("updating %i, %i", i, n);
+    //qDebug("updating %i, %i", i, n);
 
 	if (m_placeHolders.count()>0 && 
         !m_placeHolderSynchronizing) { //no recursion, if updateContent is called due to changes made by setPlaceHolder
@@ -6244,7 +6243,7 @@ void QEditor::updateContent (int i, int n)
         }
 		//if someone pressed enter
         if (m_curPlaceHolder>=0 && m_curPlaceHolder < m_placeHolders.count()){
-            if (m_placeHolders[m_curPlaceHolder].autoRemove && !m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft){
+            if (m_placeHolders[m_curPlaceHolder].autoRemove && !m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && m_placeHolders[m_curPlaceHolder].mirrors.isEmpty()){
 				removePlaceHolder(m_curPlaceHolder);
             }
         }
