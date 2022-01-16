@@ -1,6 +1,9 @@
 # typicons package
-# Matthew Bertucci 8/10/2021
+# Matthew Bertucci 8/10/2021 for v2.0.7
 
+#include:fontspec
+
+\TI#*
 \ticon{icon}
 \tiAdjustBrightness
 \tiAdjustContrast

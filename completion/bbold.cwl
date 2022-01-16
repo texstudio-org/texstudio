@@ -1,6 +1,6 @@
 # bbold package
 # Matthew Bertucci 8/6/2021
 
-\mathbb{arg}#m
-\textbb{arg}#n
-\bbfamily
+\mathbb{text%plain}#m
+\textbb{text%plain}#n
+\bbfamily#*

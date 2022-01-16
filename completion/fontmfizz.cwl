@@ -1,6 +1,8 @@
 # fontmfizz package
 # Matthew Bertucci 8/10/2021
 
+#include:fontspec
+
 \mfThreedprint
 \mfAlpinelinux
 \mfAngular
@@ -138,3 +140,6 @@
 \mfWireless
 \mfWordpress
 \mfXeleven
+
+\MF#*
+\mficon{name}#*

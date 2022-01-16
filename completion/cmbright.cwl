@@ -1,6 +1,12 @@
 # cmbright package
 # Matthew Bertucci 8/29/2021 for v8.1
 
+#keyvals:\usepackage/cmbright#c
+slantedGreek
+enlarged-baselineskips
+standard-baselineskips
+#endkeyvals
+
 \upGamma#m
 \upDelta#m
 \upOmega#m
@@ -13,4 +19,5 @@
 \upUpsilon#m
 \upPhi#m
 \upPsi#m
-\mathbold{arg}#m
+\mathbold{text%plain}#m
+\mathsterling

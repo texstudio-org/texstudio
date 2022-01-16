@@ -1,6 +1,11 @@
 # starfont package
 # Matthew Bertucci 8/23/2021 for v1.2
 
+#keyvals:\usepackage/starfont#c
+starfontsans
+starfontserif
+#endkeyvals
+
 \starfontsans#n
 \starfontserif#n
 \Sun#n
@@ -77,3 +82,10 @@
 \Natal#n
 \Radix#n
 \Pentagram#n
+\varMoon#n
+\varUranus#n
+\varPluto#n
+
+\stf#*
+\stchr#*
+\textstf{text}#*
