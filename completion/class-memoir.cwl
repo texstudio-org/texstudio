@@ -224,7 +224,7 @@ twoside
 \bitwonumcaption[label]{short1}{long1}{name}{short2}{long2}#*
 \bktabrule{width}#*
 \blockdescriptionlabel{label}#*
-\book{title}#L0
+\book{title}
 \bookblankpage#*
 \bookname#*
 \booknamefont#*
@@ -455,7 +455,7 @@ twoside
 \chapter*{title}#*
 \chapter[toc-title%title][head-title%title]{title}#*
 \chapter[toc-title%title]{title}#*
-\chapter{title}#L2
+\chapter{title}#L1
 \chapterheadstart#*
 \chaptermark#*
 \chaptermark{arg1}#*
@@ -1238,7 +1238,7 @@ none
 \paragraph*{title}#*
 \paragraph[toc-title%title][head-title%title]{title}#*
 \paragraph[toc-title%title]{title}#*
-\paragraph{title}#L6
+\paragraph{title}#L5
 \paragraphfootnotes#*
 \paragraphfootstyle{style}#*
 \paraheadstyle#*
@@ -1248,7 +1248,7 @@ none
 \parnopar#*
 \parsepi
 \parsepii
-\part{title}#L1
+\part{title}#L0
 \partblankpage#*
 \partmark{title}#*
 \partname#*
@@ -1411,7 +1411,7 @@ none
 \section*{title}#*
 \section[toc-title%title][head-title%title]{title}#*
 \section[toc-title%title]{title}#*
-\section{title}#L3
+\section{title}#L2
 \sectionmark#*
 \sectionname#*
 \sectionrefname#*
@@ -1650,7 +1650,7 @@ none
 \subparagraph*{title}#*
 \subparagraph[toc-title%title][head-title%title]{title}#*
 \subparagraph[toc-title%title]{title}#*
-\subparagraph{title}#L7
+\subparagraph{title}#L6
 \subparaheadstyle#*
 \subparahook#*
 \subparaindent
@@ -1660,7 +1660,7 @@ none
 \subsection*{title}#*
 \subsection[toc-title%title][head-title%title]{title}#*
 \subsection[toc-title%title]{title}#*
-\subsection{title}#L4
+\subsection{title}#L3
 \subsubitem#*
 \subsubsecheadstyle#*
 \subsubsechook#*
@@ -1668,7 +1668,7 @@ none
 \subsubsection*{title}#*
 \subsubsection[toc-title%title][head-title%title]{title}#*
 \subsubsection[toc-title%title]{title}#*
-\subsubsection{title}#L5
+\subsubsection{title}#L4
 \subtop#*
 \symboldef{symbol}{meaning}#*
 \symbollabel{arg}#*
