@@ -1,16 +1,22 @@
 # easylist package
 # Matthew Bertucci 11/6/2021 for v1.4
 
-#keyvals:\usepackage/easylist
+#keyvals:\usepackage/easylist#c
 pilcrow
 at
 sharp
 ampersand
+%<number of counters%>
 #endkeyvals
 
 \begin{easylist}
 \begin{easylist}[style%keyvals]
 \end{easylist}
+
+#ifOption:ampersand
+\begin{easylist}#\tabular
+\begin{easylist}[style%keyvals]#\tabular
+#endif
 
 #keyvals:\begin{easylist}#c
 tractatus
