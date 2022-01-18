@@ -1,6 +1,13 @@
 # schemata package
 # Matthew Bertucci 10/27/2021 for v1.4
 
+#keyvals:\usepackage/schemata#c
+braces
+brackets
+parens
+groups
+#endkeyvals
+
 \DoBraces
 \DoBrackets
 \DoGroups
