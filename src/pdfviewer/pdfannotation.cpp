@@ -114,7 +114,7 @@ void PDFAnnotations::update()
 			if (excludedTypes.contains(pa->subType())) {
 				continue;
 			}
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||(POPPLER_VERSION_MAJOR>21)) && QT_VERSION_MAJOR>5
             PDFAnnotation *ann = new PDFAnnotation(QSharedPointer<Poppler::Annotation>(pa.release()), pageNum, this);
 #else
             PDFAnnotation *ann = new PDFAnnotation(QSharedPointer<Poppler::Annotation>(pa), pageNum, this);

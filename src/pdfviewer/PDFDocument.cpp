@@ -918,7 +918,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 				// check for click in link
                 for(auto &link: page->links()) {
 					if (link->linkArea().contains(scaledPos)) {
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||(POPPLER_VERSION_MAJOR>21)) && QT_VERSION_MAJOR>5
                         clickedLink = QSharedPointer<Poppler::Link>(link.release());
 #else
                         clickedLink = QSharedPointer<Poppler::Link>(link);
@@ -930,7 +930,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 				if (!clickedLink) {
                     for (auto &annon: page->annotations()) {
 						if (annon->boundary().contains(scaledPos)) {
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||(POPPLER_VERSION_MAJOR>21)) && QT_VERSION_MAJOR>5
                             clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon.release());
 #else
                             clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
@@ -967,7 +967,7 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
             if (page) {
                 for (auto &annon: page->annotations()) {
 					if (annon->boundary().contains(scaledPos)) {
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||(POPPLER_VERSION_MAJOR>21)) && QT_VERSION_MAJOR>5
                         clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon.release());
 #else
                         clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
@@ -1533,7 +1533,7 @@ void PDFWidget::updateCursor(const QPoint &pos)
 			setCursor(Qt::PointingHandCursor);
 			QString tooltip;
 			if (link->linkType() == Poppler::Link::Browse) {
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||(POPPLER_VERSION_MAJOR>21)) && QT_VERSION_MAJOR>5
                 const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link.get());
 #else
                 const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link);
@@ -1541,7 +1541,7 @@ void PDFWidget::updateCursor(const QPoint &pos)
                 Q_ASSERT(browse != nullptr);
 				tooltip = browse->url();
 			} else if (link->linkType() == Poppler::Link::Goto) {
-#if POPPLER_VERSION_MAJOR>=21 && POPPLER_VERSION_MINOR>=6 && QT_VERSION_MAJOR>5
+#if ((POPPLER_VERSION_MAJOR==21 && POPPLER_VERSION_MINOR>=6)||(POPPLER_VERSION_MAJOR>21)) && QT_VERSION_MAJOR>5
                 const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link.get());
 #else
                 const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link);
