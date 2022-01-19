@@ -253,3 +253,11 @@ webquiz:
 class-webquiz
 latex-document
 tex
+extarticle:
+class-extarticle
+latex-document
+tex
+pdfArticle:
+class-pdfArticle
+latex-document
+tex
