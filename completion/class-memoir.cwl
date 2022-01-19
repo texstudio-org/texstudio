@@ -452,7 +452,7 @@ twoside
 \chapindent
 \chapnamefont#*
 \chapnumfont#*
-\chapter*{title}#*
+\chapter*{title}#*L1
 \chapter[toc-title%title][head-title%title]{title}#*
 \chapter[toc-title%title]{title}#*
 \chapter{title}#L1
