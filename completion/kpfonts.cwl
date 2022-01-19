@@ -1,8 +1,66 @@
 # kpfonts package
-# Matthew Bertucci 7/24/2021
+# Matthew Bertucci 1/19/2022 for v3.33
 
 #include:amsmath
 #include:textcomp
+
+#ifOption:easyscsl
+#include:ifthen
+#endif
+
+#keyvals:\usepackage/kpfonts#c
+nomath
+notext
+nosf
+nott
+onlyrm
+uprightgreeks
+slantedGreeks
+uprightRoman
+upright
+frenchstyle
+nomathscript
+mathcalasscript
+classicReIm
+oldstylenums
+oldstyle
+oldstylemath
+oldstylenumsmath
+fulloldstylenums
+fulloldstyle
+veryoldstyle
+veryoldstylemath
+fullveryoldstyle
+light
+lighttext
+lightmath
+rmx
+nowarning
+noamsmath
+notextcomp
+narrowiints
+partialup
+largesmallcaps
+easyscsl
+noDcommand
+nofligatures
+widermath
+sfmath
+sfmathbb
+rmmathbb
+intlimits
+fullintlimits
+nointlimits
+sumlimits
+fullsumlimits
+nosumlimits
+namelimits
+nonamelimits
+leqno
+reqno
+centertags
+tbtags
+#endkeyvals
 
 \classicstylenums{text}
 \textscsl{text}
@@ -15,16 +73,11 @@
 \othertailscq
 \othertailscslq
 
-\sfdefault#*
-\rmdefault#*
-\ttdefault#*
-
-\mathbb{arg}#m
-\mathcal{arg}#m
-\mathscr{arg}#m
-\mathfrak{arg}#m
-\mathupright{arg}#*m
-\mathup{arg}#m
+\mathbb{text%plain}#m
+\mathscr{text%plain}#m
+\mathfrak{text%plain}#m
+\mathupright{text%plain}#*m
+\mathup{text%plain}#m
 
 \approxeq#m
 \backepsilon#m
@@ -79,10 +132,6 @@
 \boxRight#m
 \boxslash#m
 \boxtimes#m
-\braceld#*m
-\bracelu#*m
-\bracerd#*m
-\braceru#*m
 \bumpeq#m
 \Bumpeq#m
 \Cap#m
@@ -194,7 +243,6 @@
 \iiintop#*m
 \iintop#*m
 \intercal#m
-\intop#*m
 \invamp#m
 \Join#m
 \lambdabar#m
@@ -372,7 +420,6 @@
 \ointclockwiseop#*m
 \ointctrclockwise#m
 \ointctrclockwiseop#*m
-\ointop#*m
 \openJoin#m
 \opentimes#m
 \partialsl#*m
