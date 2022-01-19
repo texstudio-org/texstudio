@@ -1,6 +1,13 @@
 # ccicons package
 # Matthew Bertucci 8/22/2021 for v1.6
 
+#include:xkeyval
+
+#keyvals:\usepackage/ccicons#c
+scale=%<factor%>
+copyright#true,false
+#endkeyvals
+
 \ccLogo#n
 \ccAttribution#n
 \ccShareAlike#n

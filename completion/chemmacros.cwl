@@ -1,57 +1,33 @@
 # CWL for the chemmacros.sty package 
-# Matthew Bertucci 11/7/2021 for v5.11a
+# Matthew Bertucci updated 1/18/2022 for v6.0
+
+# note: by default, all modules are loaded
 
 #include:l3keys2e
-#include:siunitx
+#include:amstext
 #include:chemformula
+#include:chemgreek
+#include:elements
+#include:mathtools
 #include:chemnum
+#include:siunitx
+#include:relsize
+#include:bm
+#include:etoolbox
+#include:translations
 #include:tikz
 #include:xfrac
-#include:mathtools
-#include:relsize
-#include:amstext
-#include:elements
-#include:scrlfile
-#include:chemgreek
-#include:translations
 
-# basic setup
-\usechemmodule{module%keyvals}
-#keyvals:\usechemmodule#c
-all
-isotope
-mechanisms
-newman
-orbital
-polymers
-reactions
-redox
-scheme
-spectroscopy
-thermodynamics
-units
-tikz
-xfrac
+#keyvals:\usepackage/chemmacros#c
+minimal#true,false
+modules={%<list of modules%>}
 #endkeyvals
 
+## basic setup
 \chemsetup{options%keyvals}
 \chemsetup[module]{options%keyvals}
-#keyvals:\chemsetup#c
-modules={%<list of modules%>}
-greek={%<mapping%>}
-#endkeyvals
 
-\IfChemCompatibilityTF{comp}{version}{true}{false}#*
-\IfChemCompatibilityT{comp}{version}{true}#*
-\IfChemCompatibilityF{comp}{version}{false}#*
-\ChemCompatibility{version}#*
-\ChemCompatibilityFrom{version}#*
-\ChemCompatibilityTo{version}#*
-\ChemCompatibilityBetween{version1}{version2}#*
-\EndChemCompatibility#*
-
-
-# acid-base module
+## acid-base module
 \pH
 \pOH
 \Ka
@@ -76,7 +52,8 @@ K-water={%<text%>}
 eq-constant={%<text%>}
 #endkeyvals
 
-# charges-module
+## charges-module
+# loads chemformula module
 \fplus
 \fminus
 \scrp
@@ -85,14 +62,14 @@ eq-constant={%<text%>}
 \fscrm
 \fsscrp
 \fsscrm
-\pch
-\pch[number]
-\mch
-\mch[number]
-\fpch
-\fpch[number]
-\fmch
-\fmch[number]
+\pch#*
+\pch[number]#*
+\mch#*
+\mch[number]#*
+\fpch#*
+\fpch[number]#*
+\fmch#*
+\fmch[number]#*
 \delp
 \delm
 \fdelp
@@ -113,8 +90,8 @@ circletype=#chem,math
 partial-format={%<LaTeX code%>}
 #endkeyvals
 
-
-# nomenclature-module
+## nomenclature-module
+# loads tikz module
 \iupac{IUPAC name}
 \chemprime#*
 \nonbreakinghyphen#*
@@ -197,8 +174,8 @@ bridge-number=#sub,super
 coord-use-hyphen#true,false
 #endkeyvals
 
-
-# particles-module
+## particles-module
+# loads charges and chemformula modules
 \el
 \prt
 \ntr
@@ -223,8 +200,8 @@ elpair=#dots,dash,false
 space=##L
 #endkeyvals
 
-
-# phases-module
+## phases-module
+# loads chemformula module
 \sld
 \lqd
 \gas
@@ -240,40 +217,29 @@ space=##L
 pos=#side,sub
 #endkeyvals
 
-
-# symbols-module
+## symbols-module
+# loads amstext package
 \transitionstatesymbol
 \standardstatesymbol
 \changestate
 
-
-# base-module
-\NewChemMacroset{name}{arg spec}{internal command call}#*
-\NewChemMacroset*{name}{arg spec}{internal command call}#*
-\ChemCleverefSupport{counter}{singular}{plural}#*
-\ChemCleverefSupport{counter}{singular}[uppercase singular]{plural}[uppercase plural]#*
-\ChemFancyrefSupport{prefix}{name}#*
-\ChemFancyrefSupport{prefix}{name}[uppercase name]#*
-
-
-# chemformula-module
+## chemformula-module
+# loads amstext package and charges module
+# loads chemformula, mhchem, chemist, or chemfig depending on user; chemformula is default
 #keyvals:\chemsetup#c
 formula=#chemformula,mhchem,chemist,chemfig
 format={%<format%>}
 #endkeyvals
 
-
-# lang-module
-\DeclareChemTranslation{key%plain}{language}{translation}#*
-\DeclareChemTranslations{key%plain}{language=translation,...}#*
-\ChemTranslate{translation key}#*
+## greek-module
+# loads chemgreek package
 
 #keyvals:\chemsetup#c
-language=
+greek={%<mapping%>}
 #endkeyvals
 
-
-# isotopes-module
+## isotopes-module
+# loads elements package
 \isotope{isotope}
 \isotope*{isotope}
 
@@ -281,8 +247,8 @@ language=
 side-connect={%<input%>}
 #endkeyvals
 
-
-# mechanisms-module
+## mechanisms-module
+# loads amstext package
 \mech
 \mech[type%keyvals]
 #keyvals:\mech
@@ -298,22 +264,22 @@ e2
 cb
 #endkeyvals
 
-
-# newman-module
+## newman-module
+# loads tikz module
 \newman{part-list}
 \newman[options%keyvals]{part-list}
-\newman[options%keyvals][angle]{part-list}
+\newman[options%keyvals](angle){part-list}
 
 #keyvals:\newman#c,\chemsetup#c
 angle=%<degrees%>
 scale=%<factor%>
-ring={%<TikZ%>}
-atoms={%<TikZ%>}
-back-atoms={%<TikZ%>}
+ring={%<TikZ options%>}
+atoms={%<TikZ options%>}
+back-atoms={%<TikZ options%>}
 #endkeyvals
 
-
-# orbital-module
+## orbital-module
+# loads tikz module
 \orbital{type}
 \orbital[options%keyvals]{type}
 
@@ -330,8 +296,8 @@ overlay#true,false
 opacity=%<number%>
 #endkeyvals
 
-
-# polymers-module
+## polymers-module
+# loads nomenclature and tikz modules
 \copolymer
 \statistical
 \random
@@ -358,21 +324,19 @@ subscript=
 superscript=
 #endkeyvals
 
-
-# reactions-module
+## reactions-module
+# loads chemformula module and mathtools package
 \begin{reaction}
 \end{reaction}
 \begin{reaction*}
 \end{reaction*}
-\begin{reactions}
+\begin{reactions}#\tabular
 \end{reactions}
-\begin{reactions*}
+\begin{reactions*}#\tabular
 \end{reactions*}
 \AddRxnDesc{description}
 \listofreactions
 
-\renewtagform{tagname}{left delimiter}{right delimiter}#*
-\renewtagform{tagname}[format]{left delimiter}{right delimiter}#*
 \NewChemReaction{envname}{math envname}#*N
 \NewChemReaction{envname}[args]{math envname}#*N
 \RenewChemReaction{envname}{math envname}#*N
@@ -393,16 +357,84 @@ list-heading-cmd={%<code%>}
 tocbasic#true,false
 #endkeyvals
 
+## reactants module
+# loads chemnum and siunitx packages
+\DeclareChemReactant{ID}{properties%keyvals}
+#keyvals:\DeclareChemReactant
+name=%<name%>
+short=%<abbreviation%>
+bookmark=%<text%>
+upper-name=%<uppercase name%>
+upper-bookmark=%<uppercase text%>
+#endkeyvals
 
-# redox-module
+\reactant{ID}
+\reactant[data and units%keyvals]{ID}
+\reactant+{ID}#*
+\reactant+[data and units%keyvals]{ID}#*
+\reactantplain{ID}#*
+\submainreactantplain{main ID}{sub ID}#*
+\Reactant{ID}
+\Reactant[data and units%keyvals]{ID}
+\Reactantplain{ID}#*
+\Submainreactantplain{main ID}{sub ID}#*
+\solvent{ID}
+\solvent[data and units%keyvals]{ID}
+\solventplain{ID}#*
+\Solventplain{ID}#*
+\Solvent{ID}
+\Solvent[data and units%keyvals]{ID}
+
+#keyvals:\reactant,\reactant+,\Reactant,\solvent,\Solvent
+mass=%<number%>
+volume=%<number%>
+fraction=%<number%>
+amount=%<number%>
+equiv=%<number%>
+purity=%<number%>
+concentration=%<number%>
+solvent=%<number%>
+#endkeyvals
+
+#keyvals:\chemsetup#c,\reactant,\Reactant,\solvent,\Solvent
+mass-unit=%<unit%>
+volume-unit=%<unit%>
+fraction-unit=%<unit%>
+amount-unit=%<unit%>
+equiv-unit=%<unit%>
+concentration-unit=%<unit%>
+purity-unit=%<unit%>
+#endkeyvals
+
+\printreactants
+\printreactants*
+
+\reactants{ID}#*
+\reactantl{ID}#*
+\solvents{ID}#*
+\solventl{ID}#*
+
+#keyvals:\chemsetup#c
+initiate#true,false
+switch#true,false
+reactant-output-style=#name-main-other,main-name-other,main-other-name
+solvent-output-style=#main-name,name-main
+main=#default,amount,equiv
+equivalents#true,false
+acronym-support=#acro,glossaries,none
+printreactants-style=#xltabular,longtable,none
+#endkeyvals
+
+## redox-module
+# loads tikz and xfrac modules and mathtools and relsize packages
 \ox{%<number%>,%<atom%>}
 \ox[%<options%>]{%<number%>,%<atom%>}
 \ox*{%<number%>,%<atom%>}
 \ox*[%<options%>]{%<number%>,%<atom%>}
 \OX{%<name%>,%<atom%>}
 \redox(%<name1%>,%<name2%>){%<text%>}
-\redox(%<name1%>,%<name2%>)[%<tikz-options%>]{%<text%>}
-\redox(%<name1%>,%<name2%>)[%<tikz-options%>][%<vertical-factor%>]{%<text%>}
+\redox(%<name1%>,%<name2%>)[%<TikZ-options%>]{%<text%>}
+\redox(%<name1%>,%<name2%>)[%<TikZ-options%>][%<vertical-factor%>]{%<text%>}
 
 #keyvals:\ox#c,\ox*#c
 format={%<code%>}
@@ -425,16 +457,16 @@ dist=##L
 sep=##L
 #endkeyvals
 
-
-# scheme-module
+## scheme-module
+# loads chemnum package
 \begin{scheme}
 \end{scheme}
 \listschemename#*
 \schemename#*
 \listofschemes
 
-
-# spectroscopy-module
+## spectroscopy-module
+# loads chemformula module and siunitx package
 \NMR{%<isotope%>,%<element%>}(%<frequency%>,%<freq. unit%>)[%<solvent%>]
 \NMR{%<isotope%>,%<element%>}(%<frequency%>)[%<solvent%>]
 \NMR{%<isotope%>,%<element%>}(%<frequency%>,%<freq. unit%>)
@@ -501,8 +533,8 @@ list-setup={%<setup%>}
 use-equal#true,false
 #endkeyvals
 
-
-# thermodynamics-module
+## thermodynamics-module
+# loads siunitx package
 \state{symbol}
 \state[options%keyvals]{symbol}
 \enthalpy[options%keyvals](subscript){value}
@@ -552,8 +584,8 @@ symbol=
 unit=
 #endkeyvals
 
-
-# units-module
+## units-module
+# loads siunitx package
 \atmosphere
 \atm
 \calory
@@ -565,9 +597,39 @@ unit=
 \MolMass
 \normal
 \torr
+\angstrom
+\atomicmassunit
+\bar
+\elementarycharge
+\mmHg
 
+## base-module
+# loads bm, amstext, and etoolbox packages
+\NewChemMacroset{name}{arg spec}{internal command call}#*
+\NewChemMacroset*{name}{arg spec}{internal command call}#*
+\ChemCleverefSupport{counter}{singular}{plural}#*
+\ChemCleverefSupport{counter}{singular}[uppercase singular]{plural}[uppercase plural]#*
+\ChemFancyrefSupport{prefix}{name}#*
+\ChemFancyrefSupport{prefix}{name}[uppercase name]#*
 
-# xfrac-module
+## errorcheck module
+# no new user commands
+
+## lang-module
+# loads translations package
+\DeclareChemTranslation{key%plain}{language}{translation}#*
+\DeclareChemTranslations{key%plain}{language=translation,...}#*
+\ChemTranslate{translation key}#*
+
+#keyvals:\chemsetup#c
+language=#auto,%<language%>
+#endkeyvals
+
+# tikz-module
+# loads tikz package and calc and decorations.pathmorphing tikzlibraries
+
+## xfrac-module
+# loads xfrac package
 \chemfrac{numerator}{denominator}
 \chemfrac[type%keyvals]{numerator}{denominator}
 #keyvals:\chemfrac

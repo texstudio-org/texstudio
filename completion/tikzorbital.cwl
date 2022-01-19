@@ -5,59 +5,38 @@
 #include:tikz
 #
 \drawLevel[options%keyvals]{name}#/tikzpicture
-\orbital[options%keyvals]{type%keyvals}#/tikzpicture
-\satom[options%keyvals]{%<color%>/%<rotation-angle%>/%<anchor%>/%<number of electrons%>/%<scale%>}#/tikzpicture
-\atom[options%keyvals]{%<color%>/%<rotation-angle%>/%<anchor%>/%<number of electrons%>/%<scale%>}#S/tikzpicture
-\colorlet{color type%keyvals}{color}#/tikzpicture
-\setOrbitalDrawing{{%<argument list%>}}#/tikzpicture
+\orbital[options%keyvals]{type}#/tikzpicture
+\satom[%<options%>]{%<color%>/%<rotation-angle%>/%<anchor%>/%<number of electrons%>/%<scale%>}#/tikzpicture
+\atom[%<options%>]{%<color%>/%<rotation-angle%>/%<anchor%>/%<number of electrons%>/%<scale%>}#*/tikzpicture
+\setOrbitalDrawing{TikZ options}
 
 #keyvals:\drawLevel
 elec=#up,down,updown,pair
 pos={(%|)}
-width=
-style={%|}
-spinstyle={%|}
-spinlength=
+width=%<number%>
+style={%<TikZ options%>}
+spinstyle={%<TikZ options%>}
+spinlength=%<number%>
 #endkeyvals
 
 #keyvals:\orbital#c
-lobe
-s
-px
-py
-pz
-dxy
-dxz
-dyz
-dx2y2
-dz2
 pos={(%|)}
-scale=
-opacity=
+scale=%<factor%>
+opacity=%<factor%>
 pcolor=#%color
 ncolor=#%color
 color=#%color
-rotate=
-nelec=
+rotate=%<degrees%>
+nelec=%<integer%>
 #endkeyvals
 
-#keyvals:\satom#c
+#keyvals:\satom#c,\atom#c
 pos={(%|)}
-name=
+name=%<name%>
 color=#%color
-opcaity=
-scale=
+opacity=%<factor%>
+scale=%<factor%>
 #endkeyvals
 
-#keyvals:\atom#c
-pos={(%|)}
-name=
-color=#%color
-opcaity=
-scale=
-#endkeyvals
-
-#keyvals:\colorlet
-innerColor
-drawColor
-#endkeyvals
+innerColor#B
+drawColor#B

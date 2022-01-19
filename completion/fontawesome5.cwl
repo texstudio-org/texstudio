@@ -2,6 +2,16 @@
 # muzimuzhi/4 Dec 2019 for fontawesome5 v5.9.0
 # Matthew Bertucci updated 11/15/2021 for v5.15.3
 
+#include:expl3
+#include:l3keys2e
+#include:xparse
+
+#keyvals:\usepackage/fontawesome5#c
+fixed#true,false
+free#true,false
+pro#true,false
+#endkeyvals
+
 # Every icon can be called by two forms:
 #  - by CamelCase command, e.g. \faAlignCenter
 #  - by hyphen-joined icon name, e.g. \faIcon{align-center}

@@ -3,10 +3,20 @@
 # muzimuzhi/30 Aug 2019 for fontspec v2.7c
 # url: http://www.ctan.org/tex-archive/help/Catalogue/entries/fontspec.html
 
+#keyvals:\usepackage/fontspec#c
+tuenc
+euenc
+math
+no-math
+config
+no-config
+quiet
+silent
+#endkeyvals
+
 ## Sec. I.4 Interaction with LaTeX2e and other packages
-\liningnums{nums}
-\emfontdeclare{font-switching list}
-\emreset
+\oldstylenums{text}
+\liningnums{text}
 \strong{text}
 \begin{strongenv}
 \end{strongenv}
@@ -135,6 +145,8 @@ BoldItalicFeatures={%<features%>}
 BoldItalicFont=%<font name%>
 BoldSlantedFeatures={%<features%>}
 BoldSlantedFont=%<font name%>
+BoldSwashFeatures={%<features%>}
+BoldSwashFont=%<font name%>
 CJKShape=#Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
@@ -178,6 +190,8 @@ SmallCapsFont=%<font name%>
 Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll
 StylisticAlternates=%<feature%>
 StylisticSet=%<set number%>
+SwashFeatures={%<features%>}
+SwashFont=%<font name%>
 UprightFeatures={%<features%>}
 UprightFont=%<font name%>
 Variant=%<integer%>

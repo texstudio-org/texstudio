@@ -1,11 +1,20 @@
 # droidsans package
 # Matthew Bertucci 7/27/2021
 
-#include:fontspec
+#include:ifluatex
+#include:ifxetex
+#include:xkeyval
+
+#keyvals:\usepackage/droidsans#c
+scale=%<factor%>
+scaled=%<factor%>
+default
+defaultsans
+type1
+#endkeyvals
 
 \droidsans
-\fdsfamily#*
-\rmdefault#*
-\familydefault#*
-\sfdefault#*
-\ttdefault#*
+\droidsansfamily#*
+
+# deprecated
+\fdsfamily#S
