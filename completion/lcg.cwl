@@ -5,8 +5,8 @@
 \reinitrand[options%keyvals]
 \chgrand[options%keyvals]
 
-#keyvals:\reinitrand,\chgrand
-counter=
+#keyvals:\reinitrand,\chgrand,\usepackage/lcg#c
+counter=%<counter%>
 first=%<integer%>
 last=%<integer%>
 seed=%<integer%>
