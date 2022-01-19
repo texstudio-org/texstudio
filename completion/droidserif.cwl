@@ -1,11 +1,19 @@
 # droidserif package
 # Matthew Bertucci 7/27/2021
 
-#include:fontspec
+#include:ifluatex
+#include:ifxetex
+#include:xkeyval
+
+#keyvals:\usepackage/droidserif#c
+scale=%<factor%>
+scaled=%<factor%>
+default
+type1
+#endkeyvals
 
 \droidserif
-\fdrfamily#*
-\rmdefault#*
-\familydefault#*
-\sfdefault#*
-\ttdefault#*
+\droidseriffamily#*
+
+# deprecated
+\fdrfamily#S
