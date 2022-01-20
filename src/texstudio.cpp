@@ -11373,7 +11373,7 @@ void Texstudio::customMenuStructure(const QPoint &pos){
         menu.addSeparator();
         menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        //menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()));
+        menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.exec(w->mapToGlobal(pos));
         return;
     }
@@ -12112,6 +12112,22 @@ void Texstudio::copyFilePath()
     if (!clipboard) return;
     clipboard->setText(document->getFileInfo().absoluteFilePath());
 }
+/*!
+ * \brief open directory in external explorer
+ *
+ * Called from structure view
+ */
+
+void Texstudio::showInGraphicalShell_()
+{
+    QAction *action = qobject_cast<QAction *>(sender());
+    if (!action) return;
+    LatexDocument *document = qvariant_cast<LatexDocument *>(action->data());
+    if (!document) return;
+    showInGraphicalShell(this, document->getFileName());
+}
+
+
 
 /*!
  * \brief toggle single/multiple documents view in structureWidget

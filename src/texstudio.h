@@ -247,6 +247,7 @@ private slots:
     void closeDocument();
     void copyFileName();
     void copyFilePath();
+    void showInGraphicalShell_();
     void toggleSingleDocMode();
     void expandSubitems();
     void collapseSubitems();
