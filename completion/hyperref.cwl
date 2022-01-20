@@ -32,7 +32,7 @@
 #endif
 
 \hypersetup{keyvals}
-#keyvals:\hypersetup
+#keyvals:\hypersetup,\usepackage/hyperref#c
 addtopdfcreator=%<text%>
 allbordercolors=#%color
 allcolors=#%color
