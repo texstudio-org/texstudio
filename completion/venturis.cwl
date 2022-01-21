@@ -1,9 +1,15 @@
 # venturis package
 # Matthew Bertucci 8/10/2021
 
+#include:xkeyval
 #include:textcomp
 #include:fontenc
 #include:nfssext-cfr
+
+#keyvals:\usepackage/venturis#c
+osf#true,false
+lf#true,false
+#endkeyvals
 
 \sishape
 \textsi{text}
@@ -54,3 +60,26 @@
 \vtstyle
 \textvt{text}
 \textvtl{text}
+
+# from T1 option of fontenc
+\DH#n
+\NG#n
+\dj#n
+\ng#n
+\k{arg}#n
+\guillemotleft#*n
+\guillemotright#*n
+\guilsinglleft#n
+\guilsinglright#n
+\quotedblbase#n
+\quotesinglbase#n
+\textquotedbl#n
+\DJ#n
+\th#n
+\TH#n
+\dh#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\textogonekcentered{arg}#*n
+\guillemetleft#n
+\guillemetright#n
