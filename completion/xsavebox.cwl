@@ -3,6 +3,10 @@
 
 #include:l3keys2e
 
+#keyvals:\usepackage/xsavebox#c
+margin=##L
+#endkeyvals
+
 \xsbox{name}{content}
 \xsavebox{name}{content}
 \xsavebox{name}[width]{content}
