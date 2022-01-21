@@ -13,7 +13,7 @@
 \cistercianstyle{keyname}{options%keyvals}#s#%cisterciankey
 \cistercianstyle*{keyname}{options%keyvals}#s#%cisterciankey
 
-#keyvals:\cisterciansetup,\cistercianstyle,\cistercianstyle*
+#keyvals:\cisterciansetup,\cistercianstyle,\cistercianstyle*,\usepackage/xistercian#c
 width=##L
 wd=##L
 height=##L
@@ -48,6 +48,10 @@ alternate-9=%<choice%>
 9=%<choice%>
 font={%<font setup%>}
 f={%<font setup%>}
+%cisterciankey
+#endkeyvals
+
+#keyvals:\cisterciansetup,\cistercianstyle,\cistercianstyle*
 redraw={%<feature list%>}
 redraw +={%<feature list%>}
 redraw
@@ -56,5 +60,8 @@ r={%<feature list%>}
 r +={%<feature list%>}
 r
 r!
-%cisterciankey
+#endkeyvals
+
+#keyvals:\usepackage/xistercian#c
+debug
 #endkeyvals
