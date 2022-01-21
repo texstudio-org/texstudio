@@ -6,7 +6,7 @@
 
 \WaOsetup{options%keyvals}
 
-#keyvals:\WaOsetup
+#keyvals:\WaOsetup,\usepackage/widows-and-orphans#c
 check=#warning,error,info,none
 orphans=#prevent,avoid,default
 widows=#prevent,avoid,default
