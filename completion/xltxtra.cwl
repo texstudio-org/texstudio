@@ -7,6 +7,11 @@
 #include:realscripts
 #include:metalogo
 
+#keyvals:\usepackage/xltxtra#c
+no-sscript
+no-logos
+#endkeyvals
+
 \textsuperscript*{text}
 \textsubscript*{text}
 \realsubscript{text}#*
