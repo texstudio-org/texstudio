@@ -2,15 +2,23 @@
 # Matthew Bertucci 8/19/2021 for v0.1
 
 #include:xcolor
+#include:kvoptions
 
+#keyvals:\usepackage/xcolor-material#c
+prefix=%<prefix%>
+#endkeyvals
+
+\printcolorvalue{color}
 \printcolorvalue[model]{color}
-\colorsample[model][textcolor%color][box width%l]{color}[title]
-\colorpalette[keyvals]{color}
+\colorsample{color}
+\colorsample[model][textcolor%color][box width%l]{color}[title%text]
+\colorpalette{color}
+\colorpalette[options%keyvals]{color}
 
 #keyvals:\colorpalette
 width=##L
 height=##L
-shape=
+shape=%<shape%>
 title=#%color
 title text color=#%color
 init text color=#%color
