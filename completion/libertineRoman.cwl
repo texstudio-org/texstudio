@@ -12,18 +12,18 @@
 #keyvals:\usepackage/libertineRoman#c
 type1#true,false
 nofontspec#true,false
-lining
-nf
-lf
-oldstyle
-osf
-tabular
-t
-proportional
-p
-semibold
-sb
-bold
+lining#true,false
+nf#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+tabular#true,false
+t#true,false
+proportional#true,false
+p#true,false
+semibold#true,false
+sb#true,false
+bold#true,false
 defaultfeatures={%<fontspec features%>}
 #endkeyvals
 

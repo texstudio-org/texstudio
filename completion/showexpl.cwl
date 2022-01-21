@@ -30,7 +30,7 @@ vsep=##L
 wide#true,false
 width=##L
 scaled
-scaled=
+scaled=%<factor%>
 caption={%<text%>}
 captionpos=#t,b,tb,bt
 label=##l

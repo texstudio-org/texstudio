@@ -261,3 +261,7 @@ pdfArticle:
 class-pdfArticle
 latex-document
 tex
+komacv:
+class-komacv
+latex-document
+tex
