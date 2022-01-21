@@ -1,5 +1,13 @@
 # tex/latex mode: Tex commands
 # sdm 23.5.2009
+
+#keyvals:\usepackage/wasysym#c
+compat1
+integrals
+nointegrals
+noeuro
+#endkeyvals
+
 \male
 \female
 \currency
