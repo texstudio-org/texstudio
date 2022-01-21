@@ -4,6 +4,10 @@
 #include:chessboard
 #include:skak
 
+#keyvals:\usepackage/xskak#c
+nopdfmatch
+#endkeyvals
+
 \newchessgame
 \newchessgame[options%keyvals]
 \resumechessgame[options%keyvals]
