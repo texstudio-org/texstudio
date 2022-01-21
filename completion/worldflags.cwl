@@ -1,8 +1,11 @@
 # worldflags package
 # Matthew Bertucci 8/12/2021
 
+#include:ifthen
 #include:tikz
+# loads calc, shadows, shapes, shapes.symbols, positioning, and math tikzlibraries
 #include:xcolor
+#include:xkeyval
 
 \worldflag[options%keyvals]{flag code}
 \flagsdefault[options%keyvals] 
@@ -46,3 +49,4 @@ hang=%<degrees%>
 \starn{color}{coord}{outer radius}{inner radius}{angle}#*
 \moon{color}{coord1}{radius1}{coord2}{radius2}#*
 \unionjack{xcoord1}{ycoord1}{xcoord2}{ycoord2}#*
+gridcolor#B
