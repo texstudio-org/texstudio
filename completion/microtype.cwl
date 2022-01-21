@@ -8,7 +8,7 @@
 
 \microtypesetup{options%keyvals}
 
-#keyvals:\microtypesetup
+#keyvals:\microtypesetup,\usepackage/microtype#c
 protrusion=#true,false,compatibility,nocompatibility,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
 expansion=#true,false,compatibility,nocompatibility,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
 activate=
@@ -30,6 +30,10 @@ final#true,false
 verbose=#true,false,errors,silent
 babel#true,false
 DVIoutput#true,false
+#endkeyvals
+
+#keyvals:\usepackage/microtype#c
+config=%<file name%>
 #endkeyvals
 
 \DeclareMicrotypeSet{name}{fonts%keyvals}
