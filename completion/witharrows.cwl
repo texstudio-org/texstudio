@@ -7,6 +7,11 @@
 #include:tikz
 #include:xparse
 
+#keyvals:\usepackage/witharrows#c
+footnote
+footnotehyper
+#endkeyvals
+
 \begin{WithArrows}#m\array
 \begin{WithArrows}[options%keyvals]#m\array
 \end{WithArrows}
