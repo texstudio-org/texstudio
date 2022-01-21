@@ -1,5 +1,12 @@
 # mode: xtab.sty
 # dani/2006-02-18
+
+#keyvals:\usepackage/xtab#c
+errorshow
+pageshow
+debugshow
+#endkeyvals
+
 \begin{mpxtabular}{preamble}#\tabular
 \begin{mpxtabular}[pos]{preamble}#\tabular
 \begin{mpxtabular*}{preamble}#\tabular
