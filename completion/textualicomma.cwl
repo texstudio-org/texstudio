@@ -2,5 +2,10 @@
 
 #include:amstext
 
+#keyvals:\usepackage/textualicomma#c
+sffamily
+ttfamily
+#endkeyvals
+
 \textualicommafont{font family}#*
 \mathcomma#*m
