@@ -1,5 +1,11 @@
 # textgreek package
-# Matthew Bertucci 7/29/2021
+# Matthew Bertucci 7/29/2021 for v0.7
+
+#keyvals:\usepackage/textgreek#c
+cbgreek
+euler
+artemisia
+#endkeyvals
 
 \scripttheta#n
 \straightepsilon#n
@@ -57,3 +63,8 @@
 \textZeta#n
 
 \textgreekfontmap#*
+\textgreekfont#*
+\TextGreek{text%plain}#*
+\DeclareTextGreekSymbol{letter}{LGR}#*
+\DeclareTextGreekSymbol{letter}{LGR}[OML]#*
+\DeclareTextGreekSymbol{letter}{LGR}[OML][U]#*
