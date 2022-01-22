@@ -43,7 +43,10 @@
 <file>completion/algxpar.cwl</file>
 <file>completion/aliascnt.cwl</file>
 <file>completion/allauncl.cwl</file>
+<file>completion/allpgoth.cwl</file>
 <file>completion/allrunes.cwl</file>
+<file>completion/allsqrc.cwl</file>
+<file>completion/alltgoth.cwl</file>
 <file>completion/alltt.cwl</file>
 <file>completion/almendra.cwl</file>
 <file>completion/alphabeta.cwl</file>
@@ -96,6 +99,7 @@
 <file>completion/autopuncitem.cwl</file>
 <file>completion/auxhook.cwl</file>
 <file>completion/awesomebox.cwl</file>
+<file>completion/axessibility.cwl</file>
 <file>completion/axodraw2.cwl</file>
 <file>completion/babel.cwl</file>
 <file>completion/background.cwl</file>
@@ -128,6 +132,7 @@
 <file>completion/bezierplot.cwl</file>
 <file>completion/bguq.cwl</file>
 <file>completion/bibentry.cwl</file>
+<file>completion/biblatex2bibitem.cwl</file>
 <file>completion/biblatex.cwl</file>
 <file>completion/bibleref.cwl</file>
 <file>completion/bibleref-mouth.cwl</file>
@@ -355,6 +360,7 @@
 <file>completion/complexity.cwl</file>
 <file>completion/concepts.cwl</file>
 <file>completion/concmath.cwl</file>
+<file>completion/concmath-otf.cwl</file>
 <file>completion/conteq.cwl</file>
 <file>completion/continue.cwl</file>
 <file>completion/contour.cwl</file>
@@ -364,6 +370,7 @@
 <file>completion/coolstr.cwl</file>
 <file>completion/coolthms.cwl</file>
 <file>completion/cooltooltips.cwl</file>
+<file>completion/coop-writing.cwl</file>
 <file>completion/coordsys.cwl</file>
 <file>completion/copyrightbox.cwl</file>
 <file>completion/CormorantGaramond.cwl</file>
@@ -415,6 +422,7 @@
 <file>completion/datetime2-calc.cwl</file>
 <file>completion/datetime2.cwl</file>
 <file>completion/daytime.cwl</file>
+<file>completion/dbshow.cwl</file>
 <file>completion/ddphonism.cwl</file>
 <file>completion/debate.cwl</file>
 <file>completion/decision-table.cwl</file>
@@ -743,6 +751,7 @@
 <file>completion/Gudea.cwl</file>
 <file>completion/guit.cwl</file>
 <file>completion/halloweenmath.cwl</file>
+<file>completion/hamnosys.cwl</file>
 <file>completion/handout.cwl</file>
 <file>completion/hang.cwl</file>
 <file>completion/hanging.cwl</file>
@@ -1161,6 +1170,7 @@
 <file>completion/parcolumns.cwl</file>
 <file>completion/paresse.cwl</file>
 <file>completion/parnotes.cwl</file>
+<file>completion/parseargs.cwl</file>
 <file>completion/parselines.cwl</file>
 <file>completion/parskip.cwl</file>
 <file>completion/pascaltriangle.cwl</file>
@@ -1194,6 +1204,7 @@
 <file>completion/pgf.cwl</file>
 <file>completion/pgf-filehook.cwl</file>
 <file>completion/pgffor.cwl</file>
+<file>completion/pgf-interference.cwl</file>
 <file>completion/pgfkeys.cwl</file>
 <file>completion/pgfmath.cwl</file>
 <file>completion/pgfmath-xfp.cwl</file>
@@ -1209,6 +1220,7 @@
 <file>completion/pgf-soroban.cwl</file>
 <file>completion/pgf-spectra.cwl</file>
 <file>completion/pgfsys.cwl</file>
+<file>completion/pgothic.cwl</file>
 <file>completion/phaistos.cwl</file>
 <file>completion/phfcc.cwl</file>
 <file>completion/phffullpagefigure.cwl</file>
@@ -1410,6 +1422,7 @@
 <file>completion/shapepar.cwl</file>
 <file>completion/shdoc.cwl</file>
 <file>completion/shellesc.cwl</file>
+<file>completion/shortmathj.cwl</file>
 <file>completion/shorttoc.cwl</file>
 <file>completion/shortvrb.cwl</file>
 <file>completion/show2e.cwl</file>
@@ -1462,6 +1475,7 @@
 <file>completion/spotcolor.cwl</file>
 <file>completion/spreadtab.cwl</file>
 <file>completion/spverbatim.cwl</file>
+<file>completion/sqrcaps.cwl</file>
 <file>completion/sseq.cwl</file>
 <file>completion/stabular.cwl</file>
 <file>completion/stackengine.cwl</file>
@@ -1559,6 +1573,7 @@
 <file>completion/tgchorus.cwl</file>
 <file>completion/tgcursor.cwl</file>
 <file>completion/tgheros.cwl</file>
+<file>completion/tgothic.cwl</file>
 <file>completion/tgpagella.cwl</file>
 <file>completion/tgschola.cwl</file>
 <file>completion/tgtermes.cwl</file>
@@ -1571,7 +1586,12 @@
 <file>completion/theoremref.cwl</file>
 <file>completion/thepdfnumber.cwl</file>
 <file>completion/thinsp.cwl</file>
+<file>completion/thm-autoref.cwl</file>
 <file>completion/thmbox.cwl</file>
+<file>completion/thm-kv.cwl</file>
+<file>completion/thm-listof.cwl</file>
+<file>completion/thm-patch.cwl</file>
+<file>completion/thm-restate.cwl</file>
 <file>completion/thmtools.cwl</file>
 <file>completion/threadcol.cwl</file>
 <file>completion/threeparttable.cwl</file>
@@ -1691,6 +1711,7 @@
 <file>completion/typewriter.cwl</file>
 <file>completion/typicons.cwl</file>
 <file>completion/Typocaps.cwl</file>
+<file>completion/uarial.cwl</file>
 <file>completion/ugarite.cwl</file>
 <file>completion/uhrzeit.cwl</file>
 <file>completion/ulem.cwl</file>
@@ -1702,6 +1723,7 @@
 <file>completion/unicode-math.cwl</file>
 <file>completion/uni.cwl</file>
 <file>completion/uniquecounter.cwl</file>
+<file>completion/unique.cwl</file>
 <file>completion/unitconv.cwl</file>
 <file>completion/uni-titlepage.cwl</file>
 <file>completion/units.cwl</file>
@@ -1771,6 +1793,7 @@
 <file>completion/xepersian.cwl</file>
 <file>completion/xespotcolor.cwl</file>
 <file>completion/xetex.cwl</file>
+<file>completion/xfakebold.cwl</file>
 <file>completion/xfp.cwl</file>
 <file>completion/xfrac.cwl</file>
 <file>completion/xhfill.cwl</file>
@@ -1810,6 +1833,7 @@
 <file>completion/xstring.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xtemplate.cwl</file>
+<file>completion/xurl.cwl</file>
 <file>completion/xxcolor.cwl</file>
 <file>completion/xy.cwl</file>
 <file>completion/YAMLvars.cwl</file>
