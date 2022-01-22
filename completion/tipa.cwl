@@ -1,5 +1,5 @@
 # tipa package
-# Matthew Bertucci 7/29/2021
+# Matthew Bertucci 1/21/2022 for v1.3
 
 #ifOption:tone
 #include:tone
@@ -10,25 +10,36 @@
 #endif
 
 #ifOption:T1
-\dh#n
-\ng#n
-\th#n
-\k{arg}#n
 \DH#n
-\DJ#n
-\TH#n
-\dj#n
 \NG#n
-\guillemotleft#n
-\guillemotright#n
+\dj#n
+\ng#n
+\k{arg}#n
+\guillemotleft#*n
+\guillemotright#*n
 \guilsinglleft#n
 \guilsinglright#n
 \quotedblbase#n
 \quotesinglbase#n
 \textquotedbl#n
+\DJ#n
+\th#n
+\TH#n
+\dh#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\textogonekcentered{arg}#*n
 \guillemetleft#n
 \guillemetright#n
 #endif
+
+#keyvals:\usepackage/tipa#c
+extra
+tone
+safe
+T1
+noenc
+#endkeyvals
 
 \begin{IPA}
 \end{IPA}
@@ -263,3 +274,9 @@
 \tipathickspace#*
 \tipaupperaccent#*
 \tipaUpperaccent#*
+\tsipa#*
+\tipa#*
+\tipx#*
+\super{text}
+\nrsuper{text}#*
+\sups{arg1}{arg2}#*
