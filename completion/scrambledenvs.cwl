@@ -5,6 +5,10 @@
 #include:forloop
 #include:pgfmath
 
+#keyvals:\usepackage/scrambledenvs#c
+noscramble
+#endkeyvals
+
 \newscrambledenv{envname}#N
 \defaultlabelfont{font cmds}#*
 \defaultrefprefix{prefix}#*
