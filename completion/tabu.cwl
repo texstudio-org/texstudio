@@ -13,6 +13,13 @@
 #include:linegoal
 #endif
 
+#keyvals:\usepackage/tabu#c
+delarray
+linegoal
+scantokens
+debugshow
+#endkeyvals
+
 \begin{tabu}{preamble}#\tabular
 \begin{tabu} to %<width%> {%<preamble%>}#\tabular
 \begin{tabu} spread %<width%> {%<preamble%>}#\tabular
