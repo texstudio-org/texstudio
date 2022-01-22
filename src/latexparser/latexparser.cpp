@@ -511,3 +511,33 @@ int findClosingBracket(const QString &word, int &start, QChar oc, QChar cc)
 	return stop;
 }
 
+
+QString interpretXArgs(const QString &xarg)
+{
+    QString result;
+    bool braceMode=false;
+    for(int i=0;i<xarg.length();++i){
+        QChar c=xarg[i];
+        if(c=='{'){
+            braceMode=false;
+        }
+        if(braceMode) continue;
+        if(c==' ') continue;
+        if(c=='m'){
+            result.append("{%<arg%>}");
+        }
+        if(c.toUpper()=='O'){
+            result.append("[%<arg%>]");
+        }
+        if(c.toUpper()=='R'||c.toUpper()=='D'){
+            if(i+2<xarg.length()){
+                result.append(xarg[i+1]+QString("%<arg%>")+xarg[i+2]);
+                i+=2; // skip after definition
+            }
+        }
+        if(c=='{'){
+            braceMode=true;
+        }
+    }
+    return result;
+}

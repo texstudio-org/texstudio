@@ -657,6 +657,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if (arg == "command" || arg == "cmd") return Token::def;
 	if (arg == "def" || arg == "definition" || arg == "begdef" || arg == "enddef") return Token::definition; // actual definition: \newcommand def defArgNumber definition
 	if (arg == "args") return Token::defArgNumber;
+    if (arg == "xargs") return Token::defXparseArg;
 	if (arg == "citekey") return Token::newBibItem;
 	if (arg == "default") return Token::optionalArgDefinition;
 	if (arg == "newlength") return Token::defWidth;

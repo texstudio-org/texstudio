@@ -767,44 +767,55 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					cmdName = Parsing::getArg(args, Token::defWidth);
 				else
 					isDefWidth = false;
-				//int optionCount = Parsing::getArg(args, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
-				int optionCount = Parsing::getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
-				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-				bool def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
 
-				ltxCommands.possibleCommands["user"].insert(cmdName);
+                ltxCommands.possibleCommands["user"].insert(cmdName);
 
-				if (!removedUserCommands.removeAll(cmdName)) {
-					addedUserCommands << cmdName;
-				}
-				QString cmdNameWithoutArgs = cmdName;
-				QString cmdNameWithoutOptional = cmdName;
-				for (int j = 0; j < optionCount; j++) {
-					if (j == 0) {
-						if (!def){
-							cmdName.append("{%<arg1%|%>}");
-							cmdNameWithoutOptional.append("{%<arg1%|%>}");
-						} else
-							cmdName.append("[%<opt. arg1%|%>]");
-						} else {
-							cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
-							cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
-						}
-				}
-				CodeSnippet cs(cmdName);
-				cs.index = qHash(cmdName);
-				cs.snippetLength = cmdName.length();
-				if (isDefWidth)
-					cs.type = CodeSnippet::length;
-				mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
-				if(def){ // optional argument, add version without that argument as well
-					CodeSnippet cs(cmdNameWithoutOptional);
-					cs.index = qHash(cmdNameWithoutOptional);
-					cs.snippetLength = cmdNameWithoutOptional.length();
-					if (isDefWidth)
-						cs.type = CodeSnippet::length;
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
-				}
+                if (!removedUserCommands.removeAll(cmdName)) {
+                    addedUserCommands << cmdName;
+                }
+                QString cmdNameWithoutArgs = cmdName;
+                QString cmdNameWithoutOptional = cmdName;
+                bool def=false;
+
+                QString xarg=Parsing::getArg(args, Token::defXparseArg);
+                if(!xarg.isEmpty()){
+                    // xparse style defintion
+                    QString arguments=interpretXArgs(xarg);
+                    cmdName=cmdName+arguments;
+                }else{
+                    int optionCount = Parsing::getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
+                    if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
+                    def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
+
+
+                    for (int j = 0; j < optionCount; j++) {
+                        if (j == 0) {
+                            if (!def){
+                                cmdName.append("{%<arg1%|%>}");
+                                cmdNameWithoutOptional.append("{%<arg1%|%>}");
+                            } else
+                                cmdName.append("[%<opt. arg1%|%>]");
+                        } else {
+                            cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
+                            cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
+                        }
+                    }
+                }
+                CodeSnippet cs(cmdName);
+                cs.index = qHash(cmdName);
+                cs.snippetLength = cmdName.length();
+                if (isDefWidth)
+                    cs.type = CodeSnippet::length;
+                mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+                if(def){ // optional argument, add version without that argument as well
+                    CodeSnippet cs(cmdNameWithoutOptional);
+                    cs.index = qHash(cmdNameWithoutOptional);
+                    cs.snippetLength = cmdNameWithoutOptional.length();
+                    if (isDefWidth)
+                        cs.type = CodeSnippet::length;
+                    mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+                }
+
 				// remove obsolete Overlays (maybe this can be refined
 				//updateSyntaxCheck=true;
 				continue;

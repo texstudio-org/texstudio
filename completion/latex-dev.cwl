@@ -69,8 +69,8 @@
 \DeclareCommandCopy{cmd}{def}#d
 \DeclareCurrentRelease{name}{date}#*
 \DeclareDefaultHookRule{label1}{relation}{label2}#*
-\DeclareDocumentCommand{cmd}{args}{def}#d
-\DeclareDocumentEnvironment{envname}{args}{begdef}{enddef}#N
+\DeclareDocumentCommand{cmd}{xargs}{def}#d
+\DeclareDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
 \DeclareEmphSequence{font cmd list}#*
 \DeclareEncodingSubset{encoding}{family}{subset number}#*
 \DeclareErrorFont{encoding}{family}{series}{shape}{size}#*
@@ -173,9 +173,9 @@
 \NeedsTeXFormat{format}#*
 \NeedsTeXFormat{format}[release]#*
 \NewCommandCopy{cmd}{def}#d
-\NewDocumentCommand{cmd}{args}{def}#d
-\NewDocumentEnvironment{envname}{args}{begdef}{enddef}#N
-\NewExpandableDocumentCommand{cmd}{args}{def}#*d
+\NewDocumentCommand{cmd}{xargs}{def}#d
+\NewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
+\NewExpandableDocumentCommand{cmd}{xargs}{def}#*d
 \NewHook{hook}#*
 \NewMirroredHookPair{hook1}{hook2}#*
 \NewModuleRelease{date}{name}#*
@@ -196,9 +196,9 @@
 \ProcessList{list}{cmd}#*
 \ProcessOptions#*
 \ProcessOptions*#*
-\ProvideDocumentCommand{cmd}{args}{def}#d
-\ProvideDocumentEnvironment{envname}{args}{begdef}{enddef}#N
-\ProvideExpandableDocumentCommand{cmd}{args}{def}#*d
+\ProvideDocumentCommand{cmd}{xargs}{def}#d
+\ProvideDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
+\ProvideExpandableDocumentCommand{cmd}{xargs}{def}#*d
 \ProvideHook{hook}#*
 \ProvideMirroredHookPair{hook1}{hook2}#*
 \ProvideReversedHook{hook}#*
@@ -221,9 +221,9 @@
 \RemoveFromHook{hook}#*
 \RemoveFromHook{hook}[label]#*
 \RenewCommandCopy{cmd}{def}#d
-\RenewDocumentCommand{cmd}{args}{def}#d
-\RenewDocumentEnvironment{envname}{args}{begdef}{enddef}#N
-\RenewExpandableDocumentCommand{cmd}{args}{def}#*d
+\RenewDocumentCommand{cmd}{xargs}{def}#d
+\RenewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
+\RenewExpandableDocumentCommand{cmd}{xargs}{def}#*d
 \RequirePackage[optionlist]{package}#*u
 \RequirePackage[optionlist]{package}[release]#*u
 \RequirePackage{package}#u

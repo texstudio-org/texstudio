@@ -32,7 +32,7 @@ public:
 		verbatim, symbol, punctuation, number, generalArg,
 		defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
         formula, specialArg, newTheorem, newBibItem, overlay,
-		overlayRegion, _end = 255
+        overlayRegion, defXparseArg, _end = 255
 	};
 };
 

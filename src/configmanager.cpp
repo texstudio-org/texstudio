@@ -2762,7 +2762,6 @@ void ConfigManager::loadTranslations(QString locale)
     }
 	appTranslator->load(txsTranslationFile);
 	basicTranslator->load(findResourceFile("qt_" + locale + ".qm"));
-	//}
 }
 /*!
  * \brief set txs InterfaceStyle

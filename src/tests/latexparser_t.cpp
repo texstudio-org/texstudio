@@ -428,7 +428,26 @@ void LatexParserTest::test_findClosingBracket()
 	QFETCH(QChar, cc);
 	QFETCH(int, out);
 	int ret = findClosingBracket(line, start, oc, cc);
-	QEQUAL(ret, out);
+    QEQUAL(ret, out);
+}
+
+void LatexParserTest::test_interpretXArgs_data()
+{
+    QTest::addColumn<QString>("argument");
+    QTest::addColumn<QString>("result");
+
+    QTest::newRow("simple arguments") << "moO" << "{%<arg%>}[%<arg%>][%<arg%>]";
+    QTest::newRow("spaces") << " m o  O " << "{%<arg%>}[%<arg%>][%<arg%>]";
+    QTest::newRow("defined brackets") << "r()R&%d)(D][" << "(%<arg%>)&%<arg%>%)%<arg%>(]%<arg%>[";
+    QTest::newRow("braces") << "m{oO}" << "{%<arg%>}";
+}
+
+void LatexParserTest::test_interpretXArgs()
+{
+    QFETCH(QString, argument);
+    QFETCH(QString, result);
+    QString out=interpretXArgs(argument);
+    QEQUAL(out,result);
 }
 
 #endif // QT_NO_DEBUG

@@ -136,6 +136,7 @@ QString Token::tokenTypeName(TokenType t) {
 	LITERAL_ENUM(formula)
 	LITERAL_ENUM(overlay)
 	LITERAL_ENUM(overlayRegion)
+    LITERAL_ENUM(defXparseArg)
 	LITERAL_ENUM(_end)
 	default: return "UnknownTokenType";
 	}

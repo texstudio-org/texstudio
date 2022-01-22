@@ -67,6 +67,8 @@ const QString & getCommonEOW();
 int findClosingBracket(const QString &word, int &start, QChar oc = QChar('{'), QChar cc = QChar('}'));
 /// opening bracket (opening and closing bracket considered correctly), start at "start"
 int findOpeningBracket(const QString &word, int start, QChar oc = QChar('{'), QChar cc = QChar('}'));
+/// determine Arguments from xparse argument definition
+QString interpretXArgs(const QString &xarg);
 
 
 #endif // LATEXPARSER_H

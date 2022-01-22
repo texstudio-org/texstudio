@@ -81,6 +81,8 @@ private slots:
 	void test_resolveCommandOptions();
 	void test_findClosingBracket_data();
 	void test_findClosingBracket();
+    void test_interpretXArgs_data();
+    void test_interpretXArgs();
 }; // LatexParserTest
 
 
