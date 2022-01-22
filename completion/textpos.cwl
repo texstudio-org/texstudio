@@ -1,14 +1,26 @@
 # textpos package
-# Matthew Bertucci 7/26/2021
+# Matthew Bertucci 7/26/2021 for v1.10
 
 #include:everyshi
+#include:keyval
+
+#keyvals:\usepackage/textpos#c
+showboxes
+noshowtext
+absolute
+overlay
+verbose
+quiet
+#endkeyvals
 
 \begin{textblock}{hsize}(hpos,vpos)
+\begin{textblock}{hsize}[ho,vo](hpos,vpos)
 \end{textblock}
 \begin{textblock*}{hsize}(hpos,vpos)
+\begin{textblock*}{hsize}[ho,vo](hpos,vpos)
 \end{textblock*}
 
-\TPoptions{keyvals}
+\TPoptions{options%keyvals}
 
 #keyvals:\TPoptions
 absolute#true,false
@@ -19,7 +31,8 @@ showtext#true,false
 discardcontent#true,false
 #endkeyvals
 
-\TPGrid[x%l,y%l]{nhoriz}{nvert}
+\TPGrid{nhoriz}{nvert}
+\TPGrid[x,y]{nhoriz}{nvert}
 \TPShowGrid{nhoriz}{nvert}
 \TPMargin{size%l}
 \TPMargin*{size%l}
@@ -31,7 +44,7 @@ discardcontent#true,false
 \TPboxrulesize
 \textblocklabel{label%plain}
 \showtextsize
-\textblockorigin
+\textblockorigin{hpos}{vpos}
 \textblockcolour{color}#*
 \textblockcolor{color}
 \textblockrulecolour{color}#*
