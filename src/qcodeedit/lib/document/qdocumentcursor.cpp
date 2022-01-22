@@ -107,7 +107,18 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
 	{
 		m_handle = cursor.m_handle->clone(true);
 		m_handle->ref();
-	}
+    }
+}
+
+QDocumentCursor::QDocumentCursor(QDocumentCursor &&cursor)
+{
+//    if(m_handle)
+//       m_handle->deref();
+
+    m_handle = cursor.m_handle;
+
+//    if(m_handle)
+//        m_handle->ref();
 }
 
 QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag)
@@ -188,6 +199,24 @@ QDocumentCursor& QDocumentCursor::operator = (const QDocumentCursor& c)
 	}
 	
 	return *this;
+}
+
+/*!
+ * \brief move operator
+ * \param c
+ * \return
+ */
+QDocumentCursor& QDocumentCursor::operator = (QDocumentCursor&& c)
+{
+//    if(m_handle && !c.m_handle)
+//        m_handle->deref();
+
+    m_handle = c.m_handle;
+
+//    if(m_handle)
+//        m_handle->ref();
+
+    return *this;
 }
 
 /*!

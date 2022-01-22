@@ -98,6 +98,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
         Q_INVOKABLE explicit QDocumentCursor(QDocument *doc);
         Q_INVOKABLE QDocumentCursor(const QDocumentCursor& cursor);
+        QDocumentCursor(QDocumentCursor&& cursor);
 		QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag);
         Q_INVOKABLE QDocumentCursor(QDocument *doc, int line, int column = 0, int lineTo = -1, int columnTo = -1);
 		//QDocumentCursor(const QDocumentLine& line, int column = 0);
@@ -109,6 +110,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		QDocumentCursor clone(bool cloneAutoUpdatedFlag) const;
 		
 		QDocumentCursor& operator = (const QDocumentCursor& c);
+        QDocumentCursor& operator = (QDocumentCursor&& c);
 		
 		bool operator == (const QDocumentCursor& c) const;
 		bool operator != (const QDocumentCursor& c) const;

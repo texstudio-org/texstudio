@@ -107,6 +107,7 @@ struct PlaceHolder
 	PlaceHolder(int len, const QDocumentCursor &cur):
            length(len), autoRemove(true), autoOverride(false), autoRemoveIfLeft(false), affector(nullptr), cursor(cur) {}
 	PlaceHolder& operator= (const PlaceHolder& ph) = default; // Silence -Wdeprecated-copy
+    PlaceHolder& operator= (PlaceHolder&& ph) = default; // Silence -Wdeprecated-copy
 
 	int length;
 	bool autoRemove, autoOverride, autoRemoveIfLeft;
