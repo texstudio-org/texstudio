@@ -1,6 +1,13 @@
 # mode: supertabular.sty
 # dani/2006-02-18
 # small changes: tbraun/2006-03-08
+
+#keyvals:\usepackage/supertabular#c
+errorshow
+pageshow
+debugshow
+#endkeyvals
+
 \begin{mpsupertabular}{preamble}#\tabular
 \begin{mpsupertabular*}{preamble}#\tabular
 \begin{supertabular}{preamble}#\tabular

@@ -22,9 +22,9 @@
 \AtBeginShipoutAddToBox{code}#*
 \AtBeginShipoutAddToBoxForeground{code}#*
 \AtBeginShipoutBox#*
-\AtBeginShipoutDiscard
+\AtBeginShipoutDiscard#*
 \AtBeginShipoutFirst{code}#*
-\AtBeginShipoutInit
+\AtBeginShipoutInit#*
 \AtBeginShipoutNext{code}#*
 \AtBeginShipoutOriginalShipout#*
 \AtBeginShipoutUpperLeft{code}#*

@@ -2,6 +2,15 @@
 # Time-stamp: <2020-10-24 18:05:56 Yvon Henel (TdS)>
 # tdsfrmath.cwl (v1, 2020-10-24)
 # texstudio style file for tdsfrmath (v1.3)
+#include:ifthen
+#include:xkeyval
+#include:xstring
+#include:amsmath
+#include:amssymb
+#include:xspace
+#include:xargs
+#include:suffix
+#include:mathrsfs
 \nuplet{%<valeurs%>}#
 \anuplet{%<valeurs%>}#
 \parent{%<valeurs%>}#

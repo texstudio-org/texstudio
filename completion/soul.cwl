@@ -1,6 +1,10 @@
 # soul package
 # Matthew Bertucci 9/21/2021 for v2.4
 
+#keyvals:\usepackage/soul#c
+capsdefault
+#endkeyvals
+
 \so{text}
 \caps{text}
 \ul{text}

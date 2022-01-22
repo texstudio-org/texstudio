@@ -4,10 +4,17 @@
 #include:scrkbase
 #include:tocbasic
 
-#keyvals:\KOMAoptions#c
+#keyvals:\usepackage/scrjura#c
+contract
+#endkeyvals
+
+#keyvals:\KOMAoptions#c,\usepackage/scrjura#c
 juratotoc=#true,on,yes,false,off,no
 juratocindent=##L
 juratocnumberwidth=##L
+juratitlepagebreak=#true,on,yes,false,off,no
+clausemark=#both,false,off,no,forceboth,forceright,right
+parnumber=#true,false,auto,manual
 ref=#long,numeric,clauseonly,onlyclause,ClauseOnly,OnlyClause,parlong,longpar,ParL,parnumeric,numericpar,ParN,paroff,nopar,parshort,shortpar,ParS,sentencelong,longsentence,SentenceL,sentencenumeric,numericsentence,SentenceN,sentenceoff,nosentence,sentenceshort,shortsentence,SentenceS,short
 #endkeyvals
 

@@ -10,17 +10,22 @@
 
 \tikzsymbolsset{keyvals}
 
-#keyvals:\tikzsymbolsset
+#keyvals:\tikzsymbolsset,\usepackage/tikzsymbols#c
 draft#true,false
 final#true,false
 tree=#true,false,on,off
 after-symbol=%<code%>
 global-scale=%<number%>
-symbol-scale=%<{sym1=num1,sym2=num2,...}%>
-append-style=%<{tikzkeyvals}%>
+symbol-scale={%<sym1=num1,sym2=num2,...%>}
+append-style={%<TikZ keys%>}
 usebox#true,false
 baseline#true,false
 remember-picture#true,false
+#endkeyvals
+
+#keyvals:\usepackage/tikzsymbols#c
+marvosym#true,false
+prefix=%<string%>
 #endkeyvals
 
 \tikzsymbolsuse{symbol name}

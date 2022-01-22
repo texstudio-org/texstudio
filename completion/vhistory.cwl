@@ -4,6 +4,14 @@
 #include:ltxtable
 #include:sets
 
+#keyvals:\usepackage/vhistory#c
+nochapter
+tocentry
+owncaptions
+tablegrid
+omittable
+#endkeyvals
+
 \begin{versionhistory}
 \end{versionhistory}
 

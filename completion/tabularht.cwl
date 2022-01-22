@@ -3,6 +3,12 @@
 
 #include:iftex
 
+#keyvals:\usepackage/tabularht#c
+vlines
+pdftex
+dvips
+#endkeyvals
+
 \begin{tabularht}{height spec%keyvals}{preamble}#\tabular
 \end{tabularht}
 \begin{tabularht*}{height spec%keyvals}{width}{preamble}#\tabular

@@ -3,6 +3,24 @@
 
 #include:lineno
 
+#keyvals:\usepackage/vertbars#c
+addpageno
+mathrefs
+edtable
+longtable
+nolongtablepatch
+left
+right
+switch
+switch*
+columnwise
+pagewise
+running
+modulo
+modulo*
+mathlines
+#endkeyvals
+
 \begin{vertbar}
 \end{vertbar}
 

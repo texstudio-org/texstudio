@@ -1,6 +1,7 @@
 # venndiagram package
 # Matthew Bertucci 9/21/2021 for v1.2
 
+#include:xkeyval
 #include:tikz
 #include:etoolbox
 
@@ -79,3 +80,6 @@ labelNotAB=
 \fillCCapBCapA#*/venndiagram3sets
 
 \setpostvennhook{code}
+\ifvennoldpgf#*
+\vennoldpgftrue#*
+\vennoldpgffalse#*

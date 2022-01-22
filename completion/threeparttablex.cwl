@@ -4,6 +4,15 @@
 #include:threeparttable
 #include:environ
 
+#keyvals:\usepackage/threeparttablex#c
+referable
+# options passed to threeparttable
+para
+flushleft
+online
+normal
+#endkeyvals
+
 \begin{ThreePartTable}
 \end{ThreePartTable}
 \begin{TableNotes}

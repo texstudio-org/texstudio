@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 1/6/2022 for v4.00b
+# Matthew Bertucci 1/21/2022 for v4.03b
 
 #include:tikz
 # loads angles, arrows, arrows.meta, calc, decorations, decorations.markings
@@ -166,11 +166,14 @@ two angles=%<angle1%> and %<angle2%>
 equilateral
 isosceles right
 pythagore
+pythagoras
+egyptian
 school
 gold
 euclid
 golden
 cheops
+swap
 #endkeyvals
 
 ## 16. Specific triangles with \tkzDefSpcTriangle ##

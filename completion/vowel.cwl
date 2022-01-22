@@ -25,6 +25,23 @@ l
 r
 #endkeyvals
 
+\super{text}#*
 \vowelhunit#*
 \vowelvunit#*
-\super{arg}#*
+\vowelsep#*
+\vowelline#*
+\vowelsymbol#*
+\diagrate#*
+\ifrectdgm#*
+\rectdgmtrue#*
+\rectdgmfalse#*
+\iftriangledgm#*
+\triangledgmtrue#*
+\triangledgmfalse#*
+\ifthreelevel#*
+\threeleveltrue#*
+\threelevelfalse#*
+\ifnoerase#*
+\noerasetrue#*
+\noerasefalse#*
+\diagline{arg1}{arg2}#*

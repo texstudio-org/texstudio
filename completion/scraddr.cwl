@@ -2,6 +2,13 @@
 # dani/2006-02-21
 # Matthew Bertucci updated 11/19/2021 for v3.34
 
+#keyvals:\usepackage/scraddr#c
+adrFreeIVempty
+adrFreeIVshow
+adrFreeIVwarn
+adrFreeIVstop
+#endkeyvals
+
 \InputAddressFile{file}
 \adrentry{LastName}{FirstName}{Address}{Phone}{F1}{F2}{Comment}{Key}
 \addrentry{LastName}{FirstName}{Address}{Phone}{F1}{F2}{F3}{F4}{Key}

@@ -7,6 +7,10 @@
 #include:keyval
 #include:ragged2e
 
+#keyvals:\usepackage/vwcol#c
+quiet
+#endkeyvals
+
 \begin{vwcol}
 \begin{vwcol}[options%keyvals]
 \end{vwcol}

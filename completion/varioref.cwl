@@ -2,6 +2,54 @@
 # dani/2006-02-18
 # updated 2021-11-11 Matthew Bertucci for v1.6e
 
+#keyvals:\usepackage/varioref#c
+afrikaans
+american
+arabic
+austrian
+naustrian
+basque
+bahasam
+brazil
+breton
+bulgarian
+catalan
+croatian
+czech
+danish
+dutch
+english
+esperanto
+finnish
+french
+galician
+german
+ngerman
+greek
+icelandic
+italian
+japanese
+magyar
+norsk
+nynorsk
+polish
+portuges
+romanian
+russian
+slovak
+slovene
+spanish
+swedish
+turkish
+ukrainian
+francais
+germanb
+draft
+final
+space
+nospace
+#endkeyvals
+
 \vref{label}#r
 \vref*{label}#r
 

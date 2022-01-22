@@ -24,6 +24,24 @@
 #include:longtable
 #endif
 
+#keyvals:\usepackage/lineno#c
+addpageno
+mathrefs
+edtable
+longtable
+nolongtablepatch
+left
+right
+switch
+switch*
+columnwise
+pagewise
+running
+modulo
+modulo*
+mathlines
+#endkeyvals
+
 \linenumbers
 \linenumbers*
 \linenumbers[number]

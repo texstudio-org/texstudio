@@ -8,6 +8,11 @@
 #include:color
 #endif
 
+#keyvals:\usepackage/vdmlisting#c
+color
+notimes
+#endkeyvals
+
 \begin{vdmsl}#V
 \begin{vdmsl}[options%keyvals]#V
 \end{vdmsl}

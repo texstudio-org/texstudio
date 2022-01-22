@@ -1,6 +1,7 @@
 # staves package
 # Matthew Bertucci 8/6/2021
 
+\icelandicFamily
 \runictext{text}
 \staveI
 \staveII

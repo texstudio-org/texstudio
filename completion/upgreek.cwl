@@ -1,4 +1,11 @@
 # sdm 18.12.11
+
+#keyvals:\usepackage/upgreek#c
+Symbol
+Symbolsmallscale
+Euler
+#endkeyvals
+
 \Updelta#m
 \Upgamma#m
 \Uplambda#m

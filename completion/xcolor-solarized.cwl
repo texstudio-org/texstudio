@@ -2,6 +2,11 @@
 # Matthew Bertucci 8/18/2021 for v0.4
 
 #include:xcolor
+#include:kvoptions
+
+#keyvals:\usepackage/xcolor-solarized#c
+prefix=%<prefix%>
+#endkeyvals
 
 \solarizedPalette
 
