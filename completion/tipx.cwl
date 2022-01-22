@@ -1,5 +1,5 @@
 # tipx package
-# Matthew Bertucci 7/29/2021
+# Matthew Bertucci 7/29/2021 for v1.2
 
 #include:tipa
 
@@ -75,3 +75,6 @@
 \textturntwo#n
 \textuncrfemale#n
 \textupfullarrow#n
+
+\tipxloweraccent{arg}#*
+\tipxupperaccent{arg}#*
