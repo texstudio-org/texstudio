@@ -13,12 +13,13 @@
 explicit-prompt#true,false
 internal-debug#true,false
 machine
-max-action=
-max-output=
-max-input=
+max-action=%<integer%>
+max-output=%<integer%>
+max-input=%<integer%>
 mute
 number-steps#true,false
-online=
+online=%<integer%>
+prompt-input={%<item1,item2,...%>}
 trace-assigns#true,false
 trace-expansion#true,false
 trace-other#true,false
