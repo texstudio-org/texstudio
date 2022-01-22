@@ -9,6 +9,17 @@
 #include:sas
 #include:longfigure
 
+#keyvals:\usepackage/statrep#c
+generate#true,false
+color#true,false
+figname=%<counter%>
+resetby=%<counter%>
+set
+final
+errorshow
+pausing
+#endkeyvals
+
 \begin{Datastep}#V
 \begin{Datastep}[options%keyvals]#V
 \end{Datastep}
