@@ -440,6 +440,7 @@ void LatexParserTest::test_interpretXArgs_data()
     QTest::newRow("spaces") << " m o  O " << "{%<arg%>}[%<arg%>][%<arg%>]";
     QTest::newRow("defined brackets") << "r()R&%d)(D][" << "(%<arg%>)&%<arg%>%)%<arg%>(]%<arg%>[";
     QTest::newRow("braces") << "m{oO}" << "{%<arg%>}";
+    QTest::newRow("ignored characters") << "mstb+uo" << "{%<arg%>}[%<arg%>]";
 }
 
 void LatexParserTest::test_interpretXArgs()
