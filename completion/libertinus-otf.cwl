@@ -6,6 +6,30 @@
 #include:ifxetex
 #include:ifluatex
 
+#keyvals:\usepackage/libertinus-otf#c
+lining#true,false
+nf#true,false
+lf#true,false
+oldstyle#true,false
+osf#true,false
+usefilenames#true,false
+math#true,false
+nomath#true,false
+mono#true,false
+tabular#true,false
+t#true,false
+proportional#true,false
+p#true,false
+semibold#true,false
+sb#true,false
+bold#true,false
+ScaleRM=%<factor%>
+ScaleSF=%<factor%>
+ScaleTT=%<factor%>
+StretchTT=%<factor%>
+defaultfeatures={%<fontspec features%>}
+#endkeyvals
+
 \Land
 \LCASE-
 \Lcase{arg}

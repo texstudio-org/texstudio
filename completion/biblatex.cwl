@@ -306,7 +306,7 @@ biblistfilter=
 \DeclareBibliographyCategory{category}
 \addtocategory{category}{bibid}
 
-\defbibenvironment{envname}{begincode}{endcode}{itemcode}#N
+\defbibenvironment{envname}{begincode}{endcode}{itemcode}
 \defbibheading{name}{code}
 \defbibheading{name}[title%text]{code}
 \defbibnote{name}{text}
