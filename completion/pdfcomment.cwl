@@ -15,6 +15,49 @@
 #include:soulpos
 #include:hyperref
 
+#keyvals:\usepackage/pdfcomment#c
+final
+draft
+dvipdfmx
+version=#1,2
+subject=%<subject%>
+author=%<author%>
+opacity=%<factor%>
+icon=#Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs
+deadline=%<deadline%>
+color=%<color%>
+icolor=%<color%>
+open#true,false
+hspace=##L
+type=#freetext,callout,typewriter,line,polyline,polygon
+font=%<font%>
+fontsize=%<fontsize%>
+fontcolor=%<color%>
+line={%<coordinates%>}
+linewidth=%<linewidth%>
+linebegin={%<arrow type%>}
+lineend={%<arrow type%>}
+linesep=##L
+borderstyle=#solid,dashed
+dashstyle={%<thickness%> %<space%>}
+bse=#none,cloudy
+bsei=%<number%>
+caption=#none,inline,top
+captionhoffset=##L
+captionvoffset=##L
+voffset=##L
+hoffset=##L
+width=##L
+height=##L
+markup=#Highlight,Underline,Squiggly,StrikeOut
+disable#true,false
+date=%<date%>
+timezone=%<timezone%>
+avatar=%<avatar%>
+style=%<style%>
+printSOfinal#true,false
+#endkeyvals
+
 \begin{pdfsidelinecomment}
 \begin{pdfsidelinecomment}[options%keyvals]
 \end{pdfsidelinecomment}
@@ -26,8 +69,8 @@ subject=%<subject%>
 author=%<author%>
 color=%<color%>
 icolor=%<color%>
-opacity=
-linewidth=##L
+opacity=%<factor%>
+linewidth=%<linewidth%>
 linebegin={%<arrow type%>}
 lineend={%<arrow type%>}
 linesep=##L
