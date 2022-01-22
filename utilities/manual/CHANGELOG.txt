@@ -1,6 +1,10 @@
 TeXstudio 4.2.1
 -----------------
-- 
+- fix placeholder issues
+- handle NewDocumentsCommand better for completer
+- enable "open in explorer" again
+- fix building for poppler >=22.x 
+- more cwls
 
 TeXstudio 4.2.0
 -----------------
