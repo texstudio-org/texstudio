@@ -4,7 +4,7 @@
 #include:scrkbase
 #include:xpatch
 
-#keyvals:\KOMAoptions#c
+#keyvals:\KOMAoptions#c,\usepackage/scrhack#c
 hyperref#true,false
 floatrow#true,false
 float#true,false
