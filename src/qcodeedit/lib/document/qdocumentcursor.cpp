@@ -83,7 +83,6 @@
 QDocumentCursor::QDocumentCursor(QDocument *doc)
  : QObject(nullptr),m_handle(new QDocumentCursorHandle(doc))
 {
-	m_handle->ref();
 }
 
 QDocumentCursor::QDocumentCursor(const QDocumentCursor& from, const QDocumentCursor& to): QObject(nullptr){
@@ -106,19 +105,16 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor)
 	if ( cursor.m_handle )
 	{
 		m_handle = cursor.m_handle->clone(true);
-		m_handle->ref();
     }
 }
 
-QDocumentCursor::QDocumentCursor(QDocumentCursor &&cursor)
+QDocumentCursor::QDocumentCursor(QDocumentCursor &&cursor): QObject(nullptr)
 {
-//    if(m_handle)
-//       m_handle->deref();
-
     m_handle = cursor.m_handle;
 
-//    if(m_handle)
-//        m_handle->ref();
+    if(m_handle){
+        m_handle->ref();
+    }
 }
 
 QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool cloneAutoUpdateFlag)
@@ -127,7 +123,6 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool clone
 	if ( cursor.m_handle )
 	{
 		m_handle = cursor.m_handle->clone(cloneAutoUpdateFlag);
-		m_handle->ref();
 	}
 }
 
@@ -136,19 +131,7 @@ QDocumentCursor::QDocumentCursor(const QDocumentCursor& cursor, const bool clone
 QDocumentCursor::QDocumentCursor(QDocument *doc, int line, int column, int lineTo, int columnTo)
  : QObject(nullptr),m_handle(new QDocumentCursorHandle(doc, line, column, lineTo, columnTo))
 {
-	m_handle->ref();
 }
-
-/*
-QDocumentCursor::QDocumentCursor(const QDocumentLine& line, int column)
- : m_handle(new QDocumentCursorHandle(line.document(), line.lineNumber()))
-{
-	m_handle->ref();
-	
-	m_handle->setColumnNumber(column);
-	//movePosition(qMin(column, line.length()));
-}
-*/
 
 QDocumentCursor::QDocumentCursor(QDocumentCursorHandle *handle)
  : QObject(nullptr),m_handle(handle)
@@ -170,17 +153,6 @@ QDocumentCursor QDocumentCursor::clone(bool cloneAutoUpdatedFlag) const
 
 QDocumentCursor& QDocumentCursor::operator = (const QDocumentCursor& c)
 {
-	#if 0
-	if ( m_handle )
-		m_handle->deref();
-	
-	m_handle = c.m_handle ? c.m_handle->clone() : 0;
-	//m_handle = c.m_handle;
-	
-	if ( m_handle )
-		m_handle->ref();
-	#endif
-	
 	if ( c.m_handle )
 	{
 		if ( m_handle )
@@ -188,7 +160,6 @@ QDocumentCursor& QDocumentCursor::operator = (const QDocumentCursor& c)
 			m_handle->copy(c.m_handle); //warning: this is inconsistent, a copied cursor is never auto updated,
 		} else {                            //but the clones is. (there was however a reason for this behaviour)
 			m_handle = c.m_handle->clone(true);
-			m_handle->ref();
 		}
 	} else if ( m_handle ) {
 		
@@ -208,13 +179,11 @@ QDocumentCursor& QDocumentCursor::operator = (const QDocumentCursor& c)
  */
 QDocumentCursor& QDocumentCursor::operator = (QDocumentCursor&& c)
 {
-//    if(m_handle && !c.m_handle)
-//        m_handle->deref();
-
     m_handle = c.m_handle;
 
-//    if(m_handle)
-//        m_handle->ref();
+    if(m_handle){
+        m_handle->ref();
+    }
 
     return *this;
 }

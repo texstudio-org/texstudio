@@ -4305,7 +4305,7 @@ QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset, int maxL
 QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
  :	m_flags(0), //no columnmemory, can be slow and is usually not needed
 	m_doc(d),
-	m_ref(0),
+    m_ref(1),
 	m_begOffset(0), m_endOffset(0), m_savedX(0), m_begLine(line), m_endLine(-1)
 {
 
@@ -4314,7 +4314,7 @@ QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line)
 QDocumentCursorHandle::QDocumentCursorHandle(QDocument *d, int line, int column, int lineTo, int columnTo)
 :	m_flags(0),  //no columnmemory, can be slow and is usually not needed
 	m_doc(d),
-	m_ref(0),
+    m_ref(1),
 	m_savedX(0)
 {
 	select(line, column, lineTo, columnTo);
