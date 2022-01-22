@@ -1,6 +1,13 @@
 # threeparttable package
 # Matthew Bertucci 10/24/2021 for v3.0
 
+#keyvals:\usepackage/threeparttable#c
+para
+flushleft
+online
+normal
+#endkeyvals
+
 \begin{threeparttable}
 \begin{threeparttable}[pos%keyvals]
 \end{threeparttable}
