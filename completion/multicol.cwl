@@ -2,6 +2,16 @@
 # dani/2006-02-18
 # updated 12/29/2021 for v1.9b
 
+#keyvals:\usepackage/multicol#c
+errorshow
+infoshow
+balancingshow
+markshow
+debugshow
+grid
+colaction
+#endkeyvals
+
 \begin{multicols*}{n}
 \begin{multicols*}{n}[preface]
 \begin{multicols*}{n}[preface][skip]
