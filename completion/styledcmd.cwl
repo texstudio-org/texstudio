@@ -11,13 +11,13 @@
 \providestyledcmd{cmd}{format name}{definition}#d
 \providestyledcmd{cmd}{format name}[args]{definition}#d
 \setGlobalStyle{cmd}{new format name}#*
-\NewDocStyledCMD{cmd}{format name}{args}{definition}#d
-\RenewDocStyledCMD{cmd}{format name}{args}{definition}#d
-\ProvideDocStyledCMD{cmd}{format name}{args}{definition}#d
+\NewDocStyledCMD{cmd}{format name}{xargs}{definition}#d
+\RenewDocStyledCMD{cmd}{format name}{xargs}{definition}#d
+\ProvideDocStyledCMD{cmd}{format name}{xargs}{definition}#d
 \styBeginGroup{group name}#*
 \styEndGroup#*
 \styBeginStyle{format name}#*
 \styEndStyle#*
 \newGstyledcmd{cmd}[args]{definition}#*
-\NewGDocStyledCMD{cmd}{args}{definition}#*
+\NewGDocStyledCMD{cmd}{xargs}{definition}#*
 \setGroupStyle{group name}{new default style}#*
