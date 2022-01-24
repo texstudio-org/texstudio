@@ -9,6 +9,11 @@
 #include:xparse
 #include:zref-abspage
 
+#keyvals:\usepackage/mdframed#c
+xcolor
+framemethod=#default,tex,latex,none,0,tikx,pgf,1,pstricks,ps,postscript,2
+#endkeyvals
+
 #ifOption:xcolor
 #include:xcolor
 #endif
