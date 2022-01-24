@@ -39,6 +39,28 @@ cs-break-off
 cs-break-nohyphen
 show-notes
 hide-notes
+# options passed to article class
+a4paper
+a5paper
+b5paper
+letterpaper
+legalpaper
+executivepaper
+landscape
+10pt
+11pt
+12pt
+oneside
+twoside
+draft
+final
+titlepage
+notitlepage
+onecolumn
+twocolumn
+leqno
+fleqn
+openbib
 #endkeyvals
 
 \pdfstringnewline#*

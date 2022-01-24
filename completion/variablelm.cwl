@@ -1,19 +1,17 @@
-# romande package
-# Matthew Bertucci 8/27/2021 for v1.008
+# variablelm package
+# Matthew Bertucci 1/22/2022 for v1.2
 
 #include:xkeyval
 #include:fontenc
-#include:textcomp
-#include:nfssext-cfr
 
-#keyvals:\usepackage/romande#c
-alt#true,false
+#keyvals:\usepackage/variablelm#c
+scale=%<factor%>
+ttscale=%<factor%>
+sfscale=%<factor%>
+encoding=%<encoding%>
+variablett
+lighttt
 #endkeyvals
-
-\altstyle#n
-\textalt{text}#n
-\swashstyle#n
-\textswash{text}#n
 
 # from T1 option of fontenc
 \DH#n

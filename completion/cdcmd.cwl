@@ -74,11 +74,11 @@
 \declareeconditioncommand*{cmd}{definition}#d
 \declareeconditioncommand*{cmd}[args]{definition}#d
 
-\NewConditionCommand{cmd}{args}{definition}#d
-\RenewConditionCommand{cmd}{args}{definition}#d
-\ProvideConditionCommand{cmd}{args}{definition}#d
-\DeclareConditionCommand{cmd}{args}{definition}#d
-\NewExpandableConditionCommand{cmd}{args}{definition}#d
-\RenewExpandableConditionCommand{cmd}{args}{definition}#d
-\ProvideExpandableConditionCommand{cmd}{args}{definition}#d
-\DeclareExpandableConditionCommand{cmd}{args}{definition}#d
+\NewConditionCommand{cmd}{xargs}{definition}#d
+\RenewConditionCommand{cmd}{xargs}{definition}#d
+\ProvideConditionCommand{cmd}{xargs}{definition}#d
+\DeclareConditionCommand{cmd}{xargs}{definition}#d
+\NewExpandableConditionCommand{cmd}{xargs}{definition}#d
+\RenewExpandableConditionCommand{cmd}{xargs}{definition}#d
+\ProvideExpandableConditionCommand{cmd}{xargs}{definition}#d
+\DeclareExpandableConditionCommand{cmd}{xargs}{definition}#d

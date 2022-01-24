@@ -86,12 +86,17 @@ c
 \SetHline[index]{cols}{styles%keyvals}#*
 \SetHlines{cols}{styles%keyvals}#*
 \SetHlines[index]{cols}{styles%keyvals}#*
+\SetVspace{styles%keyvals}#*
 \hline#*
 \hline[styles%keyvals]#*
 \cline{index}#*
 \cline[styles%keyvals]{index}#*
+\firsthline#*
+\firsthline[styles%keyvals]#*
+\lasthline#*
+\lasthline[styles%keyvals]#*
 
-#keyvals:\SetHline#c,\SetHlines#c,\hline#c,\cline#c
+#keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c,\firsthline#c,\lasthline#c
 dash=#solid,dashed,dotted
 text=
 wd=##L
@@ -233,8 +238,11 @@ appto=%<text%>
 \NewTblrEnviron{envname}#N
 
 \NewTableCommand{cmd}{definition}#d
+\NewTableCommand{cmd}[args]{definition}#d
+\NewTableCommand{cmd}[args][default]{definition}#d
 
-\NewChildSelector#*
+\NewChildSelector{arg1}{arg2}#*
+\NewChildSelector{arg1}[opt1]{arg2}[opt2]#*
 
 \leftsep#*
 \rightsep#*
@@ -422,6 +430,10 @@ varwidth
 \diagbox{lower}{upper}#*
 \diagboxthree{lower}{middle}{upper}#*
 
+# from siunitx tblrlibrary
+\TblrNum{number}#*
+\TblrUnit{unit}#*
+
 # miscellaneous undocumented
 \LogTblrTracing{arg}#*
 \LogTabularrayTracing{arg}#S
@@ -434,4 +446,5 @@ varwidth
 \InsertTblrMore{arg}#*
 \NewDashStyle{name}{definition}#*
 \NewContentCommand{cmd}{definition}#*d
+\NewContentCommand{cmd}[args]{definition}#*d
 \NewContentCommand{cmd}[args][default]{definition}#*d
