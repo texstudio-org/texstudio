@@ -1,6 +1,10 @@
 # minifp package
 # Matthew Bertucci 9/30/2021 for v0.96
 
+#keyvals:\usepackage/minifp#c
+extra
+#endkeyvals
+
 \MFPloadextra#*
 \startMFPprogram
 \stopMFPprogram
