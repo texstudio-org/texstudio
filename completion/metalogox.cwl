@@ -7,7 +7,7 @@
 
 \adjustlogos{options%keyvals}
 
-#keyvals:\adjustlogos
+#keyvals:\adjustlogos,\usepackage/metalogox#c
 default
 accanthis
 alegreya
