@@ -12,6 +12,13 @@
 #include:xparse
 #include:xstring
 
+#keyvals:\usepackage/menukeys#c
+definemenumacros#true,false
+definekeys#true,false
+mackeys=#text,symbols
+os=#mac,win
+#endkeyvals
+
 # basic 
 \menu{text}
 \menu[separator]{text}
