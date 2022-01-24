@@ -8,6 +8,20 @@
 #include:fontspec
 #include:xkeyval
 
+#keyvals:\usepackage/mathspec#c
+normalskips
+math
+no-math
+MnSymbol
+# options passed to fontspec
+tuenc
+euenc
+config
+no-config
+quiet
+silent
+#endkeyvals
+
 #ifOption:MnSymbol
 #include:MnSymbol
 #endif
