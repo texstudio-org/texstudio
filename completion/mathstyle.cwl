@@ -1,6 +1,12 @@
 # mathstyle package
 # Matthew Bertucci 10/25/2021 for v0.98k
 
+#keyvals:\usepackage/mathstyle#c
+mathactivechars
+activechars
+noactivechars
+#endkeyvals
+
 \mathstyle#*
 \mathstyledenom#*
 \currentmathstyle#*
