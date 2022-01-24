@@ -605,6 +605,7 @@
 <file>completion/FiraSans.cwl</file>
 <file>completion/fitbox.cwl</file>
 <file>completion/fixfoot.cwl</file>
+<file>completion/fixmath.cwl</file>
 <file>completion/fixme.cwl</file>
 <file>completion/fjodor.cwl</file>
 <file>completion/flagderiv.cwl</file>
@@ -639,6 +640,7 @@
 <file>completion/footnote.cwl</file>
 <file>completion/footnotehyper.cwl</file>
 <file>completion/footnoterange.cwl</file>
+<file>completion/forarray.cwl</file>
 <file>completion/foreign.cwl</file>
 <file>completion/forest.cwl</file>
 <file>completion/forest-index.cwl</file>
@@ -878,6 +880,7 @@
 <file>completion/lato.cwl</file>
 <file>completion/layout.cwl</file>
 <file>completion/lccaps.cwl</file>
+<file>completion/lcd.cwl</file>
 <file>completion/lcg.cwl</file>
 <file>completion/leading.cwl</file>
 <file>completion/leadsheets.cwl</file>
@@ -1358,6 +1361,10 @@
 <file>completion/roundbox.cwl</file>
 <file>completion/Royal.cwl</file>
 <file>completion/rsfso.cwl</file>
+<file>completion/rubikcube.cwl</file>
+<file>completion/rubikpatterns.cwl</file>
+<file>completion/rubikrotation.cwl</file>
+<file>completion/rubiktwocube.cwl</file>
 <file>completion/rulerbox.cwl</file>
 <file>completion/runcode.cwl</file>
 <file>completion/runic.cwl</file>
@@ -1558,7 +1565,9 @@
 <file>completion/tex.cwl</file>
 <file>completion/texdate.cwl</file>
 <file>completion/texdimens.cwl</file>
+<file>completion/tex-locale.cwl</file>
 <file>completion/texments.cwl</file>
+<file>completion/texosquery.cwl</file>
 <file>completion/texsort.cwl</file>
 <file>completion/textalpha.cwl</file>
 <file>completion/textarea.cwl</file>
@@ -1567,6 +1576,7 @@
 <file>completion/textgreek.cwl</file>
 <file>completion/textpos.cwl</file>
 <file>completion/textualicomma.cwl</file>
+<file>completion/texvc.cwl</file>
 <file>completion/tfrupee.cwl</file>
 <file>completion/tgadventor.cwl</file>
 <file>completion/tgbonum.cwl</file>
@@ -1652,6 +1662,7 @@
 <file>completion/tipa.cwl</file>
 <file>completion/tipauni.cwl</file>
 <file>completion/tipx.cwl</file>
+<file>completion/tiscreen.cwl</file>
 <file>completion/titlecaps.cwl</file>
 <file>completion/titlepic.cwl</file>
 <file>completion/titleps.cwl</file>
@@ -1687,6 +1698,8 @@
 <file>completion/totpages.cwl</file>
 <file>completion/trace.cwl</file>
 <file>completion/tracking.cwl</file>
+<file>completion/tracklang.cwl</file>
+<file>completion/tracklang-scripts.cwl</file>
 <file>completion/tram.cwl</file>
 <file>completion/translations.cwl</file>
 <file>completion/translator.cwl</file>
@@ -1712,12 +1725,14 @@
 <file>completion/typicons.cwl</file>
 <file>completion/Typocaps.cwl</file>
 <file>completion/uarial.cwl</file>
+<file>completion/uassign.cwl</file>
 <file>completion/ugarite.cwl</file>
 <file>completion/uhrzeit.cwl</file>
 <file>completion/ulem.cwl</file>
 <file>completion/ulsy.cwl</file>
 <file>completion/umoline.cwl</file>
 <file>completion/underoverlap.cwl</file>
+<file>completion/undertilde.cwl</file>
 <file>completion/undolabl.cwl</file>
 <file>completion/unicodefonttable.cwl</file>
 <file>completion/unicode-math.cwl</file>
@@ -1740,10 +1755,12 @@
 <file>completion/utf8hax.cwl</file>
 <file>completion/utfsym.cwl</file>
 <file>completion/uwa-colours.cwl</file>
+<file>completion/variablelm.cwl</file>
 <file>completion/varioref.cwl</file>
 <file>completion/varsfromjobname.cwl</file>
 <file>completion/varvbtm.cwl</file>
 <file>completion/varwidth.cwl</file>
+<file>completion/vcell.cwl</file>
 <file>completion/vdmlisting.cwl</file>
 <file>completion/vector.cwl</file>
 <file>completion/venndiagram.cwl</file>
@@ -1754,6 +1771,7 @@
 <file>completion/verbatimcopy.cwl</file>
 <file>completion/verbatim.cwl</file>
 <file>completion/verbdef.cwl</file>
+<file>completion/verbments.cwl</file>
 <file>completion/verse.cwl</file>
 <file>completion/version.cwl</file>
 <file>completion/versions.cwl</file>
@@ -1768,17 +1786,22 @@
 <file>completion/vtable.cwl</file>
 <file>completion/vwcol.cwl</file>
 <file>completion/wallpaper.cwl</file>
+<file>completion/warning.cwl</file>
+<file>completion/warpcol.cwl</file>
 <file>completion/wasysym.cwl</file>
+<file>completion/watermark.cwl</file>
 <file>completion/widetable.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
 <file>completion/withargs.cwl</file>
 <file>completion/witharrows.cwl</file>
+<file>completion/wordlike.cwl</file>
 <file>completion/worldflags.cwl</file>
 <file>completion/wrapfig2.cwl</file>
 <file>completion/wrapfig.cwl</file>
 <file>completion/wtref.cwl</file>
 <file>completion/xargs.cwl</file>
 <file>completion/xassoccnt.cwl</file>
+<file>completion/xbmks.cwl</file>
 <file>completion/XCharter.cwl</file>
 <file>completion/xcntperchap.cwl</file>
 <file>completion/xcoffins.cwl</file>
@@ -1786,6 +1809,7 @@
 <file>completion/xcolor-material.cwl</file>
 <file>completion/xcolor-solarized.cwl</file>
 <file>completion/xcomment.cwl</file>
+<file>completion/xcpdftips.cwl</file>
 <file>completion/xeCJK.cwl</file>
 <file>completion/xeCJKfntef.cwl</file>
 <file>completion/xecolor.cwl</file>
