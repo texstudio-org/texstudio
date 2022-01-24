@@ -8,6 +8,12 @@
 #include:scrlfile
 #include:multicol
 
+#keyvals:\usepackage/multicolrule#c
+tikz#true,false
+twocolumn#true,false
+paracol#true,false
+#endkeyvals
+
 \SetMCRule{options%keyvals}
 \DeclareMCRulePattern{name}{keyvals}
 
@@ -35,6 +41,12 @@ width=##L
 #endkeyvals
 
 #ifOption:tikz
+#include:tikz
+#keyvals:\SetMCRule,\DeclareMCRulePattern
+custom-line={%<draw command%>}
+#endkeyvals
+#endif
+#ifOption:tikz=true
 #include:tikz
 #keyvals:\SetMCRule,\DeclareMCRulePattern
 custom-line={%<draw command%>}
