@@ -13,7 +13,7 @@
 
 \mcexamoptions{options%keyvals}
 
-#keyvals:\mcexamoptions
+#keyvals:\mcexamoptions,\usepackage/mcexam#c
 output=#concept,exam,key,answers,analysis
 numberofversions=%<integer%>
 version=%<integer%>
