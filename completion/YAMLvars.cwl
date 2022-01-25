@@ -10,6 +10,7 @@
 useyv
 parseCLI
 allowundeclared
+overwritedefs
 debug
 #endkeyvals
 
