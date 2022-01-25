@@ -3,6 +3,10 @@
 
 #include:xkeyval
 
+#keyvals:\usepackage/hvindex#c
+makeidx
+#endkeyvals
+
 #ifOption:makeidx
 #include:makeidx
 #endif
