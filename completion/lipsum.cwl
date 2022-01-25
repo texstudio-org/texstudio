@@ -26,10 +26,10 @@
 
 \setlipsum{keyvals}
 
-#keyvals:\setlipsum#c
+#keyvals:\setlipsum#c,\usepackage/lipsum#c
 nopar#true,false
 text=#lipsum,cicero,lipsum-cs
-language=
+language=%<language%>
 auto-lang#true,false
 default-range=%<i-j%>
 par-before=%<tokens%>
