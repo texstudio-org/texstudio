@@ -15,6 +15,12 @@ etex
 calc
 pgfmath
 defaultunit=%<unit%>
+pdftex
+luatex
+dvips
+xetex
+dvipdfm
+dvipdfmx
 #endkeyvals
 
 #ifOption:pgf
