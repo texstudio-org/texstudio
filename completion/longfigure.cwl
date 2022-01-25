@@ -3,6 +3,15 @@
 
 #include:xkeyval
 
+#keyvals:\usepackage/longfigure#c
+figname=%<name%>
+resetby=%<counter%>
+set
+final
+errorshow
+pausing
+#endkeyvals
+
 \begin{longfigure}{placement}
 \end{longfigure}
 \endLFfirsthead
