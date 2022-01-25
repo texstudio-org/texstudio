@@ -4,11 +4,25 @@
 #include:kvoptions
 #include:filehook
 
+#keyvals:\usepackage/currfile#c
+mainext=%<extension%>
+maindir=%<directory%>
+fink#true,false
+abspath#true,false
+realmainfile#true,false
+#endkeyvals
+
 #ifOption:abspath
+#include:currfile-abspath
+#endif
+#ifOption:abspath=true
 #include:currfile-abspath
 #endif
 
 #ifOption:realmainfile
+#include:currfile-abspath
+#endif
+#ifOption:realmainfile=true
 #include:currfile-abspath
 #endif
 
