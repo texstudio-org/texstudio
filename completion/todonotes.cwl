@@ -4,14 +4,47 @@
 # http://www.ctan.org/tex-archive/help/Catalogue/entries/todonotes.html
 
 #include:ifthen
+#include:xkeyval
 #include:xcolor
 #include:tikz
 #include:calc
 
+#keyvals:\usepackage/todonotes#c
+disable
+obeyDraft
+obeyFinal
+danish
+german
+ngerman
+english
+french
+swedish
+spanish
+catalan
+italian
+portuguese
+dutch
+croatian
+colorinlistoftodos
+color=#%color
+backgroundcolor=#%color
+linecolor=#%color
+bordercolor=#%color
+tickmarkheight=##L
+textwidth=##L
+textsize=%<fontsize csname%>
+prependcaption={%<text%>}
+loadshadowlibrary
+shadow
+dvistyle
+figwidth=##L
+#endkeyvals
+
 \todo{text%todo}#D
 \todo[options%keyvals]{text%todo}#D
+\setuptodonotes{options%keyvals}
 
-#keyvals:\todo
+#keyvals:\todo,\setuptodonotes
 disable
 color=#%color
 backgroundcolor=#%color
@@ -25,14 +58,14 @@ line
 noline
 inline
 noinline
-size=
+size=%<fontsize command%>
 list
 nolist
-caption=
+caption={%<text%>}
 prepend
 noprepend
 fancyline
-author=
+author=%<author%>
 inlinewidth=##L
 inlinepar
 noinlinepar
