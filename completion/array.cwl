@@ -3,8 +3,8 @@
 \arraybackslash
 \extrarowheight
 \extratabsurround
-\firsthline
-\lasthline
-\newcolumntype{name%cmd}{definition}#d
-\newcolumntype{name%cmd}[args]{definition}#d
+\firsthline#t
+\lasthline#t
+\newcolumntype{name%cmd}{definition}
+\newcolumntype{name%cmd}[args]{definition}
 \showcols
