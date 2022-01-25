@@ -5,6 +5,24 @@
 #include:ifoddpage
 #include:varwidth
 
+#keyvals:\usepackage/adjustbox#c
+export
+Export
+pgf
+PGF
+minimal
+etex
+calc
+pgfmath
+defaultunit=%<unit%>
+pdftex
+luatex
+dvips
+xetex
+dvipdfm
+dvipdfmx
+#endkeyvals
+
 #ifOption:pgf
 #include:pgf
 #endif

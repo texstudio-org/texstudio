@@ -1,6 +1,16 @@
 # ragged2e package
 # Matthew Bertucci 9/28/2021 for v3.0
 
+#keyvals:\usepackage/ragged2e#c
+originalcommands
+newcommands
+originalparameters
+newparameters
+raggedrightboxes
+footnotes
+document
+#endkeyvals
+
 \Centering
 \RaggedLeft
 \RaggedRight

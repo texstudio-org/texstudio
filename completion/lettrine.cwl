@@ -1,6 +1,7 @@
 # lettrine package
 # Matthew Bertucci 8/30/2021 for v2.23
 
+#include:keyval
 #include:minifp
 
 \lettrine{letter}{text%plain}
@@ -32,14 +33,23 @@ refstring
 \DefaultSlope#*
 \DiscardVskip#*
 \LettrineDepth#*
+\theDefaultLines#*
+\theDefaultDepth#*
 \LettrineFontHook#*
 \LettrineHeight#*
 \LettrineImage#*
+\ifLettrineImage#*
+\LettrineImagetrue#*
 \LettrineImagefalse#*
+\ifLettrineOnGrid#*
+\LettrineOnGridtrue#*
 \LettrineOnGridfalse#*
+\ifLettrineRealHeight#*
 \LettrineRealHeightfalse#*
 \LettrineRealHeighttrue#*
 \LettrineSecondString#*
+\ifLettrineSelfRef#*
+\LettrineSelfReftrue#*
 \LettrineSelfReffalse#*
 \LettrineTestString#*
 \LettrineTextFont#*

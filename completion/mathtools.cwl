@@ -10,6 +10,29 @@
 #include:amsmath
 #include:graphicx
 
+#keyvals:\usepackage/mathtools#c
+fixamsmath
+donotfixamsmathbugs
+allowspaces
+disallowspaces
+# options passed to amsmath
+intlimits
+nointlimits
+sumlimits
+nosumlimits
+namelimits
+nonamelimits
+leqno
+reqno
+centertags
+tbtags
+cmex10
+fleqn
+alignedleftspaceyes
+alignedleftspaceno
+alignedleftspaceyesifneg
+#endkeyvals
+
 \mathtoolsset{%<options%>}
 #keyvals:\mathtoolsset
 showonlyrefs#true,false

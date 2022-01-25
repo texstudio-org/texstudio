@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 11/24/2021 for v6.4
+# Matthew Bertucci 1/25/2022 for v6.5
 
 #include:amsmath
 #include:array
@@ -68,7 +68,7 @@
 t
 b
 c
-baseline=
+baseline=%<row number%>
 standard-cline
 vlines
 vlines=
@@ -78,14 +78,15 @@ hvlines
 hvlines-except-borders
 corners
 corners=#NW,SW,NE,SE
-code-before=
-columns-width=
+custom-line={%<keyvals%>}
+code-before=%<code%>
+columns-width=##L
 first-row
 last-row
 first-col
 last-col
-last-row=
-last-col=
+last-row=%<number%>
+last-col=%<number%>
 code-for-first-row=%<code%>
 code-for-last-row=%<code%>
 code-for-first-col=%<code%>
@@ -95,16 +96,16 @@ renew-dots
 xdots/color=#%color
 xdots/shorten=##L
 xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
-code-after=
+code-after=%<code%>
 cell-space-top-limit=##L
 cell-space-bottom-limit=##L
 cell-space-limits=##L
-tabularnote=
+tabularnote=%<text%>
 notes/para
 notes/bottomrule
 small
 light-syntax
-name=
+name=%<name%>
 create-medium-nodes
 create-large-nodes
 create-extra-nodes
@@ -118,7 +119,7 @@ extra-right-margin=##L
 extra-margin=##L
 parallelize-diags#true,false
 delimiters/max-width
-vlines-in-sub-matrix=
+vlines-in-sub-matrix=%<letter%>
 colortbl-like
 #endkeyvals
 
@@ -165,8 +166,9 @@ b
 L
 R
 C
-tikz=
-name=
+tikz={%<TikZ options%>}
+name=%<name%>
+respect-arraystretch
 #endkeyvals
 
 \Hline#t
@@ -292,7 +294,7 @@ vlines=
 hlines
 hlines=
 hvlines
-name=
+name=%<name%>
 #endkeyvals
 
 \OverBrace{i-j}{k-l}{label}#t
@@ -307,7 +309,7 @@ shorten
 yshift=##L
 #endkeyvals
 
-\tabularnote{note}
+\tabularnote{note%text}
 \rotate
 
 \AutoNiceMatrix{i-j}{pattern}#m
@@ -356,7 +358,7 @@ renew-dots
 code-after=%<code%>
 small
 light-syntax
-name=
+name=%<name%>
 create-medium-nodes
 create-large-nodes
 create-extra-nodes
@@ -364,13 +366,13 @@ left-margin
 left-margin=##L
 right-margin
 right-margin=##L
-margin=
+margin=##L
 extra-left-margin=##L
 extra-right-margin=##L
 extra-margin=##L
 parallelize-diags#true,false
 delimiters/max-width
-vlines-in-sub-matrix=
+vlines-in-sub-matrix=%<letter%>
 colortbl-like
 #endkeyvals
 

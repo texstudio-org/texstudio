@@ -4,6 +4,13 @@
 #include:ifpdf
 #include:collectbox
 
+#keyvals:\usepackage/storebox#c
+disable
+enable
+immediate
+delayed
+#endkeyvals
+
 \newstorebox{boxname%cmd}#d
 \storebox{boxname}{content%text}
 \begin{storebox}{boxname}

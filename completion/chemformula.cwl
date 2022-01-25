@@ -1,4 +1,4 @@
-# package chemformula v4.14a
+# package chemformula v4.17
 # typeset chemical compounds and reactions
 # Clemens Niederberger 01/07/2016
 # URL: http://www.ctan.org/pkg/chemformula
@@ -10,10 +10,9 @@
 #include:xparse
 #include:l3keys2e
 #include:tikz
-#include:amstext
+#include:amsmath
 #include:xfrac
 #include:nicefrac
-#include:scrlfile
 #
 #
 # Chapter 3. Setup
@@ -38,7 +37,7 @@ frac-style=#math,xfrac,nicefrac
 frac-math-cmd={%<command sequence%>}
 stoich-space={%<skip%>}
 stoich-paren-parse=#true,false
-stoich-print={%<cs%>}
+stoich-format={%<code%>}
 #endkeyvals
 #keyvals:\setchemformula
 decimal-marker={%<marker%>}
@@ -46,7 +45,7 @@ frac-style=#math,xfrac,nicefrac
 frac-math-cmd={%<command sequence%>}
 stoich-space={%<skip%>}
 stoich-paren-parse=#true,false
-stoich-print={%<cs%>}
+stoich-format={%<code%>}
 #endkeyvals
 #keyvals:\chcpd
 decimal-marker={%<marker%>}
@@ -54,7 +53,7 @@ frac-style=#math,xfrac,nicefrac
 frac-math-cmd={%<command sequence%>}
 stoich-space={%<skip%>}
 stoich-paren-parse=#true,false
-stoich-print={%<cs%>}
+stoich-format={%<code%>}
 #endkeyvals
 #
 #
@@ -96,6 +95,7 @@ subscript-style=#text,math
 charge-hshift={%<dim%>}
 charge-vshift={%<dim%>}
 charge-style=#text,math
+math-scripts#true,false
 adduct-space={%<dim%>}
 adduct-penalty={%<num%>}
 bond-length={%<dim%>}
@@ -114,6 +114,7 @@ subscript-style=#text,math
 charge-hshift={%<dim%>}
 charge-vshift={%<dim%>}
 charge-style=#text,math
+math-scripts#true,false
 adduct-space={%<dim%>}
 adduct-penalty={%<num%>}
 bond-length={%<dim%>}
@@ -132,6 +133,7 @@ subscript-style=#text,math
 charge-hshift={%<dim%>}
 charge-vshift={%<dim%>}
 charge-style=#text,math
+math-scripts#true,false
 adduct-space={%<dim%>}
 adduct-penalty={%<num%>}
 bond-length={%<dim%>}
@@ -350,7 +352,7 @@ lewis-offset={%<dim%>}
 #endkeyvals
 #
 #
-# Chapter 15. Kröger-Vink Notation
+# Chapter 15. KrÃ¶ger-Vink Notation
 #
 #
 #keyvals:\ch

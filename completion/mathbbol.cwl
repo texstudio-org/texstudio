@@ -1,7 +1,12 @@
 # mathbbol package
 # Matthew Bertucci 8/27/2021
 
-\mathbb{arg}#m
+#keyvals:\usepackage/mathbbol#c
+cspex
+bbgreekl
+#endkeyvals
+
+\mathbb{text%plain}#m
 \Langle#m
 \Lbrack#m
 \Lparen#m
@@ -35,3 +40,10 @@
 \bbpsi#m
 \bbomega#m
 #endif
+
+\ifcspex#*
+\cspexfalse#*
+\cspextrue#*
+\ifbbgreekl#*
+\bbgreeklfalse#*
+\bbgreekltrue#*

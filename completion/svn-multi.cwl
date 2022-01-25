@@ -6,6 +6,21 @@
 #include:filehook
 #include:currfile
 
+#keyvals:\usepackage/svn-multi#c
+old
+all
+verbatim#true,false
+external#true,false
+groups#true,false
+subgroups#true,false
+graphics#true,false
+pgfimages#true,false
+autoload#true,false
+table#true,false
+filehooks#true,false
+autokw=#false,true,all,ext
+#endkeyvals
+
 #ifOption:all
 #include:graphics
 #include:pgf

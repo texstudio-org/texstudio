@@ -11,12 +11,16 @@
 
 \adjcalcset{options%keyvals}
 
-#keyvals:\adjcalcset
+#keyvals:\adjcalcset,\usepackage/adjcalc#c
 etex
 calc
 pgfmath
 overwrite
 defaultunit=%<unit%>
+#endkeyvals
+
+#keyvals:\usepackage/adjcalc#c
+none
 #endkeyvals
 
 \adjsetlength{length macro}{length}

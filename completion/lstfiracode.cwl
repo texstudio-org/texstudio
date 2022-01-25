@@ -4,6 +4,10 @@
 #include:kvoptions
 #include:listings
 
+#keyvals:\usepackage/lstfiracode#c
+verbatim#true,false
+#endkeyvals
+
 #keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline
 style=FiraCodeStyle
 moreliterate=

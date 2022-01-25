@@ -5,6 +5,16 @@
 #include:collectbox
 #include:adjcalc
 
+#keyvals:\usepackage/trimclip#c
+pdftex
+luatex
+dvips
+xetex
+dvipdfm
+dvipdfmx
+pgf
+#endkeyvals
+
 #ifOption:pgf
 #include:pgf
 #endif

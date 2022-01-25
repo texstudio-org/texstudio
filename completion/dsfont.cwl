@@ -1,4 +1,8 @@
 # dsfont package
 # muzimuzhi 23 May 2020 for dsfont V1.111
 
-\mathds{text}#m
+#keyvals:\usepackage/dsfont#c
+sans
+#endkeyvals
+
+\mathds{text%plain}#m

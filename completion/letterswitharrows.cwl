@@ -6,6 +6,13 @@
 #include:l3keys2e
 #include:mathtools
 
+#keyvals:\usepackage/letterswitharrows#c
+presets={%<set1,set2,...%>}
+pgf
+tweaks#true,false
+linewidth=%<number%>
+#endkeyvals
+
 \arrowoverset{arg}#m
 \arrowoverset[xoffset][xscale][yoffset]{arg}#m
 \arrowoverset*{arg}#m
@@ -168,6 +175,10 @@
 \cYv#m
 \cZv#m
 
+#ifOption:presets=vec-cev
+\vec{arg}#m
+\cev{arg}#m
+#endif
 #ifOption:presets={vec-cev}
 \vec{arg}#m
 \cev{arg}#m

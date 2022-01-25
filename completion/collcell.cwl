@@ -4,6 +4,13 @@
 #include:array
 #include:etoolbox
 
+#keyvals:\usepackage/collcell#c
+verb
+noverb
+robustcr
+norobustcr
+#endkeyvals
+
 #ifOption:verb
 #include:tabularx
 #endif

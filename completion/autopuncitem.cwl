@@ -2,7 +2,12 @@
 # Matthew Bertucci 12/24/2021
 
 #include:enumitem
+#include:etoolbox
 #include:luacode
+
+#keyvals:\usepackage/autopuncitem#c
+noenumitem
+#endkeyvals
 
 \APomit
 \APpass
@@ -14,9 +19,15 @@
 \enableAPautopassnest
 \disableAPautopassnest
 
-#keyvals:\begin{itemize}#c,\begin{enumerate}#c,\begin{description}#c
+#keyvals:\setlist,\SetEnumitemKey,\begin{enumerate}#c,\begin{itemize}#c,\begin{description}#c,\begin{enumerate*}#c,\begin{itemize*}#c,\begin{description*}#c
 autopunc
+autopuncO
+autopuncE
 #endkeyvals
 
-\begin{AutoPuncItemize}#*
-\end{AutoPuncItemize}#*
+\begin{AutoPuncItems}#*
+\end{AutoPuncItems}#*
+\begin{AutoPuncItemsO}#*
+\end{AutoPuncItemsO}#*
+\begin{AutoPuncItemsE}#*
+\end{AutoPuncItemsE}#*
