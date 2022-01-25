@@ -56,8 +56,9 @@
 	text=&quot;\\item \n&quot;&#10;
 	}&#10;
 	text=&quot;\\begin{itemize}\n&quot;+text+&quot;\\end{itemize}&quot;&#10;
-	cursor.insertText(text);&#10;
-	cursor.moveTo(cursor.lineNumber()-1,6);" 
+	editor.insertSnippet(text);&#10;
+	cursor.moveTo(cursor.lineNumber()-1,0);&#10;
+	cursor.movePosition(1,cursorEnums.EndOfLine );" 
     info="The itemize environment produces a 'bulleted' list.%nEach item of an itemized list begins with an \item command." icon="itemize"/>
     <insert id="enumerate" text="\begin{enumerate}" insert="%SCRIPT&#10;
     selected = cursor.selectedText(); &#10;
@@ -70,8 +71,9 @@
 	text=&quot;\\item \n&quot;&#10;
 	}&#10;
 	text=&quot;\\begin{enumerate}\n&quot;+text+&quot;\\end{enumerate}&quot;&#10;
-	cursor.insertText(text);&#10;
-	cursor.moveTo(cursor.lineNumber()-1,6);"
+	editor.insertSnippet(text);&#10;
+	cursor.moveTo(cursor.lineNumber()-1,0);&#10;
+	cursor.movePosition(1,cursorEnums.EndOfLine );"
 	info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon="enumerate"/>
     <insert id="description" text="\begin{description}" insert="\begin{description}%\\item[%&lt;label%>] %&lt;description%>%\\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
     <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%\\item %|%\\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
