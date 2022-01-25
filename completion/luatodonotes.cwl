@@ -4,6 +4,7 @@
 #include:xcolor
 #include:ifluatex
 #include:ifthen
+#include:xkeyval
 #include:tikz
 #include:luacode
 #include:atbegshi
