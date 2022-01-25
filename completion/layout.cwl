@@ -2,6 +2,25 @@
 # neeraavi 20 Mar 2007
 # Matthew Bertucci 11/2/2021 for v1.2e
 
+#keyvals:\usepackage/layout#c
+dutch
+german
+ngerman
+english
+french
+francais
+spanish
+portuguese
+brazilian
+italian
+romanian
+japanese
+verbose
+silent
+integers
+reals
+#endkeyvals
+
 \layout
 \layout*
 
