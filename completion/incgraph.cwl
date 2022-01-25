@@ -8,6 +8,15 @@
 #include:graphicx
 #include:bookmark
 
+#keyvals:\usepackage/incgraph#c
+pgf
+nopgf
+graphicx
+nographicx
+bookmark
+nobookmark
+#endkeyvals
+
 \incgraph{imagefile}#g
 \incgraph[options%keyvals]{imagefile}#g
 \incgraph[options%keyvals][graphics options]{imagefile}#g
