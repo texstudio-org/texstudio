@@ -3,6 +3,10 @@
 
 #include:finstrut
 
+#keyvals:\usepackage/fnlineno#c
+check-latex
+#endkeyvals
+
 \TheLineNoLaTeXOutput#*
 \GStoreReg{register}#*
 \RestoreReg{register}#*
