@@ -1,6 +1,23 @@
 # footmisc package
 # Matthew Bertucci 9/5/2021 for v5.5b
 
+#keyvals:\usepackage/footmisc#c
+perpage
+para
+side
+ragged
+symbol
+symbol*
+bottom
+marginal
+flushmargin
+hang
+norule
+splitrule
+stable
+multiple
+#endkeyvals
+
 \DefineFNsymbols{set name}[style]{symbol list}#*
 \DefineFNsymbols*{set name}[style]{symbol list}#*
 \setfnsymbol{set name}#*
