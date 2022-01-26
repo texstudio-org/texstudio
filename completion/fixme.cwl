@@ -6,40 +6,57 @@
 #include:xspace
 
 \fxsetup{options%keyvals}
+
+\fxnote{FIX%todo}#D
 \fxnote[options%keyvals]{FIX%todo}#D
+\fxwarning{FIX%todo}#D
 \fxwarning[options%keyvals]{FIX%todo}#D
+\fxerror{FIX%todo}#D
 \fxerror[options%keyvals]{FIX%todo}#D
+\fxfatal{FIX%todo}#D
 \fxfatal[options%keyvals]{FIX%todo}#D
 
-\fxnote*[options%keyvals]{FIX%todo}{text}#D
-\fxwarning[options%keyvals]{FIX%todo}{text}#D
-\fxerror*[options%keyvals]{FIX%todo}{text}#D
-\fxfatal*[options%keyvals]{FIX%todo}{text}#D
+\fxnote*{FIX%todo}#D
+\fxnote*[options%keyvals]{FIX%todo}#D
+\fxwarning*{FIX%todo}#D
+\fxwarning*[options%keyvals]{FIX%todo}#D
+\fxerror*{FIX%todo}#D
+\fxerror*[options%keyvals]{FIX%todo}#D
+\fxfatal*{FIX%todo}#D
+\fxfatal*[options%keyvals]{FIX%todo}#D
 
 \begin{anfxnote}[options%keyvals]{summary}
+\begin{anfxnote}{summary}
 \begin{anfxwarning}[options%keyvals]{summary}
+\begin{anfxwarning}{summary}
 \begin{anfxerror}[options%keyvals]{summary}
+\begin{anfxerror}{summary}
 \begin{anfxfatal}[options%keyvals]{summary}
+\begin{anfxfatal}{summary}
 \end{anfxnote}
 \end{anfxwarning}
 \end{anfxerror}
 \end{anfxfatal}
 
-\begin{anfxnote*}[options%keyvals]{summary}{text}
-\begin{anfxwarning*}[options%keyvals]{summary}{text}
-\begin{anfxerror*}[options%keyvals]{summary}{text}
-\begin{anfxfatal*}[options%keyvals]{summary}{text}
+\begin{anfxnote*}[options%keyvals]{summary}
+\begin{anfxnote*}{summary}
+\begin{anfxwarning*}[options%keyvals]{summary}
+\begin{anfxwarning*}{summary}
+\begin{anfxerror*}[options%keyvals]{summary}
+\begin{anfxerror*}{summary}
+\begin{anfxfatal*}[options%keyvals]{summary}
+\begin{anfxfatal*}{summary}
 \end{anfxnote*}
 \end{anfxwarning*}
 \end{anfxerror*}
 \end{anfxfatal*}
 
-#keyvals:\fxsetup,\fxnote,\fxwarning,\fxerror,\fxfatal,\fxnote*,\fxwarning*,\fxerror*,\fxfatal*,\begin{anfxnote},\begin{anfxwarning},\begin{anfxerror},\begin{anfxfatal},\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
+#keyvals:\usepackage/fixme#c,\fxsetup,\fxnote,\fxwarning,\fxerror,\fxfatal,\fxnote*,\fxwarning*,\fxerror*,\fxfatal*,\begin{anfxnote},\begin{anfxwarning},\begin{anfxerror},\begin{anfxfatal},\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
 final
 draft
 status=#final,draft
-layout=
-morelayout=
+layout={%<options%>}
+morelayout={%<options%>}
 inline#true,false
 noinline
 margin#true,false
@@ -68,7 +85,7 @@ pdfcsignote#true,false
 nopdfcsignote
 pdfcsigmargin#true,false
 nopdfcsigmargin
-innerlayout=
+innerlayout={%<options%>}
 target=
 inlineface=
 marginface=
@@ -159,12 +176,12 @@ color
 colorsig
 #endkeyvals
 
-#keyvals:\fxsetup,\begin{anfxnote},\begin{anfxwarning},\begin{anfxerror},\begin{anfxfatal},\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
+#keyvals:\usepackage/fixme#c,\fxsetup,\begin{anfxnote},\begin{anfxwarning},\begin{anfxerror},\begin{anfxfatal},\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
 envlayout=#plain,signature,color,colorsig
 #endkeyvals
 
-#keyvals:\fxsetup,\fxnote*,\fxwarning*,\fxerror*,\fxfatal*,\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
-targetlayout=
+#keyvals:\usepackage/fixme#c,\fxsetup,\fxnote*,\fxwarning*,\fxerror*,\fxfatal*,\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
+targetlayout=#plain,changebar,color,colorcb
 #endkeyvals
 
 \fxusetargetlayout{layout%keyvals}
@@ -179,7 +196,7 @@ colorcb
 
 \fxsetface{face%keyvals}{value}
 
-#keyvals:\fxsetup,\fxnote,\fxwarning,\fxerror,\fxfatal,\fxnote*,\fxwarning*,\fxerror*,\fxfatal*,\begin{anfxnote},\begin{anfxwarning},\begin{anfxerror},\begin{anfxfatal},\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
+#keyvals:\fxsetface
 inline
 margin
 env
@@ -189,7 +206,7 @@ target
 
 \FXRegisterAuthor{cmdprefix}{envprefix}{author}
 
-\fxusetheme{theme name%keyvals}
+\fxusetheme{theme%keyvals}
 
 #keyvals:\fxusetheme
 signature
@@ -197,7 +214,7 @@ color
 colorsig
 #endkeyvals
 
-#keyvals:\fxsetup
+#keyvals:\usepackage/fixme#c,\fxsetup
 theme=#signature,color,colorsig
 #endkeyvals
 
@@ -215,6 +232,7 @@ theme=#signature,color,colorsig
 \FXLayoutPDFCMargin{type%keyvals}{annotation}{author}#*
 \FXLayoutPDFCSigNote{type%keyvals}{annotation}{author}#*
 \FXLayoutPDFCSigMargin{type%keyvals}{annotation}{author}#*
+\FXLayoutContentsLine{type%keyvals}{annotation}{author}#*
 
 \FXEnvLayoutPlainBegin{type%keyvals}{author}#*
 \FXEnvLayoutPlainEnd{type%keyvals}{author}#*
@@ -230,7 +248,7 @@ theme=#signature,color,colorsig
 \FXTargetLayoutColor{type%keyvals}{target}#*
 \FXTargetLayoutColorCB{type%keyvals}{target}#*
 
-#keyvals:\FXLayoutInline,\FXLayoutMargin,\FXLayoutFootnote,\FXLayoutIndex,\FXLayoutMarginClue,\FXLayoutMarginNote,\FXLayoutPDFNote,\FXLayoutPDFMargin,\FXLayoutPDFSigNote,\FXLayoutPDFSigMargin,\FXLayoutPDFCNote,\FXLayoutPDFCMargin,\FXLayoutPDFCSigNote,\FXLayoutPDFCSigMargin,\FXEnvLayoutPlainBegin,\FXEnvLayoutPlainEnd,\FXEnvLayoutSignatureBegin,\FXEnvLayoutSignatureEnd,\FXEnvLayoutColorBegin,\FXEnvLayoutColorEnd,\FXEnvLayoutColorSigBegin,\FXEnvLayoutColorSigEnd,\FXTargetLayoutPlain,\FXTargetLayoutChangeBar,\FXTargetLayoutColor,\FXTargetLayoutColorCB
+#keyvals:\FXLayoutInline,\FXLayoutMargin,\FXLayoutFootnote,\FXLayoutIndex,\FXLayoutMarginClue,\FXLayoutMarginNote,\FXLayoutPDFNote,\FXLayoutPDFMargin,\FXLayoutPDFSigNote,\FXLayoutPDFSigMargin,\FXLayoutPDFCNote,\FXLayoutPDFCMargin,\FXLayoutPDFCSigNote,\FXLayoutPDFCSigMargin,\FXEnvLayoutPlainBegin,\FXEnvLayoutPlainEnd,\FXEnvLayoutSignatureBegin,\FXEnvLayoutSignatureEnd,\FXEnvLayoutColorBegin,\FXEnvLayoutColorEnd,\FXEnvLayoutColorSigBegin,\FXEnvLayoutColorSigEnd,\FXTargetLayoutPlain,\FXTargetLayoutChangeBar,\FXTargetLayoutColor,\FXTargetLayoutColorCB,\FXLayoutContentsLine
 note
 warning
 error
@@ -266,48 +284,86 @@ fatal
 \FXRequireTargetLayout{layout}#*
 \FXProvidesTheme{name}[release info]#*
 
-\fxenglishnotename#*
-\fxfrenchnotename#*
-\fxfrancaisnotename#*
-\fxspanishnotename#*
-\fxitaliannotename#*
-\fxgermannotename#*
-\fxngermannotename#*
-\fxdanishnotename#*
-\fxcroatiannotename#*
-\fxenglishwarningname#*
-\fxfrenchwarningname#*
-\fxfrancaiswarningname#*
-\fxspanishwarningname#*
-\fxitalianwarningname#*
-\fxgermanwarningname#*
-\fxngermanwarningname#*
-\fxdanishwarningname#*
-\fxcroatianwarningname#*
-\fxenglisherrorname#*
-\fxfrencherrorname#*
-\fxfrancaiserrorname#*
-\fxspanisherrorname#*
-\fxitalianerrorname#*
-\fxgermanerrorname#*
-\fxngermanerrorname#*
-\fxdanisherrorname#*
-\fxcroatianerrorname#*
-\fxenglishfatalname#*
-\fxfrenchfatalname#*
-\fxfrancaisfatalname#*
-\fxspanishfatalname#*
-\fxitalianfatalname#*
-\fxgermanfatalname#*
-\fxngermanfatalname#*
-\fxdanishfatalname#*
-\fxcroatianfatalname#*
-\englishlistfixmename#*
-\frenchlistfixmename#*
-\francaislistfixmename#*
-\spanishlistfixmename#*
-\italianlistfixmename#*
-\germanlistfixmename#*
-\ngermanlistfixmename#*
-\danishlistfixmename#*
 \croatianlistfixmename#*
+\danishlistfixmename#*
+\englishlistfixmename#*
+\fixmeindexname#*
+\fixmelogo#*
+\francaislistfixmename#*
+\frenchlistfixmename#*
+\fxaddcontentsline{contents}#*
+\fxcontentsline{contents}{target}#*
+\fxcroatianerrorname#*
+\fxcroatianerrorsname#*
+\fxcroatianfatalname#*
+\fxcroatianfatalsname#*
+\fxcroatiannotename#*
+\fxcroatiannotesname#*
+\fxcroatianwarningname#*
+\fxcroatianwarningsname#*
+\fxdanisherrorname#*
+\fxdanisherrorsname#*
+\fxdanishfatalname#*
+\fxdanishfatalsname#*
+\fxdanishnotename#*
+\fxdanishnotesname .#*
+\fxdanishwarningname#*
+\fxdanishwarningsname#*
+\fxenglisherrorname#*
+\fxenglisherrorsname#*
+\fxenglishfatalname#*
+\fxenglishfatalsname#*
+\fxenglishnotename#*
+\fxenglishnotesname#*
+\fxenglishwarningname#*
+\fxenglishwarningsname#*
+\fxfrancaiserrorname#*
+\fxfrancaisfatalname#*
+\fxfrancaisnotename#*
+\fxfrancaiswarningname#*
+\fxfrencherrorname#*
+\fxfrencherrorsname#*
+\fxfrenchfatalname#*
+\fxfrenchfatalsname#*
+\fxfrenchnotename#*
+\fxfrenchnotesname#*
+\fxfrenchwarningname#*
+\fxfrenchwarningsname#*
+\fxgermanerrorname#*
+\fxgermanerrorsname#*
+\fxgermanfatalname#*
+\fxgermanfatalsname#*
+\fxgermannotename#*
+\fxgermannotesname#*
+\fxgermanwarningname#*
+\fxgermanwarningsname#*
+\fxitalianerrorname#*
+\fxitalianerrorsname#*
+\fxitalianfatalname#*
+\fxitalianfatalsname#*
+\fxitaliannotename#*
+\fxitaliannotesname#*
+\fxitalianwarningname#*
+\fxitalianwarningsname#*
+\fxngermanerrorname#*
+\fxngermanfatalname#*
+\fxngermannotename#*
+\fxngermanwarningname#*
+\fxnotename{text}#*
+\fxnotesname{text}#*
+\fxspanisherrorname#*
+\fxspanisherrorsname#*
+\fxspanishfatalname#*
+\fxspanishfatalsname#*
+\fxspanishnotename#*
+\fxspanishnotesname#*
+\fxspanishwarningname#*
+\fxspanishwarningsname#*
+\germanlistfixmename#*
+\italianlistfixmename#*
+\spanishlistfixmename#*
+
+\FXLogError{error text%text}#*
+\FXLogFatal{error text%text}#*
+\FXLogNote{note text%text}#*
+\FXLogWarning{warning text%text}#*
