@@ -3,7 +3,14 @@
 
 #include:kvoptions
 
-\doxitem{name}{envname}{index category}
+#keyvals:\usepackage/dox#c
+noprint#true,false
+noindex#true,false
+macrolike#true,false
+idxtype=
+#endkeyvals
+
+\doxitem{name}{envname}{index category}#N
 \doxitem[options%keyvals]{name}{envname}{index category}#N
 
 #keyvals:\doxitem
