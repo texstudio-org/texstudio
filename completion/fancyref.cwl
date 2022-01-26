@@ -3,6 +3,19 @@
 #            see https://github.com/LaTeXing/LaTeX-cwl/blob/master/fancyref.cwl
 # muzimuzhi/28 Dec 2019 for fancyref 1999/02/03 v0.9c
 
+#include:varioref
+
+#keyvals:\usepackage/fancyref#c
+german
+english
+loose
+margin
+paren
+plain
+tight
+vario
+#endkeyvals
+
 \fref{label}#r
 \Fref{label}#r
 \fref[format%keyvals]{label}#r
