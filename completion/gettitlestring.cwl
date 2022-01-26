@@ -5,7 +5,7 @@
 
 \GetTitleStringSetup{options%keyvals}#*
 
-#keyvals:\GetTitleStringSetup
+#keyvals:\GetTitleStringSetup,\usepackage/gettitlestring#c
 expand#true,false
 #endkeyvals
 
