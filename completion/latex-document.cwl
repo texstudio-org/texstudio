@@ -432,9 +432,9 @@
 \textbraceleft
 \textbraceright
 \textbullet
-\textcircled{arg}
-\textcommaabove{arg}
-\textcommabelow{arg}
+\textcircled{text%plain}
+\textcommaabove{text%plain}
+\textcommabelow{text%plain}
 \textcompwordmark
 \textcopyright
 \textdagger
@@ -468,8 +468,8 @@
 \textsf{text}
 \textsl{text}
 \textsterling
-\textsubscript{arg}
-\textsuperscript{arg}
+\textsubscript{text%plain}
+\textsuperscript{text%plain}
 \textsw{text}#*
 \texttrademark
 \texttt{text}
