@@ -7,6 +7,11 @@
 #include:fcprefix
 #include:amsgen
 
+#keyvals:\usepackage/fmtcount#c
+raise
+level
+#endkeyvals
+
 \ordinal{counter}
 \ordinal{counter}[gender]
 \FCordinal{counter}#*
@@ -119,7 +124,7 @@ abbr#true,false
 
 \FCloadlang{language%keyvals}
 
-#keyvals:\FCloadlang#c
+#keyvals:\FCloadlang#c,\usepackage/fmtcount#c
 english
 UKenglish
 brazilian
