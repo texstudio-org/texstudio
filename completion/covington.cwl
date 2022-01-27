@@ -3,6 +3,13 @@
 
 #include:iftex
 
+#keyvals:\usepackage/covington#c
+force
+keeplayout
+noglossbreaks
+owncounter
+#endkeyvals
+
 \twodias{upper diac}{lower diac}{char}
 \acm{arg}
 \grm{arg}
