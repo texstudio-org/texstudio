@@ -3,6 +3,25 @@
 
 #include:amstext
 
+#keyvals:\usepackage/engrec#c
+upright
+sloped
+upgreek
+slgreek
+varepsilon
+epsilon
+vartheta
+theta
+varpi
+pi
+varrho
+rho
+varsigma
+sigma
+varphi
+phi
+#endkeyvals
+
 #ifOption:upgreek
 #include:upgreek
 #endif
