@@ -3,6 +3,17 @@
 
 #include:color
 
+#keyvals:\usepackage/contour#c
+auto
+dvips
+xdvi
+pdftex
+vtex
+dvipsone
+outline
+copies
+#endkeyvals
+
 \contour{color}{text}
 \contour*{color}{text}
 \contour[number]{color}{text}
