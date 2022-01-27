@@ -1,6 +1,7 @@
 TeXstudio 4.2.1
 -----------------
 - fix placeholder issues
+- fix handling mirrored placeolder, like in issue #2063
 - handle NewDocumentsCommand better for completer
 - enable "open in explorer" again
 - fix building for poppler >=22.x 
