@@ -3,4 +3,4 @@
 
 #include:amsfonts
 
-\CMath{arg}#m
+\CMath{text%plain}#m
