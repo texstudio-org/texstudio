@@ -8,7 +8,7 @@
 
 \setdf{options%keyvals}
 
-#keyvals:\setdf,\setkeys#c
+#keyvals:\setdf,\usepackage/draftfigure#c
 content={%|}
 filename#true,false
 style=#sf,tt,rm,normal,bf,it,sc
