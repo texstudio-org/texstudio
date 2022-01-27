@@ -6,6 +6,12 @@
 #include:zref-abspage
 #include:zref-lastpage
 
+#keyvals:\usepackage/continue#c
+margin
+word
+allpages
+#endkeyvals
+
 \flagcont
 \flagend
 \flagword
