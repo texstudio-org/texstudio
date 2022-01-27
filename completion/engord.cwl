@@ -4,10 +4,15 @@
 #include:ltxcmds
 #include:infwarerr
 
+#keyvals:\usepackage/engord#c
+normal
+raise
+#endkeyvals
+
 \engord{counter}
 \engordnumber{number}
 \engordletters{text%plain}#*
 \engorderror{number}#*
 \ifengordraise#*
-\engordraisetrue
-\engordraisefalse
+\engordraisetrue#*
+\engordraisefalse#*
