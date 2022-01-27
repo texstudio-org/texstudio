@@ -15,6 +15,12 @@
 #include:afterpage
 #include:stfloats
 
+#keyvals:\usepackage/hvfloat#c
+fbox
+hyperref
+nostfloats
+#endkeyvals
+
 #ifOption:hyperref
 #include:hyperref
 #endif

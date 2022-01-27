@@ -1,6 +1,12 @@
 # graphpaper class
 # Matthew Bertucci 11/12/2021 for v1.0
 
+#keyvals:\documentclass/graphpaper#c
+a4paper
+a3paper
+letterpaper
+#endkeyvals
+
 #include:xkeyval
 #include:geometry
 #include:euclideangeometry

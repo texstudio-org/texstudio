@@ -3,6 +3,11 @@
 
 #include:kvoptions
 
+#keyvals:\usepackage/nowidow#c
+defaultlines=%<integer%>
+all
+#endkeyvals
+
 \nowidow
 \nowidow[number]
 \setnowidow

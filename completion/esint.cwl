@@ -1,6 +1,11 @@
 # esint package
 # Matthew Bertucci 8/22/2021 for v1.2d
 
+#keyvals:\usepackage/esint#c
+intlimits
+nointlimits
+#endkeyvals
+
 \int#m
 \iint#m
 \iiint#m

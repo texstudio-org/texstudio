@@ -3,6 +3,18 @@
 
 #include:calc
 
+#keyvals:\usepackage/foliono#c
+AllQuires
+ArabicNumbers
+LowerCase
+NoQuires
+OnlyQuire
+SheetNumbers
+ShowSides
+SkipFirst
+SkipEnd
+#endkeyvals
+
 \folionumber
 \folionoquirefolios{number}
 \stepfolio

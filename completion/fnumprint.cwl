@@ -4,6 +4,19 @@
 #include:xifthen
 #include:numprint
 
+#keyvals:\usepackage/fnumprint#c
+german
+ngerman
+english
+USenglish
+american
+UKenglish
+british
+canadian
+australian
+newzealand
+#endkeyvals
+
 #ifOption:german
 #include:zahl2string
 \fnumprintc[eins]{counter}

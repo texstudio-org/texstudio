@@ -1,6 +1,11 @@
 # fp package
 # Matthew Bertucci 9/21/2021 for v2.1d
 
+#keyvals:\usepackage/fp#c
+nomessages
+debug
+#endkeyvals
+
 #include:defpattern
 #include:fp-basic
 #include:fp-addons

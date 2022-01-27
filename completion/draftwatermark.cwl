@@ -7,7 +7,7 @@
 
 \DraftwatermarkOptions{options%keyvals}
 
-#keyvals:\DraftwatermarkOptions
+#keyvals:\DraftwatermarkOptions,\usepackage/draftwatermark#c
 firstpageonly#true,false
 firstpage
 stamp#true,false

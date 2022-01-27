@@ -5,6 +5,25 @@
 #include:ifthen
 #include:drac
 
+#keyvals:\usepackage/engpron#c
+wild
+tame
+drac
+nodrac
+jones
+harraps
+hyphenable
+unhyphenable
+visible
+invisible
+monstress
+tipastress
+final
+draft
+nice
+tough
+#endkeyvals
+
 \pron{text}
 \Pron{text}
 \PRON{text}

@@ -6,6 +6,17 @@
 #include:currfile
 #include:etoolbox
 
+#keyvals:\usepackage/embedall#c
+all
+notall
+main
+input
+include
+graphicx
+csvsimple
+compat
+#endkeyvals
+
 #ifOption:compat
 #include:letltxmacro
 #endif

@@ -1,5 +1,5 @@
 # spbmark package
-# Matthew Bertucci 12/18/2021 for v1.2B
+# Matthew Bertucci 12/18/2021 for v1.31
 
 #include:xparse
 #include:l3keys2e
@@ -16,18 +16,24 @@ all
 \super[keyvals]{content}
 \super[keyvals][height,depth]{content}#*
 \super{content}[keyvals%plain]#*
+
 \sub{content}
 \sub[keyvals]{content}
 \sub[keyvals][height,depth]{content}#*
 \sub{content}[keyvals%plain]#*
+
 \supersub{super}{sub}
 \supersub[keyvals]{super}{sub}
 \supersub[keyvals][height,depth]{super}{sub}#*
 \supersub{super}{sub}[keyvals%plain]#*
+
 \spb{super}{sub}#*
 \spb[keyvals]{super}{sub}#*
 \spb[keyvals][height,depth]{super}{sub}#*
 \spb{super}{sub}[keyvals%plain]#*
+
+\defspbstyle{style name}{keyvals}
+\spbifmath{math code%formula}{text code}
 
 #ifOption:math
 \sp{content}
@@ -112,23 +118,36 @@ all
 \spbset{options%keyvals}
 
 #keyvals:\spbset,\super,\sub,\supersub,\sp,\sb,\textsuperscript,\textsubscript
-vshift=##L
-hshift=##L
+vmove=##L
+hmove=##L
 cmd={%<format cmds%>}
+cmd+={%<format cmds%>}
+height=##L
+depth=##L
+style=%<style name%>
 mode=#text,math,match
 #endkeyvals
 
 #keyvals:\spbset
-spvshift=##L
-sphshift=##L
-sbvshift=##L
-sbhshift=##L
-nohshift
-novshift
+spvmove=##L
+sphmove=##L
+sbvmove=##L
+sbhmove=##L
+nohmove
+novmove
 spcmd={%<format cmds%>}
+spcmd+={%<format cmds%>}
 sbcmd={%<format cmds%>}
-spbhshift=##L
+sbcmd+={%<format cmds%>}
+spheight=##L
+spdepth=##L
+sbheight=##L
+sbdepth=##L
+spbhmove=##L
 spbcmd={%<super cmds,sub cmds%>}
+spbcmd+={%<super cmds,sub cmds%>}
+spbheight=##L
+spbdepth=##L
 #endkeyvals
 
 #keyvals:\spbset,\supersub,\spb

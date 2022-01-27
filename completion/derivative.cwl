@@ -3,6 +3,12 @@
 # Created by Brian Schubert (2021/08/03).
 
 #include:xparse
+#include:l3keys2e
+
+#keyvals:\usepackage/derivative#c
+italic#true,false
+upright#true,false
+#endkeyvals
 
 ## Derivatives and Other Derivatives (section 1)
 \pdv[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 

@@ -2,17 +2,29 @@
 # tbraun 6/11/2008
 # jdshor 4/15/2017
 
-\bm{math expression}
-\hm{math expression}
+#keyvals:\usepackage/bm#c
+nopmb
+warn
+info
+silent
+#endkeyvals
 
-\bmdefine{cmd}{text}#d
-\hmdefine{cmd}{text}#d
+\bm{math expression}#m
+\hm{math expression}#m
 
-\boldsymbol{math expression}
-\heavysymbol{math expression}
+\bmdefine{cmd}{def}#d
+\hmdefine{cmd}{def}#d
 
-\DeclareBoldMathCommand[math version]{cmd}{math expression}#d
-\DeclareBoldMathCommand{cmd}{math expression}#d
+\boldsymbol{math expression}#*m
+\heavysymbol{math expression}#*m
 
-\bmmax{number}
-\hmmax{number}
+\DeclareBoldMathCommand[math version%keyvals]{cmd}{def}#d
+\DeclareBoldMathCommand{cmd}{def}#d
+
+#keyvals:\DeclareBoldMathCommand#c
+bold
+heavy
+#endkeyvals
+
+\bmmax
+\hmmax

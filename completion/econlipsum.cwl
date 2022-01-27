@@ -3,6 +3,13 @@
 
 #include:expl3
 
+#keyvals:\usepackage/econlipsum#c
+par
+nopar
+numbers
+index
+#endkeyvals
+
 \econ
 \econ[num]
 \econ[num][num]

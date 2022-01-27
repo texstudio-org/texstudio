@@ -3,6 +3,12 @@
 
 #include:delarray
 
+#keyvals:\usepackage/calculation#c
+fleqn
+leqno
+block
+#endkeyvals
+
 \begin{calculation}#\math
 \begin{calculation}[symbol]#\math
 \end{calculation}

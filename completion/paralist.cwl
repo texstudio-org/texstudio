@@ -1,6 +1,22 @@
 # paralist package
 # Matthew Bertucci 8/27/2021 for v2.7
 
+#keyvals:\usepackage/paralist#c
+newitem
+olditem
+newenum
+oldenum
+alwaysadjust
+neveradjust
+neverdecrease
+defblank
+pointedenum
+flushright
+flushleft
+cfg
+nocfg
+#endkeyvals
+
 \begin{itemize}[label]
 \end{itemize}
 \begin{enumerate}[label]

@@ -5,6 +5,15 @@
 #include:ltxcmds
 #include:kvsetkeys
 
+#keyvals:\usepackage/kvoptions#c
+debugshow
+patch
+#endkeyvals
+
+#ifOption:patch
+#include:kvoptions-patch
+#endif
+
 \ProcessKeyvalOptions{family}#*
 \ProcessKeyvalOptions*#*
 \ProcessLocalKeyvalOptions{family}#*

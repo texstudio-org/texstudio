@@ -6,12 +6,24 @@
 #include:ifluatex
 #include:multicol
 
+#keyvals:\usepackage/imakeidx#c
+xindy
+texindy
+truexindy
+makeindex
+noautomatic
+nonewpage
+splitindex
+original
+quiet
+#endkeyvals
+
 \makeindex[options%keyvals]
 #keyvals:\makeindex
-name=
-title=
+name=%<name%>
+title=%<text%>
 program=#makeindex,xindy,texindy,truexindy
-options=
+options=%<program options%>
 noautomatic#true,false
 intoc#true,false
 columns=%<number%>
@@ -26,10 +38,10 @@ toclevel=%<section csname%>
 noclearpage#true,false
 firstpagestyle=
 headers={%<left marks%>}{%<right marks%>}
-othercode=
+othercode=%<code%>
 #endkeyvals
 
-\splitindexoptions{split index options}
+\splitindexoptions{splitindex options}
 
 \index[name]{entry}
 

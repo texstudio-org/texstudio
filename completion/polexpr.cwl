@@ -41,6 +41,7 @@
 \PolPrintIntervalsNoRealRoots#*
 \PolPrintIntervalsBeginEnv#*
 \PolPrintIntervalsEndEnv#*
+\PolPrintIntervalsRowSeparator#*
 \PolPrintIntervalsKnownRoot#*
 \PolPrintIntervalsUnknownRoot#*
 \PolPrintIntervalsPrintExactZero#*

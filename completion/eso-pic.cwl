@@ -4,6 +4,19 @@
 #include:keyval
 #include:xcolor
 
+#keyvals:\usepackage/eso-pic#c
+pscoord#true,false
+texcoord#true,false
+grid#true,false
+gridBG#true,false
+gridunit=#mm,in,bp,pt
+gridcolor=#%color
+subgridcolor=#%color
+subgridstyle=#solid,dotted
+colorgrid#true,false
+dvips#true,false
+#endkeyvals
+
 \AddToShipoutPictureBG{code}
 \AddToShipoutPictureBG*{code}
 \AddToShipoutPicture{code}#*
@@ -24,4 +37,4 @@
 \AtStockUpperLeft{code}
 \AtStockLowerLeft{code}
 \AtStockCenter{code}
-\ProcessOptionsWithKV{options}
+\ProcessOptionsWithKV{family}#S

@@ -7,6 +7,11 @@
 #include:ifluatex
 #include:mfirstuc
 
+#keyvals:\usepackage/dozenal#c
+nocounters
+typeone
+#endkeyvals
+
 \basexii{number}{10sym}{11sym}
 \dozens{number}
 \basex{number}

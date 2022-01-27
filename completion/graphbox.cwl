@@ -3,6 +3,10 @@
 
 #include:graphicx
 
+#keyvals:\usepackage/graphbox#c
+nobeamer
+#endkeyvals
+
 #keyvals:\includegraphics
 hide#true,false
 align=#b,c,l,m,t,u

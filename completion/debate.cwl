@@ -3,6 +3,22 @@
 
 #include:xcolor
 #include:tcolorbox
+#include:xkeyval
+
+#keyvals:\usepackage/debate#c
+hide
+#endkeyvals
 
 \debate{text}
 \debate[author]{text}
+
+# from most option of tcolorbox
+#include:amsmath
+#include:incgraph
+#include:listings
+#include:listingsutf8
+#include:pdftexcmds
+#include:shellesc
+#include:tikz
+#include:xparse
+#include:pdfcol

@@ -5,6 +5,35 @@
 
 #include:mathtools
 
+#keyvals:\usepackage/empheq#c
+overload
+overload2
+oldmultline
+newmultline
+ntheorem
+# options passed to mathtools
+fixamsmath
+donotfixamsmathbugs
+allowspaces
+disallowspaces
+# options passed to amsmath
+intlimits
+nointlimits
+sumlimits
+nosumlimits
+namelimits
+nonamelimits
+leqno
+reqno
+centertags
+tbtags
+cmex10
+fleqn
+alignedleftspaceyes
+alignedleftspaceno
+alignedleftspaceyesifneg
+#endkeyvals
+
 \begin{empheq}{AMS env name}#\math,array
 \begin{empheq}[markup instructions%keyvals]{AMS env name}#\math,array
 \end{empheq}
