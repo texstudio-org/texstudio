@@ -9,7 +9,7 @@
 
 \epstopdfsetup{key-value-list%keyvals}
 
-#keyvals:\epstopdfsetup
+#keyvals:\epstopdfsetup,\usepackage/epstopdf#c
 update#true,false
 append#true,false
 prepend#true,false
