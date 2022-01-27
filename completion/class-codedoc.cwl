@@ -1,6 +1,17 @@
 # codedoc class
 # Matthew Bertucci 11/6/2021 for v0.3
 
+#keyvals:\documentclass/codedoc#c
+autoclose
+index
+noheader
+obeystop
+tracing0
+tracing1
+tracing2
+%<class name%>
+#endkeyvals
+
 ### 1 Code & Documentation ###
 ## 1.1 Writing code ##
 \ProduceFile{file}
@@ -58,6 +69,9 @@
 #ifOption:scrartcl
 #include:class-scrartcl
 #endif
+#ifOption:scrbook
+#include:class-scrbook
+#endif
 #ifOption:scrreprt
 #include:class-scrreprt
 #endif
@@ -65,7 +79,19 @@
 #include:class-scrlttr2
 #endif
 #ifOption:ltxdoc
-#include:ltxdoc
+#include:class-ltxdoc
+#endif
+#ifOption:report
+#include:class-report
+#endif
+#ifOption:ltxguide
+#include:class-ltxguide
+#endif
+#ifOption:ltxguidex
+#include:class-ltxguidex
+#endif
+#ifOption:l3doc
+#include:class-l3doc
 #endif
 
 ## 1.4 Dangerous strings ##
