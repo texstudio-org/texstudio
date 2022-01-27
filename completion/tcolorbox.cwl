@@ -195,8 +195,6 @@
 #include:listings
 #include:listingsutf8
 #include:pdftexcmds
-#include:pdftexcmds
-#include:shellesc
 #include:shellesc
 #include:tikz
 #include:xparse
