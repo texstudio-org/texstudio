@@ -5,5 +5,5 @@
 #include:xparse
 #include:xfp
 
-\setupcombofont{name}{comma list of basefonts}{comma list of ranges and code-points}
+\setupcombofont{name}{list of basefonts}{list of ranges and code-points}
 \combodefaultfeat
