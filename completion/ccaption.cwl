@@ -1,6 +1,13 @@
 # ccaption package
 # Matthew Bertucci 11/24/2021 for v3.2c
 
+#keyvals:\usepackage/ccaption#c
+subfigure20
+subfigure
+caption2
+titles
+#endkeyvals
+
 \captiondelim{delim}
 \captionnamefont{font}
 \captiontitlefont{font}
