@@ -4,7 +4,8 @@
 #include:keyval
 
 #keyvals:\usepackage/helvet#c
+scaled
 scaled=%<factor%>
 #endkeyvals
 
-\ProcessOptionsWithKV{family}#*
+\ProcessOptionsWithKV{family}#S
