@@ -1,7 +1,12 @@
 # alphabeta package
-# Matthew Bertucci 9/22/2021
+# Matthew Bertucci 9/22/2021 for v2.0
 
 #include:textalpha
+
+#keyvals:\usepackage/alphabeta#c
+normalize-symbols
+keep-semicolon
+#endkeyvals
 
 \mathGamma#*m
 \mathDelta#*m
