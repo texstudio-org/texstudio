@@ -1,5 +1,5 @@
 # mandi package
-# Matthew Bertucci 12/26/2021 for v3.0.0
+# Matthew Bertucci 12/26/2021 for v3.1.0
 
 #include:luatex
 #include:array
@@ -951,6 +951,16 @@ preciseconstants#true,false
 \linearmassdensityonlybaseunits#*m
 \linearmassdensityonlyderivedunits#*m
 \linearmassdensityonlyalternateunits#*m
+
+\lorentzfactor{magnitude}#m
+
+\lorentzfactorvalue{magnitude}#*m
+\lorentzfactorbaseunits{magnitude}#*m
+\lorentzfactorderivedunits{magnitude}#*m
+\lorentzfactoralternateunits{magnitude}#*m
+\lorentzfactoronlybaseunits#*m
+\lorentzfactoronlyderivedunits#*m
+\lorentzfactoronlyalternateunits#*m
 
 \luminousintensity{magnitude}#m
 
