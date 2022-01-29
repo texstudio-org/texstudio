@@ -8,7 +8,7 @@
 
 \kvmapsetup{options%keyvals}
 
-\begin{kvmap}#\picture
+\begin{kvmap}#\picture,pictureHighlight
 \begin{kvmap}[options%keyvals]#\picture
 \end{kvmap}
 

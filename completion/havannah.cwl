@@ -3,7 +3,7 @@
 
 #include:tikz
 
-\begin{HavannahBoard}#\picture
+\begin{HavannahBoard}#\picture,pictureHighlight
 \begin{HavannahBoard}[options%keyvals]#\picture
 \end{HavannahBoard}
 

@@ -15,7 +15,7 @@
 \dynkin{%<letter%>}{%<rank%>}
 \dynkin[%<options%>]{%<letter%>}{%<rank%>}
 ##\dynkin[%<options%>]{%<letter%>}[%<twisted rank%>]{%<rank%>}#*
-\begin{dynkinDiagram}{%<letter%>}{%<rank%>}#\picture
+\begin{dynkinDiagram}{%<letter%>}{%<rank%>}#\picture,pictureHighlight
 \begin{dynkinDiagram}[%<options%>]{%<letter%>}{%<rank%>}#\picture
 \begin{dynkinDiagram}[%<options%>]{%<letter%>}[%<twisted rank%>]{%<rank%>}#*\picture
 \end{dynkinDiagram}
