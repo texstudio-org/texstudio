@@ -6,12 +6,20 @@ capsdefault
 #endkeyvals
 
 \so{text}
+\textso{text}#*
 \caps{text}
+\textcaps{text}#*
+\capsfont#*
 \ul{text}
+\textul{text}#*
 \st{text}
+\textst{text}#*
 \hl{text}
+\texthl{text}#*
 \soulaccent{cmd}#*d
 \soulregister{cmd}{args}#*
+\soulfont{cmd}{args}#S
+\soulomit{text}
 \sloppyword{text}#*
 \sodef{cmd}{font}{innerletter%l}{inner%l}{outer%l}#*d
 \resetso#*
