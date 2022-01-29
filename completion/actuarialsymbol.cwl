@@ -4,6 +4,11 @@
 #include:amsmath
 #include:actuarialangle
 
+#keyvals:\usepackage/actuarialsymbol#c
+alignpreced
+compactpreced
+#endkeyvals
+
 \actsymb{symbol}{lr}#m
 \actsymb[ll][ul]{symbol}{lr}[ur]#m
 \actsymb[ll][ul][P]{symbol}{lr}[ur]#*m
