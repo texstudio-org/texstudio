@@ -7,8 +7,13 @@
 #include:rerunfilecheck
 
 \backrefsetup{options%keyvals}
-#keyvals:\backrefsetup
+
+#keyvals:\backrefsetup,\usepackage/backref#c
 verbose
+pageref
+ref
+hyperref
+hyperpageref
 enable
 disable
 #endkeyvals
