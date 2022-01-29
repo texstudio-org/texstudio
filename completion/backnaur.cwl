@@ -1,6 +1,13 @@
 # backnaur package
 # Matthew Bertucci 10/5/2021 for v3.1
 
+#keyvals:\usepackage/backnaur#c
+perp
+epsilon
+tsrm
+altpo
+#endkeyvals
+
 \begin{bnf}
 \end{bnf}
 \begin{bnf*}
