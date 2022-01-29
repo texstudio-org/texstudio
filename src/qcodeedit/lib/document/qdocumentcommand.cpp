@@ -432,19 +432,17 @@ void QDocumentCommand::removeLines(int after, int n)
 */
 void QDocumentCommand::updateTarget(int l, int offset)
 {
-	//QDocumentLineHandle *h = m_doc->impl()->at(l);
-	
 	// update command sender if any
 	if ( m_cursor )
 	{
-//		qDebug("moving cursor [0x%x:beg] from (%i, %i) to line (%i, %i) as updating",
-//					m_cursor,
-//					m_cursor->m_begLine,
-//					m_cursor->m_begOffset,
-//					l,
-//					offset
-//					);
-//
+        /*qDebug("moving cursor [0x%x:beg] from (%i, %i) to line (%i, %i) as updating",
+                    m_cursor,
+                    m_cursor->m_begLine,
+                    m_cursor->m_begOffset,
+                    l,
+                    offset
+                    );*/
+
 		while ( l && (offset < 0) )
 		{
 			--l;
@@ -665,8 +663,10 @@ void QDocumentInsertCommand::undo()
 	{
 		insertText(m_data.lineNumber, m_data.startOffset, m_data.end);
 	}
-
-	updateTarget(m_data.lineNumber, m_data.startOffset + m_undoOffset);
+    bool anchor=keepAnchor(); // workaround for #2084. text is inserted with anchor. Undo tries to recreate an anchor of not present text and fails completely (editor insertText)
+    setKeepAnchor(false);
+    updateTarget(m_data.lineNumber, m_data.startOffset + m_undoOffset);
+    setKeepAnchor(anchor);
 
 	updateCursorsOnDeletion(m_data.lineNumber, m_data.startOffset, m_data.begin.length(), m_data.handles.count(), m_data.endOffset);
 
