@@ -26,6 +26,21 @@
 #ifOption:backref
 #include:backref
 #endif
+#ifOption:backref=section
+#include:backref
+#endif
+#ifOption:backref=slide
+#include:backref
+#endif
+#ifOption:backref=page
+#include:backref
+#endif
+#ifOption:pagebackref
+#include:backref
+#endif
+#ifOption:pagebackref=true
+#include:backref
+#endif
 
 #ifOption:colorlinks
 #include:color
@@ -37,7 +52,7 @@ addtopdfcreator=%<text%>
 allbordercolors=#%color
 allcolors=#%color
 anchorcolor=#%color
-backref#section,slide,page,none,false
+backref=#section,slide,page,none,false
 baseurl=%<URL%>
 bookmarks#true,false
 bookmarksdepth
