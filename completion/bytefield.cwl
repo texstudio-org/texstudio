@@ -53,7 +53,7 @@ rightcurlystyle=%<command%>
 
 \bytefieldsetup{options%keyvals}
 
-#keyvals:\bytefieldsetup,\begin{bytefield},\bitbox,\wordbox,\bitboxes,\bitboxes*
+#keyvals:\bytefieldsetup,\begin{bytefield},\bitbox,\wordbox,\bitboxes,\bitboxes*,\usepackage/bytefield#c
 bitwidth=##L
 bitheight=##L
 endianness=#little,big
