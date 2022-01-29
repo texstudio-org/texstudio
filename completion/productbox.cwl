@@ -69,18 +69,18 @@ inner color=#%color
 outer color=#%color
 #endkeyvals
 
-\begin{Front}#\picture
-\end{Front}#\picture
-\begin{Back}#\picture
-\end{Back}#\picture
-\begin{Left}#\picture
-\end{Left}#\picture
-\begin{Right}#\picture
-\end{Right}#\picture
-\begin{Top}#\picture
-\end{Top}#\picture
-\begin{Bottom}#\picture
-\end{Bottom}#\picture
+\begin{Front}#\tikzpicture
+\end{Front}
+\begin{Back}#\tikzpicture
+\end{Back}
+\begin{Left}#\tikzpicture
+\end{Left}
+\begin{Right}#\tikzpicture
+\end{Right}
+\begin{Top}#\tikzpicture
+\end{Top}
+\begin{Bottom}#\tikzpicture
+\end{Bottom}
 
 \ProductBoxThreeDStartHook#*
 \ProductBoxThreeDEndHook#*
