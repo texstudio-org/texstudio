@@ -15,8 +15,8 @@
 \begin{demohigh}[options%keyvals]#V
 \end{demohigh}
 \CodeHigh{options%keyvals}
-\dochighinput{file}
-\dochighinput[options%keyvals]{file}
+\dochighinput{file}#i
+\dochighinput[options%keyvals]{file}#i
 
 #keyvals:\begin{codehigh},\begin{demohigh},\CodeHigh,\dochighinput
 language=#latex,latex/latex2,latex/latex3,latex/math,latex/table
@@ -28,3 +28,8 @@ boxsep=##L
 
 \NewCodeHighEnv{envname}{style}#*N
 \NewCodeHighInput{cmd}{style}#*d
+\AddCodeHighRule{count}{name}{code%definition}#*
+\AddCodeHighRule[language]{count}{name}{code%definition}#*
+\SetCodeHighStyle{style}{color}#*
+\SetCodeHighStyle[opt]{style}{color}#*
+\GetCodeHighStyle{style}#*

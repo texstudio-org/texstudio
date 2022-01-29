@@ -1,4 +1,4 @@
-# ifptex package
+# ifxptex package
 # Matthew Bertucci 1/12/2022 for v0.2
 
 \ifxpTeX

@@ -1,6 +1,16 @@
 # cmll package
 # Matthew Bertucci 7/30/2021
 
+#include:ifthen
+
+#keyvals:\usepackage/cmll#c
+cm
+ss
+euler
+emu
+auto
+#endkeyvals
+
 #ifOption:emu
 #include:relsize
 \biginvampemu#m

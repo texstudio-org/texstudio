@@ -1,5 +1,10 @@
 # textalpha package
-# Matthew Bertucci 9/22/2021
+# Matthew Bertucci 9/22/2021 for v2.0
+
+#keyvals:\usepackage/textalpha#c
+normalize-symbols
+keep-semicolon
+#endkeyvals
 
 \ensuregreek{text}
 \greekscript

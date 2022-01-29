@@ -3,6 +3,7 @@
 
 #include:biditools
 
+\crbox{text}
 \crbox[options%keyvals]{text}
 
 #keyvals:\crbox

@@ -3,6 +3,30 @@
 
 #include:keyval
 
+#keyvals:\documentclass/combine#c
+book
+report
+letter
+memoir
+classes
+packages
+layouts
+folios
+notoc
+nolof
+nolot
+maintoc
+date
+noauthor
+notitle
+nomaketitle
+nopubindoc
+nopubintoc
+onebib
+combinedbib
+colclass=%<class name%>
+#endkeyvals
+
 #ifOption:memoir
 #include:class-memoir
 #endif
@@ -13,6 +37,10 @@
 
 #ifOption:letter
 #include:class-letter
+#endif
+
+#ifOption:report
+#include:class-report
 #endif
 
 \begin{papers}

@@ -30,4 +30,9 @@ cp1252
 cp1257
 ansinew
 utf8
+utf8x
 #endkeyvals
+
+#ifOption:utf8x
+#include:ucs
+#endif

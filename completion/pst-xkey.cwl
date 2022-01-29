@@ -5,3 +5,6 @@
 
 \psset{keyvals}#*
 \psset[families]{keyvals}#*
+
+\PSTXKeyLoaded#S
+\PSTXKeyCatcodes#S

@@ -12,6 +12,20 @@
 #include:ulem
 #include:transparent
 
+#keyvals:\usepackage/cloze#c
+align=#left,center,right
+boxheight=##L
+boxwidth=##L
+distance=##L
+hide
+linecolor=#%color
+margin=##L
+spacing=%<number%>
+textcolor=#%color
+thickness=##L
+width=##L
+#endkeyvals
+
 \cloze{text}
 \cloze[options%keyvals]{text}
 \clozesetfont{font}

@@ -1,6 +1,25 @@
 # complexity package
 # Matthew Bertucci 9/8/2021 for v0.81a
 
+#include:ifthen
+
+#keyvals:\usepackage/complexity#c
+full
+basic
+disableredefinitions
+sanserif
+roman
+bold
+typewriter
+italic
+caps
+slant
+classfont=#sanserif,roman,bold,typewriter,italic,caps,slant
+langfont=#sanserif,roman,bold,typewriter,italic,caps,slant
+funcfont=#sanserif,roman,bold,typewriter,italic,caps,slant
+small
+#endkeyvals
+
 \defaultL#*
 \defaultP#*
 \defaultS#*
@@ -22,7 +41,6 @@
 \CVP
 \SAT
 \MaxSAT
-
 
 \AC
 \A#*
@@ -274,6 +292,10 @@
 \PromiseBQP
 \PromiseP
 \PromiseRP
+\promiseBPP
+\promiseBQP
+\promiseP
+\promiseRP
 \PrSPACE
 \PSel
 \PSK#*
@@ -366,6 +388,7 @@
 
 \newclass{cmd}{class_name%definition}#*d
 \renewclass{cmd}{class_name%definition}#*
+\class{class_name}#*
 \ComplexityFont#*
 \newlang{cmd}{language_name%definition}#*d
 \renewlang{cmd}{language_name%definition}#*

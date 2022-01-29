@@ -1,6 +1,25 @@
 # colophon package
 # Matthew Bertucci 10/5/2021 for v1.1
 
+#include:xkeyval
+
+#keyvals:\usepackage/colophon#c
+title={%<text%>}
+titlestyle=%<font csname%>
+titlesize=##L
+aftertitle=##L
+titlealign=#l,c,r
+parstyle=%<font csname%>
+parsize=##L
+parlead=##L
+nofullpage
+noclrdblpg
+clrpg
+topspace=##L
+botspace=##L
+nofirstindent
+#endkeyvals
+
 \begin{colophon}
 \end{colophon}
 \colophon#*

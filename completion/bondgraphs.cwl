@@ -7,6 +7,14 @@
 #include:tikz
 # loads arrows, arrows.meta, decorations.pathreplacing, positioning, and shapes tikzlibraries
 
+#keyvals:\usepackage/bondgraphs#c
+labelcolour=#%color
+bondlabelcolour=#%color
+grey#true,false
+colour
+curly#true,false
+#endkeyvals
+
 \bond
 \bond[options%keyvals]
 

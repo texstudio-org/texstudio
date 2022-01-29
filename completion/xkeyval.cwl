@@ -59,3 +59,8 @@
 \ProcessOptionsX[prefix]<families>[ignored keys]#*
 \ProcessOptionsX*#*
 \ProcessOptionsX*[prefix]<families>[ignored keys]#*
+
+\XKeyValLoaded#S
+\XKVcatcodes#S
+\XKeyValUtilsLoaded#S
+\XKeyValUtilsCatcodes#S
