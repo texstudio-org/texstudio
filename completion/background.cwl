@@ -7,7 +7,7 @@
 
 \backgroundsetup{options%keyvals}
 
-#keyvals:\backgroundsetup
+#keyvals:\backgroundsetup,\usepackage/background#c
 pages=#all,some
 firstpage#true,false
 placement=#center,top,bottom
