@@ -3,6 +3,12 @@
 
 #include:pict2e
 
+#keyvals:\usepackage/actuarialangle#c
+thinspace
+thickspace
+nobracket
+#endkeyvals
+
 \actuarialangle{arg}#*m
 \angl{arg}#m
 \angln#m
