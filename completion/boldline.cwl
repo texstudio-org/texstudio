@@ -3,6 +3,6 @@
 
 #include:array
 
-\hlineB{width}
-\clineB{i-j}{width}
-\hlxB{width}#*
+\hlineB{width}#t
+\clineB{i-j}{width}#t
+\hlxB{width}#*t
