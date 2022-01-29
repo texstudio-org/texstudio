@@ -4,9 +4,15 @@
 #include:xintbinhex
 #include:xintcore
 
+#keyvals:\usepackage/bnumexpr#c
+custom
+#endkeyvals
+
 \thebnumexpr %<<expr>%> \relax
 \thebnumexpr#S
-\bnethe
+\bnethe \bnumexpr %<<expr>%> \relax
+\bnumexpr %<<expr>%> \relax#*
+\bnumexpr#S
 \bnumeval{integer-expr list}
 \evaltohex{hex-expr list}
 
@@ -36,3 +42,4 @@ opp=%<macro%>
 \BNErestorecatcodes#*
 \bnumexpro#*
 \bnebareeval{expr}#*
+\XINTfstop#*
