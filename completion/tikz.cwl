@@ -27,7 +27,7 @@
 \tikzparentnode#*
 \tikzchildnode#*
 \tikzstyle{style} = [definition]#s#%tikzstyle
-\begin{tikzpicture}
+\begin{tikzpicture}#\pictureHighlight
 \begin{tikzpicture}[options%keyvals]
 \end{tikzpicture}
 \tikzpicture#S

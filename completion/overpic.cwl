@@ -3,7 +3,7 @@
 #include:epic
 #include:graphicx
 
-\begin{overpic}{file}#\picture
+\begin{overpic}{file}#\picture,pictureHighlight
 \begin{overpic}[options]{file}#\picture
 \begin{Overpic}{tex-code}#\picture
 \begin{Overpic}[options]{tex-code}#\picture

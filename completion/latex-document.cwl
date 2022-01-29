@@ -56,7 +56,7 @@
 \begin{minipage}[position]{width}
 \begin{minipage}{width}
 \begin{normalsize}
-\begin{picture}(width,height)
+\begin{picture}(width,height)#\pictureHighlight
 \begin{picture}(width,height)(xoffset,yoffset)
 \begin{pmatrix}#m\array
 \begin{quotation}
