@@ -1,6 +1,11 @@
 # basicarith package
 # Matthew Bertucci 10/5/2021 for v1.1
 
+#keyvals:\usepackage/basicarith#c
+noshowdivwork
+showdivwork
+#endkeyvals
+
 \probline{width}{number}
 \nextpline{number}
 \opline{operator}{number}
@@ -19,3 +24,13 @@
 \showdivwork
 \noshowdivwork
 \fractionsymbol#*
+\ifshowdivisionwork#*
+\showdivisionworktrue#*
+\showdivisionworkfalse#*
+\specialdigitstyle#*
+\speciallinestyle#*
+\gobblechar#*
+\assignthencheck#*
+\countunlessnil#*
+\auxcountchar#*
+\countchar{arg}#*
