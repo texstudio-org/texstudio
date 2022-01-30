@@ -4,6 +4,13 @@
 #include:expl3
 #include:xparse
 
+#keyvals:\usepackage/antanilipsum#c
+par
+nopar
+numbers
+index
+#endkeyvals
+
 \antani
 \antani[num]
 \antani[num][num]
