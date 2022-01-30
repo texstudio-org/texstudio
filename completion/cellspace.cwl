@@ -6,6 +6,12 @@
 #include:calc
 #include:xkeyval
 
+#keyvals:\usepackage/cellspace#c
+math
+nomath
+column=%<column type%>
+#endkeyvals
+
 #ifOption:math
 #include:amsmath
 #endif
