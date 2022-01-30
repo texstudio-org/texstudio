@@ -4,7 +4,7 @@
 \hdashline#t
 \hdashline[%<dash%>/%<gap%>]#t
 \cdashline{i-j}#t
-\cdashline{i-j}[%<dash%>/%<gap%>]#t
+\cdashline{%<i-j%>}[%<dash%>/%<gap%>]#t
 \firsthdashline#t
 \lasthdashline#t
 
