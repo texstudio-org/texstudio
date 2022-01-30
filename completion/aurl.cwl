@@ -3,6 +3,11 @@
 
 #include:hyperref
 
+#keyvals:\usepackage/aurl#c
+100
+1000
+#endkeyvals
+
 \daurl{prefix}{URL}#U
 \aurl{prefix%keyvals}{suffix}
 

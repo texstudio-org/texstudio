@@ -265,3 +265,7 @@ komacv:
 class-komacv
 latex-document
 tex
+tlc-article:
+class-tlc-article
+latex-document
+tex

@@ -7,6 +7,6 @@
 \begin{autobreak}#/align,align*
 \end{autobreak}#/align,align*
 \MoveEqLeft
-\MoveEqLeft[length]
+\MoveEqLeft[length%plain]
 \everybeforeautobreak{tokens}#*
 \everyaftereautobreak{tokens}#*

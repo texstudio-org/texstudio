@@ -4,6 +4,13 @@
 #include:xparse
 #include:l3keys2e
 
+#keyvals:\usepackage/annee-scolaire#c
+premiermois=%<integer%>
+premierjour=%<integer%>
+decalage=%<integer%>
+separateur=%<tokens%>
+#endkeyvals
+
 \anneescolaire
 \anneescolaire[shift]
 \debutanneescolaire

@@ -1,6 +1,14 @@
 # anttor package
 # Matthew Bertucci 8/22/2021 for v1.2
 
+#keyvals:\usepackage/anttor#c
+regular
+light
+condensed
+mathnoalias
+math
+#endkeyvals
+
 #ifOption:math
 \minusleft#*m
 \equalleft#*m

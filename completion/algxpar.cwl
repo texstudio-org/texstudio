@@ -11,6 +11,10 @@
 #include:tcolorbox
 #include:fancyvrb
 
+#keyvals:\usepackage/algxpar#c
+brazilian
+#endkeyvals
+
 \Description#/algorithmic
 \Input#/algorithmic
 \Output#/algorithmic

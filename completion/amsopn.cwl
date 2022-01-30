@@ -3,6 +3,11 @@
 
 #include:amsgen
 
+#keyvals:\usepackage/amsopn#c
+namelimits
+nonamelimits
+#endkeyvals
+
 \operatorname{name}#m
 \operatorname*{name}#m
 \operatornamewithlimits{name}#*m

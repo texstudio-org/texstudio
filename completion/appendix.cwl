@@ -1,5 +1,13 @@
-# apendix.cwl
+# appendix.cwl
 # Edson 28-12-2010
+
+#keyvals:\usepackage/appendix#c
+toc
+title
+titletoc
+header
+page
+#endkeyvals
 
 \appendix
 
@@ -27,4 +35,3 @@
 \restoreapp
 \setthesection
 \setthesubsection
-

@@ -9,6 +9,19 @@
 #include:tabto
 #include:tikz
 
+#keyvals:\usepackage/algpseudocodex#c
+noEnd#true,false
+indLines#true,false
+spaceRequire#true,false
+italicComments#true,false
+rightComments#true,false
+commentColor=#%color
+beginComment=%<text%>
+endComment=%<text%>
+beginLComment=%<text%>
+endLComment=%<text%>
+#endkeyvals
+
 \Call{name}{args}#/algorithmic
 \Output#/algorithmic
 \Return#/algorithmic

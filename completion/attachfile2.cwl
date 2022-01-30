@@ -22,23 +22,34 @@
 \textattachfile[options%keyvals]{file}{text}
 \attachfilesetup{options%keyvals}
 
-#keyvals:\attachfile,\attachfilesetup,\noattachfile,\notextattachfile,\textattachfile
+#keyvals:\usepackage/attachfile2#c,\attachfile,\attachfilesetup,\noattachfile,\notextattachfile,\textattachfile
 appearance#true,false
-author=
-color=
-created=
-date=
-description=
+author=%<text%>
+color=%<color%>
+created=%<PDF date%>
+date=%<PDF date%>
+description=%<text%>
 icon=#Graph,Paperclip,PushPin,Tag
-mimetype=
-modified=
+mimetype=%<type/subtype%>
+modified=%<PDF date%>
 print#true,false
-size=
-subject=
-timezone=
+size=%<integer%>
+subject=%<text%>
+timezone=%<offset%>
 zoom#true,false
-scale=
-nofiles
+scale=%<factor%>
 ucfilespec=
-annotname=
+annotname=%<name%>
+#endkeyvals
+
+#keyvals:\usepackage/attachfile2#c
+draft
+final
+nofiles
+pdftex
+luatex
+dvips
+dvipdfmx
+xetex
+driverfallback=%<driver%>
 #endkeyvals
