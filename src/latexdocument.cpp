@@ -2358,6 +2358,9 @@ void LatexDocument::insertElementWithSignal(StructureEntry *parent, int pos, Str
 	if (sendSignal) {
 		emit addElement(parent, pos);
 	}
+    if(pos>parent->children.size()){
+        pos=parent->children.size();
+    }
 	parent->children.insert(pos, se);
 	se->parent = parent;
 	if (sendSignal) {
