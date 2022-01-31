@@ -1,5 +1,25 @@
 # latex mode: LaTeX commands (letter class)
 # dani/2006-02-18
+
+#keyvals:\documentclass/letter#c
+a4paper
+a5paper
+b5paper
+letterpaper
+legalpaper
+executivepaper
+landscape
+10pt
+11pt
+12pt
+twoside
+oneside
+draft
+final
+leqno
+fleqn
+#endkeyvals
+
 \begin{letter}{name}
 \end{letter}
 \address{returnaddress}
