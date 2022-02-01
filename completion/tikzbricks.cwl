@@ -18,7 +18,7 @@ bricklength=%<number%>
 brickwidth=%<number%>
 studradius=%<number%>
 studheight=%<number%>
-studtext=
+studtext={%<text%>}
 #endkeyvals
 
 \begin{wall}
@@ -30,3 +30,14 @@ studtext=
 #keyvals:\wallbrick#c
 color=#%color
 #endkeyvals
+
+\thebrickx#*
+\thebricky#*
+\thebrickz#*
+
+\tmpscaleA#S
+\tmpscaleB#S
+\tmpscaleC#S
+\tmpscaleD#S
+\tmp#S
+\scalingfactor#S
