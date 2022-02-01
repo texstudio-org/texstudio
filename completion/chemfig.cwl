@@ -4,8 +4,8 @@
 #include:simplekv
 #include:tikz
 
-\chemfig{code%formula}
-\chemfig[options%keyvals]{code%formula}
+\chemfig{code%definition}
+\chemfig[options%keyvals]{code%definition}
 \setchemfig{options%keyvals}
 
 #keyvals:\chemfig,\setchemfig
@@ -50,15 +50,15 @@ scheme debug#true,false
 
 \resetchemfig
 
-\printatom{code}#*
+\printatom{code%formula}#*
 
 \hflipnext
 \vflipnext
 
-\definesubmol{name%cmd}{code%formula}#d
-\definesubmol{name%cmd}[code1%formula]{code2%formula}#d
-\redefinesubmol{name%cmd}{code%formula}#d
-\redefinesubmol{name%cmd}[code1%formula]{code2%formula}#d
+\definesubmol{name%cmd}{code%definition}#d
+\definesubmol{name%cmd}[code1%definition]{code2%definition}#d
+\redefinesubmol{name%cmd}{code%definition}#d
+\redefinesubmol{name%cmd}[code1%definition]{code2%definition}#d
 
 \chemskipalign
 
@@ -123,7 +123,7 @@ lewisautorot#true,false
 
 \subscheme{code}
 
-\definearrow{number}{name}{code}
+\definearrow{number}{name}{code%definition}
 
 \chemleft{delim%formula}
 \chemright{delim%formula}

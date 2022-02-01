@@ -1,7 +1,9 @@
-# report class
-# Matthew Bertucci 11/22/2021 for v1.4n
+# extreport class
+# Matthew Bertucci 1/18/2021 for v1.0
 
-#keyvals:\documentclass/report#c
+#include:exscale
+
+#keyvals:\documentclass/extreport#c
 a4paper
 a5paper
 b5paper
@@ -9,9 +11,14 @@ letterpaper
 legalpaper
 executivepaper
 landscape
+8pt
+9pt
 10pt
 11pt
 12pt
+14pt
+17pt
+20pt
 oneside
 twoside
 draft

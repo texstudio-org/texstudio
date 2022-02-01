@@ -24,3 +24,4 @@
 \popQED#*
 \openbox
 \textsquare
+\thmheadnl#*

@@ -416,8 +416,8 @@ matte=%<color components%>
 \pgfaliasimage{new image name}{existing image name}#*
 \pgfuseimage{image name}#*
 \pgfalternateextension#*
-\pgfimage[options%keyvals]{imagefile}#*
-\pgfimage{imagefile}#*
+\pgfimage[options%keyvals]{imagefile}#*g
+\pgfimage{imagefile}#*g
 #keyvals:\pgfdeclareimage,\pgfimage
 height=##L
 width=##L

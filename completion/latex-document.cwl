@@ -452,7 +452,7 @@
 \textless
 \textmd{text}
 \textnonbreakinghyphen#*
-\textnormal
+\textnormal{text}
 \textparagraph
 \textperiodcentered
 \textquestiondown
