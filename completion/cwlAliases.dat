@@ -56,13 +56,6 @@ tex
 beamer:
 class-beamer
 latex-document
-amsthm
-amsmath
-asmsymb
-enumerate
-multimedia
-hyperref
-color
 tex
 hyperref:
 hyperref
