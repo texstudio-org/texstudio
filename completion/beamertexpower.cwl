@@ -5,17 +5,16 @@
 \liststepwise{text}
 \step{text}
 \steponce{text}
-\switch{alternate text}{text}
+\switch{alternate text%text}{text}
 \bstep{text}
 \dstep
 \vstep
 \restep{text}
-\reswitch{alternate text}<text>
-\rebstep<text>
+\reswitch{alternate text%text}{text}
+\rebstep{text}
 \redstep
 \revstep
 \boxedsteps
 \nonboxedsteps
 \code{text}
 \codeswitch
-
