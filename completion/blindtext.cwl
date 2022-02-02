@@ -3,6 +3,14 @@
 
 #include:xspace
 
+#keyvals:\usepackage/blindtext#c
+bible
+random
+pangram
+math
+toc
+#endkeyvals
+
 \blinddocument
 \Blinddocument
 \blindtext
@@ -22,6 +30,10 @@
 \blindlistoptional{list env}[repetition]#*
 \Blindlistoptional{list env}#*
 \Blindlistoptional{list env}[repetition]#*
+\blindlistlistoptional{list env}#*
+\blindlistlistoptional[level]{list env}#*
+\blindlistlistoptional{list env}[repetition]#*
+\blindlistlistoptional[level]{list env}[repetition]#*
 \blinditemize#*
 \blinditemize[repetition]#*
 \blindenumerate#*
@@ -35,5 +47,25 @@
 \Blinddescription#*
 \Blinddescription[repetition]#*
 \blindmathpaper#*
+\blindmarkup{text}#*
+\parstart{code}#*
+\parend{code}#*
+\ifblindmath#*
 \blindmathtrue#*
 \blindmathfalse#*
+\ifblindtoc#*
+\blindtoctrue#*
+\blindtocfalse#*
+\ifblindbible#*
+\blindbibletrue#*
+\blindbiblefalse#*
+\ifblindrandom#*
+\blindrandomtrue#*
+\blindrandomfalse#*
+\ifblindpangram#*
+\blindpangramtrue#*
+\blindpangramfalse#*
+\theblindtext#*
+\theBlindtext#*
+\theblindlist#*
+\theblindlistlevel#*
