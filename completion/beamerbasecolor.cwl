@@ -1,8 +1,8 @@
 # beamerbasecolor package
 # Matthew Bertucci 1/30/2022 for v3.65
 
-\setbeamercolor{beamer-color name}{options}
-\setbeamercolor*{beamer-color name}{options}
+\setbeamercolor{beamer-color name}{options%keyvals}
+\setbeamercolor*{beamer-color name}{options%keyvals}
 
 #keyvals:\setbeamercolor,\setbeamercolor*
 fg=#%color

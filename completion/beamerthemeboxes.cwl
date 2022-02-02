@@ -1,7 +1,7 @@
 # boxes beamertheme
 # Matthew Bertucci 1/30/2022 for v3.65
 
-#keyvals:\setbeameroption#c,\usetheme/boxes#c
+#keyvals:\usetheme/boxes
 headheight=##L
 footheight=##L
 #endkeyvals

@@ -41,17 +41,17 @@ depythontex#true,false
 #endkeyvals
 
 ## py family ##
-\py{code}
-\py[session]{code}
-\pyc{code}
-\pyc[session]{code}
-\pys{code}
-\pys[session]{code}
+\py{code%definition}
+\py[session]{code%definition}
+\pyc{code%definition}
+\pyc[session]{code%definition}
+\pys{code%definition}
+\pys[session]{code%definition}
 \pyv|%<code%>|
 \pyv[%<session%>]|%<code%>|
 \pyv[session]{verbatimSymbol}#S
-\pyb{code}
-\pyb[session]{code}
+\pyb{code%definition}
+\pyb[session]{code%definition}
 
 \begin{pycode}
 \begin{pycode}[session]
@@ -71,12 +71,12 @@ depythontex#true,false
 \end{pyblock}
 
 ## pycon family ##
-\pycon{code}
-\pycon[session]{code}
-\pycons{code}
-\pycons[session]{code}
-\pyconc{code}
-\pyconc[session]{code}
+\pycon{code%definition}
+\pycon[session]{code%definition}
+\pycons{code%definition}
+\pycons[session]{code%definition}
+\pyconc{code%definition}
+\pyconc[session]{code%definition}
 \pyconv|%<code%>|
 \pyconv[%<session%>]|%<code%>|
 \pyconv[session]{verbatimSymbol}#S
@@ -99,17 +99,17 @@ depythontex#true,false
 \end{pyconverbatim}
 
 ## pylab family ##
-\pylab{code}
-\pylab[session]{code}
-\pylabc{code}
-\pylabc[session]{code}
-\pylabs{code}
-\pylabs[session]{code}
+\pylab{code%definition}
+\pylab[session]{code%definition}
+\pylabc{code%definition}
+\pylabc[session]{code%definition}
+\pylabs{code%definition}
+\pylabs[session]{code%definition}
 \pylabv|%<code%>|
 \pylabv[%<session%>]|%<code%>|
 \pylabv[session]{verbatimSymbol}#S
-\pylabb{code}
-\pylabb[session]{code}
+\pylabb{code%definition}
+\pylabb[session]{code%definition}
 
 \begin{pylabcode}
 \begin{pylabcode}[session]
@@ -129,12 +129,12 @@ depythontex#true,false
 \end{pylabblock}
 
 ## pylabcon family ##
-\pylabcon{code}
-\pylabcon[session]{code}
-\pylabconc{code}
-\pylabconc[session]{code}
-\pylabcons{code}
-\pylabcons[session]{code}
+\pylabcon{code%definition}
+\pylabcon[session]{code%definition}
+\pylabconc{code%definition}
+\pylabconc[session]{code%definition}
+\pylabcons{code%definition}
+\pylabcons[session]{code%definition}
 \pylabconv|%<code%>|
 \pylabconv[%<session%>]|%<code%>|
 \pylabconv[session]{verbatimSymbol}#S
@@ -157,17 +157,17 @@ depythontex#true,false
 \end{pylabconverbatim}
 
 ## sympy family##
-\sympy{code}
-\sympy[session]{code}
-\sympyc{code}
-\sympyc[session]{code}
-\sympys{code}
-\sympys[session]{code}
+\sympy{code%definition}
+\sympy[session]{code%definition}
+\sympyc{code%definition}
+\sympyc[session]{code%definition}
+\sympys{code%definition}
+\sympys[session]{code%definition}
 \sympyv|%<code%>|
 \sympyv[%<session%>]|%<code%>|
 \sympyv[session]{verbatimSymbol}#S
-\sympyb{code}
-\sympyb[session]{code}
+\sympyb{code%definition}
+\sympyb[session]{code%definition}
 
 \begin{sympycode}
 \begin{sympycode}[session]
@@ -187,12 +187,12 @@ depythontex#true,false
 \end{sympyblock}
 
 ## sympycon family ##
-\sympycon{code}
-\sympycon[session]{code}
-\sympycons{code}
-\sympycons[session]{code}
-\sympyconc{code}
-\sympyconc[session]{code}
+\sympycon{code%definition}
+\sympycon[session]{code%definition}
+\sympycons{code%definition}
+\sympycons[session]{code%definition}
+\sympyconc{code%definition}
+\sympyconc[session]{code%definition}
 \sympyconv|%<code%>|
 \sympyconv[%<session%>]|%<code%>|
 \sympyconv[session]{verbatimSymbol}#S
@@ -215,8 +215,8 @@ depythontex#true,false
 \end{sympyconverbatim}
 
 ## customization ##
-\pythontexcustomc{family}{code}
-\pythontexcustomc[position%keyvals]{family}{code}
+\pythontexcustomc{family}{code%definition}
+\pythontexcustomc[position%keyvals]{family}{code%definition}
 \begin{pythontexcustomcode}{family}
 \begin{pythontexcustomcode}[position%keyvals]{family}
 \end{pythontexcustomcode}
@@ -279,7 +279,7 @@ verbatim
 \setpythontexautostdout{true or false}
 
 ## pygments commands and environments ##
-\pygment{lexer}{code}
+\pygment{lexer}{code%definition}
 \begin{pygments}{lexer}#V
 \begin{pygments}[fancyvrb settings%keyvals]{lexer}#V
 \end{pygments}
@@ -319,17 +319,17 @@ pygments
 
 ## rb family ##
 #ifOption:usefamily=rb
-\rb{code}
-\rb[session]{code}
-\rbc{code}
-\rbc[session]{code}
-\rbs{code}
-\rbs[session]{code}
+\rb{code%definition}
+\rb[session]{code%definition}
+\rbc{code%definition}
+\rbc[session]{code%definition}
+\rbs{code%definition}
+\rbs[session]{code%definition}
 \rbv|%<code%>|
 \rbv[%<session%>]|%<code%>|
 \rbv[session]{verbatimSymbol}#S
-\rbb{code}
-\rbb[session]{code}
+\rbb{code%definition}
+\rbb[session]{code%definition}
 \begin{rbcode}
 \begin{rbcode}[session]
 \begin{rbcode}[session][fancyvrb settings%keyvals]#*
@@ -348,17 +348,17 @@ pygments
 \end{rbblock}
 #endif
 
-\rb{code}#S
-\rb[session]{code}#S
-\rbc{code}#S
-\rbc[session]{code}#S
-\rbs{code}#S
-\rbs[session]{code}#S
+\rb{code%definition}#S
+\rb[session]{code%definition}#S
+\rbc{code%definition}#S
+\rbc[session]{code%definition}#S
+\rbs{code%definition}#S
+\rbs[session]{code%definition}#S
 \rbv|%<code%>|#S
 \rbv[%<session%>]|%<code%>|#S
 \rbv[session]{verbatimSymbol}#S
-\rbb{code}#S
-\rbb[session]{code}#S
+\rbb{code%definition}#S
+\rbb[session]{code%definition}#S
 \begin{rbcode}#S
 \begin{rbcode}[session]#S
 \begin{rbcode}[session][fancyvrb settings%keyvals]#S
@@ -378,17 +378,17 @@ pygments
 
 ## ruby family ##
 #ifOption:usefamily=ruby
-\ruby{code}
-\ruby[session]{code}
-\rubyc{code}
-\rubyc[session]{code}
-\rubys{code}
-\rubys[session]{code}
+\ruby{code%definition}
+\ruby[session]{code%definition}
+\rubyc{code%definition}
+\rubyc[session]{code%definition}
+\rubys{code%definition}
+\rubys[session]{code%definition}
 \rubyv|%<code%>|
 \rubyv[%<session%>]|%<code%>|
 \rubyv[session]{verbatimSymbol}#S
-\rubyb{code}
-\rubyb[session]{code}
+\rubyb{code%definition}
+\rubyb[session]{code%definition}
 \begin{rubycode}
 \begin{rubycode}[session]
 \begin{rubycode}[session][fancyvrb settings%keyvals]#*
@@ -407,17 +407,17 @@ pygments
 \end{rubyblock}
 #endif
 
-\ruby{code}#S
-\ruby[session]{code}#S
-\rubyc{code}#S
-\rubyc[session]{code}#S
-\rubys{code}#S
-\rubys[session]{code}#S
+\ruby{code%definition}#S
+\ruby[session]{code%definition}#S
+\rubyc{code%definition}#S
+\rubyc[session]{code%definition}#S
+\rubys{code%definition}#S
+\rubys[session]{code%definition}#S
 \rubyv|%<code%>|#S
 \rubyv[%<session%>]|%<code%>|#S
 \rubyv[session]{verbatimSymbol}#S
-\rubyb{code}#S
-\rubyb[session]{code}#S
+\rubyb{code%definition}#S
+\rubyb[session]{code%definition}#S
 \begin{rubycode}#S
 \begin{rubycode}[session]#S
 \begin{rubycode}[session][fancyvrb settings%keyvals]#S
@@ -437,17 +437,17 @@ pygments
 
 ## julia family ##
 #ifOption:usefamily=julia
-\julia{code}
-\julia[session]{code}
-\juliac{code}
-\juliac[session]{code}
-\julias{code}
-\julias[session]{code}
+\julia{code%definition}
+\julia[session]{code%definition}
+\juliac{code%definition}
+\juliac[session]{code%definition}
+\julias{code%definition}
+\julias[session]{code%definition}
 \juliav|%<code%>|
 \juliav[%<session%>]|%<code%>|
 \juliav[session]{verbatimSymbol}#S
-\juliab{code}
-\juliab[session]{code}
+\juliab{code%definition}
+\juliab[session]{code%definition}
 \begin{juliacode}
 \begin{juliacode}[session]
 \begin{juliacode}[session][fancyvrb settings%keyvals]#*
@@ -466,17 +466,17 @@ pygments
 \end{juliablock}
 #endif
 
-\julia{code}#S
-\julia[session]{code}#S
-\juliac{code}#S
-\juliac[session]{code}#S
-\julias{code}#S
-\julias[session]{code}#S
+\julia{code%definition}#S
+\julia[session]{code%definition}#S
+\juliac{code%definition}#S
+\juliac[session]{code%definition}#S
+\julias{code%definition}#S
+\julias[session]{code%definition}#S
 \juliav|%<code%>|#S
 \juliav[%<session%>]|%<code%>|#S
 \juliav[session]{verbatimSymbol}#S
-\juliab{code}#S
-\juliab[session]{code}#S
+\juliab{code%definition}#S
+\juliab[session]{code%definition}#S
 \begin{juliacode}#S
 \begin{juliacode}[session]#S
 \begin{juliacode}[session][fancyvrb settings%keyvals]#S
@@ -517,17 +517,17 @@ pygments
 
 ## jl family ##
 #ifOption:usefamily=jl
-\jl{code}
-\jl[session]{code}
-\jlc{code}
-\jlc[session]{code}
-\jls{code}
-\jls[session]{code}
+\jl{code%definition}
+\jl[session]{code%definition}
+\jlc{code%definition}
+\jlc[session]{code%definition}
+\jls{code%definition}
+\jls[session]{code%definition}
 \jlv|%<code%>|
 \jlv[%<session%>]|%<code%>|
 \jlv[session]{verbatimSymbol}#S
-\jlb{code}
-\jlb[session]{code}
+\jlb{code%definition}
+\jlb[session]{code%definition}
 \begin{jlcode}
 \begin{jlcode}[session]
 \begin{jlcode}[session][fancyvrb settings%keyvals]#*
@@ -546,17 +546,17 @@ pygments
 \end{jlblock}
 #endif
 
-\jl{code}#S
-\jl[session]{code}#S
-\jlc{code}#S
-\jlc[session]{code}#S
-\jls{code}#S
-\jls[session]{code}#S
+\jl{code%definition}#S
+\jl[session]{code%definition}#S
+\jlc{code%definition}#S
+\jlc[session]{code%definition}#S
+\jls{code%definition}#S
+\jls[session]{code%definition}#S
 \jlv|%<code%>|#S
 \jlv[%<session%>]|%<code%>|#S
 \jlv[session]{verbatimSymbol}#S
-\jlb{code}#S
-\jlb[session]{code}#S
+\jlb{code%definition}#S
+\jlb[session]{code%definition}#S
 \begin{jlcode}#S
 \begin{jlcode}[session]#S
 \begin{jlcode}[session][fancyvrb settings%keyvals]#S
@@ -576,17 +576,17 @@ pygments
 
 ## matlab family ##
 #ifOption:usefamily=matlab
-\matlab{code}
-\matlab[session]{code}
-\matlabc{code}
-\matlabc[session]{code}
-\matlabs{code}
-\matlabs[session]{code}
+\matlab{code%definition}
+\matlab[session]{code%definition}
+\matlabc{code%definition}
+\matlabc[session]{code%definition}
+\matlabs{code%definition}
+\matlabs[session]{code%definition}
 \matlabv|%<code%>|
 \matlabv[%<session%>]|%<code%>|
 \matlabv[session]{verbatimSymbol}#S
-\matlabb{code}
-\matlabb[session]{code}
+\matlabb{code%definition}
+\matlabb[session]{code%definition}
 \begin{matlabcode}
 \begin{matlabcode}[session]
 \begin{matlabcode}[session][fancyvrb settings%keyvals]#*
@@ -605,17 +605,17 @@ pygments
 \end{matlabblock}
 #endif
 
-\matlab{code}#S
-\matlab[session]{code}#S
-\matlabc{code}#S
-\matlabc[session]{code}#S
-\matlabs{code}#S
-\matlabs[session]{code}#S
+\matlab{code%definition}#S
+\matlab[session]{code%definition}#S
+\matlabc{code%definition}#S
+\matlabc[session]{code%definition}#S
+\matlabs{code%definition}#S
+\matlabs[session]{code%definition}#S
 \matlabv|%<code%>|#S
 \matlabv[%<session%>]|%<code%>|#S
 \matlabv[session]{verbatimSymbol}#S
-\matlabb{code}#S
-\matlabb[session]{code}#S
+\matlabb{code%definition}#S
+\matlabb[session]{code%definition}#S
 \begin{matlabcode}#S
 \begin{matlabcode}[session]#S
 \begin{matlabcode}[session][fancyvrb settings%keyvals]#S
@@ -635,17 +635,17 @@ pygments
 
 ## octave family ##
 #ifOption:usefamily=octave
-\octave{code}
-\octave[session]{code}
-\octavec{code}
-\octavec[session]{code}
-\octaves{code}
-\octaves[session]{code}
+\octave{code%definition}
+\octave[session]{code%definition}
+\octavec{code%definition}
+\octavec[session]{code%definition}
+\octaves{code%definition}
+\octaves[session]{code%definition}
 \octavev|%<code%>|
 \octavev[%<session%>]|%<code%>|
 \octavev[session]{verbatimSymbol}#S
-\octaveb{code}
-\octaveb[session]{code}
+\octaveb{code%definition}
+\octaveb[session]{code%definition}
 \begin{octavecode}
 \begin{octavecode}[session]
 \begin{octavecode}[session][fancyvrb settings%keyvals]#*
@@ -664,17 +664,17 @@ pygments
 \end{octaveblock}
 #endif
 
-\octave{code}#S
-\octave[session]{code}#S
-\octavec{code}#S
-\octavec[session]{code}#S
-\octaves{code}#S
-\octaves[session]{code}#S
+\octave{code%definition}#S
+\octave[session]{code%definition}#S
+\octavec{code%definition}#S
+\octavec[session]{code%definition}#S
+\octaves{code%definition}#S
+\octaves[session]{code%definition}#S
 \octavev|%<code%>|#S
 \octavev[%<session%>]|%<code%>|#S
 \octavev[session]{verbatimSymbol}#S
-\octaveb{code}#S
-\octaveb[session]{code}#S
+\octaveb{code%definition}#S
+\octaveb[session]{code%definition}#S
 \begin{octavecode}#S
 \begin{octavecode}[session]#S
 \begin{octavecode}[session][fancyvrb settings%keyvals]#S
@@ -694,17 +694,17 @@ pygments
 
 ## bash family ##
 #ifOption:usefamily=bash
-\bash{code}
-\bash[session]{code}
-\bashc{code}
-\bashc[session]{code}
-\bashs{code}
-\bashs[session]{code}
+\bash{code%definition}
+\bash[session]{code%definition}
+\bashc{code%definition}
+\bashc[session]{code%definition}
+\bashs{code%definition}
+\bashs[session]{code%definition}
 \bashv|%<code%>|
 \bashv[%<session%>]|%<code%>|
 \bashv[session]{verbatimSymbol}#S
-\bashb{code}
-\bashb[session]{code}
+\bashb{code%definition}
+\bashb[session]{code%definition}
 \begin{bashcode}
 \begin{bashcode}[session]
 \begin{bashcode}[session][fancyvrb settings%keyvals]#*
@@ -723,17 +723,17 @@ pygments
 \end{bashblock}
 #endif
 
-\bash{code}#S
-\bash[session]{code}#S
-\bashc{code}#S
-\bashc[session]{code}#S
-\bashs{code}#S
-\bashs[session]{code}#S
+\bash{code%definition}#S
+\bash[session]{code%definition}#S
+\bashc{code%definition}#S
+\bashc[session]{code%definition}#S
+\bashs{code%definition}#S
+\bashs[session]{code%definition}#S
 \bashv|%<code%>|#S
 \bashv[%<session%>]|%<code%>|#S
 \bashv[session]{verbatimSymbol}#S
-\bashb{code}#S
-\bashb[session]{code}#S
+\bashb{code%definition}#S
+\bashb[session]{code%definition}#S
 \begin{bashcode}#S
 \begin{bashcode}[session]#S
 \begin{bashcode}[session][fancyvrb settings%keyvals]#S
@@ -753,17 +753,17 @@ pygments
 
 ## sage family ##
 #ifOption:usefamily=sage
-\sage{code}
-\sage[session]{code}
-\sagec{code}
-\sagec[session]{code}
-\sages{code}
-\sages[session]{code}
+\sage{code%definition}
+\sage[session]{code%definition}
+\sagec{code%definition}
+\sagec[session]{code%definition}
+\sages{code%definition}
+\sages[session]{code%definition}
 \sagev|%<code%>|
 \sagev[%<session%>]|%<code%>|
 \sagev[session]{verbatimSymbol}#S
-\sageb{code}
-\sageb[session]{code}
+\sageb{code%definition}
+\sageb[session]{code%definition}
 \begin{sagecode}
 \begin{sagecode}[session]
 \begin{sagecode}[session][fancyvrb settings%keyvals]#*
@@ -782,17 +782,17 @@ pygments
 \end{sageblock}
 #endif
 
-\sage{code}#S
-\sage[session]{code}#S
-\sagec{code}#S
-\sagec[session]{code}#S
-\sages{code}#S
-\sages[session]{code}#S
+\sage{code%definition}#S
+\sage[session]{code%definition}#S
+\sagec{code%definition}#S
+\sagec[session]{code%definition}#S
+\sages{code%definition}#S
+\sages[session]{code%definition}#S
 \sagev|%<code%>|#S
 \sagev[%<session%>]|%<code%>|#S
 \sagev[session]{verbatimSymbol}#S
-\sageb{code}#S
-\sageb[session]{code}#S
+\sageb{code%definition}#S
+\sageb[session]{code%definition}#S
 \begin{sagecode}#S
 \begin{sagecode}[session]#S
 \begin{sagecode}[session][fancyvrb settings%keyvals]#S
@@ -812,17 +812,17 @@ pygments
 
 ## rust family ##
 #ifOption:usefamily=rust
-\rust{code}
-\rust[session]{code}
-\rustc{code}
-\rustc[session]{code}
-\rusts{code}
-\rusts[session]{code}
+\rust{code%definition}
+\rust[session]{code%definition}
+\rustc{code%definition}
+\rustc[session]{code%definition}
+\rusts{code%definition}
+\rusts[session]{code%definition}
 \rustv|%<code%>|
 \rustv[%<session%>]|%<code%>|
 \rustv[session]{verbatimSymbol}#S
-\rustb{code}
-\rustb[session]{code}
+\rustb{code%definition}
+\rustb[session]{code%definition}
 \begin{rustcode}
 \begin{rustcode}[session]
 \begin{rustcode}[session][fancyvrb settings%keyvals]#*
@@ -841,17 +841,17 @@ pygments
 \end{rustblock}
 #endif
 
-\rust{code}#S
-\rust[session]{code}#S
-\rustc{code}#S
-\rustc[session]{code}#S
-\rusts{code}#S
-\rusts[session]{code}#S
+\rust{code%definition}#S
+\rust[session]{code%definition}#S
+\rustc{code%definition}#S
+\rustc[session]{code%definition}#S
+\rusts{code%definition}#S
+\rusts[session]{code%definition}#S
 \rustv|%<code%>|#S
 \rustv[%<session%>]|%<code%>|#S
 \rustv[session]{verbatimSymbol}#S
-\rustb{code}#S
-\rustb[session]{code}#S
+\rustb{code%definition}#S
+\rustb[session]{code%definition}#S
 \begin{rustcode}#S
 \begin{rustcode}[session]#S
 \begin{rustcode}[session][fancyvrb settings%keyvals]#S
@@ -871,17 +871,17 @@ pygments
 
 ## rs family ##
 #ifOption:usefamily=rs
-\rs{code}
-\rs[session]{code}
-\rsc{code}
-\rsc[session]{code}
-\rss{code}
-\rss[session]{code}
+\rs{code%definition}
+\rs[session]{code%definition}
+\rsc{code%definition}
+\rsc[session]{code%definition}
+\rss{code%definition}
+\rss[session]{code%definition}
 \rsv|%<code%>|
 \rsv[%<session%>]|%<code%>|
 \rsv[session]{verbatimSymbol}#S
-\rsb{code}
-\rsb[session]{code}
+\rsb{code%definition}
+\rsb[session]{code%definition}
 \begin{rscode}
 \begin{rscode}[session]
 \begin{rscode}[session][fancyvrb settings%keyvals]#*
@@ -900,17 +900,17 @@ pygments
 \end{rsblock}
 #endif
 
-\rs{code}#S
-\rs[session]{code}#S
-\rsc{code}#S
-\rsc[session]{code}#S
-\rss{code}#S
-\rss[session]{code}#S
+\rs{code%definition}#S
+\rs[session]{code%definition}#S
+\rsc{code%definition}#S
+\rsc[session]{code%definition}#S
+\rss{code%definition}#S
+\rss[session]{code%definition}#S
 \rsv|%<code%>|#S
 \rsv[%<session%>]|%<code%>|#S
 \rsv[session]{verbatimSymbol}#S
-\rsb{code}#S
-\rsb[session]{code}#S
+\rsb{code%definition}#S
+\rsb[session]{code%definition}#S
 \begin{rscode}#S
 \begin{rscode}[session]#S
 \begin{rscode}[session][fancyvrb settings%keyvals]#S
@@ -930,17 +930,17 @@ pygments
 
 ## R family ##
 #ifOption:usefamily=R
-\R{code}
-\R[session]{code}
-\Rc{code}
-\Rc[session]{code}
-\Rs{code}
-\Rs[session]{code}
+\R{code%definition}
+\R[session]{code%definition}
+\Rc{code%definition}
+\Rc[session]{code%definition}
+\Rs{code%definition}
+\Rs[session]{code%definition}
 \Rv|%<code%>|
 \Rv[%<session%>]|%<code%>|
 \Rv[session]{verbatimSymbol}#S
-\Rb{code}
-\Rb[session]{code}
+\Rb{code%definition}
+\Rb[session]{code%definition}
 \begin{Rcode}
 \begin{Rcode}[session]
 \begin{Rcode}[session][fancyvrb settings%keyvals]#*
@@ -959,17 +959,17 @@ pygments
 \end{Rblock}
 #endif
 
-\R{code}#S
-\R[session]{code}#S
-\Rc{code}#S
-\Rc[session]{code}#S
-\Rs{code}#S
-\Rs[session]{code}#S
+\R{code%definition}#S
+\R[session]{code%definition}#S
+\Rc{code%definition}#S
+\Rc[session]{code%definition}#S
+\Rs{code%definition}#S
+\Rs[session]{code%definition}#S
 \Rv|%<code%>|#S
 \Rv[%<session%>]|%<code%>|#S
 \Rv[session]{verbatimSymbol}#S
-\Rb{code}#S
-\Rb[session]{code}#S
+\Rb{code%definition}#S
+\Rb[session]{code%definition}#S
 \begin{Rcode}#S
 \begin{Rcode}[session]#S
 \begin{Rcode}[session][fancyvrb settings%keyvals]#S
@@ -1010,17 +1010,17 @@ pygments
 
 ## perl family ##
 #ifOption:usefamily=perl
-\perl{code}
-\perl[session]{code}
-\perlc{code}
-\perlc[session]{code}
-\perls{code}
-\perls[session]{code}
+\perl{code%definition}
+\perl[session]{code%definition}
+\perlc{code%definition}
+\perlc[session]{code%definition}
+\perls{code%definition}
+\perls[session]{code%definition}
 \perlv|%<code%>|
 \perlv[%<session%>]|%<code%>|
 \perlv[session]{verbatimSymbol}#S
-\perlb{code}
-\perlb[session]{code}
+\perlb{code%definition}
+\perlb[session]{code%definition}
 \begin{perlcode}
 \begin{perlcode}[session]
 \begin{perlcode}[session][fancyvrb settings%keyvals]#*
@@ -1039,17 +1039,17 @@ pygments
 \end{perlblock}
 #endif
 
-\perl{code}#S
-\perl[session]{code}#S
-\perlc{code}#S
-\perlc[session]{code}#S
-\perls{code}#S
-\perls[session]{code}#S
+\perl{code%definition}#S
+\perl[session]{code%definition}#S
+\perlc{code%definition}#S
+\perlc[session]{code%definition}#S
+\perls{code%definition}#S
+\perls[session]{code%definition}#S
 \perlv|%<code%>|#S
 \perlv[%<session%>]|%<code%>|#S
 \perlv[session]{verbatimSymbol}#S
-\perlb{code}#S
-\perlb[session]{code}#S
+\perlb{code%definition}#S
+\perlb[session]{code%definition}#S
 \begin{perlcode}#S
 \begin{perlcode}[session]#S
 \begin{perlcode}[session][fancyvrb settings%keyvals]#S
@@ -1069,17 +1069,17 @@ pygments
 
 ## perlsix family ##
 #ifOption:usefamily=perlsix
-\perlsix{code}
-\perlsix[session]{code}
-\perlsixc{code}
-\perlsixc[session]{code}
-\perlsixs{code}
-\perlsixs[session]{code}
+\perlsix{code%definition}
+\perlsix[session]{code%definition}
+\perlsixc{code%definition}
+\perlsixc[session]{code%definition}
+\perlsixs{code%definition}
+\perlsixs[session]{code%definition}
 \perlsixv|%<code%>|
 \perlsixv[%<session%>]|%<code%>|
 \perlsixv[session]{verbatimSymbol}#S
-\perlsixb{code}
-\perlsixb[session]{code}
+\perlsixb{code%definition}
+\perlsixb[session]{code%definition}
 \begin{perlsixcode}
 \begin{perlsixcode}[session]
 \begin{perlsixcode}[session][fancyvrb settings%keyvals]#*
@@ -1098,17 +1098,17 @@ pygments
 \end{perlsixblock}
 #endif
 
-\perlsix{code}#S
-\perlsix[session]{code}#S
-\perlsixc{code}#S
-\perlsixc[session]{code}#S
-\perlsixs{code}#S
-\perlsixs[session]{code}#S
+\perlsix{code%definition}#S
+\perlsix[session]{code%definition}#S
+\perlsixc{code%definition}#S
+\perlsixc[session]{code%definition}#S
+\perlsixs{code%definition}#S
+\perlsixs[session]{code%definition}#S
 \perlsixv|%<code%>|#S
 \perlsixv[%<session%>]|%<code%>|#S
 \perlsixv[session]{verbatimSymbol}#S
-\perlsixb{code}#S
-\perlsixb[session]{code}#S
+\perlsixb{code%definition}#S
+\perlsixb[session]{code%definition}#S
 \begin{perlsixcode}#S
 \begin{perlsixcode}[session]#S
 \begin{perlsixcode}[session][fancyvrb settings%keyvals]#S
@@ -1128,17 +1128,17 @@ pygments
 
 ## psix family ##
 #ifOption:usefamily=psix
-\psix{code}
-\psix[session]{code}
-\psixc{code}
-\psixc[session]{code}
-\psixs{code}
-\psixs[session]{code}
+\psix{code%definition}
+\psix[session]{code%definition}
+\psixc{code%definition}
+\psixc[session]{code%definition}
+\psixs{code%definition}
+\psixs[session]{code%definition}
 \psixv|%<code%>|
 \psixv[%<session%>]|%<code%>|
 \psixv[session]{verbatimSymbol}#S
-\psixb{code}
-\psixb[session]{code}
+\psixb{code%definition}
+\psixb[session]{code%definition}
 \begin{psixcode}
 \begin{psixcode}[session]
 \begin{psixcode}[session][fancyvrb settings%keyvals]#*
@@ -1157,17 +1157,17 @@ pygments
 \end{psixblock}
 #endif
 
-\psix{code}#S
-\psix[session]{code}#S
-\psixc{code}#S
-\psixc[session]{code}#S
-\psixs{code}#S
-\psixs[session]{code}#S
+\psix{code%definition}#S
+\psix[session]{code%definition}#S
+\psixc{code%definition}#S
+\psixc[session]{code%definition}#S
+\psixs{code%definition}#S
+\psixs[session]{code%definition}#S
 \psixv|%<code%>|#S
 \psixv[%<session%>]|%<code%>|#S
 \psixv[session]{verbatimSymbol}#S
-\psixb{code}#S
-\psixb[session]{code}#S
+\psixb{code%definition}#S
+\psixb[session]{code%definition}#S
 \begin{psixcode}#S
 \begin{psixcode}[session]#S
 \begin{psixcode}[session][fancyvrb settings%keyvals]#S
@@ -1187,17 +1187,17 @@ pygments
 
 ## javascript family ##
 #ifOption:usefamily=javascript
-\javascript{code}
-\javascript[session]{code}
-\javascriptc{code}
-\javascriptc[session]{code}
-\javascripts{code}
-\javascripts[session]{code}
+\javascript{code%definition}
+\javascript[session]{code%definition}
+\javascriptc{code%definition}
+\javascriptc[session]{code%definition}
+\javascripts{code%definition}
+\javascripts[session]{code%definition}
 \javascriptv|%<code%>|
 \javascriptv[%<session%>]|%<code%>|
 \javascriptv[session]{verbatimSymbol}#S
-\javascriptb{code}
-\javascriptb[session]{code}
+\javascriptb{code%definition}
+\javascriptb[session]{code%definition}
 \begin{javascriptcode}
 \begin{javascriptcode}[session]
 \begin{javascriptcode}[session][fancyvrb settings%keyvals]#*
@@ -1216,17 +1216,17 @@ pygments
 \end{javascriptblock}
 #endif
 
-\javascript{code}#S
-\javascript[session]{code}#S
-\javascriptc{code}#S
-\javascriptc[session]{code}#S
-\javascripts{code}#S
-\javascripts[session]{code}#S
+\javascript{code%definition}#S
+\javascript[session]{code%definition}#S
+\javascriptc{code%definition}#S
+\javascriptc[session]{code%definition}#S
+\javascripts{code%definition}#S
+\javascripts[session]{code%definition}#S
 \javascriptv|%<code%>|#S
 \javascriptv[%<session%>]|%<code%>|#S
 \javascriptv[session]{verbatimSymbol}#S
-\javascriptb{code}#S
-\javascriptb[session]{code}#S
+\javascriptb{code%definition}#S
+\javascriptb[session]{code%definition}#S
 \begin{javascriptcode}#S
 \begin{javascriptcode}[session]#S
 \begin{javascriptcode}[session][fancyvrb settings%keyvals]#S
@@ -1246,17 +1246,17 @@ pygments
 
 ## js family ##
 #ifOption:usefamily=js
-\js{code}
-\js[session]{code}
-\jsc{code}
-\jsc[session]{code}
-\jss{code}
-\jss[session]{code}
+\js{code%definition}
+\js[session]{code%definition}
+\jsc{code%definition}
+\jsc[session]{code%definition}
+\jss{code%definition}
+\jss[session]{code%definition}
 \jsv|%<code%>|
 \jsv[%<session%>]|%<code%>|
 \jsv[session]{verbatimSymbol}#S
-\jsb{code}
-\jsb[session]{code}
+\jsb{code%definition}
+\jsb[session]{code%definition}
 \begin{jscode}
 \begin{jscode}[session]
 \begin{jscode}[session][fancyvrb settings%keyvals]#*
@@ -1275,17 +1275,17 @@ pygments
 \end{jsblock}
 #endif
 
-\js{code}#S
-\js[session]{code}#S
-\jsc{code}#S
-\jsc[session]{code}#S
-\jss{code}#S
-\jss[session]{code}#S
+\js{code%definition}#S
+\js[session]{code%definition}#S
+\jsc{code%definition}#S
+\jsc[session]{code%definition}#S
+\jss{code%definition}#S
+\jss[session]{code%definition}#S
 \jsv|%<code%>|#S
 \jsv[%<session%>]|%<code%>|#S
 \jsv[session]{verbatimSymbol}#S
-\jsb{code}#S
-\jsb[session]{code}#S
+\jsb{code%definition}#S
+\jsb[session]{code%definition}#S
 \begin{jscode}#S
 \begin{jscode}[session]#S
 \begin{jscode}[session][fancyvrb settings%keyvals]#S
@@ -1408,7 +1408,7 @@ breakbytokenanywhere#true,false
 \DepyFile#*
 \DepyListing#*
 \DepyMacro#*
-\Depythontex{code}#*
+\Depythontex{code%definition}#*
 \DepythontexOff#*
 \DepythontexOn#*
 \makepygments#*

@@ -43,32 +43,32 @@ tex
 inline
 #endkeyvals
 
-\inln{program}{code}
-\inln{program}{code}[type%keyvals]
+\inln{program}{code%definition}
+\inln{program}{code%definition}[type%keyvals]
 
 \runJulia{program}{source file}{output file}
 \runJulia[server spec]{program}{source file}{output file}
 
-\inlnJulia{code}
-\inlnJulia{code}[type%keyvals]
-\inlnJulia[server spec]{code}
-\inlnJulia[server spec]{code}[type%keyvals]
+\inlnJulia{code%definition}
+\inlnJulia{code%definition}[type%keyvals]
+\inlnJulia[server spec]{code%definition}
+\inlnJulia[server spec]{code%definition}[type%keyvals]
 
 \runMatlab{program}{source file}{output file}
 \runMatlab[server spec]{program}{source file}{output file}
 
-\inlnMatlab{code}
-\inlnMatlab{code}[type%keyvals]
-\inlnMatlab[server spec]{code}
-\inlnMatlab[server spec]{code}[type%keyvals]
+\inlnMatlab{code%definition}
+\inlnMatlab{code%definition}[type%keyvals]
+\inlnMatlab[server spec]{code%definition}
+\inlnMatlab[server spec]{code%definition}[type%keyvals]
 
 \runR{program}{source file}{output file}
 \runR[server spec]{program}{source file}{output file}
 
-\inlnR{code}
-\inlnR{code}[type%keyvals]
-\inlnR[server spec]{code}
-\inlnR[server spec]{code}[type%keyvals]
+\inlnR{code%definition}
+\inlnR{code%definition}[type%keyvals]
+\inlnR[server spec]{code%definition}
+\inlnR[server spec]{code%definition}[type%keyvals]
 
 #keyvals:\inln,\inlnJulia,\inlnMatLab,\inlnR
 vbox

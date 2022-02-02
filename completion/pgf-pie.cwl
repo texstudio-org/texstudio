@@ -7,19 +7,19 @@
 \pie{num1/text1,num2/text2,...}
 \pie[options%keyvals]{num1/text1,num2/text2,...}
 
-#keyvals:\pie
+#keyvals:\pie#c
 pos={%<x,y%>}
 rotate=%<degrees%>
-radius=
-color=#%color
-explode=
-sum=
-before number=
-after number=
+radius=%<number%>
+color=#%<color%>,{%<color1,color2,...%>}
+explode=%<number%>
+sum=#auto,%<number%>
+before number={%<code%>}
+after number={%<code%>}
 hide number
 scale font
 text=#label,pin,inside,legend
-style=
+style={%<TikZ options%>}
 polar
 square
 cloud

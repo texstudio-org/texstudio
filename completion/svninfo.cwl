@@ -17,7 +17,9 @@ final
 draft
 #endkeyvals
 
-\svnInfo
+\svnInfo $Id$ %|
+\svnInfo $Id:$ %|
+\svnInfo $Id: %<file rev YYYY-MM-DD hh:mm:ss owner%> $
 \svnInfoFile
 \svnInfoRevision
 \svnInfoMinRevision
@@ -32,4 +34,5 @@ draft
 \svnId
 \svnToday
 \svnInfoMaxToday
-# \svnKeyword $<Keyword>$ # not supported by kile
+\svnKeyword $%<Keyword%>:$
+\svnKeyword $%<Keyword%>: %<value%> $
