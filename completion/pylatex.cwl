@@ -10,7 +10,7 @@
 
 \pyverb{text%plain}
 
-\begin{python}
+\begin{python}#V
 \end{python}
 
 \PySetup{keyvals}
