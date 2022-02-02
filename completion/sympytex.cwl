@@ -53,7 +53,7 @@ decodearray={%<color array%>}
 
 \begin{sympyblock}#V
 \end{sympyblock}
-\begin{sympysilent}
+\begin{sympysilent}#V
 \end{sympysilent}
 \begin{sympyverbatim}#V
 \end{sympyverbatim}
