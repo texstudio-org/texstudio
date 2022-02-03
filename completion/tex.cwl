@@ -711,7 +711,7 @@
 \rho#m
 \rightarrow#m
 \Rightarrow#m
-\rightarrowfill#*m
+\rightarrowfill#*
 \rightharpoondown#m
 \rightharpoonup#m
 \rightleftharpoons#m
