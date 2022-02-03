@@ -278,3 +278,7 @@ tlc-article:
 class-tlc-article
 latex-document
 tex
+skrapport:
+class-skrapport
+latex-document
+tex
