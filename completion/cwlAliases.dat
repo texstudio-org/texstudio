@@ -282,3 +282,7 @@ skrapport:
 class-skrapport
 latex-document
 tex
+ncc:
+class-ncc
+latex-document
+tex
