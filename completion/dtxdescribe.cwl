@@ -1,10 +1,10 @@
 # dtxdescribe package
-# Matthew Bertucci 11/30/2021 for v1.02
+# Matthew Bertucci 2/3/2022 for v1.03
 
 #include:makeidx
 #include:etoolbox
 #include:xparse
-#include:xifthen
+#include:calc
 #include:xcolor
 #include:caption
 #include:newfloat
@@ -29,6 +29,8 @@
 \DescribeLength[class%plain]{length}
 \DescribeCounter{counter}
 \DescribeCounter[class%plain]{counter}
+\DescribeHook{hook}
+\DescribeHook[class%plain]{hook}
 \DescribeKey{key%plain}
 \DescribeKey[class%plain]{key%plain}
 \DescribePackage{package}
@@ -59,6 +61,8 @@
 \ItemDescribeLength[class%plain]{length}
 \ItemDescribeCounter{counter}
 \ItemDescribeCounter[class%plain]{counter}
+\ItemDescribeHook{hook}
+\ItemDescribeHook[class%plain]{hook}
 \ItemDescribeKey{key%plain}
 \ItemDescribeKey[class%plain]{key%plain}
 \ItemDescribePackage{package}
@@ -79,6 +83,10 @@
 \ItemDescribeOther[class%plain]{name}
 \DescribeDefault{value}
 \DescribeDefaultcolor#*
+\shownesting{container name}{contents%text}
+\shownesting[fraction]{container name}{contents%text}
+\shownesting*{container name}{contents%text}
+\shownesting*[fraction]{container name}{contents%text}
 \margintag{text}
 \margintagcolor#*
 \watchout
@@ -171,6 +179,7 @@ reflabel=##l
 \URL
 \element{element}
 \attribute{attribute}
+\attrib{attribute}
 \HTML
 \HTMLfive
 \CSS
@@ -178,11 +187,16 @@ reflabel=##l
 \EPUB
 \tikz
 \MathML
+\MathJax
 \CTAN
 \TDS
 \brand{brand}
 \acro{acronym}
 \supregistered
+\dviTeX
+\dviLaTeX
+\pdfTeX
+\pdfLaTeX
 \LuaTeX
 \LuaLaTeX
 \XeTeX
