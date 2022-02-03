@@ -23,7 +23,7 @@
 \approxident#m
 \arceq#m
 \Assert#m
-\assert,#m
+\assert#m
 \awint#m
 \backcong#m
 \backneg#m
@@ -52,8 +52,8 @@
 \bigcupplus#m
 \bigcurlyvee#m
 \bigcurlywedge#m
-\bigdoublevee,#m
-\bigdoublewedge,#m
+\bigdoublevee#m
+\bigdoublewedge#m
 \bigoast#m
 \bigplus#m
 \bigsqcap#m
@@ -136,7 +136,7 @@
 \daleth#m
 \dasharrow#m
 \dashleftarrow#m
-\dashrightarrow,#m
+\dashrightarrow#m
 \Dashv#m
 \dashV#m
 \DashV#m
@@ -293,7 +293,7 @@
 \leftarrowtail#m
 \leftassert#m
 \leftAssert#m
-\leftbkarrow,#m
+\leftbkarrow#m
 \leftblackspoon#m
 \leftcurvedarrow#m
 \leftdowncurvedarrow#m
@@ -384,6 +384,7 @@
 \Mapsdown#m
 \mapsfrom#m
 \Mapsfrom#m
+\Mapsto#m
 \mapsup#m
 \Mapsup#m
 \mathcolon#m
@@ -941,7 +942,7 @@
 \restriction#m
 \revangle#m
 \revemptyset#m
-\revmeasuredangle,#m
+\revmeasuredangle#m
 \revsphericalangle#m
 \rhd#m
 \rightangle#m
@@ -951,14 +952,14 @@
 \rightarrowtail#m
 \rightassert#m
 \rightAssert#m
-\rightbkarrow,#m
+\rightbkarrow#m
 \rightblackspoon#m
 \rightcurvedarrow#m
 \rightdowncurvedarrow#m
 \rightfootline#m
 \rightleftarrows#m
 \rightmapsto#m
-\Rightmapsto\Mapsto#m
+\Rightmapsto#m
 \rightmodels#m
 \rightpitchfork#m
 \rightrightarrows#m
@@ -1124,7 +1125,7 @@
 \updownarrows#m
 \updownharpoonleftright#m
 \updownharpoonrightleft#m
-\updownharpoons,#m
+\updownharpoons#m
 \updownharpoonsleftright#m
 \updownwavearrow#m
 \upharpoonleft#m
@@ -1199,6 +1200,4 @@
 
 \circledR
 \circledS
-\lambdabar
-\lambdaslash
 \yen

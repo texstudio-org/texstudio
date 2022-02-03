@@ -28,6 +28,8 @@ minion
 neoeuler
 libertinus
 olddefault
+concrete
+talos
 #endkeyvals
 
 #ifOption:default
@@ -79,4 +81,6 @@ olddefault
 \fontsetupneoeuler#S
 \fontsetuplibertinus#S
 \fontsetupolddefault#S
+\fontsetupconcrete#S
+\fontsetuptalos#S
 \fontsetupfont#S
