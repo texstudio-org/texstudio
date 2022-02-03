@@ -1,5 +1,5 @@
 # csvsimple-l3 package
-# Matthew Bertucci 12/22/2021 for v2.2.0
+# Matthew Bertucci 2/3/2022 for v2.3.0
 
 \csvreader{file}{assignments%definition}{command list%definition}
 \csvreader[options%keyvals]{file}{assignments%definition}{command list%definition}
@@ -84,6 +84,7 @@ column names={%<assignments%>}
 column names reset
 head to column names#true,false
 head to column names prefix=%<text%>
+column names detection#true,false
 check column count#true,false
 no check column count 
 column count=%<number%>
