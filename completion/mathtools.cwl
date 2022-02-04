@@ -3,6 +3,7 @@
 # URL: http://www.ctan.org/pkg/mathtools
 # thatlittleboy/2018-05-07 edited
 # Edited by Rishi Advani (2020-12-06)
+# updated 2022-02-04 for v1.28
 
 #include:keyval
 #include:calc
@@ -108,6 +109,8 @@ rl
 \xrightharpoonup[sub]{sup}#m
 \xleftharpoonup[sub]{sup}#m
 \xleftrightharpoons[sub]{sup}#m
+\xlongrightarrow[sub]{sup}#m
+\xlongleftarrow[sub]{sup}#m
 \underbracket[rule thickness][bracket height]{arg}#*m
 \underbracket{arg}#m
 \overbracket[rule thickness][bracket height]{arg}#*m
@@ -182,6 +185,8 @@ rl
 \MoveEqLeft#m
 \MoveEqLeft[number]#m
 \Aboxed{left hand side & right hand side}#m
+\MakeAboxedCommand%<\Aboxedname\boxmacro%>
+\MakeAboxedCommand{cmd}#Sd
 \ArrowBetweenLines#/alignat,alignat*
 \ArrowBetweenLines[symbol]#/alignat,alignat*
 \ArrowBetweenLines*#/alignat,alignat*
