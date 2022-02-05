@@ -15,11 +15,22 @@
 \bibname
 \biblistname
 
+## 3.1 Package Options ##
+#keyvals:\usepackage/biblatex#c
+backend=#bibtex,bibtex8,biber
+style=%<file%>
+bibstyle=%<file%>
+citestyle=%<file%>
+natbib#true,false
+mcite#true,false
+casechanger=#auto,latex2e,expl3
+#endkeyvals
+
 ## 3.2 Global Customization ##
 \ExecuteBibliographyOptions{options%keyvals}
 \ExecuteBibliographyOptions[entrytype list]{options%keyvals}
 
-#keyvals:\ExecuteBibliographyOptions#c
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 sorting=#nty,nyt,nyvt,anyt,anyvt,ynt,ydnt,none,debug
 sortcase#true,false
 sortupper#true,false
@@ -1828,11 +1839,129 @@ override#true,false
 \DeclareUniquenameTemplate{specification}#*
 \DeclareUniquenameTemplate[name]{specification}#*
 
+### biblatex-mla v2.0 ###
+#ifOption:style=mla-strict
+# loads mla.cbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from mla-strict.bbx
+annotation#true,false
+showlocation#true,false
+longdash#true,false
+noremoteinfo#true,false
+isan#true,false
+ismn#true,false
+isrn#true,false
+issn#true,false
+# from mla.cbx
+firstlonghand#true,false
+nofullfootnote#true,false
+mancitepar#true,false
+footnoterulestrict#true,false
+mladraft
+#endkeyvals
+# from mla-strict.bbx
+\openrangeformat{arg}#*
+\openrangemark#*
+\mlanamedash#*
+# from mla.cbx
+\splitfootnoterule#S
+\pagefootnoterule#S
+\mlasymbolfootnote#S
+\themladraftnote#S
+\headlesscite[prenote][postnote]{bibid}#C
+\headlesscite[postnote]{bibid}#C
+\headlesscite{bibid}#C
+\headlessfullcite[prenote][postnote]{bibid}#C
+\headlessfullcite[postnote]{bibid}#C
+\headlessfullcite{bibid}#C
+\titleandsubtitle[prenote][postnote]{bibid}#*C
+\titleandsubtitle[postnote]{bibid}#*C
+\titleandsubtitle{bibid}#*C
+#endif
+
+#ifOption:style=mla-strict
+# loads mla-strict.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from mla-strict.bbx
+annotation#true,false
+showlocation#true,false
+longdash#true,false
+noremoteinfo#true,false
+isan#true,false
+ismn#true,false
+isrn#true,false
+issn#true,false
+# from mla.cbx
+firstlonghand#true,false
+nofullfootnote#true,false
+mancitepar#true,false
+footnoterulestrict#true,false
+mladraft
+#endkeyvals
+# from mla-strict.bbx
+\openrangeformat{arg}#*
+\openrangemark#*
+\mlanamedash#*
+# from mla.cbx
+\splitfootnoterule#S
+\pagefootnoterule#S
+\mlasymbolfootnote#S
+\themladraftnote#S
+\headlesscite[prenote][postnote]{bibid}#C
+\headlesscite[postnote]{bibid}#C
+\headlesscite{bibid}#C
+\headlessfullcite[prenote][postnote]{bibid}#C
+\headlessfullcite[postnote]{bibid}#C
+\headlessfullcite{bibid}#C
+\titleandsubtitle[prenote][postnote]{bibid}#*C
+\titleandsubtitle[postnote]{bibid}#*C
+\titleandsubtitle{bibid}#*C
+#endif
+
+#ifOption:style=mla-new
+# this just loads mla style
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from mla-strict.bbx
+annotation#true,false
+showlocation#true,false
+longdash#true,false
+noremoteinfo#true,false
+isan#true,false
+ismn#true,false
+isrn#true,false
+issn#true,false
+# from mla.cbx
+firstlonghand#true,false
+nofullfootnote#true,false
+mancitepar#true,false
+footnoterulestrict#true,false
+mladraft
+#endkeyvals
+# from mla-strict.bbx
+\openrangeformat{arg}#*
+\openrangemark#*
+\mlanamedash#*
+# from mla.cbx
+\splitfootnoterule#S
+\pagefootnoterule#S
+\mlasymbolfootnote#S
+\themladraftnote#S
+\headlesscite[prenote][postnote]{bibid}#C
+\headlesscite[postnote]{bibid}#C
+\headlesscite{bibid}#C
+\headlessfullcite[prenote][postnote]{bibid}#C
+\headlessfullcite[postnote]{bibid}#C
+\headlessfullcite{bibid}#C
+\titleandsubtitle[prenote][postnote]{bibid}#*C
+\titleandsubtitle[postnote]{bibid}#*C
+\titleandsubtitle{bibid}#*C
+#endif
+
 ### biblatex-philosophy v1.9.8f ###
 #ifOption:style=philosophy-classic
 \sdcite{bibid}#C
 \footcitet{bibid}#C
-#keyvals:\printbibliography
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c,\printbibliography
 relatedformat=#semicolon,parens,brackets
 publocformat=#publocyear,locpubyear,loccolonpub
 volnumformat=#strings,parens,plain
@@ -1858,7 +1987,7 @@ nodate#true,false
 #ifOption:style=philosophy-modern
 \sdcite{bibid}#C
 \footcitet{bibid}#C
-#keyvals:\printbibliography
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c,\printbibliography
 relatedformat=#semicolon,parens,brackets
 publocformat=#publocyear,locpubyear,loccolonpub
 volnumformat=#strings,parens,plain
@@ -1885,7 +2014,7 @@ restoreclassic#true,false
 
 #ifOption:style=philosophy-verbose
 \ccite{bibid}#C
-#keyvals:\printbibliography
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c,\printbibliography
 relatedformat=#semicolon,parens,brackets
 publocformat=#publocyear,locpubyear,loccolonpub
 volnumformat=#strings,parens,plain
