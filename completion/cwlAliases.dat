@@ -286,3 +286,7 @@ ncc:
 class-ncc
 latex-document
 tex
+mla:
+class-mla
+latex-document
+tex
