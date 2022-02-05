@@ -1,5 +1,5 @@
 # fnpct package
-# Matthew Bertucci 10/18/2021 for v1.0
+# Matthew Bertucci 2/5/2022 for v1.1
 
 #include:l3keys2e
 #include:translations
@@ -14,6 +14,7 @@
 #keyvals:\setfnpct
 dont-mess-around#true,false
 reverse#true,false
+unspace#true,false
 ranges#true,false
 add-trailing-token={%<token%>{%<name%>}}
 add-trailing-token={[%<before%>]%<token%>[%<after%>]{%<name%>}}
@@ -26,6 +27,7 @@ before-punct-space=##L
 after-dot-space=##L
 after-comma-space=##L
 after-punct-space=##L
+mult-variant-prefix={%<letters%>}
 mult-fn-delim={%<code%>}
 separation-symbol=%<symbol%>
 range-symbol=%<symbol%>
