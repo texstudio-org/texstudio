@@ -1,13 +1,17 @@
 # spacingtricks package
-# Matthew Bertucci 9/13/2021 for v1.3
+# Matthew Bertucci 2/4/2022 for v1.4
 
+#include:ifthen
 #include:setspace
 #include:calc
 #include:xspace
 
 \centered{text}
 \footnotespace#*
-\footenoteindent#*
+\footnoteindent#*
+\footnt{text}#*
+\footnt[number]{text}#*
+\strutheight#*
 \vstrut{height}
 \vstrut[depth]{height}
 \parindentlength#*

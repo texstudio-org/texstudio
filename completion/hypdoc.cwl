@@ -7,7 +7,14 @@
 #include:hyperref
 #include:rerunfilecheck
 
+#keyvals:\usepackage/hypdoc#c
+numbered
+#endkeyvals
+
 \changehistoryname#*
 \glossaryname#*
 \hdclindex{csname}{name}{text}#*
 \hdpindex{csname}{page num}#*
+
+# from colorlinks option of hyperref
+#include:color
