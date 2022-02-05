@@ -22,6 +22,8 @@
 <file>completion/adjcalc.cwl</file>
 <file>completion/adjustbox.cwl</file>
 <file>completion/adtrees.cwl</file>
+<file>completion/ae.cwl</file>
+<file>completion/aeguill.cwl</file>
 <file>completion/aesupp.cwl</file>
 <file>completion/afterpackage.cwl</file>
 <file>completion/afterpage.cwl</file>
@@ -101,7 +103,9 @@
 <file>completion/askmaps.cwl</file>
 <file>completion/association-matrix.cwl</file>
 <file>completion/asyalign.cwl</file>
+<file>completion/asycolors.cwl</file>
 <file>completion/asyfig.cwl</file>
+<file>completion/asymptote.cwl</file>
 <file>completion/asyprocess.cwl</file>
 <file>completion/athnum.cwl</file>
 <file>completion/atkinson.cwl</file>
@@ -306,6 +310,7 @@
 <file>completion/ccaption.cwl</file>
 <file>completion/ccfonts.cwl</file>
 <file>completion/ccicons.cwl</file>
+<file>completion/cclicenses.cwl</file>
 <file>completion/cdcmd.cwl</file>
 <file>completion/cellprops.cwl</file>
 <file>completion/cellspace.cwl</file>
@@ -379,6 +384,7 @@
 <file>completion/class-ltxguidex.cwl</file>
 <file>completion/class-memoir.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
+<file>completion/class-mla.cwl</file>
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-ncc.cwl</file>
@@ -459,6 +465,7 @@
 <file>completion/comma.cwl</file>
 <file>completion/commath.cwl</file>
 <file>completion/comment.cwl</file>
+<file>completion/commutative-diagrams.cwl</file>
 <file>completion/complexity.cwl</file>
 <file>completion/concepts.cwl</file>
 <file>completion/concmath.cwl</file>
@@ -477,6 +484,7 @@
 <file>completion/copyrightbox.cwl</file>
 <file>completion/CormorantGaramond.cwl</file>
 <file>completion/correctmathalign.cwl</file>
+<file>completion/coseoul.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
 <file>completion/counttexruns.cwl</file>
 <file>completion/couriers.cwl</file>
@@ -489,6 +497,7 @@
 <file>completion/crimson.cwl</file>
 <file>completion/CrimsonPro.cwl</file>
 <file>completion/crop.cwl</file>
+<file>completion/crossreference.cwl</file>
 <file>completion/crossreftools.cwl</file>
 <file>completion/csquotes.cwl</file>
 <file>completion/css-colors.cwl</file>
@@ -678,6 +687,7 @@
 <file>completion/expkv-def.cwl</file>
 <file>completion/expkv-opt.cwl</file>
 <file>completion/expl3.cwl</file>
+<file>completion/export.cwl</file>
 <file>completion/extarrows.cwl</file>
 <file>completion/extdash.cwl</file>
 <file>completion/extpfeil.cwl</file>
@@ -857,8 +867,10 @@
 <file>completion/grafcet.cwl</file>
 <file>completion/graph35.cwl</file>
 <file>completion/graphbox.cwl</file>
+<file>completion/graphicscache.cwl</file>
 <file>completion/graphicxbox.cwl</file>
 <file>completion/graphicx.cwl</file>
+<file>completion/graphicxpsd.cwl</file>
 <file>completion/graphpap.cwl</file>
 <file>completion/greek4cbc.cwl</file>
 <file>completion/greek6cbc.cwl</file>
@@ -964,12 +976,15 @@
 <file>completion/ionumbers.cwl</file>
 <file>completion/isodate.cwl</file>
 <file>completion/isomath.cwl</file>
+<file>completion/isonums.cwl</file>
 <file>completion/isopt.cwl</file>
+<file>completion/isorot.cwl</file>
 <file>completion/isotope.cwl</file>
 <file>completion/issuulinks.cwl</file>
 <file>completion/iwona.cwl</file>
 <file>completion/jamtimes.cwl</file>
 <file>completion/jigsaw.cwl</file>
+<file>completion/jkmath.cwl</file>
 <file>completion/josefin.cwl</file>
 <file>completion/jumplines.cwl</file>
 <file>completion/junicode.cwl</file>
@@ -981,6 +996,7 @@
 <file>completion/karnaugh-map.cwl</file>
 <file>completion/karnaughmap.cwl</file>
 <file>completion/kbordermatrix.cwl</file>
+<file>completion/kerkis.cwl</file>
 <file>completion/keyfloat.cwl</file>
 <file>completion/keyparse.cwl</file>
 <file>completion/keystroke.cwl</file>
@@ -1003,11 +1019,13 @@
 <file>completion/kvsetkeys.cwl</file>
 <file>completion/l3keys2e.cwl</file>
 <file>completion/labels4easylist.cwl</file>
+<file>completion/labyrinth.cwl</file>
 <file>completion/ladder.cwl</file>
 <file>completion/lambdax.cwl</file>
 <file>completion/langcode.cwl</file>
 <file>completion/langsci-avm.cwl</file>
 <file>completion/latex-209.cwl</file>
+<file>completion/latex2man.cwl</file>
 <file>completion/latexalpha2.cwl</file>
 <file>completion/latexcolors.cwl</file>
 <file>completion/latexdemo.cwl</file>
@@ -1024,6 +1042,7 @@
 <file>completion/lecturer.cwl</file>
 <file>completion/leftidx.cwl</file>
 <file>completion/leftindex.cwl</file>
+<file>completion/leipzig.cwl</file>
 <file>completion/lengthconvert.cwl</file>
 <file>completion/letltxmacro.cwl</file>
 <file>completion/letterspace.cwl</file>
@@ -1044,6 +1063,7 @@
 <file>completion/librefranklin.cwl</file>
 <file>completion/libris.cwl</file>
 <file>completion/lie-hasse.cwl</file>
+<file>completion/lilyglyphs.cwl</file>
 <file>completion/linearb.cwl</file>
 <file>completion/linegoal.cwl</file>
 <file>completion/linenoamsmath.cwl</file>
@@ -1053,6 +1073,7 @@
 <file>completion/linop.cwl</file>
 <file>completion/lipsum.cwl</file>
 <file>completion/listings.cwl</file>
+<file>completion/listlbls.cwl</file>
 <file>completion/listliketab.cwl</file>
 <file>completion/listofitems.cwl</file>
 <file>completion/listofsymbols.cwl</file>
@@ -1060,6 +1081,7 @@
 <file>completion/lmake.cwl</file>
 <file>completion/lmodern.cwl</file>
 <file>completion/LobsterTwo.cwl</file>
+<file>completion/logbox.cwl</file>
 <file>completion/logicproof.cwl</file>
 <file>completion/logicpuzzle.cwl</file>
 <file>completion/logix.cwl</file>
@@ -1087,7 +1109,9 @@
 <file>completion/luakeys-debug.cwl</file>
 <file>completion/lualatex-truncate.cwl</file>
 <file>completion/luapackageloader.cwl</file>
+<file>completion/luaprogtable.cwl</file>
 <file>completion/luarandom.cwl</file>
+<file>completion/luasseq.cwl</file>
 <file>completion/luatexbase.cwl</file>
 <file>completion/luatex.cwl</file>
 <file>completion/luatodonotes.cwl</file>
@@ -1127,14 +1151,17 @@
 <file>completion/mathalpha.cwl</file>
 <file>completion/mathastext.cwl</file>
 <file>completion/mathbbol.cwl</file>
+<file>completion/mathcmd.cwl</file>
 <file>completion/mathcommand.cwl</file>
 <file>completion/mathcomp.cwl</file>
 <file>completion/mathdesign.cwl</file>
 <file>completion/mathdots.cwl</file>
+<file>completion/mathfixs.cwl</file>
 <file>completion/mathfont.cwl</file>
 <file>completion/mathpartir.cwl</file>
 <file>completion/mathpazo.cwl</file>
 <file>completion/mathptmx.cwl</file>
+<file>completion/mathpunctspace.cwl</file>
 <file>completion/mathrsfs.cwl</file>
 <file>completion/mathspec.cwl</file>
 <file>completion/mathstyle.cwl</file>
@@ -1143,8 +1170,10 @@
 <file>completion/mattens.cwl</file>
 <file>completion/mattex.cwl</file>
 <file>completion/mboxfill.cwl</file>
+<file>completion/mcaption.cwl</file>
 <file>completion/mcexam.cwl</file>
 <file>completion/mdframed.cwl</file>
+<file>completion/mdputu.cwl</file>
 <file>completion/mdsymbol.cwl</file>
 <file>completion/mdwlist.cwl</file>
 <file>completion/media4svg.cwl</file>
@@ -1153,6 +1182,7 @@
 <file>completion/memhfixc.cwl</file>
 <file>completion/memory.cwl</file>
 <file>completion/memorygraphs.cwl</file>
+<file>completion/menucard.cwl</file>
 <file>completion/menu.cwl</file>
 <file>completion/menukeys.cwl</file>
 <file>completion/mercatormap.cwl</file>
@@ -1196,6 +1226,7 @@
 <file>completion/moderncvcompatibility.cwl</file>
 <file>completion/modiagram.cwl</file>
 <file>completion/modroman.cwl</file>
+<file>completion/modular.cwl</file>
 <file>completion/modulus.cwl</file>
 <file>completion/montserrat.cwl</file>
 <file>completion/moredefs.cwl</file>
@@ -1208,12 +1239,14 @@
 <file>completion/mpostinl.cwl</file>
 <file>completion/mtgreek.cwl</file>
 <file>completion/mtpro2.cwl</file>
+<file>completion/multiaudience.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multicolrule.cwl</file>
 <file>completion/multidef.cwl</file>
 <file>completion/multido.cwl</file>
 <file>completion/multienum.cwl</file>
 <file>completion/multienv.cwl</file>
+<file>completion/multiexpand.cwl</file>
 <file>completion/multilang.cwl</file>
 <file>completion/multilang-sect.cwl</file>
 <file>completion/multilang-tags.cwl</file>
@@ -1377,6 +1410,7 @@
 <file>completion/pdfprivacy.cwl</file>
 <file>completion/pdfrender.cwl</file>
 <file>completion/pdfreview.cwl</file>
+<file>completion/pdfswitch.cwl</file>
 <file>completion/pdfx.cwl</file>
 <file>completion/penlight.cwl</file>
 <file>completion/perfectcut.cwl</file>
@@ -1518,6 +1552,7 @@
 <file>completion/ran_toks.cwl</file>
 <file>completion/rawfonts.cwl</file>
 <file>completion/rccol.cwl</file>
+<file>completion/rcsinfo.cwl</file>
 <file>completion/rcs-multi.cwl</file>
 <file>completion/readarray.cwl</file>
 <file>completion/readprov.cwl</file>
@@ -1528,11 +1563,13 @@
 <file>completion/rectopma.cwl</file>
 <file>completion/recycle.cwl</file>
 <file>completion/refcount.cwl</file>
+<file>completion/refenums.cwl</file>
 <file>completion/reflectgraphics.cwl</file>
 <file>completion/regcount.cwl</file>
 <file>completion/regexpatch.cwl</file>
 <file>completion/register.cwl</file>
 <file>completion/regstats.cwl</file>
+<file>completion/relinput.cwl</file>
 <file>completion/relsize.cwl</file>
 <file>completion/repltext.cwl</file>
 <file>completion/rerunfilecheck.cwl</file>
@@ -1694,6 +1731,7 @@
 <file>completion/sqrcaps.cwl</file>
 <file>completion/sseq.cwl</file>
 <file>completion/stabular.cwl</file>
+<file>completion/stack.cwl</file>
 <file>completion/stackengine.cwl</file>
 <file>completion/stacklet.cwl</file>
 <file>completion/stackrel.cwl</file>
@@ -1781,6 +1819,7 @@
 <file>completion/termsim.cwl</file>
 <file>completion/testhyphens.cwl</file>
 <file>completion/tetragonos.cwl</file>
+<file>completion/teubner.cwl</file>
 <file>completion/texapi.cwl</file>
 <file>completion/tex.cwl</file>
 <file>completion/texdate.cwl</file>
