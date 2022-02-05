@@ -1879,7 +1879,7 @@ mladraft
 \titleandsubtitle{bibid}#*C
 #endif
 
-#ifOption:style=mla-strict
+#ifOption:style=mla
 # loads mla-strict.bbx
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from mla-strict.bbx
