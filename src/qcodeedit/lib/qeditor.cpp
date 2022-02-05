@@ -5117,14 +5117,15 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                             )  // anchor == start of placeholder
                     {
                         setPlaceHolder(i);
-                        if (text.length() == 1) {
-                            return; // don't insert the bracket because we've just jumped over it
-                        } else {
+                        if (text.length() != 1) {
                             QString remainder(text);
                             remainder.remove(0,1);
                             insertText(c, remainder);
-                            return;
+
                         }
+                        if (beginNewMacro)
+                            m_doc->endMacro();
+                        return;
                     }
             }
         }

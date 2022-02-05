@@ -1804,7 +1804,7 @@ void Texstudio::newDocumentLineEnding()
 
 void Texstudio::updateUndoRedoStatus()
 {
-	if (currentEditor()) {
+    if (currentEditor()) {
 		actSave->setEnabled(!currentEditor()->document()->isClean() || currentEditor()->fileName().isEmpty());
 		bool canUndo = currentEditor()->document()->canUndo();
 		if (!canUndo && configManager.svnUndo) {
