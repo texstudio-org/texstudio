@@ -5,7 +5,7 @@
 
 \ionumbersstyle{options%keyvals}
 
-#keyvals:\ionumbersstyle
+#keyvals:\usepackage/ionumbers#c,\ionumbersstyle
 comma=#ignore,decimal,thousands,default
 point=#ignore,decimal,thousands,default
 thousands=#none,point,comma,punctpoint,punctcomma,apostrophe,phantom,space,default

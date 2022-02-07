@@ -1,7 +1,36 @@
 # crefthe package
-# Matthew Bertucci 11/7/2021
+# Matthew Bertucci 2/6/2022
 
 #include:cleveref
+
+#keyvals:\usepackage/crefthe#c
+overwrite#true,false
+# options passed to cleveref
+poorman
+sort
+compress
+sort&compress
+nosort
+capitalise
+capitalize
+nameinlink
+noabbrev
+english
+german
+ngerman
+dutch
+french
+spanish
+italian
+russian
+ukrainian
+norsk
+danish
+esperanto
+swedish
+brazilian
+catalan
+#endkeyvals
 
 \crefthe{labellist}#r
 \crefthe[prep]{labellist}#r
@@ -24,3 +53,36 @@
 \crefthename{type}[prep1]{singular}[prep2]{plural}
 \Crefthename{type}{singular}{plural}
 \Crefthename{type}[prep1]{singular}[prep2]{plural}
+
+#ifOption:overwrite
+\cref[prep]{labellist}#r
+\cref*[prep]{labellist}#r
+\cref-{labellist}#*r
+\cref-[prep]{labellist}#*r
+\cref+{labellist}#*r
+\cref+[prep]{labellist}#*r
+\Cref[prep]{labellist}#r
+\Cref*[prep]{labellist}#r
+\Cref-{labellist}#*r
+\Cref-[prep]{labellist}#*r
+\Cref+{labellist}#*r
+\Cref+[prep]{labellist}#*r
+\crefname{type}[prep1]{singular}[prep2]{plural}
+\Crefname{type}[prep1]{singular}[prep2]{plural}
+#endif
+#ifOption:overwrite=true
+\cref[prep]{labellist}#r
+\cref*[prep]{labellist}#r
+\cref-{labellist}#*r
+\cref-[prep]{labellist}#*r
+\cref+{labellist}#*r
+\cref+[prep]{labellist}#*r
+\Cref[prep]{labellist}#r
+\Cref*[prep]{labellist}#r
+\Cref-{labellist}#*r
+\Cref-[prep]{labellist}#*r
+\Cref+{labellist}#*r
+\Cref+[prep]{labellist}#*r
+\crefname{type}[prep1]{singular}[prep2]{plural}
+\Crefname{type}[prep1]{singular}[prep2]{plural}
+#endif

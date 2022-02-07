@@ -1,5 +1,5 @@
 # doncherry/2013-05-11 for iftex v0.2
-# Matthew Bertucci 8/19/2021 for v1.0d
+# Matthew Bertucci 2022-02-06 for v1.0f
 \ifpdftex#*
 \ifPDFTeX
 \ifxetex#*
@@ -22,6 +22,10 @@
 \ifAlephTeX
 \iftutex#*
 \ifTUTeX
+\iftexpadtex#*
+\ifTexpadTeX
+\ifhint#*
+\ifHINT
 \else
 \fi
 \RequireeTeX
@@ -35,6 +39,8 @@
 \RequireVTeX
 \RequireAlephTeX
 \RequireTUTeX
+\RequireTexpadTeX
+\RequireHINT
 \ifpdf
 \pdftrue
 \pdffalse
