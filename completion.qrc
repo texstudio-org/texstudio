@@ -48,6 +48,8 @@
 <file>completion/allauncl.cwl</file>
 <file>completion/allcmin.cwl</file>
 <file>completion/allegoth.cwl</file>
+<file>completion/allimaj.cwl</file>
+<file>completion/allimin.cwl</file>
 <file>completion/allpgoth.cwl</file>
 <file>completion/allrtnd.cwl</file>
 <file>completion/allrunes.cwl</file>
@@ -59,6 +61,7 @@
 <file>completion/alphabeta.cwl</file>
 <file>completion/alphalph.cwl</file>
 <file>completion/alterqcm.cwl</file>
+<file>completion/altsubsup.cwl</file>
 <file>completion/amsbsy.cwl</file>
 <file>completion/amscd.cwl</file>
 <file>completion/amsfonts.cwl</file>
@@ -334,6 +337,7 @@
 <file>completion/chemstyle.cwl</file>
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
+<file>completion/chickenize.cwl</file>
 <file>completion/Chivo.cwl</file>
 <file>completion/chordbars.cwl</file>
 <file>completion/cinzel.cwl</file>
@@ -366,6 +370,7 @@
 <file>completion/class-extproc.cwl</file>
 <file>completion/class-extreport.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
+<file>completion/class-gridslides.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
@@ -393,6 +398,7 @@
 <file>completion/class-pdfArticle.cwl</file>
 <file>completion/class-proc.cwl</file>
 <file>completion/class-pylatex.cwl</file>
+<file>completion/class-qcm.cwl</file>
 <file>completion/class-ReadableCV.cwl</file>
 <file>completion/class-report.cwl</file>
 <file>completion/class-scrartcl.cwl</file>
@@ -548,6 +554,8 @@
 <file>completion/DejaVuSansMono.cwl</file>
 <file>completion/DejaVuSerifCondensed.cwl</file>
 <file>completion/DejaVuSerif.cwl</file>
+<file>completion/delim.cwl</file>
+<file>completion/delimset.cwl</file>
 <file>completion/derivative.cwl</file>
 <file>completion/desclist.cwl</file>
 <file>completion/dhua.cwl</file>
@@ -598,6 +606,7 @@
 <file>completion/dynbrackets.cwl</file>
 <file>completion/dynkin-diagrams.cwl</file>
 <file>completion/easyfig.cwl</file>
+<file>completion/easyformat.cwl</file>
 <file>completion/easylist.cwl</file>
 <file>completion/easyReview.cwl</file>
 <file>completion/easy-todo.cwl</file>
@@ -629,6 +638,8 @@
 <file>completion/emoji.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/endfloat.cwl</file>
+<file>completion/endnotes.cwl</file>
+<file>completion/endnotes-hy.cwl</file>
 <file>completion/engord.cwl</file>
 <file>completion/engpron.cwl</file>
 <file>completion/engrec.cwl</file>
@@ -749,6 +760,7 @@
 <file>completion/fltpoint.cwl</file>
 <file>completion/flushend.cwl</file>
 <file>completion/fmtcount.cwl</file>
+<file>completion/fncychap.cwl</file>
 <file>completion/fnlineno.cwl</file>
 <file>completion/fnpct.cwl</file>
 <file>completion/fnumprint.cwl</file>
@@ -820,6 +832,7 @@
 <file>completion/german.cwl</file>
 <file>completion/getfiledate.cwl</file>
 <file>completion/getitems.cwl</file>
+<file>completion/getmap.cwl</file>
 <file>completion/gettitlestring.cwl</file>
 <file>completion/gfsartemisia.cwl</file>
 <file>completion/gfsbaskerville.cwl</file>
@@ -833,7 +846,9 @@
 <file>completion/gillius2.cwl</file>
 <file>completion/gillius.cwl</file>
 <file>completion/gincltex.cwl</file>
+<file>completion/gitfile-info.cwl</file>
 <file>completion/gitinfo2.cwl</file>
+<file>completion/gitlog.cwl</file>
 <file>completion/gitver.cwl</file>
 <file>completion/globalvals.cwl</file>
 <file>completion/glosmathtools.cwl</file>
@@ -856,6 +871,7 @@
 <file>completion/glossary-topic.cwl</file>
 <file>completion/glossary-tree.cwl</file>
 <file>completion/glosstex.cwl</file>
+<file>completion/gnuplottex.cwl</file>
 <file>completion/gobble-user.cwl</file>
 <file>completion/GoMono.cwl</file>
 <file>completion/GoSans.cwl</file>
@@ -872,13 +888,16 @@
 <file>completion/graphicx.cwl</file>
 <file>completion/graphicxpsd.cwl</file>
 <file>completion/graphpap.cwl</file>
+<file>completion/graphviz.cwl</file>
 <file>completion/greek4cbc.cwl</file>
 <file>completion/greek6cbc.cwl</file>
 <file>completion/greekctr.cwl</file>
 <file>completion/greekdates.cwl</file>
 <file>completion/grfext.cwl</file>
+<file>completion/grid.cwl</file>
 <file>completion/gridpapers.cwl</file>
 <file>completion/gridset.cwl</file>
+<file>completion/gridslides.cwl</file>
 <file>completion/grid-system.cwl</file>
 <file>completion/grmath.cwl</file>
 <file>completion/grundgesetze.cwl</file>
@@ -900,6 +919,7 @@
 <file>completion/hep-acronym.cwl</file>
 <file>completion/hep-float.cwl</file>
 <file>completion/hep-font.cwl</file>
+<file>completion/hepparticles.cwl</file>
 <file>completion/hep-text.cwl</file>
 <file>completion/hep-title.cwl</file>
 <file>completion/heuristica.cwl</file>
@@ -922,6 +942,7 @@
 <file>completion/hypbmsec.cwl</file>
 <file>completion/hypcap.cwl</file>
 <file>completion/hypdoc.cwl</file>
+<file>completion/hypdvips.cwl</file>
 <file>completion/hyperbar.cwl</file>
 <file>completion/hyperref.cwl</file>
 <file>completion/hyperxmp.cwl</file>
@@ -960,12 +981,15 @@
 <file>completion/includeRnw.cwl</file>
 <file>completion/inconsolata.cwl</file>
 <file>completion/index.cwl</file>
+<file>completion/indextools.cwl</file>
 <file>completion/inlinedef.cwl</file>
 <file>completion/inline-images.cwl</file>
 <file>completion/innerscript.cwl</file>
 <file>completion/inputenc.cwl</file>
 <file>completion/InriaSans.cwl</file>
 <file>completion/InriaSerif.cwl</file>
+<file>completion/inslrmaj.cwl</file>
+<file>completion/inslrmin.cwl</file>
 <file>completion/intcalc.cwl</file>
 <file>completion/interactiveanimation.cwl</file>
 <file>completion/inter.cwl</file>
@@ -998,6 +1022,7 @@
 <file>completion/kbordermatrix.cwl</file>
 <file>completion/kerkis.cwl</file>
 <file>completion/keyfloat.cwl</file>
+<file>completion/keyindex.cwl</file>
 <file>completion/keyparse.cwl</file>
 <file>completion/keystroke.cwl</file>
 <file>completion/keyval.cwl</file>
@@ -1535,6 +1560,7 @@
 <file>completion/python.cwl</file>
 <file>completion/pythonhighlight.cwl</file>
 <file>completion/pythontex.cwl</file>
+<file>completion/qcm.cwl</file>
 <file>completion/qrbill.cwl</file>
 <file>completion/qrcode.cwl</file>
 <file>completion/qstest.cwl</file>
