@@ -3,6 +3,29 @@
 
 #include:trig
 
+#keyvals:\usepackage/pict2e#c
+dvips
+xdvi
+dvipdf
+dvipdfm
+dvipdfmx
+pdftex
+luatex
+xetex
+dvipsone
+dviwindo
+oztex
+textures
+pctexps
+pctex32
+vtex
+original
+ltxarrows
+pstarrows
+debug
+hide
+#endkeyvals
+
 \line(x,y){length}#/picture
 \vector(x,y){length}#/picture
 
