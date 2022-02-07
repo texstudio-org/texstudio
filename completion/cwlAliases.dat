@@ -290,3 +290,11 @@ mla:
 class-mla
 latex-document
 tex
+gridslides:
+class-gridslides
+latex-document
+tex
+qcm:
+class-qcm
+latex-document
+tex
