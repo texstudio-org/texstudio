@@ -1,5 +1,5 @@
 # pyluatex package
-# Matthew Bertucci 2/1/2022 for v0.4.0
+# Matthew Bertucci 2/6/2022 for v0.4.1
 
 #include:luatex
 #include:expl3
@@ -9,6 +9,7 @@
 executable=%<path%>
 ignoreerrors#true,false
 verbose#true,false
+shutdown=#veryveryend,veryenddocument,off
 #endkeyvals
 
 \py{code%definition}
@@ -21,7 +22,6 @@ verbose#true,false
 \pysession{session}
 \pyoption{option%keyvals}{value}
 #keyvals:\pyoption
-executable
 ignoreerrors
 verbose
 #endkeyvals
