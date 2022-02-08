@@ -1772,6 +1772,10 @@ override#true,false
 \textmainlang{text}#*
 \texouterlang{text}#*
 
+## 4.9 Localization Modules ##
+\DeclareLanguageMapping{language}{file}#*
+\DeclareLanguageMappingSuffix{suffix}#*
+
 ## 4.10 Formatting Commands ##
 \mkbibemph{text}#*
 \mkbibitalic{text}#*
