@@ -298,3 +298,15 @@ qcm:
 class-qcm
 latex-document
 tex
+bookshelf:
+class-bookshelf
+latex-document
+tex
+cheatsheet:
+class-cheatsheet
+latex-document
+tex
+elpres:
+class-elpres
+latex-document
+tex
