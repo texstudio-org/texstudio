@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 03.11.2021 for v3.16
+# Matthew Bertucci 07.02.2021 for v3.17
 
 #include:pdftexcmds
 #include:etoolbox
@@ -1537,6 +1537,9 @@ override#true,false
 \iffirstonpage{true}{false}#*
 \ifsamepage{instance1}{instance2}{true}{false}#*
 \ifinteger{string}{true}{false}#*
+\hascomputableequivalent{string}{true}{false}#*
+\ifiscomputable{string}{true}{false}#*
+\getcomputableequivalent{string}{macro%cmd}#*d
 \ifnumeral{string}{true}{false}#*
 \ifnumerals{string}{true}{false}#*
 \ifpages{string}{true}{false}#*
@@ -1767,6 +1770,7 @@ override#true,false
 \bibxsstring[wrapper]{string key}#*
 \mainlang#*
 \textmainlang{text}#*
+\texouterlang{text}#*
 
 ## 4.10 Formatting Commands ##
 \mkbibemph{text}#*
