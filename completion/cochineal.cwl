@@ -48,9 +48,11 @@ aftsolidus=##L
 \cochTLF#*
 \cochTOsF#*
 \defigures
+\destyle#*
 \infigures
 \lfstyle
 \liningnums{text}
+\nustyle#*
 \osfstyle
 \proportionalnums{text}
 \Qnoswash#*
