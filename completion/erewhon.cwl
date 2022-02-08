@@ -34,9 +34,11 @@ loosest
 #endkeyvals
 
 \defigures
+\destyle#*
 \infigures
 \lfstyle
 \nufigures
+\nustyle#*
 \osfstyle
 \sufigures
 \swshape
