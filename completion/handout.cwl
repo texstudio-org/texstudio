@@ -1,31 +1,28 @@
 # handout package
-# Matthew Bertucci 2/8/2022 for v1.6.0
+# Matthew Bertucci 12/12/2021 for v1.6.0
 
 #include:kvoptions
 #include:etoolbox
 #include:suffix
 
 #keyvals:\usepackage/handout#c
-disabled#true,false
-numbering#true,false
+dir=%<file path%>
 sectioning#true,false
+disabled#true,false
 printing#true,false
-dir=%<folder%>
+numbering#true,false
 #endkeyvals
 
-#ifOption:numbering
-\thehandoutnumber
-#endif
-#ifOption:numbering=true
-\thehandoutnumber
-#endif
+\handout{file path}
 
-\handout{file}#i
+\thehandoutnumber#*
+\handoutnumber{arg}#*
+\handoutnumberintxt{arg}#*
 
-\nothandout{content%text}
-\onlyhandout{content%text}
-\forhandout{content%text}
-\forhandout*{content%text}
+\disablehandout
+\enablehandout
 
-\handoutnumberintxt{position}#*
-\handoutnumber{position}#*
+\onlyhandout{contents%text}
+\nothandout{contents%text}
+\forhandout{contents%text}
+\forhandout*{contents%text}
