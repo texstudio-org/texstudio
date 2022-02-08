@@ -1,7 +1,10 @@
 # acro package (commands taken from the acro manual of V1.4C)
 # The acro package was created by Clemens Niederberger
 # This file was created by Bjoern Menke (2014-01-08). It contains most of the current commands of the acro package.
-# updated by Matthew Bertucci, 2021-09-16 for v3.5
+# updated by Matthew Bertucci, 2022-02-07 for v3.7
+
+#include:l3keys2e
+#include:translations
 
 \DeclareAcronym{id}{properties%keyvals}
 \NewAcroPreset{set name}{properties%keyvals}
@@ -197,7 +200,7 @@ list-format={%<code%>}
 \printacronyms[options%keyvals]
 
 #keyvals:\printacronyms#c
-template=#description,table,longtable,lof,toc
+template=#description,tabular,longtable,supertabular,lof,toc
 sort#true,false
 display=#all,used
 exclude={%<csv list of tags%>}
@@ -218,7 +221,7 @@ first-style=#long-short,short-long,short,long,footnote
 subsequent-style=#long-short,short-long,short,long,footnote
 single#true,false
 single-style=#long-short,short-long,short,long,footnote
-list/template=#description,table,longtable,lof,toc
+list/template=#description,tabular,longtable,supertabular,lof,toc
 list/sort#true,false
 list/display=#all,used
 list/exclude={%<csv list of tags%>}
@@ -286,6 +289,7 @@ patch/tabularx#true,false
 patch/ltxtable#true,false
 patch/tabu#true,false
 patch/caption#true,false
+patch/maketitle#true,false
 load-style=%<name%>
 #endkeyvals
 
