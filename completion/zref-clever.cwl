@@ -1,5 +1,5 @@
 # zref-clever package
-# Matthew Bertucci 1/12/2022 for v0.1.2-alpha
+# Matthew Bertucci 2/8/2022 for v0.2.1-alpha
 
 #include:zref-base
 #include:zref-user
@@ -9,6 +9,9 @@
 #include:zref-hyperref
 #ifOption:titleref
 #include:zref-titleref
+#endif
+#ifOption:vario
+#include:zref-vario
 #endif
 #ifOption:check
 #include:zref-check
@@ -38,7 +41,9 @@ typesort={%<type list%>}
 notypesort
 comp#true,false
 nocomp
+endrange=#ref,stripprefix,pagecomp,pagecomp2
 range#true,false
+rangetopair#true,false
 cap#true,false
 nocap
 capfirst
@@ -58,6 +63,7 @@ sg
 g=
 font=%<cmds%>
 titleref
+vario
 note=%<text%>
 check={%<checks%>}
 countertype={%<<counter>%> = %<<type> list%>}
@@ -114,6 +120,8 @@ namefont=
 reffont=
 cap#true,false
 abbrev#true,false
+endrange=#ref,stripprefix,pagecomp,pagecomp2
+rangetopair#true,false
 #endkeyvals
 
 \zcDeclareLanguage{language}
