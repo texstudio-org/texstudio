@@ -1,5 +1,5 @@
-# autopuncitem package
-# Matthew Bertucci 12/24/2021
+# autopuncitems package
+# Matthew Bertucci 2022-02-09 for release 2022-01-30
 
 #include:enumitem
 #include:etoolbox
@@ -18,6 +18,8 @@ noenumitem
 \setAPlast{punct}
 \enableAPautopassnest
 \disableAPautopassnest
+\enableAPprotectnest
+\disableAPprotectnest
 
 #keyvals:\setlist,\SetEnumitemKey,\begin{enumerate}#c,\begin{itemize}#c,\begin{description}#c,\begin{enumerate*}#c,\begin{itemize*}#c,\begin{description*}#c
 autopunc
@@ -25,8 +27,8 @@ autopuncO
 autopuncE
 #endkeyvals
 
-\begin{AutoPuncItems}#*
-\end{AutoPuncItems}#*
+\begin{AutoPuncItems}
+\end{AutoPuncItems}
 \begin{AutoPuncItemsO}#*
 \end{AutoPuncItemsO}#*
 \begin{AutoPuncItemsE}#*
