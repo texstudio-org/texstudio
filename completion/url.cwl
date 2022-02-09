@@ -13,7 +13,13 @@ allowmove
 \path{URL}#U
 \urldef{cmd}#*d
 \DeclareUrlCommand{cmd}{definition}#*d
-\urlstyle{style}#*
+\urlstyle{style%keyvals}#*
+#keyvals:\urlstyle#c
+tt
+rm
+sf
+same
+#endkeyvals
 \UrlBreaks#*
 \UrlBigBreaks#*
 \UrlNoBreaks#*
