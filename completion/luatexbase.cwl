@@ -10,21 +10,22 @@
 \CatcodeTableLaTeXAtLetter#*
 \CatcodeTableOther#*
 \CatcodeTableExpl#*
-\SetCatcodeRange#*
-\BeginCatcodeRegime{catcode table}#*
+\SetCatcodeRange{start}{end}{catcode}#*
+\BeginCatcodeRegime %<<catcode table>%>#*
 \EndCatcodeRegime#*
 \PushCatcodeTableNumStack#*
 \PopCatcodeTableNumStack#*
-\newluatexcatcodetable#*
+\newluatexcatcodetable{catcodetable%cmd}#*d
 \setluatexcatcodetable#*
 \RequireLuaModule{file}#*
 \RequireLuaModule{file}[info]#*
-\newluatexattribute#*
-\setluatexattribute#*
-\unsetluatexattribute#*
-\luatexattributedef#*
-\luatexcatcodetable#*
-\luatexluaescapestring#*
-\luatexlatelua#*
-\luatexoutputbox#*
+\newluatexattribute%<<16-bit number>%>=%<32-bit number>%>#*
+\setluatexattribute{attribute}{value}#*
+\unsetluatexattribute{attribute}#*
+\luatexattributedef%<\csname%>=%<<16-bit number>%>#*
+\luatexattributedef{cmd}#Sd
+\luatexcatcodetable%<<15-bit number>%>#*
+\luatexluaescapestring{TeX code}#*
+\luatexlatelua{lua code}#*
+\luatexoutputbox = %<<integer>%>#*
 \luatexscantextokens#*
