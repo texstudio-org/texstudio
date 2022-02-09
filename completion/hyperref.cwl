@@ -45,6 +45,9 @@
 #ifOption:colorlinks
 #include:color
 #endif
+#ifOption:colorlinks=true
+#include:color
+#endif
 
 \hypersetup{keyvals}
 #keyvals:\hypersetup,\usepackage/hyperref#c
