@@ -1,12 +1,16 @@
 # wrapfig2 package
-# Matthew Bertucci 1/9/2021 for v4.0.1
+# Matthew Bertucci 2/8/2022 for v5.0.7
 
-#include:etoolbox
-#include:xfp
 #include:xparse
+#include:xfp
+#include:etoolbox
+#include:float
+#include:xcolor
+#include:curve2e
 
 #keyvals:\usepackage/wrapfig2#c
 verbose
+WFold
 #endkeyvals
 
 \begin{wrapfigure}{position%keyvals}
@@ -19,9 +23,9 @@ verbose
 \begin{wraptable}[lines]{position%keyvals}[overhang]{width}
 \end{wraptable}
 
-\begin{wraptext}
-\begin{wraptext}[position]
-\begin{wraptext}[%<position%>]|%<width%>|<%<line corr%>>(%<caption label%>)
+\begin{wraptext}{position%keyvals}
+\begin{wraptext}{position%keyvals}{width}
+\begin{wraptext}[lines]{position%keyvals}[overhang]{width}
 \end{wraptext}
 
 \begin{wrapfloat}{object}{position%keyvals}
@@ -40,8 +44,38 @@ I
 O
 #endkeyvals
 
+\SetWFbgd{color}
+\SetWFfrm{color}
+\SetWFtxt{color}
+
+\includeframedtext{text}
+\includeframedtext[width]{text}
+\includeframedtext[width]{text}[settings][radius%l]
+
+\framedbox{text}{frame thickness%l}{frame sep%l}
+\framedbox{text}{frame thickness%l}{frame sep%l}[corner radius%l]
+
 \wrapoverhang#*
 \insertwidth#*
+\WFinsertwidthL#*
+\WFinsertwidthH#*
+\WFscalefactor#*
+\WFscalewidth#*
 \WFclear#*
 \textcorrection#*
 \textplacement#*
+\textoverhang#*
+
+\x#S
+\xc#S
+\WFXds#S
+\WFYuo#S
+\PSEl#S
+\PNEl#S
+\PSWu#S
+\WFrectangle#S
+\CurveStar#S
+
+WFbackground#B
+WFframe#B
+WFtext#B

@@ -1,5 +1,5 @@
 # XCharter package
-# Matthew Bertucci 9/7/2021 for v1.222
+# Matthew Bertucci 2/7/2022 for v1.225
 
 #include:fontenc
 #include:fontaxes
@@ -29,10 +29,12 @@ serbianc
 #endkeyvals
 
 \defigures
+\destyle#*
 \infigures
 \lfstyle
 \osfstyle
 \nufigures
+\nustyle#*
 \sufigures
 \textde{text}#*
 \textdenominator{text}

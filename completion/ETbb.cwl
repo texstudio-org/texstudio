@@ -1,5 +1,5 @@
 # ETbb package
-# Matthew Bertucci 9/30/2021 for v1.053
+# Matthew Bertucci 2/7/2022 for v1.056
 
 #include:fontenc
 #include:textcomp
@@ -48,6 +48,7 @@ scosf
 \texttosf{text}
 \sufigures
 \supfigures#*
+\nustyle#*
 \textsu{text}
 \textsup{text}#*
 \textsuperior{text}#*
@@ -59,6 +60,7 @@ scosf
 \textinf{text}#*
 \textinferior{text}#*
 \defigures
+\destyle#*
 \denomfigures#*
 \textde{text}
 \textdenom{text}#*

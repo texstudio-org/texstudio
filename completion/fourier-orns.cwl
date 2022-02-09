@@ -1,5 +1,11 @@
 # fourier-orns package
-# Matthew Bertucci 6/21/2021
+# Matthew Bertucci 2/8/2022 for v2.3
+
+#include:iftex
+
+#keyvals:\usepackage/fourier-orns#c
+noOTF
+#endkeyvals
 
 \eurologo
 \noway
@@ -39,5 +45,5 @@
 \lefthand
 \righthand
 
-\TakeFourierOrnament{number}#*
 \FourierOrns#*
+\texorpdfstring{TeX string}{PDF string}#*

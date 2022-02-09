@@ -1,7 +1,18 @@
 # datenumber package
-# Matthew Bertucci 10/5/2021 for v0.02
+# Matthew Bertucci 2/7/2022 for v0.03
+
+#keyvals:\usepackage/datenumber#c
+english
+USenglish
+french
+italian
+spanish
+german
+ngerman
+#endkeyvals
 
 \setstartyear{year}
+\thestartyear
 \thedatenumber
 \thedateyear
 \thedatemonth
@@ -36,3 +47,6 @@ ngerman
 
 \ifleapyear{year}
 \ifvaliddate{year}{month}{day}
+
+\fileversion#S
+\filedate#S

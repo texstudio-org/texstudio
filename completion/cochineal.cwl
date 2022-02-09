@@ -1,5 +1,5 @@
 # cochineal package
-# Matthew Bertucci 11/16/2021 for v1.07
+# Matthew Bertucci 2/7/2022 for v1.076
 
 #include:fontenc
 #include:ifxetex
@@ -48,9 +48,11 @@ aftsolidus=##L
 \cochTLF#*
 \cochTOsF#*
 \defigures
+\destyle#*
 \infigures
 \lfstyle
 \liningnums{text}
+\nustyle#*
 \osfstyle
 \proportionalnums{text}
 \Qnoswash#*
