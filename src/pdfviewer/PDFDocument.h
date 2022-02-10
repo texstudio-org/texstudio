@@ -61,8 +61,15 @@ class PDFAnnotation;
 class PDFAnnotationTableView;
 class MessageFrame;
 
+class PDFDraggableTool : public QLabel
+{
+public:
+	PDFDraggableTool(QWidget* parent): QLabel(parent) {}
+	virtual void reshape() = 0;
+	void drawCircleGradient(QPainter& painter, const QRect& outline, QColor color, int padding);
+};
 
-class PDFMagnifier : public QLabel
+class PDFMagnifier : public PDFDraggableTool
 {
 	Q_OBJECT
 
@@ -95,6 +102,17 @@ private:
 	QSize	imageSize;
 	qreal	imageDpi;
 	int imagePage;
+};
+
+class PDFLaserPointer : public PDFDraggableTool {
+	Q_OBJECT
+
+public:
+	PDFLaserPointer(QWidget *parent);
+	void reshape();
+protected:
+	virtual void paintEvent(QPaintEvent *event);
+
 };
 
 #ifdef PHONON
@@ -149,7 +167,7 @@ public:
 	void saveState(); // used when toggling full screen mode
 	void restoreState();
 	void setResolution(int res);
-	void resetMagnifier();
+	void resetDraggableTools();
 	Q_INVOKABLE int normalizedPageIndex(int pageIndex);
 	Q_INVOKABLE void goToPageDirect(int pageIndex, bool sync);
     Q_INVOKABLE void setHighlightPath(const int pageIndex, const QPainterPath &path, const bool dontRemove=false);
@@ -264,6 +282,8 @@ private:
 	void updateCursor(const QPoint &pos);
 	QRect mapPopplerRectToWidget(QRectF rect, const QSizeF &pageSize) const;
 	void useMagnifier(const QMouseEvent *inEvent);
+	void useLaserPointer(const QMouseEvent *inEvent);
+	void useDraggableTool(PDFDraggableTool* tool, const QMouseEvent *inEvent);
 	void goToDestination(const Poppler::LinkDestination &dest);
 	void doLink(const QSharedPointer<Poppler::Link> link);
 	void annotationClicked(QSharedPointer<Poppler::Annotation> annotation, int page);
@@ -305,6 +325,7 @@ private:
 	int	imagePage;
 
 	PDFMagnifier	*magnifier;
+	PDFLaserPointer	*laserPointer;
 #ifdef PHONON
 	PDFMovie	*movie;
 #endif
@@ -387,7 +408,6 @@ public:
 	void showScale(qreal scale);
 	Q_INVOKABLE void showPage(int page);
 	Q_INVOKABLE void setResolution(int res);
-	void resetMagnifier();
 	Q_INVOKABLE void goToDestination(const QString &destName);
 	Q_INVOKABLE void goToPage(const int page);
 	Q_INVOKABLE void focus();

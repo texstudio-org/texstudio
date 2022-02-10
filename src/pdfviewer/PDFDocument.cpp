@@ -66,6 +66,7 @@ const int kScroll = 2;
 const int kSelectText = 3;
 const int kSelectImage = 4;
 const int kPresentation = 5; //left-click: next, rclick: prev (for these presentation/mouse-pointer)
+const int kLaserPointer = 6;
 
 static PDFDocumentConfig *globalConfig = nullptr;
 bool PDFDocument::isCompiling = false;
@@ -253,7 +254,7 @@ void stackWindowsInRect(const QWidgetList &windows, const QRect &bounds)
 const int kMagFactor = 2;
 
 PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
-	: QLabel(parent)
+    : PDFDraggableTool(parent)
 	, oldshape(-2)
 	, page(-1)
 	, overScale(1)
@@ -342,6 +343,17 @@ void PDFMagnifier::setImage(const QPixmap &img, int pageNr)
 	update();
 }
 
+void PDFDraggableTool::drawCircleGradient(QPainter& painter, const QRect& outline, QColor color, int padding)
+{
+	QRadialGradient gradient(outline.center(), outline.width() / 2.0 , outline.center());
+	color.setAlpha(0);
+	gradient.setColorAt(1.0, color);
+	color.setAlpha(64);
+	gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
+
+	painter.fillRect(outline, gradient);
+}
+
 void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
@@ -350,21 +362,14 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	int side = qMin(width(), height()) ;
 	QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 
-    if(globalConfig->magnifierShape==PDFDocumentConfig::CircleWithShadow){
-	    // circular magnifier, add transparent shadow
-	    const int padding=10;
+	if(globalConfig->magnifierShape==PDFDocumentConfig::CircleWithShadow){
+		// circular magnifier, add transparent shadow
+		const int padding=10;
+		drawCircleGradient(painter, outline, QColor(Qt::black), padding);
 
-	    QRadialGradient gradient(outline.center(), outline.width() / 2.0 , outline.center());
-	    QColor color(Qt::black);
-	    color.setAlpha(0);
-	    gradient.setColorAt(1.0, color);
-	    color.setAlpha(64);
-	    gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
-
-	    painter.fillRect(outline, gradient);
-	    outline.adjust(padding,padding,-padding,-padding);
-	    QRegion maskedRegion(outline, QRegion::Ellipse);
-	    painter.setClipRegion(maskedRegion);
+		outline.adjust(padding,padding,-padding,-padding);
+		QRegion maskedRegion(outline, QRegion::Ellipse);
+		painter.setClipRegion(maskedRegion);
 	}
 
 	// draw highlight if necessary
@@ -424,6 +429,31 @@ QPixmap &PDFMagnifier::getConvertedImage()
 	}
 	convertedImage = convertImage(image, globalConfig->invertColors, globalConfig->grayscale);
 	return convertedImage;
+}
+
+
+PDFLaserPointer::PDFLaserPointer(QWidget *parent)
+    : PDFDraggableTool(parent)
+{
+}
+
+void PDFLaserPointer::reshape()
+{
+	int side = qMin(width(), height());
+	QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
+	setMask(maskedRegion);
+}
+
+void PDFLaserPointer::paintEvent(QPaintEvent *event)
+{
+	QPainter painter(this);
+	drawFrame(&painter);
+	qreal overScale = this->devicePixelRatio();
+	QRect tmpRect(event->rect().x()*overScale, event->rect().y()*overScale, event->rect().width()*overScale, event->rect().height()*overScale);
+	int side = qMin(width(), height()) ;
+	QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
+
+	drawCircleGradient(painter, outline, QColor(globalConfig ? globalConfig->laserPointerColor : "#ff0000"), 5);
 }
 
 #ifdef PHONON
@@ -532,6 +562,7 @@ PDFWidget::PDFWidget(bool embedded)
 	, imageDpi(0)
 	, imagePage(-1)
     , magnifier(nullptr)
+    , laserPointer(nullptr)
 	, currentTool(kNone)
 	, usingTool(kNone)
 	, singlePageStep(true)
@@ -844,13 +875,23 @@ void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
 	if (!magnifier) magnifier = new PDFMagnifier(this, dpi);
 	magnifier->setFixedSize(globalConfig->magnifierSize * 4 / 3, globalConfig->magnifierSize);
 	magnifier->setPage(page, scaleFactor, pageRect(page));
-	magnifier->reshape();
+	useDraggableTool(magnifier, inEvent);
+	usingTool = kMagnifier;
+}
+void PDFWidget::useLaserPointer(const QMouseEvent *inEvent)
+{
+	if (!laserPointer) laserPointer = new PDFLaserPointer(this);
+	laserPointer->setFixedSize(globalConfig->laserPointerSize * 4 / 3, globalConfig->laserPointerSize);
+	useDraggableTool(laserPointer, inEvent);
+	usingTool = kLaserPointer;
+}
+void PDFWidget::useDraggableTool(PDFDraggableTool* tool, const QMouseEvent *inEvent){
+	tool->reshape();
 	// this was in the hope that if the mouse is released before the image is ready,
 	// the magnifier wouldn't actually get shown. but it doesn't seem to work that way -
 	// the MouseMove event that we're posting must end up ahead of the mouseUp
 	QMouseEvent *event = new QMouseEvent(QEvent::MouseMove, inEvent->pos(), inEvent->globalPos(), inEvent->button(), inEvent->buttons(), inEvent->modifiers());
 	QCoreApplication::postEvent(this, event);
-	usingTool = kMagnifier;
 }
 
 // Mouse control for the various tools:
@@ -884,6 +925,12 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	switch (event->button()) {
 	case Qt::LeftButton:
 		break; // all cases handled below
+	case Qt::MiddleButton:
+		if (currentTool == kPresentation && !(event->modifiers() & (Qt::ShiftModifier | Qt::AltModifier))) {
+			useLaserPointer(event);
+			event->accept();
+		}
+		return;
 	case Qt::XButton1:
 		goBack();
 		return;
@@ -1042,17 +1089,14 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 		if (page > -1 && clickedAnnotation->boundary().contains(scaledPos)) {
 			annotationClicked(clickedAnnotation, page);
 		}
-	} else if (currentTool == kPresentation) {
-        if(usingTool== kMagnifier){
-            usingTool = kNone;
-            magnifier->close();
-        }else{
-            if (event->button() == Qt::LeftButton) goNext();
-            else if (event->button() == Qt::RightButton) goPrev();
-        }
 	} else {
 		switch (usingTool) {
 		case kNone:
+			if (currentTool == kPresentation) {
+				if (event->button() == Qt::LeftButton) goNext();
+				else if (event->button() == Qt::RightButton) goPrev();
+				break;
+			}
 			// Ctrl-click to sync
 			if (mouseDownModifiers & Qt::ControlModifier) {
 				if (event->modifiers() & Qt::ControlModifier)
@@ -1076,6 +1120,10 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			// again
 			usingTool = kNone;
 			magnifier->close();
+			break;
+		case kLaserPointer:
+			usingTool = kNone;
+			laserPointer->close();
 			break;
 		}
 	}
@@ -1207,7 +1255,7 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 {
 	updateCursor(event->pos());
 	switch (usingTool) {
-	case kMagnifier: {
+	case kMagnifier: case kLaserPointer: {
 		QRect viewportClip(mapFromParent(parentWidget()->rect().topLeft()),
 		                   mapFromParent(parentWidget()->rect().bottomRight() - QPoint(1, 1)));
 		QPoint constrainedLoc = event->pos();
@@ -1219,9 +1267,14 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 			constrainedLoc.setY(viewportClip.top());
 		else if (constrainedLoc.y() > viewportClip.bottom())
 			constrainedLoc.setY(viewportClip.bottom());
-		magnifier->move(constrainedLoc.x() - magnifier->width() / 2, constrainedLoc.y() - magnifier->height() / 2);
-		if (magnifier->isHidden()) {
-			magnifier->show();
+		QLabel * draggedTool;
+		if (usingTool == kMagnifier) draggedTool = magnifier;
+		else if (usingTool == kLaserPointer) draggedTool = laserPointer;
+		else break;
+		if (!draggedTool) break;
+		draggedTool->move(constrainedLoc.x() - draggedTool->width() / 2, constrainedLoc.y() - draggedTool->height() / 2);
+		if (draggedTool->isHidden()) {
+			draggedTool->show();
 			setCursor(Qt::BlankCursor);
 		}
 	}
@@ -1299,6 +1352,9 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 	if (usingTool == kMagnifier && magnifier) {
 		magnifier->close();
 		usingTool = kNone;
+	} else if (usingTool == kLaserPointer && laserPointer) {
+		laserPointer->close();
+		usingTool = kNone;
 	}
 
 	if (pdfDoc && pdfDoc->menuShow) {
@@ -1360,6 +1416,8 @@ void PDFWidget::jumpToSource()
 void PDFWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->angleDelta().isNull()) return;
+
+	if (currentTool == kPresentation && usingTool == kLaserPointer) return;
 
     if(event->angleDelta().x()!=0){
         // horizontal scroll
@@ -1609,11 +1667,15 @@ void PDFWidget::adjustSize()
 	}
 }
 
-void PDFWidget::resetMagnifier()
+void PDFWidget::resetDraggableTools()
 {
 	if (magnifier) {
 		delete magnifier;
-        magnifier = nullptr;
+		magnifier = nullptr;
+	}
+	if (laserPointer) {
+		delete laserPointer;
+		laserPointer = nullptr;
 	}
 }
 
@@ -1621,7 +1683,7 @@ void PDFWidget::setResolution(int res)
 {
 	dpi = res;
 	adjustSize();
-	resetMagnifier();
+	resetDraggableTools();
 }
 
 void PDFWidget::setHighlightPath(const int page, const QPainterPath &path, const bool dontRemove)
@@ -4030,11 +4092,6 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		}
 		if (wasContinuous) actionContinuous->setChecked(true);
 	}
-}
-
-void PDFDocument::resetMagnifier()
-{
-	pdfWidget->resetMagnifier();
 }
 
 void PDFDocument::zoomFromAction()

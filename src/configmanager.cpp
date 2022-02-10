@@ -759,6 +759,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("Preview/Magnifier Shape", reinterpret_cast<int *>(&pdfDocumentConfig->magnifierShape), static_cast<int>(PDFDocumentConfig::CircleWithShadow), &pseudoDialog->comboBoxPreviewMagnifierShape);
 	registerOption("Preview/Magnifier Border", &pdfDocumentConfig->magnifierBorder, false, &pseudoDialog->checkBoxPreviewMagnifierBorder);
 
+	registerOption("Preview/Laser Pointer Size", &pdfDocumentConfig->laserPointerSize, 25, &pseudoDialog->spinBoxPreviewLaserPointerSize);
+	registerOption("Preview/Laser Pointer Color", &pdfDocumentConfig->laserPointerColor, "#FF0000", &pseudoDialog->lineEditLaserPointerColor);
+
 	registerOption("Preview/PaperColor", &pdfDocumentConfig->paperColor, "#FFFFFF", &pseudoDialog->lineEditPaperColor);
 	registerOption("Preview/HighlightColor", &pdfDocumentConfig->highlightColor, "#FFFF003F", &pseudoDialog->lineEditHighlightColor);
 	registerOption("Preview/HighlightDuration", &pdfDocumentConfig->highlightDuration, 2000, &pseudoDialog->spinBoxHighlightDuration);

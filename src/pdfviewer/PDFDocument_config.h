@@ -2,6 +2,7 @@
 #define Header_PDF_Document_Config
 
 #include <QByteArray>
+#include <QString>
 struct PDFDocumentConfig {
 	bool autoHideToolbars;
 	int windowLeft, windowTop;
@@ -27,6 +28,9 @@ struct PDFDocumentConfig {
     enum MagnifierShape {Rect,CircleWithShadow,Circle};
     MagnifierShape magnifierShape;
 	bool magnifierBorder;
+
+	int laserPointerSize;
+	QString laserPointerColor; // hex rgb
 
 	QString syncFileMask;
 	QString paperColor; // hex rgb
