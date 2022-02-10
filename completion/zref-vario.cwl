@@ -1,5 +1,5 @@
 # zref-vario package
-# Matthew Bertucci 2/7/2022 for v0.1.1-alpha
+# Matthew Bertucci 2/10/2022 for v0.1.2-alpha
 
 #include:varioref
 #include:zref-clever
@@ -68,11 +68,11 @@ font=%<cmds%>
 titleref
 note=%<text%>
 check={%<checks%>}
+vcheck={%<checks%>}
 countertype={%<<counter>%> = %<<type> list%>}
 counterresetters={%<counter list%>}
 counterresetby={%<<counter=encl counter> list%>}
 currentcounter
-check={%<checks%>}
 tpairsep=
 tlistsep=
 tlastsep=
