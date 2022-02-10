@@ -1,5 +1,5 @@
 # zref-check package
-# Matthew Bertucci 12/9/2021 for v0.2.2
+# Matthew Bertucci 2/10/2022 for v0.2.4
 
 #include:zref-user
 #include:zref-abspage
@@ -14,6 +14,7 @@
 thispage
 prevpage
 nextpage
+otherpage
 pagegap
 facing
 above
@@ -50,5 +51,4 @@ hyperref=#auto,true,false
 msglevel=#warn,info,none,infoifdraft,warniffinal
 onpage=#labelseq,msg,labelseqifdraft,msgiffinal
 closerange=%<integer%>
-labelcmd=%<csname%>
 #endkeyvals
