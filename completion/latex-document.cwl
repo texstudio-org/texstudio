@@ -482,7 +482,7 @@
 \thicklines#*/picture
 \thickspace
 \thinlines#*/picture
-\thispagestyle{empty/plain/headings/myheadings}
+\thispagestyle{pagestyle%keyvals}
 \time
 \tiny
 \title{text}
@@ -620,7 +620,7 @@ alph
 Alph
 #endkeyvals
 
-#keyvals:\pagestyle#c
+#keyvals:\pagestyle#c,\thispagestyle#c
 plain
 empty
 headings
