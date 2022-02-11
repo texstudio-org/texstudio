@@ -334,7 +334,7 @@
 \pagebreak[number]
 \pagenumbering{numstyle%keyvals}
 \pageref{label}#r
-\pagestyle{option}
+\pagestyle{pagestyle%keyvals}
 \paragraph*{title}#L5
 \paragraph[short title]{title}#L5
 \paragraphmark{code}
@@ -618,6 +618,13 @@ roman
 Roman
 alph
 Alph
+#endkeyvals
+
+#keyvals:\pagestyle#c
+plain
+empty
+headings
+myheadings
 #endkeyvals
 
 #keyvals:\documentclass/article#c
