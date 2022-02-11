@@ -334,7 +334,7 @@
 \pagebreak[number]
 \pagenumbering{numstyle%keyvals}
 \pageref{label}#r
-\pagestyle{option}
+\pagestyle{pagestyle%keyvals}
 \paragraph*{title}#L5
 \paragraph[short title]{title}#L5
 \paragraphmark{code}
@@ -482,7 +482,7 @@
 \thicklines#*/picture
 \thickspace
 \thinlines#*/picture
-\thispagestyle{empty/plain/headings/myheadings}
+\thispagestyle{pagestyle%keyvals}
 \time
 \tiny
 \title{text}
@@ -618,6 +618,13 @@ roman
 Roman
 alph
 Alph
+#endkeyvals
+
+#keyvals:\pagestyle#c,\thispagestyle#c
+plain
+empty
+headings
+myheadings
 #endkeyvals
 
 #keyvals:\documentclass/article#c

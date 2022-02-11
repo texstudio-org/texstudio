@@ -2,54 +2,69 @@
 # dani/2006-02-18
 # modified Edson 30-12-2010
 # modified T. Hoffmann 15-05-2014
-#modified Matthew Bertucci 7/25/2021
+# modified Matthew Bertucci 2/10/2022 for v4.0.1
 
-\chead[CH-even]{CH-odd}
-\chead{header}
-\cfoot[CF-even]{CF-odd}
-\cfoot{footer}
+#keyvals:\usepackage/fancyhdr#c
+nocheck
+compatV3
+myheadings
+headings
+#endkeyvals
 
-\lhead[LH-even]{LH-odd}
-\lhead{header}
-\lfoot[LF-even]{LF-odd}
-\lfoot{footer}
+\fancyfoot[places]{footer%text}
+\fancyfoot{footer%text}
 
-\rhead[RH-even]{RH-odd}
-\rhead{header}
-\rfoot[RF-even]{RF-odd}
-\rfoot{footer}
+\fancyhead[places]{header%text}
+\fancyhead{header%text}
 
-\fancyfoot[places]{footer}
-\fancyfoot{footer}
-
-\fancyhead[places]{header}
-\fancyhead{header}
-
-\fancyhf[places]{output}
-\fancyhf{header}
+\fancyhf[places]{output%text}
+\fancyhf{output%text}
 
 \fancyfootoffset[places]{length}
+\fancyfootoffset{length}
 \fancyheadoffset[places]{length}
+\fancyheadoffset{length}
 \fancyhfoffset[places]{length}
+\fancyhfoffset{length}
 
-\fancypagestyle{name}[base style]{definitions}
+\fancypagestyle{style name}[base style]{definitions%text}
+\fancypagestyle{style name}{definitions%text}#s#%fancypagestyle
 
-\iftopfloat{float page}{other}
-\ifbotfloat{float page}{other}
-\iffloatpage{float page}{other}
-\iffootnote{float page}{other}
+#keyvals:\pagestyle#c,\thispagestyle#c
+%fancypagestyle
+#endkeyvals
+
+\iftopfloat{float page%text}{other%text}
+\ifbotfloat{float page%text}{other%text}
+\iffloatpage{float page%text}{other%text}
+\iffootnote{float page%text}{other%text}
 
 \headrulewidth
 \footrulewidth
 \headruleskip
 \footruleskip
-\headwidth
-\thepage
 \headrule
 \footrule
+\headwidth
 
 \fancyheadinit{code}
 \fancyfootinit{code}
 \fancyhfinit{code}
 
-\fancycenter[distance][stretch]{left-mark}{center-mark}{right-mark}
+\fancycenter[distance%l][stretch]{left-mark%text}{center-mark%text}{right-mark%text}
+\fancycenter[distance%l]{left-mark%text}{center-mark%text}{right-mark%text}
+\fancycenter{left-mark%text}{center-mark%text}{right-mark%text}
+
+# deprecated
+\chead[CH-even%text]{CH-odd%text}#*
+\chead{header%text}#*
+\cfoot[CF-even%text]{CF-odd%text}#*
+\cfoot{footer%text}#*
+\lhead[LH-even%text]{LH-odd%text}#*
+\lhead{header%text}#*
+\lfoot[LF-even%text]{LF-odd%text}#*
+\lfoot{footer%text}#*
+\rhead[RH-even%text]{RH-odd%text}#*
+\rhead{header%text}#*
+\rfoot[RF-even%text]{RF-odd%text}#*
+\rfoot{footer%text}#*

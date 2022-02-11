@@ -1,5 +1,5 @@
 # spbmark package
-# Matthew Bertucci 12/18/2021 for v1.31
+# Matthew Bertucci 2/10/2022 for v1.35
 
 #include:xparse
 #include:l3keys2e
@@ -34,6 +34,7 @@ all
 
 \defspbstyle{style name}{keyvals}
 \spbifmath{math code%formula}{text code}
+\spbshortkv{short opt}{keyval%keyvals}#s#%spbshortkv
 
 #ifOption:math
 \sp{content}
@@ -117,7 +118,7 @@ all
 
 \spbset{options%keyvals}
 
-#keyvals:\spbset,\super,\sub,\supersub,\sp,\sb,\textsuperscript,\textsubscript
+#keyvals:\spbset,\super,\sub,\supersub,\sp,\sb,\textsuperscript,\textsubscript,\spbshortkv
 vmove=##L
 hmove=##L
 cmd={%<format cmds%>}
@@ -128,7 +129,11 @@ style=%<style name%>
 mode=#text,math,match
 #endkeyvals
 
-#keyvals:\spbset
+#keyvals:\spbset,\super,\sub,\supersub,\sp,\sb,\textsuperscript,\textsubscript
+%spbshortkv
+#endkeyvals
+
+#keyvals:\spbset,\spbshortkv
 spvmove=##L
 sphmove=##L
 sbvmove=##L
@@ -148,9 +153,4 @@ spbcmd={%<super cmds,sub cmds%>}
 spbcmd+={%<super cmds,sub cmds%>}
 spbheight=##L
 spbdepth=##L
-#endkeyvals
-
-#keyvals:\spbset,\supersub,\spb
-vsep=##L
-halign=#l,c,r
 #endkeyvals

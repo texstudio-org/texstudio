@@ -1,9 +1,24 @@
 # fourier-otf package
-# Matthew Bertucci 9/30/2021 for v0.47
+# Matthew Bertucci 2/10/2022 for v0.50
 
 #include:iftex
 #include:fourier-orns
 #include:unicode-math
+#include:xkeyval
+
+#keyvals:\usepackage/fourier-otf#c
+no-text
+tight
+loose
+math-style=#ISO,TeX,french,upright
+bold-style=#ISO,TeX,upright
+nabla=#italic,upright
+partial=#italic,upright
+CharacterVariant=
+StylisticSet=#3,4,5,6,7
+Style=#upint,leqslant,smaller,subsetneq,parallelslant
+Scale=%<factor%>
+#endkeyvals
 
 \acwopencirclearrow#m
 \adots#m
@@ -823,6 +838,12 @@
 \varlrtriangle#m
 \varointclockwise#m
 \varspadesuit#m
+\varsymbfscrE#*m
+\varsymbfscrQ#*m
+\varsymbfscrT#*m
+\varsymscrE#*m
+\varsymscrQ#*m
+\varsymscrT#*m
 \vbraceextender#*m
 \VDash#m
 \vectimes#m
@@ -845,3 +866,8 @@
 \xswordsdown#m
 \xswordsup#m
 \Zbar#m
+
+\FOTtoksT#*
+\FOTtoksM#*
+\fileversion#S
+\filedate#S

@@ -11,10 +11,14 @@ extramarks
 nopatches
 #endkeyvals
 
-\newpagestyle{name}{commands}
+\newpagestyle{name}{commands}#s#%titlepspagestyle
 \newpagestyle{name}[global-style]{commands}
 \renewpagestyle{name}{commands}
 \renewpagestyle{name}[global-style]{commands}
+
+#keyvals:\pagestyle#c
+%titlepspagestyle
+#endkeyvals
 
 \sethead{odd-left}{odd-center}{odd-right}
 \sethead[even-left][even-center][even-right]{odd-left}{odd-center}{odd-right}

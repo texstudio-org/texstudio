@@ -1,6 +1,18 @@
 # a0poster class
 # Matthew Bertucci 11/14/2021 for v1.22b
 
+#keyvals:\documentclass/a0poster#c
+landscape
+portrait
+a0b
+a0
+a1
+a2
+a3
+posterdraft
+final
+#endkeyvals
+
 \ifportrait#*
 \portraittrue#*
 \portraitfalse#*
