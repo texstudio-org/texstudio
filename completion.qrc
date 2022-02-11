@@ -340,6 +340,7 @@
 <file>completion/changepage.cwl</file>
 <file>completion/changes.cwl</file>
 <file>completion/chappg.cwl</file>
+<file>completion/chapterfolder.cwl</file>
 <file>completion/CharisSIL.cwl</file>
 <file>completion/chemarr.cwl</file>
 <file>completion/chemfig.cwl</file>
@@ -517,6 +518,7 @@
 <file>completion/courierten.cwl</file>
 <file>completion/covington.cwl</file>
 <file>completion/cprotect.cwl</file>
+<file>completion/cpssp.cwl</file>
 <file>completion/cquthesis.cwl</file>
 <file>completion/crbox.cwl</file>
 <file>completion/crefthe.cwl</file>
@@ -1018,6 +1020,7 @@
 <file>completion/inline-images.cwl</file>
 <file>completion/innerscript.cwl</file>
 <file>completion/inputenc.cwl</file>
+<file>completion/inputnormalization.cwl</file>
 <file>completion/InriaSans.cwl</file>
 <file>completion/InriaSerif.cwl</file>
 <file>completion/insdljs.cwl</file>
@@ -1030,6 +1033,7 @@
 <file>completion/interval.cwl</file>
 <file>completion/intopdf.cwl</file>
 <file>completion/inversepath.cwl</file>
+<file>completion/invoice2.cwl</file>
 <file>completion/ionumbers.cwl</file>
 <file>completion/isodate.cwl</file>
 <file>completion/isomath.cwl</file>
@@ -1159,14 +1163,17 @@
 <file>completion/ltxdockit.cwl</file>
 <file>completion/ltxnew.cwl</file>
 <file>completion/ltxtable.cwl</file>
+<file>completion/luabibentry.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
 <file>completion/luacode.cwl</file>
 <file>completion/luacolor.cwl</file>
 <file>completion/luahyphenrules.cwl</file>
 <file>completion/luaimageembed.cwl</file>
+<file>completion/luaindex.cwl</file>
 <file>completion/luakeys.cwl</file>
 <file>completion/luakeys-debug.cwl</file>
 <file>completion/lualatex-truncate.cwl</file>
+<file>completion/luamesh.cwl</file>
 <file>completion/luapackageloader.cwl</file>
 <file>completion/luaprogtable.cwl</file>
 <file>completion/luarandom.cwl</file>
@@ -1376,6 +1383,8 @@
 <file>completion/nimsticks.cwl</file>
 <file>completion/ninecolors.cwl</file>
 <file>completion/nl-interval.cwl</file>
+<file>completion/nodetree.cwl</file>
+<file>completion/nodetree-embed.cwl</file>
 <file>completion/noindentafter.cwl</file>
 <file>completion/noitcrul.cwl</file>
 <file>completion/nolbreaks.cwl</file>
@@ -1505,8 +1514,11 @@
 <file>completion/phaistos.cwl</file>
 <file>completion/phfcc.cwl</file>
 <file>completion/phffullpagefigure.cwl</file>
+<file>completion/phfnote.cwl</file>
+<file>completion/phfparen.cwl</file>
 <file>completion/phfqit.cwl</file>
 <file>completion/phfquotetext.cwl</file>
+<file>completion/phfsvnwatermark.cwl</file>
 <file>completion/phfthm.cwl</file>
 <file>completion/phonenumbers.cwl</file>
 <file>completion/phonrule.cwl</file>
@@ -1843,6 +1855,7 @@
 <file>completion/svgcolor.cwl</file>
 <file>completion/svg.cwl</file>
 <file>completion/svg-extract.cwl</file>
+<file>completion/svn.cwl</file>
 <file>completion/svninfo.cwl</file>
 <file>completion/svn-multi.cwl</file>
 <file>completion/svn-prov.cwl</file>
@@ -2066,6 +2079,7 @@
 <file>completion/typogrid.cwl</file>
 <file>completion/uarial.cwl</file>
 <file>completion/uassign.cwl</file>
+<file>completion/ucharcat.cwl</file>
 <file>completion/ucs.cwl</file>
 <file>completion/ucshyper.cwl</file>
 <file>completion/ucsutils.cwl</file>
