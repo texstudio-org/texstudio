@@ -130,15 +130,15 @@ titlehead
 \cleardoubleemptypage
 \cleardoubleevenemptypage
 \cleardoubleevenpage
-\cleardoubleevenpageusingstyle{page style%keyvals}
+\cleardoubleevenpageusingstyle{pagestyle%keyvals}
 \cleardoubleevenplainpage
 \cleardoubleevenstandardpage
 \cleardoubleoddemptypage
 \cleardoubleoddpage
-\cleardoubleoddpageusingstyle{page style%keyvals}
+\cleardoubleoddpageusingstyle{pagestyle%keyvals}
 \cleardoubleoddplainpage
 \cleardoubleoddstandardpage
-\cleardoublepageusingstyle{page style%keyvals}
+\cleardoublepageusingstyle{pagestyle%keyvals}
 \cleardoubleplainpage
 \cleardoublestandardpage
 \coverpagebottommargin#*
