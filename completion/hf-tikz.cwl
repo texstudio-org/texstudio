@@ -2,8 +2,18 @@
 # Matthew Bertucci 10/24/2021 for v0.3a
 
 #include:tikz
+# loads shadings tikzlibrary
 #include:xparse
 #include:etoolbox
+
+#keyvals:\usepackage/hf-tikz#c
+nofill
+customcolors
+shade
+beamer
+norndcorners
+markings
+#endkeyvals
 
 \tikzmarkin{marker-id}
 \tikzmarkin{marker-id}(x1,y1)(x2,y2)
@@ -29,6 +39,7 @@ disable rounded corners#true,false
 
 #ifOption:beamer
 \tikzmarkin<%<overlay specs%>>{%<marker-id%>}
+\thejumping#*
 #endif
 
 #ifOption:customcolors
@@ -48,8 +59,20 @@ show markers
 marker size=##L
 marker color=#%color
 #endkeyvals
+\ifshowmarkers#*
+\showmarkerstrue#*
+\showmarkersfalse#*
 #endif
 
 #keyvals:\tikzset#c
 offset definition/.style={%<style specs%>}
 #endkeyvals
+
+fancybrown#B
+fancyviolet#B
+\fcol#*
+\bcol#*
+\savepointas{name}{point}#*
+\oldsavepointas{name}{point}#S
+\pgfsyspdfmark{arg1}{arg2}{arg3}#*
+\oldpgfsyspdfmark{arg1}{arg2}{arg3}#S
