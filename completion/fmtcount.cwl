@@ -8,6 +8,7 @@
 #include:amsgen
 
 #keyvals:\usepackage/fmtcount#c
+%<dialect%>
 raise
 level
 #endkeyvals
