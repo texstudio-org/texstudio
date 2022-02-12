@@ -61,15 +61,15 @@ footnotes=#multiple,nomultiple
 \cleardoubleemptypage
 \cleardoubleevenemptypage
 \cleardoubleevenpage
-\cleardoubleevenpageusingstyle{page style%keyvals}
+\cleardoubleevenpageusingstyle{pagestyle%keyvals}
 \cleardoubleevenplainpage
 \cleardoubleevenstandardpage
 \cleardoubleoddemptypage
 \cleardoubleoddpage
-\cleardoubleoddpageusingstyle{page style%keyvals}
+\cleardoubleoddpageusingstyle{pagestyle%keyvals}
 \cleardoubleoddplainpage
 \cleardoubleoddstandardpage
-\cleardoublepageusingstyle{page style%keyvals}
+\cleardoublepageusingstyle{pagestyle%keyvals}
 \cleardoubleplainpage
 \cleardoublestandardpage
 \closing{concluding text%text}
@@ -126,7 +126,6 @@ footnotes=#multiple,nomultiple
 \newplength{name}#*
 \opening{salutation%text}
 \pagename#*
-\pagestyle{page style%keyvals}
 \phonename#*
 \pnumfont#*
 \ps
@@ -159,7 +158,6 @@ footnotes=#multiple,nomultiple
 \subjectname#*
 \thefootnotemark#*
 \thisletter#*
-\thispagestyle{page style%keyvals}
 \thispagewasoddfalse#*
 \thispagewasoddtrue#*
 \usekomavar*[command]{name%keyvals}
@@ -351,7 +349,7 @@ UScommercial9
 UScommercial9DW
 #endkeyvals
 
-#keyvals:\pagestyle#c,\thispagestyle#c,\cleardoublepageusingstyle#c,\cleardoubleoddpageusingstyle#c,\cleardoubleevenpageusingstyle#c
+#keyvals:\cleardoublepageusingstyle#c,\cleardoubleoddpageusingstyle#c,\cleardoubleevenpageusingstyle#c
 empty
 headings
 myheadings
