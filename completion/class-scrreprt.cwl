@@ -128,7 +128,6 @@ titlehead
 \begin{captionofbeside}{float type}{caption text%text}
 \begin{labeling}[delimiter]{widest pattern}
 \begin{labeling}{widest pattern}
-\bibindent#*
 \bibpreamble#*
 \BreakBibliography{interruption code}#*
 \capfont#*
@@ -163,15 +162,15 @@ titlehead
 \cleardoubleemptypage
 \cleardoubleevenemptypage
 \cleardoubleevenpage
-\cleardoubleevenpageusingstyle{page style%keyvals}
+\cleardoubleevenpageusingstyle{pagestyle%keyvals}
 \cleardoubleevenplainpage
 \cleardoubleevenstandardpage
 \cleardoubleoddemptypage
 \cleardoubleoddpage
-\cleardoubleoddpageusingstyle{page style%keyvals}
+\cleardoubleoddpageusingstyle{pagestyle%keyvals}
 \cleardoubleoddplainpage
 \cleardoubleoddstandardpage
-\cleardoublepageusingstyle{page style%keyvals}
+\cleardoublepageusingstyle{pagestyle%keyvals}
 \cleardoubleplainpage
 \cleardoublestandardpage
 \coverpagebottommargin#*
@@ -226,7 +225,6 @@ titlehead
 \KOMAClassFileName#*
 \KOMAClassName#*
 \labelinglabel{arg}#*
-\labelitemfont#*
 \listoftocname#*
 \lowertitleback{titlebackfoot%text}
 \mainmatter
@@ -241,8 +239,6 @@ titlehead
 \onelinecaptionsfalse#*
 \onelinecaptionstrue#*
 \pagemark#*
-\pagenumbering{numbering style%keyvals}
-\pagestyle{page style%keyvals}
 \paragraphformat#*
 \paragraphnumdepth#*
 \paragraphtocdepth#*
@@ -323,7 +319,6 @@ titlehead
 \subtitle{subtitle%text}
 \tableformat#*
 \thefootnotemark#*
-\thispagestyle{page style%keyvals}
 \thispagewasoddfalse#*
 \thispagewasoddtrue#*
 \titlefont#*
@@ -369,19 +364,11 @@ L
 R
 #endkeyvals
 
-#keyvals:\pagestyle#c,\thispagestyle#c,\cleardoublepageusingstyle#c,\cleardoubleoddpageusingstyle#c,\cleardoubleevenpageusingstyle#c
+#keyvals:\cleardoublepageusingstyle#c,\cleardoubleoddpageusingstyle#c,\cleardoubleevenpageusingstyle#c
 empty
 headings
 myheadings
 plain
-#endkeyvals
-
-#keyvals:\pagenumbering#c
-arabic
-roman
-Roman
-alph
-Alph
 #endkeyvals
 
 #keyvals:\setpartpreamble,\setchapterpreamble
