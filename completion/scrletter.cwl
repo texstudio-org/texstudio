@@ -80,7 +80,6 @@ pagenumber=#bot,foot,botcenter,botcentered,botmittle,footcenter,footcentered,foo
 \newplength{name}#*
 \opening{salutation%text}
 \pagename#*
-\pagestyle{page style%keyvals}
 \phonename#*
 \ps
 \raggedsignature#*
@@ -108,7 +107,6 @@ pagenumber=#bot,foot,botcenter,botcentered,botmittle,footcenter,footcentered,foo
 \stopletter#*
 \subjectname#*
 \thisletter#*
-\thispagestyle{page style%keyvals}
 \usekomavar*[command]{name%keyvals}
 \usekomavar*{name%keyvals}
 \usekomavar[command]{name%keyvals}
@@ -306,9 +304,3 @@ plain.letter
 # deprecated
 \ifkomavar#S
 \ifkomavarempty#S
-
-
-
-
-
-
