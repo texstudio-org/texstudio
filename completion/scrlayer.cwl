@@ -119,8 +119,8 @@ width=##L
 \DestroyLayer{layer name}#*
 \layercontentsmeasure#*
 \LenToUnit{length}#*
-\ForEachLayerOfPageStyle{page style name}{code}#*
-\ForEachLayerOfPageStyle*{page style name}{code}#*
+\ForEachLayerOfPageStyle{pagestyle name}{code}#*
+\ForEachLayerOfPageStyle*{pagestyle name}{code}#*
 \layerrawmode#*
 \layertextmode#*
 \layerpicturemode#*
@@ -130,13 +130,13 @@ width=##L
 \putUR{content}#*
 \putC{content}#*
 
-\DeclarePageStyleByLayers{page style name}{layer list}#*
+\DeclarePageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
 \DeclarePageStyleByLayers[options%keyvals]{page style name}{layer list}#*
-\DeclareNewPageStyleByLayers{page style name}{layer list}#*
+\DeclareNewPageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
 \DeclareNewPageStyleByLayers[options%keyvals]{page style name}{layer list}#*
-\ProvidePageStyleByLayers{page style name}{layer list}#*
+\ProvidePageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
 \ProvidePageStyleByLayers[options%keyvals]{page style name}{layer list}#*
-\RedeclarePageStyleByLayers{page style name}{layer list}#*
+\RedeclarePageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
 \RedeclarePageStyleByLayers[options%keyvals]{page style name}{layer list}#*
 
 #keyvals:\DeclarePageStyleByLayers#c,\DeclareNewPageStyleByLayers#c,\ProvidePageStyleByLayers#c,\RedeclarePageStyleByLayers#c,\ModifyLayerPageStyleOptions#c,\AddToLayerPageStyleOptions#c
@@ -152,27 +152,31 @@ onbackground=%<code%>
 onforeground=%<code%>
 #endkeyvals
 
-\AddLayersToPageStyle{page style name}{layer list}#*
-\AddLayersAtEndOfPageStyle{page style name}{layer list}#*
-\AddLayersAtBeginOfPageStyle{page style name}{layer list}#*
-\RemoveLayersFromPageStyle{page style name}{layer list}#*
-\AddLayersToPageStyleAfterLayer{page style name}{layer list}{ref layer name}#*
-\AddLayersToPageStyleBeforeLayer{page style name}{layer list}{ref layer name}#*
-\UnifyLayersAtPageStyle{page style name}#*
-\ModifyLayerPageStyleOptions{page style name}{options%keyvals}#*
-\AddToLayerPageStyleOptions{page style name}{options%keyvals}#*
-\DeclarePageStyleAlias{alias name}{original name}#*
-\DeclareNewPageStyleAlias{alias name}{original name}#*
-\ProvidePageStyleAlias{alias name}{original name}#*
-\RedeclarePageStyleAlias{alias name}{original name}#*
-\DestroyPageStyleAlias{page style name}#*
-\GetRealPageStyle{page style name}#*
-\IfLayerPageStyleExists{page style name}{then code}{else code}#*
-\IfRealLayerPageStyleExists{page style name}{then code}{else code}#*
-\IfLayerAtPageStyle{page style name}{layer name}{then code}{else code}#*
-\IfSomeLayersAtPageStyle{page style name}{layer list}{then code}{else code}#*
-\IfLayersAtPageStyle{page style name}{layer list}{then code}{else code}#*
-\DestroyRealLayerPageStyle{page style name}#*
+#keyvals:\pagestyle#c,\thispagestyle#c
+%komapagestyle
+#endkeyvals
+
+\AddLayersToPageStyle{pagestyle name}{layer list}#*
+\AddLayersAtEndOfPageStyle{pagestyle name}{layer list}#*
+\AddLayersAtBeginOfPageStyle{pagestyle name}{layer list}#*
+\RemoveLayersFromPageStyle{pagestyle name}{layer list}#*
+\AddLayersToPageStyleAfterLayer{pagestyle name}{layer list}{ref layer name}#*
+\AddLayersToPageStyleBeforeLayer{pagestyle name}{layer list}{ref layer name}#*
+\UnifyLayersAtPageStyle{pagestyle name}#*
+\ModifyLayerPageStyleOptions{pagestyle name}{options%keyvals}#*
+\AddToLayerPageStyleOptions{pagestyle name}{options%keyvals}#*
+\DeclarePageStyleAlias{alias name}{original name}#*s#%komapagestyle
+\DeclareNewPageStyleAlias{alias name}{original name}#*s#%komapagestyle
+\ProvidePageStyleAlias{alias name}{original name}#*s#%komapagestyle
+\RedeclarePageStyleAlias{alias name}{original name}#*s#%komapagestyle
+\DestroyPageStyleAlias{pagestyle name}#*
+\GetRealPageStyle{pagestyle name}#*
+\IfLayerPageStyleExists{pagestyle name}{then code}{else code}#*
+\IfRealLayerPageStyleExists{pagestyle name}{then code}{else code}#*
+\IfLayerAtPageStyle{pagestyle name}{layer name}{then code}{else code}#*
+\IfSomeLayersAtPageStyle{pagestyle name}{layer list}{then code}{else code}#*
+\IfLayersAtPageStyle{pagestyle name}{layer list}{then code}{else code}#*
+\DestroyRealLayerPageStyle{pagestyle name}#*
 \currentpagestyle#*
 \toplevelpagestyle#*
 \iftoplevelpagestyle#*

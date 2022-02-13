@@ -29,7 +29,7 @@ defaultcolors
 8#B
 #endif
 
-\begin{untVisualisation}
+\begin{untVisualisation}#\pictureHighlight
 \begin{untVisualisation}[options%keyvals]
 \end{untVisualisation}
 

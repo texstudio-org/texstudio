@@ -4,7 +4,7 @@
 #include:tikz
 #include:xifthen
 
-\begin{annotationimage}{options%keyvals}{imagefile}#g
+\begin{annotationimage}{options%keyvals}{imagefile}#g\pictureHighlight
 \end{annotationimage}
 
 #keyvals:\begin{annotationimage}

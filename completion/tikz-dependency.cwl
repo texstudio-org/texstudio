@@ -5,7 +5,7 @@
 #include:tikz
 # loads matrix, arrows, backgrounds, calc, patterns, positioning, fit, and shapes tikzlibraries
 
-\begin{dependency}
+\begin{dependency}#\pictureHighlight
 \begin{dependency}[options%keyvals]
 \end{dependency}
 

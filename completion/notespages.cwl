@@ -11,7 +11,7 @@
 \notesfill
 \notesfill[options%keyvals]
 
-#keyvals:\setnotespages,\notespage,\notespages,\notesfill
+#keyvals:\setnotespages,\notespage,\notespages,\notesfill,\usepackage/notespages#c
 allowfloats#true,false
 notesstyle=#plain,lines,vlines,grid,text
 hparts=%<integer%>
@@ -28,7 +28,7 @@ vacant
 default
 #endkeyvals
 
-#keyvals:\setnotespages,\notespage,\notespages,\definenotesoption,\nppatchchapter
+#keyvals:\setnotespages,\notespage,\notespages,\definenotesoption,\nppatchchapter,\usepackage/notespages#c
 startnotes=#newpage,clearpage
 pagestyle=#empty,plain,headings,myheadings,current
 mark=#both,right,left,keep
@@ -36,13 +36,13 @@ marktext={%<text%>}
 markuppercase#true,false
 #endkeyvals
 
-#keyvals:\setnotespages,\notespages,\definenotesoption,\nppatchchapter
+#keyvals:\setnotespages,\notespages,\definenotesoption,\nppatchchapter,\usepackage/notespages#c
 multiple=%<integer%>
 minpages=%<integer%>
 endpages=%<integer%>
 #endkeyvals
 
-#keyvals:\setnotespages,\notesfill,\definenotesoption,\nppatchchapter
+#keyvals:\setnotespages,\notesfill,\definenotesoption,\nppatchchapter,\usepackage/notespages#c
 fillminspace=##L
 fillmaxspace=##L
 filltopskip=##L

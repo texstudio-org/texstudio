@@ -17,11 +17,11 @@ draft
 tooltips
 #endkeyvals
 
-\begin{sseqdata}
+\begin{sseqdata}#\pictureHighlight
 \begin{sseqdata}[options%keyvals]
 \end{sseqdata}
 
-\begin{sseqpage}
+\begin{sseqpage}#\pictureHighlight
 \begin{sseqpage}[options%keyvals]
 \end{sseqpage}
 

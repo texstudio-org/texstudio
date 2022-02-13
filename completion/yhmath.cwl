@@ -1,7 +1,13 @@
 # yhmath package
-# Matthew Bertucci 7/30/2021
+# Matthew Bertucci 7/30/2021 for v1.6
 
 #include:amsmath
+
+#keyvals:\usepackage/yhmath#c
+minimal
+full
+nowidering
+#endkeyvals
 
 \ring{arg}#m
 \adots#m

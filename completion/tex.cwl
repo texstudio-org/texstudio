@@ -68,6 +68,7 @@
 \catcode#*
 \char#*
 \chardef#*
+\chardef{cmd}#Sd
 \cleaders#*
 \closein#*
 \closeout#*

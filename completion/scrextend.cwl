@@ -39,15 +39,15 @@ labelingseparator
 \cleardoubleemptypage
 \cleardoubleevenemptypage
 \cleardoubleevenpage
-\cleardoubleevenpageusingstyle{page style%keyvals}
+\cleardoubleevenpageusingstyle{pagestyle%keyvals}
 \cleardoubleevenplainpage
 \cleardoubleevenstandardpage
 \cleardoubleoddemptypage
 \cleardoubleoddpage
-\cleardoubleoddpageusingstyle{page style%keyvals}
+\cleardoubleoddpageusingstyle{pagestyle%keyvals}
 \cleardoubleoddplainpage
 \cleardoubleoddstandardpage
-\cleardoublepageusingstyle{page style%keyvals}
+\cleardoublepageusingstyle{pagestyle%keyvals}
 \cleardoubleplainpage
 \cleardoublestandardpage
 \coverpagebottommargin#*
@@ -92,6 +92,13 @@ labelingseparator
 \titlefont#*
 \titlehead{title head%text}
 \uppertitleback{titlebackhead%text}
+
+#keyvals:\cleardoubleevenpageusingstyle#c,\cleardoubleoddpageusingstyle#c,\cleardoublepageusingstyle#c
+headings
+myheadings
+empty
+plain
+#endkeyvals
 
 # deprecated
 \ifthispageodd#S

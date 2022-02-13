@@ -1,5 +1,5 @@
 # snotez package
-# Matthew Bertucci 9/26/2021 for v0.5a
+# Matthew Bertucci 2/12/2022 for v0.6
 
 #include:etoolbox
 #include:pgfopts
@@ -37,6 +37,7 @@ marginnote#true,false
 text-format=%<code%>
 text-format+=%<code%>
 perpage#true,false
+perchapter#true,false
 note-mark-sep=%<code%>
 note-mark-format=%<code%>
 text-mark-format=%<code%>

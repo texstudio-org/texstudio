@@ -13,7 +13,7 @@ background=#%color
 arrow=#%color
 #endkeyvals
 
-\begin{annotate}{object}{width-factor}
+\begin{annotate}{object}{width-factor}#\pictureHighlight
 \end{annotate}
 \helpgrid
 \helpgrid[color]

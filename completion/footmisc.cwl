@@ -1,5 +1,5 @@
 # footmisc package
-# Matthew Bertucci 9/5/2021 for v5.5b
+# Matthew Bertucci 2/12/2022 for v6.0a
 
 #keyvals:\usepackage/footmisc#c
 perpage
@@ -8,7 +8,11 @@ side
 ragged
 symbol
 symbol*
+abovefloats
+belowfloats
 bottom
+bottomfloats
+bottomfootnotes
 marginal
 flushmargin
 hang
@@ -18,9 +22,15 @@ stable
 multiple
 #endkeyvals
 
-\DefineFNsymbols{set name}[style]{symbol list}#*
-\DefineFNsymbols*{set name}[style]{symbol list}#*
-\setfnsymbol{set name}#*
+\DefineFNsymbols{set name}[style]{symbol list}#s#%fnsymbolset
+\DefineFNsymbols*{set name}[style]{symbol list}#s#%fnsymbolset
+\setfnsymbol{set name%keyvals}
+#keyvals:\setfnsymbol#c
+bringhurst
+chicago
+wiley
+%fnsymbolset
+#endkeyvals
 \mpfootnotemark
 \mpfootnotemark[number]
 \footref{label}#r

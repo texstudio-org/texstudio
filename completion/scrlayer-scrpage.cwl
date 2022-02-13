@@ -28,10 +28,10 @@ hmode=#true,on,yes,false,off,no
 \headfont#*
 \footfont#*
 
-\defpagestyle{name}{header spec}{footer spec}
-\newpagestyle{name}{header spec}{footer spec}
-\renewpagestyle{name}{header spec}{footer spec}
-\providepagestyle{name}{header spec}{footer spec}
+\defpagestyle{name}{header spec}{footer spec}#s#%komapagestyle
+\newpagestyle{name}{header spec}{footer spec}#s#%komapagestyle
+\renewpagestyle{name}{header spec}{footer spec}#s#%komapagestyle
+\providepagestyle{name}{header spec}{footer spec}#s#%komapagestyle
 
 # I can't decipher the arg specs for these
 \deftriplepagestyle#*
@@ -39,14 +39,19 @@ hmode=#true,on,yes,false,off,no
 \renewtriplepagestyle#*
 \providetriplepagestyle#*
 
-\defpairofpagestyles{name}{definition}
+\defpairofpagestyles{name}{definition}#s#%komapagestyle
 \defpairofpagestyles[parent pair]{name}{definition}
-\newpairofpagestyles{name}{definition}
+\newpairofpagestyles{name}{definition}#s#%komapagestyle
 \newpairofpagestyles[parent pair]{name}{definition}
-\renewpairofpagestyles{name}{definition}
+\renewpairofpagestyles{name}{definition}#s#%komapagestyle
 \renewpairofpagestyles[parent pair]{name}{definition}
-\providepairofpagestyles{name}{definition}
+\providepairofpagestyles{name}{definition}#s#%komapagestyle
 \providepairofpagestyles[parent pair]{name}{definition}
+
+#keyvals:\pagestyle#c,\thispagestyle#c
+scrheadings
+plain.scrheadings
+#endkeyvals
 
 #keyvals:\setkomafont#c,\addtokomafont#c,\usekomafont#c,\usesizeofkomafont#c,\usefamilyofkomafont#c,\useseriesofkomafont#c,\useshapeofkomafont#c,\useencodingofkomafont#c,\usefontofkomafont#c
 footbotline
