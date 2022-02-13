@@ -25,8 +25,8 @@ PSTextScalesLikeGraphics
 \C#S
 #endif
 
-\begin{axopicture}(x,y)
-\begin{axopicture}(x,y)(xoffset,yoffset)
+\begin{axopicture}(x,y)#\pictureHighlight
+\begin{axopicture}(x,y)(xoffset,yoffset)#\pictureHighlight
 \end{axopicture}
 
 \AxoGrid(x,y)(xsize,ysize)(xdivs,ydivs){color}{linewidth}
@@ -660,5 +660,3 @@ VeryLightBlue#B
 \tmpY#S
 \bpinsp#*
 \ptinsp#*
-
-
