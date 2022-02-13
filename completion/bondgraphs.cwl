@@ -18,7 +18,7 @@ curly#true,false
 \bond
 \bond[options%keyvals]
 
-\begin{bondgraph}
+\begin{bondgraph}#\pictureHighlight
 \begin{bondgraph}[options%keyvals]
 \end{bondgraph}
 
