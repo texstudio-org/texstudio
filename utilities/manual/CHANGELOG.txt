@@ -1,7 +1,7 @@
 TeXstudio 4.2.2
 -----------------
 - more cwls
-- fix crash, #2094, #2084
+- fix crash, #2094, #2084, #2109
 - use picture highlighting for tikz env and similar
 
 TeXstudio 4.2.1
