@@ -42,16 +42,16 @@ outputdir=%<directory%>
 \begin{minted}{language}#MV
 \begin{minted}[options%keyvals]{language}#M
 \end{minted}
-\mint{%<language%>}{%<code%>}
-\mint{%<language%>}|%<code%>|
-\mint[%<options%>]{%<language%>}{%<code%>}
-\mint[%<options%>]{%<language%>}|%<code%>|
-\mint{language}{verbatimSymbol}#S
-\mintinline{%<language%>}{%<code%>}
-\mintinline{%<language%>}|%<code%>|
-\mintinline[%<options%>]{%<language%>}{%<code%>}
-\mintinline[%<options%>]{%<language%>}|%<code%>|
-\mintinline{language}{verbatimSymbol}#S
+\mint[keys]{language}{verbatimSymbol}#S
+\mint{%<language%>}{%<code%>}#M
+\mint{%<language%>}|%<code%>|#M
+\mint[%<options%>]{%<language%>}{%<code%>}#M
+\mint[%<options%>]{%<language%>}|%<code%>|#M
+\mintinline[keys]{language}{verbatimSymbol}#S
+\mintinline{%<language%>}{%<code%>}#M
+\mintinline{%<language%>}|%<code%>|#M
+\mintinline[%<options%>]{%<language%>}{%<code%>}#M
+\mintinline[%<options%>]{%<language%>}|%<code%>|#M
 \inputminted{language}{file}#i
 \inputminted[options%keyvals]{language}{file}#i
 \usemintedstyle{pygments style}#*
