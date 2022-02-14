@@ -23,7 +23,7 @@
 \addurl[pre text]{URL}{see below}#U
 \addCTAN{URL}{see below}#U
 \addCTAN[pre text]{URL}{see below}#U
-\CTAN{path}
+\CTAN{path%URL}
 
 \dbx
 \dbx[width]
