@@ -1047,12 +1047,13 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 
 			//// include,input,import ////
-			if (lp.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(firstArg)) {
+            if (lp.possibleCommands["%include"].contains(cmd) ) {
+                QString fn=Parsing::getArg(args, Token::file);
 				StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
-				firstArg = removeQuote(firstArg);
-				newInclude->title = firstArg;
-                QString name=firstArg;
+                fn = removeQuote(fn);
+                newInclude->title = fn;
+                QString name=fn;
                 name.replace("\\string~",QDir::homePath());
                 QString fname = findFileName(name);
 				removedIncludes.removeAll(fname);
