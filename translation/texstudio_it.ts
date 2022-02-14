@@ -6118,7 +6118,7 @@ Ricominciare dall&apos;inizio?</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="602"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Aziona &amp;Commento</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="607"/>

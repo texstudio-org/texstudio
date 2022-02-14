@@ -319,7 +319,7 @@
     <message>
         <location filename="../src/bibtexdialog.cpp" line="297"/>
         <source>Article in a Reference</source>
-        <translation type="unfinished"/>
+        <translation>Artykuł w odniesieniu</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="305"/>
@@ -3019,7 +3019,7 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1511"/>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished"/>
+        <translation>Podstawowe odwzorowanie klawiszy</translation>
     </message>
 </context>
 <context>
@@ -4329,7 +4329,16 @@ Czy na pewno chcesz cofnąć wszystkie dokonane zmiany?</translation>
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Preferencja położenia ryciny
+
+[t] Góra: Na górze strony
+[b] Dół: Na dole strony
+[p] Strona: Na stronie przeznaczonej na ryciny
+[h] Tutaj: W tym miejscu tekstu
+[H] Tutaj: Dokładniew tym miejscu tekstu (wymaga pakietu „float”)
+[!]: Przesłoń parametry wewnętrzne LaTeX używane do wyznaczenia „dobrych” położeń pływających.
+
+Uwaga: Cztery pierwsze preferencje są tylko sugestiami. Jeśli wynikowy układ strony będzie wyglądał źle, LaTeX może ją zignorować.</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="263"/>
@@ -4609,7 +4618,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2599"/>
         <source>Citation correct (reading ...)</source>
-        <translation type="unfinished"/>
+        <translation>Poprawny cytat (odczytywanie…)</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2605"/>
@@ -8992,7 +9001,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="706"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>Polecenia XY</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="838"/>

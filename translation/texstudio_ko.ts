@@ -54,7 +54,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio는 Alexander Klink의 이미지를 포함합니다.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="34"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="35"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio는 Qt 5.6 예제의 flowlayout을 사용합니다.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="36"/>
@@ -1352,7 +1352,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1793"/>
         <source>No Replacement</source>
-        <translation type="unfinished"/>
+        <translation>바꾸지 않음</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1798"/>
@@ -1377,12 +1377,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
-        <translation type="unfinished"/>
+        <translation>역방향 프랑스어 따옴표: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1823"/>
         <source>Package csquotes: \enquote{  }</source>
-        <translation type="unfinished"/>
+        <translation>csquotes 패키지: \enquote{  }</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1828"/>
@@ -1502,7 +1502,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2057"/>
         <source>Tab Width:</source>
-        <translation type="unfinished"/>
+        <translation>탭 너비:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2092"/>
@@ -2217,17 +2217,17 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3363"/>
         <source>Check for Word Repetitions</source>
-        <translation type="unfinished"/>
+        <translation>동어 반복 검사</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3370"/>
         <source>Words Between Repetitions:</source>
-        <translation type="unfinished"/>
+        <translation>반복된 단어 사이의 다른 단어 수:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3380"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"/>
+        <translation>동일한 단어가 이 값보다 적은 수의 단어를 사이에 두고 반복되면 동어 반복으로 표시됩니다.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3390"/>
@@ -2272,27 +2272,27 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3474"/>
         <source>LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3480"/>
         <source>Path containing the LanguageTool java archive.</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool의 jar 파일이 있는 경로를 지정합니다.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3487"/>
         <source>LT Path:</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool 경로:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3494"/>
         <source>Start LanguageTool if not running</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool을 자동으로 시작</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3501"/>
         <source>Server URL: </source>
-        <translation type="unfinished"/>
+        <translation>서버 URL:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3508"/>
@@ -2335,17 +2335,17 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3626"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation type="unfinished"/>
+        <translation>이 문서의 맞춤법 검사에 사용된 언어를 사용합니다.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3633"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool을 구동할 때 사용할 Java 실행 파일을 지정합니다.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3640"/>
         <source>Java:</source>
-        <translation type="unfinished"/>
+        <translation>Java:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3647"/>
@@ -2356,7 +2356,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3650"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool 매개변수:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3674"/>
@@ -2367,7 +2367,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3688"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool에 연결할 때 사용할 URL을 지정합니다.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3779"/>
@@ -2377,7 +2377,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3785"/>
         <source>Command:</source>
-        <translation type="unfinished"/>
+        <translation>명령어:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3796"/>
@@ -2474,7 +2474,7 @@ them here.</source>
         <location filename="../src/configdialog.ui" line="3949"/>
         <location filename="../src/configdialog.ui" line="4138"/>
         <source>Scaling:</source>
-        <translation type="unfinished"/>
+        <translation>크기 조정:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4044"/>
@@ -2535,7 +2535,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4298"/>
         <source> dpi</source>
-        <translation type="unfinished"/>
+        <translation> dpi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4201"/>
@@ -2639,7 +2639,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4096"/>
         <source>Load Strategy:</source>
-        <translation type="unfinished"/>
+        <translation>로딩 방법:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4236"/>
@@ -3485,12 +3485,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="106"/>
         <source>Subscript - _{}</source>
-        <translation type="unfinished"/>
+        <translation>아래 첨자 - _{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="107"/>
         <source>Superscript - ^{}</source>
-        <translation type="unfinished"/>
+        <translation>위 첨자 - ^{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
@@ -3500,12 +3500,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>env equation</source>
-        <translation type="unfinished"/>
+        <translation>equation 환경</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>env equation* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>equation* 환경 (amsmath 패키지)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
