@@ -2846,9 +2846,9 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 		parent->requestQNFAupdate();
 
 
-    if (!dontPatch && !newCmds.isEmpty()) {
-		patchLinesContaining(newCmds);
-    }
+    /*if (!dontPatch && !newCmds.isEmpty()) {
+        patchLinesContaining(newCmds); // deactivate as it seems to lead to a race conditions/crash (#2109)
+    }*/
 
 	if (delayUpdate)
 		return update;
@@ -3298,14 +3298,13 @@ void LatexDocument::reCheckSyntax(int lineStart, int lineNum)
 	if (lineStart == lineEnd) {
 		return;
 	}
-
 	// Delete the environment cookies for the specified lines to force their re-check
 	for (int i = lineStart; i < lineEnd; ++i) {
 		// We rely on the fact that QDocumentLine::removeCookie() holds a write lock of the corresponding
 		// line handle while removing the cookie. Lack of write locking causes crashes due to simultaneous
 		// access from the syntax checker thread.
 		line(i).removeCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
-	}
+    } //crash in qt6, looks like race coming from patchLines...
 
 	// Enqueue the first line for syntax checking. The remaining lines will be enqueued automatically
 	// through the checkNextLine signal because we deleted their STACK_ENVIRONMENT_COOKIE cookies.
