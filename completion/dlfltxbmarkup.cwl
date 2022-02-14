@@ -4,6 +4,10 @@
 #include:keyval
 #include:ragged2e
 
+#keyvals:\usepackage/dlfltxbmarkup#c
+loadsampleconfig
+#endkeyvals
+
 #ifOption:loadsampleconfig
 #include:dlfltxbmarkupbookkeys
 #endif
@@ -22,9 +26,10 @@ idxn
 addtospvrt=%<number%>
 vaddtosp=%<number%>
 forcesidepar
+%felineKey
 #endkeyvals
 
-\felineKeyGenerator{key%plain}{description}{margin code}{index code}{text code}
+\felineKeyGenerator{key%plain}{description}{margin code}{index code}{text code}#s#%felineKey
 \cs{text%plain}
 \css{text%plain}
 \felineWriteInMargin{text}
