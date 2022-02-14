@@ -46,14 +46,12 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2022-01-04T09:40:00+0000" version="4.2.0">
+    <release date="2022-02-14T19:19:56+0000" version="4.2.2">
       <description>
         <ul>
           <li>more cwls</li>
-          <li>fix key handling for some special keyboard set-ups (#2011)</li>
-          <li>fix user menu handling</li>
-          <li>filter available dictionaries in status/language selection</li>
-          <li>change placeHolder behavior: autoremove when content in placeholder is changed, don't use placeholder for cutBuffer</li>
+          <li>fix crash, #2094, #2084, #2109</li>
+          <li>use picture highlighting for tikz env and similar</li>
         </ul>
       </description>
     </release>
