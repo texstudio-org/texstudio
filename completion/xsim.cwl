@@ -1,5 +1,5 @@
 # xsim package
-# Matthew Bertucci 12/28/2021 for v0.20c
+# Matthew Bertucci 2/14/2022 for v0.21
 
 #include:l3keys2e
 #include:xsimverb
@@ -28,6 +28,8 @@ tags={%<tag1,tag2,...%>}
 topics={%<topic1,topic2,...%>}
 tags/ignore-untagged#true,false
 topics/ignore-untagged#true,false
+tags/use-unmatched#true,false
+topics/use-untagged#true,false
 exercise/print#true,false
 exercise/use#true,false
 exercise/collect#true,false
@@ -48,6 +50,8 @@ solution/pre-hook={%<code%>}
 solution/begin-hook={%<code%>}
 solution/end-hook={%<code%>}
 solution/post-hook={%<code%>}
+collection/%<name%>/match-all#true,false
+collection/%<name%>/match-any#true,false
 collect#true,false
 print-collection/headings#true,false
 print-collection/headings-template=%<template%>
@@ -72,6 +76,7 @@ blank/width=##L
 blank/linespread=%<factor%>
 blank/line-increment=##L
 blank/line-minimum-length=##L
+blank/fill#true,false
 %xsimexertag
 #endkeyvals
 
@@ -328,6 +333,7 @@ type=%<type%>
 \IfExistSolutionF{false}
 \ForEachPrintedExerciseByType{code}
 \ForEachUsedExerciseByType{code}
+\ForEachUsedExerciseByOrder{code}
 \ForEachPrintedExerciseByID{code}
 \ForEachUsedExerciseByID{code}
 \XSIMprint{exercise|solution}{type}{id}
