@@ -48,6 +48,7 @@ void SyntaxCheck::setErrFormat(int errFormat)
 void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay, int hint)
 {
 	REQUIRE(dlh);
+    if(previous.isEmpty()) return; // sanity check as activeEnv at least contains "normal"
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
 	dlh->lockForRead();
