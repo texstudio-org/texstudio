@@ -25,8 +25,8 @@ mup
 \begin{abc}[options%keyvals]
 \end{abc}
 
-\abcinput{file}
-\abcinput[options%keyvals]{file}
+\abcinput{file}#i
+\abcinput[options%keyvals]{file}#i
 
 #keyvals:\begin{abc},\abcinput,\begin{mup},\mupinput
 name=%<name%>
@@ -46,7 +46,7 @@ extension=%<extension%>
 \begin{mup}
 \begin{mup}[options%keyvals]
 \end{mup}
-\mupinput{file}
-\mupinput[options%keyvals]{file}
+\mupinput{file}#i
+\mupinput[options%keyvals]{file}#i
 \mupwidth#*
 #endif

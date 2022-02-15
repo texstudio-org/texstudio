@@ -10,6 +10,7 @@
 
 #ifOption:tooltip
 #include:pdfcomment
+\sseqtooltip{text}{tooltip text}#*
 #endif
 
 #keyvals:\usepackage/spectralsequences#c
@@ -425,8 +426,11 @@ update existing
 keep changes#true,false
 #endkeyvals
 
-\SseqNewClassPattern{name}{offsets}#*
+\SseqNewClassPattern{name}{offsets}
 \sseqnewclasspattern{name}{offsets}#S
+\SseqOrientationNormal
+\SseqOrientationSideways
+\SseqOrientationToggle
 
 \source#S
 \sourcecoord#S

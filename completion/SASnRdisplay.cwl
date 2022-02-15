@@ -8,6 +8,22 @@
 #include:caption
 #include:needspace
 
+#keyvals:\usepackage/SASnRdisplay#c
+danish
+english
+grayscale
+countbysection
+countbychapter
+consecutive
+countbylistings
+noautotitles-r
+noautotitles-sas
+needspace=##L
+noneedspace
+sweave
+sasweave
+#endkeyvals
+
 \begin{SAScode}#V
 \begin{SAScode}[options%keyvals]#V
 \end{SAScode}

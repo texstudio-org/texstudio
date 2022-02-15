@@ -36,7 +36,7 @@
 \tableheader[TikZ keys]{description title%text}{signal title%text}#/tikztimingtable
 \tablerules#/tikztimingtable
 \tablerules[TikZ keys]#/tikztimingtable
-\begin{background}
+\begin{background}#\pictureHighlight
 \begin{background}[TikZ keys]
 \end{background}
 \background#*
