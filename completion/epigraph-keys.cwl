@@ -14,17 +14,30 @@
 \qitem[keyvals]{text}#/epigraphs
 
 #keyvals:\epigraph,\qitem
-author=
-source=
-translation=
-etc=
+author={%<author%>}
+source={%<source%>}
+translation={%<translation text%>}
+etc={%<text%>}
 after skip=##L
 before skip=##L
 author and source indent=##L
 text indent=##L
 width=##L
-style=
-quote style=
-translation style=
-dash=
+style=%<font commands%>
+quote style=%<font commands%>
+translation style=%<font commands%>
+dash={%<dash code%>}
 #endkeyvals
+
+\expblank{arg}#S
+\expgiven{arg}#S
+\expnil{arg}#S
+\beforeepigraphskip#*
+\afterepigraphskip#*
+\epigraphtextindent#*
+\epigraphauthorsourceindent#*
+\epigraphtextwidth#*
+\epigraphstyle#*
+\epigraphdash#*
+\epigraphquotefont#*
+\epigraphtranslationfont#*
