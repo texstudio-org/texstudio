@@ -194,6 +194,7 @@
 <file>completion/beamerthemeBergen.cwl</file>
 <file>completion/beamerthemeBerkeley.cwl</file>
 <file>completion/beamerthemeBerlin.cwl</file>
+<file>completion/beamerthemeBerlinFU.cwl</file>
 <file>completion/beamerthemeBFH.cwl</file>
 <file>completion/beamerthemeBoadilla.cwl</file>
 <file>completion/beamerthemeboxes.cwl</file>
@@ -274,6 +275,7 @@
 <file>completion/blindtext.cwl</file>
 <file>completion/blkarray.cwl</file>
 <file>completion/blochsphere.cwl</file>
+<file>completion/bloques.cwl</file>
 <file>completion/blowup.cwl</file>
 <file>completion/blox.cwl</file>
 <file>completion/bm.cwl</file>
@@ -286,6 +288,7 @@
 <file>completion/boites.cwl</file>
 <file>completion/boites_exemples.cwl</file>
 <file>completion/boldline.cwl</file>
+<file>completion/bondgraph.cwl</file>
 <file>completion/bondgraphs.cwl</file>
 <file>completion/bookmark.cwl</file>
 <file>completion/booktabs.cwl</file>
@@ -417,6 +420,7 @@
 <file>completion/class-extreport.cwl</file>
 <file>completion/class-fancyhandout.cwl</file>
 <file>completion/class-fancyslides.cwl</file>
+<file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
 <file>completion/class-gridslides.cwl</file>
 <file>completion/classico.cwl</file>
@@ -628,7 +632,9 @@
 <file>completion/dimnum.cwl</file>
 <file>completion/dingbat.cwl</file>
 <file>completion/dirtree.cwl</file>
+<file>completion/ditaa.cwl</file>
 <file>completion/dlfltxbcodetips.cwl</file>
+<file>completion/dlfltxbmarkupbookkeys.cwl</file>
 <file>completion/dlfltxbmarkup.cwl</file>
 <file>completion/dlfltxbmisc.cwl</file>
 <file>completion/dnaseq.cwl</file>
@@ -2044,6 +2050,7 @@
 <file>completion/tikzlings-snowmen.cwl</file>
 <file>completion/tikzlings-squirrels.cwl</file>
 <file>completion/tikz-network.cwl</file>
+<file>completion/tikz-opm.cwl</file>
 <file>completion/tikzorbital.cwl</file>
 <file>completion/tikzPackets.cwl</file>
 <file>completion/tikz-page.cwl</file>
