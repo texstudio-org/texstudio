@@ -346,3 +346,7 @@ talk:
 class-talk
 latex-document
 tex
+FUbeamer:
+class-FUbeamer
+latex-document
+tex

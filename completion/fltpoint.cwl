@@ -1,6 +1,11 @@
 # fltpoint package
 # Matthew Bertucci 10/29/2021 for v1.1b
 
+#keyvals:\usepackage/fltpoint#c
+comma
+point
+#endkeyvals
+
 \fpAdd{cmd}{num1}{num2}#d
 \fpSub{cmd}{num1}{num2}#d
 \fpMul{cmd}{num1}{num2}#d

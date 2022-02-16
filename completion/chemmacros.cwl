@@ -1,5 +1,5 @@
 # CWL for the chemmacros.sty package 
-# Matthew Bertucci updated 1/18/2022 for v6.0
+# Matthew Bertucci updated 1/18/2022 for v6.0; 2/14/2022 for v6.1
 
 # note: by default, all modules are loaded
 
@@ -53,7 +53,7 @@ eq-constant={%<text%>}
 #endkeyvals
 
 ## charges-module
-# loads chemformula module
+# loads formula module
 \fplus
 \fminus
 \scrp
@@ -166,16 +166,18 @@ hyphen-pre-space
 hyphen-post-space
 break-space
 iupac=#auto,restricted,strict
+iupac-format={%<definition%>}
 cip-kern=##L
 cip-outer-format={%<format%>}
 cip-inner-format={%<format%>}
 cip-number-format={%<format%>}
 bridge-number=#sub,super
 coord-use-hyphen#true,false
+latin-format={%<definition%>}
 #endkeyvals
 
 ## particles-module
-# loads charges and chemformula modules
+# loads charges and formula modules
 \el
 \prt
 \ntr
@@ -201,7 +203,7 @@ space=##L
 #endkeyvals
 
 ## phases-module
-# loads chemformula module
+# loads formula module
 \sld
 \lqd
 \gas
@@ -223,7 +225,7 @@ pos=#side,sub
 \standardstatesymbol
 \changestate
 
-## chemformula-module
+## formula-module
 # loads amstext package and charges module
 # loads chemformula, mhchem, chemist, or chemfig depending on user; chemformula is default
 #keyvals:\chemsetup#c
@@ -325,7 +327,7 @@ superscript=
 #endkeyvals
 
 ## reactions-module
-# loads chemformula module and mathtools package
+# loads formula module and mathtools package
 \begin{reaction}
 \end{reaction}
 \begin{reaction*}
@@ -351,10 +353,11 @@ superscript=
 tag-open={%<left delim%>}
 tag-close={%<right delim%>}
 before-tag={%<format%>}
+own-counter#true,false
+autoref-name={%<name%>}
 list-name=
 list-entry={%<prefix%>}
 list-heading-cmd={%<code%>}
-tocbasic#true,false
 #endkeyvals
 
 ## reactants module
@@ -465,8 +468,12 @@ sep=##L
 \schemename#*
 \listofschemes
 
+#keyvals:\chemsetup#c
+float-method=#KOMA,memoir,tocbasic,newfloat,floatrow,float,traditional
+#endkeyvals
+
 ## spectroscopy-module
-# loads chemformula module and siunitx package
+# loads formula module and siunitx package
 \NMR{%<isotope%>,%<element%>}(%<frequency%>,%<freq. unit%>)[%<solvent%>]
 \NMR{%<isotope%>,%<element%>}(%<frequency%>)[%<solvent%>]
 \NMR{%<isotope%>,%<element%>}(%<frequency%>,%<freq. unit%>)
@@ -636,3 +643,10 @@ language=#auto,%<language%>
 text
 superscript
 #endkeyvals
+
+## Appendix
+\ChemStyle{name}#*
+\ChemStyle{name}[version description%text]#*
+\ChemStyle*{name}#*
+\ChemStyle*{name}[version description%text]#*
+\usechemstyle{list of styles}
