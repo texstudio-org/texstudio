@@ -5,6 +5,15 @@
 #include:datatool
 #include:tikz
 
+#keyvals:\usepackage/datapie#c
+color
+gray
+rotateinner
+norotateinner
+rotateouter
+norotateouter
+#endkeyvals
+
 \DTLpiechart{settings%keyvals}{db%special}{values}
 \DTLpiechart[condition]{settings%keyvals}{db%special}{values}
 
@@ -18,7 +27,6 @@ cutawayratio=
 inneroffset=##L
 outeroffset=##L
 cutawayoffset=##L
-cutawayoffset=
 cutaway=
 innerlabel=
 outerlabel=
