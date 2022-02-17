@@ -6,6 +6,13 @@
 #include:datatool
 #include:tikz
 
+#keyvals:\usepackage/databar#c
+color
+gray
+vertical
+horizontal
+#endkeyvals
+
 \DTLbarchart{settings%keyvals}{db%special}{values}
 \DTLbarchart[condition]{settings%keyvals}{db%special}{values}
 \DTLmultibarchart{settings%keyvals}{db%special}{values}
@@ -50,6 +57,18 @@ barwidth=##L
 \ifDTLverticalbars#*
 \DTLverticalbarstrue#*
 \DTLverticalbarsfalse#*
+\ifDTLcolorbarchart#*
+\DTLcolorbarcharttrue#*
+\DTLcolorbarchartfalse#*
+\ifDTLbarxaxis#*
+\DTLbarxaxistrue#*
+\DTLbarxaxisfalse#*
+\ifDTLbaryaxis#*
+\DTLbaryaxistrue#*
+\DTLbaryaxisfalse#*
+\ifDTLbarytics#*
+\DTLbaryticstrue#*
+\DTLbaryticsfalse#*
 \DTLbarXlabelalign#*
 \DTLbarYlabelalign#*
 \DTLbardisplayYticklabel{text}#*
