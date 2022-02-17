@@ -7,6 +7,27 @@
 #include:pgfcore
 #include:xparse
 
+#keyvals:\usepackage/nicematrix#c
+renew-dots#true,false
+renew-matrix#true,false
+footnote#true,false
+footnotehyper#true,false
+#endkeyvals
+
+#ifOption:footnote
+#include:footnote
+#endif
+#ifOption:footnote=true
+#include:footnote
+#endif
+
+#ifOption:footnotehyper
+#include:footnotehyper
+#endif
+#ifOption:footnotehyper=true
+#include:footnotehyper
+#endif
+
 \NiceMatrixOptions{keyvals}
 
 \begin{NiceTabular}{preamble}#\tabular
