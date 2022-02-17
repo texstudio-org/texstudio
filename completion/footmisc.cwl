@@ -1,5 +1,5 @@
 # footmisc package
-# Matthew Bertucci 2/12/2022 for v6.0a
+# Matthew Bertucci 2/12/2022 for v6.0b
 
 #keyvals:\usepackage/footmisc#c
 perpage
@@ -12,7 +12,6 @@ abovefloats
 belowfloats
 bottom
 bottomfloats
-bottomfootnotes
 marginal
 flushmargin
 hang
