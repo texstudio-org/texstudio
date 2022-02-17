@@ -21,6 +21,7 @@
 <file>completion/adfarrows.cwl</file>
 <file>completion/adfbullets.cwl</file>
 <file>completion/adforn.cwl</file>
+<file>completion/adigraph.cwl</file>
 <file>completion/adjcalc.cwl</file>
 <file>completion/adjmulticol.cwl</file>
 <file>completion/adjustbox.cwl</file>
@@ -370,6 +371,7 @@
 <file>completion/chapterfolder.cwl</file>
 <file>completion/CharisSIL.cwl</file>
 <file>completion/chemarr.cwl</file>
+<file>completion/chemarrow.cwl</file>
 <file>completion/chemfig.cwl</file>
 <file>completion/chemformula.cwl</file>
 <file>completion/chemgreek.cwl</file>
@@ -409,6 +411,7 @@
 <file>completion/class-cnltx-doc.cwl</file>
 <file>completion/class-codedoc.cwl</file>
 <file>completion/class-combine.cwl</file>
+<file>completion/class-einfart.cwl</file>
 <file>completion/class-elpres.cwl</file>
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
@@ -423,6 +426,7 @@
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
 <file>completion/class-gridslides.cwl</file>
+<file>completion/class-guitartabs.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
@@ -441,6 +445,8 @@
 <file>completion/class-ltxguidex.cwl</file>
 <file>completion/class-memoir.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
+<file>completion/class-minimart.cwl</file>
+<file>completion/class-minimbook.cwl</file>
 <file>completion/class-mla.cwl</file>
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
@@ -453,17 +459,25 @@
 <file>completion/class-qcm.cwl</file>
 <file>completion/class-ReadableCV.cwl</file>
 <file>completion/class-report.cwl</file>
+<file>completion/class-schulma-ab.cwl</file>
+<file>completion/class-schulma-gutachten.cwl</file>
+<file>completion/class-schulma-klausur.cwl</file>
+<file>completion/class-schulma-komp.cwl</file>
+<file>completion/class-schulma-mdlprf.cwl</file>
+<file>completion/class-schulma-praes.cwl</file>
 <file>completion/class-scrartcl.cwl</file>
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrbook.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
+<file>completion/class-simplivre.cwl</file>
 <file>completion/class-skrapport.cwl</file>
 <file>completion/class-slides.cwl</file>
 <file>completion/class-sslides.cwl</file>
 <file>completion/class-suftesi.cwl</file>
 <file>completion/class-talk.cwl</file>
+<file>completion/class-tikzposter.cwl</file>
 <file>completion/class-tlc-article.cwl</file>
 <file>completion/class-tufte-book.cwl</file>
 <file>completion/class-tufte-handout.cwl</file>
@@ -983,6 +997,7 @@
 <file>completion/GS1.cwl</file>
 <file>completion/gtrlib.largetrees.cwl</file>
 <file>completion/Gudea.cwl</file>
+<file>completion/guitarchordschemes.cwl</file>
 <file>completion/guit.cwl</file>
 <file>completion/hackthefootline.cwl</file>
 <file>completion/halloweenmath.cwl</file>
@@ -992,6 +1007,7 @@
 <file>completion/hang.cwl</file>
 <file>completion/hanging.cwl</file>
 <file>completion/hardwrap.cwl</file>
+<file>completion/harmony.cwl</file>
 <file>completion/harpoon.cwl</file>
 <file>completion/harvard.cwl</file>
 <file>completion/harveyballs.cwl</file>
@@ -1327,6 +1343,7 @@
 <file>completion/minibox.cwl</file>
 <file>completion/minidocument.cwl</file>
 <file>completion/minifp.cwl</file>
+<file>completion/minimalist.cwl</file>
 <file>completion/MinionPro.cwl</file>
 <file>completion/minipage-marginpar.cwl</file>
 <file>completion/minted.cwl</file>
@@ -1373,6 +1390,8 @@
 <file>completion/multirow.cwl</file>
 <file>completion/multitoc.cwl</file>
 <file>completion/mup.cwl</file>
+<file>completion/musical.cwl</file>
+<file>completion/musicography.cwl</file>
 <file>completion/musikui.cwl</file>
 <file>completion/mVersion.cwl</file>
 <file>completion/mwe.cwl</file>
@@ -1468,6 +1487,7 @@
 <file>completion/nunito.cwl</file>
 <file>completion/oands.cwl</file>
 <file>completion/ocr.cwl</file>
+<file>completion/octave.cwl</file>
 <file>completion/odsfile.cwl</file>
 <file>completion/old-arrows.cwl</file>
 <file>completion/oldgerm.cwl</file>
@@ -1751,6 +1771,8 @@
 <file>completion/schemata.cwl</file>
 <file>completion/scholax.cwl</file>
 <file>completion/schooldocs.cwl</file>
+<file>completion/schulma.cwl</file>
+<file>completion/schulma-physik.cwl</file>
 <file>completion/scientific-thesis-cover.cwl</file>
 <file>completion/sclang-prettifier.cwl</file>
 <file>completion/scontents.cwl</file>
@@ -1788,6 +1810,7 @@
 <file>completion/selinput.cwl</file>
 <file>completion/selnolig.cwl</file>
 <file>completion/semantic.cwl</file>
+<file>completion/semantic-markup.cwl</file>
 <file>completion/semesterplanner.cwl</file>
 <file>completion/semtrans.cwl</file>
 <file>completion/sepnum.cwl</file>
