@@ -12,6 +12,14 @@
 #include:calc
 #include:count1to
 
+#keyvals:\usepackage/pdfpages#c
+final
+draft
+demo
+nodemo
+enable-survey
+#endkeyvals
+
 \includepdf[options%keyvals]{filename}
 \includepdf{filename}
 \includepdfmerge[options%keyvals]{file-list}
