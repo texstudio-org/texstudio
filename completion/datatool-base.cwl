@@ -8,6 +8,12 @@
 #include:ifthen
 #include:substr
 #include:datatool-fp
+
+#keyvals:\usepackage/datatool-base#c
+verbose#true,false
+math=#fp,pgfmath
+#endkeyvals
+
 #ifOption:math=pgfmath
 #include:datatool-pgfmath
 #endif
