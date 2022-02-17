@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 12/6/2021 for v3.0.37
+# Matthew Bertucci 2/16/2022 for v3.0.49
 
 #include:translations
 #include:amstext
@@ -297,6 +297,7 @@ input-open-uncertainty=%<symbols%>
 input-signs=%<symbols%>
 input-uncertainty-signs=%<symbols%>
 parse-numbers#true,false
+retain-explicit-decimal-marker#true,false
 retain-explicit-plus#true,false
 retain-zero-uncertainty#true,false
 #endkeyvals
@@ -334,6 +335,7 @@ output-open-uncertainty=%<symbol%>
 print-implicit-plus#true,false
 print-unity-mantissa#true,false
 print-zero-exponent#true,false
+print-zero-integer#true,false
 separate-uncertainty#true,false
 tight-spacing#true,false
 uncertainty-mode=#separate,compact,compact-marker,full

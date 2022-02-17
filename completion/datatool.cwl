@@ -8,6 +8,18 @@
 #include:etoolbox
 #include:datatool-base
 
+#keyvals:\usepackage/datatool#c
+utf8#true,false
+verbose#true,false
+math=#fp,pgfmath
+delimiter=%<delimiter%>
+separator=%<separator%>
+#endkeyvals
+
+#ifOption:math=pgfmath
+#include:datatool-pgfmath
+#endif
+
 ### 6 Databases ###
 ## 6.1 Creating a New Database ##
 \DTLnewdb{db%special}#s#%db

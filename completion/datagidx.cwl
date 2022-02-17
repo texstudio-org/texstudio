@@ -10,6 +10,11 @@
 #include:textcase
 #include:afterpage
 
+#keyvals:\usepackage/datagidx#c
+final
+draft
+#endkeyvals
+
 ## 7.1 Defining Index/Glossary Databases ##
 \loadgidx{filename}{title%plain}
 \loadgidx[options%keyvals]{filename}{title%plain}
