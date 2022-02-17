@@ -5,14 +5,21 @@
 #include:calc
 #include:etoolbox
 
+#keyvals:\usepackage/tikzpeople#c
+draft
+demo
+nobeards
+saturated
+#endkeyvals
+
 #ifOption:demo
-\alltikzpeople{width}{options}
-\alltikzpeople*{width}{options}
-\tikzpeoplecolors{shapename}
+\alltikzpeople{width}{node options}
+\alltikzpeople*{width}{node options}
+\tikzpeoplecolors{shape name}
 #endif
 
 #keyvals:\node#c
-shape=
+shape=%<shape name%>
 alice
 bob
 bride
