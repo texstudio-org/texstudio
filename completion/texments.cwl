@@ -7,12 +7,12 @@
 
 \usestyle{pygments style}
 
-\pygment{language}{code}
+\pygment{language}{code%definition}
 
 \includecode{file}#i
 \includecode[language]{file}#i
 
-\begin{pygmented}{language}
+\begin{pygmented}{language}#V
 \end{pygmented}
 
 \proglang#*
