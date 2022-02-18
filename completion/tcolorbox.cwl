@@ -649,8 +649,8 @@ fill image options={%<graphics options%>}
 \RenewTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
 \ProvideTotalTCBox{cmd}{specification}{options%keyvals}{content%text}#d
 \ProvideTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
-\tcboxverb{verbatim box content}
-\tcboxverb[options%keyvals]{verbatim box content}
+\tcboxverb{verbatim box content%definition}
+\tcboxverb[options%keyvals]{verbatim box content%definition}
 \DeclareTCBListing{envname}{specification}{options%keyvals}#N
 \DeclareTCBListing[init options]{envname}{specification}{options%keyvals}#*N
 \NewTCBListing{envname}{specification}{options%keyvals}#N
