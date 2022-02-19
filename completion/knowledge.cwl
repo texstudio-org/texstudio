@@ -1,5 +1,5 @@
 # knowledge package
-# Matthew Bertucci 12/23/2021 for v1.26
+# Matthew Bertucci 2/19/2022 for v1.28
 
 #include:l3keys2e
 #include:etoolbox
@@ -18,6 +18,8 @@ makeidx
 makeidx=#active,inactive,compatibility,auto
 cleveref
 cleveref=#active,inactive,compatibility,auto
+imakeidx
+imakeidx=#active,inactive,compatibility,auto
 #endkeyvals
 
 \knowledgeconfigure{directives%keyvals}
@@ -220,6 +222,31 @@ index=%<text%>
 index key=%<index key text%>
 index parent key=%<index key%>
 index style=%<csname%>
+no index
+#endkeyvals
+\knowledgeIntroIndexStyle#*
+#endif
+
+#ifOption:imakeidx
+#include:imakeidx
+#keyvals:\knowledge#c,\knowledgestyle#c,\knowledgestyle*#c,\knowledgedirective#c,\knowledgedirective*#c
+index=%<text%>
+index key=%<index key text%>
+index parent key=%<index key%>
+index style=%<csname%>
+index name=%<name%>
+no index
+#endkeyvals
+\knowledgeIntroIndexStyle#*
+#endif
+#ifOption:imakeidx=active
+#include:imakeidx
+#keyvals:\knowledge#c,\knowledgestyle#c,\knowledgestyle*#c,\knowledgedirective#c,\knowledgedirective*#c
+index=%<text%>
+index key=%<index key text%>
+index parent key=%<index key%>
+index style=%<csname%>
+index name=%<name%>
 no index
 #endkeyvals
 \knowledgeIntroIndexStyle#*
