@@ -1,11 +1,15 @@
 # formal-grammar package
-# Matthew Bertucci 11/17/2021 for v1.1
+# Matthew Bertucci 2/19/2022 for v1.2
 
 #include:xparse
 #include:newfloat
 #include:xcolor
 #include:colortbl
 #include:array
+
+#keyvals:\usepackage/formal-grammar#c
+center
+#endkeyvals
 
 LightCyan#B
 
@@ -16,7 +20,7 @@ LightCyan#B
 
 \firstcase{letter}{definition%formula}{explanation%text}
 \otherform{definition%formula}{explanation%text}
-\nonterm{letter}#m
+\nonterm{text%plain}#m
 
 \gralt
 
@@ -25,7 +29,7 @@ LightCyan#B
 
 \downplay
 \highlight
-\lochighlight{arg}
+\lochighlight{text}
 
 \begin{floatgrammar}#*
 \end{floatgrammar}#*
