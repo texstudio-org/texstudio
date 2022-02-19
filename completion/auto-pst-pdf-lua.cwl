@@ -42,6 +42,10 @@ monochrome
 grayscale
 #endkeyvals
 
+#ifOption:useCalc
+#include:pst-calculate
+#endif
+
 \OnlyIfFileExists{file}{code}#*
 \NotIfFileExists{file}{code}#*
 
