@@ -412,6 +412,7 @@ void PDFFontsDock::fillInfo()
 {
 	if (!document) return;
 	QSharedPointer<Poppler::Document> spDoc(document->popplerDoc());
+	if (!spDoc) return;
 	if (!scannedFonts) {
 		fonts = spDoc->fonts();
 		scannedFonts = true;
