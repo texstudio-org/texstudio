@@ -5,6 +5,8 @@
 #include:pstricks
 #include:pst-xkey
 #include:multido
+#include:pstricks-add
+#include:pst-tools
 
 #keyvals:\usepackage/pst-plot#c
 97
