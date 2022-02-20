@@ -81,6 +81,7 @@ sorting
 
 \pgfutilensuremath{formula}#*
 \pgfutilpreparefilename{file name}#*
+\pgfretvalquoted#*
 \pgfutilifcontainsmacro{token list}{true}{false}#*
 \pgfutilifstartswith{start with pattern}{token list}{true}{false}#*
 \pgfutilstrreplace{search}{replacement}{string}#*
