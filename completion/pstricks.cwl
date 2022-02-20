@@ -177,6 +177,8 @@ hideerrors
 \parabola[keyvals](x0,y0)(x1,y1)
 \parabola[keyvals]{arrows}(x0,y0)(x1,y1)
 \parabola{arrows}(x0,y0)(x1,y1)
+\pgfforeach#*
+\pgfforeach{cmd}#Sd
 \Polar#S
 \psaddtolength{cmd}{dim}
 \psarc(x,y){radius}{angleA}{angleB}
@@ -441,6 +443,7 @@ hideerrors
 \pstribox[keyvals]{stuff}
 \pstribox{stuff}
 \PSTricksfalse#*
+\PSTricksLoaded#S
 \PSTricksOff
 \PSTrickstrue#*
 \pstunit#*
@@ -531,6 +534,17 @@ randomhsb#B
 \pstFPMul{cmd}{num1}{num2}#*d
 \pstFPDiv{cmd}{num1}{num2}#*d
 \pstFPstripZeros{cmd}{num}#*d
+
+# loads the following files from pgf: pgfutil-common.tex, pgfkeys.code.tex, and pgffor.code.tex
+# from pgfutil-common.tex
+\pgferror{error text%text}#*
+\pgfwarning{warning text%text}#*
+# from pgfkeys.code.tex
+#include:pgfkeys
+# from pgffor.code.tex
+\foreach
+\foreach{cmd}#Sd
+\breakforeach#*
 
 # from xcolor options
 #ifOption:table
