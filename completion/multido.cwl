@@ -10,3 +10,7 @@
 \multidostop#*
 \fpAdd{num1}{num2}{cmd}#d
 \fpSub{num1}{num2}{cmd}#d
+\MultidoLoaded#S
+\TheAtCode#S
+\fileversion#S
+\filedate#S
