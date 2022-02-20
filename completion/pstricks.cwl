@@ -539,6 +539,14 @@ randomhsb#B
 # from pgfutil-common.tex (inputs pgfutil-common-lists.tex)
 \pgferror{error text%text}#*
 \pgfwarning{warning text%text}#*
+\pgfutilensuremath{formula}#*
+\pgfutilpreparefilename{file name}#*
+\pgfretvalquoted#*
+\pgfutilifcontainsmacro{token list}{true}{false}#*
+\pgfutilifstartswith{start with pattern}{token list}{true}{false}#*
+\pgfutilstrreplace{search}{replacement}{string}#*
+\pgfutilsolvetwotwoleq{2x2 matrix entries}{2x1 matrix entries}#*
+\pgfutilsolvetwotwoleqfloat{2x2 matrix entries}{2x1 matrix entries}#*
 # from pgfutil-common-lists.tex
 \pgfapplistnewempty{applist name}#*
 \pgfapplistpushback %<item to append%>\to %<applist name%>#*
