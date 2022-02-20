@@ -762,6 +762,10 @@ randomhsb#B
 \pgfmathresult
 \pgfmathresulty#*
 \pgfmathresultx#*
+\pgfmathresultdenom#S
+\pgfmathresultfractional#S
+\pgfmathresultnumerator#S
+\pgfmathresultX#S
 
 # from xcolor options
 #ifOption:table
