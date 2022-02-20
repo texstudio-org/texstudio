@@ -254,3 +254,7 @@
 \pgfmathresult
 \pgfmathresulty#*
 \pgfmathresultx#*
+\pgfmathresultdenom#S
+\pgfmathresultfractional#S
+\pgfmathresultnumerator#S
+\pgfmathresultX#S
