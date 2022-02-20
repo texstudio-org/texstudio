@@ -1,5 +1,5 @@
 # spbmark package
-# Matthew Bertucci 2/10/2022 for v1.35
+# Matthew Bertucci 2/19/2022 for v1.37
 
 #include:xparse
 #include:l3keys2e
@@ -127,6 +127,8 @@ height=##L
 depth=##L
 style=%<style name%>
 mode=#text,math,match
+vsep={%<super move,sub move%>}
+halign=#l,c,r
 #endkeyvals
 
 #keyvals:\spbset,\super,\sub,\supersub,\sp,\sb,\textsuperscript,\textsubscript

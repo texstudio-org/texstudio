@@ -33,6 +33,10 @@ monochrome
 grayscale
 #endkeyvals
 
+#ifOption:useCalc
+#include:pst-calculate
+#endif
+
 \PDFcontainer
 
 \begin{postscript}

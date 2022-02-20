@@ -4,26 +4,33 @@
 #include:pbox
 #include:tokcycle
 
-\censor{text}
-\StopCensoring
-\RestartCensoring
-\censorbox{contents%text}
+\accentfalse#*
+\accenttrue#*
 \blackout{text}
-\xblackout{text}
-\periodrlap#*
-\afterperiodlap#*
-\lletterlap#*
-\rletterlap#*
-\afterspacelap#*
-\censor*{width}
-\censorbox*{width}{height}{depth}
-\censorbox*[pre-commands]{width}{height}{depth}
 \blackoutenv
-\endblackoutenv
-\xblackoutenv
-\endxblackoutenv
+\censor*{width multiplier}
+\censor{text}
+\censorbox*[pre-commands]{width mult}{height mult}{depth mult}
+\censorbox*{width mult}{height mult}{depth mult}
+\censorbox[pre-commands]{contents%text}
+\censorbox{contents%text}
+\censordot#*
+\censorrule{length}#*
 \censorruledepth#*
 \censorruleheight#*
-\censordot#*
-\bpar#S
 \censorversionnumber#S
+\censpace#*
+\charfalse#*
+\chartrue#*
+\endblackoutenv
+\endxblackoutenv
+\expandargfalse#*
+\expandargtrue#*
+\ifaccent#*
+\ifchar#*
+\ifexpandarg#*
+\RestartCensoring
+\spacelap#*
+\StopCensoring
+\xblackout{text}
+\xblackoutenv

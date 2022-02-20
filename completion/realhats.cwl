@@ -11,7 +11,7 @@
 \hat{arg}#m
 \hat[type%keyvals]{arg}#m
 
-#keyvals:\hat
+#keyvals:\hat,\usepackage/realhats#c,\hatn,\hatnoptions
 beret
 santa
 sombrero
@@ -23,3 +23,12 @@ cowboy
 crown
 dunce
 #endkeyvals
+
+\myhat#S
+\hatwidth#*
+\hshif#*
+\vshif#*
+\hatused#*
+\gethat#*
+\hatn{arg}{type%keyvals}#*
+\hatnoptions{arg}{type%keyvals}{hshift%l}{vshift%l}#*

@@ -1,13 +1,18 @@
 # CharisSIL package
-# Matthew Bertucci 1/11/2022 for v6.0
+# Matthew Bertucci 2/19/2022 for v6.1
 
-#include:iftex
+#include:ifxetex
+#include:ifluatex
 #include:xkeyval
-#include:fontspec
+#include:textcomp
+#include:fontenc
+#include:fontaxes
+#include:mweights
 
 #keyvals:\usepackage/CharisSIL#c
 scale=%<factor%>
 scaled=%<factor%>
+type1
 #endkeyvals
 
 \CharisSIL
