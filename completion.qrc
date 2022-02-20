@@ -377,6 +377,7 @@
 <file>completion/chemgreek.cwl</file>
 <file>completion/chemmacros.cwl</file>
 <file>completion/chemnum.cwl</file>
+<file>completion/chemplants.cwl</file>
 <file>completion/chemsec.cwl</file>
 <file>completion/chemstyle.cwl</file>
 <file>completion/chessboard.cwl</file>
@@ -729,6 +730,7 @@
 <file>completion/endfloat.cwl</file>
 <file>completion/endnotes.cwl</file>
 <file>completion/endnotes-hy.cwl</file>
+<file>completion/endofproofwd.cwl</file>
 <file>completion/engord.cwl</file>
 <file>completion/engpron.cwl</file>
 <file>completion/engrec.cwl</file>
@@ -995,6 +997,7 @@
 <file>completion/grmath.cwl</file>
 <file>completion/grundgesetze.cwl</file>
 <file>completion/GS1.cwl</file>
+<file>completion/gtrcrd.cwl</file>
 <file>completion/gtrlib.largetrees.cwl</file>
 <file>completion/Gudea.cwl</file>
 <file>completion/guitarchordschemes.cwl</file>
@@ -1298,6 +1301,7 @@
 <file>completion/mathpunctspace.cwl</file>
 <file>completion/mathrsfs.cwl</file>
 <file>completion/mathspec.cwl</file>
+<file>completion/mathstone.cwl</file>
 <file>completion/mathstyle.cwl</file>
 <file>completion/mathtools.cwl</file>
 <file>completion/matlab-prettifier.cwl</file>
@@ -1530,6 +1534,7 @@
 <file>completion/parselines.cwl</file>
 <file>completion/parskip.cwl</file>
 <file>completion/pascaltriangle.cwl</file>
+<file>completion/pas-cours.cwl</file>
 <file>completion/pas-crosswords.cwl</file>
 <file>completion/pas-cv.cwl</file>
 <file>completion/pas-tableur.cwl</file>
@@ -1644,6 +1649,7 @@
 <file>completion/processkv.cwl</file>
 <file>completion/prodint.cwl</file>
 <file>completion/productbox.cwl</file>
+<file>completion/ProfCollege.cwl</file>
 <file>completion/progressbar.cwl</file>
 <file>completion/ProjLib.cwl</file>
 <file>completion/proof.cwl</file>
@@ -1654,15 +1660,19 @@
 <file>completion/psfont.cwl</file>
 <file>completion/psfrag.cwl</file>
 <file>completion/pst-3d.cwl</file>
+<file>completion/pst-all.cwl</file>
 <file>completion/pst-blur.cwl</file>
+<file>completion/pst-calculate.cwl</file>
 <file>completion/pst-char.cwl</file>
 <file>completion/pst-coil.cwl</file>
 <file>completion/pst-eps.cwl</file>
 <file>completion/pst-fill.cwl</file>
+<file>completion/pst-key.cwl</file>
 <file>completion/pst-node.cwl</file>
 <file>completion/pst-pdf.cwl</file>
 <file>completion/pst-plot.cwl</file>
 <file>completion/pstricks.cwl</file>
+<file>completion/pstricks-pdf.cwl</file>
 <file>completion/pst-text.cwl</file>
 <file>completion/pst-tree.cwl</file>
 <file>completion/pst-xkey.cwl</file>
@@ -1675,6 +1685,7 @@
 <file>completion/PTSerif.cwl</file>
 <file>completion/punk.cwl</file>
 <file>completion/px-ds.cwl</file>
+<file>completion/pxgreeks.cwl</file>
 <file>completion/pxpic.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
 <file>completion/pxtx-frak.cwl</file>
@@ -2252,6 +2263,7 @@
 <file>completion/xassoccnt.cwl</file>
 <file>completion/xbmks.cwl</file>
 <file>completion/XCharter.cwl</file>
+<file>completion/xcharter-otf.cwl</file>
 <file>completion/xcntperchap.cwl</file>
 <file>completion/xcoffins.cwl</file>
 <file>completion/xcolor.cwl</file>
