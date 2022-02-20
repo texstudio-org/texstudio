@@ -1,5 +1,6 @@
 # mode: pst-coil.sty
 # dani/2006-02-22
+# Matthew Bertucci 2022-02-20
 
 #include:pstricks
 #include:pst-node
