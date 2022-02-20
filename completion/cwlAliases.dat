@@ -398,3 +398,11 @@ tikzposter:
 class-tikzposter
 latex-document
 tex
+metanorma:
+class-metanorma
+latex-document
+tex
+skdoc:
+class-skdoc
+latex-document
+tex
