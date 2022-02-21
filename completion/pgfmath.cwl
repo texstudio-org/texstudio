@@ -51,6 +51,7 @@
 \pgfmathcontinuelooptrue#*
 \pgfmathcontinueloopfalse#*
 \pgfmathloop %<loop body%>\repeatpgfmathloop#*
+\repeatpgfmathloop#*
 \pgfmathbreakloop#*
 \pgfmathreturn#*
 \pgfmathcounter#*
