@@ -78,28 +78,38 @@
 \psplot{xmin}{xmax}[PS commands]{function}#*
 \psplot{xmin}{xmax}{function}
 \psplotinit{arg}#*
+\psplotstyle#*
 \psPutXLabel{arg}#*
 \psPutYLabel{arg}#*
 \psreadDataColumn[options%keyvals]{colNo}{delim}{macro%cmd}{file}#d
 \psreadDataColumn{colNo}{delim}{macro%cmd}{file}#d
+\psResetPlotValues#*
 \psrotatebox{angle}{contents}#*
 \PSTplotLoaded#S
 \pstRadUnit
 \pstRadUnitInv
 \pstScalePoints(xscale,yscale){xPS}{yPS}
+\pstXPSScale#*
+\pstXScale#*
+\pstYPSScale#*
+\pstYScale#*
 \psVectorfield(%<x0,y0%>)(%<x1,y1%>){%<f'(x,y)%>}
 \psVectorfield[%<options%>](%<x0,y0%>)(%<x1,y1%>){%<f'(x,y)%>}
 \psvlabel
 \psxlabelsep#*
+\psxsubticklinestyle#*
 \psxTick(x value){label}
 \psxTick[options%keyvals](x value){label}
 \psxTick[options%keyvals]{rotation}(x value){label}
 \psxTick{rotation}(x value){label}
+\psxticklinestyle#*
 \psylabelsep#*
+\psysubticklinestyle#*
 \psyTick(y value){label}
 \psyTick[options%keyvals](y value){label}
 \psyTick[options%keyvals]{rotation}(y value){label}
 \psyTick{rotation}(y value){label}
+\psyticklinestyle#*
 \readdata{macro%cmd}{file}#d
 \savedata{macro%cmd}[data]#d
 \setDefaulthLabels#*
