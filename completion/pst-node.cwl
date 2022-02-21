@@ -9,12 +9,17 @@
 97
 #endkeyvals
 
+\actualscale{arg}#*
 \algparnode{t}{expr in t%definition}{node name}
 \AplusB(A)(B){C}
 \ArrowNotch{node name}{node index}{direction}{notch}
 \AtoB(A)(B){C}
 \begin{psmatrix}
 \begin{psmatrix}[options%keyvals]
+\Circlenode*[options%keyvals]{name}{stuff}#*
+\Circlenode*{name}{stuff}#*
+\Circlenode[options%keyvals]{name}{stuff}#*
+\Circlenode{name}{stuff}#*
 \circlenode*[options%keyvals]{name}{stuff}
 \circlenode*{name}{stuff}
 \circlenode[options%keyvals]{name}{stuff}
@@ -45,6 +50,7 @@
 \cnodeput{angle}(x,y){name}{stuff}
 \curvepnode{tval}{expr in t%definition}{node name}
 \curvepnodes{tmin}{tmax}{expr in t%definition}{node root}
+\defaultvalue{cmd}{val}#*d
 \dianode*[options%keyvals]{name}{stuff}
 \dianode*{name}{stuff}
 \dianode[options%keyvals]{name}{stuff}
@@ -59,6 +65,7 @@
 \dotnodes[%<options%>](%<x1,y1%>){%<name1%>}(%<x2,y2%>){%<name2%>}%<...(xN,yN){nameN}%>
 \end{psmatrix}
 \endpsmatrix#*
+\equalwhat#S
 \fnode(x,y){name}
 \fnode*(x,y){name}
 \fnode*[options%keyvals](x,y){name}
@@ -67,7 +74,10 @@
 \fnpnodes{xmin}{xmax}{expr in x%definition}{node root}
 \getnodelist{node root}{next command}
 \hasparen#*
+\hasequal#*
+\hascolon#*
 \MakeShortNab{char1}{char2}
+\MakeShortTab{char1}{char2}#*
 \MakeShortTablr{char1}{char2}{char3}{char4}
 \midAB(A)(B){C}
 \naput*[options%keyvals]{stuff}
@@ -176,6 +186,10 @@
 \ncLine{arrows}{nodeA}{nodeB}
 \ncline{nodeA}{nodeB}
 \ncLine{nodeA}{nodeB}
+\nclines[options%keyvals]{arrows}{nodeA}{nodeB}#*
+\nclines[options%keyvals]{nodeA}{nodeB}#*
+\nclines{arrows}{nodeA}{nodeB}#*
+\nclines{nodeA}{nodeB}#*
 \ncloop*[options%keyvals]{arrows}{nodeA}{nodeB}
 \ncloop*[options%keyvals]{nodeA}{nodeB}
 \ncloop*{arrows}{nodeA}{nodeB}
@@ -198,6 +212,9 @@
 \nczigzag{nodeA}{nodeB}
 \nlput(A)(B){distance%l}{text}
 \nlput[options%keyvals](A)(B){distance%l}{text}
+\nodenameA#*
+\nodenameB#*
+\nodex{expr%definition}#*
 \nodexn{expr%definition}{node name}
 \normalvec(coords){node name}
 \nput*[options%keyvals]{refangle}{name}{stuff}
@@ -289,6 +306,7 @@
 \pnodes[%<offset%>](%<x1,y1%>){%<name1%>}(%<x2,y2%>){%<name2%>}%<...(xN,yN){nameN}%>
 \pnodes{%<name%>}(%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>
 \polyIntersections{name1}{name2}(A)(B){P}{number}
+\pscloseNodeFile#*
 \pscolhooki#S
 \pscolhookii#S
 \pscolhookiii#S
@@ -301,6 +319,9 @@
 \pscolhookx#S
 \psDefBoxNodes{node name}{text}
 \psDefPSPNodes
+\psGetCenter{node name}#*
+\psGetEdgeA{node1}{node2}#*
+\psGetEdgeB{node1}{node2}#*
 \psGetNodeCenter{node name}
 \psGetNodeEdgeA{node name}
 \psGetNodeEdgeB{node name}
@@ -318,6 +339,10 @@
 \psncurve[options%keyvals](x,y){name}
 \psncurve[options%keyvals]{arrows}(x,y){name}
 \psncurve{arrows}(x,y){name}
+\psnccurve(x,y){name}#*
+\psnccurve[options%keyvals](x,y){name}#*
+\psnccurve[options%keyvals]{arrows}(x,y){name}#*
+\psnccurve{arrows}(x,y){name}#*
 \psnline(x,y){name}
 \psnline[options%keyvals](x,y){name}
 \psnline[options%keyvals]{arrows}(x,y){name}
@@ -328,6 +353,7 @@
 \psnpolygon[options%keyvals](x,y){name}
 \psnpolygon[options%keyvals]{arrows}(x,y){name}
 \psnpolygon{arrows}(x,y){name}
+\psopenNodeFile#*
 \psparnode{t}{expr in t%definition}{node name}
 \psRelLineVar(nodeA)(nodeB)(radius;angle){node name}
 \psRelNode[P0][P1]{length factor}{end node name}
@@ -349,6 +375,9 @@
 \psrowhookviii#S
 \psrowhookx#S
 \psspan{integer}
+\pstiterate#*
+\pstloop{arg}#*
+\PSTnodesLoaded#S
 \psxline(basept){nodeexpr1%definition}{nodeexpr2%definition}
 \psxline[options%keyvals](basept){nodeexpr1%definition}{nodeexpr2%definition}
 \psxline[options%keyvals]{arrows}(basept){nodeexpr1%definition}{nodeexpr2%definition}
@@ -367,6 +396,7 @@
 \tbput*{stuff}
 \tbput[options%keyvals]{stuff}
 \tbput{stuff}
+\testAlg#*
 \thput*[options%keyvals]{stuff}
 \thput*{stuff}
 \thput[options%keyvals]{stuff}
@@ -375,6 +405,7 @@
 \tlput*{stuff}
 \tlput[options%keyvals]{stuff}
 \tlput{stuff}
+\trim#*
 \trinode*[options%keyvals]{name}{stuff}
 \trinode*{name}{stuff}
 \trinode[options%keyvals]{name}{stuff}
@@ -387,6 +418,7 @@
 \tvput*{stuff}
 \tvput[options%keyvals]{stuff}
 \tvput{stuff}
+\unbrace{arg}#*
 
 # obsolete
 \Aput{stuff}#S

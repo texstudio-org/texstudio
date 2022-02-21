@@ -51,6 +51,7 @@
 \pgfmathcontinuelooptrue#*
 \pgfmathcontinueloopfalse#*
 \pgfmathloop %<loop body%>\repeatpgfmathloop#*
+\repeatpgfmathloop#*
 \pgfmathbreakloop#*
 \pgfmathreturn#*
 \pgfmathcounter#*
@@ -254,3 +255,7 @@
 \pgfmathresult
 \pgfmathresulty#*
 \pgfmathresultx#*
+\pgfmathresultdenom#S
+\pgfmathresultfractional#S
+\pgfmathresultnumerator#S
+\pgfmathresultX#S

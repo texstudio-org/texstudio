@@ -10,3 +10,11 @@
 \multidostop#*
 \fpAdd{num1}{num2}{cmd}#d
 \fpSub{num1}{num2}{cmd}#d
+\MultidoLoaded#S
+\TheAtCode#S
+\fileversion#S
+\filedate#S
+
+# if undefined, multido defines \FPadd and \FPsub as \fpAdd and \fpSub, resp.
+\FPadd{num1}{num2}{cmd}#Sd
+\FPsub{num1}{num2}{cmd}#Sd
