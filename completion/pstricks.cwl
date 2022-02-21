@@ -205,6 +205,7 @@ hideerrors
 \psarcnAB[keyvals](xC,yC)(xA,yA)(xB,yB)
 \psarcnAB[keyvals]{arrows}(xC,yC)(xA,yA)(xB,yB)
 \psarcnAB{arrows}(xC,yC)(xA,yA)(xB,yB)
+\psarrowlinestyle#*
 \psbezier(x0,y0)(x1,y1)(x2,y2)(x3,y3)
 \psBezier(x0,y0)(x1,y1)(x2,y2)(x3,y3)
 \psbezier*(x0,y0)(x1,y1)(x2,y2)(x3,y3)
@@ -370,6 +371,7 @@ hideerrors
 \psLineSegments(%<x0,y0%>)(%<x1,y1%>)%<...(xN,yN)%>
 \psLineSegments[%<options%>](%<x0,y0%>)(%<x1,y1%>)%<...(xN,yN)%>
 \pslinestyle#*
+\pslinetype#*
 \pslinewidth#*
 \pslongbox{name}{cmd}
 \psLoop{n}{argument}
@@ -425,6 +427,7 @@ hideerrors
 \pssubgridcolor#*
 \PstAtCode#S
 \pstCheckCoorType{arg}#*
+\pstcustomize#*
 \pstdriver#*
 \psTextFrame(x1,y1)(x2,y2){text}
 \psTextFrame*(x1,y1)(x2,y2){text}
@@ -446,6 +449,7 @@ hideerrors
 \PSTricksLoaded#S
 \PSTricksOff
 \PSTrickstrue#*
+\pstrotate#*
 \pstunit#*
 \pstverb{commands}#*
 \pstVerb{commands}#*
@@ -469,6 +473,7 @@ hideerrors
 \resetArrowOptions#*
 \reversepath
 \rlineto(coor)
+\rmoveto(coor)
 \rotate{angle}
 \rotatedown{stuff}
 \rotateleft{stuff}
@@ -542,6 +547,7 @@ randomhsb#B
 \pgfutilensuremath{formula}#*
 \pgfutilpreparefilename{file name}#*
 \pgfretvalquoted#*
+\pgfutilconvertdcolon#*
 \pgfutilifcontainsmacro{token list}{true}{false}#*
 \pgfutilifstartswith{start with pattern}{token list}{true}{false}#*
 \pgfutilstrreplace{search}{replacement}{string}#*
