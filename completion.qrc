@@ -1,6 +1,7 @@
 <RCC>
 <qresource prefix="/">
 <file>completion/12many.cwl</file>
+<file>completion/2up.cwl</file>
 <file>completion/abc.cwl</file>
 <file>completion/abntcite.cwl</file>
 <file>completion/aboensis.cwl</file>
@@ -78,6 +79,7 @@
 <file>completion/amssymb.cwl</file>
 <file>completion/amstext.cwl</file>
 <file>completion/amsthm.cwl</file>
+<file>completion/andika.cwl</file>
 <file>completion/animate.cwl</file>
 <file>completion/annee-scolaire.cwl</file>
 <file>completion/AnnSton.cwl</file>
@@ -446,6 +448,7 @@
 <file>completion/class-ltxguidex.cwl</file>
 <file>completion/class-memoir.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
+<file>completion/class-metanorma.cwl</file>
 <file>completion/class-minimart.cwl</file>
 <file>completion/class-minimbook.cwl</file>
 <file>completion/class-mla.cwl</file>
@@ -473,6 +476,7 @@
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
 <file>completion/class-simplivre.cwl</file>
+<file>completion/class-skdoc.cwl</file>
 <file>completion/class-skrapport.cwl</file>
 <file>completion/class-slides.cwl</file>
 <file>completion/class-sslides.cwl</file>
@@ -982,6 +986,7 @@
 <file>completion/graphicxbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/graphicxpsd.cwl</file>
+<file>completion/graphicx-psmin.cwl</file>
 <file>completion/graphpap.cwl</file>
 <file>completion/graphviz.cwl</file>
 <file>completion/greek4cbc.cwl</file>
@@ -1196,6 +1201,7 @@
 <file>completion/lie-hasse.cwl</file>
 <file>completion/lilyglyphs.cwl</file>
 <file>completion/linearb.cwl</file>
+<file>completion/linebreaker.cwl</file>
 <file>completion/linegoal.cwl</file>
 <file>completion/linenoamsmath.cwl</file>
 <file>completion/lineno.cwl</file>
@@ -1204,6 +1210,7 @@
 <file>completion/linop.cwl</file>
 <file>completion/lipsum.cwl</file>
 <file>completion/listings.cwl</file>
+<file>completion/listings-ext.cwl</file>
 <file>completion/listlbls.cwl</file>
 <file>completion/listliketab.cwl</file>
 <file>completion/listofitems.cwl</file>
@@ -1273,6 +1280,7 @@
 <file>completion/makecmds.cwl</file>
 <file>completion/makeidx.cwl</file>
 <file>completion/makematch.cwl</file>
+<file>completion/maker.cwl</file>
 <file>completion/makeshape.cwl</file>
 <file>completion/mandi.cwl</file>
 <file>completion/mandiexp.cwl</file>
@@ -1375,6 +1383,7 @@
 <file>completion/moreverb.cwl</file>
 <file>completion/morewrites.cwl</file>
 <file>completion/MorrisIn.cwl</file>
+<file>completion/mpgraphics.cwl</file>
 <file>completion/mpostinl.cwl</file>
 <file>completion/mtgreek.cwl</file>
 <file>completion/mtpro2.cwl</file>
@@ -1650,6 +1659,7 @@
 <file>completion/prodint.cwl</file>
 <file>completion/productbox.cwl</file>
 <file>completion/ProfCollege.cwl</file>
+<file>completion/ProfLycee.cwl</file>
 <file>completion/progressbar.cwl</file>
 <file>completion/ProjLib.cwl</file>
 <file>completion/proof.cwl</file>
@@ -1660,20 +1670,31 @@
 <file>completion/psfont.cwl</file>
 <file>completion/psfrag.cwl</file>
 <file>completion/pst-3d.cwl</file>
+<file>completion/pst-abspos.cwl</file>
 <file>completion/pst-all.cwl</file>
+<file>completion/pst-arrow.cwl</file>
 <file>completion/pst-blur.cwl</file>
 <file>completion/pst-calculate.cwl</file>
 <file>completion/pst-char.cwl</file>
+<file>completion/pst-cie.cwl</file>
 <file>completion/pst-coil.cwl</file>
 <file>completion/pst-eps.cwl</file>
+<file>completion/pst-exa.cwl</file>
 <file>completion/pst-fill.cwl</file>
+<file>completion/pst-hsb.cwl</file>
 <file>completion/pst-key.cwl</file>
+<file>completion/pst-math.cwl</file>
 <file>completion/pst-node.cwl</file>
+<file>completion/pst-ovl.cwl</file>
 <file>completion/pst-pdf.cwl</file>
 <file>completion/pst-plot.cwl</file>
+<file>completion/pstricks-add.cwl</file>
 <file>completion/pstricks.cwl</file>
 <file>completion/pstricks-pdf.cwl</file>
+<file>completion/pstring.cwl</file>
+<file>completion/pst-slpe.cwl</file>
 <file>completion/pst-text.cwl</file>
+<file>completion/pst-tools.cwl</file>
 <file>completion/pst-tree.cwl</file>
 <file>completion/pst-xkey.cwl</file>
 <file>completion/PTMono.cwl</file>
@@ -1685,6 +1706,7 @@
 <file>completion/PTSerif.cwl</file>
 <file>completion/punk.cwl</file>
 <file>completion/px-ds.cwl</file>
+<file>completion/pxfonts.cwl</file>
 <file>completion/pxgreeks.cwl</file>
 <file>completion/pxpic.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
@@ -1991,6 +2013,7 @@
 <file>completion/testhyphens.cwl</file>
 <file>completion/tetragonos.cwl</file>
 <file>completion/teubner.cwl</file>
+<file>completion/tex4ebook.cwl</file>
 <file>completion/texapi.cwl</file>
 <file>completion/tex.cwl</file>
 <file>completion/texdate.cwl</file>
