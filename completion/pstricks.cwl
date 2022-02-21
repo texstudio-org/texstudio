@@ -646,7 +646,6 @@ randomhsb#B
 # from pgfmathfunctions.trigonometric.code.tex
 \pgfmathpi#*
 \pgfmathiftrigonometricusesdeg{true}{false}#*
-\pgfmathradians{x in radians} # for compatibility with pgf 1.18 beta#*
 \pgfmathdeg{x in radians}#*
 \pgfmathrad{x in degrees}#*
 \pgfmathsin{x in degrees}#*
