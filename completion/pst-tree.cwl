@@ -15,11 +15,13 @@
 \endskiplevels
 \MakeShortTnput{char}
 \psedge
+\psnodecnt#*
 \pspred
 \pssucc
 \pstree[options%keyvals]{root}{successors}
 \psTree{root}#*
 \pstree{root}{successors}
+\pstreecnt#*
 \pstreehooki#S
 \pstreehookii#S
 \pstreehookiii#S
@@ -30,6 +32,7 @@
 \pstreehookvii#S
 \pstreehookviii#S
 \pstreehookx#S
+\pstreelevel#*
 \PSTreeLoaded#S
 \skiplevel*[options%keyvals]{subtrees}
 \skiplevel*{subtrees}
