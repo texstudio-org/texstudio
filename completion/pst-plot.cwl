@@ -22,7 +22,7 @@
 \endpsgraph#*
 \fileplot[options%keyvals]{file}
 \fileplot{file}
-\ifSpecialLabelsDone
+\ifSpecialLabelsDone#*
 \listplot[options%keyvals]{list}
 \listplot{data}
 \parametricplot[options%keyvals]{tmin}{tmax}[PS commands]{function}
@@ -118,6 +118,6 @@
 \setFractionvLabels#*
 \setTrighLabels#*
 \setTrigvLabels#*
-\SpecialLabelsDonefalse
-\SpecialLabelsDonetrue
+\SpecialLabelsDonefalse#*
+\SpecialLabelsDonetrue#*
 \stripDecimals#S
