@@ -1,5 +1,8 @@
 # fbox package
-# Matthew Bertucci 9/9/2021 for v0.05
+# Matthew Bertucci 2/21/2022 for v0.06
+
+#include:xkeyval
+#include:xcolor
 
 \fbox[options%keyvals]{text}
 \fbox*{text}
@@ -12,4 +15,8 @@
 #keyvals:\fbox#c,\fbox*#c,\fparbox#c,\fparbox*#c
 boxrule=##L
 boxsep=##L
+lcolor=#%color
+tcolor=#%color
+rcolor=#%color
+bcolor=#%color
 #keyvals
