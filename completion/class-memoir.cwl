@@ -1,4 +1,4 @@
-# updated 8/19/2021 for v3.7p
+# updated 2/21/2022 for v3.7q
 #include:etex
 #include:iftex
 #include:array
@@ -6,6 +6,7 @@
 #include:delarray
 #include:tabularx
 #include:textcase
+#include:etoolbox
 
 #keyvals:\documentclass/memoir
 10pt
