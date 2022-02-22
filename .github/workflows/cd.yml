@@ -48,17 +48,16 @@ jobs:
         with:
           name: texstudio-win-qt6-exe
           path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
-        
-      - name: Release exe
-        uses: softprops/action-gh-release@v1
+
+      - name: Upload release file(s)
+        uses: actions/upload-artifact@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
-          files: |
+          name: release
+          path: |
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+
 
   build-linux-win:
     name: win build (mxe)
@@ -144,19 +143,17 @@ jobs:
       with:
         name: texstudio-win-exe
         path: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
-        
-    - name: Release exe
-      uses: softprops/action-gh-release@v1
+
+    - name: Upload release file(s)
+      uses: actions/upload-artifact@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
-        files: |
+        name: release
+        path: |
           texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt5.exe
           texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt5.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-        
-     
+
+
 ###################################
 
   build-linux-release:
@@ -205,19 +202,17 @@ jobs:
       with:
         name: texstudio-linux
         path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
-        
-    - name: Release
-      uses: softprops/action-gh-release@v1
+
+    - name: Upload release file(s)
+      uses: actions/upload-artifact@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
-        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-x86_64.AppImage
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-   
-     
+        name: release
+        path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-x86_64.AppImage
+
+
 ############################
-      
+
   macosx:
     name: Mac OS X
     runs-on: macos-10.15
@@ -271,16 +266,15 @@ jobs:
       with:
         name: texstudio-osx
         path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
-        
-    - name: Release
-      uses: softprops/action-gh-release@v1
+
+    - name: Upload release file(s)
+      uses: actions/upload-artifact@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
-        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-        
+        name: release
+        path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
+
+
   macosx-qt5:
     name: Mac OS X (Qt5)
     if: false
@@ -340,15 +334,29 @@ jobs:
       with:
         name: texstudio-osx-qt5
         path: texstudio-osx-qt5-${{ steps.package.outputs.VERSION_NAME }}.dmg
-        
-    - name: Release
+
+
+
+  release:
+    name: Release
+    needs: [build-win, build-linux-win, build-linux-release, macosx] # macosx-qt5 is disabled
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+    - name: Download temp artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: release
+
+    - name: Batch release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
       with:
         prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
-        files: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx-qt5.dmg
+        files: ./*
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-   
 
-
+    - name: Delete temp artifact
+      uses: GeekyEggo/delete-artifact@v1.0.0
+      with:
+        name: release
