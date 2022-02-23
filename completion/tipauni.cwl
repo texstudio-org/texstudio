@@ -1,8 +1,19 @@
 # tipauni package
-# Matthew Bertucci 10/4/2021 for v0.3
+# Matthew Bertucci 2/23/2022 for v0.6
 
 #include:fontspec
 #include:xparse
+#include:expkv-def
+#include:expkv-opt
+
+#keyvals:\usepackage/tipauni#c
+documentfont=%<font name%>
+fontspecoptions={%<fontspec options%>}
+preservefont
+recommendedfont
+resetfontspecoptions
+incompatible
+#endkeyvals
 
 \textrtailt
 \textrtaild
@@ -13,7 +24,6 @@
 \textltailm
 \textrtailn
 \textltailn
-\ng
 \textscn
 \textscb
 \textscr
@@ -23,8 +33,6 @@
 \textphi
 \textbeta
 \texttheta
-\dh
-\textsh
 \textyogh
 \textrtails
 \textrtailz
@@ -107,4 +115,58 @@
 \texttoptiebar{arg}
 \textbottomtiebar{arg}
 \textipa{text%plain}
+\begin{IPA}
+\end{IPA}
 \super{arg}#*
+\tipaunistar{arg}#*
+\tipaunisemicolon{arg}#*
+\tipaunicolon{arg}#*
+\tipaunibang{arg}#*
+\tipaunipipe{arg}#*
+\tipaunitextbottomtiebar{arg1}{arg2}#*
+\tipaunits{arg1}{arg2}#*
+\tipaunisubbridge{arg}#*
+\tipauniinvsubbridge{arg}#*
+\tipaunisublhalfring{arg}#*
+\tipaunisubrhalfring{arg}#*
+\tipaunisubplus{arg}#*
+\tipauniraising{arg}#*
+\tipaunilowering{arg}#*
+\tipauniadvancing{arg}#*
+\tipauniretracting{arg}#*
+\tipauniovercross{arg}#*
+\tipauniseagull{arg}#*
+\tipaunisubring{arg}#*
+\TipaUniSubRing{arg}#*
+\tipaunisubwedge{arg}#*
+\TipaUniSubWedge{arg}#*
+\tipaunisubbar{arg}#*
+\TipaUniSubBar{arg}#*
+\tipauniovercross{arg}#*
+\tipaunisubumlaut{arg}#*
+\TipaUniSubUmlaut{arg}#*
+\tipaunisubtilde{arg}#*
+\TipaUniSubTilde{arg}#*
+\tipaunisuperimposetilde{arg}#*
+\tipaunitexttoptiebar{arg1}{arg2}#*
+\tipaunit{arg}#*
+\ifnontipa#*
+\nontipatrue#*
+\nontipafalse#*
+\tipaunicmd{cmd}{def}#*d
+
+\tipauniname#S
+\tipauniversion#S
+\tipaunidate#S
+\tipaunidescription#S
+
+# shorthands available only in arg of \textipa
+\*#S
+\tr#S
+\tc#S
+\ts#S
+\|#S
+\s#S
+\ns#S
+\vl#S
+\lmn#S
