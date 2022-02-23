@@ -15,7 +15,7 @@ labels: 'type:bug'
 
 
 ### Actual behavior
-
+<!-- visuals or even better screencasts are very helpful. Please provide test cases as text as well if applicable.-->
 
 ### How to reproduce
 
