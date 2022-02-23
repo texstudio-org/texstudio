@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 9 Nov 2021 for v7.00m
+#modified Matthew Bertucci 23 Feb 2022 for v7.00n
 
 #include:iftex
 #include:keyval
@@ -105,6 +105,7 @@ menucolor=#%color
 nativepdf#true,false
 naturalnames#true,false
 nesting#true,false
+next-anchor=%<anchor name%>
 ocgcolorlinks#true,false
 pageanchor#true,false
 pagebackref#true,false
@@ -203,6 +204,7 @@ nextactionraw=
 
 \phantomsection
 
+\hyperget{anchor}{label}
 \autopageref{label}#r
 \autopageref*{label}#r
 \autoref{label}#r
