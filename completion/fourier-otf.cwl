@@ -1,5 +1,5 @@
 # fourier-otf package
-# Matthew Bertucci 2/10/2022 for v0.50
+# Matthew Bertucci 2/23/2022 for v0.51
 
 #include:iftex
 #include:fourier-orns
@@ -16,7 +16,7 @@ nabla=#italic,upright
 partial=#italic,upright
 CharacterVariant=
 StylisticSet=#3,4,5,6,7
-Style=#upint,leqslant,smaller,subsetneq,parallelslant
+Style=#upint,leqslant,smaller,subsetneq,parallelslant,fulloldstyle
 Scale=%<factor%>
 #endkeyvals
 

@@ -1,15 +1,13 @@
 # ProfLycee package
-# Matthew Bertucci 2/19/2022 for v1.0.6
+# Matthew Bertucci 2/23/2022 for v1.0.7
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
-#include:amssymb
 #include:tikz
 # loads calc, decorations.pathreplacing, decorations.markings, and arrows.meta tikzlibraries
 #include:pgf
 #include:pgffor
 #include:ifthen
-#include:environ
 #include:xparse
 #include:xkeyval
 #include:xfp
@@ -27,6 +25,7 @@
 
 #keyvals:\usepackage/ProfLycee#c
 nominted
+build
 #endkeyvals
 
 \splinetikz

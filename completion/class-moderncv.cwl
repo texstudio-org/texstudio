@@ -1,13 +1,10 @@
 # denisbitouze, 02.03.2013
-# Matthew Bertucci updated 12/18/2021 for v2.3.0
+# Matthew Bertucci updated 2/23/2022 for v2.3.1
 
 #include:etoolbox
 #include:ifthen
 #include:xcolor
-
-# from table option of xcolor
-#include:colortbl
-
+# xcolor loaded with table option
 #include:iftex
 #include:url
 #include:hyperref
@@ -65,6 +62,7 @@ fax
 linkedin
 xing
 twitter
+mastodon
 github
 gitlab
 stackoverflow
@@ -78,6 +76,7 @@ whatsapp
 signal
 matrix
 googlescholar
+codeberg
 #endkeyvals
 \extrainfo{extra info%text}
 \listitemsymbol#*
@@ -91,6 +90,7 @@ googlescholar
 \linkedinsocialsymbol#*
 \xingsocialsymbol#*
 \twittersocialsymbol#*
+\mastodonsocialsymbol#*
 \githubsocialsymbol#*
 \gitlabsocialsymbol#*
 \stackoverflowsocialsymbol#*
@@ -104,6 +104,7 @@ googlescholar
 \whatsappsocialsymbol#*
 \matrixsocialsymbol#*
 \signalsocialsymbol#*
+\codebergsocialsymbol#*
 \enclname#*
 \makefooter
 \moderncvstyle{style%keyvals}#n
@@ -291,3 +292,13 @@ tikz
 
 # from moderncviconsmarvosym.sty
 \marvosymbol{number}#S
+
+# from table option of xcolor
+#include:colortbl
+\rowcolors[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors[commands]{row}{color}{color}#S
+\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors*[commands]{row}{color}{color}#S
+\showrowcolors
+\hiderowcolors
+\rownum
