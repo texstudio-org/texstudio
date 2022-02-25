@@ -1,12 +1,28 @@
 # showexpl package
 # Matthew Bertucci 10/5/2021 for v0.3s
 
-#include:attachfile
 #include:refcount
 #include:listings
 #include:graphicx
 #include:varwidth
 #include:float
+
+#keyvals:\usepackage/showexpl#c
+final
+draft
+attachfiles
+# options passed to listings
+savemem
+noaspects
+lgrind
+procnames
+hyper
+formats
+#endkeyvals
+
+#ifOption:attachfiles
+#include:attachfile
+#endif
 
 \LTXinputExample{file}#i
 \LTXinputExample[options%keyvals]{file}#i
@@ -14,12 +30,13 @@
 \begin{LTXexample}[options%keyvals]
 \end{LTXexample}
 
-#keyvals:\LTXinputExample,\begin{LTXexample}
+#keyvals:\LTXinputExample,\begin{LTXexample},\lstset
 attachfile#true,false
 codefile=%<file name%>
+explpreset={%<listings keyvals%>}
 graphic=%<file%>
 hsep=##L
-justification=
+justification=%<command%>
 overhang=##L
 pos=#t,b,l,r,o,i
 preset=%<code%>
@@ -39,15 +56,46 @@ float
 float=#t,b,tb,bt
 linerange={%<first1-last1,first2-last2,...%>}
 texcs=
-texcsstyle=
-language=
-escapechar=
-#endkeyvals
-
-#keyvals:\lstset,\LTXinputExample,\begin{LTXexample}
-explpreset={%<listings keyvals%>}
+texcsstyle=%<style%>
+language=%<language%>
+escapechar=%<character%>
 #endkeyvals
 
 \ResultBox#*
 \ResultBoxSep#*
 \ResultBoxRule#*
+\theltxexample#*
+\MakePercentIgnore#*
+\MakePercentComment#*
+
+# from listings options
+#ifOption:procnames
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting
+procnamekeys={%<keywords%>}
+moreprocnamekeys={%<keywords%>}
+deleteprocnamekeys={%<keywords%>}
+procnamestyle=%<style%>
+indexprocnames#true,false
+#endkeyvals
+#endif
+
+#ifOption:hyper
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting
+hyperref={%<identifiers%>}
+morehyperref={%<identifiers%>}
+deletehyperref={%<identifiers%>}
+hyperanchor=
+hyperlink=
+#endkeyvals
+#endif
+
+#ifOption:lgrind
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting
+lgrindef=%<language%>
+#endkeyvals
+\lstlgrindeffile
+#endif
+
+#ifOption:formats
+\lstdefineformat{name}{format}
+#endif
