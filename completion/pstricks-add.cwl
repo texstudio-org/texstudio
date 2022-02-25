@@ -72,6 +72,8 @@
 \psKiviatAxes{number of edges}{radius}
 \psKiviatLine[options%keyvals]{list}
 \psKiviatLine{list}
+\psKiviatTicklines{n}{radius}
+\psKiviatTicklines[options%keyvals]{n}{radius}
 \psLeftSumValue
 \pslineByHand(%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>
 \pslineByHand[%<options%>](%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>
