@@ -88,8 +88,11 @@ notesep={%<text%>}
 \citestyle{style%keyvals}
 #keyvals:\citestyle#c
 aa
+abbrv
+abbrvnat
 agsm
 agu
+alpha
 anngeo
 chicago
 copernicus
@@ -105,11 +108,11 @@ nlinproc
 pass
 plain
 plainnat
+unsrt
+unsrtnat
 #endkeyvals
 
 \appdef{cmd}{code}#S
-\astroncite{keylist}{year}#S
-\betweenauthors#S
 \bibAnnote{arg1}{arg2}{arg3}#S
 \bibAnnoteFile{arg1}{arg2}#S
 \bibcite{arg1}{arg2}#S
@@ -138,12 +141,5 @@ plainnat
 \citename#S
 \citenumfont#*
 \citestarts#S
-\harvardand#S
-\harvarditem#S
-\harvardleft#S
-\harvardright#S
-\harvardurl{URL}#S
-\harvardyearleft#S
-\harvardyearright#S
 \ifciteindex#*
 \natexlab#S
