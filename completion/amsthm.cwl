@@ -3,9 +3,15 @@
 # muzimuzhi/1 Sep 2019, amsthm v2.20.3
 
 \newtheorem*{envname}{caption}#N
-\theoremstyle{style}
+\theoremstyle{style%keyvals}
+#keyvals:\theoremstyle#c
+plain
+definition
+remark
+%theoremstyle
+#endkeyvals
 \swapnumbers
-\newtheoremstyle{style name}{space above}{space below}{body font}{indent amount}{head font}{head punct}{after head space}{head spec}
+\newtheoremstyle{style name}{space above}{space below}{body font}{indent amount}{head font}{head punct}{after head space}{head spec}#s#%theoremstyle
 \thmname{arg}
 \thmnumber{arg}
 \thmnote{arg}
