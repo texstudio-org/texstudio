@@ -6,9 +6,9 @@ mathcal
 mathscr
 #endkeyvals
 
-\EuScript{letters}#m
-\CMcal{letters}#*m
+\EuScript{text%plain}#m
+\CMcal{text%plain}#*m
 
 #ifOption:mathscr
-\mathscr{letters}#m
+\mathscr{text%plain}#m
 #endif
