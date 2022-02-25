@@ -1,14 +1,14 @@
-# eufrak package
+# eucal package
 # Matthew Bertucci 12/13/2021 for v3.00
 
-#keyvals:\usepackage/euscript#c
+#keyvals:\usepackage/eucal#c
 mathcal
 mathscr
 #endkeyvals
 
-\EuScript{letters}#*m
-\CMcal{letters}#*m
+\EuScript{text%plain}#*m
+\CMcal{text%plain}#*m
 
 #ifOption:mathscr
-\mathscr{letters}#m
+\mathscr{text%plain}#m
 #endif
