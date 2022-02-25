@@ -67,9 +67,12 @@ numbers
 super
 round
 square
+angle
+curly
 open={%<char%>}
 close={%<char%>}
 semicolon
+colon
 comma
 citesep={%<char%>}
 aysep={%<char%>}
