@@ -3014,6 +3014,7 @@ void PDFDocument::init(bool embedded)
 	conf->linkOptionToObject(&globalConfig->syncViews, actionSynchronize_multiple_views);
 	conf->registerOption("Preview/Invert Colors", &globalConfig->invertColors, false);
 	conf->linkOptionToObject(&globalConfig->invertColors, actionInvertColors);
+    pdfWidget->addAction(actionInvertColors); // add invert color to widget context menu
     //connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 	conf->registerOption("Preview/Grayscale", &globalConfig->grayscale, false);
 	conf->linkOptionToObject(&globalConfig->grayscale, actionGrayscale);
