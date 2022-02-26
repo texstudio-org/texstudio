@@ -406,3 +406,7 @@ skdoc:
 class-skdoc
 latex-document
 tex
+acmart:
+class-acmart
+latex-document
+tex
