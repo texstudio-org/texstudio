@@ -83,6 +83,7 @@ hideerrors
 \AltClipMode#*
 \altcolormode#*
 \arrows{arrows}
+\begin{psclip}{graphics}
 \begin{pspicture*}(x0,y0)(x1,y1)#\picture,pictureHighlight
 \begin{pspicture*}[keyvals](x0,y0)(x1,y1)
 \begin{pspicture}(x0,y0)(x1,y1)#\picture,pictureHighlight
@@ -113,10 +114,11 @@ hideerrors
 \degrees[num]
 \dim{dim}
 \DontKillGlue
+\end{psclip}
 \end{pspicture*}
 \end{pspicture}
 \endoverlaybox
-\endpsclip
+\endpsclip#*
 \endpspicture#S
 \everypsbox{commands}
 \file{file}
@@ -251,7 +253,7 @@ hideerrors
 \psCirclebox{stuff}
 \pscircleOA(xO,yO)(xA,yA)
 \pscircleOA[keyvals](xO,yO)(xA,yA)
-\psclip{graphics}
+\psclip{graphics}#*
 \pscoor#*
 \pscspline(%<x0,y0%>)(%<x1,y1%>)%<...(xN,yN)%>
 \pscspline[%<options%>](%<x0,y0%>)(%<x1,y1%>)%<...(xN,yN)%>
