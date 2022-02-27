@@ -12,8 +12,7 @@
 
 \PackageName#*
 \PackageVersion#*
-\filedate#*
-\fileversion#*
+\filedate#S
 
 myblue#B
 fondpaille#B
@@ -71,7 +70,7 @@ blueGrey#B
 \tbody
 \ActivBoxName#*
 \nameoffile{file}
-
+\defoffile{definition}
 \begin{NewMacroBox}{csname}{suffix}
 \end{NewMacroBox}
 \begin{NewEnvBox}{envname}
