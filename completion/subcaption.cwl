@@ -2,6 +2,7 @@
 # Axel Sommerfeldt 04/16/2013
 # muzimuzhi/1 Sep 2019, subcaption v1.2
 # muzimuzhi/1 Nov 2019, subcaption v1.3
+# Matthew Bertucci 26 Feb 2022 for v1.5
 # URL: https://ctan.org/pkg/subcaption
 
 #include:caption
@@ -84,3 +85,19 @@ subrefformat=#original,empty,simple,brace,parens
 \subfloat[list entry][sub-caption]{body%text}
 \subfloat[sub-caption]{body%text}
 \subfloat{body%text}
+
+\subcaptionlistentry{list entry}
+\subcaptiontext{text}
+\subcaptiontext[number]{text}
+\subcaptiontext*{text}
+\subcaptiontext*[number]{text}
+
+\begin{subcaptionblock}{width}
+\begin{subcaptionblock}[position]{width}
+\begin{subcaptionblock}[position][height]{width}
+\begin{subcaptionblock}[position][height][inner pos]{width}#*
+\end{subcaptionblock}
+\begin{subcaptiongroup}
+\end{subcaptiongroup}
+\begin{subcaptiongroup*}
+\end{subcaptiongroup*}

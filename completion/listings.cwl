@@ -3,6 +3,18 @@
 
 #include:keyval
 
+#keyvals:\usepackage/listings#c
+draft
+final
+savemem
+noaspects
+lgrind
+procnames
+hyper
+formats
+0.21
+#endkeyvals
+
 \lstloadlanguages{lang1,lang2,...%keyvals}
 
 #keyvals:\lstloadlanguages#c
@@ -355,6 +367,8 @@ podcomment#true,false
 
 \lstdefinestyle{style name}{keyvals}#*
 \thelstnumber#*
+\theHlstnumber#*
+\thelstlabel#*
 \lstlistoflistings
 \lstlistlistingname#*
 \lstlistingname#*
