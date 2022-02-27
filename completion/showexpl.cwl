@@ -59,6 +59,9 @@ texcs=
 texcsstyle=%<style%>
 language=%<language%>
 escapechar=%<character%>
+basicstyle=%<style commands%>
+numbers=#none,left,right
+keepspaces#true,false
 #endkeyvals
 
 \ResultBox#*
