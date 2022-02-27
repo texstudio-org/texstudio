@@ -11,7 +11,7 @@
 \foreach[options%keyvals]{cmd}#Sd
 \breakforeach#*
 
-#keyvals:\foreach
+#keyvals:\foreach#c
 var=%<variable%>
 evaluate=%<variable%>
 evaluate=%<variable%> as %<macro%>
