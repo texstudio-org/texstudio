@@ -1,6 +1,6 @@
 # caption.cwl
 # Edson 2010
-# Matthew Bertucci updated 11/24/2021 for v3.5
+# Matthew Bertucci updated 2/26/2022 for v3.6
 
 #include:caption3
 #include:ltcaption
@@ -114,13 +114,29 @@ type
 \DeclareCaptionListFormat{name}{code}
 \DeclareCaptionType[options]{type}[name][list name]
 \DeclareCaptionType{type}
-
 \phantomcaption
-
-\setcaptionsubtype#*
+\setcaptionsubtype{float type}#*
+\setcaptionsubtype*{float type}#*
 \captionbox#*
 \flushsubcaptionlistentries#*
 \piccaptiontype{arg}#*
+\captiontext{text}
+\captiontext[number]{text}
+\captiontext*{text}
+\captiontext*[number]{text}
+\begin{captiongroup}
+\end{captiongroup}
+\begin{captiongroup*}
+\end{captiongroup*}
+\begin{captionblock}{width}
+\begin{captionblock}[position]{width}
+\begin{captionblock}[position][height]{width}
+\begin{captionblock}[position][height][inner pos]{width}#*
+\end{captionblock}
+\setcaptiontype{float type}
+\setcaptiontype[options]{float type}
+\setcaptiontype*{float type}
+\setcaptiontype*[options]{float type}
 
 # only available if longtable package loaded
 \begin{longtable*}#S
