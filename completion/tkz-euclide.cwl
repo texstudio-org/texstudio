@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 1/21/2022 for v4.03b
+# Matthew Bertucci 2/27/2022 for v4.05b
 
 #include:tikz
 # loads angles, arrows, arrows.meta, calc, decorations, decorations.markings
@@ -9,7 +9,7 @@
 
 ### II. Setting ###
 
-## 6. Definition of a point: \tkzDefPoint or \tkzDefPoints ##
+## Definition of a point: \tkzDefPoint or \tkzDefPoints ##
 \tkzDefPoint(%<x%>,%<y%>){%<ref%>}
 \tkzDefPoint[%<options%>](%<x%>,%<y%>){%<ref%>}
 \tkzDefPoint(%<angle%>:%<radius%>){%<ref%>}
@@ -30,16 +30,36 @@ shift=(%<angle%>:%<radius%>)
 
 ### III. Calculating ###
 
-## 7. Auxiliary tools ##
+## Auxiliary tools ##
 \tkzGetPoint{ref}
 \tkzGetPoints{ref1}{ref2}
 \tkzGetFirstPoint{ref1}
 \tkzGetSecondPoint{ref2}
 \tkzGetLength{csname}
 
-## 8. Special Points ##
+## Special Points ##
 \tkzDefMidPoint(point1,point2)
 \tkzDefBarycentricPoint(point1=num1,point2=num2,...)
+
+\tkzDefSimilitudeCenter(O,A)(O',B)
+\tkzDefSimilitudeCenter[options%keyvals](O,A)(O',B)
+
+#keyvals:\tkzDefSimilitudeCenter#c
+ext
+int
+node
+R
+#endkeyvals
+
+\tkzDefHarmonic(A,B,C)
+\tkzDefHarmonic[options%keyvals](pt1,pt2,pt3)
+
+#keyvals:\tkzDefHarmonic#c
+both
+ext
+int
+#endkeyvals
+
 \tkzDefGoldenRatio(point1,point2)
 
 \tkzDefEquiPoints(point1,point2)
@@ -52,7 +72,7 @@ show#true,false
 /tkzcompass/delta=%<number%>
 #endkeyvals
 
-## 9. Special points relating to a triangle ##
+## Special points relating to a triangle ##
 \tkzDefTriangleCenter(point1,point2,point3)
 \tkzDefTriangleCenter[options%keyvals](point1,point2,point3)
 
@@ -75,7 +95,7 @@ mittenpunkt
 feuerbach
 #endkeyvals
 
-## 10. Projection of excenters ##
+## Projection of excenters ##
 \tkzDefProjExcenter(A,B,C)(a,b,c){X,Y,Z}
 \tkzDefProjExcenter[options%keyvals](A,B,C)(a,b,c){X,Y,Z}
 
@@ -83,7 +103,7 @@ feuerbach
 name=%<name%>
 #endkeyvals
 
-## 11. Point on line or circle ##
+## Point on line or circle ##
 \tkzDefPointOnLine(point1,point2)
 \tkzDefPointOnLine[options%keyvals](point1,point2)
 
@@ -99,7 +119,7 @@ center=%<point%>
 radius=%<number%>
 #endkeyvals
 
-## 12. Definition of points by transformation : \tkzDefPointBy ##
+## Definition of points by transformation : \tkzDefPointBy ##
 \tkzDefPointBy(point)
 \tkzDefPointBy[options%keyvals](point)
 \tkzDefPointsBy(point1,point2,...){point1,point2,...}
@@ -117,7 +137,7 @@ inversion=center %<point1%> through %<point2%>
 inversion negative=center %<point1%> through %<point2%>
 #endkeyvals
 
-## 13. Defining points using a vector ##
+## Defining points using a vector ##
 \tkzDefPointWith(point1,point2)
 \tkzDefPointWith[options%keyvals](point1,point2)
 
@@ -133,7 +153,7 @@ K=%<number%>
 
 \tkzGetVectxy(point1,point2){text%plain}
 
-## 14. The straight lines ##
+## The straight lines ##
 
 \tkzDefLine(point1,point2)
 \tkzDefLine[options%keyvals](point1,point2)
@@ -158,7 +178,7 @@ from=%<point%>
 from with R=%<point%>
 #endkeyvals
 
-## 15. Triangles ##
+## Triangles ##
 \tkzDefTriangle[options%keyvals](point1,point2)
 
 #keyvals:\tkzDefTriangle#c
@@ -176,7 +196,7 @@ cheops
 swap
 #endkeyvals
 
-## 16. Specific triangles with \tkzDefSpcTriangle ##
+## Specific triangles with \tkzDefSpcTriangle ##
 \tkzDefSpcTriangle[options%keyvals](point1,point2,point3){ref1,ref2,ref3}
 
 #keyvals:\tkzDefSpcTriangle#c
@@ -198,7 +218,9 @@ name=%<name%>
 ortho
 #endkeyvals
 
-## 17. Definition of polygons ##
+\tkzPermute(A,B,C)
+
+## Definition of polygons ##
 \tkzDefSquare(point1,point2)
 \tkzDefRectangle(point1,point2)
 \tkzDefParallelogram(point1,point2,point3)
@@ -215,7 +237,7 @@ center
 side
 #endkeyvals
 
-## 18. The Circles ##
+## The Circles ##
 \tkzDefCircle(point1,point2)
 \tkzDefCircle[options%keyvals](point1,point2)
 
@@ -232,7 +254,7 @@ apollonius
 K=%<number%>
 #endkeyvals
 
-## 19. Definition of circle by transformation; \tkzDefCircleBy ##
+## Definition of circle by transformation; \tkzDefCircleBy ##
 \tkzDefCircleBy(point1,point2)
 \tkzDefCircleBy[options%keyvals](point1,point2)
 
@@ -248,7 +270,7 @@ orthogonal through=%<point%>
 inversion=center %<point1%> through %<point2%>
 #endkeyvals
 
-## 20. Intersections ##
+## Intersections ##
 \tkzInterLL(point1,point2)(point3,point4)
 
 \tkzInterLC(point1,point2)(point3,point4)
@@ -262,15 +284,16 @@ R
 with nodes
 #endkeyvals
 
+\tkzTestInterCC(O,A)(O',B)
 \tkzInterCCN(point1,point2)(point3,point4)
 \tkzInterCCR(point1,radius1)(point2,radius2)
 
-## 21. The angles ##
+## The angles ##
 \tkzGetAngle(csname)
 \tkzFindAngle(point1,point2,point3)
 \tkzFindSlopeAngle(point1,point2)
 
-## 22. Random point definition ##
+## Random point definition ##
 \tkzDefRandPointOn[options%keyvals]
 
 #keyvals:\tkzDefRandPointOn#c
@@ -284,7 +307,7 @@ disk through=center %<point1%> through %<point2%>
 
 ### IV. Drawing and Filling ###
 
-## 23. Drawing ##
+## Drawing ##
 \tkzDrawPoint(name)
 \tkzDrawPoint[options%keyvals](name)
 \tkzDrawPoints(name1,name2,...)
@@ -307,7 +330,7 @@ very thick
 ultra thick
 #endkeyvals
 
-## 24. Drawing the lines ##
+## Drawing the lines ##
 \tkzDrawLine(point1,point2)
 \tkzDrawLine[options%keyvals](point1,point2)
 \tkzDrawLines(point1,point2,...)
@@ -346,7 +369,7 @@ double
 double distance=##L
 #endkeyvals
 
-## 25. Drawing a segment ##
+## Drawing a segment ##
 \tkzDrawSegment(point1,point2)
 \tkzDrawSegment[options%keyvals](point1,point2)
 \tkzDrawSegments(pt1,pt2 pt3,pt4 ...)
@@ -428,7 +451,7 @@ double
 double distance=##L
 #endkeyvals
 
-## 26. Draw a circle with \tkzDrawCircle ##
+## Draw a circle with \tkzDrawCircle ##
 \tkzDrawCircle(point1,point2)
 \tkzDrawCircle[options%keyvals](point1,point2)
 \tkzDrawCircles(pt1,pt2 pt3,pt4 ...)
@@ -510,7 +533,7 @@ double
 double distance=##L
 #endkeyvals
 
-## 27. Drawing arcs ##
+## Drawing arcs ##
 \tkzDrawArc(point1,point2)(point3)
 \tkzDrawArc[options%keyvals](point1,point2)(point3)
 
@@ -550,7 +573,7 @@ double
 double distance=##L
 #endkeyvals
 
-## 28. Drawing a sector or sectors ##
+## Drawing a sector or sectors ##
 \tkzDrawSector(point1,point2)(point3)
 \tkzDrawSector[options%keyvals](point1,point2)(point3)
 
@@ -631,7 +654,7 @@ left color=#%color
 right color=#%color
 #endkeyvals
 
-## 29. Controlling Bounding Box ##
+## Controlling Bounding Box ##
 \tkzInit[options%keyvals]
 
 #keyvals:\tkzInit#c
@@ -663,7 +686,7 @@ color=#%color
 
 \tkzClipBB
 
-## 30. Clipping different objects ##
+## Clipping different objects ##
 \tkzClipPolygon(point1,point2,...)
 \tkzClipPolygon[options%keyvals](point1,point2,...)
 
@@ -748,7 +771,7 @@ line width=##L
 
 ### VI. Labelling ###
 
-## 31. Labelling ##
+## Labelling ##
 \tkzLabelPoint(point){label}
 \tkzLabelPoint[options%keyvals](point){label}
 \tkzLabelPoints(point1,point2,...)
@@ -777,7 +800,7 @@ center=%<point%>
 dist=%<number%>
 #endkeyvals
 
-## 32. Label for a segment ##
+## Label for a segment ##
 \tkzLabelSegment(point1,point2){label}
 \tkzLabelSegment[options%keyvals](point1,point2){label}
 \tkzLabelSegments(pt1,pt2 pt3,pt4 ...){label}
@@ -807,7 +830,7 @@ color=#%color
 %color
 #endkeyvals
 
-## 33. Add labels on a straight line \tkzLabelLine ##
+## Add labels on a straight line \tkzLabelLine ##
 \tkzLabelLine(point1,point2){label}
 \tkzLabelLine[options%keyvals](point1,point2){label}
 
@@ -847,7 +870,7 @@ text width=##L
 text centered
 #endkeyvals
 
-## 34. Label for an arc ##
+## Label for an arc ##
 \tkzLabelArc(point1,point2,point3){label}
 \tkzLabelArc[options%keyvals](point1,point2,point3){label}
 
@@ -867,7 +890,7 @@ color=#%color
 
 ### VII. Complements ###
 
-## 35. Using the compass ##
+## Using the compass ##
 \tkzCompass(point1,point2)
 \tkzCompass[options%keyvals](point1,point2)
 \tkzCompasss(pt1,pt2 pt3,pt4 ...)
@@ -903,7 +926,7 @@ very thick
 ultra thick
 #endkeyvals
 
-## 36. The Show ##
+## The Show ##
 \tkzShowLine(point1,point2)
 \tkzShowLine[options%keyvals](point1,point2)
 
@@ -962,7 +985,7 @@ color=#%color
 %color
 #endkeyvals
 
-## 37. Protractor ##
+## Protractor ##
 \tkzProtractor(point1,point2)
 \tkzProtractor[options%keyvals](point1,point2)
 
@@ -972,7 +995,7 @@ scale=%<factor%>
 return#true,false
 #endkeyvals
 
-## 38. Miscellaneous tools ##
+## Miscellaneous tools ##
 \tkzDuplicateSegment(point1,point2)(point3,point4){point5}
 
 \tkzCalcLength(point1,point2)
@@ -985,10 +1008,11 @@ cm#true,false
 \tkzpttocm(number){csname}
 \tkzcmtopt(number){csname}
 \tkzGetPointCoord(point){csname}
+\tkzSwapPoints(A,B)
 
 ### VIII. Working with style ###
 
-## 39. Predefined styles ##
+## Predefined styles ##
 \tkzSetUpColors[options%keyvals]
 
 #keyvals:\tkzSetUpColors#c
@@ -996,7 +1020,7 @@ background=#%color
 text=#%color
 #endkeyvals
 
-## 40. Points style ##
+## Points style ##
 \tkzSetUpPoint[options%keyvals]
 
 #keyvals:\tkzSetUpPoint#c
@@ -1006,7 +1030,7 @@ fill=#%color
 shape=#circle,cross,cross out
 #endkeyvals
 
-## 41,42,43. Lines, arc, and compass style ##
+## Lines, arc, and compass style ##
 \tkzSetUpLine[options%keyvals]
 \tkzSetUpArc[options%keyvals]
 \tkzSetUpCompass[options%keyvals]
@@ -1025,10 +1049,10 @@ add=%<num1%> and %<num2%>
 delta=%<number%>
 #endkeyvals
 
-## 44. Label style ##
+## Label style ##
 \tkzSetUpLabel[TikZ options]
 
-## 45. Own style ##
+## Own style ##
 \tkzSetUpStyle[TikZ options]{style name}
 \tkzLengthResult#*
 \tkzAngleResult#*
@@ -1385,7 +1409,9 @@ noydraw#true,false
 # from tkz-obj-eu-intersections.tex
 \tkzInterLLxy(point1,point2)(point3,point4)#*
 \tkzTestInterLC(point1,point2)(point3,point4)#*
-\tkzflagLC#*
+\iftkzflagLC#*
+\tkzFlagLCtrue#*
+\tkzFlagLCfalse#*
 \tkzInterLCR(arg1)(arg2){arg3}{arg4}#*
 \tkzInterLCWithNodes(arg1)(arg2){arg3}{arg4}#*
 \tkzInterCCWithNodes(arg1)(arg2){arg3}{arg4}#*
