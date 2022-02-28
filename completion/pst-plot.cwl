@@ -25,10 +25,10 @@
 \ifSpecialLabelsDone#*
 \listplot[options%keyvals]{list}
 \listplot{data}
-\parametricplot[options%keyvals]{tmin}{tmax}[PS commands]{function}
-\parametricplot[options%keyvals]{tmin}{tmax}{function}
-\parametricplot{tmin}{tmax}[PS commands]{function}#*
-\parametricplot{tmin}{tmax}{function}
+\parametricplot[options%keyvals]{tmin}{tmax}[PS commands]{function%definition}
+\parametricplot[options%keyvals]{tmin}{tmax}{function%definition}
+\parametricplot{tmin}{tmax}[PS commands]{function%definition}#*
+\parametricplot{tmin}{tmax}{function%definition}
 \psaxes(x0,y0)(x1,y1)(x2,y2)
 \psaxes(x0,y0)(x1,y1)(x2,y2)[Xlabel,Xangle][Ylabel,Yangle]#*
 \psaxes[options%keyvals](x0,y0)(x1,y1)(x2,y2)
@@ -65,18 +65,18 @@
 \psNewton[%<options%>]{%<x0%>}{%<f(x)%>}[%<f'(x)%>]{%<n%>}
 \psNewton{%<x0%>}{%<f(x)%>}[%<f'(x)%>]{%<n%>}
 \psNewton{%<x0%>}{%<f(x)%>}{%<n%>}
-\psparametricplot[options%keyvals]{tmin}{tmax}[PS commands]{function}#*
-\psparametricplot[options%keyvals]{tmin}{tmax}{function}#*
-\psparametricplot{tmin}{tmax}[PS commands]{function}#*
-\psparametricplot{tmin}{tmax}{function}#*
+\psparametricplot[options%keyvals]{tmin}{tmax}[PS commands]{function%definition}#*
+\psparametricplot[options%keyvals]{tmin}{tmax}{function%definition}#*
+\psparametricplot{tmin}{tmax}[PS commands]{function%definition}#*
+\psparametricplot{tmin}{tmax}{function%definition}#*
 \psPi#*
 \psPiFour#*
 \psPiH#*
 \psPiTwo#*
-\psplot[options%keyvals]{xmin}{xmax}[PS commands]{function}
-\psplot[options%keyvals]{xmin}{xmax}{function}
-\psplot{xmin}{xmax}[PS commands]{function}#*
-\psplot{xmin}{xmax}{function}
+\psplot[options%keyvals]{xmin}{xmax}[PS commands]{function%definition}
+\psplot[options%keyvals]{xmin}{xmax}{function%definition}
+\psplot{xmin}{xmax}[PS commands]{function%definition}#*
+\psplot{xmin}{xmax}{function%definition}
 \psplotinit{arg}#*
 \psplotstyle#*
 \psPutXLabel{arg}#*
