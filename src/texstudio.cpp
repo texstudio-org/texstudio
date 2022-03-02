@@ -902,9 +902,9 @@ void Texstudio::setupMenus()
 	menu = newManagedMenu("main/edit", tr("&Edit"));
 	actUndo = newManagedAction(menu, "undo", tr("&Undo"), SLOT(editUndo()), QKeySequence::Undo, "edit-undo");
 	actRedo = newManagedAction(menu, "redo", tr("&Redo"), SLOT(editRedo()), QKeySequence::Redo, "edit-redo");
-#ifndef QT_NO_DEBUG
+//#ifndef QT_NO_DEBUG
 	newManagedAction(menu, "debughistory", tr("Debug undo stack"), SLOT(editDebugUndoStack()));
-#endif
+//#endif
 	menu->addSeparator();
     newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "edit-cut");
 	newManagedAction(menu, "copy", tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "edit-copy");
