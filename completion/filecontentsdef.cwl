@@ -28,9 +28,9 @@
 
 \filecontentsexec{code}
 
-\begin{filecontentshere}{file}
+\begin{filecontentshere}{file}#V
 \end{filecontentshere}
-\begin{filecontentshere*}{file}
+\begin{filecontentshere*}{file}#V
 \end{filecontentshere*}
 \filecontentsheremacro
 
