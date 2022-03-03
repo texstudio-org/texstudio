@@ -196,8 +196,8 @@ XSLT
 \begin{lstlisting}#V
 \begin{lstlisting}[options%keyvals]#V
 \end{lstlisting}
-\lstinputlisting{file}
-\lstinputlisting[options%keyvals]{file}
+\lstinputlisting{file}#i
+\lstinputlisting[options%keyvals]{file}#i
 
 #keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
 inputpath=%<path%>
