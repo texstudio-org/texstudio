@@ -8,7 +8,7 @@
 \begin{listing*}{end string}
 \begin{verbwrite}{file}#V
 \end{verbwrite}
-\verbinput{file}
+\verbinput{file}#i
 \begin{demo}{title}
 \begin{demo}[shape%keyvals]{title}
 \end{demo}

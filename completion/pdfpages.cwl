@@ -20,16 +20,16 @@ nodemo
 enable-survey
 #endkeyvals
 
-\includepdf[options%keyvals]{filename}
-\includepdf{filename}
-\includepdfmerge[options%keyvals]{file-list}
-\includepdfmerge{file-list}
+\includepdf[options%keyvals]{filename%definition}
+\includepdf{filename%definition}
+\includepdfmerge[options%keyvals]{file-list%definition}
+\includepdfmerge{file-list%definition}
 \includepdfset{global options%keyvals}
 \threadinfodict#*
 \AddToSurvey#*
 
 #keyvals:\includepdf,includepdfmerge,\includepdfset
-pages=
+pages={%<page range%>}
 nup=%<xnup%>x%<ynup%>
 landscape#true,false
 delta=%<delx%> %<dely%>
@@ -62,34 +62,45 @@ lastpage=%<page number%>
 link#true,false
 linkname=%<default linkname%>
 thread#true,false
-threadname=
+threadname=%<name%>
 linktodoc#true,false
-linkfit=
+linkfit=#Fit,FitH,FitV,FitB,FitBH,FitBV,Region
 linktodocfit=
 newwindow#true,false
-linkfilename=
-addtotoc=
-addtolist=
+linkfilename=%<name%>
+addtotoc={%<page num,section,level,heading,label%>}
+addtolist={%<page num,type,heading,label%>}
 survey#true,false
 survey-nolink#true,false
-xr-prefix=
+xr-prefix=%<prefix%>
+# options passed to \includegraphics
+alt={%<alt text%>}
+bb=%<llx lly urx ury%>
+bbllx=
+bblly=
+bburx=
+bbury=
+natwidth=
+natheight=
+hiresbb#true,false
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
-viewport=
-trim=
-angle=
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
 origin=
 width=##L
 height=##L
 totalheight=##L
 keepaspectratio#true,false
-scale=
+scale=%<factor%>
 clip#true,false
 draft#true,false
-type=
-ext=
-read=
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
 command=
 quiet
-page=
+page=%<page number%>
 interpolate#true,false
+decodearray={%<color array%>}
 #endkeyvals

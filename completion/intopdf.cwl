@@ -3,7 +3,7 @@
 
 #include:hyperref
 
-\attachandlink{file}{description}{link text}
-\attachandlink[filespec]{file}{description}{link text}
-\attachandlink{file}[mime-type]{description}{link text}
-\attachandlink[filespec]{file}[mime-type]{description}{link text}
+\attachandlink{file}{description}{link text}#i
+\attachandlink[filespec]{file}{description}{link text}#i
+\attachandlink{file}[mime-type]{description}{link text}#i
+\attachandlink[filespec]{file}[mime-type]{description}{link text}#i

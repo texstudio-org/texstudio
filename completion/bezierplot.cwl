@@ -4,5 +4,12 @@
 #include:iftex
 #include:xparse
 
-\bezierplot{function%formula}
-\bezierplot[xmin][xmax][ymin][ymax][samples]{function%formula}
+\bezierplot{function%definition}
+\bezierplot[xmin][xmax]{function%definition}
+\bezierplot[xmin][xmax][ymin][ymax]{function%definition}
+\bezierplot[xmin][xmax][ymin][ymax][samples]{function%definition}
+\xbezierplot{function%definition}#S
+\xbezierplot[xmin][xmax]{function%definition}#S
+\xbezierplot[xmin][xmax][ymin][ymax]{function%definition}#S
+\xbezierplot[xmin][xmax][ymin][ymax][samples]{function%definition}#S
+\xpandblinpt#S
