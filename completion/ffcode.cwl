@@ -13,7 +13,7 @@ nonumbers
 nocn
 #endkeyvals
 
-\ff{code}
+\ff{code%definition}
 \begin{ffcode}#V
 \end{ffcode}#V
 \begin{ffcode*}{%<minted options%>}#V
