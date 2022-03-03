@@ -464,8 +464,8 @@ tcbcoltitle#B
 \tcbincludegraphics{imagefile}#g
 \tcbincludegraphics[options%keyvals]{imagefile}#g
 \imagename
-\tcbincludepdf{file}
-\tcbincludepdf[options%keyvals]{file}
+\tcbincludepdf{file}#i
+\tcbincludepdf[options%keyvals]{file}#i
 \imagepage
 \pdfpages
 
