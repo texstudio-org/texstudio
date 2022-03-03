@@ -23,8 +23,8 @@ wolfram
 text
 #endkeyvals
 
-\wolframgraphics{code%definition}{file name}
-\wolframgraphics[format%keyvals]{code%definition}{file name}
+\wolframgraphics{code%definition}{file}#i
+\wolframgraphics[format%keyvals]{code%definition}{file}#i
 
 #keyvals:\wolframgraphics
 pdf
@@ -56,7 +56,7 @@ wolfram
 text
 #endkeyvals
 
-\wolframanimation{code%definition}{folder name}
+\wolframanimation{code%definition}{folder name%definition}
 
 \backslash
 
