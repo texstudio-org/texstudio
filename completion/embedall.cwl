@@ -24,8 +24,8 @@ compat
 \embedsource
 \embedsource[options%keyvals]
 
-\embedinput{file}#*
-\embedinput[options%keyvals]{file}#*
+\embedinput{file}#*i
+\embedinput[options%keyvals]{file}#*i
 
 #keyvals:\embedsource#c,\embedinput#c
 filespec=
