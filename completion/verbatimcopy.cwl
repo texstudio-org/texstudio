@@ -8,9 +8,11 @@ compatibility
 enquotefilenames
 #endkeyvals
 
-\setOutputDir{directory}
-\VerbatimCopy{input file}{output file}
+\setOutputDir{directory%definition}
+\VerbatimCopy{input file}{output file}#i
+\VerbatimCopy{file}{file}#Si
 
-\OldsetOutputDir{directory}#*
-\OldVerbatimCopy{input file}{output file}#*
+\OldsetOutputDir{directory%definition}#*
+\OldVerbatimCopy{input file}{output file}#*i
+\OldVerbatimCopy{file}{file}#Si
 \VCverbaction{arg1}{arg2}#*
