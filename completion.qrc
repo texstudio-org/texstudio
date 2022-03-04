@@ -1363,6 +1363,7 @@
 <file>completion/metrix.cwl</file>
 <file>completion/mfirstuc.cwl</file>
 <file>completion/mflogo.cwl</file>
+<file>completion/mfpic.cwl</file>
 <file>completion/mftinc.cwl</file>
 <file>completion/mhchem.cwl</file>
 <file>completion/mhequ.cwl</file>
@@ -1721,6 +1722,7 @@
 <file>completion/pst-eucl.cwl</file>
 <file>completion/pst-exa.cwl</file>
 <file>completion/pst-fill.cwl</file>
+<file>completion/pst-fit.cwl</file>
 <file>completion/pst-fractal.cwl</file>
 <file>completion/pst-func.cwl</file>
 <file>completion/pst-fun.cwl</file>
@@ -1876,6 +1878,7 @@
 <file>completion/sarabian.cwl</file>
 <file>completion/SASnRdisplay.cwl</file>
 <file>completion/savesym.cwl</file>
+<file>completion/savetrees.cwl</file>
 <file>completion/scalebar.cwl</file>
 <file>completion/scalefnt.cwl</file>
 <file>completion/scalerel.cwl</file>
