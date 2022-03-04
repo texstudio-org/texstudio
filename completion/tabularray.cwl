@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 12/3/2021 for v2021Q
+# Matthew Bertucci 3/2/2022 for v2022A
 
 #include:expl3
 #include:xparse
@@ -11,7 +11,7 @@
 \SetTblrInner{options%keyvals}
 \SetTblrInner[envname]{options%keyvals}
 
-#keyvals:\begin{tblr}#c,\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c,\begin{booktabs}#c
+#keyvals:\begin{tblr}#c,\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c,\begin{booktabs}#c,\begin{longtabs}#c,\begin{talltabs}#c
 colspec={%<col types%>}
 rowspec={%<row types%>}
 width=##L
@@ -48,13 +48,13 @@ hline{%<i%>}={%<index%>}{%<cols%>}{%<styles%>}
 hline
 verb
 measure=#vbox
+baseline=#t,T,m,b,B,%<row number%>
 #endkeyvals
 
 \SetTblrOuter{options%keyvals}
 \SetTblrOuter[envname]{options%keyvals}
 
 #keyvals:\SetTblrOuter#c
-long
 halign=#l,c,r
 valign=#t,m,b
 l
@@ -67,19 +67,14 @@ headsep=##L
 footsep=##L
 presep=##L
 postsep=##L
-theme=
-caption=
-entry=
-label=
-#endkeyvals
-
-\multirow{num of rows}{width}{contents}
-\multirow[pos%keyvals]{num of rows}{width}{contents}
-
-#keyvals:\multirow
-t
-b
-c
+theme=%<theme%>
+caption=%<caption text%>
+entry=%<short caption text%>
+label=##l
+baseline=#t,T,m,b,B,%<row number%>
+long
+tall
+expand
 #endkeyvals
 
 \SetHline{cols}{styles%keyvals}#*
@@ -91,13 +86,11 @@ c
 \hline[styles%keyvals]#*
 \cline{index}#*
 \cline[styles%keyvals]{index}#*
-\firsthline#*
-\firsthline[styles%keyvals]#*
-\lasthline#*
-\lasthline[styles%keyvals]#*
 
-#keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c,\firsthline#c,\lasthline#c
-dash=#solid,dashed,dotted
+#keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c
+solid
+dashed
+dotted
 text=
 wd=##L
 fg=#%color
@@ -134,10 +127,10 @@ abovepos=
 belowpos=
 #endkeyvals
 
-\SetCell{%<options%>}#*
-\SetCell[r=%<rows%>,c=%<columns%>]{%<options%>}#*
-\SetCells{%<options%>}#*
-\SetCells[r=%<rows%>,c=%<columns%>]{%<options%>}#*
+\SetCell{%<options%>}
+\SetCell[r=%<rows%>,c=%<columns%>]{%<options%>}
+\SetCells{%<options%>}
+\SetCells[r=%<rows%>,c=%<columns%>]{%<options%>}
 
 #keyvals:\SetCell#c,\SetCells#c
 halign=#l,c,r
@@ -153,11 +146,11 @@ f
 wd=##L
 bg=#%color
 fg=#%color
-font=
+font=%<font commands%>
 mode=#math,imath,dmath,text
 $
 $$
-cmd=
+cmd=%<command%>
 preto=%<text%>
 appto=%<text%>
 #endkeyvals
@@ -180,11 +173,11 @@ ht=##L
 wd=##L
 bg=#%color
 fg=#%color
-font=
+font=%<font commands%>
 mode=#math,imath,dmath,text
 $
 $$
-cmd=
+cmd=%<command%>
 abovesep=##L
 abovesep+=##L
 belowsep=##L
@@ -213,11 +206,11 @@ wd=##L
 co=
 bg=#%color
 fg=#%color
-font=
+font=%<font commands%>
 mode=#math,imath,dmath,text
 $
 $$
-cmd=
+cmd=%<command%>
 leftsep=##L
 leftsep+=##L
 rightsep=##L
@@ -226,6 +219,25 @@ colsep=##L
 colsep+=##L
 preto=%<text%>
 appto=%<text%>
+#endkeyvals
+
+\hborder{options%keyvals}#*
+
+#keyvals:\hborder#c
+pagebreak=#yes,no,auto
+abovespace=##L
+belowspace=##L
+abovespace+=##L
+belowspace+=##L
+#endkeyvals
+
+\vborder{options%keyvals}#*
+
+#keyvals:\vborder#c
+leftspace=##L
+rightspace=##L
+leftspace+=##L
+rightspace+=##L
 #endkeyvals
 
 \NewColumnType{name}{definition}
@@ -242,7 +254,7 @@ appto=%<text%>
 \NewTableCommand{cmd}[args][default]{definition}#d
 
 \NewChildSelector{arg1}{arg2}#*
-\NewChildSelector{arg1}[opt1]{arg2}[opt2]#*
+\NewChildSelector{arg1}[opt1][opt2]{arg2}#*
 
 \leftsep#*
 \rightsep#*
@@ -252,7 +264,7 @@ appto=%<text%>
 \SetTblrTracing{settings%keyvals}#*
 \SetTabularrayTracing{settings%keyvals}#S
 
-#keyvals:\SetTblrTracing,\SetTabularrayTracing
+#keyvals:\SetTblrTracing#c,\SetTabularrayTracing#c
 all
 none
 +row
@@ -300,27 +312,26 @@ none
 \begin{talltblr}[outer specs%keyvals]{preamble}#\tabular
 \end{talltblr}
 
-#keyvals:\begin{longtblr},\begin{talltblr}
+#keyvals:\begin{longtblr}#c,\begin{talltblr}#c
 headsep=##L
 footsep=##L
 presep=##L
 postsep=##L
-theme=
-caption=
-entry=
-label=
-note{%<name%>}=
-note
-remark{%<name%>}=
-remark
+theme=#%tblrtheme
+caption=%<text%>
+entry=%<text%>
+label=##l
+note{%<name%>}=%<text%>
+remark{%<name%>}=%<text%>
 #endkeyvals
 
 \DefTblrTemplate{element%keyvals}{template name}{definition}#*
+\DeclareTblrTemplate{element%keyvals}{template name}{definition}#*
 \SetTblrTemplate{element%keyvals}{template name}{definition}#*
 \UseTblrTemplate{element%keyvals}{default}#*
 \ExpTblrTemplate{element%keyvals}{default}#*
 
-#keyvals:\DefTblrTemplate,\SetTblrTemplate,\UseTblrTemplate,\ExpTblrTemplate
+#keyvals:\DefTblrTemplate#c,\DeclareTblrTemplate#c,\SetTblrTemplate#c,\UseTblrTemplate#c,\ExpTblrTemplate#c
 contfoot-text
 contfoot
 conthead-text
@@ -329,10 +340,12 @@ caption-tag
 caption-sep
 caption-text
 caption
+caption-lot
 capcont
 note-tag
 note-sep
 note-text
+note-border
 note
 remark-tag
 remark-sep
@@ -361,7 +374,7 @@ indent=##L
 hang=##L
 #endkeyvals
 
-\NewTblrTheme{theme name}{specs}
+\NewTblrTheme{theme name}{specs}#s#%tblrtheme
 
 \TblrNote{mark-symbol}
 \InsertTblrText{key%plain}#*
@@ -422,7 +435,13 @@ varwidth
 \morecmidrules#*
 \begin{booktabs}{preamble%keyvals}#*\tabular
 \end{booktabs}#*
+\begin{longtabs}{preamble%keyvals}#*\tabular
+\end{longtabs}#*
+\begin{talltabs}{preamble%keyvals}#*\tabular
+\end{talltabs}#*
 \specialrule{width}{sep1}{sep2}#*
+\addrowspace#*
+\addrowspace[space%l]#*
 \addlinespace#*
 \addlinespace[space%l]#*
 
@@ -448,3 +467,14 @@ varwidth
 \NewContentCommand{cmd}{definition}#*d
 \NewContentCommand{cmd}[args]{definition}#*d
 \NewContentCommand{cmd}[args][default]{definition}#*d
+\TblrParboxRestore#*
+\TblrAlignBoth#*
+\TblrAlignLeft#*
+\TblrAlignCenter#*
+\TblrAlignRight#*
+\TblrNewPage#*
+\rulewidth#*L
+\SetTblrDefault{options}#S
+\TblrOverlap#*
+\begin{tblrNoHyper}#S
+\end{tblrNoHyper}#S
