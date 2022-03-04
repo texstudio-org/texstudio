@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 1/25/2022 for v6.5
+# Matthew Bertucci 3/3/2022 for v6.7
 
 #include:amsmath
 #include:array
@@ -167,6 +167,8 @@ exterior-arraycolsep
 #endkeyvals
 
 \Block{i-j}{content}#t
+\Block{i-j}<code>{content}#t
+\Block[options%keyvals]{i-j}{content}#t
 \Block[options%keyvals]{i-j}<code>{content}#t
 
 #keyvals:\Block
@@ -180,7 +182,7 @@ color=#%color
 line-width=##L
 rounded-corners
 rounded-corners=##L
-borders=#left,right,top,bottom
+borders={%<borders options%>}
 hvlines
 t
 b
@@ -221,7 +223,7 @@ create-cell-nodes
 \columncolor[color_model]{color}{i,j-k,l-,...}#t
 
 \rowcolors{row}{color1}{color2}#t
-\rowcolors[color_model]{row}{color1}{color2}[options%keyvals]#t
+\rowcolors[color model]{row}{color1}{color2}[options%keyvals]#t
 
 #keyvals:\rowcolors
 cols=
@@ -230,7 +232,7 @@ respect-blocks
 #endkeyvals
 
 \rowlistcolors{row}{color1,color2,...}#t
-\rowlistcolors[color_model]{row}{color1,color2,...}#t
+\rowlistcolors[color model]{row}{color1,color2,...}#t
 
 \RowStyle{code}#t
 \RowStyle[options%keyvals]{code}#t
@@ -328,6 +330,7 @@ left-shorten
 right-shorten
 shorten
 yshift=##L
+color=#%color
 #endkeyvals
 
 \tabularnote{note%text}

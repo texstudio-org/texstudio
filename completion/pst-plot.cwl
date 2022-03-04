@@ -111,6 +111,7 @@
 \psyTick{rotation}(y value){label}
 \psyticklinestyle#*
 \readdata{macro%cmd}{file%definition}#d
+\readdata[options%keyvals]{macro%cmd}{file%definition}#d
 \savedata{macro%cmd}[data]#d
 \setDefaulthLabels#*
 \setDefaultvLabels#*
@@ -121,3 +122,8 @@
 \SpecialLabelsDonefalse#*
 \SpecialLabelsDonetrue#*
 \stripDecimals#S
+
+#keyvals:\readdata#c
+ignoreLines=%<integer%>
+nStep=%<integer%>
+#endkeyvals

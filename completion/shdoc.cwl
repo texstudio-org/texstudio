@@ -58,10 +58,10 @@ blackwhite
 \shoutput{shell cmd options}{text%plain}
 \shlistname{sessions list name}
 \shfloatname{sessions float name}
-\shread{init cmd}{file}
+\shread{init cmd}{file}#i
 \shrun{shell command}
 
-\shautoread{init cmd}{file}
+\shautoread{init cmd}{file}#i
 \shautorun{shell command}
 \shautopath{true or false}
 \shautoformat{true or false}

@@ -16,9 +16,9 @@ shutdown=#veryveryend,veryenddocument,off
 \pyq{code%definition}
 \pyc{code%definition}
 \pycq{code%definition}
-\pyfile{path%definition}
-\pyfileq{path%definition}
-\pyfilerepl{path%definition}
+\pyfile{file}#i
+\pyfileq{file}#i
+\pyfilerepl{file}#i
 \pysession{session}
 \pyoption{option%keyvals}{value}
 #keyvals:\pyoption

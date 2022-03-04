@@ -30,10 +30,12 @@ stopserver
 
 \runExtCode{program}{source file}{output file}
 \runExtCode{program}{source file}{output file}[run or cache]
+\runExtCode{program}{file}{output file}#Si
 
 \showCode{lang}{source file}
 \showCode{lang}{source file}[first line]
 \showCode{lang}{source file}[first line][last line]
+\showCode{lang}{file}#Si
 
 \includeOutput{output file}
 \includeOutput{output file}[type%keyvals]
@@ -48,6 +50,8 @@ inline
 
 \runJulia{program}{source file}{output file}
 \runJulia[server spec]{program}{source file}{output file}
+\runJulia{program}{file}{output file}#Si
+\runJulia[server spec]{program}{file}{output file}#Si
 
 \inlnJulia{code%definition}
 \inlnJulia{code%definition}[type%keyvals]
@@ -56,6 +60,8 @@ inline
 
 \runMatlab{program}{source file}{output file}
 \runMatlab[server spec]{program}{source file}{output file}
+\runMatlab{program}{file}{output file}#Si
+\runMatlab[server spec]{program}{file}{output file}#Si
 
 \inlnMatlab{code%definition}
 \inlnMatlab{code%definition}[type%keyvals]
@@ -64,6 +70,8 @@ inline
 
 \runR{program}{source file}{output file}
 \runR[server spec]{program}{source file}{output file}
+\runR{program}{file}{output file}#Si
+\runR[server spec]{program}{file}{output file}#Si
 
 \inlnR{code%definition}
 \inlnR{code%definition}[type%keyvals]
