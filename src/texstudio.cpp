@@ -11787,6 +11787,7 @@ void Texstudio::updateStructureLocally(){
             StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
             if (!contextEntry){
                 structureTreeWidget->takeTopLevelItem(i);
+                delete item;
                 --i;
                 continue;
             }
@@ -11805,12 +11806,14 @@ void Texstudio::updateStructureLocally(){
                             continue; // keep showing master document regardless
                         }
                         structureTreeWidget->takeTopLevelItem(i);
+                        delete item;
                         --i;
                     }
                 }
             }else{
                 // remove invalid
                 structureTreeWidget->takeTopLevelItem(i);
+                delete item;
                 --i;
             }
         }
