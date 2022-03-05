@@ -153,7 +153,7 @@ void Bookmarks::bookmarkDeleted(QDocumentLineHandle *dlh)
 		QDocumentLineHandle *dlh_item = qvariant_cast<QDocumentLineHandle *>(item->data(DocLineHandle));
 		if (dlh_item == dlh) {
 			int row = bookmarksWidget->row(item);
-			bookmarksWidget->takeItem(row);
+            delete bookmarksWidget->takeItem(row);
 			return;
 		}
 	}
@@ -238,7 +238,7 @@ void Bookmarks::updateBookmarks(LatexEditorView *edView)
             if(dlh->document() == doc){
                 int row = bookmarksWidget->row(item);
                 if (row < 0) continue;
-                bookmarksWidget->takeItem(row);
+                delete bookmarksWidget->takeItem(row);
             }
         }else{
             int lineNr = doc->indexOf(dlh);
@@ -350,6 +350,7 @@ void Bookmarks::removeAllBookmarks()
 		int lineNr = item->data(LineNr).toInt();
 		int bookmarkNumber = item->data(BookmarkNr).toInt();
 		QDocumentLineHandle *dlh = qvariant_cast<QDocumentLineHandle *>(item->data(DocLineHandle));
+        delete item;
 
 		LatexDocument *doc = documents->findDocumentFromName(fn);
 		if (!doc) continue;
