@@ -7515,6 +7515,7 @@ void QDocumentPrivate::setHeight()
 
 void QDocumentPrivate::setBaseFont(const QFont &f, bool forceUpdate)
 {
+    delete m_baseFont;
 	m_baseFont = new QFont(f);
 	QFont fMod = f;
 	if (m_fontSizeModifier + m_baseFont->pointSize() < 1) {
