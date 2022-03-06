@@ -556,7 +556,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="398"/>
         <source>External Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Extern Terminal</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="939"/>
@@ -596,7 +596,7 @@ Var vänlig ändra din konfiguration och definiera kommandolistor enbart i: &apo
     <message>
         <location filename="../src/buildmanager.cpp" line="1485"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Populära LaTeX-distributioner för Windows är %1 och %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1487"/>
@@ -818,7 +818,7 @@ Var vänlig ändra din konfiguration och definiera kommandolistor enbart i: &apo
     <message>
         <location filename="../src/configdialog.ui" line="331"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Modern - mörkt</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
@@ -1373,7 +1373,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
-        <translation type="unfinished"/>
+        <translation>Franska citationstecken (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>
@@ -1774,7 +1774,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="1519"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Detta ändrar skalningen av verktygsfältet för den inbyggda pdf-läsaren (för högupplösta skärmar).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1544"/>
