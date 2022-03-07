@@ -1141,6 +1141,7 @@ void Texstudio::setupMenus()
 	submenu->addSeparator();
 	newManagedAction(submenu, "makeindex", tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
 	newManagedAction(submenu, "texindy", tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
+	newManagedAction(submenu, "xindex", tr("&Xindex"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_XINDEX);
 	newManagedAction(submenu, "makeglossaries", tr("&Makeglossaries"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_MAKEGLOSSARIES);
 	submenu->addSeparator();
 	newManagedAction(submenu, "metapost", tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
