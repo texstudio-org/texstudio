@@ -57,6 +57,7 @@ CMD_DEFINE(PS2PDF,ps2pdf);
 CMD_DEFINE(GS,gs);
 CMD_DEFINE(MAKEINDEX,makeindex);
 CMD_DEFINE(TEXINDY,texindy);
+CMD_DEFINE(XINDEX,xindex);
 CMD_DEFINE(MAKEGLOSSARIES,makeglossaries);
 CMD_DEFINE(METAPOST,metapost);
 CMD_DEFINE(ASY,asy);
@@ -346,6 +347,7 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
+	registerCommand("xindex",     "xindex",      "Xindex", "-l * %.idx");
 	registerCommand("makeglossaries", "makeglossaries", "Makeglossaries", "%");
 	registerCommand("metapost",    "mpost",        "MetaPost",    "-interaction=nonstopmode ?me)", "Tools/MetaPost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
@@ -372,7 +374,7 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("bibliography", tr("Default Bibliography Tool"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber", "", true, descriptionList);
 	descriptionList.clear();
 	descriptionList << tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
-	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy", "", true, descriptionList);
+	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy" << "txs:///xindex", "", true, descriptionList);
 	descriptionList.clear();
 	descriptionList << tr("Makeglossaries");
 	registerCommand("glossary", tr("Default Glossary Tool"), QStringList() << "txs:///makeglossaries", "", true, descriptionList);
