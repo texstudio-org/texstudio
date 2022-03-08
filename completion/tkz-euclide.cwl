@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 2/27/2022 for v4.05b
+# Matthew Bertucci 3/8/2022 for v4.051b
 
 #include:tikz
 # loads angles, arrows, arrows.meta, calc, decorations, decorations.markings
@@ -285,6 +285,9 @@ with nodes
 #endkeyvals
 
 \tkzTestInterCC(O,A)(O',B)
+\iftkzFlagCC#*
+\tkzFlagCCtrue#*
+\tkzFlagCCfalse#*
 \tkzInterCCN(point1,point2)(point3,point4)
 \tkzInterCCR(point1,radius1)(point2,radius2)
 
@@ -499,8 +502,8 @@ double distance=##L
 
 \tkzDrawSemiCircle(point1,point2)
 \tkzDrawSemiCircle[options%keyvals](point1,point2)
-\tkzDrawSemiCircles(point1,point2)
-\tkzDrawSemiCircles[options%keyvals](point1,point2)
+\tkzDrawSemiCircles(pt1,pt2 pt3,pt4 ...)
+\tkzDrawSemiCircles[options%keyvals](pt1,pt2 pt3,pt4 ...)
 
 #keyvals:\tkzDrawSemiCircle#c,\tkzDrawSemiCircles#c
 through
@@ -996,7 +999,10 @@ return#true,false
 #endkeyvals
 
 ## Miscellaneous tools ##
+\tkzDuplicateSegment(point1,point2)(point3,point4)
 \tkzDuplicateSegment(point1,point2)(point3,point4){point5}
+\tkzDuplicateLength(point1,point2)(point3,point4)#*
+\tkzDuplicateLength(point1,point2)(point3,point4){point5}#*
 
 \tkzCalcLength(point1,point2)
 \tkzCalcLength[options%keyvals](point1,point2)
@@ -1085,6 +1091,7 @@ delta=%<number%>
 \tkzDrawAltitudes#S
 \tkzGetRandPointOn#S
 \tkzTangent#S
+\tkzDrawTriangle#S
 
 ## not documented
 # from tkz-euclide.sty
@@ -1175,8 +1182,8 @@ tickrt=##L
 #endkeyvals
 
 # from tkz-obj-eu-draw-polygons.tex
-\tkzDrawPolygons(point1,point2,...)#*
-\tkzDrawPolygons[options](point1,point2,...)#*
+\tkzDrawPolygons(point1,point2,...)
+\tkzDrawPolygons[options](point1,point2,...)
 \tkzLabelRegPolygon(point){label1,label2,...}#*
 \tkzLabelRegPolygon[options](point){label1,label2,...}#*
 \iftkzClipOutPoly#*
@@ -1243,6 +1250,10 @@ line width=##L
 \tkzDefEulerTriangle[options](point1,point2,point3)(ref1,ref2)#*
 \tkzDefTangentialTriangle[options](point1,point2,point3)(ref1,ref2)#*
 \tkzDefSymmedialTriangle[options](point1,point2,point3)(ref1,ref2)#*
+
+# from tkz-obj-eu-draw-triangles.tex
+\tkzDrawTriangles(points)#*
+\tkzDrawTriangles[options](points)#*
 
 # from tkz-obj-eu-circles.tex
 \tkzDefCircleR(point1,point2)#*
@@ -1409,7 +1420,7 @@ noydraw#true,false
 # from tkz-obj-eu-intersections.tex
 \tkzInterLLxy(point1,point2)(point3,point4)#*
 \tkzTestInterLC(point1,point2)(point3,point4)#*
-\iftkzflagLC#*
+\iftkzFlagLC#*
 \tkzFlagLCtrue#*
 \tkzFlagLCfalse#*
 \tkzInterLCR(arg1)(arg2){arg3}{arg4}#*
