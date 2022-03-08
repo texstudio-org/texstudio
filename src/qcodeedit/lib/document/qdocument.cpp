@@ -548,6 +548,13 @@ QString QDocument::debugUndoStack(int limit) const{
 
 	QString res = result.join("\n");
 
+    if(m_impl->hasChangeBlocks()){
+        QStack<QDocumentCommandBlock*> commands = m_impl->m_macros;
+        for(int i=0;i<commands.length();++i){
+            result << QString("macro %1: ").arg(i) << commands.value(i)->debugRepresentation();
+        }
+    }
+
 	qDebug() << res;
 
 	return res;
