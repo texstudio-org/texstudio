@@ -754,8 +754,8 @@ X2
 #ifOption:OT4
 \guillemetleft#n
 \guillemetright#n
-\guillemotleft#n
-\guillemotright#n
+\guillemotleft#*n
+\guillemotright#*n
 \k{arg}#n
 \quotedblbase#n
 #endif
