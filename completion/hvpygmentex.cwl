@@ -1,5 +1,5 @@
-# pygmentex package
-# Matthew Bertucci 12/16/2021 for v0.2.0
+# hvpygmentex package
+# Matthew Bertucci 3/7/2022 for v0.01
 
 #include:caption
 #include:color
@@ -7,9 +7,14 @@
 #include:fancyvrb
 #include:ifthen
 #include:pgfkeys
+#include:shellesc
 #include:mdframed
 # mdframed loaded with framemethod=tikz
 #include:tikz
+
+#keyvals:\usepackage/hvpygmentex#c
+force
+#endkeyvals
 
 \begin{pygmented}#V
 \begin{pygmented}[options%keyvals]#V

@@ -1,5 +1,5 @@
 # spbmark package
-# Matthew Bertucci 2/19/2022 for v1.37
+# Matthew Bertucci 3/7/2022 for v1.4
 
 #include:xparse
 #include:l3keys2e
@@ -22,10 +22,18 @@ all
 \sub[keyvals][height,depth]{content}#*
 \sub{content}[keyvals%plain]#*
 
+\llastwd
+\clastwd
+\rlastwd
+
 \supersub{super}{sub}
 \supersub[keyvals]{super}{sub}
 \supersub[keyvals][height,depth]{super}{sub}#*
 \supersub{super}{sub}[keyvals%plain]#*
+
+\superwd
+\subwd
+\maxwd
 
 \spb{super}{sub}#*
 \spb[keyvals]{super}{sub}#*
@@ -156,3 +164,5 @@ spbcmd+={%<super cmds,sub cmds%>}
 spbheight=##L
 spbdepth=##L
 #endkeyvals
+
+\fnmarkfont#*

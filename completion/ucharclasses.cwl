@@ -1,5 +1,5 @@
 # ucharclasses package
-# Matthew Bertucci 2/12/2022 for v2.4.0
+# Matthew Bertucci 3/7/2022 for v2.5.0
 
 #include:xetex
 #include:ifxetex
@@ -17,6 +17,7 @@ AncientGreekNumbers
 AncientSymbols
 Arabic
 ArabicExtendedA
+ArabicExtendedB
 ArabicMathematicalAlphabeticSymbols
 ArabicPresentationFormsA
 ArabicPresentationFormsB
@@ -78,6 +79,7 @@ Cuneiform
 CuneiformNumbersAndPunctuation
 CurrencySymbols
 CypriotSyllabary
+CyproMinoan
 Cyrillic
 CyrillicExtendedA
 CyrillicExtendedB
@@ -104,6 +106,7 @@ EnclosedIdeographicSupplement
 Ethiopic
 EthiopicExtended
 EthiopicExtendedA
+EthiopicExtendedB
 EthiopicSupplement
 GeneralPunctuation
 GeometricShapes
@@ -141,6 +144,7 @@ IPAExtensions
 Javanese
 Kaithi
 KanaExtendedA
+KanaExtendedB
 KanaSupplement
 Kanbun
 KangxiRadicals
@@ -161,6 +165,8 @@ LatinExtendedB
 LatinExtendedC
 LatinExtendedD
 LatinExtendedE
+LatinExtendedF
+LatinExtendedG
 LatinSupplement
 Lepcha
 LetterlikeSymbols
@@ -224,6 +230,7 @@ OldPersian
 OldSogdian
 OldSouthArabian
 OldTurkic
+OldUighur
 OpticalCharacterRecognition
 Oriya
 OrnamentalDingbats
@@ -285,6 +292,7 @@ TaiXuanJingSymbols
 Takri
 Tamil
 TamilSupplement
+Tangsa
 Tangut
 TangutComponents
 TangutSupplement
@@ -294,13 +302,16 @@ Thai
 Tibetan
 Tifinagh
 Tirhuta
+Toto
 TransportAndMapSymbols
 Ugaritic
 UnifiedCanadianAboriginalSyllabics
 UnifiedCanadianAboriginalSyllabicsExtended
+UnifiedCanadianAboriginalSyllabicsExtendedA
 Vai
 VedicExtensions
 VerticalForms
+Vithkuqi
 Wancho
 WarangCiti
 Yezidi
@@ -308,6 +319,7 @@ YiRadicals
 YiSyllables
 YijingHexagramSymbols
 ZanabazarSquare
+ZnamennyMusicalNotation
 Arabics
 CanadianSyllabics
 CherokeeFull
@@ -374,7 +386,6 @@ Yi
 \OtherClasses#*
 \doclass{class name}#*
 
-verbose
 \setTransitionsForAdlam{enter-code}{exit-code}#*
 \setTransitionsForAegeanNumbers{enter-code}{exit-code}#*
 \setTransitionsForAhom{enter-code}{exit-code}#*
@@ -386,6 +397,7 @@ verbose
 \setTransitionsForAncientSymbols{enter-code}{exit-code}#*
 \setTransitionsForArabic{enter-code}{exit-code}#*
 \setTransitionsForArabicExtendedA{enter-code}{exit-code}#*
+\setTransitionsForArabicExtendedB{enter-code}{exit-code}#*
 \setTransitionsForArabicMathematicalAlphabeticSymbols{enter-code}{exit-code}#*
 \setTransitionsForArabicPresentationFormsA{enter-code}{exit-code}#*
 \setTransitionsForArabicPresentationFormsB{enter-code}{exit-code}#*
@@ -447,6 +459,7 @@ verbose
 \setTransitionsForCuneiformNumbersAndPunctuation{enter-code}{exit-code}#*
 \setTransitionsForCurrencySymbols{enter-code}{exit-code}#*
 \setTransitionsForCypriotSyllabary{enter-code}{exit-code}#*
+\setTransitionsForCyproMinoan{enter-code}{exit-code}#*
 \setTransitionsForCyrillic{enter-code}{exit-code}#*
 \setTransitionsForCyrillicExtendedA{enter-code}{exit-code}#*
 \setTransitionsForCyrillicExtendedB{enter-code}{exit-code}#*
@@ -473,6 +486,7 @@ verbose
 \setTransitionsForEthiopic{enter-code}{exit-code}#*
 \setTransitionsForEthiopicExtended{enter-code}{exit-code}#*
 \setTransitionsForEthiopicExtendedA{enter-code}{exit-code}#*
+\setTransitionsForEthiopicExtendedB{enter-code}{exit-code}#*
 \setTransitionsForEthiopicSupplement{enter-code}{exit-code}#*
 \setTransitionsForGeneralPunctuation{enter-code}{exit-code}#*
 \setTransitionsForGeometricShapes{enter-code}{exit-code}#*
@@ -510,6 +524,7 @@ verbose
 \setTransitionsForJavanese{enter-code}{exit-code}#*
 \setTransitionsForKaithi{enter-code}{exit-code}#*
 \setTransitionsForKanaExtendedA{enter-code}{exit-code}#*
+\setTransitionsForKanaExtendedB{enter-code}{exit-code}#*
 \setTransitionsForKanaSupplement{enter-code}{exit-code}#*
 \setTransitionsForKanbun{enter-code}{exit-code}#*
 \setTransitionsForKangxiRadicals{enter-code}{exit-code}#*
@@ -530,6 +545,8 @@ verbose
 \setTransitionsForLatinExtendedC{enter-code}{exit-code}#*
 \setTransitionsForLatinExtendedD{enter-code}{exit-code}#*
 \setTransitionsForLatinExtendedE{enter-code}{exit-code}#*
+\setTransitionsForLatinExtendedF{enter-code}{exit-code}#*
+\setTransitionsForLatinExtendedG{enter-code}{exit-code}#*
 \setTransitionsForLatinSupplement{enter-code}{exit-code}#*
 \setTransitionsForLepcha{enter-code}{exit-code}#*
 \setTransitionsForLetterlikeSymbols{enter-code}{exit-code}#*
@@ -593,6 +610,7 @@ verbose
 \setTransitionsForOldSogdian{enter-code}{exit-code}#*
 \setTransitionsForOldSouthArabian{enter-code}{exit-code}#*
 \setTransitionsForOldTurkic{enter-code}{exit-code}#*
+\setTransitionsForOldUighur{enter-code}{exit-code}#*
 \setTransitionsForOpticalCharacterRecognition{enter-code}{exit-code}#*
 \setTransitionsForOriya{enter-code}{exit-code}#*
 \setTransitionsForOrnamentalDingbats{enter-code}{exit-code}#*
@@ -654,6 +672,7 @@ verbose
 \setTransitionsForTakri{enter-code}{exit-code}#*
 \setTransitionsForTamil{enter-code}{exit-code}#*
 \setTransitionsForTamilSupplement{enter-code}{exit-code}#*
+\setTransitionsForTangsa{enter-code}{exit-code}#*
 \setTransitionsForTangut{enter-code}{exit-code}#*
 \setTransitionsForTangutComponents{enter-code}{exit-code}#*
 \setTransitionsForTangutSupplement{enter-code}{exit-code}#*
@@ -663,13 +682,16 @@ verbose
 \setTransitionsForTibetan{enter-code}{exit-code}#*
 \setTransitionsForTifinagh{enter-code}{exit-code}#*
 \setTransitionsForTirhuta{enter-code}{exit-code}#*
+\setTransitionsForToto{enter-code}{exit-code}#*
 \setTransitionsForTransportAndMapSymbols{enter-code}{exit-code}#*
 \setTransitionsForUgaritic{enter-code}{exit-code}#*
 \setTransitionsForUnifiedCanadianAboriginalSyllabics{enter-code}{exit-code}#*
 \setTransitionsForUnifiedCanadianAboriginalSyllabicsExtended{enter-code}{exit-code}#*
+\setTransitionsForUnifiedCanadianAboriginalSyllabicsExtendedA{enter-code}{exit-code}#*
 \setTransitionsForVai{enter-code}{exit-code}#*
 \setTransitionsForVedicExtensions{enter-code}{exit-code}#*
 \setTransitionsForVerticalForms{enter-code}{exit-code}#*
+\setTransitionsForVithkuqi{enter-code}{exit-code}#*
 \setTransitionsForWancho{enter-code}{exit-code}#*
 \setTransitionsForWarangCiti{enter-code}{exit-code}#*
 \setTransitionsForYezidi{enter-code}{exit-code}#*
@@ -677,6 +699,7 @@ verbose
 \setTransitionsForYiSyllables{enter-code}{exit-code}#*
 \setTransitionsForYijingHexagramSymbols{enter-code}{exit-code}#*
 \setTransitionsForZanabazarSquare{enter-code}{exit-code}#*
+\setTransitionsForZnamennyMusicalNotation{enter-code}{exit-code}#*
 \setTransitionsForArabics{enter-code}{exit-code}#*
 \setTransitionsForCanadianSyllabics{enter-code}{exit-code}#*
 \setTransitionsForCherokeeFull{enter-code}{exit-code}#*
