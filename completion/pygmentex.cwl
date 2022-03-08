@@ -50,7 +50,7 @@ inline method=%<csname%>
 boxing method=%<envname%>
 #endkeyvals
 
-\widest{string list}{code}{cmd}#*d
+\widest(string list){code}{cmd}#*d
 \VerbatimOutAppend#*
 \begin{VerbatimOutAppend}#*
 \end{VerbatimOutAppend}#*
