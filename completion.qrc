@@ -198,6 +198,7 @@
 <file>completion/beamerseminar.cwl</file>
 <file>completion/beamersubframe.cwl</file>
 <file>completion/beamertexpower.cwl</file>
+<file>completion/beamerthemeArguelles.cwl</file>
 <file>completion/beamerthemeBergen.cwl</file>
 <file>completion/beamerthemeBerkeley.cwl</file>
 <file>completion/beamerthemeBerlin.cwl</file>
@@ -584,6 +585,7 @@
 <file>completion/cpssp.cwl</file>
 <file>completion/cquthesis.cwl</file>
 <file>completion/crbox.cwl</file>
+<file>completion/create-theorem.cwl</file>
 <file>completion/crefthe.cwl</file>
 <file>completion/crimson.cwl</file>
 <file>completion/CrimsonPro.cwl</file>
@@ -999,6 +1001,7 @@
 <file>completion/grafcet.cwl</file>
 <file>completion/graph35.cwl</file>
 <file>completion/graphbox.cwl</file>
+<file>completion/graphfig.cwl</file>
 <file>completion/graphicscache.cwl</file>
 <file>completion/graphicxbox.cwl</file>
 <file>completion/graphicx.cwl</file>
@@ -1062,6 +1065,7 @@
 <file>completion/hvindex.cwl</file>
 <file>completion/hvlogos.cwl</file>
 <file>completion/hvmaths.cwl</file>
+<file>completion/hvpygmentex.cwl</file>
 <file>completion/hvqrurl.cwl</file>
 <file>completion/hypbmsec.cwl</file>
 <file>completion/hypcap.cwl</file>
@@ -1748,6 +1752,7 @@
 <file>completion/pst-ob3d.cwl</file>
 <file>completion/pst-ode.cwl</file>
 <file>completion/pstool.cwl</file>
+<file>completion/pst-optexp.cwl</file>
 <file>completion/pst-optic.cwl</file>
 <file>completion/pst-osci.cwl</file>
 <file>completion/pst-ovl.cwl</file>
@@ -1763,6 +1768,8 @@
 <file>completion/pstricks-pdf.cwl</file>
 <file>completion/pstring.cwl</file>
 <file>completion/pst-rputover.cwl</file>
+<file>completion/pst-rubans.cwl</file>
+<file>completion/pst-shell.cwl</file>
 <file>completion/pst-slpe.cwl</file>
 <file>completion/pst-solarsystem.cwl</file>
 <file>completion/pst-solides3d.cwl</file>
@@ -1992,6 +1999,7 @@
 <file>completion/spacingtricks.cwl</file>
 <file>completion/spalign.cwl</file>
 <file>completion/sparklines.cwl</file>
+<file>completion/spark-otf.cwl</file>
 <file>completion/spbmark.cwl</file>
 <file>completion/spectral.cwl</file>
 <file>completion/spectralsequences.cwl</file>
