@@ -1,7 +1,7 @@
 # microtype.cwl
 # Edson 27-12-2010
 # doncherry/2014-10-03 for microtype v. 2.5a
-# Matthew Bertucci 11/3/2021 for microtype v3.0
+# Matthew Bertucci 3/8/2022 for microtype v3.0c
 
 #include:keyval
 #include:etoolbox
@@ -158,3 +158,4 @@ font=
 
 \leftprotrusion{text}
 \rightprotrusion{text}
+\noprotrusionifhmode#*
