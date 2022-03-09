@@ -9,6 +9,7 @@
 #include:graphicx
 #include:kvoptions
 #include:tikz
+# loads calc, arrows, and positioning tikzlibraries
 #include:twoopt
 #include:xstring
 #include:grffile
@@ -16,6 +17,31 @@
 #include:hyperref
 #include:bookmark
 #include:geometry
+
+#keyvals:\usepackage/pdfreview#c
+grid#true,false
+twocolumn#true,false
+notenumbers#true,false
+inline#true,false
+withnotesonly#true,false
+staggered#true,false
+scaletopage=%<factor%>
+gridcolor=#%color
+bodywidth=%<factor%>
+trim=##L
+trimshift=##L
+bodyframe=##L
+sourcedoc=%<file name%>
+pageoffset=%<integer%>
+alignnotes=#t,b,c
+notesbg=#%color
+important=#%color
+notesframe=#%color
+notesep=##L
+fontsize=%<fontsize csname%>
+maxscale=%<integer%>
+insertpagemargin=##L
+#endkeyvals
 
 \note{height}{text}
 \note[alignment%keyvals]{height}{text}
@@ -27,7 +53,7 @@ t
 \bnote{height}{text}
 \cnote{height}{text}
 \tnote{height}{text}
-\sourcedoc{file}
+\sourcedoc{file%definition}
 \pagegrid
 \pagegrid[TikZ settings]
 \pagegrid[TikZ settings][steps]
@@ -37,18 +63,19 @@ t
 \end{page}
 
 #keyvals:\begin{page}
-bb=
-bbllx=##L
-bblly=##L
-bburx=##L
-bbury=##L
-natwidth=##L
-natheight=##L
+alt={%<alt text%>}
+bb=%<llx lly urx ury%>
+bbllx=
+bblly=
+bburx=
+bbury=
+natwidth=
+natheight=
 hiresbb#true,false
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
-viewport=
-trim=
-angle=
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
 origin=
 width=##L
 height=##L
@@ -57,14 +84,14 @@ keepaspectratio#true,false
 scale=%<factor%>
 clip#true,false
 draft#true,false
-type=
-ext=
-read=
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
 command=
 quiet
-page=
+page=%<page number%>
 interpolate#true,false
-decodearray=
+decodearray={%<color array%>}
 intent
 maskarray
 ocobjnum
@@ -104,9 +131,6 @@ frame=
 cfbox=
 cframe=
 rndframe=
-color=#%color
-color*=%<color cmd%>
-sep=##L
 rndcornersbox
 rndfbox
 valign=#T,M,B,t,m,b
@@ -212,5 +236,15 @@ process
 \begin{rightnotes}
 \end{rightnotes}
 \begin{insertpage}
-\begin{insertpage}[heading]
+\begin{insertpage}[heading%text]
 \end{insertpage}
+
+# not documented
+\gsetlength{length macro}{length}#*
+\thenote#*
+\resettrim#*
+\resettrim[length]#*
+\remark#S
+\begin{listofnotes}#*
+\end{listofnotes}#*
+\ssout{text}#*
