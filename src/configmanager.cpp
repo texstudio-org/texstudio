@@ -446,7 +446,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("StructureView/ShowLinenumbers", &showLineNumbersInStructure, false);
 	registerOption("StructureView/Indentation", &indentationInStructure, -1);
 	registerOption("StructureView/IndentIncludes", &indentIncludesInStructure, false, &pseudoDialog->checkBoxIndentIncludesInStructureTree);
-	registerOption("Structure/ShowElementsInComments", &showCommentedElementsInStructure, false, &pseudoDialog->checkBoxShowCommentedElementsInStructure);
+    registerOption("Structure/ShowElementsInComments", &showCommentedElementsInStructure, false); //, &pseudoDialog->checkBoxShowCommentedElementsInStructure); config element removed as it is not working
 	registerOption("Structure/MarkStructureElementsBeyondEnd", &markStructureElementsBeyondEnd, true, &pseudoDialog->checkBoxMarkStructureElementsBeyondEnd);
 	registerOption("Structure/MarkStructureElementsInAppendix", &markStructureElementsInAppendix, true, &pseudoDialog->checkBoxMarkStructureElementsInAppendix);
 	registerOption("StructureView/ReferenceCommandsInContextMenu", &referenceCommandsInContextMenu, "\\ref", &pseudoDialog->leReferenceCommandsInContextMenu);

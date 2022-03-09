@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>13</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>775</width>
-            <height>867</height>
+            <width>480</width>
+            <height>552</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -740,8 +740,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1064</width>
-            <height>640</height>
+            <width>576</width>
+            <height>516</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -898,8 +898,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>248</width>
-                   <height>97</height>
+                   <width>542</width>
+                   <height>70</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -2001,9 +2001,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>937</width>
-            <height>2168</height>
+            <y>-478</y>
+            <width>670</width>
+            <height>1379</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2507,6 +2507,9 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="10" column="2">
                <widget class="QComboBox" name="comboBoxTOCBackgroundColor">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
                 <item>
                  <property name="text">
                   <string>No Color Background</string>
@@ -2544,28 +2547,8 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
               <item row="6" column="2">
                <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
               </item>
-              <item row="10" column="0">
-               <widget class="QCheckBox" name="checkBoxMarkStructureElementsInAppendix">
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Mark structure elements in appendix</string>
-                </property>
-               </widget>
-              </item>
               <item row="7" column="2">
                <widget class="QLineEdit" name="leRegExpTODO"/>
-              </item>
-              <item row="9" column="2">
-               <widget class="QCheckBox" name="checkBoxShowCommentedElementsInStructure">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Show elements in comments</string>
-                </property>
-               </widget>
               </item>
               <item row="7" column="0">
                <widget class="QLabel" name="label_83">
@@ -2591,17 +2574,34 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
+              <item row="9" column="2">
+               <widget class="QCheckBox" name="checkBoxMarkStructureElementsInAppendix">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Mark structure elements in appendix</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_90">
+                <property name="text">
+                 <string>Use color in global TOC:</string>
+                </property>
+               </widget>
+              </item>
              </layout>
              <zorder>checkBoxIndentIncludesInStructureTree</zorder>
              <zorder>label_64</zorder>
              <zorder>leReferenceCommandsInContextMenu</zorder>
              <zorder>checkBoxMarkStructureElementsBeyondEnd</zorder>
-             <zorder>checkBoxMarkStructureElementsInAppendix</zorder>
              <zorder>label_83</zorder>
              <zorder>leRegExpTODO</zorder>
-             <zorder>checkBoxShowCommentedElementsInStructure</zorder>
              <zorder>comboBoxTOCBackgroundColor</zorder>
              <zorder>checkBoxScrollToCurrentPosition</zorder>
+             <zorder>checkBoxMarkStructureElementsInAppendix</zorder>
+             <zorder>label_90</zorder>
             </widget>
            </item>
            <item>
@@ -3233,8 +3233,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>866</width>
-            <height>934</height>
+            <width>680</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3759,7 +3759,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
+            <width>680</width>
             <height>617</height>
            </rect>
           </property>
@@ -4021,8 +4021,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>866</width>
-            <height>743</height>
+            <width>680</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
