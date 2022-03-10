@@ -559,7 +559,7 @@ randomhsb#B
 # from pgfkeys.code.tex
 #include:pgfkeys
 # from pgffor.code.tex (inputs pgfmath.code.tex)
-\foreach
+\foreach %<\macro%> in {%<list%>}{%<code%>}
 \foreach{cmd}#Sd
 \breakforeach#*
 # from pgfmath.code.tex
@@ -586,10 +586,11 @@ randomhsb#B
 \pgfmathcontinuelooptrue#*
 \pgfmathcontinueloopfalse#*
 \pgfmathloop %<loop body%>\repeatpgfmathloop#*
+\repeatpgfmathloop#*
 \pgfmathbreakloop#*
 \pgfmathreturn#*
 \pgfmathcounter#*
-\pgfmathsmuggle%<marcro%>\endgroup#*
+\pgfmathsmuggle%<macro%>\endgroup#*
 # from pgfmathparser.code.tex
 \ifpgfmathfloat#*
 \pgfmathfloattrue#*
