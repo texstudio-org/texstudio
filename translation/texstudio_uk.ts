@@ -1859,7 +1859,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2511"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Глобальний TOC використовує різні відтінки кольору тла, щоб відрізнити різні файли. Схема кольорів може бути змінена тут.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
@@ -1869,7 +1869,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Використовувати колір у глобальному TOC:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2695,12 +2695,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4370"/>
         <source>Presentation Laser Pointer Size:</source>
-        <translation type="unfinished"/>
+        <translation>Розмір лазерного вказівника на презентації:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4445"/>
         <source>Presentation Laser Pointer Color:</source>
-        <translation type="unfinished"/>
+        <translation>Колір лазерного вказівника на презентації:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4495"/>
@@ -3811,7 +3811,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1958"/>
         <source>Clear file list</source>
-        <translation type="unfinished"/>
+        <translation>Очистити список файлів</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1959"/>
@@ -9940,7 +9940,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1144"/>
         <source>&amp;Xindex</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Xindex</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1145"/>

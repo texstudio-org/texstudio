@@ -1861,7 +1861,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2511"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Глобальное оглавление использует другие оттенки фонового цвета, чтобы были лчше видны различия между отдельными файлами. Цветовую схему можно изменить здесь.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
@@ -1871,7 +1871,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Использовать цвет в глобальном оглавлении:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2698,12 +2698,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4370"/>
         <source>Presentation Laser Pointer Size:</source>
-        <translation type="unfinished"/>
+        <translation>Размер лазерной указки для презентации:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4445"/>
         <source>Presentation Laser Pointer Color:</source>
-        <translation type="unfinished"/>
+        <translation>Цвет лазерной указки для презентации:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4495"/>
@@ -3813,7 +3813,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1958"/>
         <source>Clear file list</source>
-        <translation type="unfinished"/>
+        <translation>Очистить список файлов</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1959"/>
@@ -9940,7 +9940,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1144"/>
         <source>&amp;Xindex</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Xindex</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1145"/>
@@ -10450,7 +10450,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1515"/>
         <location filename="../src/texstudio.cpp" line="5595"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>показать больше элементов...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1523"/>
@@ -10866,7 +10866,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5582"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>показать меньше элементов...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5623"/>

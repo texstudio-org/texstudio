@@ -1860,7 +1860,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2511"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La table des matières globale utilise différentes nuances de couleur de fond pour distinguer les différents fichiers. Le schéma de couleurs peut être modifié ici.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
@@ -1870,7 +1870,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser dans la table des matières globale la couleur :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2696,12 +2696,12 @@ Remarque : modifier ce paramètre n&apos;affectera que les documents ouverts ens
     <message>
         <location filename="../src/configdialog.ui" line="4370"/>
         <source>Presentation Laser Pointer Size:</source>
-        <translation type="unfinished"/>
+        <translation>Taille du pointeur laser de présentation :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4445"/>
         <source>Presentation Laser Pointer Color:</source>
-        <translation type="unfinished"/>
+        <translation>Couleur du pointeur laser de présentation :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4495"/>
@@ -3809,7 +3809,7 @@ Voulez-vous supprimer ces macros ?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1958"/>
         <source>Clear file list</source>
-        <translation type="unfinished"/>
+        <translation> Effacer la liste des fichiers</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1959"/>
@@ -9936,7 +9936,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1144"/>
         <source>&amp;Xindex</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Xindex</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1145"/>
