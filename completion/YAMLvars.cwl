@@ -1,5 +1,5 @@
 # YAMLvars package
-# Matthew Bertucci 12/18/2021
+# Matthew Bertucci 3/8/2022 for release 2022-03-03
 
 #include:luacode
 #include:xspace
@@ -28,3 +28,4 @@ debug
 
 \resetYAMLvarsspec
 \AllowUndeclaredYV
+\ForbidUndeclaredYV

@@ -1,9 +1,11 @@
 # XCharter package
-# Matthew Bertucci 2/7/2022 for v1.225
+# Matthew Bertucci 3/8/2022 for v1.23
 
 #include:fontenc
+# loads T1 option of fontenc
 #include:fontaxes
 #include:textcomp
+#include:iftex
 #include:scalefnt
 #include:mweights
 #include:etoolbox
@@ -12,30 +14,43 @@
 #include:xkeyval
 
 #keyvals:\usepackage/XCharter#c
-scale=%<factor%>
-scaled=%<factor%>
-foresolidus=##L
 aftsolidus=##L
+defaultfeatures={%<fontspec features%>}
+foresolidus=##L
 lf
 lining
+nofontspec
+oldSS
 oldstyle
 oldstyleI
-theoremfont
 osf
 osfI
-sups
+p
+proportional
+scaled=%<factor%>
 scosf
-serbianc
+sups
+t
+tabular
+theoremfont
+thmlining
+type1
+type1text
 #endkeyvals
 
+\circledtxt#*
 \defigures
 \destyle#*
 \infigures
 \lfstyle
-\osfstyle
+\liningnums
 \nufigures
 \nustyle#*
+\oldstylenums
+\osfstyle
+\proportionalnums
 \sufigures
+\tabularnums
 \textde{text}#*
 \textdenominator{text}
 \textfrac{numerator}{denominator}
@@ -54,8 +69,11 @@ serbianc
 \textthit{text}#*
 \thdefault#*
 \thfamily
+\tlfstyle
+\tosfstyle
 \useosf#*
 \useosfI#*
+\useproportional#*
 
 # from T1 option of fontenc
 \DH#n

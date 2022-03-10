@@ -136,7 +136,7 @@
 \bibindent#*
 \bibitem{citekey}
 \bibitem[label]{citekey}
-\bibliographystyle{style}
+\bibliographystyle{style%keyvals}
 \bibliography{bib file}
 \Bigg#mK
 \Bigg(%|\Bigg)#mM
@@ -610,6 +610,17 @@ nosearch
 #endkeyvals
 #keyvals:\begin{filecontents}
 noheader
+#endkeyvals
+
+#keyvals:\bibliographystyle#c
+abbrv
+acm
+alpha
+apalike
+ieeetr
+plain
+siam
+unsrt
 #endkeyvals
 
 #keyvals:\pagenumbering#c

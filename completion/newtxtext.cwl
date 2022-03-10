@@ -1,9 +1,7 @@
 # newtxtext package
-# Matthew Bertucci 1/13/2022 for v1.705
+# Matthew Bertucci 3/9/2022 for v1.71
 
-#include:fontenc
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 #include:xkeyval
 #include:etoolbox
 #include:textcomp
@@ -15,8 +13,9 @@
 
 #keyvals:\usepackage/newtxtext#c
 type1#true,false
+type1text#true,false
+otfmath#true,false
 nofontspec#true,false
-no-math#true,false
 defaultfeatures={%<fontspec options%>}
 lining#true,false
 lf#true,false
@@ -27,7 +26,6 @@ t#true,false
 proportional#true,false
 p#true,false
 scaled=%<factor%>
-scale=%<factor%>
 defaultsups#true,false
 largesc#true,false
 nohelv#true,false
@@ -85,31 +83,16 @@ looser
 \useosf#*
 \useproportional#*
 
-\ifntxotf#S
-\ntxotftrue#S
-\ntxotffalse#S
 \fileversion#S
 \filedate#S
 
-# from T1 option of fontenc
-\DH#n
-\NG#n
-\dj#n
-\ng#n
-\k{arg}#n
-\guillemotleft#*n
-\guillemotright#*n
-\guilsinglleft#n
-\guilsinglright#n
-\quotedblbase#n
-\quotesinglbase#n
-\textquotedbl#n
-\DJ#n
-\th#n
-\TH#n
-\dh#n
-\Hwithstroke#*n
-\hwithstroke#*n
-\textogonekcentered{arg}#*n
-\guillemetleft#n
-\guillemetright#n
+# from binhex.tex
+\binary{number}#*
+\nbinary{size}{number}#*
+\hex{number}#*
+\nhex{size}{number}#*
+\oct{number}#*
+\noct{size}{number}#*
+\tetra{number}#*
+\ntetra{size}{number}#*
+\nbinbased{logbase}{size}{number}#*

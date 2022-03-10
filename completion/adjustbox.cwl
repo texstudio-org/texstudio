@@ -129,18 +129,19 @@ dvipdfmx
 
 ### \includegraphics keys
 #keyvals:\adjustbox,\begin{adjustbox},adjustimage,\adjincludegraphics,\newadjustboxenv,\newadjustboxenv*,\renewadjustboxenv,\renewadjustboxenv*,\provideadjustboxenv,\provideadjustboxenv*,\declareadjustboxenv,\declareadjustboxenv*,\newadjustboxcmd,\renewadjustboxcmd,\provideadjustboxcmd,\declareadjustboxcmd,\newadjustimage,\renewadjustimage,\provideadjustimage,\declareadjustimage,\NewAdjustImage,\RenewAdjustImage,\ProvideAdjustImage,\DeclareAdjustImage,\bgimagebox,\bgimagebox*,\begin{bgimagebox},\begin{bgimagebox*},\fgimagebox,\fgimagebox*,\begin{fgimagebox},\begin{fgimagebox*},\backgroundbox,\backgroundbox*,\begin{backgroundbox},\begin{backgroundbox*},\foregroundbox,\foregroundbox*,\begin{foregroundbox},\begin{foregroundbox*}
-bb=
-bbllx=##L
-bblly=##L
-bburx=##L
-bbury=##L
-natwidth=##L
-natheight=##L
+alt={%<alt text%>}
+bb=%<llx lly urx ury%>
+bbllx=
+bblly=
+bburx=
+bbury=
+natwidth=
+natheight=
 hiresbb#true,false
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
-viewport=
-trim=
-angle=
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
 origin=
 width=##L
 height=##L
@@ -149,14 +150,14 @@ keepaspectratio#true,false
 scale=%<factor%>
 clip#true,false
 draft#true,false
-type=
-ext=
-read=
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
 command=
 quiet
-page=
+page=%<page number%>
 interpolate#true,false
-decodearray=
+decodearray={%<color array%>}
 intent
 maskarray
 ocobjnum
@@ -200,9 +201,6 @@ frame=
 cfbox=
 cframe=
 rndframe=
-color=#%color
-color*=%<color cmd%>
-sep=##L
 rndcornersbox
 rndfbox
 valign=#T,M,B,t,m,b
