@@ -2,6 +2,7 @@
 # muzimuzhi, 7 Jul 2020, tikz-pgf 3.1.5b
 
 # from pgfkeys.code.tex
+\pgfkeysloaded#S
 \pgfkeyssetvalue{full key}{token text}#*
 \pgfkeyssetevalue{full key}{token text}#*
 \pgfkeysaddvalue{full key}{prefix code}{append code}#*
