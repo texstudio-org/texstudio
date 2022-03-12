@@ -107,9 +107,9 @@ public:
 		if (!editor) return false;
 		if (completer->list->isVisible() && maxWritten >= curStart && completer->list->currentIndex().isValid()) {
 			QDocumentCursor cursor = editor->cursor();
-			editor->document()->beginMacro();
 			QVariant v = completer->list->model()->data(completer->list->currentIndex(), Qt::DisplayRole);
 			if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
+            editor->document()->beginMacro();
 			CompletionWord cw = v.value<CompletionWord>();
 			completer->listModel->incUsage(completer->list->currentIndex());
 			//int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;
