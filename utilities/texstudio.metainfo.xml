@@ -46,12 +46,15 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2022-02-14T19:19:56+0000" version="4.2.2">
+    <release date="2022-03-12T13:39:04+0000" version="4.2.3">
       <description>
         <ul>
+          <li>fix unable to save under special circumstances (#2124)</li>
+          <li>fix stuck to save unsaved document (only in explicit root mode and with a new unsaved document,#2153) </li>
+          <li>xindex engine added</li>
+          <li>fix math highlighting in keyvals (#2138)</li>
+          <li>add context menu in embbeded pdf viewer to invert pdf colors</li>
           <li>more cwls</li>
-          <li>fix crash, #2094, #2084, #2109</li>
-          <li>use picture highlighting for tikz env and similar</li>
         </ul>
       </description>
     </release>
