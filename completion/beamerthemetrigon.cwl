@@ -1,5 +1,5 @@
 # trigon beamertheme
-# Matthew Bertucci 2/1/2022 for v0.6.2
+# Matthew Bertucci 3/12/2022 for v0.6.3
 
 # Dependency Tree:
 # beamerthemetrigon.sty
@@ -67,6 +67,7 @@ tTheme#B
 # from beamerinnerthemetrigon.sty
 \logbig#*
 \biglogo{imagefile}#g
+\biglogo[options%keyvals]{imagefile}#g
 \slidestyle#*
 \titlestyle#*
 \sectionstyle#*
@@ -82,3 +83,36 @@ tTheme#B
 # from beamerouterthemetrigon.sty
 \logsmall#*
 \smalllogo{imagefile}#g
+\smalllogo[options%keyvals]{imagefile}#g
+
+#keyvals:\biglogo,\smalllogo
+alt={%<alt text%>}
+bb=%<llx lly urx ury%>
+bbllx=
+bblly=
+bburx=
+bbury=
+natwidth=
+natheight=
+hiresbb#true,false
+pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
+origin=
+width=##L
+height=##L
+totalheight=##L
+keepaspectratio#true,false
+scale=%<factor%>
+clip#true,false
+draft#true,false
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
+command=
+quiet
+page=%<page number%>
+interpolate#true,false
+decodearray={%<color array%>}
+#endkeyvals
