@@ -149,7 +149,7 @@ breakaftersymbolpost=%<string%>
 breakanywhere#true,false
 breakanywheresymbolpre=%<string%>
 breakanywheresymbolpost=%<string%>
-breakautoinden#true,false
+breakautoindent#true,false
 breakbefore=%<string%>
 breakbeforegroup#true,false
 breakbeforesymbolpre=%<string%>
