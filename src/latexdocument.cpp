@@ -1834,7 +1834,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             hiddenDocuments.removeAll(document);
             return;
         }
-        if (n > 1) { // at least one related document will be open after removal
+        if (n > 1 && !document->getFileName().isEmpty()) { // at least one related document will be open after removal
             hiddenDocuments.append(document);
             LatexEditorView *edView = document->getEditorView();
             if (edView) {
@@ -1871,7 +1871,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             currentDocument = nullptr;
         }
 
-        if (n > 1) { // don't remove document, stays hidden instead
+        if (n > 1 && !document->getFileName().isEmpty()) { // don't remove document, stays hidden instead (except if it is not saved at all,i.e. no filename)
             hideDocInEditor(document->getEditorView());
             if(masterDocument && documents.count()==1){
                 // special check if masterDocument, but document is not visible
