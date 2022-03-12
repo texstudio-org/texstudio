@@ -1859,7 +1859,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2511"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Genel içindekiler tablosu farklı dosyaların ayırt edilebilmesi için farklı arka plan gölgelemesi kullanır. Renk şeması buradan değiştirilebilir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
@@ -1869,7 +1869,7 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Genel içindekiler tablosunda renk kullanılsın:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2695,12 +2695,12 @@ Not: Bu ayar, yalnız değiştirildikten sonra açılan belgeleri etkiler.</tran
     <message>
         <location filename="../src/configdialog.ui" line="4370"/>
         <source>Presentation Laser Pointer Size:</source>
-        <translation type="unfinished"/>
+        <translation>Sunum laser işaretleyici boyutu:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4445"/>
         <source>Presentation Laser Pointer Color:</source>
-        <translation type="unfinished"/>
+        <translation>Sunum laser işaretleyici rengi:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4495"/>
@@ -3810,7 +3810,7 @@ Bunları kaldırmak ister misiniz?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1958"/>
         <source>Clear file list</source>
-        <translation type="unfinished"/>
+        <translation>Dosya listesini temizle</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1959"/>
@@ -9937,7 +9937,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1144"/>
         <source>&amp;Xindex</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Xdizin</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1145"/>
@@ -10447,7 +10447,7 @@ dosyası silinemedi.</translation>
         <location filename="../src/texstudio.cpp" line="1515"/>
         <location filename="../src/texstudio.cpp" line="5595"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>daha fazla kayıt görüntüle...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1523"/>
@@ -10861,7 +10861,7 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5582"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>daha az kayıt görüntüle...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5623"/>
