@@ -5401,15 +5401,18 @@ void QEditor::write(const QString& s)
 {
 	document()->clearLanguageMatches();
 	
-	if (!m_mirrors.empty())
+    bool macroing=false;
+    if (!m_mirrors.empty()){
 		m_doc->beginMacro();
+        macroing=true;
+    }
 	
 	insertText(m_cursor, s);
 	
 	for ( int i = 0; i < m_mirrors.count(); ++i )
 		insertText(m_mirrors[i], s);
 	
-	if (!m_mirrors.empty())
+    if (macroing)
 		m_doc->endMacro();
 	
 	emitCursorPositionChanged();
