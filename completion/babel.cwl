@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 12/1/2021 for v3.67
+# tbraun 4.11.2008; Matthew Bertucci 3/14/2022 for v3.73
 
 \selectlanguage{language}
 \foreignlanguage{language}{text}
@@ -13,6 +13,7 @@
 
 #keyvals:\foreignlanguage,\begin{otherlanguage*}
 date
+captions
 #endkeyvals
 
 \babeltags{tag1=lang1,tag2=lang2,...}
@@ -92,12 +93,11 @@ script.tag.bcp47
 script.tag.opentype
 #endkeyvals
 
-\getlocaleproperty{cmd}{locale}{property}#*
-\getlocaleproperty*{cmd}{locale}{property}#*
+\getlocaleproperty{cmd}{locale}{property}#*d
+\getlocaleproperty*{cmd}{locale}{property}#*d
 \LocaleForEach{code}#*
 \BabelEnsureInfo#*
 \localeid#*
-\getlanguageproperty#*
 
 \babelhyphen{text}
 \babelhyphen*{text}
