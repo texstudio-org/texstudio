@@ -670,6 +670,7 @@
 <file>completion/dnaseq.cwl</file>
 <file>completion/doc.cwl</file>
 <file>completion/doclicense.cwl</file>
+<file>completion/docmfp.cwl</file>
 <file>completion/docmute.cwl</file>
 <file>completion/doctools.cwl</file>
 <file>completion/dogma.cwl</file>
@@ -898,6 +899,7 @@
 <file>completion/fontspec.cwl</file>
 <file>completion/fonts-tlwg.cwl</file>
 <file>completion/fonttable.cwl</file>
+<file>completion/fontwrap.cwl</file>
 <file>completion/footmisc.cwl</file>
 <file>completion/footnotebackref.cwl</file>
 <file>completion/footnote.cwl</file>
@@ -1230,6 +1232,7 @@
 <file>completion/librefranklin.cwl</file>
 <file>completion/libris.cwl</file>
 <file>completion/lie-hasse.cwl</file>
+<file>completion/liftarm.cwl</file>
 <file>completion/lilyglyphs.cwl</file>
 <file>completion/linearb.cwl</file>
 <file>completion/linebreaker.cwl</file>
@@ -1272,6 +1275,7 @@
 <file>completion/ltxnew.cwl</file>
 <file>completion/ltxtable.cwl</file>
 <file>completion/luabibentry.cwl</file>
+<file>completion/luabidi.cwl</file>
 <file>completion/luacensor.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
 <file>completion/luacode.cwl</file>
@@ -1369,6 +1373,7 @@
 <file>completion/mercatormap.cwl</file>
 <file>completion/merriweather.cwl</file>
 <file>completion/messagebubbles.cwl</file>
+<file>completion/messagepassing.cwl</file>
 <file>completion/metainfo.cwl</file>
 <file>completion/metalogo.cwl</file>
 <file>completion/metalogox.cwl</file>
@@ -1715,6 +1720,7 @@
 <file>completion/psfont.cwl</file>
 <file>completion/psfrag.cwl</file>
 <file>completion/psfragx.cwl</file>
+<file>completion/psgo.cwl</file>
 <file>completion/pst-3d.cwl</file>
 <file>completion/pst-3dplot.cwl</file>
 <file>completion/pst-abspos.cwl</file>
@@ -1772,6 +1778,7 @@
 <file>completion/pst-optic.cwl</file>
 <file>completion/pst-osci.cwl</file>
 <file>completion/pst-ovl.cwl</file>
+<file>completion/pst-pad.cwl</file>
 <file>completion/pst-pdf.cwl</file>
 <file>completion/pst-perspective.cwl</file>
 <file>completion/pst-platon.cwl</file>
@@ -1786,6 +1793,7 @@
 <file>completion/pst-rputover.cwl</file>
 <file>completion/pst-rubans.cwl</file>
 <file>completion/pst-shell.cwl</file>
+<file>completion/pst-sigsys.cwl</file>
 <file>completion/pst-slpe.cwl</file>
 <file>completion/pst-solarsystem.cwl</file>
 <file>completion/pst-solides3d.cwl</file>
@@ -2389,6 +2397,7 @@
 <file>completion/watermark.cwl</file>
 <file>completion/widetable.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
+<file>completion/wiki.cwl</file>
 <file>completion/withargs.cwl</file>
 <file>completion/witharrows.cwl</file>
 <file>completion/wordlike.cwl</file>
@@ -2401,6 +2410,7 @@
 <file>completion/xbmks.cwl</file>
 <file>completion/XCharter.cwl</file>
 <file>completion/xcharter-otf.cwl</file>
+<file>completion/xCJK2uni.cwl</file>
 <file>completion/xcntperchap.cwl</file>
 <file>completion/xcoffins.cwl</file>
 <file>completion/xcolor.cwl</file>
@@ -2474,8 +2484,10 @@
 <file>completion/zahl2string.cwl</file>
 <file>completion/Zallman.cwl</file>
 <file>completion/zebra-goodies.cwl</file>
+<file>completion/zhlineskip.cwl</file>
 <file>completion/zhlipsum.cwl</file>
 <file>completion/zhnumber.cwl</file>
+<file>completion/zhspacing.cwl</file>
 <file>completion/zi4.cwl</file>
 <file>completion/zlmtt.cwl</file>
 <file>completion/zref-abspage.cwl</file>
