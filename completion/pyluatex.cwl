@@ -1,5 +1,5 @@
 # pyluatex package
-# Matthew Bertucci 2/6/2022 for v0.4.1
+# Matthew Bertucci 3/12/2022 for v0.4.3
 
 #include:luatex
 #include:expl3
@@ -8,8 +8,9 @@
 #keyvals:\usepackage/pyluatex#c
 executable=%<path%>
 ignoreerrors#true,false
-verbose#true,false
+localimports#true,false
 shutdown=#veryveryend,veryenddocument,off
+verbose#true,false
 #endkeyvals
 
 \py{code%definition}

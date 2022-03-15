@@ -1,12 +1,27 @@
-# bidi 33.0
+# bidi package
 # hadi_sfr (info@hadisafari.ir)
+# updated 3/14/2022 for v36.7
 
-# some commands are not included
+#include:xetex
+#include:iftex
+#include:biditools
+#include:zref-abspage
+#include:auxhook
+#include:ltxcmds
+#include:xkeyval
+
+#keyvals:\usepackage/bidi#c
+RTLdocument
+rldocument
+extrafootnotefeatures
+#endkeyvals
 
 \bidiversion#*
 \bididate#*
 \TeXXeTOn#*
 \TeXXeTOf#*
+
+#ifOption:extrafootnotefeatures
 \normalfootnotes
 \twocolumnfootnotes
 \threecolumnfootnotes
@@ -20,7 +35,10 @@
 \RTLcolumnfootnotes
 \LTRcolumnfootnotes
 \paragraphfootnotes
-\setLTRparagraphfootnote
+\setLTRparagraphfootnotes
+\setRTLparagraphfootnotes
+#endif
+
 \setLTR
 \setLR
 \unsetRL
@@ -36,17 +54,18 @@
 \LR{text}
 \RLE{text}
 \RL{text}
-\footnote{text}
 \LTRfootnote{text}
+\LTRfootnote[num]{text}
 \RTLfootnote{text}
+\RTLfootnote[num]{text}
 \setfootnoteRL
 \setfootnoteLR
 \unsetfootnoteRL
-\thanks{text}
 \LTRthanks{text}
 \RTLthanks{text}
-\footnotetext[num]{text}
+\LTRfootnotetext{text}
 \LTRfootnotetext[num]{text}
+\RTLfootnotetext{text}
 \RTLfootnotetext[num]{text}
 \autofootnoterule
 \rightfootnoterule
@@ -57,34 +76,42 @@
 \debugfootnotedirection
 \RTLdblcol
 \LTRdblcol
+\RTLcases{%<\text{brach1}\cr\text{brach2}\cr...%>}
 \XeTeX
 \XeLaTeX
 \SepMark{mark}
-\raggedright
-\raggedleft
-\begin{flushleft}
-\end{flushleft}
-\begin{flushright}
-\end{flushright}
-\hboxR
-\hboxL
-\vboxR
-\vboxL
+\hboxR{text}
+\hboxL{text}
+\vboxR{text}
+\vboxL{text}
 \bidillap
 \bidirlap
 \begin{LTRitems}
 \end{LTRitems}
 \begin{RTLitems}
-\end{RTLbibitems}
+\end{RTLitems}
 \begin{LTRbibitems}
 \end{LTRbibitems}
 \begin{RTLbibitems}
 \end{RTLbibitems}
 \setLTRbibitems
 \setRTLbibitems
-\setdefaultbibitem
+\setdefaultbibitems
 \setRTLmarginpar
 \setLTRmarginpar
 \setdefaultmarginpar
-\LTRmarginpar[left-text]{right-text}
-\RTLmarginpar[left-text]{right-text}
+\LTRmarginpar[left-text%text]{right-text%text}
+\RTLmarginpar[left-text%text]{right-text%text}
+
+# if dblfnote loaded
+\RTLdfnmakecol#S
+\LTRdfnmakecol#S
+
+# if listings loaded
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
+captiondirection=#textdirection,RTL,LTR
+#endkeyvals
+
+# if multicol loaded
+\RTLmulticolcolumns#S
+\LTRmulticolcolumns#S

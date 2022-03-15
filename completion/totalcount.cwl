@@ -90,4 +90,9 @@
 \iftotalchapters
 #endif
 
+#ifOption:page
+\totalpages
+\iftotalpages
+#endif
+
 \DeclareTotalCounter{counter}

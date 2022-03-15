@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2/16/2022 for v0.99-l
+# Matthew Bertucci 3/14/2022 for v0.99-m
 
 #include:verbatim
 #include:mathtools
@@ -44,7 +44,7 @@ nonshellescape
 \Tables{nombre}
 \Tables[clés%keyvals]{nombre}
 
-## 2 Les tables de multiplication et d’addition ##
+## Les tables de multiplication et d’addition ##
 #keyvals:\Tables
 Couleur=#%color
 Debut=%<nombre%>
@@ -53,7 +53,7 @@ Seul#true,false
 Addition#true,false
 #endkeyvals
 
-## 3 Opérations posées ##
+## Opérations posées ##
 \Addition{n1}{n2}
 \Addition[clés%keyvals]{n1}{n2}
 \Soustraction{n1}{n2}
@@ -70,7 +70,7 @@ CouleurVirgule=#%color
 Solution#true,false
 #endkeyvals
 
-## 4 Différents types de papiers ##
+## Différents types de papiers ##
 \Papiers
 \Papiers[clés%keyvals]
 
@@ -87,7 +87,7 @@ PageEntiere#true,false
 ZoneTexte#true,false
 #endkeyvals
 
-## 5 L’écriture de grandeurs ##
+## L’écriture de grandeurs ##
 \Lg{nombre}
 \Lg[unité]{nombre}
 \Aire{nombre}
@@ -113,7 +113,7 @@ ZoneTexte#true,false
 \Temp{nombre}
 \Temp[unité]{nombre}
 
-## 6 Écrire les nombres en lettres ##
+## Écrire les nombres en lettres ##
 \Ecriture{nombre}
 \Ecriture[clés%keyvals]{nombre}
 
@@ -125,7 +125,7 @@ E#true,false
 Zero#true,false
 #endkeyvals
 
-## 7 Les tableaux de conversion et tableaux de numération ##
+## Les tableaux de conversion et tableaux de numération ##
 \Tableau{liste de nombres}
 \Tableau[clés%keyvals]{liste de nombres}
 
@@ -142,6 +142,7 @@ Cube#true,false
 Capacite#true,false
 Gramme#true,false
 Litre#true,false
+Escalier#true,false
 Entiers#true,false
 Millions#true,false
 Milliards#true,false
@@ -164,7 +165,7 @@ Incline#true,false
 Couleurd=#%color
 #endkeyvals
 
-## 8 Questions - réponses à relier ##
+## Questions - réponses à relier ##
 \Relie{Liste des éléments par ligne}
 \Relie[clés%keyvals]{Liste des éléments par ligne}
 
@@ -176,7 +177,7 @@ Ecart=##L
 Stretch=%<factor%>
 #endkeyvals
 
-## 9 Les questionnaires à choix multiples ##
+## Les questionnaires à choix multiples ##
 \QCM{questions%text}
 \QCM[clés%keyvals]{questions%text}
 
@@ -199,7 +200,7 @@ Multiple
 Noms=%<nom1/nom2/...%>
 #endkeyvals
 
-## 10 Les questions « flash » ##
+## Les questions « flash » ##
 \QFlash{question/param1/param2/...%text}
 \QFlash[clés%keyvals]{question/param1/param2/...%text}
 
@@ -228,7 +229,7 @@ Evaluation#true,false
 
 \BoiteFlash{contenu%text}
 
-## 11 Rapido ##
+## Rapido ##
 \Rapido{q1/r1§q2/r2§...%text}
 \Rapido[clés%keyvals]{q1/r1§q2/r2§...%text}
 
@@ -239,7 +240,7 @@ Numero=%<numero%>
 
 \BoiteRapido{texte%text}
 
-## 12 Les formules de périmètre, d’aire, de volume ##
+## Les formules de périmètre, d’aire, de volume ##
 \Formule
 \Formule[clés%keyvals]
 
@@ -255,7 +256,7 @@ Volume#true,false
 Solide=#pave,cube,cylindre,prisme,cone,pyramide,boule
 #endkeyvals
 
-## 13 Le théorème de Pythagore ##
+## Le théorème de Pythagore ##
 \Pythagore{Nom du triangle}{a}{b}{c}
 \Pythagore[clés%keyvals]{Nom du triangle}{a}{b}{c}
 
@@ -287,7 +288,7 @@ AllPerso#true,false
 
 \ResultatPytha
 
-## 14 La somme des angles d’un triangle ##
+## La somme des angles d’un triangle ##
 \SommeAngles{Nom du triangle}{a}{b}
 \SommeAngles[clés%keyvals]{Nom du triangle}{a}{b}
 
@@ -303,7 +304,7 @@ Isocele#true,false
 
 \ResultatAngle
 
-## 15 Le théorème de Thalès ##
+## Le théorème de Thalès ##
 \Thales{Nom des points considérés}{a}{b}{c}{d}{e}{f}
 \Thales[clés%keyvals]{Nom des points considérés}{a}{b}{c}{d}{e}{f}
 
@@ -333,7 +334,7 @@ Simplification#true,false
 \ResultatThalesy
 \ResultatThalesz
 
-## 16 La trigonométrie ##
+## La trigonométrie ##
 \Trigo{Nom du triangle}{a}{b}{c}
 \Trigo[clés%keyvals]{Nom du triangle}{a}{b}{c}
 
@@ -353,7 +354,7 @@ FigureSeule#true,false
 
 \ResultatTrigo
 
-## 17 Les positions relatives de deux droites ##
+## Les positions relatives de deux droites ##
 \ProprieteDroites{a%formula}{b%formula}{c%formula}
 \ProprieteDroites[clés%keyvals]{a%formula}{b%formula}{c%formula}
 
@@ -365,7 +366,7 @@ Figure#true,false
 Remediation#true,false
 #endkeyvals
 
-## 18 Le repérage ##
+## Le repérage ##
 \Reperage{Liste des éléments}
 \Reperage[clés%keyvals]{Liste des éléments}
 
@@ -397,7 +398,7 @@ AnglePhi=%<degrees%>
 EchelleEspace=%<nombre%>
 #endkeyvals
 
-## 19 Pyramide de nombre ##
+## Pyramide de nombre ##
 \PyramideNombre{c1,c2,...}
 \PyramideNombre[clés%keyvals]{c1,c2,...}
 
@@ -408,7 +409,7 @@ Hauteur=##L
 Inverse#true,false
 #endkeyvals
 
-## 20 Programme de calcul ##
+## Programme de calcul ##
 \ProgCalcul{i1,i2,...%formula}
 \ProgCalcul[clés%keyvals]{i1,i2,...%formula}
 
@@ -428,7 +429,7 @@ Application#true,false
 Details#true,false
 #endkeyvals
 
-## 21 Les nombres premiers ##
+## Les nombres premiers ##
 \Decomposition{integer}
 \Decomposition[clés%keyvals]{integer}
 
@@ -441,16 +442,20 @@ Potence#true,false
 Exposant#true,false
 Longue#true,false
 All#true,false
-Nombre#true,false
+Nombre=%<nombre%>
 AllNombre#true,false
 Arbre#true,false
 ArbreComplet#true,false
+Entoure#true,false
 ArbreVide#true,false
+ArbreDessine#true,false
+Impression#true,false
+ArbreDessineVide#true,false
 Diviseurs#true,false
 DiviseursT#true,false
 #endkeyvals
 
-## 22 La représentation graphique de fractions ##
+## La représentation graphique de fractions ##
 \Fraction{a/b}
 \Fraction[clés%keyvals]{a/b}
 
@@ -472,7 +477,7 @@ Hachures#true,false
 Epaisseur=%<factor%>
 #endkeyvals
 
-## 23 Décomposer une fraction décimale ##
+## Décomposer une fraction décimale ##
 \FractionDecimale{a/b}
 \FractionDecimale[clés%keyvals]{a/b}
 
@@ -482,7 +487,7 @@ SansZero#true,false
 Remediation#true,false
 #endkeyvals
 
-## 24 La simplification d’écritures fractionnaires ##
+## La simplification d’écritures fractionnaires ##
 \Simplification{a}{b}
 \Simplification[clés%keyvals]{a}{b}
 
@@ -494,7 +499,7 @@ Contraire=%<integer%>
 Fleches#true,false
 #endkeyvals
 
-## 25 Ranger des nombres rationnels relatifs ##
+## Ranger des nombres rationnels relatifs ##
 \Rangement{Liste de nombres}
 \Rangement[clés%keyvals]{Liste de nombres}
 
@@ -505,10 +510,10 @@ Fraction#true,false
 Details#true,false
 #endkeyvals
 
-## 26 Les puissances ##
+## Les puissances ##
 \Puissances{expr%formula}{integer}
 
-## 27 La proportionnalité ##
+## La proportionnalité ##
 \Propor{Liste des éléments par colonne}
 \Propor[clés%keyvals]{Liste des éléments par colonne}
 
@@ -530,7 +535,7 @@ CouleurTab=#%color
 \FlecheRatio{texte%plain}
 \FlecheInvRatio{texte%plain}
 
-## 28 Les pourcentages ##
+## Les pourcentages ##
 \Pourcentage{t}{q}
 \Pourcentage[clés%keyvals]{t}{q}
 
@@ -552,7 +557,7 @@ Calculer#true,false
 
 \ResultatPourcentage
 
-## 29 Les ratios ##
+## Les ratios ##
 \Ratio{Liste des éléments du ratio}
 \Ratio[clés%keyvals]{Liste des éléments du ratio}
 
@@ -574,7 +579,7 @@ CouleurTab=#%color
 Nom#true,false
 #endkeyvals
 
-## 30 Cartographie ##
+## Cartographie ##
 \Cartographie{longitude}{latitude}
 \Cartographie[clés%keyvals]{longitude}{latitude}
 
@@ -600,7 +605,7 @@ Pays=%<pays%>
 Villes=%<villes%>
 #endkeyvals
 
-## 31 Les statistiques ##
+## Les statistiques ##
 \Stat{Données}
 \Stat[clés%keyvals]{Données}
 
@@ -636,12 +641,17 @@ Pasy=%<nombre%>
 Origine=%<nombre%>
 AbscisseRotation#true,false
 Angle#true,false
+SemiAngle#true,false
 Rayon=##L
 AffichageAngle#true,false
 LectureInverse#true,false
 Hachures#true,false
+EcartHachures=%<nombre%>
+EpaisseurHachures=%<nombre%>
 ListeCouleurs={%<liste des coleurs%>}
-SemiAngle#true,false
+Barre#true,false
+Longueur=##L
+Hauteur=##L
 Representation#true,false
 Xmin=%<nombre%>
 Xmax=%<nombre%>
@@ -677,8 +687,7 @@ SET#true,false
 \QuartileUn
 \QuartileTrois
 
-## 32 Les probabilités ##
-
+## Les probabilités ##
 \Proba{Liste des évènements et probabilités}
 \Proba[clés%keyvals]{Liste des évènements et probabilités}
 
@@ -694,8 +703,7 @@ Rayon=%<nombre%>
 Incline#true,false
 #endkeyvals
 
-## 33 Les fonctions affines ##
-
+## Les fonctions affines ##
 \FonctionAffine{Noms des points considérés}{a}{b}{c}{d}
 \FonctionAffine[clés%keyvals]{Noms des points considérés}{a}{b}{c}{d}
 
@@ -717,7 +725,7 @@ VoirCoef#true,false
 ACoef=%<nombre%>
 #endkeyvals
 
-## 34 Les fonctions ##
+## Les fonctions ##
 \Fonction{Liste des valeurs}
 \Fonction[clés%keyvals]{Liste des valeurs}
 
@@ -757,7 +765,7 @@ NomCourbe=%<nom%>
 LabelC=%<nombre%>
 #endkeyvals
 
-## 35 Le tableur ##
+## Le tableur ##
 \begin{Tableur}#\tabular
 \begin{Tableur}[clés%keyvals]#\tabular
 \end{Tableur}
@@ -776,7 +784,7 @@ PasC=%<integer%>
 Couleur=#%color
 #endkeyvals
 
-## 36 Les briques Scratch ##
+## Les briques Scratch ##
 \begin{Scratch}
 \begin{Scratch}[clés%keyvals]
 \end{Scratch}
@@ -787,7 +795,7 @@ Impression#true,false
 Numerotation#true,false
 #endkeyvals
 
-## 37 La distributivité ##
+## La distributivité ##
 \Distri{a}{b}{c}{d}
 \Distri[clés%keyvals]{a}{b}{c}{d}
 
@@ -820,7 +828,7 @@ Echange=#0,1,2,3
 
 \Resultat
 
-## 38 Un modèle en barre ##
+## Un modèle en barre ##
 \ModeleBarre{C1 N1 "T1" C2 N2 "T2"...}{c1 n1 "t1" c2 n2 "t2"...}
 \ModeleBarre[clés%keyvals]{C1 N1 "T1" C2 N2 "T2"...}{c1 n1 "t1" c2 n2 "t2"...}
 
@@ -829,7 +837,7 @@ Largeur=##L
 Separation=%<nombre%>
 #endkeyvals
 
-## 39 La résolution d’équations du premier degré ##
+## La résolution d’équations du premier degré ##
 \ResolEquation{a}{b}{c}{d}
 \ResolEquation[clés%keyvals]{a}{b}{c}{d}
 
@@ -867,7 +875,7 @@ Exact#true,false
 \leftcomment{A-8}{B-8}{A-8}{\dots}
 \rightcomment{E-8}{F-8}{E-8}{\dots}
 
-## 40 Une aide à l’autonomie ##
+## Une aide à l’autonomie ##
 \Autonomie{q1/r1§q2/r2§...§q8/r8%text}{Q1/I1§Q2/I2§...§Q8/I8%text}
 \Autonomie[clés%keyvals]{q1/r1§q2/r2§...§q8/r8%text}{Q1/I1§Q2/I2§...§Q8/I8%text}
 
@@ -877,7 +885,7 @@ TitreAtoi=%<texte%>
 TexteCorrection=%<texte%>
 #endkeyvals
 
-## 41 Fiche de mémorisation active ##
+## Fiche de mémorisation active ##
 \FicheMemo{l1/q1/r1§l2/q2/r2§...%text}{L1/Q1/R1§L2/Q2/I2§...%text}
 \FicheMemo[clés%keyvals]{l1/q1/r1§l2/q2/r2§...%text}{L1/Q1/R1§L2/Q2/I2§...%text}
 
@@ -888,7 +896,7 @@ Solution#true,false
 Largeur=##L
 #endkeyvals
 
-## 42 Bulles et cartes mentales ##
+## Bulles et cartes mentales ##
 \begin{Mind}#\pictureHighlight
 \end{Mind}
 
@@ -907,7 +915,7 @@ CFond=#%color
 Ancre={%<x,y%>}
 #endkeyvals
 
-## 43 « Bon de sortie » ##
+## « Bon de sortie » ##
 \BonSortie{énoncé1%text}{énoncé2%text}{énoncé3%text}{énoncé4%text}
 \BonSortie[clés%keyvals]{énoncé1%text}{énoncé2%text}{énoncé3%text}{énoncé4%text}
 
@@ -924,7 +932,7 @@ Ecran#true,false
 NbLignes=%<integer%>
 #endkeyvals
 
-## 45 Des réseaux sociaux? ##
+## Des réseaux sociaux? ##
 \begin{Twitter}
 \begin{Twitter}[clés%keyvals]
 \end{Twitter}
@@ -983,7 +991,7 @@ LogoEx=%<imagefile%>
 Texte=%<texte%>
 #endkeyvals
 
-## 46 Le défi « Table » ##
+## Le défi « Table » ##
 \DefiTable{contenu}
 \DefiTableTexte{liste}{phrase}
 \DefiTableTexte[clés%keyvals]{liste}{phrase}
@@ -993,7 +1001,7 @@ LargeurT=##L
 Solution#true,false
 #endkeyvals
 
-## 47 Labyrinthe ##
+## Labyrinthe ##
 \Labyrinthe{Contenu1/Couleur1,Contenu2/Couleur2,...}{P1/P2/...}
 \Labyrinthe[clés%keyvals]{Contenu1/Couleur1,Contenu2/Couleur2,...}{P1/P2/...}
 
@@ -1029,7 +1037,7 @@ Solution#true,false
 Murs#true,false
 #endkeyvals
 
-## 49 Triominos ##
+## Triominos ##
 \Triomino{v1§v2§v3...}
 \Triomino[clés%keyvals]{v1§v2§v3...}
 
@@ -1040,7 +1048,7 @@ Piece=%<integer%>
 Hexagone#true,false
 #endkeyvals
 
-## 50 Dessin gradué ##
+## Dessin gradué ##
 \DessinGradue{a1/a2/a3,...}{b1/b2/b3,...}{c1§c2§...}
 \DessinGradue[clés%keyvals]{a1/a2/a3,...}{b1/b2/b3,...}{c1§c2§...}
 
@@ -1056,7 +1064,7 @@ Solution#true,false
 LignesIdentiques#true,false
 #endkeyvals
 
-## 51 Colorilude ##
+## Colorilude ##
 \Colorilude{a11 b11 a12 b12\\a21 b21...%formula}
 \Colorilude[clés%keyvals]{a11 b11 a12 b12\\a21 b21...%formula}
 
@@ -1070,7 +1078,7 @@ Solution#true,false
 \ColoriludeEnonce
 \ColoriludeListeCouleur{abbrev1 couleur1 abbrev2 couleur2...}
 
-## 52 Qui suis je? ##
+## Qui suis je? ##
 \Quisuisje{c1§c2§...}{m o t à t r o u v e r}
 \Quisuisje[clés%keyvals]{c1§c2§...}{m o t à t r o u v e r}
 
@@ -1086,7 +1094,7 @@ CodePerso#true,false
 \QuisuisjeCodePerso{n1 n2...}{l1 l2...}
 \QuisuisjeCodePerso[Solution]{%<n1 n2...%>}{%<l1 l2...%>}
 
-## 53 Mots empilés ##
+## Mots empilés ##
 \MotsEmpiles{c1/mot1,c2/mot2,...}
 \MotsEmpiles[clés%keyvals]{c1/mot1,c2/mot2,...}
 
@@ -1096,7 +1104,20 @@ Solution#true,false
 Couleur=#%color
 #endkeyvals
 
-## 54 Mots codés ##
+## Mots croisés ##
+\MotsCroises{m11/q11,m12/q12...§m21/q21,m22/q22...}
+\MotsCroises[clés%keyvals]{m11/q11,m12/q12...§m21/q21,m22/q22...}
+
+#keyvals:\MotsCroises
+Colonnes=%<integer%>
+Lignes=%<integer%>
+Largeur=##L
+Croises#true,false
+Couleur=#%color
+Solution#true,false
+#endkeyvals
+
+## Mots codés ##
 \MotsCodes{énoncé1/lettre1§énoncé2/lettre2§...}
 \MotsCodes[clés%keyvals]{énoncé1/lettre1§énoncé2/lettre2§...}
 
@@ -1114,7 +1135,7 @@ LargeurT=##L
 Solution#true,false
 #endkeyvals
 
-## 55 Mosaïque ##
+## Mosaïque ##
 \Mosaique{mosa1/rep1,mosa2/rep2,...}
 \Mosaique[clés%keyvals]{mosa1/rep1,mosa2/rep2,...}
 
@@ -1135,7 +1156,7 @@ Type=%<nombre%>
 Echelle=##L
 #endkeyvals
 
-## 56 Des cartes à jouer ##
+## Des cartes à jouer ##
 \Cartes{contenus du jeu%text}
 \Cartes[clés%keyvals]{contenus du jeu%text}
 
@@ -1161,7 +1182,7 @@ ThemeSol=%<texte%>
 
 \SolutionCarte{solution}{commentaires%text}
 
-## 57 Des dominos à jouer ##
+## Des dominos à jouer ##
 \Dominos{e q1/r1§q2/r2§...}
 \Dominos[clés%keyvals]{e q1/r1§q2/r2§...}
 
@@ -1176,7 +1197,7 @@ Ratio=%<ratio%>
 Superieur#true,false
 #endkeyvals
 
-## 58 Professeur principal ##
+## Professeur principal ##
 \Radar{Liste des éléments du diagramme en radar}
 \Radar[clés%keyvals]{Liste des éléments du diagramme en radar}
 
@@ -1209,7 +1230,7 @@ CouleurS=#%color
 CouleurM=#%color
 #endkeyvals
 
-## 59 Quelques éléments pratiques... ##
+## Quelques éléments pratiques... ##
 \Demain
 \pointilles
 \pointilles[length]

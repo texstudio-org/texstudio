@@ -24,6 +24,8 @@
 #     │       └── pgfmathfunctions.integerarithmetics.code.tex
 #     └── pgfmathfloat.code.tex
 
+\pgfmathloaded#S
+
 # from pgfmathcalc.code.tex
 \pgfmathsetlength{length register}{math expression}#*
 \pgfmathaddtolength{length register}{math expression}#*
@@ -55,7 +57,7 @@
 \pgfmathbreakloop#*
 \pgfmathreturn#*
 \pgfmathcounter#*
-\pgfmathsmuggle%<marcro%>\endgroup#*
+\pgfmathsmuggle%<macro%>\endgroup#*
 
 # from pgfmathparser.code.tex
 \ifpgfmathfloat#*
