@@ -1,6 +1,10 @@
 # changepage package
 # Matthew Bertucci 11/3/2021 for v1.0c
 
+#keyvals:\usepackage/changepage#c
+strict
+#endkeyvals
+
 \ifstrictpagecheck#*
 \strictpagecheckfalse#*
 \strictpagechecktrue#*
