@@ -1859,7 +1859,7 @@ que renderizar los caracteres. Dado que unicode no es compatible de forma nativa
     <message>
         <location filename="../src/configdialog.ui" line="2511"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La Tabla de Contenido global TOC usa diferentes uses diferentes tonos de color de fondo para distinguir diferentes archivos. El esquema de color se puede cambiar aquí..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
@@ -1869,7 +1869,7 @@ que renderizar los caracteres. Dado que unicode no es compatible de forma nativa
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Usar color en Tabla de Contenido global:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2695,12 +2695,12 @@ Nota: Este cambio no afectará a los archivos abiertos acualmente.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4370"/>
         <source>Presentation Laser Pointer Size:</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño del apuntador láser de la presentación:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4445"/>
         <source>Presentation Laser Pointer Color:</source>
-        <translation type="unfinished"/>
+        <translation>Color del apuntador láser de la presentación:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4495"/>
@@ -3811,7 +3811,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1958"/>
         <source>Clear file list</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar lista de archivos</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1959"/>
