@@ -1847,6 +1847,61 @@ override#true,false
 \DeclareUniquenameTemplate{specification}#*
 \DeclareUniquenameTemplate[name]{specification}#*
 
+# miscellaneous
+\mkdaterangeshort{datetype}#*
+\mkdaterangelong{datetype}#*
+\mkdaterangeterse{datetype}#*
+\mkdaterangecomp{datetype}#*
+\mkdaterangeshortextra{datetype}#*
+\mkdaterangelongextra{datetype}#*
+\mkdaterangeterseextra{datetype}#*
+\mkdaterangecompextra{datetype}#*
+\mkdaterangefull{short|long}{datetype}#*
+\mkdaterangefullextra{short|long}{datetype}#*
+\mkdaterangetrunc{short|long}{datetype}#*
+\mkdaterangetruncextra{short|long}{datetype}#*
+\mkdaterangeyear{datetype}#*
+\mkdaterangeymd{datetype}#*
+\mkdaterangeymdextra{datetype}#*
+\mkdaterangeyearextra{datetype}#*
+\mkdaterangeiso{datetype}#*
+\mkdaterangeisoextra{datetype}#*
+
+### biblatex-apa v9.15 ###
+#ifOption:style=apa
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+apamaxprtauth=%<number%>
+#endkeyvals
+# from apa.bbx
+\foreverunspace#*
+\printtexte{text}#*
+\printtexte[format]{text}#*
+\maxprtauth#*
+\apanum{num}#*
+\mkdaterangeapalong{datetype}#*
+\mkdaterangeapalongextra{datetype}#*
+\begrelateddelimcommenton#*
+\begrelateddelimreviewof#*
+\begrelateddelimreprintfrom#*
+\urldatecomma#*
+# from apa.cbx
+\apashortdash#*
+\citeresetapa#*
+\fullcitebib[prenote][postnote]{bibid}#*C
+\fullcitebib[postnote]{bibid}#*C
+\fullcitebib{bibid}#*C
+\nptextcite[prenote][postnote]{bibid}#C
+\nptextcite[postnote]{bibid}#C
+\nptextcite{bibid}#C
+\nptextcites{bibid}{bibid}#*C
+\nptextcites(pre){bibid}{bibid}#*C
+\nptextcites(pre)(post){bibid}{bibid}#*C
+\nptextcites(pre)(post)[pre]{bibid}[pre]{bibid}#*C
+\nptextcites[pre]{bibid}[pre]{bibid}#*C
+\nptextcites[pre][post]{bibid}[pre][post]{bibid}#*C
+\nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
+#endif
+
 ### biblatex-mla v2.0 ###
 #ifOption:style=mla-strict
 # loads mla.cbx
