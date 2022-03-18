@@ -1902,6 +1902,16 @@ apamaxprtauth=%<number%>
 \nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
 #endif
 
+### biblatex-ieee v1.3f ###
+#ifOption:style=ieee
+\mkpagegrouped{text}#*
+\mkonepagegrouped{text}#*
+#endif
+#ifOption:style=ieee-alphabetic
+\mkpagegrouped{text}#*
+\mkonepagegrouped{text}#*
+#endif
+
 ### biblatex-mla v2.0 ###
 #ifOption:style=mla-strict
 # loads mla.cbx
@@ -2020,6 +2030,14 @@ mladraft
 \titleandsubtitle{bibid}#*C
 #endif
 
+### biblatex-nature v1.3d ###
+#ifOption:style=nature
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articletitle#true,false
+intitle#true,false
+#endkeyvals
+#endif
+
 ### biblatex-philosophy v1.9.8f ###
 #ifOption:style=philosophy-classic
 \sdcite{bibid}#C
@@ -2098,4 +2116,110 @@ commacit#true,false
 \libraryfont#*
 \volnumpunct#*
 \editorstrgdelim#*
+#endif
+
+### biblatex-publist v1.26 ###
+#ifOption:style=publist
+# from publist.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+plauthorname=%<surname%>
+plauthorfirstname=%<first name%>
+plauthornameprefix=%<von part%>
+plauthorhandling=#omit,highlight
+nameorder=#family-given,given-family
+boldyear#true,false
+pubstateextra#true,false
+marginyear#true,false
+plnumbered=#true,false,reset
+reversenumbering#true,false
+plauthorfirstinit#true,false
+prinfo#true,false
+linktitleall#true,false
+linktitledoi#true,false
+linktitleurl#true,false
+linktitleisbn#true,false
+linktitleissn#true,false
+#endkeyvals
+\plauthorname{surname}
+\plauthorname[first name]{surname}
+\plauthorname[first name][von part]{surname}
+\plnameomission#*
+\plmarginyear{text}#*
+\plauthorhl{text}#*
+\extralabelnumberwidth#*
+\shiftbplnum{integer}
+\publistbasestyle#*
+\plisbnlink{ISBN%URL}#*U
+\plissnlink{ISSN%URL}#*U
+\mkbibdesc{number}#*
+\mkbibsecstart{number}#*
+\printprinfo{string}#*
+\thenonplauthors#*
+\thenonpleditors#*
+\theplauthor#*
+\thepleditor#*
+\theplauthors#*
+\thepleditors#*
+\therealliststop#*
+\thenonplauthor#*
+\thenonpleditor#*
+# from publist.cbx
+\citeitem[prenote][postnote]{bibid}#*C
+\citeitem[postnote]{bibid}#*C
+\citeitem{bibid}#C
+\shiftciteitem{integer}
+\mkrefdesc{number}#*
+#endif
+
+#ifOption:bibstyle=publist
+# from publist.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+plauthorname=%<surname%>
+plauthorfirstname=%<first name%>
+plauthornameprefix=%<von part%>
+plauthorhandling=#omit,highlight
+nameorder=#family-given,given-family
+boldyear#true,false
+pubstateextra#true,false
+marginyear#true,false
+plnumbered=#true,false,reset
+reversenumbering#true,false
+plauthorfirstinit#true,false
+prinfo#true,false
+linktitleall#true,false
+linktitledoi#true,false
+linktitleurl#true,false
+linktitleisbn#true,false
+linktitleissn#true,false
+#endkeyvals
+\plauthorname{surname}
+\plauthorname[first name]{surname}
+\plauthorname[first name][von part]{surname}
+\plnameomission#*
+\plmarginyear{text}#*
+\plauthorhl{text}#*
+\extralabelnumberwidth#*
+\shiftbplnum{integer}
+\publistbasestyle#*
+\plisbnlink{ISBN%URL}#*U
+\plissnlink{ISSN%URL}#*U
+\mkbibdesc{number}#*
+\mkbibsecstart{number}#*
+\printprinfo{string}#*
+\thenonplauthors#*
+\thenonpleditors#*
+\theplauthor#*
+\thepleditor#*
+\theplauthors#*
+\thepleditors#*
+\therealliststop#*
+\thenonplauthor#*
+\thenonpleditor#*
+#endif
+
+### biblatex-science v1.2 ###
+#ifOption:style=science
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articletitle#true,false
+#endkeyvals
 #endif
