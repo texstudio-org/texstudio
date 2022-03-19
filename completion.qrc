@@ -253,6 +253,7 @@
 <file>completion/berenis.cwl</file>
 <file>completion/beton.cwl</file>
 <file>completion/beuron.cwl</file>
+<file>completion/bez123.cwl</file>
 <file>completion/bezierplot.cwl</file>
 <file>completion/bfhcolors.cwl</file>
 <file>completion/bfhfonts.cwl</file>
@@ -312,6 +313,7 @@
 <file>completion/boxedminipage.cwl</file>
 <file>completion/boxhandler.cwl</file>
 <file>completion/boxit.cwl</file>
+<file>completion/bpchem.cwl</file>
 <file>completion/bracketkey.cwl</file>
 <file>completion/braille.cwl</file>
 <file>completion/braket.cwl</file>
@@ -327,6 +329,7 @@
 <file>completion/bussproofs-extra.cwl</file>
 <file>completion/bxcalcux.cwl</file>
 <file>completion/bxnewfont.cwl</file>
+<file>completion/bxorigcapt.cwl</file>
 <file>completion/bxtexlogo.cwl</file>
 <file>completion/byo-twemojis.cwl</file>
 <file>completion/bytefield.cwl</file>
@@ -382,18 +385,21 @@
 <file>completion/CharisSIL.cwl</file>
 <file>completion/chemarr.cwl</file>
 <file>completion/chemarrow.cwl</file>
+<file>completion/chemcompounds.cwl</file>
 <file>completion/chemfig.cwl</file>
 <file>completion/chemformula.cwl</file>
 <file>completion/chemgreek.cwl</file>
 <file>completion/chemmacros.cwl</file>
 <file>completion/chemnum.cwl</file>
 <file>completion/chemplants.cwl</file>
+<file>completion/chemscheme.cwl</file>
 <file>completion/chemsec.cwl</file>
 <file>completion/chemstyle.cwl</file>
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
 <file>completion/chickenize.cwl</file>
 <file>completion/Chivo.cwl</file>
+<file>completion/chngcntr.cwl</file>
 <file>completion/chordbars.cwl</file>
 <file>completion/cinzel.cwl</file>
 <file>completion/circle.cwl</file>
@@ -411,6 +417,7 @@
 <file>completion/class-amsbook.cwl</file>
 <file>completion/class-amsproc.cwl</file>
 <file>completion/class-aomart.cwl</file>
+<file>completion/class-apa7.cwl</file>
 <file>completion/class-bankstatement.cwl</file>
 <file>completion/class-beamer.cwl</file>
 <file>completion/class-beamerswitch.cwl</file>
@@ -761,6 +768,7 @@
 <file>completion/enumerate.cwl</file>
 <file>completion/enumitem.cwl</file>
 <file>completion/environ.cwl</file>
+<file>completion/envmath.cwl</file>
 <file>completion/eolgrab.cwl</file>
 <file>completion/epic.cwl</file>
 <file>completion/epigrafica.cwl</file>
@@ -1444,6 +1452,7 @@
 <file>completion/multilang-tags.cwl</file>
 <file>completion/multimedia.cwl</file>
 <file>completion/multiobjective.cwl</file>
+<file>completion/multiply.cwl</file>
 <file>completion/multirow.cwl</file>
 <file>completion/multitoc.cwl</file>
 <file>completion/mup.cwl</file>
@@ -1657,6 +1666,7 @@
 <file>completion/phfquotetext.cwl</file>
 <file>completion/phfsvnwatermark.cwl</file>
 <file>completion/phfthm.cwl</file>
+<file>completion/philokalia.cwl</file>
 <file>completion/phonenumbers.cwl</file>
 <file>completion/phonrule.cwl</file>
 <file>completion/physconst.cwl</file>
@@ -1865,6 +1875,7 @@
 <file>completion/regexpatch.cwl</file>
 <file>completion/register.cwl</file>
 <file>completion/regstats.cwl</file>
+<file>completion/reledmac.cwl</file>
 <file>completion/relinput.cwl</file>
 <file>completion/relsize.cwl</file>
 <file>completion/renditions.cwl</file>
@@ -2081,6 +2092,7 @@
 <file>completion/superiors.cwl</file>
 <file>completion/supertabular.cwl</file>
 <file>completion/suppose.cwl</file>
+<file>completion/susy.cwl</file>
 <file>completion/sverb.cwl</file>
 <file>completion/svgcolor.cwl</file>
 <file>completion/svg.cwl</file>
@@ -2383,7 +2395,9 @@
 <file>completion/versonotes.cwl</file>
 <file>completion/vertbars.cwl</file>
 <file>completion/vhistory.cwl</file>
+<file>completion/vietnam.cwl</file>
 <file>completion/virginialake.cwl</file>
+<file>completion/vntex.cwl</file>
 <file>completion/vowel.cwl</file>
 <file>completion/vplref.cwl</file>
 <file>completion/vrsion.cwl</file>
