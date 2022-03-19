@@ -1,5 +1,5 @@
 # penlight package
-# Matthew Bertucci 1/30/2022
+# Matthew Bertucci 3/18/2022
 
 #include:luacode
 
@@ -10,4 +10,5 @@ stringx
 format
 func
 extras
+extrasnoglobals
 #endkeyvals

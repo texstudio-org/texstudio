@@ -414,3 +414,7 @@ tkz-doc:
 class-tkz-doc
 latex-document
 tex
+apa7:
+class-apa7
+latex-document
+tex

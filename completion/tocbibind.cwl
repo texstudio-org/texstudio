@@ -2,6 +2,20 @@
 # J. Sundermeyer
 # modified Edson 30-12-2010
 
+#keyvals:\usepackage/tocbibind#c
+notbib
+notindex
+nottoc
+notlot
+notlof
+chapter
+section
+numbib
+numindex
+other
+none
+#endkeyvals
+
 \tocotherhead{headingname}#n
 \tocbibname#n
 
@@ -10,7 +24,6 @@
 \setlotname{name}#n
 \setlofname{name}#n
 \settocbibname{name}#n
-
 
 \simplechapter#n
 \simplechapter[name]#n

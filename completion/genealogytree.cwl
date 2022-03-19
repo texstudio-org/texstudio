@@ -1,5 +1,5 @@
 # genealogytree package
-# Matthew Bertucci 12/26/2021 for v2.1.0
+# Matthew Bertucci 3/19/2022 for v2.2.0
 
 #include:expl3
 #include:xparse
@@ -859,6 +859,7 @@ autofill parents unspecific=%<level%>
 autofill parents unspecific*
 autofill parents unspecific*=%<level%>
 complemented/.style={%<options%>}
+complemented family/.style={%<options%>}
 complemented phantom
 autofill parents male female
 autofill parents male female=%<level%>
@@ -1041,8 +1042,10 @@ show family
 show type
 
 ### 12 Templates: Library templates ###
-## 12.1 Using Templates ##
-template=#formal graph,signpost,symbol nodes,tiny boxes,tiny circles,directory,database pole,database pole reduced,database poleportrait,database poleportrait reduced,database portrait,database portrait reduced,database traditional,database traditional reduced,database sideways,database sideways reduced,database sidewaysportrait,database sidewaysportrait reduced,database relationship,ahnentafel 3,ahnentafel 4,ahnentafel 5
+## Using Templates ##
+template=#formal graph,signpost,symbol nodes,tiny boxes,tiny circles,directory,database pole,database pole reduced,database poleportrait,database poleportrait reduced,database portrait,database portrait reduced,database traditional,database traditional reduced,database sideways,database sideways reduced,database sidewaysportrait,database sidewaysportrait reduced,database relationship,ahnentafel 3,ahnentafel 4,ahnentafel 5,a4paper 3,a4paper 4,a3paper 5,letterpaper 3,letterpaper 4,display 16:9 3,display 16:9 4,display 16:9 5,display 16:10 3,display 16:10 4,display 16:10 5
+template horizontal border=##L
+template vertical border=##L
 #endkeyvals
 
 #keyvals:\tcbset
@@ -1063,6 +1066,12 @@ gtr_Blue_4#B
 gtr_Blue_5#B
 gtr_Blue_6#B
 gtr_Bright_Red#B
+gtr_Female_Background#B
+gtr_Female_Frame#B
+gtr_Male_Background#B
+gtr_Male_Frame#B
+gtr_Neuter_Background#B
+gtr_Neuter_Frame#B
 gtr_Peach_Back#B
 gtr_Peach_Frame#B
 gtr_Yellow_Back#B

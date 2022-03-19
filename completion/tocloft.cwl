@@ -3,6 +3,11 @@
 # Edson 20-12-2010
 # Matthew Bertucci 8/15/2021
 
+#keyvals:\usepackage/tocloft#c
+subfigure
+titles
+#endkeyvals
+
 \addcontentsline{file}{kind}{title}#n
 \contentsline{kind}{title}{page}#n
 \addtocontents{file}{text}#n
