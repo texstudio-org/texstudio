@@ -51,8 +51,12 @@ hidescale
 
 \begin{sidewaystable}
 \end{sidewaystable}
+\begin{sidewaystable*}
+\end{sidewaystable*}
 \begin{sidewaysfigure}
 \end{sidewaysfigure}
+\begin{sidewaysfigure*}
+\end{sidewaysfigure*}
 \begin{sideways}
 \end{sideways}
 \begin{turn}{angle}
