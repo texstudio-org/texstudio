@@ -418,3 +418,15 @@ apa7:
 class-apa7
 latex-document
 tex
+achemso:
+class-achemso
+latex-document
+tex
+asmeconf:
+class-asmeconf
+latex-document
+tex
+asmejour:
+class-asmejour
+latex-document
+tex
