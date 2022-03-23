@@ -134,9 +134,6 @@ troisieme#B
 quatrieme#B
 chapitre#B
 
-
-
-
 # from english option of babel
 \captionsenglish#*
 \dateenglish#*
