@@ -113,9 +113,14 @@ r
 \paragraphbreak#*
 \subparagraphbreak#*
 \chaptertolists#*
-\titleclass{name}{class%plain}
-\titleclass{name}{class%plain}[super-level-cmd]
-\titleclass{name}[start-level-num]{class%plain}#*
+\titleclass{name%cmd}{class%keyvals}#d
+\titleclass{name%cmd}{class%keyvals}[super-level-cmd]#d
+\titleclass{name%cmd}[start-level-num]{class%keyvals}#*d
+#keyvals:\titleclass
+page
+top
+straight
+#endkeyvals
 #ifOption:pagestyles
 #include:titleps
 #endif
