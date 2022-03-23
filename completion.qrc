@@ -135,6 +135,7 @@
 <file>completion/authblk.cwl</file>
 <file>completion/authoraftertitle.cwl</file>
 <file>completion/authorarchive.cwl</file>
+<file>completion/authorindex.cwl</file>
 <file>completion/autoaligne.cwl</file>
 <file>completion/autobreak.cwl</file>
 <file>completion/autopdf.cwl</file>
@@ -438,6 +439,7 @@
 <file>completion/class-combine.cwl</file>
 <file>completion/class-einfart.cwl</file>
 <file>completion/class-elpres.cwl</file>
+<file>completion/class-elsarticle.cwl</file>
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
 <file>completion/class-exesheet.cwl</file>
@@ -459,6 +461,7 @@
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-komacv.cwl</file>
 <file>completion/class-l3doc.cwl</file>
+<file>completion/class-langscibook.cwl</file>
 <file>completion/class-leadsheet.cwl</file>
 <file>completion/class-leaflet.cwl</file>
 <file>completion/class-letter.cwl</file>
@@ -468,6 +471,7 @@
 <file>completion/class-ltxdockit.cwl</file>
 <file>completion/class-ltxguide.cwl</file>
 <file>completion/class-ltxguidex.cwl</file>
+<file>completion/class-matapli.cwl</file>
 <file>completion/class-memoir.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
 <file>completion/class-metanorma.cwl</file>
@@ -1025,6 +1029,7 @@
 <file>completion/graphbox.cwl</file>
 <file>completion/graphfig.cwl</file>
 <file>completion/graphicscache.cwl</file>
+<file>completion/graphics.cwl</file>
 <file>completion/graphicxbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/graphicxpsd.cwl</file>
@@ -1205,7 +1210,13 @@
 <file>completion/ladder.cwl</file>
 <file>completion/lambdax.cwl</file>
 <file>completion/langcode.cwl</file>
+<file>completion/langsci-affiliations.cwl</file>
 <file>completion/langsci-avm.cwl</file>
+<file>completion/langsci-bidi.cwl</file>
+<file>completion/langsci-lgr.cwl</file>
+<file>completion/langsci-optional.cwl</file>
+<file>completion/langsci-subparts.cwl</file>
+<file>completion/langsci-tbls.cwl</file>
 <file>completion/lapdf.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latex2man.cwl</file>
@@ -1289,6 +1300,7 @@
 <file>completion/ltxdockit.cwl</file>
 <file>completion/ltxnew.cwl</file>
 <file>completion/ltxtable.cwl</file>
+<file>completion/luaaddplot.cwl</file>
 <file>completion/luabibentry.cwl</file>
 <file>completion/luabidi.cwl</file>
 <file>completion/luacensor.cwl</file>
