@@ -430,3 +430,15 @@ asmejour:
 class-asmejour
 latex-document
 tex
+elsarticle:
+class-elsarticle
+latex-document
+tex
+langscibook:
+class-langscibook
+latex-document
+tex
+matapli:
+class-matapli
+latex-document
+tex
