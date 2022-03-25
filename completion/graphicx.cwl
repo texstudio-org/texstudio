@@ -4,9 +4,13 @@
 # URL: http://tug.ctan.org/tex-archive/macros/latex/required/graphics/
 
 #include:keyval
+# loads graphics package but to avoid completer issues with differing syntax,
+# all commands listed in graphicx.cwl rather than writing #include:graphics
+#include:trig
 
 #keyvals:\usepackage/graphicx#c
 unknownkeysallowed
+# options passed to graphics package
 draft
 final
 hiresbb
@@ -42,14 +46,15 @@ hidescale
 
 \DeclareGraphicsExtensions{ext-list}
 \DeclareGraphicsRule{ext}{type}{read-file}{command%plain}
-\graphicspath{dir-list}
+# use %definition so _ not marked as incorrect
+\graphicspath{dir-list%definition}
 \includegraphics*{imagefile}
 \includegraphics*[keyvals]{imagefile}
 \includegraphics{imagefile}
 \includegraphics[keyvals]{imagefile}
 \reflectbox{text}
-\resizebox*{h-length}{v-length}{text}
-\resizebox{h-length}{v-length}{text}
+\resizebox*{h-length%l}{v-length%l}{text}
+\resizebox{h-length%l}{v-length%l}{text}
 \rotatebox[keyvals]{angle}{text}
 \rotatebox{angle}{text}
 \scalebox{h-scale}{text}

@@ -14,9 +14,9 @@
 #include:helvet
 #include:charter
 
-\fnurl{text}
-\fnurl[prefix]{text}
-\email{email}
+\fnurl{URL}#U
+\fnurl[prefix]{URL}#U
+\email{email%URL}#U
 
 \titlefont#*
 \titlepage{options%keyvals}
@@ -65,3 +65,26 @@ date=
 \tablesetup
 
 \textln{text}
+
+# from T1 option of fontenc
+\DH#n
+\NG#n
+\dj#n
+\ng#n
+\k{arg}#n
+\guillemotleft#*n
+\guillemotright#*n
+\guilsinglleft#n
+\guilsinglright#n
+\quotedblbase#n
+\quotesinglbase#n
+\textquotedbl#n
+\DJ#n
+\th#n
+\TH#n
+\dh#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\textogonekcentered{arg}#*n
+\guillemetleft#n
+\guillemetright#n

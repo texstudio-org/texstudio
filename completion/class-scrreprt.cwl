@@ -318,6 +318,7 @@ titlehead
 \subsubsectiontocdepth#*
 \subtitle{subtitle%text}
 \tableformat#*
+\thechapter#*
 \thefootnotemark#*
 \thispagewasoddfalse#*
 \thispagewasoddtrue#*

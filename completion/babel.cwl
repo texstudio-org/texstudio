@@ -1,8 +1,35 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 12/1/2021 for v3.67
+# tbraun 4.11.2008; Matthew Bertucci 3/14/2022 for v3.73
+
+#keyvals:\usepackage/babel#c
+%<language%>
+KeepShorthandsActive
+activeacute
+activegrave
+shorthands=#%<chars%>,off
+safe=#none,ref,bib
+math=#active,normal
+config=%<file%>
+main=%<language%>
+headfoot=%<language%>
+noconfigs
+showlanguages
+nocase
+silent
+strings=#generic,unicode,encoded,%<label%>,%<font encoding%>
+hyphenmap=#off,first,select,other,other*
+bidi=#default,basic,basic-r,bidi-l,bidi-r
+layout=#sectioning,counters,contents,footnotes,captions,columns,graphics,extras
+provide=*
+provide+=*
+provide*=*
+base
+#endkeyvals
 
 \selectlanguage{language}
+\begin{selectlanguage}{language}#*
+\end{selectlanguage}#*
 \foreignlanguage{language}{text}
 \foreignlanguage[options%keyvals]{language}{text}
 \begin{otherlanguage}{language}
@@ -13,6 +40,7 @@
 
 #keyvals:\foreignlanguage,\begin{otherlanguage*}
 date
+captions
 #endkeyvals
 
 \babeltags{tag1=lang1,tag2=lang2,...}
@@ -42,9 +70,9 @@ fontenc=%<encoding%>
 \AfterBabelLanguage{option_name}{code}
 #endif
 
-\babelfont{font_family}{font_name}#*
-\babelfont[lang1,lang2,...]{font_family}{font_name}#*
-\babelfont[lang1,lang2,...]{font_family}[font_options]{font_name}#*
+\babelfont{font_family}{font_name}
+\babelfont[lang1,lang2,...]{font_family}{font_name}
+\babelfont[lang1,lang2,...]{font_family}[font_options]{font_name}
 \setlocalecaption{language}{caption_name}{string}#*
 \babelprovide[options%keyvals]{language}
 
@@ -61,10 +89,12 @@ Alph=%<counter%>
 onchar=#ids,fonts
 intraspace=%<base shrink stretch%>
 intrapenalty=%<penalty%>
+transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,kashida.plain,transliteration.gajica
 justification=#kashida,elongated,unhyphenated
 linebreaking=#kashida,elongated,unhyphenated
 mapfont=
-transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,kashida.plain,transliteration.gajica
+maparabic
+mapdigits
 #endkeyvals
 
 \localenumeral{style}{number}
@@ -92,12 +122,11 @@ script.tag.bcp47
 script.tag.opentype
 #endkeyvals
 
-\getlocaleproperty{cmd}{locale}{property}#*
-\getlocaleproperty*{cmd}{locale}{property}#*
+\getlocaleproperty{cmd}{locale}{property}#*d
+\getlocaleproperty*{cmd}{locale}{property}#*d
 \LocaleForEach{code}#*
 \BabelEnsureInfo#*
 \localeid#*
-\getlanguageproperty#*
 
 \babelhyphen{text}
 \babelhyphen*{text}
@@ -127,6 +156,24 @@ attribute=
 \babelsublr{text}#*
 \BabelPatchSection{section-name}#*
 \BabelFootnote{cmd}{language}{before}{after}#*d
+
+#ifOption:bidi=default
+#include:fontspec
+#endif
+#ifOption:bidi=basic
+#include:fontspec
+#endif
+#ifOption:bidi=basic-r
+#include:fontspec
+#endif
+#ifOption:bidi=bidi-l
+#include:fontspec
+#include:bidi
+#endif
+#ifOption:bidi=bidi-r
+#include:fontspec
+#include:bidi
+#endif
 
 \languageattribute{language}{list of attributes}
 \AddBabelHook{name}{event}{code}#*

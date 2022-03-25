@@ -317,6 +317,7 @@ titlehead
 \subsubsectiontocdepth#*
 \subtitle{subtitle%text}
 \tableformat#*
+\thechapter#*
 \thefootnotemark#*
 \thispagestyle{page style%keyvals}
 \thispagewasoddfalse#*

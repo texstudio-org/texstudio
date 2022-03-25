@@ -67,8 +67,11 @@ public:
 	{
 		if (!editor) return;
 		maxWritten += text.length();
-        if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder() < editor->placeHolderCount() )
+        bool macroing = false;
+        if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder() < editor->placeHolderCount() ){
+            macroing=true;
             editor->document()->beginMacro();
+        }
         editor->write(text);
         //cursor mirrors
 		if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder() < editor->placeHolderCount() ) {
@@ -81,8 +84,9 @@ public:
 
 				ph.mirrors[phm].replaceSelectedText(baseText);
 			}
-			editor->document()->endMacro();
         }
+        if(macroing)
+            editor->document()->endMacro();
 		//end cursor mirrors
 		if (editor->cursor().columnNumber() > curStart + 1 && !completer->isVisible()) {
 			QString wrd = getCurWord();
@@ -103,9 +107,9 @@ public:
 		if (!editor) return false;
 		if (completer->list->isVisible() && maxWritten >= curStart && completer->list->currentIndex().isValid()) {
 			QDocumentCursor cursor = editor->cursor();
-			editor->document()->beginMacro();
 			QVariant v = completer->list->model()->data(completer->list->currentIndex(), Qt::DisplayRole);
 			if (!v.isValid() || !v.canConvert<CompletionWord>()) return false;
+            editor->document()->beginMacro();
 			CompletionWord cw = v.value<CompletionWord>();
 			completer->listModel->incUsage(completer->list->currentIndex());
 			//int alreadyWrittenLen=editor->cursor().columnNumber()-curStart;

@@ -1,5 +1,5 @@
 # CWL for the chemmacros.sty package 
-# Matthew Bertucci updated 1/18/2022 for v6.0; 2/14/2022 for v6.1
+# Matthew Bertucci updated 1/18/2022 for v6.0; 2/14/2022 for v6.1; 3/7/2022 for v6.2
 
 # note: by default, all modules are loaded
 
@@ -626,6 +626,8 @@ unit=
 # loads translations package
 \DeclareChemTranslation{key%plain}{language}{translation}#*
 \DeclareChemTranslations{key%plain}{language=translation,...}#*
+\AddChemTranslation{language}{key%plain}{translation}#*
+\AddChemTranslations{language}{key=translation,...}#*
 \ChemTranslate{translation key}#*
 
 #keyvals:\chemsetup#c

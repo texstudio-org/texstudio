@@ -1,5 +1,5 @@
 # fontsetup package
-# Matthew Bertucci 12/11/2021 for v1.1
+# Matthew Bertucci 3/7/2022 for v1.3
 
 #include:fontspec
 #include:unicode-math
@@ -30,6 +30,8 @@ libertinus
 olddefault
 concrete
 talos
+oldstandard
+xcharter
 #endkeyvals
 
 #ifOption:default
@@ -59,6 +61,10 @@ talos
 #include:libertinus-otf
 #endif
 
+#ifOption:xcharter
+#include:xcharter-otf
+#endif
+
 \quoteleft#S
 \quoteright#S
 
@@ -83,4 +89,6 @@ talos
 \fontsetupolddefault#S
 \fontsetupconcrete#S
 \fontsetuptalos#S
+\fontsetupoldstandard#S
+\fontsetupxcharter#S
 \fontsetupfont#S

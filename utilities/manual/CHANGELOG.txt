@@ -1,6 +1,12 @@
 TeXstudio 4.2.3
 -----------------
-- 
+- fix unable to save under special circumstances (#2124)
+- fix stuck to save unsaved document (only in explicit root mode and with a new unsaved document,#2153) 
+- xindex engine added
+- fix math highlighting in keyvals (#2138)
+- add context menu in embbeded pdf viewer to invert pdf colors
+- more cwls
+
 
 TeXstudio 4.2.2
 -----------------

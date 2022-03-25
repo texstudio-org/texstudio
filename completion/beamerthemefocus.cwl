@@ -1,11 +1,12 @@
 # focus beamertheme
-# Matthew Bertucci 2/1/2022 for v3.1.0
+# Matthew Bertucci 3/12/2022 for v3.3.0
 
 # Dependency Tree:
 # beamerthemefocus.sty
 # ├── fontenc.sty (with T1 option)
 # ├── FiraSans.sty
 # ├── FiraMono.sty
+# ├── firamath-otf.sty
 # ├── beamercolorthemefocus.sty
 # ├── beamerfontthemefocus.sty
 # ├── beamerinnerthemefocus.sty
@@ -19,6 +20,7 @@
 #include:fontenc
 #include:FiraSans
 #include:FiraMono
+#include:firamath-otf
 #include:appendixnumberbeamer
 #include:bookmark
 #include:etoolbox

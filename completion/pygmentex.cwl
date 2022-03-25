@@ -11,8 +11,8 @@
 # mdframed loaded with framemethod=tikz
 #include:tikz
 
-\begin{pygmented}
-\begin{pygmented}[options%keyvals]
+\begin{pygmented}#V
+\begin{pygmented}[options%keyvals]#V
 \end{pygmented}
 
 \inputpygmented{file}#i
@@ -50,7 +50,7 @@ inline method=%<csname%>
 boxing method=%<envname%>
 #endkeyvals
 
-\widest{string list}{code}{cmd}#*d
+\widest(string list){code}{cmd}#*d
 \VerbatimOutAppend#*
 \begin{VerbatimOutAppend}#*
 \end{VerbatimOutAppend}#*

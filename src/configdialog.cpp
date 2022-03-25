@@ -418,7 +418,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	ui.checkBoxUseQSaveWrite->setVisible(false);
 #endif
 
-    ui.checkBoxShowCommentedElementsInStructure->setVisible(false); // hide non-functional option, maybe it can be fixed in future
+    //ui.checkBoxShowCommentedElementsInStructure->setVisible(false); // hide non-functional option, maybe it can be fixed in future
 
     ui.contentsWidget->setIconSize(QSize(qRound(32*scale), qRound(32*scale)));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);

@@ -1,5 +1,5 @@
 # newtxmath package
-# Matthew Bertucci 1/13/2022 for v1.7
+# Matthew Bertucci 3/8/2022 for v1.71
 
 #include:amsmath
 #include:ifthen
@@ -8,10 +8,6 @@
 #include:ifluatex
 #include:xkeyval
 #include:centernot
-
-#ifOption:amsthm
-#include:amsthm
-#endif
 
 #keyvals:\usepackage/newtxmath#c
 subscriptcorrectionfile=%<file%>
@@ -29,17 +25,10 @@ cochineal
 garamondx
 ebgaramond
 baskerville
-Baskerville
-baskervillef
-BaskervilleF
 baskervaldx
-Baskervaldx
 utopia
 heuristica
-Heuristica
-Erewhon
 erewhon
-charter
 xcharter
 cmintegrals
 cmbraces
@@ -59,7 +48,6 @@ useBImacros
 noxchvw
 noXchvw
 stix2
-stickstoo
 nc
 ncf
 noto
@@ -72,7 +60,13 @@ varvw
 internaldigits
 noOT1
 amsthm
+scaled=%<factor%>
+vecsep=##L
 #endkeyvals
+
+#ifOption:amsthm
+#include:amsthm
+#endif
 
 # text- or math-mode commands
 \checkmark
@@ -858,6 +852,7 @@ amsthm
 \vvmathbb{text%plain}#m
 \vvstar{arg}#*m
 \widearc{arg}#m
+\widebar{arg}#m
 \wideOarc{arg}#m
 \widering{arg}#m
 \Wr#m
@@ -938,7 +933,20 @@ amsthm
 \ShowMathFonts#*
 \setSYdimens#*
 \setEXdimens#*
-\loadsubfile{file}#*
-\readsufile{file}#*
+\loadsubfile{file}#*i
+\readsufile{file}#*i
 \rmdefaultB#*
 \DeclareMathSymbolCtr{cmd}{type}{sym-font}{slot}#*d
+\ifiscseq{arg}{true}{false}#*
+\newtxmathLoaded#S
+
+# from binhex.tex
+\binary{number}#*
+\nbinary{size}{number}#*
+\hex{number}#*
+\nhex{size}{number}#*
+\oct{number}#*
+\noct{size}{number}#*
+\tetra{number}#*
+\ntetra{size}{number}#*
+\nbinbased{logbase}{size}{number}#*
