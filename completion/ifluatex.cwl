@@ -1,6 +1,5 @@
 # doncherry/2013-05-11 for ifluatex v1.3
-\ifluatex
-\else
-\fi
-\luatexversion#*
-\luatexrevision#*
+# Matthew Bertucci 2022-03-26 for v1.5
+
+# legacy package, just loads iftex
+#include:iftex
