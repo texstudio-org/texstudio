@@ -313,21 +313,19 @@ QList<SearchMatch> SearchResultModel::getSearchMatches(const QDocumentLine &docl
 {
 	if (!docline.isValid() || mExpression.isEmpty()) return QList<SearchMatch>();
 
-	QRegExp regexp = generateRegExp(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
+    QRegularExpression regexp = generateRegularExpression(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
 	QString text = docline.text();
 
-	int i = 0;
 	QList<SearchMatch> result;
-	while (i < text.length()) {
-		i = regexp.indexIn(text, i);
-		if (i < 0) break;
+    QRegularExpressionMatch re_match = regexp.match(text);
+    int offset=re_match.capturedStart();
+    while (offset > -1) {
+        SearchMatch match;
+        match.pos = offset;
+        match.length = re_match.capturedLength();
+        result << match;
+    }
 
-		SearchMatch match;
-		match.pos = i;
-		match.length = regexp.matchedLength();
-		result << match;
-        i+=match.length;
-	}
 	return result;
 }
 
@@ -367,12 +365,13 @@ QVariant SearchResultModel::headerData(int section, Qt::Orientation orientation,
 
 int SearchResultModel::getNextSearchResultColumn(const QString &text, int col)
 {
-	QRegExp m_regexp = generateRegExp(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
+    QRegularExpression m_regexp = generateRegularExpression(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
 
 	int i = 0;
 	int i_old = 0;
 	while (i <= col && i > -1) {
-		i = m_regexp.indexIn(text, i);
+        QRegularExpressionMatch match = m_regexp.match(text,i);
+        i = match.capturedStart();
 		if (i > -1) {
 			i_old = i;
 			i++;

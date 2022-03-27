@@ -464,7 +464,8 @@ QString findToken(const QString &line, const QString &token, int &start)
  * \param token regexp to search
  * \return text after token
  */
-QString findToken(const QString &line, QRegExp &token)
+/*
+QString findToken(const QString &line, QRegularExpression &token)
 {
 	//ATTENTION: token is not const because, you can't call cap on const qregexp in qt < 4.5
 	int tagStart = 0;
@@ -476,7 +477,7 @@ QString findToken(const QString &line, QRegExp &token)
 		return s;
 	}
 	return "";
-}
+}*/
 
 bool findTokenWithArg(const QString &line, const QString &token, QString &outName, QString &outArg)
 {
@@ -607,26 +608,6 @@ QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace)
 	return line.mid(start, end - start);
 }
 
-QRegExp generateRegExp(const QString &text, const bool isCase, const bool isWord, const bool isRegExp)
-{
-	Qt::CaseSensitivity cs = isCase ? Qt::CaseSensitive : Qt::CaseInsensitive;
-	QRegExp m_regexp;
-	if ( isRegExp ) {
-		m_regexp = QRegExp(text, cs, QRegExp::RegExp);
-	} else if ( isWord ) {
-		//todo: screw this? it prevents searching of "world!" and similar things
-		//(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
-		m_regexp = QRegExp(
-		               QString("\\b%1\\b").arg(QRegExp::escape(text)),
-		               cs,
-		               QRegExp::RegExp
-		           );
-	} else {
-		m_regexp = QRegExp(text, cs, QRegExp::FixedString);
-	}
-	return m_regexp;
-}
-
 QRegularExpression generateRegularExpression(const QString &text, const bool isCase, const bool isWord, const bool isRegExp)
 {
     QRegularExpression::PatternOption po = isCase ? QRegularExpression::NoPatternOption : QRegularExpression::CaseInsensitiveOption;
@@ -645,18 +626,6 @@ QRegularExpression generateRegularExpression(const QString &text, const bool isC
     }
     return m_regexp;
 }
-
-QStringList regExpFindAllMatches(const QString &searchIn, const QRegExp &regexp, int cap)
-{
-	int offset = regexp.indexIn(searchIn);
-	QStringList res;
-	while (offset > -1) {
-		res << regexp.cap(cap);
-		offset = regexp.indexIn(searchIn, offset + regexp.matchedLength());
-	}
-	return res;
-}
-
 
 QStringList regularExpressionFindAllMatches(const QString &searchIn, const QRegularExpression &regexp, int cap)
 {

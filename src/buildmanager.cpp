@@ -1772,7 +1772,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 	QStringList addPaths;
 	addPaths << masterDir;
 	if (preamble_mod.contains("\\usepackage{import}")) {
-		QStringList imports = regExpFindAllMatches(preamble_mod, QRegExp("\\\\subimport\\{([^}\n]*)\\}\\{[^}\n]*\\}"), 1);
+        QStringList imports = regularExpressionFindAllMatches(preamble_mod, QRegularExpression("\\\\subimport\\{([^}\n]*)\\}\\{[^}\n]*\\}"), 1);
 		imports.sort();
 		for (int i = imports.size() - 1; i > 0; i--)
 			if (imports[i] == imports[i - 1]) imports.removeAt(i);

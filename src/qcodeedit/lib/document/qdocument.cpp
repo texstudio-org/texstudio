@@ -1608,10 +1608,11 @@ int QDocument::findLineContaining(const QString &searchText,  const int& startLi
 
 int QDocument::findLineRegExp(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs, const bool wholeWord, const bool useRegExp) const{
 
-	QRegExp m_regexp=generateRegExp(searchText,cs==Qt::CaseSensitive,wholeWord,useRegExp);
+    QRegularExpression m_regexp=generateRegularExpression(searchText,cs==Qt::CaseSensitive,wholeWord,useRegExp);
 
 	for (int i=startLine;i<lines();i++){
-		if(m_regexp.indexIn(line(i).text(),0)>-1)
+        QRegularExpressionMatch match=m_regexp.match(line(i).text());
+        if(match.hasMatch())
 			return i;
 	}
 

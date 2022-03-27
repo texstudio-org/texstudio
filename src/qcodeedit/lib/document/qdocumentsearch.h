@@ -24,7 +24,6 @@
 */
 
 #include <QString>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QPointer>
 #include <QAbstractScrollArea>
@@ -105,7 +104,6 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		void recreateRegExp();
 		
-//		int m_index;
 		Options m_option;
 		QString m_string;
         QRegularExpression m_regularExpression;
