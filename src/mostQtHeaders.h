@@ -63,7 +63,6 @@
 #include <QLabel>
 #include <QLayout>
 #include <QLineEdit>
-//#include <QLinkedList>
 #include <QList>
 #include <QListView>
 #include <QListWidget>
