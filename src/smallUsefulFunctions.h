@@ -81,10 +81,6 @@ QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace = false
 QString trimLeft(const QString &s);
 QString trimRight(const QString &s);
 
-/// find token (e.g. \label \input \section and return content (\section{content})
-QString findToken(const QString &line, const QString &token);
-QString findToken(const QString &line, const QString &token, int &start);
-//QString findToken(const QString &line, QRegularExpression &token);
 /// find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line, const QString &token, QString &outName, QString &outArg);
 
