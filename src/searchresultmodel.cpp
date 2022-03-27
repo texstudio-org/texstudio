@@ -324,6 +324,9 @@ QList<SearchMatch> SearchResultModel::getSearchMatches(const QDocumentLine &docl
         match.pos = offset;
         match.length = re_match.capturedLength();
         result << match;
+        // next result
+        re_match = regexp.match(text,offset+match.length);
+        offset = re_match.capturedStart();
     }
 
 	return result;
