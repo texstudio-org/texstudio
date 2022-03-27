@@ -360,6 +360,7 @@
 <file>completion/cartonaugh.cwl</file>
 <file>completion/cascade.cwl</file>
 <file>completion/cascadia-code.cwl</file>
+<file>completion/cas-common.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/casiofont.cwl</file>
 <file>completion/catchdq.cwl</file>
@@ -433,6 +434,8 @@
 <file>completion/class-book.cwl</file>
 <file>completion/class-bookshelf.cwl</file>
 <file>completion/class-businesscard-qrcode.cwl</file>
+<file>completion/class-cas-dc.cwl</file>
+<file>completion/class-cas-sc.cwl</file>
 <file>completion/class-cheatsheet.cwl</file>
 <file>completion/class-cnltx-doc.cwl</file>
 <file>completion/class-codedoc.cwl</file>
@@ -458,6 +461,9 @@
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
 <file>completion/classicthesis.cwl</file>
+<file>completion/class-idcc.cwl</file>
+<file>completion/class-ijdc-v14.cwl</file>
+<file>completion/class-ijdc-v9.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-komacv.cwl</file>
 <file>completion/class-l3doc.cwl</file>
@@ -483,6 +489,7 @@
 <file>completion/class-ncc.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
 <file>completion/class-novel.cwl</file>
+<file>completion/class-oup-authoring-template.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
 <file>completion/class-proc.cwl</file>
 <file>completion/class-pylatex.cwl</file>
@@ -498,6 +505,7 @@
 <file>completion/class-scrartcl.cwl</file>
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrbook.cwl</file>
+<file>completion/class-scrdoc.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
@@ -506,6 +514,7 @@
 <file>completion/class-skrapport.cwl</file>
 <file>completion/class-slides.cwl</file>
 <file>completion/class-sslides.cwl</file>
+<file>completion/class-standalone.cwl</file>
 <file>completion/class-suftesi.cwl</file>
 <file>completion/class-talk.cwl</file>
 <file>completion/class-tikzposter.cwl</file>
@@ -654,6 +663,7 @@
 <file>completion/daytime.cwl</file>
 <file>completion/dblfnote.cwl</file>
 <file>completion/dbshow.cwl</file>
+<file>completion/dccpaper-base.cwl</file>
 <file>completion/dcounter.cwl</file>
 <file>completion/ddphonism.cwl</file>
 <file>completion/debate.cwl</file>
@@ -1113,6 +1123,7 @@
 <file>completion/iexec.cwl</file>
 <file>completion/ifallfalse.cwl</file>
 <file>completion/ifdraft.cwl</file>
+<file>completion/ifetex.cwl</file>
 <file>completion/iffont.cwl</file>
 <file>completion/iflang.cwl</file>
 <file>completion/ifluatex.cwl</file>
@@ -1742,12 +1753,14 @@
 <file>completion/productbox.cwl</file>
 <file>completion/ProfCollege.cwl</file>
 <file>completion/ProfLycee.cwl</file>
+<file>completion/program.cwl</file>
 <file>completion/progressbar.cwl</file>
 <file>completion/ProjLib.cwl</file>
 <file>completion/proof.cwl</file>
 <file>completion/proofread.cwl</file>
 <file>completion/protecteddef.cwl</file>
 <file>completion/protosem.cwl</file>
+<file>completion/pseudocode.cwl</file>
 <file>completion/pseudo.cwl</file>
 <file>completion/psfont.cwl</file>
 <file>completion/psfrag.cwl</file>
@@ -2038,6 +2051,7 @@
 <file>completion/skmath.cwl</file>
 <file>completion/skull.cwl</file>
 <file>completion/slantsc.cwl</file>
+<file>completion/slashbox.cwl</file>
 <file>completion/slashed.cwl</file>
 <file>completion/slemph.cwl</file>
 <file>completion/smartdiagram.cwl</file>
