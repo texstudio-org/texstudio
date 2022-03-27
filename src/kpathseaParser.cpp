@@ -133,8 +133,20 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
 	bool inRunTimeFilesSection = false;
 	foreach (const QString &l, lines) {
 		if (!inRunTimeFilesSection) {
-			if (l.startsWith("run-time files:"))
+            if (l.startsWith("run-time files:")){
 				inRunTimeFilesSection = true;
+                // new output format has everything in the same line.
+                QString rest=l.mid(16);
+                // split at semicolon
+                QStringList styles=rest.split(';');
+                foreach(auto fn,styles){
+                    fn = QFileInfo(fn).fileName();
+                    if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
+                        fn.chop(4);
+                        result.append(fn);
+                    }
+                }
+            }
 			continue;
 		} else {
 			QString fn = l.simplified();
@@ -161,7 +173,7 @@ void MiktexPackageScanner::run()
 			return;
 		QStringList parts = pck.simplified().split(" "); // output format of "mpm --list": installation status, number of files, size, database name
 		if (parts.count() != 4) continue;
-		if (parts[0] != "i") continue; // not installed
+        if (parts[0] != "i" && parts[0].toLower() != "true") continue; // not installed
 		pck = parts[3];
 		QStringList stys;
 		if (cachedStys.contains(pck)) {
