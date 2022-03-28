@@ -9936,7 +9936,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1144"/>
         <source>&amp;Xindex</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Xindex</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1145"/>

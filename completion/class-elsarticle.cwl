@@ -187,7 +187,7 @@ abstract
 \castmstate{state}#*
 \Columnwidth#*
 \comma#*
-\cormark[mark]#*
+\cormark[id]
 \doubleblindfalse#*
 \doubleblindtrue#*
 \eadsep#*
@@ -207,7 +207,7 @@ abstract
 \elsRef{id}#*
 \emailauthor{id}{email%URL}#*U
 \finalMaketitle#*
-\fnmark[mark]#*
+\fnmark[id]
 \fnotenum#*
 \FNtext{text}#*
 \getSpaceLeft#*
@@ -273,7 +273,7 @@ abstract
 \titleheight#*
 \titlespancalculator{arg1}{arg2}{arg3}{arg4}#*
 \tmptocnumberline{arg}#*
-\tnotemark[mark]#*
+\tnotemark[id]
 \tnotesep#*
 \underscorechar#*
 \urlauthor{id}{URL}#*U

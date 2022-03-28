@@ -54,12 +54,14 @@ public:
 protected:
 	void run();
 	QString mpm(const QString &arg);
+    QString kpsewhich(const QString &arg);
 	void savePackageMap(const QHash<QString, QStringList> &map);
 	QHash<QString, QStringList> loadPackageMap();
+    QHash<QString, QStringList> loadMiktexPackageMap();
 	QStringList stysForPackage(const QString &pck);
 
 private:
-	QString mpmCmd;
+    QString mpmCmd,kpseWhichCmd;
 	QString settingsDir;
 };
 

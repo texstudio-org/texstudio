@@ -1,102 +1,34 @@
 # standalone package
 # Fran J. Sanchez 30/10/2021 for v1.3a
+# Matthew Bertucci 3/26/2022; class-standalone.cwl added and commands/keys moved accordingly
 
-#include:xkeyval
-#include:ifpdf
+#include:adjustbox
+#include:currfile
+#include:filemod-expmin
+#include:gincltex
 #include:ifluatex
+#include:ifpdf
 #include:ifxetex
 #include:shellesc
-
-#ifOption:varwidth
+#include:trimclip
 #include:varwidth
-#endif
-#ifOption:preview
-#include:preview
-#endif
-#ifOption:beamer
-#include:class-beamer
-\begin{standaloneframe}{frame title}{frame subtitle}#*
-\begin{standaloneframe}{frame title}#*
-\begin{standaloneframe}#*
-\end{standaloneframe}#*
-#endif
-#ifOption:tikz
-#include:tikz
-#endif
-#ifOption:multido
-#include:multido
-#endif
-#ifOption:pstricks
-#include:pstricks
-#endif
+#include:xkeyval
 
-#include:currfile
-#include:filehook
-#include:gincltex
-#include:filemod
-
-## As document class:
-
-#keyvals:\documentclass/standalone,\standaloneconfig
-class=
-crop=#true,false
-preview=#true,false
-
-## can also be multiple lengths
-border=##L
-## ? border=#\{#L #L\}
-## ? border=#\{#L #L #L #L\}
-
-## and multiple environments
-multi=#true,false,environments...
-multi
-
-ignorerest=#true,false
-multido=#true,false
-multido
-varwidth=##L
-varwidth
-tikz=#true,false
-tikz
-pstricks=#true,false
-pstricks
-beamer=#true,false
-beamer
-float=#true,false
-convert=#true,false,{%<options%>}
-convert
-png=#true,false,{%<options%>}
-png
+#keyvals:\usepackage/standalone
+subpreambles#true,false
+sort#true,false
+print#true,false
+comments#true,false
+nocomments
+obeyclassoptions#true,false
 #endkeyvals
 
-\standaloneconfig{%<options%>}#*
-\standaloneenv{environment}#*
-\standaloneignore#*
-
-\begin{standalone}#S
-\end{standalone}#S
-
-\ifstandalonebeamer#*
-
-###############################
-## As package:
-
-## standaloneconfig has different keyvals if
-## used as package or as a document class...
+# only some package options available to \standaloneconfig and \includestandalone
 #keyvals:\usepackage/standalone,\standaloneconfig,\includestandalone
-subpreambles=#true,false
-subpreambles
-sort=#true,false
-sort
-print=#true,false
-print
-comments=#true,false
-nocomments
-group=#true,false
-mode=#tex,image,image|tex,buildmissing,buildnew
-obeyclassoptions=#true,false
-extension=
-build={%<options%>}
+group#true,false
+mode=#tex,image,image|tex,build,buildmissing,buildnew
+extension=%<extension%>
+build={%<build options%>}
 #endkeyvals
 
 ## also any options in \includegraphics
@@ -104,7 +36,8 @@ build={%<options%>}
 \includestandalone[options%keyvals]{file}#i
 
 #keyvals:\includestandalone
-bb=
+alt={%<alt text%>}
+bb=%<llx lly urx ury%>
 bbllx=
 bblly=
 bburx=
@@ -113,30 +46,37 @@ natwidth=
 natheight=
 hiresbb#true,false
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
-viewport=
-trim=
-angle=
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
 origin=
 width=##L
 height=##L
 totalheight=##L
 keepaspectratio#true,false
-scale=
+scale=%<factor%>
 clip#true,false
 draft#true,false
-type=
-ext=
-read=
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
 command=
 quiet
-page=
+page=%<page number%>
 interpolate#true,false
-decodearray=
+decodearray={%<color array%>}
 #endkeyvals
 
-###############################
-## Common:
+\standaloneconfig{options%keyvals}
 
+\standaloneignore#*
+\begin{standalone}#*
+\end{standalone}#*
 \ifstandalone#*
+\standalonetrue#*
+\standalonefalse#*
+\ifstandalonebeamer#*
+\standalonebeamertrue#*
+\standalonebeamerfalse#*
 \IfStandalone{code for standalone}{code for main document}#*
 \onlyifstandalone{code}#*

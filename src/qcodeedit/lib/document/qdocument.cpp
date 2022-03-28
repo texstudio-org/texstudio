@@ -1608,10 +1608,11 @@ int QDocument::findLineContaining(const QString &searchText,  const int& startLi
 
 int QDocument::findLineRegExp(const QString &searchText,  const int& startLine, const Qt::CaseSensitivity cs, const bool wholeWord, const bool useRegExp) const{
 
-	QRegExp m_regexp=generateRegExp(searchText,cs==Qt::CaseSensitive,wholeWord,useRegExp);
+    QRegularExpression m_regexp=generateRegularExpression(searchText,cs==Qt::CaseSensitive,wholeWord,useRegExp);
 
 	for (int i=startLine;i<lines();i++){
-		if(m_regexp.indexIn(line(i).text(),0)>-1)
+        QRegularExpressionMatch match=m_regexp.match(line(i).text());
+        if(match.hasMatch())
 			return i;
 	}
 
@@ -7190,13 +7191,14 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
                     p->drawRect(QRectF(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing));
 				}else{
 					// regular line cursor
-                    QPointF pt = cur.documentPosition();
-                    QPointF curHt(0, QDocumentPrivate::m_lineSpacing-1.);
+                    QPointF pt = cur.documentPosition()+QPointF(0,2.);
+                    QPointF curHt(0, QDocumentPrivate::m_lineSpacing-4.);
                     QPen pen(p->pen());
                     if (m_drawCursorBold) {
                        pen.setWidthF(2.);
                     }
                     p->setPen(pen);
+                    qDebug()<<QDocumentPrivate::m_lineSpacing<<pt<<pt+curHt;
                     p->drawLine(pt, pt + curHt);
                     /*if (m_drawCursorBold) {
 						pt.setX(pt.x() + 1);

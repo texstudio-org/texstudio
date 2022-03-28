@@ -627,7 +627,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     tkLength--; // don't take point into misspelled word
                 }
                 Error elem;
-                elem.range = QPair<int, int>(tk.start, tk.length);
+                elem.range = QPair<int, int>(tk.start, tkLength);
                 elem.type = ERR_spelling;
                 newRanges.append(elem);
             }

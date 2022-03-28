@@ -81,18 +81,14 @@ QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace = false
 QString trimLeft(const QString &s);
 QString trimRight(const QString &s);
 
-/// find token (e.g. \label \input \section and return content (\section{content})
-QString findToken(const QString &line, const QString &token);
-QString findToken(const QString &line, const QString &token, int &start);
-QString findToken(const QString &line, QRegExp &token);
 /// find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line, const QString &token, QString &outName, QString &outArg);
 
 
 /// generate multiple times used regexpression
-QRegExp generateRegExp(const QString &text, const bool isCase, const bool isWord, const bool isRegExp);
+QRegularExpression generateRegularExpression(const QString &text, const bool isCase, const bool isWord, const bool isRegExp);
 
-QStringList regExpFindAllMatches(const QString &searchIn, const QRegExp &regexp, int cap = 0);
+QStringList regularExpressionFindAllMatches(const QString &searchIn, const QRegularExpression &regexp, int cap = 0);
 QList<int> indicesOf(const QString &line, const QString &word, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 QList<int> indicesOf(const QString &line, const QRegularExpression &rx);
 

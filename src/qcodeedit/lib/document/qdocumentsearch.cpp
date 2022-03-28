@@ -156,14 +156,10 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 		l.setFlag(QDocumentLine::FormatsApplied, false);
 
 		const QString &s = boundaries.endLine != ln ? l.text() : l.text().left(boundaries.end);
-#if QT_VERSION > 0x050500
+
         QRegularExpressionMatch match=m_regularExpression.match(s, hc.columnNumber());
         int column = match.capturedStart();
         int length = match.capturedLength();
-#else
-		int column=m_regexp.indexIn(s, hc.columnNumber());
-		int length=m_regexp.matchedLength();
-#endif
 
 		/*
 		qDebug("searching %s in %s => %i",
@@ -209,18 +205,13 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 			if((endOffset>=0)&&(i+1==endLine)){
 				txt=txt.left(endOffset);
 			}
-#if QT_VERSION > 0x050500
+
 			QRegularExpressionMatch match=m_regularExpression.match(txt,offset);
 			if(match.hasMatch()){
 				m_editor->addMarkDelayed(i,Qt::darkYellow,"search");
 				needsUpdate=true;
 			}
-#else
-			if(m_regexp.indexIn(txt,offset)>-1){
-				m_editor->addMarkDelayed(i,Qt::darkYellow,"search");
-				needsUpdate=true;
-			}
-#endif
+
 			offset=0;
 		}
 		if(needsUpdate)
@@ -290,7 +281,6 @@ void QDocumentSearch::recreateRegExp(){
 	    :
 	      Qt::CaseInsensitive;
 
-#if QT_VERSION >= 0x050500
     QRegularExpression::PatternOptions patternOption= cs==Qt::CaseInsensitive ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption ;
     patternOption |= QRegularExpression::UseUnicodePropertiesOption;
 	if ( hasOption(RegExp) )
@@ -303,23 +293,6 @@ void QDocumentSearch::recreateRegExp(){
 	} else {
 		m_regularExpression = QRegularExpression(QRegularExpression::escape(m_string), patternOption);
 	}
-#else
-	if ( hasOption(RegExp) )
-	{
-		m_regexp = QRegExp(m_string, cs, QRegExp::RegExp);
-	} else if ( hasOption(WholeWords) ) {
-		//todo: screw this? it prevents searching of "world!" and similar things
-		//(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
-		m_regexp = QRegExp(
-		      QString("\\b%1\\b").arg(QRegExp::escape(m_string)),
-		      cs,
-		      QRegExp::RegExp
-		      );
-	} else {
-		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
-	}
-	m_regexp.setMinimal( m_option & QDocumentSearch::NonGreedy); // allow greedy or non-greedy capture
-#endif
 }
 
 
@@ -492,15 +465,9 @@ QString QDocumentSearch::replaceTextExpanded() const
 	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
 
 	if (hasOption(RegExp))
-#if QT_VERSION>0x050500
 		for( int i=m_match.lastCapturedIndex();i >=0; --i )
 			replacement.replace(QString("\\") + QString::number(i),
 			                    m_match.captured(i));
-#else
-		for ( int i = m_regexp.captureCount(); i >= 0; --i )
-			replacement.replace(QString("\\") + QString::number(i),
-			                    m_regexp.cap(i));
-#endif
 
 	return replacement;
 }
@@ -614,8 +581,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	// replace
 	if (hasOption(Replace) && again && !all) {
 		bool replaceSelectedText = false;
-#if QT_VERSION > 0x050500
-        qDebug()<<m_match.hasMatch() << m_match.captured();
 		if (m_match.hasMatch() && m_match.captured()==m_cursor.selectedText())  {
 			replaceSelectedText = true;
 		} else if (m_regularExpression.pattern().contains("(?=") || m_regularExpression.pattern().contains("(?!")) {
@@ -637,28 +602,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 				start = end;
 			}
 		}
-#else
-		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
-			replaceSelectedText = true;
-		} else if (m_regexp.pattern().contains("(?=") || m_regexp.pattern().contains("(?!")) {
-			// special handling for lookahead: The selected text is not enough to match the regexp
-			// because the lookahead context is missing. Therefore we have to find matches to the
-			// whole line until we find the original selection. Only then, we know that the original
-			// selection is match and should be replaced.
-			int start = 0;
-			while (true) {
-				start = m_regexp.indexIn(m_cursor.line().text(), start);
-				if (start < 0)
-					break;
-				int end = start + m_regexp.matchedLength();
-				if ((start == m_cursor.startColumnNumber() && end == m_cursor.endColumnNumber()) ||
-				    (end == m_cursor.startColumnNumber() && start == m_cursor.endColumnNumber())) {
-					replaceSelectedText = true;
-				}
-				start = end;
-			}
-		}
-#endif
 		if (replaceSelectedText) {
 			replaceCursorText(backward);
 			updateReplacementOverlays();
@@ -759,7 +702,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		
 		int column;
 		int length;
-#if QT_VERSION > 0x050500
+
 		if (backward) {
 			column=s.lastIndexOf(m_regularExpression,m_cursor.columnNumber()-coloffset,&m_match);
 			length=m_match.capturedLength();
@@ -768,13 +711,6 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			column=m_match.capturedStart();
 			length=m_match.capturedLength();
 		}
-
-
-#else
-		if (backward) column=m_regexp.lastIndexIn(s,m_cursor.columnNumber()-coloffset);
-		else column=m_regexp.indexIn(s, m_cursor.columnNumber());
-		length=m_regexp.matchedLength();
-#endif
 
 		QDocumentCursor::MoveOperation nextMove = move;
 
