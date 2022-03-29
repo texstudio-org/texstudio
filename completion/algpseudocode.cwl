@@ -1,7 +1,15 @@
 # algpseudocode package
 # updated Matthew Bertucci 10/12/2021 for v1.2
 
+#include:ifthen
 #include:algorithmicx
+
+#keyvals:\usepackage/algpseudocode#c
+noend
+end
+compatible
+noncompatible
+#endkeyvals
 
 #ifOption:compatible
 #include:algcompatible

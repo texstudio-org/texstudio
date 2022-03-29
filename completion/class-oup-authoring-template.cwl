@@ -1,5 +1,5 @@
 # oup-authoring-template class
-# Matthew Bertucci 3/23/2022 for v1.0
+# Matthew Bertucci 3/27/2022 for v1.1
 
 #include:crop
 #include:graphicx
@@ -19,7 +19,7 @@
 #include:wrapfig
 #include:amsthm
 #include:subfloat
-#include:subfig
+#include:anyfontsize
 #include:multirow
 #include:footnote
 #include:url
@@ -29,8 +29,9 @@
 #include:algorithmicx
 #include:algpseudocode
 #include:listings
-#include:appendix
 #include:hyperref
+#include:tikz
+# loads tikzlibrary svg.path
 
 #keyvals:\documentclass/oup-authoring-template#c
 namedate
@@ -50,18 +51,41 @@ contemporary
 large
 medium
 small
+toc
+title
+titletoc
+header
+page
 #endkeyvals
 
 \abstract{text}
 \accepted{date}{number}{year}
 \access{access text%text}
+\addappheadtotoc
 \address[sequence]{address}
 \address{address}
+\appendicestocpagenum
+\appendixheaderoff
+\appendixheaderon
+\appendixname
+\appendixpage
+\appendixpagename
+\appendixpageoff
+\appendixpageon
+\appendixtitleoff
+\appendixtitleon
+\appendixtitletocoff
+\appendixtitletocon
+\appendixtocname
+\appendixtocoff
+\appendixtocon
 \appnotes{text}
 \author[%<address num%>,$\ast$]{%<name%>}
 \author[address num]{name}
 \authormark{code}
+\begin{appendices}
 \begin{biography}{%<graphics commands%>}{\author{%<name%>} %<biography text%>}
+\begin{subappendices}
 \begin{tablenotes}
 \begin{unlist}
 \botrule#t
@@ -73,20 +97,27 @@ small
 \country{country}
 \DOI{DOI}
 \editor{name}
+\end{appendices}
 \end{biography}
+\end{subappendices}
 \end{tablenotes}
 \end{unlist}
 \firstpage{number}
 \journaltitle{title%text}
 \keywords{keyword1,keyword2,...}
 \midrule#t
+\noappendicestocpagenum
+\ORCID{ORCID}
 \orgaddress{address}
 \orgdiv{text}
 \orgname{name}
 \postcode{postcode}
 \pubyear{year}
 \received{date}{number}{year}
+\restoreapp
 \revised{date}{number}{year}
+\setthesection
+\setthesubsection
 \state{state}
 \street{street}
 \subtitle{text}
@@ -188,3 +219,10 @@ thmstylefour
 \vol{volume}#*
 \wraplines#*
 \writelastpage#*
+
+gray#B
+grayfifty#B
+graysixtyfive#B
+jnlclr#B
+jnlruleclr#B
+orcidlogocol#B
