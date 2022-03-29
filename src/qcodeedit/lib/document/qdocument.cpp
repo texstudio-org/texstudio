@@ -7198,7 +7198,6 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
                        pen.setWidthF(2.);
                     }
                     p->setPen(pen);
-                    qDebug()<<QDocumentPrivate::m_lineSpacing<<pt<<pt+curHt;
                     p->drawLine(pt, pt + curHt);
                     /*if (m_drawCursorBold) {
 						pt.setX(pt.x() + 1);
