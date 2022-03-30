@@ -13,7 +13,7 @@ all
 
 \capstart
 \hypcapspace#*
-\hypcapredef#*
+\hypcapredef{envname}#*
 \capstartfalse
 \capstarttrue
 \ifcapstart#*
