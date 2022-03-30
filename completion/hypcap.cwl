@@ -3,6 +3,14 @@
 
 #include:letltxmacro
 
+#keyvals:\usepackage/hypcap#c
+figure
+figure*
+table
+table*
+all
+#endkeyvals
+
 \capstart
 \hypcapspace#*
 \hypcapredef#*
