@@ -2,6 +2,8 @@
 <qresource prefix="/">
 <file>completion/12many.cwl</file>
 <file>completion/2up.cwl</file>
+<file>completion/a4.cwl</file>
+<file>completion/a4wide.cwl</file>
 <file>completion/abc.cwl</file>
 <file>completion/abntcite.cwl</file>
 <file>completion/aboensis.cwl</file>
@@ -424,15 +426,21 @@
 <file>completion/class-amsproc.cwl</file>
 <file>completion/class-aomart.cwl</file>
 <file>completion/class-apa7.cwl</file>
+<file>completion/class-artikel1.cwl</file>
+<file>completion/class-artikel2.cwl</file>
+<file>completion/class-artikel3.cwl</file>
 <file>completion/class-asmeconf.cwl</file>
 <file>completion/class-asmejour.cwl</file>
 <file>completion/class-bankstatement.cwl</file>
 <file>completion/class-beamer.cwl</file>
 <file>completion/class-beamerswitch.cwl</file>
 <file>completion/class-bfhbeamer.cwl</file>
+<file>completion/class-boek3.cwl</file>
+<file>completion/class-boek.cwl</file>
 <file>completion/class-bookcover.cwl</file>
 <file>completion/class-book.cwl</file>
 <file>completion/class-bookshelf.cwl</file>
+<file>completion/class-brief.cwl</file>
 <file>completion/class-businesscard-qrcode.cwl</file>
 <file>completion/class-cas-dc.cwl</file>
 <file>completion/class-cas-sc.cwl</file>
@@ -473,9 +481,11 @@
 <file>completion/class-leadsheet.cwl</file>
 <file>completion/class-leaflet.cwl</file>
 <file>completion/class-letter.cwl</file>
+<file>completion/class-limap.cwl</file>
 <file>completion/class-limecv.cwl</file>
 <file>completion/classlist.cwl</file>
 <file>completion/class-llncs.cwl</file>
+<file>completion/class-lni.cwl</file>
 <file>completion/class-ltxdoc.cwl</file>
 <file>completion/class-ltxdockit.cwl</file>
 <file>completion/class-ltxguide.cwl</file>
@@ -493,11 +503,14 @@
 <file>completion/class-nlctdoc.cwl</file>
 <file>completion/class-novel.cwl</file>
 <file>completion/class-oup-authoring-template.cwl</file>
+<file>completion/class-papertex.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
 <file>completion/class-proc.cwl</file>
 <file>completion/class-pylatex.cwl</file>
 <file>completion/class-qcm.cwl</file>
+<file>completion/class-rapport1.cwl</file>
+<file>completion/class-rapport3.cwl</file>
 <file>completion/class-ReadableCV.cwl</file>
 <file>completion/class-report.cwl</file>
 <file>completion/class-resphilosophica.cwl</file>
@@ -722,6 +735,7 @@
 <file>completion/draftmark.cwl</file>
 <file>completion/draftwatermark.cwl</file>
 <file>completion/drawmatrix.cwl</file>
+<file>completion/drawstack.cwl</file>
 <file>completion/drm.cwl</file>
 <file>completion/droid.cwl</file>
 <file>completion/droidsans.cwl</file>
@@ -1189,6 +1203,7 @@
 <file>completion/jigsaw.cwl</file>
 <file>completion/jkmath.cwl</file>
 <file>completion/jmlrutils.cwl</file>
+<file>completion/jmsdelim.cwl</file>
 <file>completion/josefin.cwl</file>
 <file>completion/jumplines.cwl</file>
 <file>completion/junicode.cwl</file>
@@ -1279,6 +1294,7 @@
 <file>completion/lie-hasse.cwl</file>
 <file>completion/liftarm.cwl</file>
 <file>completion/lilyglyphs.cwl</file>
+<file>completion/limap.cwl</file>
 <file>completion/linearb.cwl</file>
 <file>completion/linebreaker.cwl</file>
 <file>completion/linegoal.cwl</file>
@@ -1540,6 +1556,7 @@
 <file>completion/newproof.cwl</file>
 <file>completion/newpxmath.cwl</file>
 <file>completion/newpxtext.cwl</file>
+<file>completion/newspaper.cwl</file>
 <file>completion/newtx.cwl</file>
 <file>completion/newtxmath.cwl</file>
 <file>completion/newtxsf.cwl</file>
