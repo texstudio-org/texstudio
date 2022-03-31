@@ -1,6 +1,10 @@
 # tbraun 16.02.2008
 # ctan yfonts package
 
+#keyvals:\usepackage/yfonts#c
+varumlaut
+#endkeyvals
+
 \gothfamily
 \swabfamily
 \frakfamily
@@ -9,10 +13,10 @@
 \textswab{text}
 \textfrak{text}
 \textinit{text}
-\frakdefault
-\gothdefault
-\swabdefault
-\initdefault
+\frakdefault#*
+\gothdefault#*
+\swabdefault#*
+\initdefault#*
 \etc
 \fraklines
 \yinipar

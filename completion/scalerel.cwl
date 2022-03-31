@@ -25,13 +25,20 @@
 \vstretch{scale}{object}
 \scaleobj{scale}{object}
 
-\ThisStyle#*
+\ThisStyle{definition}#*
 \SavedStyle#*
 \LMex#*
 \LMpt#*
 \scriptstyleScaleFactor#*
 \scriptscriptstyleScaleFactor#*
-\Isnextbyte[optional q]{test byte}{string}#*
+\Isnextbyte{test byte}{string}#*
+\Isnextbyte[q]{%<test byte%>}{%<string%>}#*
 \theresult#*
 \ignoremathstyle#*
+\ignoremathstyle[mode]#*
 \discernmathstyle#*
+\thesrwidth#*
+\thesrheight#*
+\srblobheight#*
+\srblobdepth#*
+\mnxsrwidth#*

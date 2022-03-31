@@ -5,29 +5,31 @@
 # https://github.com/ppizarror/calculator-cwl
 # date: Sun 28 Apr
 
+# Matthew Bertucci updated 3/31/2022 for v2.0
+
 # --------------------------------------------
 # 1. Predefined numbers
 # --------------------------------------------
-\numberPI#n
-\numberTHREEHALFPI#n
-\numberQUARTERPI#n
-\numberSIXTHPI#n
-\numberE#n
-\numberETWO#n
-\numberLOGTEN#n
-\numberGOLD#n
-\numberSQRTTWO#n
-\numberSQRTFIVE#n
-\numberCOSXXX#n
-\numberHALFPI#n
-\numberTHIRDPI#n
-\numberFIFTHPI#n
-\numberTWOPI#n
-\numberINVE#n
-\numberINVETWO#n
-\numberINVGOLD#n
-\numberSQRTTHREE#n
-\numberCOSXLV#n
+\numberPI
+\numberTHREEHALFPI
+\numberQUARTERPI
+\numberSIXTHPI
+\numberE
+\numberETWO
+\numberLOGTEN
+\numberGOLD
+\numberSQRTTWO
+\numberSQRTFIVE
+\numberCOSXXX
+\numberHALFPI
+\numberTHIRDPI
+\numberFIFTHPI
+\numberTWOPI
+\numberINVE
+\numberINVETWO
+\numberINVGOLD
+\numberSQRTTHREE
+\numberCOSXLV
 
 # --------------------------------------------
 # 2. Operations with numbers
@@ -35,6 +37,7 @@
 
 # Assignments and comparisons
 \COPY{num}{cmd}#d
+\GLOBALCOPY{num}{cmd}#*d
 \MAX{num1}{num2}{cmd}#d
 \MIN{num1}{num2}{cmd}#d
 
@@ -53,21 +56,24 @@
 \FLOOR{num}{cmd}#d
 \FRACTIONALPART{num}{cmd}#d
 
+\TRUNCATE{num}{cmd}#d
 \TRUNCATE[n]{num}{cmd}#d
+\ROUND{num}{cmd}#d
 \ROUND[n]{num}{cmd}#d
 
 # Integers
-\INTEGERDIVISION{num1}{num2}{cmd1}{cmd2}#d
+\INTEGERDIVISION{num1}{num2}{cmd1%cmd}{cmd2%cmd}#d
 \INTEGERQUOTIENT{num1}{num2}{cmd}#d
 \MODULO{num1}{num2}{cmd}#d
 
 \GCD{num1}{num2}{cmd}#d
 \LCM{num1}{num2}{cmd}#d
 
-\FRACTIONSIMPLIFY{num1}{num2}{cmd1}{cmd2}#d
+\FRACTIONSIMPLIFY{num1}{num2}{cmd1%cmd}{cmd2%cmd}#d
 
 # Elementary functions
 \SQUAREROOT{num}{cmd}#d
+\SQRT{num}{cmd}#*d
 
 \EXP{num}{cmd}#d
 \EXP[num1]{num2}{cmd}#d
@@ -118,28 +124,33 @@
 # --------------------------------------------
 
 # Vector Operations
-\VECTORCOPY(x,y,z)(cmd1,cmd2,cmd3)#d
-\VECTORADD(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3)#d
-\VECTORSUB(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3)#d
-\SCALARVECTORPRODUCT{num}(x,y,z)(cmd1,cmd2,cmd3)#d
-\SCALARPRODUCT(x1,y1,z1)(x2,y2,z2){cmd1,cmd2,cmd3}#d
-\DOTPRODUCT(x1,y1,z1)(x2,y2,z2){cmd1,cmd2,cmd3}#d
+\VECTORSIZE(x,y,z){cmd}#*d
+\VECTORCOPY(x,y,z)(cmd1,cmd2,cmd3%cmd)#d
+\VECTORGLOBALCOPY(x,y,z)(cmd1,cmd2,cmd3%cmd)#*d
+\VECTORADD(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3%cmd)#d
+\VECTORSUB(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3%cmd)#d
+\SCALARVECTORPRODUCT{num}(x,y,z)(cmd1,cmd2,cmd3%cmd)#d
+\SCALARPRODUCT(x1,y1,z1)(x2,y2,z2){cmd}#d
+\DOTPRODUCT(x1,y1,z1)(x2,y2,z2){cmd}#d
 \VECTORNORM(x,y,z){cmd}#d
-\VECTORPRODUCT(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3)#d
-\CROSSPRODUCT(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3)#d
-\UNITVECTOR(x,y,z)(cmd1,cmd2,cmd3)#d
-\VECTORABSVALUE(x,y,z)(cmd1,cmd2,cmd3)#d
+\VECTORPRODUCT(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3%cmd)#d
+\CROSSPRODUCT(x1,y1,z1)(x2,y2,z2)(cmd1,cmd2,cmd3%cmd)#d
+\UNITVECTOR(x,y,z)(cmd1,cmd2,cmd3%cmd)#d
+\VECTORABSVALUE(x,y,z)(cmd1,cmd2,cmd3%cmd)#d
 \TWOVECTORSANGLE(x1,y1,z1)(x2,y2,z2){cmd}#d
 
 # Matrix Operations
-\MATRIXCOPY(a11...a33)(cmd11...cmd33)#d
-\TRANSPOSEMATRIX(a11...a33)(cmd11...cmd33)#d
-\MATRIXADD(a11...a33)(b11...b33)(cmd11...cmd33)#d
-\MATRIXSUB(a11...a33)(b11...b33)(cmd11...cmd33)#d
-\SCALARMATRIXPRODUCT{num}(a11...a33)(cmd11...cmd33)#d
-\MATRIXVECTORPRODUCT(a11...a33)(x,y,z)(cmd1,cmd2,cmd3)#d
-\MATRIXPRODUCT(a11...a33)(b11...b33)(cmd11...cmd33)#d
+\MATRIXSIZE(a11...a33){cmd}#*d
+\MATRIXCOPY(a11...a33)(cmd11...cmd33%cmd)#d
+\MATRIXGLOBALCOPY(a11...a33)(cmd11...cmd33%cmd)#*d
+\TRANSPOSEMATRIX(a11...a33)(cmd11...cmd33%cmd)#d
+\MATRIXADD(a11...a33)(b11...b33)(cmd11...cmd33%cmd)#d
+\MATRIXSUB(a11...a33)(b11...b33)(cmd11...cmd33%cmd)#d
+\SCALARMATRIXPRODUCT{num}(a11...a33)(cmd11...cmd33%cmd)#d
+\MATRIXVECTORPRODUCT(a11...a33)(x,y,z)(cmd1,cmd2,cmd3%cmd)#d
+\VECTORMATRIXPRODUCT(x,y,z)(a11...a33)(cmd1,cmd2,cmd3%cmd)#*d
+\MATRIXPRODUCT(a11...a33)(b11...b33)(cmd11...cmd33%cmd)#d
 \DETERMINANT{a11...a33){cmd}#d
-\INVERSEMATRIX(a11...a33)(cmd11...cmd33)#d
-\MATRIXABSVALUE(a11...a33)(cmd11...cmd33)#d
-\SOLVELINEARSYSTEM(a11...a33)(b1,b2,b3)(cmd1,cmd2,cmd3)#d
+\INVERSEMATRIX(a11...a33)(cmd11...cmd33%cmd)#d
+\MATRIXABSVALUE(a11...a33)(cmd11...cmd33%cmd)#d
+\SOLVELINEARSYSTEM(a11...a33)(b1,b2,b3)(cmd1,cmd2,cmd3%cmd)#d
