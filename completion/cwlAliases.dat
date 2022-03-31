@@ -534,3 +534,7 @@ rapport3:
 class-rapport3
 latex-document
 tex
+limap:
+class-limap
+latex-document
+tex
