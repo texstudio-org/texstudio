@@ -67,7 +67,7 @@
      <item row="0" column="0" colspan="3">
       <widget class="QLabel" name="labelList">
        <property name="text">
-        <string>Ordered list of commands :</string>
+        <string>Ordered list of commands:</string>
        </property>
       </widget>
      </item>
