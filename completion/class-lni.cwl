@@ -283,8 +283,3 @@ openbib
 \englishhyphenmins#*
 \britishhyphenmins#*
 \americanhyphenmins#*
-
-
-
-
-
