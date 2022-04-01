@@ -1709,3 +1709,9 @@ version=%<version name%>
 \widecheck{arg}#m
 \wideoverbar{arg}#m
 \wideutilde{arg}#m
+
+# only available if mathtools loaded
+\MToverbracket{arg}#Sm
+\MTunderbracket{arg}#Sm
+\Uoverbracket{arg}#Sm
+\Uunderbracket{arg}#Sm
