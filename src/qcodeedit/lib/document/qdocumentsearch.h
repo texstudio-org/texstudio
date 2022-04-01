@@ -106,6 +106,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		Options m_option;
 		QString m_string;
+        QString s; // keep string alive so that corresponding match may refer it, seems to be changed in Qt5.3
         QRegularExpression m_regularExpression;
         QRegularExpressionMatch m_match;
 

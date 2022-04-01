@@ -678,7 +678,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		const QDocumentLine& l = m_cursor.line();
 		
 		int coloffset = 0;
-		QString s = l.text();
+        s = l.text();
 
 		if ( bounded ) {
 			// update boundaries as scope is changed when changing text

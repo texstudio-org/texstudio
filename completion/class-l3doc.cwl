@@ -21,6 +21,7 @@
 #include:underscore
 #include:verbatim
 #include:fontenc
+# loads T1 option of fontenc
 #include:lmodern
 #include:hypdoc
 
@@ -41,7 +42,6 @@ show-notes
 hide-notes
 # options passed to article class
 a4paper
-a5paper
 b5paper
 letterpaper
 legalpaper

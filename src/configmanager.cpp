@@ -2944,7 +2944,7 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 	// cmd Widget
 	QWidget *cmdWidget;
 	if (cmd.metaSuggestionList.isEmpty()) {
-		cmdWidget = new QLineEdit(cmd.getPrettyCommand(), parent);
+        cmdWidget = new QLineEdit("", parent);
 		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit *>(cmdWidget);
 	} else {
 		cmdWidget = new QComboBox(parent);
