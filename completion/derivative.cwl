@@ -2,6 +2,7 @@
 # URL: https://ctan.org/pkg/derivative?lang=en
 # Created by Brian Schubert (2021/08/03).
 
+#include:expl3
 #include:xparse
 #include:l3keys2e
 
@@ -11,233 +12,222 @@ upright#true,false
 #endkeyvals
 
 ## Derivatives and Other Derivatives (section 1)
-\pdv[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\pdv[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\pdv[keyvals]{function%formula}/{variables%formula}#m
-\pdv[keyvals]{function%formula}{variables%formula}#m
-\pdv{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\pdv{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\pdv{function%formula}/{variables%formula}#m
-\pdv{function%formula}{variables%formula}#m
-\pdv*[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\pdv*[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\pdv*[keyvals]{function%formula}/{variables%formula}#m
-\pdv*[keyvals]{function%formula}{variables%formula}#m
-\pdv*{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\pdv*{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\pdv*{function%formula}/{variables%formula}#m
-\pdv*{function%formula}{variables%formula}#m
-\odv[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\odv[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\odv[keyvals]{function%formula}/{variables%formula}#m
-\odv[keyvals]{function%formula}{variables%formula}#m
-\odv{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\odv{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\odv{function%formula}/{variables%formula}#m
-\odv{function%formula}{variables%formula}#m
-\odv*[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\odv*[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\odv*[keyvals]{function%formula}/{variables%formula}#m
-\odv*[keyvals]{function%formula}{variables%formula}#m
-\odv*{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\odv*{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\odv*{function%formula}/{variables%formula}#m
-\odv*{function%formula}{variables%formula}#m
-\mdv[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\mdv[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\mdv[keyvals]{function%formula}/{variables%formula}#m
-\mdv[keyvals]{function%formula}{variables%formula}#m
-\mdv{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\mdv{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\mdv{function%formula}/{variables%formula}#m
-\mdv{function%formula}{variables%formula}#m
-\mdv*[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\mdv*[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\mdv*[keyvals]{function%formula}/{variables%formula}#m
-\mdv*[keyvals]{function%formula}{variables%formula}#m
-\mdv*{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\mdv*{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\mdv*{function%formula}/{variables%formula}#m
-\mdv*{function%formula}{variables%formula}#m
-\fdv[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\fdv[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\fdv[keyvals]{function%formula}/{variables%formula}#m
-\fdv[keyvals]{function%formula}{variables%formula}#m
-\fdv{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\fdv{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\fdv{function%formula}/{variables%formula}#m
-\fdv{function%formula}{variables%formula}#m
-\fdv*[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\fdv*[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\fdv*[keyvals]{function%formula}/{variables%formula}#m
-\fdv*[keyvals]{function%formula}{variables%formula}#m
-\fdv*{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\fdv*{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\fdv*{function%formula}/{variables%formula}#m
-\fdv*{function%formula}{variables%formula}#m
-\adv[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\adv[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\adv[keyvals]{function%formula}/{variables%formula}#m
-\adv[keyvals]{function%formula}{variables%formula}#m
-\adv{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\adv{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\adv{function%formula}/{variables%formula}#m
-\adv{function%formula}{variables%formula}#m
-\adv*[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\adv*[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\adv*[keyvals]{function%formula}/{variables%formula}#m
-\adv*[keyvals]{function%formula}{variables%formula}#m
-\adv*{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\adv*{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\adv*{function%formula}/{variables%formula}#m
-\adv*{function%formula}{variables%formula}#m
-\jdv[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\jdv[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\jdv[keyvals]{function%formula}/{variables%formula}#m
-\jdv[keyvals]{function%formula}{variables%formula}#m
-\jdv{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\jdv{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\jdv{function%formula}/{variables%formula}#m
-\jdv{function%formula}{variables%formula}#m
-\jdv*[keyvals]{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\jdv*[keyvals]{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\jdv*[keyvals]{function%formula}/{variables%formula}#m
-\jdv*[keyvals]{function%formula}{variables%formula}#m
-\jdv*{function%formula}/{variables%formula}_{pt1%formula}^{pt2%formula}#*m 
-\jdv*{function%formula}{variables%formula}_{pt1%formula}^{pt2%formula}#m
-\jdv*{function%formula}/{variables%formula}#m
-\jdv*{function%formula}{variables%formula}#m
+\pdv[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\pdv[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\pdv[keyvals]{function}/{variables}#m
+\pdv[keyvals]{function}{variables}#m
+\pdv{function}/{variables}_{pt1}^{pt2}#*m 
+\pdv{function}{variables}_{pt1}^{pt2}#m
+\pdv{function}/{variables}#m
+\pdv{function}{variables}#m
+\pdv*[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\pdv*[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\pdv*[keyvals]{function}/{variables}#m
+\pdv*[keyvals]{function}{variables}#m
+\pdv*{function}/{variables}_{pt1}^{pt2}#*m 
+\pdv*{function}{variables}_{pt1}^{pt2}#m
+\pdv*{function}/{variables}#m
+\pdv*{function}{variables}#m
+\odv[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\odv[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\odv[keyvals]{function}/{variables}#m
+\odv[keyvals]{function}{variables}#m
+\odv{function}/{variables}_{pt1}^{pt2}#*m 
+\odv{function}{variables}_{pt1}^{pt2}#m
+\odv{function}/{variables}#m
+\odv{function}{variables}#m
+\odv*[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\odv*[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\odv*[keyvals]{function}/{variables}#m
+\odv*[keyvals]{function}{variables}#m
+\odv*{function}/{variables}_{pt1}^{pt2}#*m 
+\odv*{function}{variables}_{pt1}^{pt2}#m
+\odv*{function}/{variables}#m
+\odv*{function}{variables}#m
+\mdv[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\mdv[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\mdv[keyvals]{function}/{variables}#m
+\mdv[keyvals]{function}{variables}#m
+\mdv{function}/{variables}_{pt1}^{pt2}#*m 
+\mdv{function}{variables}_{pt1}^{pt2}#m
+\mdv{function}/{variables}#m
+\mdv{function}{variables}#m
+\mdv*[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\mdv*[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\mdv*[keyvals]{function}/{variables}#m
+\mdv*[keyvals]{function}{variables}#m
+\mdv*{function}/{variables}_{pt1}^{pt2}#*m 
+\mdv*{function}{variables}_{pt1}^{pt2}#m
+\mdv*{function}/{variables}#m
+\mdv*{function}{variables}#m
+\fdv[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\fdv[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\fdv[keyvals]{function}/{variables}#m
+\fdv[keyvals]{function}{variables}#m
+\fdv{function}/{variables}_{pt1}^{pt2}#*m 
+\fdv{function}{variables}_{pt1}^{pt2}#m
+\fdv{function}/{variables}#m
+\fdv{function}{variables}#m
+\fdv*[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\fdv*[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\fdv*[keyvals]{function}/{variables}#m
+\fdv*[keyvals]{function}{variables}#m
+\fdv*{function}/{variables}_{pt1}^{pt2}#*m 
+\fdv*{function}{variables}_{pt1}^{pt2}#m
+\fdv*{function}/{variables}#m
+\fdv*{function}{variables}#m
+\adv[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\adv[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\adv[keyvals]{function}/{variables}#m
+\adv[keyvals]{function}{variables}#m
+\adv{function}/{variables}_{pt1}^{pt2}#*m 
+\adv{function}{variables}_{pt1}^{pt2}#m
+\adv{function}/{variables}#m
+\adv{function}{variables}#m
+\adv*[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\adv*[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\adv*[keyvals]{function}/{variables}#m
+\adv*[keyvals]{function}{variables}#m
+\adv*{function}/{variables}_{pt1}^{pt2}#*m 
+\adv*{function}{variables}_{pt1}^{pt2}#m
+\adv*{function}/{variables}#m
+\adv*{function}{variables}#m
+\jdv[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\jdv[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\jdv[keyvals]{function}/{variables}#m
+\jdv[keyvals]{function}{variables}#m
+\jdv{function}/{variables}_{pt1}^{pt2}#*m 
+\jdv{function}{variables}_{pt1}^{pt2}#m
+\jdv{function}/{variables}#m
+\jdv{function}{variables}#m
+\jdv*[keyvals]{function}/{variables}_{pt1}^{pt2}#*m 
+\jdv*[keyvals]{function}{variables}_{pt1}^{pt2}#m
+\jdv*[keyvals]{function}/{variables}#m
+\jdv*[keyvals]{function}{variables}#m
+\jdv*{function}/{variables}_{pt1}^{pt2}#*m 
+\jdv*{function}{variables}_{pt1}^{pt2}#m
+\jdv*{function}/{variables}#m
+\jdv*{function}{variables}#m
 
 ## Differentials and Other Differentials (section 2)
-\odif[keyvals]{variables%formula}#m
-\odif{variables%formula}#m
-\odif*[keyvals]{variables%formula}#m
-\odif*{variables%formula}#m
-\pdif[keyvals]{variables%formula}#m
-\pdif{variables%formula}#m
-\pdif*[keyvals]{variables%formula}#m
-\pdif*{variables%formula}#m
-\mdif[keyvals]{variables%formula}#m
-\mdif{variables%formula}#m
-\mdif*[keyvals]{variables%formula}#m
-\mdif*{variables%formula}#m
-\fdif[keyvals]{variables%formula}#m
-\fdif{variables%formula}#m
-\fdif*[keyvals]{variables%formula}#m
-\fdif*{variables%formula}#m
-\adif[keyvals]{variables%formula}#m
-\adif{variables%formula}#m
-\adif*[keyvals]{variables%formula}#m
-\adif*{variables%formula}#m
+\odif[keyvals]{variables}#m
+\odif{variables}#m
+\odif*[keyvals]{variables}#m
+\odif*{variables}#m
+\pdif[keyvals]{variables}#m
+\pdif{variables}#m
+\pdif*[keyvals]{variables}#m
+\pdif*{variables}#m
+\mdif[keyvals]{variables}#m
+\mdif{variables}#m
+\mdif*[keyvals]{variables}#m
+\mdif*{variables}#m
+\fdif[keyvals]{variables}#m
+\fdif{variables}#m
+\fdif*[keyvals]{variables}#m
+\fdif*{variables}#m
+\adif[keyvals]{variables}#m
+\adif{variables}#m
+\adif*[keyvals]{variables}#m
+\adif*{variables}#m
 
 ## Options (section 3)
-\derivset{derivative%formula}[options%keyvals]
+\derivset{derivative%cmd}
+\derivset{derivative%cmd}[options%keyvals]
 
 ## Derivative options (section 3.3)
 ### Derivative Style (style-)
-#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\odv,\mdv,\fdv,\adv,\jdv
-style-inf=%<infinitesimal%>#c
-style-frac=%<frac macro%>#c
-style-frac-/=%<slashfrac macro%>#c
+#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\pdv*,\odv,\odv*,\mdv,\mdv*,\fdv,\fdv*,\adv,\adv*,\jdv,\jdv*
+style-inf=%<infinitesimal%>
+style-frac=%<frac macro%>
+style-frac-/=%<slashfrac macro%>
 style-var=#single,multiple
-#endkeyvals
+
 ### Derivative Scaling (scale-)
-#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\odv,\mdv,\fdv,\adv,\jdv
 scale-eval=#auto,none,big,Big,bigg,Bigg
 scale-eval-/=#auto,none,big,Big,bigg,Bigg
 scale-fun=#auto,none,big,Big,bigg,Bigg
 scale-var=#auto,none,big,Big,bigg,Bigg
 scale-frac=#auto,none,big,Big,bigg,Bigg
 scale-frac-/=#auto,none,big,Big,bigg,Bigg
-#endkeyvals
+
 ### Derivative Delimiters (delim-)
-#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\odv,\mdv,\fdv,\adv,\jdv
-delims-eval={%<left delim%>}{%<right delim%>}#c
-delims-eval-/={%<left delim%>}{%<right delim%>}#c
-delims-fun={%<left delim%>}{%<right delim%>}#c
-delims-var={%<left delim%>}{%<right delim%>}#c
-delims-frac={%<left delim%>}{%<right delim%>}#c
-delims-frac-/={%<left delim%>}{%<right delim%>}#c
-#endkeyvals
+delims-eval={%<left delim%>}{%<right delim%>}
+delims-eval-/={%<left delim%>}{%<right delim%>}
+delims-fun={%<left delim%>}{%<right delim%>}
+delims-var={%<left delim%>}{%<right delim%>}
+delims-frac={%<left delim%>}{%<right delim%>}
+delims-frac-/={%<left delim%>}{%<right delim%>}
+
 ### Derivative Math Spacing (sep-)
-#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\odv,\mdv,\fdv,\adv,\jdv
-sep-inf-ord=
-sep-inf-fun=
-sep-ord-func=
-sep-frac-fun=
-sep-inf-var=
-sep-var-ord=
-sep-var-inf=
-sep-ord-inf=
-sep-var-var=
-sep-eval-sb=
-sep-eval-sp=
-#endkeyvals
+sep-inf-ord=%<<num>, <mspace>, or <delim>%>
+sep-inf-fun=%<<num>, <mspace>, or <delim>%>
+sep-ord-func=%<<num>, <mspace>, or <delim>%>
+sep-frac-fun=%<<num>, <mspace>, or <delim>%>
+sep-inf-var=%<<num>, <mspace>, or <delim>%>
+sep-var-ord=%<<num>, <mspace>, or <delim>%>
+sep-var-inf=%<<num>, <mspace>, or <delim>%>
+sep-ord-inf=%<<num>, <mspace>, or <delim>%>
+sep-var-var=%<<num>, <mspace>, or <delim>%>
+sep-eval-sb=%<<num>, <mspace>, or <delim>%>
+sep-eval-sp=%<<num>, <mspace>, or <delim>%>
+
 ### Derivative Switches (switch-)
-#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\odv,\mdv,\fdv,\adv,\jdv
 switch-*#true,false
 switch-/#true,false
-#endkeyvals
+
 ### Derivative Sort (sort-)
-#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\odv,\mdv,\fdv,\adv,\jdv
-sort-method=#abs,number,sign,symbol,{%<algorithm list%>}
-sort-method={%<algorithm list%>}#c
+sort-method={%<abs, number, sign, and/or symbol%>}
 sort-numerical=#auto,first,last,symbolic
 sort-abs-reverse#true,false
 sort-number-reverse#true,false
 sort-sign-reverse#true,false
 sort-symbol-reverse#true,false
-#endkeyvals
+
 ### Derivative Miscellaneous
-#keyvals:\derivset,\NewDerivative,\RenewDerivative,\ProvideDerivative,\DeclareDerivative,\pdv,\odv,\mdv,\fdv,\adv,\jdv
 fun#true,false
 frac#true,false
 var
-var=#none,all,{%<cs-numbers%>}
-order={%<cs-orders%>}#c
-ord={%<cs-orders%>}#c
-mixed-order={%<mixed order%>}#c
-mixord={%<mixed order%>}#c
+var=%<none, all, or {cs-numbers}%>
+order={%<cs-orders%>}
+ord={%<cs-orders%>}
+mixed-order={%<mixed order%>}
+mixord={%<mixed order%>}
 #endkeyvals
 
 ## Differential options (section 3.4)
 ### Differential Style (style-)
-#keyvals:\derivset,\NewDifferential,\RenewDifferential,\ProvideDifferential,\DeclareDifferential,\odif,\pdif,\mdif,\fdif,\adif
-style-inf=%<infinitesimal%>#c
+#keyvals:\derivset,\NewDifferential,\RenewDifferential,\ProvideDifferential,\DeclareDifferential,\odif,\odif*,\pdif,\pdif*,\mdif,\mdif*,\fdif,\fdif*,\adif,\adif*
+style-inf=%<infinitesimal%>
 style-notation=#single,multiple,mixed
 style-notation-*=#single,multiple,mixed
-#endkeyvals
+
 ### Differential Scaling (scale-)
-#keyvals:\derivset,\NewDifferential,\RenewDifferential,\ProvideDifferential,\DeclareDifferential,\odif,\pdif,\mdif,\fdif,\adif
 scale-var=#auto,none,big,Big,bigg,Bigg
 scale-var-*=#auto,none,big,Big,bigg,Bigg
-#endkeyvals
+
 ### Differential Delimiters (delim-)
-#keyvals:\derivset,\NewDifferential,\RenewDifferential,\ProvideDifferential,\DeclareDifferential,\odif,\pdif,\mdif,\fdif,\adif
-delims-var={%<left delim%>}{%<right delim%>}#c
-delims-var-*={%<left delim%>}{%<right delim%>}#c
-#endkeyvals
+delims-var={%<left delim%>}{%<right delim%>}
+delims-var-*={%<left delim%>}{%<right delim%>}
+
 ### Differential Math Spacing (sep-)
-#keyvals:\derivset,\NewDifferential,\RenewDifferential,\ProvideDifferential,\DeclareDifferential,\odif,\pdif,\mdif,\fdif,\adif
-sep-begin=
-sep-inf-ord=
-sep-inf-var=
-sep-ord-var=
-sep-var-inf=
-sep-var-var=
-sep-ord-ord=
-sep-end=
-#endkeyvals
+sep-begin=%<<num>, <mspace>, or <delim>%>
+sep-inf-ord=%<<num>, <mspace>, or <delim>%>
+sep-inf-var=%<<num>, <mspace>, or <delim>%>
+sep-ord-var=%<<num>, <mspace>, or <delim>%>
+sep-var-inf=%<<num>, <mspace>, or <delim>%>
+sep-var-var=%<<num>, <mspace>, or <delim>%>
+sep-ord-ord=%<<num>, <mspace>, or <delim>%>
+sep-end=%<<num>, <mspace>, or <delim>%>
+
 ### Differential Switches (switch-)
-#keyvals:\derivset,\NewDifferential,\RenewDifferential,\ProvideDifferential,\DeclareDifferential,\odif,\pdif,\mdif,\fdif,\adif
 switch-*=#true,false
-#endkeyvals
+
 ### Differential Miscellaneous
-#keyvals:\derivset,\NewDifferential,\RenewDifferential,\ProvideDifferential,\DeclareDifferential,\odif,\pdif,\mdif,\fdif,\adif
 var
-var=#none,all,{%<cs-numbers%>}
-order={%<cs-orders%>}#c
-ord={%<cs-orders%>}#c
+var=%<none, all, or {cs-numbers}%>
+order={%<cs-orders%>}
+ord={%<cs-orders%>}
 #endkeyvals
 
 ## All derivatives and differentials options (section 3.5)
@@ -256,6 +246,7 @@ scale-auto=#leftright,mleftright
 \DeclareDifferential{cmd}{infinitesimal%formula}[keyvals]#nd
 
 # Miscellaneous (section 6)
+\slashfrac{numerator}{denominator}#m
 \slashfrac[scale%keyvals]{numerator}{denominator}#m
 # Note: as of v1.1, ths scale argument is still subject to change. See 7.2(ii).
 #keyvals:\slashfrac
