@@ -653,6 +653,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
 	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
+    registerOption("Dialogs/Show config dialog maximized",&showConfigMaximized,false);
 
 	//build commands
 	registerOption("Tools/SingleViewerInstance", &BuildManager::singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
@@ -1389,6 +1390,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	ConfigDialog *confDlg = new ConfigDialog(parentToDialog);
 	UtilsUi::resizeInFontHeight(confDlg, 86, 52);
 
+    if(showConfigMaximized){
+        confDlg->showMaximized();
+    }
+
 	confDlg->riddled = configRiddled;
 	//----------managed properties--------------------
 	foreach (const ManagedProperty &mp, managedProperties)
@@ -1639,6 +1644,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	//handle changes
 	if (executed) {
+        showConfigMaximized=confDlg->isMaximized();
+
 		QList<void *> changedProperties;
 		//----------managed properties--------------------
 		for (int i = 0; i < managedProperties.size(); i++)

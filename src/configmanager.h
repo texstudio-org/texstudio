@@ -134,6 +134,7 @@ public:
 	int lastHardWrapColumn;
 	bool lastHardWrapSmartScopeSelection;
 	bool lastHardWrapJoinLines;
+    bool showConfigMaximized;
 
 	//insert graphics dialog
 	InsertGraphicsConfig *const insertGraphicsConfig;
