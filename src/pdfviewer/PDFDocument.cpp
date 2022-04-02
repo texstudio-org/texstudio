@@ -787,13 +787,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				doc->renderManager->renderToImage(pageNr + 1, this, "", dpi * scaleFactor * overScale, dpi * scaleFactor * overScale, 0, 0, newRect.width() * overScale, newRect.height()*overScale, true, true);
 		} else {
 			QRect visRect = visibleRegion().boundingRect();
-			//image = QPixmap(newRect.width(), newRect.height());
-			//image.fill(QApplication::palette().color(QPalette::Dark).rgb());
 
-			//QPainter p;
-			//p.begin(&image);
-			// paint border betweend pages
-			QSizeF realPageSize = maxPageSizeFDpiAdjusted() * scaleFactor;
+            QSizeF realPageSize = maxPageSizeFDpiAdjusted() * scaleFactor;
 
 			int realPageSizeX = qRound(realPageSize.width());
 			int realPageSizeY = qRound(realPageSize.height());
@@ -848,10 +843,9 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 					}
 				}
 			}
-			for (; curGrid < gridx * gridy; curGrid++)
+            for (; curGrid < gridx * gridy; curGrid++){
 				painter.drawRect(gridPageRect(curGrid));
-			//p.end();
-			//painter.restore();
+            }
 		}
 	}
 
