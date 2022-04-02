@@ -538,3 +538,7 @@ limap:
 class-limap
 latex-document
 tex
+letgut:
+class-letgut
+latex-document
+tex
