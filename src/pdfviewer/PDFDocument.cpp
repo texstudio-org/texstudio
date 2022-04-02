@@ -854,10 +854,11 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 	imageRect = newRect;
 }
 
-void PDFWidget::setImage(QPixmap, int pageNr)
+void PDFWidget::setImage(QPixmap, int)
 {
 	forceUpdate = true;
-    update(pageRect(pageNr));
+    update();
+    //update(pageRect(pageNr));
 }
 
 void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
