@@ -46,7 +46,7 @@
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
-    <release date="2022-03-12T13:39:04+0000" version="4.2.3">
+    <release date="2022-04-03T09:26:48+0000" version="4.2.3">
       <description>
         <ul>
           <li>fix unable to save under special circumstances (#2124)</li>
@@ -54,6 +54,10 @@
           <li>xindex engine added</li>
           <li>fix math highlighting in keyvals (#2138)</li>
           <li>add context menu in embbeded pdf viewer to invert pdf colors</li>
+          <li>remember window state (maximized/normal) of config dialog</li>
+          <li>fix (and speed-up) miktex package detection</li>
+          <li>fix handling apostrophed words better in spellchecker (#2179)</li>
+          <li>reular expression in extended search behave the same as in normal search</li>
           <li>more cwls</li>
         </ul>
       </description>
