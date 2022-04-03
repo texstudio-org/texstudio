@@ -1028,9 +1028,10 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
             int i = word.lastIndexOf("{");
             QString test = word.left(i) + "{";
             QList<CompletionWord>::iterator lIt = std::lower_bound(baselist.begin(), baselist.end(), CompletionWord(test));
-            if(lIt != baselist.end()){
-                // part of command without argument is in baselist
-                // is it a on-the-fly filled command ?
+            // part of command without argument is in baselist
+            // is it a on-the-fly filled command ?
+            // try on all possible commands which begin with the word (test), see #2187
+            while(lIt!=baselist.end() && lIt->word.startsWith(test)){
                 if(lIt->word.contains('@')){
                     QString citeStart = word.mid(i + 1);
                     QString ln = lIt->lines[0];
@@ -1078,6 +1079,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                         }
                     }
                 }
+                ++lIt;
             }
         }
         //
