@@ -57,7 +57,7 @@
           <li>remember window state (maximized/normal) of config dialog</li>
           <li>fix (and speed-up) miktex package detection</li>
           <li>fix handling apostrophed words better in spellchecker (#2179)</li>
-          <li>reular expression in extended search behave the same as in normal search</li>
+          <li>regular expression in extended search behave the same as in normal search</li>
           <li>more cwls</li>
         </ul>
       </description>

@@ -8,7 +8,7 @@ TeXstudio 4.2.3
 - remember window state (maximized/normal) of config dialog
 - fix (and speed-up) miktex package detection
 - fix handling apostrophed words better in spellchecker (#2179)
-- reular expression in extended search behave the same as in normal search
+- regular expression in extended search behave the same as in normal search
 - more cwls
 
 
