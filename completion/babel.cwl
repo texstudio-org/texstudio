@@ -1067,6 +1067,7 @@ SuppressWarning#true,false
 \AddThinSpaceBeforeFootnotes#*
 \alsoname#*
 \at
+\bibname#*
 \AutoSpaceBeforeFDP#*
 \begin{descriptionFB}
 \begin{enumerateFB}
@@ -1279,6 +1280,7 @@ SuppressWarning#true,false
 \AddThinSpaceBeforeFootnotes#*
 \alsoname#*
 \at
+\bibname#*
 \AutoSpaceBeforeFDP#*
 \begin{descriptionFB}
 \begin{enumerateFB}
