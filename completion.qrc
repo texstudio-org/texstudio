@@ -85,6 +85,7 @@
 <file>completion/andika.cwl</file>
 <file>completion/animate.cwl</file>
 <file>completion/annee-scolaire.cwl</file>
+<file>completion/annotate-equations.cwl</file>
 <file>completion/AnnSton.cwl</file>
 <file>completion/anonchap.cwl</file>
 <file>completion/anonymous-acm.cwl</file>
@@ -480,6 +481,7 @@
 <file>completion/class-langscibook.cwl</file>
 <file>completion/class-leadsheet.cwl</file>
 <file>completion/class-leaflet.cwl</file>
+<file>completion/class-letgut.cwl</file>
 <file>completion/class-letter.cwl</file>
 <file>completion/class-limap.cwl</file>
 <file>completion/class-limecv.cwl</file>
@@ -925,6 +927,7 @@
 <file>completion/floatpagestyle.cwl</file>
 <file>completion/floatrow.cwl</file>
 <file>completion/flowchart.cwl</file>
+<file>completion/flowfram.cwl</file>
 <file>completion/fltpoint.cwl</file>
 <file>completion/flushend.cwl</file>
 <file>completion/fmp.cwl</file>
@@ -986,6 +989,7 @@
 <file>completion/fullminipage.cwl</file>
 <file>completion/fullpage.cwl</file>
 <file>completion/fullwidth.cwl</file>
+<file>completion/functional.cwl</file>
 <file>completion/futurans.cwl</file>
 <file>completion/fvextra.cwl</file>
 <file>completion/fwlw.cwl</file>
@@ -1273,6 +1277,7 @@
 <file>completion/leftindex.cwl</file>
 <file>completion/leipzig.cwl</file>
 <file>completion/lengthconvert.cwl</file>
+<file>completion/letgut-banner.cwl</file>
 <file>completion/letltxmacro.cwl</file>
 <file>completion/letterspace.cwl</file>
 <file>completion/letterswitharrows.cwl</file>
@@ -1285,6 +1290,7 @@
 <file>completion/libertinus-otf.cwl</file>
 <file>completion/libertinust1math.cwl</file>
 <file>completion/libertinus-type1.cwl</file>
+<file>completion/librarian.cwl</file>
 <file>completion/librebaskerville.cwl</file>
 <file>completion/LibreBodoni.cwl</file>
 <file>completion/LibreBskvl.cwl</file>
@@ -2168,6 +2174,7 @@
 <file>completion/svrsymbols.cwl</file>
 <file>completion/symbolpalette.cwl</file>
 <file>completion/sympytex.cwl</file>
+<file>completion/synproof.cwl</file>
 <file>completion/syntaxdi.cwl</file>
 <file>completion/syntonly.cwl</file>
 <file>completion/systeme.cwl</file>
@@ -2382,6 +2389,7 @@
 <file>completion/turnstile.cwl</file>
 <file>completion/turnthepage.cwl</file>
 <file>completion/tweaklist.cwl</file>
+<file>completion/twemojis.cwl</file>
 <file>completion/twoopt.cwl</file>
 <file>completion/tx-ds.cwl</file>
 <file>completion/txfonts.cwl</file>

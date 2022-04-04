@@ -178,6 +178,7 @@ rl
 \begin{multlined}#m
 \begin{multlined}[pos][width]#m
 \end{multlined}
+\MultlinedHook#*
 \shoveleft{arg}#m
 \shoveleft[dimen]{arg}#m
 \shoveright{arg}#m
@@ -196,6 +197,7 @@ rl
 \shortvdotswithin*{symbol}#m
 \MTFlushSpaceAbove#m
 \MTFlushSpaceBelow#m
+\origjot#*
 \shortintertext{text}#m
 \intertext{text}#m
 \DeclarePairedDelimiter{cmd}{left delim%formula}{right delim%formula}#nd
@@ -232,3 +234,9 @@ nostarscaled
 \splitdfrac{numer}{denom}#m
 \xmathstrut{increase}#m
 \xmathstrut[depth increase]{increase}#m
+\newcases{envname}{sep}{preamble}{left}{right}#*N
+\renewcases{envname}{sep}{preamble}{left}{right}#*N
+\upbracketfill{arg1}{arg2}#S
+\upbracketend{arg1}{arg2}#S
+\downbracketfill{arg1}{arg2}#S
+\downbracketend{arg1}{arg2}#S

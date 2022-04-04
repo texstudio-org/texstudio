@@ -653,6 +653,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Column", &lastHardWrapColumn, 80);
 	registerOption("Dialogs/Last Hard Wrap Smart Scope Selection", &lastHardWrapSmartScopeSelection, false);
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
+    registerOption("Dialogs/Show config dialog maximized",&showConfigMaximized,false);
 
 	//build commands
 	registerOption("Tools/SingleViewerInstance", &BuildManager::singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
@@ -1389,6 +1390,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	ConfigDialog *confDlg = new ConfigDialog(parentToDialog);
 	UtilsUi::resizeInFontHeight(confDlg, 86, 52);
 
+    if(showConfigMaximized){
+        confDlg->showMaximized();
+    }
+
 	confDlg->riddled = configRiddled;
 	//----------managed properties--------------------
 	foreach (const ManagedProperty &mp, managedProperties)
@@ -1639,6 +1644,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	//handle changes
 	if (executed) {
+        showConfigMaximized=confDlg->isMaximized();
+
 		QList<void *> changedProperties;
 		//----------managed properties--------------------
 		for (int i = 0; i < managedProperties.size(); i++)
@@ -2931,8 +2938,9 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 
 	// ID
 	QWidget *nameWidget;
-	if (cmd.user) nameWidget = new QLineEdit(cmd.id + ":" + cmd.displayName, parent);
-	else {
+    if (cmd.user){
+        nameWidget = new QLineEdit(cmd.id + ":" + cmd.displayName, parent);
+    } else {
 		QString lbl = qApp->translate("BuildManager", qPrintable(cmd.displayName));
 		nameWidget = new QLabel(lbl, parent);
 		if (configShowAdvancedOptions) nameWidget->setToolTip("ID: txs:///" + cmd.id);
@@ -2944,7 +2952,7 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 	// cmd Widget
 	QWidget *cmdWidget;
 	if (cmd.metaSuggestionList.isEmpty()) {
-        cmdWidget = new QLineEdit("", parent);
+        cmdWidget = new QLineEdit(cmd.commandLine, parent);
 		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit *>(cmdWidget);
 	} else {
 		cmdWidget = new QComboBox(parent);
@@ -3091,9 +3099,9 @@ void ConfigManager::createCommandList(QGroupBox *box, const QStringList &order, 
 		addButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 		connect(addButton, SIGNAL(clicked()), SLOT(addCommand()));
 		gl->addWidget(addButton, row, 0, 1, 1, Qt::AlignLeft | Qt::AlignTop);
-		userGridLayout = gl;
+        gl->setProperty(PROPERTY_ADD_BUTTON, QVariant::fromValue<QPushButton *>(addButton));
+        userGridLayout = gl;
 		setLastRowMoveDownEnable(false);
-		gl->setProperty(PROPERTY_ADD_BUTTON, QVariant::fromValue<QPushButton *>(addButton));
 	}
 	//gl->addItem(new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding), row, CG_RERUN);
 
@@ -3278,11 +3286,13 @@ void exchangeProperties(QWidget *w, QWidget *w2)
 	QPushButton *pb;
 	if ( (le = qobject_cast<QLineEdit *>(w)) ) {
 		QLineEdit *le2 = qobject_cast<QLineEdit *>(w2);
+        if(!le2) return; // avoid potential crash
 		QString s = le->text();
 		le->setText(le2->text());
 		le2->setText(s);
 	} else if ( (cb = qobject_cast<QComboBox *>(w)) ) {
 		QComboBox *cb2 = qobject_cast<QComboBox *>(w2);
+        if(!cb2) return; // avoid potential crash
 		QString cbCurrent = cb->currentText();
 		QStringList cbTexts;
 		for (int i = 0; i < cb->count(); i++) {
@@ -3298,6 +3308,7 @@ void exchangeProperties(QWidget *w, QWidget *w2)
 		cb2->setEditText(cbCurrent);
 	} else if ((pb = qobject_cast<QPushButton *>(w)) && pb->isCheckable()) {
 		QPushButton *pb2 = qobject_cast<QPushButton *>(w2);
+        if(!pb2) return; // avoid potential crash
 		bool b = pb->isChecked();
 		pb->setChecked(pb2->isChecked());
 		pb2->setChecked(b);
