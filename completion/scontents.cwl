@@ -1,13 +1,11 @@
 # scontents package
-# Matthew Bertucci 11/23/2021 for v1.9
+# Matthew Bertucci 4/5/2022 for v2.0
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 
 \setupsc{options%keyvals}
 
-#keyvals:\setupsc
+#keyvals:\setupsc,\usepackage/scontents#c
 store-env=%<seq name%>
 store-cmd=%<seq name%>
 print-env#true,false
@@ -41,8 +39,8 @@ store-env=%<seq name%>
 print-env#true,false
 #endkeyvals
 
-\Scontents{arg}
-\Scontents[options%keyvals]{arg}
+\Scontents{argument}
+\Scontents[options%keyvals]{argument}
 
 #keyvals:\Scontents
 store-cmd=%<seq name%>
@@ -50,8 +48,8 @@ print-cmd#true,false
 force-eol#true,false
 #endkeyvals
 
-\Scontents*{arg}
-\Scontents*[options%keyvals]{arg}
+\Scontents*{argument}
+\Scontents*[options%keyvals]{argument}
 
 #keyvals:\Scontents*
 store-cmd=%<seq name%>
@@ -93,5 +91,6 @@ width-tab=%<integer%>
 \countsc{seq name}
 \cleanseqsc{seq name}
 
-\endscontents#S
-\scontents#S
+\ScontentsFileDate#S
+\ScontentsFileVersion#S
+\ScontentsFileDescription#S
