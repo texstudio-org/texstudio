@@ -1644,7 +1644,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	//handle changes
 	if (executed) {
-        showConfigMaximized=confDlg->isMaximized();
+
 
 		QList<void *> changedProperties;
 		//----------managed properties--------------------
@@ -1920,6 +1920,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
         confDlg->ui.horizontalSliderPDF->setValue(guiPDFToolbarIconSize);
 
 	}
+
+    showConfigMaximized=confDlg->isMaximized();
+
 	delete confDlg;
 	return executed;
 }
