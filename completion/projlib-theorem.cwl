@@ -1,5 +1,5 @@
 # projlib-theorem package
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/04/04 for 2022/04/06 release
 
 #include:l3keys2e
 #include:projlib-language
@@ -161,3 +161,24 @@ no preset names#true,false
 \begin{definition-theorem*}
 \begin{definition-theorem*}[heading%text]
 \end{definition-theorem*}
+\begin{proposition-definition}
+\begin{proposition-definition}[heading%text]
+\end{proposition-definition}
+\begin{proposition-definition*}
+\begin{proposition-definition*}[heading%text]
+\end{proposition-definition*}
+\begin{theorem-definition}
+\begin{theorem-definition}[heading%text]
+\end{theorem-definition}
+\begin{theorem-definition*}
+\begin{theorem-definition*}[heading%text]
+\end{theorem-definition*}
+
+\begin{theorem-with-name}{arg}
+\begin{theorem-with-name}{arg}[opt]
+\end{theorem-with-name}
+\begin{theorem-with-name*}{arg}
+\begin{theorem-with-name*}{arg}[opt]
+\end{theorem-with-name*}
+
+\DisableTheoremNumbering{theorem envname}
