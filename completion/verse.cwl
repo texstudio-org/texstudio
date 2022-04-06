@@ -50,3 +50,25 @@
 \stringtoarray{array name}{string}
 \arraytostring{array name}{result}
 \checkifinteger{number}
+
+\altindentfalse#*
+\altindenttrue#*
+\bounderrorfalse#*
+\bounderrortrue#*
+\gobm{number}#*
+\ifaltindent#*
+\ifbounderror#*
+\ifinteger#*
+\ifpattern#*
+\ifstarpattern#*
+\integerfalse#*
+\integertrue#*
+\patternfalse#*
+\patterntrue#*
+\starpatternfalse#*
+\starpatterntrue#*
+\thechrsinstr#*
+\thefvsline#*
+\theHpoemline#*
+\thevslineno#*
+\vlnumfont#*

@@ -1,5 +1,5 @@
 # hvfloat package
-# Matthew Bertucci 11/24/2021 for v2.34
+# Matthew Bertucci 4/3/2022 for v2.38
 
 #include:caption
 #include:varwidth
@@ -49,10 +49,11 @@ nostfloats
 #keyvals:\hvFloatSet,\hvFloat,\hvFloat*,\hvDefFloatStyle
 floatPos=%<float pos%>
 rotAngle=%<angle%>
-capWidth=%<n, w, or <number>%>
+capWidth=%<h, w, l, or <number>%>
 capAngle=%<integer%>
-capPos=#before,top,left,after,bottom,right,inner,outer,evenPage
+capPos=#before,top,left,after,bottom,right,inner,outer,evenPage,oddPage
 capVPos=#bottom,center,top
+capHPos=#left,center,right
 objectPos=#left,center,right
 objectAngle=%<integer%>
 floatCapSep=##L
@@ -76,6 +77,7 @@ multiFloat#true,false
 subFloat#true,false
 separatorLine#true,false
 bindCorr=##L
+twoColumnCaption#true,false
 #endkeyvals
 
 \begin{hvFloatEnv}
@@ -96,8 +98,8 @@ doubleFULLPAGEbindCorr#true,false
 #endkeyvals
 
 #keyvals:\IncludeGraphics
-alt=
-bb=
+alt={%<alt text%>}
+bb=%<llx lly urx ury%>
 bbllx=
 bblly=
 bburx=
@@ -106,25 +108,25 @@ natwidth=
 natheight=
 hiresbb#true,false
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
-viewport=
-trim=
-angle=
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
 origin=
 width=##L
 height=##L
 totalheight=##L
 keepaspectratio#true,false
-scale=
+scale=%<factor%>
 clip#true,false
 draft#true,false
-type=
-ext=
-read=
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
 command=
 quiet
-page=
+page=%<page number%>
 interpolate#true,false
-decodearray=
+decodearray={%<color array%>}
 #endkeyvals
 
 \LenToUnit{length}#*
@@ -142,3 +144,12 @@ decodearray=
 \setPageObject#*
 \defhvstyle{name}{options}#S
 \hvFloatFileVersion#S
+\hvObjectWidth#*
+\hvCapWidth#*
+\hvWideWidth#*
+\hvMultiFloatSkip#*
+\hvMaxCapWidth#*
+\hvAboveCaptionSkip#*
+\hvBelowCaptionSkip#*
+\fboxlinewidth#*
+\hvOBox#*

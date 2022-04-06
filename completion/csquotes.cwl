@@ -258,9 +258,9 @@
 \DeclareQuoteOption{style}#*
 
 \ExecuteQuoteOptions{options%keyvals}#*
-#keyvals:\ExecuteQuoteOptions#c
+#keyvals:\usepackage/csquotes#c,\ExecuteQuoteOptions#c
 strict#true,false
-style=
+style=%<style%>
 autostyle=#true,false,try,once,tryonce
 maxlevel=%<integer%>
 autopunct#true,false
@@ -270,7 +270,27 @@ parthreshold#true,false
 splitcomp#true,false
 csdisplay#true,false
 debug#true,false
-version=
+version=%<version%>
+austrian=#quotes,guillemets
+croatian=#quotes,guillemets
+czech=#quotes,guillemets
+danish=#quotes,guillemets,topquotes
+english=#american,british
+estonian
+french=#quotes,quotes*,guillemets,guillemets*
+galician=#quotes,guillemets
+german=#quotes,guillemets,swiss
+hungarian
+italian=#guillemets,quotes
+latin=#italianguillemets,germanquotes,germanguillemets,britishquotes,americanquotes
+latvian
+norwegian=#guillemets,quotes
+polish=#guillemets,guillemets*
+portuguese=#portuguese,brazilian
+romanian
+serbian=#quotes,guillemets,german
+spanish=#spanish,mexican
+swedish=#quotes,guillemets,guillemets*
 #endkeyvals
 
 \DeclarePlainStyle{openoutermark}{closeoutermark}{openinnermark}{closeinnermark}#*

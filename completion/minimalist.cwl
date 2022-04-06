@@ -1,80 +1,48 @@
 # minimalist package
-# Matthew Bertucci 2/15/2022 for 2021/12/16 release
+# Matthew Bertucci 2022/04/04 for 2022/03/28 release
 
-#include:kvoptions
-#include:etoolbox
-#include:anyfontsize
-#include:PJLpaper
-#include:geometry
-#include:fancyhdr
-#include:extramarks
-#include:tikz
-#include:tikzpagenodes
-#include:PJLlang
-#include:linenoamsmath
-#include:titlesec
-#include:ulem
-#include:titletoc
-#include:enumitem
-#include:PJLdraft
-#include:mathtools
-#include:amsthm
-#include:hyperref
-#include:bookmark
-#include:PJLthm
-#include:PJLauthor
+#include:projlib-paper
+#include:projlib-language
+#include:minimalist-plain
 
 #keyvals:\usepackage/minimalist#c
 draft#true,false
 fast#true,false
-puretext#true,false
-nothms#true,false
-delaythms#true,false
-nothmnum#true,false
-thmnum=%<counter%>
-regionalref#true,false
-originalref#true,false
 allowbf#true,false
 classical#true,false
 runin#true,false
+nothms#true,false
+nothmnum#true,false
+thmnum
+thmnum=%<counter%>
+theorem style=%<style%>
+complex name#true,false
+simple name#true,false
+no preset names#true,false
+regionalref#true,false
+originalref#true,false
+Chinese
+TChinese
+English
+German
+Italian
+Portuguese
+Brazilian
+Spanish
+Japanese
+Russian
 #endkeyvals
 
-#ifOption:allowbf
-\conditionalbfseries
-#endif
-#ifOption:allowbf=true
-\conditionalbfseries
-#endif
-
-\conditionalbfseries#*
-\ifIsBook#*
-\IsBooktrue#*
-\IsBookfalse#*
-\partfont#*
-\chapfont#*
-\secfont#*
-\subsecfont#*
-\subsubsecfont#*
-\drawHelpLine#*
-\ifLNturnsON#*
-\LNturnsONtrue#*
-\LNturnsONfalse#*
-\LocallyStopLineNumbers
-\ResumeLineNumbers
-\partstring#*
-\parttext{text}#*
-\seculine#S
-\subseculine#S
+#ifOption:classical
+# loads minimalist-classical package, however commands same as minimalist-plain except those below
 \desculine#*
-\blinkpagetext#S
+\seculine#*
 \simpleqedsymbol#*
-\qedsymbolOriginal#S
-\keywordnameEN#*
-\keywordnameFR#*
-\keywordnameDE#*
-\keywordnameCN#*
-\keywordnameTC#*
-\keywordnameJP#*
-\keywordnameRU#*
-\begin{keyword}
-\end{keyword}
+\subseculine#*
+#endif
+#ifOption:classical=true
+\desculine#*
+\seculine#*
+\simpleqedsymbol#*
+\subseculine#*
+#endif
