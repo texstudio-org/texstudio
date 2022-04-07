@@ -8,7 +8,7 @@
 #keyvals:\usepackage/minimalist#c
 draft#true,false
 fast#true,false
-allowbf#true,false
+use boldface#true,false
 classical#true,false
 runin#true,false
 nothms#true,false
