@@ -27,7 +27,7 @@ b5paper
 11pt
 12pt
 # options passed to minimalist package
-allowbf#true,false
+use boldface#true,false
 runin#true,false
 nothms#true,false
 nothmnum#true,false

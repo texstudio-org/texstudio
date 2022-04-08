@@ -1,5 +1,5 @@
 # projlib-language package
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/04/04 for 2022/04/03 release
 
 #include:l3keys2e
 #include:fontenc
@@ -7,6 +7,7 @@
 #include:babel
 # loads italian, portuguese, brazilian, spanish, ngerman, french, and english options of babel
 #include:setspace
+#include:csquotes
 
 #keyvals:\usepackage/projlib-language#c
 English

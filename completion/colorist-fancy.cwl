@@ -1,5 +1,5 @@
-# minimalist-plain package
-# Matthew Bertucci 2022/04/06 for 2022/04/06 release
+# colorist-fancy package
+# Matthew Bertucci 2022/04/07 for release 2022/04/03
 
 #include:l3keys2e
 #include:anyfontsize
@@ -9,7 +9,6 @@
 #include:geometry
 #include:fancyhdr
 #include:extramarks
-#include:linenoamsmath
 #include:titlesec
 #include:ulem
 #include:titletoc
@@ -22,30 +21,37 @@
 #include:bookmark
 #include:hyperref
 #include:projlib-theorem
+#include:marginnote
+#include:ifoddpage
+#include:iftex
 #include:projlib-author
 # loads amsfashion options of projlib-author
 #include:projlib-titlepage
 #include:tcolorbox
 # loads many option of tcolorbox
-#include:amsmath
 #include:pdfcol
 
-\LocallyStopLineNumbers
-\ResumeLineNumbers
 \begin{keyword}
 \end{keyword}
 \parttext{text}
 \begin{emphasis}
 \end{emphasis}
+\begin{proof}[heading%text]
+\end{proof}
+\mparadjust{length}
 
-\ifLNturnsON#*
+\AfterEnvEnd{code}#*
+\ScanEnv{arg1}{arg2}{arg3}#*
+\ScanEnv*{arg1}{arg2}{arg3}#*
 \keywordname#*
-\LNturnsONfalse#*
-\LNturnsONtrue#*
 \partstring#*
 \qedsymbolOriginal#S
 \IndexDotfill#*
 \IndexHeading{text}#*
+
+maintheme#B
+forestgreen#B
+lightorange#B
 
 # from amsfashion option of projlib-author
 #include:projlib-language
