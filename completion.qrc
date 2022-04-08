@@ -403,6 +403,7 @@
 <file>completion/chemnum.cwl</file>
 <file>completion/chemplants.cwl</file>
 <file>completion/chemscheme.cwl</file>
+<file>completion/chemschemex.cwl</file>
 <file>completion/chemsec.cwl</file>
 <file>completion/chemstyle.cwl</file>
 <file>completion/chessboard.cwl</file>
@@ -513,6 +514,8 @@
 <file>completion/class-proc.cwl</file>
 <file>completion/class-pylatex.cwl</file>
 <file>completion/class-qcm.cwl</file>
+<file>completion/class-quantumarticle.cwl</file>
+<file>completion/class-quantumview.cwl</file>
 <file>completion/class-rapport1.cwl</file>
 <file>completion/class-rapport3.cwl</file>
 <file>completion/class-ReadableCV.cwl</file>
@@ -528,6 +531,7 @@
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrbook.cwl</file>
 <file>completion/class-scrdoc.cwl</file>
+<file>completion/class-screenplay.cwl</file>
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
@@ -536,6 +540,7 @@
 <file>completion/class-skrapport.cwl</file>
 <file>completion/class-slides.cwl</file>
 <file>completion/class-sslides.cwl</file>
+<file>completion/class-stage.cwl</file>
 <file>completion/class-standalone.cwl</file>
 <file>completion/class-suftesi.cwl</file>
 <file>completion/class-talk.cwl</file>
@@ -591,6 +596,8 @@
 <file>completion/colordoc.cwl</file>
 <file>completion/color-edits.cwl</file>
 <file>completion/colorinfo.cwl</file>
+<file>completion/colorist.cwl</file>
+<file>completion/colorist-fancy.cwl</file>
 <file>completion/colorpalette.cwl</file>
 <file>completion/colorspace.cwl</file>
 <file>completion/colortbl.cwl</file>
@@ -605,6 +612,7 @@
 <file>completion/comma.cwl</file>
 <file>completion/commath.cwl</file>
 <file>completion/comment.cwl</file>
+<file>completion/commonunicode.cwl</file>
 <file>completion/commutative-diagrams.cwl</file>
 <file>completion/complexity.cwl</file>
 <file>completion/concepts.cwl</file>
@@ -739,6 +747,7 @@
 <file>completion/draftfigure.cwl</file>
 <file>completion/draftmark.cwl</file>
 <file>completion/draftwatermark.cwl</file>
+<file>completion/dramatist.cwl</file>
 <file>completion/drawmatrix.cwl</file>
 <file>completion/drawstack.cwl</file>
 <file>completion/drm.cwl</file>
@@ -810,6 +819,7 @@
 <file>completion/engord.cwl</file>
 <file>completion/engpron.cwl</file>
 <file>completion/engrec.cwl</file>
+<file>completion/enigma.cwl</file>
 <file>completion/enotez.cwl</file>
 <file>completion/enparen.cwl</file>
 <file>completion/enumerate.cwl</file>
@@ -910,6 +920,7 @@
 <file>completion/fhgtechdoku_additional.cwl</file>
 <file>completion/fibnum.cwl</file>
 <file>completion/fifo-stack.cwl</file>
+<file>completion/figchild.cwl</file>
 <file>completion/filecontentsdef.cwl</file>
 <file>completion/filehook.cwl</file>
 <file>completion/filemod.cwl</file>
@@ -1123,6 +1134,7 @@
 <file>completion/highlightlatex.cwl</file>
 <file>completion/HindMadurai.cwl</file>
 <file>completion/hlist.cwl</file>
+<file>completion/hmtrump.cwl</file>
 <file>completion/hobete.cwl</file>
 <file>completion/hologo.cwl</file>
 <file>completion/holtpolt.cwl</file>
@@ -1504,6 +1516,7 @@
 <file>completion/moreverb.cwl</file>
 <file>completion/morewrites.cwl</file>
 <file>completion/MorrisIn.cwl</file>
+<file>completion/mparhack.cwl</file>
 <file>completion/mpgraphics.cwl</file>
 <file>completion/mpostinl.cwl</file>
 <file>completion/mtgreek.cwl</file>
@@ -1733,6 +1746,8 @@
 <file>completion/pgf-soroban.cwl</file>
 <file>completion/pgf-spectra.cwl</file>
 <file>completion/pgfsys.cwl</file>
+<file>completion/pgf-umlcd.cwl</file>
+<file>completion/pgf-umlsd.cwl</file>
 <file>completion/pgothic.cwl</file>
 <file>completion/phaistos.cwl</file>
 <file>completion/phfcc.cwl</file>
@@ -1960,6 +1975,7 @@
 <file>completion/refcount.cwl</file>
 <file>completion/refenums.cwl</file>
 <file>completion/reflectgraphics.cwl</file>
+<file>completion/refstyle.cwl</file>
 <file>completion/regcount.cwl</file>
 <file>completion/regexpatch.cwl</file>
 <file>completion/register.cwl</file>
@@ -2029,6 +2045,7 @@
 <file>completion/scratch3.cwl</file>
 <file>completion/scrbase.cwl</file>
 <file>completion/scrdate.cwl</file>
+<file>completion/screenplay-pkg.cwl</file>
 <file>completion/scrextend.cwl</file>
 <file>completion/scrfontsizes.cwl</file>
 <file>completion/scrhack.cwl</file>
@@ -2274,6 +2291,7 @@
 <file>completion/TheanoDidot.cwl</file>
 <file>completion/TheanoModern.cwl</file>
 <file>completion/TheanoOldStyle.cwl</file>
+<file>completion/theatre.cwl</file>
 <file>completion/theorem.cwl</file>
 <file>completion/theoremref.cwl</file>
 <file>completion/thepdfnumber.cwl</file>
