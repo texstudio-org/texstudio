@@ -558,3 +558,11 @@ stage:
 class-stage
 latex-document
 tex
+arabic-book:
+class-arabic-book
+latex-document
+tex
+beilstein:
+class-beilstein
+latex-document
+tex
