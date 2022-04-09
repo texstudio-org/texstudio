@@ -296,19 +296,13 @@
   
   <!-- definitions from \usepackage[standard]{ntheorem} -->
   <menu id="definitions" text="Math &amp;Definitions">
-     <insert id="Anmerkung" text="env Anmerkung (ntheorem)" insert="\begin{Anmerkung}\label{%&lt;key%>}%\%|%\\end{Anmerkung}"/>
-     <insert id="Beispiel" text="env Beispiel (ntheorem)" insert="\begin{Beispiel}\label{%&lt;key%>}%\%|%\\end{Beispiel}"/>
-     <insert id="Bemerkung" text="env Bemerkung (ntheorem)" insert="\begin{Bemerkung}\label{%&lt;key%>}%\%|%\\end{Bemerkung}"/>
-     <insert id="Beweis" text="env Beweis (ntheorem)" insert="\begin{Beweis}\label{%&lt;key%>}%\%|%\\end{Beweis}"/>
      <insert id="Corollary" text="env Corollary (ntheorem)" insert="\begin{Corollary}\label{%&lt;key%>}%\%|%\\end{Corollary}"/>
      <insert id="Definition" text="env Definition (ntheorem)" insert="\begin{Definition}\label{%&lt;key%>}%\%|%\\end{Definition}"/>
      <insert id="Example" text="env Example (ntheorem)" insert="\begin{Example}\label{%&lt;key%>}%\%|%\\end{Example}"/>
-     <insert id="Korollar" text="env Korollar (ntheorem)" insert="\begin{Korollar}\label{%&lt;key%>}%\%|%\\end{Korollar}"/>
      <insert id="Lemma" text="env Lemma (ntheorem)" insert="\begin{Lemma}\label{%&lt;key%>}%\%|%\\end{Lemma}"/>
      <insert id="Proof" text="env Proof (ntheorem)" insert="\begin{Proof}%\%|%\\end{Proof}"/>
      <insert id="Proposition" text="env Proposition (ntheorem)" insert="\begin{Proposition}\label{%&lt;key%>}%\%|%\\end{Proposition}"/>
      <insert id="Remark" text="env Remark (ntheorem)" insert="\begin{Remark}\label{%&lt;key%>}%\%|%\\end{Remark}"/>
-     <insert id="Satz" text="env Satz (ntheorem)" insert="\begin{Satz}\label{%&lt;key%>}%\%|%\\end{Satz}"/>
      <insert id="Theorem" text="env Theorem (ntheorem)" insert="\begin{Theorem}\label{%&lt;key%>}%\%|%\\end{Theorem}"/>
   </menu>
      
